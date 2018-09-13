@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -241,7 +216,8 @@ import java.util.Collection;
  * @since 1.5
  * @author Doug Lea
  */
-public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializable {
+public class ReentrantReadWriteLock implements ReadWriteLock,
+		java.io.Serializable {
 	private static final long serialVersionUID = -6992448646407690164L;
 	/** Inner class providing readlock */
 	private final ReentrantReadWriteLock.ReadLock readerLock;
@@ -263,7 +239,7 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 	 * policy.
 	 *
 	 * @param fair
-	 *            {@code true} if this lock should use a fair ordering policy
+	 *             {@code true} if this lock should use a fair ordering policy
 	 */
 	public ReentrantReadWriteLock(boolean fair) {
 		sync = fair ? new FairSync() : new NonfairSync();
@@ -322,7 +298,8 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * ThreadLocal subclass. Easiest to explicitly define for sake of
 		 * deserialization mechanics.
 		 */
-		static final class ThreadLocalHoldCounter extends ThreadLocal<HoldCounter> {
+		static final class ThreadLocalHoldCounter extends
+				ThreadLocal<HoldCounter> {
 			public HoldCounter initialValue() {
 				return new HoldCounter();
 			}
@@ -501,7 +478,8 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 			if (exclusiveCount(c) != 0 && getExclusiveOwnerThread() != current)
 				return -1;
 			int r = sharedCount(c);
-			if (!readerShouldBlock() && r < MAX_COUNT && compareAndSetState(c, c + SHARED_UNIT)) {
+			if (!readerShouldBlock() && r < MAX_COUNT && compareAndSetState(c, c
+					+ SHARED_UNIT)) {
 				if (r == 0) {
 					firstReader = current;
 					firstReaderHoldCount = 1;
@@ -608,7 +586,8 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 			Thread current = Thread.currentThread();
 			for (;;) {
 				int c = getState();
-				if (exclusiveCount(c) != 0 && getExclusiveOwnerThread() != current)
+				if (exclusiveCount(c) != 0
+						&& getExclusiveOwnerThread() != current)
 					return false;
 				int r = sharedCount(c);
 				if (r == MAX_COUNT)
@@ -646,7 +625,8 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 
 		final Thread getOwner() {
 			// Must read state before owner to ensure memory consistency
-			return ((exclusiveCount(getState()) == 0) ? null : getExclusiveOwnerThread());
+			return ((exclusiveCount(getState()) == 0) ? null
+					: getExclusiveOwnerThread());
 		}
 
 		final int getReadLockCount() {
@@ -743,9 +723,9 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * Constructor for use by subclasses
 		 *
 		 * @param lock
-		 *            the outer lock object
+		 *             the outer lock object
 		 * @throws NullPointerException
-		 *             if the lock is null
+		 *                              if the lock is null
 		 */
 		protected ReadLock(ReentrantReadWriteLock lock) {
 			sync = lock.sync;
@@ -810,7 +790,7 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * or reentrant acquisition of the lock.
 		 *
 		 * @throws InterruptedException
-		 *             if the current thread is interrupted
+		 *                              if the current thread is interrupted
 		 */
 		public void lockInterruptibly() throws InterruptedException {
 			sync.acquireSharedInterruptibly(1);
@@ -909,16 +889,17 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * of the waiting time.
 		 *
 		 * @param timeout
-		 *            the time to wait for the read lock
+		 *                the time to wait for the read lock
 		 * @param unit
-		 *            the time unit of the timeout argument
+		 *                the time unit of the timeout argument
 		 * @return {@code true} if the read lock was acquired
 		 * @throws InterruptedException
-		 *             if the current thread is interrupted
+		 *                              if the current thread is interrupted
 		 * @throws NullPointerException
-		 *             if the time unit is null
+		 *                              if the time unit is null
 		 */
-		public boolean tryLock(long timeout, TimeUnit unit) throws InterruptedException {
+		public boolean tryLock(long timeout, TimeUnit unit)
+				throws InterruptedException {
 			return sync.tryAcquireSharedNanos(1, unit.toNanos(timeout));
 		}
 
@@ -938,7 +919,7 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * {@code ReadLocks} do not support conditions.
 		 *
 		 * @throws UnsupportedOperationException
-		 *             always
+		 *                                       always
 		 */
 		public Condition newCondition() {
 			throw new UnsupportedOperationException();
@@ -968,9 +949,9 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * Constructor for use by subclasses
 		 *
 		 * @param lock
-		 *            the outer lock object
+		 *             the outer lock object
 		 * @throws NullPointerException
-		 *             if the lock is null
+		 *                              if the lock is null
 		 */
 		protected WriteLock(ReentrantReadWriteLock lock) {
 			sync = lock.sync;
@@ -1050,7 +1031,7 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * or reentrant acquisition of the lock.
 		 *
 		 * @throws InterruptedException
-		 *             if the current thread is interrupted
+		 *                              if the current thread is interrupted
 		 */
 		public void lockInterruptibly() throws InterruptedException {
 			sync.acquireInterruptibly(1);
@@ -1163,9 +1144,9 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * of the waiting time.
 		 *
 		 * @param timeout
-		 *            the time to wait for the write lock
+		 *                the time to wait for the write lock
 		 * @param unit
-		 *            the time unit of the timeout argument
+		 *                the time unit of the timeout argument
 		 *
 		 * @return {@code true} if the lock was free and was acquired by the
 		 *         current thread, or the write lock was already held by the
@@ -1173,11 +1154,12 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 *         before the lock could be acquired.
 		 *
 		 * @throws InterruptedException
-		 *             if the current thread is interrupted
+		 *                              if the current thread is interrupted
 		 * @throws NullPointerException
-		 *             if the time unit is null
+		 *                              if the time unit is null
 		 */
-		public boolean tryLock(long timeout, TimeUnit unit) throws InterruptedException {
+		public boolean tryLock(long timeout, TimeUnit unit)
+				throws InterruptedException {
 			return sync.tryAcquireNanos(1, unit.toNanos(timeout));
 		}
 
@@ -1191,7 +1173,8 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 * {@link IllegalMonitorStateException} is thrown.
 		 *
 		 * @throws IllegalMonitorStateException
-		 *             if the current thread does not hold this lock
+		 *                                      if the current thread does not
+		 *                                      hold this lock
 		 */
 		public void unlock() {
 			sync.release(1);
@@ -1251,8 +1234,8 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		 */
 		public String toString() {
 			Thread o = sync.getOwner();
-			return super.toString()
-					+ ((o == null) ? "[Unlocked]" : "[Locked by thread " + o.getName() + "]");
+			return super.toString() + ((o == null) ? "[Unlocked]"
+					: "[Locked by thread " + o.getName() + "]");
 		}
 
 		/**
@@ -1416,10 +1399,10 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 	 * system state.
 	 *
 	 * @param thread
-	 *            the thread
+	 *               the thread
 	 * @return {@code true} if the given thread is queued waiting for this lock
 	 * @throws NullPointerException
-	 *             if the thread is null
+	 *                              if the thread is null
 	 */
 	public final boolean hasQueuedThread(Thread thread) {
 		return sync.isQueued(thread);
@@ -1461,21 +1444,23 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 	 * for use in monitoring of the system state.
 	 *
 	 * @param condition
-	 *            the condition
+	 *                  the condition
 	 * @return {@code true} if there are any waiting threads
 	 * @throws IllegalMonitorStateException
-	 *             if this lock is not held
+	 *                                      if this lock is not held
 	 * @throws IllegalArgumentException
-	 *             if the given condition is not associated with this lock
+	 *                                      if the given condition is not
+	 *                                      associated with this lock
 	 * @throws NullPointerException
-	 *             if the condition is null
+	 *                                      if the condition is null
 	 */
 	public boolean hasWaiters(Condition condition) {
 		if (condition == null)
 			throw new NullPointerException();
 		if (!(condition instanceof AbstractQueuedSynchronizer.ConditionObject))
 			throw new IllegalArgumentException("not owner");
-		return sync.hasWaiters((AbstractQueuedSynchronizer.ConditionObject) condition);
+		return sync.hasWaiters(
+				(AbstractQueuedSynchronizer.ConditionObject) condition);
 	}
 
 	/**
@@ -1486,21 +1471,23 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 	 * monitoring of the system state, not for synchronization control.
 	 *
 	 * @param condition
-	 *            the condition
+	 *                  the condition
 	 * @return the estimated number of waiting threads
 	 * @throws IllegalMonitorStateException
-	 *             if this lock is not held
+	 *                                      if this lock is not held
 	 * @throws IllegalArgumentException
-	 *             if the given condition is not associated with this lock
+	 *                                      if the given condition is not
+	 *                                      associated with this lock
 	 * @throws NullPointerException
-	 *             if the condition is null
+	 *                                      if the condition is null
 	 */
 	public int getWaitQueueLength(Condition condition) {
 		if (condition == null)
 			throw new NullPointerException();
 		if (!(condition instanceof AbstractQueuedSynchronizer.ConditionObject))
 			throw new IllegalArgumentException("not owner");
-		return sync.getWaitQueueLength((AbstractQueuedSynchronizer.ConditionObject) condition);
+		return sync.getWaitQueueLength(
+				(AbstractQueuedSynchronizer.ConditionObject) condition);
 	}
 
 	/**
@@ -1513,21 +1500,23 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 	 * condition monitoring facilities.
 	 *
 	 * @param condition
-	 *            the condition
+	 *                  the condition
 	 * @return the collection of threads
 	 * @throws IllegalMonitorStateException
-	 *             if this lock is not held
+	 *                                      if this lock is not held
 	 * @throws IllegalArgumentException
-	 *             if the given condition is not associated with this lock
+	 *                                      if the given condition is not
+	 *                                      associated with this lock
 	 * @throws NullPointerException
-	 *             if the condition is null
+	 *                                      if the condition is null
 	 */
 	protected Collection<Thread> getWaitingThreads(Condition condition) {
 		if (condition == null)
 			throw new NullPointerException();
 		if (!(condition instanceof AbstractQueuedSynchronizer.ConditionObject))
 			throw new IllegalArgumentException("not owner");
-		return sync.getWaitingThreads((AbstractQueuedSynchronizer.ConditionObject) condition);
+		return sync.getWaitingThreads(
+				(AbstractQueuedSynchronizer.ConditionObject) condition);
 	}
 
 	/**
@@ -1543,7 +1532,8 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 		int w = Sync.exclusiveCount(c);
 		int r = Sync.sharedCount(c);
 
-		return super.toString() + "[Write locks = " + w + ", Read locks = " + r + "]";
+		return super.toString() + "[Write locks = " + w + ", Read locks = " + r
+				+ "]";
 	}
 
 	/**

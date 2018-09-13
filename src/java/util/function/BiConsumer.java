@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.function;
 
@@ -37,9 +17,9 @@ import java.util.Objects;
  * functional method is {@link #accept(Object, Object)}.
  *
  * @param <T>
- *            the type of the first argument to the operation
+ *        the type of the first argument to the operation
  * @param <U>
- *            the type of the second argument to the operation
+ *        the type of the second argument to the operation
  *
  * @see Consumer
  * @since 1.8
@@ -51,9 +31,9 @@ public interface BiConsumer<T, U> {
 	 * Performs this operation on the given arguments.
 	 *
 	 * @param t
-	 *            the first input argument
+	 *          the first input argument
 	 * @param u
-	 *            the second input argument
+	 *          the second input argument
 	 */
 	void accept(T t, U u);
 
@@ -65,11 +45,11 @@ public interface BiConsumer<T, U> {
 	 * {@code after} operation will not be performed.
 	 *
 	 * @param after
-	 *            the operation to perform after this operation
+	 *              the operation to perform after this operation
 	 * @return a composed {@code BiConsumer} that performs in sequence this
 	 *         operation followed by the {@code after} operation
 	 * @throws NullPointerException
-	 *             if {@code after} is null
+	 *                              if {@code after} is null
 	 */
 	default BiConsumer<T, U> andThen(BiConsumer<? super T, ? super U> after) {
 		Objects.requireNonNull(after);

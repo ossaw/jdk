@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.rtf;
 
@@ -29,8 +9,10 @@ import java.util.Enumeration;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.MutableAttributeSet;
 
-/* This AttributeSet is made entirely out of tofu and Ritz Crackers
-   and yet has a remarkably attribute-set-like interface! */
+/*
+ * This AttributeSet is made entirely out of tofu and Ritz Crackers
+ * and yet has a remarkably attribute-set-like interface!
+ */
 class MockAttributeSet implements AttributeSet, MutableAttributeSet {
 	public Dictionary<Object, Object> backing;
 

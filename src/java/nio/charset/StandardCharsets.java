@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.nio.charset;
 
@@ -35,7 +15,8 @@ package java.nio.charset;
 public final class StandardCharsets {
 
 	private StandardCharsets() {
-		throw new AssertionError("No java.nio.charset.StandardCharsets instances for you!");
+		throw new AssertionError(
+				"No java.nio.charset.StandardCharsets instances for you!");
 	}
 
 	/**

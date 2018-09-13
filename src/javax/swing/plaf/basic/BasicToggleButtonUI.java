@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -91,10 +71,11 @@ public class BasicToggleButtonUI extends BasicButtonUI {
 		g.setFont(f);
 
 		// layout the text and icon
-		String text = SwingUtilities.layoutCompoundLabel(c, fm, b.getText(), b.getIcon(),
-				b.getVerticalAlignment(), b.getHorizontalAlignment(), b.getVerticalTextPosition(),
-				b.getHorizontalTextPosition(), viewRect, iconRect, textRect,
-				b.getText() == null ? 0 : b.getIconTextGap());
+		String text = SwingUtilities.layoutCompoundLabel(c, fm, b.getText(), b
+				.getIcon(), b.getVerticalAlignment(), b
+						.getHorizontalAlignment(), b.getVerticalTextPosition(),
+				b.getHorizontalTextPosition(), viewRect, iconRect, textRect, b
+						.getText() == null ? 0 : b.getIconTextGap());
 
 		g.setColor(b.getBackground());
 

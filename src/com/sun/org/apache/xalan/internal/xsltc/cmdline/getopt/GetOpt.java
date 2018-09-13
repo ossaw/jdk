@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -131,9 +128,10 @@ public class GetOpt {
 	 * @param none
 	 * @return int - the next option found.
 	 * @throws IllegalArgumentException,
-	 *             MissingOptArgException.
+	 *                                   MissingOptArgException.
 	 */
-	public int getNextOption() throws IllegalArgumentException, MissingOptArgException {
+	public int getNextOption() throws IllegalArgumentException,
+			MissingOptArgException {
 		int retval = -1;
 		if (theOptionsIterator.hasNext()) {
 			theCurrentOption = (Option) theOptionsIterator.next();
@@ -141,10 +139,12 @@ public class GetOpt {
 			boolean shouldHaveArg = theOptionMatcher.hasArg(c);
 			String arg = theCurrentOption.getArgument();
 			if (!theOptionMatcher.match(c)) {
-				ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_CMDLINE_OPTION_ERR, new Character(c));
+				ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_CMDLINE_OPTION_ERR,
+						new Character(c));
 				throw (new IllegalArgumentException(msg.toString()));
 			} else if (shouldHaveArg && (arg == null)) {
-				ErrorMsg msg = new ErrorMsg(ErrorMsg.CMDLINE_OPT_MISSING_ARG_ERR, new Character(c));
+				ErrorMsg msg = new ErrorMsg(
+						ErrorMsg.CMDLINE_OPT_MISSING_ARG_ERR, new Character(c));
 				throw (new MissingOptArgException(msg.toString()));
 			}
 			retval = c;

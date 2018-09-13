@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -56,7 +36,8 @@ package javax.management.openmbean;
  * 	}
  *
  * 	public static Measure from(CompositeData cd) {
- * 		return new Measure((String) cd.get("units"), (Number) cd.get("value"));
+ * 		return new Measure((String) cd.get("units"), (Number) cd.get(
+ * 				"value"));
  * 	}
  *
  * 	public String getUnits() {
@@ -89,12 +70,14 @@ package javax.management.openmbean;
  * 			}
  * 			itemNames.add("value");
  * 			itemDescriptions.add("long or double value of the measure");
- * 			itemTypes.add((value instanceof Long) ? SimpleType.LONG : SimpleType.DOUBLE);
- * 			CompositeType xct = new CompositeType(ct.getTypeName(), ct.getDescription(),
- * 					itemNames.toArray(new String[0]), itemDescriptions.toArray(new String[0]),
- * 					itemTypes.toArray(new OpenType&lt;?&gt;[0]));
- * 			CompositeData cd = new CompositeDataSupport(xct, new String[] { "units", "value" },
- * 					new Object[] { units, value });
+ * 			itemTypes.add((value instanceof Long) ? SimpleType.LONG
+ * 					: SimpleType.DOUBLE);
+ * 			CompositeType xct = new CompositeType(ct.getTypeName(), ct
+ * 					.getDescription(), itemNames.toArray(new String[0]),
+ * 					itemDescriptions.toArray(new String[0]), itemTypes
+ * 							.toArray(new OpenType&lt;?&gt;[0]));
+ * 			CompositeData cd = new CompositeDataSupport(xct, new String[] {
+ * 					"units", "value" }, new Object[] { units, value });
  * 			assert ct.isValue(cd); // check we've done it right
  * 			return cd;
  * 		} catch (Exception e) {
@@ -127,12 +110,12 @@ public interface CompositeDataView {
 	 * reconstruct it.
 	 *
 	 * @param ct
-	 *            The expected {@code CompositeType} of the returned value. If
-	 *            the returned value is {@code cd}, then
-	 *            {@code cd.getCompositeType().equals(ct)} should be true.
-	 *            Typically this will be because {@code cd} is a
-	 *            {@link CompositeDataSupport} constructed with {@code ct} as
-	 *            its {@code CompositeType}.
+	 *           The expected {@code CompositeType} of the returned value. If
+	 *           the returned value is {@code cd}, then
+	 *           {@code cd.getCompositeType().equals(ct)} should be true.
+	 *           Typically this will be because {@code cd} is a
+	 *           {@link CompositeDataSupport} constructed with {@code ct} as
+	 *           its {@code CompositeType}.
 	 *
 	 * @return the {@code CompositeData}.
 	 */

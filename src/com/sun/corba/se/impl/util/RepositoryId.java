@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.util;
@@ -41,9 +20,9 @@ import java.net.MalformedURLException;
 import org.omg.CORBA.portable.ValueBase;
 import org.omg.CORBA.portable.IDLEntity;
 
-//d11638 files in the same package, therefore remove their reference
-//import com.sun.corba.se.impl.util.JDKBridge;
-//import com.sun.corba.se.impl.util.IdentityHashtable;
+// d11638 files in the same package, therefore remove their reference
+// import com.sun.corba.se.impl.util.JDKBridge;
+// import com.sun.corba.se.impl.util.IdentityHashtable;
 import com.sun.corba.se.impl.io.ObjectStreamClass;
 
 import javax.rmi.CORBA.Util;
@@ -120,7 +99,8 @@ public class RepositoryId {
 	private static final String kIDLClassnamePrefix = "org.omg.";
 	private static final String kSequencePrefix = "[";
 	private static final String kCORBAPrefix = "CORBA/";
-	private static final String kArrayPrefix = kValuePrefix + kSequencePrefix + kCORBAPrefix;
+	private static final String kArrayPrefix = kValuePrefix + kSequencePrefix
+			+ kCORBAPrefix;
 	private static final int kValuePrefixLength = kValuePrefix.length();
 	private static final int kIDLPrefixLength = kIDLPrefix.length();
 	private static final int kSequencePrefixLength = kSequencePrefix.length();
@@ -134,14 +114,14 @@ public class RepositoryId {
 	public static final int kSingleRepTypeInfo = 0x02;
 	public static final int kPartialListTypeInfo = 0x06;
 	public static final int kChunkedMask = 0x08;
-	public static final int kPreComputed_StandardRMIUnchunked = RepositoryId.computeValueTag(false,
-			RepositoryId.kSingleRepTypeInfo, false);
-	public static final int kPreComputed_CodeBaseRMIUnchunked = RepositoryId.computeValueTag(true,
-			RepositoryId.kSingleRepTypeInfo, false);
-	public static final int kPreComputed_StandardRMIChunked = RepositoryId.computeValueTag(false,
-			RepositoryId.kSingleRepTypeInfo, true);
-	public static final int kPreComputed_CodeBaseRMIChunked = RepositoryId.computeValueTag(true,
-			RepositoryId.kSingleRepTypeInfo, true);
+	public static final int kPreComputed_StandardRMIUnchunked = RepositoryId
+			.computeValueTag(false, RepositoryId.kSingleRepTypeInfo, false);
+	public static final int kPreComputed_CodeBaseRMIUnchunked = RepositoryId
+			.computeValueTag(true, RepositoryId.kSingleRepTypeInfo, false);
+	public static final int kPreComputed_StandardRMIChunked = RepositoryId
+			.computeValueTag(false, RepositoryId.kSingleRepTypeInfo, true);
+	public static final int kPreComputed_CodeBaseRMIChunked = RepositoryId
+			.computeValueTag(true, RepositoryId.kSingleRepTypeInfo, true);
 
 	public static final int kPreComputed_StandardRMIUnchunked_NoRep = RepositoryId
 			.computeValueTag(false, RepositoryId.kNoTypeInfo, false);
@@ -161,7 +141,8 @@ public class RepositoryId {
 	public static final String kWStringValueVersion = "1.0";
 	public static final String kWStringValueHash = ":" + kWStringValueVersion;
 	public static final String kWStringStubValue = "WStringValue";
-	public static final String kWStringTypeStr = "omg.org/CORBA/" + kWStringStubValue;
+	public static final String kWStringTypeStr = "omg.org/CORBA/"
+			+ kWStringStubValue;
 	public static final String kWStringValueRepID = kIDLPrefix + kWStringTypeStr
 			+ kWStringValueHash;
 
@@ -170,18 +151,17 @@ public class RepositoryId {
 
 	// Class
 	// Anita4: convert to uppercase
-	public static final String kClassDescValueHash = ":"
-			+ Long.toHexString(
-					ObjectStreamClass.getActualSerialVersionUID(javax.rmi.CORBA.ClassDesc.class))
-					.toUpperCase()
-			+ ":"
-			+ Long.toHexString(
-					ObjectStreamClass.getSerialVersionUID(javax.rmi.CORBA.ClassDesc.class))
-					.toUpperCase();
+	public static final String kClassDescValueHash = ":" + Long.toHexString(
+			ObjectStreamClass.getActualSerialVersionUID(
+					javax.rmi.CORBA.ClassDesc.class)).toUpperCase() + ":" + Long
+							.toHexString(ObjectStreamClass.getSerialVersionUID(
+									javax.rmi.CORBA.ClassDesc.class))
+							.toUpperCase();
 	public static final String kClassDescStubValue = "ClassDesc";
-	public static final String kClassDescTypeStr = "javax.rmi.CORBA." + kClassDescStubValue;
-	public static final String kClassDescValueRepID = kValuePrefix + kClassDescTypeStr
-			+ kClassDescValueHash;
+	public static final String kClassDescTypeStr = "javax.rmi.CORBA."
+			+ kClassDescStubValue;
+	public static final String kClassDescValueRepID = kValuePrefix
+			+ kClassDescTypeStr + kClassDescValueHash;
 
 	// Object
 	public static final String kObjectValueHash = ":1.0";
@@ -208,12 +188,12 @@ public class RepositoryId {
 	private static final Hashtable kSpecialArrayTypeStrings = new Hashtable();
 
 	static {
-		kSpecialArrayTypeStrings.put("CORBA.WStringValue",
-				new StringBuffer(java.lang.String.class.getName()));
+		kSpecialArrayTypeStrings.put("CORBA.WStringValue", new StringBuffer(
+				java.lang.String.class.getName()));
 		kSpecialArrayTypeStrings.put("javax.rmi.CORBA.ClassDesc",
 				new StringBuffer(java.lang.Class.class.getName()));
-		kSpecialArrayTypeStrings.put("CORBA.Object",
-				new StringBuffer(java.rmi.Remote.class.getName()));
+		kSpecialArrayTypeStrings.put("CORBA.Object", new StringBuffer(
+				java.rmi.Remote.class.getName()));
 
 	}
 
@@ -231,8 +211,10 @@ public class RepositoryId {
 		kSpecialCasesStubValues.put(java.lang.String.class, kWStringStubValue);
 		kSpecialCasesStubValues.put(java.lang.Class.class, kClassDescStubValue);
 		kSpecialCasesStubValues.put(java.lang.Object.class, kObjectStubValue);
-		kSpecialCasesStubValues.put(java.io.Serializable.class, kSerializableStubValue);
-		kSpecialCasesStubValues.put(java.io.Externalizable.class, kExternalizableStubValue);
+		kSpecialCasesStubValues.put(java.io.Serializable.class,
+				kSerializableStubValue);
+		kSpecialCasesStubValues.put(java.io.Externalizable.class,
+				kExternalizableStubValue);
 		kSpecialCasesStubValues.put(java.rmi.Remote.class, kRemoteStubValue);
 	}
 
@@ -242,8 +224,10 @@ public class RepositoryId {
 		kSpecialCasesVersions.put(java.lang.String.class, kWStringValueHash);
 		kSpecialCasesVersions.put(java.lang.Class.class, kClassDescValueHash);
 		kSpecialCasesVersions.put(java.lang.Object.class, kObjectValueHash);
-		kSpecialCasesVersions.put(java.io.Serializable.class, kSerializableValueHash);
-		kSpecialCasesVersions.put(java.io.Externalizable.class, kExternalizableValueHash);
+		kSpecialCasesVersions.put(java.io.Serializable.class,
+				kSerializableValueHash);
+		kSpecialCasesVersions.put(java.io.Externalizable.class,
+				kExternalizableValueHash);
 		kSpecialCasesVersions.put(java.rmi.Remote.class, kRemoteValueHash);
 	}
 
@@ -254,26 +238,28 @@ public class RepositoryId {
 		kSpecialCasesClasses.put(kClassDescTypeStr, java.lang.Class.class);
 		kSpecialCasesClasses.put(kRemoteTypeStr, java.rmi.Remote.class);
 
-		kSpecialCasesClasses.put("org.omg.CORBA.WStringValue", java.lang.String.class);
-		kSpecialCasesClasses.put("javax.rmi.CORBA.ClassDesc", java.lang.Class.class);
+		kSpecialCasesClasses.put("org.omg.CORBA.WStringValue",
+				java.lang.String.class);
+		kSpecialCasesClasses.put("javax.rmi.CORBA.ClassDesc",
+				java.lang.Class.class);
 		// kSpecialCasesClasses.put(kRemoteTypeStr, java.rmi.Remote.class);
 	}
 
 	private static final Hashtable kSpecialCasesArrayPrefix = new Hashtable();
 
 	static {
-		kSpecialCasesArrayPrefix.put(java.lang.String.class,
-				kValuePrefix + kSequencePrefix + kCORBAPrefix);
-		kSpecialCasesArrayPrefix.put(java.lang.Class.class,
-				kValuePrefix + kSequencePrefix + "javax/rmi/CORBA/");
-		kSpecialCasesArrayPrefix.put(java.lang.Object.class,
-				kValuePrefix + kSequencePrefix + "java/lang/");
-		kSpecialCasesArrayPrefix.put(java.io.Serializable.class,
-				kValuePrefix + kSequencePrefix + "java/io/");
-		kSpecialCasesArrayPrefix.put(java.io.Externalizable.class,
-				kValuePrefix + kSequencePrefix + "java/io/");
-		kSpecialCasesArrayPrefix.put(java.rmi.Remote.class,
-				kValuePrefix + kSequencePrefix + kCORBAPrefix);
+		kSpecialCasesArrayPrefix.put(java.lang.String.class, kValuePrefix
+				+ kSequencePrefix + kCORBAPrefix);
+		kSpecialCasesArrayPrefix.put(java.lang.Class.class, kValuePrefix
+				+ kSequencePrefix + "javax/rmi/CORBA/");
+		kSpecialCasesArrayPrefix.put(java.lang.Object.class, kValuePrefix
+				+ kSequencePrefix + "java/lang/");
+		kSpecialCasesArrayPrefix.put(java.io.Serializable.class, kValuePrefix
+				+ kSequencePrefix + "java/io/");
+		kSpecialCasesArrayPrefix.put(java.io.Externalizable.class, kValuePrefix
+				+ kSequencePrefix + "java/io/");
+		kSpecialCasesArrayPrefix.put(java.rmi.Remote.class, kValuePrefix
+				+ kSequencePrefix + kCORBAPrefix);
 	}
 
 	private static final Hashtable kSpecialPrimitives = new Hashtable();
@@ -287,17 +273,20 @@ public class RepositoryId {
 	/**
 	 * Used to convert ascii to hex.
 	 */
-	private static final byte ASCII_HEX[] = { (byte) '0', (byte) '1', (byte) '2', (byte) '3',
-			(byte) '4', (byte) '5', (byte) '6', (byte) '7', (byte) '8', (byte) '9', (byte) 'A',
-			(byte) 'B', (byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', };
+	private static final byte ASCII_HEX[] = { (byte) '0', (byte) '1',
+			(byte) '2', (byte) '3', (byte) '4', (byte) '5', (byte) '6',
+			(byte) '7', (byte) '8', (byte) '9', (byte) 'A', (byte) 'B',
+			(byte) 'C', (byte) 'D', (byte) 'E', (byte) 'F', };
 
 	// bug fix for 4328952; to eliminate possibility of overriding this
 	// in a subclass.
 	public static final RepositoryIdCache cache = new RepositoryIdCache();
 
 	// Interface Rep ID Strings
-	public static final String kjava_rmi_Remote = createForAnyType(java.rmi.Remote.class);
-	public static final String korg_omg_CORBA_Object = createForAnyType(org.omg.CORBA.Object.class);
+	public static final String kjava_rmi_Remote = createForAnyType(
+			java.rmi.Remote.class);
+	public static final String korg_omg_CORBA_Object = createForAnyType(
+			org.omg.CORBA.Object.class);
 
 	// Dummy arguments for getIdFromHelper method
 	public static final Class kNoParamTypes[] = {};
@@ -306,8 +295,7 @@ public class RepositoryId {
 	// To create a RepositoryID, use code similar to the following:
 	// RepositoryId.cache.getId( id );
 
-	RepositoryId() {
-	}
+	RepositoryId() {}
 
 	RepositoryId(String aRepId) {
 		init(aRepId);
@@ -337,7 +325,8 @@ public class RepositoryId {
 
 			int firstIndex = repId.indexOf(':');
 			if (firstIndex == -1)
-				throw new IllegalArgumentException("RepsitoryId must have the form <type>:<body>");
+				throw new IllegalArgumentException(
+						"RepsitoryId must have the form <type>:<body>");
 			int secondIndex = repId.indexOf(':', firstIndex + 1);
 
 			if (secondIndex == -1)
@@ -346,19 +335,20 @@ public class RepositoryId {
 				versionString = repId.substring(secondIndex);
 
 			if (repId.startsWith(kIDLPrefix)) {
-				typeString = repId.substring(kIDLPrefixLength,
-						repId.indexOf(':', kIDLPrefixLength));
+				typeString = repId.substring(kIDLPrefixLength, repId.indexOf(
+						':', kIDLPrefixLength));
 				isIDLType = true;
 
 				if (typeString.startsWith(kIDLNamePrefix))
-					completeClassName = kIDLClassnamePrefix
-							+ typeString.substring(kIDLNamePrefix.length()).replace('/', '.');
+					completeClassName = kIDLClassnamePrefix + typeString
+							.substring(kIDLNamePrefix.length()).replace('/',
+									'.');
 				else
 					completeClassName = typeString.replace('/', '.');
 
 			} else if (repId.startsWith(kValuePrefix)) {
-				typeString = repId.substring(kValuePrefixLength,
-						repId.indexOf(':', kValuePrefixLength));
+				typeString = repId.substring(kValuePrefixLength, repId.indexOf(
+						':', kValuePrefixLength));
 				isRMIValueType = true;
 
 				if (versionString.indexOf('.') == -1) {
@@ -398,7 +388,8 @@ public class RepositoryId {
 				definedInId = "IDL::1.0";
 			} else {
 				unqualifiedName = className.substring(index);
-				definedInId = "IDL:" + className.substring(0, index).replace('.', '/') + ":1.0";
+				definedInId = "IDL:" + className.substring(0, index).replace(
+						'.', '/') + ":1.0";
 			}
 		}
 
@@ -538,8 +529,9 @@ public class RepositoryId {
 		} else {
 			ClassLoader expectedTypeClassLoader = (expectedType == null ? null
 					: expectedType.getClassLoader());
-			return Utility.loadClassOfType(getClassName(), codebase, expectedTypeClassLoader,
-					expectedType, expectedTypeClassLoader);
+			return Utility.loadClassOfType(getClassName(), codebase,
+					expectedTypeClassLoader, expectedType,
+					expectedTypeClassLoader);
 		}
 
 	}
@@ -557,11 +549,12 @@ public class RepositoryId {
 	 * Checks to see if the FullValueDescription should be retrieved.
 	 * 
 	 * @exception Throws
-	 *                IOException if suids do not match or if the repositoryID
-	 *                is not an RMIValueType
+	 *                   IOException if suids do not match or if the
+	 *                   repositoryID
+	 *                   is not an RMIValueType
 	 */
-	public static boolean useFullValueDescription(Class clazz, String repositoryID)
-			throws IOException {
+	public static boolean useFullValueDescription(Class clazz,
+			String repositoryID) throws IOException {
 
 		String clazzRepIDStr = createForAnyType(clazz);
 
@@ -582,11 +575,13 @@ public class RepositoryId {
 		// ObjectStreamClass osc = ObjectStreamClass.lookup(clazz);
 
 		if ((targetRepid.isRMIValueType()) && (clazzRepid.isRMIValueType())) {
-			if (!targetRepid.getSerialVersionUID().equals(clazzRepid.getSerialVersionUID())) {
+			if (!targetRepid.getSerialVersionUID().equals(clazzRepid
+					.getSerialVersionUID())) {
 
-				String mssg = "Mismatched serialization UIDs : Source (Rep. ID" + clazzRepid
-						+ ") = " + clazzRepid.getSerialVersionUID() + " whereas Target (Rep. ID "
-						+ repositoryID + ") = " + targetRepid.getSerialVersionUID();
+				String mssg = "Mismatched serialization UIDs : Source (Rep. ID"
+						+ clazzRepid + ") = " + clazzRepid.getSerialVersionUID()
+						+ " whereas Target (Rep. ID " + repositoryID + ") = "
+						+ targetRepid.getSerialVersionUID();
 				// com.sun.corba.se.impl.io.ValueUtility.log("RepositoryId",mssg);
 				throw new IOException(mssg);
 			} else {
@@ -594,8 +589,10 @@ public class RepositoryId {
 			}
 		} else {
 
-			throw new IOException("The repository ID is not of an RMI value type (Expected ID = "
-					+ clazzRepIDStr + "; Received ID = " + repositoryID + ")");
+			throw new IOException(
+					"The repository ID is not of an RMI value type (Expected ID = "
+							+ clazzRepIDStr + "; Received ID = " + repositoryID
+							+ ")");
 		}
 	}
 
@@ -606,7 +603,8 @@ public class RepositoryId {
 
 	private static String createHashString(java.lang.Class clazz) {
 
-		if (clazz.isInterface() || !java.io.Serializable.class.isAssignableFrom(clazz))
+		if (clazz.isInterface() || !java.io.Serializable.class.isAssignableFrom(
+				clazz))
 			return kInterfaceHashCode;
 
 		// ObjectStreamClass osc = ObjectStreamClass.lookup(clazz);
@@ -658,7 +656,7 @@ public class RepositoryId {
 	 * that is not an array, it will produce a malformed rep id.
 	 * 
 	 * @param clazz
-	 *            The Java class to create a repository ID for
+	 *              The Java class to create a repository ID for
 	 **/
 	public static String createSequenceRepID(java.lang.Class clazz) {
 		synchronized (classSeqToRepStr) {
@@ -678,7 +676,8 @@ public class RepositoryId {
 			}
 
 			if (clazz.isPrimitive())
-				repid = kValuePrefix + originalClazz.getName() + kPrimitiveSequenceValueHash;
+				repid = kValuePrefix + originalClazz.getName()
+						+ kPrimitiveSequenceValueHash;
 			else {
 				StringBuffer buf = new StringBuffer();
 				buf.append(kValuePrefix);
@@ -719,8 +718,8 @@ public class RepositoryId {
 	 * @param ser
 	 *            The Java object to create a repository ID for
 	 * @exception com.sun.corba.se.impl.io.TypeMismatchException
-	 *                if ser implements the org.omg.CORBA.portable.IDLEntity
-	 *                interface which indicates it is an IDL Value type.
+	 *            if ser implements the org.omg.CORBA.portable.IDLEntity
+	 *            interface which indicates it is an IDL Value type.
 	 **/
 	public static String createForJavaType(java.io.Serializable ser)
 			throws com.sun.corba.se.impl.io.TypeMismatchException {
@@ -734,7 +733,8 @@ public class RepositoryId {
 			if (repid != null)
 				return repid;
 
-			repid = kValuePrefix + convertToISOLatin1(clazz.getName()) + createHashString(clazz);
+			repid = kValuePrefix + convertToISOLatin1(clazz.getName())
+					+ createHashString(clazz);
 
 			classToRepStr.put(clazz, repid);
 			repStrToClass.put(repid, clazz);
@@ -748,8 +748,8 @@ public class RepositoryId {
 	 * @param clz
 	 *            The Java class to create a repository ID for
 	 * @exception com.sun.corba.se.impl.io.TypeMismatchException
-	 *                if ser implements the org.omg.CORBA.portable.IDLEntity
-	 *                interface which indicates it is an IDL Value type.
+	 *            if ser implements the org.omg.CORBA.portable.IDLEntity
+	 *            interface which indicates it is an IDL Value type.
 	 **/
 	public static String createForJavaType(Class clz)
 			throws com.sun.corba.se.impl.io.TypeMismatchException {
@@ -762,7 +762,8 @@ public class RepositoryId {
 			if (repid != null)
 				return repid;
 
-			repid = kValuePrefix + convertToISOLatin1(clz.getName()) + createHashString(clz);
+			repid = kValuePrefix + convertToISOLatin1(clz.getName())
+					+ createHashString(clz);
 
 			classToRepStr.put(clz, repid);
 			repStrToClass.put(repid, clz);
@@ -774,15 +775,15 @@ public class RepositoryId {
 	 * Creates a repository ID for an IDL Java Type.
 	 * 
 	 * @param ser
-	 *            The IDL Value object to create a repository ID for
+	 *              The IDL Value object to create a repository ID for
 	 * @param major
-	 *            The major version number
+	 *              The major version number
 	 * @param minor
-	 *            The minor version number
+	 *              The minor version number
 	 * @exception com.sun.corba.se.impl.io.TypeMismatchException
-	 *                if ser does not implement the
-	 *                org.omg.CORBA.portable.IDLEntity interface which indicates
-	 *                it is an IDL Value type.
+	 *            if ser does not implement the
+	 *            org.omg.CORBA.portable.IDLEntity interface which indicates
+	 *            it is an IDL Value type.
 	 **/
 	public static String createForIDLType(Class ser, int major, int minor)
 			throws com.sun.corba.se.impl.io.TypeMismatchException {
@@ -791,8 +792,8 @@ public class RepositoryId {
 			if (repid != null)
 				return repid;
 
-			repid = kIDLPrefix + convertToISOLatin1(ser.getName()).replace('.', '/') + ":" + major
-					+ "." + minor;
+			repid = kIDLPrefix + convertToISOLatin1(ser.getName()).replace('.',
+					'/') + ":" + major + "." + minor;
 			classIDLToRepStr.put(ser, repid);
 			return repid;
 		}
@@ -800,9 +801,11 @@ public class RepositoryId {
 
 	private static String getIdFromHelper(Class clazz) {
 		try {
-			Class helperClazz = Utility.loadClassForClass(clazz.getName() + "Helper", null,
-					clazz.getClassLoader(), clazz, clazz.getClassLoader());
-			Method idMethod = helperClazz.getDeclaredMethod("id", kNoParamTypes);
+			Class helperClazz = Utility.loadClassForClass(clazz.getName()
+					+ "Helper", null, clazz.getClassLoader(), clazz, clazz
+							.getClassLoader());
+			Method idMethod = helperClazz.getDeclaredMethod("id",
+					kNoParamTypes);
 			return (String) idMethod.invoke(null, kNoArgs);
 		} catch (java.lang.ClassNotFoundException cnfe) {
 			throw new org.omg.CORBA.MARSHAL(cnfe.toString());
@@ -820,7 +823,7 @@ public class RepositoryId {
 	 * IDL type.
 	 * 
 	 * @param type
-	 *            The type to create rep. id for
+	 *             The type to create rep. id for
 	 * @return The rep. id.
 	 **/
 	public static String createForAnyType(Class type) {
@@ -849,7 +852,8 @@ public class RepositoryId {
 	}
 
 	public static boolean isAnyRequired(Class clazz) {
-		return ((clazz == java.lang.Object.class) || (clazz == java.io.Serializable.class)
+		return ((clazz == java.lang.Object.class)
+				|| (clazz == java.io.Serializable.class)
 				|| (clazz == java.io.Externalizable.class));
 	}
 
@@ -891,7 +895,8 @@ public class RepositoryId {
 				// Convert the character into the IDL escape syntax...
 				buffer.append("\\U" + (char) ASCII_HEX[(c & 0xF000) >>> 12]
 						+ (char) ASCII_HEX[(c & 0x0F00) >>> 8]
-						+ (char) ASCII_HEX[(c & 0x00F0) >>> 4] + (char) ASCII_HEX[(c & 0x000F)]);
+						+ (char) ASCII_HEX[(c & 0x00F0) >>> 4]
+						+ (char) ASCII_HEX[(c & 0x000F)]);
 
 			} else {
 				if (buffer != null) {
@@ -919,13 +924,15 @@ public class RepositoryId {
 		StringBuffer buf = new StringBuffer(name);
 
 		while ((index = buf.toString().indexOf("\\U")) != -1) {
-			String str = "0000" + buf.toString().substring(index + 2, index + 6);
+			String str = "0000" + buf.toString().substring(index + 2, index
+					+ 6);
 
 			// Convert Hexadecimal
 			byte[] buffer = new byte[(str.length() - 4) / 2];
 			for (int i = 4, j = 0; i < str.length(); i += 2, j++) {
 				buffer[j] = (byte) ((Utility.hexOf(str.charAt(i)) << 4) & 0xF0);
-				buffer[j] |= (byte) ((Utility.hexOf(str.charAt(i + 1)) << 0) & 0x0F);
+				buffer[j] |= (byte) ((Utility.hexOf(str.charAt(i + 1)) << 0)
+						& 0x0F);
 			}
 			buf = new StringBuffer(delete(buf.toString(), index, index + 6));
 			buf.insert(index, (char) buffer[1]);

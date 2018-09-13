@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -67,20 +47,25 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
 	 * <code>File.createTempFile</code> for details).
 	 *
 	 * @param stream
-	 *            an <code>OutputStream</code> to write to.
+	 *                 an <code>OutputStream</code> to write to.
 	 * @param cacheDir
-	 *            a <code>File</code> indicating where the cache file should be
-	 *            created, or <code>null</code> to use the system directory.
+	 *                 a <code>File</code> indicating where the cache file
+	 *                 should be
+	 *                 created, or <code>null</code> to use the system
+	 *                 directory.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>stream</code> is <code>null</code>.
+	 *                                     if <code>stream</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>cacheDir</code> is non-<code>null</code> but is
-	 *                not a directory.
+	 *                                     if <code>cacheDir</code> is
+	 *                                     non-<code>null</code> but is
+	 *                                     not a directory.
 	 * @exception IOException
-	 *                if a cache file cannot be created.
+	 *                                     if a cache file cannot be created.
 	 */
-	public FileCacheImageOutputStream(OutputStream stream, File cacheDir) throws IOException {
+	public FileCacheImageOutputStream(OutputStream stream, File cacheDir)
+			throws IOException {
 		if (stream == null) {
 			throw new IllegalArgumentException("stream == null!");
 		}
@@ -91,7 +76,8 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
 		if (cacheDir == null)
 			this.cacheFile = Files.createTempFile("imageio", ".tmp").toFile();
 		else
-			this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio", ".tmp").toFile();
+			this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio",
+					".tmp").toFile();
 		this.cache = new RandomAccessFile(cacheFile, "rw");
 
 		this.closeAction = StreamCloser.createCloseAction(this);
@@ -162,9 +148,10 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
 	 * increased until a write is performed.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>pos</code> is smaller than the flushed position.
+	 *                                      if <code>pos</code> is smaller than
+	 *                                      the flushed position.
 	 * @exception IOException
-	 *                if any other I/O error occurs.
+	 *                                      if any other I/O error occurs.
 	 */
 	public void seek(long pos) throws IOException {
 		checkClosed();
@@ -224,7 +211,7 @@ public class FileCacheImageOutputStream extends ImageOutputStreamImpl {
 	 * destination <code>OutputStream</code> is not closed.
 	 *
 	 * @exception IOException
-	 *                if an error occurs.
+	 *                        if an error occurs.
 	 */
 	public void close() throws IOException {
 		maxStreamPos = cache.length();

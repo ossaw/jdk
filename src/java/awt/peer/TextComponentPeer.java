@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -41,8 +21,9 @@ public interface TextComponentPeer extends ComponentPeer {
 	 * Sets if the text component should be editable or not.
 	 *
 	 * @param editable
-	 *            {@code true} for editable text components, {@code false} for
-	 *            non-editable text components
+	 *                 {@code true} for editable text components, {@code false}
+	 *                 for
+	 *                 non-editable text components
 	 *
 	 * @see TextComponent#setEditable(boolean)
 	 */
@@ -61,7 +42,7 @@ public interface TextComponentPeer extends ComponentPeer {
 	 * Sets the content for the text component.
 	 *
 	 * @param text
-	 *            the content to set
+	 *             the content to set
 	 *
 	 * @see TextComponent#setText(String)
 	 */
@@ -89,9 +70,9 @@ public interface TextComponentPeer extends ComponentPeer {
 	 * Selects an area of the text component.
 	 *
 	 * @param selStart
-	 *            the start index of the new selection
+	 *                 the start index of the new selection
 	 * @param selEnd
-	 *            the end index of the new selection
+	 *                 the end index of the new selection
 	 *
 	 * @see TextComponent#select(int, int)
 	 */

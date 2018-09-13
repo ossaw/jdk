@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform;
@@ -42,7 +22,7 @@ public interface Source {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system identifier as a URL string.
+	 *                 The system identifier as a URL string.
 	 */
 	public void setSystemId(String systemId);
 

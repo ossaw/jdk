@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf;
@@ -35,6 +15,5 @@ import javax.swing.InputMap;
  * @since 1.3
  */
 public class InputMapUIResource extends InputMap implements UIResource {
-	public InputMapUIResource() {
-	}
+	public InputMapUIResource() {}
 }

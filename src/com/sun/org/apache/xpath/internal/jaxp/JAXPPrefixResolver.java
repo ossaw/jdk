@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,14 +71,16 @@ public class JAXPPrefixResolver implements PrefixResolver {
 	 * node.
 	 * 
 	 * @param prefix
-	 *            Prefix to resolve.
+	 *                         Prefix to resolve.
 	 * @param namespaceContext
-	 *            Node from which to start searching for a xmlns attribute that
-	 *            binds a prefix to a namespace.
+	 *                         Node from which to start searching for a xmlns
+	 *                         attribute that
+	 *                         binds a prefix to a namespace.
 	 * @return Namespace that prefix resolves to, or null if prefix is not
 	 *         bound.
 	 */
-	public String getNamespaceForPrefix(String prefix, org.w3c.dom.Node namespaceContext) {
+	public String getNamespaceForPrefix(String prefix,
+			org.w3c.dom.Node namespaceContext) {
 		Node parent = namespaceContext;
 		String namespace = null;
 
@@ -90,9 +89,9 @@ public class JAXPPrefixResolver implements PrefixResolver {
 		} else {
 			int type;
 
-			while ((null != parent) && (null == namespace)
-					&& (((type = parent.getNodeType()) == Node.ELEMENT_NODE)
-							|| (type == Node.ENTITY_REFERENCE_NODE))) {
+			while ((null != parent) && (null == namespace) && (((type = parent
+					.getNodeType()) == Node.ELEMENT_NODE)
+					|| (type == Node.ENTITY_REFERENCE_NODE))) {
 
 				if (type == Node.ELEMENT_NODE) {
 					NamedNodeMap nnm = parent.getAttributes();
@@ -104,7 +103,8 @@ public class JAXPPrefixResolver implements PrefixResolver {
 
 						if (isPrefix || aname.equals("xmlns")) {
 							int index = aname.indexOf(':');
-							String p = isPrefix ? aname.substring(index + 1) : "";
+							String p = isPrefix ? aname.substring(index + 1)
+									: "";
 
 							if (p.equals(prefix)) {
 								namespace = attr.getNodeValue();

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -95,7 +75,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * specified content storage mechanism.
 	 *
 	 * @param data
-	 *            the content
+	 *             the content
 	 */
 	protected AbstractDocument(Content data) {
 		this(data, StyleContext.getDefaultStyleContext());
@@ -106,9 +86,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * specified content storage mechanism.
 	 *
 	 * @param data
-	 *            the content
+	 *                the content
 	 * @param context
-	 *            the attribute context
+	 *                the attribute context
 	 */
 	protected AbstractDocument(Content data, AttributeContext context) {
 		this.data = data;
@@ -117,8 +97,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 
 		if (defaultI18NProperty == null) {
 			// determine default setting for i18n support
-			String o = java.security.AccessController
-					.doPrivileged(new java.security.PrivilegedAction<String>() {
+			String o = java.security.AccessController.doPrivileged(
+					new java.security.PrivilegedAction<String>() {
 						public String run() {
 							return System.getProperty(I18NProperty);
 						}
@@ -165,7 +145,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Replaces the document properties dictionary for this document.
 	 *
 	 * @param x
-	 *            the new dictionary
+	 *          the new dictionary
 	 * @see #getDocumentProperties
 	 */
 	public void setDocumentProperties(Dictionary<Object, Object> x) {
@@ -178,7 +158,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * parameters passed into the fire method.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see EventListenerList
 	 */
 	protected void fireInsertUpdate(DocumentEvent e) {
@@ -207,7 +187,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * parameters passed into the fire method.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see EventListenerList
 	 */
 	protected void fireChangedUpdate(DocumentEvent e) {
@@ -236,7 +216,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * parameters passed into the fire method.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see EventListenerList
 	 */
 	protected void fireRemoveUpdate(DocumentEvent e) {
@@ -265,7 +245,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * parameters passed into the fire method.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see EventListenerList
 	 */
 	protected void fireUndoableEditUpdate(UndoableEditEvent e) {
@@ -278,7 +258,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 				// Lazily create the event:
 				// if (e == null)
 				// e = new ListSelectionEvent(this, firstIndex, lastIndex);
-				((UndoableEditListener) listeners[i + 1]).undoableEditHappened(e);
+				((UndoableEditListener) listeners[i + 1]).undoableEditHappened(
+						e);
 			}
 		}
 	}
@@ -296,22 +277,25 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * the following code:
 	 *
 	 * <pre>
-	 * DocumentListener[] mls = (DocumentListener[]) (d.getListeners(DocumentListener.class));
+	 * DocumentListener[] mls = (DocumentListener[]) (d.getListeners(
+	 * 		DocumentListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this component, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getDocumentListeners
 	 * @see #getUndoableEditListeners
@@ -330,7 +314,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 *         document should not be loaded asynchronously
 	 */
 	public int getAsynchronousLoadPriority() {
-		Integer loadPriority = (Integer) getProperty(AbstractDocument.AsyncLoadPriority);
+		Integer loadPriority = (Integer) getProperty(
+				AbstractDocument.AsyncLoadPriority);
 		if (loadPriority != null) {
 			return loadPriority.intValue();
 		}
@@ -341,9 +326,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Sets the asynchronous loading priority.
 	 * 
 	 * @param p
-	 *            the new asynchronous loading priority; a value less than zero
-	 *            indicates that the document should not be loaded
-	 *            asynchronously
+	 *          the new asynchronous loading priority; a value less than zero
+	 *          indicates that the document should not be loaded
+	 *          asynchronously
 	 */
 	public void setAsynchronousLoadPriority(int p) {
 		Integer loadPriority = (p >= 0) ? Integer.valueOf(p) : null;
@@ -357,7 +342,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * no filtering will occur.
 	 *
 	 * @param filter
-	 *            the <code>DocumentFilter</code> used to constrain text
+	 *               the <code>DocumentFilter</code> used to constrain text
 	 * @see #getDocumentFilter
 	 * @since 1.4
 	 */
@@ -406,7 +391,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Concurrency in Swing</A> for more information.
 	 *
 	 * @param r
-	 *            the renderer to execute
+	 *          the renderer to execute
 	 */
 	public void render(Runnable r) {
 		readLock();
@@ -432,7 +417,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Adds a document listener for notification of any changes.
 	 *
 	 * @param listener
-	 *            the <code>DocumentListener</code> to add
+	 *                 the <code>DocumentListener</code> to add
 	 * @see Document#addDocumentListener
 	 */
 	public void addDocumentListener(DocumentListener listener) {
@@ -443,7 +428,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Removes a document listener.
 	 *
 	 * @param listener
-	 *            the <code>DocumentListener</code> to remove
+	 *                 the <code>DocumentListener</code> to remove
 	 * @see Document#removeDocumentListener
 	 */
 	public void removeDocumentListener(DocumentListener listener) {
@@ -472,7 +457,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * the model.
 	 *
 	 * @param listener
-	 *            the <code>UndoableEditListener</code> to add
+	 *                 the <code>UndoableEditListener</code> to add
 	 * @see Document#addUndoableEditListener
 	 */
 	public void addUndoableEditListener(UndoableEditListener listener) {
@@ -483,7 +468,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Removes an undo listener.
 	 *
 	 * @param listener
-	 *            the <code>UndoableEditListener</code> to remove
+	 *                 the <code>UndoableEditListener</code> to remove
 	 * @see Document#removeDocumentListener
 	 */
 	public void removeUndoableEditListener(UndoableEditListener listener) {
@@ -536,9 +521,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * property.
 	 *
 	 * @param key
-	 *            the non-<code>null</code> key
+	 *              the non-<code>null</code> key
 	 * @param value
-	 *            the property value
+	 *              the property value
 	 * @see #getDocumentProperties
 	 */
 	public final void putProperty(Object key, Object value) {
@@ -547,13 +532,14 @@ public abstract class AbstractDocument implements Document, Serializable {
 		} else {
 			getDocumentProperties().remove(key);
 		}
-		if (key == TextAttribute.RUN_DIRECTION && Boolean.TRUE.equals(getProperty(I18NProperty))) {
+		if (key == TextAttribute.RUN_DIRECTION && Boolean.TRUE.equals(
+				getProperty(I18NProperty))) {
 			// REMIND - this needs to flip on the i18n property if run dir
 			// is rtl and the i18n property is not already on.
 			writeLock();
 			try {
-				DefaultDocumentEvent e = new DefaultDocumentEvent(0, getLength(),
-						DocumentEvent.EventType.INSERT);
+				DefaultDocumentEvent e = new DefaultDocumentEvent(0,
+						getLength(), DocumentEvent.EventType.INSERT);
 				updateBidi(e);
 			} finally {
 				writeUnlock();
@@ -572,12 +558,13 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Concurrency in Swing</A> for more information.
 	 *
 	 * @param offs
-	 *            the starting offset &gt;= 0
+	 *             the starting offset &gt;= 0
 	 * @param len
-	 *            the number of characters to remove &gt;= 0
+	 *             the number of characters to remove &gt;= 0
 	 * @exception BadLocationException
-	 *                the given remove position is not a valid position within
-	 *                the document
+	 *                                 the given remove position is not a valid
+	 *                                 position within
+	 *                                 the document
 	 * @see Document#remove
 	 */
 	public void remove(int offs, int len) throws BadLocationException {
@@ -602,7 +589,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 	void handleRemove(int offs, int len) throws BadLocationException {
 		if (len > 0) {
 			if (offs < 0 || (offs + len) > getLength()) {
-				throw new BadLocationException("Invalid remove", getLength() + 1);
+				throw new BadLocationException("Invalid remove", getLength()
+						+ 1);
 			}
 			DefaultDocumentEvent chng = new DefaultDocumentEvent(offs, len,
 					DocumentEvent.EventType.REMOVE);
@@ -637,19 +625,23 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * operation.
 	 *
 	 * @param offset
-	 *            index of child element
+	 *               index of child element
 	 * @param length
-	 *            length of text to delete, may be 0 indicating don't delete
-	 *            anything
+	 *               length of text to delete, may be 0 indicating don't delete
+	 *               anything
 	 * @param text
-	 *            text to insert, <code>null</code> indicates no text to insert
+	 *               text to insert, <code>null</code> indicates no text to
+	 *               insert
 	 * @param attrs
-	 *            AttributeSet indicating attributes of inserted text,
-	 *            <code>null</code> is legal, and typically treated as an empty
-	 *            attributeset, but exact interpretation is left to the subclass
+	 *               AttributeSet indicating attributes of inserted text,
+	 *               <code>null</code> is legal, and typically treated as an
+	 *               empty
+	 *               attributeset, but exact interpretation is left to the
+	 *               subclass
 	 * @exception BadLocationException
-	 *                the given position is not a valid position within the
-	 *                document
+	 *                                 the given position is not a valid
+	 *                                 position within the
+	 *                                 document
 	 * @since 1.4
 	 */
 	public void replace(int offset, int length, String text, AttributeSet attrs)
@@ -687,17 +679,19 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Concurrency in Swing</A> for more information.
 	 *
 	 * @param offs
-	 *            the starting offset &gt;= 0
+	 *             the starting offset &gt;= 0
 	 * @param str
-	 *            the string to insert; does nothing with null/empty strings
+	 *             the string to insert; does nothing with null/empty strings
 	 * @param a
-	 *            the attributes for the inserted content
+	 *             the attributes for the inserted content
 	 * @exception BadLocationException
-	 *                the given insert position is not a valid position within
-	 *                the document
+	 *                                 the given insert position is not a valid
+	 *                                 position within
+	 *                                 the document
 	 * @see Document#insertString
 	 */
-	public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+	public void insertString(int offs, String str, AttributeSet a)
+			throws BadLocationException {
 		if ((str == null) || (str.length() == 0)) {
 			return;
 		}
@@ -753,7 +747,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		fireInsertUpdate(e);
 		// only fire undo if Content implementation supports it
 		// undo for the composed text is not supported for now
-		if (u != null && (a == null || !a.isDefined(StyleConstants.ComposedTextAttribute))) {
+		if (u != null && (a == null || !a.isDefined(
+				StyleConstants.ComposedTextAttribute))) {
 			fireUndoableEditUpdate(new UndoableEditEvent(this, e));
 		}
 	}
@@ -762,13 +757,14 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Gets a sequence of text from the document.
 	 *
 	 * @param offset
-	 *            the starting offset &gt;= 0
+	 *               the starting offset &gt;= 0
 	 * @param length
-	 *            the number of characters to retrieve &gt;= 0
+	 *               the number of characters to retrieve &gt;= 0
 	 * @return the text
 	 * @exception BadLocationException
-	 *                the range given includes a position that is not a valid
-	 *                position within the document
+	 *                                 the range given includes a position that
+	 *                                 is not a valid
+	 *                                 position within the document
 	 * @see Document#getText
 	 */
 	public String getText(int offset, int length) throws BadLocationException {
@@ -805,16 +801,18 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * </pre>
 	 *
 	 * @param offset
-	 *            the starting offset &gt;= 0
+	 *               the starting offset &gt;= 0
 	 * @param length
-	 *            the number of characters to retrieve &gt;= 0
+	 *               the number of characters to retrieve &gt;= 0
 	 * @param txt
-	 *            the Segment object to retrieve the text into
+	 *               the Segment object to retrieve the text into
 	 * @exception BadLocationException
-	 *                the range given includes a position that is not a valid
-	 *                position within the document
+	 *                                 the range given includes a position that
+	 *                                 is not a valid
+	 *                                 position within the document
 	 */
-	public void getText(int offset, int length, Segment txt) throws BadLocationException {
+	public void getText(int offset, int length, Segment txt)
+			throws BadLocationException {
 		if (length < 0) {
 			throw new BadLocationException("Length must be positive", length);
 		}
@@ -830,14 +828,16 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Concurrency in Swing</A> for more information.
 	 *
 	 * @param offs
-	 *            the position in the model &gt;= 0
+	 *             the position in the model &gt;= 0
 	 * @return the position
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see Document#createPosition
 	 */
-	public synchronized Position createPosition(int offs) throws BadLocationException {
+	public synchronized Position createPosition(int offs)
+			throws BadLocationException {
 		return data.createPosition(offs);
 	}
 
@@ -967,9 +967,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * method, it should delegate to the superclass as well.
 	 *
 	 * @param chng
-	 *            a description of the change
+	 *             a description of the change
 	 * @param attr
-	 *            the attributes for the change
+	 *             the attributes for the change
 	 */
 	protected void insertUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
 		if (getProperty(I18NProperty).equals(Boolean.TRUE))
@@ -1002,10 +1002,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * method, it should delegate to the superclass as well.
 	 *
 	 * @param chng
-	 *            a description of the change
+	 *             a description of the change
 	 */
-	protected void removeUpdate(DefaultDocumentEvent chng) {
-	}
+	protected void removeUpdate(DefaultDocumentEvent chng) {}
 
 	/**
 	 * Updates any document structure as a result of text removal. This method
@@ -1014,7 +1013,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * method, it should delegate to the superclass as well.
 	 *
 	 * @param chng
-	 *            a description of the change
+	 *             a description of the change
 	 */
 	protected void postRemoveUpdate(DefaultDocumentEvent chng) {
 		if (getProperty(I18NProperty).equals(Boolean.TRUE))
@@ -1070,21 +1069,23 @@ public abstract class AbstractDocument implements Document, Serializable {
 			int prevElemIndex = bidiRoot.getElementIndex(firstPStart - 1);
 			removeFromIndex = prevElemIndex;
 			Element prevElem = bidiRoot.getElement(prevElemIndex);
-			int prevLevel = StyleConstants.getBidiLevel(prevElem.getAttributes());
+			int prevLevel = StyleConstants.getBidiLevel(prevElem
+					.getAttributes());
 			// System.out.println("createbidiElements: prevElem= " + prevElem +
 			// " prevLevel= " + prevLevel + "level[0] = " + levels[0]);
 			if (prevLevel == levels[0]) {
 				firstSpanStart = prevElem.getStartOffset();
 			} else if (prevElem.getEndOffset() > firstPStart) {
-				newElements.addElement(new BidiElement(bidiRoot, prevElem.getStartOffset(),
-						firstPStart, prevLevel));
+				newElements.addElement(new BidiElement(bidiRoot, prevElem
+						.getStartOffset(), firstPStart, prevLevel));
 			} else {
 				removeFromIndex++;
 			}
 		}
 
 		int firstSpanEnd = 0;
-		while ((firstSpanEnd < levels.length) && (levels[firstSpanEnd] == levels[0]))
+		while ((firstSpanEnd < levels.length)
+				&& (levels[firstSpanEnd] == levels[0]))
 			firstSpanEnd++;
 
 		// Calculate the last span of characters in the affected range with
@@ -1100,29 +1101,31 @@ public abstract class AbstractDocument implements Document, Serializable {
 			int nextElemIndex = bidiRoot.getElementIndex(lastPEnd);
 			removeToIndex = nextElemIndex;
 			Element nextElem = bidiRoot.getElement(nextElemIndex);
-			int nextLevel = StyleConstants.getBidiLevel(nextElem.getAttributes());
+			int nextLevel = StyleConstants.getBidiLevel(nextElem
+					.getAttributes());
 			if (nextLevel == levels[levels.length - 1]) {
 				lastSpanEnd = nextElem.getEndOffset();
 			} else if (nextElem.getStartOffset() < lastPEnd) {
-				newNextElem = new BidiElement(bidiRoot, lastPEnd, nextElem.getEndOffset(),
-						nextLevel);
+				newNextElem = new BidiElement(bidiRoot, lastPEnd, nextElem
+						.getEndOffset(), nextLevel);
 			} else {
 				removeToIndex--;
 			}
 		}
 
 		int lastSpanStart = levels.length;
-		while ((lastSpanStart > firstSpanEnd)
-				&& (levels[lastSpanStart - 1] == levels[levels.length - 1]))
+		while ((lastSpanStart > firstSpanEnd) && (levels[lastSpanStart
+				- 1] == levels[levels.length - 1]))
 			lastSpanStart--;
 
 		// If the first and last spans are contiguous and have the same level,
 		// merge them and create a single new element for the entire span.
 		// Otherwise, create elements for the first and last spans as well as
 		// any spans in between.
-		if ((firstSpanEnd == lastSpanStart) && (levels[0] == levels[levels.length - 1])) {
-			newElements
-					.addElement(new BidiElement(bidiRoot, firstSpanStart, lastSpanEnd, levels[0]));
+		if ((firstSpanEnd == lastSpanStart)
+				&& (levels[0] == levels[levels.length - 1])) {
+			newElements.addElement(new BidiElement(bidiRoot, firstSpanStart,
+					lastSpanEnd, levels[0]));
 		} else {
 			// Create an element for the first span.
 			newElements.addElement(new BidiElement(bidiRoot, firstSpanStart,
@@ -1131,15 +1134,16 @@ public abstract class AbstractDocument implements Document, Serializable {
 			for (int i = firstSpanEnd; i < lastSpanStart;) {
 				// System.out.println("executed line 872");
 				int j;
-				for (j = i; (j < levels.length) && (levels[j] == levels[i]); j++)
+				for (j = i; (j < levels.length)
+						&& (levels[j] == levels[i]); j++)
 					;
-				newElements.addElement(new BidiElement(bidiRoot, firstPStart + i, firstPStart + j,
-						(int) levels[i]));
+				newElements.addElement(new BidiElement(bidiRoot, firstPStart
+						+ i, firstPStart + j, (int) levels[i]));
 				i = j;
 			}
 			// Create an element for the last span.
-			newElements.addElement(new BidiElement(bidiRoot, lastSpanStart + firstPStart,
-					lastSpanEnd, levels[levels.length - 1]));
+			newElements.addElement(new BidiElement(bidiRoot, lastSpanStart
+					+ firstPStart, lastSpanEnd, levels[levels.length - 1]));
 		}
 
 		if (newNextElem != null)
@@ -1160,7 +1164,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		newElements.copyInto(addedElems);
 
 		// Update the change record.
-		ElementEdit ee = new ElementEdit(bidiRoot, removeFromIndex, removedElems, addedElems);
+		ElementEdit ee = new ElementEdit(bidiRoot, removeFromIndex,
+				removedElems, addedElems);
 		chng.addEdit(ee);
 
 		// Update the bidi element structure.
@@ -1217,7 +1222,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 					bidiflag = Bidi.DIRECTION_RIGHT_TO_LEFT;
 				}
 			}
-			bidiAnalyzer = new Bidi(seg.array, seg.offset, null, 0, seg.count, bidiflag);
+			bidiAnalyzer = new Bidi(seg.array, seg.offset, null, 0, seg.count,
+					bidiflag);
 			BidiUtils.getLevels(bidiAnalyzer, levels, levelsEnd);
 			levelsEnd += bidiAnalyzer.getLength();
 
@@ -1264,16 +1270,17 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * of elements used.
 	 *
 	 * @param parent
-	 *            the parent element
+	 *               the parent element
 	 * @param a
-	 *            the attributes for the element
+	 *               the attributes for the element
 	 * @param p0
-	 *            the beginning of the range &gt;= 0
+	 *               the beginning of the range &gt;= 0
 	 * @param p1
-	 *            the end of the range &gt;= p0
+	 *               the end of the range &gt;= p0
 	 * @return the new element
 	 */
-	protected Element createLeafElement(Element parent, AttributeSet a, int p0, int p1) {
+	protected Element createLeafElement(Element parent, AttributeSet a, int p0,
+			int p1) {
 		return new LeafElement(parent, a, p0, p1);
 	}
 
@@ -1281,9 +1288,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * Creates a document branch element, that can contain other elements.
 	 *
 	 * @param parent
-	 *            the parent element
+	 *               the parent element
 	 * @param a
-	 *            the attributes
+	 *               the attributes
 	 * @return the element
 	 */
 	protected Element createBranchElement(Element parent, AttributeSet a) {
@@ -1322,12 +1329,17 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * a locked state so that no reading or writing can be done.
 	 *
 	 * @exception IllegalStateException
-	 *                thrown on illegal lock attempt. If the document is
-	 *                implemented properly, this can only happen if a document
-	 *                listener attempts to mutate the document. This situation
-	 *                violates the bean event model where order of delivery is
-	 *                not guaranteed and all listeners should be notified before
-	 *                further mutations are allowed.
+	 *                                  thrown on illegal lock attempt. If the
+	 *                                  document is
+	 *                                  implemented properly, this can only
+	 *                                  happen if a document
+	 *                                  listener attempts to mutate the
+	 *                                  document. This situation
+	 *                                  violates the bean event model where
+	 *                                  order of delivery is
+	 *                                  not guaranteed and all listeners should
+	 *                                  be notified before
+	 *                                  further mutations are allowed.
 	 */
 	protected synchronized final void writeLock() {
 		try {
@@ -1337,7 +1349,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 						// Assuming one doesn't do something wrong in a
 						// subclass this should only happen if a
 						// DocumentListener tries to mutate the document.
-						throw new IllegalStateException("Attempt to mutate in notification");
+						throw new IllegalStateException(
+								"Attempt to mutate in notification");
 					}
 					numWriters++;
 					return;
@@ -1426,7 +1439,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 
 	// --- serialization ---------------------------------------------
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 		listenerList = new EventListenerList();
 
@@ -1450,8 +1464,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 			public void validateObject() {
 				try {
 					writeLock();
-					DefaultDocumentEvent e = new DefaultDocumentEvent(0, getLength(),
-							DocumentEvent.EventType.INSERT);
+					DefaultDocumentEvent e = new DefaultDocumentEvent(0,
+							getLength(), DocumentEvent.EventType.INSERT);
 					updateBidi(e);
 				} finally {
 					writeUnlock();
@@ -1585,10 +1599,10 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * content is mutated.
 		 *
 		 * @param offset
-		 *            the offset in the content &gt;= 0
+		 *               the offset in the content &gt;= 0
 		 * @return a Position
 		 * @exception BadLocationException
-		 *                for an invalid offset
+		 *                                 for an invalid offset
 		 */
 		public Position createPosition(int offset) throws BadLocationException;
 
@@ -1603,46 +1617,52 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Inserts a string of characters into the sequence.
 		 *
 		 * @param where
-		 *            offset into the sequence to make the insertion &gt;= 0
+		 *              offset into the sequence to make the insertion &gt;= 0
 		 * @param str
-		 *            string to insert
+		 *              string to insert
 		 * @return if the implementation supports a history mechanism, a
 		 *         reference to an <code>Edit</code> implementation will be
 		 *         returned, otherwise returns <code>null</code>
 		 * @exception BadLocationException
-		 *                thrown if the area covered by the arguments is not
-		 *                contained in the character sequence
+		 *                                 thrown if the area covered by the
+		 *                                 arguments is not
+		 *                                 contained in the character sequence
 		 */
-		public UndoableEdit insertString(int where, String str) throws BadLocationException;
+		public UndoableEdit insertString(int where, String str)
+				throws BadLocationException;
 
 		/**
 		 * Removes some portion of the sequence.
 		 *
 		 * @param where
-		 *            The offset into the sequence to make the insertion &gt;=
-		 *            0.
+		 *               The offset into the sequence to make the insertion
+		 *               &gt;=
+		 *               0.
 		 * @param nitems
-		 *            The number of items in the sequence to remove &gt;= 0.
+		 *               The number of items in the sequence to remove &gt;= 0.
 		 * @return If the implementation supports a history mechanism, a
 		 *         reference to an Edit implementation will be returned,
 		 *         otherwise null.
 		 * @exception BadLocationException
-		 *                Thrown if the area covered by the arguments is not
-		 *                contained in the character sequence.
+		 *                                 Thrown if the area covered by the
+		 *                                 arguments is not
+		 *                                 contained in the character sequence.
 		 */
-		public UndoableEdit remove(int where, int nitems) throws BadLocationException;
+		public UndoableEdit remove(int where, int nitems)
+				throws BadLocationException;
 
 		/**
 		 * Fetches a string of characters contained in the sequence.
 		 *
 		 * @param where
-		 *            Offset into the sequence to fetch &gt;= 0.
+		 *              Offset into the sequence to fetch &gt;= 0.
 		 * @param len
-		 *            number of characters to copy &gt;= 0.
+		 *              number of characters to copy &gt;= 0.
 		 * @return the string
 		 * @exception BadLocationException
-		 *                Thrown if the area covered by the arguments is not
-		 *                contained in the character sequence.
+		 *                                 Thrown if the area covered by the
+		 *                                 arguments is not
+		 *                                 contained in the character sequence.
 		 */
 		public String getString(int where, int len) throws BadLocationException;
 
@@ -1650,16 +1670,18 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets a sequence of characters and copies them into a Segment.
 		 *
 		 * @param where
-		 *            the starting offset &gt;= 0
+		 *              the starting offset &gt;= 0
 		 * @param len
-		 *            the number of characters &gt;= 0
+		 *              the number of characters &gt;= 0
 		 * @param txt
-		 *            the target location to copy into
+		 *              the target location to copy into
 		 * @exception BadLocationException
-		 *                Thrown if the area covered by the arguments is not
-		 *                contained in the character sequence.
+		 *                                 Thrown if the area covered by the
+		 *                                 arguments is not
+		 *                                 contained in the character sequence.
 		 */
-		public void getChars(int where, int len, Segment txt) throws BadLocationException;
+		public void getChars(int where, int len, Segment txt)
+				throws BadLocationException;
 	}
 
 	/**
@@ -1685,23 +1707,24 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * representative set.
 		 *
 		 * @param old
-		 *            the old attribute set
+		 *              the old attribute set
 		 * @param name
-		 *            the non-null attribute name
+		 *              the non-null attribute name
 		 * @param value
-		 *            the attribute value
+		 *              the attribute value
 		 * @return the updated attribute set
 		 * @see MutableAttributeSet#addAttribute
 		 */
-		public AttributeSet addAttribute(AttributeSet old, Object name, Object value);
+		public AttributeSet addAttribute(AttributeSet old, Object name,
+				Object value);
 
 		/**
 		 * Adds a set of attributes to the element.
 		 *
 		 * @param old
-		 *            the old attribute set
+		 *             the old attribute set
 		 * @param attr
-		 *            the attributes to add
+		 *             the attributes to add
 		 * @return the updated attribute set
 		 * @see MutableAttributeSet#addAttribute
 		 */
@@ -1711,9 +1734,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Removes an attribute from the set.
 		 *
 		 * @param old
-		 *            the old attribute set
+		 *             the old attribute set
 		 * @param name
-		 *            the non-null attribute name
+		 *             the non-null attribute name
 		 * @return the updated attribute set
 		 * @see MutableAttributeSet#removeAttribute
 		 */
@@ -1723,25 +1746,27 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Removes a set of attributes for the element.
 		 *
 		 * @param old
-		 *            the old attribute set
+		 *              the old attribute set
 		 * @param names
-		 *            the attribute names
+		 *              the attribute names
 		 * @return the updated attribute set
 		 * @see MutableAttributeSet#removeAttributes
 		 */
-		public AttributeSet removeAttributes(AttributeSet old, Enumeration<?> names);
+		public AttributeSet removeAttributes(AttributeSet old,
+				Enumeration<?> names);
 
 		/**
 		 * Removes a set of attributes for the element.
 		 *
 		 * @param old
-		 *            the old attribute set
+		 *              the old attribute set
 		 * @param attrs
-		 *            the attributes
+		 *              the attributes
 		 * @return the updated attribute set
 		 * @see MutableAttributeSet#removeAttributes
 		 */
-		public AttributeSet removeAttributes(AttributeSet old, AttributeSet attrs);
+		public AttributeSet removeAttributes(AttributeSet old,
+				AttributeSet attrs);
 
 		/**
 		 * Fetches an empty AttributeSet.
@@ -1757,7 +1782,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * implementation would call this in its finalize method.
 		 *
 		 * @param a
-		 *            the attribute set to reclaim
+		 *          the attribute set to reclaim
 		 */
 		public void reclaim(AttributeSet a);
 	}
@@ -1777,16 +1802,16 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * all JavaBeans&trade; has been added to the <code>java.beans</code>
 	 * package. Please see {@link java.beans.XMLEncoder}.
 	 */
-	public abstract class AbstractElement
-			implements Element, MutableAttributeSet, Serializable, TreeNode {
+	public abstract class AbstractElement implements Element,
+			MutableAttributeSet, Serializable, TreeNode {
 
 		/**
 		 * Creates a new AbstractElement.
 		 *
 		 * @param parent
-		 *            the parent element
+		 *               the parent element
 		 * @param a
-		 *            the attributes for the element
+		 *               the attributes for the element
 		 * @since 1.4
 		 */
 		public AbstractElement(Element parent, AttributeSet a) {
@@ -1807,14 +1832,15 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Dumps a debugging representation of the element hierarchy.
 		 *
 		 * @param psOut
-		 *            the output stream
+		 *                     the output stream
 		 * @param indentAmount
-		 *            the indentation level &gt;= 0
+		 *                     the indentation level &gt;= 0
 		 */
 		public void dump(PrintStream psOut, int indentAmount) {
 			PrintWriter out;
 			try {
-				out = new PrintWriter(new OutputStreamWriter(psOut, "JavaEsc"), true);
+				out = new PrintWriter(new OutputStreamWriter(psOut, "JavaEsc"),
+						true);
 			} catch (UnsupportedEncodingException e) {
 				out = new PrintWriter(psOut, true);
 			}
@@ -1877,7 +1903,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Checks whether a given attribute is defined.
 		 *
 		 * @param attrName
-		 *            the non-null attribute name
+		 *                 the non-null attribute name
 		 * @return true if the attribute is defined
 		 * @see AttributeSet#isDefined
 		 */
@@ -1889,7 +1915,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Checks whether two attribute sets are equal.
 		 *
 		 * @param attr
-		 *            the attribute set to check against
+		 *             the attribute set to check against
 		 * @return true if the same
 		 * @see AttributeSet#isEqual
 		 */
@@ -1911,7 +1937,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets the value of an attribute.
 		 *
 		 * @param attrName
-		 *            the non-null attribute name
+		 *                 the non-null attribute name
 		 * @return the attribute value
 		 * @see AttributeSet#getAttribute
 		 */
@@ -1921,7 +1947,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 				// The delegate nor it's resolvers had a match,
 				// so we'll try to resolve through the parent
 				// element.
-				AttributeSet a = (parent != null) ? parent.getAttributes() : null;
+				AttributeSet a = (parent != null) ? parent.getAttributes()
+						: null;
 				if (a != null) {
 					value = a.getAttribute(attrName);
 				}
@@ -1943,9 +1970,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Checks whether a given attribute name/value is defined.
 		 *
 		 * @param name
-		 *            the non-null attribute name
+		 *              the non-null attribute name
 		 * @param value
-		 *            the attribute value
+		 *              the attribute value
 		 * @return true if the name/value is defined
 		 * @see AttributeSet#containsAttribute
 		 */
@@ -1957,7 +1984,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Checks whether the element contains all the attributes.
 		 *
 		 * @param attrs
-		 *            the attributes to check
+		 *              the attributes to check
 		 * @return true if the element contains all the attributes
 		 * @see AttributeSet#containsAttributes
 		 */
@@ -1988,9 +2015,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Adds an attribute to the element.
 		 *
 		 * @param name
-		 *            the non-null attribute name
+		 *              the non-null attribute name
 		 * @param value
-		 *            the attribute value
+		 *              the attribute value
 		 * @see MutableAttributeSet#addAttribute
 		 */
 		public void addAttribute(Object name, Object value) {
@@ -2003,7 +2030,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Adds a set of attributes to the element.
 		 *
 		 * @param attr
-		 *            the attributes to add
+		 *             the attributes to add
 		 * @see MutableAttributeSet#addAttribute
 		 */
 		public void addAttributes(AttributeSet attr) {
@@ -2016,7 +2043,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Removes an attribute from the set.
 		 *
 		 * @param name
-		 *            the non-null attribute name
+		 *             the non-null attribute name
 		 * @see MutableAttributeSet#removeAttribute
 		 */
 		public void removeAttribute(Object name) {
@@ -2029,7 +2056,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Removes a set of attributes for the element.
 		 *
 		 * @param names
-		 *            the attribute names
+		 *              the attribute names
 		 * @see MutableAttributeSet#removeAttributes
 		 */
 		public void removeAttributes(Enumeration<?> names) {
@@ -2042,7 +2069,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Removes a set of attributes for the element.
 		 *
 		 * @param attrs
-		 *            the attributes
+		 *              the attributes
 		 * @see MutableAttributeSet#removeAttributes
 		 */
 		public void removeAttributes(AttributeSet attrs) {
@@ -2059,24 +2086,26 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Sets the resolving parent.
 		 *
 		 * @param parent
-		 *            the parent, null if none
+		 *               the parent, null if none
 		 * @see MutableAttributeSet#setResolveParent
 		 */
 		public void setResolveParent(AttributeSet parent) {
 			checkForIllegalCast();
 			AttributeContext context = getAttributeContext();
 			if (parent != null) {
-				attributes = context.addAttribute(attributes, StyleConstants.ResolveAttribute,
-						parent);
+				attributes = context.addAttribute(attributes,
+						StyleConstants.ResolveAttribute, parent);
 			} else {
-				attributes = context.removeAttribute(attributes, StyleConstants.ResolveAttribute);
+				attributes = context.removeAttribute(attributes,
+						StyleConstants.ResolveAttribute);
 			}
 		}
 
 		private final void checkForIllegalCast() {
 			Thread t = getCurrentWriter();
 			if ((t == null) || (t != Thread.currentThread())) {
-				throw new StateInvariantError("Illegal cast to MutableAttributeSet");
+				throw new StateInvariantError(
+						"Illegal cast to MutableAttributeSet");
 			}
 		}
 
@@ -2139,7 +2168,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets a child element.
 		 *
 		 * @param index
-		 *            the child index, &gt;= 0 &amp;&amp; &lt; getElementCount()
+		 *              the child index, &gt;= 0 &amp;&amp; &lt;
+		 *              getElementCount()
 		 * @return the child element
 		 */
 		public abstract Element getElement(int index);
@@ -2155,7 +2185,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets the child element index closest to the given model offset.
 		 *
 		 * @param offset
-		 *            the offset &gt;= 0
+		 *               the offset &gt;= 0
 		 * @return the element index &gt;= 0
 		 */
 		public abstract int getElementIndex(int offset);
@@ -2202,7 +2232,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * the receiver does not contain <code>node</code>, -1 will be returned.
 		 * 
 		 * @param node
-		 *            the location of interest
+		 *             the location of interest
 		 * @return the index of <code>node</code> in the receiver's children, or
 		 *         -1 if absent
 		 */
@@ -2234,7 +2264,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 			StyleContext.writeAttributeSet(s, attributes);
 		}
 
-		private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+		private void readObject(ObjectInputStream s)
+				throws ClassNotFoundException, IOException {
 			s.defaultReadObject();
 			MutableAttributeSet attr = new SimpleAttributeSet();
 			StyleContext.readAttributeSet(s, attr);
@@ -2265,9 +2296,9 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Constructs a composite element that initially contains no children.
 		 *
 		 * @param parent
-		 *            The parent element
+		 *               The parent element
 		 * @param a
-		 *            the attributes for the element
+		 *               the attributes for the element
 		 * @since 1.4
 		 */
 		public BranchElement(Element parent, AttributeSet a) {
@@ -2299,11 +2330,11 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Replaces content with a new set of elements.
 		 *
 		 * @param offset
-		 *            the starting offset &gt;= 0
+		 *               the starting offset &gt;= 0
 		 * @param length
-		 *            the length to replace &gt;= 0
+		 *               the length to replace &gt;= 0
 		 * @param elems
-		 *            the new elements
+		 *               the new elements
 		 */
 		public void replace(int offset, int length, Element[] elems) {
 			int delta = elems.length - length;
@@ -2312,7 +2343,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 			int dest = src + delta;
 			if ((nchildren + delta) >= children.length) {
 				// need to grow the array
-				int newLength = Math.max(2 * children.length, nchildren + delta);
+				int newLength = Math.max(2 * children.length, nchildren
+						+ delta);
 				AbstractElement[] newChildren = new AbstractElement[newLength];
 				System.arraycopy(children, 0, newChildren, 0, offset);
 				System.arraycopy(elems, 0, newChildren, offset, elems.length);
@@ -2332,8 +2364,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * @return the string
 		 */
 		public String toString() {
-			return "BranchElement(" + getName() + ") " + getStartOffset() + "," + getEndOffset()
-					+ "\n";
+			return "BranchElement(" + getName() + ") " + getStartOffset() + ","
+					+ getEndOffset() + "\n";
 		}
 
 		// --- Element methods -----------------------------------
@@ -2364,12 +2396,13 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets the ending offset in the model for the element.
 		 * 
 		 * @throws NullPointerException
-		 *             if this element has no children
+		 *                              if this element has no children
 		 *
 		 * @return the offset &gt;= 0
 		 */
 		public int getEndOffset() {
-			Element child = (nchildren > 0) ? children[nchildren - 1] : children[0];
+			Element child = (nchildren > 0) ? children[nchildren - 1]
+					: children[0];
 			return child.getEndOffset();
 		}
 
@@ -2377,7 +2410,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets a child element.
 		 *
 		 * @param index
-		 *            the child index, &gt;= 0 &amp;&amp; &lt; getElementCount()
+		 *              the child index, &gt;= 0 &amp;&amp; &lt;
+		 *              getElementCount()
 		 * @return the child element, null if none
 		 */
 		public Element getElement(int index) {
@@ -2400,7 +2434,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets the child element index closest to the given model offset.
 		 *
 		 * @param offset
-		 *            the offset &gt;= 0
+		 *               the offset &gt;= 0
 		 * @return the element index &gt;= 0
 		 */
 		public int getElementIndex(int offset) {
@@ -2493,7 +2527,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 			if (nchildren == 0)
 				return null;
 
-			Vector<AbstractElement> tempVector = new Vector<AbstractElement>(nchildren);
+			Vector<AbstractElement> tempVector = new Vector<AbstractElement>(
+					nchildren);
 
 			for (int counter = 0; counter < nchildren; counter++)
 				tempVector.addElement(children[counter]);
@@ -2526,16 +2561,17 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * (has no children).
 		 *
 		 * @param parent
-		 *            The parent element
+		 *               The parent element
 		 * @param a
-		 *            The element attributes
+		 *               The element attributes
 		 * @param offs0
-		 *            The start offset &gt;= 0
+		 *               The start offset &gt;= 0
 		 * @param offs1
-		 *            The end offset &gt;= offs0
+		 *               The end offset &gt;= offs0
 		 * @since 1.4
 		 */
-		public LeafElement(Element parent, AttributeSet a, int offs0, int offs1) {
+		public LeafElement(Element parent, AttributeSet a, int offs0,
+				int offs1) {
 			super(parent, a);
 			try {
 				p0 = createPosition(offs0);
@@ -2543,7 +2579,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 			} catch (BadLocationException e) {
 				p0 = null;
 				p1 = null;
-				throw new StateInvariantError("Can't create Position references");
+				throw new StateInvariantError(
+						"Can't create Position references");
 			}
 		}
 
@@ -2604,7 +2641,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets a child element.
 		 *
 		 * @param index
-		 *            the child index, &gt;= 0 &amp;&amp; &lt; getElementCount()
+		 *              the child index, &gt;= 0 &amp;&amp; &lt;
+		 *              getElementCount()
 		 * @return the child element
 		 */
 		public Element getElement(int index) {
@@ -2657,7 +2695,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 			s.writeInt(p1.getOffset());
 		}
 
-		private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+		private void readObject(ObjectInputStream s)
+				throws ClassNotFoundException, IOException {
 			s.defaultReadObject();
 
 			// set the range with positions that track change
@@ -2744,20 +2783,22 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * its extensions for broadcasting change information to the document
 	 * listeners.
 	 */
-	public class DefaultDocumentEvent extends CompoundEdit implements DocumentEvent {
+	public class DefaultDocumentEvent extends CompoundEdit implements
+			DocumentEvent {
 
 		/**
 		 * Constructs a change record.
 		 *
 		 * @param offs
-		 *            the offset into the document of the change &gt;= 0
+		 *             the offset into the document of the change &gt;= 0
 		 * @param len
-		 *            the length of the change &gt;= 0
+		 *             the length of the change &gt;= 0
 		 * @param type
-		 *            the type of event (DocumentEvent.EventType)
+		 *             the type of event (DocumentEvent.EventType)
 		 * @since 1.4
 		 */
-		public DefaultDocumentEvent(int offs, int len, DocumentEvent.EventType type) {
+		public DefaultDocumentEvent(int offs, int len,
+				DocumentEvent.EventType type) {
 			super();
 			offset = offs;
 			length = len;
@@ -2781,7 +2822,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * since access of these needs to be relatively quick.
 		 *
 		 * @param anEdit
-		 *            a document edit record
+		 *               a document edit record
 		 * @return true if the edit was added
 		 */
 		public boolean addEdit(UndoableEdit anEdit) {
@@ -2801,7 +2842,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 
 			// if we have a hashtable... add the entry if it's
 			// an ElementChange.
-			if ((changeLookup != null) && (anEdit instanceof DocumentEvent.ElementChange)) {
+			if ((changeLookup != null)
+					&& (anEdit instanceof DocumentEvent.ElementChange)) {
 				DocumentEvent.ElementChange ec = (DocumentEvent.ElementChange) anEdit;
 				changeLookup.put(ec.getElement(), ec);
 			}
@@ -2812,7 +2854,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Redoes a change.
 		 *
 		 * @exception CannotRedoException
-		 *                if the change cannot be redone
+		 *                                if the change cannot be redone
 		 */
 		public void redo() throws CannotRedoException {
 			writeLock();
@@ -2820,7 +2862,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 				// change the state
 				super.redo();
 				// fire a DocumentEvent to notify the view(s)
-				UndoRedoDocumentEvent ev = new UndoRedoDocumentEvent(this, false);
+				UndoRedoDocumentEvent ev = new UndoRedoDocumentEvent(this,
+						false);
 				if (type == DocumentEvent.EventType.INSERT) {
 					fireInsertUpdate(ev);
 				} else if (type == DocumentEvent.EventType.REMOVE) {
@@ -2837,7 +2880,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Undoes a change.
 		 *
 		 * @exception CannotUndoException
-		 *                if the change cannot be undone
+		 *                                if the change cannot be undone
 		 */
 		public void undo() throws CannotUndoException {
 			writeLock();
@@ -2845,7 +2888,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 				// change the state
 				super.undo();
 				// fire a DocumentEvent to notify the view(s)
-				UndoRedoDocumentEvent ev = new UndoRedoDocumentEvent(this, true);
+				UndoRedoDocumentEvent ev = new UndoRedoDocumentEvent(this,
+						true);
 				if (type == DocumentEvent.EventType.REMOVE) {
 					fireInsertUpdate(ev);
 				} else if (type == DocumentEvent.EventType.INSERT) {
@@ -2892,7 +2936,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * @return the description
 		 */
 		public String getUndoPresentationName() {
-			return UIManager.getString("AbstractDocument.undoText") + " " + getPresentationName();
+			return UIManager.getString("AbstractDocument.undoText") + " "
+					+ getPresentationName();
 		}
 
 		/**
@@ -2903,7 +2948,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * @return the description
 		 */
 		public String getRedoPresentationName() {
-			return UIManager.getString("AbstractDocument.redoText") + " " + getPresentationName();
+			return UIManager.getString("AbstractDocument.redoText") + " "
+					+ getPresentationName();
 		}
 
 		// --- DocumentEvent methods --------------------------
@@ -2952,7 +2998,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Gets the changes for an element.
 		 *
 		 * @param elem
-		 *            the element
+		 *             the element
 		 * @return the changes
 		 */
 		public DocumentEvent.ElementChange getChange(Element elem) {
@@ -3036,8 +3082,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 	 * An implementation of ElementChange that can be added to the document
 	 * event.
 	 */
-	public static class ElementEdit extends AbstractUndoableEdit
-			implements DocumentEvent.ElementChange {
+	public static class ElementEdit extends AbstractUndoableEdit implements
+			DocumentEvent.ElementChange {
 
 		/**
 		 * Constructs an edit record. This does not modify the element so it can
@@ -3045,15 +3091,16 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * for views that just attached to a model.
 		 *
 		 * @param e
-		 *            the element
+		 *                the element
 		 * @param index
-		 *            the index into the model &gt;= 0
+		 *                the index into the model &gt;= 0
 		 * @param removed
-		 *            a set of elements that were removed
+		 *                a set of elements that were removed
 		 * @param added
-		 *            a set of elements that were added
+		 *                a set of elements that were added
 		 */
-		public ElementEdit(Element e, int index, Element[] removed, Element[] added) {
+		public ElementEdit(Element e, int index, Element[] removed,
+				Element[] added) {
 			super();
 			this.e = e;
 			this.index = index;
@@ -3101,7 +3148,7 @@ public abstract class AbstractDocument implements Document, Serializable {
 		 * Redoes a change.
 		 *
 		 * @exception CannotRedoException
-		 *                if the change cannot be redone
+		 *                                if the change cannot be redone
 		 */
 		public void redo() throws CannotRedoException {
 			super.redo();
@@ -3113,20 +3160,22 @@ public abstract class AbstractDocument implements Document, Serializable {
 
 			// PENDING(prinz) need MutableElement interface, canRedo() should
 			// check
-			((AbstractDocument.BranchElement) e).replace(index, removed.length, added);
+			((AbstractDocument.BranchElement) e).replace(index, removed.length,
+					added);
 		}
 
 		/**
 		 * Undoes a change.
 		 *
 		 * @exception CannotUndoException
-		 *                if the change cannot be undone
+		 *                                if the change cannot be undone
 		 */
 		public void undo() throws CannotUndoException {
 			super.undo();
 			// PENDING(prinz) need MutableElement interface, canUndo() should
 			// check
-			((AbstractDocument.BranchElement) e).replace(index, added.length, removed);
+			((AbstractDocument.BranchElement) e).replace(index, added.length,
+					removed);
 
 			// Since this event will be reused, switch around added/removed.
 			Element[] tmp = removed;
@@ -3154,8 +3203,8 @@ public abstract class AbstractDocument implements Document, Serializable {
 			handleInsertString(offset, string, attr);
 		}
 
-		public void replace(int offset, int length, String text, AttributeSet attrs)
-				throws BadLocationException {
+		public void replace(int offset, int length, String text,
+				AttributeSet attrs) throws BadLocationException {
 			handleRemove(offset, length);
 			handleInsertString(offset, text, attrs);
 		}

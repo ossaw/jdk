@@ -64,7 +64,8 @@ public class InvalidCanonicalizerException extends XMLSecurityException {
 	 * @param msgID
 	 * @param originalException
 	 */
-	public InvalidCanonicalizerException(String msgID, Exception originalException) {
+	public InvalidCanonicalizerException(String msgID,
+			Exception originalException) {
 		super(msgID, originalException);
 	}
 

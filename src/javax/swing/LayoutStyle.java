@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -45,7 +25,7 @@ public abstract class LayoutStyle {
 	 * current <code>LookAndFeel</code>.
 	 *
 	 * @param style
-	 *            the <code>LayoutStyle</code>, or <code>null</code>
+	 *              the <code>LayoutStyle</code>, or <code>null</code>
 	 * @see #getInstance
 	 */
 	public static void setInstance(LayoutStyle style) {
@@ -69,7 +49,8 @@ public abstract class LayoutStyle {
 	public static LayoutStyle getInstance() {
 		LayoutStyle style;
 		synchronized (LayoutStyle.class) {
-			style = (LayoutStyle) AppContext.getAppContext().get(LayoutStyle.class);
+			style = (LayoutStyle) AppContext.getAppContext().get(
+					LayoutStyle.class);
 		}
 		if (style == null) {
 			return UIManager.getLookAndFeel().getLayoutStyle();
@@ -123,8 +104,7 @@ public abstract class LayoutStyle {
 	 * <code>LayoutStyle</code>. Instead use the method <code>getInstance</code>
 	 * to obtain the current <code>LayoutStyle</code>.
 	 */
-	public LayoutStyle() {
-	}
+	public LayoutStyle() {}
 
 	/**
 	 * Returns the amount of space to use between two components. The return
@@ -135,8 +115,8 @@ public abstract class LayoutStyle {
 	 * above <code>component1</code>:
 	 * 
 	 * <pre>
-	 * int gap = getPreferredGap(component1, component2, ComponentPlacement.RELATED,
-	 * 		SwingConstants.NORTH, parent);
+	 * int gap = getPreferredGap(component1, component2,
+	 * 		ComponentPlacement.RELATED, SwingConstants.NORTH, parent);
 	 * </pre>
 	 * 
 	 * The <code>type</code> parameter indicates the relation between the two
@@ -154,61 +134,69 @@ public abstract class LayoutStyle {
 	 * preferred size of the component.
 	 *
 	 * @param component1
-	 *            the <code>JComponent</code> <code>component2</code> is being
-	 *            placed relative to
+	 *                   the <code>JComponent</code> <code>component2</code> is
+	 *                   being
+	 *                   placed relative to
 	 * @param component2
-	 *            the <code>JComponent</code> being placed
+	 *                   the <code>JComponent</code> being placed
 	 * @param position
-	 *            the position <code>component2</code> is being placed relative
-	 *            to <code>component1</code>; one of
-	 *            <code>SwingConstants.NORTH</code>,
-	 *            <code>SwingConstants.SOUTH</code>,
-	 *            <code>SwingConstants.EAST</code> or
-	 *            <code>SwingConstants.WEST</code>
+	 *                   the position <code>component2</code> is being placed
+	 *                   relative
+	 *                   to <code>component1</code>; one of
+	 *                   <code>SwingConstants.NORTH</code>,
+	 *                   <code>SwingConstants.SOUTH</code>,
+	 *                   <code>SwingConstants.EAST</code> or
+	 *                   <code>SwingConstants.WEST</code>
 	 * @param type
-	 *            how the two components are being placed
+	 *                   how the two components are being placed
 	 * @param parent
-	 *            the parent of <code>component2</code>; this may differ from
-	 *            the actual parent and it may be <code>null</code>
+	 *                   the parent of <code>component2</code>; this may differ
+	 *                   from
+	 *                   the actual parent and it may be <code>null</code>
 	 * @return the amount of space to place between the two components
 	 * @throws NullPointerException
-	 *             if <code>component1</code>, <code>component2</code> or
-	 *             <code>type</code> is <code>null</code>
+	 *                                  if <code>component1</code>,
+	 *                                  <code>component2</code> or
+	 *                                  <code>type</code> is <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if <code>position</code> is not one of
-	 *             <code>SwingConstants.NORTH</code>,
-	 *             <code>SwingConstants.SOUTH</code>,
-	 *             <code>SwingConstants.EAST</code> or
-	 *             <code>SwingConstants.WEST</code>
+	 *                                  if <code>position</code> is not one of
+	 *                                  <code>SwingConstants.NORTH</code>,
+	 *                                  <code>SwingConstants.SOUTH</code>,
+	 *                                  <code>SwingConstants.EAST</code> or
+	 *                                  <code>SwingConstants.WEST</code>
 	 * @see LookAndFeel#getLayoutStyle
 	 * @since 1.6
 	 */
-	public abstract int getPreferredGap(JComponent component1, JComponent component2,
-			ComponentPlacement type, int position, Container parent);
+	public abstract int getPreferredGap(JComponent component1,
+			JComponent component2, ComponentPlacement type, int position,
+			Container parent);
 
 	/**
 	 * Returns the amount of space to place between the component and specified
 	 * edge of its parent.
 	 *
 	 * @param component
-	 *            the <code>JComponent</code> being positioned
+	 *                  the <code>JComponent</code> being positioned
 	 * @param position
-	 *            the position <code>component</code> is being placed relative
-	 *            to its parent; one of <code>SwingConstants.NORTH</code>,
-	 *            <code>SwingConstants.SOUTH</code>,
-	 *            <code>SwingConstants.EAST</code> or
-	 *            <code>SwingConstants.WEST</code>
+	 *                  the position <code>component</code> is being placed
+	 *                  relative
+	 *                  to its parent; one of <code>SwingConstants.NORTH</code>,
+	 *                  <code>SwingConstants.SOUTH</code>,
+	 *                  <code>SwingConstants.EAST</code> or
+	 *                  <code>SwingConstants.WEST</code>
 	 * @param parent
-	 *            the parent of <code>component</code>; this may differ from the
-	 *            actual parent and may be <code>null</code>
+	 *                  the parent of <code>component</code>; this may differ
+	 *                  from the
+	 *                  actual parent and may be <code>null</code>
 	 * @return the amount of space to place between the component and specified
 	 *         edge
 	 * @throws IllegalArgumentException
-	 *             if <code>position</code> is not one of
-	 *             <code>SwingConstants.NORTH</code>,
-	 *             <code>SwingConstants.SOUTH</code>,
-	 *             <code>SwingConstants.EAST</code> or
-	 *             <code>SwingConstants.WEST</code>
+	 *                                  if <code>position</code> is not one of
+	 *                                  <code>SwingConstants.NORTH</code>,
+	 *                                  <code>SwingConstants.SOUTH</code>,
+	 *                                  <code>SwingConstants.EAST</code> or
+	 *                                  <code>SwingConstants.WEST</code>
 	 */
-	public abstract int getContainerGap(JComponent component, int position, Container parent);
+	public abstract int getContainerGap(JComponent component, int position,
+			Container parent);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -39,7 +19,8 @@ import com.sun.corba.se.spi.orb.ORB;
 import com.sun.corba.se.spi.logging.CORBALogDomains;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
-abstract class DynValueCommonImpl extends DynAnyComplexImpl implements DynValueCommon {
+abstract class DynValueCommonImpl extends DynAnyComplexImpl implements
+		DynValueCommon {
 	//
 	// Constructors
 	//
@@ -135,7 +116,8 @@ abstract class DynValueCommonImpl extends DynAnyComplexImpl implements DynValueC
 	}
 
 	// Overridden to change to non-null status.
-	public void set_members_as_dyn_any(org.omg.DynamicAny.NameDynAnyPair[] value)
+	public void set_members_as_dyn_any(
+			org.omg.DynamicAny.NameDynAnyPair[] value)
 			throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
 			org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		super.set_members_as_dyn_any(value);

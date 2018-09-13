@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.util;
@@ -78,14 +58,16 @@ public class JAXBResult extends SAXResult {
 	 * Creates a new instance that uses the specified JAXBContext to unmarshal.
 	 *
 	 * @param context
-	 *            The JAXBContext that will be used to create the necessary
-	 *            Unmarshaller. This parameter must not be null.
+	 *                The JAXBContext that will be used to create the necessary
+	 *                Unmarshaller. This parameter must not be null.
 	 * @exception JAXBException
-	 *                if an error is encountered while creating the JAXBResult
-	 *                or if the context parameter is null.
+	 *                          if an error is encountered while creating the
+	 *                          JAXBResult
+	 *                          or if the context parameter is null.
 	 */
 	public JAXBResult(JAXBContext context) throws JAXBException {
-		this((context == null) ? assertionFailed() : context.createUnmarshaller());
+		this((context == null) ? assertionFailed()
+				: context.createUnmarshaller());
 	}
 
 	/**
@@ -103,14 +85,16 @@ public class JAXBResult extends SAXResult {
 	 * to pass a JAXBContext.
 	 *
 	 * @param _unmarshaller
-	 *            the unmarshaller. This parameter must not be null.
+	 *                      the unmarshaller. This parameter must not be null.
 	 * @throws JAXBException
-	 *             if an error is encountered while creating the JAXBResult or
-	 *             the Unmarshaller parameter is null.
+	 *                       if an error is encountered while creating the
+	 *                       JAXBResult or
+	 *                       the Unmarshaller parameter is null.
 	 */
 	public JAXBResult(Unmarshaller _unmarshaller) throws JAXBException {
 		if (_unmarshaller == null)
-			throw new JAXBException(Messages.format(Messages.RESULT_NULL_UNMARSHALLER));
+			throw new JAXBException(Messages.format(
+					Messages.RESULT_NULL_UNMARSHALLER));
 
 		this.unmarshallerHandler = _unmarshaller.getUnmarshallerHandler();
 
@@ -128,12 +112,15 @@ public class JAXBResult extends SAXResult {
 	 * @return Always return a non-null object.
 	 *
 	 * @exception IllegalStateException
-	 *                if this method is called before an object is unmarshalled.
+	 *                                  if this method is called before an
+	 *                                  object is unmarshalled.
 	 *
 	 * @exception JAXBException
-	 *                if there is any unmarshalling error. Note that the
-	 *                implementation is allowed to throw SAXException during the
-	 *                parsing when it finds an error.
+	 *                                  if there is any unmarshalling error.
+	 *                                  Note that the
+	 *                                  implementation is allowed to throw
+	 *                                  SAXException during the
+	 *                                  parsing when it finds an error.
 	 */
 	public Object getResult() throws JAXBException {
 		return unmarshallerHandler.getResult();

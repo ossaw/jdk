@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +38,8 @@ import org.xml.sax.ContentHandler;
  * Here is an example using the asContentHandler() method:
  * 
  * <pre>
- * java.util.Properties props = OutputPropertiesFactory.getDefaultMethodProperties(Method.TEXT);
+ * java.util.Properties props = OutputPropertiesFactory
+ * 		.getDefaultMethodProperties(Method.TEXT);
  * Serializer ser = SerializerFactory.getSerializer(props);
  * java.io.PrintStream ostream = System.out;
  * ser.setOutputStream(ostream);
@@ -105,7 +103,7 @@ public interface Serializer {
 	 * Only one of setWriter() or setOutputStream() should be called.
 	 *
 	 * @param output
-	 *            The output stream
+	 *               The output stream
 	 */
 	public void setOutputStream(OutputStream output);
 
@@ -128,7 +126,7 @@ public interface Serializer {
 	 * Only one of setWriter() or setOutputStream() should be called.
 	 *
 	 * @param writer
-	 *            The output writer stream
+	 *               The output writer stream
 	 */
 	public void setWriter(Writer writer);
 
@@ -170,7 +168,7 @@ public interface Serializer {
 	 * from one call to the next, but it is cumulative across the calls.
 	 *
 	 * @param format
-	 *            The output format to use, as a set of key/value pairs.
+	 *               The output format to use, as a set of key/value pairs.
 	 */
 	public void setOutputFormat(Properties format);
 
@@ -193,7 +191,7 @@ public interface Serializer {
 	 * @return A {@link ContentHandler} interface into this serializer, or null
 	 *         if the serializer is not SAX 2 capable
 	 * @throws IOException
-	 *             An I/O exception occured
+	 *                     An I/O exception occured
 	 */
 	public ContentHandler asContentHandler() throws IOException;
 
@@ -209,7 +207,7 @@ public interface Serializer {
 	 * @return A {@link DOMSerializer} interface into this serializer, or null
 	 *         if the serializer is not DOM capable
 	 * @throws IOException
-	 *             An I/O exception occured
+	 *                     An I/O exception occured
 	 */
 	public DOMSerializer asDOMSerializer() throws IOException;
 

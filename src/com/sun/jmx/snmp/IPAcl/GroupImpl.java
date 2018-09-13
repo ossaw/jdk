@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.IPAcl;
@@ -46,18 +26,17 @@ class GroupImpl extends PrincipalImpl implements Group, Serializable {
 	 * Constructs an empty group.
 	 * 
 	 * @exception UnknownHostException
-	 *                Not implemented
+	 *                                 Not implemented
 	 */
-	public GroupImpl() throws UnknownHostException {
-	}
+	public GroupImpl() throws UnknownHostException {}
 
 	/**
 	 * Constructs a group using the specified subnet mask.
 	 *
 	 * @param mask
-	 *            The subnet mask to use to build the group.
+	 *             The subnet mask to use to build the group.
 	 * @exception UnknownHostException
-	 *                if the subnet mask cann't be built.
+	 *                                 if the subnet mask cann't be built.
 	 */
 	public GroupImpl(String mask) throws UnknownHostException {
 		super(mask);
@@ -67,7 +46,7 @@ class GroupImpl extends PrincipalImpl implements Group, Serializable {
 	 * Adds the specified member to the group.
 	 *
 	 * @param p
-	 *            the principal to add to this group.
+	 *          the principal to add to this group.
 	 * @return true if the member was successfully added, false if the principal
 	 *         was already a member.
 	 */
@@ -86,7 +65,7 @@ class GroupImpl extends PrincipalImpl implements Group, Serializable {
 	 * passed in matches the group represented.
 	 *
 	 * @param p
-	 *            the object to compare with.
+	 *          the object to compare with.
 	 * @return true if the object passed in matches the subnet mask, false
 	 *         otherwise.
 	 */
@@ -105,7 +84,7 @@ class GroupImpl extends PrincipalImpl implements Group, Serializable {
 	 * Returns true if the passed principal is a member of the group.
 	 *
 	 * @param p
-	 *            the principal whose membership is to be checked.
+	 *          the principal whose membership is to be checked.
 	 * @return true if the principal is a member of this group, false otherwise.
 	 */
 	public boolean isMember(Principal p) {
@@ -130,7 +109,7 @@ class GroupImpl extends PrincipalImpl implements Group, Serializable {
 	 * Removes the specified member from the group. (Not implemented)
 	 *
 	 * @param p
-	 *            the principal to remove from this group.
+	 *          the principal to remove from this group.
 	 * @return allways return true.
 	 */
 	public boolean removeMember(Principal p) {

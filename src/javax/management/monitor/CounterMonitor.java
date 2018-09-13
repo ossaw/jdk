@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.monitor;
@@ -101,7 +81,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 			return previousScanCounter;
 		}
 
-		public final synchronized void setPreviousScanCounter(Number previousScanCounter) {
+		public final synchronized void setPreviousScanCounter(
+				Number previousScanCounter) {
 			this.previousScanCounter = previousScanCounter;
 		}
 
@@ -109,7 +90,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 			return modulusExceeded;
 		}
 
-		public final synchronized void setModulusExceeded(boolean modulusExceeded) {
+		public final synchronized void setModulusExceeded(
+				boolean modulusExceeded) {
 			this.modulusExceeded = modulusExceeded;
 		}
 
@@ -117,7 +99,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 			return derivedGaugeExceeded;
 		}
 
-		public final synchronized void setDerivedGaugeExceeded(Number derivedGaugeExceeded) {
+		public final synchronized void setDerivedGaugeExceeded(
+				Number derivedGaugeExceeded) {
 			this.derivedGaugeExceeded = derivedGaugeExceeded;
 		}
 
@@ -125,7 +108,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 			return derivedGaugeValid;
 		}
 
-		public final synchronized void setDerivedGaugeValid(boolean derivedGaugeValid) {
+		public final synchronized void setDerivedGaugeValid(
+				boolean derivedGaugeValid) {
 			this.derivedGaugeValid = derivedGaugeValid;
 		}
 
@@ -133,7 +117,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 			return eventAlreadyNotified;
 		}
 
-		public final synchronized void setEventAlreadyNotified(boolean eventAlreadyNotified) {
+		public final synchronized void setEventAlreadyNotified(
+				boolean eventAlreadyNotified) {
 			this.eventAlreadyNotified = eventAlreadyNotified;
 		}
 
@@ -193,12 +178,14 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 */
 	private Number initThreshold = INTEGER_ZERO;
 
-	private static final String[] types = { RUNTIME_ERROR, OBSERVED_OBJECT_ERROR,
-			OBSERVED_ATTRIBUTE_ERROR, OBSERVED_ATTRIBUTE_TYPE_ERROR, THRESHOLD_ERROR,
+	private static final String[] types = { RUNTIME_ERROR,
+			OBSERVED_OBJECT_ERROR, OBSERVED_ATTRIBUTE_ERROR,
+			OBSERVED_ATTRIBUTE_TYPE_ERROR, THRESHOLD_ERROR,
 			THRESHOLD_VALUE_EXCEEDED };
 
 	private static final MBeanNotificationInfo[] notifsInfo = {
-			new MBeanNotificationInfo(types, "javax.management.monitor.MonitorNotification",
+			new MBeanNotificationInfo(types,
+					"javax.management.monitor.MonitorNotification",
 					"Notifications sent by the CounterMonitor MBean") };
 
 	/*
@@ -209,8 +196,7 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	/**
 	 * Default constructor.
 	 */
-	public CounterMonitor() {
-	}
+	public CounterMonitor() {}
 
 	/*
 	 * ------------------------------------------ PUBLIC METHODS
@@ -222,8 +208,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 */
 	public synchronized void start() {
 		if (isActive()) {
-			MONITOR_LOGGER.logp(Level.FINER, CounterMonitor.class.getName(), "start",
-					"the monitor is already active");
+			MONITOR_LOGGER.logp(Level.FINER, CounterMonitor.class.getName(),
+					"start", "the monitor is already active");
 			return;
 		}
 		// Reset values.
@@ -253,7 +239,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * contained in the set of observed MBeans, or <code>null</code> otherwise.
 	 *
 	 * @param object
-	 *            the name of the object whose derived gauge is to be returned.
+	 *               the name of the object whose derived gauge is to be
+	 *               returned.
 	 *
 	 * @return The derived gauge of the specified object.
 	 *
@@ -268,8 +255,9 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * is contained in the set of observed MBeans, or <code>0</code> otherwise.
 	 *
 	 * @param object
-	 *            the name of the object whose derived gauge timestamp is to be
-	 *            returned.
+	 *               the name of the object whose derived gauge timestamp is to
+	 *               be
+	 *               returned.
 	 *
 	 * @return The derived gauge timestamp of the specified object.
 	 *
@@ -285,7 +273,7 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * otherwise.
 	 *
 	 * @param object
-	 *            the name of the object whose threshold is to be returned.
+	 *               the name of the object whose threshold is to be returned.
 	 *
 	 * @return The threshold value of the specified object.
 	 *
@@ -304,8 +292,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 		// latest call to the monitor's setInitThreshold method, before
 		// any offsets were applied.
 		//
-		if (offset.longValue() > 0L && modulus.longValue() > 0L
-				&& o.getThreshold().longValue() > modulus.longValue()) {
+		if (offset.longValue() > 0L && modulus.longValue() > 0L && o
+				.getThreshold().longValue() > modulus.longValue()) {
 			return initThreshold;
 		} else {
 			return o.getThreshold();
@@ -332,16 +320,18 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * updated consequently.
 	 *
 	 * @param value
-	 *            The initial threshold value.
+	 *              The initial threshold value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                The specified threshold is null or the threshold value is
-	 *                less than zero.
+	 *                                     The specified threshold is null or
+	 *                                     the threshold value is
+	 *                                     less than zero.
 	 *
 	 * @see #getInitThreshold
 	 *
 	 */
-	public synchronized void setInitThreshold(Number value) throws IllegalArgumentException {
+	public synchronized void setInitThreshold(Number value)
+			throws IllegalArgumentException {
 
 		if (value == null) {
 			throw new IllegalArgumentException("Null threshold");
@@ -421,18 +411,20 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * Sets the initial threshold value.
 	 *
 	 * @param value
-	 *            The initial threshold value.
+	 *              The initial threshold value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                The specified threshold is null or the threshold value is
-	 *                less than zero.
+	 *                                     The specified threshold is null or
+	 *                                     the threshold value is
+	 *                                     less than zero.
 	 *
 	 * @see #getThreshold()
 	 *
 	 * @deprecated As of JMX 1.2, replaced by {@link #setInitThreshold}
 	 */
 	@Deprecated
-	public synchronized void setThreshold(Number value) throws IllegalArgumentException {
+	public synchronized void setThreshold(Number value)
+			throws IllegalArgumentException {
 		setInitThreshold(value);
 	}
 
@@ -451,15 +443,17 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * Sets the offset value common to all observed MBeans.
 	 *
 	 * @param value
-	 *            The offset value.
+	 *              The offset value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                The specified offset is null or the offset value is less
-	 *                than zero.
+	 *                                     The specified offset is null or the
+	 *                                     offset value is less
+	 *                                     than zero.
 	 *
 	 * @see #getOffset
 	 */
-	public synchronized void setOffset(Number value) throws IllegalArgumentException {
+	public synchronized void setOffset(Number value)
+			throws IllegalArgumentException {
 
 		if (value == null) {
 			throw new IllegalArgumentException("Null offset");
@@ -493,15 +487,17 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * Sets the modulus value common to all observed MBeans.
 	 *
 	 * @param value
-	 *            The modulus value.
+	 *              The modulus value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                The specified modulus is null or the modulus value is less
-	 *                than zero.
+	 *                                     The specified modulus is null or the
+	 *                                     modulus value is less
+	 *                                     than zero.
 	 *
 	 * @see #getModulus
 	 */
-	public synchronized void setModulus(Number value) throws IllegalArgumentException {
+	public synchronized void setModulus(Number value)
+			throws IllegalArgumentException {
 
 		if (value == null) {
 			throw new IllegalArgumentException("Null modulus");
@@ -542,7 +538,7 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * MBeans.
 	 *
 	 * @param value
-	 *            The notification's on/off switch value.
+	 *              The notification's on/off switch value.
 	 *
 	 * @see #getNotify
 	 */
@@ -568,7 +564,7 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * Sets the difference mode flag value common to all observed MBeans.
 	 *
 	 * @param value
-	 *            The difference mode flag value.
+	 *              The difference mode flag value.
 	 *
 	 * @see #getDifferenceMode
 	 */
@@ -607,9 +603,9 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * Updates the derived gauge attribute of the observed object.
 	 *
 	 * @param scanCounter
-	 *            The value of the observed attribute.
+	 *                    The value of the observed attribute.
 	 * @param o
-	 *            The observed object.
+	 *                    The observed object.
 	 * @return <CODE>true</CODE> if the derived gauge value is valid,
 	 *         <CODE>false</CODE> otherwise. The derived gauge value is invalid
 	 *         when the differenceMode flag is set to <CODE>true</CODE> and it
@@ -636,7 +632,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 				//
 				if (((Number) o.getDerivedGauge()).longValue() < 0L) {
 					if (modulus.longValue() > 0L) {
-						setDerivedGaugeWithDifference((Number) scanCounter, modulus, o);
+						setDerivedGaugeWithDifference((Number) scanCounter,
+								modulus, o);
 					}
 					o.setThreshold(initThreshold);
 					o.setEventAlreadyNotified(false);
@@ -665,19 +662,21 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * the listeners only once if the notify flag is set to <CODE>true</CODE>.
 	 * 
 	 * @param o
-	 *            The observed object.
+	 *          The observed object.
 	 */
-	private synchronized MonitorNotification updateNotifications(CounterMonitorObservedObject o) {
+	private synchronized MonitorNotification updateNotifications(
+			CounterMonitorObservedObject o) {
 
 		MonitorNotification n = null;
 
 		// Send notification if notify is true.
 		//
 		if (!o.getEventAlreadyNotified()) {
-			if (((Number) o.getDerivedGauge()).longValue() >= o.getThreshold().longValue()) {
+			if (((Number) o.getDerivedGauge()).longValue() >= o.getThreshold()
+					.longValue()) {
 				if (notify) {
-					n = new MonitorNotification(THRESHOLD_VALUE_EXCEEDED, this, 0, 0, "", null,
-							null, null, o.getThreshold());
+					n = new MonitorNotification(THRESHOLD_VALUE_EXCEEDED, this,
+							0, 0, "", null, null, null, o.getThreshold());
 				}
 				if (!differenceMode) {
 					o.setEventAlreadyNotified(true);
@@ -685,13 +684,17 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 			}
 		} else {
 			if (MONITOR_LOGGER.isLoggable(Level.FINER)) {
-				final StringBuilder strb = new StringBuilder().append("The notification:")
-						.append("\n\tNotification observed object = ").append(o.getObservedObject())
-						.append("\n\tNotification observed attribute = ")
-						.append(getObservedAttribute())
-						.append("\n\tNotification threshold level = ").append(o.getThreshold())
-						.append("\n\tNotification derived gauge = ").append(o.getDerivedGauge())
-						.append("\nhas already been sent");
+				final StringBuilder strb = new StringBuilder().append(
+						"The notification:").append(
+								"\n\tNotification observed object = ").append(o
+										.getObservedObject()).append(
+												"\n\tNotification observed attribute = ")
+						.append(getObservedAttribute()).append(
+								"\n\tNotification threshold level = ").append(o
+										.getThreshold()).append(
+												"\n\tNotification derived gauge = ")
+						.append(o.getDerivedGauge()).append(
+								"\nhas already been sent");
 				MONITOR_LOGGER.logp(Level.FINER, CounterMonitor.class.getName(),
 						"updateNotifications", strb.toString());
 			}
@@ -704,14 +707,15 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * Updates the threshold attribute of the observed object.
 	 * 
 	 * @param o
-	 *            The observed object.
+	 *          The observed object.
 	 */
 	private synchronized void updateThreshold(CounterMonitorObservedObject o) {
 
 		// Calculate the new threshold value if the threshold has been
 		// exceeded and if the offset value is greater than zero.
 		//
-		if (((Number) o.getDerivedGauge()).longValue() >= o.getThreshold().longValue()) {
+		if (((Number) o.getDerivedGauge()).longValue() >= o.getThreshold()
+				.longValue()) {
 
 			if (offset.longValue() > 0L) {
 
@@ -719,30 +723,32 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 				// than the one for the current derived gauge.
 				//
 				long threshold_value = o.getThreshold().longValue();
-				while (((Number) o.getDerivedGauge()).longValue() >= threshold_value) {
+				while (((Number) o.getDerivedGauge())
+						.longValue() >= threshold_value) {
 					threshold_value += offset.longValue();
 				}
 
 				// Set threshold attribute.
 				//
 				switch (o.getType()) {
-				case INTEGER:
-					o.setThreshold(Integer.valueOf((int) threshold_value));
-					break;
-				case BYTE:
-					o.setThreshold(Byte.valueOf((byte) threshold_value));
-					break;
-				case SHORT:
-					o.setThreshold(Short.valueOf((short) threshold_value));
-					break;
-				case LONG:
-					o.setThreshold(Long.valueOf(threshold_value));
-					break;
-				default:
-					// Should never occur...
-					MONITOR_LOGGER.logp(Level.FINEST, CounterMonitor.class.getName(),
-							"updateThreshold", "the threshold type is invalid");
-					break;
+					case INTEGER:
+						o.setThreshold(Integer.valueOf((int) threshold_value));
+						break;
+					case BYTE:
+						o.setThreshold(Byte.valueOf((byte) threshold_value));
+						break;
+					case SHORT:
+						o.setThreshold(Short.valueOf((short) threshold_value));
+						break;
+					case LONG:
+						o.setThreshold(Long.valueOf(threshold_value));
+						break;
+					default:
+						// Should never occur...
+						MONITOR_LOGGER.logp(Level.FINEST, CounterMonitor.class
+								.getName(), "updateThreshold",
+								"the threshold type is invalid");
+						break;
 				}
 
 				// If the counter can wrap around when it reaches
@@ -752,9 +758,11 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 				//
 				if (!differenceMode) {
 					if (modulus.longValue() > 0L) {
-						if (o.getThreshold().longValue() > modulus.longValue()) {
+						if (o.getThreshold().longValue() > modulus
+								.longValue()) {
 							o.setModulusExceeded(true);
-							o.setDerivedGaugeExceeded((Number) o.getDerivedGauge());
+							o.setDerivedGaugeExceeded((Number) o
+									.getDerivedGauge());
 						}
 					}
 				}
@@ -775,14 +783,14 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * allowed.
 	 *
 	 * @param scanCounter
-	 *            The value of the observed attribute.
+	 *                    The value of the observed attribute.
 	 * @param mod
-	 *            The counter modulus value.
+	 *                    The counter modulus value.
 	 * @param o
-	 *            The observed object.
+	 *                    The observed object.
 	 */
-	private synchronized void setDerivedGaugeWithDifference(Number scanCounter, Number mod,
-			CounterMonitorObservedObject o) {
+	private synchronized void setDerivedGaugeWithDifference(Number scanCounter,
+			Number mod, CounterMonitorObservedObject o) {
 		/*
 		 * We do the arithmetic using longs here even though the result may end
 		 * up in a smaller type. Since l == (byte)l (mod 256) for any long l,
@@ -791,28 +799,30 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 		 * smaller type.
 		 */
 
-		long derived = scanCounter.longValue() - o.getPreviousScanCounter().longValue();
+		long derived = scanCounter.longValue() - o.getPreviousScanCounter()
+				.longValue();
 		if (mod != null)
 			derived += modulus.longValue();
 
 		switch (o.getType()) {
-		case INTEGER:
-			o.setDerivedGauge(Integer.valueOf((int) derived));
-			break;
-		case BYTE:
-			o.setDerivedGauge(Byte.valueOf((byte) derived));
-			break;
-		case SHORT:
-			o.setDerivedGauge(Short.valueOf((short) derived));
-			break;
-		case LONG:
-			o.setDerivedGauge(Long.valueOf(derived));
-			break;
-		default:
-			// Should never occur...
-			MONITOR_LOGGER.logp(Level.FINEST, CounterMonitor.class.getName(),
-					"setDerivedGaugeWithDifference", "the threshold type is invalid");
-			break;
+			case INTEGER:
+				o.setDerivedGauge(Integer.valueOf((int) derived));
+				break;
+			case BYTE:
+				o.setDerivedGauge(Byte.valueOf((byte) derived));
+				break;
+			case SHORT:
+				o.setDerivedGauge(Short.valueOf((short) derived));
+				break;
+			case LONG:
+				o.setDerivedGauge(Long.valueOf(derived));
+				break;
+			default:
+				// Should never occur...
+				MONITOR_LOGGER.logp(Level.FINEST, CounterMonitor.class
+						.getName(), "setDerivedGaugeWithDifference",
+						"the threshold type is invalid");
+				break;
 		}
 	}
 
@@ -828,7 +838,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 */
 	@Override
 	ObservedObject createObservedObject(ObjectName object) {
-		final CounterMonitorObservedObject cmo = new CounterMonitorObservedObject(object);
+		final CounterMonitorObservedObject cmo = new CounterMonitorObservedObject(
+				object);
 		cmo.setThreshold(initThreshold);
 		cmo.setModulusExceeded(false);
 		cmo.setEventAlreadyNotified(false);
@@ -842,8 +853,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * attribute value is one of the value types supported by this monitor.
 	 */
 	@Override
-	synchronized boolean isComparableTypeValid(ObjectName object, String attribute,
-			Comparable<?> value) {
+	synchronized boolean isComparableTypeValid(ObjectName object,
+			String attribute, Comparable<?> value) {
 		final CounterMonitorObservedObject o = (CounterMonitorObservedObject) getObservedObject(
 				object);
 		if (o == null)
@@ -866,8 +877,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	}
 
 	@Override
-	synchronized Comparable<?> getDerivedGaugeFromComparable(ObjectName object, String attribute,
-			Comparable<?> value) {
+	synchronized Comparable<?> getDerivedGaugeFromComparable(ObjectName object,
+			String attribute, Comparable<?> value) {
 		final CounterMonitorObservedObject o = (CounterMonitorObservedObject) getObservedObject(
 				object);
 		if (o == null)
@@ -876,8 +887,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 		// Check if counter has wrapped around.
 		//
 		if (o.getModulusExceeded()) {
-			if (((Number) o.getDerivedGauge()).longValue() < o.getDerivedGaugeExceeded()
-					.longValue()) {
+			if (((Number) o.getDerivedGauge()).longValue() < o
+					.getDerivedGaugeExceeded().longValue()) {
 				o.setThreshold(initThreshold);
 				o.setModulusExceeded(false);
 				o.setEventAlreadyNotified(false);
@@ -911,8 +922,8 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	}
 
 	@Override
-	synchronized MonitorNotification buildAlarmNotification(ObjectName object, String attribute,
-			Comparable<?> value) {
+	synchronized MonitorNotification buildAlarmNotification(ObjectName object,
+			String attribute, Comparable<?> value) {
 		final CounterMonitorObservedObject o = (CounterMonitorObservedObject) getObservedObject(
 				object);
 		if (o == null)
@@ -940,17 +951,17 @@ public class CounterMonitor extends Monitor implements CounterMonitorMBean {
 	 * default value is an Integer object with a value equal to zero.
 	 *
 	 * @param object
-	 *            The observed object.
+	 *                  The observed object.
 	 * @param attribute
-	 *            The observed attribute.
+	 *                  The observed attribute.
 	 * @param value
-	 *            The sample value.
+	 *                  The sample value.
 	 * @return <CODE>true</CODE> if type is the same, <CODE>false</CODE>
 	 *         otherwise.
 	 */
 	@Override
-	synchronized boolean isThresholdTypeValid(ObjectName object, String attribute,
-			Comparable<?> value) {
+	synchronized boolean isThresholdTypeValid(ObjectName object,
+			String attribute, Comparable<?> value) {
 		final CounterMonitorObservedObject o = (CounterMonitorObservedObject) getObservedObject(
 				object);
 		if (o == null)

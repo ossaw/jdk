@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.undo;
@@ -99,7 +79,7 @@ public class StateEdit extends AbstractUndoableEdit {
 	 * Create and return a new StateEdit.
 	 *
 	 * @param anObject
-	 *            The object to watch for changing state
+	 *                 The object to watch for changing state
 	 *
 	 * @see StateEdit
 	 */
@@ -112,9 +92,9 @@ public class StateEdit extends AbstractUndoableEdit {
 	 * Create and return a new StateEdit with a presentation name.
 	 *
 	 * @param anObject
-	 *            The object to watch for changing state
+	 *                 The object to watch for changing state
 	 * @param name
-	 *            The presentation name to be used for this edit
+	 *                 The presentation name to be used for this edit
 	 *
 	 * @see StateEdit
 	 */
@@ -181,7 +161,8 @@ public class StateEdit extends AbstractUndoableEdit {
 		// Locate redundant state
 		while (myKeys.hasMoreElements()) {
 			Object myKey = myKeys.nextElement();
-			if (postState.containsKey(myKey) && postState.get(myKey).equals(preState.get(myKey))) {
+			if (postState.containsKey(myKey) && postState.get(myKey).equals(
+					preState.get(myKey))) {
 				uselessKeys.addElement(myKey);
 			}
 		}

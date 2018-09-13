@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -90,7 +70,7 @@ public class JButton extends AbstractButton implements Accessible {
 	 * Creates a button with an icon.
 	 *
 	 * @param icon
-	 *            the Icon image to display on the button
+	 *             the Icon image to display on the button
 	 */
 	public JButton(Icon icon) {
 		this(null, icon);
@@ -100,7 +80,7 @@ public class JButton extends AbstractButton implements Accessible {
 	 * Creates a button with text.
 	 *
 	 * @param text
-	 *            the text of the button
+	 *             the text of the button
 	 */
 	@ConstructorProperties({ "text" })
 	public JButton(String text) {
@@ -112,7 +92,7 @@ public class JButton extends AbstractButton implements Accessible {
 	 * supplied.
 	 *
 	 * @param a
-	 *            the <code>Action</code> used to specify the new button
+	 *          the <code>Action</code> used to specify the new button
 	 *
 	 * @since 1.3
 	 */
@@ -125,9 +105,9 @@ public class JButton extends AbstractButton implements Accessible {
 	 * Creates a button with initial text and an icon.
 	 *
 	 * @param text
-	 *            the text of the button
+	 *             the text of the button
 	 * @param icon
-	 *            the Icon image to display on the button
+	 *             the Icon image to display on the button
 	 */
 	public JButton(String text, Icon icon) {
 		// Create the model
@@ -199,9 +179,11 @@ public class JButton extends AbstractButton implements Accessible {
 	 * unless otherwise specified by the look and feel.
 	 *
 	 * @param defaultCapable
-	 *            <code>true</code> if this button will be capable of being the
-	 *            default button on the <code>RootPane</code>; otherwise
-	 *            <code>false</code>
+	 *                       <code>true</code> if this button will be capable of
+	 *                       being the
+	 *                       default button on the <code>RootPane</code>;
+	 *                       otherwise
+	 *                       <code>false</code>
 	 * @see #isDefaultCapable
 	 * @beaninfo bound: true attribute: visualUpdate true description: Whether
 	 *           or not this button can be the default button

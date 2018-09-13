@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.trax;
@@ -38,7 +18,8 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.helpers.DefaultHandler;
 
-public abstract class SAX2StAXBaseWriter extends DefaultHandler implements LexicalHandler {
+public abstract class SAX2StAXBaseWriter extends DefaultHandler implements
+		LexicalHandler {
 
 	protected boolean isCDATA;
 
@@ -50,8 +31,7 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements Lexic
 
 	protected XMLReporter reporter;
 
-	public SAX2StAXBaseWriter() {
-	}
+	public SAX2StAXBaseWriter() {}
 
 	public SAX2StAXBaseWriter(XMLReporter reporter) {
 		this.reporter = reporter;
@@ -94,16 +74,18 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements Lexic
 		namespaces = null;
 	}
 
-	public void startElement(String uri, String localName, String qName, Attributes attributes)
+	public void startElement(String uri, String localName, String qName,
+			Attributes attributes) throws SAXException {
+		namespaces = null;
+	}
+
+	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		namespaces = null;
 	}
 
-	public void endElement(String uri, String localName, String qName) throws SAXException {
-		namespaces = null;
-	}
-
-	public void startPrefixMapping(String prefix, String uri) throws SAXException {
+	public void startPrefixMapping(String prefix, String uri)
+			throws SAXException {
 
 		if (prefix == null) {
 			prefix = "";
@@ -118,8 +100,7 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements Lexic
 		namespaces.addElement(uri);
 	}
 
-	public void endPrefixMapping(String prefix) throws SAXException {
-	}
+	public void endPrefixMapping(String prefix) throws SAXException {}
 
 	public void startCDATA() throws SAXException {
 		isCDATA = true;
@@ -130,7 +111,8 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements Lexic
 		}
 	}
 
-	public void characters(char[] ch, int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
 		if (isCDATA) {
 			CDATABuffer.append(ch, start, length);
 		}
@@ -141,26 +123,23 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements Lexic
 		CDATABuffer.setLength(0);
 	}
 
-	public void comment(char[] ch, int start, int length) throws SAXException {
-	}
+	public void comment(char[] ch, int start, int length) throws SAXException {}
 
-	public void endDTD() throws SAXException {
-	}
+	public void endDTD() throws SAXException {}
 
-	public void endEntity(String name) throws SAXException {
-	}
+	public void endEntity(String name) throws SAXException {}
 
-	public void startDTD(String name, String publicId, String systemId) throws SAXException {
-	}
+	public void startDTD(String name, String publicId, String systemId)
+			throws SAXException {}
 
-	public void startEntity(String name) throws SAXException {
-	}
+	public void startEntity(String name) throws SAXException {}
 
 	/**
 	 * Used to report a {@link SAXException}to the {@link XMLReporter}
 	 * registered with this handler.
 	 */
-	protected void reportException(String type, SAXException e) throws SAXException {
+	protected void reportException(String type, SAXException e)
+			throws SAXException {
 
 		if (reporter != null) {
 			try {
@@ -176,11 +155,13 @@ public abstract class SAX2StAXBaseWriter extends DefaultHandler implements Lexic
 	 * name in the provided String array.
 	 *
 	 * @param qName
-	 *            The qualified name to parse.
+	 *                The qualified name to parse.
 	 * @param results
-	 *            An array where parse results will be placed. The prefix will
-	 *            be placed at <code>results[0]</code>, and the local part at
-	 *            <code>results[1]</code>
+	 *                An array where parse results will be placed. The prefix
+	 *                will
+	 *                be placed at <code>results[0]</code>, and the local part
+	 *                at
+	 *                <code>results[1]</code>
 	 */
 	public static final void parseQName(String qName, String[] results) {
 

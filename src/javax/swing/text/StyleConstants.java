@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -68,7 +48,8 @@ public class StyleConstants {
 	 * Attribute name used to identify the resolving parent set of attributes,
 	 * if one is defined.
 	 */
-	public static final Object ResolveAttribute = new StyleConstants("resolver");
+	public static final Object ResolveAttribute = new StyleConstants(
+			"resolver");
 
 	/**
 	 * Attribute used to identify the model for embedded objects that have a
@@ -135,12 +116,14 @@ public class StyleConstants {
 	/**
 	 * Name of the Strikethrough attribute.
 	 */
-	public static final Object StrikeThrough = new CharacterConstants("strikethrough");
+	public static final Object StrikeThrough = new CharacterConstants(
+			"strikethrough");
 
 	/**
 	 * Name of the Superscript attribute.
 	 */
-	public static final Object Superscript = new CharacterConstants("superscript");
+	public static final Object Superscript = new CharacterConstants(
+			"superscript");
 
 	/**
 	 * Name of the Subscript attribute.
@@ -160,7 +143,8 @@ public class StyleConstants {
 	/**
 	 * Name of the component attribute.
 	 */
-	public static final Object ComponentAttribute = new CharacterConstants("component");
+	public static final Object ComponentAttribute = new CharacterConstants(
+			"component");
 
 	/**
 	 * Name of the icon attribute.
@@ -172,44 +156,51 @@ public class StyleConstants {
 	 * attribute is an instance of AttributedString which represents the
 	 * composed text.
 	 */
-	public static final Object ComposedTextAttribute = new StyleConstants("composed text");
+	public static final Object ComposedTextAttribute = new StyleConstants(
+			"composed text");
 
 	/**
 	 * The amount of space to indent the first line of the paragraph. This value
 	 * may be negative to offset in the reverse direction. The type is Float and
 	 * specifies the size of the space in points.
 	 */
-	public static final Object FirstLineIndent = new ParagraphConstants("FirstLineIndent");
+	public static final Object FirstLineIndent = new ParagraphConstants(
+			"FirstLineIndent");
 
 	/**
 	 * The amount to indent the left side of the paragraph. Type is float and
 	 * specifies the size in points.
 	 */
-	public static final Object LeftIndent = new ParagraphConstants("LeftIndent");
+	public static final Object LeftIndent = new ParagraphConstants(
+			"LeftIndent");
 
 	/**
 	 * The amount to indent the right side of the paragraph. Type is float and
 	 * specifies the size in points.
 	 */
-	public static final Object RightIndent = new ParagraphConstants("RightIndent");
+	public static final Object RightIndent = new ParagraphConstants(
+			"RightIndent");
 
 	/**
 	 * The amount of space between lines of the paragraph. Type is float and
 	 * specifies the size as a factor of the line height
 	 */
-	public static final Object LineSpacing = new ParagraphConstants("LineSpacing");
+	public static final Object LineSpacing = new ParagraphConstants(
+			"LineSpacing");
 
 	/**
 	 * The amount of space above the paragraph. Type is float and specifies the
 	 * size in points.
 	 */
-	public static final Object SpaceAbove = new ParagraphConstants("SpaceAbove");
+	public static final Object SpaceAbove = new ParagraphConstants(
+			"SpaceAbove");
 
 	/**
 	 * The amount of space below the paragraph. Type is float and specifies the
 	 * size in points.
 	 */
-	public static final Object SpaceBelow = new ParagraphConstants("SpaceBelow");
+	public static final Object SpaceBelow = new ParagraphConstants(
+			"SpaceBelow");
 
 	/**
 	 * Alignment for the paragraph. The type is Integer. Valid values are:
@@ -231,7 +222,8 @@ public class StyleConstants {
 	/**
 	 * Orientation for a paragraph.
 	 */
-	public static final Object Orientation = new ParagraphConstants("Orientation");
+	public static final Object Orientation = new ParagraphConstants(
+			"Orientation");
 	/**
 	 * A possible value for paragraph alignment. This specifies that the text is
 	 * aligned to the left indent and extra whitespace should be placed on the
@@ -267,7 +259,7 @@ public class StyleConstants {
 	 * Gets the BidiLevel setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value
 	 */
 	public static int getBidiLevel(AttributeSet a) {
@@ -282,9 +274,9 @@ public class StyleConstants {
 	 * Sets the BidiLevel.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param o
-	 *            the bidi level value
+	 *          the bidi level value
 	 */
 	public static void setBidiLevel(MutableAttributeSet a, int o) {
 		a.addAttribute(BidiLevel, Integer.valueOf(o));
@@ -294,7 +286,7 @@ public class StyleConstants {
 	 * Gets the component setting from the attribute list.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the component, null if none
 	 */
 	public static Component getComponent(AttributeSet a) {
@@ -305,12 +297,13 @@ public class StyleConstants {
 	 * Sets the component attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param c
-	 *            the component
+	 *          the component
 	 */
 	public static void setComponent(MutableAttributeSet a, Component c) {
-		a.addAttribute(AbstractDocument.ElementNameAttribute, ComponentElementName);
+		a.addAttribute(AbstractDocument.ElementNameAttribute,
+				ComponentElementName);
 		a.addAttribute(ComponentAttribute, c);
 	}
 
@@ -318,7 +311,7 @@ public class StyleConstants {
 	 * Gets the icon setting from the attribute list.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the icon, null if none
 	 */
 	public static Icon getIcon(AttributeSet a) {
@@ -329,9 +322,9 @@ public class StyleConstants {
 	 * Sets the icon attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param c
-	 *            the icon
+	 *          the icon
 	 */
 	public static void setIcon(MutableAttributeSet a, Icon c) {
 		a.addAttribute(AbstractDocument.ElementNameAttribute, IconElementName);
@@ -342,7 +335,7 @@ public class StyleConstants {
 	 * Gets the font family setting from the attribute list.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the font family, "Monospaced" as the default
 	 */
 	public static String getFontFamily(AttributeSet a) {
@@ -369,7 +362,7 @@ public class StyleConstants {
 	 * Gets the font size setting from the attribute list.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the font size, 12 as the default
 	 */
 	public static int getFontSize(AttributeSet a) {
@@ -384,9 +377,9 @@ public class StyleConstants {
 	 * Sets the font size attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param s
-	 *            the font size
+	 *          the font size
 	 */
 	public static void setFontSize(MutableAttributeSet a, int s) {
 		a.addAttribute(FontSize, Integer.valueOf(s));
@@ -396,7 +389,7 @@ public class StyleConstants {
 	 * Checks whether the bold attribute is set.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return true if set else false
 	 */
 	public static boolean isBold(AttributeSet a) {
@@ -411,9 +404,9 @@ public class StyleConstants {
 	 * Sets the bold attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param b
-	 *            specifies true/false for setting the attribute
+	 *          specifies true/false for setting the attribute
 	 */
 	public static void setBold(MutableAttributeSet a, boolean b) {
 		a.addAttribute(Bold, Boolean.valueOf(b));
@@ -423,7 +416,7 @@ public class StyleConstants {
 	 * Checks whether the italic attribute is set.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return true if set else false
 	 */
 	public static boolean isItalic(AttributeSet a) {
@@ -438,9 +431,9 @@ public class StyleConstants {
 	 * Sets the italic attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param b
-	 *            specifies true/false for setting the attribute
+	 *          specifies true/false for setting the attribute
 	 */
 	public static void setItalic(MutableAttributeSet a, boolean b) {
 		a.addAttribute(Italic, Boolean.valueOf(b));
@@ -450,7 +443,7 @@ public class StyleConstants {
 	 * Checks whether the underline attribute is set.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return true if set else false
 	 */
 	public static boolean isUnderline(AttributeSet a) {
@@ -465,7 +458,7 @@ public class StyleConstants {
 	 * Checks whether the strikethrough attribute is set.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return true if set else false
 	 */
 	public static boolean isStrikeThrough(AttributeSet a) {
@@ -480,7 +473,7 @@ public class StyleConstants {
 	 * Checks whether the superscript attribute is set.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return true if set else false
 	 */
 	public static boolean isSuperscript(AttributeSet a) {
@@ -495,7 +488,7 @@ public class StyleConstants {
 	 * Checks whether the subscript attribute is set.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return true if set else false
 	 */
 	public static boolean isSubscript(AttributeSet a) {
@@ -510,9 +503,9 @@ public class StyleConstants {
 	 * Sets the underline attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param b
-	 *            specifies true/false for setting the attribute
+	 *          specifies true/false for setting the attribute
 	 */
 	public static void setUnderline(MutableAttributeSet a, boolean b) {
 		a.addAttribute(Underline, Boolean.valueOf(b));
@@ -522,9 +515,9 @@ public class StyleConstants {
 	 * Sets the strikethrough attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param b
-	 *            specifies true/false for setting the attribute
+	 *          specifies true/false for setting the attribute
 	 */
 	public static void setStrikeThrough(MutableAttributeSet a, boolean b) {
 		a.addAttribute(StrikeThrough, Boolean.valueOf(b));
@@ -534,9 +527,9 @@ public class StyleConstants {
 	 * Sets the superscript attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param b
-	 *            specifies true/false for setting the attribute
+	 *          specifies true/false for setting the attribute
 	 */
 	public static void setSuperscript(MutableAttributeSet a, boolean b) {
 		a.addAttribute(Superscript, Boolean.valueOf(b));
@@ -546,9 +539,9 @@ public class StyleConstants {
 	 * Sets the subscript attribute.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param b
-	 *            specifies true/false for setting the attribute
+	 *          specifies true/false for setting the attribute
 	 */
 	public static void setSubscript(MutableAttributeSet a, boolean b) {
 		a.addAttribute(Subscript, Boolean.valueOf(b));
@@ -558,7 +551,7 @@ public class StyleConstants {
 	 * Gets the foreground color setting from the attribute list.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the color, Color.black as the default
 	 */
 	public static Color getForeground(AttributeSet a) {
@@ -573,9 +566,9 @@ public class StyleConstants {
 	 * Sets the foreground color.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *           the attribute set
 	 * @param fg
-	 *            the color
+	 *           the color
 	 */
 	public static void setForeground(MutableAttributeSet a, Color fg) {
 		a.addAttribute(Foreground, fg);
@@ -585,7 +578,7 @@ public class StyleConstants {
 	 * Gets the background color setting from the attribute list.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the color, Color.black as the default
 	 */
 	public static Color getBackground(AttributeSet a) {
@@ -600,9 +593,9 @@ public class StyleConstants {
 	 * Sets the background color.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *           the attribute set
 	 * @param fg
-	 *            the color
+	 *           the color
 	 */
 	public static void setBackground(MutableAttributeSet a, Color fg) {
 		a.addAttribute(Background, fg);
@@ -614,7 +607,7 @@ public class StyleConstants {
 	 * Gets the first line indent setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value, 0 if not set
 	 */
 	public static float getFirstLineIndent(AttributeSet a) {
@@ -629,9 +622,9 @@ public class StyleConstants {
 	 * Sets the first line indent.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param i
-	 *            the value
+	 *          the value
 	 */
 	public static void setFirstLineIndent(MutableAttributeSet a, float i) {
 		a.addAttribute(FirstLineIndent, new Float(i));
@@ -641,7 +634,7 @@ public class StyleConstants {
 	 * Gets the right indent setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value, 0 if not set
 	 */
 	public static float getRightIndent(AttributeSet a) {
@@ -656,9 +649,9 @@ public class StyleConstants {
 	 * Sets right indent.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param i
-	 *            the value
+	 *          the value
 	 */
 	public static void setRightIndent(MutableAttributeSet a, float i) {
 		a.addAttribute(RightIndent, new Float(i));
@@ -668,7 +661,7 @@ public class StyleConstants {
 	 * Gets the left indent setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value, 0 if not set
 	 */
 	public static float getLeftIndent(AttributeSet a) {
@@ -683,9 +676,9 @@ public class StyleConstants {
 	 * Sets left indent.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param i
-	 *            the value
+	 *          the value
 	 */
 	public static void setLeftIndent(MutableAttributeSet a, float i) {
 		a.addAttribute(LeftIndent, new Float(i));
@@ -695,7 +688,7 @@ public class StyleConstants {
 	 * Gets the line spacing setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value, 0 if not set
 	 */
 	public static float getLineSpacing(AttributeSet a) {
@@ -710,9 +703,9 @@ public class StyleConstants {
 	 * Sets line spacing.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param i
-	 *            the value
+	 *          the value
 	 */
 	public static void setLineSpacing(MutableAttributeSet a, float i) {
 		a.addAttribute(LineSpacing, new Float(i));
@@ -722,7 +715,7 @@ public class StyleConstants {
 	 * Gets the space above setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value, 0 if not set
 	 */
 	public static float getSpaceAbove(AttributeSet a) {
@@ -737,9 +730,9 @@ public class StyleConstants {
 	 * Sets space above.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param i
-	 *            the value
+	 *          the value
 	 */
 	public static void setSpaceAbove(MutableAttributeSet a, float i) {
 		a.addAttribute(SpaceAbove, new Float(i));
@@ -749,7 +742,7 @@ public class StyleConstants {
 	 * Gets the space below setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value, 0 if not set
 	 */
 	public static float getSpaceBelow(AttributeSet a) {
@@ -764,9 +757,9 @@ public class StyleConstants {
 	 * Sets space below.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @param i
-	 *            the value
+	 *          the value
 	 */
 	public static void setSpaceBelow(MutableAttributeSet a, float i) {
 		a.addAttribute(SpaceBelow, new Float(i));
@@ -776,7 +769,7 @@ public class StyleConstants {
 	 * Gets the alignment setting.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the value <code>StyleConstants.ALIGN_LEFT</code> if not set
 	 */
 	public static int getAlignment(AttributeSet a) {
@@ -791,9 +784,9 @@ public class StyleConstants {
 	 * Sets alignment.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *              the attribute set
 	 * @param align
-	 *            the alignment value
+	 *              the alignment value
 	 */
 	public static void setAlignment(MutableAttributeSet a, int align) {
 		a.addAttribute(Alignment, Integer.valueOf(align));
@@ -803,7 +796,7 @@ public class StyleConstants {
 	 * Gets the TabSet.
 	 *
 	 * @param a
-	 *            the attribute set
+	 *          the attribute set
 	 * @return the <code>TabSet</code>
 	 */
 	public static TabSet getTabSet(AttributeSet a) {
@@ -816,9 +809,9 @@ public class StyleConstants {
 	 * Sets the TabSet.
 	 *
 	 * @param a
-	 *            the attribute set.
+	 *             the attribute set.
 	 * @param tabs
-	 *            the TabSet
+	 *             the TabSet
 	 */
 	public static void setTabSet(MutableAttributeSet a, TabSet tabs) {
 		a.addAttribute(TabSet, tabs);
@@ -826,11 +819,12 @@ public class StyleConstants {
 
 	// --- privates ---------------------------------------------
 
-	static Object[] keys = { NameAttribute, ResolveAttribute, BidiLevel, FontFamily, FontSize, Bold,
-			Italic, Underline, StrikeThrough, Superscript, Subscript, Foreground, Background,
-			ComponentAttribute, IconAttribute, FirstLineIndent, LeftIndent, RightIndent,
-			LineSpacing, SpaceAbove, SpaceBelow, Alignment, TabSet, Orientation, ModelAttribute,
-			ComposedTextAttribute };
+	static Object[] keys = { NameAttribute, ResolveAttribute, BidiLevel,
+			FontFamily, FontSize, Bold, Italic, Underline, StrikeThrough,
+			Superscript, Subscript, Foreground, Background, ComponentAttribute,
+			IconAttribute, FirstLineIndent, LeftIndent, RightIndent,
+			LineSpacing, SpaceAbove, SpaceBelow, Alignment, TabSet, Orientation,
+			ModelAttribute, ComposedTextAttribute };
 
 	StyleConstants(String representation) {
 		this.representation = representation;
@@ -843,8 +837,8 @@ public class StyleConstants {
 	 * contribute to a paragraph style. These are aliased by the outer class for
 	 * general presentation.
 	 */
-	public static class ParagraphConstants extends StyleConstants
-			implements AttributeSet.ParagraphAttribute {
+	public static class ParagraphConstants extends StyleConstants implements
+			AttributeSet.ParagraphAttribute {
 
 		private ParagraphConstants(String representation) {
 			super(representation);
@@ -856,8 +850,8 @@ public class StyleConstants {
 	 * contribute to a character style. These are aliased by the outer class for
 	 * general presentation.
 	 */
-	public static class CharacterConstants extends StyleConstants
-			implements AttributeSet.CharacterAttribute {
+	public static class CharacterConstants extends StyleConstants implements
+			AttributeSet.CharacterAttribute {
 
 		private CharacterConstants(String representation) {
 			super(representation);
@@ -869,8 +863,8 @@ public class StyleConstants {
 	 * contribute to a color. These are aliased by the outer class for general
 	 * presentation.
 	 */
-	public static class ColorConstants extends StyleConstants
-			implements AttributeSet.ColorAttribute, AttributeSet.CharacterAttribute {
+	public static class ColorConstants extends StyleConstants implements
+			AttributeSet.ColorAttribute, AttributeSet.CharacterAttribute {
 
 		private ColorConstants(String representation) {
 			super(representation);
@@ -882,8 +876,8 @@ public class StyleConstants {
 	 * contribute to a font. These are aliased by the outer class for general
 	 * presentation.
 	 */
-	public static class FontConstants extends StyleConstants
-			implements AttributeSet.FontAttribute, AttributeSet.CharacterAttribute {
+	public static class FontConstants extends StyleConstants implements
+			AttributeSet.FontAttribute, AttributeSet.CharacterAttribute {
 
 		private FontConstants(String representation) {
 			super(representation);

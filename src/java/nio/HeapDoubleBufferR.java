@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -63,7 +43,8 @@ class HeapDoubleBufferR extends HeapDoubleBuffer {
 
 	}
 
-	protected HeapDoubleBufferR(double[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapDoubleBufferR(double[] buf, int mark, int pos, int lim,
+			int cap, int off) {
 
 		super(buf, mark, pos, lim, cap, off);
 		this.isReadOnly = true;
@@ -71,13 +52,13 @@ class HeapDoubleBufferR extends HeapDoubleBuffer {
 	}
 
 	public DoubleBuffer slice() {
-		return new HeapDoubleBufferR(hb, -1, 0, this.remaining(), this.remaining(),
-				this.position() + offset);
+		return new HeapDoubleBufferR(hb, -1, 0, this.remaining(), this
+				.remaining(), this.position() + offset);
 	}
 
 	public DoubleBuffer duplicate() {
-		return new HeapDoubleBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapDoubleBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public DoubleBuffer asReadOnlyBuffer() {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.peer;
@@ -45,7 +25,7 @@ public interface TrayIconPeer {
 	 * Sets the tool tip for the tray icon.
 	 *
 	 * @param tooltip
-	 *            the tooltip to set
+	 *                the tooltip to set
 	 *
 	 * @see TrayIcon#setToolTip(String)
 	 */
@@ -64,11 +44,11 @@ public interface TrayIconPeer {
 	 * Displays a message at the tray icon.
 	 *
 	 * @param caption
-	 *            the message caption
+	 *                    the message caption
 	 * @param text
-	 *            the actual message text
+	 *                    the actual message text
 	 * @param messageType
-	 *            the message type
+	 *                    the message type
 	 *
 	 * @see TrayIcon#displayMessage(String, String,
 	 *      java.awt.TrayIcon.MessageType)
@@ -79,9 +59,9 @@ public interface TrayIconPeer {
 	 * Shows the popup menu of this tray icon at the specified position.
 	 *
 	 * @param x
-	 *            the X location for the popup menu
+	 *          the X location for the popup menu
 	 * @param y
-	 *            the Y location for the popup menu
+	 *          the Y location for the popup menu
 	 */
 	void showPopupMenu(int x, int y);
 }

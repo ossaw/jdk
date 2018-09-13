@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -46,7 +26,7 @@ public class DuplicateFormatFlagsException extends IllegalFormatException {
 	 * Constructs an instance of this class with the specified flags.
 	 *
 	 * @param f
-	 *            The set of format flags which contain a duplicate flag.
+	 *          The set of format flags which contain a duplicate flag.
 	 */
 	public DuplicateFormatFlagsException(String f) {
 		if (f == null)

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -73,7 +53,8 @@ public final class Long extends Number implements Comparable<Long> {
 	 * @since JDK1.1
 	 */
 	@SuppressWarnings("unchecked")
-	public static final Class<Long> TYPE = (Class<Long>) Class.getPrimitiveClass("long");
+	public static final Class<Long> TYPE = (Class<Long>) Class
+			.getPrimitiveClass("long");
 
 	/**
 	 * Returns a string representation of the first argument in the radix
@@ -108,9 +89,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * <blockquote> {@code Long.toString(n, 16).toUpperCase()} </blockquote>
 	 *
 	 * @param i
-	 *            a {@code long} to be converted to a string.
+	 *              a {@code long} to be converted to a string.
 	 * @param radix
-	 *            the radix to use in the string representation.
+	 *              the radix to use in the string representation.
 	 * @return a string representation of the argument in the specified radix.
 	 * @see java.lang.Character#MAX_RADIX
 	 * @see java.lang.Character#MIN_RADIX
@@ -163,9 +144,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * {@link #toString(long, int) toString}.
 	 *
 	 * @param i
-	 *            an integer to be converted to an unsigned string.
+	 *              an integer to be converted to an unsigned string.
 	 * @param radix
-	 *            the radix to use in the string representation.
+	 *              the radix to use in the string representation.
 	 * @return an unsigned string representation of the argument in the
 	 *         specified radix.
 	 * @see #toString(long, int)
@@ -176,35 +157,38 @@ public final class Long extends Number implements Comparable<Long> {
 			return toString(i, radix);
 		else {
 			switch (radix) {
-			case 2:
-				return toBinaryString(i);
+				case 2:
+					return toBinaryString(i);
 
-			case 4:
-				return toUnsignedString0(i, 2);
+				case 4:
+					return toUnsignedString0(i, 2);
 
-			case 8:
-				return toOctalString(i);
+				case 8:
+					return toOctalString(i);
 
-			case 10:
-				/*
-				 * We can get the effect of an unsigned division by 10 on a long
-				 * value by first shifting right, yielding a positive value, and
-				 * then dividing by 5. This allows the last digit and preceding
-				 * digits to be isolated more quickly than by an initial
-				 * conversion to BigInteger.
-				 */
-				long quot = (i >>> 1) / 5;
-				long rem = i - quot * 10;
-				return toString(quot) + rem;
+				case 10:
+					/*
+					 * We can get the effect of an unsigned division by 10 on a
+					 * long
+					 * value by first shifting right, yielding a positive value,
+					 * and
+					 * then dividing by 5. This allows the last digit and
+					 * preceding
+					 * digits to be isolated more quickly than by an initial
+					 * conversion to BigInteger.
+					 */
+					long quot = (i >>> 1) / 5;
+					long rem = i - quot * 10;
+					return toString(quot) + rem;
 
-			case 16:
-				return toHexString(i);
+				case 16:
+					return toHexString(i);
 
-			case 32:
-				return toUnsignedString0(i, 5);
+				case 32:
+					return toUnsignedString0(i, 5);
 
-			default:
-				return toUnsignedBigInteger(i).toString(radix);
+				default:
+					return toUnsignedBigInteger(i).toString(radix);
 			}
 		}
 	}
@@ -220,8 +204,9 @@ public final class Long extends Number implements Comparable<Long> {
 			int lower = (int) i;
 
 			// return (upper << 32) + lower
-			return (BigInteger.valueOf(Integer.toUnsignedLong(upper))).shiftLeft(32)
-					.add(BigInteger.valueOf(Integer.toUnsignedLong(lower)));
+			return (BigInteger.valueOf(Integer.toUnsignedLong(upper)))
+					.shiftLeft(32).add(BigInteger.valueOf(Integer
+							.toUnsignedLong(lower)));
 		}
 	}
 
@@ -257,7 +242,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * <blockquote> {@code Long.toHexString(n).toUpperCase()} </blockquote>
 	 *
 	 * @param i
-	 *            a {@code long} to be converted to a string.
+	 *          a {@code long} to be converted to a string.
 	 * @return the string representation of the unsigned {@code long} value
 	 *         represented by the argument in hexadecimal (base&nbsp;16).
 	 * @see #parseUnsignedLong(String, int)
@@ -295,7 +280,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * {@code '\u005Cu0037'}.
 	 *
 	 * @param i
-	 *            a {@code long} to be converted to a string.
+	 *          a {@code long} to be converted to a string.
 	 * @return the string representation of the unsigned {@code long} value
 	 *         represented by the argument in octal (base&nbsp;8).
 	 * @see #parseUnsignedLong(String, int)
@@ -330,7 +315,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * '1'} ({@code '\u005Cu0031'}) are used as binary digits.
 	 *
 	 * @param i
-	 *            a {@code long} to be converted to a string.
+	 *          a {@code long} to be converted to a string.
 	 * @return the string representation of the unsigned {@code long} value
 	 *         represented by the argument in binary (base&nbsp;2).
 	 * @see #parseUnsignedLong(String, int)
@@ -345,10 +330,10 @@ public final class Long extends Number implements Comparable<Long> {
 	 * Format a long (treated as unsigned) into a String.
 	 * 
 	 * @param val
-	 *            the value to format
+	 *              the value to format
 	 * @param shift
-	 *            the log2 of the base to format in (4 for hex, 3 for octal, 1
-	 *            for binary)
+	 *              the log2 of the base to format in (4 for hex, 3 for octal, 1
+	 *              for binary)
 	 */
 	static String toUnsignedString0(long val, int shift) {
 		// assert shift > 0 && shift <=5 : "Illegal shift value";
@@ -364,19 +349,21 @@ public final class Long extends Number implements Comparable<Long> {
 	 * Format a long (treated as unsigned) into a character buffer.
 	 * 
 	 * @param val
-	 *            the unsigned long to format
+	 *               the unsigned long to format
 	 * @param shift
-	 *            the log2 of the base to format in (4 for hex, 3 for octal, 1
-	 *            for binary)
+	 *               the log2 of the base to format in (4 for hex, 3 for octal,
+	 *               1
+	 *               for binary)
 	 * @param buf
-	 *            the character buffer to write to
+	 *               the character buffer to write to
 	 * @param offset
-	 *            the offset in the destination buffer to start at
+	 *               the offset in the destination buffer to start at
 	 * @param len
-	 *            the number of characters to write
+	 *               the number of characters to write
 	 * @return the lowest character location used
 	 */
-	static int formatUnsignedLong(long val, int shift, char[] buf, int offset, int len) {
+	static int formatUnsignedLong(long val, int shift, char[] buf, int offset,
+			int len) {
 		int charPos = len;
 		int radix = 1 << shift;
 		int mask = radix - 1;
@@ -395,7 +382,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * arguments to the {@link #toString(long, int)} method.
 	 *
 	 * @param i
-	 *            a {@code long} to be converted.
+	 *          a {@code long} to be converted.
 	 * @return a string representation of the argument in base&nbsp;10.
 	 */
 	public static String toString(long i) {
@@ -416,7 +403,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * arguments to the {@link #toUnsignedString(long, int)} method.
 	 *
 	 * @param i
-	 *            an integer to be converted to an unsigned string.
+	 *          an integer to be converted to an unsigned string.
 	 * @return an unsigned string representation of the argument.
 	 * @see #toUnsignedString(long, int)
 	 * @since 1.8
@@ -548,25 +535,30 @@ public final class Long extends Number implements Comparable<Long> {
 	 * </blockquote>
 	 *
 	 * @param s
-	 *            the {@code String} containing the {@code long} representation
-	 *            to be parsed.
+	 *              the {@code String} containing the {@code long}
+	 *              representation
+	 *              to be parsed.
 	 * @param radix
-	 *            the radix to be used while parsing {@code s}.
+	 *              the radix to be used while parsing {@code s}.
 	 * @return the {@code long} represented by the string argument in the
 	 *         specified radix.
 	 * @throws NumberFormatException
-	 *             if the string does not contain a parsable {@code long}.
+	 *                               if the string does not contain a parsable
+	 *                               {@code long}.
 	 */
-	public static long parseLong(String s, int radix) throws NumberFormatException {
+	public static long parseLong(String s, int radix)
+			throws NumberFormatException {
 		if (s == null) {
 			throw new NumberFormatException("null");
 		}
 
 		if (radix < Character.MIN_RADIX) {
-			throw new NumberFormatException("radix " + radix + " less than Character.MIN_RADIX");
+			throw new NumberFormatException("radix " + radix
+					+ " less than Character.MIN_RADIX");
 		}
 		if (radix > Character.MAX_RADIX) {
-			throw new NumberFormatException("radix " + radix + " greater than Character.MAX_RADIX");
+			throw new NumberFormatException("radix " + radix
+					+ " greater than Character.MAX_RADIX");
 		}
 
 		long result = 0;
@@ -628,11 +620,12 @@ public final class Long extends Number implements Comparable<Long> {
 	 * language source code.
 	 *
 	 * @param s
-	 *            a {@code String} containing the {@code long} representation to
-	 *            be parsed
+	 *          a {@code String} containing the {@code long} representation to
+	 *          be parsed
 	 * @return the {@code long} represented by the argument in decimal.
 	 * @throws NumberFormatException
-	 *             if the string does not contain a parsable {@code long}.
+	 *                               if the string does not contain a parsable
+	 *                               {@code long}.
 	 */
 	public static long parseLong(String s) throws NumberFormatException {
 		return parseLong(s, 10);
@@ -671,18 +664,20 @@ public final class Long extends Number implements Comparable<Long> {
 	 *
 	 *
 	 * @param s
-	 *            the {@code String} containing the unsigned integer
-	 *            representation to be parsed
+	 *              the {@code String} containing the unsigned integer
+	 *              representation to be parsed
 	 * @param radix
-	 *            the radix to be used while parsing {@code s}.
+	 *              the radix to be used while parsing {@code s}.
 	 * @return the unsigned {@code long} represented by the string argument in
 	 *         the specified radix.
 	 * @throws NumberFormatException
-	 *             if the {@code String} does not contain a parsable
-	 *             {@code long}.
+	 *                               if the {@code String} does not contain a
+	 *                               parsable
+	 *                               {@code long}.
 	 * @since 1.8
 	 */
-	public static long parseUnsignedLong(String s, int radix) throws NumberFormatException {
+	public static long parseUnsignedLong(String s, int radix)
+			throws NumberFormatException {
 		if (s == null) {
 			throw new NumberFormatException("null");
 		}
@@ -691,8 +686,9 @@ public final class Long extends Number implements Comparable<Long> {
 		if (len > 0) {
 			char firstChar = s.charAt(0);
 			if (firstChar == '-') {
-				throw new NumberFormatException(
-						String.format("Illegal leading minus sign " + "on unsigned string %s.", s));
+				throw new NumberFormatException(String.format(
+						"Illegal leading minus sign "
+								+ "on unsigned string %s.", s));
 			} else {
 				if (len <= 12 || // Long.MAX_VALUE in Character.MAX_RADIX is 13
 									// digits
@@ -717,13 +713,13 @@ public final class Long extends Number implements Comparable<Long> {
 					 * words, if parsing (len -1) digits overflows signed
 					 * parsing, parsing len digits will certainly overflow
 					 * unsigned parsing.
-					 *
 					 * The compareUnsigned check above catches situations where
 					 * an unsigned overflow occurs incorporating the
 					 * contribution of the final digit.
 					 */
-					throw new NumberFormatException(String
-							.format("String value %s exceeds " + "range of unsigned long.", s));
+					throw new NumberFormatException(String.format(
+							"String value %s exceeds "
+									+ "range of unsigned long.", s));
 				}
 				return result;
 			}
@@ -741,15 +737,17 @@ public final class Long extends Number implements Comparable<Long> {
 	 * the {@link #parseUnsignedLong(java.lang.String, int)} method.
 	 *
 	 * @param s
-	 *            a {@code String} containing the unsigned {@code long}
-	 *            representation to be parsed
+	 *          a {@code String} containing the unsigned {@code long}
+	 *          representation to be parsed
 	 * @return the unsigned {@code long} value represented by the decimal string
 	 *         argument
 	 * @throws NumberFormatException
-	 *             if the string does not contain a parsable unsigned integer.
+	 *                               if the string does not contain a parsable
+	 *                               unsigned integer.
 	 * @since 1.8
 	 */
-	public static long parseUnsignedLong(String s) throws NumberFormatException {
+	public static long parseUnsignedLong(String s)
+			throws NumberFormatException {
 		return parseUnsignedLong(s, 10);
 	}
 
@@ -769,16 +767,18 @@ public final class Long extends Number implements Comparable<Long> {
 	 * <blockquote> {@code new Long(Long.parseLong(s, radix))} </blockquote>
 	 *
 	 * @param s
-	 *            the string to be parsed
+	 *              the string to be parsed
 	 * @param radix
-	 *            the radix to be used in interpreting {@code s}
+	 *              the radix to be used in interpreting {@code s}
 	 * @return a {@code Long} object holding the value represented by the string
 	 *         argument in the specified radix.
 	 * @throws NumberFormatException
-	 *             If the {@code String} does not contain a parsable
-	 *             {@code long}.
+	 *                               If the {@code String} does not contain a
+	 *                               parsable
+	 *                               {@code long}.
 	 */
-	public static Long valueOf(String s, int radix) throws NumberFormatException {
+	public static Long valueOf(String s, int radix)
+			throws NumberFormatException {
 		return Long.valueOf(parseLong(s, radix));
 	}
 
@@ -796,19 +796,19 @@ public final class Long extends Number implements Comparable<Long> {
 	 * <blockquote> {@code new Long(Long.parseLong(s))} </blockquote>
 	 *
 	 * @param s
-	 *            the string to be parsed.
+	 *          the string to be parsed.
 	 * @return a {@code Long} object holding the value represented by the string
 	 *         argument.
 	 * @throws NumberFormatException
-	 *             If the string cannot be parsed as a {@code long}.
+	 *                               If the string cannot be parsed as a
+	 *                               {@code long}.
 	 */
 	public static Long valueOf(String s) throws NumberFormatException {
 		return Long.valueOf(parseLong(s, 10));
 	}
 
 	private static class LongCache {
-		private LongCache() {
-		}
+		private LongCache() {}
 
 		static final Long cache[] = new Long[-(-128) + 127 + 1];
 
@@ -830,7 +830,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * required to cache values within a particular range.
 	 *
 	 * @param l
-	 *            a long value.
+	 *          a long value.
 	 * @return a {@code Long} instance representing {@code l}.
 	 * @since 1.5
 	 */
@@ -877,12 +877,13 @@ public final class Long extends Number implements Comparable<Long> {
 	 * whitespace characters are permitted in the {@code String}.
 	 *
 	 * @param nm
-	 *            the {@code String} to decode.
+	 *           the {@code String} to decode.
 	 * @return a {@code Long} object holding the {@code long} value represented
 	 *         by {@code nm}
 	 * @throws NumberFormatException
-	 *             if the {@code String} does not contain a parsable
-	 *             {@code long}.
+	 *                               if the {@code String} does not contain a
+	 *                               parsable
+	 *                               {@code long}.
 	 * @see java.lang.Long#parseLong(String, int)
 	 * @since 1.2
 	 */
@@ -924,7 +925,8 @@ public final class Long extends Number implements Comparable<Long> {
 			// If number is Long.MIN_VALUE, we'll end up here. The next line
 			// handles this case, and causes any genuine format error to be
 			// rethrown.
-			String constant = negative ? ("-" + nm.substring(index)) : nm.substring(index);
+			String constant = negative ? ("-" + nm.substring(index))
+					: nm.substring(index);
 			result = Long.valueOf(constant, radix);
 		}
 		return result;
@@ -942,7 +944,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * specified {@code long} argument.
 	 *
 	 * @param value
-	 *            the value to be represented by the {@code Long} object.
+	 *              the value to be represented by the {@code Long} object.
 	 */
 	public Long(long value) {
 		this.value = value;
@@ -955,10 +957,11 @@ public final class Long extends Number implements Comparable<Long> {
 	 * {@code parseLong} method for radix 10.
 	 *
 	 * @param s
-	 *            the {@code String} to be converted to a {@code Long}.
+	 *          the {@code String} to be converted to a {@code Long}.
 	 * @throws NumberFormatException
-	 *             if the {@code String} does not contain a parsable
-	 *             {@code long}.
+	 *                               if the {@code String} does not contain a
+	 *                               parsable
+	 *                               {@code long}.
 	 * @see java.lang.Long#parseLong(java.lang.String, int)
 	 */
 	public Long(String s) throws NumberFormatException {
@@ -1056,7 +1059,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * {@code Long.hashCode()}.
 	 *
 	 * @param value
-	 *            the value to hash
+	 *              the value to hash
 	 * @return a hash code value for a {@code long} value.
 	 * @since 1.8
 	 */
@@ -1105,11 +1108,12 @@ public final class Long extends Number implements Comparable<Long> {
 	 * <blockquote> {@code getLong(nm, null)} </blockquote>
 	 *
 	 * @param nm
-	 *            property name.
+	 *           property name.
 	 * @return the {@code Long} value of the property.
 	 * @throws SecurityException
-	 *             for the same reasons as {@link System#getProperty(String)
-	 *             System.getProperty}
+	 *                           for the same reasons as
+	 *                           {@link System#getProperty(String)
+	 *                           System.getProperty}
 	 * @see java.lang.System#getProperty(java.lang.String)
 	 * @see java.lang.System#getProperty(java.lang.String, java.lang.String)
 	 */
@@ -1161,8 +1165,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 *            default value.
 	 * @return the {@code Long} value of the property.
 	 * @throws SecurityException
-	 *             for the same reasons as {@link System#getProperty(String)
-	 *             System.getProperty}
+	 *                           for the same reasons as
+	 *                           {@link System#getProperty(String)
+	 *                           System.getProperty}
 	 * @see java.lang.System#getProperty(java.lang.String)
 	 * @see java.lang.System#getProperty(java.lang.String, java.lang.String)
 	 */
@@ -1210,8 +1215,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 *            default value.
 	 * @return the {@code Long} value of the property.
 	 * @throws SecurityException
-	 *             for the same reasons as {@link System#getProperty(String)
-	 *             System.getProperty}
+	 *                           for the same reasons as
+	 *                           {@link System#getProperty(String)
+	 *                           System.getProperty}
 	 * @see System#getProperty(java.lang.String)
 	 * @see System#getProperty(java.lang.String, java.lang.String)
 	 */
@@ -1234,7 +1240,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * Compares two {@code Long} objects numerically.
 	 *
 	 * @param anotherLong
-	 *            the {@code Long} to be compared.
+	 *                    the {@code Long} to be compared.
 	 * @return the value {@code 0} if this {@code Long} is equal to the argument
 	 *         {@code Long}; a value less than {@code 0} if this {@code Long} is
 	 *         numerically less than the argument {@code Long}; and a value
@@ -1255,9 +1261,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * </pre>
 	 *
 	 * @param x
-	 *            the first {@code long} to compare
+	 *          the first {@code long} to compare
 	 * @param y
-	 *            the second {@code long} to compare
+	 *          the second {@code long} to compare
 	 * @return the value {@code 0} if {@code x == y}; a value less than
 	 *         {@code 0} if {@code x < y}; and a value greater than {@code 0} if
 	 *         {@code x > y}
@@ -1272,9 +1278,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * unsigned.
 	 *
 	 * @param x
-	 *            the first {@code long} to compare
+	 *          the first {@code long} to compare
 	 * @param y
-	 *            the second {@code long} to compare
+	 *          the second {@code long} to compare
 	 * @return the value {@code 0} if {@code x == y}; a value less than
 	 *         {@code 0} if {@code x < y} as unsigned values; and a value
 	 *         greater than {@code 0} if {@code x > y} as unsigned values
@@ -1297,9 +1303,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * addUnsigned}, etc. methods are not provided.
 	 *
 	 * @param dividend
-	 *            the value to be divided
+	 *                 the value to be divided
 	 * @param divisor
-	 *            the value doing the dividing
+	 *                 the value doing the dividing
 	 * @return the unsigned quotient of the first argument divided by the second
 	 *         argument
 	 * @see #remainderUnsigned
@@ -1320,7 +1326,8 @@ public final class Long extends Number implements Comparable<Long> {
 			 * written directly in terms of operations on longs is possible; see
 			 * "Hacker's Delight" for divide and remainder algorithms.
 			 */
-			return toUnsignedBigInteger(dividend).divide(toUnsignedBigInteger(divisor)).longValue();
+			return toUnsignedBigInteger(dividend).divide(toUnsignedBigInteger(
+					divisor)).longValue();
 		}
 	}
 
@@ -1330,9 +1337,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * value.
 	 *
 	 * @param dividend
-	 *            the value to be divided
+	 *                 the value to be divided
 	 * @param divisor
-	 *            the value doing the dividing
+	 *                 the value doing the dividing
 	 * @return the unsigned remainder of the first argument divided by the
 	 *         second argument
 	 * @see #divideUnsigned
@@ -1346,8 +1353,8 @@ public final class Long extends Number implements Comparable<Long> {
 														// for 0 divisor
 				return dividend;
 			else
-				return toUnsignedBigInteger(dividend).remainder(toUnsignedBigInteger(divisor))
-						.longValue();
+				return toUnsignedBigInteger(dividend).remainder(
+						toUnsignedBigInteger(divisor)).longValue();
 		}
 	}
 
@@ -1378,7 +1385,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * zero.
 	 *
 	 * @param i
-	 *            the value whose highest one bit is to be computed
+	 *          the value whose highest one bit is to be computed
 	 * @return a {@code long} value with a single one-bit, in the position of
 	 *         the highest-order one-bit in the specified value, or zero if the
 	 *         specified value is itself equal to zero.
@@ -1403,7 +1410,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * zero.
 	 *
 	 * @param i
-	 *            the value whose lowest one bit is to be computed
+	 *          the value whose lowest one bit is to be computed
 	 * @return a {@code long} value with a single one-bit, in the position of
 	 *         the lowest-order one-bit in the specified value, or zero if the
 	 *         specified value is itself equal to zero.
@@ -1430,7 +1437,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * </ul>
 	 *
 	 * @param i
-	 *            the value whose number of leading zeros is to be computed
+	 *          the value whose number of leading zeros is to be computed
 	 * @return the number of zero bits preceding the highest-order ("leftmost")
 	 *         one-bit in the two's complement binary representation of the
 	 *         specified {@code long} value, or 64 if the value is equal to
@@ -1475,7 +1482,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * zero.
 	 *
 	 * @param i
-	 *            the value whose number of trailing zeros is to be computed
+	 *          the value whose number of trailing zeros is to be computed
 	 * @return the number of zero bits following the lowest-order ("rightmost")
 	 *         one-bit in the two's complement binary representation of the
 	 *         specified {@code long} value, or 64 if the value is equal to
@@ -1523,7 +1530,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * sometimes referred to as the <i>population count</i>.
 	 *
 	 * @param i
-	 *            the value whose bits are to be counted
+	 *          the value whose bits are to be counted
 	 * @return the number of one-bits in the two's complement binary
 	 *         representation of the specified {@code long} value.
 	 * @since 1.5
@@ -1554,9 +1561,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * distance) == rotateLeft(val, distance & 0x3F)}.
 	 *
 	 * @param i
-	 *            the value whose bits are to be rotated left
+	 *                 the value whose bits are to be rotated left
 	 * @param distance
-	 *            the number of bit positions to rotate left
+	 *                 the number of bit positions to rotate left
 	 * @return the value obtained by rotating the two's complement binary
 	 *         representation of the specified {@code long} value left by the
 	 *         specified number of bits.
@@ -1581,9 +1588,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * distance) == rotateRight(val, distance & 0x3F)}.
 	 *
 	 * @param i
-	 *            the value whose bits are to be rotated right
+	 *                 the value whose bits are to be rotated right
 	 * @param distance
-	 *            the number of bit positions to rotate right
+	 *                 the number of bit positions to rotate right
 	 * @return the value obtained by rotating the two's complement binary
 	 *         representation of the specified {@code long} value right by the
 	 *         specified number of bits.
@@ -1599,7 +1606,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * value.
 	 *
 	 * @param i
-	 *            the value to be reversed
+	 *          the value to be reversed
 	 * @return the value obtained by reversing order of the bits in the
 	 *         specified {@code long} value.
 	 * @since 1.5
@@ -1610,7 +1617,8 @@ public final class Long extends Number implements Comparable<Long> {
 		i = (i & 0x3333333333333333L) << 2 | (i >>> 2) & 0x3333333333333333L;
 		i = (i & 0x0f0f0f0f0f0f0f0fL) << 4 | (i >>> 4) & 0x0f0f0f0f0f0f0f0fL;
 		i = (i & 0x00ff00ff00ff00ffL) << 8 | (i >>> 8) & 0x00ff00ff00ff00ffL;
-		i = (i << 48) | ((i & 0xffff0000L) << 16) | ((i >>> 16) & 0xffff0000L) | (i >>> 48);
+		i = (i << 48) | ((i & 0xffff0000L) << 16) | ((i >>> 16) & 0xffff0000L)
+				| (i >>> 48);
 		return i;
 	}
 
@@ -1620,7 +1628,7 @@ public final class Long extends Number implements Comparable<Long> {
 	 * value is zero; and 1 if the specified value is positive.)
 	 *
 	 * @param i
-	 *            the value whose signum is to be computed
+	 *          the value whose signum is to be computed
 	 * @return the signum function of the specified {@code long} value.
 	 * @since 1.5
 	 */
@@ -1634,23 +1642,24 @@ public final class Long extends Number implements Comparable<Long> {
 	 * two's complement representation of the specified {@code long} value.
 	 *
 	 * @param i
-	 *            the value whose bytes are to be reversed
+	 *          the value whose bytes are to be reversed
 	 * @return the value obtained by reversing the bytes in the specified
 	 *         {@code long} value.
 	 * @since 1.5
 	 */
 	public static long reverseBytes(long i) {
 		i = (i & 0x00ff00ff00ff00ffL) << 8 | (i >>> 8) & 0x00ff00ff00ff00ffL;
-		return (i << 48) | ((i & 0xffff0000L) << 16) | ((i >>> 16) & 0xffff0000L) | (i >>> 48);
+		return (i << 48) | ((i & 0xffff0000L) << 16) | ((i >>> 16)
+				& 0xffff0000L) | (i >>> 48);
 	}
 
 	/**
 	 * Adds two {@code long} values together as per the + operator.
 	 *
 	 * @param a
-	 *            the first operand
+	 *          the first operand
 	 * @param b
-	 *            the second operand
+	 *          the second operand
 	 * @return the sum of {@code a} and {@code b}
 	 * @see java.util.function.BinaryOperator
 	 * @since 1.8
@@ -1664,9 +1673,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * {@link Math#max(long, long) Math.max}.
 	 *
 	 * @param a
-	 *            the first operand
+	 *          the first operand
 	 * @param b
-	 *            the second operand
+	 *          the second operand
 	 * @return the greater of {@code a} and {@code b}
 	 * @see java.util.function.BinaryOperator
 	 * @since 1.8
@@ -1680,9 +1689,9 @@ public final class Long extends Number implements Comparable<Long> {
 	 * {@link Math#min(long, long) Math.min}.
 	 *
 	 * @param a
-	 *            the first operand
+	 *          the first operand
 	 * @param b
-	 *            the second operand
+	 *          the second operand
 	 * @return the smaller of {@code a} and {@code b}
 	 * @see java.util.function.BinaryOperator
 	 * @since 1.8

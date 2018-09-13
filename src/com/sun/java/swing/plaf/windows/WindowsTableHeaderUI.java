@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -79,16 +59,19 @@ public class WindowsTableHeaderUI extends BasicTableHeaderUI {
 			setHorizontalAlignment(LEADING);
 		}
 
-		public Component getTableCellRendererComponent(JTable table, Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
-			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		public Component getTableCellRendererComponent(JTable table,
+				Object value, boolean isSelected, boolean hasFocus, int row,
+				int column) {
+			super.getTableCellRendererComponent(table, value, isSelected,
+					hasFocus, row, column);
 			this.isSelected = isSelected;
 			this.hasFocus = hasFocus;
 			this.column = column;
 			this.hasRollover = (column == getRolloverColumn());
 			if (skin == null) {
 				XPStyle xp = XPStyle.getXP();
-				skin = (xp != null) ? xp.getSkin(header, Part.HP_HEADERITEM) : null;
+				skin = (xp != null) ? xp.getSkin(header, Part.HP_HEADERITEM)
+						: null;
 			}
 			Insets margins = (skin != null) ? skin.getContentMargin() : null;
 			Border border = null;
@@ -126,30 +109,34 @@ public class WindowsTableHeaderUI extends BasicTableHeaderUI {
 				SortOrder sortOrder = getColumnSortOrder(table, column);
 				if (sortOrder != null) {
 					switch (sortOrder) {
-					case ASCENDING:
-						sortIcon = UIManager.getIcon("Table.ascendingSortIcon");
-						break;
-					case DESCENDING:
-						sortIcon = UIManager.getIcon("Table.descendingSortIcon");
-						break;
+						case ASCENDING:
+							sortIcon = UIManager.getIcon(
+									"Table.ascendingSortIcon");
+							break;
+						case DESCENDING:
+							sortIcon = UIManager.getIcon(
+									"Table.descendingSortIcon");
+							break;
 					}
 				}
 				if (sortIcon != null) {
 					contentBottom = sortIcon.getIconHeight();
-					border = new IconBorder(sortIcon, contentTop, contentLeft, contentBottom,
-							contentRight);
+					border = new IconBorder(sortIcon, contentTop, contentLeft,
+							contentBottom, contentRight);
 				} else {
 					sortIcon = UIManager.getIcon("Table.ascendingSortIcon");
-					int sortIconHeight = (sortIcon != null) ? sortIcon.getIconHeight() : 0;
+					int sortIconHeight = (sortIcon != null) ? sortIcon
+							.getIconHeight() : 0;
 					if (sortIconHeight != 0) {
 						contentBottom = sortIconHeight;
 					}
-					border = new EmptyBorder(sortIconHeight + contentTop, contentLeft,
-							contentBottom, contentRight);
+					border = new EmptyBorder(sortIconHeight + contentTop,
+							contentLeft, contentBottom, contentRight);
 				}
 			} else {
 				contentTop += 3;
-				border = new EmptyBorder(contentTop, contentLeft, contentBottom, contentRight);
+				border = new EmptyBorder(contentTop, contentLeft, contentBottom,
+						contentRight);
 			}
 			setBorder(border);
 			return this;
@@ -159,8 +146,8 @@ public class WindowsTableHeaderUI extends BasicTableHeaderUI {
 			Dimension size = getSize();
 			State state = State.NORMAL;
 			TableColumn draggedColumn = header.getDraggedColumn();
-			if (draggedColumn != null
-					&& column == SwingUtilities2.convertColumnIndexToView(header.getColumnModel(),
+			if (draggedColumn != null && column == SwingUtilities2
+					.convertColumnIndexToView(header.getColumnModel(),
 							draggedColumn.getModelIndex())) {
 				state = State.PRESSED;
 			} else if (isSelected || hasFocus || hasRollover) {
@@ -168,27 +155,28 @@ public class WindowsTableHeaderUI extends BasicTableHeaderUI {
 			}
 			/* on Vista there are more states for sorted columns */
 			if (WindowsLookAndFeel.isOnVista()) {
-				SortOrder sortOrder = getColumnSortOrder(header.getTable(), column);
+				SortOrder sortOrder = getColumnSortOrder(header.getTable(),
+						column);
 				if (sortOrder != null) {
 					switch (sortOrder) {
-					case ASCENDING:
-						/* falls through */
-					case DESCENDING:
-						switch (state) {
-						case NORMAL:
-							state = State.SORTEDNORMAL;
-							break;
-						case PRESSED:
-							state = State.SORTEDPRESSED;
-							break;
-						case HOT:
-							state = State.SORTEDHOT;
-							break;
+						case ASCENDING:
+							/* falls through */
+						case DESCENDING:
+							switch (state) {
+								case NORMAL:
+									state = State.SORTEDNORMAL;
+									break;
+								case PRESSED:
+									state = State.SORTEDPRESSED;
+									break;
+								case HOT:
+									state = State.SORTEDHOT;
+									break;
+								default:
+									/* do nothing */
+							}
 						default:
 							/* do nothing */
-						}
-					default:
-						/* do nothing */
 					}
 				}
 			}
@@ -212,9 +200,9 @@ public class WindowsTableHeaderUI extends BasicTableHeaderUI {
 		 * Creates this border;
 		 * 
 		 * @param icon
-		 *            - icon to paint for this border
-		 * @param top,
-		 *            left, bottom, right - outer insets for this border
+		 *             - icon to paint for this border
+		 * @param      top,
+		 *             left, bottom, right - outer insets for this border
 		 */
 		public IconBorder(Icon icon, int top, int left, int bottom, int right) {
 			this.icon = icon;
@@ -232,9 +220,10 @@ public class WindowsTableHeaderUI extends BasicTableHeaderUI {
 			return false;
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-			icon.paintIcon(c, g, x + left + (width - left - right - icon.getIconWidth()) / 2,
-					y + top);
+		public void paintBorder(Component c, Graphics g, int x, int y,
+				int width, int height) {
+			icon.paintIcon(c, g, x + left + (width - left - right - icon
+					.getIconWidth()) / 2, y + top);
 		}
 	}
 }

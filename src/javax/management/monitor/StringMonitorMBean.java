@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.monitor;
@@ -64,7 +44,7 @@ public interface StringMonitorMBean extends MonitorMBean {
 	 * Gets the derived gauge for the specified MBean.
 	 *
 	 * @param object
-	 *            the MBean for which the derived gauge is to be returned
+	 *               the MBean for which the derived gauge is to be returned
 	 * @return The derived gauge for the specified MBean if this MBean is in the
 	 *         set of observed MBeans, or <code>null</code> otherwise.
 	 *
@@ -75,8 +55,8 @@ public interface StringMonitorMBean extends MonitorMBean {
 	 * Gets the derived gauge timestamp for the specified MBean.
 	 *
 	 * @param object
-	 *            the MBean for which the derived gauge timestamp is to be
-	 *            returned
+	 *               the MBean for which the derived gauge timestamp is to be
+	 *               returned
 	 * @return The derived gauge timestamp for the specified MBean if this MBean
 	 *         is in the set of observed MBeans, or <code>null</code> otherwise.
 	 *
@@ -96,13 +76,14 @@ public interface StringMonitorMBean extends MonitorMBean {
 	 * Sets the string to compare with the observed attribute.
 	 *
 	 * @param value
-	 *            The string value.
+	 *              The string value.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The specified string to compare is null.
+	 *            The specified string to compare is null.
 	 *
 	 * @see #getStringToCompare
 	 */
-	public void setStringToCompare(String value) throws java.lang.IllegalArgumentException;
+	public void setStringToCompare(String value)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Gets the matching notification's on/off switch value.
@@ -118,7 +99,7 @@ public interface StringMonitorMBean extends MonitorMBean {
 	 * Sets the matching notification's on/off switch value.
 	 *
 	 * @param value
-	 *            The matching notification's on/off switch value.
+	 *              The matching notification's on/off switch value.
 	 *
 	 * @see #getNotifyMatch
 	 */
@@ -138,7 +119,7 @@ public interface StringMonitorMBean extends MonitorMBean {
 	 * Sets the differing notification's on/off switch value.
 	 *
 	 * @param value
-	 *            The differing notification's on/off switch value.
+	 *              The differing notification's on/off switch value.
 	 *
 	 * @see #getNotifyDiffer
 	 */

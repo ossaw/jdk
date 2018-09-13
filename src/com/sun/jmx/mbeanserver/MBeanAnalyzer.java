@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -48,8 +28,8 @@ import javax.management.NotCompliantMBeanException;
  * </p>
  *
  * @param <M>
- *            Method or ConvertingMethod according as this is a Standard MBean
- *            or an MXBean.
+ *        Method or ConvertingMethod according as this is a Standard MBean
+ *        or an MXBean.
  *
  * @since 1.6
  */
@@ -96,7 +76,8 @@ class MBeanAnalyzer<M> {
 	// cached PerInterface object for an MBean interface means that
 	// an analyzer will not be recreated for a second MBean using the
 	// same interface.
-	static <M> MBeanAnalyzer<M> analyzer(Class<?> mbeanType, MBeanIntrospector<M> introspector)
+	static <M> MBeanAnalyzer<M> analyzer(Class<?> mbeanType,
+			MBeanIntrospector<M> introspector)
 			throws NotCompliantMBeanException {
 		return new MBeanAnalyzer<M>(mbeanType, introspector);
 	}
@@ -104,10 +85,12 @@ class MBeanAnalyzer<M> {
 	private MBeanAnalyzer(Class<?> mbeanType, MBeanIntrospector<M> introspector)
 			throws NotCompliantMBeanException {
 		if (!mbeanType.isInterface()) {
-			throw new NotCompliantMBeanException("Not an interface: " + mbeanType.getName());
+			throw new NotCompliantMBeanException("Not an interface: "
+					+ mbeanType.getName());
 		} else if (!Modifier.isPublic(mbeanType.getModifiers())
 				&& !Introspector.ALLOW_NONPUBLIC_MBEAN) {
-			throw new NotCompliantMBeanException("Interface is not public: " + mbeanType.getName());
+			throw new NotCompliantMBeanException("Interface is not public: "
+					+ mbeanType.getName());
 		}
 
 		try {
@@ -119,7 +102,8 @@ class MBeanAnalyzer<M> {
 
 	// Introspect the mbeanInterface and initialize this object's maps.
 	//
-	private void initMaps(Class<?> mbeanType, MBeanIntrospector<M> introspector) throws Exception {
+	private void initMaps(Class<?> mbeanType, MBeanIntrospector<M> introspector)
+			throws Exception {
 		final List<Method> methods1 = introspector.getMethods(mbeanType);
 		final List<Method> methods = eliminateCovariantMethods(methods1);
 
@@ -136,10 +120,12 @@ class MBeanAnalyzer<M> {
 			String attrName = "";
 			if (name.startsWith("get"))
 				attrName = name.substring(3);
-			else if (name.startsWith("is") && m.getReturnType() == boolean.class)
+			else if (name.startsWith("is") && m
+					.getReturnType() == boolean.class)
 				attrName = name.substring(2);
 
-			if (attrName.length() != 0 && nParams == 0 && m.getReturnType() != void.class) {
+			if (attrName.length() != 0 && nParams == 0 && m
+					.getReturnType() != void.class) {
 				// It's a getter
 				// Check we don't have both isX and getX
 				AttrMethods<M> am = attrMap.get(attrName);
@@ -147,21 +133,23 @@ class MBeanAnalyzer<M> {
 					am = new AttrMethods<M>();
 				else {
 					if (am.getter != null) {
-						final String msg = "Attribute " + attrName + " has more than one getter";
+						final String msg = "Attribute " + attrName
+								+ " has more than one getter";
 						throw new NotCompliantMBeanException(msg);
 					}
 				}
 				am.getter = cm;
 				attrMap.put(attrName, am);
-			} else if (name.startsWith("set") && name.length() > 3 && nParams == 1
-					&& m.getReturnType() == void.class) {
+			} else if (name.startsWith("set") && name.length() > 3
+					&& nParams == 1 && m.getReturnType() == void.class) {
 				// It's a setter
 				attrName = name.substring(3);
 				AttrMethods<M> am = attrMap.get(attrName);
 				if (am == null)
 					am = new AttrMethods<M>();
 				else if (am.setter != null) {
-					final String msg = "Attribute " + attrName + " has more than one setter";
+					final String msg = "Attribute " + attrName
+							+ " has more than one setter";
 					throw new NotCompliantMBeanException(msg);
 				}
 				am.setter = cm;
@@ -205,7 +193,8 @@ class MBeanAnalyzer<M> {
 			if (aparams.length != bparams.length)
 				return aparams.length - bparams.length;
 			if (!Arrays.equals(aparams, bparams)) {
-				return Arrays.toString(aparams).compareTo(Arrays.toString(bparams));
+				return Arrays.toString(aparams).compareTo(Arrays.toString(
+						bparams));
 			}
 			final Class<?> aret = a.getReturnType();
 			final Class<?> bret = b.getReturnType();
@@ -228,7 +217,6 @@ class MBeanAnalyzer<M> {
 	 * order they arrived in. This isn't required by the spec but existing code
 	 * may depend on it and users may be used to seeing operations or attributes
 	 * appear in a particular order.
-	 * 
 	 * Because of the way this method works, if the same Method appears more
 	 * than once in the given List then it will be completely deleted! So don't
 	 * do that.
@@ -255,7 +243,8 @@ class MBeanAnalyzer<M> {
 			// due to the way we have sorted them in MethodOrder.
 			if (Arrays.equals(m0.getParameterTypes(), m1.getParameterTypes())) {
 				if (!overridden.add(m0))
-					throw new RuntimeException("Internal error: duplicate Method");
+					throw new RuntimeException(
+							"Internal error: duplicate Method");
 			}
 		}
 

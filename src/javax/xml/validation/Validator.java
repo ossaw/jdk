@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.validation;
@@ -68,8 +48,7 @@ public abstract class Validator {
 	 * {@link LSResourceResolver}.
 	 * </p>
 	 */
-	protected Validator() {
-	}
+	protected Validator() {}
 
 	/**
 	 * <p>
@@ -103,31 +82,39 @@ public abstract class Validator {
 	 * </p>
 	 *
 	 * @param source
-	 *            XML to be validated. Must be an XML document or XML element
-	 *            and must not be null. For backwards compatibility, the results
-	 *            of attempting to validate anything other than a document or
-	 *            element are implementation-dependent. Implementations must
-	 *            either recognize and process the input or throw an
-	 *            IllegalArgumentException.
+	 *               XML to be validated. Must be an XML document or XML element
+	 *               and must not be null. For backwards compatibility, the
+	 *               results
+	 *               of attempting to validate anything other than a document or
+	 *               element are implementation-dependent. Implementations must
+	 *               either recognize and process the input or throw an
+	 *               IllegalArgumentException.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the <code>Source</code> is an XML artifact that the
-	 *             implementation cannot validate (for example, a processing
-	 *             instruction).
+	 *                                  If the <code>Source</code> is an XML
+	 *                                  artifact that the
+	 *                                  implementation cannot validate (for
+	 *                                  example, a processing
+	 *                                  instruction).
 	 *
 	 * @throws SAXException
-	 *             If the {@link ErrorHandler} throws a {@link SAXException} or
-	 *             if a fatal error is found and the {@link ErrorHandler}
-	 *             returns normally.
+	 *                                  If the {@link ErrorHandler} throws a
+	 *                                  {@link SAXException} or
+	 *                                  if a fatal error is found and the
+	 *                                  {@link ErrorHandler}
+	 *                                  returns normally.
 	 *
 	 * @throws IOException
-	 *             If the validator is processing a
-	 *             {@link javax.xml.transform.sax.SAXSource} and the underlying
-	 *             {@link org.xml.sax.XMLReader} throws an {@link IOException}.
+	 *                                  If the validator is processing a
+	 *                                  {@link javax.xml.transform.sax.SAXSource}
+	 *                                  and the underlying
+	 *                                  {@link org.xml.sax.XMLReader} throws an
+	 *                                  {@link IOException}.
 	 *
 	 *
 	 * @throws NullPointerException
-	 *             If <code>source</code> is <code>null</code>.
+	 *                                  If <code>source</code> is
+	 *                                  <code>null</code>.
 	 *
 	 * @see #validate(Source source, Result result)
 	 */
@@ -216,44 +203,58 @@ public abstract class Validator {
 	 * </p>
 	 *
 	 * @param source
-	 *            XML to be validated. Must be an XML document or XML element
-	 *            and must not be null. For backwards compatibility, the results
-	 *            of attempting to validate anything other than a document or
-	 *            element are implementation-dependent. Implementations must
-	 *            either recognize and process the input or throw an
-	 *            IllegalArgumentException.
+	 *               XML to be validated. Must be an XML document or XML element
+	 *               and must not be null. For backwards compatibility, the
+	 *               results
+	 *               of attempting to validate anything other than a document or
+	 *               element are implementation-dependent. Implementations must
+	 *               either recognize and process the input or throw an
+	 *               IllegalArgumentException.
 	 *
 	 * @param result
-	 *            The <code>Result</code> object that receives (possibly
-	 *            augmented) XML. This parameter can be null if the caller is
-	 *            not interested in it.
+	 *               The <code>Result</code> object that receives (possibly
+	 *               augmented) XML. This parameter can be null if the caller is
+	 *               not interested in it.
 	 *
-	 *            Note that when a <code>DOMResult</code> is used, a validator
-	 *            might just pass the same DOM node from <code>DOMSource</code>
-	 *            to <code>DOMResult</code> (in which case
-	 *            <code>source.getNode()==result.getNode()</code>), it might
-	 *            copy the entire DOM tree, or it might alter the node given by
-	 *            the source.
+	 *               Note that when a <code>DOMResult</code> is used, a
+	 *               validator
+	 *               might just pass the same DOM node from
+	 *               <code>DOMSource</code>
+	 *               to <code>DOMResult</code> (in which case
+	 *               <code>source.getNode()==result.getNode()</code>), it might
+	 *               copy the entire DOM tree, or it might alter the node given
+	 *               by
+	 *               the source.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the <code>Result</code> type doesn't match the
-	 *             <code>Source</code> type of if the <code>Source</code> is an
-	 *             XML artifact that the implementation cannot validate (for
-	 *             example, a processing instruction).
+	 *                                  If the <code>Result</code> type doesn't
+	 *                                  match the
+	 *                                  <code>Source</code> type of if the
+	 *                                  <code>Source</code> is an
+	 *                                  XML artifact that the implementation
+	 *                                  cannot validate (for
+	 *                                  example, a processing instruction).
 	 * @throws SAXException
-	 *             If the <code>ErrorHandler</code> throws a
-	 *             <code>SAXException</code> or if a fatal error is found and
-	 *             the <code>ErrorHandler</code> returns normally.
+	 *                                  If the <code>ErrorHandler</code> throws
+	 *                                  a
+	 *                                  <code>SAXException</code> or if a fatal
+	 *                                  error is found and
+	 *                                  the <code>ErrorHandler</code> returns
+	 *                                  normally.
 	 * @throws IOException
-	 *             If the validator is processing a <code>SAXSource</code> and
-	 *             the underlying {@link org.xml.sax.XMLReader} throws an
-	 *             <code>IOException</code>.
+	 *                                  If the validator is processing a
+	 *                                  <code>SAXSource</code> and
+	 *                                  the underlying
+	 *                                  {@link org.xml.sax.XMLReader} throws an
+	 *                                  <code>IOException</code>.
 	 * @throws NullPointerException
-	 *             If the <code>source</code> parameter is <code>null</code>.
+	 *                                  If the <code>source</code> parameter is
+	 *                                  <code>null</code>.
 	 *
 	 * @see #validate(Source source)
 	 */
-	public abstract void validate(Source source, Result result) throws SAXException, IOException;
+	public abstract void validate(Source source, Result result)
+			throws SAXException, IOException;
 
 	/**
 	 * Sets the {@link ErrorHandler} to receive errors encountered during the
@@ -302,7 +303,8 @@ public abstract class Validator {
 	 * set to null.
 	 *
 	 * @param errorHandler
-	 *            A new error handler to be set. This parameter can be null.
+	 *                     A new error handler to be set. This parameter can be
+	 *                     null.
 	 */
 	public abstract void setErrorHandler(ErrorHandler errorHandler);
 
@@ -352,9 +354,11 @@ public abstract class Validator {
 	 * set to null.
 	 *
 	 * @param resourceResolver
-	 *            A new resource resolver to be set. This parameter can be null.
+	 *                         A new resource resolver to be set. This parameter
+	 *                         can be null.
 	 */
-	public abstract void setResourceResolver(LSResourceResolver resourceResolver);
+	public abstract void setResourceResolver(
+			LSResourceResolver resourceResolver);
 
 	/**
 	 * Gets the current {@link LSResourceResolver} set to this {@link Validator}
@@ -384,22 +388,25 @@ public abstract class Validator {
 	 * </p>
 	 *
 	 * @param name
-	 *            The feature name, which is a non-null fully-qualified URI.
+	 *             The feature name, which is a non-null fully-qualified URI.
 	 *
 	 * @return The current value of the feature (true or false).
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the feature value can't be assigned or retrieved.
+	 *                                   If the feature value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link Validator} recognizes the feature name but
-	 *             cannot determine its value at this time.
+	 *                                   When the {@link Validator} recognizes
+	 *                                   the feature name but
+	 *                                   cannot determine its value at this
+	 *                                   time.
 	 * @throws NullPointerException
-	 *             When the name parameter is null.
+	 *                                   When the name parameter is null.
 	 *
 	 * @see #setFeature(String, boolean)
 	 */
-	public boolean getFeature(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public boolean getFeature(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 
 		if (name == null) {
 			throw new NullPointerException("the name parameter is null");
@@ -425,17 +432,19 @@ public abstract class Validator {
 	 * </p>
 	 *
 	 * @param name
-	 *            The feature name, which is a non-null fully-qualified URI.
+	 *              The feature name, which is a non-null fully-qualified URI.
 	 * @param value
-	 *            The requested value of the feature (true or false).
+	 *              The requested value of the feature (true or false).
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the feature value can't be assigned or retrieved.
+	 *                                   If the feature value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link Validator} recognizes the feature name but
-	 *             cannot set the requested value.
+	 *                                   When the {@link Validator} recognizes
+	 *                                   the feature name but
+	 *                                   cannot set the requested value.
 	 * @throws NullPointerException
-	 *             When the name parameter is null.
+	 *                                   When the name parameter is null.
 	 *
 	 * @see #getFeature(String)
 	 */
@@ -487,17 +496,19 @@ public abstract class Validator {
 	 * </ul>
 	 *
 	 * @param name
-	 *            The property name, which is a non-null fully-qualified URI.
+	 *               The property name, which is a non-null fully-qualified URI.
 	 * @param object
-	 *            The requested value for the property.
+	 *               The requested value for the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the property value can't be assigned or retrieved.
+	 *                                   If the property value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link Validator} recognizes the property name but
-	 *             cannot set the requested value.
+	 *                                   When the {@link Validator} recognizes
+	 *                                   the property name but
+	 *                                   cannot set the requested value.
 	 * @throws NullPointerException
-	 *             When the name parameter is null.
+	 *                                   When the name parameter is null.
 	 */
 	public void setProperty(String name, Object object)
 			throws SAXNotRecognizedException, SAXNotSupportedException {
@@ -530,22 +541,24 @@ public abstract class Validator {
 	 * </p>
 	 *
 	 * @param name
-	 *            The property name, which is a non-null fully-qualified URI.
+	 *             The property name, which is a non-null fully-qualified URI.
 	 *
 	 * @return The current value of the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the property value can't be assigned or retrieved.
+	 *                                   If the property value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the XMLReader recognizes the property name but cannot
-	 *             determine its value at this time.
+	 *                                   When the XMLReader recognizes the
+	 *                                   property name but cannot
+	 *                                   determine its value at this time.
 	 * @throws NullPointerException
-	 *             When the name parameter is null.
+	 *                                   When the name parameter is null.
 	 *
 	 * @see #setProperty(String, Object)
 	 */
-	public Object getProperty(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public Object getProperty(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 
 		if (name == null) {
 			throw new NullPointerException("the name parameter is null");

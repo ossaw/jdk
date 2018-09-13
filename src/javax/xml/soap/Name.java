@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -59,7 +39,8 @@ package javax.xml.soap;
  * all three.
  * 
  * <PRE>
- * Name name = se.createName("GetLastTradePrice", "WOMBAT", "http://www.wombat.org/trader");
+ * Name name = se.createName("GetLastTradePrice", "WOMBAT",
+ * 		"http://www.wombat.org/trader");
  * </PRE>
  * 
  * The following line of code gives an example of how a <code>Name</code> object

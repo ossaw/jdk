@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.io;
@@ -93,31 +72,38 @@ public class ValueUtility {
 	};
 
 	static {
-		sun.corba.SharedSecrets.setJavaCorbaAccess(new sun.corba.JavaCorbaAccess() {
-			public ValueHandlerImpl newValueHandlerImpl() {
-				return ValueHandlerImpl.getInstance();
-			}
+		sun.corba.SharedSecrets.setJavaCorbaAccess(
+				new sun.corba.JavaCorbaAccess() {
+					public ValueHandlerImpl newValueHandlerImpl() {
+						return ValueHandlerImpl.getInstance();
+					}
 
-			public Class<?> loadClass(String className) throws ClassNotFoundException {
-				if (Thread.currentThread().getContextClassLoader() != null) {
-					return Thread.currentThread().getContextClassLoader().loadClass(className);
-				} else {
-					return ClassLoader.getSystemClassLoader().loadClass(className);
-				}
-			}
-		});
+					public Class<?> loadClass(String className)
+							throws ClassNotFoundException {
+						if (Thread.currentThread()
+								.getContextClassLoader() != null) {
+							return Thread.currentThread()
+									.getContextClassLoader().loadClass(
+											className);
+						} else {
+							return ClassLoader.getSystemClassLoader().loadClass(
+									className);
+						}
+					}
+				});
 	}
 
-	public static String getSignature(ValueMember member) throws ClassNotFoundException {
+	public static String getSignature(ValueMember member)
+			throws ClassNotFoundException {
 
 		// REVISIT. Can the type be something that is
 		// non-primitive yet not a value_box, value, or objref?
 		// If so, should use ObjectStreamClass or throw
 		// exception.
 
-		if (member.type.kind().value() == TCKind._tk_value_box
-				|| member.type.kind().value() == TCKind._tk_value
-				|| member.type.kind().value() == TCKind._tk_objref) {
+		if (member.type.kind().value() == TCKind._tk_value_box || member.type
+				.kind().value() == TCKind._tk_value || member.type.kind()
+						.value() == TCKind._tk_objref) {
 			Class c = RepositoryId.cache.getId(member.id).getClassFromType();
 			return ObjectStreamClass.getSignature(c);
 
@@ -128,7 +114,8 @@ public class ValueUtility {
 
 	}
 
-	public static FullValueDescription translate(ORB orb, ObjectStreamClass osc, ValueHandler vh) {
+	public static FullValueDescription translate(ORB orb, ObjectStreamClass osc,
+			ValueHandler vh) {
 
 		// Create FullValueDescription
 		FullValueDescription result = new FullValueDescription();
@@ -148,7 +135,8 @@ public class ValueUtility {
 			result.id = "";
 
 		// Set FVD is_abstract
-		result.is_abstract = ObjectStreamClassCorbaExt.isAbstractInterface(className);
+		result.is_abstract = ObjectStreamClassCorbaExt.isAbstractInterface(
+				className);
 
 		// Set FVD is_custom
 		result.is_custom = osc.hasWriteObject() || osc.isExternalizable();
@@ -188,16 +176,18 @@ public class ValueUtility {
 			result.supported_interfaces[interfaceIndex] = vhandler
 					.createForAnyType(interfaces[interfaceIndex]);
 
-			if ((!(java.rmi.Remote.class.isAssignableFrom(interfaces[interfaceIndex])))
-					|| (!Modifier.isPublic(interfaces[interfaceIndex].getModifiers())))
+			if ((!(java.rmi.Remote.class.isAssignableFrom(
+					interfaces[interfaceIndex]))) || (!Modifier.isPublic(
+							interfaces[interfaceIndex].getModifiers())))
 				abstractCount++;
 		}
 
 		// Skip FVD abstract_base_values - N/A
 		result.abstract_base_values = new String[abstractCount];
 		for (int interfaceIndex = 0; interfaceIndex < interfaces.length; interfaceIndex++) {
-			if ((!(java.rmi.Remote.class.isAssignableFrom(interfaces[interfaceIndex])))
-					|| (!Modifier.isPublic(interfaces[interfaceIndex].getModifiers())))
+			if ((!(java.rmi.Remote.class.isAssignableFrom(
+					interfaces[interfaceIndex]))) || (!Modifier.isPublic(
+							interfaces[interfaceIndex].getModifiers())))
 				result.abstract_base_values[interfaceIndex] = vhandler
 						.createForAnyType(interfaces[interfaceIndex]);
 
@@ -220,7 +210,8 @@ public class ValueUtility {
 
 	}
 
-	private static ValueMember[] translateMembers(ORB orb, ObjectStreamClass osc, ValueHandler vh,
+	private static ValueMember[] translateMembers(ORB orb,
+			ObjectStreamClass osc, ValueHandler vh,
 			IdentityKeyValueStack createdIDs) {
 		ValueHandlerImpl vhandler = (com.sun.corba.se.impl.io.ValueHandlerImpl) vh;
 		ObjectStreamField fields[] = osc.getFields();
@@ -257,41 +248,43 @@ public class ValueUtility {
 			}
 
 			switch (fields[i].getTypeCode()) {
-			case 'B':
-				members[i].type = orb.get_primitive_tc(TCKind.tk_octet); // 11638
-				break;
-			case 'C':
-				members[i].type = orb.get_primitive_tc(vhandler.getJavaCharTCKind()); // 11638
-				break;
-			case 'F':
-				members[i].type = orb.get_primitive_tc(TCKind.tk_float); // 11638
-				break;
-			case 'D':
-				members[i].type = orb.get_primitive_tc(TCKind.tk_double); // 11638
-				break;
-			case 'I':
-				members[i].type = orb.get_primitive_tc(TCKind.tk_long); // 11638
-				break;
-			case 'J':
-				members[i].type = orb.get_primitive_tc(TCKind.tk_longlong); // 11638
-				break;
-			case 'S':
-				members[i].type = orb.get_primitive_tc(TCKind.tk_short); // 11638
-				break;
-			case 'Z':
-				members[i].type = orb.get_primitive_tc(TCKind.tk_boolean); // 11638
-				break;
-			// case '[':
-			// members[i].type = orb.get_primitive_tc(TCKind.tk_value_box);
-			// //11638
-			// members[i].id =
-			// RepositoryId.createForAnyType(fields[i].getType());
-			// break;
-			default:
-				members[i].type = createTypeCodeForClassInternal(orb, fields[i].getClazz(),
-						vhandler, createdIDs);
-				members[i].id = vhandler.createForAnyType(fields[i].getType());
-				break;
+				case 'B':
+					members[i].type = orb.get_primitive_tc(TCKind.tk_octet); // 11638
+					break;
+				case 'C':
+					members[i].type = orb.get_primitive_tc(vhandler
+							.getJavaCharTCKind()); // 11638
+					break;
+				case 'F':
+					members[i].type = orb.get_primitive_tc(TCKind.tk_float); // 11638
+					break;
+				case 'D':
+					members[i].type = orb.get_primitive_tc(TCKind.tk_double); // 11638
+					break;
+				case 'I':
+					members[i].type = orb.get_primitive_tc(TCKind.tk_long); // 11638
+					break;
+				case 'J':
+					members[i].type = orb.get_primitive_tc(TCKind.tk_longlong); // 11638
+					break;
+				case 'S':
+					members[i].type = orb.get_primitive_tc(TCKind.tk_short); // 11638
+					break;
+				case 'Z':
+					members[i].type = orb.get_primitive_tc(TCKind.tk_boolean); // 11638
+					break;
+				// case '[':
+				// members[i].type = orb.get_primitive_tc(TCKind.tk_value_box);
+				// //11638
+				// members[i].id =
+				// RepositoryId.createForAnyType(fields[i].getType());
+				// break;
+				default:
+					members[i].type = createTypeCodeForClassInternal(orb,
+							fields[i].getClazz(), vhandler, createdIDs);
+					members[i].id = vhandler.createForAnyType(fields[i]
+							.getType());
+					break;
 			} // end switch
 
 		} // end for loop
@@ -307,7 +300,8 @@ public class ValueUtility {
 		return false;
 	}
 
-	public static boolean isAssignableFrom(String clzRepositoryId, FullValueDescription type,
+	public static boolean isAssignableFrom(String clzRepositoryId,
+			FullValueDescription type,
 			com.sun.org.omg.SendingContext.CodeBase sender) {
 
 		if (exists(clzRepositoryId, type.supported_interfaces))
@@ -326,7 +320,8 @@ public class ValueUtility {
 
 	}
 
-	public static TypeCode createTypeCodeForClass(ORB orb, java.lang.Class c, ValueHandler vh) {
+	public static TypeCode createTypeCodeForClass(ORB orb, java.lang.Class c,
+			ValueHandler vh) {
 		// Maps classes to repositoryIDs strings. This is used to detect
 		// recursive types.
 		IdentityKeyValueStack createdIDs = new IdentityKeyValueStack();
@@ -335,8 +330,9 @@ public class ValueUtility {
 		return tc;
 	}
 
-	private static TypeCode createTypeCodeForClassInternal(ORB orb, java.lang.Class c,
-			ValueHandler vh, IdentityKeyValueStack createdIDs) {
+	private static TypeCode createTypeCodeForClassInternal(ORB orb,
+			java.lang.Class c, ValueHandler vh,
+			IdentityKeyValueStack createdIDs) {
 		// This wrapper method is the protection against infinite recursion.
 		TypeCode tc = null;
 		String id = (String) createdIDs.get(c);
@@ -399,16 +395,18 @@ public class ValueUtility {
 		}
 	}
 
-	private static TypeCode createTypeCodeInternal(ORB orb, java.lang.Class c, ValueHandler vh,
-			String id, IdentityKeyValueStack createdIDs) {
+	private static TypeCode createTypeCodeInternal(ORB orb, java.lang.Class c,
+			ValueHandler vh, String id, IdentityKeyValueStack createdIDs) {
 		if (c.isArray()) {
 			// Arrays - may recurse for multi-dimensional arrays
 			Class componentClass = c.getComponentType();
 			TypeCode embeddedType;
 			if (componentClass.isPrimitive()) {
-				embeddedType = ValueUtility.getPrimitiveTypeCodeForClass(orb, componentClass, vh);
+				embeddedType = ValueUtility.getPrimitiveTypeCodeForClass(orb,
+						componentClass, vh);
 			} else {
-				embeddedType = createTypeCodeForClassInternal(orb, componentClass, vh, createdIDs);
+				embeddedType = createTypeCodeForClassInternal(orb,
+						componentClass, vh, createdIDs);
 			}
 			TypeCode t = orb.create_sequence_tc(0, embeddedType);
 			return orb.create_value_box_tc(id, "Sequence", t);
@@ -427,19 +425,23 @@ public class ValueUtility {
 		ObjectStreamClass osc = ObjectStreamClass.lookup(c);
 
 		if (osc == null) {
-			return orb.create_value_box_tc(id, "Value", orb.get_primitive_tc(TCKind.tk_value));
+			return orb.create_value_box_tc(id, "Value", orb.get_primitive_tc(
+					TCKind.tk_value));
 		}
 
 		// type modifier
 		// REVISIT truncatable and abstract?
-		short modifier = (osc.isCustomMarshaled() ? org.omg.CORBA.VM_CUSTOM.value
+		short modifier = (osc.isCustomMarshaled()
+				? org.omg.CORBA.VM_CUSTOM.value
 				: org.omg.CORBA.VM_NONE.value);
 
 		// concrete base
 		TypeCode base = null;
 		Class superClass = c.getSuperclass();
-		if (superClass != null && java.io.Serializable.class.isAssignableFrom(superClass)) {
-			base = createTypeCodeForClassInternal(orb, superClass, vh, createdIDs);
+		if (superClass != null && java.io.Serializable.class.isAssignableFrom(
+				superClass)) {
+			base = createTypeCodeForClassInternal(orb, superClass, vh,
+					createdIDs);
 		}
 
 		// members
@@ -448,7 +450,8 @@ public class ValueUtility {
 		return orb.create_value_tc(id, c.getName(), modifier, base, members);
 	}
 
-	public static TypeCode getPrimitiveTypeCodeForClass(ORB orb, Class c, ValueHandler vh) {
+	public static TypeCode getPrimitiveTypeCodeForClass(ORB orb, Class c,
+			ValueHandler vh) {
 
 		if (c == Integer.TYPE) {
 			return orb.get_primitive_tc(TCKind.tk_long);
@@ -463,7 +466,8 @@ public class ValueUtility {
 		} else if (c == Short.TYPE) {
 			return orb.get_primitive_tc(TCKind.tk_short);
 		} else if (c == Character.TYPE) {
-			return orb.get_primitive_tc(((ValueHandlerImpl) vh).getJavaCharTCKind());
+			return orb.get_primitive_tc(((ValueHandlerImpl) vh)
+					.getJavaCharTCKind());
 		} else if (c == Boolean.TYPE) {
 			return orb.get_primitive_tc(TCKind.tk_boolean);
 		} else {

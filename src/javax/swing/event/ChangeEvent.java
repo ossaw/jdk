@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.event;
 
@@ -45,8 +25,8 @@ public class ChangeEvent extends EventObject {
 	 * Constructs a ChangeEvent object.
 	 *
 	 * @param source
-	 *            the Object that is the source of the event (typically
-	 *            <code>this</code>)
+	 *               the Object that is the source of the event (typically
+	 *               <code>this</code>)
 	 */
 	public ChangeEvent(Object source) {
 		super(source);

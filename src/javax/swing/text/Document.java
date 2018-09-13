@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -206,7 +186,7 @@ public interface Document {
 	 * changes are made to the document.
 	 *
 	 * @param listener
-	 *            the observer to register
+	 *                 the observer to register
 	 * @see Document#removeDocumentListener
 	 */
 	public void addDocumentListener(DocumentListener listener);
@@ -216,7 +196,7 @@ public interface Document {
 	 * longer receive change updates.
 	 *
 	 * @param listener
-	 *            the observer to register
+	 *                 the observer to register
 	 * @see Document#addDocumentListener
 	 */
 	public void removeDocumentListener(DocumentListener listener);
@@ -226,7 +206,7 @@ public interface Document {
 	 * undoable edits are made to the document.
 	 *
 	 * @param listener
-	 *            the observer to register
+	 *                 the observer to register
 	 * @see javax.swing.event.UndoableEditEvent
 	 */
 	public void addUndoableEditListener(UndoableEditListener listener);
@@ -236,7 +216,7 @@ public interface Document {
 	 * longer receive updates.
 	 *
 	 * @param listener
-	 *            the observer to register
+	 *                 the observer to register
 	 * @see javax.swing.event.UndoableEditEvent
 	 */
 	public void removeUndoableEditListener(UndoableEditListener listener);
@@ -259,9 +239,9 @@ public interface Document {
 	 * also be defined.
 	 *
 	 * @param key
-	 *            the non-<code>null</code> property key
+	 *              the non-<code>null</code> property key
 	 * @param value
-	 *            the property value
+	 *              the property value
 	 * @see #getProperty(Object)
 	 */
 	public void putProperty(Object key, Object value);
@@ -294,13 +274,15 @@ public interface Document {
 	 * generated.
 	 *
 	 * @param offs
-	 *            the offset from the beginning &gt;= 0
+	 *             the offset from the beginning &gt;= 0
 	 * @param len
-	 *            the number of characters to remove &gt;= 0
+	 *             the number of characters to remove &gt;= 0
 	 * @exception BadLocationException
-	 *                some portion of the removal range was not a valid part of
-	 *                the document. The location in the exception is the first
-	 *                bad position encountered.
+	 *                                 some portion of the removal range was not
+	 *                                 a valid part of
+	 *                                 the document. The location in the
+	 *                                 exception is the first
+	 *                                 bad position encountered.
 	 * @see javax.swing.event.DocumentEvent
 	 * @see javax.swing.event.DocumentListener
 	 * @see javax.swing.event.UndoableEditEvent
@@ -329,37 +311,43 @@ public interface Document {
 	 * generated.
 	 *
 	 * @param offset
-	 *            the offset into the document to insert the content &gt;= 0.
-	 *            All positions that track change at or after the given location
-	 *            will move.
+	 *               the offset into the document to insert the content &gt;= 0.
+	 *               All positions that track change at or after the given
+	 *               location
+	 *               will move.
 	 * @param str
-	 *            the string to insert
+	 *               the string to insert
 	 * @param a
-	 *            the attributes to associate with the inserted content. This
-	 *            may be null if there are no attributes.
+	 *               the attributes to associate with the inserted content. This
+	 *               may be null if there are no attributes.
 	 * @exception BadLocationException
-	 *                the given insert position is not a valid position within
-	 *                the document
+	 *                                 the given insert position is not a valid
+	 *                                 position within
+	 *                                 the document
 	 * @see javax.swing.event.DocumentEvent
 	 * @see javax.swing.event.DocumentListener
 	 * @see javax.swing.event.UndoableEditEvent
 	 * @see javax.swing.event.UndoableEditListener
 	 */
-	public void insertString(int offset, String str, AttributeSet a) throws BadLocationException;
+	public void insertString(int offset, String str, AttributeSet a)
+			throws BadLocationException;
 
 	/**
 	 * Fetches the text contained within the given portion of the document.
 	 *
 	 * @param offset
-	 *            the offset into the document representing the desired start of
-	 *            the text &gt;= 0
+	 *               the offset into the document representing the desired start
+	 *               of
+	 *               the text &gt;= 0
 	 * @param length
-	 *            the length of the desired string &gt;= 0
+	 *               the length of the desired string &gt;= 0
 	 * @return the text, in a String of length &gt;= 0
 	 * @exception BadLocationException
-	 *                some portion of the given range was not a valid part of
-	 *                the document. The location in the exception is the first
-	 *                bad position encountered.
+	 *                                 some portion of the given range was not a
+	 *                                 valid part of
+	 *                                 the document. The location in the
+	 *                                 exception is the first
+	 *                                 bad position encountered.
 	 */
 	public String getText(int offset, int length) throws BadLocationException;
 
@@ -393,19 +381,23 @@ public interface Document {
 	 * </pre>
 	 *
 	 * @param offset
-	 *            the offset into the document representing the desired start of
-	 *            the text &gt;= 0
+	 *               the offset into the document representing the desired start
+	 *               of
+	 *               the text &gt;= 0
 	 * @param length
-	 *            the length of the desired string &gt;= 0
+	 *               the length of the desired string &gt;= 0
 	 * @param txt
-	 *            the Segment object to return the text in
+	 *               the Segment object to return the text in
 	 *
 	 * @exception BadLocationException
-	 *                Some portion of the given range was not a valid part of
-	 *                the document. The location in the exception is the first
-	 *                bad position encountered.
+	 *                                 Some portion of the given range was not a
+	 *                                 valid part of
+	 *                                 the document. The location in the
+	 *                                 exception is the first
+	 *                                 bad position encountered.
 	 */
-	public void getText(int offset, int length, Segment txt) throws BadLocationException;
+	public void getText(int offset, int length, Segment txt)
+			throws BadLocationException;
 
 	/**
 	 * Returns a position that represents the start of the document. The
@@ -434,11 +426,12 @@ public interface Document {
 	 * is forced to a position that follows the original position.
 	 *
 	 * @param offs
-	 *            the offset from the start of the document &gt;= 0
+	 *             the offset from the start of the document &gt;= 0
 	 * @return the position
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 */
 	public Position createPosition(int offs) throws BadLocationException;
 
@@ -479,7 +472,7 @@ public interface Document {
 	 * <em>not</em> make any mutations.
 	 *
 	 * @param r
-	 *            a <code>Runnable</code> used to render the model
+	 *          a <code>Runnable</code> used to render the model
 	 */
 	public void render(Runnable r);
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,12 +38,13 @@ public class FuncNormalizeSpace extends FunctionDef1Arg {
 	 * Execute the function. The function must return a valid object.
 	 * 
 	 * @param xctxt
-	 *            The current execution context.
+	 *              The current execution context.
 	 * @return A valid XObject.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		XMLString s1 = getArg0AsString(xctxt);
 
 		return (XString) s1.fixWhiteSpace(true, true, false);
@@ -58,16 +56,18 @@ public class FuncNormalizeSpace extends FunctionDef1Arg {
 	 *
 	 *
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *              The XPath runtime context.
 	 *
 	 * @return The result of the expression in the form of a
 	 *         <code>XObject</code>.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             if a runtime exception occurs.
+	 *         if a runtime exception occurs.
 	 */
-	public void executeCharsToContentHandler(XPathContext xctxt, ContentHandler handler)
-			throws javax.xml.transform.TransformerException, org.xml.sax.SAXException {
+	public void executeCharsToContentHandler(XPathContext xctxt,
+			ContentHandler handler)
+			throws javax.xml.transform.TransformerException,
+			org.xml.sax.SAXException {
 		if (Arg0IsNodesetExpr()) {
 			int node = getArg0AsNode(xctxt);
 			if (DTM.NULL != node) {

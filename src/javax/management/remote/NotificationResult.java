@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -67,26 +47,36 @@ public class NotificationResult implements Serializable {
 	 * </p>
 	 *
 	 * @param earliestSequenceNumber
-	 *            the sequence number of the earliest notification still in the
-	 *            buffer.
+	 *                               the sequence number of the earliest
+	 *                               notification still in the
+	 *                               buffer.
 	 * @param nextSequenceNumber
-	 *            the sequence number of the next notification available for
-	 *            querying.
+	 *                               the sequence number of the next
+	 *                               notification available for
+	 *                               querying.
 	 * @param targetedNotifications
-	 *            the notifications resulting from the query, and the listeners
-	 *            they correspond to. This array can be empty.
+	 *                               the notifications resulting from the query,
+	 *                               and the listeners
+	 *                               they correspond to. This array can be
+	 *                               empty.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>targetedNotifications</code> is null or if
-	 *                <code>earliestSequenceNumber</code> or
-	 *                <code>nextSequenceNumber</code> is negative.
+	 *                                     if <code>targetedNotifications</code>
+	 *                                     is null or if
+	 *                                     <code>earliestSequenceNumber</code>
+	 *                                     or
+	 *                                     <code>nextSequenceNumber</code> is
+	 *                                     negative.
 	 */
-	public NotificationResult(long earliestSequenceNumber, long nextSequenceNumber,
+	public NotificationResult(long earliestSequenceNumber,
+			long nextSequenceNumber,
 			TargetedNotification[] targetedNotifications) {
-		validate(targetedNotifications, earliestSequenceNumber, nextSequenceNumber);
+		validate(targetedNotifications, earliestSequenceNumber,
+				nextSequenceNumber);
 		this.earliestSequenceNumber = earliestSequenceNumber;
 		this.nextSequenceNumber = nextSequenceNumber;
-		this.targetedNotifications = (targetedNotifications.length == 0 ? targetedNotifications
+		this.targetedNotifications = (targetedNotifications.length == 0
+				? targetedNotifications
 				: targetedNotifications.clone());
 	}
 
@@ -131,18 +121,21 @@ public class NotificationResult implements Serializable {
 	 * @return a string representation of the object.
 	 */
 	public String toString() {
-		return "NotificationResult: earliest=" + getEarliestSequenceNumber() + "; next="
-				+ getNextSequenceNumber() + "; nnotifs=" + getTargetedNotifications().length;
+		return "NotificationResult: earliest=" + getEarliestSequenceNumber()
+				+ "; next=" + getNextSequenceNumber() + "; nnotifs="
+				+ getTargetedNotifications().length;
 	}
 
-	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		ois.defaultReadObject();
 		try {
 			validate(this.targetedNotifications, this.earliestSequenceNumber,
 					this.nextSequenceNumber);
 
 			this.targetedNotifications = this.targetedNotifications.length == 0
-					? this.targetedNotifications : this.targetedNotifications.clone();
+					? this.targetedNotifications
+					: this.targetedNotifications.clone();
 		} catch (IllegalArgumentException e) {
 			throw new InvalidObjectException(e.getMessage());
 		}
@@ -153,7 +146,8 @@ public class NotificationResult implements Serializable {
 	private TargetedNotification[] targetedNotifications;
 
 	private static void validate(TargetedNotification[] targetedNotifications,
-			long earliestSequenceNumber, long nextSequenceNumber) throws IllegalArgumentException {
+			long earliestSequenceNumber, long nextSequenceNumber)
+			throws IllegalArgumentException {
 		if (targetedNotifications == null) {
 			final String msg = "Notifications null";
 			throw new IllegalArgumentException(msg);

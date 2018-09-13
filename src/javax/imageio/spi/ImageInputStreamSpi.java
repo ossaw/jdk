@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.spi;
@@ -65,27 +45,31 @@ public abstract class ImageInputStreamSpi extends IIOServiceProvider {
 	 * subclass to initialize instance variables and/or override method
 	 * implementations in order to provide working versions of all methods.
 	 */
-	protected ImageInputStreamSpi() {
-	}
+	protected ImageInputStreamSpi() {}
 
 	/**
 	 * Constructs an <code>ImageInputStreamSpi</code> with a given set of
 	 * values.
 	 *
 	 * @param vendorName
-	 *            the vendor name.
+	 *                   the vendor name.
 	 * @param version
-	 *            a version identifier.
+	 *                   a version identifier.
 	 * @param inputClass
-	 *            a <code>Class</code> object indicating the legal object type
-	 *            for use by the <code>createInputStreamInstance</code> method.
+	 *                   a <code>Class</code> object indicating the legal object
+	 *                   type
+	 *                   for use by the <code>createInputStreamInstance</code>
+	 *                   method.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>vendorName</code> is <code>null</code>.
+	 *                                     if <code>vendorName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>version</code> is <code>null</code>.
+	 *                                     if <code>version</code> is
+	 *                                     <code>null</code>.
 	 */
-	public ImageInputStreamSpi(String vendorName, String version, Class<?> inputClass) {
+	public ImageInputStreamSpi(String vendorName, String version,
+			Class<?> inputClass) {
 		super(vendorName, version);
 		this.inputClass = inputClass;
 	}
@@ -150,32 +134,39 @@ public abstract class ImageInputStreamSpi extends IIOServiceProvider {
 	 * will be ignored.
 	 *
 	 * @param input
-	 *            an object of the class type returned by
-	 *            <code>getInputClass</code>.
+	 *                 an object of the class type returned by
+	 *                 <code>getInputClass</code>.
 	 * @param useCache
-	 *            a <code>boolean</code> indicating whether a cache file should
-	 *            be used, in cases where it is optional.
+	 *                 a <code>boolean</code> indicating whether a cache file
+	 *                 should
+	 *                 be used, in cases where it is optional.
 	 * @param cacheDir
-	 *            a <code>File</code> indicating where the cache file should be
-	 *            created, or <code>null</code> to use the system directory.
+	 *                 a <code>File</code> indicating where the cache file
+	 *                 should be
+	 *                 created, or <code>null</code> to use the system
+	 *                 directory.
 	 *
 	 * @return an <code>ImageInputStream</code> instance.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>input</code> is not an instance of the correct
-	 *                class or is <code>null</code>.
+	 *                                     if <code>input</code> is not an
+	 *                                     instance of the correct
+	 *                                     class or is <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if a cache file is needed but <code>cacheDir</code> is
-	 *                non-<code>null</code> and is not a directory.
+	 *                                     if a cache file is needed but
+	 *                                     <code>cacheDir</code> is
+	 *                                     non-<code>null</code> and is not a
+	 *                                     directory.
 	 * @exception IOException
-	 *                if a cache file is needed but cannot be created.
+	 *                                     if a cache file is needed but cannot
+	 *                                     be created.
 	 *
 	 * @see #getInputClass
 	 * @see #canUseCacheFile
 	 * @see #needsCacheFile
 	 */
-	public abstract ImageInputStream createInputStreamInstance(Object input, boolean useCache,
-			File cacheDir) throws IOException;
+	public abstract ImageInputStream createInputStreamInstance(Object input,
+			boolean useCache, File cacheDir) throws IOException;
 
 	/**
 	 * Returns an instance of the <code>ImageInputStream</code> implementation
@@ -183,20 +174,23 @@ public abstract class ImageInputStreamSpi extends IIOServiceProvider {
 	 * the system-dependent default temporary-file directory, if needed.
 	 *
 	 * @param input
-	 *            an object of the class type returned by
-	 *            <code>getInputClass</code>.
+	 *              an object of the class type returned by
+	 *              <code>getInputClass</code>.
 	 *
 	 * @return an <code>ImageInputStream</code> instance.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>input</code> is not an instance of the correct
-	 *                class or is <code>null</code>.
+	 *                                     if <code>input</code> is not an
+	 *                                     instance of the correct
+	 *                                     class or is <code>null</code>.
 	 * @exception IOException
-	 *                if a cache file is needed but cannot be created.
+	 *                                     if a cache file is needed but cannot
+	 *                                     be created.
 	 *
 	 * @see #getInputClass()
 	 */
-	public ImageInputStream createInputStreamInstance(Object input) throws IOException {
+	public ImageInputStream createInputStreamInstance(Object input)
+			throws IOException {
 		return createInputStreamInstance(input, true, null);
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -52,14 +32,19 @@ public abstract class SchemaOutputResolver {
 	 * document.
 	 *
 	 * @param namespaceUri
-	 *            The namespace URI that the schema declares. Can be the empty
-	 *            string, but never be null.
+	 *                          The namespace URI that the schema declares. Can
+	 *                          be the empty
+	 *                          string, but never be null.
 	 * @param suggestedFileName
-	 *            A JAXB implementation generates an unique file name (like
-	 *            "schema1.xsd") for the convenience of the callee. This name
-	 *            can be used for the file name of the schema, or the callee can
-	 *            just ignore this name and come up with its own name. This is
-	 *            just a hint.
+	 *                          A JAXB implementation generates an unique file
+	 *                          name (like
+	 *                          "schema1.xsd") for the convenience of the
+	 *                          callee. This name
+	 *                          can be used for the file name of the schema, or
+	 *                          the callee can
+	 *                          just ignore this name and come up with its own
+	 *                          name. This is
+	 *                          just a hint.
 	 *
 	 * @return a {@link Result} object that encapsulates the actual destination
 	 *         of the schema.
@@ -75,6 +60,6 @@ public abstract class SchemaOutputResolver {
 	 *         If {@code null} is returned, the schema generation for this
 	 *         namespace URI will be skipped.
 	 */
-	public abstract Result createOutput(String namespaceUri, String suggestedFileName)
-			throws IOException;
+	public abstract Result createOutput(String namespaceUri,
+			String suggestedFileName) throws IOException;
 }

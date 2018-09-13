@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -97,7 +94,8 @@ public class Constants {
 	 * EXSLT extension namespaces.
 	 */
 	public static final String S_EXSLT_COMMON_URL = "http://exslt.org/common",
-			S_EXSLT_MATH_URL = "http://exslt.org/math", S_EXSLT_SETS_URL = "http://exslt.org/sets",
+			S_EXSLT_MATH_URL = "http://exslt.org/math",
+			S_EXSLT_SETS_URL = "http://exslt.org/sets",
 			S_EXSLT_DATETIME_URL = "http://exslt.org/dates-and-times",
 			S_EXSLT_FUNCTIONS_URL = "http://exslt.org/functions",
 			S_EXSLT_DYNAMIC_URL = "http://exslt.org/dynamic",

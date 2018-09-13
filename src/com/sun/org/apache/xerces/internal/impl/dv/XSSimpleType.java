@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -107,16 +104,16 @@ public interface XSSimpleType extends XSSimpleTypeDefinition {
 	 * validate a given string against this simple type.
 	 *
 	 * @param content
-	 *            the string value that needs to be validated
+	 *                      the string value that needs to be validated
 	 * @param context
-	 *            the validation context
+	 *                      the validation context
 	 * @param validatedInfo
-	 *            used to store validation result
+	 *                      used to store validation result
 	 *
 	 * @return the actual value (QName, Boolean) of the string value
 	 */
-	public Object validate(String content, ValidationContext context, ValidatedInfo validatedInfo)
-			throws InvalidDatatypeValueException;
+	public Object validate(String content, ValidationContext context,
+			ValidatedInfo validatedInfo) throws InvalidDatatypeValueException;
 
 	/**
 	 * validate a given string value, represented by content.toString(). note
@@ -124,26 +121,26 @@ public interface XSSimpleType extends XSSimpleTypeDefinition {
 	 * that the content of the string buffer is modified.
 	 *
 	 * @param content
-	 *            the string value that needs to be validated
+	 *                      the string value that needs to be validated
 	 * @param context
-	 *            the validation context
+	 *                      the validation context
 	 * @param validatedInfo
-	 *            used to store validation result
+	 *                      used to store validation result
 	 *
 	 * @return the actual value (QName, Boolean) of the string value
 	 */
-	public Object validate(Object content, ValidationContext context, ValidatedInfo validatedInfo)
-			throws InvalidDatatypeValueException;
+	public Object validate(Object content, ValidationContext context,
+			ValidatedInfo validatedInfo) throws InvalidDatatypeValueException;
 
 	/**
 	 * Validate an actual value against this simple type.
 	 *
 	 * @param context
-	 *            the validation context
+	 *                      the validation context
 	 * @param validatedInfo
-	 *            used to provide the actual value and member types
+	 *                      used to provide the actual value and member types
 	 * @exception InvalidDatatypeValueException
-	 *                exception for invalid values.
+	 *                                          exception for invalid values.
 	 */
 	public void validate(ValidationContext context, ValidatedInfo validatedInfo)
 			throws InvalidDatatypeValueException;
@@ -154,28 +151,32 @@ public interface XSSimpleType extends XSSimpleTypeDefinition {
 	 * different facets.
 	 *
 	 * @param facets
-	 *            the value of all the facets
+	 *                     the value of all the facets
 	 * @param presentFacet
-	 *            bit combination value of the costraining facet constants which
-	 *            are present.
+	 *                     bit combination value of the costraining facet
+	 *                     constants which
+	 *                     are present.
 	 * @param fixedFacet
-	 *            bit combination value of the costraining facet constants which
-	 *            are fixed.
+	 *                     bit combination value of the costraining facet
+	 *                     constants which
+	 *                     are fixed.
 	 * @param context
-	 *            the validation context
+	 *                     the validation context
 	 * @exception InvalidDatatypeFacetException
-	 *                exception for invalid facet values.
+	 *                                          exception for invalid facet
+	 *                                          values.
 	 */
-	public void applyFacets(XSFacets facets, short presentFacet, short fixedFacet,
-			ValidationContext context) throws InvalidDatatypeFacetException;
+	public void applyFacets(XSFacets facets, short presentFacet,
+			short fixedFacet, ValidationContext context)
+			throws InvalidDatatypeFacetException;
 
 	/**
 	 * Check whether two actual values are equal.
 	 *
 	 * @param value1
-	 *            the first value
+	 *               the first value
 	 * @param value2
-	 *            the second value
+	 *               the second value
 	 * @return true if the two value are equal
 	 */
 	public boolean isEqual(Object value1, Object value2);
@@ -189,7 +190,7 @@ public interface XSSimpleType extends XSSimpleTypeDefinition {
 	 * potentially needs this compare() method.
 	 *
 	 * @param value1
-	 *            the first value
+	 *               the first value
 	 * @prarm value2 the second value
 	 * @return > 0 if value1 > value2 = 0 if value1 == value2 < = if value1 <
 	 *         value2
@@ -211,8 +212,9 @@ public interface XSSimpleType extends XSSimpleTypeDefinition {
 	 *
 	 * @return valid values are WS_PRESERVE, WS_REPLACE, WS_COLLAPSE.
 	 * @exception DatatypeException
-	 *                union datatypes don't have whitespace facet associated
-	 *                with them
+	 *                              union datatypes don't have whitespace facet
+	 *                              associated
+	 *                              with them
 	 */
 	public short getWhitespace() throws DatatypeException;
 }

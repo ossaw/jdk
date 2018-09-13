@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SerializationHandler.java,v 1.2.4.1 2005/09/15 08:15:22 suresh_emailid Exp $
+ * $Id: SerializationHandler.java,v 1.2.4.1 2005/09/15 08:15:22 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.serializer;
 
@@ -42,8 +40,8 @@ import org.xml.sax.ext.DeclHandler;
  *
  * @xsl.usage internal
  */
-public interface SerializationHandler
-		extends ExtendedContentHandler, ExtendedLexicalHandler, XSLOutputAttributes, DeclHandler,
+public interface SerializationHandler extends ExtendedContentHandler,
+		ExtendedLexicalHandler, XSLOutputAttributes, DeclHandler,
 		org.xml.sax.DTDHandler, ErrorHandler, DOMSerializer, Serializer {
 	/**
 	 * Set the SAX Content handler that the serializer sends its output to. This
@@ -61,7 +59,7 @@ public interface SerializationHandler
 	 * serialized.
 	 *
 	 * @param node
-	 *            the DOM node to be serialized.
+	 *             the DOM node to be serialized.
 	 * @throws IOException
 	 */
 	public void serialize(Node node) throws IOException;
@@ -73,7 +71,7 @@ public interface SerializationHandler
 	 * escaped within CDATA sections in output XML documents.
 	 *
 	 * @param escape
-	 *            true if escaping is to be set on.
+	 *               true if escaping is to be set on.
 	 */
 	public boolean setEscaping(boolean escape) throws SAXException;
 
@@ -81,7 +79,7 @@ public interface SerializationHandler
 	 * Set the number of spaces to indent for each indentation level.
 	 * 
 	 * @param spaces
-	 *            the number of spaces to indent for each indentation level.
+	 *               the number of spaces to indent for each indentation level.
 	 */
 	public void setIndentAmount(int spaces);
 
@@ -89,7 +87,7 @@ public interface SerializationHandler
 	 * Set the transformer associated with the serializer.
 	 * 
 	 * @param transformer
-	 *            the transformer associated with the serializer.
+	 *                    the transformer associated with the serializer.
 	 */
 	public void setTransformer(Transformer transformer);
 
@@ -105,7 +103,7 @@ public interface SerializationHandler
 	 * previous state.
 	 *
 	 * @param mappings
-	 *            NamespaceMappings
+	 *                 NamespaceMappings
 	 */
 	public void setNamespaceMappings(NamespaceMappings mappings);
 
@@ -121,8 +119,9 @@ public interface SerializationHandler
 	 * value is true.
 	 * 
 	 * @param expand
-	 *            true if DTD entities are to be expanded, false if they are to
-	 *            be left as DTD entity references.
+	 *               true if DTD entities are to be expanded, false if they are
+	 *               to
+	 *               be left as DTD entity references.
 	 */
 	public void setDTDEntityExpansion(boolean expand);
 
@@ -130,8 +129,9 @@ public interface SerializationHandler
 	 * Specify if the output will be treated as a standalone property
 	 * 
 	 * @param isStandalone
-	 *            true if the http://www.oracle.com/xml/is-standalone is set to
-	 *            yes
+	 *                     true if the http://www.oracle.com/xml/is-standalone
+	 *                     is set to
+	 *                     yes
 	 * @see OutputPropertiesFactory ORACLE_IS_STANDALONE
 	 */
 	public void setIsStandalone(boolean b);

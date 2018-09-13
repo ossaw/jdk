@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html.parser;
@@ -56,8 +36,7 @@ public final class ContentModel implements Serializable {
 	 */
 	public ContentModel next;
 
-	public ContentModel() {
-	}
+	public ContentModel() {}
 
 	/**
 	 * Create a content model for an element.
@@ -87,30 +66,30 @@ public final class ContentModel implements Serializable {
 	 */
 	public boolean empty() {
 		switch (type) {
-		case '*':
-		case '?':
-			return true;
+			case '*':
+			case '?':
+				return true;
 
-		case '+':
-		case '|':
-			for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
-				if (m.empty()) {
-					return true;
+			case '+':
+			case '|':
+				for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
+					if (m.empty()) {
+						return true;
+					}
 				}
-			}
-			return false;
+				return false;
 
-		case ',':
-		case '&':
-			for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
-				if (!m.empty()) {
-					return false;
+			case ',':
+			case '&':
+				for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
+					if (!m.empty()) {
+						return false;
+					}
 				}
-			}
-			return true;
+				return true;
 
-		default:
-			return false;
+			default:
+				return false;
 		}
 	}
 
@@ -120,20 +99,20 @@ public final class ContentModel implements Serializable {
 	 */
 	public void getElements(Vector<Element> elemVec) {
 		switch (type) {
-		case '*':
-		case '?':
-		case '+':
-			((ContentModel) content).getElements(elemVec);
-			break;
-		case ',':
-		case '|':
-		case '&':
-			for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
-				m.getElements(elemVec);
-			}
-			break;
-		default:
-			elemVec.addElement((Element) content);
+			case '*':
+			case '?':
+			case '+':
+				((ContentModel) content).getElements(elemVec);
+				break;
+			case ',':
+			case '|':
+			case '&':
+				for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
+					m.getElements(elemVec);
+				}
+				break;
+			default:
+				elemVec.addElement((Element) content);
 		}
 	}
 
@@ -149,50 +128,51 @@ public final class ContentModel implements Serializable {
 	 */
 	public boolean first(Object token) {
 		switch (type) {
-		case '*':
-		case '?':
-		case '+':
-			return ((ContentModel) content).first(token);
+			case '*':
+			case '?':
+			case '+':
+				return ((ContentModel) content).first(token);
 
-		case ',':
-			for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
-				if (m.first(token)) {
-					return true;
+			case ',':
+				for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
+					if (m.first(token)) {
+						return true;
+					}
+					if (!m.empty()) {
+						return false;
+					}
 				}
-				if (!m.empty()) {
-					return false;
-				}
-			}
-			return false;
+				return false;
 
-		case '|':
-		case '&': {
-			Element e = (Element) token;
-			if (valSet == null || valSet.length <= Element.getMaxIndex()) {
-				valSet = new boolean[Element.getMaxIndex() + 1];
-				val = new boolean[valSet.length];
-			}
-			if (valSet[e.index]) {
+			case '|':
+			case '&': {
+				Element e = (Element) token;
+				if (valSet == null || valSet.length <= Element.getMaxIndex()) {
+					valSet = new boolean[Element.getMaxIndex() + 1];
+					val = new boolean[valSet.length];
+				}
+				if (valSet[e.index]) {
+					return val[e.index];
+				}
+				for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
+					if (m.first(token)) {
+						val[e.index] = true;
+						break;
+					}
+				}
+				valSet[e.index] = true;
 				return val[e.index];
 			}
-			for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
-				if (m.first(token)) {
-					val[e.index] = true;
-					break;
-				}
-			}
-			valSet[e.index] = true;
-			return val[e.index];
-		}
 
-		default:
-			return (content == token);
-		// PENDING: refer to comment in ContentModelState
-		/*
-		 * if (content == token) { return true; } Element e = (Element)content;
-		 * if (e.omitStart() && e.content != null) { return
-		 * e.content.first(token); } return false;
-		 */
+			default:
+				return (content == token);
+			// PENDING: refer to comment in ContentModelState
+			/*
+			 * if (content == token) { return true; } Element e =
+			 * (Element)content;
+			 * if (e.omitStart() && e.content != null) { return
+			 * e.content.first(token); } return false;
+			 */
 		}
 	}
 
@@ -201,18 +181,18 @@ public final class ContentModel implements Serializable {
 	 */
 	public Element first() {
 		switch (type) {
-		case '&':
-		case '|':
-		case '*':
-		case '?':
-			return null;
+			case '&':
+			case '|':
+			case '*':
+			case '?':
+				return null;
 
-		case '+':
-		case ',':
-			return ((ContentModel) content).first();
+			case '+':
+			case ',':
+				return ((ContentModel) content).first();
 
-		default:
-			return (Element) content;
+			default:
+				return (Element) content;
 		}
 	}
 
@@ -221,28 +201,28 @@ public final class ContentModel implements Serializable {
 	 */
 	public String toString() {
 		switch (type) {
-		case '*':
-			return content + "*";
-		case '?':
-			return content + "?";
-		case '+':
-			return content + "+";
+			case '*':
+				return content + "*";
+			case '?':
+				return content + "?";
+			case '+':
+				return content + "+";
 
-		case ',':
-		case '|':
-		case '&':
-			char data[] = { ' ', (char) type, ' ' };
-			String str = "";
-			for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
-				str = str + m;
-				if (m.next != null) {
-					str += new String(data);
+			case ',':
+			case '|':
+			case '&':
+				char data[] = { ' ', (char) type, ' ' };
+				String str = "";
+				for (ContentModel m = (ContentModel) content; m != null; m = m.next) {
+					str = str + m;
+					if (m.next != null) {
+						str += new String(data);
+					}
 				}
-			}
-			return "(" + str + ")";
+				return "(" + str + ")";
 
-		default:
-			return content.toString();
+			default:
+				return content.toString();
 		}
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -47,7 +27,8 @@ final class TableEditorPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -55,7 +36,8 @@ final class TableEditorPainter extends AbstractRegionPainter {
 	// by a particular instance of TableEditorPainter would be created. For the
 	// moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+	private Color color1 = decodeColor("nimbusLightBackground", 0.0f, 0.0f,
+			0.0f, 0);
 	private Color color2 = decodeColor("nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
 
 	// Array of current component colors, updated in each paint call
@@ -76,12 +58,12 @@ final class TableEditorPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_ENABLED:
-			paintBackgroundEnabled(g);
-			break;
-		case BACKGROUND_ENABLED_FOCUSED:
-			paintBackgroundEnabledAndFocused(g);
-			break;
+			case BACKGROUND_ENABLED:
+				paintBackgroundEnabled(g);
+				break;
+			case BACKGROUND_ENABLED_FOCUSED:
+				paintBackgroundEnabledAndFocused(g);
+				break;
 
 		}
 	}

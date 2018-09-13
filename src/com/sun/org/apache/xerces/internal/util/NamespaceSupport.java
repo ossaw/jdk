@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
  * Copyright (c) 2000-2002 The Apache Software Foundation.
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -119,8 +109,7 @@ public class NamespaceSupport implements NamespaceContext {
 	//
 
 	/** Default constructor. */
-	public NamespaceSupport() {
-	} // <init>()
+	public NamespaceSupport() {} // <init>()
 
 	/**
 	 * Constructs a namespace context object and initializes it with the
@@ -195,7 +184,8 @@ public class NamespaceSupport implements NamespaceContext {
 	 */
 	public boolean declarePrefix(String prefix, String uri) {
 		// ignore "xml" and "xmlns" prefixes
-		if (prefix == XMLSymbols.PREFIX_XML || prefix == XMLSymbols.PREFIX_XMLNS) {
+		if (prefix == XMLSymbols.PREFIX_XML
+				|| prefix == XMLSymbols.PREFIX_XMLNS) {
 			return false;
 		}
 
@@ -353,7 +343,7 @@ public class NamespaceSupport implements NamespaceContext {
 	 * context.
 	 *
 	 * @param prefix
-	 *            The prefix to look up.
+	 *               The prefix to look up.
 	 *
 	 * @return true if the given prefix exists in the context
 	 */
@@ -375,7 +365,7 @@ public class NamespaceSupport implements NamespaceContext {
 	 * current context.
 	 *
 	 * @param prefix
-	 *            The prefix to look up.
+	 *               The prefix to look up.
 	 *
 	 * @return true if the given prefix exists in the current context
 	 */
@@ -419,7 +409,8 @@ public class NamespaceSupport implements NamespaceContext {
 			if (counter < size) {
 				return fPrefixes[counter++];
 			}
-			throw new NoSuchElementException("Illegal access to Namespace prefixes enumeration.");
+			throw new NoSuchElementException(
+					"Illegal access to Namespace prefixes enumeration.");
 		}
 
 		public String toString() {
@@ -464,7 +455,8 @@ public class NamespaceSupport implements NamespaceContext {
 			if (counter < size) {
 				return fPrefixes[counter++];
 			}
-			throw new NoSuchElementException("Illegal access to Namespace prefixes enumeration.");
+			throw new NoSuchElementException(
+					"Illegal access to Namespace prefixes enumeration.");
 		}
 
 		public String toString() {

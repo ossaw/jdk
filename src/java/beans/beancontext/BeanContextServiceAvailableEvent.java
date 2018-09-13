@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans.beancontext;
@@ -80,7 +60,8 @@ public class BeanContextServiceAvailableEvent extends BeanContextEvent {
 	 * @return the current selectors available from the service
 	 */
 	public Iterator getCurrentServiceSelectors() {
-		return ((BeanContextServices) getSource()).getCurrentServiceSelectors(serviceClass);
+		return ((BeanContextServices) getSource()).getCurrentServiceSelectors(
+				serviceClass);
 	}
 
 	/*

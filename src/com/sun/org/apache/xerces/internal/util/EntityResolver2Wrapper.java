@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,8 +55,7 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 	//
 
 	/** Default constructor. */
-	public EntityResolver2Wrapper() {
-	}
+	public EntityResolver2Wrapper() {}
 
 	/**
 	 * <p>
@@ -67,7 +63,7 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 	 * </p>
 	 *
 	 * @param entityResolver
-	 *            the SAX entity resolver to wrap
+	 *                       the SAX entity resolver to wrap
 	 */
 	public EntityResolver2Wrapper(EntityResolver2 entityResolver) {
 		setEntityResolver(entityResolver);
@@ -83,7 +79,7 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 	 * </p>
 	 *
 	 * @param entityResolver
-	 *            the SAX entity resolver to wrap
+	 *                       the SAX entity resolver to wrap
 	 */
 	public void setEntityResolver(EntityResolver2 entityResolver) {
 		fEntityResolver = entityResolver;
@@ -112,16 +108,18 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 	 * </p>
 	 *
 	 * @param grammarDescription
-	 *            a description of the DTD
+	 *                           a description of the DTD
 	 *
 	 * @throws XNIException
-	 *             Thrown on general error.
+	 *                      Thrown on general error.
 	 * @throws IOException
-	 *             Thrown if resolved entity stream cannot be opened or some
-	 *             other i/o error occurs.
+	 *                      Thrown if resolved entity stream cannot be opened or
+	 *                      some
+	 *                      other i/o error occurs.
 	 */
-	public XMLInputSource getExternalSubset(XMLDTDDescription grammarDescription)
-			throws XNIException, IOException {
+	public XMLInputSource getExternalSubset(
+			XMLDTDDescription grammarDescription) throws XNIException,
+			IOException {
 
 		if (fEntityResolver != null) {
 
@@ -130,8 +128,10 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 
 			// Resolve using EntityResolver2
 			try {
-				InputSource inputSource = fEntityResolver.getExternalSubset(name, baseURI);
-				return (inputSource != null) ? createXMLInputSource(inputSource, baseURI) : null;
+				InputSource inputSource = fEntityResolver.getExternalSubset(
+						name, baseURI);
+				return (inputSource != null) ? createXMLInputSource(inputSource,
+						baseURI) : null;
 			}
 			// error resolving external subset
 			catch (SAXException e) {
@@ -157,17 +157,20 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 	 * this method should return null.
 	 *
 	 * @param resourceIdentifier
-	 *            contains the physical co-ordinates of the resource to be
-	 *            resolved
+	 *                           contains the physical co-ordinates of the
+	 *                           resource to be
+	 *                           resolved
 	 *
 	 * @throws XNIException
-	 *             Thrown on general error.
+	 *                      Thrown on general error.
 	 * @throws IOException
-	 *             Thrown if resolved entity stream cannot be opened or some
-	 *             other i/o error occurs.
+	 *                      Thrown if resolved entity stream cannot be opened or
+	 *                      some
+	 *                      other i/o error occurs.
 	 */
-	public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
-			throws XNIException, IOException {
+	public XMLInputSource resolveEntity(
+			XMLResourceIdentifier resourceIdentifier) throws XNIException,
+			IOException {
 
 		if (fEntityResolver != null) {
 
@@ -178,7 +181,8 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 			if (resourceIdentifier instanceof XMLDTDDescription) {
 				name = "[dtd]";
 			} else if (resourceIdentifier instanceof XMLEntityDescription) {
-				name = ((XMLEntityDescription) resourceIdentifier).getEntityName();
+				name = ((XMLEntityDescription) resourceIdentifier)
+						.getEntityName();
 			}
 
 			// When both pubId and sysId are null, the user's entity resolver
@@ -192,9 +196,10 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 
 			// Resolve using EntityResolver2
 			try {
-				InputSource inputSource = fEntityResolver.resolveEntity(name, pubId, baseURI,
-						sysId);
-				return (inputSource != null) ? createXMLInputSource(inputSource, baseURI) : null;
+				InputSource inputSource = fEntityResolver.resolveEntity(name,
+						pubId, baseURI, sysId);
+				return (inputSource != null) ? createXMLInputSource(inputSource,
+						baseURI) : null;
 			}
 			// error resolving entity
 			catch (SAXException e) {
@@ -214,7 +219,8 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 	/**
 	 * Creates an XMLInputSource from a SAX InputSource.
 	 */
-	private XMLInputSource createXMLInputSource(InputSource source, String baseURI) {
+	private XMLInputSource createXMLInputSource(InputSource source,
+			String baseURI) {
 
 		String publicId = source.getPublicId();
 		String systemId = source.getSystemId();
@@ -222,7 +228,8 @@ public class EntityResolver2Wrapper implements ExternalSubsetResolver {
 		InputStream byteStream = source.getByteStream();
 		Reader charStream = source.getCharacterStream();
 		String encoding = source.getEncoding();
-		XMLInputSource xmlInputSource = new XMLInputSource(publicId, systemId, baseSystemId);
+		XMLInputSource xmlInputSource = new XMLInputSource(publicId, systemId,
+				baseSystemId);
 		xmlInputSource.setByteStream(byteStream);
 		xmlInputSource.setCharacterStream(charStream);
 		xmlInputSource.setEncoding(encoding);

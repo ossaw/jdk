@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -34,11 +14,11 @@ package org.omg.CORBA;
  * 5:32:50 PM PDT
  */
 
-public final class WrongTransactionHolder implements org.omg.CORBA.portable.Streamable {
+public final class WrongTransactionHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public org.omg.CORBA.WrongTransaction value = null;
 
-	public WrongTransactionHolder() {
-	}
+	public WrongTransactionHolder() {}
 
 	public WrongTransactionHolder(org.omg.CORBA.WrongTransaction initialValue) {
 		value = initialValue;

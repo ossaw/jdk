@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -130,11 +110,13 @@ public interface MidiDevice extends AutoCloseable {
 	 * reopen such a device will always result in a MidiUnavailableException.
 	 *
 	 * @throws MidiUnavailableException
-	 *             thrown if the device cannot be opened due to resource
-	 *             restrictions.
+	 *                                  thrown if the device cannot be opened
+	 *                                  due to resource
+	 *                                  restrictions.
 	 * @throws SecurityException
-	 *             thrown if the device cannot be opened due to security
-	 *             restrictions.
+	 *                                  thrown if the device cannot be opened
+	 *                                  due to security
+	 *                                  restrictions.
 	 *
 	 * @see #close
 	 * @see #isOpen
@@ -213,8 +195,9 @@ public interface MidiDevice extends AutoCloseable {
 	 *
 	 * @return a receiver for the device.
 	 * @throws MidiUnavailableException
-	 *             thrown if a receiver is not available due to resource
-	 *             restrictions
+	 *                                  thrown if a receiver is not available
+	 *                                  due to resource
+	 *                                  restrictions
 	 * @see Receiver#close()
 	 */
 	public Receiver getReceiver() throws MidiUnavailableException;
@@ -250,8 +233,9 @@ public interface MidiDevice extends AutoCloseable {
 	 *
 	 * @return a MIDI OUT transmitter for the device.
 	 * @throws MidiUnavailableException
-	 *             thrown if a transmitter is not available due to resource
-	 *             restrictions
+	 *                                  thrown if a transmitter is not available
+	 *                                  due to resource
+	 *                                  restrictions
 	 * @see Transmitter#close()
 	 */
 	public Transmitter getTransmitter() throws MidiUnavailableException;
@@ -302,15 +286,16 @@ public interface MidiDevice extends AutoCloseable {
 		 * Constructs a device info object.
 		 *
 		 * @param name
-		 *            the name of the device
+		 *                    the name of the device
 		 * @param vendor
-		 *            the name of the company who provides the device
+		 *                    the name of the company who provides the device
 		 * @param description
-		 *            a description of the device
+		 *                    a description of the device
 		 * @param version
-		 *            version information for the device
+		 *                    version information for the device
 		 */
-		protected Info(String name, String vendor, String description, String version) {
+		protected Info(String name, String vendor, String description,
+				String version) {
 
 			this.name = name;
 			this.vendor = vendor;

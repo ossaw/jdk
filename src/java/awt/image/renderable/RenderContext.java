@@ -1,36 +1,13 @@
 /*
  * Copyright (c) 1998, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
-/* ********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997                      ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
- **********************************************************************
- **********************************************************************
+/*
+ * ********************************************************************
+ ********************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997 ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************/
 
 package java.awt.image.renderable;
@@ -81,13 +58,14 @@ public class RenderContext implements Cloneable {
 	 * RenderingHints object.
 	 *
 	 * @param usr2dev
-	 *            an AffineTransform.
+	 *                an AffineTransform.
 	 * @param aoi
-	 *            a Shape representing the area of interest.
+	 *                a Shape representing the area of interest.
 	 * @param hints
-	 *            a RenderingHints object containing rendering hints.
+	 *                a RenderingHints object containing rendering hints.
 	 */
-	public RenderContext(AffineTransform usr2dev, Shape aoi, RenderingHints hints) {
+	public RenderContext(AffineTransform usr2dev, Shape aoi,
+			RenderingHints hints) {
 		this.hints = hints;
 		this.aoi = aoi;
 		this.usr2dev = (AffineTransform) usr2dev.clone();
@@ -98,7 +76,7 @@ public class RenderContext implements Cloneable {
 	 * is taken to be the entire renderable area. No rendering hints are used.
 	 *
 	 * @param usr2dev
-	 *            an AffineTransform.
+	 *                an AffineTransform.
 	 */
 	public RenderContext(AffineTransform usr2dev) {
 		this(usr2dev, null, null);
@@ -109,9 +87,9 @@ public class RenderContext implements Cloneable {
 	 * The area of interest is taken to be the entire renderable area.
 	 *
 	 * @param usr2dev
-	 *            an AffineTransform.
+	 *                an AffineTransform.
 	 * @param hints
-	 *            a RenderingHints object containing rendering hints.
+	 *                a RenderingHints object containing rendering hints.
 	 */
 	public RenderContext(AffineTransform usr2dev, RenderingHints hints) {
 		this(usr2dev, null, hints);
@@ -122,9 +100,9 @@ public class RenderContext implements Cloneable {
 	 * The area of interest is supplied as a Shape. No rendering hints are used.
 	 *
 	 * @param usr2dev
-	 *            an AffineTransform.
+	 *                an AffineTransform.
 	 * @param aoi
-	 *            a Shape representing the area of interest.
+	 *                a Shape representing the area of interest.
 	 */
 	public RenderContext(AffineTransform usr2dev, Shape aoi) {
 		this(usr2dev, aoi, null);
@@ -145,8 +123,9 @@ public class RenderContext implements Cloneable {
 	 * Sets the rendering hints of this <code>RenderContext</code>.
 	 * 
 	 * @param hints
-	 *            a <code>RenderingHints</code> object that represents the
-	 *            rendering hints to assign to this <code>RenderContext</code>.
+	 *              a <code>RenderingHints</code> object that represents the
+	 *              rendering hints to assign to this
+	 *              <code>RenderContext</code>.
 	 * @see #getRenderingHints
 	 */
 	public void setRenderingHints(RenderingHints hints) {
@@ -158,7 +137,7 @@ public class RenderContext implements Cloneable {
 	 * RenderContext to a given transform.
 	 *
 	 * @param newTransform
-	 *            the new AffineTransform.
+	 *                     the new AffineTransform.
 	 * @see #getTransform
 	 */
 	public void setTransform(AffineTransform newTransform) {
@@ -174,8 +153,8 @@ public class RenderContext implements Cloneable {
 	 * </pre>
 	 *
 	 * @param modTransform
-	 *            the AffineTransform to prepend to the current usr2dev
-	 *            transform.
+	 *                     the AffineTransform to prepend to the current usr2dev
+	 *                     transform.
 	 * @since 1.3
 	 */
 	public void preConcatenateTransform(AffineTransform modTransform) {
@@ -195,8 +174,8 @@ public class RenderContext implements Cloneable {
 	 * misspelled the method name.
 	 *
 	 * @param modTransform
-	 *            the AffineTransform to prepend to the current usr2dev
-	 *            transform.
+	 *                     the AffineTransform to prepend to the current usr2dev
+	 *                     transform.
 	 * @deprecated replaced by
 	 *             <code>preConcatenateTransform(AffineTransform)</code>.
 	 */
@@ -214,8 +193,8 @@ public class RenderContext implements Cloneable {
 	 * </pre>
 	 *
 	 * @param modTransform
-	 *            the AffineTransform to append to the current usr2dev
-	 *            transform.
+	 *                     the AffineTransform to append to the current usr2dev
+	 *                     transform.
 	 * @since 1.3
 	 */
 	public void concatenateTransform(AffineTransform modTransform) {
@@ -235,8 +214,8 @@ public class RenderContext implements Cloneable {
 	 * the method name.
 	 *
 	 * @param modTransform
-	 *            the AffineTransform to append to the current usr2dev
-	 *            transform.
+	 *                     the AffineTransform to append to the current usr2dev
+	 *                     transform.
 	 * @deprecated replaced by
 	 *             <code>concatenateTransform(AffineTransform)</code>.
 	 */
@@ -259,7 +238,7 @@ public class RenderContext implements Cloneable {
 	 * Sets the current area of interest. The old area is discarded.
 	 *
 	 * @param newAoi
-	 *            The new area of interest.
+	 *               The new area of interest.
 	 * @see #getAreaOfInterest
 	 */
 	public void setAreaOfInterest(Shape newAoi) {

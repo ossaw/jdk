@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -212,8 +192,7 @@ import sun.management.ExtendedPlatformComponent;
  */
 public class ManagementFactory {
 	// A class with only static fields and methods.
-	private ManagementFactory() {
-	};
+	private ManagementFactory() {};
 
 	/**
 	 * String representation of the <tt>ObjectName</tt> for the
@@ -410,10 +389,11 @@ public class ManagementFactory {
 	 *         time this method is called.
 	 *
 	 * @exception SecurityException
-	 *                if there is a security manager and the caller does not
-	 *                have the permission required by
-	 *                {@link javax.management.MBeanServerFactory#createMBeanServer}
-	 *                .
+	 *                              if there is a security manager and the
+	 *                              caller does not
+	 *                              have the permission required by
+	 *                              {@link javax.management.MBeanServerFactory#createMBeanServer}
+	 *                              .
 	 *
 	 * @see javax.management.MBeanServerFactory
 	 * @see javax.management.MBeanServerFactory#createMBeanServer
@@ -428,7 +408,8 @@ public class ManagementFactory {
 		if (platformMBeanServer == null) {
 			platformMBeanServer = MBeanServerFactory.createMBeanServer();
 			for (PlatformComponent pc : PlatformComponent.values()) {
-				List<? extends PlatformManagedObject> list = pc.getMXBeans(pc.getMXBeanInterface());
+				List<? extends PlatformManagedObject> list = pc.getMXBeans(pc
+						.getMXBeanInterface());
 				for (PlatformManagedObject o : list) {
 					// Each PlatformComponent represents one management
 					// interface. Some MXBean may extend another one.
@@ -449,7 +430,8 @@ public class ManagementFactory {
 			for (Map.Entry<ObjectName, DynamicMBean> e : dynmbeans.entrySet()) {
 				addDynamicMBean(platformMBeanServer, e.getValue(), e.getKey());
 			}
-			for (final PlatformManagedObject o : ExtendedPlatformComponent.getMXBeans()) {
+			for (final PlatformManagedObject o : ExtendedPlatformComponent
+					.getMXBeans()) {
 				if (!platformMBeanServer.isRegistered(o.getObjectName())) {
 					addMXBean(platformMBeanServer, o);
 				}
@@ -512,15 +494,18 @@ public class ManagementFactory {
 	 * </ol>
 	 *
 	 * @param connection
-	 *            the <tt>MBeanServerConnection</tt> to forward to.
+	 *                        the <tt>MBeanServerConnection</tt> to forward to.
 	 * @param mxbeanName
-	 *            the name of a platform MXBean within <tt>connection</tt> to
-	 *            forward to. <tt>mxbeanName</tt> must be in the format of
-	 *            {@link ObjectName ObjectName}.
+	 *                        the name of a platform MXBean within
+	 *                        <tt>connection</tt> to
+	 *                        forward to. <tt>mxbeanName</tt> must be in the
+	 *                        format of
+	 *                        {@link ObjectName ObjectName}.
 	 * @param mxbeanInterface
-	 *            the MXBean interface to be implemented by the proxy.
-	 * @param <T>
-	 *            an {@code mxbeanInterface} type parameter
+	 *                        the MXBean interface to be implemented by the
+	 *                        proxy.
+	 * @param                 <T>
+	 *                        an {@code mxbeanInterface} type parameter
 	 *
 	 * @return a proxy for a platform MXBean interface of a given
 	 *         <a href="#MXBeanNames">MXBean name</a> that forwards its method
@@ -528,35 +513,43 @@ public class ManagementFactory {
 	 *         {@code null} if not exist.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if
-	 *             <ul>
-	 *             <li><tt>mxbeanName</tt> is not with a valid {@link ObjectName
-	 *             ObjectName} format, or</li>
-	 *             <li>the named MXBean in the <tt>connection</tt> is not a
-	 *             MXBean provided by the platform, or</li>
-	 *             <li>the named MXBean is not registered in the
-	 *             <tt>MBeanServerConnection</tt>, or</li>
-	 *             <li>the named MXBean is not an instance of the given
-	 *             <tt>mxbeanInterface</tt></li>
-	 *             </ul>
+	 *                                  if
+	 *                                  <ul>
+	 *                                  <li><tt>mxbeanName</tt> is not with a
+	 *                                  valid {@link ObjectName
+	 *                                  ObjectName} format, or</li>
+	 *                                  <li>the named MXBean in the
+	 *                                  <tt>connection</tt> is not a
+	 *                                  MXBean provided by the platform, or</li>
+	 *                                  <li>the named MXBean is not registered
+	 *                                  in the
+	 *                                  <tt>MBeanServerConnection</tt>, or</li>
+	 *                                  <li>the named MXBean is not an instance
+	 *                                  of the given
+	 *                                  <tt>mxbeanInterface</tt></li>
+	 *                                  </ul>
 	 *
-	 * @throws java.io.IOException
-	 *             if a communication problem occurred when accessing the
-	 *             <tt>MBeanServerConnection</tt>.
+	 * @throws                          java.io.IOException
+	 *                                  if a communication problem occurred when
+	 *                                  accessing the
+	 *                                  <tt>MBeanServerConnection</tt>.
 	 */
-	public static <T> T newPlatformMXBeanProxy(MBeanServerConnection connection, String mxbeanName,
-			Class<T> mxbeanInterface) throws java.io.IOException {
+	public static <T> T newPlatformMXBeanProxy(MBeanServerConnection connection,
+			String mxbeanName, Class<T> mxbeanInterface)
+			throws java.io.IOException {
 
 		// Only allow MXBean interfaces from rt.jar loaded by the
 		// bootstrap class loader
 		final Class<?> cls = mxbeanInterface;
-		ClassLoader loader = AccessController.doPrivileged(new PrivilegedAction<ClassLoader>() {
-			public ClassLoader run() {
-				return cls.getClassLoader();
-			}
-		});
+		ClassLoader loader = AccessController.doPrivileged(
+				new PrivilegedAction<ClassLoader>() {
+					public ClassLoader run() {
+						return cls.getClassLoader();
+					}
+				});
 		if (!sun.misc.VM.isSystemDomainLoader(loader)) {
-			throw new IllegalArgumentException(mxbeanName + " is not a platform MXBean");
+			throw new IllegalArgumentException(mxbeanName
+					+ " is not a platform MXBean");
 		}
 
 		try {
@@ -564,8 +557,8 @@ public class ManagementFactory {
 			// skip the isInstanceOf check for LoggingMXBean
 			String intfName = mxbeanInterface.getName();
 			if (!connection.isInstanceOf(objName, intfName)) {
-				throw new IllegalArgumentException(
-						mxbeanName + " is not an instance of " + mxbeanInterface);
+				throw new IllegalArgumentException(mxbeanName
+						+ " is not an instance of " + mxbeanInterface);
 			}
 
 			final Class[] interfaces;
@@ -573,7 +566,8 @@ public class ManagementFactory {
 			boolean emitter = connection.isInstanceOf(objName, NOTIF_EMITTER);
 
 			// create an MXBean proxy
-			return JMX.newMXBeanProxy(connection, objName, mxbeanInterface, emitter);
+			return JMX.newMXBeanProxy(connection, objName, mxbeanInterface,
+					emitter);
 		} catch (InstanceNotFoundException | MalformedObjectNameException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -594,33 +588,39 @@ public class ManagementFactory {
 	 * </pre>
 	 *
 	 * @param mxbeanInterface
-	 *            a management interface for a platform MXBean with one single
-	 *            instance in the Java virtual machine if implemented.
-	 * @param <T>
-	 *            an {@code mxbeanInterface} type parameter
+	 *                        a management interface for a platform MXBean with
+	 *                        one single
+	 *                        instance in the Java virtual machine if
+	 *                        implemented.
+	 * @param                 <T>
+	 *                        an {@code mxbeanInterface} type parameter
 	 *
 	 * @return the platform MXBean that implements {@code mxbeanInterface}, or
 	 *         {@code null} if not exist.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code mxbeanInterface} is not a platform management
-	 *             interface or not a singleton platform MXBean.
+	 *                                  if {@code mxbeanInterface} is not a
+	 *                                  platform management
+	 *                                  interface or not a singleton platform
+	 *                                  MXBean.
 	 *
 	 * @since 1.7
 	 */
-	public static <T extends PlatformManagedObject> T getPlatformMXBean(Class<T> mxbeanInterface) {
-		PlatformComponent pc = PlatformComponent.getPlatformComponent(mxbeanInterface);
+	public static <T extends PlatformManagedObject> T getPlatformMXBean(
+			Class<T> mxbeanInterface) {
+		PlatformComponent pc = PlatformComponent.getPlatformComponent(
+				mxbeanInterface);
 		if (pc == null) {
 			T mbean = ExtendedPlatformComponent.getMXBean(mxbeanInterface);
 			if (mbean != null) {
 				return mbean;
 			}
-			throw new IllegalArgumentException(
-					mxbeanInterface.getName() + " is not a platform management interface");
+			throw new IllegalArgumentException(mxbeanInterface.getName()
+					+ " is not a platform management interface");
 		}
 		if (!pc.isSingleton())
-			throw new IllegalArgumentException(
-					mxbeanInterface.getName() + " can have zero or more than one instances");
+			throw new IllegalArgumentException(mxbeanInterface.getName()
+					+ " can have zero or more than one instances");
 
 		return pc.getSingletonMXBean(mxbeanInterface);
 	}
@@ -634,29 +634,31 @@ public class ManagementFactory {
 	 * returned is in the same order as previous invocations.
 	 *
 	 * @param mxbeanInterface
-	 *            a management interface for a platform MXBean
-	 * @param <T>
-	 *            an {@code mxbeanInterface} type parameter
+	 *                        a management interface for a platform MXBean
+	 * @param                 <T>
+	 *                        an {@code mxbeanInterface} type parameter
 	 *
 	 * @return the list of platform MXBeans that implement
 	 *         {@code mxbeanInterface}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code mxbeanInterface} is not a platform management
-	 *             interface.
+	 *                                  if {@code mxbeanInterface} is not a
+	 *                                  platform management
+	 *                                  interface.
 	 *
 	 * @since 1.7
 	 */
 	public static <T extends PlatformManagedObject> List<T> getPlatformMXBeans(
 			Class<T> mxbeanInterface) {
-		PlatformComponent pc = PlatformComponent.getPlatformComponent(mxbeanInterface);
+		PlatformComponent pc = PlatformComponent.getPlatformComponent(
+				mxbeanInterface);
 		if (pc == null) {
 			T mbean = ExtendedPlatformComponent.getMXBean(mxbeanInterface);
 			if (mbean != null) {
 				return Collections.singletonList(mbean);
 			}
-			throw new IllegalArgumentException(
-					mxbeanInterface.getName() + " is not a platform management interface");
+			throw new IllegalArgumentException(mxbeanInterface.getName()
+					+ " is not a platform management interface");
 		}
 		return Collections.unmodifiableList(pc.getMXBeans(mxbeanInterface));
 	}
@@ -677,44 +679,51 @@ public class ManagementFactory {
 	 * </pre>
 	 *
 	 * @param connection
-	 *            the {@code MBeanServerConnection} to forward to.
+	 *                        the {@code MBeanServerConnection} to forward to.
 	 * @param mxbeanInterface
-	 *            a management interface for a platform MXBean with one single
-	 *            instance in the Java virtual machine being monitored, if
-	 *            implemented.
-	 * @param <T>
-	 *            an {@code mxbeanInterface} type parameter
+	 *                        a management interface for a platform MXBean with
+	 *                        one single
+	 *                        instance in the Java virtual machine being
+	 *                        monitored, if
+	 *                        implemented.
+	 * @param                 <T>
+	 *                        an {@code mxbeanInterface} type parameter
 	 *
 	 * @return the platform MXBean proxy for forwarding the method calls of the
 	 *         {@code mxbeanInterface} through the given
 	 *         {@code MBeanServerConnection}, or {@code null} if not exist.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code mxbeanInterface} is not a platform management
-	 *             interface or not a singleton platform MXBean.
-	 * @throws java.io.IOException
-	 *             if a communication problem occurred when accessing the
-	 *             {@code MBeanServerConnection}.
+	 *                                  if {@code mxbeanInterface} is not a
+	 *                                  platform management
+	 *                                  interface or not a singleton platform
+	 *                                  MXBean.
+	 * @throws                          java.io.IOException
+	 *                                  if a communication problem occurred when
+	 *                                  accessing the
+	 *                                  {@code MBeanServerConnection}.
 	 *
 	 * @see #newPlatformMXBeanProxy
 	 * @since 1.7
 	 */
 	public static <T extends PlatformManagedObject> T getPlatformMXBean(
-			MBeanServerConnection connection, Class<T> mxbeanInterface) throws java.io.IOException {
-		PlatformComponent pc = PlatformComponent.getPlatformComponent(mxbeanInterface);
+			MBeanServerConnection connection, Class<T> mxbeanInterface)
+			throws java.io.IOException {
+		PlatformComponent pc = PlatformComponent.getPlatformComponent(
+				mxbeanInterface);
 		if (pc == null) {
 			T mbean = ExtendedPlatformComponent.getMXBean(mxbeanInterface);
 			if (mbean != null) {
 				ObjectName on = mbean.getObjectName();
-				return ManagementFactory.newPlatformMXBeanProxy(connection, on.getCanonicalName(),
-						mxbeanInterface);
+				return ManagementFactory.newPlatformMXBeanProxy(connection, on
+						.getCanonicalName(), mxbeanInterface);
 			}
-			throw new IllegalArgumentException(
-					mxbeanInterface.getName() + " is not a platform management interface");
+			throw new IllegalArgumentException(mxbeanInterface.getName()
+					+ " is not a platform management interface");
 		}
 		if (!pc.isSingleton())
-			throw new IllegalArgumentException(
-					mxbeanInterface.getName() + " can have zero or more than one instances");
+			throw new IllegalArgumentException(mxbeanInterface.getName()
+					+ " can have zero or more than one instances");
 		return pc.getSingletonMXBean(connection, mxbeanInterface);
 	}
 
@@ -728,30 +737,34 @@ public class ManagementFactory {
 	 * same order as previous invocations.
 	 *
 	 * @param connection
-	 *            the {@code MBeanServerConnection} to forward to.
+	 *                        the {@code MBeanServerConnection} to forward to.
 	 * @param mxbeanInterface
-	 *            a management interface for a platform MXBean
-	 * @param <T>
-	 *            an {@code mxbeanInterface} type parameter
+	 *                        a management interface for a platform MXBean
+	 * @param                 <T>
+	 *                        an {@code mxbeanInterface} type parameter
 	 *
 	 * @return the list of platform MXBean proxies for forwarding the method
 	 *         calls of the {@code mxbeanInterface} through the given
 	 *         {@code MBeanServerConnection}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code mxbeanInterface} is not a platform management
-	 *             interface.
+	 *                                  if {@code mxbeanInterface} is not a
+	 *                                  platform management
+	 *                                  interface.
 	 *
-	 * @throws java.io.IOException
-	 *             if a communication problem occurred when accessing the
-	 *             {@code MBeanServerConnection}.
+	 * @throws                          java.io.IOException
+	 *                                  if a communication problem occurred when
+	 *                                  accessing the
+	 *                                  {@code MBeanServerConnection}.
 	 *
 	 * @see #newPlatformMXBeanProxy
 	 * @since 1.7
 	 */
 	public static <T extends PlatformManagedObject> List<T> getPlatformMXBeans(
-			MBeanServerConnection connection, Class<T> mxbeanInterface) throws java.io.IOException {
-		PlatformComponent pc = PlatformComponent.getPlatformComponent(mxbeanInterface);
+			MBeanServerConnection connection, Class<T> mxbeanInterface)
+			throws java.io.IOException {
+		PlatformComponent pc = PlatformComponent.getPlatformComponent(
+				mxbeanInterface);
 		if (pc == null) {
 			T mbean = ExtendedPlatformComponent.getMXBean(mxbeanInterface);
 			if (mbean != null) {
@@ -760,10 +773,11 @@ public class ManagementFactory {
 						on.getCanonicalName(), mxbeanInterface);
 				return Collections.singletonList(proxy);
 			}
-			throw new IllegalArgumentException(
-					mxbeanInterface.getName() + " is not a platform management interface");
+			throw new IllegalArgumentException(mxbeanInterface.getName()
+					+ " is not a platform management interface");
 		}
-		return Collections.unmodifiableList(pc.getMXBeans(connection, mxbeanInterface));
+		return Collections.unmodifiableList(pc.getMXBeans(connection,
+				mxbeanInterface));
 	}
 
 	/**
@@ -790,26 +804,29 @@ public class ManagementFactory {
 	/**
 	 * Registers an MXBean.
 	 */
-	private static void addMXBean(final MBeanServer mbs, final PlatformManagedObject pmo) {
+	private static void addMXBean(final MBeanServer mbs,
+			final PlatformManagedObject pmo) {
 		// Make DynamicMBean out of MXBean by wrapping it with a StandardMBean
 		try {
-			AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-				public Void run() throws InstanceAlreadyExistsException, MBeanRegistrationException,
-						NotCompliantMBeanException {
-					final DynamicMBean dmbean;
-					if (pmo instanceof DynamicMBean) {
-						dmbean = DynamicMBean.class.cast(pmo);
-					} else if (pmo instanceof NotificationEmitter) {
-						dmbean = new StandardEmitterMBean(pmo, null, true,
-								(NotificationEmitter) pmo);
-					} else {
-						dmbean = new StandardMBean(pmo, null, true);
-					}
+			AccessController.doPrivileged(
+					new PrivilegedExceptionAction<Void>() {
+						public Void run() throws InstanceAlreadyExistsException,
+								MBeanRegistrationException,
+								NotCompliantMBeanException {
+							final DynamicMBean dmbean;
+							if (pmo instanceof DynamicMBean) {
+								dmbean = DynamicMBean.class.cast(pmo);
+							} else if (pmo instanceof NotificationEmitter) {
+								dmbean = new StandardEmitterMBean(pmo, null,
+										true, (NotificationEmitter) pmo);
+							} else {
+								dmbean = new StandardMBean(pmo, null, true);
+							}
 
-					mbs.registerMBean(dmbean, pmo.getObjectName());
-					return null;
-				}
-			});
+							mbs.registerMBean(dmbean, pmo.getObjectName());
+							return null;
+						}
+					});
 		} catch (PrivilegedActionException e) {
 			throw new RuntimeException(e.getException());
 		}
@@ -818,17 +835,19 @@ public class ManagementFactory {
 	/**
 	 * Registers a DynamicMBean.
 	 */
-	private static void addDynamicMBean(final MBeanServer mbs, final DynamicMBean dmbean,
-			final ObjectName on) {
+	private static void addDynamicMBean(final MBeanServer mbs,
+			final DynamicMBean dmbean, final ObjectName on) {
 		try {
-			AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-				@Override
-				public Void run() throws InstanceAlreadyExistsException, MBeanRegistrationException,
-						NotCompliantMBeanException {
-					mbs.registerMBean(dmbean, on);
-					return null;
-				}
-			});
+			AccessController.doPrivileged(
+					new PrivilegedExceptionAction<Void>() {
+						@Override
+						public Void run() throws InstanceAlreadyExistsException,
+								MBeanRegistrationException,
+								NotCompliantMBeanException {
+							mbs.registerMBean(dmbean, on);
+							return null;
+						}
+					});
 		} catch (PrivilegedActionException e) {
 			throw new RuntimeException(e.getException());
 		}

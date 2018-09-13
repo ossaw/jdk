@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -474,74 +454,104 @@ public class MouseEvent extends InputEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> that originated the event
+	 *                     The <code>Component</code> that originated the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link MouseEvent}
+	 *                     An integer indicating the type of event. For
+	 *                     information on
+	 *                     allowable values, see the class description for
+	 *                     {@link MouseEvent}
 	 * @param when
-	 *            A long integer that gives the time the event occurred. Passing
-	 *            negative or zero value is not recommended
+	 *                     A long integer that gives the time the event
+	 *                     occurred. Passing
+	 *                     negative or zero value is not recommended
 	 * @param modifiers
-	 *            a modifier mask describing the modifier keys and mouse buttons
-	 *            (for example, shift, ctrl, alt, and meta) that are down during
-	 *            the event. Only extended modifiers are allowed to be used as a
-	 *            value for this parameter (see the
-	 *            {@link InputEvent#getModifiersEx} class for the description of
-	 *            extended modifiers). Passing negative parameter is not
-	 *            recommended. Zero value means that no modifiers were passed
+	 *                     a modifier mask describing the modifier keys and
+	 *                     mouse buttons
+	 *                     (for example, shift, ctrl, alt, and meta) that are
+	 *                     down during
+	 *                     the event. Only extended modifiers are allowed to be
+	 *                     used as a
+	 *                     value for this parameter (see the
+	 *                     {@link InputEvent#getModifiersEx} class for the
+	 *                     description of
+	 *                     extended modifiers). Passing negative parameter is
+	 *                     not
+	 *                     recommended. Zero value means that no modifiers were
+	 *                     passed
 	 * @param x
-	 *            The horizontal x coordinate for the mouse location. It is
-	 *            allowed to pass negative values
+	 *                     The horizontal x coordinate for the mouse location.
+	 *                     It is
+	 *                     allowed to pass negative values
 	 * @param y
-	 *            The vertical y coordinate for the mouse location. It is
-	 *            allowed to pass negative values
+	 *                     The vertical y coordinate for the mouse location. It
+	 *                     is
+	 *                     allowed to pass negative values
 	 * @param clickCount
-	 *            The number of mouse clicks associated with event. Passing
-	 *            negative value is not recommended
+	 *                     The number of mouse clicks associated with event.
+	 *                     Passing
+	 *                     negative value is not recommended
 	 * @param popupTrigger
-	 *            A boolean that equals {@code true} if this event is a trigger
-	 *            for a popup menu
+	 *                     A boolean that equals {@code true} if this event is a
+	 *                     trigger
+	 *                     for a popup menu
 	 * @param button
-	 *            An integer that indicates, which of the mouse buttons has
-	 *            changed its state. The following rules are applied to this
-	 *            parameter:
-	 *            <ul>
-	 *            <li>If support for the extended mouse buttons is
-	 *            {@link Toolkit#areExtraMouseButtonsEnabled() disabled} by Java
-	 *            then it is allowed to create {@code MouseEvent} objects only
-	 *            with the standard buttons: {@code NOBUTTON}, {@code BUTTON1},
-	 *            {@code BUTTON2}, and {@code BUTTON3}.
-	 *            <li>If support for the extended mouse buttons is
-	 *            {@link Toolkit#areExtraMouseButtonsEnabled() enabled} by Java
-	 *            then it is allowed to create {@code MouseEvent} objects with
-	 *            the standard buttons. In case the support for extended mouse
-	 *            buttons is {@link Toolkit#areExtraMouseButtonsEnabled()
-	 *            enabled} by Java, then in addition to the standard buttons,
-	 *            {@code MouseEvent} objects can be created using buttons from
-	 *            the range starting from 4 to
-	 *            {@link java.awt.MouseInfo#getNumberOfButtons()
-	 *            MouseInfo.getNumberOfButtons()} if the mouse has more than
-	 *            three buttons.
-	 *            </ul>
+	 *                     An integer that indicates, which of the mouse buttons
+	 *                     has
+	 *                     changed its state. The following rules are applied to
+	 *                     this
+	 *                     parameter:
+	 *                     <ul>
+	 *                     <li>If support for the extended mouse buttons is
+	 *                     {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                     disabled} by Java
+	 *                     then it is allowed to create {@code MouseEvent}
+	 *                     objects only
+	 *                     with the standard buttons: {@code NOBUTTON},
+	 *                     {@code BUTTON1},
+	 *                     {@code BUTTON2}, and {@code BUTTON3}.
+	 *                     <li>If support for the extended mouse buttons is
+	 *                     {@link Toolkit#areExtraMouseButtonsEnabled() enabled}
+	 *                     by Java
+	 *                     then it is allowed to create {@code MouseEvent}
+	 *                     objects with
+	 *                     the standard buttons. In case the support for
+	 *                     extended mouse
+	 *                     buttons is
+	 *                     {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                     enabled} by Java, then in addition to the standard
+	 *                     buttons,
+	 *                     {@code MouseEvent} objects can be created using
+	 *                     buttons from
+	 *                     the range starting from 4 to
+	 *                     {@link java.awt.MouseInfo#getNumberOfButtons()
+	 *                     MouseInfo.getNumberOfButtons()} if the mouse has more
+	 *                     than
+	 *                     three buttons.
+	 *                     </ul>
 	 * @throws IllegalArgumentException
-	 *             if {@code button} is less then zero
+	 *                                  if {@code button} is less then zero
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @throws IllegalArgumentException
-	 *             if {@code button} is greater then BUTTON3 and the support for
-	 *             extended mouse buttons is
-	 *             {@link Toolkit#areExtraMouseButtonsEnabled() disabled} by
-	 *             Java
+	 *                                  if {@code button} is greater then
+	 *                                  BUTTON3 and the support for
+	 *                                  extended mouse buttons is
+	 *                                  {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                                  disabled} by
+	 *                                  Java
 	 * @throws IllegalArgumentException
-	 *             if {@code button} is greater then the
-	 *             {@link java.awt.MouseInfo#getNumberOfButtons() current number
-	 *             of buttons} and the support for extended mouse buttons is
-	 *             {@link Toolkit#areExtraMouseButtonsEnabled() enabled} by Java
+	 *                                  if {@code button} is greater then the
+	 *                                  {@link java.awt.MouseInfo#getNumberOfButtons()
+	 *                                  current number
+	 *                                  of buttons} and the support for extended
+	 *                                  mouse buttons is
+	 *                                  {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                                  enabled} by Java
 	 * @throws IllegalArgumentException
-	 *             if an invalid <code>button</code> value is passed in
+	 *                                  if an invalid <code>button</code> value
+	 *                                  is passed in
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #getWhen()
@@ -553,9 +563,10 @@ public class MouseEvent extends InputEvent {
 	 * @see #getButton()
 	 * @since 1.4
 	 */
-	public MouseEvent(Component source, int id, long when, int modifiers, int x, int y,
-			int clickCount, boolean popupTrigger, int button) {
-		this(source, id, when, modifiers, x, y, 0, 0, clickCount, popupTrigger, button);
+	public MouseEvent(Component source, int id, long when, int modifiers, int x,
+			int y, int clickCount, boolean popupTrigger, int button) {
+		this(source, id, when, modifiers, x, y, 0, 0, clickCount, popupTrigger,
+				button);
 		Point eventLocationOnScreen = new Point(0, 0);
 		try {
 			eventLocationOnScreen = source.getLocationOnScreen();
@@ -582,36 +593,48 @@ public class MouseEvent extends InputEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> that originated the event
+	 *                     The <code>Component</code> that originated the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link MouseEvent}
+	 *                     An integer indicating the type of event. For
+	 *                     information on
+	 *                     allowable values, see the class description for
+	 *                     {@link MouseEvent}
 	 * @param when
-	 *            A long integer that gives the time the event occurred. Passing
-	 *            negative or zero value is not recommended
+	 *                     A long integer that gives the time the event
+	 *                     occurred. Passing
+	 *                     negative or zero value is not recommended
 	 * @param modifiers
-	 *            a modifier mask describing the modifier keys and mouse buttons
-	 *            (for example, shift, ctrl, alt, and meta) that are down during
-	 *            the event. Only extended modifiers are allowed to be used as a
-	 *            value for this parameter (see the
-	 *            {@link InputEvent#getModifiersEx} class for the description of
-	 *            extended modifiers). Passing negative parameter is not
-	 *            recommended. Zero value means that no modifiers were passed
+	 *                     a modifier mask describing the modifier keys and
+	 *                     mouse buttons
+	 *                     (for example, shift, ctrl, alt, and meta) that are
+	 *                     down during
+	 *                     the event. Only extended modifiers are allowed to be
+	 *                     used as a
+	 *                     value for this parameter (see the
+	 *                     {@link InputEvent#getModifiersEx} class for the
+	 *                     description of
+	 *                     extended modifiers). Passing negative parameter is
+	 *                     not
+	 *                     recommended. Zero value means that no modifiers were
+	 *                     passed
 	 * @param x
-	 *            The horizontal x coordinate for the mouse location. It is
-	 *            allowed to pass negative values
+	 *                     The horizontal x coordinate for the mouse location.
+	 *                     It is
+	 *                     allowed to pass negative values
 	 * @param y
-	 *            The vertical y coordinate for the mouse location. It is
-	 *            allowed to pass negative values
+	 *                     The vertical y coordinate for the mouse location. It
+	 *                     is
+	 *                     allowed to pass negative values
 	 * @param clickCount
-	 *            The number of mouse clicks associated with event. Passing
-	 *            negative value is not recommended
+	 *                     The number of mouse clicks associated with event.
+	 *                     Passing
+	 *                     negative value is not recommended
 	 * @param popupTrigger
-	 *            A boolean that equals {@code true} if this event is a trigger
-	 *            for a popup menu
+	 *                     A boolean that equals {@code true} if this event is a
+	 *                     trigger
+	 *                     for a popup menu
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #getWhen()
@@ -621,9 +644,10 @@ public class MouseEvent extends InputEvent {
 	 * @see #getClickCount()
 	 * @see #isPopupTrigger()
 	 */
-	public MouseEvent(Component source, int id, long when, int modifiers, int x, int y,
-			int clickCount, boolean popupTrigger) {
-		this(source, id, when, modifiers, x, y, clickCount, popupTrigger, NOBUTTON);
+	public MouseEvent(Component source, int id, long when, int modifiers, int x,
+			int y, int clickCount, boolean popupTrigger) {
+		this(source, id, when, modifiers, x, y, clickCount, popupTrigger,
+				NOBUTTON);
 	}
 
 	/*
@@ -658,80 +682,112 @@ public class MouseEvent extends InputEvent {
 	 * <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> that originated the event
+	 *                     The <code>Component</code> that originated the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link MouseEvent}
+	 *                     An integer indicating the type of event. For
+	 *                     information on
+	 *                     allowable values, see the class description for
+	 *                     {@link MouseEvent}
 	 * @param when
-	 *            A long integer that gives the time the event occurred. Passing
-	 *            negative or zero value is not recommended
+	 *                     A long integer that gives the time the event
+	 *                     occurred. Passing
+	 *                     negative or zero value is not recommended
 	 * @param modifiers
-	 *            a modifier mask describing the modifier keys and mouse buttons
-	 *            (for example, shift, ctrl, alt, and meta) that are down during
-	 *            the event. Only extended modifiers are allowed to be used as a
-	 *            value for this parameter (see the
-	 *            {@link InputEvent#getModifiersEx} class for the description of
-	 *            extended modifiers). Passing negative parameter is not
-	 *            recommended. Zero value means that no modifiers were passed
+	 *                     a modifier mask describing the modifier keys and
+	 *                     mouse buttons
+	 *                     (for example, shift, ctrl, alt, and meta) that are
+	 *                     down during
+	 *                     the event. Only extended modifiers are allowed to be
+	 *                     used as a
+	 *                     value for this parameter (see the
+	 *                     {@link InputEvent#getModifiersEx} class for the
+	 *                     description of
+	 *                     extended modifiers). Passing negative parameter is
+	 *                     not
+	 *                     recommended. Zero value means that no modifiers were
+	 *                     passed
 	 * @param x
-	 *            The horizontal x coordinate for the mouse location. It is
-	 *            allowed to pass negative values
+	 *                     The horizontal x coordinate for the mouse location.
+	 *                     It is
+	 *                     allowed to pass negative values
 	 * @param y
-	 *            The vertical y coordinate for the mouse location. It is
-	 *            allowed to pass negative values
+	 *                     The vertical y coordinate for the mouse location. It
+	 *                     is
+	 *                     allowed to pass negative values
 	 * @param xAbs
-	 *            The absolute horizontal x coordinate for the mouse location It
-	 *            is allowed to pass negative values
+	 *                     The absolute horizontal x coordinate for the mouse
+	 *                     location It
+	 *                     is allowed to pass negative values
 	 * @param yAbs
-	 *            The absolute vertical y coordinate for the mouse location It
-	 *            is allowed to pass negative values
+	 *                     The absolute vertical y coordinate for the mouse
+	 *                     location It
+	 *                     is allowed to pass negative values
 	 * @param clickCount
-	 *            The number of mouse clicks associated with event. Passing
-	 *            negative value is not recommended
+	 *                     The number of mouse clicks associated with event.
+	 *                     Passing
+	 *                     negative value is not recommended
 	 * @param popupTrigger
-	 *            A boolean that equals {@code true} if this event is a trigger
-	 *            for a popup menu
+	 *                     A boolean that equals {@code true} if this event is a
+	 *                     trigger
+	 *                     for a popup menu
 	 * @param button
-	 *            An integer that indicates, which of the mouse buttons has
-	 *            changed its state. The following rules are applied to this
-	 *            parameter:
-	 *            <ul>
-	 *            <li>If support for the extended mouse buttons is
-	 *            {@link Toolkit#areExtraMouseButtonsEnabled() disabled} by Java
-	 *            then it is allowed to create {@code MouseEvent} objects only
-	 *            with the standard buttons: {@code NOBUTTON}, {@code BUTTON1},
-	 *            {@code BUTTON2}, and {@code BUTTON3}.
-	 *            <li>If support for the extended mouse buttons is
-	 *            {@link Toolkit#areExtraMouseButtonsEnabled() enabled} by Java
-	 *            then it is allowed to create {@code MouseEvent} objects with
-	 *            the standard buttons. In case the support for extended mouse
-	 *            buttons is {@link Toolkit#areExtraMouseButtonsEnabled()
-	 *            enabled} by Java, then in addition to the standard buttons,
-	 *            {@code MouseEvent} objects can be created using buttons from
-	 *            the range starting from 4 to
-	 *            {@link java.awt.MouseInfo#getNumberOfButtons()
-	 *            MouseInfo.getNumberOfButtons()} if the mouse has more than
-	 *            three buttons.
-	 *            </ul>
+	 *                     An integer that indicates, which of the mouse buttons
+	 *                     has
+	 *                     changed its state. The following rules are applied to
+	 *                     this
+	 *                     parameter:
+	 *                     <ul>
+	 *                     <li>If support for the extended mouse buttons is
+	 *                     {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                     disabled} by Java
+	 *                     then it is allowed to create {@code MouseEvent}
+	 *                     objects only
+	 *                     with the standard buttons: {@code NOBUTTON},
+	 *                     {@code BUTTON1},
+	 *                     {@code BUTTON2}, and {@code BUTTON3}.
+	 *                     <li>If support for the extended mouse buttons is
+	 *                     {@link Toolkit#areExtraMouseButtonsEnabled() enabled}
+	 *                     by Java
+	 *                     then it is allowed to create {@code MouseEvent}
+	 *                     objects with
+	 *                     the standard buttons. In case the support for
+	 *                     extended mouse
+	 *                     buttons is
+	 *                     {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                     enabled} by Java, then in addition to the standard
+	 *                     buttons,
+	 *                     {@code MouseEvent} objects can be created using
+	 *                     buttons from
+	 *                     the range starting from 4 to
+	 *                     {@link java.awt.MouseInfo#getNumberOfButtons()
+	 *                     MouseInfo.getNumberOfButtons()} if the mouse has more
+	 *                     than
+	 *                     three buttons.
+	 *                     </ul>
 	 * @throws IllegalArgumentException
-	 *             if {@code button} is less then zero
+	 *                                  if {@code button} is less then zero
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @throws IllegalArgumentException
-	 *             if {@code button} is greater then BUTTON3 and the support for
-	 *             extended mouse buttons is
-	 *             {@link Toolkit#areExtraMouseButtonsEnabled() disabled} by
-	 *             Java
+	 *                                  if {@code button} is greater then
+	 *                                  BUTTON3 and the support for
+	 *                                  extended mouse buttons is
+	 *                                  {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                                  disabled} by
+	 *                                  Java
 	 * @throws IllegalArgumentException
-	 *             if {@code button} is greater then the
-	 *             {@link java.awt.MouseInfo#getNumberOfButtons() current number
-	 *             of buttons} and the support for extended mouse buttons is
-	 *             {@link Toolkit#areExtraMouseButtonsEnabled() enabled} by Java
+	 *                                  if {@code button} is greater then the
+	 *                                  {@link java.awt.MouseInfo#getNumberOfButtons()
+	 *                                  current number
+	 *                                  of buttons} and the support for extended
+	 *                                  mouse buttons is
+	 *                                  {@link Toolkit#areExtraMouseButtonsEnabled()
+	 *                                  enabled} by Java
 	 * @throws IllegalArgumentException
-	 *             if an invalid <code>button</code> value is passed in
+	 *                                  if an invalid <code>button</code> value
+	 *                                  is passed in
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #getWhen()
@@ -749,8 +805,9 @@ public class MouseEvent extends InputEvent {
 	 * @see InputEvent#getMaskForButton(int)
 	 * @since 1.6
 	 */
-	public MouseEvent(Component source, int id, long when, int modifiers, int x, int y, int xAbs,
-			int yAbs, int clickCount, boolean popupTrigger, int button) {
+	public MouseEvent(Component source, int id, long when, int modifiers, int x,
+			int y, int xAbs, int yAbs, int clickCount, boolean popupTrigger,
+			int button) {
 		super(source, id, when, modifiers);
 		this.x = x;
 		this.y = y;
@@ -759,14 +816,17 @@ public class MouseEvent extends InputEvent {
 		this.clickCount = clickCount;
 		this.popupTrigger = popupTrigger;
 		if (button < NOBUTTON) {
-			throw new IllegalArgumentException("Invalid button value :" + button);
+			throw new IllegalArgumentException("Invalid button value :"
+					+ button);
 		}
 		if (button > BUTTON3) {
 			if (!Toolkit.getDefaultToolkit().areExtraMouseButtonsEnabled()) {
-				throw new IllegalArgumentException("Extra mouse events are disabled " + button);
+				throw new IllegalArgumentException(
+						"Extra mouse events are disabled " + button);
 			} else {
 				if (button > cachedNumberOfButtons) {
-					throw new IllegalArgumentException("Nonexistent button " + button);
+					throw new IllegalArgumentException("Nonexistent button "
+							+ button);
 				}
 			}
 			// XToolkit: extra buttons are not reporting about their state
@@ -785,7 +845,8 @@ public class MouseEvent extends InputEvent {
 
 			if (getModifiersEx() != 0) { // There is at least one more button in
 											// a pressed state.
-				if (id == MouseEvent.MOUSE_RELEASED || id == MouseEvent.MOUSE_CLICKED) {
+				if (id == MouseEvent.MOUSE_RELEASED
+						|| id == MouseEvent.MOUSE_CLICKED) {
 					shouldExcludeButtonFromExtModifiers = true;
 				}
 			}
@@ -795,8 +856,8 @@ public class MouseEvent extends InputEvent {
 
 		if ((getModifiers() != 0) && (getModifiersEx() == 0)) {
 			setNewModifiers();
-		} else if ((getModifiers() == 0) && (getModifiersEx() != 0 || button != NOBUTTON)
-				&& (button <= BUTTON3)) {
+		} else if ((getModifiers() == 0) && (getModifiersEx() != 0
+				|| button != NOBUTTON) && (button <= BUTTON3)) {
 			setOldModifiers();
 		}
 	}
@@ -845,11 +906,11 @@ public class MouseEvent extends InputEvent {
 	 * <code>x</code> (horizontal) and <code>y</code> (vertical) offsets.
 	 *
 	 * @param x
-	 *            the horizontal x value to add to the current x coordinate
-	 *            position
+	 *          the horizontal x value to add to the current x coordinate
+	 *          position
 	 * @param y
-	 *            the vertical y value to add to the current y coordinate
-	 *            position
+	 *          the vertical y value to add to the current y coordinate
+	 *          position
 	 */
 	public synchronized void translatePoint(int x, int y) {
 		this.x += x;
@@ -965,8 +1026,9 @@ public class MouseEvent extends InputEvent {
 	 * <p>
 	 * 
 	 * @param modifiers
-	 *            A modifier mask describing the modifier keys and mouse buttons
-	 *            that were down during the event
+	 *                  A modifier mask describing the modifier keys and mouse
+	 *                  buttons
+	 *                  that were down during the event
 	 * @return string string text description of the combination of modifier
 	 *         keys and mouse buttons that were down during the event
 	 * @see InputEvent#getModifiersExText(int)
@@ -1018,17 +1080,17 @@ public class MouseEvent extends InputEvent {
 		// buttons somewhere else.
 		for (int i = 1; i <= cachedNumberOfButtons; i++) {
 			mask = InputEvent.getMaskForButton(i);
-			if ((modifiers & mask) != 0
-					&& buf.indexOf(Toolkit.getProperty("AWT.button" + i, "Button" + i)) == -1) // 1,2,3
-																								// buttons
-																								// may
-																								// already
-																								// be
-																								// there;
-																								// so
-																								// don't
-																								// duplicate
-																								// it.
+			if ((modifiers & mask) != 0 && buf.indexOf(Toolkit.getProperty(
+					"AWT.button" + i, "Button" + i)) == -1) // 1,2,3
+																															// buttons
+																															// may
+																															// already
+																															// be
+																															// there;
+																															// so
+																															// don't
+																															// duplicate
+																															// it.
 			{
 				buf.append(Toolkit.getProperty("AWT.button" + i, "Button" + i));
 				buf.append("+");
@@ -1051,37 +1113,38 @@ public class MouseEvent extends InputEvent {
 		StringBuilder str = new StringBuilder(80);
 
 		switch (id) {
-		case MOUSE_PRESSED:
-			str.append("MOUSE_PRESSED");
-			break;
-		case MOUSE_RELEASED:
-			str.append("MOUSE_RELEASED");
-			break;
-		case MOUSE_CLICKED:
-			str.append("MOUSE_CLICKED");
-			break;
-		case MOUSE_ENTERED:
-			str.append("MOUSE_ENTERED");
-			break;
-		case MOUSE_EXITED:
-			str.append("MOUSE_EXITED");
-			break;
-		case MOUSE_MOVED:
-			str.append("MOUSE_MOVED");
-			break;
-		case MOUSE_DRAGGED:
-			str.append("MOUSE_DRAGGED");
-			break;
-		case MOUSE_WHEEL:
-			str.append("MOUSE_WHEEL");
-			break;
-		default:
-			str.append("unknown type");
+			case MOUSE_PRESSED:
+				str.append("MOUSE_PRESSED");
+				break;
+			case MOUSE_RELEASED:
+				str.append("MOUSE_RELEASED");
+				break;
+			case MOUSE_CLICKED:
+				str.append("MOUSE_CLICKED");
+				break;
+			case MOUSE_ENTERED:
+				str.append("MOUSE_ENTERED");
+				break;
+			case MOUSE_EXITED:
+				str.append("MOUSE_EXITED");
+				break;
+			case MOUSE_MOVED:
+				str.append("MOUSE_MOVED");
+				break;
+			case MOUSE_DRAGGED:
+				str.append("MOUSE_DRAGGED");
+				break;
+			case MOUSE_WHEEL:
+				str.append("MOUSE_WHEEL");
+				break;
+			default:
+				str.append("unknown type");
 		}
 
 		// (x,y) coordinates
 		str.append(",(").append(x).append(",").append(y).append(")");
-		str.append(",absolute(").append(xAbs).append(",").append(yAbs).append(")");
+		str.append(",absolute(").append(xAbs).append(",").append(yAbs).append(
+				")");
 
 		if (id != MOUSE_DRAGGED && id != MOUSE_MOVED) {
 			str.append(",button=").append(getButton());
@@ -1095,7 +1158,8 @@ public class MouseEvent extends InputEvent {
 			// Using plain "modifiers" here does show an excluded extended
 			// buttons in the string event representation.
 			// getModifiersEx() solves the problem.
-			str.append(",extModifiers=").append(getModifiersExText(getModifiersEx()));
+			str.append(",extModifiers=").append(getModifiersExText(
+					getModifiersEx()));
 		}
 
 		str.append(",clickCount=").append(clickCount);
@@ -1116,7 +1180,8 @@ public class MouseEvent extends InputEvent {
 		if ((modifiers & BUTTON3_MASK) != 0) {
 			modifiers |= BUTTON3_DOWN_MASK;
 		}
-		if (id == MOUSE_PRESSED || id == MOUSE_RELEASED || id == MOUSE_CLICKED) {
+		if (id == MOUSE_PRESSED || id == MOUSE_RELEASED
+				|| id == MOUSE_CLICKED) {
 			if ((modifiers & BUTTON1_MASK) != 0) {
 				button = BUTTON1;
 				modifiers &= ~BUTTON2_MASK & ~BUTTON3_MASK;
@@ -1158,17 +1223,18 @@ public class MouseEvent extends InputEvent {
 	 * Sets old modifiers by the new ones.
 	 */
 	private void setOldModifiers() {
-		if (id == MOUSE_PRESSED || id == MOUSE_RELEASED || id == MOUSE_CLICKED) {
+		if (id == MOUSE_PRESSED || id == MOUSE_RELEASED
+				|| id == MOUSE_CLICKED) {
 			switch (button) {
-			case BUTTON1:
-				modifiers |= BUTTON1_MASK;
-				break;
-			case BUTTON2:
-				modifiers |= BUTTON2_MASK;
-				break;
-			case BUTTON3:
-				modifiers |= BUTTON3_MASK;
-				break;
+				case BUTTON1:
+					modifiers |= BUTTON1_MASK;
+					break;
+				case BUTTON2:
+					modifiers |= BUTTON2_MASK;
+					break;
+				case BUTTON3:
+					modifiers |= BUTTON3_MASK;
+					break;
 			}
 		} else {
 			if ((modifiers & BUTTON1_DOWN_MASK) != 0) {
@@ -1203,7 +1269,8 @@ public class MouseEvent extends InputEvent {
 	 * 
 	 * @serial
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		s.defaultReadObject();
 		if (getModifiers() != 0 && getModifiersEx() == 0) {
 			setNewModifiers();

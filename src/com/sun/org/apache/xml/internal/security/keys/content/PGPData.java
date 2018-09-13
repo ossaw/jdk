@@ -39,7 +39,8 @@ public class PGPData extends SignatureElementProxy implements KeyInfoContent {
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public PGPData(Element element, String BaseURI) throws XMLSecurityException {
+	public PGPData(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 

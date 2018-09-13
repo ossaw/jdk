@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -85,21 +65,16 @@ public class URLEncoder {
 		/*
 		 * The list of characters that are not encoded has been determined as
 		 * follows:
-		 *
 		 * RFC 2396 states: ----- Data characters that are allowed in a URI but
 		 * do not have a reserved purpose are called unreserved. These include
 		 * upper and lower case letters, decimal digits, and a limited set of
 		 * punctuation marks and symbols.
-		 *
 		 * unreserved = alphanum | mark
-		 *
 		 * mark = "-" | "_" | "." | "!" | "~" | "*" | "'" | "(" | ")"
-		 *
 		 * Unreserved characters can be escaped without changing the semantics
 		 * of the URI, but this should not be done unless the URI is being used
 		 * in a context that does not allow the unescaped character to appear.
 		 * -----
-		 *
 		 * It appears that both Netscape and Internet Explorer escape all
 		 * special characters from this list with the exception of "-", "_",
 		 * ".", "*". While it is not clear why they are escaping the other
@@ -107,11 +82,9 @@ public class URLEncoder {
 		 * contexts in which the others are unsafe if not escaped. Therefore, we
 		 * will use the same list. It is also noteworthy that this is consistent
 		 * with O'Reilly's "HTML: The Definitive Guide" (page 164).
-		 *
 		 * As a last note, Intenet Explorer does not encode the "@" character
 		 * which is clearly not unreserved according to the RFC. We are being
 		 * consistent with the RFC in this matter, as is Netscape.
-		 *
 		 */
 
 		dontNeedEncoding = new BitSet(256);
@@ -134,14 +107,14 @@ public class URLEncoder {
 		dontNeedEncoding.set('.');
 		dontNeedEncoding.set('*');
 
-		dfltEncName = AccessController.doPrivileged(new GetPropertyAction("file.encoding"));
+		dfltEncName = AccessController.doPrivileged(new GetPropertyAction(
+				"file.encoding"));
 	}
 
 	/**
 	 * You can't call the constructor.
 	 */
-	private URLEncoder() {
-	}
+	private URLEncoder() {}
 
 	/**
 	 * Translates a string into {@code x-www-form-urlencoded} format. This
@@ -149,7 +122,7 @@ public class URLEncoder {
 	 * obtain the bytes for unsafe characters.
 	 *
 	 * @param s
-	 *            {@code String} to be translated.
+	 *          {@code String} to be translated.
 	 * @deprecated The resulting string may vary depending on the platform's
 	 *             default encoding. Instead, use the encode(String,String)
 	 *             method to specify the encoding.
@@ -188,11 +161,13 @@ public class URLEncoder {
 	 *            encoding</a>.
 	 * @return the translated {@code String}.
 	 * @exception UnsupportedEncodingException
-	 *                If the named encoding is not supported
+	 *                                         If the named encoding is not
+	 *                                         supported
 	 * @see URLDecoder#decode(java.lang.String, java.lang.String)
 	 * @since 1.4
 	 */
-	public static String encode(String s, String enc) throws UnsupportedEncodingException {
+	public static String encode(String s, String enc)
+			throws UnsupportedEncodingException {
 
 		boolean needToChange = false;
 		StringBuffer out = new StringBuffer(s.length());
@@ -256,7 +231,8 @@ public class URLEncoder {
 						}
 					}
 					i++;
-				} while (i < s.length() && !dontNeedEncoding.get((c = (int) s.charAt(i))));
+				} while (i < s.length() && !dontNeedEncoding.get((c = (int) s
+						.charAt(i))));
 
 				charArrayWriter.flush();
 				String str = new String(charArrayWriter.toCharArray());

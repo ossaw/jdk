@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -51,8 +31,8 @@ package javax.management;
  * </p>
  *
  * <pre>
- * QueryExp query = Query.and(Query.eq(Query.attr("Enabled"), Query.value(true)),
- * 		Query.eq(Query.attr("Owner"), Query.value("Duke")));
+ * QueryExp query = Query.and(Query.eq(Query.attr("Enabled"), Query.value(
+ * 		true)), Query.eq(Query.attr("Owner"), Query.value("Duke")));
  * </pre>
  *
  * @since 1.5
@@ -116,17 +96,16 @@ public class Query extends Object {
 	/**
 	 * Basic constructor.
 	 */
-	public Query() {
-	}
+	public Query() {}
 
 	/**
 	 * Returns a query expression that is the conjunction of two other query
 	 * expressions.
 	 *
 	 * @param q1
-	 *            A query expression.
+	 *           A query expression.
 	 * @param q2
-	 *            Another query expression.
+	 *           Another query expression.
 	 *
 	 * @return The conjunction of the two arguments. The returned object will be
 	 *         serialized as an instance of the non-public class <a href=
@@ -142,9 +121,9 @@ public class Query extends Object {
 	 * expressions.
 	 *
 	 * @param q1
-	 *            A query expression.
+	 *           A query expression.
 	 * @param q2
-	 *            Another query expression.
+	 *           Another query expression.
 	 *
 	 * @return The disjunction of the two arguments. The returned object will be
 	 *         serialized as an instance of the non-public class
@@ -160,9 +139,9 @@ public class Query extends Object {
 	 * two values.
 	 *
 	 * @param v1
-	 *            A value expression.
+	 *           A value expression.
 	 * @param v2
-	 *            Another value expression.
+	 *           Another value expression.
 	 *
 	 * @return A "greater than" constraint on the arguments. The returned object
 	 *         will be serialized as an instance of the non-public class
@@ -180,9 +159,9 @@ public class Query extends Object {
 	 * constraint on two values.
 	 *
 	 * @param v1
-	 *            A value expression.
+	 *           A value expression.
 	 * @param v2
-	 *            Another value expression.
+	 *           Another value expression.
 	 *
 	 * @return A "greater than or equal to" constraint on the arguments. The
 	 *         returned object will be serialized as an instance of the
@@ -200,9 +179,9 @@ public class Query extends Object {
 	 * constraint on two values.
 	 *
 	 * @param v1
-	 *            A value expression.
+	 *           A value expression.
 	 * @param v2
-	 *            Another value expression.
+	 *           Another value expression.
 	 *
 	 * @return A "less than or equal to" constraint on the arguments. The
 	 *         returned object will be serialized as an instance of the
@@ -220,9 +199,9 @@ public class Query extends Object {
 	 * two values.
 	 *
 	 * @param v1
-	 *            A value expression.
+	 *           A value expression.
 	 * @param v2
-	 *            Another value expression.
+	 *           Another value expression.
 	 *
 	 * @return A "less than" constraint on the arguments. The returned object
 	 *         will be serialized as an instance of the non-public class
@@ -240,9 +219,9 @@ public class Query extends Object {
 	 * values.
 	 *
 	 * @param v1
-	 *            A value expression.
+	 *           A value expression.
 	 * @param v2
-	 *            Another value expression.
+	 *           Another value expression.
 	 *
 	 * @return A "equal to" constraint on the arguments. The returned object
 	 *         will be serialized as an instance of the non-public class
@@ -260,11 +239,11 @@ public class Query extends Object {
 	 * is between two other values.
 	 *
 	 * @param v1
-	 *            A value expression that is "between" v2 and v3.
+	 *           A value expression that is "between" v2 and v3.
 	 * @param v2
-	 *            Value expression that represents a boundary of the constraint.
+	 *           Value expression that represents a boundary of the constraint.
 	 * @param v3
-	 *            Value expression that represents a boundary of the constraint.
+	 *           Value expression that represents a boundary of the constraint.
 	 *
 	 * @return The constraint that v1 lies between v2 and v3. The returned
 	 *         object will be serialized as an instance of the non-public class
@@ -289,9 +268,9 @@ public class Query extends Object {
 	 * by a <code>b</code>, any single character, and a <code>c</code>.
 	 *
 	 * @param a
-	 *            An attribute expression
+	 *          An attribute expression
 	 * @param s
-	 *            A string value expression representing a matching constraint
+	 *          A string value expression representing a matching constraint
 	 *
 	 * @return A query expression that represents the matching constraint on the
 	 *         string argument. The returned object will be serialized as an
@@ -316,7 +295,7 @@ public class Query extends Object {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of the attribute.
+	 *             The name of the attribute.
 	 *
 	 * @return An attribute expression for the attribute named {@code name}.
 	 */
@@ -338,9 +317,9 @@ public class Query extends Object {
 	 * </p>
 	 *
 	 * @param className
-	 *            The name of the class possessing the attribute.
+	 *                  The name of the class possessing the attribute.
 	 * @param name
-	 *            The name of the attribute.
+	 *                  The name of the attribute.
 	 *
 	 * @return An attribute expression for the attribute named name. The
 	 *         returned object will be serialized as an instance of the
@@ -377,7 +356,7 @@ public class Query extends Object {
 	 * Returns a constraint that is the negation of its argument.
 	 *
 	 * @param queryExp
-	 *            The constraint to negate.
+	 *                 The constraint to negate.
 	 *
 	 * @return A negated constraint. The returned object will be serialized as
 	 *         an instance of the non-public class <a href=
@@ -392,9 +371,9 @@ public class Query extends Object {
 	 * Returns an expression constraining a value to be one of an explicit list.
 	 *
 	 * @param val
-	 *            A value to be constrained.
+	 *                  A value to be constrained.
 	 * @param valueList
-	 *            An array of ValueExps.
+	 *                  An array of ValueExps.
 	 *
 	 * @return A QueryExp that represents the constraint. The returned object
 	 *         will be serialized as an instance of the non-public class
@@ -524,9 +503,9 @@ public class Query extends Object {
 	 * or the concatenation of two string values.
 	 *
 	 * @param value1
-	 *            The first '+' operand.
+	 *               The first '+' operand.
 	 * @param value2
-	 *            The second '+' operand.
+	 *               The second '+' operand.
 	 *
 	 * @return A ValueExp representing the sum or concatenation of the two
 	 *         arguments. The returned object will be serialized as an instance
@@ -545,9 +524,9 @@ public class Query extends Object {
 	 *
 	 *
 	 * @param value1
-	 *            The first '*' operand.
+	 *               The first '*' operand.
 	 * @param value2
-	 *            The second '*' operand.
+	 *               The second '*' operand.
 	 *
 	 * @return A ValueExp representing the product. The returned object will be
 	 *         serialized as an instance of the non-public class <a href=
@@ -564,9 +543,9 @@ public class Query extends Object {
 	 * numeric values.
 	 *
 	 * @param value1
-	 *            The first '-' operand.
+	 *               The first '-' operand.
 	 * @param value2
-	 *            The second '-' operand.
+	 *               The second '-' operand.
 	 *
 	 * @return A ValueExp representing the difference between two arguments. The
 	 *         returned object will be serialized as an instance of the
@@ -584,9 +563,9 @@ public class Query extends Object {
 	 * values.
 	 *
 	 * @param value1
-	 *            The first '/' operand.
+	 *               The first '/' operand.
 	 * @param value2
-	 *            The second '/' operand.
+	 *               The second '/' operand.
 	 *
 	 * @return A ValueExp representing the quotient of two arguments. The
 	 *         returned object will be serialized as an instance of the
@@ -605,10 +584,10 @@ public class Query extends Object {
 	 * value.
 	 *
 	 * @param a
-	 *            An attribute expression.
+	 *          An attribute expression.
 	 * @param s
-	 *            A string value expression representing the beginning of the
-	 *            string value.
+	 *          A string value expression representing the beginning of the
+	 *          string value.
 	 *
 	 * @return The constraint that a matches s. The returned object will be
 	 *         serialized as an instance of the non-public class
@@ -617,8 +596,10 @@ public class Query extends Object {
 	 *         "../../serialized-form.html#javax.management.MatchQueryExp">
 	 *         javax.management.MatchQueryExp</a>.
 	 */
-	public static QueryExp initialSubString(AttributeValueExp a, StringValueExp s) {
-		return new MatchQueryExp(a, new StringValueExp(escapeString(s.getValue()) + "*"));
+	public static QueryExp initialSubString(AttributeValueExp a,
+			StringValueExp s) {
+		return new MatchQueryExp(a, new StringValueExp(escapeString(s
+				.getValue()) + "*"));
 	}
 
 	/**
@@ -626,9 +607,9 @@ public class Query extends Object {
 	 * string argument. The value must contain the given literal string value.
 	 *
 	 * @param a
-	 *            An attribute expression.
+	 *          An attribute expression.
 	 * @param s
-	 *            A string value expression representing the substring.
+	 *          A string value expression representing the substring.
 	 *
 	 * @return The constraint that a matches s. The returned object will be
 	 *         serialized as an instance of the non-public class
@@ -638,7 +619,8 @@ public class Query extends Object {
 	 *         javax.management.MatchQueryExp</a>.
 	 */
 	public static QueryExp anySubString(AttributeValueExp a, StringValueExp s) {
-		return new MatchQueryExp(a, new StringValueExp("*" + escapeString(s.getValue()) + "*"));
+		return new MatchQueryExp(a, new StringValueExp("*" + escapeString(s
+				.getValue()) + "*"));
 	}
 
 	/**
@@ -646,10 +628,10 @@ public class Query extends Object {
 	 * string argument. The value must end with the given literal string value.
 	 *
 	 * @param a
-	 *            An attribute expression.
+	 *          An attribute expression.
 	 * @param s
-	 *            A string value expression representing the end of the string
-	 *            value.
+	 *          A string value expression representing the end of the string
+	 *          value.
 	 *
 	 * @return The constraint that a matches s. The returned object will be
 	 *         serialized as an instance of the non-public class
@@ -658,8 +640,10 @@ public class Query extends Object {
 	 *         "../../serialized-form.html#javax.management.MatchQueryExp">
 	 *         javax.management.MatchQueryExp</a>.
 	 */
-	public static QueryExp finalSubString(AttributeValueExp a, StringValueExp s) {
-		return new MatchQueryExp(a, new StringValueExp("*" + escapeString(s.getValue())));
+	public static QueryExp finalSubString(AttributeValueExp a,
+			StringValueExp s) {
+		return new MatchQueryExp(a, new StringValueExp("*" + escapeString(s
+				.getValue())));
 	}
 
 	/**
@@ -679,8 +663,9 @@ public class Query extends Object {
 	 * </p>
 	 *
 	 * @param classNameValue
-	 *            The {@link StringValueExp} returning the name of the class of
-	 *            which selected MBeans should be instances.
+	 *                       The {@link StringValueExp} returning the name of
+	 *                       the class of
+	 *                       which selected MBeans should be instances.
 	 * @return a query expression that represents an inheritance constraint on
 	 *         an MBean class. The returned object will be serialized as an
 	 *         instance of the non-public class <a href=

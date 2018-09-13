@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.resolver;
@@ -58,13 +38,14 @@ public class BootstrapResolverImpl implements Resolver {
 		ObjectKey okey = orb.getObjectKeyFactory().create(initialKey);
 
 		IIOPAddress addr = IIOPFactories.makeIIOPAddress(orb, host, port);
-		IIOPProfileTemplate ptemp = IIOPFactories.makeIIOPProfileTemplate(orb, GIOPVersion.V1_0,
-				addr);
+		IIOPProfileTemplate ptemp = IIOPFactories.makeIIOPProfileTemplate(orb,
+				GIOPVersion.V1_0, addr);
 
 		IORTemplate iortemp = IORFactories.makeIORTemplate(okey.getTemplate());
 		iortemp.add(ptemp);
 
-		IOR initialIOR = iortemp.makeIOR((com.sun.corba.se.spi.orb.ORB) orb, "", okey.getId());
+		IOR initialIOR = iortemp.makeIOR((com.sun.corba.se.spi.orb.ORB) orb, "",
+				okey.getId());
 
 		bootstrapDelegate = ORBUtility.makeClientDelegate(initialIOR);
 	}
@@ -93,7 +74,8 @@ public class BootstrapResolverImpl implements Resolver {
 			org.omg.CORBA.Object objref = null;
 			remarshal = false;
 
-			OutputStream os = (OutputStream) bootstrapDelegate.request(objref, operationName, true);
+			OutputStream os = (OutputStream) bootstrapDelegate.request(objref,
+					operationName, true);
 
 			if (parameter != null) {
 				os.write_string(parameter);

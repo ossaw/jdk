@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -55,11 +35,13 @@ class CertPathHelperImpl extends CertPathHelper {
 		}
 	}
 
-	protected void implSetPathToNames(X509CertSelector sel, Set<GeneralNameInterface> names) {
+	protected void implSetPathToNames(X509CertSelector sel,
+			Set<GeneralNameInterface> names) {
 		sel.setPathToNamesInternal(names);
 	}
 
-	protected void implSetDateAndTime(X509CRLSelector sel, Date date, long skew) {
+	protected void implSetDateAndTime(X509CRLSelector sel, Date date,
+			long skew) {
 		sel.setDateAndTime(date, skew);
 	}
 }

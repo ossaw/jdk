@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp;
 
@@ -43,8 +23,7 @@ public abstract class SnmpParams implements SnmpDefinitions {
 		protocolVersion = version;
 	}
 
-	SnmpParams() {
-	}
+	SnmpParams() {}
 
 	/**
 	 * Checks whether parameters are in place for an SNMP <CODE>set</CODE>
@@ -86,7 +65,7 @@ public abstract class SnmpParams implements SnmpDefinitions {
 	 * </BLOCKQUOTE>
 	 * 
 	 * @param protocolversion
-	 *            The version of the protocol to be used.
+	 *                        The version of the protocol to be used.
 	 */
 
 	public void setProtocolVersion(int protocolversion) {

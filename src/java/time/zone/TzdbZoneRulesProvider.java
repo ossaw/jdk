@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2009-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -102,17 +71,20 @@ final class TzdbZoneRulesProvider extends ZoneRulesProvider {
 	 * Creates an instance. Created by the {@code ServiceLoader}.
 	 *
 	 * @throws ZoneRulesException
-	 *             if unable to load
+	 *                            if unable to load
 	 */
 	public TzdbZoneRulesProvider() {
 		try {
-			String libDir = System.getProperty("java.home") + File.separator + "lib";
+			String libDir = System.getProperty("java.home") + File.separator
+					+ "lib";
 			try (DataInputStream dis = new DataInputStream(
-					new BufferedInputStream(new FileInputStream(new File(libDir, "tzdb.dat"))))) {
+					new BufferedInputStream(new FileInputStream(new File(libDir,
+							"tzdb.dat"))))) {
 				load(dis);
 			}
 		} catch (Exception ex) {
-			throw new ZoneRulesException("Unable to load TZDB time-zone rules", ex);
+			throw new ZoneRulesException("Unable to load TZDB time-zone rules",
+					ex);
 		}
 	}
 
@@ -131,15 +103,15 @@ final class TzdbZoneRulesProvider extends ZoneRulesProvider {
 		try {
 			if (obj instanceof byte[]) {
 				byte[] bytes = (byte[]) obj;
-				DataInputStream dis = new DataInputStream(new ByteArrayInputStream(bytes));
+				DataInputStream dis = new DataInputStream(
+						new ByteArrayInputStream(bytes));
 				obj = Ser.read(dis);
 				regionToRules.put(zoneId, obj);
 			}
 			return (ZoneRules) obj;
 		} catch (Exception ex) {
-			throw new ZoneRulesException(
-					"Invalid binary time-zone data: TZDB:" + zoneId + ", version: " + versionId,
-					ex);
+			throw new ZoneRulesException("Invalid binary time-zone data: TZDB:"
+					+ zoneId + ", version: " + versionId, ex);
 		}
 	}
 
@@ -159,7 +131,7 @@ final class TzdbZoneRulesProvider extends ZoneRulesProvider {
 	 * @param dis
 	 *            the DateInputStream to load, not null
 	 * @throws Exception
-	 *             if an error occurs
+	 *                   if an error occurs
 	 */
 	private void load(DataInputStream dis) throws Exception {
 		if (dis.readByte() != 1) {

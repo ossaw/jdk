@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.stax;
@@ -102,20 +82,25 @@ public class StAXSource implements Source {
 	 * </p>
 	 *
 	 * @param xmlEventReader
-	 *            <code>XMLEventReader</code> used to create this
-	 *            <code>StAXSource</code>.
+	 *                       <code>XMLEventReader</code> used to create this
+	 *                       <code>StAXSource</code>.
 	 *
 	 * @throws XMLStreamException
-	 *             If <code>xmlEventReader</code> access throws an
-	 *             <code>Exception</code>.
+	 *                                  If <code>xmlEventReader</code> access
+	 *                                  throws an
+	 *                                  <code>Exception</code>.
 	 * @throws IllegalArgumentException
-	 *             If <code>xmlEventReader</code> == <code>null</code>.
+	 *                                  If <code>xmlEventReader</code> ==
+	 *                                  <code>null</code>.
 	 * @throws IllegalStateException
-	 *             If <code>xmlEventReader</code> is not in
-	 *             <code>XMLStreamConstants.START_DOCUMENT</code> or
-	 *             <code>XMLStreamConstants.START_ELEMENT</code> state.
+	 *                                  If <code>xmlEventReader</code> is not in
+	 *                                  <code>XMLStreamConstants.START_DOCUMENT</code>
+	 *                                  or
+	 *                                  <code>XMLStreamConstants.START_ELEMENT</code>
+	 *                                  state.
 	 */
-	public StAXSource(final XMLEventReader xmlEventReader) throws XMLStreamException {
+	public StAXSource(final XMLEventReader xmlEventReader)
+			throws XMLStreamException {
 
 		if (xmlEventReader == null) {
 			throw new IllegalArgumentException(
@@ -132,9 +117,10 @@ public class StAXSource implements Source {
 		int eventType = event.getEventType();
 		if (eventType != XMLStreamConstants.START_DOCUMENT
 				&& eventType != XMLStreamConstants.START_ELEMENT) {
-			throw new IllegalStateException("StAXSource(XMLEventReader) with XMLEventReader "
-					+ "not in XMLStreamConstants.START_DOCUMENT or "
-					+ "XMLStreamConstants.START_ELEMENT state");
+			throw new IllegalStateException(
+					"StAXSource(XMLEventReader) with XMLEventReader "
+							+ "not in XMLStreamConstants.START_DOCUMENT or "
+							+ "XMLStreamConstants.START_ELEMENT state");
 		}
 
 		this.xmlEventReader = xmlEventReader;
@@ -158,15 +144,19 @@ public class StAXSource implements Source {
 	 * </p>
 	 *
 	 * @param xmlStreamReader
-	 *            <code>XMLStreamReader</code> used to create this
-	 *            <code>StAXSource</code>.
+	 *                        <code>XMLStreamReader</code> used to create this
+	 *                        <code>StAXSource</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>xmlStreamReader</code> == <code>null</code>.
+	 *                                  If <code>xmlStreamReader</code> ==
+	 *                                  <code>null</code>.
 	 * @throws IllegalStateException
-	 *             If <code>xmlStreamReader</code> is not in
-	 *             <code>XMLStreamConstants.START_DOCUMENT</code> or
-	 *             <code>XMLStreamConstants.START_ELEMENT</code> state.
+	 *                                  If <code>xmlStreamReader</code> is not
+	 *                                  in
+	 *                                  <code>XMLStreamConstants.START_DOCUMENT</code>
+	 *                                  or
+	 *                                  <code>XMLStreamConstants.START_ELEMENT</code>
+	 *                                  state.
 	 */
 	public StAXSource(final XMLStreamReader xmlStreamReader) {
 
@@ -178,9 +168,10 @@ public class StAXSource implements Source {
 		int eventType = xmlStreamReader.getEventType();
 		if (eventType != XMLStreamConstants.START_DOCUMENT
 				&& eventType != XMLStreamConstants.START_ELEMENT) {
-			throw new IllegalStateException("StAXSource(XMLStreamReader) with XMLStreamReader"
-					+ "not in XMLStreamConstants.START_DOCUMENT or "
-					+ "XMLStreamConstants.START_ELEMENT state");
+			throw new IllegalStateException(
+					"StAXSource(XMLStreamReader) with XMLStreamReader"
+							+ "not in XMLStreamConstants.START_DOCUMENT or "
+							+ "XMLStreamConstants.START_ELEMENT state");
 		}
 
 		this.xmlStreamReader = xmlStreamReader;
@@ -238,15 +229,17 @@ public class StAXSource implements Source {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            Ignored.
+	 *                 Ignored.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             Is <strong>always</strong> thrown by this method.
+	 *                                       Is <strong>always</strong> thrown
+	 *                                       by this method.
 	 */
 	public void setSystemId(final String systemId) {
 
-		throw new UnsupportedOperationException("StAXSource#setSystemId(systemId) cannot set the "
-				+ "system identifier for a StAXSource");
+		throw new UnsupportedOperationException(
+				"StAXSource#setSystemId(systemId) cannot set the "
+						+ "system identifier for a StAXSource");
 	}
 
 	/**

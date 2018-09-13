@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -62,10 +42,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * {@link ImageOutputStreamImpl ImageOutputStreamImpl} to guarantee this.
 	 *
 	 * @param b
-	 *            an <code>int</code> whose lower 8 bits are to be written.
+	 *          an <code>int</code> whose lower 8 bits are to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void write(int b) throws IOException;
 
@@ -81,12 +61,12 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param b
-	 *            an array of <code>byte</code>s to be written.
+	 *          an array of <code>byte</code>s to be written.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
+	 *                                 if <code>b</code> is <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                 if an I/O error occurs.
 	 */
 	void write(byte b[]) throws IOException;
 
@@ -110,13 +90,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            the number of <code>byte</code>s to write.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>b.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>b.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
+	 *                                      if <code>b</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void write(byte b[], int off, int len) throws IOException;
 
@@ -131,10 +114,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param v
-	 *            the <code>boolean</code> to be written.
+	 *          the <code>boolean</code> to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeBoolean(boolean v) throws IOException;
 
@@ -150,10 +133,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param v
-	 *            an <code>int</code> containing the byte value to be written.
+	 *          an <code>int</code> containing the byte value to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeByte(int v) throws IOException;
 
@@ -180,10 +163,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param v
-	 *            an <code>int</code> containing the short value to be written.
+	 *          an <code>int</code> containing the short value to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeShort(int v) throws IOException;
 
@@ -191,11 +174,11 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * This method is a synonym for {@link #writeShort writeShort}.
 	 *
 	 * @param v
-	 *            an <code>int</code> containing the char (unsigned short) value
-	 *            to be written.
+	 *          an <code>int</code> containing the char (unsigned short) value
+	 *          to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #writeShort(int)
 	 */
@@ -227,10 +210,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param v
-	 *            an <code>int</code> containing the value to be written.
+	 *          an <code>int</code> containing the value to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeInt(int v) throws IOException;
 
@@ -268,10 +251,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param v
-	 *            a <code>long</code> containing the value to be written.
+	 *          a <code>long</code> containing the value to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeLong(long v) throws IOException;
 
@@ -288,10 +271,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param v
-	 *            a <code>float</code> containing the value to be written.
+	 *          a <code>float</code> containing the value to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeFloat(float v) throws IOException;
 
@@ -308,10 +291,10 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param v
-	 *            a <code>double</code> containing the value to be written.
+	 *          a <code>double</code> containing the value to be written.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeDouble(double v) throws IOException;
 
@@ -335,12 +318,12 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param s
-	 *            a <code>String</code> containing the value to be written.
+	 *          a <code>String</code> containing the value to be written.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>s</code> is <code>null</code>.
+	 *                                 if <code>s</code> is <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                 if an I/O error occurs.
 	 */
 	void writeBytes(String s) throws IOException;
 
@@ -363,12 +346,12 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * be 0 after the write.
 	 *
 	 * @param s
-	 *            a <code>String</code> containing the value to be written.
+	 *          a <code>String</code> containing the value to be written.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>s</code> is <code>null</code>.
+	 *                                 if <code>s</code> is <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                 if an I/O error occurs.
 	 */
 	void writeChars(String s) throws IOException;
 
@@ -444,15 +427,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * modified UTF-8 used here is incompatible with standard UTF-8.
 	 *
 	 * @param s
-	 *            a <code>String</code> containing the value to be written.
+	 *          a <code>String</code> containing the value to be written.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>s</code> is <code>null</code>.
-	 * @exception java.io.UTFDataFormatException
-	 *                if the modified UTF-8 representation of <code>s</code>
-	 *                requires more than 65536 bytes.
+	 *                                 if <code>s</code> is <code>null</code>.
+	 * @exception                      java.io.UTFDataFormatException
+	 *                                 if the modified UTF-8 representation of
+	 *                                 <code>s</code>
+	 *                                 requires more than 65536 bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                 if an I/O error occurs.
 	 */
 	void writeUTF(String s) throws IOException;
 
@@ -476,13 +460,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            the number of <code>short</code>s to write.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>s.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>s.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>s</code> is <code>null</code>.
+	 *                                      if <code>s</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void writeShorts(short[] s, int off, int len) throws IOException;
 
@@ -506,13 +493,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            the number of <code>char</code>s to write.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>c.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>c.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>c</code> is <code>null</code>.
+	 *                                      if <code>c</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void writeChars(char[] c, int off, int len) throws IOException;
 
@@ -536,13 +526,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            the number of <code>int</code>s to write.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>i.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>i.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>i</code> is <code>null</code>.
+	 *                                      if <code>i</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void writeInts(int[] i, int off, int len) throws IOException;
 
@@ -566,13 +559,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            the number of <code>long</code>s to write.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>l.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>l.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>l</code> is <code>null</code>.
+	 *                                      if <code>l</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void writeLongs(long[] l, int off, int len) throws IOException;
 
@@ -596,13 +592,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            the number of <code>float</code>s to write.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>f.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>f.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>f</code> is <code>null</code>.
+	 *                                      if <code>f</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void writeFloats(float[] f, int off, int len) throws IOException;
 
@@ -626,13 +625,16 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            the number of <code>double</code>s to write.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>d.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>d.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>d</code> is <code>null</code>.
+	 *                                      if <code>d</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void writeDoubles(double[] d, int off, int len) throws IOException;
 
@@ -652,7 +654,7 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            written to the stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void writeBit(int bit) throws IOException;
 
@@ -678,18 +680,19 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 * is flushed to the destination, those bits will be set to 0 automatically.
 	 *
 	 * @param bits
-	 *            a <code>long</code> containing the bits to be written,
-	 *            starting with the bit in position <code>numBits -
-	 * 1</code> down to the least significant bit.
+	 *                a <code>long</code> containing the bits to be written,
+	 *                starting with the bit in position <code>numBits -
+	 * 1</code>    down to the least significant bit.
 	 *
 	 * @param numBits
-	 *            an <code>int</code> between 0 and 64, inclusive.
+	 *                an <code>int</code> between 0 and 64, inclusive.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>numBits</code> is not between 0 and 64,
-	 *                inclusive.
+	 *                                     if <code>numBits</code> is not
+	 *                                     between 0 and 64,
+	 *                                     inclusive.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                     if an I/O error occurs.
 	 */
 	void writeBits(long bits, int numBits) throws IOException;
 
@@ -704,10 +707,12 @@ public interface ImageOutputStream extends ImageInputStream, DataOutput {
 	 *            that may be flushed to the destination.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>pos</code> lies in the flushed portion of the
-	 *                stream or past the current stream position.
+	 *                                      if <code>pos</code> lies in the
+	 *                                      flushed portion of the
+	 *                                      stream or past the current stream
+	 *                                      position.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void flushBefore(long pos) throws IOException;
 }

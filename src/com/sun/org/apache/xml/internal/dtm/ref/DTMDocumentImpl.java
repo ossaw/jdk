@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,14 +65,15 @@ import org.xml.sax.ext.LexicalHandler;
  * DocImpl, DocumentImpl, ElementImpl, TextImpl, etc. of XalanJ2
  * </p>
  */
-public class DTMDocumentImpl
-		implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler {
+public class DTMDocumentImpl implements DTM, org.xml.sax.ContentHandler,
+		org.xml.sax.ext.LexicalHandler {
 
 	// Number of lower bits used to represent node index.
 	protected static final byte DOCHANDLE_SHIFT = 22;
 	// Masks the lower order of node handle.
 	// Same as {@link DTMConstructor.IDENT_NODE_DEFAULT}
-	protected static final int NODEHANDLE_MASK = (1 << (DOCHANDLE_SHIFT + 1)) - 1;
+	protected static final int NODEHANDLE_MASK = (1 << (DOCHANDLE_SHIFT + 1))
+			- 1;
 	// Masks the higher order Document handle
 	// Same as {@link DTMConstructor.IDENT_DOC_DEFAULT}
 	protected static final int DOCHANDLE_MASK = -1 - NODEHANDLE_MASK;
@@ -161,15 +159,20 @@ public class DTMDocumentImpl
 	 * Construct a DTM.
 	 *
 	 * @param documentNumber
-	 *            the ID number assigned to this document. It will be shifted up
-	 *            into the high bits and returned as part of all node ID
-	 *            numbers, so those IDs indicate which document they came from
-	 *            as well as a location within the document. It is the
-	 *            DTMManager's responsibility to assign a unique number to each
-	 *            document.
+	 *                       the ID number assigned to this document. It will be
+	 *                       shifted up
+	 *                       into the high bits and returned as part of all node
+	 *                       ID
+	 *                       numbers, so those IDs indicate which document they
+	 *                       came from
+	 *                       as well as a location within the document. It is
+	 *                       the
+	 *                       DTMManager's responsibility to assign a unique
+	 *                       number to each
+	 *                       document.
 	 */
-	public DTMDocumentImpl(DTMManager mgr, int documentNumber, DTMWSFilter whiteSpaceFilter,
-			XMLStringFactory xstringfactory) {
+	public DTMDocumentImpl(DTMManager mgr, int documentNumber,
+			DTMWSFilter whiteSpaceFilter, XMLStringFactory xstringfactory) {
 		initDocument(documentNumber); // clear nodes and document handle
 		m_xsf = xstringfactory;
 	}
@@ -184,8 +187,9 @@ public class DTMDocumentImpl
 	 * run in, or when it will run.
 	 *
 	 * @param source
-	 *            The IncrementalSAXSource that we want to recieve events from
-	 *            on demand.
+	 *               The IncrementalSAXSource that we want to recieve events
+	 *               from
+	 *               on demand.
 	 */
 	public void setIncrementalSAXSource(IncrementalSAXSource source) {
 		m_incrSAXSource = source;
@@ -207,13 +211,13 @@ public class DTMDocumentImpl
 	 * who may have encountered incomplete data and entered a wait state.
 	 * 
 	 * @param w0
-	 *            int As in ChunkedIntArray.append
+	 *           int As in ChunkedIntArray.append
 	 * @param w1
-	 *            int As in ChunkedIntArray.append
+	 *           int As in ChunkedIntArray.append
 	 * @param w2
-	 *            int As in ChunkedIntArray.append
+	 *           int As in ChunkedIntArray.append
 	 * @param w3
-	 *            int As in ChunkedIntArray.append
+	 *           int As in ChunkedIntArray.append
 	 * @return int As in ChunkedIntArray.append
 	 * @see ChunkedIntArray.append
 	 */
@@ -222,7 +226,8 @@ public class DTMDocumentImpl
 		int slotnumber = nodes.appendSlot(w0, w1, w2, w3);
 
 		if (DEBUG)
-			System.out.println(slotnumber + ": " + w0 + " " + w1 + " " + w2 + " " + w3);
+			System.out.println(slotnumber + ": " + w0 + " " + w1 + " " + w2
+					+ " " + w3);
 
 		if (previousSiblingWasParent)
 			nodes.writeEntry(previousSibling, 2, slotnumber);
@@ -241,12 +246,11 @@ public class DTMDocumentImpl
 	 * %REVIEW% Do we really expect to set features on DTMs?
 	 *
 	 * @param featureId
-	 *            A feature URL.
+	 *                  A feature URL.
 	 * @param state
-	 *            true if this feature should be on, false otherwise.
+	 *                  true if this feature should be on, false otherwise.
 	 */
-	public void setFeature(String featureId, boolean state) {
-	};
+	public void setFeature(String featureId, boolean state) {};
 
 	/**
 	 * Set a reference pointer to the element name symbol table. %REVIEW% Should
@@ -254,7 +258,7 @@ public class DTMDocumentImpl
 	 * disaster.
 	 *
 	 * @param poolRef
-	 *            DTMStringPool reference to an instance of table.
+	 *                DTMStringPool reference to an instance of table.
 	 */
 	public void setLocalNameTable(DTMStringPool poolRef) {
 		m_localNames = poolRef;
@@ -275,7 +279,7 @@ public class DTMDocumentImpl
 	 * disaster.
 	 *
 	 * @param poolRef
-	 *            DTMStringPool reference to an instance of table.
+	 *                DTMStringPool reference to an instance of table.
 	 */
 	public void setNsNameTable(DTMStringPool poolRef) {
 		m_nsNames = poolRef;
@@ -296,7 +300,7 @@ public class DTMDocumentImpl
 	 * disaster.
 	 *
 	 * @param poolRef
-	 *            DTMStringPool reference to an instance of table.
+	 *                DTMStringPool reference to an instance of table.
 	 */
 	public void setPrefixNameTable(DTMStringPool poolRef) {
 		m_prefixNames = poolRef;
@@ -315,7 +319,7 @@ public class DTMDocumentImpl
 	 * Set a reference pointer to the content-text repository
 	 *
 	 * @param buffer
-	 *            FastStringBuffer reference to an instance of buffer
+	 *               FastStringBuffer reference to an instance of buffer
 	 */
 	void setContentBuffer(FastStringBuffer buffer) {
 		m_char = buffer;
@@ -419,7 +423,8 @@ public class DTMDocumentImpl
 	// Accept SAX events, use them to build/extend the DTM tree.
 	// Replaces the deprecated DocumentHandler interface.
 
-	public void characters(char[] ch, int start, int length) throws org.xml.sax.SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws org.xml.sax.SAXException {
 		// Actually creating the text node is handled by
 		// processAccumulatedText(); here we just accumulate the
 		// characters into the buffer.
@@ -442,15 +447,17 @@ public class DTMDocumentImpl
 		appendEndDocument();
 	}
 
-	public void endElement(java.lang.String namespaceURI, java.lang.String localName,
-			java.lang.String qName) throws org.xml.sax.SAXException {
+	public void endElement(java.lang.String namespaceURI,
+			java.lang.String localName, java.lang.String qName)
+			throws org.xml.sax.SAXException {
 		processAccumulatedText();
 		// No args but we do need to tell the low-level builder code to
 		// pop up a level.
 		appendEndElement();
 	}
 
-	public void endPrefixMapping(java.lang.String prefix) throws org.xml.sax.SAXException {
+	public void endPrefixMapping(java.lang.String prefix)
+			throws org.xml.sax.SAXException {
 		// No-op
 	}
 
@@ -459,8 +466,8 @@ public class DTMDocumentImpl
 		// %TBD% I believe ignorable text isn't part of the DTM model...?
 	}
 
-	public void processingInstruction(java.lang.String target, java.lang.String data)
-			throws org.xml.sax.SAXException {
+	public void processingInstruction(java.lang.String target,
+			java.lang.String data) throws org.xml.sax.SAXException {
 		processAccumulatedText();
 		// %TBD% Which pools do target and data go into?
 	}
@@ -469,7 +476,8 @@ public class DTMDocumentImpl
 		// No-op for DTM
 	}
 
-	public void skippedEntity(java.lang.String name) throws org.xml.sax.SAXException {
+	public void skippedEntity(java.lang.String name)
+			throws org.xml.sax.SAXException {
 		processAccumulatedText();
 		// %TBD%
 	}
@@ -478,8 +486,9 @@ public class DTMDocumentImpl
 		appendStartDocument();
 	}
 
-	public void startElement(java.lang.String namespaceURI, java.lang.String localName,
-			java.lang.String qName, Attributes atts) throws org.xml.sax.SAXException {
+	public void startElement(java.lang.String namespaceURI,
+			java.lang.String localName, java.lang.String qName, Attributes atts)
+			throws org.xml.sax.SAXException {
 		processAccumulatedText();
 
 		// %TBD% Split prefix off qname
@@ -489,10 +498,10 @@ public class DTMDocumentImpl
 			prefix = qName.substring(0, colon);
 
 		// %TBD% Where do we pool expandedName, or is it just the union, or...
-		/**/System.out
-				.println("Prefix=" + prefix + " index=" + m_prefixNames.stringToIndex(prefix));
-		appendStartElement(m_nsNames.stringToIndex(namespaceURI),
-				m_localNames.stringToIndex(localName), m_prefixNames.stringToIndex(prefix)); /////// %TBD%
+		/**/System.out.println("Prefix=" + prefix + " index=" + m_prefixNames
+				.stringToIndex(prefix));
+		appendStartElement(m_nsNames.stringToIndex(namespaceURI), m_localNames
+				.stringToIndex(localName), m_prefixNames.stringToIndex(prefix)); /////// %TBD%
 
 		// %TBD% I'm assuming that DTM will require resequencing of
 		// NS decls before other attrs, hence two passes are taken.
@@ -512,8 +521,8 @@ public class DTMDocumentImpl
 				}
 
 				appendNSDeclaration(m_prefixNames.stringToIndex(prefix),
-						m_nsNames.stringToIndex(atts.getValue(i)),
-						atts.getType(i).equalsIgnoreCase("ID"));
+						m_nsNames.stringToIndex(atts.getValue(i)), atts.getType(
+								i).equalsIgnoreCase("ID"));
 			}
 		}
 
@@ -538,17 +547,18 @@ public class DTMDocumentImpl
 
 				if (!("xmlns".equals(prefix) || "xmlns".equals(qName)))
 					appendAttribute(m_nsNames.stringToIndex(atts.getURI(i)),
-							m_localNames.stringToIndex(localName),
-							m_prefixNames.stringToIndex(prefix),
-							atts.getType(i).equalsIgnoreCase("ID"), m_char_current_start,
-							contentEnd - m_char_current_start);
+							m_localNames.stringToIndex(localName), m_prefixNames
+									.stringToIndex(prefix), atts.getType(i)
+											.equalsIgnoreCase("ID"),
+							m_char_current_start, contentEnd
+									- m_char_current_start);
 				m_char_current_start = contentEnd;
 			}
 		}
 	}
 
-	public void startPrefixMapping(java.lang.String prefix, java.lang.String uri)
-			throws org.xml.sax.SAXException {
+	public void startPrefixMapping(java.lang.String prefix,
+			java.lang.String uri) throws org.xml.sax.SAXException {
 		// No-op in DTM, handled during element/attr processing?
 	}
 
@@ -556,7 +566,8 @@ public class DTMDocumentImpl
 	// LexicalHandler support. Not all SAX2 parsers support these events
 	// but we may want to pass them through when they exist...
 	//
-	public void comment(char[] ch, int start, int length) throws org.xml.sax.SAXException {
+	public void comment(char[] ch, int start, int length)
+			throws org.xml.sax.SAXException {
 		processAccumulatedText();
 
 		m_char.append(ch, start, length); // Single-string value
@@ -572,7 +583,8 @@ public class DTMDocumentImpl
 		// No-op in DTM
 	}
 
-	public void endEntity(java.lang.String name) throws org.xml.sax.SAXException {
+	public void endEntity(java.lang.String name)
+			throws org.xml.sax.SAXException {
 		// No-op in DTM
 	}
 
@@ -585,7 +597,8 @@ public class DTMDocumentImpl
 		// No-op in DTM
 	}
 
-	public void startEntity(java.lang.String name) throws org.xml.sax.SAXException {
+	public void startEntity(java.lang.String name)
+			throws org.xml.sax.SAXException {
 		// No-op in DTM
 	}
 
@@ -601,7 +614,7 @@ public class DTMDocumentImpl
 	 * The DTMManager will invoke this method when the dtm is created.
 	 *
 	 * @param documentNumber
-	 *            the handle for the DTM document.
+	 *                       the handle for the DTM document.
 	 */
 	final void initDocument(int documentNumber) {
 		// save masked DTM document handle
@@ -1030,7 +1043,7 @@ public class DTMDocumentImpl
 	 * </p>
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                   int Handle of the node.
 	 * @return int true if the given node has child nodes.
 	 */
 	public boolean hasChildNodes(int nodeHandle) {
@@ -1043,7 +1056,7 @@ public class DTMDocumentImpl
 	 * again.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                   int Handle of the node.
 	 * @return int DTM node-number of first child, or DTM.NULL to indicate none
 	 *         exists.
 	 */
@@ -1058,7 +1071,8 @@ public class DTMDocumentImpl
 		short type = (short) (gotslot[0] & 0xFFFF);
 
 		// Check to see if Element or Document node
-		if ((type == ELEMENT_NODE) || (type == DOCUMENT_NODE) || (type == ENTITY_REFERENCE_NODE)) {
+		if ((type == ELEMENT_NODE) || (type == DOCUMENT_NODE)
+				|| (type == ENTITY_REFERENCE_NODE)) {
 
 			// In case when Document root is given
 			// if (nodeHandle == 0) nodeHandle = 1;
@@ -1094,7 +1108,7 @@ public class DTMDocumentImpl
 	 * waits for more nodes to be added to the document and tries again.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                   int Handle of the node.
 	 * @return int Node-number of last child, or DTM.NULL to indicate none
 	 *         exists.
 	 */
@@ -1103,8 +1117,9 @@ public class DTMDocumentImpl
 		nodeHandle &= NODEHANDLE_MASK;
 		// do not need to test node type since getFirstChild does that
 		int lastChild = NULL;
-		for (int nextkid = getFirstChild(nodeHandle); nextkid != NULL; nextkid = getNextSibling(
-				nextkid)) {
+		for (int nextkid = getFirstChild(
+				nodeHandle); nextkid != NULL; nextkid = getNextSibling(
+						nextkid)) {
 			lastChild = nextkid;
 		}
 		return lastChild | m_docHandle;
@@ -1114,16 +1129,19 @@ public class DTMDocumentImpl
 	 * Retrieves an attribute node by by qualified name and namespace URI.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node upon which to look up this attribute.
+	 *                     int Handle of the node upon which to look up this
+	 *                     attribute.
 	 * @param namespaceURI
-	 *            The namespace URI of the attribute to retrieve, or null.
+	 *                     The namespace URI of the attribute to retrieve, or
+	 *                     null.
 	 * @param name
-	 *            The local name of the attribute to retrieve.
+	 *                     The local name of the attribute to retrieve.
 	 * @return The attribute node handle with the specified name (
 	 *         <code>nodeName</code>) or <code>DTM.NULL</code> if there is no
 	 *         such attribute.
 	 */
-	public int getAttributeNode(int nodeHandle, String namespaceURI, String name) {
+	public int getAttributeNode(int nodeHandle, String namespaceURI,
+			String name) {
 		int nsIndex = m_nsNames.stringToIndex(namespaceURI),
 				nameIndex = m_localNames.stringToIndex(name);
 		nodeHandle &= NODEHANDLE_MASK;
@@ -1147,7 +1165,7 @@ public class DTMDocumentImpl
 	 * Given a node handle, get the index of the node's first attribute.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the Element node.
+	 *                   int Handle of the Element node.
 	 * @return Handle of first attribute, or DTM.NULL to indicate none exists.
 	 */
 	public int getFirstAttribute(int nodeHandle) {
@@ -1164,7 +1182,8 @@ public class DTMDocumentImpl
 		// First Attribute (if any) should be at next position in table
 		nodeHandle++;
 		return (ATTRIBUTE_NODE == (nodes.readEntry(nodeHandle, 0) & 0xFFFF))
-				? nodeHandle | m_docHandle : NULL;
+				? nodeHandle | m_docHandle
+				: NULL;
 	}
 
 	/**
@@ -1173,12 +1192,14 @@ public class DTMDocumentImpl
 	 * again
 	 *
 	 * @param nodeHandle
-	 *            handle to node, which should probably be an element node, but
-	 *            need not be.
+	 *                   handle to node, which should probably be an element
+	 *                   node, but
+	 *                   need not be.
 	 *
 	 * @param inScope
-	 *            true if all namespaces in scope should be returned, false if
-	 *            only the namespace declarations should be returned.
+	 *                   true if all namespaces in scope should be returned,
+	 *                   false if
+	 *                   only the namespace declarations should be returned.
 	 * @return handle of first namespace, or DTM.NULL to indicate none exists.
 	 */
 	public int getFirstNamespaceNode(int nodeHandle, boolean inScope) {
@@ -1198,7 +1219,7 @@ public class DTMDocumentImpl
 	 * should wait for more nodes to be added to the document and tries again.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                   int Handle of the node.
 	 * @return int Node-number of next sibling, or DTM.NULL to indicate none
 	 *         exists.
 	 */
@@ -1209,7 +1230,8 @@ public class DTMDocumentImpl
 			return NULL;
 
 		short type = (short) (nodes.readEntry(nodeHandle, 0) & 0xFFFF);
-		if ((type == ELEMENT_NODE) || (type == ATTRIBUTE_NODE) || (type == ENTITY_REFERENCE_NODE)) {
+		if ((type == ELEMENT_NODE) || (type == ATTRIBUTE_NODE)
+				|| (type == ENTITY_REFERENCE_NODE)) {
 			int nextSib = nodes.readEntry(nodeHandle, 2);
 			if (nextSib == NULL)
 				return NULL;
@@ -1233,7 +1255,7 @@ public class DTMDocumentImpl
 	 * expensive.
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return int Node-number of the previous sib, or DTM.NULL to indicate none
 	 *         exists.
 	 */
@@ -1245,8 +1267,9 @@ public class DTMDocumentImpl
 
 		int parent = nodes.readEntry(nodeHandle, 1);
 		int kid = NULL;
-		for (int nextkid = getFirstChild(parent); nextkid != nodeHandle; nextkid = getNextSibling(
-				nextkid)) {
+		for (int nextkid = getFirstChild(
+				parent); nextkid != nodeHandle; nextkid = getNextSibling(
+						nextkid)) {
 			kid = nextkid;
 		}
 		return kid | m_docHandle;
@@ -1258,7 +1281,7 @@ public class DTMDocumentImpl
 	 * on the same node.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                   int Handle of the node.
 	 * @return int DTM node-number of the resolved attr, or DTM.NULL to indicate
 	 *         none exists.
 	 */
@@ -1288,10 +1311,12 @@ public class DTMDocumentImpl
 	 * INTERFACE. FIX IT, OR JUSTIFY CHANGING THE DTM API.
 	 *
 	 * @param namespaceHandle
-	 *            handle to node which must be of type NAMESPACE_NODE.
+	 *                        handle to node which must be of type
+	 *                        NAMESPACE_NODE.
 	 * @return handle of next namespace, or DTM.NULL to indicate none exists.
 	 */
-	public int getNextNamespaceNode(int baseHandle, int namespaceHandle, boolean inScope) {
+	public int getNextNamespaceNode(int baseHandle, int namespaceHandle,
+			boolean inScope) {
 		// ###shs need to work on namespace
 		return NULL;
 	}
@@ -1302,7 +1327,7 @@ public class DTMDocumentImpl
 	 *
 	 * @param subtreeRootHandle
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                          int Handle of the node.
 	 * @return handle of next descendant, or DTM.NULL to indicate none exists.
 	 */
 	public int getNextDescendant(int subtreeRootHandle, int nodeHandle) {
@@ -1344,7 +1369,7 @@ public class DTMDocumentImpl
 	 * Given a node handle, advance to the next node on the following axis.
 	 *
 	 * @param axisContextHandle
-	 *            the start of the axis that is being traversed.
+	 *                          the start of the axis that is being traversed.
 	 * @param nodeHandle
 	 * @return handle of next sibling, or DTM.NULL to indicate none exists.
 	 */
@@ -1357,9 +1382,9 @@ public class DTMDocumentImpl
 	 * Given a node handle, advance to the next node on the preceding axis.
 	 *
 	 * @param axisContextHandle
-	 *            the start of the axis that is being traversed.
+	 *                          the start of the axis that is being traversed.
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                          the id of the node.
 	 * @return int Node-number of preceding sibling, or DTM.NULL to indicate
 	 *         none exists.
 	 */
@@ -1379,7 +1404,8 @@ public class DTMDocumentImpl
 			// purpose of the while loop -- does this
 			// logic make any sense?
 
-			return (m_docHandle | nodes.specialFind(axisContextHandle, nodeHandle));
+			return (m_docHandle | nodes.specialFind(axisContextHandle,
+					nodeHandle));
 		}
 		return NULL;
 	}
@@ -1388,7 +1414,7 @@ public class DTMDocumentImpl
 	 * Given a node handle, find its parent node.
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return int Node-number of parent, or DTM.NULL to indicate none exists.
 	 */
 	public int getParent(int nodeHandle) {
@@ -1428,7 +1454,7 @@ public class DTMDocumentImpl
 	 * </p>
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return int Node handle of owning document, or NULL if the nodeHandle is
 	 *         a document.
 	 */
@@ -1450,7 +1476,7 @@ public class DTMDocumentImpl
 	 * </p>
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return int Node handle of owning document, or NULL if the nodeHandle is
 	 *         a document.
 	 */
@@ -1467,7 +1493,7 @@ public class DTMDocumentImpl
 	 * string-value).
 	 *
 	 * @param nodeHandle
-	 *            The node ID.
+	 *                   The node ID.
 	 *
 	 * @return A string object that represents the string-value of the given
 	 *         node.
@@ -1479,17 +1505,17 @@ public class DTMDocumentImpl
 		String value = null;
 
 		switch (nodetype) {
-		case TEXT_NODE:
-		case COMMENT_NODE:
-		case CDATA_SECTION_NODE:
-			value = m_char.getString(gotslot[2], gotslot[3]);
-			break;
-		case PROCESSING_INSTRUCTION_NODE:
-		case ATTRIBUTE_NODE:
-		case ELEMENT_NODE:
-		case ENTITY_REFERENCE_NODE:
-		default:
-			break;
+			case TEXT_NODE:
+			case COMMENT_NODE:
+			case CDATA_SECTION_NODE:
+				value = m_char.getString(gotslot[2], gotslot[3]);
+				break;
+			case PROCESSING_INSTRUCTION_NODE:
+			case ATTRIBUTE_NODE:
+			case ELEMENT_NODE:
+			case ENTITY_REFERENCE_NODE:
+			default:
+				break;
 		}
 		return m_xsf.newstr(value);
 
@@ -1511,7 +1537,7 @@ public class DTMDocumentImpl
 	 * buffering may be on different boundaries than the parser's buffers.
 	 *
 	 * @param nodeHandle
-	 *            The node ID.
+	 *                   The node ID.
 	 *
 	 * @return number of character array chunks in the string-value of a node.
 	 */
@@ -1538,17 +1564,19 @@ public class DTMDocumentImpl
 	 * the parser's buffers.
 	 *
 	 * @param nodeHandle
-	 *            The node ID.
+	 *                    The node ID.
 	 * @param chunkIndex
-	 *            Which chunk to get.
+	 *                    Which chunk to get.
 	 * @param startAndLen
-	 *            An array of 2 where the start position and length of the chunk
-	 *            will be returned.
+	 *                    An array of 2 where the start position and length of
+	 *                    the chunk
+	 *                    will be returned.
 	 *
 	 * @return The character array reference where the chunk occurs.
 	 */
 	// ###zaj - tbd
-	public char[] getStringValueChunk(int nodeHandle, int chunkIndex, int[] startAndLen) {
+	public char[] getStringValueChunk(int nodeHandle, int chunkIndex,
+			int[] startAndLen) {
 		return new char[0];
 	}
 
@@ -1557,7 +1585,7 @@ public class DTMDocumentImpl
 	 * name.
 	 *
 	 * @param nodeHandle
-	 *            The handle to the node in question.
+	 *                   The handle to the node in question.
 	 *
 	 * @return the expanded-name id of the node.
 	 */
@@ -1601,7 +1629,7 @@ public class DTMDocumentImpl
 	 * Given an expanded-name ID, return the local name part.
 	 *
 	 * @param ExpandedNameID
-	 *            an ID that represents an expanded-name.
+	 *                       an ID that represents an expanded-name.
 	 * @return String Local name of this node.
 	 */
 	public String getLocalNameFromExpandedNameID(int ExpandedNameID) {
@@ -1618,7 +1646,7 @@ public class DTMDocumentImpl
 	 * Given an expanded-name ID, return the namespace URI part.
 	 *
 	 * @param ExpandedNameID
-	 *            an ID that represents an expanded-name.
+	 *                       an ID that represents an expanded-name.
 	 * @return String URI value of this node's namespace, or null if no
 	 *         namespace was resolved.
 	 */
@@ -1648,7 +1676,7 @@ public class DTMDocumentImpl
 	 * names such as #text or #document.
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return String Name of this node, which may be an empty string. %REVIEW%
 	 *         Document when empty string is possible...
 	 */
@@ -1658,7 +1686,8 @@ public class DTMDocumentImpl
 		String name = fixednames[type];
 		if (null == name) {
 			int i = gotslot[3];
-			/**/System.out.println("got i=" + i + " " + (i >> 16) + "/" + (i & 0xffff));
+			/**/System.out.println("got i=" + i + " " + (i >> 16) + "/" + (i
+					& 0xffff));
 
 			name = m_localNames.indexToString(i & 0xFFFF);
 			String prefix = m_prefixNames.indexToString(i >> 16);
@@ -1673,7 +1702,7 @@ public class DTMDocumentImpl
 	 * as described by the XPath data model, NOT the DOM-style name.
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return String Name of this node.
 	 */
 	public String getNodeNameX(int nodeHandle) {
@@ -1688,7 +1717,7 @@ public class DTMDocumentImpl
 	 * Should this be DOM-style (undefined unless namespaced), or other?
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return String Local name of this node.
 	 */
 	public String getLocalName(int nodeHandle) {
@@ -1717,7 +1746,7 @@ public class DTMDocumentImpl
 	 * other?
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return String prefix of this node's name, or "" if no explicit namespace
 	 *         prefix was given.
 	 */
@@ -1740,7 +1769,7 @@ public class DTMDocumentImpl
 	 * default in lieu thereof -- was mapped to.)
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return String URI value of this node's namespace, or null if no
 	 *         namespace was resolved.
 	 */
@@ -1754,7 +1783,7 @@ public class DTMDocumentImpl
 	 * <p>
 	 *
 	 * @param nodeHandle
-	 *            The node id.
+	 *                   The node id.
 	 * @return String Value of this node, or null if not meaningful for this
 	 *         node type.
 	 */
@@ -1764,18 +1793,18 @@ public class DTMDocumentImpl
 		String value = null;
 
 		switch (nodetype) { // ###zaj todo - document nodetypes
-		case ATTRIBUTE_NODE:
-			nodes.readSlot(nodeHandle + 1, gotslot);
-		case TEXT_NODE:
-		case COMMENT_NODE:
-		case CDATA_SECTION_NODE:
-			value = m_char.getString(gotslot[2], gotslot[3]); // ###zaj
-			break;
-		case PROCESSING_INSTRUCTION_NODE:
-		case ELEMENT_NODE:
-		case ENTITY_REFERENCE_NODE:
-		default:
-			break;
+			case ATTRIBUTE_NODE:
+				nodes.readSlot(nodeHandle + 1, gotslot);
+			case TEXT_NODE:
+			case COMMENT_NODE:
+			case CDATA_SECTION_NODE:
+				value = m_char.getString(gotslot[2], gotslot[3]); // ###zaj
+				break;
+			case PROCESSING_INSTRUCTION_NODE:
+			case ELEMENT_NODE:
+			case ENTITY_REFERENCE_NODE:
+			default:
+				break;
 		}
 		return value;
 	}
@@ -1786,7 +1815,7 @@ public class DTMDocumentImpl
 	 * %REVIEW% Generally, returning short is false economy. Return int?
 	 *
 	 * @param nodeHandle
-	 *            The node id.
+	 *                   The node id.
 	 * @return int Node type, as per the DOM's Node._NODE constants.
 	 */
 	public short getNodeType(int nodeHandle) {
@@ -1798,7 +1827,7 @@ public class DTMDocumentImpl
 	 * node).
 	 *
 	 * @param nodeHandle
-	 *            The node id.
+	 *                   The node id.
 	 * @return the number of ancestors, plus one
 	 * @xsl.usage internal
 	 */
@@ -1818,11 +1847,11 @@ public class DTMDocumentImpl
 	 * that feature is supported by this node.
 	 *
 	 * @param feature
-	 *            The name of the feature to test.
+	 *                The name of the feature to test.
 	 * @param version
-	 *            This is the version number of the feature to test. If the
-	 *            version is not specified, supporting any version of the
-	 *            feature will cause the method to return <code>true</code>.
+	 *                This is the version number of the feature to test. If the
+	 *                version is not specified, supporting any version of the
+	 *                feature will cause the method to return <code>true</code>.
 	 * @return Returns <code>true</code> if the specified feature is supported
 	 *         on this node, <code>false</code> otherwise.
 	 */
@@ -1846,7 +1875,7 @@ public class DTMDocumentImpl
 	 * Set the base URI of the document entity.
 	 *
 	 * @param baseURI
-	 *            the document base URI String object or null if unknown.
+	 *                the document base URI String object or null if unknown.
 	 */
 	public void setDocumentBaseURI(String baseURI) {
 
@@ -1858,7 +1887,7 @@ public class DTMDocumentImpl
 	 * the value of this property is unknown.
 	 *
 	 * @param nodeHandle
-	 *            The node id, which can be any valid node handle.
+	 *                   The node id, which can be any valid node handle.
 	 * @return the system identifier String object or null if unknown.
 	 */
 	public String getDocumentSystemIdentifier(int nodeHandle) {
@@ -1870,7 +1899,7 @@ public class DTMDocumentImpl
 	 * entity is expressed.
 	 *
 	 * @param nodeHandle
-	 *            The node id, which can be any valid node handle.
+	 *                   The node id, which can be any valid node handle.
 	 * @return the document encoding String object.
 	 */
 	public String getDocumentEncoding(int nodeHandle) {
@@ -1885,7 +1914,7 @@ public class DTMDocumentImpl
 	 * declaration.
 	 *
 	 * @param nodeHandle
-	 *            The node id, which can be any valid node handle.
+	 *                   The node id, which can be any valid node handle.
 	 * @return the document standalone String object, either "yes", "no", or
 	 *         null.
 	 */
@@ -1900,7 +1929,7 @@ public class DTMDocumentImpl
 	 * declaration.
 	 *
 	 * @param documentHandle
-	 *            the document handle
+	 *                       the document handle
 	 *
 	 * @return the document version String object
 	 */
@@ -1962,7 +1991,7 @@ public class DTMDocumentImpl
 	 * </p>
 	 *
 	 * @param elementId
-	 *            The unique <code>id</code> value for an element.
+	 *                  The unique <code>id</code> value for an element.
 	 * @return The handle of the matching element.
 	 */
 	public int getElementById(String elementId) {
@@ -1996,7 +2025,7 @@ public class DTMDocumentImpl
 	 * function.)
 	 *
 	 * @param name
-	 *            A string containing the Entity Name of the unparsed entity.
+	 *             A string containing the Entity Name of the unparsed entity.
 	 *
 	 * @return String containing the URI of the Unparsed Entity, or an empty
 	 *         string if no such entity exists.
@@ -2032,9 +2061,9 @@ public class DTMDocumentImpl
 	 * TODO: Make sure this does the right thing with attribute nodes!!!
 	 *
 	 * @param nodeHandle1
-	 *            DOM Node to perform position comparison on.
+	 *                    DOM Node to perform position comparison on.
 	 * @param nodeHandle2
-	 *            DOM Node to perform position comparison on .
+	 *                    DOM Node to perform position comparison on .
 	 *
 	 * @return false if node2 comes before node1, otherwise return true. You can
 	 *         think of this as
@@ -2058,7 +2087,7 @@ public class DTMDocumentImpl
 	 * characters that are not white space.
 	 *
 	 * @param nodeHandle
-	 *            the node ID.
+	 *                   the node ID.
 	 * @return <code>true</code> if the character data is whitespace;
 	 *         <code>false</code> otherwise.
 	 */
@@ -2074,7 +2103,7 @@ public class DTMDocumentImpl
 	 * below) may be unknown. If it is true, those properties are never unknown.
 	 *
 	 * @param documentHandle
-	 *            A node handle that must identify a document.
+	 *                       A node handle that must identify a document.
 	 * @return <code>true</code> if all declarations were processed;
 	 *         <code>false</code> otherwise.
 	 */
@@ -2087,7 +2116,7 @@ public class DTMDocumentImpl
 	 * specified in the start-tag of its element, or was defaulted from the DTD.
 	 *
 	 * @param attributeHandle
-	 *            the attribute handle
+	 *                        the attribute handle
 	 * @return <code>true</code> if the attribute was specified;
 	 *         <code>false</code> if it was defaulted.
 	 */
@@ -2105,36 +2134,35 @@ public class DTMDocumentImpl
 	 * this method.
 	 *
 	 * @param nodeHandle
-	 *            The node ID.
+	 *                   The node ID.
 	 * @param ch
-	 *            A non-null reference to a ContentHandler.
+	 *                   A non-null reference to a ContentHandler.
 	 *
 	 * @throws org.xml.sax.SAXException
 	 */
-	public void dispatchCharactersEvents(int nodeHandle, org.xml.sax.ContentHandler ch,
-			boolean normalize) throws org.xml.sax.SAXException {
-	}
+	public void dispatchCharactersEvents(int nodeHandle,
+			org.xml.sax.ContentHandler ch, boolean normalize)
+			throws org.xml.sax.SAXException {}
 
 	/**
 	 * Directly create SAX parser events from a subtree.
 	 *
 	 * @param nodeHandle
-	 *            The node ID.
+	 *                   The node ID.
 	 * @param ch
-	 *            A non-null reference to a ContentHandler.
+	 *                   A non-null reference to a ContentHandler.
 	 *
 	 * @throws org.xml.sax.SAXException
 	 */
 
 	public void dispatchToEvents(int nodeHandle, org.xml.sax.ContentHandler ch)
-			throws org.xml.sax.SAXException {
-	}
+			throws org.xml.sax.SAXException {}
 
 	/**
 	 * Return an DOM node for the given node.
 	 *
 	 * @param nodeHandle
-	 *            The node ID.
+	 *                   The node ID.
 	 *
 	 * @return A node representation of the DTM node.
 	 */
@@ -2158,12 +2186,13 @@ public class DTMDocumentImpl
 	 * </p>
 	 *
 	 * @param newChild
-	 *            Must be a valid new node handle.
+	 *                   Must be a valid new node handle.
 	 * @param clone
-	 *            true if the child should be cloned into the document.
+	 *                   true if the child should be cloned into the document.
 	 * @param cloneDepth
-	 *            if the clone argument is true, specifies that the clone should
-	 *            include all it's children.
+	 *                   if the clone argument is true, specifies that the clone
+	 *                   should
+	 *                   include all it's children.
 	 */
 	public void appendChild(int newChild, boolean clone, boolean cloneDepth) {
 		boolean sameDoc = ((newChild & DOCHANDLE_MASK) == m_docHandle);
@@ -2202,9 +2231,10 @@ public class DTMDocumentImpl
 	 * buffer (shared with the builder).
 	 *
 	 * @param m_char_current_start
-	 *            int Starting offset of node's content in m_char.
+	 *                             int Starting offset of node's content in
+	 *                             m_char.
 	 * @param contentLength
-	 *            int Length of node's content in m_char.
+	 *                             int Length of node's content in m_char.
 	 */
 	void appendTextChild(int m_char_current_start, int contentLength) {
 		// create a Text Node
@@ -2228,9 +2258,10 @@ public class DTMDocumentImpl
 	 * buffer (shared with the builder).
 	 *
 	 * @param m_char_current_start
-	 *            int Starting offset of node's content in m_char.
+	 *                             int Starting offset of node's content in
+	 *                             m_char.
 	 * @param contentLength
-	 *            int Length of node's content in m_char.
+	 *                             int Length of node's content in m_char.
 	 */
 	void appendComment(int m_char_current_start, int contentLength) {
 		// create a Comment Node
@@ -2260,14 +2291,15 @@ public class DTMDocumentImpl
 	 * namespace nodes are unbundled in the ContentHandler layer and appended
 	 * separately.
 	 *
-	 * @param namespaceIndex:
-	 *            Index within the namespaceURI string pool
+	 * @param                namespaceIndex:
+	 *                       Index within the namespaceURI string pool
 	 * @param localNameIndex
-	 *            Index within the local name string pool
-	 * @param prefixIndex:
-	 *            Index within the prefix string pool
+	 *                       Index within the local name string pool
+	 * @param                prefixIndex:
+	 *                       Index within the prefix string pool
 	 */
-	void appendStartElement(int namespaceIndex, int localNameIndex, int prefixIndex) {
+	void appendStartElement(int namespaceIndex, int localNameIndex,
+			int prefixIndex) {
 		// do document root node creation here on the first element, create
 		// nodes for
 		// this element and its attributes, store the element, namespace, and
@@ -2284,7 +2316,8 @@ public class DTMDocumentImpl
 		int w2 = 0;
 		// W3: Tagname high: prefix Low: local name
 		int w3 = localNameIndex | prefixIndex << 16;
-		/**/System.out.println("set w3=" + w3 + " " + (w3 >> 16) + "/" + (w3 & 0xffff));
+		/**/System.out.println("set w3=" + w3 + " " + (w3 >> 16) + "/" + (w3
+				& 0xffff));
 
 		// int ourslot = nodes.appendSlot(w0, w1, w2, w3);
 		int ourslot = appendNode(w0, w1, w2, w3);
@@ -2302,16 +2335,17 @@ public class DTMDocumentImpl
 	 * added to the pools
 	 *
 	 * @param prefixIndex:
-	 *            Index within the prefix string pool
+	 *        Index within the prefix string pool
 	 * @param namespaceIndex:
-	 *            Index within the namespaceURI string pool
+	 *        Index within the namespaceURI string pool
 	 * @param isID:
-	 *            If someone really insists on writing a bad DTD, it is
-	 *            theoretically possible for a namespace declaration to also be
-	 *            declared as being a node ID. I don't really want to support
-	 *            that stupidity, but I'm not sure we can refuse to accept it.
+	 *        If someone really insists on writing a bad DTD, it is
+	 *        theoretically possible for a namespace declaration to also be
+	 *        declared as being a node ID. I don't really want to support
+	 *        that stupidity, but I'm not sure we can refuse to accept it.
 	 */
-	void appendNSDeclaration(int prefixIndex, int namespaceIndex, boolean isID) {
+	void appendNSDeclaration(int prefixIndex, int namespaceIndex,
+			boolean isID) {
 		// %REVIEW% I'm assigning this node the "namespace for namespaces"
 		// which the DOM defined. It is expected that the Namespace spec will
 		// adopt this as official. It isn't strictly needed since it's implied
@@ -2322,10 +2356,12 @@ public class DTMDocumentImpl
 
 		// %TBD% isID is not currently honored.
 
-		final int namespaceForNamespaces = m_nsNames.stringToIndex("http://www.w3.org/2000/xmlns/");
+		final int namespaceForNamespaces = m_nsNames.stringToIndex(
+				"http://www.w3.org/2000/xmlns/");
 
 		// W0 High: Namespace Low: Node Type
-		int w0 = NAMESPACE_NODE | (m_nsNames.stringToIndex("http://www.w3.org/2000/xmlns/") << 16);
+		int w0 = NAMESPACE_NODE | (m_nsNames.stringToIndex(
+				"http://www.w3.org/2000/xmlns/") << 16);
 
 		// W1: Parent
 		int w1 = currentParent;
@@ -2349,21 +2385,24 @@ public class DTMDocumentImpl
 	 * references within attribute values.
 	 *
 	 * @param namespaceIndex
-	 *            int Index within the namespaceURI string pool
+	 *                             int Index within the namespaceURI string pool
 	 * @param localNameIndex
-	 *            int Index within the local name string pool
+	 *                             int Index within the local name string pool
 	 * @param prefixIndex
-	 *            int Index within the prefix string pool
+	 *                             int Index within the prefix string pool
 	 * @param isID
-	 *            boolean True if this attribute was declared as an ID (for use
-	 *            in supporting getElementByID).
+	 *                             boolean True if this attribute was declared
+	 *                             as an ID (for use
+	 *                             in supporting getElementByID).
 	 * @param m_char_current_start
-	 *            int Starting offset of node's content in m_char.
+	 *                             int Starting offset of node's content in
+	 *                             m_char.
 	 * @param contentLength
-	 *            int Length of node's content in m_char.
+	 *                             int Length of node's content in m_char.
 	 */
-	void appendAttribute(int namespaceIndex, int localNameIndex, int prefixIndex, boolean isID,
-			int m_char_current_start, int contentLength) {
+	void appendAttribute(int namespaceIndex, int localNameIndex,
+			int prefixIndex, boolean isID, int m_char_current_start,
+			int contentLength) {
 		// %TBD% isID is not currently honored.
 
 		// W0 High: Namespace Low: Node Type
@@ -2375,7 +2414,8 @@ public class DTMDocumentImpl
 		int w2 = 0;
 		// W3: Tagname high: prefix Low: local name
 		int w3 = localNameIndex | prefixIndex << 16;
-		/**/System.out.println("set w3=" + w3 + " " + (w3 >> 16) + "/" + (w3 & 0xffff));
+		/**/System.out.println("set w3=" + w3 + " " + (w3 >> 16) + "/" + (w3
+				& 0xffff));
 		// Add node
 		int ourslot = appendNode(w0, w1, w2, w3);
 		previousSibling = ourslot; // Should attributes be previous siblings
@@ -2402,7 +2442,7 @@ public class DTMDocumentImpl
 	 * axis, though not in document order.
 	 *
 	 * @param axis
-	 *            One of Axes.ANCESTORORSELF, etc.
+	 *             One of Axes.ANCESTORORSELF, etc.
 	 *
 	 * @return A DTMAxisIterator, or null if the given axis isn't supported.
 	 */
@@ -2417,7 +2457,7 @@ public class DTMDocumentImpl
 	 * iterator.setStartNode()).
 	 *
 	 * @param axis
-	 *            One of Axes.ANCESTORORSELF, etc.
+	 *             One of Axes.ANCESTORORSELF, etc.
 	 *
 	 * @return A DTMAxisIterator, or null if the given axis isn't supported.
 	 */
@@ -2433,11 +2473,12 @@ public class DTMDocumentImpl
 	 *
 	 * @param axis
 	 * @param type
-	 *            An extended type ID.
+	 *             An extended type ID.
 	 *
 	 * @return A DTMAxisIterator, or null if the given axis isn't supported.
 	 */
-	public DTMAxisIterator getTypedAxisIterator(final int axis, final int type) {
+	public DTMAxisIterator getTypedAxisIterator(final int axis,
+			final int type) {
 		// %TBD%
 		return null;
 	}
@@ -2492,18 +2533,17 @@ public class DTMDocumentImpl
 	 * For the moment all the run time properties are ignored by this class.
 	 *
 	 * @param property
-	 *            a <code>String</code> value
+	 *                 a <code>String</code> value
 	 * @param value
-	 *            an <code>Object</code> value
+	 *                 an <code>Object</code> value
 	 */
-	public void setProperty(String property, Object value) {
-	}
+	public void setProperty(String property, Object value) {}
 
 	/**
 	 * Source information is not handled yet, so return <code>null</code> here.
 	 *
 	 * @param node
-	 *            an <code>int</code> value
+	 *             an <code>int</code> value
 	 * @return null
 	 */
 	public SourceLocator getSourceLocatorFor(int node) {
@@ -2515,16 +2555,14 @@ public class DTMDocumentImpl
 	 * implememtation that extends the default base requires notification of
 	 * registration, they can override this method.
 	 */
-	public void documentRegistration() {
-	}
+	public void documentRegistration() {}
 
 	/**
 	 * A dummy routine to satisify the abstract interface. If the DTM
 	 * implememtation that extends the default base requires notification when
 	 * the document is being released, they can override this method
 	 */
-	public void documentRelease() {
-	}
+	public void documentRelease() {}
 
 	/**
 	 * Migrate a DTM built with an old DTMManager to a new DTMManager. After the
@@ -2533,9 +2571,8 @@ public class DTMDocumentImpl
 	 * transformations.
 	 * 
 	 * @param manager
-	 *            the DTMManager
+	 *                the DTMManager
 	 */
-	public void migrateTo(DTMManager manager) {
-	}
+	public void migrateTo(DTMManager manager) {}
 
 }

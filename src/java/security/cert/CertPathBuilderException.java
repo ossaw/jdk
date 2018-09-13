@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -81,10 +61,11 @@ public class CertPathBuilderException extends GeneralSecurityException {
 	 * typically contains the class and detail message of cause).
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link #getCause getCause()} method). (A {@code null} value
+	 *              is
+	 *              permitted, and indicates that the cause is nonexistent or
+	 *              unknown.)
 	 */
 	public CertPathBuilderException(Throwable cause) {
 		super(cause);
@@ -95,12 +76,13 @@ public class CertPathBuilderException extends GeneralSecurityException {
 	 * message and cause.
 	 *
 	 * @param msg
-	 *            the detail message
+	 *              the detail message
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link #getCause getCause()} method). (A {@code null} value
+	 *              is
+	 *              permitted, and indicates that the cause is nonexistent or
+	 *              unknown.)
 	 */
 	public CertPathBuilderException(String msg, Throwable cause) {
 		super(msg, cause);

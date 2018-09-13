@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.protocol;
@@ -46,22 +26,25 @@ import com.sun.corba.se.impl.protocol.INSServerRequestDispatcher;
 import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
 
 public final class RequestDispatcherDefault {
-	private RequestDispatcherDefault() {
-	}
+	private RequestDispatcherDefault() {}
 
 	public static ClientRequestDispatcher makeClientRequestDispatcher() {
 		return new CorbaClientRequestDispatcherImpl();
 	}
 
-	public static CorbaServerRequestDispatcher makeServerRequestDispatcher(ORB orb) {
-		return new CorbaServerRequestDispatcherImpl((com.sun.corba.se.spi.orb.ORB) orb);
+	public static CorbaServerRequestDispatcher makeServerRequestDispatcher(
+			ORB orb) {
+		return new CorbaServerRequestDispatcherImpl(
+				(com.sun.corba.se.spi.orb.ORB) orb);
 	}
 
-	public static CorbaServerRequestDispatcher makeBootstrapServerRequestDispatcher(ORB orb) {
+	public static CorbaServerRequestDispatcher makeBootstrapServerRequestDispatcher(
+			ORB orb) {
 		return new BootstrapServerRequestDispatcher(orb);
 	}
 
-	public static CorbaServerRequestDispatcher makeINSServerRequestDispatcher(ORB orb) {
+	public static CorbaServerRequestDispatcher makeINSServerRequestDispatcher(
+			ORB orb) {
 		return new INSServerRequestDispatcher(orb);
 	}
 

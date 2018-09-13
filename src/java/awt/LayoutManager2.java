@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -48,9 +28,9 @@ public interface LayoutManager2 extends LayoutManager {
 	 * constraint object.
 	 * 
 	 * @param comp
-	 *            the component to be added
+	 *                    the component to be added
 	 * @param constraints
-	 *            where/how the component is added to the layout.
+	 *                    where/how the component is added to the layout.
 	 */
 	void addLayoutComponent(Component comp, Object constraints);
 

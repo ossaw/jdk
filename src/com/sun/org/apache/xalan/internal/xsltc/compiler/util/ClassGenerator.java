@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,9 +58,11 @@ public class ClassGenerator extends ClassGen {
 	private final String _applyTemplatesSig;
 	private final String _applyTemplatesSigForImport;
 
-	public ClassGenerator(String class_name, String super_class_name, String file_name,
-			int access_flags, String[] interfaces, Stylesheet stylesheet) {
-		super(class_name, super_class_name, file_name, access_flags, interfaces);
+	public ClassGenerator(String class_name, String super_class_name,
+			String file_name, int access_flags, String[] interfaces,
+			Stylesheet stylesheet) {
+		super(class_name, super_class_name, file_name, access_flags,
+				interfaces);
 		_stylesheet = stylesheet;
 		_parser = stylesheet.getParser();
 		_aloadTranslet = new ALOAD(TRANSLET_INDEX);
@@ -75,11 +74,13 @@ public class ClassGenerator extends ClassGen {
 			_domClass = "com.sun.org.apache.xalan.internal.xsltc.dom.DOMAdapter";
 			_domClassSig = "Lcom/sun/org/apache/xalan/internal/xsltc/dom/DOMAdapter;";
 		}
-		_applyTemplatesSig = "(" + Constants.DOM_INTF_SIG + Constants.NODE_ITERATOR_SIG
-				+ Constants.TRANSLET_OUTPUT_SIG + ")V";
+		_applyTemplatesSig = "(" + Constants.DOM_INTF_SIG
+				+ Constants.NODE_ITERATOR_SIG + Constants.TRANSLET_OUTPUT_SIG
+				+ ")V";
 
-		_applyTemplatesSigForImport = "(" + Constants.DOM_INTF_SIG + Constants.NODE_ITERATOR_SIG
-				+ Constants.TRANSLET_OUTPUT_SIG + Constants.NODE_FIELD_SIG + ")V";
+		_applyTemplatesSigForImport = "(" + Constants.DOM_INTF_SIG
+				+ Constants.NODE_ITERATOR_SIG + Constants.TRANSLET_OUTPUT_SIG
+				+ Constants.NODE_FIELD_SIG + ")V";
 	}
 
 	public final Parser getParser() {

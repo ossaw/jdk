@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.event;
@@ -76,23 +56,25 @@ public interface EventDirContext extends EventContext, DirContext {
 	 * obtained by the service provider or service.
 	 *
 	 * @param target
-	 *            The nonnull name of the object resolved relative to this
-	 *            context.
+	 *               The nonnull name of the object resolved relative to this
+	 *               context.
 	 * @param filter
-	 *            The nonnull string filter (see RFC2254).
+	 *               The nonnull string filter (see RFC2254).
 	 * @param ctls
-	 *            The possibly null search controls. If null, the default search
-	 *            controls are used.
+	 *               The possibly null search controls. If null, the default
+	 *               search
+	 *               controls are used.
 	 * @param l
-	 *            The nonnull listener.
+	 *               The nonnull listener.
 	 * @exception NamingException
-	 *                If a problem was encountered while adding the listener.
+	 *                            If a problem was encountered while adding the
+	 *                            listener.
 	 * @see EventContext#removeNamingListener
 	 * @see javax.naming.directory.DirContext#search(javax.naming.Name,
 	 *      java.lang.String, javax.naming.directory.SearchControls)
 	 */
-	void addNamingListener(Name target, String filter, SearchControls ctls, NamingListener l)
-			throws NamingException;
+	void addNamingListener(Name target, String filter, SearchControls ctls,
+			NamingListener l) throws NamingException;
 
 	/**
 	 * Adds a listener for receiving naming events fired when objects identified
@@ -101,23 +83,25 @@ public interface EventDirContext extends EventContext, DirContext {
 	 * for details of how this method behaves.
 	 *
 	 * @param target
-	 *            The nonnull string name of the object resolved relative to
-	 *            this context.
+	 *               The nonnull string name of the object resolved relative to
+	 *               this context.
 	 * @param filter
-	 *            The nonnull string filter (see RFC2254).
+	 *               The nonnull string filter (see RFC2254).
 	 * @param ctls
-	 *            The possibly null search controls. If null, the default search
-	 *            controls is used.
+	 *               The possibly null search controls. If null, the default
+	 *               search
+	 *               controls is used.
 	 * @param l
-	 *            The nonnull listener.
+	 *               The nonnull listener.
 	 * @exception NamingException
-	 *                If a problem was encountered while adding the listener.
+	 *                            If a problem was encountered while adding the
+	 *                            listener.
 	 * @see EventContext#removeNamingListener
 	 * @see javax.naming.directory.DirContext#search(java.lang.String,
 	 *      java.lang.String, javax.naming.directory.SearchControls)
 	 */
-	void addNamingListener(String target, String filter, SearchControls ctls, NamingListener l)
-			throws NamingException;
+	void addNamingListener(String target, String filter, SearchControls ctls,
+			NamingListener l) throws NamingException;
 
 	/**
 	 * Adds a listener for receiving naming events fired when objects identified
@@ -132,26 +116,29 @@ public interface EventDirContext extends EventContext, DirContext {
 	 * service.
 	 *
 	 * @param target
-	 *            The nonnull name of the object resolved relative to this
-	 *            context.
+	 *                   The nonnull name of the object resolved relative to
+	 *                   this
+	 *                   context.
 	 * @param filter
-	 *            The nonnull string filter (see RFC2254).
+	 *                   The nonnull string filter (see RFC2254).
 	 * @param filterArgs
-	 *            The possibly null array of arguments for the filter.
+	 *                   The possibly null array of arguments for the filter.
 	 * @param ctls
-	 *            The possibly null search controls. If null, the default search
-	 *            controls are used.
+	 *                   The possibly null search controls. If null, the default
+	 *                   search
+	 *                   controls are used.
 	 * @param l
-	 *            The nonnull listener.
+	 *                   The nonnull listener.
 	 * @exception NamingException
-	 *                If a problem was encountered while adding the listener.
+	 *                            If a problem was encountered while adding the
+	 *                            listener.
 	 * @see EventContext#removeNamingListener
 	 * @see javax.naming.directory.DirContext#search(javax.naming.Name,
 	 *      java.lang.String, java.lang.Object[],
 	 *      javax.naming.directory.SearchControls)
 	 */
-	void addNamingListener(Name target, String filter, Object[] filterArgs, SearchControls ctls,
-			NamingListener l) throws NamingException;
+	void addNamingListener(Name target, String filter, Object[] filterArgs,
+			SearchControls ctls, NamingListener l) throws NamingException;
 
 	/**
 	 * Adds a listener for receiving naming events fired when objects identified
@@ -160,24 +147,27 @@ public interface EventDirContext extends EventContext, DirContext {
 	 * accepts a <tt>Name</tt> for details of how this method behaves.
 	 *
 	 * @param target
-	 *            The nonnull string name of the object resolved relative to
-	 *            this context.
+	 *                   The nonnull string name of the object resolved relative
+	 *                   to
+	 *                   this context.
 	 * @param filter
-	 *            The nonnull string filter (see RFC2254).
+	 *                   The nonnull string filter (see RFC2254).
 	 * @param filterArgs
-	 *            The possibly null array of arguments for the filter.
+	 *                   The possibly null array of arguments for the filter.
 	 * @param ctls
-	 *            The possibly null search controls. If null, the default search
-	 *            controls is used.
+	 *                   The possibly null search controls. If null, the default
+	 *                   search
+	 *                   controls is used.
 	 * @param l
-	 *            The nonnull listener.
+	 *                   The nonnull listener.
 	 * @exception NamingException
-	 *                If a problem was encountered while adding the listener.
+	 *                            If a problem was encountered while adding the
+	 *                            listener.
 	 * @see EventContext#removeNamingListener
 	 * @see javax.naming.directory.DirContext#search(java.lang.String,
 	 *      java.lang.String, java.lang.Object[],
 	 *      javax.naming.directory.SearchControls)
 	 */
-	void addNamingListener(String target, String filter, Object[] filterArgs, SearchControls ctls,
-			NamingListener l) throws NamingException;
+	void addNamingListener(String target, String filter, Object[] filterArgs,
+			SearchControls ctls, NamingListener l) throws NamingException;
 }

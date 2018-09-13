@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,15 +58,17 @@ final class ChunkedIntArray {
 	 */
 	ChunkedIntArray(int slotsize) {
 		if (this.slotsize < slotsize)
-			throw new ArrayIndexOutOfBoundsException(
-					XMLMessages.createXMLMessage(XMLErrorResources.ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
+			throw new ArrayIndexOutOfBoundsException(XMLMessages
+					.createXMLMessage(
+							XMLErrorResources.ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
 							new Object[] { Integer.toString(slotsize) })); // "ChunkedIntArray("+slotsize+")
-																			// not
-																			// currently
-																			// supported");
+																																																		// not
+																																																		// currently
+																																																		// supported");
 		else if (this.slotsize > slotsize)
-			System.out.println("*****WARNING: ChunkedIntArray(" + slotsize + ") wasting "
-					+ (this.slotsize - slotsize) + " words per slot");
+			System.out.println("*****WARNING: ChunkedIntArray(" + slotsize
+					+ ") wasting " + (this.slotsize - slotsize)
+					+ " words per slot");
 		chunks.addElement(fastArray);
 	}
 
@@ -112,11 +111,12 @@ final class ChunkedIntArray {
 	 * purposes).
 	 * 
 	 * @param position
-	 *            int Record number
+	 *                 int Record number
 	 * @param slotpos
-	 *            int Column number
+	 *                 int Column number
 	 */
-	int readEntry(int position, int offset) throws ArrayIndexOutOfBoundsException {
+	int readEntry(int position, int offset)
+			throws ArrayIndexOutOfBoundsException {
 		/*
 		 * try { return fastArray[(position*slotsize)+offset]; }
 		 * catch(ArrayIndexOutOfBoundsException aioobe)
@@ -125,10 +125,12 @@ final class ChunkedIntArray {
 			// System.out.println("Using slow read (1)");
 			if (offset >= slotsize)
 				throw new ArrayIndexOutOfBoundsException(XMLMessages
-						.createXMLMessage(XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT, null)); // "Offset
-																								// bigger
-																								// than
-																								// slot");
+						.createXMLMessage(
+								XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT,
+								null)); // "Offset
+																																							// bigger
+																																							// than
+																																							// slot");
 			position *= slotsize;
 			int chunkpos = position >> lowbits;
 			int slotpos = position & lowmask;
@@ -192,13 +194,14 @@ final class ChunkedIntArray {
 	 * reference from 0 (unknown) to something meaningful
 	 * 
 	 * @param position
-	 *            int Record number
+	 *                 int Record number
 	 * @param offset
-	 *            int Column number
+	 *                 int Column number
 	 * @param value
-	 *            int New contents
+	 *                 int New contents
 	 */
-	void writeEntry(int position, int offset, int value) throws ArrayIndexOutOfBoundsException {
+	void writeEntry(int position, int offset, int value)
+			throws ArrayIndexOutOfBoundsException {
 		/*
 		 * try { fastArray[( position*slotsize)+offset] = value; }
 		 * catch(ArrayIndexOutOfBoundsException aioobe)
@@ -206,10 +209,12 @@ final class ChunkedIntArray {
 		{
 			if (offset >= slotsize)
 				throw new ArrayIndexOutOfBoundsException(XMLMessages
-						.createXMLMessage(XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT, null)); // "Offset
-																								// bigger
-																								// than
-																								// slot");
+						.createXMLMessage(
+								XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT,
+								null)); // "Offset
+																																							// bigger
+																																							// than
+																																							// slot");
 			position *= slotsize;
 			int chunkpos = position >> lowbits;
 			int slotpos = position & lowmask;
@@ -223,15 +228,15 @@ final class ChunkedIntArray {
 	 * used to create record 0, the Document node.
 	 * 
 	 * @param position
-	 *            integer Record number
+	 *                 integer Record number
 	 * @param w0
-	 *            int
+	 *                 int
 	 * @param w1
-	 *            int
+	 *                 int
 	 * @param w2
-	 *            int
+	 *                 int
 	 * @param w3
-	 *            int
+	 *                 int
 	 */
 	void writeSlot(int position, int w0, int w1, int w2, int w3) {
 		position *= slotsize;
@@ -254,10 +259,11 @@ final class ChunkedIntArray {
 	 * the record.
 	 * 
 	 * @param position
-	 *            int Record number
+	 *                 int Record number
 	 * @param buffer
-	 *            int[] Integer array provided by user, must be large enough to
-	 *            hold a complete record.
+	 *                 int[] Integer array provided by user, must be large
+	 *                 enough to
+	 *                 hold a complete record.
 	 */
 	void readSlot(int position, int[] buffer) {
 		/*
@@ -284,8 +290,7 @@ final class ChunkedIntArray {
 		int m_mapSize = BLOCKSIZE;
 		int pos = 0;
 
-		ChunksVector() {
-		}
+		ChunksVector() {}
 
 		final int size() {
 			return pos;

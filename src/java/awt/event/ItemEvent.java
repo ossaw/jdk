@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -120,25 +100,30 @@ public class ItemEvent extends AWTEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>ItemSelectable</code> object that originated the
-	 *            event
+	 *                    The <code>ItemSelectable</code> object that originated
+	 *                    the
+	 *                    event
 	 * @param id
-	 *            The integer that identifies the event type. For information on
-	 *            allowable values, see the class description for
-	 *            {@link ItemEvent}
+	 *                    The integer that identifies the event type. For
+	 *                    information on
+	 *                    allowable values, see the class description for
+	 *                    {@link ItemEvent}
 	 * @param item
-	 *            An object -- the item affected by the event
+	 *                    An object -- the item affected by the event
 	 * @param stateChange
-	 *            An integer that indicates whether the item was selected or
-	 *            deselected. For information on allowable values, see the class
-	 *            description for {@link ItemEvent}
+	 *                    An integer that indicates whether the item was
+	 *                    selected or
+	 *                    deselected. For information on allowable values, see
+	 *                    the class
+	 *                    description for {@link ItemEvent}
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getItemSelectable()
 	 * @see #getID()
 	 * @see #getStateChange()
 	 */
-	public ItemEvent(ItemSelectable source, int id, Object item, int stateChange) {
+	public ItemEvent(ItemSelectable source, int id, Object item,
+			int stateChange) {
 		super(source, id);
 		this.item = item;
 		this.stateChange = stateChange;
@@ -184,23 +169,23 @@ public class ItemEvent extends AWTEvent {
 	public String paramString() {
 		String typeStr;
 		switch (id) {
-		case ITEM_STATE_CHANGED:
-			typeStr = "ITEM_STATE_CHANGED";
-			break;
-		default:
-			typeStr = "unknown type";
+			case ITEM_STATE_CHANGED:
+				typeStr = "ITEM_STATE_CHANGED";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
 
 		String stateStr;
 		switch (stateChange) {
-		case SELECTED:
-			stateStr = "SELECTED";
-			break;
-		case DESELECTED:
-			stateStr = "DESELECTED";
-			break;
-		default:
-			stateStr = "unknown type";
+			case SELECTED:
+				stateStr = "SELECTED";
+				break;
+			case DESELECTED:
+				stateStr = "DESELECTED";
+				break;
+			default:
+				stateStr = "unknown type";
 		}
 		return typeStr + ",item=" + item + ",stateChange=" + stateStr;
 	}

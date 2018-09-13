@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.internal.CosNaming;
@@ -55,7 +35,7 @@ public class BootstrapServer {
 	 * the BootstrapServerRequestDispatcher.
 	 * 
 	 * @param args
-	 *            the command-line arguments to the main program.
+	 *             the command-line arguments to the main program.
 	 */
 	public static final void main(String[] args) {
 		String propertiesFilename = null;
@@ -79,7 +59,8 @@ public class BootstrapServer {
 		}
 
 		if (propertiesFilename == null) {
-			System.out.println(CorbaResourceUtil.getText("bootstrap.usage", "BootstrapServer"));
+			System.out.println(CorbaResourceUtil.getText("bootstrap.usage",
+					"BootstrapServer"));
 			return;
 		}
 
@@ -88,8 +69,8 @@ public class BootstrapServer {
 
 		// Verify that if it exists, it is readable
 		if (file.exists() == true && file.canRead() == false) {
-			System.err.println(
-					CorbaResourceUtil.getText("bootstrap.filenotreadable", file.getAbsolutePath()));
+			System.err.println(CorbaResourceUtil.getText(
+					"bootstrap.filenotreadable", file.getAbsolutePath()));
 			return;
 		}
 
@@ -103,7 +84,8 @@ public class BootstrapServer {
 		// old legacy code in ORBConfiguratorImpl. When (if?)
 		// the legacy support is removed, this code will need
 		// to create an Acceptor directly.
-		props.put(ORBConstants.SERVER_PORT_PROPERTY, Integer.toString(initialPort));
+		props.put(ORBConstants.SERVER_PORT_PROPERTY, Integer.toString(
+				initialPort));
 
 		ORB orb = (ORB) org.omg.CORBA.ORB.init(args, props);
 
@@ -118,7 +100,8 @@ public class BootstrapServer {
 			// This causes the acceptors to start listening.
 			orb.resolve_initial_references(ORBConstants.ROOT_POA_NAME);
 		} catch (org.omg.CORBA.ORBPackage.InvalidName e) {
-			RuntimeException rte = new RuntimeException("This should not happen");
+			RuntimeException rte = new RuntimeException(
+					"This should not happen");
 			rte.initCause(e);
 			throw rte;
 		}

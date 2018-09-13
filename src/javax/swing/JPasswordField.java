@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -83,7 +63,7 @@ public class JPasswordField extends JTextField {
 	 * of columns to 0.
 	 *
 	 * @param text
-	 *            the text to be displayed, <code>null</code> if none
+	 *             the text to be displayed, <code>null</code> if none
 	 */
 	public JPasswordField(String text) {
 		this(null, text, 0);
@@ -95,7 +75,7 @@ public class JPasswordField extends JTextField {
 	 * set to <code>null</code>.
 	 *
 	 * @param columns
-	 *            the number of columns &gt;= 0
+	 *                the number of columns &gt;= 0
 	 */
 	public JPasswordField(int columns) {
 		this(null, null, columns);
@@ -106,9 +86,9 @@ public class JPasswordField extends JTextField {
 	 * specified text and columns. The document model is set to the default.
 	 *
 	 * @param text
-	 *            the text to be displayed, <code>null</code> if none
+	 *                the text to be displayed, <code>null</code> if none
 	 * @param columns
-	 *            the number of columns &gt;= 0
+	 *                the number of columns &gt;= 0
 	 */
 	public JPasswordField(String text, int columns) {
 		this(null, text, columns);
@@ -122,14 +102,16 @@ public class JPasswordField extends JTextField {
 	 * model is <code>null</code>, a default one will be created.
 	 *
 	 * @param doc
-	 *            the text storage to use
+	 *                the text storage to use
 	 * @param txt
-	 *            the text to be displayed, <code>null</code> if none
+	 *                the text to be displayed, <code>null</code> if none
 	 * @param columns
-	 *            the number of columns to use to calculate the preferred width
-	 *            &gt;= 0; if columns is set to zero, the preferred width will
-	 *            be whatever naturally results from the component
-	 *            implementation
+	 *                the number of columns to use to calculate the preferred
+	 *                width
+	 *                &gt;= 0; if columns is set to zero, the preferred width
+	 *                will
+	 *                be whatever naturally results from the component
+	 *                implementation
 	 */
 	public JPasswordField(Document doc, String txt, int columns) {
 		super(doc, txt, columns);
@@ -183,7 +165,7 @@ public class JPasswordField extends JTextField {
 	 * similar to the behavior of a standard <code>JTextField</code>.
 	 *
 	 * @param c
-	 *            the echo character to display
+	 *          the echo character to display
 	 * @see #echoCharIsSet
 	 * @see #getEchoChar
 	 * @beaninfo description: character to display in place of the real
@@ -219,7 +201,8 @@ public class JPasswordField extends JTextField {
 	 * acceptable for a password field.
 	 */
 	public void cut() {
-		if (getClientProperty("JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
+		if (getClientProperty(
+				"JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
 			UIManager.getLookAndFeel().provideErrorFeedback(this);
 		} else {
 			super.cut();
@@ -234,7 +217,8 @@ public class JPasswordField extends JTextField {
 	 * acceptable for a password field.
 	 */
 	public void copy() {
-		if (getClientProperty("JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
+		if (getClientProperty(
+				"JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
 			UIManager.getLookAndFeel().provideErrorFeedback(this);
 		} else {
 			super.copy();
@@ -268,12 +252,12 @@ public class JPasswordField extends JTextField {
 	 * @deprecated As of Java 2 platform v1.2, replaced by
 	 *             <code>getPassword</code>.
 	 * @param offs
-	 *            the offset &gt;= 0
+	 *             the offset &gt;= 0
 	 * @param len
-	 *            the length &gt;= 0
+	 *             the length &gt;= 0
 	 * @return the text
 	 * @exception BadLocationException
-	 *                if the offset or length are invalid
+	 *                                 if the offset or length are invalid
 	 */
 	@Deprecated
 	public String getText(int offs, int len) throws BadLocationException {
@@ -443,10 +427,10 @@ public class JPasswordField extends JTextField {
 		 * Returns the <code>String</code> at a given <code>index</code>.
 		 *
 		 * @param part
-		 *            the <code>CHARACTER</code>, <code>WORD</code> or
-		 *            <code>SENTENCE</code> to retrieve
+		 *              the <code>CHARACTER</code>, <code>WORD</code> or
+		 *              <code>SENTENCE</code> to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return a <code>String</code> if <code>part</code> and
 		 *         <code>index</code> are valid. Otherwise, <code>null</code> is
 		 *         returned
@@ -477,10 +461,10 @@ public class JPasswordField extends JTextField {
 		 * Returns the <code>String</code> after a given <code>index</code>.
 		 *
 		 * @param part
-		 *            the <code>CHARACTER</code>, <code>WORD</code> or
-		 *            <code>SENTENCE</code> to retrieve
+		 *              the <code>CHARACTER</code>, <code>WORD</code> or
+		 *              <code>SENTENCE</code> to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return a <code>String</code> if <code>part</code> and
 		 *         <code>index</code> are valid. Otherwise, <code>null</code> is
 		 *         returned
@@ -506,10 +490,10 @@ public class JPasswordField extends JTextField {
 		 * Returns the <code>String</code> before a given <code>index</code>.
 		 *
 		 * @param part
-		 *            the <code>CHARACTER</code>, <code>WORD</code> or
-		 *            <code>SENTENCE</code> to retrieve
+		 *              the <code>CHARACTER</code>, <code>WORD</code> or
+		 *              <code>SENTENCE</code> to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return a <code>String</code> if <code>part</code> and
 		 *         <code>index</code> are valid. Otherwise, <code>null</code> is
 		 *         returned
@@ -535,9 +519,9 @@ public class JPasswordField extends JTextField {
 		 * Returns the text between two <code>indices</code>.
 		 *
 		 * @param startIndex
-		 *            the start index in the text
+		 *                   the start index in the text
 		 * @param endIndex
-		 *            the end index in the text
+		 *                   the end index in the text
 		 * @return the text string if the indices are valid. Otherwise,
 		 *         <code>null</code> is returned
 		 *
@@ -553,11 +537,11 @@ public class JPasswordField extends JTextField {
 		 * <code>index</code>.
 		 *
 		 * @param part
-		 *            the <code>CHARACTER</code>, <code>WORD</code>,
-		 *            <code>SENTENCE</code>, <code>LINE</code> or
-		 *            <code>ATTRIBUTE_RUN</code> to retrieve
+		 *              the <code>CHARACTER</code>, <code>WORD</code>,
+		 *              <code>SENTENCE</code>, <code>LINE</code> or
+		 *              <code>ATTRIBUTE_RUN</code> to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return an <code>AccessibleTextSequence</code> specifying the text if
 		 *         <code>part</code> and <code>index</code> are valid.
 		 *         Otherwise, <code>null</code> is returned
@@ -572,7 +556,8 @@ public class JPasswordField extends JTextField {
 		 */
 		public AccessibleTextSequence getTextSequenceAt(int part, int index) {
 			if (part == AccessibleText.CHARACTER) {
-				AccessibleTextSequence seq = super.getTextSequenceAt(part, index);
+				AccessibleTextSequence seq = super.getTextSequenceAt(part,
+						index);
 				if (seq == null) {
 					return null;
 				}
@@ -586,7 +571,8 @@ public class JPasswordField extends JTextField {
 					return null;
 				}
 				String text = new String(password);
-				return new AccessibleTextSequence(0, password.length - 1, getEchoString(text));
+				return new AccessibleTextSequence(0, password.length - 1,
+						getEchoString(text));
 			}
 		}
 
@@ -595,11 +581,11 @@ public class JPasswordField extends JTextField {
 		 * <code>index</code>.
 		 *
 		 * @param part
-		 *            the <code>CHARACTER</code>, <code>WORD</code>,
-		 *            <code>SENTENCE</code>, <code>LINE</code> or
-		 *            <code>ATTRIBUTE_RUN</code> to retrieve
+		 *              the <code>CHARACTER</code>, <code>WORD</code>,
+		 *              <code>SENTENCE</code>, <code>LINE</code> or
+		 *              <code>ATTRIBUTE_RUN</code> to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return an <code>AccessibleTextSequence</code> specifying the text if
 		 *         <code>part</code> and <code>index</code> are valid.
 		 *         Otherwise, <code>null</code> is returned
@@ -612,9 +598,11 @@ public class JPasswordField extends JTextField {
 		 *
 		 * @since 1.6
 		 */
-		public AccessibleTextSequence getTextSequenceAfter(int part, int index) {
+		public AccessibleTextSequence getTextSequenceAfter(int part,
+				int index) {
 			if (part == AccessibleText.CHARACTER) {
-				AccessibleTextSequence seq = super.getTextSequenceAfter(part, index);
+				AccessibleTextSequence seq = super.getTextSequenceAfter(part,
+						index);
 				if (seq == null) {
 					return null;
 				}
@@ -632,11 +620,11 @@ public class JPasswordField extends JTextField {
 		 * <code>index</code>.
 		 *
 		 * @param part
-		 *            the <code>CHARACTER</code>, <code>WORD</code>,
-		 *            <code>SENTENCE</code>, <code>LINE</code> or
-		 *            <code>ATTRIBUTE_RUN</code> to retrieve
+		 *              the <code>CHARACTER</code>, <code>WORD</code>,
+		 *              <code>SENTENCE</code>, <code>LINE</code> or
+		 *              <code>ATTRIBUTE_RUN</code> to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return an <code>AccessibleTextSequence</code> specifying the text if
 		 *         <code>part</code> and <code>index</code> are valid.
 		 *         Otherwise, <code>null</code> is returned
@@ -649,9 +637,11 @@ public class JPasswordField extends JTextField {
 		 *
 		 * @since 1.6
 		 */
-		public AccessibleTextSequence getTextSequenceBefore(int part, int index) {
+		public AccessibleTextSequence getTextSequenceBefore(int part,
+				int index) {
 			if (part == AccessibleText.CHARACTER) {
-				AccessibleTextSequence seq = super.getTextSequenceBefore(part, index);
+				AccessibleTextSequence seq = super.getTextSequenceBefore(part,
+						index);
 				if (seq == null) {
 					return null;
 				}

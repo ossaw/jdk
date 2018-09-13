@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -72,13 +69,14 @@ final class Comment extends Instruction {
 
 			if (rawText.canLoadAsArrayOffsetLength()) {
 				rawText.loadAsArrayOffsetLength(classGen, methodGen);
-				final int comment = cpg.addInterfaceMethodref(TRANSLET_OUTPUT_INTERFACE, "comment",
-						"([CII)V");
+				final int comment = cpg.addInterfaceMethodref(
+						TRANSLET_OUTPUT_INTERFACE, "comment", "([CII)V");
 				il.append(new INVOKEINTERFACE(comment, 4));
 			} else {
 				il.append(new PUSH(cpg, rawText.getText()));
-				final int comment = cpg.addInterfaceMethodref(TRANSLET_OUTPUT_INTERFACE, "comment",
-						"(" + STRING_SIG + ")V");
+				final int comment = cpg.addInterfaceMethodref(
+						TRANSLET_OUTPUT_INTERFACE, "comment", "(" + STRING_SIG
+								+ ")V");
 				il.append(new INVOKEINTERFACE(comment, 2));
 			}
 		} else {
@@ -88,8 +86,8 @@ final class Comment extends Instruction {
 
 			// Get the translet's StringValueHandler
 			il.append(classGen.loadTranslet());
-			il.append(new GETFIELD(cpg.addFieldref(TRANSLET_CLASS, "stringValueHandler",
-					STRING_VALUE_HANDLER_SIG)));
+			il.append(new GETFIELD(cpg.addFieldref(TRANSLET_CLASS,
+					"stringValueHandler", STRING_VALUE_HANDLER_SIG)));
 			il.append(DUP);
 			il.append(methodGen.storeHandler());
 
@@ -97,11 +95,12 @@ final class Comment extends Instruction {
 			translateContents(classGen, methodGen);
 
 			// get String out of the handler
-			il.append(new INVOKEVIRTUAL(
-					cpg.addMethodref(STRING_VALUE_HANDLER, "getValue", "()" + STRING_SIG)));
+			il.append(new INVOKEVIRTUAL(cpg.addMethodref(STRING_VALUE_HANDLER,
+					"getValue", "()" + STRING_SIG)));
 			// call "comment"
-			final int comment = cpg.addInterfaceMethodref(TRANSLET_OUTPUT_INTERFACE, "comment",
-					"(" + STRING_SIG + ")V");
+			final int comment = cpg.addInterfaceMethodref(
+					TRANSLET_OUTPUT_INTERFACE, "comment", "(" + STRING_SIG
+							+ ")V");
 			il.append(new INVOKEINTERFACE(comment, 2));
 			// Restore old handler base from stack
 			il.append(methodGen.storeHandler());

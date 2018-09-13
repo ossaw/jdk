@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.encoding;
 
@@ -194,8 +174,8 @@ public class CachedCodeBase extends _CodeBaseImplBase {
 	}
 
 	private final org.omg.CORBA.Object getObjectFromIOR() {
-		return CDRInputStream_1_0.internalIORToObject(conn.getCodeBaseIOR(), null /* stubFactory */,
-				conn.getBroker());
+		return CDRInputStream_1_0.internalIORToObject(conn.getCodeBaseIOR(),
+				null /* stubFactory */, conn.getBroker());
 	}
 }
 

@@ -1,33 +1,12 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package javax.rmi.CORBA;
@@ -143,9 +122,11 @@ public abstract class Stub extends ObjectImpl implements java.io.Serializable {
 	 * @param orb
 	 *            the ORB to connect to.
 	 * @exception RemoteException
-	 *                if the stub is already connected to a different ORB, or if
-	 *                the stub does not represent an exported remote or local
-	 *                object.
+	 *                            if the stub is already connected to a
+	 *                            different ORB, or if
+	 *                            the stub does not represent an exported remote
+	 *                            or local
+	 *                            object.
 	 */
 	public void connect(ORB orb) throws RemoteException {
 
@@ -185,7 +166,8 @@ public abstract class Stub extends ObjectImpl implements java.io.Serializable {
 	 *             by the length of the profile data (int), followed by the
 	 *             profile data (byte array).
 	 */
-	private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+	private void writeObject(java.io.ObjectOutputStream stream)
+			throws IOException {
 
 		if (stubDelegate == null) {
 			setDefaultDelegate();
@@ -199,7 +181,8 @@ public abstract class Stub extends ObjectImpl implements java.io.Serializable {
 	private void setDefaultDelegate() {
 		if (stubDelegateClass != null) {
 			try {
-				stubDelegate = (javax.rmi.CORBA.StubDelegate) stubDelegateClass.newInstance();
+				stubDelegate = (javax.rmi.CORBA.StubDelegate) stubDelegateClass
+						.newInstance();
 			} catch (Exception ex) {
 				// what kind of exception to throw
 				// delegate not set therefore it is null and will return default
@@ -213,7 +196,8 @@ public abstract class Stub extends ObjectImpl implements java.io.Serializable {
 	// security reasons. If you know a better solution how to share this code
 	// then remove it from PortableRemoteObject. Also in Util.java
 	private static Object createDelegate(String classKey) {
-		String className = (String) AccessController.doPrivileged(new GetPropertyAction(classKey));
+		String className = (String) AccessController.doPrivileged(
+				new GetPropertyAction(classKey));
 		if (className == null) {
 			Properties props = getORBPropertiesFile();
 			if (props != null) {
@@ -232,14 +216,16 @@ public abstract class Stub extends ObjectImpl implements java.io.Serializable {
 			exc.initCause(ex);
 			throw exc;
 		} catch (Exception ex) {
-			INITIALIZE exc = new INITIALIZE("Error while instantiating" + className);
+			INITIALIZE exc = new INITIALIZE("Error while instantiating"
+					+ className);
 			exc.initCause(ex);
 			throw exc;
 		}
 
 	}
 
-	private static Class loadDelegateClass(String className) throws ClassNotFoundException {
+	private static Class loadDelegateClass(String className)
+			throws ClassNotFoundException {
 		try {
 			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			return Class.forName(className, false, loader);
@@ -260,7 +246,8 @@ public abstract class Stub extends ObjectImpl implements java.io.Serializable {
 	 * Load the orb.properties file.
 	 */
 	private static Properties getORBPropertiesFile() {
-		return (Properties) AccessController.doPrivileged(new GetORBPropertiesFileAction());
+		return (Properties) AccessController.doPrivileged(
+				new GetORBPropertiesFileAction());
 	}
 
 }

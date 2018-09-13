@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -39,23 +19,17 @@ class ColorPaintContext implements PaintContext {
 		this.color = color;
 	}
 
-	public void dispose() {
-	}
+	public void dispose() {}
 
 	/*
 	 * Returns the RGB value representing the color in the default sRGB {@link
 	 * ColorModel}. (Bits 24-31 are alpha, 16-23 are red, 8-15 are green, 0-7
 	 * are blue).
-	 * 
 	 * @return the RGB value of the color in the default sRGB
 	 * <code>ColorModel</code>.
-	 * 
 	 * @see java.awt.image.ColorModel#getRGBdefault
-	 * 
 	 * @see #getRed
-	 * 
 	 * @see #getGreen
-	 * 
 	 * @see #getBlue
 	 */
 	int getRGB() {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -69,7 +49,8 @@ abstract class DynAnyCollectionImpl extends DynAnyConstructedImpl {
 
 	protected void createDefaultComponentAt(int i, TypeCode contentType) {
 		try {
-			components[i] = DynAnyUtil.createMostDerivedDynAny(contentType, orb);
+			components[i] = DynAnyUtil.createMostDerivedDynAny(contentType,
+					orb);
 		} catch (InconsistentTypeCode itc) { // impossible
 		}
 		// get a hold of the default initialized Any without copying
@@ -146,7 +127,8 @@ abstract class DynAnyCollectionImpl extends DynAnyConstructedImpl {
 				}
 				try {
 					// Creates the appropriate subtype without copying the Any
-					components[i] = DynAnyUtil.createMostDerivedDynAny(value[i], orb, false);
+					components[i] = DynAnyUtil.createMostDerivedDynAny(value[i],
+							orb, false);
 					// System.out.println(this + " created component " +
 					// components[i]);
 				} catch (InconsistentTypeCode itc) {

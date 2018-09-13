@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -131,9 +128,11 @@ public class EntityImpl extends ParentNode implements Entity {
 	 */
 	public void setNodeValue(String x) throws DOMException {
 		if (ownerDocument.errorChecking && isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 	}
 
@@ -141,14 +140,16 @@ public class EntityImpl extends ParentNode implements Entity {
 	 * The namespace prefix of this node
 	 * 
 	 * @exception DOMException
-	 *                <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this node is
-	 *                readonly.
+	 *                         <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+	 *                         is
+	 *                         readonly.
 	 */
 	public void setPrefix(String prefix) throws DOMException {
 		if (ownerDocument.errorChecking && isReadOnly()) {
 			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-					DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+					DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN,
 							"NO_MODIFICATION_ALLOWED_ERR", null));
 		}
 	}
@@ -336,7 +337,8 @@ public class EntityImpl extends ParentNode implements Entity {
 		if (needsSyncData()) {
 			synchronizeData();
 		}
-		return (baseURI != null) ? baseURI : ((CoreDocumentImpl) getOwnerDocument()).getBaseURI();
+		return (baseURI != null) ? baseURI
+				: ((CoreDocumentImpl) getOwnerDocument()).getBaseURI();
 	}
 
 	/** NON-DOM: set base uri */

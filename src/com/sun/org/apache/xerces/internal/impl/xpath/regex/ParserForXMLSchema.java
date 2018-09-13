@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -195,10 +193,11 @@ class ParserForXMLSchema extends RegexParser {
 	 * from-to-range ::= cc-normal-c '-' cc-normal-c
 	 *
 	 * @param useNrage
-	 *            Ignored.
+	 *                 Ignored.
 	 * @return This returns no NrageToken.
 	 */
-	protected RangeToken parseCharacterClass(boolean useNrange) throws ParseException {
+	protected RangeToken parseCharacterClass(boolean useNrange)
+			throws ParseException {
 		this.setContext(S_INBRACKETS);
 		this.next(); // '['
 		boolean nrange = false;
@@ -232,42 +231,42 @@ class ParserForXMLSchema extends RegexParser {
 			boolean end = false;
 			if (type == T_BACKSOLIDUS) {
 				switch (c) {
-				case 'd':
-				case 'D':
-				case 'w':
-				case 'W':
-				case 's':
-				case 'S':
-					tok.mergeRanges(this.getTokenForShorthand(c));
-					end = true;
-					break;
-
-				case 'i':
-				case 'I':
-				case 'c':
-				case 'C':
-					c = this.processCIinCharacterClass(tok, c);
-					if (c < 0)
+					case 'd':
+					case 'D':
+					case 'w':
+					case 'W':
+					case 's':
+					case 'S':
+						tok.mergeRanges(this.getTokenForShorthand(c));
 						end = true;
-					break;
+						break;
 
-				case 'p':
-				case 'P':
-					int pstart = this.offset;
-					RangeToken tok2 = this.processBacksolidus_pP(c);
-					if (tok2 == null)
-						throw this.ex("parser.atom.5", pstart);
-					tok.mergeRanges(tok2);
-					end = true;
-					break;
+					case 'i':
+					case 'I':
+					case 'c':
+					case 'C':
+						c = this.processCIinCharacterClass(tok, c);
+						if (c < 0)
+							end = true;
+						break;
 
-				case '-':
-					c = this.decodeEscaped();
-					wasDecoded = true;
-					break;
+					case 'p':
+					case 'P':
+						int pstart = this.offset;
+						RangeToken tok2 = this.processBacksolidus_pP(c);
+						if (tok2 == null)
+							throw this.ex("parser.atom.5", pstart);
+						tok.mergeRanges(tok2);
+						end = true;
+						break;
 
-				default:
-					c = this.decodeEscaped();
+					case '-':
+						c = this.decodeEscaped();
+						wasDecoded = true;
+						break;
+
+					default:
+						c = this.decodeEscaped();
 				} // \ + c
 			} // backsolidus
 			else if (type == T_XMLSCHEMA_CC_SUBTRACTION && !firstloop) {
@@ -297,11 +296,13 @@ class ParserForXMLSchema extends RegexParser {
 																		// then
 																		// invalid
 				}
-				if (this.read() != T_CHAR || this.chardata != '-' || c == '-' && firstloop) { // Here
-																								// is
-																								// no
-																								// '-'.
-					if (!this.isSet(RegularExpression.IGNORE_CASE) || c > 0xffff) {
+				if (this.read() != T_CHAR || this.chardata != '-' || c == '-'
+						&& firstloop) { // Here
+																										// is
+																										// no
+																										// '-'.
+					if (!this.isSet(RegularExpression.IGNORE_CASE)
+							|| c > 0xffff) {
 						tok.addRange(c, c);
 					} else {
 						addCaseInsensitiveChar(tok, c);
@@ -317,7 +318,8 @@ class ParserForXMLSchema extends RegexParser {
 																	// position
 																	// of the
 																	// group
-						if (!this.isSet(RegularExpression.IGNORE_CASE) || c > 0xffff) {
+						if (!this.isSet(RegularExpression.IGNORE_CASE)
+								|| c > 0xffff) {
 							tok.addRange(c, c);
 						} else {
 							addCaseInsensitiveChar(tok, c);
@@ -369,29 +371,31 @@ class ParserForXMLSchema extends RegexParser {
 
 	Token getTokenForShorthand(int ch) {
 		switch (ch) {
-		case 'd':
-			return ParserForXMLSchema.getRange("xml:isDigit", true);
-		case 'D':
-			return ParserForXMLSchema.getRange("xml:isDigit", false);
-		case 'w':
-			return ParserForXMLSchema.getRange("xml:isWord", true);
-		case 'W':
-			return ParserForXMLSchema.getRange("xml:isWord", false);
-		case 's':
-			return ParserForXMLSchema.getRange("xml:isSpace", true);
-		case 'S':
-			return ParserForXMLSchema.getRange("xml:isSpace", false);
-		case 'c':
-			return ParserForXMLSchema.getRange("xml:isNameChar", true);
-		case 'C':
-			return ParserForXMLSchema.getRange("xml:isNameChar", false);
-		case 'i':
-			return ParserForXMLSchema.getRange("xml:isInitialNameChar", true);
-		case 'I':
-			return ParserForXMLSchema.getRange("xml:isInitialNameChar", false);
-		default:
-			throw new RuntimeException(
-					"Internal Error: shorthands: \\u" + Integer.toString(ch, 16));
+			case 'd':
+				return ParserForXMLSchema.getRange("xml:isDigit", true);
+			case 'D':
+				return ParserForXMLSchema.getRange("xml:isDigit", false);
+			case 'w':
+				return ParserForXMLSchema.getRange("xml:isWord", true);
+			case 'W':
+				return ParserForXMLSchema.getRange("xml:isWord", false);
+			case 's':
+				return ParserForXMLSchema.getRange("xml:isSpace", true);
+			case 'S':
+				return ParserForXMLSchema.getRange("xml:isSpace", false);
+			case 'c':
+				return ParserForXMLSchema.getRange("xml:isNameChar", true);
+			case 'C':
+				return ParserForXMLSchema.getRange("xml:isNameChar", false);
+			case 'i':
+				return ParserForXMLSchema.getRange("xml:isInitialNameChar",
+						true);
+			case 'I':
+				return ParserForXMLSchema.getRange("xml:isInitialNameChar",
+						false);
+			default:
+				throw new RuntimeException("Internal Error: shorthands: \\u"
+						+ Integer.toString(ch, 16));
 		}
 	}
 
@@ -400,32 +404,32 @@ class ParserForXMLSchema extends RegexParser {
 			throw ex("parser.next.1", this.offset - 1);
 		int c = this.chardata;
 		switch (c) {
-		case 'n':
-			c = '\n';
-			break; // LINE FEED U+000A
-		case 'r':
-			c = '\r';
-			break; // CRRIAGE RETURN U+000D
-		case 't':
-			c = '\t';
-			break; // HORIZONTAL TABULATION U+0009
-		case '\\':
-		case '|':
-		case '.':
-		case '^':
-		case '-':
-		case '?':
-		case '*':
-		case '+':
-		case '{':
-		case '}':
-		case '(':
-		case ')':
-		case '[':
-		case ']':
-			break; // return actucal char
-		default:
-			throw ex("parser.process.1", this.offset - 2);
+			case 'n':
+				c = '\n';
+				break; // LINE FEED U+000A
+			case 'r':
+				c = '\r';
+				break; // CRRIAGE RETURN U+000D
+			case 't':
+				c = '\t';
+				break; // HORIZONTAL TABULATION U+0009
+			case '\\':
+			case '|':
+			case '.':
+			case '^':
+			case '-':
+			case '?':
+			case '*':
+			case '+':
+			case '{':
+			case '}':
+			case '(':
+			case ')':
+			case '[':
+			case ']':
+				break; // return actucal char
+			default:
+				throw ex("parser.process.1", this.offset - 2);
 		}
 		return c;
 	}
@@ -433,7 +437,8 @@ class ParserForXMLSchema extends RegexParser {
 	static private Map<String, Token> ranges = null;
 	static private Map<String, Token> ranges2 = null;
 
-	static synchronized protected RangeToken getRange(String name, boolean positive) {
+	static synchronized protected RangeToken getRange(String name,
+			boolean positive) {
 		if (ranges == null) {
 			ranges = new HashMap<>();
 			ranges2 = new HashMap<>();
@@ -468,7 +473,8 @@ class ParserForXMLSchema extends RegexParser {
 			ranges.put("xml:isInitialNameChar", tok);
 			ranges2.put("xml:isInitialNameChar", Token.complementRanges(tok));
 		}
-		RangeToken tok = positive ? (RangeToken) ranges.get(name) : (RangeToken) ranges2.get(name);
+		RangeToken tok = positive ? (RangeToken) ranges.get(name)
+				: (RangeToken) ranges2.get(name);
 		return tok;
 	}
 
@@ -559,8 +565,8 @@ class ParserForXMLSchema extends RegexParser {
 			+ "\u2180\u2182\u3007\u3007\u3021\u3029\u3041\u3094\u30a1\u30fa\u3105\u312c\u4e00\u9fa5"
 			+ "\uac00\ud7a3\uff66\uff9f";
 
-	private static final int[] LETTERS_INT = { 0x1d790, 0x1d7a8, 0x1d7aa, 0x1d7c9, 0x2fa1b,
-			0x2fa1d };
+	private static final int[] LETTERS_INT = { 0x1d790, 0x1d7a8, 0x1d7aa,
+			0x1d7c9, 0x2fa1b, 0x2fa1d };
 
 	private static final String DIGITS = "\u0030\u0039\u0660\u0669\u06F0\u06F9\u0966\u096F\u09E6\u09EF\u0A66\u0A6F\u0AE6\u0AEF"
 			+ "\u0B66\u0B6F\u0BE7\u0BEF\u0C66\u0C6F\u0CE6\u0CEF\u0D66\u0D6F\u0E50\u0E59\u0ED0\u0ED9"

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -59,16 +39,18 @@ import java.util.Set;
 			Class<?> httpClazz = Class.forName(httpURLClazzStr, true, null);
 			httpField = httpClazz.getDeclaredField("http");
 			doTunneling = httpClazz.getDeclaredMethod(doTunnelingStr);
-			Class<?> netClientClazz = Class.forName(netClientClazzStr, true, null);
+			Class<?> netClientClazz = Class.forName(netClientClazzStr, true,
+					null);
 			serverSocketField = netClientClazz.getDeclaredField("serverSocket");
 
-			java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
-				public Void run() {
-					httpField.setAccessible(true);
-					serverSocketField.setAccessible(true);
-					return null;
-				}
-			});
+			java.security.AccessController.doPrivileged(
+					new java.security.PrivilegedAction<Void>() {
+						public Void run() {
+							httpField.setAccessible(true);
+							serverSocketField.setAccessible(true);
+							return null;
+						}
+					});
 		} catch (ReflectiveOperationException x) {
 			throw new InternalError("Should not reach here", x);
 		}
@@ -90,7 +72,8 @@ import java.util.Set;
 	}
 
 	@Override
-	protected void connect(SocketAddress endpoint, int timeout) throws IOException {
+	protected void connect(SocketAddress endpoint, int timeout)
+			throws IOException {
 		if (endpoint == null || !(endpoint instanceof InetSocketAddress))
 			throw new IllegalArgumentException("Unsupported address type");
 		final InetSocketAddress epoint = (InetSocketAddress) endpoint;
@@ -141,8 +124,8 @@ import java.util.Set;
 	private Socket privilegedDoTunnel(final String urlString, final int timeout)
 			throws IOException {
 		try {
-			return java.security.AccessController
-					.doPrivileged(new java.security.PrivilegedExceptionAction<Socket>() {
+			return java.security.AccessController.doPrivileged(
+					new java.security.PrivilegedExceptionAction<Socket>() {
 						public Socket run() throws IOException {
 							return doTunnel(urlString, timeout);
 						}
@@ -152,10 +135,13 @@ import java.util.Set;
 		}
 	}
 
-	private Socket doTunnel(String urlString, int connectTimeout) throws IOException {
-		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(server, port));
+	private Socket doTunnel(String urlString, int connectTimeout)
+			throws IOException {
+		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(server,
+				port));
 		URL destURL = new URL(urlString);
-		HttpURLConnection conn = (HttpURLConnection) destURL.openConnection(proxy);
+		HttpURLConnection conn = (HttpURLConnection) destURL.openConnection(
+				proxy);
 		conn.setConnectTimeout(connectTimeout);
 		conn.setReadTimeout(this.timeout);
 		conn.connect();

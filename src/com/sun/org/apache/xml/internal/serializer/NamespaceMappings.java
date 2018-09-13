@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: NamespaceMappings.java,v 1.2.4.1 2005/09/15 08:15:19 suresh_emailid Exp $
+ * $Id: NamespaceMappings.java,v 1.2.4.1 2005/09/15 08:15:19 suresh_emailid Exp
+ * $
  */
 package com.sun.org.apache.xml.internal.serializer;
 
@@ -116,7 +114,8 @@ public class NamespaceMappings {
 		stack.push(new MappingRecord(EMPTYSTRING, EMPTYSTRING, 0));
 
 		m_namespaces.put(XML_PREFIX, stack = new Stack());
-		stack.push(new MappingRecord(XML_PREFIX, "http://www.w3.org/XML/1998/namespace", 0));
+		stack.push(new MappingRecord(XML_PREFIX,
+				"http://www.w3.org/XML/1998/namespace", 0));
 
 		m_nodeStack.push(new MappingRecord(null, null, -1));
 
@@ -126,17 +125,19 @@ public class NamespaceMappings {
 	 * Use a namespace prefix to lookup a namespace URI.
 	 *
 	 * @param prefix
-	 *            String the prefix of the namespace
+	 *               String the prefix of the namespace
 	 * @return the URI corresponding to the prefix
 	 */
 	public String lookupNamespace(String prefix) {
 		final Stack stack = (Stack) m_namespaces.get(prefix);
-		return stack != null && !stack.isEmpty() ? ((MappingRecord) stack.peek()).m_uri : null;
+		return stack != null && !stack.isEmpty() ? ((MappingRecord) stack
+				.peek()).m_uri : null;
 	}
 
 	MappingRecord getMappingFromPrefix(String prefix) {
 		final Stack stack = (Stack) m_namespaces.get(prefix);
-		return stack != null && !stack.isEmpty() ? ((MappingRecord) stack.peek()) : null;
+		return stack != null && !stack.isEmpty() ? ((MappingRecord) stack
+				.peek()) : null;
 	}
 
 	/**
@@ -198,11 +199,11 @@ public class NamespaceMappings {
 	 * depth.
 	 * 
 	 * @param prefix
-	 *            a String with the prefix for a qualified name
+	 *                  a String with the prefix for a qualified name
 	 * @param uri
-	 *            a String with the uri to which the prefix is to map
+	 *                  a String with the uri to which the prefix is to map
 	 * @param elemDepth
-	 *            the depth of current declaration
+	 *                  the depth of current declaration
 	 */
 	boolean pushNamespace(String prefix, String uri, int elemDepth) {
 		// Prefixes "xml" and "xmlns" cannot be redefined
@@ -216,7 +217,8 @@ public class NamespaceMappings {
 			m_namespaces.put(prefix, stack = new Stack());
 		}
 
-		if (!stack.empty() && uri.equals(((MappingRecord) stack.peek()).m_uri)) {
+		if (!stack.empty() && uri.equals(((MappingRecord) stack
+				.peek()).m_uri)) {
 			return false;
 		}
 		MappingRecord map = new MappingRecord(prefix, uri, elemDepth);
@@ -230,11 +232,13 @@ public class NamespaceMappings {
 	 * at the given element depth, or deepter.
 	 * 
 	 * @param elemDepth
-	 *            the element depth for which mappings declared at this depth or
-	 *            deeper will no longer be valid
+	 *                   the element depth for which mappings declared at this
+	 *                   depth or
+	 *                   deeper will no longer be valid
 	 * @param saxHandler
-	 *            The ContentHandler to notify of any endPrefixMapping() calls.
-	 *            This parameter can be null.
+	 *                   The ContentHandler to notify of any endPrefixMapping()
+	 *                   calls.
+	 *                   This parameter can be null.
 	 */
 	void popNamespaces(int elemDepth, ContentHandler saxHandler) {
 		while (true) {

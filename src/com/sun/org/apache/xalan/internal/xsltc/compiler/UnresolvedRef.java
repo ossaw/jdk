@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +44,8 @@ final class UnresolvedRef extends VariableRefBase {
 	}
 
 	private ErrorMsg reportError() {
-		ErrorMsg err = new ErrorMsg(ErrorMsg.VARIABLE_UNDEF_ERR, _variableName, this);
+		ErrorMsg err = new ErrorMsg(ErrorMsg.VARIABLE_UNDEF_ERR, _variableName,
+				this);
 		getParser().reportError(Constants.ERROR, err);
 		return (err);
 	}
@@ -79,7 +77,8 @@ final class UnresolvedRef extends VariableRefBase {
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
 		if (_ref != null) {
 			final String name = _variableName.toString();
-			ErrorMsg err = new ErrorMsg(ErrorMsg.CIRCULAR_VARIABLE_ERR, name, this);
+			ErrorMsg err = new ErrorMsg(ErrorMsg.CIRCULAR_VARIABLE_ERR, name,
+					this);
 		}
 		if ((_ref = resolve(getParser(), stable)) != null) {
 			return (_type = _ref.typeCheck(stable));

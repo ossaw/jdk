@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -46,22 +26,22 @@ public abstract class MultipleGradientPaint implements Paint {
 	 * @since 1.6
 	 */
 	public static enum CycleMethod {
-		/**
-		 * Use the terminal colors to fill the remaining area.
-		 */
-		NO_CYCLE,
+	/**
+	 * Use the terminal colors to fill the remaining area.
+	 */
+	NO_CYCLE,
 
-		/**
-		 * Cycle the gradient colors start-to-end, end-to-start to fill the
-		 * remaining area.
-		 */
-		REFLECT,
+	/**
+	 * Cycle the gradient colors start-to-end, end-to-start to fill the
+	 * remaining area.
+	 */
+	REFLECT,
 
-		/**
-		 * Cycle the gradient colors start-to-end, start-to-end to fill the
-		 * remaining area.
-		 */
-		REPEAT
+	/**
+	 * Cycle the gradient colors start-to-end, start-to-end to fill the
+	 * remaining area.
+	 */
+	REPEAT
 	}
 
 	/**
@@ -116,31 +96,44 @@ public abstract class MultipleGradientPaint implements Paint {
 	 * Package-private constructor.
 	 *
 	 * @param fractions
-	 *            numbers ranging from 0.0 to 1.0 specifying the distribution of
-	 *            colors along the gradient
+	 *                          numbers ranging from 0.0 to 1.0 specifying the
+	 *                          distribution of
+	 *                          colors along the gradient
 	 * @param colors
-	 *            array of colors corresponding to each fractional value
+	 *                          array of colors corresponding to each fractional
+	 *                          value
 	 * @param cycleMethod
-	 *            either {@code NO_CYCLE}, {@code REFLECT}, or {@code REPEAT}
+	 *                          either {@code NO_CYCLE}, {@code REFLECT}, or
+	 *                          {@code REPEAT}
 	 * @param colorSpace
-	 *            which color space to use for interpolation, either
-	 *            {@code SRGB} or {@code LINEAR_RGB}
+	 *                          which color space to use for interpolation,
+	 *                          either
+	 *                          {@code SRGB} or {@code LINEAR_RGB}
 	 * @param gradientTransform
-	 *            transform to apply to the gradient
+	 *                          transform to apply to the gradient
 	 *
 	 * @throws NullPointerException
-	 *             if {@code fractions} array is null, or {@code colors} array
-	 *             is null, or {@code gradientTransform} is null, or
-	 *             {@code cycleMethod} is null, or {@code colorSpace} is null
+	 *                                  if {@code fractions} array is null, or
+	 *                                  {@code colors} array
+	 *                                  is null, or {@code gradientTransform} is
+	 *                                  null, or
+	 *                                  {@code cycleMethod} is null, or
+	 *                                  {@code colorSpace} is null
 	 * @throws IllegalArgumentException
-	 *             if {@code fractions.length != colors.length}, or
-	 *             {@code colors} is less than 2 in size, or a {@code fractions}
-	 *             value is less than 0.0 or greater than 1.0, or the
-	 *             {@code fractions} are not provided in strictly increasing
-	 *             order
+	 *                                  if
+	 *                                  {@code fractions.length != colors.length},
+	 *                                  or
+	 *                                  {@code colors} is less than 2 in size,
+	 *                                  or a {@code fractions}
+	 *                                  value is less than 0.0 or greater than
+	 *                                  1.0, or the
+	 *                                  {@code fractions} are not provided in
+	 *                                  strictly increasing
+	 *                                  order
 	 */
-	MultipleGradientPaint(float[] fractions, Color[] colors, CycleMethod cycleMethod,
-			ColorSpaceType colorSpace, AffineTransform gradientTransform) {
+	MultipleGradientPaint(float[] fractions, Color[] colors,
+			CycleMethod cycleMethod, ColorSpaceType colorSpace,
+			AffineTransform gradientTransform) {
 		if (fractions == null) {
 			throw new NullPointerException("Fractions array cannot be null");
 		}
@@ -158,15 +151,18 @@ public abstract class MultipleGradientPaint implements Paint {
 		}
 
 		if (gradientTransform == null) {
-			throw new NullPointerException("Gradient transform cannot be " + "null");
+			throw new NullPointerException("Gradient transform cannot be "
+					+ "null");
 		}
 
 		if (fractions.length != colors.length) {
-			throw new IllegalArgumentException("Colors and fractions must " + "have equal size");
+			throw new IllegalArgumentException("Colors and fractions must "
+					+ "have equal size");
 		}
 
 		if (colors.length < 2) {
-			throw new IllegalArgumentException("User must specify at least " + "2 colors");
+			throw new IllegalArgumentException("User must specify at least "
+					+ "2 colors");
 		}
 
 		// check that values are in the proper range and progress
@@ -174,13 +170,13 @@ public abstract class MultipleGradientPaint implements Paint {
 		float previousFraction = -1.0f;
 		for (float currentFraction : fractions) {
 			if (currentFraction < 0f || currentFraction > 1f) {
-				throw new IllegalArgumentException(
-						"Fraction values must " + "be in the range 0 to 1: " + currentFraction);
+				throw new IllegalArgumentException("Fraction values must "
+						+ "be in the range 0 to 1: " + currentFraction);
 			}
 
 			if (currentFraction <= previousFraction) {
-				throw new IllegalArgumentException(
-						"Keyframe fractions " + "must be increasing: " + currentFraction);
+				throw new IllegalArgumentException("Keyframe fractions "
+						+ "must be increasing: " + currentFraction);
 			}
 
 			previousFraction = currentFraction;

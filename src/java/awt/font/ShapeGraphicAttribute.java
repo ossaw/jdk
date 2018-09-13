@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - 1997, All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998, All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by Taligent, Inc., a wholly-owned subsidiary
  * of IBM. These materials are provided under terms of a License
  * Agreement between Taligent and Sun. This technology is protected
  * by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.awt.font;
@@ -77,17 +54,21 @@ public final class ShapeGraphicAttribute extends GraphicAttribute {
 	 * {@link Shape}.
 	 * 
 	 * @param shape
-	 *            the <code>Shape</code> to render. The <code>Shape</code> is
-	 *            rendered with its origin at the origin of this
-	 *            <code>ShapeGraphicAttribute</code> in the host
-	 *            <code>TextLayout</code>. This object maintains a reference to
-	 *            <code>shape</code>.
+	 *                  the <code>Shape</code> to render. The <code>Shape</code>
+	 *                  is
+	 *                  rendered with its origin at the origin of this
+	 *                  <code>ShapeGraphicAttribute</code> in the host
+	 *                  <code>TextLayout</code>. This object maintains a
+	 *                  reference to
+	 *                  <code>shape</code>.
 	 * @param alignment
-	 *            one of the alignments from this
-	 *            <code>ShapeGraphicAttribute</code>.
+	 *                  one of the alignments from this
+	 *                  <code>ShapeGraphicAttribute</code>.
 	 * @param stroke
-	 *            <code>true</code> if the <code>Shape</code> should be stroked;
-	 *            <code>false</code> if the <code>Shape</code> should be filled.
+	 *                  <code>true</code> if the <code>Shape</code> should be
+	 *                  stroked;
+	 *                  <code>false</code> if the <code>Shape</code> should be
+	 *                  filled.
 	 */
 	public ShapeGraphicAttribute(Shape shape, int alignment, boolean stroke) {
 
@@ -188,8 +169,8 @@ public final class ShapeGraphicAttribute extends GraphicAttribute {
 	 * returned by <code>getBounds</code>.
 	 * 
 	 * @param tx
-	 *            an optional {@link AffineTransform} to apply to the this
-	 *            <code>ShapeGraphicAttribute</code>. This can be null.
+	 *           an optional {@link AffineTransform} to apply to the this
+	 *           <code>ShapeGraphicAttribute</code>. This can be null.
 	 * @return the <code>Shape</code> representing this graphic attribute,
 	 *         suitable for stroking or filling.
 	 * @since 1.6

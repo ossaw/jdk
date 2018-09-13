@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -43,7 +18,6 @@ package java.util.concurrent;
  * @since 1.5
  * @author Doug Lea
  * @param <V>
- *            The result type returned by this Future
+ *        The result type returned by this Future
  */
-public interface ScheduledFuture<V> extends Delayed, Future<V> {
-}
+public interface ScheduledFuture<V> extends Delayed, Future<V> {}

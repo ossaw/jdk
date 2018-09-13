@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -82,7 +62,7 @@ import java.util.*;
  * <code>rowsUpdated</code>.
  *
  * @param <M>
- *            the type of the underlying model
+ *        the type of the underlying model
  * @see javax.swing.table.TableRowSorter
  * @since 1.6
  */
@@ -92,8 +72,7 @@ public abstract class RowSorter<M> {
 	/**
 	 * Creates a <code>RowSorter</code>.
 	 */
-	public RowSorter() {
-	}
+	public RowSorter() {}
 
 	/**
 	 * Returns the underlying model.
@@ -115,10 +94,11 @@ public abstract class RowSorter<M> {
 	 * <code>RowSorterListener</code> notification will be sent.
 	 *
 	 * @param column
-	 *            the column to toggle the sort ordering of, in terms of the
-	 *            underlying model
+	 *               the column to toggle the sort ordering of, in terms of the
+	 *               underlying model
 	 * @throws IndexOutOfBoundsException
-	 *             if column is outside the range of the underlying model
+	 *                                   if column is outside the range of the
+	 *                                   underlying model
 	 */
 	public abstract void toggleSortOrder(int column);
 
@@ -128,10 +108,11 @@ public abstract class RowSorter<M> {
 	 * view this returns the row index in terms of the underlying model.
 	 *
 	 * @param index
-	 *            the row index in terms of the underlying view
+	 *              the row index in terms of the underlying view
 	 * @return row index in terms of the view
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>index</code> is outside the range of the view
+	 *                                   if <code>index</code> is outside the
+	 *                                   range of the view
 	 */
 	public abstract int convertRowIndexToModel(int index);
 
@@ -141,11 +122,12 @@ public abstract class RowSorter<M> {
 	 * this returns the row index in terms of the view.
 	 *
 	 * @param index
-	 *            the row index in terms of the underlying model
+	 *              the row index in terms of the underlying model
 	 * @return row index in terms of the view, or -1 if index has been filtered
 	 *         out of the view
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>index</code> is outside the range of the model
+	 *                                   if <code>index</code> is outside the
+	 *                                   range of the model
 	 */
 	public abstract int convertRowIndexToView(int index);
 
@@ -153,9 +135,9 @@ public abstract class RowSorter<M> {
 	 * Sets the current sort keys.
 	 *
 	 * @param keys
-	 *            the new <code>SortKeys</code>; <code>null</code> is a
-	 *            shorthand for specifying an empty list, indicating that the
-	 *            view should be unsorted
+	 *             the new <code>SortKeys</code>; <code>null</code> is a
+	 *             shorthand for specifying an empty list, indicating that the
+	 *             view should be unsorted
 	 */
 	public abstract void setSortKeys(List<? extends SortKey> keys);
 
@@ -222,12 +204,13 @@ public abstract class RowSorter<M> {
 	 * classes to call it.
 	 *
 	 * @param firstRow
-	 *            the first row
+	 *                 the first row
 	 * @param endRow
-	 *            the last row
+	 *                 the last row
 	 * @throws IndexOutOfBoundsException
-	 *             if either argument is invalid, or <code>firstRow</code> &gt;
-	 *             <code>endRow</code>
+	 *                                   if either argument is invalid, or
+	 *                                   <code>firstRow</code> &gt;
+	 *                                   <code>endRow</code>
 	 */
 	public abstract void rowsInserted(int firstRow, int endRow);
 
@@ -243,12 +226,14 @@ public abstract class RowSorter<M> {
 	 * classes to call it.
 	 *
 	 * @param firstRow
-	 *            the first row
+	 *                 the first row
 	 * @param endRow
-	 *            the last row
+	 *                 the last row
 	 * @throws IndexOutOfBoundsException
-	 *             if either argument is outside the range of the model before
-	 *             the change, or <code>firstRow</code> &gt; <code>endRow</code>
+	 *                                   if either argument is outside the range
+	 *                                   of the model before
+	 *                                   the change, or <code>firstRow</code>
+	 *                                   &gt; <code>endRow</code>
 	 */
 	public abstract void rowsDeleted(int firstRow, int endRow);
 
@@ -260,12 +245,14 @@ public abstract class RowSorter<M> {
 	 * classes to call it.
 	 *
 	 * @param firstRow
-	 *            the first row, in terms of the underlying model
+	 *                 the first row, in terms of the underlying model
 	 * @param endRow
-	 *            the last row, in terms of the underlying model
+	 *                 the last row, in terms of the underlying model
 	 * @throws IndexOutOfBoundsException
-	 *             if either argument is outside the range of the underlying
-	 *             model, or <code>firstRow</code> &gt; <code>endRow</code>
+	 *                                   if either argument is outside the range
+	 *                                   of the underlying
+	 *                                   model, or <code>firstRow</code> &gt;
+	 *                                   <code>endRow</code>
 	 */
 	public abstract void rowsUpdated(int firstRow, int endRow);
 
@@ -277,16 +264,20 @@ public abstract class RowSorter<M> {
 	 * classes to call it.
 	 *
 	 * @param firstRow
-	 *            the first row, in terms of the underlying model
+	 *                 the first row, in terms of the underlying model
 	 * @param endRow
-	 *            the last row, in terms of the underlying model
+	 *                 the last row, in terms of the underlying model
 	 * @param column
-	 *            the column that has changed, in terms of the underlying model
+	 *                 the column that has changed, in terms of the underlying
+	 *                 model
 	 * @throws IndexOutOfBoundsException
-	 *             if either argument is outside the range of the underlying
-	 *             model after the change, <code>firstRow</code> &gt;
-	 *             <code>endRow</code>, or <code>column</code> is outside the
-	 *             range of the underlying model
+	 *                                   if either argument is outside the range
+	 *                                   of the underlying
+	 *                                   model after the change,
+	 *                                   <code>firstRow</code> &gt;
+	 *                                   <code>endRow</code>, or
+	 *                                   <code>column</code> is outside the
+	 *                                   range of the underlying model
 	 */
 	public abstract void rowsUpdated(int firstRow, int endRow, int column);
 
@@ -297,7 +288,7 @@ public abstract class RowSorter<M> {
 	 * <code>null</code> nothing is done.
 	 *
 	 * @param l
-	 *            the <code>RowSorterListener</code>
+	 *          the <code>RowSorterListener</code>
 	 */
 	public void addRowSorterListener(RowSorterListener l) {
 		listenerList.add(RowSorterListener.class, l);
@@ -308,7 +299,7 @@ public abstract class RowSorter<M> {
 	 * <code>null</code> nothing is done.
 	 *
 	 * @param l
-	 *            the <code>RowSorterListener</code>
+	 *          the <code>RowSorterListener</code>
 	 */
 	public void removeRowSorterListener(RowSorterListener l) {
 		listenerList.remove(RowSorterListener.class, l);
@@ -325,12 +316,13 @@ public abstract class RowSorter<M> {
 	 * Notifies listener that the mapping has changed.
 	 *
 	 * @param lastRowIndexToModel
-	 *            the mapping from model indices to view indices prior to the
-	 *            sort, may be <code>null</code>
+	 *                            the mapping from model indices to view indices
+	 *                            prior to the
+	 *                            sort, may be <code>null</code>
 	 */
 	protected void fireRowSorterChanged(int[] lastRowIndexToModel) {
-		fireRowSorterChanged(
-				new RowSorterEvent(this, RowSorterEvent.Type.SORTED, lastRowIndexToModel));
+		fireRowSorterChanged(new RowSorterEvent(this,
+				RowSorterEvent.Type.SORTED, lastRowIndexToModel));
 	}
 
 	void fireRowSorterChanged(RowSorterEvent event) {
@@ -358,15 +350,17 @@ public abstract class RowSorter<M> {
 		 * specified sort order.
 		 *
 		 * @param column
-		 *            index of the column, in terms of the model
+		 *                  index of the column, in terms of the model
 		 * @param sortOrder
-		 *            the sorter order
+		 *                  the sorter order
 		 * @throws IllegalArgumentException
-		 *             if <code>sortOrder</code> is <code>null</code>
+		 *                                  if <code>sortOrder</code> is
+		 *                                  <code>null</code>
 		 */
 		public SortKey(int column, SortOrder sortOrder) {
 			if (sortOrder == null) {
-				throw new IllegalArgumentException("sort order must be non-null");
+				throw new IllegalArgumentException(
+						"sort order must be non-null");
 			}
 			this.column = column;
 			this.sortOrder = sortOrder;
@@ -408,7 +402,7 @@ public abstract class RowSorter<M> {
 		 * column and sort order, the two objects are equal.
 		 *
 		 * @param o
-		 *            the object to compare to
+		 *          the object to compare to
 		 * @return true if <code>o</code> is equal to this <code>SortKey</code>
 		 */
 		public boolean equals(Object o) {
@@ -416,7 +410,8 @@ public abstract class RowSorter<M> {
 				return true;
 			}
 			if (o instanceof SortKey) {
-				return (((SortKey) o).column == column && ((SortKey) o).sortOrder == sortOrder);
+				return (((SortKey) o).column == column
+						&& ((SortKey) o).sortOrder == sortOrder);
 			}
 			return false;
 		}

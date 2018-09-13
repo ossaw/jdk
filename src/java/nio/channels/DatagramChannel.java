@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -116,13 +96,14 @@ import java.nio.channels.spi.SelectorProvider;
  */
 
 public abstract class DatagramChannel extends AbstractSelectableChannel
-		implements ByteChannel, ScatteringByteChannel, GatheringByteChannel, MulticastChannel {
+		implements ByteChannel, ScatteringByteChannel, GatheringByteChannel,
+		MulticastChannel {
 
 	/**
 	 * Initializes a new instance of this class.
 	 *
 	 * @param provider
-	 *            The provider that created this channel
+	 *                 The provider that created this channel
 	 */
 	protected DatagramChannel(SelectorProvider provider) {
 		super(provider);
@@ -149,7 +130,7 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * @return A new datagram channel
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public static DatagramChannel open() throws IOException {
 		return SelectorProvider.provider().openDatagramChannel();
@@ -172,22 +153,26 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * not be connected.
 	 *
 	 * @param family
-	 *            The protocol family
+	 *               The protocol family
 	 *
 	 * @return A new datagram channel
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the specified protocol family is not supported. For
-	 *             example, suppose the parameter is specified as
-	 *             {@link java.net.StandardProtocolFamily#INET6
-	 *             StandardProtocolFamily.INET6} but IPv6 is not enabled on the
-	 *             platform.
+	 *                                       If the specified protocol family is
+	 *                                       not supported. For
+	 *                                       example, suppose the parameter is
+	 *                                       specified as
+	 *                                       {@link java.net.StandardProtocolFamily#INET6
+	 *                                       StandardProtocolFamily.INET6} but
+	 *                                       IPv6 is not enabled on the
+	 *                                       platform.
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 *
 	 * @since 1.7
 	 */
-	public static DatagramChannel open(ProtocolFamily family) throws IOException {
+	public static DatagramChannel open(ProtocolFamily family)
+			throws IOException {
 		return SelectorProvider.provider().openDatagramChannel(family);
 	}
 
@@ -210,35 +195,39 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 
 	/**
 	 * @throws AlreadyBoundException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws UnsupportedAddressTypeException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws SecurityException
-	 *             If a security manager has been installed and its
-	 *             {@link SecurityManager#checkListen checkListen} method denies
-	 *             the operation
+	 *                                         If a security manager has been
+	 *                                         installed and its
+	 *                                         {@link SecurityManager#checkListen
+	 *                                         checkListen} method denies
+	 *                                         the operation
 	 *
 	 * @since 1.7
 	 */
-	public abstract DatagramChannel bind(SocketAddress local) throws IOException;
+	public abstract DatagramChannel bind(SocketAddress local)
+			throws IOException;
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 *
 	 * @since 1.7
 	 */
-	public abstract <T> DatagramChannel setOption(SocketOption<T> name, T value) throws IOException;
+	public abstract <T> DatagramChannel setOption(SocketOption<T> name, T value)
+			throws IOException;
 
 	/**
 	 * Retrieves a datagram socket associated with this channel.
@@ -290,30 +279,37 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @param remote
-	 *            The remote address to which this channel is to be connected
+	 *               The remote address to which this channel is to be connected
 	 *
 	 * @return This datagram channel
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                    If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the connect
-	 *             operation is in progress
+	 *                                    If another thread closes this channel
+	 *                                    while the connect
+	 *                                    operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             connect operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                    If another thread interrupts the
+	 *                                    current thread while the
+	 *                                    connect operation is in progress,
+	 *                                    thereby closing the channel
+	 *                                    and setting the current thread's
+	 *                                    interrupt status
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it does not
-	 *             permit access to the given remote address
+	 *                                    If a security manager has been
+	 *                                    installed and it does not
+	 *                                    permit access to the given remote
+	 *                                    address
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                    If some other I/O error occurs
 	 */
-	public abstract DatagramChannel connect(SocketAddress remote) throws IOException;
+	public abstract DatagramChannel connect(SocketAddress remote)
+			throws IOException;
 
 	/**
 	 * Disconnects this channel's socket.
@@ -336,7 +332,7 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * @return This datagram channel
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                     If some other I/O error occurs
 	 */
 	public abstract DatagramChannel disconnect() throws IOException;
 
@@ -347,9 +343,9 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 *         connected
 	 *
 	 * @throws ClosedChannelException
-	 *             If the channel is closed
+	 *                                If the channel is closed
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                If an I/O error occurs
 	 *
 	 * @since 1.7
 	 */
@@ -399,23 +395,29 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 *         is in non-blocking mode and no datagram was immediately available
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                    If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the read
-	 *             operation is in progress
+	 *                                    If another thread closes this channel
+	 *                                    while the read
+	 *                                    operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             read operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                    If another thread interrupts the
+	 *                                    current thread while the
+	 *                                    read operation is in progress, thereby
+	 *                                    closing the channel
+	 *                                    and setting the current thread's
+	 *                                    interrupt status
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it does not
-	 *             permit datagrams to be accepted from the datagram's sender
+	 *                                    If a security manager has been
+	 *                                    installed and it does not
+	 *                                    permit datagrams to be accepted from
+	 *                                    the datagram's sender
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                    If some other I/O error occurs
 	 */
 	public abstract SocketAddress receive(ByteBuffer dst) throws IOException;
 
@@ -454,10 +456,10 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @param src
-	 *            The buffer containing the datagram to be sent
+	 *               The buffer containing the datagram to be sent
 	 *
 	 * @param target
-	 *            The address to which the datagram is to be sent
+	 *               The address to which the datagram is to be sent
 	 *
 	 * @return The number of bytes sent, which will be either the number of
 	 *         bytes that were remaining in the source buffer when this method
@@ -466,25 +468,32 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 *         output buffer
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                    If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the read
-	 *             operation is in progress
+	 *                                    If another thread closes this channel
+	 *                                    while the read
+	 *                                    operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             read operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                    If another thread interrupts the
+	 *                                    current thread while the
+	 *                                    read operation is in progress, thereby
+	 *                                    closing the channel
+	 *                                    and setting the current thread's
+	 *                                    interrupt status
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it does not
-	 *             permit datagrams to be sent to the given address
+	 *                                    If a security manager has been
+	 *                                    installed and it does not
+	 *                                    permit datagrams to be sent to the
+	 *                                    given address
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                    If some other I/O error occurs
 	 */
-	public abstract int send(ByteBuffer src, SocketAddress target) throws IOException;
+	public abstract int send(ByteBuffer src, SocketAddress target)
+			throws IOException;
 
 	// -- ByteChannel operations --
 
@@ -500,7 +509,8 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel's socket is not connected
+	 *                                  If this channel's socket is not
+	 *                                  connected
 	 */
 	public abstract int read(ByteBuffer dst) throws IOException;
 
@@ -516,9 +526,11 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel's socket is not connected
+	 *                                  If this channel's socket is not
+	 *                                  connected
 	 */
-	public abstract long read(ByteBuffer[] dsts, int offset, int length) throws IOException;
+	public abstract long read(ByteBuffer[] dsts, int offset, int length)
+			throws IOException;
 
 	/**
 	 * Reads a datagram from this channel.
@@ -532,7 +544,8 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel's socket is not connected
+	 *                                  If this channel's socket is not
+	 *                                  connected
 	 */
 	public final long read(ByteBuffer[] dsts) throws IOException {
 		return read(dsts, 0, dsts.length);
@@ -549,7 +562,8 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel's socket is not connected
+	 *                                  If this channel's socket is not
+	 *                                  connected
 	 */
 	public abstract int write(ByteBuffer src) throws IOException;
 
@@ -570,9 +584,11 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 *         output buffer
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel's socket is not connected
+	 *                                  If this channel's socket is not
+	 *                                  connected
 	 */
-	public abstract long write(ByteBuffer[] srcs, int offset, int length) throws IOException;
+	public abstract long write(ByteBuffer[] srcs, int offset, int length)
+			throws IOException;
 
 	/**
 	 * Writes a datagram to this channel.
@@ -591,7 +607,8 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 *         output buffer
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel's socket is not connected
+	 *                                  If this channel's socket is not
+	 *                                  connected
 	 */
 	public final long write(ByteBuffer[] srcs) throws IOException {
 		return write(srcs, 0, srcs.length);
@@ -613,9 +630,9 @@ public abstract class DatagramChannel extends AbstractSelectableChannel
 	 *         is not bound
 	 *
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                {@inheritDoc}
 	 */
 	@Override
 	public abstract SocketAddress getLocalAddress() throws IOException;

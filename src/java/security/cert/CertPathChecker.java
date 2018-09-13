@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -48,13 +28,16 @@ public interface CertPathChecker {
 	 * passed to the {@link #check check} method (forward or reverse).
 	 *
 	 * @param forward
-	 *            the order that certificates are presented to the {@code check}
-	 *            method. If {@code true}, certificates are presented from
-	 *            target to trust anchor (forward); if {@code false}, from trust
-	 *            anchor to target (reverse).
+	 *                the order that certificates are presented to the
+	 *                {@code check}
+	 *                method. If {@code true}, certificates are presented from
+	 *                target to trust anchor (forward); if {@code false}, from
+	 *                trust
+	 *                anchor to target (reverse).
 	 * @throws CertPathValidatorException
-	 *             if this {@code CertPathChecker} is unable to check
-	 *             certificates in the specified order
+	 *                                    if this {@code CertPathChecker} is
+	 *                                    unable to check
+	 *                                    certificates in the specified order
 	 */
 	void init(boolean forward) throws CertPathValidatorException;
 
@@ -75,9 +58,10 @@ public interface CertPathChecker {
 	 * {@code init} method.
 	 *
 	 * @param cert
-	 *            the {@code Certificate} to be checked
+	 *             the {@code Certificate} to be checked
 	 * @throws CertPathValidatorException
-	 *             if the specified certificate does not pass the check
+	 *                                    if the specified certificate does not
+	 *                                    pass the check
 	 */
 	void check(Certificate cert) throws CertPathValidatorException;
 }

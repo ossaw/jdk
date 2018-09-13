@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.function;
 
@@ -36,7 +16,7 @@ package java.util.function;
  * functional method is {@link #accept(Object, double)}.
  *
  * @param <T>
- *            the type of the object argument to the operation
+ *        the type of the object argument to the operation
  *
  * @see BiConsumer
  * @since 1.8
@@ -48,9 +28,9 @@ public interface ObjDoubleConsumer<T> {
 	 * Performs this operation on the given arguments.
 	 *
 	 * @param t
-	 *            the first input argument
+	 *              the first input argument
 	 * @param value
-	 *            the second input argument
+	 *              the second input argument
 	 */
 	void accept(T t, double value);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.event;
@@ -55,32 +35,37 @@ public interface IIOReadUpdateListener extends EventListener {
 	 * <code>bands</code>.
 	 *
 	 * @param source
-	 *            the <code>ImageReader</code> object calling this method.
+	 *                 the <code>ImageReader</code> object calling this method.
 	 * @param theImage
-	 *            the <code>BufferedImage</code> being updated.
+	 *                 the <code>BufferedImage</code> being updated.
 	 * @param pass
-	 *            the number of the pass that is about to begin, starting with
-	 *            0.
+	 *                 the number of the pass that is about to begin, starting
+	 *                 with
+	 *                 0.
 	 * @param minPass
-	 *            the index of the first pass that will be decoded.
+	 *                 the index of the first pass that will be decoded.
 	 * @param maxPass
-	 *            the index of the last pass that will be decoded.
+	 *                 the index of the last pass that will be decoded.
 	 * @param minX
-	 *            the X coordinate of the leftmost updated column of pixels.
+	 *                 the X coordinate of the leftmost updated column of
+	 *                 pixels.
 	 * @param minY
-	 *            the Y coordinate of the uppermost updated row of pixels.
+	 *                 the Y coordinate of the uppermost updated row of pixels.
 	 * @param periodX
-	 *            the horizontal spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                 the horizontal spacing between updated pixels; a value of
+	 *                 1
+	 *                 means no gaps.
 	 * @param periodY
-	 *            the vertical spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                 the vertical spacing between updated pixels; a value of 1
+	 *                 means no gaps.
 	 * @param bands
-	 *            an array of <code>int</code>s indicating the the set bands
-	 *            that may be updated.
+	 *                 an array of <code>int</code>s indicating the the set
+	 *                 bands
+	 *                 that may be updated.
 	 */
-	void passStarted(ImageReader source, BufferedImage theImage, int pass, int minPass, int maxPass,
-			int minX, int minY, int periodX, int periodY, int[] bands);
+	void passStarted(ImageReader source, BufferedImage theImage, int pass,
+			int minPass, int maxPass, int minX, int minY, int periodX,
+			int periodY, int[] bands);
 
 	/**
 	 * Reports that a given region of the image has been updated. The
@@ -127,29 +112,33 @@ public interface IIOReadUpdateListener extends EventListener {
 	 * </pre>
 	 *
 	 * @param source
-	 *            the <code>ImageReader</code> object calling this method.
+	 *                 the <code>ImageReader</code> object calling this method.
 	 * @param theImage
-	 *            the <code>BufferedImage</code> being updated.
+	 *                 the <code>BufferedImage</code> being updated.
 	 * @param minX
-	 *            the X coordinate of the leftmost updated column of pixels.
+	 *                 the X coordinate of the leftmost updated column of
+	 *                 pixels.
 	 * @param minY
-	 *            the Y coordinate of the uppermost updated row of pixels.
+	 *                 the Y coordinate of the uppermost updated row of pixels.
 	 * @param width
-	 *            the number of updated pixels horizontally.
+	 *                 the number of updated pixels horizontally.
 	 * @param height
-	 *            the number of updated pixels vertically.
+	 *                 the number of updated pixels vertically.
 	 * @param periodX
-	 *            the horizontal spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                 the horizontal spacing between updated pixels; a value of
+	 *                 1
+	 *                 means no gaps.
 	 * @param periodY
-	 *            the vertical spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                 the vertical spacing between updated pixels; a value of 1
+	 *                 means no gaps.
 	 * @param bands
-	 *            an array of <code>int</code>s indicating which bands are being
-	 *            updated.
+	 *                 an array of <code>int</code>s indicating which bands are
+	 *                 being
+	 *                 updated.
 	 */
-	void imageUpdate(ImageReader source, BufferedImage theImage, int minX, int minY, int width,
-			int height, int periodX, int periodY, int[] bands);
+	void imageUpdate(ImageReader source, BufferedImage theImage, int minX,
+			int minY, int width, int height, int periodX, int periodY,
+			int[] bands);
 
 	/**
 	 * Reports that the current read operation has completed a progressive pass.
@@ -158,9 +147,9 @@ public interface IIOReadUpdateListener extends EventListener {
 	 * encoded image.
 	 *
 	 * @param source
-	 *            the <code>ImageReader</code> object calling this method.
+	 *                 the <code>ImageReader</code> object calling this method.
 	 * @param theImage
-	 *            the <code>BufferedImage</code> being updated.
+	 *                 the <code>BufferedImage</code> being updated.
 	 *
 	 * @see javax.imageio.ImageReadParam#setSourceProgressivePasses(int, int)
 	 */
@@ -173,34 +162,43 @@ public interface IIOReadUpdateListener extends EventListener {
 	 * reading a progressively encoded thumbnail image.
 	 *
 	 * @param source
-	 *            the <code>ImageReader</code> object calling this method.
+	 *                     the <code>ImageReader</code> object calling this
+	 *                     method.
 	 * @param theThumbnail
-	 *            the <code>BufferedImage</code> thumbnail being updated.
+	 *                     the <code>BufferedImage</code> thumbnail being
+	 *                     updated.
 	 * @param pass
-	 *            the number of the pass that is about to begin, starting with
-	 *            0.
+	 *                     the number of the pass that is about to begin,
+	 *                     starting with
+	 *                     0.
 	 * @param minPass
-	 *            the index of the first pass that will be decoded.
+	 *                     the index of the first pass that will be decoded.
 	 * @param maxPass
-	 *            the index of the last pass that will be decoded.
+	 *                     the index of the last pass that will be decoded.
 	 * @param minX
-	 *            the X coordinate of the leftmost updated column of pixels.
+	 *                     the X coordinate of the leftmost updated column of
+	 *                     pixels.
 	 * @param minY
-	 *            the Y coordinate of the uppermost updated row of pixels.
+	 *                     the Y coordinate of the uppermost updated row of
+	 *                     pixels.
 	 * @param periodX
-	 *            the horizontal spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                     the horizontal spacing between updated pixels; a
+	 *                     value of 1
+	 *                     means no gaps.
 	 * @param periodY
-	 *            the vertical spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                     the vertical spacing between updated pixels; a value
+	 *                     of 1
+	 *                     means no gaps.
 	 * @param bands
-	 *            an array of <code>int</code>s indicating the the set bands
-	 *            that may be updated.
+	 *                     an array of <code>int</code>s indicating the the set
+	 *                     bands
+	 *                     that may be updated.
 	 *
 	 * @see #passStarted
 	 */
-	void thumbnailPassStarted(ImageReader source, BufferedImage theThumbnail, int pass, int minPass,
-			int maxPass, int minX, int minY, int periodX, int periodY, int[] bands);
+	void thumbnailPassStarted(ImageReader source, BufferedImage theThumbnail,
+			int pass, int minPass, int maxPass, int minX, int minY, int periodX,
+			int periodY, int[] bands);
 
 	/**
 	 * Reports that a given region of a thumbnail image has been updated. The
@@ -209,31 +207,39 @@ public interface IIOReadUpdateListener extends EventListener {
 	 * incremental processing.
 	 *
 	 * @param source
-	 *            the <code>ImageReader</code> object calling this method.
+	 *                     the <code>ImageReader</code> object calling this
+	 *                     method.
 	 * @param theThumbnail
-	 *            the <code>BufferedImage</code> thumbnail being updated.
+	 *                     the <code>BufferedImage</code> thumbnail being
+	 *                     updated.
 	 * @param minX
-	 *            the X coordinate of the leftmost updated column of pixels.
+	 *                     the X coordinate of the leftmost updated column of
+	 *                     pixels.
 	 * @param minY
-	 *            the Y coordinate of the uppermost updated row of pixels.
+	 *                     the Y coordinate of the uppermost updated row of
+	 *                     pixels.
 	 * @param width
-	 *            the number of updated pixels horizontally.
+	 *                     the number of updated pixels horizontally.
 	 * @param height
-	 *            the number of updated pixels vertically.
+	 *                     the number of updated pixels vertically.
 	 * @param periodX
-	 *            the horizontal spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                     the horizontal spacing between updated pixels; a
+	 *                     value of 1
+	 *                     means no gaps.
 	 * @param periodY
-	 *            the vertical spacing between updated pixels; a value of 1
-	 *            means no gaps.
+	 *                     the vertical spacing between updated pixels; a value
+	 *                     of 1
+	 *                     means no gaps.
 	 * @param bands
-	 *            an array of <code>int</code>s indicating which bands are being
-	 *            updated.
+	 *                     an array of <code>int</code>s indicating which bands
+	 *                     are being
+	 *                     updated.
 	 *
 	 * @see #imageUpdate
 	 */
-	void thumbnailUpdate(ImageReader source, BufferedImage theThumbnail, int minX, int minY,
-			int width, int height, int periodX, int periodY, int[] bands);
+	void thumbnailUpdate(ImageReader source, BufferedImage theThumbnail,
+			int minX, int minY, int width, int height, int periodX, int periodY,
+			int[] bands);
 
 	/**
 	 * Reports that the current thumbnail read operation has completed a
@@ -242,9 +248,11 @@ public interface IIOReadUpdateListener extends EventListener {
 	 * reading a progressively encoded thumbnail image.
 	 *
 	 * @param source
-	 *            the <code>ImageReader</code> object calling this method.
+	 *                     the <code>ImageReader</code> object calling this
+	 *                     method.
 	 * @param theThumbnail
-	 *            the <code>BufferedImage</code> thumbnail being updated.
+	 *                     the <code>BufferedImage</code> thumbnail being
+	 *                     updated.
 	 *
 	 * @see #passComplete
 	 */

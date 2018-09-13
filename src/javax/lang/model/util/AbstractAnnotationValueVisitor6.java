@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -62,9 +42,9 @@ import javax.annotation.processing.SupportedSourceVersion;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods
+ *        the return type of this visitor's methods
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
+ *        the type of the additional parameter to this visitor's methods.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -75,14 +55,13 @@ import javax.annotation.processing.SupportedSourceVersion;
  * @since 1.6
  */
 @SupportedSourceVersion(RELEASE_6)
-public abstract class AbstractAnnotationValueVisitor6<R, P>
-		implements AnnotationValueVisitor<R, P> {
+public abstract class AbstractAnnotationValueVisitor6<R, P> implements
+		AnnotationValueVisitor<R, P> {
 
 	/**
 	 * Constructor for concrete subclasses to call.
 	 */
-	protected AbstractAnnotationValueVisitor6() {
-	}
+	protected AbstractAnnotationValueVisitor6() {}
 
 	/**
 	 * Visits an annotation value as if by passing itself to that value's
@@ -90,9 +69,9 @@ public abstract class AbstractAnnotationValueVisitor6<R, P>
 	 * is equivalent to {@code av.accept(v, p)}.
 	 * 
 	 * @param av
-	 *            {@inheritDoc}
+	 *           {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *           {@inheritDoc}
 	 */
 	public final R visit(AnnotationValue av, P p) {
 		return av.accept(this, p);
@@ -106,7 +85,7 @@ public abstract class AbstractAnnotationValueVisitor6<R, P>
 	 * null)}.
 	 * 
 	 * @param av
-	 *            {@inheritDoc}
+	 *           {@inheritDoc}
 	 */
 	public final R visit(AnnotationValue av) {
 		return av.accept(this, null);
@@ -122,9 +101,9 @@ public abstract class AbstractAnnotationValueVisitor6<R, P>
 	 * subclass.
 	 *
 	 * @param av
-	 *            {@inheritDoc}
+	 *           {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *           {@inheritDoc}
 	 */
 	public R visitUnknown(AnnotationValue av, P p) {
 		throw new UnknownAnnotationValueException(av, p);

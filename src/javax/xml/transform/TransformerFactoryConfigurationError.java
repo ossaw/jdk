@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform;
@@ -70,8 +50,8 @@ public class TransformerFactoryConfigurationError extends Error {
 	 * given <code>Exception</code> base cause of the error.
 	 *
 	 * @param e
-	 *            The exception to be encapsulated in a
-	 *            TransformerFactoryConfigurationError.
+	 *          The exception to be encapsulated in a
+	 *          TransformerFactoryConfigurationError.
 	 */
 	public TransformerFactoryConfigurationError(Exception e) {
 

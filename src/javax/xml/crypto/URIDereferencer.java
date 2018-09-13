@@ -1,33 +1,11 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * ===========================================================================
- *
  * (C) Copyright IBM Corp. 2003 All Rights Reserved.
- *
  * ===========================================================================
  */
 /*
@@ -59,20 +37,23 @@ public interface URIDereferencer {
 	 * dereferenced data.
 	 *
 	 * @param uriReference
-	 *            the <code>URIReference</code>
+	 *                     the <code>URIReference</code>
 	 * @param context
-	 *            an <code>XMLCryptoContext</code> that may contain additional
-	 *            useful information for dereferencing the URI. This
-	 *            implementation should dereference the specified
-	 *            <code>URIReference</code> against the context's
-	 *            <code>baseURI</code> parameter, if specified.
+	 *                     an <code>XMLCryptoContext</code> that may contain
+	 *                     additional
+	 *                     useful information for dereferencing the URI. This
+	 *                     implementation should dereference the specified
+	 *                     <code>URIReference</code> against the context's
+	 *                     <code>baseURI</code> parameter, if specified.
 	 * @return the dereferenced data
 	 * @throws NullPointerException
-	 *             if <code>uriReference</code> or <code>context</code> are
-	 *             <code>null</code>
+	 *                               if <code>uriReference</code> or
+	 *                               <code>context</code> are
+	 *                               <code>null</code>
 	 * @throws URIReferenceException
-	 *             if an exception occurs while dereferencing the specified
-	 *             <code>uriReference</code>
+	 *                               if an exception occurs while dereferencing
+	 *                               the specified
+	 *                               <code>uriReference</code>
 	 */
 	Data dereference(URIReference uriReference, XMLCryptoContext context)
 			throws URIReferenceException;

@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1995, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.util;
@@ -71,19 +50,21 @@ public class JDKBridge {
 	 * Returns a class instance for the specified class.
 	 * 
 	 * @param className
-	 *            the name of the class
+	 *                       the name of the class
 	 * @param remoteCodebase
-	 *            a space-separated array of urls at which the class might be
-	 *            found. May be null.
+	 *                       a space-separated array of urls at which the class
+	 *                       might be
+	 *                       found. May be null.
 	 * @param loader
-	 *            a ClassLoader who may be used to load the class if all other
-	 *            methods fail.
+	 *                       a ClassLoader who may be used to load the class if
+	 *                       all other
+	 *                       methods fail.
 	 * @return the <code>Class</code> object representing the loaded class.
 	 * @exception throws
-	 *                ClassNotFoundException if class cannot be loaded.
+	 *            ClassNotFoundException if class cannot be loaded.
 	 */
-	public static Class loadClass(String className, String remoteCodebase, ClassLoader loader)
-			throws ClassNotFoundException {
+	public static Class loadClass(String className, String remoteCodebase,
+			ClassLoader loader) throws ClassNotFoundException {
 
 		if (loader == null) {
 			return loadClassM(className, remoteCodebase, useCodebaseOnly);
@@ -100,13 +81,14 @@ public class JDKBridge {
 	 * Returns a class instance for the specified class.
 	 * 
 	 * @param className
-	 *            the name of the class
+	 *                       the name of the class
 	 * @param remoteCodebase
-	 *            a space-separated array of urls at which the class might be
-	 *            found. May be null.
+	 *                       a space-separated array of urls at which the class
+	 *                       might be
+	 *                       found. May be null.
 	 * @return the <code>Class</code> object representing the loaded class.
 	 * @exception throws
-	 *                ClassNotFoundException if class cannot be loaded.
+	 *            ClassNotFoundException if class cannot be loaded.
 	 */
 	public static Class loadClass(String className, String remoteCodebase)
 			throws ClassNotFoundException {
@@ -117,12 +99,13 @@ public class JDKBridge {
 	 * Returns a class instance for the specified class.
 	 * 
 	 * @param className
-	 *            the name of the class
+	 *                  the name of the class
 	 * @return the <code>Class</code> object representing the loaded class.
 	 * @exception throws
-	 *                ClassNotFoundException if class cannot be loaded.
+	 *            ClassNotFoundException if class cannot be loaded.
 	 */
-	public static Class loadClass(String className) throws ClassNotFoundException {
+	public static Class loadClass(String className)
+			throws ClassNotFoundException {
 		return loadClass(className, null, null);
 	}
 
@@ -155,13 +138,14 @@ public class JDKBridge {
 	 * test code.
 	 */
 	public static synchronized void setCodebaseProperties() {
-		String prop = (String) AccessController
-				.doPrivileged(new GetPropertyAction(LOCAL_CODEBASE_KEY));
+		String prop = (String) AccessController.doPrivileged(
+				new GetPropertyAction(LOCAL_CODEBASE_KEY));
 		if (prop != null && prop.trim().length() > 0) {
 			localCodebase = prop;
 		}
 
-		prop = (String) AccessController.doPrivileged(new GetPropertyAction(USE_CODEBASE_ONLY_KEY));
+		prop = (String) AccessController.doPrivileged(new GetPropertyAction(
+				USE_CODEBASE_ONLY_KEY));
 		if (prop != null && prop.trim().length() > 0) {
 			useCodebaseOnly = Boolean.valueOf(prop).booleanValue();
 		}

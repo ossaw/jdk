@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -39,7 +19,8 @@ import sun.awt.image.IntegerInterleavedRaster;
 import sun.awt.image.ByteInterleavedRaster;
 
 abstract class TexturePaintContext implements PaintContext {
-	public static ColorModel xrgbmodel = new DirectColorModel(24, 0xff0000, 0xff00, 0xff);
+	public static ColorModel xrgbmodel = new DirectColorModel(24, 0xff0000,
+			0xff00, 0xff);
 	public static ColorModel argbmodel = ColorModel.getRGBdefault();
 
 	ColorModel colorModel;
@@ -65,16 +46,17 @@ abstract class TexturePaintContext implements PaintContext {
 	int rowincxerr;
 	int rowincyerr;
 
-	public static PaintContext getContext(BufferedImage bufImg, AffineTransform xform,
-			RenderingHints hints, Rectangle devBounds) {
+	public static PaintContext getContext(BufferedImage bufImg,
+			AffineTransform xform, RenderingHints hints, Rectangle devBounds) {
 		WritableRaster raster = bufImg.getRaster();
 		ColorModel cm = bufImg.getColorModel();
 		int maxw = devBounds.width;
 		Object val = hints.get(RenderingHints.KEY_INTERPOLATION);
-		boolean filter = (val == null
-				? (hints.get(RenderingHints.KEY_RENDERING) == RenderingHints.VALUE_RENDER_QUALITY)
+		boolean filter = (val == null ? (hints.get(
+				RenderingHints.KEY_RENDERING) == RenderingHints.VALUE_RENDER_QUALITY)
 				: (val != RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR));
-		if (raster instanceof IntegerInterleavedRaster && (!filter || isFilterableDCM(cm))) {
+		if (raster instanceof IntegerInterleavedRaster && (!filter
+				|| isFilterableDCM(cm))) {
 			IntegerInterleavedRaster iir = (IntegerInterleavedRaster) raster;
 			if (iir.getNumDataElements() == 1 && iir.getPixelStride() == 1) {
 				return new Int(iir, cm, xform, maxw, filter);
@@ -107,8 +89,9 @@ abstract class TexturePaintContext implements PaintContext {
 	public static boolean isFilterableDCM(ColorModel cm) {
 		if (cm instanceof DirectColorModel) {
 			DirectColorModel dcm = (DirectColorModel) cm;
-			return (isMaskOK(dcm.getAlphaMask(), true) && isMaskOK(dcm.getRedMask(), false)
-					&& isMaskOK(dcm.getGreenMask(), false) && isMaskOK(dcm.getBlueMask(), false));
+			return (isMaskOK(dcm.getAlphaMask(), true) && isMaskOK(dcm
+					.getRedMask(), false) && isMaskOK(dcm.getGreenMask(), false)
+					&& isMaskOK(dcm.getBlueMask(), false));
 		}
 		return false;
 	}
@@ -117,7 +100,8 @@ abstract class TexturePaintContext implements PaintContext {
 		if (canbezero && mask == 0) {
 			return true;
 		}
-		return (mask == 0xff || mask == 0xff00 || mask == 0xff0000 || mask == 0xff000000);
+		return (mask == 0xff || mask == 0xff00 || mask == 0xff0000
+				|| mask == 0xff000000);
 	}
 
 	public static ColorModel getInternedColorModel(ColorModel cm) {
@@ -130,7 +114,8 @@ abstract class TexturePaintContext implements PaintContext {
 		return cm;
 	}
 
-	TexturePaintContext(ColorModel cm, AffineTransform xform, int bWidth, int bHeight, int maxw) {
+	TexturePaintContext(ColorModel cm, AffineTransform xform, int bWidth,
+			int bHeight, int maxw) {
 		this.colorModel = getInternedColorModel(cm);
 		this.bWidth = bWidth;
 		this.bHeight = bHeight;
@@ -198,7 +183,7 @@ abstract class TexturePaintContext implements PaintContext {
 	 * operation.
 	 * 
 	 * @param x,y,w,h
-	 *            The area in device space for which colors are generated.
+	 *        The area in device space for which colors are generated.
 	 */
 	public Raster getRaster(int x, int y, int w, int h) {
 		if (outRas == null || outRas.getWidth() < w || outRas.getHeight() < h) {
@@ -208,8 +193,9 @@ abstract class TexturePaintContext implements PaintContext {
 		double X = mod(xOrg + x * incXAcross + y * incXDown, bWidth);
 		double Y = mod(yOrg + x * incYAcross + y * incYDown, bHeight);
 
-		setRaster((int) X, (int) Y, fractAsInt(X), fractAsInt(Y), w, h, bWidth, bHeight, colincx,
-				colincxerr, colincy, colincyerr, rowincx, rowincxerr, rowincy, rowincyerr);
+		setRaster((int) X, (int) Y, fractAsInt(X), fractAsInt(Y), w, h, bWidth,
+				bHeight, colincx, colincxerr, colincy, colincyerr, rowincx,
+				rowincxerr, rowincy, rowincyerr);
 
 		SunWritableRaster.markDirty(outRas);
 
@@ -219,7 +205,8 @@ abstract class TexturePaintContext implements PaintContext {
 	private static WeakReference<Raster> xrgbRasRef;
 	private static WeakReference<Raster> argbRasRef;
 
-	synchronized static WritableRaster makeRaster(ColorModel cm, Raster srcRas, int w, int h) {
+	synchronized static WritableRaster makeRaster(ColorModel cm, Raster srcRas,
+			int w, int h) {
 		if (xrgbmodel == cm) {
 			if (xrgbRasRef != null) {
 				WritableRaster wr = (WritableRaster) xrgbRasRef.get();
@@ -265,7 +252,8 @@ abstract class TexturePaintContext implements PaintContext {
 
 	private static WeakReference<Raster> byteRasRef;
 
-	synchronized static WritableRaster makeByteRaster(Raster srcRas, int w, int h) {
+	synchronized static WritableRaster makeByteRaster(Raster srcRas, int w,
+			int h) {
 		if (byteRasRef != null) {
 			WritableRaster wr = (WritableRaster) byteRasRef.get();
 			if (wr != null && wr.getWidth() >= w && wr.getHeight() >= h) {
@@ -289,20 +277,18 @@ abstract class TexturePaintContext implements PaintContext {
 
 	public abstract WritableRaster makeRaster(int w, int h);
 
-	public abstract void setRaster(int x, int y, int xerr, int yerr, int w, int h, int bWidth,
-			int bHeight, int colincx, int colincxerr, int colincy, int colincyerr, int rowincx,
-			int rowincxerr, int rowincy, int rowincyerr);
+	public abstract void setRaster(int x, int y, int xerr, int yerr, int w,
+			int h, int bWidth, int bHeight, int colincx, int colincxerr,
+			int colincy, int colincyerr, int rowincx, int rowincxerr,
+			int rowincy, int rowincyerr);
 
 	/*
 	 * Blends the four ARGB values in the rgbs array using the factors described
 	 * by xmul and ymul in the following ratio:
-	 *
 	 * rgbs[0] * (1-xmul) * (1-ymul) + rgbs[1] * ( xmul) * (1-ymul) + rgbs[2] *
 	 * (1-xmul) * ( ymul) + rgbs[3] * ( xmul) * ( ymul)
-	 *
 	 * xmul and ymul are integer values in the half-open range [0, 2^31) where 0
 	 * == 0.0 and 2^31 == 1.0.
-	 *
 	 * Note that since the range is half-open, the values are always logically
 	 * less than 1.0. This makes sense because while choosing pixels to blend,
 	 * when the error values reach 1.0 we move to the next pixel and reset them
@@ -337,8 +323,10 @@ abstract class TexturePaintContext implements PaintContext {
 				accumB += (((rgb) & 0xff) * factor);
 			}
 		}
-		return ((((accumA + (1 << 23)) >>> 24) << 24) | (((accumR + (1 << 23)) >>> 24) << 16)
-				| (((accumG + (1 << 23)) >>> 24) << 8) | (((accumB + (1 << 23)) >>> 24)));
+		return ((((accumA + (1 << 23)) >>> 24) << 24) | (((accumR
+				+ (1 << 23)) >>> 24) << 16) | (((accumG
+						+ (1 << 23)) >>> 24) << 8) | (((accumB
+								+ (1 << 23)) >>> 24)));
 	}
 
 	static class Int extends TexturePaintContext {
@@ -351,8 +339,8 @@ abstract class TexturePaintContext implements PaintContext {
 		int outSpan;
 		boolean filter;
 
-		public Int(IntegerInterleavedRaster srcRas, ColorModel cm, AffineTransform xform, int maxw,
-				boolean filter) {
+		public Int(IntegerInterleavedRaster srcRas, ColorModel cm,
+				AffineTransform xform, int maxw, boolean filter) {
 			super(cm, xform, srcRas.getWidth(), srcRas.getHeight(), maxw);
 			this.srcRas = srcRas;
 			this.inData = srcRas.getDataStorage();
@@ -370,9 +358,10 @@ abstract class TexturePaintContext implements PaintContext {
 			return ras;
 		}
 
-		public void setRaster(int x, int y, int xerr, int yerr, int w, int h, int bWidth,
-				int bHeight, int colincx, int colincxerr, int colincy, int colincyerr, int rowincx,
-				int rowincxerr, int rowincy, int rowincyerr) {
+		public void setRaster(int x, int y, int xerr, int yerr, int w, int h,
+				int bWidth, int bHeight, int colincx, int colincxerr,
+				int colincy, int colincyerr, int rowincx, int rowincxerr,
+				int rowincy, int rowincyerr) {
 			int[] inData = this.inData;
 			int[] outData = this.outData;
 			int out = outOff;
@@ -380,8 +369,8 @@ abstract class TexturePaintContext implements PaintContext {
 			int inOff = this.inOff;
 			int outSpan = this.outSpan;
 			boolean filter = this.filter;
-			boolean normalx = (colincx == 1 && colincxerr == 0 && colincy == 0 && colincyerr == 0)
-					&& !filter;
+			boolean normalx = (colincx == 1 && colincxerr == 0 && colincy == 0
+					&& colincyerr == 0) && !filter;
 			int rowx = x;
 			int rowy = y;
 			int rowxerr = xerr;
@@ -399,7 +388,8 @@ abstract class TexturePaintContext implements PaintContext {
 						int i = w;
 						while (i > 0) {
 							int copyw = (i < x) ? i : x;
-							System.arraycopy(inData, in - x, outData, out - i, copyw);
+							System.arraycopy(inData, in - x, outData, out - i,
+									copyw);
 							i -= copyw;
 							if ((x -= copyw) == 0) {
 								x = bWidth;
@@ -431,7 +421,8 @@ abstract class TexturePaintContext implements PaintContext {
 							rgbs[1] = inData[inOff + y * inSpan + nextx];
 							rgbs[2] = inData[inOff + nexty * inSpan + x];
 							rgbs[3] = inData[inOff + nexty * inSpan + nextx];
-							outData[out + i] = TexturePaintContext.blend(rgbs, xerr, yerr);
+							outData[out + i] = TexturePaintContext.blend(rgbs,
+									xerr, yerr);
 						} else {
 							outData[out + i] = inData[inOff + y * inSpan + x];
 						}
@@ -479,7 +470,8 @@ abstract class TexturePaintContext implements PaintContext {
 		int outOff;
 		int outSpan;
 
-		public Byte(ByteInterleavedRaster srcRas, ColorModel cm, AffineTransform xform, int maxw) {
+		public Byte(ByteInterleavedRaster srcRas, ColorModel cm,
+				AffineTransform xform, int maxw) {
 			super(cm, xform, srcRas.getWidth(), srcRas.getHeight(), maxw);
 			this.srcRas = srcRas;
 			this.inData = srcRas.getDataStorage();
@@ -500,16 +492,18 @@ abstract class TexturePaintContext implements PaintContext {
 			dropByteRaster(outRas);
 		}
 
-		public void setRaster(int x, int y, int xerr, int yerr, int w, int h, int bWidth,
-				int bHeight, int colincx, int colincxerr, int colincy, int colincyerr, int rowincx,
-				int rowincxerr, int rowincy, int rowincyerr) {
+		public void setRaster(int x, int y, int xerr, int yerr, int w, int h,
+				int bWidth, int bHeight, int colincx, int colincxerr,
+				int colincy, int colincyerr, int rowincx, int rowincxerr,
+				int rowincy, int rowincyerr) {
 			byte[] inData = this.inData;
 			byte[] outData = this.outData;
 			int out = outOff;
 			int inSpan = this.inSpan;
 			int inOff = this.inOff;
 			int outSpan = this.outSpan;
-			boolean normalx = (colincx == 1 && colincxerr == 0 && colincy == 0 && colincyerr == 0);
+			boolean normalx = (colincx == 1 && colincxerr == 0 && colincy == 0
+					&& colincyerr == 0);
 			int rowx = x;
 			int rowy = y;
 			int rowxerr = xerr;
@@ -526,7 +520,8 @@ abstract class TexturePaintContext implements PaintContext {
 						int i = w;
 						while (i > 0) {
 							int copyw = (i < x) ? i : x;
-							System.arraycopy(inData, in - x, outData, out - i, copyw);
+							System.arraycopy(inData, in - x, outData, out - i,
+									copyw);
 							i -= copyw;
 							if ((x -= copyw) == 0) {
 								x = bWidth;
@@ -592,10 +587,11 @@ abstract class TexturePaintContext implements PaintContext {
 		int outOff;
 		int outSpan;
 
-		public ByteFilter(ByteInterleavedRaster srcRas, ColorModel cm, AffineTransform xform,
-				int maxw) {
-			super((cm.getTransparency() == Transparency.OPAQUE ? xrgbmodel : argbmodel), xform,
-					srcRas.getWidth(), srcRas.getHeight(), maxw);
+		public ByteFilter(ByteInterleavedRaster srcRas, ColorModel cm,
+				AffineTransform xform, int maxw) {
+			super((cm.getTransparency() == Transparency.OPAQUE ? xrgbmodel
+					: argbmodel), xform, srcRas.getWidth(), srcRas.getHeight(),
+					maxw);
 			this.inPalette = new int[256];
 			((IndexColorModel) cm).getRGBs(this.inPalette);
 			this.srcRas = srcRas;
@@ -615,9 +611,10 @@ abstract class TexturePaintContext implements PaintContext {
 			return ras;
 		}
 
-		public void setRaster(int x, int y, int xerr, int yerr, int w, int h, int bWidth,
-				int bHeight, int colincx, int colincxerr, int colincy, int colincyerr, int rowincx,
-				int rowincxerr, int rowincy, int rowincyerr) {
+		public void setRaster(int x, int y, int xerr, int yerr, int w, int h,
+				int bWidth, int bHeight, int colincx, int colincxerr,
+				int colincy, int colincyerr, int rowincx, int rowincxerr,
+				int rowincy, int rowincyerr) {
 			byte[] inData = this.inData;
 			int[] outData = this.outData;
 			int out = outOff;
@@ -643,10 +640,14 @@ abstract class TexturePaintContext implements PaintContext {
 						nexty = 0;
 					}
 					rgbs[0] = inPalette[0xff & inData[inOff + x + inSpan * y]];
-					rgbs[1] = inPalette[0xff & inData[inOff + nextx + inSpan * y]];
-					rgbs[2] = inPalette[0xff & inData[inOff + x + inSpan * nexty]];
-					rgbs[3] = inPalette[0xff & inData[inOff + nextx + inSpan * nexty]];
-					outData[out + i] = TexturePaintContext.blend(rgbs, xerr, yerr);
+					rgbs[1] = inPalette[0xff & inData[inOff + nextx + inSpan
+							* y]];
+					rgbs[2] = inPalette[0xff & inData[inOff + x + inSpan
+							* nexty]];
+					rgbs[3] = inPalette[0xff & inData[inOff + nextx + inSpan
+							* nexty]];
+					outData[out + i] = TexturePaintContext.blend(rgbs, xerr,
+							yerr);
 					if ((xerr += colincxerr) < 0) {
 						xerr &= Integer.MAX_VALUE;
 						x++;
@@ -685,8 +686,8 @@ abstract class TexturePaintContext implements PaintContext {
 		WritableRaster srcRas;
 		boolean filter;
 
-		public Any(WritableRaster srcRas, ColorModel cm, AffineTransform xform, int maxw,
-				boolean filter) {
+		public Any(WritableRaster srcRas, ColorModel cm, AffineTransform xform,
+				int maxw, boolean filter) {
 			super(cm, xform, srcRas.getWidth(), srcRas.getHeight(), maxw);
 			this.srcRas = srcRas;
 			this.filter = filter;
@@ -696,9 +697,10 @@ abstract class TexturePaintContext implements PaintContext {
 			return makeRaster(colorModel, srcRas, w, h);
 		}
 
-		public void setRaster(int x, int y, int xerr, int yerr, int w, int h, int bWidth,
-				int bHeight, int colincx, int colincxerr, int colincy, int colincyerr, int rowincx,
-				int rowincxerr, int rowincy, int rowincyerr) {
+		public void setRaster(int x, int y, int xerr, int yerr, int w, int h,
+				int bWidth, int bHeight, int colincx, int colincxerr,
+				int colincy, int colincyerr, int rowincx, int rowincxerr,
+				int rowincy, int rowincyerr) {
 			Object data = null;
 			int rowx = x;
 			int rowy = y;

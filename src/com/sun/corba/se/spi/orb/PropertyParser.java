@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.spi.orb;
 
@@ -41,15 +21,17 @@ public class PropertyParser {
 		actions = new LinkedList();
 	}
 
-	public PropertyParser add(String propName, Operation action, String fieldName) {
-		actions.add(ParserActionFactory.makeNormalAction(propName, action, fieldName));
+	public PropertyParser add(String propName, Operation action,
+			String fieldName) {
+		actions.add(ParserActionFactory.makeNormalAction(propName, action,
+				fieldName));
 		return this;
 	}
 
-	public PropertyParser addPrefix(String propName, Operation action, String fieldName,
-			Class componentType) {
-		actions.add(
-				ParserActionFactory.makePrefixAction(propName, action, fieldName, componentType));
+	public PropertyParser addPrefix(String propName, Operation action,
+			String fieldName, Class componentType) {
+		actions.add(ParserActionFactory.makePrefixAction(propName, action,
+				fieldName, componentType));
 		return this;
 	}
 

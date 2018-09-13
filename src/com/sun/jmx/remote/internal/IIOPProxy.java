@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.internal;
@@ -56,7 +36,8 @@ public interface IIOPProxy {
 	 * Returns the ORB associated with the given stub
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if the object does not support the operation that was invoked
+	 *                                       if the object does not support the
+	 *                                       operation that was invoked
 	 */
 	Object getOrb(Object stub);
 

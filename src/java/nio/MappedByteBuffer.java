@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio;
@@ -143,7 +123,8 @@ public abstract class MappedByteBuffer extends ByteBuffer {
 			return true;
 		long offset = mappingOffset();
 		long length = mappingLength(offset);
-		return isLoaded0(mappingAddress(offset), length, Bits.pageCount(length));
+		return isLoaded0(mappingAddress(offset), length, Bits.pageCount(
+				length));
 	}
 
 	// not used, but a potential target for a store, see load() for details.

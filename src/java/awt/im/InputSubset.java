@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.im;
@@ -51,21 +31,24 @@ public final class InputSubset extends Character.Subset {
 	 * Constant for the digits included in the BASIC_LATIN Unicode character
 	 * block.
 	 */
-	public static final InputSubset LATIN_DIGITS = new InputSubset("LATIN_DIGITS");
+	public static final InputSubset LATIN_DIGITS = new InputSubset(
+			"LATIN_DIGITS");
 
 	/**
 	 * Constant for all Han characters used in writing Traditional Chinese,
 	 * including a subset of the CJK unified ideographs as well as Traditional
 	 * Chinese Han characters that may be defined as surrogate characters.
 	 */
-	public static final InputSubset TRADITIONAL_HANZI = new InputSubset("TRADITIONAL_HANZI");
+	public static final InputSubset TRADITIONAL_HANZI = new InputSubset(
+			"TRADITIONAL_HANZI");
 
 	/**
 	 * Constant for all Han characters used in writing Simplified Chinese,
 	 * including a subset of the CJK unified ideographs as well as Simplified
 	 * Chinese Han characters that may be defined as surrogate characters.
 	 */
-	public static final InputSubset SIMPLIFIED_HANZI = new InputSubset("SIMPLIFIED_HANZI");
+	public static final InputSubset SIMPLIFIED_HANZI = new InputSubset(
+			"SIMPLIFIED_HANZI");
 
 	/**
 	 * Constant for all Han characters used in writing Japanese, including a
@@ -85,7 +68,8 @@ public final class InputSubset extends Character.Subset {
 	 * Constant for the halfwidth katakana subset of the Unicode halfwidth and
 	 * fullwidth forms character block.
 	 */
-	public static final InputSubset HALFWIDTH_KATAKANA = new InputSubset("HALFWIDTH_KATAKANA");
+	public static final InputSubset HALFWIDTH_KATAKANA = new InputSubset(
+			"HALFWIDTH_KATAKANA");
 
 	/**
 	 * Constant for the fullwidth ASCII variants subset of the Unicode halfwidth
@@ -93,7 +77,8 @@ public final class InputSubset extends Character.Subset {
 	 * 
 	 * @since 1.3
 	 */
-	public static final InputSubset FULLWIDTH_LATIN = new InputSubset("FULLWIDTH_LATIN");
+	public static final InputSubset FULLWIDTH_LATIN = new InputSubset(
+			"FULLWIDTH_LATIN");
 
 	/**
 	 * Constant for the fullwidth digits included in the Unicode halfwidth and
@@ -101,6 +86,7 @@ public final class InputSubset extends Character.Subset {
 	 * 
 	 * @since 1.3
 	 */
-	public static final InputSubset FULLWIDTH_DIGITS = new InputSubset("FULLWIDTH_DIGITS");
+	public static final InputSubset FULLWIDTH_DIGITS = new InputSubset(
+			"FULLWIDTH_DIGITS");
 
 }

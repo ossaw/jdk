@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -48,7 +28,7 @@ public interface MenuPeer extends MenuItemPeer {
 	 * Adds the specified menu item to the menu.
 	 *
 	 * @param item
-	 *            the menu item to add
+	 *             the menu item to add
 	 *
 	 * @see Menu#add(MenuItem)
 	 */
@@ -58,7 +38,7 @@ public interface MenuPeer extends MenuItemPeer {
 	 * Removes the menu item at the specified index.
 	 *
 	 * @param index
-	 *            the index of the item to remove
+	 *              the index of the item to remove
 	 *
 	 * @see Menu#remove(int)
 	 */

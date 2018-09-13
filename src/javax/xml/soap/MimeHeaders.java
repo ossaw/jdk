@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -57,7 +37,7 @@ public class MimeHeaders {
 	 * <code>String</code> objects.
 	 *
 	 * @param name
-	 *            the name of the header for which values will be returned
+	 *             the name of the header for which values will be returned
 	 * @return a <code>String</code> array with all of the values for the
 	 *         specified header
 	 * @see #setHeader
@@ -88,15 +68,17 @@ public class MimeHeaders {
 	 * Note that RFC822 headers can contain only US-ASCII characters.
 	 *
 	 * @param name
-	 *            a <code>String</code> with the name of the header for which to
-	 *            search
+	 *              a <code>String</code> with the name of the header for which
+	 *              to
+	 *              search
 	 * @param value
-	 *            a <code>String</code> with the value that will replace the
-	 *            current value of the specified header
+	 *              a <code>String</code> with the value that will replace the
+	 *              current value of the specified header
 	 *
 	 * @exception IllegalArgumentException
-	 *                if there was a problem in the mime header name or the
-	 *                value being set
+	 *                                     if there was a problem in the mime
+	 *                                     header name or the
+	 *                                     value being set
 	 * @see #getHeader
 	 */
 	public void setHeader(String name, String value) {
@@ -109,7 +91,8 @@ public class MimeHeaders {
 			MimeHeader hdr = (MimeHeader) headers.elementAt(i);
 			if (hdr.getName().equalsIgnoreCase(name)) {
 				if (!found) {
-					headers.setElementAt(new MimeHeader(hdr.getName(), value), i);
+					headers.setElementAt(new MimeHeader(hdr.getName(), value),
+							i);
 					found = true;
 				} else
 					headers.removeElementAt(i--);
@@ -127,13 +110,16 @@ public class MimeHeaders {
 	 * Note that RFC822 headers can contain only US-ASCII characters.
 	 *
 	 * @param name
-	 *            a <code>String</code> with the name of the header to be added
+	 *              a <code>String</code> with the name of the header to be
+	 *              added
 	 * @param value
-	 *            a <code>String</code> with the value of the header to be added
+	 *              a <code>String</code> with the value of the header to be
+	 *              added
 	 *
 	 * @exception IllegalArgumentException
-	 *                if there was a problem in the mime header name or value
-	 *                being added
+	 *                                     if there was a problem in the mime
+	 *                                     header name or value
+	 *                                     being added
 	 */
 	public void addHeader(String name, String value) {
 		if ((name == null) || name.equals(""))
@@ -156,8 +142,9 @@ public class MimeHeaders {
 	 * name.
 	 *
 	 * @param name
-	 *            a <code>String</code> with the name of the header for which to
-	 *            search
+	 *             a <code>String</code> with the name of the header for which
+	 *             to
+	 *             search
 	 */
 	public void removeHeader(String name) {
 		for (int i = 0; i < headers.size(); i++) {
@@ -246,8 +233,8 @@ public class MimeHeaders {
 	 * in the given array of names.
 	 *
 	 * @param names
-	 *            an array of <code>String</code> objects with the names for
-	 *            which to search
+	 *              an array of <code>String</code> objects with the names for
+	 *              which to search
 	 * @return an <code>Iterator</code> object over the <code>MimeHeader</code>
 	 *         objects whose name matches one of the names in the given list
 	 */
@@ -260,8 +247,8 @@ public class MimeHeaders {
 	 * match a name in the given array of names.
 	 *
 	 * @param names
-	 *            an array of <code>String</code> objects with the names for
-	 *            which to search
+	 *              an array of <code>String</code> objects with the names for
+	 *              which to search
 	 * @return an <code>Iterator</code> object over the <code>MimeHeader</code>
 	 *         objects whose name does not match one of the names in the given
 	 *         list

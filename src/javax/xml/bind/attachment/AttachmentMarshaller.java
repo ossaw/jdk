@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.attachment;
@@ -107,12 +87,15 @@ public abstract class AttachmentMarshaller {
 	 * attachment.
 	 *
 	 * @param data
-	 *            represents the data to be attached. Must be non-null.
+	 *                         represents the data to be attached. Must be
+	 *                         non-null.
 	 * @param elementNamespace
-	 *            the namespace URI of the element that encloses the
-	 *            base64Binary data. Can be empty but never null.
+	 *                         the namespace URI of the element that encloses
+	 *                         the
+	 *                         base64Binary data. Can be empty but never null.
 	 * @param elementLocalName
-	 *            The local name of the element. Always a non-null valid string.
+	 *                         The local name of the element. Always a non-null
+	 *                         valid string.
 	 *
 	 * @return a valid content-id URI (see
 	 *         <a href="http://www.w3.org/TR/xop10/#RFC2387">RFC 2387</a>) that
@@ -125,8 +108,8 @@ public abstract class AttachmentMarshaller {
 	 * @see <a href="http://www.w3.org/TR/xml-media-types/">Describing Media
 	 *      Content of Binary Data in XML</a>
 	 */
-	public abstract String addMtomAttachment(DataHandler data, String elementNamespace,
-			String elementLocalName);
+	public abstract String addMtomAttachment(DataHandler data,
+			String elementNamespace, String elementLocalName);
 
 	/**
 	 * <p>
@@ -146,37 +129,45 @@ public abstract class AttachmentMarshaller {
 	 * attachment.
 	 *
 	 * @param data
-	 *            represents the data to be attached. Must be non-null. The
-	 *            actual data region is specified by
-	 *            <tt>(data,offset,length)</tt> tuple.
+	 *                         represents the data to be attached. Must be
+	 *                         non-null. The
+	 *                         actual data region is specified by
+	 *                         <tt>(data,offset,length)</tt> tuple.
 	 *
 	 * @param offset
-	 *            The offset within the array of the first byte to be read; must
-	 *            be non-negative and no larger than array.length
+	 *                         The offset within the array of the first byte to
+	 *                         be read; must
+	 *                         be non-negative and no larger than array.length
 	 *
 	 * @param length
-	 *            The number of bytes to be read from the given array; must be
-	 *            non-negative and no larger than array.length
+	 *                         The number of bytes to be read from the given
+	 *                         array; must be
+	 *                         non-negative and no larger than array.length
 	 *
 	 * @param mimeType
-	 *            If the data has an associated MIME type known to JAXB, that is
-	 *            passed as this parameter. If none is known,
-	 *            "application/octet-stream". This parameter may never be null.
+	 *                         If the data has an associated MIME type known to
+	 *                         JAXB, that is
+	 *                         passed as this parameter. If none is known,
+	 *                         "application/octet-stream". This parameter may
+	 *                         never be null.
 	 *
 	 * @param elementNamespace
-	 *            the namespace URI of the element that encloses the
-	 *            base64Binary data. Can be empty but never null.
+	 *                         the namespace URI of the element that encloses
+	 *                         the
+	 *                         base64Binary data. Can be empty but never null.
 	 *
 	 * @param elementLocalName
-	 *            The local name of the element. Always a non-null valid string.
+	 *                         The local name of the element. Always a non-null
+	 *                         valid string.
 	 *
 	 * @return content-id URI, cid, to the attachment containing
 	 *         <code>data</code> or null if data should be inlined.
 	 *
 	 * @see #addMtomAttachment(DataHandler, String, String)
 	 */
-	public abstract String addMtomAttachment(byte[] data, int offset, int length, String mimeType,
-			String elementNamespace, String elementLocalName);
+	public abstract String addMtomAttachment(byte[] data, int offset,
+			int length, String mimeType, String elementNamespace,
+			String elementLocalName);
 
 	/**
 	 * <p>
@@ -237,7 +228,7 @@ public abstract class AttachmentMarshaller {
 	 * </p>
 	 *
 	 * @param data
-	 *            represents the data to be attached. Must be non-null.
+	 *             represents the data to be attached. Must be non-null.
 	 * @return must be a valid URI used as cid. Must satisfy Conformance
 	 *         Requirement R2928 from <a href=
 	 *         "http://www.ws-i.org/Profiles/AttachmentsProfile-1.0-2004-08-24.html#Referencing_Attachments_from_the_SOAP_Envelope">

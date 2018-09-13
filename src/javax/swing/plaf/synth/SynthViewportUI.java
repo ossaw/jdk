@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -35,14 +15,15 @@ import java.awt.*;
  *
  * @since 1.7
  */
-public class SynthViewportUI extends ViewportUI implements PropertyChangeListener, SynthUI {
+public class SynthViewportUI extends ViewportUI implements
+		PropertyChangeListener, SynthUI {
 	private SynthStyle style;
 
 	/**
 	 * Creates a new UI object for the given component.
 	 *
 	 * @param c
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -73,7 +54,7 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * Installs defaults for a viewport.
 	 *
 	 * @param c
-	 *            a {@code JViewport} object
+	 *          a {@code JViewport} object
 	 */
 	protected void installDefaults(JComponent c) {
 		updateStyle(c);
@@ -105,7 +86,7 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * Installs listeners into the viewport.
 	 *
 	 * @param c
-	 *            a {@code JViewport} object
+	 *          a {@code JViewport} object
 	 */
 	protected void installListeners(JComponent c) {
 		c.addPropertyChangeListener(this);
@@ -115,7 +96,7 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * Uninstalls listeners from the viewport.
 	 *
 	 * @param c
-	 *            a {@code JViewport} object
+	 *          a {@code JViewport} object
 	 */
 	protected void uninstallListeners(JComponent c) {
 		c.removePropertyChangeListener(this);
@@ -125,7 +106,7 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * Uninstalls defaults from a viewport.
 	 *
 	 * @param c
-	 *            a {@code JViewport} object
+	 *          a {@code JViewport} object
 	 */
 	protected void uninstallDefaults(JComponent c) {
 		SynthContext context = getContext(c, ENABLED);
@@ -160,9 +141,9 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -170,7 +151,8 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintViewportBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
+		context.getPainter().paintViewportBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -181,21 +163,21 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * does nothing.
 	 *
 	 * @param context
-	 *            a component context
+	 *                a component context
 	 * @param g
-	 *            the {@code Graphics} to paint on
+	 *                the {@code Graphics} to paint on
 	 * @param x
-	 *            the X coordinate
+	 *                the X coordinate
 	 * @param y
-	 *            the Y coordinate
+	 *                the Y coordinate
 	 * @param w
-	 *            width of the border
+	 *                width of the border
 	 * @param h
-	 *            height of the border
+	 *                height of the border
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
-	}
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {}
 
 	/**
 	 * Paints the specified component according to the Look and Feel.
@@ -204,9 +186,9 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -221,13 +203,12 @@ public class SynthViewportUI extends ViewportUI implements PropertyChangeListene
 	 * Paints the specified component. This implementation does nothing.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
-	protected void paint(SynthContext context, Graphics g) {
-	}
+	protected void paint(SynthContext context, Graphics g) {}
 
 	/**
 	 * {@inheritDoc}

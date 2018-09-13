@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html.parser;
@@ -49,11 +29,11 @@ public final class Entity implements DTDConstants {
 	 * Creates an entity.
 	 * 
 	 * @param name
-	 *            the name of the entity
+	 *             the name of the entity
 	 * @param type
-	 *            the type of the entity
+	 *             the type of the entity
 	 * @param data
-	 *            the char array of data
+	 *             the char array of data
 	 */
 	public Entity(String name, int type, char data[]) {
 		this.name = name;
@@ -136,7 +116,7 @@ public final class Entity implements DTDConstants {
 	 * "SDATA", "PI", "STARTTAG", "ENDTAG", "MS", "MD", "SYSTEM".
 	 *
 	 * @param nm
-	 *            the string to be converted
+	 *           the string to be converted
 	 * @return the corresponding entity type, or the type corresponding to
 	 *         "CDATA", if none exists
 	 */

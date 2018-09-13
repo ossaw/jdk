@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -88,20 +68,27 @@ public class PKIXBuilderParameters extends PKIXParameters {
 	 * modifications.
 	 *
 	 * @param trustAnchors
-	 *            a {@code Set} of {@code TrustAnchor}s
+	 *                          a {@code Set} of {@code TrustAnchor}s
 	 * @param targetConstraints
-	 *            a {@code CertSelector} specifying the constraints on the
-	 *            target certificate
+	 *                          a {@code CertSelector} specifying the
+	 *                          constraints on the
+	 *                          target certificate
 	 * @throws InvalidAlgorithmParameterException
-	 *             if {@code trustAnchors} is empty
-	 *             {@code (trustAnchors.isEmpty() == true)}
+	 *                                            if {@code trustAnchors} is
+	 *                                            empty
+	 *                                            {@code (trustAnchors.isEmpty() == true)}
 	 * @throws NullPointerException
-	 *             if {@code trustAnchors} is {@code null}
+	 *                                            if {@code trustAnchors} is
+	 *                                            {@code null}
 	 * @throws ClassCastException
-	 *             if any of the elements of {@code trustAnchors} are not of
-	 *             type {@code java.security.cert.TrustAnchor}
+	 *                                            if any of the elements of
+	 *                                            {@code trustAnchors} are not
+	 *                                            of
+	 *                                            type
+	 *                                            {@code java.security.cert.TrustAnchor}
 	 */
-	public PKIXBuilderParameters(Set<TrustAnchor> trustAnchors, CertSelector targetConstraints)
+	public PKIXBuilderParameters(Set<TrustAnchor> trustAnchors,
+			CertSelector targetConstraints)
 			throws InvalidAlgorithmParameterException {
 		super(trustAnchors);
 		setTargetCertConstraints(targetConstraints);
@@ -115,21 +102,27 @@ public class PKIXBuilderParameters extends PKIXParameters {
 	 * types are ignored.
 	 *
 	 * @param keystore
-	 *            a {@code KeyStore} from which the set of most-trusted CAs will
-	 *            be populated
+	 *                          a {@code KeyStore} from which the set of
+	 *                          most-trusted CAs will
+	 *                          be populated
 	 * @param targetConstraints
-	 *            a {@code CertSelector} specifying the constraints on the
-	 *            target certificate
+	 *                          a {@code CertSelector} specifying the
+	 *                          constraints on the
+	 *                          target certificate
 	 * @throws KeyStoreException
-	 *             if {@code keystore} has not been initialized
+	 *                                            if {@code keystore} has not
+	 *                                            been initialized
 	 * @throws InvalidAlgorithmParameterException
-	 *             if {@code keystore} does not contain at least one trusted
-	 *             certificate entry
+	 *                                            if {@code keystore} does not
+	 *                                            contain at least one trusted
+	 *                                            certificate entry
 	 * @throws NullPointerException
-	 *             if {@code keystore} is {@code null}
+	 *                                            if {@code keystore} is
+	 *                                            {@code null}
 	 */
-	public PKIXBuilderParameters(KeyStore keystore, CertSelector targetConstraints)
-			throws KeyStoreException, InvalidAlgorithmParameterException {
+	public PKIXBuilderParameters(KeyStore keystore,
+			CertSelector targetConstraints) throws KeyStoreException,
+			InvalidAlgorithmParameterException {
 		super(keystore);
 		setTargetCertConstraints(targetConstraints);
 	}
@@ -159,17 +152,18 @@ public class PKIXBuilderParameters extends PKIXParameters {
 	 * smaller length.
 	 *
 	 * @param maxPathLength
-	 *            the maximum number of non-self-issued intermediate
-	 *            certificates that may exist in a certification path
+	 *                      the maximum number of non-self-issued intermediate
+	 *                      certificates that may exist in a certification path
 	 * @throws InvalidParameterException
-	 *             if {@code maxPathLength} is set to a value less than -1
+	 *                                   if {@code maxPathLength} is set to a
+	 *                                   value less than -1
 	 *
 	 * @see #getMaxPathLength
 	 */
 	public void setMaxPathLength(int maxPathLength) {
 		if (maxPathLength < -1) {
-			throw new InvalidParameterException(
-					"the maximum path " + "length parameter can not be less than -1");
+			throw new InvalidParameterException("the maximum path "
+					+ "length parameter can not be less than -1");
 		}
 		this.maxPathLength = maxPathLength;
 	}

@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -96,42 +88,44 @@ public final class ClassParser {
 	 * Parse class from the given stream.
 	 *
 	 * @param file
-	 *            Input stream
+	 *                  Input stream
 	 * @param file_name
-	 *            File name
+	 *                  File name
 	 */
 	public ClassParser(InputStream file, String file_name) {
 		this.file_name = file_name;
 
 		String clazz = file.getClass().getName(); // Not a very clean solution
 													// ...
-		is_zip = clazz.startsWith("java.util.zip.") || clazz.startsWith("java.util.jar.");
+		is_zip = clazz.startsWith("java.util.zip.") || clazz.startsWith(
+				"java.util.jar.");
 
 		if (file instanceof DataInputStream) // Is already a data stream
 			this.file = (DataInputStream) file;
 		else
-			this.file = new DataInputStream(new BufferedInputStream(file, BUFSIZE));
+			this.file = new DataInputStream(new BufferedInputStream(file,
+					BUFSIZE));
 	}
 
 	/**
 	 * Parse class from given .class file.
 	 *
 	 * @param file_name
-	 *            file name
+	 *                  file name
 	 * @throws IOException
 	 */
 	public ClassParser(String file_name) throws IOException {
 		is_zip = false;
 		this.file_name = file_name;
-		file = new DataInputStream(
-				new BufferedInputStream(new FileInputStream(file_name), BUFSIZE));
+		file = new DataInputStream(new BufferedInputStream(new FileInputStream(
+				file_name), BUFSIZE));
 	}
 
 	/**
 	 * Parse class from given .class file in a ZIP-archive
 	 *
 	 * @param file_name
-	 *            file name
+	 *                  file name
 	 * @throws IOException
 	 */
 	public ClassParser(String zip_file, String file_name) throws IOException {
@@ -141,7 +135,8 @@ public final class ClassParser {
 
 		this.file_name = file_name;
 
-		file = new DataInputStream(new BufferedInputStream(zip.getInputStream(entry), BUFSIZE));
+		file = new DataInputStream(new BufferedInputStream(zip.getInputStream(
+				entry), BUFSIZE));
 	}
 
 	/**
@@ -208,9 +203,9 @@ public final class ClassParser {
 			zip.close();
 
 		// Return the information we have gathered in a new object
-		return new JavaClass(class_name_index, superclass_name_index, file_name, major, minor,
-				access_flags, constant_pool, interfaces, fields, methods, attributes,
-				is_zip ? JavaClass.ZIP : JavaClass.FILE);
+		return new JavaClass(class_name_index, superclass_name_index, file_name,
+				major, minor, access_flags, constant_pool, interfaces, fields,
+				methods, attributes, is_zip ? JavaClass.ZIP : JavaClass.FILE);
 	}
 
 	/**
@@ -219,7 +214,8 @@ public final class ClassParser {
 	 * @throws IOException
 	 * @throws ClassFormatException
 	 */
-	private final void readAttributes() throws IOException, ClassFormatException {
+	private final void readAttributes() throws IOException,
+			ClassFormatException {
 		int attributes_count;
 
 		attributes_count = file.readUnsignedShort();
@@ -235,7 +231,8 @@ public final class ClassParser {
 	 * @throws IOException
 	 * @throws ClassFormatException
 	 */
-	private final void readClassInfo() throws IOException, ClassFormatException {
+	private final void readClassInfo() throws IOException,
+			ClassFormatException {
 		access_flags = file.readUnsignedShort();
 
 		/*
@@ -245,9 +242,10 @@ public final class ClassParser {
 		if ((access_flags & Constants.ACC_INTERFACE) != 0)
 			access_flags |= Constants.ACC_ABSTRACT;
 
-		if (((access_flags & Constants.ACC_ABSTRACT) != 0)
-				&& ((access_flags & Constants.ACC_FINAL) != 0))
-			throw new ClassFormatException("Class can't be both final and abstract");
+		if (((access_flags & Constants.ACC_ABSTRACT) != 0) && ((access_flags
+				& Constants.ACC_FINAL) != 0))
+			throw new ClassFormatException(
+					"Class can't be both final and abstract");
 
 		class_name_index = file.readUnsignedShort();
 		superclass_name_index = file.readUnsignedShort();
@@ -259,7 +257,8 @@ public final class ClassParser {
 	 * @throws IOException
 	 * @throws ClassFormatException
 	 */
-	private final void readConstantPool() throws IOException, ClassFormatException {
+	private final void readConstantPool() throws IOException,
+			ClassFormatException {
 		constant_pool = new ConstantPool(file);
 	}
 
@@ -292,7 +291,8 @@ public final class ClassParser {
 		int magic = 0xCAFEBABE;
 
 		if (file.readInt() != magic)
-			throw new ClassFormatException(file_name + " is not a Java .class file");
+			throw new ClassFormatException(file_name
+					+ " is not a Java .class file");
 	}
 
 	/**
@@ -301,7 +301,8 @@ public final class ClassParser {
 	 * @throws IOException
 	 * @throws ClassFormatException
 	 */
-	private final void readInterfaces() throws IOException, ClassFormatException {
+	private final void readInterfaces() throws IOException,
+			ClassFormatException {
 		int interfaces_count;
 
 		interfaces_count = file.readUnsignedShort();

@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -50,8 +25,7 @@ public class CompletionException extends RuntimeException {
 	 * cause is not initialized, and may subsequently be initialized by a call
 	 * to {@link #initCause(Throwable) initCause}.
 	 */
-	protected CompletionException() {
-	}
+	protected CompletionException() {}
 
 	/**
 	 * Constructs a {@code CompletionException} with the specified detail
@@ -59,7 +33,7 @@ public class CompletionException extends RuntimeException {
 	 * initialized by a call to {@link #initCause(Throwable) initCause}.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 */
 	protected CompletionException(String message) {
 		super(message);
@@ -70,10 +44,10 @@ public class CompletionException extends RuntimeException {
 	 * message and cause.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method)
+	 *                the cause (which is saved for later retrieval by the
+	 *                {@link #getCause()} method)
 	 */
 	public CompletionException(String message, Throwable cause) {
 		super(message, cause);
@@ -86,8 +60,8 @@ public class CompletionException extends RuntimeException {
 	 * of {@code cause}).
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link #getCause()} method)
 	 */
 	public CompletionException(Throwable cause) {
 		super(cause);

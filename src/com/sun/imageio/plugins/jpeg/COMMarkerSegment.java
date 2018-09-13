@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.jpeg;
@@ -79,7 +59,8 @@ class COMMarkerSegment extends MarkerSegment {
 			data = (byte[]) ourNode.getUserObject();
 		}
 		if (data == null) {
-			String comment = node.getAttributes().getNamedItem("comment").getNodeValue();
+			String comment = node.getAttributes().getNamedItem("comment")
+					.getNodeValue();
 			if (comment != null) {
 				data = comment.getBytes(); // Default encoding
 			} else {

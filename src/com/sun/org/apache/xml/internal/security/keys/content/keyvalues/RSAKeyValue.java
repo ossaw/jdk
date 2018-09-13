@@ -39,7 +39,8 @@ import com.sun.org.apache.xml.internal.security.utils.XMLUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class RSAKeyValue extends SignatureElementProxy implements KeyValueContent {
+public class RSAKeyValue extends SignatureElementProxy implements
+		KeyValueContent {
 
 	/**
 	 * Constructor RSAKeyValue
@@ -48,7 +49,8 @@ public class RSAKeyValue extends SignatureElementProxy implements KeyValueConten
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public RSAKeyValue(Element element, String BaseURI) throws XMLSecurityException {
+	public RSAKeyValue(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 
@@ -80,13 +82,16 @@ public class RSAKeyValue extends SignatureElementProxy implements KeyValueConten
 		XMLUtils.addReturnToElement(this.constructionElement);
 
 		if (key instanceof java.security.interfaces.RSAPublicKey) {
-			this.addBigIntegerElement(((RSAPublicKey) key).getModulus(), Constants._TAG_MODULUS);
+			this.addBigIntegerElement(((RSAPublicKey) key).getModulus(),
+					Constants._TAG_MODULUS);
 			this.addBigIntegerElement(((RSAPublicKey) key).getPublicExponent(),
 					Constants._TAG_EXPONENT);
 		} else {
-			Object exArgs[] = { Constants._TAG_RSAKEYVALUE, key.getClass().getName() };
+			Object exArgs[] = { Constants._TAG_RSAKEYVALUE, key.getClass()
+					.getName() };
 
-			throw new IllegalArgumentException(I18n.translate("KeyValue.IllegalArgument", exArgs));
+			throw new IllegalArgumentException(I18n.translate(
+					"KeyValue.IllegalArgument", exArgs));
 		}
 	}
 
@@ -95,11 +100,12 @@ public class RSAKeyValue extends SignatureElementProxy implements KeyValueConten
 		try {
 			KeyFactory rsaFactory = KeyFactory.getInstance("RSA");
 
-			RSAPublicKeySpec rsaKeyspec = new RSAPublicKeySpec(
-					this.getBigIntegerFromChildElement(Constants._TAG_MODULUS,
-							Constants.SignatureSpecNS),
-					this.getBigIntegerFromChildElement(Constants._TAG_EXPONENT,
-							Constants.SignatureSpecNS));
+			RSAPublicKeySpec rsaKeyspec = new RSAPublicKeySpec(this
+					.getBigIntegerFromChildElement(Constants._TAG_MODULUS,
+							Constants.SignatureSpecNS), this
+									.getBigIntegerFromChildElement(
+											Constants._TAG_EXPONENT,
+											Constants.SignatureSpecNS));
 			PublicKey pk = rsaFactory.generatePublic(rsaKeyspec);
 
 			return pk;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.basic;
 
@@ -55,7 +35,7 @@ public class BasicTextFieldUI extends BasicTextUI {
 	 * Creates a UI for a JTextField.
 	 *
 	 * @param c
-	 *            the text field
+	 *          the text field
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -83,13 +63,14 @@ public class BasicTextFieldUI extends BasicTextUI {
 	 * Creates a view (FieldView) based on an element.
 	 *
 	 * @param elem
-	 *            the element
+	 *             the element
 	 * @return the view
 	 */
 	public View create(Element elem) {
 		Document doc = elem.getDocument();
-		Object i18nFlag = doc
-				.getProperty("i18n"/* AbstractDocument.I18NProperty */);
+		Object i18nFlag = doc.getProperty("i18n"/*
+												 * AbstractDocument.I18NProperty
+												 */);
 		if (Boolean.TRUE.equals(i18nFlag)) {
 			// To support bidirectional text, we build a more heavyweight
 			// representation of the field.
@@ -110,9 +91,9 @@ public class BasicTextFieldUI extends BasicTextUI {
 	 * Returns the baseline.
 	 *
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @see javax.swing.JComponent#getBaseline(int, int)
 	 * @since 1.6
 	 */
@@ -131,8 +112,8 @@ public class BasicTextFieldUI extends BasicTextUI {
 					baseline += slop / 2;
 				}
 				if (fieldView instanceof I18nFieldView) {
-					int fieldBaseline = BasicHTML.getBaseline(fieldView,
-							width - insets.left - insets.right, height);
+					int fieldBaseline = BasicHTML.getBaseline(fieldView, width
+							- insets.left - insets.right, height);
 					if (fieldBaseline < 0) {
 						return -1;
 					}
@@ -152,11 +133,12 @@ public class BasicTextFieldUI extends BasicTextUI {
 	 * the size changes.
 	 *
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @see javax.swing.JComponent#getBaseline(int, int)
 	 * @since 1.6
 	 */
-	public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
+	public Component.BaselineResizeBehavior getBaselineResizeBehavior(
+			JComponent c) {
 		super.getBaselineResizeBehavior(c);
 		return Component.BaselineResizeBehavior.CENTER_OFFSET;
 	}
@@ -198,8 +180,8 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 * that is the type of the hosting component).
 		 *
 		 * @param a
-		 *            the allocation given to the view, which may need to be
-		 *            adjusted.
+		 *          the allocation given to the view, which may need to be
+		 *          adjusted.
 		 * @return the allocation that the superclass should use.
 		 */
 		Shape adjustAllocation(Shape a) {
@@ -224,7 +206,8 @@ public class BasicTextFieldUI extends BasicTextUI {
 					if ((value + extent) > max) {
 						value = max - extent;
 					}
-					vis.setRangeProperties(value, extent, vis.getMinimum(), max, false);
+					vis.setRangeProperties(value, extent, vis.getMinimum(), max,
+							false);
 					if (hspan < bounds.width) {
 						// horizontally align the interior
 						int slop = bounds.width - 1 - hspan;
@@ -245,14 +228,14 @@ public class BasicTextFieldUI extends BasicTextUI {
 						}
 
 						switch (align) {
-						case SwingConstants.CENTER:
-							bounds.x += slop / 2;
-							bounds.width -= slop;
-							break;
-						case SwingConstants.RIGHT:
-							bounds.x += slop;
-							bounds.width -= slop;
-							break;
+							case SwingConstants.CENTER:
+								bounds.x += slop / 2;
+								bounds.width -= slop;
+								break;
+							case SwingConstants.RIGHT:
+								bounds.x += slop;
+								bounds.width -= slop;
+								break;
 						}
 					} else {
 						// adjust the allocation to match the bounded range.
@@ -299,9 +282,9 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 * itself to render into the given allocation.
 		 *
 		 * @param g
-		 *            the rendering surface to use
+		 *          the rendering surface to use
 		 * @param a
-		 *            the allocated region to render into
+		 *          the allocated region to render into
 		 *
 		 * @see View#paint
 		 */
@@ -316,7 +299,7 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 * of 0 or less is not resizable.
 		 *
 		 * @param axis
-		 *            View.X_AXIS or View.Y_AXIS
+		 *             View.X_AXIS or View.Y_AXIS
 		 * @return the weight -> 1 for View.X_AXIS, else 0
 		 */
 		public int getResizeWeight(int axis) {
@@ -336,11 +319,13 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 *            the allocated region to render into
 		 * @return the bounding box of the given position
 		 * @exception BadLocationException
-		 *                if the given position does not represent a valid
-		 *                location in the associated document
+		 *                                 if the given position does not
+		 *                                 represent a valid
+		 *                                 location in the associated document
 		 * @see View#modelToView
 		 */
-		public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+		public Shape modelToView(int pos, Shape a, Position.Bias b)
+				throws BadLocationException {
 			return super.modelToView(pos, adjustAllocation(a), b);
 		}
 
@@ -349,29 +334,31 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 * coordinate space of the view mapped to it.
 		 *
 		 * @param p0
-		 *            the position to convert >= 0
+		 *           the position to convert >= 0
 		 * @param b0
-		 *            the bias toward the previous character or the next
-		 *            character represented by p0, in case the position is a
-		 *            boundary of two views.
+		 *           the bias toward the previous character or the next
+		 *           character represented by p0, in case the position is a
+		 *           boundary of two views.
 		 * @param p1
-		 *            the position to convert >= 0
+		 *           the position to convert >= 0
 		 * @param b1
-		 *            the bias toward the previous character or the next
-		 *            character represented by p1, in case the position is a
-		 *            boundary of two views.
+		 *           the bias toward the previous character or the next
+		 *           character represented by p1, in case the position is a
+		 *           boundary of two views.
 		 * @param a
-		 *            the allocated region to render into
+		 *           the allocated region to render into
 		 * @return the bounding box of the given position is returned
 		 * @exception BadLocationException
-		 *                if the given position does not represent a valid
-		 *                location in the associated document
+		 *                                     if the given position does not
+		 *                                     represent a valid
+		 *                                     location in the associated
+		 *                                     document
 		 * @exception IllegalArgumentException
-		 *                for an invalid bias argument
+		 *                                     for an invalid bias argument
 		 * @see View#viewToModel
 		 */
-		public Shape modelToView(int p0, Position.Bias b0, int p1, Position.Bias b1, Shape a)
-				throws BadLocationException {
+		public Shape modelToView(int p0, Position.Bias b0, int p1,
+				Position.Bias b1, Shape a) throws BadLocationException {
 			return super.modelToView(p0, b0, p1, b1, adjustAllocation(a));
 		}
 
@@ -380,16 +367,17 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 * coordinate space of the model.
 		 *
 		 * @param fx
-		 *            the X coordinate >= 0.0f
+		 *           the X coordinate >= 0.0f
 		 * @param fy
-		 *            the Y coordinate >= 0.0f
+		 *           the Y coordinate >= 0.0f
 		 * @param a
-		 *            the allocated region to render into
+		 *           the allocated region to render into
 		 * @return the location within the model that best represents the given
 		 *         point in the view
 		 * @see View#viewToModel
 		 */
-		public int viewToModel(float fx, float fy, Shape a, Position.Bias[] bias) {
+		public int viewToModel(float fx, float fy, Shape a,
+				Position.Bias[] bias) {
 			return super.viewToModel(fx, fy, adjustAllocation(a), bias);
 		}
 
@@ -398,14 +386,15 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 * location that this view is responsible for.
 		 *
 		 * @param changes
-		 *            the change information from the associated document
+		 *                the change information from the associated document
 		 * @param a
-		 *            the current allocation of the view
+		 *                the current allocation of the view
 		 * @param f
-		 *            the factory to use to rebuild if the view has children
+		 *                the factory to use to rebuild if the view has children
 		 * @see View#insertUpdate
 		 */
-		public void insertUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
+		public void insertUpdate(DocumentEvent changes, Shape a,
+				ViewFactory f) {
 			super.insertUpdate(changes, adjustAllocation(a), f);
 			updateVisibilityModel();
 		}
@@ -415,14 +404,15 @@ public class BasicTextFieldUI extends BasicTextUI {
 		 * location that this view is responsible for.
 		 *
 		 * @param changes
-		 *            the change information from the associated document
+		 *                the change information from the associated document
 		 * @param a
-		 *            the current allocation of the view
+		 *                the current allocation of the view
 		 * @param f
-		 *            the factory to use to rebuild if the view has children
+		 *                the factory to use to rebuild if the view has children
 		 * @see View#removeUpdate
 		 */
-		public void removeUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
+		public void removeUpdate(DocumentEvent changes, Shape a,
+				ViewFactory f) {
 			super.removeUpdate(changes, adjustAllocation(a), f);
 			updateVisibilityModel();
 		}

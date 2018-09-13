@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -60,12 +58,14 @@ public interface DOM {
 
 	public DTMAxisIterator getTypedAxisIterator(final int axis, final int type);
 
-	public DTMAxisIterator getNthDescendant(int node, int n, boolean includeself);
+	public DTMAxisIterator getNthDescendant(int node, int n,
+			boolean includeself);
 
-	public DTMAxisIterator getNamespaceAxisIterator(final int axis, final int ns);
+	public DTMAxisIterator getNamespaceAxisIterator(final int axis,
+			final int ns);
 
-	public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter, int returnType, String value,
-			boolean op);
+	public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter,
+			int returnType, String value, boolean op);
 
 	public DTMAxisIterator orderNodes(DTMAxisIterator source, int node);
 
@@ -85,9 +85,11 @@ public interface DOM {
 
 	public String getStringValueX(final int node);
 
-	public void copy(final int node, SerializationHandler handler) throws TransletException;
+	public void copy(final int node, SerializationHandler handler)
+			throws TransletException;
 
-	public void copy(DTMAxisIterator nodes, SerializationHandler handler) throws TransletException;
+	public void copy(DTMAxisIterator nodes, SerializationHandler handler)
+			throws TransletException;
 
 	public String shallowCopy(final int node, SerializationHandler handler)
 			throws TransletException;
@@ -113,14 +115,15 @@ public interface DOM {
 
 	public void setFilter(StripFilter filter);
 
-	public void setupMapping(String[] names, String[] urisArray, int[] typesArray,
-			String[] namespaces);
+	public void setupMapping(String[] names, String[] urisArray,
+			int[] typesArray, String[] namespaces);
 
 	public boolean isElement(final int node);
 
 	public boolean isAttribute(final int node);
 
-	public String lookupNamespace(int node, String prefix) throws TransletException;
+	public String lookupNamespace(int node, String prefix)
+			throws TransletException;
 
 	public int getNodeIdent(final int nodehandle);
 
@@ -128,7 +131,8 @@ public interface DOM {
 
 	public DOM getResultTreeFrag(int initialSize, int rtfType);
 
-	public DOM getResultTreeFrag(int initialSize, int rtfType, boolean addToDTMManager);
+	public DOM getResultTreeFrag(int initialSize, int rtfType,
+			boolean addToDTMManager);
 
 	public SerializationHandler getOutputDomBuilder();
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -148,9 +145,9 @@ public interface DTMFilter {
 	 * directly from user code.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                   int Handle of the node.
 	 * @param whatToShow
-	 *            one of SHOW_XXX values.
+	 *                   one of SHOW_XXX values.
 	 * @return one of FILTER_ACCEPT, FILTER_REJECT, or FILTER_SKIP.
 	 */
 	public short acceptNode(int nodeHandle, int whatToShow);
@@ -182,13 +179,16 @@ public interface DTMFilter {
 	 * </p>
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the node.
+	 *                     int Handle of the node.
 	 * @param whatToShow
-	 *            one of SHOW_XXX values.
+	 *                     one of SHOW_XXX values.
 	 * @param expandedName
-	 *            a value defining the exanded name as defined in the DTM
-	 *            interface. Wild cards will be defined by 0xFFFF in the
-	 *            namespace and/or localname portion of the expandedName.
+	 *                     a value defining the exanded name as defined in the
+	 *                     DTM
+	 *                     interface. Wild cards will be defined by 0xFFFF in
+	 *                     the
+	 *                     namespace and/or localname portion of the
+	 *                     expandedName.
 	 * @return one of FILTER_ACCEPT, FILTER_REJECT, or FILTER_SKIP.
 	 */
 	public short acceptNode(int nodeHandle, int whatToShow, int expandedName);

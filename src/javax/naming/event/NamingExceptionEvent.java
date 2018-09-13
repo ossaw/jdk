@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.event;
@@ -56,9 +36,9 @@ public class NamingExceptionEvent extends java.util.EventObject {
 	 * was thrown.
 	 *
 	 * @param source
-	 *            The non-null context in which the exception was thrown.
+	 *               The non-null context in which the exception was thrown.
 	 * @param exc
-	 *            The non-null <tt>NamingException</tt> that was thrown.
+	 *               The non-null <tt>NamingException</tt> that was thrown.
 	 *
 	 */
 	public NamingExceptionEvent(EventContext source, NamingException exc) {
@@ -90,7 +70,8 @@ public class NamingExceptionEvent extends java.util.EventObject {
 	 * this event.
 	 * 
 	 * @param listener
-	 *            The non-null naming listener on which to invoke the method.
+	 *                 The non-null naming listener on which to invoke the
+	 *                 method.
 	 */
 	public void dispatch(NamingListener listener) {
 		listener.namingExceptionThrown(this);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -39,8 +19,8 @@ import com.sun.corba.se.impl.ior.ObjectKeyFactoryImpl;
  * @author Ken Cavanaugh
  */
 public abstract class OldObjectKeyTemplateBase extends ObjectKeyTemplateBase {
-	public OldObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid, String orbid,
-			ObjectAdapterId oaid) {
+	public OldObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid,
+			String orbid, ObjectAdapterId oaid) {
 		super(orb, magic, scid, serverid, orbid, oaid);
 
 		// set version based on magic

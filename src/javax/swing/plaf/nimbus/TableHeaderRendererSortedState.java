@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -36,7 +16,7 @@ class TableHeaderRendererSortedState extends State {
 	protected boolean isInState(JComponent c) {
 
 		String sortOrder = (String) c.getClientProperty("Table.sortOrder");
-		return sortOrder != null
-				&& ("ASCENDING".equals(sortOrder) || "DESCENDING".equals(sortOrder));
+		return sortOrder != null && ("ASCENDING".equals(sortOrder)
+				|| "DESCENDING".equals(sortOrder));
 	}
 }

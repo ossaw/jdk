@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -52,7 +32,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobName extends TextSyntax implements PrintRequestAttribute, PrintJobAttribute {
+public final class JobName extends TextSyntax implements PrintRequestAttribute,
+		PrintJobAttribute {
 
 	private static final long serialVersionUID = 4660359192078689545L;
 
@@ -60,15 +41,17 @@ public final class JobName extends TextSyntax implements PrintRequestAttribute, 
 	 * Constructs a new job name attribute with the given job name and locale.
 	 *
 	 * @param jobName
-	 *            Job name.
+	 *                Job name.
 	 * @param locale
-	 *            Natural language of the text string. null is interpreted to
-	 *            mean the default locale as returned by
-	 *            <code>Locale.getDefault()</code>
+	 *                Natural language of the text string. null is interpreted
+	 *                to
+	 *                mean the default locale as returned by
+	 *                <code>Locale.getDefault()</code>
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>jobName</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>jobName</CODE> is
+	 *                                 null.
 	 */
 	public JobName(String jobName, Locale locale) {
 		super(jobName, locale);
@@ -87,7 +70,7 @@ public final class JobName extends TextSyntax implements PrintRequestAttribute, 
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this job name
 	 *         attribute, false otherwise.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -41,7 +21,7 @@ public interface TextFieldPeer extends TextComponentPeer {
 	 * Sets the echo character.
 	 *
 	 * @param echoChar
-	 *            the echo character to set
+	 *                 the echo character to set
 	 *
 	 * @see TextField#getEchoChar()
 	 */
@@ -52,7 +32,7 @@ public interface TextFieldPeer extends TextComponentPeer {
 	 * columns.
 	 *
 	 * @param columns
-	 *            the number of columns
+	 *                the number of columns
 	 *
 	 * @return the preferred size of the text field
 	 *
@@ -65,7 +45,7 @@ public interface TextFieldPeer extends TextComponentPeer {
 	 * columns.
 	 *
 	 * @param columns
-	 *            the number of columns
+	 *                the number of columns
 	 *
 	 * @return the minimum size of the text field
 	 *

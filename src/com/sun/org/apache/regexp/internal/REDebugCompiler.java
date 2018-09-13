@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,7 +60,7 @@ public class REDebugCompiler extends RECompiler {
 	 * Returns a descriptive string for an opcode.
 	 * 
 	 * @param opcode
-	 *            Opcode to convert to a string
+	 *               Opcode to convert to a string
 	 * @return Description of opcode
 	 */
 	String opcodeToString(char opcode) {
@@ -81,7 +78,7 @@ public class REDebugCompiler extends RECompiler {
 	 * Return a string describing a (possibly unprintable) character.
 	 * 
 	 * @param c
-	 *            Character to convert to a printable representation
+	 *          Character to convert to a printable representation
 	 * @return String representation of character
 	 */
 	String charToString(char c) {
@@ -98,7 +95,7 @@ public class REDebugCompiler extends RECompiler {
 	 * Returns a descriptive string for a node in a regular expression program.
 	 * 
 	 * @param node
-	 *            Node to describe
+	 *             Node to describe
 	 * @return Description of node
 	 */
 	String nodeToString(int node) {
@@ -115,38 +112,44 @@ public class REDebugCompiler extends RECompiler {
 	 * relative next pointer is initialized to 0.
 	 * 
 	 * @param opcode
-	 *            Opcode for new node
+	 *                 Opcode for new node
 	 * @param opdata
-	 *            Opdata for new node (only the low 16 bits are currently used)
+	 *                 Opdata for new node (only the low 16 bits are currently
+	 *                 used)
 	 * @param insertAt
-	 *            Index at which to insert the new node in the program * / void
-	 *            nodeInsert(char opcode, int opdata, int insertAt) {
-	 *            System.out.println( "====> " + opcode + " " + opdata + " " +
-	 *            insertAt ); PrintWriter writer = new PrintWriter( System.out
-	 *            ); dumpProgram( writer ); super.nodeInsert( opcode, opdata,
-	 *            insertAt ); System.out.println( "====< " ); dumpProgram(
-	 *            writer ); writer.flush(); }/
+	 *                 Index at which to insert the new node in the program * /
+	 *                 void
+	 *                 nodeInsert(char opcode, int opdata, int insertAt) {
+	 *                 System.out.println( "====> " + opcode + " " + opdata + "
+	 *                 " +
+	 *                 insertAt ); PrintWriter writer = new PrintWriter(
+	 *                 System.out
+	 *                 ); dumpProgram( writer ); super.nodeInsert( opcode,
+	 *                 opdata,
+	 *                 insertAt ); System.out.println( "====< " ); dumpProgram(
+	 *                 writer ); writer.flush(); }/
 	 **/
 
 	/**
 	 * Appends a node to the end of a node chain
 	 * 
 	 * @param node
-	 *            Start of node chain to traverse
+	 *                Start of node chain to traverse
 	 * @param pointTo
-	 *            Node to have the tail of the chain point to * / void
-	 *            setNextOfEnd(int node, int pointTo) { System.out.println(
-	 *            "====> " + node + " " + pointTo ); PrintWriter writer = new
-	 *            PrintWriter( System.out ); dumpProgram( writer );
-	 *            super.setNextOfEnd( node, pointTo ); System.out.println(
-	 *            "====< " ); dumpProgram( writer ); writer.flush(); }/
+	 *                Node to have the tail of the chain point to * / void
+	 *                setNextOfEnd(int node, int pointTo) { System.out.println(
+	 *                "====> " + node + " " + pointTo ); PrintWriter writer =
+	 *                new
+	 *                PrintWriter( System.out ); dumpProgram( writer );
+	 *                super.setNextOfEnd( node, pointTo ); System.out.println(
+	 *                "====< " ); dumpProgram( writer ); writer.flush(); }/
 	 **/
 
 	/**
 	 * Dumps the current program to a PrintWriter
 	 * 
 	 * @param p
-	 *            PrintWriter for program dump output
+	 *          PrintWriter for program dump output
 	 */
 	public void dumpProgram(PrintWriter p) {
 		// Loop through the whole program
@@ -187,7 +190,8 @@ public class REDebugCompiler extends RECompiler {
 					if (charFirst == charLast) {
 						p.print(charToString(charFirst));
 					} else {
-						p.print(charToString(charFirst) + "-" + charToString(charLast));
+						p.print(charToString(charFirst) + "-" + charToString(
+								charLast));
 					}
 				}
 

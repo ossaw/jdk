@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +30,30 @@ public class XMLErrorResources_es extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -187,20 +175,24 @@ public class XMLErrorResources_es extends ListResourceBundle {
 
 			{ ER_CANNOT_OVERWRITE_CAUSE, "No se puede sobrescribir la causa" },
 
-			{ ER_NO_DEFAULT_IMPL, "No se ha encontrado la implantaci\u00F3n por defecto " },
+			{ ER_NO_DEFAULT_IMPL,
+					"No se ha encontrado la implantaci\u00F3n por defecto " },
 
 			{ ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
 					"ChunkedIntArray({0}) no est\u00E1 soportado actualmente" },
 
-			{ ER_OFFSET_BIGGER_THAN_SLOT, "El desplazamiento es mayor que la ranura" },
+			{ ER_OFFSET_BIGGER_THAN_SLOT,
+					"El desplazamiento es mayor que la ranura" },
 
 			{ ER_COROUTINE_NOT_AVAIL, "Corrutina no disponible, id={0}" },
 
-			{ ER_COROUTINE_CO_EXIT, "CoroutineManager ha recibido la solicitud co_exit()" },
+			{ ER_COROUTINE_CO_EXIT,
+					"CoroutineManager ha recibido la solicitud co_exit()" },
 
 			{ ER_COJOINROUTINESET_FAILED, "Fallo de co_joinCoroutineSet()" },
 
-			{ ER_COROUTINE_PARAM, "Error de par\u00E1metro de corrutina ({0})" },
+			{ ER_COROUTINE_PARAM,
+					"Error de par\u00E1metro de corrutina ({0})" },
 
 			{ ER_PARSER_DOTERMINATE_ANSWERS,
 					"\nINESPERADO: respuestas doTerminate del analizador {0}" },
@@ -217,24 +209,30 @@ public class XMLErrorResources_es extends ListResourceBundle {
 			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
 					"La clonaci\u00F3n del iterador no est\u00E1 soportada" },
 
-			{ ER_UNKNOWN_AXIS_TYPE, "Tipo transversal de eje desconocido: {0}" },
+			{ ER_UNKNOWN_AXIS_TYPE,
+					"Tipo transversal de eje desconocido: {0}" },
 
 			{ ER_AXIS_NOT_SUPPORTED, "Traverser de eje no soportado: {0}" },
 
-			{ ER_NO_DTMIDS_AVAIL, "No hay m\u00E1s identificadores de DTM disponibles" },
+			{ ER_NO_DTMIDS_AVAIL,
+					"No hay m\u00E1s identificadores de DTM disponibles" },
 
 			{ ER_NOT_SUPPORTED, "No soportado: {0}" },
 
-			{ ER_NODE_NON_NULL, "El nodo debe ser no nulo para getDTMHandleFromNode" },
+			{ ER_NODE_NON_NULL,
+					"El nodo debe ser no nulo para getDTMHandleFromNode" },
 
-			{ ER_COULD_NOT_RESOLVE_NODE, "No se ha podido resolver el nodo en un identificador" },
+			{ ER_COULD_NOT_RESOLVE_NODE,
+					"No se ha podido resolver el nodo en un identificador" },
 
 			{ ER_STARTPARSE_WHILE_PARSING,
 					"startParse no puede llamarse durante el an\u00E1lisis" },
 
-			{ ER_STARTPARSE_NEEDS_SAXPARSER, "startParse necesita un SAXParser no nulo" },
+			{ ER_STARTPARSE_NEEDS_SAXPARSER,
+					"startParse necesita un SAXParser no nulo" },
 
-			{ ER_COULD_NOT_INIT_PARSER, "no se ha podido inicializar el analizador con" },
+			{ ER_COULD_NOT_INIT_PARSER,
+					"no se ha podido inicializar el analizador con" },
 
 			{ ER_EXCEPTION_CREATING_POOL,
 					"excepci\u00F3n al crear la nueva instancia para el pool" },
@@ -244,7 +242,8 @@ public class XMLErrorResources_es extends ListResourceBundle {
 
 			{ ER_SCHEME_REQUIRED, "Se necesita un esquema." },
 
-			{ ER_NO_SCHEME_IN_URI, "No se ha encontrado un esquema en el URI: {0}" },
+			{ ER_NO_SCHEME_IN_URI,
+					"No se ha encontrado un esquema en el URI: {0}" },
 
 			{ ER_NO_SCHEME_INURI, "No se ha encontrado un esquema en el URI" },
 
@@ -259,7 +258,8 @@ public class XMLErrorResources_es extends ListResourceBundle {
 			{ ER_HOST_ADDRESS_NOT_WELLFORMED,
 					"El formato de la direcci\u00F3n de host no es correcto" },
 
-			{ ER_PORT_WHEN_HOST_NULL, "No se puede definir el puerto si el host es nulo" },
+			{ ER_PORT_WHEN_HOST_NULL,
+					"No se puede definir el puerto si el host es nulo" },
 
 			{ ER_INVALID_PORT, "N\u00FAmero de puerto no v\u00E1lido" },
 
@@ -269,14 +269,16 @@ public class XMLErrorResources_es extends ListResourceBundle {
 			{ ER_FRAG_WHEN_PATH_NULL,
 					"No se puede definir el fragmento si la ruta de acceso es nula" },
 
-			{ ER_FRAG_INVALID_CHAR, "El fragmento contiene un car\u00E1cter no v\u00E1lido" },
+			{ ER_FRAG_INVALID_CHAR,
+					"El fragmento contiene un car\u00E1cter no v\u00E1lido" },
 
 			{ ER_PARSER_IN_USE, "El analizador ya se est\u00E1 utilizando" },
 
 			{ ER_CANNOT_CHANGE_WHILE_PARSING,
 					"No se puede cambiar {0} {1} durante el an\u00E1lisis" },
 
-			{ ER_SELF_CAUSATION_NOT_PERMITTED, "La autocausalidad no est\u00E1 permitida" },
+			{ ER_SELF_CAUSATION_NOT_PERMITTED,
+					"La autocausalidad no est\u00E1 permitida" },
 
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"No se puede especificar la informaci\u00F3n de usuario si no se ha especificado el host" },
@@ -298,9 +300,11 @@ public class XMLErrorResources_es extends ListResourceBundle {
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"IncrementalSAXSource_Filter no se puede reiniciar actualmente" },
 
-			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE, "XMLReader no anterior a la solicitud startParse" },
+			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE,
+					"XMLReader no anterior a la solicitud startParse" },
 
-			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED, "Traverser de eje no soportado: {0}" },
+			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED,
+					"Traverser de eje no soportado: {0}" },
 
 			{ ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
 					"ListingErrorHandler se ha creado con un valor de PrintWriter nulo" },
@@ -309,9 +313,11 @@ public class XMLErrorResources_es extends ListResourceBundle {
 
 			{ ER_LOCATION_UNKNOWN, "Ubicaci\u00F3n del error desconocida" },
 
-			{ ER_PREFIX_MUST_RESOLVE, "El prefijo se debe resolver en un espacio de nombres: {0}" },
+			{ ER_PREFIX_MUST_RESOLVE,
+					"El prefijo se debe resolver en un espacio de nombres: {0}" },
 
-			{ ER_CREATEDOCUMENT_NOT_SUPPORTED, "createDocument() no soportado en XPathContext" },
+			{ ER_CREATEDOCUMENT_NOT_SUPPORTED,
+					"createDocument() no soportado en XPathContext" },
 
 			{ ER_CHILD_HAS_NO_OWNER_DOCUMENT,
 					"El atributo child no tiene un documento de propietario." },
@@ -332,32 +338,38 @@ public class XMLErrorResources_es extends ListResourceBundle {
 			// The localname is the portion after the optional colon; the
 			// message indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_LOCALNAME_INVALID, "El nombre local de QNAME debe ser un NCName v\u00E1lido" },
+			{ ER_ARG_LOCALNAME_INVALID,
+					"El nombre local de QNAME debe ser un NCName v\u00E1lido" },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
 			// The prefix is the portion before the optional colon; the message
 			// indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_PREFIX_INVALID, "El prefijo de QNAME debe ser un NCName v\u00E1lido" },
+			{ ER_ARG_PREFIX_INVALID,
+					"El prefijo de QNAME debe ser un NCName v\u00E1lido" },
 
-			{ ER_NAME_CANT_START_WITH_COLON, "El nombre no puede empezar con dos puntos" },
+			{ ER_NAME_CANT_START_WITH_COLON,
+					"El nombre no puede empezar con dos puntos" },
 
 			{ "BAD_CODE",
 					"El par\u00E1metro para crear un mensaje est\u00E1 fuera de los l\u00EDmites" },
 			{ "FORMAT_FAILED",
 					"Se ha emitido una excepci\u00F3n durante la llamada a messageFormat" },
-			{ "line", "N\u00BA de L\u00EDnea" }, { "column", "N\u00BA de Columna" },
+			{ "line", "N\u00BA de L\u00EDnea" }, { "column",
+					"N\u00BA de Columna" },
 
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"La clase de serializador ''{0}'' no implanta org.xml.sax.ContentHandler." },
 
-			{ ER_RESOURCE_COULD_NOT_FIND, "No se ha encontrado el recurso [ {0} ].\n {1}" },
+			{ ER_RESOURCE_COULD_NOT_FIND,
+					"No se ha encontrado el recurso [ {0} ].\n {1}" },
 
 			{ ER_RESOURCE_COULD_NOT_LOAD,
 					"No se ha podido cargar el recurso [ {0} ]: {1} \n {2} \t {3}" },
 
-			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "Tama\u00F1o de buffer menor o igual que 0" },
+			{ ER_BUFFER_SIZE_LESSTHAN_ZERO,
+					"Tama\u00F1o de buffer menor o igual que 0" },
 
 			{ ER_INVALID_UTF16_SURROGATE,
 					"\u00BFSe ha detectado un sustituto UTF-16 no v\u00E1lido: {0}?" },
@@ -380,7 +392,8 @@ public class XMLErrorResources_es extends ListResourceBundle {
 			 * attribute in a place other than on an element. The substitution
 			 * text specifies the name of the attribute.
 			 */
-			{ ER_STRAY_ATTRIBUTE, "El atributo ''{0}'' est\u00E1 fuera del elemento." },
+			{ ER_STRAY_ATTRIBUTE,
+					"El atributo ''{0}'' est\u00E1 fuera del elemento." },
 
 			/*
 			 * Note to translators: As with the preceding message, a namespace

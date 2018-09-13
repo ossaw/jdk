@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -209,44 +189,45 @@ import java.util.function.LongConsumer;
  *          		}
  *
  *          		public Spliterator<T> spliterator() {
- *          			return new TaggedArraySpliterator<>(elements, 0, elements.length);
+ *          			return new TaggedArraySpliterator<>(elements, 0,
+ *          					elements   .length);
  *          		}
  *
  *          		static class TaggedArraySpliterator<T> implements Spliterator<T> {
  *          			private final Object[] array;
  *          			private int origin; // current index, advanced on split or
- * 								// traversal
+ *          			// traversal
  *          			private final int fence; // one past the greatest index
  *
  *          			TaggedArraySpliterator(Object[] array, int origin, int fence) {
- *          				this.array = array;
- *          				this.origin = origin;
- *          				this.fence = fence;
+ *          				this   .array = array;
+ *          				this   .origin = origin;
+ *          				this   .fence = fence;
  *          			}
  *
  *          			public void forEachRemaining(Consumer<? super T> action) {
- *          				for (; origin < fence; origin += 2)
- *          					action.accept((T) array[origin]);
+ *          				for    (; origin < fence; origin += 2)
+ *          					action     .accept((T) array[origin]);
  *          			}
  *
  *          			public boolean tryAdvance(Consumer<? super T> action) {
- *          				if (origin < fence) {
- *          					action.accept((T) array[origin]);
- *          					origin += 2;
- *          					return true;
- *          				} else // cannot advance
- *          					return false;
+ *          				if     (origin < fence) {
+ *          					action     .accept((T) array[origin]);
+ *          					origin     += 2;
+ *          					return     true;
+ *          				}      else // cannot advance
+ *          					return     false;
  *          			}
  *
  *          			public Spliterator<T> trySplit() {
- *          				int lo = origin; // divide range in half
- *          				int mid = ((lo + fence) >>> 1) & ~1; // force midpoint to be
- * 														// even
- *          				if (lo < mid) { // split out left half
- *          					origin = mid; // reset this Spliterator's origin
- *          					return new TaggedArraySpliterator<>(array, lo, mid);
- *          				} else // too small to split
- *          					return null;
+ *          				int    lo = origin; // divide range in half
+ *          				int    mid = ((lo + fence) >>> 1) & ~1; // force midpoint to be
+ *          				// even
+ *          				if     (lo < mid) { // split out left half
+ *          					origin     = mid; // reset this Spliterator's origin
+ *          					return     new TaggedArraySpliterator<>(array, lo, mid);
+ *          				}      else // too small to split
+ *          					return     null;
  *          			}
  *
  *          			public long estimateSize() {
@@ -314,7 +295,7 @@ import java.util.function.LongConsumer;
  *           specializations.
  *
  * @param <T>
- *            the type of elements returned by this Spliterator
+ *        the type of elements returned by this Spliterator
  *
  * @see Collection
  * @since 1.8
@@ -327,11 +308,11 @@ public interface Spliterator<T> {
 	 * order. Exceptions thrown by the action are relayed to the caller.
 	 *
 	 * @param action
-	 *            The action
+	 *               The action
 	 * @return {@code false} if no remaining elements existed upon entry to this
 	 *         method, else {@code true}.
 	 * @throws NullPointerException
-	 *             if the specified action is null
+	 *                              if the specified action is null
 	 */
 	boolean tryAdvance(Consumer<? super T> action);
 
@@ -347,9 +328,9 @@ public interface Spliterator<T> {
 	 *           be overridden whenever possible.
 	 *
 	 * @param action
-	 *            The action
+	 *               The action
 	 * @throws NullPointerException
-	 *             if the specified action is null
+	 *                              if the specified action is null
 	 */
 	default void forEachRemaining(Consumer<? super T> action) {
 		do {
@@ -470,7 +451,7 @@ public interface Spliterator<T> {
 	 *           bits of the given characteristics are set.
 	 *
 	 * @param characteristics
-	 *            the characteristics to check for
+	 *                        the characteristics to check for
 	 * @return {@code true} if all the specified characteristics are present,
 	 *         else {@code false}
 	 */
@@ -491,8 +472,9 @@ public interface Spliterator<T> {
 	 * @return a Comparator, or {@code null} if the elements are sorted in the
 	 *         natural order.
 	 * @throws IllegalStateException
-	 *             if the spliterator does not report a characteristic of
-	 *             {@code SORTED}.
+	 *                               if the spliterator does not report a
+	 *                               characteristic of
+	 *                               {@code SORTED}.
 	 */
 	default Comparator<? super T> getComparator() {
 		throw new IllegalStateException();
@@ -619,18 +601,18 @@ public interface Spliterator<T> {
 	 * A Spliterator specialized for primitive values.
 	 *
 	 * @param <T>
-	 *            the type of elements returned by this Spliterator. The type
-	 *            must be a wrapper type for a primitive type, such as
-	 *            {@code Integer} for the primitive {@code int} type.
+	 *        the type of elements returned by this Spliterator. The type
+	 *        must be a wrapper type for a primitive type, such as
+	 *        {@code Integer} for the primitive {@code int} type.
 	 * @param <T_CONS>
-	 *            the type of primitive consumer. The type must be a primitive
-	 *            specialization of {@link java.util.function.Consumer} for
-	 *            {@code T}, such as {@link java.util.function.IntConsumer} for
-	 *            {@code Integer}.
+	 *        the type of primitive consumer. The type must be a primitive
+	 *        specialization of {@link java.util.function.Consumer} for
+	 *        {@code T}, such as {@link java.util.function.IntConsumer} for
+	 *        {@code Integer}.
 	 * @param <T_SPLITR>
-	 *            the type of primitive Spliterator. The type must be a
-	 *            primitive specialization of Spliterator for {@code T}, such as
-	 *            {@link Spliterator.OfInt} for {@code Integer}.
+	 *        the type of primitive Spliterator. The type must be a
+	 *        primitive specialization of Spliterator for {@code T}, such as
+	 *        {@link Spliterator.OfInt} for {@code Integer}.
 	 *
 	 * @see Spliterator.OfInt
 	 * @see Spliterator.OfLong
@@ -650,11 +632,11 @@ public interface Spliterator<T> {
 		 * relayed to the caller.
 		 *
 		 * @param action
-		 *            The action
+		 *               The action
 		 * @return {@code false} if no remaining elements existed upon entry to
 		 *         this method, else {@code true}.
 		 * @throws NullPointerException
-		 *             if the specified action is null
+		 *                              if the specified action is null
 		 */
 		@SuppressWarnings("overloads")
 		boolean tryAdvance(T_CONS action);
@@ -671,9 +653,9 @@ public interface Spliterator<T> {
 		 *           should be overridden whenever possible.
 		 *
 		 * @param action
-		 *            The action
+		 *               The action
 		 * @throws NullPointerException
-		 *             if the specified action is null
+		 *                              if the specified action is null
 		 */
 		@SuppressWarnings("overloads")
 		default void forEachRemaining(T_CONS action) {
@@ -819,7 +801,8 @@ public interface Spliterator<T> {
 	 * 
 	 * @since 1.8
 	 */
-	public interface OfDouble extends OfPrimitive<Double, DoubleConsumer, OfDouble> {
+	public interface OfDouble extends
+			OfPrimitive<Double, DoubleConsumer, OfDouble> {
 
 		@Override
 		OfDouble trySplit();

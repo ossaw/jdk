@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.synth;
 
@@ -61,16 +41,15 @@ public abstract class SynthStyleFactory {
 	/**
 	 * Creates a <code>SynthStyleFactory</code>.
 	 */
-	public SynthStyleFactory() {
-	}
+	public SynthStyleFactory() {}
 
 	/**
 	 * Returns the style for the specified Component.
 	 *
 	 * @param c
-	 *            Component asking for
+	 *           Component asking for
 	 * @param id
-	 *            Region identifier
+	 *           Region identifier
 	 * @return SynthStyle for region.
 	 */
 	public abstract SynthStyle getStyle(JComponent c, Region id);

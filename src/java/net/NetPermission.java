@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -168,12 +148,12 @@ public final class NetPermission extends BasicPermission {
 	 * by itself, to signify a wildcard match.
 	 *
 	 * @param name
-	 *            the name of the NetPermission.
+	 *             the name of the NetPermission.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 
 	public NetPermission(String name) {
@@ -186,14 +166,14 @@ public final class NetPermission extends BasicPermission {
 	 * currently unused and should be null.
 	 *
 	 * @param name
-	 *            the name of the NetPermission.
+	 *                the name of the NetPermission.
 	 * @param actions
-	 *            should be null.
+	 *                should be null.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 
 	public NetPermission(String name, String actions) {

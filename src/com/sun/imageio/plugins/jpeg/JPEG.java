@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.jpeg;
@@ -194,7 +174,8 @@ public class JPEG {
 	public static final int NUM_JCS_CODES = JCS_YCCK + 1;
 
 	/** IJG can handle up to 4-channel JPEGs */
-	static final int[][] bandOffsets = { { 0 }, { 0, 1 }, { 0, 1, 2 }, { 0, 1, 2, 3 } };
+	static final int[][] bandOffsets = { { 0 }, { 0, 1 }, { 0, 1, 2 }, { 0, 1,
+			2, 3 } };
 
 	static final int[] bOffsRGB = { 2, 1, 0 };
 
@@ -204,7 +185,8 @@ public class JPEG {
 	 * request for jpeg mime types)
 	 */
 	public static class JCS {
-		public static final ColorSpace sRGB = ColorSpace.getInstance(ColorSpace.CS_sRGB);
+		public static final ColorSpace sRGB = ColorSpace.getInstance(
+				ColorSpace.CS_sRGB);
 
 		private static ColorSpace YCC = null;
 		private static boolean yccInited = false;
@@ -234,11 +216,13 @@ public class JPEG {
 	 */
 	static boolean isNonStandardICC(ColorSpace cs) {
 		boolean retval = false;
-		if ((cs instanceof ICC_ColorSpace) && (!cs.isCS_sRGB())
-				&& (!cs.equals(ColorSpace.getInstance(ColorSpace.CS_CIEXYZ)))
-				&& (!cs.equals(ColorSpace.getInstance(ColorSpace.CS_GRAY)))
-				&& (!cs.equals(ColorSpace.getInstance(ColorSpace.CS_LINEAR_RGB)))
-				&& (!cs.equals(ColorSpace.getInstance(ColorSpace.CS_PYCC)))) {
+		if ((cs instanceof ICC_ColorSpace) && (!cs.isCS_sRGB()) && (!cs.equals(
+				ColorSpace.getInstance(ColorSpace.CS_CIEXYZ))) && (!cs.equals(
+						ColorSpace.getInstance(ColorSpace.CS_GRAY))) && (!cs
+								.equals(ColorSpace.getInstance(
+										ColorSpace.CS_LINEAR_RGB))) && (!cs
+												.equals(ColorSpace.getInstance(
+														ColorSpace.CS_PYCC)))) {
 			retval = true;
 		}
 		return retval;
@@ -249,7 +233,8 @@ public class JPEG {
 	 * file. If <code>input</code> is true, then the image type is considered
 	 * before colorspace conversion.
 	 */
-	static boolean isJFIFcompliant(ImageTypeSpecifier imageType, boolean input) {
+	static boolean isJFIFcompliant(ImageTypeSpecifier imageType,
+			boolean input) {
 		ColorModel cm = imageType.getColorModel();
 		// Can't have alpha
 		if (cm.hasAlpha()) {
@@ -291,17 +276,17 @@ public class JPEG {
 		int retval = ADOBE_IMPOSSIBLE;
 		ColorModel cm = imageType.getColorModel();
 		switch (cm.getColorSpace().getType()) {
-		case ColorSpace.TYPE_GRAY:
-			retval = ADOBE_UNKNOWN;
-			break;
-		case ColorSpace.TYPE_RGB:
-			retval = input ? ADOBE_YCC : ADOBE_UNKNOWN;
-			break;
-		case ColorSpace.TYPE_YCbCr:
-			retval = ADOBE_YCC;
-			break;
-		case ColorSpace.TYPE_CMYK:
-			retval = input ? ADOBE_YCCK : ADOBE_IMPOSSIBLE;
+			case ColorSpace.TYPE_GRAY:
+				retval = ADOBE_UNKNOWN;
+				break;
+			case ColorSpace.TYPE_RGB:
+				retval = input ? ADOBE_YCC : ADOBE_UNKNOWN;
+				break;
+			case ColorSpace.TYPE_YCbCr:
+				retval = ADOBE_YCC;
+				break;
+			case ColorSpace.TYPE_CMYK:
+				retval = input ? ADOBE_YCCK : ADOBE_IMPOSSIBLE;
 		}
 		return retval;
 	}

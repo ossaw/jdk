@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -76,8 +56,9 @@ public interface CellEditor {
 	 * this method returns true.
 	 *
 	 * @param anEvent
-	 *            the event the editor should use to consider whether to begin
-	 *            editing or not
+	 *                the event the editor should use to consider whether to
+	 *                begin
+	 *                editing or not
 	 * @return true if editing can be started
 	 * @see #shouldSelectCell
 	 */
@@ -95,7 +76,7 @@ public interface CellEditor {
 	 * doesn't want to.
 	 *
 	 * @param anEvent
-	 *            the event the editor should use to start editing
+	 *                the event the editor should use to start editing
 	 * @return true if the editor would like the editing cell to be selected;
 	 *         otherwise returns false
 	 * @see #isCellEditable
@@ -123,7 +104,7 @@ public interface CellEditor {
 	 * cancels editing.
 	 *
 	 * @param l
-	 *            the CellEditorListener
+	 *          the CellEditorListener
 	 */
 	public void addCellEditorListener(CellEditorListener l);
 
@@ -131,7 +112,7 @@ public interface CellEditor {
 	 * Removes a listener from the list that's notified
 	 *
 	 * @param l
-	 *            the CellEditorListener
+	 *          the CellEditorListener
 	 */
 	public void removeCellEditorListener(CellEditorListener l);
 }

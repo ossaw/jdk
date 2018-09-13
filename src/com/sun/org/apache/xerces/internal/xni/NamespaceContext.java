@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,14 +44,16 @@ public interface NamespaceContext {
 	 * The XML Namespace ("http://www.w3.org/XML/1998/namespace"). This is the
 	 * Namespace URI that is automatically mapped to the "xml" prefix.
 	 */
-	public final static String XML_URI = "http://www.w3.org/XML/1998/namespace".intern();
+	public final static String XML_URI = "http://www.w3.org/XML/1998/namespace"
+			.intern();
 
 	/**
 	 * XML Information Set REC all namespace attributes (including those named
 	 * xmlns, whose [prefix] property has no value) have a namespace URI of
 	 * http://www.w3.org/2000/xmlns/
 	 */
-	public final static String XMLNS_URI = "http://www.w3.org/2000/xmlns/".intern();
+	public final static String XMLNS_URI = "http://www.w3.org/2000/xmlns/"
+			.intern();
 
 	//
 	// NamespaceContext methods
@@ -101,9 +100,9 @@ public interface NamespaceContext {
 	 * popped another Namespace.
 	 *
 	 * @param prefix
-	 *            The prefix to declare, or null for the empty string.
+	 *               The prefix to declare, or null for the empty string.
 	 * @param uri
-	 *            The Namespace URI to associate with the prefix.
+	 *               The Namespace URI to associate with the prefix.
 	 *
 	 * @return true if the prefix was legal, false otherwise
 	 *
@@ -120,7 +119,7 @@ public interface NamespaceContext {
 	 * the empty string ("") for the default Namespace.
 	 *
 	 * @param prefix
-	 *            The prefix to look up.
+	 *               The prefix to look up.
 	 *
 	 * @return The associated Namespace URI, or null if the prefix is undeclared
 	 *         in this context.

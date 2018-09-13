@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -51,8 +31,7 @@ class MatchQueryExp extends QueryEval implements QueryExp {
 	/**
 	 * Basic Constructor.
 	 */
-	public MatchQueryExp() {
-	}
+	public MatchQueryExp() {}
 
 	/**
 	 * Creates a new MatchQueryExp where the specified AttributeValueExp matches
@@ -81,8 +60,8 @@ class MatchQueryExp extends QueryEval implements QueryExp {
 	 * Applies the MatchQueryExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the MatchQueryExp will be
-	 *            applied.
+	 *             The name of the MBean on which the MatchQueryExp will be
+	 *             applied.
 	 *
 	 * @return True if the query was successfully applied to the MBean, false
 	 *         otherwise.
@@ -92,9 +71,9 @@ class MatchQueryExp extends QueryEval implements QueryExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public boolean apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public boolean apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 
 		ValueExp val = exp.apply(name);
 		if (!(val instanceof StringValueExp)) {
@@ -138,8 +117,10 @@ class MatchQueryExp extends QueryEval implements QueryExp {
 					++pi;
 				}
 				while ((c = p.charAt(pi)) != ']' && ++pi < plen) {
-					if (p.charAt(pi) == '-' && pi + 1 < plen && p.charAt(pi + 1) != ']') {
-						if (s.charAt(si) >= p.charAt(pi - 1) && s.charAt(si) <= p.charAt(pi + 1)) {
+					if (p.charAt(pi) == '-' && pi + 1 < plen && p.charAt(pi
+							+ 1) != ']') {
+						if (s.charAt(si) >= p.charAt(pi - 1) && s.charAt(
+								si) <= p.charAt(pi + 1)) {
 							seenit = true;
 						}
 						++pi;
@@ -163,7 +144,8 @@ class MatchQueryExp extends QueryEval implements QueryExp {
 				} while (++si < slen);
 				return false;
 			} else if (c == '\\') {
-				if (pi >= plen || si >= slen || p.charAt(pi++) != s.charAt(si++))
+				if (pi >= plen || si >= slen || p.charAt(pi++) != s.charAt(
+						si++))
 					return false;
 			} else {
 				if (si >= slen || c != s.charAt(si++)) {

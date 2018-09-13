@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -76,11 +56,11 @@ public class ErrorManager {
 	 * subsequent calls are ignored.
 	 *
 	 * @param msg
-	 *            a descriptive string (may be null)
+	 *             a descriptive string (may be null)
 	 * @param ex
-	 *            an exception (may be null)
+	 *             an exception (may be null)
 	 * @param code
-	 *            an error code defined in ErrorManager
+	 *             an error code defined in ErrorManager
 	 */
 	public synchronized void error(String msg, Exception ex, int code) {
 		if (reported) {

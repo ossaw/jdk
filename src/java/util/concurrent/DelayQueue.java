@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -66,9 +41,10 @@ import java.util.*;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
-public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements BlockingQueue<E> {
+public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements
+		BlockingQueue<E> {
 
 	private final transient ReentrantLock lock = new ReentrantLock();
 	private final PriorityQueue<E> q = new PriorityQueue<E>();
@@ -98,17 +74,17 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	/**
 	 * Creates a new {@code DelayQueue} that is initially empty.
 	 */
-	public DelayQueue() {
-	}
+	public DelayQueue() {}
 
 	/**
 	 * Creates a {@code DelayQueue} initially containing the elements of the
 	 * given collection of {@link Delayed} instances.
 	 *
 	 * @param c
-	 *            the collection of elements to initially contain
+	 *          the collection of elements to initially contain
 	 * @throws NullPointerException
-	 *             if the specified collection or any of its elements are null
+	 *                              if the specified collection or any of its
+	 *                              elements are null
 	 */
 	public DelayQueue(Collection<? extends E> c) {
 		this.addAll(c);
@@ -118,10 +94,10 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	 * Inserts the specified element into this delay queue.
 	 *
 	 * @param e
-	 *            the element to add
+	 *          the element to add
 	 * @return {@code true} (as specified by {@link Collection#add})
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean add(E e) {
 		return offer(e);
@@ -131,10 +107,10 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	 * Inserts the specified element into this delay queue.
 	 *
 	 * @param e
-	 *            the element to add
+	 *          the element to add
 	 * @return {@code true}
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean offer(E e) {
 		final ReentrantLock lock = this.lock;
@@ -156,9 +132,9 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	 * unbounded this method will never block.
 	 *
 	 * @param e
-	 *            the element to add
+	 *          the element to add
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public void put(E e) {
 		offer(e);
@@ -169,14 +145,14 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	 * unbounded this method will never block.
 	 *
 	 * @param e
-	 *            the element to add
+	 *                the element to add
 	 * @param timeout
-	 *            This parameter is ignored as the method never blocks
+	 *                This parameter is ignored as the method never blocks
 	 * @param unit
-	 *            This parameter is ignored as the method never blocks
+	 *                This parameter is ignored as the method never blocks
 	 * @return {@code true}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public boolean offer(E e, long timeout, TimeUnit unit) {
 		return offer(e);
@@ -209,7 +185,7 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	 *
 	 * @return the head of this queue
 	 * @throws InterruptedException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public E take() throws InterruptedException {
 		final ReentrantLock lock = this.lock;
@@ -254,7 +230,7 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	 *         time elapses before an element with an expired delay becomes
 	 *         available
 	 * @throws InterruptedException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public E poll(long timeout, TimeUnit unit) throws InterruptedException {
 		long nanos = unit.toNanos(timeout);
@@ -332,18 +308,19 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	private E peekExpired() {
 		// assert lock.isHeldByCurrentThread();
 		E first = q.peek();
-		return (first == null || first.getDelay(NANOSECONDS) > 0) ? null : first;
+		return (first == null || first.getDelay(NANOSECONDS) > 0) ? null
+				: first;
 	}
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c) {
 		if (c == null)
@@ -367,13 +344,13 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c, int maxElements) {
 		if (c == null)
@@ -480,15 +457,17 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 	 * {@code toArray()}.
 	 *
 	 * @param a
-	 *            the array into which the elements of the queue are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose
+	 *          the array into which the elements of the queue are to be
+	 *          stored, if it is big enough; otherwise, a new array of the
+	 *          same runtime type is allocated for this purpose
 	 * @return an array containing all of the elements in this queue
 	 * @throws ArrayStoreException
-	 *             if the runtime type of the specified array is not a supertype
-	 *             of the runtime type of every element in this queue
+	 *                              if the runtime type of the specified array
+	 *                              is not a supertype
+	 *                              of the runtime type of every element in this
+	 *                              queue
 	 * @throws NullPointerException
-	 *             if the specified array is null
+	 *                              if the specified array is null
 	 */
 	public <T> T[] toArray(T[] a) {
 		final ReentrantLock lock = this.lock;

@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2008-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -116,24 +85,24 @@ public enum SignStyle {
 	 * Parse helper.
 	 *
 	 * @param positive
-	 *            true if positive sign parsed, false for negative sign
+	 *                   true if positive sign parsed, false for negative sign
 	 * @param strict
-	 *            true if strict, false if lenient
+	 *                   true if strict, false if lenient
 	 * @param fixedWidth
-	 *            true if fixed width, false if not
+	 *                   true if fixed width, false if not
 	 * @return
 	 */
 	boolean parse(boolean positive, boolean strict, boolean fixedWidth) {
 		switch (ordinal()) {
-		case 0: // NORMAL
-			// valid if negative or (positive and lenient)
-			return !positive || !strict;
-		case 1: // ALWAYS
-		case 4: // EXCEEDS_PAD
-			return true;
-		default:
-			// valid if lenient and not fixed width
-			return !strict && !fixedWidth;
+			case 0: // NORMAL
+				// valid if negative or (positive and lenient)
+				return !positive || !strict;
+			case 1: // ALWAYS
+			case 4: // EXCEEDS_PAD
+				return true;
+			default:
+				// valid if lenient and not fixed width
+				return !strict && !fixedWidth;
 		}
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -92,7 +72,7 @@ public interface AccessibleText {
 	 * -1.
 	 *
 	 * @param p
-	 *            the Point in local coordinates
+	 *          the Point in local coordinates
 	 * @return the zero-based index of the character under Point p; if Point is
 	 *         invalid return -1.
 	 */
@@ -104,7 +84,7 @@ public interface AccessibleText {
 	 * invalid an empty rectangle is returned.
 	 *
 	 * @param i
-	 *            the index into the String
+	 *          the index into the String
 	 * @return the screen coordinates of the character's bounding box, if index
 	 *         is invalid return an empty rectangle.
 	 */
@@ -131,9 +111,9 @@ public interface AccessibleText {
 	 * Returns the String at a given index.
 	 *
 	 * @param part
-	 *            the CHARACTER, WORD, or SENTENCE to retrieve
+	 *              the CHARACTER, WORD, or SENTENCE to retrieve
 	 * @param index
-	 *            an index within the text
+	 *              an index within the text
 	 * @return the letter, word, or sentence
 	 */
 	public String getAtIndex(int part, int index);
@@ -142,9 +122,9 @@ public interface AccessibleText {
 	 * Returns the String after a given index.
 	 *
 	 * @param part
-	 *            the CHARACTER, WORD, or SENTENCE to retrieve
+	 *              the CHARACTER, WORD, or SENTENCE to retrieve
 	 * @param index
-	 *            an index within the text
+	 *              an index within the text
 	 * @return the letter, word, or sentence
 	 */
 	public String getAfterIndex(int part, int index);
@@ -153,9 +133,9 @@ public interface AccessibleText {
 	 * Returns the String before a given index.
 	 *
 	 * @param part
-	 *            the CHARACTER, WORD, or SENTENCE to retrieve
+	 *              the CHARACTER, WORD, or SENTENCE to retrieve
 	 * @param index
-	 *            an index within the text
+	 *              an index within the text
 	 * @return the letter, word, or sentence
 	 */
 	public String getBeforeIndex(int part, int index);
@@ -164,7 +144,7 @@ public interface AccessibleText {
 	 * Returns the AttributeSet for a given character at a given index
 	 *
 	 * @param i
-	 *            the zero-based index into the text
+	 *          the zero-based index into the text
 	 * @return the AttributeSet of the character
 	 */
 	public AttributeSet getCharacterAttribute(int i);

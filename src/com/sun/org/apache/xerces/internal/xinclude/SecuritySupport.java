@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,45 +45,48 @@ final class SecuritySupport {
 	}
 
 	ClassLoader getContextClassLoader() {
-		return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				ClassLoader cl = null;
-				try {
-					cl = Thread.currentThread().getContextClassLoader();
-				} catch (SecurityException ex) {
-				}
-				return cl;
-			}
-		});
+		return (ClassLoader) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public Object run() {
+						ClassLoader cl = null;
+						try {
+							cl = Thread.currentThread().getContextClassLoader();
+						} catch (SecurityException ex) {
+						}
+						return cl;
+					}
+				});
 	}
 
 	ClassLoader getSystemClassLoader() {
-		return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				ClassLoader cl = null;
-				try {
-					cl = ClassLoader.getSystemClassLoader();
-				} catch (SecurityException ex) {
-				}
-				return cl;
-			}
-		});
+		return (ClassLoader) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public Object run() {
+						ClassLoader cl = null;
+						try {
+							cl = ClassLoader.getSystemClassLoader();
+						} catch (SecurityException ex) {
+						}
+						return cl;
+					}
+				});
 	}
 
 	ClassLoader getParentClassLoader(final ClassLoader cl) {
-		return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				ClassLoader parent = null;
-				try {
-					parent = cl.getParent();
-				} catch (SecurityException ex) {
-				}
+		return (ClassLoader) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public Object run() {
+						ClassLoader parent = null;
+						try {
+							parent = cl.getParent();
+						} catch (SecurityException ex) {
+						}
 
-				// eliminate loops in case of the boot
-				// ClassLoader returning itself as a parent
-				return (parent == cl) ? null : parent;
-			}
-		});
+						// eliminate loops in case of the boot
+						// ClassLoader returning itself as a parent
+						return (parent == cl) ? null : parent;
+					}
+				});
 	}
 
 	String getSystemProperty(final String propName) {
@@ -97,30 +97,33 @@ final class SecuritySupport {
 		});
 	}
 
-	FileInputStream getFileInputStream(final File file) throws FileNotFoundException {
+	FileInputStream getFileInputStream(final File file)
+			throws FileNotFoundException {
 		try {
-			return (FileInputStream) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws FileNotFoundException {
-					return new FileInputStream(file);
-				}
-			});
+			return (FileInputStream) AccessController.doPrivileged(
+					new PrivilegedExceptionAction() {
+						public Object run() throws FileNotFoundException {
+							return new FileInputStream(file);
+						}
+					});
 		} catch (PrivilegedActionException e) {
 			throw (FileNotFoundException) e.getException();
 		}
 	}
 
 	InputStream getResourceAsStream(final ClassLoader cl, final String name) {
-		return (InputStream) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				InputStream ris;
-				if (cl == null) {
-					ris = ClassLoader.getSystemResourceAsStream(name);
-				} else {
-					ris = cl.getResourceAsStream(name);
-				}
-				return ris;
-			}
-		});
+		return (InputStream) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public Object run() {
+						InputStream ris;
+						if (cl == null) {
+							ris = ClassLoader.getSystemResourceAsStream(name);
+						} else {
+							ris = cl.getResourceAsStream(name);
+						}
+						return ris;
+					}
+				});
 	}
 
 	boolean getFileExists(final File f) {
@@ -139,6 +142,5 @@ final class SecuritySupport {
 		})).longValue();
 	}
 
-	private SecuritySupport() {
-	}
+	private SecuritySupport() {}
 }

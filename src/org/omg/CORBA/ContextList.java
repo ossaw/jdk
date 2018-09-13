@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -79,12 +59,13 @@ public abstract class ContextList {
 	 * Returns the <code>String</code> object at the given index.
 	 *
 	 * @param index
-	 *            the index of the string desired, with 0 being the index of the
-	 *            first string
+	 *              the index of the string desired, with 0 being the index of
+	 *              the
+	 *              first string
 	 * @return the string at the given index
 	 * @exception org.omg.CORBA.Bounds
-	 *                if the index is greater than or equal to the number of
-	 *                strings in this <code>ContextList</code> object
+	 *            if the index is greater than or equal to the number of
+	 *            strings in this <code>ContextList</code> object
 	 */
 
 	public abstract String item(int index) throws org.omg.CORBA.Bounds;
@@ -94,12 +75,12 @@ public abstract class ContextList {
 	 * indices of all strings following the one removed are shifted down by one.
 	 *
 	 * @param index
-	 *            the index of the <code>String</code> object to be removed,
-	 *            with 0 designating the first string
+	 *              the index of the <code>String</code> object to be removed,
+	 *              with 0 designating the first string
 	 * @exception org.omg.CORBA.Bounds
-	 *                if the index is greater than or equal to the number of
-	 *                <code>String</code> objects in this
-	 *                <code>ContextList</code> object
+	 *            if the index is greater than or equal to the number of
+	 *            <code>String</code> objects in this
+	 *            <code>ContextList</code> object
 	 */
 
 	public abstract void remove(int index) throws org.omg.CORBA.Bounds;

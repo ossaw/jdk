@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.monitor;
@@ -103,12 +83,14 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 */
 	private boolean notifyDiffer = false;
 
-	private static final String[] types = { RUNTIME_ERROR, OBSERVED_OBJECT_ERROR,
-			OBSERVED_ATTRIBUTE_ERROR, OBSERVED_ATTRIBUTE_TYPE_ERROR,
-			STRING_TO_COMPARE_VALUE_MATCHED, STRING_TO_COMPARE_VALUE_DIFFERED };
+	private static final String[] types = { RUNTIME_ERROR,
+			OBSERVED_OBJECT_ERROR, OBSERVED_ATTRIBUTE_ERROR,
+			OBSERVED_ATTRIBUTE_TYPE_ERROR, STRING_TO_COMPARE_VALUE_MATCHED,
+			STRING_TO_COMPARE_VALUE_DIFFERED };
 
 	private static final MBeanNotificationInfo[] notifsInfo = {
-			new MBeanNotificationInfo(types, "javax.management.monitor.MonitorNotification",
+			new MBeanNotificationInfo(types,
+					"javax.management.monitor.MonitorNotification",
 					"Notifications sent by the StringMonitor MBean") };
 
 	// Flags needed to implement the matching/differing mechanism.
@@ -125,8 +107,7 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	/**
 	 * Default constructor.
 	 */
-	public StringMonitor() {
-	}
+	public StringMonitor() {}
 
 	/*
 	 * ------------------------------------------ PUBLIC METHODS
@@ -138,8 +119,8 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 */
 	public synchronized void start() {
 		if (isActive()) {
-			MONITOR_LOGGER.logp(Level.FINER, StringMonitor.class.getName(), "start",
-					"the monitor is already active");
+			MONITOR_LOGGER.logp(Level.FINER, StringMonitor.class.getName(),
+					"start", "the monitor is already active");
 			return;
 		}
 		// Reset values.
@@ -166,7 +147,7 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 * contained in the set of observed MBeans, or <code>null</code> otherwise.
 	 *
 	 * @param object
-	 *            the name of the MBean whose derived gauge is required.
+	 *               the name of the MBean whose derived gauge is required.
 	 *
 	 * @return The derived gauge of the specified object.
 	 *
@@ -181,8 +162,9 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 * is contained in the set of observed MBeans, or <code>0</code> otherwise.
 	 *
 	 * @param object
-	 *            the name of the object whose derived gauge timestamp is to be
-	 *            returned.
+	 *               the name of the object whose derived gauge timestamp is to
+	 *               be
+	 *               returned.
 	 *
 	 * @return The derived gauge timestamp of the specified object.
 	 *
@@ -245,14 +227,16 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 * observed MBeans.
 	 *
 	 * @param value
-	 *            The string value.
+	 *              The string value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                The specified string to compare is null.
+	 *                                     The specified string to compare is
+	 *                                     null.
 	 *
 	 * @see #getStringToCompare
 	 */
-	public synchronized void setStringToCompare(String value) throws IllegalArgumentException {
+	public synchronized void setStringToCompare(String value)
+			throws IllegalArgumentException {
 
 		if (value == null) {
 			throw new IllegalArgumentException("Null string to compare");
@@ -288,7 +272,7 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 * observed MBeans.
 	 *
 	 * @param value
-	 *            The matching notification's on/off switch value.
+	 *              The matching notification's on/off switch value.
 	 *
 	 * @see #getNotifyMatch
 	 */
@@ -316,7 +300,7 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 * observed MBeans.
 	 *
 	 * @param value
-	 *            The differing notification's on/off switch value.
+	 *              The differing notification's on/off switch value.
 	 *
 	 * @see #getNotifyDiffer
 	 */
@@ -348,7 +332,8 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 */
 	@Override
 	ObservedObject createObservedObject(ObjectName object) {
-		final StringMonitorObservedObject smo = new StringMonitorObservedObject(object);
+		final StringMonitorObservedObject smo = new StringMonitorObservedObject(
+				object);
 		smo.setStatus(MATCHING_OR_DIFFERING);
 		return smo;
 	}
@@ -358,8 +343,8 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	 * the value types supported by this monitor.
 	 */
 	@Override
-	synchronized boolean isComparableTypeValid(ObjectName object, String attribute,
-			Comparable<?> value) {
+	synchronized boolean isComparableTypeValid(ObjectName object,
+			String attribute, Comparable<?> value) {
 		// Check that the observed attribute is of type "String".
 		//
 		if (value instanceof String) {
@@ -381,8 +366,8 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 	}
 
 	@Override
-	synchronized MonitorNotification buildAlarmNotification(ObjectName object, String attribute,
-			Comparable<?> value) {
+	synchronized MonitorNotification buildAlarmNotification(ObjectName object,
+			String attribute, Comparable<?> value) {
 		String type = null;
 		String msg = null;
 		Object trigger = null;
@@ -433,6 +418,7 @@ public class StringMonitor extends Monitor implements StringMonitorMBean {
 			}
 		}
 
-		return new MonitorNotification(type, this, 0, 0, msg, null, null, null, trigger);
+		return new MonitorNotification(type, this, 0, 0, msg, null, null, null,
+				trigger);
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.wsaddressing;
@@ -74,35 +54,38 @@ public final class W3CEndpointReference extends EndpointReference {
 	// default constructor forbidden ...
 	// should be private, keeping original modifier to keep backwards
 	// compatibility
-	protected W3CEndpointReference() {
-	}
+	protected W3CEndpointReference() {}
 
 	/**
 	 * Creates an EPR from infoset representation
 	 *
 	 * @param source
-	 *            A source object containing valid XmlInfoset instance
-	 *            consistent with the W3C WS-Addressing Core recommendation.
+	 *               A source object containing valid XmlInfoset instance
+	 *               consistent with the W3C WS-Addressing Core recommendation.
 	 *
 	 * @throws WebServiceException
-	 *             If the source does NOT contain a valid W3C WS-Addressing
-	 *             EndpointReference.
+	 *                              If the source does NOT contain a valid W3C
+	 *                              WS-Addressing
+	 *                              EndpointReference.
 	 * @throws NullPointerException
-	 *             If the <code>null</code> <code>source</code> value is given
+	 *                              If the <code>null</code> <code>source</code>
+	 *                              value is given
 	 */
 	public W3CEndpointReference(Source source) {
 		try {
-			W3CEndpointReference epr = w3cjc.createUnmarshaller()
-					.unmarshal(source, W3CEndpointReference.class).getValue();
+			W3CEndpointReference epr = w3cjc.createUnmarshaller().unmarshal(
+					source, W3CEndpointReference.class).getValue();
 			this.address = epr.address;
 			this.metadata = epr.metadata;
 			this.referenceParameters = epr.referenceParameters;
 			this.elements = epr.elements;
 			this.attributes = epr.attributes;
 		} catch (JAXBException e) {
-			throw new WebServiceException("Error unmarshalling W3CEndpointReference ", e);
+			throw new WebServiceException(
+					"Error unmarshalling W3CEndpointReference ", e);
 		} catch (ClassCastException e) {
-			throw new WebServiceException("Source did not contain W3CEndpointReference", e);
+			throw new WebServiceException(
+					"Source did not contain W3CEndpointReference", e);
 		}
 	}
 
@@ -114,7 +97,8 @@ public final class W3CEndpointReference extends EndpointReference {
 			Marshaller marshaller = w3cjc.createMarshaller();
 			marshaller.marshal(this, result);
 		} catch (JAXBException e) {
-			throw new WebServiceException("Error marshalling W3CEndpointReference. ", e);
+			throw new WebServiceException(
+					"Error marshalling W3CEndpointReference. ", e);
 		}
 	}
 
@@ -122,8 +106,8 @@ public final class W3CEndpointReference extends EndpointReference {
 		try {
 			return JAXBContext.newInstance(W3CEndpointReference.class);
 		} catch (JAXBException e) {
-			throw new WebServiceException("Error creating JAXBContext for W3CEndpointReference. ",
-					e);
+			throw new WebServiceException(
+					"Error creating JAXBContext for W3CEndpointReference. ", e);
 		}
 	}
 
@@ -143,8 +127,7 @@ public final class W3CEndpointReference extends EndpointReference {
 
 	@XmlType(name = "address", namespace = W3CEndpointReference.NS)
 	private static class Address {
-		protected Address() {
-		}
+		protected Address() {}
 
 		@XmlValue
 		String uri;
@@ -154,8 +137,7 @@ public final class W3CEndpointReference extends EndpointReference {
 
 	@XmlType(name = "elements", namespace = W3CEndpointReference.NS)
 	private static class Elements {
-		protected Elements() {
-		}
+		protected Elements() {}
 
 		@XmlAnyElement
 		List<Element> elements;

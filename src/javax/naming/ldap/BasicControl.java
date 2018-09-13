@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -62,7 +42,7 @@ public class BasicControl implements Control {
 	 * Constructs a non-critical control.
 	 *
 	 * @param id
-	 *            The control's object identifier string.
+	 *           The control's object identifier string.
 	 *
 	 */
 	public BasicControl(String id) {
@@ -73,13 +53,15 @@ public class BasicControl implements Control {
 	 * Constructs a control using the supplied arguments.
 	 *
 	 * @param id
-	 *            The control's object identifier string.
+	 *                    The control's object identifier string.
 	 * @param criticality
-	 *            The control's criticality.
+	 *                    The control's criticality.
 	 * @param value
-	 *            The control's ASN.1 BER encoded value. It is not cloned - any
-	 *            changes to value will affect the contents of the control. It
-	 *            may be null.
+	 *                    The control's ASN.1 BER encoded value. It is not
+	 *                    cloned - any
+	 *                    changes to value will affect the contents of the
+	 *                    control. It
+	 *                    may be null.
 	 */
 	public BasicControl(String id, boolean criticality, byte[] value) {
 		this.id = id;

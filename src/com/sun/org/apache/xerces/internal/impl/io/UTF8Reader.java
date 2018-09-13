@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -87,10 +84,11 @@ public class UTF8Reader extends Reader {
 	 * default buffer size. Primarily for testing.
 	 *
 	 * @param inputStream
-	 *            The input stream.
+	 *                    The input stream.
 	 */
 	public UTF8Reader(InputStream inputStream) {
-		this(inputStream, DEFAULT_BUFFER_SIZE, new XMLMessageFormatter(), Locale.getDefault());
+		this(inputStream, DEFAULT_BUFFER_SIZE, new XMLMessageFormatter(), Locale
+				.getDefault());
 	} // <init>(InputStream, MessageFormatter)
 
 	/**
@@ -98,13 +96,14 @@ public class UTF8Reader extends Reader {
 	 * default buffer size and the given MessageFormatter.
 	 *
 	 * @param inputStream
-	 *            The input stream.
+	 *                         The input stream.
 	 * @param messageFormatter
-	 *            given MessageFormatter
+	 *                         given MessageFormatter
 	 * @param locale
-	 *            Locale to use for messages
+	 *                         Locale to use for messages
 	 */
-	public UTF8Reader(InputStream inputStream, MessageFormatter messageFormatter, Locale locale) {
+	public UTF8Reader(InputStream inputStream,
+			MessageFormatter messageFormatter, Locale locale) {
 		this(inputStream, DEFAULT_BUFFER_SIZE, messageFormatter, locale);
 	} // <init>(InputStream, MessageFormatter, Locale)
 
@@ -113,16 +112,16 @@ public class UTF8Reader extends Reader {
 	 * and MessageFormatter.
 	 *
 	 * @param inputStream
-	 *            The input stream.
+	 *                         The input stream.
 	 * @param size
-	 *            The initial buffer size.
+	 *                         The initial buffer size.
 	 * @param messageFormatter
-	 *            the formatter for localizing/formatting errors.
+	 *                         the formatter for localizing/formatting errors.
 	 * @param locale
-	 *            the Locale to use for messages
+	 *                         the Locale to use for messages
 	 */
-	public UTF8Reader(InputStream inputStream, int size, MessageFormatter messageFormatter,
-			Locale locale) {
+	public UTF8Reader(InputStream inputStream, int size,
+			MessageFormatter messageFormatter, Locale locale) {
 		fInputStream = inputStream;
 		BufferAllocator ba = ThreadLocalBufferAllocator.getBufferAllocator();
 		fBuffer = ba.getByteBuffer(size);
@@ -150,7 +149,7 @@ public class UTF8Reader extends Reader {
 	 *         reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read() throws IOException {
 
@@ -162,7 +161,8 @@ public class UTF8Reader extends Reader {
 			int index = 0;
 
 			// get first byte
-			int b0 = index == fOffset ? fInputStream.read() : fBuffer[index++] & 0x00FF;
+			int b0 = index == fOffset ? fInputStream.read()
+					: fBuffer[index++] & 0x00FF;
 			if (b0 == -1) {
 				return -1;
 			}
@@ -176,7 +176,8 @@ public class UTF8Reader extends Reader {
 			// UTF-8: [110y yyyy] [10xx xxxx]
 			// Unicode: [0000 0yyy] [yyxx xxxx]
 			else if ((b0 & 0xE0) == 0xC0 && (b0 & 0x1E) != 0) {
-				int b1 = index == fOffset ? fInputStream.read() : fBuffer[index++] & 0x00FF;
+				int b1 = index == fOffset ? fInputStream.read()
+						: fBuffer[index++] & 0x00FF;
 				if (b1 == -1) {
 					expectedByte(2, 2);
 				}
@@ -189,22 +190,25 @@ public class UTF8Reader extends Reader {
 			// UTF-8: [1110 zzzz] [10yy yyyy] [10xx xxxx]
 			// Unicode: [zzzz yyyy] [yyxx xxxx]
 			else if ((b0 & 0xF0) == 0xE0) {
-				int b1 = index == fOffset ? fInputStream.read() : fBuffer[index++] & 0x00FF;
+				int b1 = index == fOffset ? fInputStream.read()
+						: fBuffer[index++] & 0x00FF;
 				if (b1 == -1) {
 					expectedByte(2, 3);
 				}
-				if ((b1 & 0xC0) != 0x80 || (b0 == 0xED && b1 >= 0xA0)
-						|| ((b0 & 0x0F) == 0 && (b1 & 0x20) == 0)) {
+				if ((b1 & 0xC0) != 0x80 || (b0 == 0xED && b1 >= 0xA0) || ((b0
+						& 0x0F) == 0 && (b1 & 0x20) == 0)) {
 					invalidByte(2, 3, b1);
 				}
-				int b2 = index == fOffset ? fInputStream.read() : fBuffer[index++] & 0x00FF;
+				int b2 = index == fOffset ? fInputStream.read()
+						: fBuffer[index++] & 0x00FF;
 				if (b2 == -1) {
 					expectedByte(3, 3);
 				}
 				if ((b2 & 0xC0) != 0x80) {
 					invalidByte(3, 3, b2);
 				}
-				c = ((b0 << 12) & 0xF000) | ((b1 << 6) & 0x0FC0) | (b2 & 0x003F);
+				c = ((b0 << 12) & 0xF000) | ((b1 << 6) & 0x0FC0) | (b2
+						& 0x003F);
 			}
 
 			// UTF-8: [1111 0uuu] [10uu zzzz] [10yy yyyy] [10xx xxxx]*
@@ -212,21 +216,25 @@ public class UTF8Reader extends Reader {
 			// [1101 11yy] [yyxx xxxx] (low surrogate)
 			// * uuuuu = wwww + 1
 			else if ((b0 & 0xF8) == 0xF0) {
-				int b1 = index == fOffset ? fInputStream.read() : fBuffer[index++] & 0x00FF;
+				int b1 = index == fOffset ? fInputStream.read()
+						: fBuffer[index++] & 0x00FF;
 				if (b1 == -1) {
 					expectedByte(2, 4);
 				}
-				if ((b1 & 0xC0) != 0x80 || ((b1 & 0x30) == 0 && (b0 & 0x07) == 0)) {
+				if ((b1 & 0xC0) != 0x80 || ((b1 & 0x30) == 0 && (b0
+						& 0x07) == 0)) {
 					invalidByte(2, 3, b1);
 				}
-				int b2 = index == fOffset ? fInputStream.read() : fBuffer[index++] & 0x00FF;
+				int b2 = index == fOffset ? fInputStream.read()
+						: fBuffer[index++] & 0x00FF;
 				if (b2 == -1) {
 					expectedByte(3, 4);
 				}
 				if ((b2 & 0xC0) != 0x80) {
 					invalidByte(3, 3, b2);
 				}
-				int b3 = index == fOffset ? fInputStream.read() : fBuffer[index++] & 0x00FF;
+				int b3 = index == fOffset ? fInputStream.read()
+						: fBuffer[index++] & 0x00FF;
 				if (b3 == -1) {
 					expectedByte(4, 4);
 				}
@@ -270,17 +278,17 @@ public class UTF8Reader extends Reader {
 	 * reached.
 	 *
 	 * @param ch
-	 *            Destination buffer
+	 *               Destination buffer
 	 * @param offset
-	 *            Offset at which to start storing characters
+	 *               Offset at which to start storing characters
 	 * @param length
-	 *            Maximum number of characters to read
+	 *               Maximum number of characters to read
 	 *
 	 * @return The number of characters read, or -1 if the end of the stream has
 	 *         been reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read(char ch[], int offset, int length) throws IOException {
 
@@ -396,8 +404,8 @@ public class UTF8Reader extends Reader {
 					}
 					count++;
 				}
-				if ((b1 & 0xC0) != 0x80 || (b0 == 0xED && b1 >= 0xA0)
-						|| ((b0 & 0x0F) == 0 && (b1 & 0x20) == 0)) {
+				if ((b1 & 0xC0) != 0x80 || (b0 == 0xED && b1 >= 0xA0) || ((b0
+						& 0x0F) == 0 && (b1 & 0x20) == 0)) {
 					if (out > offset) {
 						fBuffer[0] = (byte) b0;
 						fBuffer[1] = (byte) b1;
@@ -432,7 +440,8 @@ public class UTF8Reader extends Reader {
 					}
 					invalidByte(3, 3, b2);
 				}
-				int c = ((b0 << 12) & 0xF000) | ((b1 << 6) & 0x0FC0) | (b2 & 0x003F);
+				int c = ((b0 << 12) & 0xF000) | ((b1 << 6) & 0x0FC0) | (b2
+						& 0x003F);
 				ch[out++] = (char) c;
 				count -= 2;
 				continue;
@@ -458,7 +467,8 @@ public class UTF8Reader extends Reader {
 					}
 					count++;
 				}
-				if ((b1 & 0xC0) != 0x80 || ((b1 & 0x30) == 0 && (b0 & 0x07) == 0)) {
+				if ((b1 & 0xC0) != 0x80 || ((b1 & 0x30) == 0 && (b0
+						& 0x07) == 0)) {
 					if (out > offset) {
 						fBuffer[0] = (byte) b0;
 						fBuffer[1] = (byte) b1;
@@ -542,7 +552,8 @@ public class UTF8Reader extends Reader {
 				int zzzz = b1 & 0x000F;
 				int yyyyyy = b2 & 0x003F;
 				int xxxxxx = b3 & 0x003F;
-				int hs = 0xD800 | ((wwww << 6) & 0x03C0) | (zzzz << 2) | (yyyyyy >> 4);
+				int hs = 0xD800 | ((wwww << 6) & 0x03C0) | (zzzz << 2)
+						| (yyyyyy >> 4);
 				int ls = 0xDC00 | ((yyyyyy << 6) & 0x03C0) | xxxxxx;
 
 				// set characters
@@ -563,7 +574,8 @@ public class UTF8Reader extends Reader {
 
 		// return number of characters converted
 		if (DEBUG_READ) {
-			System.out.println("read(char[]," + offset + ',' + length + "): count=" + count);
+			System.out.println("read(char[]," + offset + ',' + length
+					+ "): count=" + count);
 		}
 		return count;
 
@@ -574,12 +586,12 @@ public class UTF8Reader extends Reader {
 	 * available, an I/O error occurs, or the end of the stream is reached.
 	 *
 	 * @param n
-	 *            The number of characters to skip
+	 *          The number of characters to skip
 	 *
 	 * @return The number of characters actually skipped
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public long skip(long n) throws IOException {
 
@@ -608,7 +620,7 @@ public class UTF8Reader extends Reader {
 	 *         that the next read will block.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public boolean ready() throws IOException {
 		return false;
@@ -627,17 +639,20 @@ public class UTF8Reader extends Reader {
 	 * streams support the mark() operation.
 	 *
 	 * @param readAheadLimit
-	 *            Limit on the number of characters that may be read while still
-	 *            preserving the mark. After reading this many characters,
-	 *            attempting to reset the stream may fail.
+	 *                       Limit on the number of characters that may be read
+	 *                       while still
+	 *                       preserving the mark. After reading this many
+	 *                       characters,
+	 *                       attempting to reset the stream may fail.
 	 *
 	 * @exception IOException
-	 *                If the stream does not support mark(), or if some other
-	 *                I/O error occurs
+	 *                        If the stream does not support mark(), or if some
+	 *                        other
+	 *                        I/O error occurs
 	 */
 	public void mark(int readAheadLimit) throws IOException {
-		throw new IOException(fFormatter.formatMessage(fLocale, "OperationNotSupported",
-				new Object[] { "mark()", "UTF-8" }));
+		throw new IOException(fFormatter.formatMessage(fLocale,
+				"OperationNotSupported", new Object[] { "mark()", "UTF-8" }));
 	} // mark(int)
 
 	/**
@@ -649,9 +664,11 @@ public class UTF8Reader extends Reader {
 	 * reset() without supporting mark().
 	 *
 	 * @exception IOException
-	 *                If the stream has not been marked, or if the mark has been
-	 *                invalidated, or if the stream does not support reset(), or
-	 *                if some other I/O error occurs
+	 *                        If the stream has not been marked, or if the mark
+	 *                        has been
+	 *                        invalidated, or if the stream does not support
+	 *                        reset(), or
+	 *                        if some other I/O error occurs
 	 */
 	public void reset() throws IOException {
 		fOffset = 0;
@@ -664,7 +681,7 @@ public class UTF8Reader extends Reader {
 	 * previously-closed stream, however, has no effect.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void close() throws IOException {
 		BufferAllocator ba = ThreadLocalBufferAllocator.getBufferAllocator();
@@ -678,25 +695,28 @@ public class UTF8Reader extends Reader {
 	//
 
 	/** Throws an exception for expected byte. */
-	private void expectedByte(int position, int count) throws MalformedByteSequenceException {
+	private void expectedByte(int position, int count)
+			throws MalformedByteSequenceException {
 
 		throw new MalformedByteSequenceException(fFormatter, fLocale,
-				XMLMessageFormatter.XML_DOMAIN, "ExpectedByte",
-				new Object[] { Integer.toString(position), Integer.toString(count) });
+				XMLMessageFormatter.XML_DOMAIN, "ExpectedByte", new Object[] {
+						Integer.toString(position), Integer.toString(count) });
 
 	} // expectedByte(int,int)
 
 	/** Throws an exception for invalid byte. */
-	private void invalidByte(int position, int count, int c) throws MalformedByteSequenceException {
+	private void invalidByte(int position, int count, int c)
+			throws MalformedByteSequenceException {
 
 		throw new MalformedByteSequenceException(fFormatter, fLocale,
-				XMLMessageFormatter.XML_DOMAIN, "InvalidByte",
-				new Object[] { Integer.toString(position), Integer.toString(count) });
+				XMLMessageFormatter.XML_DOMAIN, "InvalidByte", new Object[] {
+						Integer.toString(position), Integer.toString(count) });
 
 	} // invalidByte(int,int,int)
 
 	/** Throws an exception for invalid surrogate bits. */
-	private void invalidSurrogate(int uuuuu) throws MalformedByteSequenceException {
+	private void invalidSurrogate(int uuuuu)
+			throws MalformedByteSequenceException {
 
 		throw new MalformedByteSequenceException(fFormatter, fLocale,
 				XMLMessageFormatter.XML_DOMAIN, "InvalidHighSurrogate",

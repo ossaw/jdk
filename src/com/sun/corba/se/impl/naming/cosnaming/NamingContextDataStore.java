@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.cosnaming;
@@ -56,7 +36,7 @@ public interface NamingContextDataStore {
 	 * @param bt
 	 *            Type of binding (as object or as context).
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
 	void Bind(NameComponent n, org.omg.CORBA.Object obj, BindingType bt)
 			throws org.omg.CORBA.SystemException;
@@ -73,7 +53,7 @@ public interface NamingContextDataStore {
 	 *            the BindingType as an out parameter.
 	 * @return the object reference bound under the supplied name.
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
 	org.omg.CORBA.Object Resolve(NameComponent n, BindingTypeHolder bth)
 			throws org.omg.CORBA.SystemException;
@@ -83,22 +63,23 @@ public interface NamingContextDataStore {
 	 * 
 	 * @return the object reference bound to the name, or null if not found.
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
-	org.omg.CORBA.Object Unbind(NameComponent n) throws org.omg.CORBA.SystemException;
+	org.omg.CORBA.Object Unbind(NameComponent n)
+			throws org.omg.CORBA.SystemException;
 
 	/**
 	 * Method which implements listing the contents of this NamingContext and
 	 * return a binding list and a binding iterator.
 	 * 
 	 * @param how_many
-	 *            The number of requested bindings in the BindingList.
+	 *                 The number of requested bindings in the BindingList.
 	 * @param bl
-	 *            The BindingList as an out parameter.
+	 *                 The BindingList as an out parameter.
 	 * @param bi
-	 *            The BindingIterator as an out parameter.
+	 *                 The BindingIterator as an out parameter.
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
 	void List(int how_many, BindingListHolder bl, BindingIteratorHolder bi)
 			throws org.omg.CORBA.SystemException;
@@ -109,7 +90,7 @@ public interface NamingContextDataStore {
 	 * @return an object reference for a new NamingContext object implemented by
 	 *         this Name Server.
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
 	NamingContext NewContext() throws org.omg.CORBA.SystemException;
 
@@ -117,7 +98,7 @@ public interface NamingContextDataStore {
 	 * Method which implements destroying this NamingContext.
 	 * 
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
 	void Destroy() throws org.omg.CORBA.SystemException;
 

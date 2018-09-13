@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.javadoc;
@@ -45,9 +25,9 @@ public interface PackageDoc extends Doc {
 	 *
 	 * @return filtered classes and interfaces in this package
 	 * @param filter
-	 *            Specifying true filters according to the specified access
-	 *            modifier option. Specifying false includes all classes and
-	 *            interfaces regardless of access modifier option.
+	 *               Specifying true filters according to the specified access
+	 *               modifier option. Specifying false includes all classes and
+	 *               interfaces regardless of access modifier option.
 	 * @since 1.4
 	 */
 	ClassDoc[] allClasses(boolean filter);

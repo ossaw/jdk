@@ -50,7 +50,8 @@ public abstract class EncryptionElementProxy extends ElementProxy {
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public EncryptionElementProxy(Element element, String BaseURI) throws XMLSecurityException {
+	public EncryptionElementProxy(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 

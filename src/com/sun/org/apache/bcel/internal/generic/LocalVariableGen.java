@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -72,8 +64,8 @@ import java.util.Objects;
  * @see LocalVariable
  * @see MethodGen
  */
-public class LocalVariableGen
-		implements InstructionTargeter, NamedAndTyped, Cloneable, java.io.Serializable {
+public class LocalVariableGen implements InstructionTargeter, NamedAndTyped,
+		Cloneable, java.io.Serializable {
 	private final int index;
 	private String name;
 	private Type type;
@@ -85,19 +77,19 @@ public class LocalVariableGen
 	 * user.
 	 *
 	 * @param index
-	 *            index of local variable
+	 *              index of local variable
 	 * @param name
-	 *            its name
+	 *              its name
 	 * @param type
-	 *            its type
+	 *              its type
 	 * @param start
-	 *            from where the instruction is valid (null means from the
-	 *            start)
+	 *              from where the instruction is valid (null means from the
+	 *              start)
 	 * @param end
-	 *            until where the instruction is valid (null means to the end)
+	 *              until where the instruction is valid (null means to the end)
 	 */
-	public LocalVariableGen(int index, String name, Type type, InstructionHandle start,
-			InstructionHandle end) {
+	public LocalVariableGen(int index, String name, Type type,
+			InstructionHandle start, InstructionHandle end) {
 		if ((index < 0) || (index > Constants.MAX_SHORT))
 			throw new ClassGenException("Invalid index index: " + index);
 
@@ -121,9 +113,9 @@ public class LocalVariableGen
 	 * at first index beyond the end of the code are valid.
 	 *
 	 * @param il
-	 *            instruction list (byte code) which this variable belongs to
+	 *           instruction list (byte code) which this variable belongs to
 	 * @param cp
-	 *            constant pool
+	 *           constant pool
 	 */
 	public LocalVariable getLocalVariable(ConstantPoolGen cp) {
 		int start_pc = start.getPosition();
@@ -135,8 +127,8 @@ public class LocalVariableGen
 		int name_index = cp.addUtf8(name);
 		int signature_index = cp.addUtf8(type.getSignature());
 
-		return new LocalVariable(start_pc, length, name_index, signature_index, index,
-				cp.getConstantPool());
+		return new LocalVariable(start_pc, length, name_index, signature_index,
+				index, cp.getConstantPool());
 	}
 
 	public int getIndex() {
@@ -245,12 +237,13 @@ public class LocalVariableGen
 
 	/**
 	 * @param old_ih
-	 *            old target, either start or end
+	 *               old target, either start or end
 	 * @param new_ih
-	 *            new target
+	 *               new target
 	 */
 	@Override
-	public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
+	public void updateTarget(InstructionHandle old_ih,
+			InstructionHandle new_ih) {
 		boolean targeted = false;
 
 		if (start == old_ih) {
@@ -264,8 +257,8 @@ public class LocalVariableGen
 		}
 
 		if (!targeted)
-			throw new ClassGenException(
-					"Not targeting " + old_ih + ", but {" + start + ", " + end + "}");
+			throw new ClassGenException("Not targeting " + old_ih + ", but {"
+					+ start + ", " + end + "}");
 	}
 
 	/**
@@ -303,7 +296,8 @@ public class LocalVariableGen
 
 	@Override
 	public String toString() {
-		return "LocalVariableGen(" + name + ", " + type + ", " + start + ", " + end + ")";
+		return "LocalVariableGen(" + name + ", " + type + ", " + start + ", "
+				+ end + ")";
 	}
 
 	@Override

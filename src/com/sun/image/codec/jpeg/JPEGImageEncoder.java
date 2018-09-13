@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -7,9 +6,9 @@
 /**********************************************************************
  **********************************************************************
  **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company.                 ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
+ *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************
  **********************************************************************
  **********************************************************************/
@@ -20,23 +19,25 @@ package com.sun.image.codec.jpeg;
  * JPEGImageEncoder Interface
  *
  * JPEGImageEncoder compresses images into JPEG data streams and
- * writes the JPEG stream to an OutputStream.  Image data that is to
+ * writes the JPEG stream to an OutputStream. Image data that is to
  * be encoded can be passed in as a Raster of image data or as a
- * BufferedImage.  Encoding or the image data into the output JPEG
+ * BufferedImage. Encoding or the image data into the output JPEG
  * stream is controlled by the parameters setting found in the
- * JPEGEncodeParam object.<P>
+ * JPEGEncodeParam object.
+ * <P>
  *
  * ColorSpace comments: First off JPEG by specification is color
- * blind!  That said, this interface will perform some color space
- * conversion in the name of better compression ratios.  There is no
+ * blind! That said, this interface will perform some color space
+ * conversion in the name of better compression ratios. There is no
  * explicit mechanism in the JPEGEncodeParam interface for controlling
  * the Encoded ColorSpace of the data when it is written to the JPEG
- * data stream.  If an approriate colorspace setting is not already
- * defined it is recommended that colorspace unknown is used.  Some
+ * data stream. If an approriate colorspace setting is not already
+ * defined it is recommended that colorspace unknown is used. Some
  * updates to the standard color space designations have been made to
- * allow this decoder to handle alpha channels.  See the
+ * allow this decoder to handle alpha channels. See the
  * JPEGEncodeParam description for more details on additional color
- * space designations ( @see JPEGEncodeParam ).<P>
+ * space designations ( @see JPEGEncodeParam ).
+ * <P>
  *
  * This encoder will process interchange, and abbreviated JPEG
  * streams.
@@ -106,7 +107,8 @@ public interface JPEGImageEncoder {
 	 * returned object will do a credible job of encoding the given
 	 * BufferedImage.
 	 */
-	public JPEGEncodeParam getDefaultJPEGEncodeParam(BufferedImage bi) throws ImageFormatException;
+	public JPEGEncodeParam getDefaultJPEGEncodeParam(BufferedImage bi)
+			throws ImageFormatException;
 
 	/**
 	 * Encode a BufferedImage as a JPEG data stream. Note, some color
@@ -119,9 +121,10 @@ public interface JPEGImageEncoder {
 	 * created by calling getDefaultJPEGEncodeParam with bi.
 	 * 
 	 * @param bi
-	 *            The BufferedImage to encode.
+	 *           The BufferedImage to encode.
 	 */
-	public void encode(BufferedImage bi) throws IOException, ImageFormatException;
+	public void encode(BufferedImage bi) throws IOException,
+			ImageFormatException;
 
 	/**
 	 * Encode a BufferedImage as a JPEG data stream. Note, some color
@@ -151,7 +154,7 @@ public interface JPEGImageEncoder {
 	 * encoding.
 	 * 
 	 * @param cm
-	 *            The ColorModel to map to an jpeg encoded COLOR_ID.
+	 *           The ColorModel to map to an jpeg encoded COLOR_ID.
 	 * @return The default mapping of cm to a jpeg Color_ID note that in a few
 	 *         cases color conversion is required.
 	 */
@@ -176,11 +179,12 @@ public interface JPEGImageEncoder {
 	 * interface.
 	 *
 	 * @param numBands
-	 *            the number of bands that will be encoded (max of four).
+	 *                 the number of bands that will be encoded (max of four).
 	 * @param colorID
-	 *            the COLOR_ID for the encoded data. This is used to set
-	 *            reasonable defaults in the parameter object. This must match
-	 *            the number of bands given.
+	 *                 the COLOR_ID for the encoded data. This is used to set
+	 *                 reasonable defaults in the parameter object. This must
+	 *                 match
+	 *                 the number of bands given.
 	 */
 	public JPEGEncodeParam getDefaultJPEGEncodeParam(int numBands, int colorID)
 			throws ImageFormatException;
@@ -226,5 +230,6 @@ public interface JPEGImageEncoder {
 	 * @param jep
 	 *            The JPEGEncodeParam object used to control the encoding.
 	 */
-	public void encode(Raster ras, JPEGEncodeParam jep) throws IOException, ImageFormatException;
+	public void encode(Raster ras, JPEGEncodeParam jep) throws IOException,
+			ImageFormatException;
 }

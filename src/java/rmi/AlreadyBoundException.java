@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi;
 
@@ -54,7 +34,7 @@ public class AlreadyBoundException extends java.lang.Exception {
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 * @since JDK1.1
 	 */
 	public AlreadyBoundException(String s) {

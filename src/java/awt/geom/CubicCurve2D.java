@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -129,41 +109,40 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public Float() {
-		}
+		public Float() {}
 
 		/**
 		 * Constructs and initializes a {@code CubicCurve2D} from the specified
 		 * {@code float} coordinates.
 		 *
 		 * @param x1
-		 *            the X coordinate for the start point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the X coordinate for the start point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @param y1
-		 *            the Y coordinate for the start point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the Y coordinate for the start point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @param ctrlx1
-		 *            the X coordinate for the first control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the X coordinate for the first control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param ctrly1
-		 *            the Y coordinate for the first control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the Y coordinate for the first control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param ctrlx2
-		 *            the X coordinate for the second control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the X coordinate for the second control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param ctrly2
-		 *            the Y coordinate for the second control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the Y coordinate for the second control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param x2
-		 *            the X coordinate for the end point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the X coordinate for the end point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @param y2
-		 *            the Y coordinate for the end point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the Y coordinate for the end point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @since 1.2
 		 */
-		public Float(float x1, float y1, float ctrlx1, float ctrly1, float ctrlx2, float ctrly2,
-				float x2, float y2) {
+		public Float(float x1, float y1, float ctrlx1, float ctrly1,
+				float ctrlx2, float ctrly2, float x2, float y2) {
 			setCurve(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2, x2, y2);
 		}
 
@@ -280,8 +259,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public void setCurve(double x1, double y1, double ctrlx1, double ctrly1, double ctrlx2,
-				double ctrly2, double x2, double y2) {
+		public void setCurve(double x1, double y1, double ctrlx1, double ctrly1,
+				double ctrlx2, double ctrly2, double x2, double y2) {
 			this.x1 = (float) x1;
 			this.y1 = (float) y1;
 			this.ctrlx1 = (float) ctrlx1;
@@ -297,33 +276,35 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		 * to the specified {@code float} coordinates.
 		 *
 		 * @param x1
-		 *            the X coordinate used to set the start point of this
-		 *            {@code CubicCurve2D}
+		 *               the X coordinate used to set the start point of this
+		 *               {@code CubicCurve2D}
 		 * @param y1
-		 *            the Y coordinate used to set the start point of this
-		 *            {@code CubicCurve2D}
+		 *               the Y coordinate used to set the start point of this
+		 *               {@code CubicCurve2D}
 		 * @param ctrlx1
-		 *            the X coordinate used to set the first control point of
-		 *            this {@code CubicCurve2D}
+		 *               the X coordinate used to set the first control point of
+		 *               this {@code CubicCurve2D}
 		 * @param ctrly1
-		 *            the Y coordinate used to set the first control point of
-		 *            this {@code CubicCurve2D}
+		 *               the Y coordinate used to set the first control point of
+		 *               this {@code CubicCurve2D}
 		 * @param ctrlx2
-		 *            the X coordinate used to set the second control point of
-		 *            this {@code CubicCurve2D}
+		 *               the X coordinate used to set the second control point
+		 *               of
+		 *               this {@code CubicCurve2D}
 		 * @param ctrly2
-		 *            the Y coordinate used to set the second control point of
-		 *            this {@code CubicCurve2D}
+		 *               the Y coordinate used to set the second control point
+		 *               of
+		 *               this {@code CubicCurve2D}
 		 * @param x2
-		 *            the X coordinate used to set the end point of this
-		 *            {@code CubicCurve2D}
+		 *               the X coordinate used to set the end point of this
+		 *               {@code CubicCurve2D}
 		 * @param y2
-		 *            the Y coordinate used to set the end point of this
-		 *            {@code CubicCurve2D}
+		 *               the Y coordinate used to set the end point of this
+		 *               {@code CubicCurve2D}
 		 * @since 1.2
 		 */
-		public void setCurve(float x1, float y1, float ctrlx1, float ctrly1, float ctrlx2,
-				float ctrly2, float x2, float y2) {
+		public void setCurve(float x1, float y1, float ctrlx1, float ctrly1,
+				float ctrlx2, float ctrly2, float x2, float y2) {
 			this.x1 = x1;
 			this.y1 = y1;
 			this.ctrlx1 = ctrlx1;
@@ -434,41 +415,40 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public Double() {
-		}
+		public Double() {}
 
 		/**
 		 * Constructs and initializes a {@code CubicCurve2D} from the specified
 		 * {@code double} coordinates.
 		 *
 		 * @param x1
-		 *            the X coordinate for the start point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the X coordinate for the start point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @param y1
-		 *            the Y coordinate for the start point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the Y coordinate for the start point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @param ctrlx1
-		 *            the X coordinate for the first control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the X coordinate for the first control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param ctrly1
-		 *            the Y coordinate for the first control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the Y coordinate for the first control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param ctrlx2
-		 *            the X coordinate for the second control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the X coordinate for the second control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param ctrly2
-		 *            the Y coordinate for the second control point of the
-		 *            resulting {@code CubicCurve2D}
+		 *               the Y coordinate for the second control point of the
+		 *               resulting {@code CubicCurve2D}
 		 * @param x2
-		 *            the X coordinate for the end point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the X coordinate for the end point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @param y2
-		 *            the Y coordinate for the end point of the resulting
-		 *            {@code CubicCurve2D}
+		 *               the Y coordinate for the end point of the resulting
+		 *               {@code CubicCurve2D}
 		 * @since 1.2
 		 */
-		public Double(double x1, double y1, double ctrlx1, double ctrly1, double ctrlx2,
-				double ctrly2, double x2, double y2) {
+		public Double(double x1, double y1, double ctrlx1, double ctrly1,
+				double ctrlx2, double ctrly2, double x2, double y2) {
 			setCurve(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2, x2, y2);
 		}
 
@@ -585,8 +565,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public void setCurve(double x1, double y1, double ctrlx1, double ctrly1, double ctrlx2,
-				double ctrly2, double x2, double y2) {
+		public void setCurve(double x1, double y1, double ctrlx1, double ctrly1,
+				double ctrlx2, double ctrly2, double x2, double y2) {
 			this.x1 = x1;
 			this.y1 = y1;
 			this.ctrlx1 = ctrlx1;
@@ -606,8 +586,10 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 			double left = Math.min(Math.min(x1, x2), Math.min(ctrlx1, ctrlx2));
 			double top = Math.min(Math.min(y1, y2), Math.min(ctrly1, ctrly2));
 			double right = Math.max(Math.max(x1, x2), Math.max(ctrlx1, ctrlx2));
-			double bottom = Math.max(Math.max(y1, y2), Math.max(ctrly1, ctrly2));
-			return new Rectangle2D.Double(left, top, right - left, bottom - top);
+			double bottom = Math.max(Math.max(y1, y2), Math.max(ctrly1,
+					ctrly2));
+			return new Rectangle2D.Double(left, top, right - left, bottom
+					- top);
 		}
 
 		/*
@@ -626,8 +608,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * @see java.awt.geom.CubicCurve2D.Double
 	 * @since 1.2
 	 */
-	protected CubicCurve2D() {
-	}
+	protected CubicCurve2D() {}
 
 	/**
 	 * Returns the X coordinate of the start point in double precision.
@@ -738,49 +719,55 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * the specified double coordinates.
 	 *
 	 * @param x1
-	 *            the X coordinate used to set the start point of this
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate used to set the start point of this
+	 *               {@code CubicCurve2D}
 	 * @param y1
-	 *            the Y coordinate used to set the start point of this
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate used to set the start point of this
+	 *               {@code CubicCurve2D}
 	 * @param ctrlx1
-	 *            the X coordinate used to set the first control point of this
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate used to set the first control point of
+	 *               this
+	 *               {@code CubicCurve2D}
 	 * @param ctrly1
-	 *            the Y coordinate used to set the first control point of this
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate used to set the first control point of
+	 *               this
+	 *               {@code CubicCurve2D}
 	 * @param ctrlx2
-	 *            the X coordinate used to set the second control point of this
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate used to set the second control point of
+	 *               this
+	 *               {@code CubicCurve2D}
 	 * @param ctrly2
-	 *            the Y coordinate used to set the second control point of this
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate used to set the second control point of
+	 *               this
+	 *               {@code CubicCurve2D}
 	 * @param x2
-	 *            the X coordinate used to set the end point of this
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate used to set the end point of this
+	 *               {@code CubicCurve2D}
 	 * @param y2
-	 *            the Y coordinate used to set the end point of this
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate used to set the end point of this
+	 *               {@code CubicCurve2D}
 	 * @since 1.2
 	 */
-	public abstract void setCurve(double x1, double y1, double ctrlx1, double ctrly1, double ctrlx2,
-			double ctrly2, double x2, double y2);
+	public abstract void setCurve(double x1, double y1, double ctrlx1,
+			double ctrly1, double ctrlx2, double ctrly2, double x2, double y2);
 
 	/**
 	 * Sets the location of the end points and control points of this curve to
 	 * the double coordinates at the specified offset in the specified array.
 	 * 
 	 * @param coords
-	 *            a double array containing coordinates
+	 *               a double array containing coordinates
 	 * @param offset
-	 *            the index of <code>coords</code> from which to begin setting
-	 *            the end points and control points of this curve to the
-	 *            coordinates contained in <code>coords</code>
+	 *               the index of <code>coords</code> from which to begin
+	 *               setting
+	 *               the end points and control points of this curve to the
+	 *               coordinates contained in <code>coords</code>
 	 * @since 1.2
 	 */
 	public void setCurve(double[] coords, int offset) {
-		setCurve(coords[offset + 0], coords[offset + 1], coords[offset + 2], coords[offset + 3],
-				coords[offset + 4], coords[offset + 5], coords[offset + 6], coords[offset + 7]);
+		setCurve(coords[offset + 0], coords[offset + 1], coords[offset + 2],
+				coords[offset + 3], coords[offset + 4], coords[offset + 5],
+				coords[offset + 6], coords[offset + 7]);
 	}
 
 	/**
@@ -802,8 +789,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * @since 1.2
 	 */
 	public void setCurve(Point2D p1, Point2D cp1, Point2D cp2, Point2D p2) {
-		setCurve(p1.getX(), p1.getY(), cp1.getX(), cp1.getY(), cp2.getX(), cp2.getY(), p2.getX(),
-				p2.getY());
+		setCurve(p1.getX(), p1.getY(), cp1.getX(), cp1.getY(), cp2.getX(), cp2
+				.getY(), p2.getX(), p2.getY());
 	}
 
 	/**
@@ -812,17 +799,19 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * offset in the specified array.
 	 * 
 	 * @param pts
-	 *            an array of <code>Point2D</code> objects
+	 *               an array of <code>Point2D</code> objects
 	 * @param offset
-	 *            the index of <code>pts</code> from which to begin setting the
-	 *            end points and control points of this curve to the points
-	 *            contained in <code>pts</code>
+	 *               the index of <code>pts</code> from which to begin setting
+	 *               the
+	 *               end points and control points of this curve to the points
+	 *               contained in <code>pts</code>
 	 * @since 1.2
 	 */
 	public void setCurve(Point2D[] pts, int offset) {
-		setCurve(pts[offset + 0].getX(), pts[offset + 0].getY(), pts[offset + 1].getX(),
-				pts[offset + 1].getY(), pts[offset + 2].getX(), pts[offset + 2].getY(),
-				pts[offset + 3].getX(), pts[offset + 3].getY());
+		setCurve(pts[offset + 0].getX(), pts[offset + 0].getY(), pts[offset + 1]
+				.getX(), pts[offset + 1].getY(), pts[offset + 2].getX(),
+				pts[offset + 2].getY(), pts[offset + 3].getX(), pts[offset + 3]
+						.getY());
 	}
 
 	/**
@@ -830,12 +819,12 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * the same as those in the specified <code>CubicCurve2D</code>.
 	 * 
 	 * @param c
-	 *            the specified <code>CubicCurve2D</code>
+	 *          the specified <code>CubicCurve2D</code>
 	 * @since 1.2
 	 */
 	public void setCurve(CubicCurve2D c) {
-		setCurve(c.getX1(), c.getY1(), c.getCtrlX1(), c.getCtrlY1(), c.getCtrlX2(), c.getCtrlY2(),
-				c.getX2(), c.getY2());
+		setCurve(c.getX1(), c.getY1(), c.getCtrlX1(), c.getCtrlY1(), c
+				.getCtrlX2(), c.getCtrlY2(), c.getX2(), c.getY2());
 	}
 
 	/**
@@ -844,35 +833,39 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * control point from the line connecting the end points.
 	 *
 	 * @param x1
-	 *            the X coordinate that specifies the start point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the start point of a
+	 *               {@code CubicCurve2D}
 	 * @param y1
-	 *            the Y coordinate that specifies the start point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the start point of a
+	 *               {@code CubicCurve2D}
 	 * @param ctrlx1
-	 *            the X coordinate that specifies the first control point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the first control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param ctrly1
-	 *            the Y coordinate that specifies the first control point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the first control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param ctrlx2
-	 *            the X coordinate that specifies the second control point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the second control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param ctrly2
-	 *            the Y coordinate that specifies the second control point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the second control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param x2
-	 *            the X coordinate that specifies the end point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the end point of a
+	 *               {@code CubicCurve2D}
 	 * @param y2
-	 *            the Y coordinate that specifies the end point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the end point of a
+	 *               {@code CubicCurve2D}
 	 * @return the square of the flatness of the {@code CubicCurve2D}
 	 *         represented by the specified coordinates.
 	 * @since 1.2
 	 */
-	public static double getFlatnessSq(double x1, double y1, double ctrlx1, double ctrly1,
-			double ctrlx2, double ctrly2, double x2, double y2) {
+	public static double getFlatnessSq(double x1, double y1, double ctrlx1,
+			double ctrly1, double ctrlx2, double ctrly2, double x2, double y2) {
 		return Math.max(Line2D.ptSegDistSq(x1, y1, x2, y2, ctrlx1, ctrly1),
 				Line2D.ptSegDistSq(x1, y1, x2, y2, ctrlx2, ctrly2));
 
@@ -884,36 +877,41 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * from the line connecting the end points.
 	 *
 	 * @param x1
-	 *            the X coordinate that specifies the start point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the start point of a
+	 *               {@code CubicCurve2D}
 	 * @param y1
-	 *            the Y coordinate that specifies the start point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the start point of a
+	 *               {@code CubicCurve2D}
 	 * @param ctrlx1
-	 *            the X coordinate that specifies the first control point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the first control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param ctrly1
-	 *            the Y coordinate that specifies the first control point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the first control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param ctrlx2
-	 *            the X coordinate that specifies the second control point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the second control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param ctrly2
-	 *            the Y coordinate that specifies the second control point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the second control point of
+	 *               a
+	 *               {@code CubicCurve2D}
 	 * @param x2
-	 *            the X coordinate that specifies the end point of a
-	 *            {@code CubicCurve2D}
+	 *               the X coordinate that specifies the end point of a
+	 *               {@code CubicCurve2D}
 	 * @param y2
-	 *            the Y coordinate that specifies the end point of a
-	 *            {@code CubicCurve2D}
+	 *               the Y coordinate that specifies the end point of a
+	 *               {@code CubicCurve2D}
 	 * @return the flatness of the {@code CubicCurve2D} represented by the
 	 *         specified coordinates.
 	 * @since 1.2
 	 */
-	public static double getFlatness(double x1, double y1, double ctrlx1, double ctrly1,
-			double ctrlx2, double ctrly2, double x2, double y2) {
-		return Math.sqrt(getFlatnessSq(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2, x2, y2));
+	public static double getFlatness(double x1, double y1, double ctrlx1,
+			double ctrly1, double ctrlx2, double ctrly2, double x2, double y2) {
+		return Math.sqrt(getFlatnessSq(x1, y1, ctrlx1, ctrly1, ctrlx2, ctrly2,
+				x2, y2));
 	}
 
 	/**
@@ -923,19 +921,20 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * connecting the end points.
 	 * 
 	 * @param coords
-	 *            an array containing coordinates
+	 *               an array containing coordinates
 	 * @param offset
-	 *            the index of <code>coords</code> from which to begin getting
-	 *            the end points and control points of the curve
+	 *               the index of <code>coords</code> from which to begin
+	 *               getting
+	 *               the end points and control points of the curve
 	 * @return the square of the flatness of the <code>CubicCurve2D</code>
 	 *         specified by the coordinates in <code>coords</code> at the
 	 *         specified offset.
 	 * @since 1.2
 	 */
 	public static double getFlatnessSq(double coords[], int offset) {
-		return getFlatnessSq(coords[offset + 0], coords[offset + 1], coords[offset + 2],
-				coords[offset + 3], coords[offset + 4], coords[offset + 5], coords[offset + 6],
-				coords[offset + 7]);
+		return getFlatnessSq(coords[offset + 0], coords[offset + 1],
+				coords[offset + 2], coords[offset + 3], coords[offset + 4],
+				coords[offset + 5], coords[offset + 6], coords[offset + 7]);
 	}
 
 	/**
@@ -945,18 +944,19 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * points.
 	 * 
 	 * @param coords
-	 *            an array containing coordinates
+	 *               an array containing coordinates
 	 * @param offset
-	 *            the index of <code>coords</code> from which to begin getting
-	 *            the end points and control points of the curve
+	 *               the index of <code>coords</code> from which to begin
+	 *               getting
+	 *               the end points and control points of the curve
 	 * @return the flatness of the <code>CubicCurve2D</code> specified by the
 	 *         coordinates in <code>coords</code> at the specified offset.
 	 * @since 1.2
 	 */
 	public static double getFlatness(double coords[], int offset) {
-		return getFlatness(coords[offset + 0], coords[offset + 1], coords[offset + 2],
-				coords[offset + 3], coords[offset + 4], coords[offset + 5], coords[offset + 6],
-				coords[offset + 7]);
+		return getFlatness(coords[offset + 0], coords[offset + 1], coords[offset
+				+ 2], coords[offset + 3], coords[offset + 4], coords[offset
+						+ 5], coords[offset + 6], coords[offset + 7]);
 	}
 
 	/**
@@ -968,8 +968,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * @since 1.2
 	 */
 	public double getFlatnessSq() {
-		return getFlatnessSq(getX1(), getY1(), getCtrlX1(), getCtrlY1(), getCtrlX2(), getCtrlY2(),
-				getX2(), getY2());
+		return getFlatnessSq(getX1(), getY1(), getCtrlX1(), getCtrlY1(),
+				getCtrlX2(), getCtrlY2(), getX2(), getY2());
 	}
 
 	/**
@@ -980,8 +980,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * @since 1.2
 	 */
 	public double getFlatness() {
-		return getFlatness(getX1(), getY1(), getCtrlX1(), getCtrlY1(), getCtrlX2(), getCtrlY2(),
-				getX2(), getY2());
+		return getFlatness(getX1(), getY1(), getCtrlX1(), getCtrlY1(),
+				getCtrlX2(), getCtrlY2(), getX2(), getY2());
 	}
 
 	/**
@@ -990,11 +990,12 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * left and right objects may be the same as this object or null.
 	 * 
 	 * @param left
-	 *            the cubic curve object for storing for the left or first half
-	 *            of the subdivided curve
+	 *              the cubic curve object for storing for the left or first
+	 *              half
+	 *              of the subdivided curve
 	 * @param right
-	 *            the cubic curve object for storing for the right or second
-	 *            half of the subdivided curve
+	 *              the cubic curve object for storing for the right or second
+	 *              half of the subdivided curve
 	 * @since 1.2
 	 */
 	public void subdivide(CubicCurve2D left, CubicCurve2D right) {
@@ -1009,16 +1010,18 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * <code>src</code> object or <code>null</code>.
 	 * 
 	 * @param src
-	 *            the cubic curve to be subdivided
+	 *              the cubic curve to be subdivided
 	 * @param left
-	 *            the cubic curve object for storing the left or first half of
-	 *            the subdivided curve
+	 *              the cubic curve object for storing the left or first half of
+	 *              the subdivided curve
 	 * @param right
-	 *            the cubic curve object for storing the right or second half of
-	 *            the subdivided curve
+	 *              the cubic curve object for storing the right or second half
+	 *              of
+	 *              the subdivided curve
 	 * @since 1.2
 	 */
-	public static void subdivide(CubicCurve2D src, CubicCurve2D left, CubicCurve2D right) {
+	public static void subdivide(CubicCurve2D src, CubicCurve2D left,
+			CubicCurve2D right) {
 		double x1 = src.getX1();
 		double y1 = src.getY1();
 		double ctrlx1 = src.getCtrlX1();
@@ -1040,10 +1043,12 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		centerx = (ctrlx12 + ctrlx21) / 2.0;
 		centery = (ctrly12 + ctrly21) / 2.0;
 		if (left != null) {
-			left.setCurve(x1, y1, ctrlx1, ctrly1, ctrlx12, ctrly12, centerx, centery);
+			left.setCurve(x1, y1, ctrlx1, ctrly1, ctrlx12, ctrly12, centerx,
+					centery);
 		}
 		if (right != null) {
-			right.setCurve(centerx, centery, ctrlx21, ctrly21, ctrlx2, ctrly2, x2, y2);
+			right.setCurve(centerx, centery, ctrlx21, ctrly21, ctrlx2, ctrly2,
+					x2, y2);
 		}
 	}
 
@@ -1062,26 +1067,31 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * storage for this common point.
 	 * 
 	 * @param src
-	 *            the array holding the coordinates for the source curve
+	 *                 the array holding the coordinates for the source curve
 	 * @param srcoff
-	 *            the offset into the array of the beginning of the the 6 source
-	 *            coordinates
+	 *                 the offset into the array of the beginning of the the 6
+	 *                 source
+	 *                 coordinates
 	 * @param left
-	 *            the array for storing the coordinates for the first half of
-	 *            the subdivided curve
+	 *                 the array for storing the coordinates for the first half
+	 *                 of
+	 *                 the subdivided curve
 	 * @param leftoff
-	 *            the offset into the array of the beginning of the the 6 left
-	 *            coordinates
+	 *                 the offset into the array of the beginning of the the 6
+	 *                 left
+	 *                 coordinates
 	 * @param right
-	 *            the array for storing the coordinates for the second half of
-	 *            the subdivided curve
+	 *                 the array for storing the coordinates for the second half
+	 *                 of
+	 *                 the subdivided curve
 	 * @param rightoff
-	 *            the offset into the array of the beginning of the the 6 right
-	 *            coordinates
+	 *                 the offset into the array of the beginning of the the 6
+	 *                 right
+	 *                 coordinates
 	 * @since 1.2
 	 */
-	public static void subdivide(double src[], int srcoff, double left[], int leftoff,
-			double right[], int rightoff) {
+	public static void subdivide(double src[], int srcoff, double left[],
+			int leftoff, double right[], int rightoff) {
 		double x1 = src[srcoff + 0];
 		double y1 = src[srcoff + 1];
 		double ctrlx1 = src[srcoff + 2];
@@ -1291,7 +1301,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 				// this just tries to improve the accuracy of the computed
 				// roots using Newton's method.
 				res[0] = refineRootWithHint(eqn, x0, intervals[0], res[0]);
-				res[1] = refineRootWithHint(eqn, intervals[0], intervals[1], res[1]);
+				res[1] = refineRootWithHint(eqn, intervals[0], intervals[1],
+						res[1]);
 				res[2] = refineRootWithHint(eqn, intervals[1], xe, res[2]);
 				return 3;
 			} else if (critCount == 1) {
@@ -1362,7 +1373,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	}
 
 	// use newton's method.
-	private static double refineRootWithHint(double[] eqn, double min, double max, double t) {
+	private static double refineRootWithHint(double[] eqn, double min,
+			double max, double t) {
 		if (!inInterval(t, min, max)) {
 			return t;
 		}
@@ -1386,7 +1398,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		return origt;
 	}
 
-	private static double bisectRootWithHint(double[] eqn, double x0, double xe, double hint) {
+	private static double bisectRootWithHint(double[] eqn, double x0, double xe,
+			double hint) {
 		double delta1 = Math.min(abs(hint - x0) / 64, 0.0625);
 		double delta2 = Math.min(abs(hint - xe) / 64, 0.0625);
 		double x02 = hint - delta1;
@@ -1499,8 +1512,8 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 		double x2 = getX2();
 		double y2 = getY2();
 		int crossings = (Curve.pointCrossingsForLine(x, y, x1, y1, x2, y2)
-				+ Curve.pointCrossingsForCubic(x, y, x1, y1, getCtrlX1(), getCtrlY1(), getCtrlX2(),
-						getCtrlY2(), x2, y2, 0));
+				+ Curve.pointCrossingsForCubic(x, y, x1, y1, getCtrlX1(),
+						getCtrlY1(), getCtrlX2(), getCtrlY2(), x2, y2, 0));
 		return ((crossings & 1) == 1);
 	}
 
@@ -1559,16 +1572,17 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	private int rectCrossings(double x, double y, double w, double h) {
 		int crossings = 0;
 		if (!(getX1() == getX2() && getY1() == getY2())) {
-			crossings = Curve.rectCrossingsForLine(crossings, x, y, x + w, y + h, getX1(), getY1(),
-					getX2(), getY2());
+			crossings = Curve.rectCrossingsForLine(crossings, x, y, x + w, y
+					+ h, getX1(), getY1(), getX2(), getY2());
 			if (crossings == Curve.RECT_INTERSECTS) {
 				return crossings;
 			}
 		}
 		// we call this with the curve's direction reversed, because we wanted
 		// to call rectCrossingsForLine first, because it's cheaper.
-		return Curve.rectCrossingsForCubic(crossings, x, y, x + w, y + h, getX2(), getY2(),
-				getCtrlX2(), getCtrlY2(), getCtrlX1(), getCtrlY1(), getX1(), getY1(), 0);
+		return Curve.rectCrossingsForCubic(crossings, x, y, x + w, y + h,
+				getX2(), getY2(), getCtrlX2(), getCtrlY2(), getCtrlX1(),
+				getCtrlY1(), getX1(), getY1(), 0);
 	}
 
 	/**
@@ -1597,9 +1611,9 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * iterations of that geometry that are already in process.
 	 * 
 	 * @param at
-	 *            an optional <code>AffineTransform</code> to be applied to the
-	 *            coordinates as they are returned in the iteration, or
-	 *            <code>null</code> if untransformed coordinates are desired
+	 *           an optional <code>AffineTransform</code> to be applied to the
+	 *           coordinates as they are returned in the iteration, or
+	 *           <code>null</code> if untransformed coordinates are desired
 	 * @return the <code>PathIterator</code> object that returns the geometry of
 	 *         the outline of this <code>CubicCurve2D</code>, one segment at a
 	 *         time.
@@ -1617,13 +1631,17 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 * not affect any iterations of that geometry that are already in process.
 	 * 
 	 * @param at
-	 *            an optional <code>AffineTransform</code> to be applied to the
-	 *            coordinates as they are returned in the iteration, or
-	 *            <code>null</code> if untransformed coordinates are desired
+	 *                 an optional <code>AffineTransform</code> to be applied to
+	 *                 the
+	 *                 coordinates as they are returned in the iteration, or
+	 *                 <code>null</code> if untransformed coordinates are
+	 *                 desired
 	 * @param flatness
-	 *            the maximum amount that the control points for a given curve
-	 *            can vary from colinear before a subdivided curve is replaced
-	 *            by a straight line connecting the end points
+	 *                 the maximum amount that the control points for a given
+	 *                 curve
+	 *                 can vary from colinear before a subdivided curve is
+	 *                 replaced
+	 *                 by a straight line connecting the end points
 	 * @return the <code>PathIterator</code> object that returns the geometry of
 	 *         the outline of this <code>CubicCurve2D</code>, one segment at a
 	 *         time.
@@ -1638,7 +1656,7 @@ public abstract class CubicCurve2D implements Shape, Cloneable {
 	 *
 	 * @return a clone of this instance.
 	 * @exception OutOfMemoryError
-	 *                if there is not enough memory.
+	 *                             if there is not enough memory.
 	 * @see java.lang.Cloneable
 	 * @since 1.2
 	 */

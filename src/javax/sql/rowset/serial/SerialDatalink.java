@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.serial;
@@ -82,7 +62,7 @@ public class SerialDatalink implements Serializable, Cloneable {
 	 * @param url
 	 *            the {@code URL} to create the {@code SerialDataLink} from
 	 * @throws SerialException
-	 *             if url parameter is a null
+	 *                         if url parameter is a null
 	 */
 	public SerialDatalink(URL url) throws SerialException {
 		if (url == null) {
@@ -98,7 +78,8 @@ public class SerialDatalink implements Serializable, Cloneable {
 	 * @return a copy of this <code>SerialDatalink</code> object as a
 	 *         <code>URL</code> object in the Java programming language.
 	 * @throws SerialException
-	 *             if the <code>URL</code> object cannot be de-serialized
+	 *                         if the <code>URL</code> object cannot be
+	 *                         de-serialized
 	 */
 	public URL getDatalink() throws SerialException {
 
@@ -107,7 +88,8 @@ public class SerialDatalink implements Serializable, Cloneable {
 		try {
 			aURL = new URL((this.url).toString());
 		} catch (java.net.MalformedURLException e) {
-			throw new SerialException("MalformedURLException: " + e.getMessage());
+			throw new SerialException("MalformedURLException: " + e
+					.getMessage());
 		}
 		return aURL;
 	}

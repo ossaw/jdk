@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -63,11 +43,12 @@ public class Binding extends NameClassPair {
 	 * set using <tt>setClassName()</tt>
 	 *
 	 * @param name
-	 *            The non-null name of the object. It is relative to the
-	 *            <em>target context</em> (which is named by the first parameter
-	 *            of the <code>listBindings()</code> method)
+	 *             The non-null name of the object. It is relative to the
+	 *             <em>target context</em> (which is named by the first
+	 *             parameter
+	 *             of the <code>listBindings()</code> method)
 	 * @param obj
-	 *            The possibly null object bound to name.
+	 *             The possibly null object bound to name.
 	 * @see NameClassPair#setClassName
 	 */
 	public Binding(String name, Object obj) {
@@ -84,14 +65,15 @@ public class Binding extends NameClassPair {
 	 * set using <tt>setClassName()</tt>
 	 *
 	 * @param name
-	 *            The non-null string name of the object.
+	 *                   The non-null string name of the object.
 	 * @param obj
-	 *            The possibly null object bound to name.
+	 *                   The possibly null object bound to name.
 	 * @param isRelative
-	 *            true if <code>name</code> is a name relative to the target
-	 *            context (which is named by the first parameter of the
-	 *            <code>listBindings()</code> method); false if
-	 *            <code>name</code> is a URL string.
+	 *                   true if <code>name</code> is a name relative to the
+	 *                   target
+	 *                   context (which is named by the first parameter of the
+	 *                   <code>listBindings()</code> method); false if
+	 *                   <code>name</code> is a URL string.
 	 * @see NameClassPair#isRelative
 	 * @see NameClassPair#setRelative
 	 * @see NameClassPair#setClassName
@@ -106,16 +88,19 @@ public class Binding extends NameClassPair {
 	 * object.
 	 *
 	 * @param name
-	 *            The non-null name of the object. It is relative to the
-	 *            <em>target context</em> (which is named by the first parameter
-	 *            of the <code>listBindings()</code> method)
+	 *                  The non-null name of the object. It is relative to the
+	 *                  <em>target context</em> (which is named by the first
+	 *                  parameter
+	 *                  of the <code>listBindings()</code> method)
 	 * @param className
-	 *            The possibly null class name of the object bound to
-	 *            <tt>name</tt>. If null, the class name of <tt>obj</tt> is
-	 *            returned by <tt>getClassName()</tt>. If <tt>obj</tt> is also
-	 *            null, <tt>getClassName()</tt> will return null.
+	 *                  The possibly null class name of the object bound to
+	 *                  <tt>name</tt>. If null, the class name of <tt>obj</tt>
+	 *                  is
+	 *                  returned by <tt>getClassName()</tt>. If <tt>obj</tt> is
+	 *                  also
+	 *                  null, <tt>getClassName()</tt> will return null.
 	 * @param obj
-	 *            The possibly null object bound to name.
+	 *                  The possibly null object bound to name.
 	 * @see NameClassPair#setClassName
 	 */
 	public Binding(String name, String className, Object obj) {
@@ -128,24 +113,28 @@ public class Binding extends NameClassPair {
 	 * and whether the name is relative.
 	 *
 	 * @param name
-	 *            The non-null string name of the object.
+	 *                   The non-null string name of the object.
 	 * @param className
-	 *            The possibly null class name of the object bound to
-	 *            <tt>name</tt>. If null, the class name of <tt>obj</tt> is
-	 *            returned by <tt>getClassName()</tt>. If <tt>obj</tt> is also
-	 *            null, <tt>getClassName()</tt> will return null.
+	 *                   The possibly null class name of the object bound to
+	 *                   <tt>name</tt>. If null, the class name of <tt>obj</tt>
+	 *                   is
+	 *                   returned by <tt>getClassName()</tt>. If <tt>obj</tt> is
+	 *                   also
+	 *                   null, <tt>getClassName()</tt> will return null.
 	 * @param obj
-	 *            The possibly null object bound to name.
+	 *                   The possibly null object bound to name.
 	 * @param isRelative
-	 *            true if <code>name</code> is a name relative to the target
-	 *            context (which is named by the first parameter of the
-	 *            <code>listBindings()</code> method); false if
-	 *            <code>name</code> is a URL string.
+	 *                   true if <code>name</code> is a name relative to the
+	 *                   target
+	 *                   context (which is named by the first parameter of the
+	 *                   <code>listBindings()</code> method); false if
+	 *                   <code>name</code> is a URL string.
 	 * @see NameClassPair#isRelative
 	 * @see NameClassPair#setRelative
 	 * @see NameClassPair#setClassName
 	 */
-	public Binding(String name, String className, Object obj, boolean isRelative) {
+	public Binding(String name, String className, Object obj,
+			boolean isRelative) {
 		super(name, className, isRelative);
 		this.boundObj = obj;
 	}

@@ -62,7 +62,8 @@ public class MissingResourceFailureException extends XMLSignatureException {
 	 * @param reference
 	 * @see #getReference
 	 */
-	public MissingResourceFailureException(String msgID, Object exArgs[], Reference reference) {
+	public MissingResourceFailureException(String msgID, Object exArgs[],
+			Reference reference) {
 		super(msgID, exArgs);
 
 		this.uninitializedReference = reference;
@@ -76,8 +77,8 @@ public class MissingResourceFailureException extends XMLSignatureException {
 	 * @param reference
 	 * @see #getReference
 	 */
-	public MissingResourceFailureException(String msgID, Exception originalException,
-			Reference reference) {
+	public MissingResourceFailureException(String msgID,
+			Exception originalException, Reference reference) {
 		super(msgID, originalException);
 
 		this.uninitializedReference = reference;
@@ -104,7 +105,7 @@ public class MissingResourceFailureException extends XMLSignatureException {
 	 * {@link com.sun.org.apache.xml.internal.security.signature.Reference}
 	 *
 	 * @param reference
-	 *            the Reference object
+	 *                  the Reference object
 	 * @see #getReference
 	 */
 	public void setReference(Reference reference) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -51,7 +31,7 @@ public interface CertSelector extends Cloneable {
 	 * Decides whether a {@code Certificate} should be selected.
 	 *
 	 * @param cert
-	 *            the {@code Certificate} to be checked
+	 *             the {@code Certificate} to be checked
 	 * @return {@code true} if the {@code Certificate} should be selected,
 	 *         {@code false} otherwise
 	 */

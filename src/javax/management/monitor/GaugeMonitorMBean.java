@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.monitor;
@@ -64,7 +44,7 @@ public interface GaugeMonitorMBean extends MonitorMBean {
 	 * Gets the derived gauge for the specified MBean.
 	 *
 	 * @param object
-	 *            the MBean for which the derived gauge is to be returned
+	 *               the MBean for which the derived gauge is to be returned
 	 * @return The derived gauge for the specified MBean if this MBean is in the
 	 *         set of observed MBeans, or <code>null</code> otherwise.
 	 *
@@ -75,8 +55,8 @@ public interface GaugeMonitorMBean extends MonitorMBean {
 	 * Gets the derived gauge timestamp for the specified MBean.
 	 *
 	 * @param object
-	 *            the MBean for which the derived gauge timestamp is to be
-	 *            returned
+	 *               the MBean for which the derived gauge timestamp is to be
+	 *               returned
 	 * @return The derived gauge timestamp for the specified MBean if this MBean
 	 *         is in the set of observed MBeans, or <code>null</code> otherwise.
 	 *
@@ -101,13 +81,13 @@ public interface GaugeMonitorMBean extends MonitorMBean {
 	 * Sets the high and the low threshold values.
 	 *
 	 * @param highValue
-	 *            The high threshold value.
+	 *                  The high threshold value.
 	 * @param lowValue
-	 *            The low threshold value.
+	 *                  The low threshold value.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The specified high/low threshold is null or the low
-	 *                threshold is greater than the high threshold or the high
-	 *                threshold and the low threshold are not of the same type.
+	 *            The specified high/low threshold is null or the low
+	 *            threshold is greater than the high threshold or the high
+	 *            threshold and the low threshold are not of the same type.
 	 */
 	public void setThresholds(Number highValue, Number lowValue)
 			throws java.lang.IllegalArgumentException;
@@ -126,7 +106,7 @@ public interface GaugeMonitorMBean extends MonitorMBean {
 	 * Sets the high notification's on/off switch value.
 	 *
 	 * @param value
-	 *            The high notification's on/off switch value.
+	 *              The high notification's on/off switch value.
 	 *
 	 * @see #getNotifyHigh
 	 */
@@ -146,7 +126,7 @@ public interface GaugeMonitorMBean extends MonitorMBean {
 	 * Sets the low notification's on/off switch value.
 	 *
 	 * @param value
-	 *            The low notification's on/off switch value.
+	 *              The low notification's on/off switch value.
 	 *
 	 * @see #getNotifyLow
 	 */
@@ -166,7 +146,7 @@ public interface GaugeMonitorMBean extends MonitorMBean {
 	 * Sets the difference mode flag value.
 	 *
 	 * @param value
-	 *            The difference mode flag value.
+	 *              The difference mode flag value.
 	 *
 	 * @see #getDifferenceMode
 	 */

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -34,7 +14,8 @@ package org.omg.CORBA;
  * July 17, 1999 12:26:20 AM PDT
  */
 
-public class _PolicyStub extends org.omg.CORBA.portable.ObjectImpl implements org.omg.CORBA.Policy {
+public class _PolicyStub extends org.omg.CORBA.portable.ObjectImpl implements
+		org.omg.CORBA.Policy {
 	/**
 	 * Constructors NOTE: If the default constructor is used, the object is
 	 * useless until _set_delegate (...) is called.
@@ -48,7 +29,7 @@ public class _PolicyStub extends org.omg.CORBA.portable.ObjectImpl implements or
 	 * <code>Delegate</code> object.
 	 *
 	 * @param delegate
-	 *            a Delegate Object
+	 *                 a Delegate Object
 	 */
 	public _PolicyStub(org.omg.CORBA.portable.Delegate delegate) {
 		super();
@@ -69,7 +50,8 @@ public class _PolicyStub extends org.omg.CORBA.portable.ObjectImpl implements or
 	public int policy_type() {
 		org.omg.CORBA.portable.InputStream _in = null;
 		try {
-			org.omg.CORBA.portable.OutputStream _out = _request("_get_policy_type", true);
+			org.omg.CORBA.portable.OutputStream _out = _request(
+					"_get_policy_type", true);
 			_in = _invoke(_out);
 			int __result = org.omg.CORBA.PolicyTypeHelper.read(_in);
 			return __result;
@@ -95,7 +77,8 @@ public class _PolicyStub extends org.omg.CORBA.portable.ObjectImpl implements or
 		try {
 			org.omg.CORBA.portable.OutputStream _out = _request("copy", true);
 			_in = _invoke(_out);
-			org.omg.CORBA.Policy __result = org.omg.CORBA.PolicyHelper.read(_in);
+			org.omg.CORBA.Policy __result = org.omg.CORBA.PolicyHelper.read(
+					_in);
 			return __result;
 		} catch (org.omg.CORBA.portable.ApplicationException _ex) {
 			_in = _ex.getInputStream();
@@ -115,7 +98,8 @@ public class _PolicyStub extends org.omg.CORBA.portable.ObjectImpl implements or
 	public void destroy() {
 		org.omg.CORBA.portable.InputStream _in = null;
 		try {
-			org.omg.CORBA.portable.OutputStream _out = _request("destroy", true);
+			org.omg.CORBA.portable.OutputStream _out = _request("destroy",
+					true);
 			_in = _invoke(_out);
 		} catch (org.omg.CORBA.portable.ApplicationException _ex) {
 			_in = _ex.getInputStream();
@@ -138,7 +122,8 @@ public class _PolicyStub extends org.omg.CORBA.portable.ObjectImpl implements or
 	private void readObject(java.io.ObjectInputStream s) {
 		try {
 			String str = s.readUTF();
-			org.omg.CORBA.Object obj = org.omg.CORBA.ORB.init().string_to_object(str);
+			org.omg.CORBA.Object obj = org.omg.CORBA.ORB.init()
+					.string_to_object(str);
 			org.omg.CORBA.portable.Delegate delegate = ((org.omg.CORBA.portable.ObjectImpl) obj)
 					._get_delegate();
 			_set_delegate(delegate);

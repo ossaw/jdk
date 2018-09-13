@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -49,7 +29,7 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 	 * Returns the LabelUI implementation used for the skins look and feel.
 	 *
 	 * @param c
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -96,8 +76,10 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 
 	private int getComponentState(JComponent c) {
 		int state = SynthLookAndFeel.getComponentState(c);
-		if (SynthLookAndFeel.getSelectedUI() == this && state == SynthConstants.ENABLED) {
-			state = SynthLookAndFeel.getSelectedUIState() | SynthConstants.ENABLED;
+		if (SynthLookAndFeel.getSelectedUI() == this
+				&& state == SynthConstants.ENABLED) {
+			state = SynthLookAndFeel.getSelectedUIState()
+					| SynthConstants.ENABLED;
 		}
 		return state;
 	}
@@ -129,15 +111,19 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 
 		// layout the text and icon
 		SynthContext context = getContext(label);
-		FontMetrics fm = context.getComponent().getFontMetrics(context.getStyle().getFont(context));
-		context.getStyle().getGraphicsUtils(context).layoutText(context, fm, label.getText(),
-				label.getIcon(), label.getHorizontalAlignment(), label.getVerticalAlignment(),
-				label.getHorizontalTextPosition(), label.getVerticalTextPosition(), viewRect,
-				iconRect, textRect, label.getIconTextGap());
+		FontMetrics fm = context.getComponent().getFontMetrics(context
+				.getStyle().getFont(context));
+		context.getStyle().getGraphicsUtils(context).layoutText(context, fm,
+				label.getText(), label.getIcon(), label
+						.getHorizontalAlignment(), label.getVerticalAlignment(),
+				label.getHorizontalTextPosition(), label
+						.getVerticalTextPosition(), viewRect, iconRect,
+				textRect, label.getIconTextGap());
 		View view = (View) label.getClientProperty(BasicHTML.propertyKey);
 		int baseline;
 		if (view != null) {
-			baseline = BasicHTML.getHTMLBaseline(view, textRect.width, textRect.height);
+			baseline = BasicHTML.getHTMLBaseline(view, textRect.width,
+					textRect.height);
 			if (baseline >= 0) {
 				baseline += textRect.y;
 			}
@@ -158,9 +144,9 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -168,7 +154,8 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintLabelBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
+		context.getPainter().paintLabelBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -180,9 +167,9 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -197,28 +184,35 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 	 * Paints the specified component.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
 	protected void paint(SynthContext context, Graphics g) {
 		JLabel label = (JLabel) context.getComponent();
-		Icon icon = (label.isEnabled()) ? label.getIcon() : label.getDisabledIcon();
+		Icon icon = (label.isEnabled()) ? label.getIcon()
+				: label.getDisabledIcon();
 
-		g.setColor(context.getStyle().getColor(context, ColorType.TEXT_FOREGROUND));
+		g.setColor(context.getStyle().getColor(context,
+				ColorType.TEXT_FOREGROUND));
 		g.setFont(style.getFont(context));
-		context.getStyle().getGraphicsUtils(context).paintText(context, g, label.getText(), icon,
-				label.getHorizontalAlignment(), label.getVerticalAlignment(),
-				label.getHorizontalTextPosition(), label.getVerticalTextPosition(),
-				label.getIconTextGap(), label.getDisplayedMnemonicIndex(), 0);
+		context.getStyle().getGraphicsUtils(context).paintText(context, g, label
+				.getText(), icon, label.getHorizontalAlignment(), label
+						.getVerticalAlignment(), label
+								.getHorizontalTextPosition(), label
+										.getVerticalTextPosition(), label
+												.getIconTextGap(), label
+														.getDisplayedMnemonicIndex(),
+				0);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintLabelBorder(context, g, x, y, w, h);
 	}
 
@@ -228,13 +222,17 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 	@Override
 	public Dimension getPreferredSize(JComponent c) {
 		JLabel label = (JLabel) c;
-		Icon icon = (label.isEnabled()) ? label.getIcon() : label.getDisabledIcon();
+		Icon icon = (label.isEnabled()) ? label.getIcon()
+				: label.getDisabledIcon();
 		SynthContext context = getContext(c);
-		Dimension size = context.getStyle().getGraphicsUtils(context).getPreferredSize(context,
-				context.getStyle().getFont(context), label.getText(), icon,
-				label.getHorizontalAlignment(), label.getVerticalAlignment(),
-				label.getHorizontalTextPosition(), label.getVerticalTextPosition(),
-				label.getIconTextGap(), label.getDisplayedMnemonicIndex());
+		Dimension size = context.getStyle().getGraphicsUtils(context)
+				.getPreferredSize(context, context.getStyle().getFont(context),
+						label.getText(), icon, label.getHorizontalAlignment(),
+						label.getVerticalAlignment(), label
+								.getHorizontalTextPosition(), label
+										.getVerticalTextPosition(), label
+												.getIconTextGap(), label
+														.getDisplayedMnemonicIndex());
 
 		context.dispose();
 		return size;
@@ -246,13 +244,17 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 	@Override
 	public Dimension getMinimumSize(JComponent c) {
 		JLabel label = (JLabel) c;
-		Icon icon = (label.isEnabled()) ? label.getIcon() : label.getDisabledIcon();
+		Icon icon = (label.isEnabled()) ? label.getIcon()
+				: label.getDisabledIcon();
 		SynthContext context = getContext(c);
-		Dimension size = context.getStyle().getGraphicsUtils(context).getMinimumSize(context,
-				context.getStyle().getFont(context), label.getText(), icon,
-				label.getHorizontalAlignment(), label.getVerticalAlignment(),
-				label.getHorizontalTextPosition(), label.getVerticalTextPosition(),
-				label.getIconTextGap(), label.getDisplayedMnemonicIndex());
+		Dimension size = context.getStyle().getGraphicsUtils(context)
+				.getMinimumSize(context, context.getStyle().getFont(context),
+						label.getText(), icon, label.getHorizontalAlignment(),
+						label.getVerticalAlignment(), label
+								.getHorizontalTextPosition(), label
+										.getVerticalTextPosition(), label
+												.getIconTextGap(), label
+														.getDisplayedMnemonicIndex());
 
 		context.dispose();
 		return size;
@@ -264,13 +266,17 @@ public class SynthLabelUI extends BasicLabelUI implements SynthUI {
 	@Override
 	public Dimension getMaximumSize(JComponent c) {
 		JLabel label = (JLabel) c;
-		Icon icon = (label.isEnabled()) ? label.getIcon() : label.getDisabledIcon();
+		Icon icon = (label.isEnabled()) ? label.getIcon()
+				: label.getDisabledIcon();
 		SynthContext context = getContext(c);
-		Dimension size = context.getStyle().getGraphicsUtils(context).getMaximumSize(context,
-				context.getStyle().getFont(context), label.getText(), icon,
-				label.getHorizontalAlignment(), label.getVerticalAlignment(),
-				label.getHorizontalTextPosition(), label.getVerticalTextPosition(),
-				label.getIconTextGap(), label.getDisplayedMnemonicIndex());
+		Dimension size = context.getStyle().getGraphicsUtils(context)
+				.getMaximumSize(context, context.getStyle().getFont(context),
+						label.getText(), icon, label.getHorizontalAlignment(),
+						label.getVerticalAlignment(), label
+								.getHorizontalTextPosition(), label
+										.getVerticalTextPosition(), label
+												.getIconTextGap(), label
+														.getDisplayedMnemonicIndex());
 
 		context.dispose();
 		return size;

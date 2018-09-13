@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.multi;
 
@@ -98,7 +78,8 @@ public class MultiTextUI extends TextUI {
 	 * @return the value obtained from the first UI, which is the UI obtained
 	 *         from the default <code>LookAndFeel</code>
 	 */
-	public Rectangle modelToView(JTextComponent a, int b) throws BadLocationException {
+	public Rectangle modelToView(JTextComponent a, int b)
+			throws BadLocationException {
 		Rectangle returnValue = ((TextUI) (uis.elementAt(0))).modelToView(a, b);
 		for (int i = 1; i < uis.size(); i++) {
 			((TextUI) (uis.elementAt(i))).modelToView(a, b);
@@ -115,7 +96,8 @@ public class MultiTextUI extends TextUI {
 	 */
 	public Rectangle modelToView(JTextComponent a, int b, Position.Bias c)
 			throws BadLocationException {
-		Rectangle returnValue = ((TextUI) (uis.elementAt(0))).modelToView(a, b, c);
+		Rectangle returnValue = ((TextUI) (uis.elementAt(0))).modelToView(a, b,
+				c);
 		for (int i = 1; i < uis.size(); i++) {
 			((TextUI) (uis.elementAt(i))).modelToView(a, b, c);
 		}
@@ -159,11 +141,14 @@ public class MultiTextUI extends TextUI {
 	 * @return the value obtained from the first UI, which is the UI obtained
 	 *         from the default <code>LookAndFeel</code>
 	 */
-	public int getNextVisualPositionFrom(JTextComponent a, int b, Position.Bias c, int d,
-			Position.Bias[] e) throws BadLocationException {
-		int returnValue = ((TextUI) (uis.elementAt(0))).getNextVisualPositionFrom(a, b, c, d, e);
+	public int getNextVisualPositionFrom(JTextComponent a, int b,
+			Position.Bias c, int d, Position.Bias[] e)
+			throws BadLocationException {
+		int returnValue = ((TextUI) (uis.elementAt(0)))
+				.getNextVisualPositionFrom(a, b, c, d, e);
 		for (int i = 1; i < uis.size(); i++) {
-			((TextUI) (uis.elementAt(i))).getNextVisualPositionFrom(a, b, c, d, e);
+			((TextUI) (uis.elementAt(i))).getNextVisualPositionFrom(a, b, c, d,
+					e);
 		}
 		return returnValue;
 	}
@@ -182,7 +167,8 @@ public class MultiTextUI extends TextUI {
 	 * Invokes the <code>damageRange</code> method on each UI handled by this
 	 * object.
 	 */
-	public void damageRange(JTextComponent a, int b, int c, Position.Bias d, Position.Bias e) {
+	public void damageRange(JTextComponent a, int b, int c, Position.Bias d,
+			Position.Bias e) {
 		for (int i = 0; i < uis.size(); i++) {
 			((TextUI) (uis.elementAt(i))).damageRange(a, b, c, d, e);
 		}
@@ -230,7 +216,8 @@ public class MultiTextUI extends TextUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public boolean contains(JComponent a, int b, int c) {
-		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b, c);
+		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b,
+				c);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).contains(a, b, c);
 		}
@@ -293,7 +280,8 @@ public class MultiTextUI extends TextUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getPreferredSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getPreferredSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getPreferredSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getPreferredSize(a);
 		}
@@ -308,7 +296,8 @@ public class MultiTextUI extends TextUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMinimumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMinimumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMinimumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMinimumSize(a);
 		}
@@ -323,7 +312,8 @@ public class MultiTextUI extends TextUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMaximumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMaximumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMaximumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMaximumSize(a);
 		}
@@ -338,7 +328,8 @@ public class MultiTextUI extends TextUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public int getAccessibleChildrenCount(JComponent a) {
-		int returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChildrenCount(a);
+		int returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChildrenCount(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChildrenCount(a);
 		}
@@ -353,7 +344,8 @@ public class MultiTextUI extends TextUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Accessible getAccessibleChild(JComponent a, int b) {
-		Accessible returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChild(a, b);
+		Accessible returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChild(a, b);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChild(a, b);
 		}

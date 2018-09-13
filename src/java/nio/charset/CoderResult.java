@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.charset;
@@ -106,7 +86,8 @@ public class CoderResult {
 	private static final int CR_MALFORMED = 2;
 	private static final int CR_UNMAPPABLE = 3;
 
-	private static final String[] names = { "UNDERFLOW", "OVERFLOW", "MALFORMED", "UNMAPPABLE" };
+	private static final String[] names = { "UNDERFLOW", "OVERFLOW",
+			"MALFORMED", "UNMAPPABLE" };
 
 	private final int type;
 	private final int length;
@@ -181,9 +162,11 @@ public class CoderResult {
 	 * @return The length of the erroneous input, a positive integer
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this object does not describe an error condition, that is,
-	 *             if the {@link #isError() isError} does not return
-	 *             <tt>true</tt>
+	 *                                       If this object does not describe an
+	 *                                       error condition, that is,
+	 *                                       if the {@link #isError() isError}
+	 *                                       does not return
+	 *                                       <tt>true</tt>
 	 */
 	public int length() {
 		if (!isError())
@@ -196,7 +179,8 @@ public class CoderResult {
 	 * has been completely consumed or, if the input buffer is not yet empty,
 	 * that additional input is required.
 	 */
-	public static final CoderResult UNDERFLOW = new CoderResult(CR_UNDERFLOW, 0);
+	public static final CoderResult UNDERFLOW = new CoderResult(CR_UNDERFLOW,
+			0);
 
 	/**
 	 * Result object indicating overflow, meaning that there is insufficient
@@ -241,7 +225,7 @@ public class CoderResult {
 	 * malformed-input error of the given length.
 	 *
 	 * @param length
-	 *            The given length
+	 *               The given length
 	 *
 	 * @return The requested coder-result object
 	 */
@@ -260,7 +244,7 @@ public class CoderResult {
 	 * unmappable-character error of the given length.
 	 *
 	 * @param length
-	 *            The given length
+	 *               The given length
 	 *
 	 * @return The requested coder-result object
 	 */
@@ -272,31 +256,35 @@ public class CoderResult {
 	 * Throws an exception appropriate to the result described by this object.
 	 *
 	 * @throws BufferUnderflowException
-	 *             If this object is {@link #UNDERFLOW}
+	 *                                      If this object is {@link #UNDERFLOW}
 	 *
 	 * @throws BufferOverflowException
-	 *             If this object is {@link #OVERFLOW}
+	 *                                      If this object is {@link #OVERFLOW}
 	 *
 	 * @throws MalformedInputException
-	 *             If this object represents a malformed-input error; the
-	 *             exception's length value will be that of this object
+	 *                                      If this object represents a
+	 *                                      malformed-input error; the
+	 *                                      exception's length value will be
+	 *                                      that of this object
 	 *
 	 * @throws UnmappableCharacterException
-	 *             If this object represents an unmappable-character error; the
-	 *             exceptions length value will be that of this object
+	 *                                      If this object represents an
+	 *                                      unmappable-character error; the
+	 *                                      exceptions length value will be that
+	 *                                      of this object
 	 */
 	public void throwException() throws CharacterCodingException {
 		switch (type) {
-		case CR_UNDERFLOW:
-			throw new BufferUnderflowException();
-		case CR_OVERFLOW:
-			throw new BufferOverflowException();
-		case CR_MALFORMED:
-			throw new MalformedInputException(length);
-		case CR_UNMAPPABLE:
-			throw new UnmappableCharacterException(length);
-		default:
-			assert false;
+			case CR_UNDERFLOW:
+				throw new BufferUnderflowException();
+			case CR_OVERFLOW:
+				throw new BufferOverflowException();
+			case CR_MALFORMED:
+				throw new MalformedInputException(length);
+			case CR_UNMAPPABLE:
+				throw new UnmappableCharacterException(length);
+			default:
+				assert false;
 		}
 	}
 

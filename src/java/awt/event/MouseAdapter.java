@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -67,59 +47,51 @@ package java.awt.event;
  *
  * @since 1.1
  */
-public abstract class MouseAdapter
-		implements MouseListener, MouseWheelListener, MouseMotionListener {
+public abstract class MouseAdapter implements MouseListener, MouseWheelListener,
+		MouseMotionListener {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void mouseClicked(MouseEvent e) {
-	}
+	public void mouseClicked(MouseEvent e) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void mousePressed(MouseEvent e) {
-	}
+	public void mousePressed(MouseEvent e) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void mouseReleased(MouseEvent e) {
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void mouseEntered(MouseEvent e) {
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void mouseExited(MouseEvent e) {
-	}
+	public void mouseExited(MouseEvent e) {}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @since 1.6
 	 */
-	public void mouseWheelMoved(MouseWheelEvent e) {
-	}
+	public void mouseWheelMoved(MouseWheelEvent e) {}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @since 1.6
 	 */
-	public void mouseDragged(MouseEvent e) {
-	}
+	public void mouseDragged(MouseEvent e) {}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @since 1.6
 	 */
-	public void mouseMoved(MouseEvent e) {
-	}
+	public void mouseMoved(MouseEvent e) {}
 }

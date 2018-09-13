@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -39,9 +19,9 @@ public interface Renderer {
 	 * portrayed as "currently selected".
 	 *
 	 * @param aValue
-	 *            an Object object
+	 *                   an Object object
 	 * @param isSelected
-	 *            a boolean
+	 *                   a boolean
 	 */
 	void setValue(Object aValue, boolean isSelected);
 

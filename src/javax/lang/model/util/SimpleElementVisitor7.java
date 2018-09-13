@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -71,12 +51,12 @@ import static javax.lang.model.SourceVersion.*;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@code Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@code Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @see SimpleElementVisitor6
  * @see SimpleElementVisitor8
@@ -97,7 +77,7 @@ public class SimpleElementVisitor7<R, P> extends SimpleElementVisitor6<R, P> {
 	 * value.
 	 *
 	 * @param defaultValue
-	 *            the value to assign to {@link #DEFAULT_VALUE}
+	 *                     the value to assign to {@link #DEFAULT_VALUE}
 	 */
 	protected SimpleElementVisitor7(R defaultValue) {
 		super(defaultValue);
@@ -107,9 +87,9 @@ public class SimpleElementVisitor7<R, P> extends SimpleElementVisitor6<R, P> {
 	 * This implementation calls {@code defaultAction}.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code defaultAction}
 	 */
 	@Override

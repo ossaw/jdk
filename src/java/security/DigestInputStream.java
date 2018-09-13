@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -77,10 +57,10 @@ public class DigestInputStream extends FilterInputStream {
 	 * message digest.
 	 *
 	 * @param stream
-	 *            the input stream.
+	 *               the input stream.
 	 *
 	 * @param digest
-	 *            the message digest to associate with this stream.
+	 *               the message digest to associate with this stream.
 	 */
 	public DigestInputStream(InputStream stream, MessageDigest digest) {
 		super(stream);
@@ -101,7 +81,7 @@ public class DigestInputStream extends FilterInputStream {
 	 * Associates the specified message digest with this stream.
 	 *
 	 * @param digest
-	 *            the message digest to be associated with this stream.
+	 *               the message digest to be associated with this stream.
 	 * @see #getMessageDigest()
 	 */
 	public void setMessageDigest(MessageDigest digest) {
@@ -118,7 +98,7 @@ public class DigestInputStream extends FilterInputStream {
 	 * @return the byte read.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see MessageDigest#update(byte)
 	 */
@@ -156,7 +136,7 @@ public class DigestInputStream extends FilterInputStream {
 	 *         the stream had already been reached when the call was made.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see MessageDigest#update(byte[], int, int)
 	 */
@@ -174,7 +154,7 @@ public class DigestInputStream extends FilterInputStream {
 	 * message digest. But when it is off, the message digest is not updated.
 	 *
 	 * @param on
-	 *            true to turn the digest function on, false to turn it off.
+	 *           true to turn the digest function on, false to turn it off.
 	 */
 	public void on(boolean on) {
 		this.on = on;

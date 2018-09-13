@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.spi;
@@ -54,9 +34,10 @@ public interface TransactionalWriter extends RowSetWriter {
 	 * be used only when auto-commit mode has been disabled.
 	 *
 	 * @throws SQLException
-	 *             if a database access error occurs or the
-	 *             <code>Connection</code> object within this
-	 *             <code>CachedRowSet</code> object is in auto-commit mode
+	 *                      if a database access error occurs or the
+	 *                      <code>Connection</code> object within this
+	 *                      <code>CachedRowSet</code> object is in auto-commit
+	 *                      mode
 	 */
 	public void commit() throws SQLException;
 
@@ -65,9 +46,10 @@ public interface TransactionalWriter extends RowSetWriter {
 	 * used only when auto-commit mode has been disabled.
 	 *
 	 * @throws SQLException
-	 *             if a database access error occurs or the
-	 *             <code>Connection</code> object within this
-	 *             <code>CachedRowSet</code> object is in auto-commit mode
+	 *                      if a database access error occurs or the
+	 *                      <code>Connection</code> object within this
+	 *                      <code>CachedRowSet</code> object is in auto-commit
+	 *                      mode
 	 */
 	public void rollback() throws SQLException;
 
@@ -77,14 +59,15 @@ public interface TransactionalWriter extends RowSetWriter {
 	 * auto-commit mode has been disabled.
 	 *
 	 * @param s
-	 *            a <code>Savepoint</code> object marking a savepoint in the
-	 *            current transaction. All changes made before <i>s</i> was set
-	 *            will be undone. All changes made after <i>s</i> was set will
-	 *            be made permanent.
+	 *          a <code>Savepoint</code> object marking a savepoint in the
+	 *          current transaction. All changes made before <i>s</i> was set
+	 *          will be undone. All changes made after <i>s</i> was set will
+	 *          be made permanent.
 	 * @throws SQLException
-	 *             if a database access error occurs or the
-	 *             <code>Connection</code> object within this
-	 *             <code>CachedRowSet</code> object is in auto-commit mode
+	 *                      if a database access error occurs or the
+	 *                      <code>Connection</code> object within this
+	 *                      <code>CachedRowSet</code> object is in auto-commit
+	 *                      mode
 	 */
 	public void rollback(Savepoint s) throws SQLException;
 }

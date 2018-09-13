@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.annotation.processing;
@@ -67,8 +47,7 @@ public abstract class AbstractProcessor implements Processor {
 	/**
 	 * Constructor for subclasses to call.
 	 */
-	protected AbstractProcessor() {
-	}
+	protected AbstractProcessor() {}
 
 	/**
 	 * If the processor class is annotated with {@link SupportedOptions}, return
@@ -78,7 +57,8 @@ public abstract class AbstractProcessor implements Processor {
 	 * @return the options recognized by this processor, or an empty set if none
 	 */
 	public Set<String> getSupportedOptions() {
-		SupportedOptions so = this.getClass().getAnnotation(SupportedOptions.class);
+		SupportedOptions so = this.getClass().getAnnotation(
+				SupportedOptions.class);
 		if (so == null)
 			return Collections.emptySet();
 		else
@@ -94,13 +74,15 @@ public abstract class AbstractProcessor implements Processor {
 	 *         an empty set if none
 	 */
 	public Set<String> getSupportedAnnotationTypes() {
-		SupportedAnnotationTypes sat = this.getClass()
-				.getAnnotation(SupportedAnnotationTypes.class);
+		SupportedAnnotationTypes sat = this.getClass().getAnnotation(
+				SupportedAnnotationTypes.class);
 		if (sat == null) {
 			if (isInitialized())
-				processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING,
+				processingEnv.getMessager().printMessage(
+						Diagnostic.Kind.WARNING,
 						"No SupportedAnnotationTypes annotation " + "found on "
-								+ this.getClass().getName() + ", returning an empty set.");
+								+ this.getClass().getName()
+								+ ", returning an empty set.");
 			return Collections.emptySet();
 		} else
 			return arrayToSet(sat.value());
@@ -114,14 +96,17 @@ public abstract class AbstractProcessor implements Processor {
 	 * @return the latest source version supported by this processor
 	 */
 	public SourceVersion getSupportedSourceVersion() {
-		SupportedSourceVersion ssv = this.getClass().getAnnotation(SupportedSourceVersion.class);
+		SupportedSourceVersion ssv = this.getClass().getAnnotation(
+				SupportedSourceVersion.class);
 		SourceVersion sv = null;
 		if (ssv == null) {
 			sv = SourceVersion.RELEASE_6;
 			if (isInitialized())
-				processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING,
+				processingEnv.getMessager().printMessage(
+						Diagnostic.Kind.WARNING,
 						"No SupportedSourceVersion annotation " + "found on "
-								+ this.getClass().getName() + ", returning " + sv + ".");
+								+ this.getClass().getName() + ", returning "
+								+ sv + ".");
 		} else
 			sv = ssv.value();
 		return sv;
@@ -135,15 +120,17 @@ public abstract class AbstractProcessor implements Processor {
 	 * once on the same object.
 	 *
 	 * @param processingEnv
-	 *            environment to access facilities the tool framework provides
-	 *            to the processor
+	 *                      environment to access facilities the tool framework
+	 *                      provides
+	 *                      to the processor
 	 * @throws IllegalStateException
-	 *             if this method is called more than once.
+	 *                               if this method is called more than once.
 	 */
 	public synchronized void init(ProcessingEnvironment processingEnv) {
 		if (initialized)
 			throw new IllegalStateException("Cannot call init more than once.");
-		Objects.requireNonNull(processingEnv, "Tool provided null ProcessingEnvironment");
+		Objects.requireNonNull(processingEnv,
+				"Tool provided null ProcessingEnvironment");
 
 		this.processingEnv = processingEnv;
 		initialized = true;
@@ -159,16 +146,17 @@ public abstract class AbstractProcessor implements Processor {
 	 * Returns an empty iterable of completions.
 	 *
 	 * @param element
-	 *            {@inheritDoc}
+	 *                   {@inheritDoc}
 	 * @param annotation
-	 *            {@inheritDoc}
+	 *                   {@inheritDoc}
 	 * @param member
-	 *            {@inheritDoc}
+	 *                   {@inheritDoc}
 	 * @param userText
-	 *            {@inheritDoc}
+	 *                   {@inheritDoc}
 	 */
 	public Iterable<? extends Completion> getCompletions(Element element,
-			AnnotationMirror annotation, ExecutableElement member, String userText) {
+			AnnotationMirror annotation, ExecutableElement member,
+			String userText) {
 		return Collections.emptyList();
 	}
 

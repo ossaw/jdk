@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -115,14 +95,16 @@ public final class SQLPermission extends BasicPermission {
 	 * The name is the symbolic name of the <code>SQLPermission</code>.
 	 *
 	 * @param name
-	 *            the name of this <code>SQLPermission</code> object, which must
-	 *            be either {@code  setLog}, {@code callAbort},
-	 *            {@code setSyncFactory}, {@code deregisterDriver}, or
-	 *            {@code setNetworkTimeout}
+	 *             the name of this <code>SQLPermission</code> object, which
+	 *             must
+	 *             be either {@code  setLog}, {@code callAbort},
+	 *             {@code setSyncFactory}, {@code deregisterDriver}, or
+	 *             {@code setNetworkTimeout}
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty.
+	 *                                  if <code>name</code> is empty.
 	 * 
 	 */
 
@@ -137,16 +119,18 @@ public final class SQLPermission extends BasicPermission {
 	 * <code>null</code>.
 	 *
 	 * @param name
-	 *            the name of this <code>SQLPermission</code> object, which must
-	 *            be either {@code  setLog}, {@code callAbort},
-	 *            {@code setSyncFactory}, {@code deregisterDriver}, or
-	 *            {@code setNetworkTimeout}
+	 *                the name of this <code>SQLPermission</code> object, which
+	 *                must
+	 *                be either {@code  setLog}, {@code callAbort},
+	 *                {@code setSyncFactory}, {@code deregisterDriver}, or
+	 *                {@code setNetworkTimeout}
 	 * @param actions
-	 *            should be <code>null</code>
+	 *                should be <code>null</code>
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty.
+	 *                                  if <code>name</code> is empty.
 	 * 
 	 */
 

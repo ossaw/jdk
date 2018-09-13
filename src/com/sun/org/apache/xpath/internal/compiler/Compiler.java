@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -79,17 +76,22 @@ public class Compiler extends OpMap {
 	 * SourceLocator where the expression is located.
 	 *
 	 * @param errorHandler
-	 *            Error listener where messages will be sent, or null if
-	 *            messages should be sent to System err.
+	 *                     Error listener where messages will be sent, or null
+	 *                     if
+	 *                     messages should be sent to System err.
 	 * @param locator
-	 *            The location object where the expression lives, which may be
-	 *            null, but which, if not null, must be valid over the long
-	 *            haul, in other words, it will not be cloned.
+	 *                     The location object where the expression lives, which
+	 *                     may be
+	 *                     null, but which, if not null, must be valid over the
+	 *                     long
+	 *                     haul, in other words, it will not be cloned.
 	 * @param fTable
-	 *            The FunctionTable object where the xpath build-in functions
-	 *            are stored.
+	 *                     The FunctionTable object where the xpath build-in
+	 *                     functions
+	 *                     are stored.
 	 */
-	public Compiler(ErrorListener errorHandler, SourceLocator locator, FunctionTable fTable) {
+	public Compiler(ErrorListener errorHandler, SourceLocator locator,
+			FunctionTable fTable) {
 		m_errorHandler = errorHandler;
 		m_locator = locator;
 		m_functionTable = fTable;
@@ -108,11 +110,11 @@ public class Compiler extends OpMap {
 	 * Execute the XPath object from a given opcode position.
 	 * 
 	 * @param opPos
-	 *            The current position in the xpath.m_opMap array.
+	 *              The current position in the xpath.m_opMap array.
 	 * @return The result of the XPath.
 	 *
 	 * @throws TransformerException
-	 *             if there is a syntax or other error.
+	 *                              if there is a syntax or other error.
 	 * @xsl.usage advanced
 	 */
 	public Expression compile(int opPos) throws TransformerException {
@@ -122,112 +124,113 @@ public class Compiler extends OpMap {
 		Expression expr = null;
 		// System.out.println(getPatternString()+"op: "+op);
 		switch (op) {
-		case OpCodes.OP_XPATH:
-			expr = compile(opPos + 2);
-			break;
-		case OpCodes.OP_OR:
-			expr = or(opPos);
-			break;
-		case OpCodes.OP_AND:
-			expr = and(opPos);
-			break;
-		case OpCodes.OP_NOTEQUALS:
-			expr = notequals(opPos);
-			break;
-		case OpCodes.OP_EQUALS:
-			expr = equals(opPos);
-			break;
-		case OpCodes.OP_LTE:
-			expr = lte(opPos);
-			break;
-		case OpCodes.OP_LT:
-			expr = lt(opPos);
-			break;
-		case OpCodes.OP_GTE:
-			expr = gte(opPos);
-			break;
-		case OpCodes.OP_GT:
-			expr = gt(opPos);
-			break;
-		case OpCodes.OP_PLUS:
-			expr = plus(opPos);
-			break;
-		case OpCodes.OP_MINUS:
-			expr = minus(opPos);
-			break;
-		case OpCodes.OP_MULT:
-			expr = mult(opPos);
-			break;
-		case OpCodes.OP_DIV:
-			expr = div(opPos);
-			break;
-		case OpCodes.OP_MOD:
-			expr = mod(opPos);
-			break;
-		// case OpCodes.OP_QUO :
-		// expr = quo(opPos); break;
-		case OpCodes.OP_NEG:
-			expr = neg(opPos);
-			break;
-		case OpCodes.OP_STRING:
-			expr = string(opPos);
-			break;
-		case OpCodes.OP_BOOL:
-			expr = bool(opPos);
-			break;
-		case OpCodes.OP_NUMBER:
-			expr = number(opPos);
-			break;
-		case OpCodes.OP_UNION:
-			expr = union(opPos);
-			break;
-		case OpCodes.OP_LITERAL:
-			expr = literal(opPos);
-			break;
-		case OpCodes.OP_VARIABLE:
-			expr = variable(opPos);
-			break;
-		case OpCodes.OP_GROUP:
-			expr = group(opPos);
-			break;
-		case OpCodes.OP_NUMBERLIT:
-			expr = numberlit(opPos);
-			break;
-		case OpCodes.OP_ARGUMENT:
-			expr = arg(opPos);
-			break;
-		case OpCodes.OP_EXTFUNCTION:
-			expr = compileExtension(opPos);
-			break;
-		case OpCodes.OP_FUNCTION:
-			expr = compileFunction(opPos);
-			break;
-		case OpCodes.OP_LOCATIONPATH:
-			expr = locationPath(opPos);
-			break;
-		case OpCodes.OP_PREDICATE:
-			expr = null;
-			break; // should never hit this here.
-		case OpCodes.OP_MATCHPATTERN:
-			expr = matchPattern(opPos + 2);
-			break;
-		case OpCodes.OP_LOCATIONPATHPATTERN:
-			expr = locationPathPattern(opPos);
-			break;
-		case OpCodes.OP_QUO:
-			error(XPATHErrorResources.ER_UNKNOWN_OPCODE, new Object[] { "quo" }); // "ERROR!
-																					// Unknown
-																					// op
-																					// code:
-																					// "+m_opMap[opPos]);
-			break;
-		default:
-			error(XPATHErrorResources.ER_UNKNOWN_OPCODE,
-					new Object[] { Integer.toString(getOp(opPos)) }); // "ERROR!
-																		// Unknown
-																		// op
-																		// code:
-																		// "+m_opMap[opPos]);
+			case OpCodes.OP_XPATH:
+				expr = compile(opPos + 2);
+				break;
+			case OpCodes.OP_OR:
+				expr = or(opPos);
+				break;
+			case OpCodes.OP_AND:
+				expr = and(opPos);
+				break;
+			case OpCodes.OP_NOTEQUALS:
+				expr = notequals(opPos);
+				break;
+			case OpCodes.OP_EQUALS:
+				expr = equals(opPos);
+				break;
+			case OpCodes.OP_LTE:
+				expr = lte(opPos);
+				break;
+			case OpCodes.OP_LT:
+				expr = lt(opPos);
+				break;
+			case OpCodes.OP_GTE:
+				expr = gte(opPos);
+				break;
+			case OpCodes.OP_GT:
+				expr = gt(opPos);
+				break;
+			case OpCodes.OP_PLUS:
+				expr = plus(opPos);
+				break;
+			case OpCodes.OP_MINUS:
+				expr = minus(opPos);
+				break;
+			case OpCodes.OP_MULT:
+				expr = mult(opPos);
+				break;
+			case OpCodes.OP_DIV:
+				expr = div(opPos);
+				break;
+			case OpCodes.OP_MOD:
+				expr = mod(opPos);
+				break;
+			// case OpCodes.OP_QUO :
+			// expr = quo(opPos); break;
+			case OpCodes.OP_NEG:
+				expr = neg(opPos);
+				break;
+			case OpCodes.OP_STRING:
+				expr = string(opPos);
+				break;
+			case OpCodes.OP_BOOL:
+				expr = bool(opPos);
+				break;
+			case OpCodes.OP_NUMBER:
+				expr = number(opPos);
+				break;
+			case OpCodes.OP_UNION:
+				expr = union(opPos);
+				break;
+			case OpCodes.OP_LITERAL:
+				expr = literal(opPos);
+				break;
+			case OpCodes.OP_VARIABLE:
+				expr = variable(opPos);
+				break;
+			case OpCodes.OP_GROUP:
+				expr = group(opPos);
+				break;
+			case OpCodes.OP_NUMBERLIT:
+				expr = numberlit(opPos);
+				break;
+			case OpCodes.OP_ARGUMENT:
+				expr = arg(opPos);
+				break;
+			case OpCodes.OP_EXTFUNCTION:
+				expr = compileExtension(opPos);
+				break;
+			case OpCodes.OP_FUNCTION:
+				expr = compileFunction(opPos);
+				break;
+			case OpCodes.OP_LOCATIONPATH:
+				expr = locationPath(opPos);
+				break;
+			case OpCodes.OP_PREDICATE:
+				expr = null;
+				break; // should never hit this here.
+			case OpCodes.OP_MATCHPATTERN:
+				expr = matchPattern(opPos + 2);
+				break;
+			case OpCodes.OP_LOCATIONPATHPATTERN:
+				expr = locationPathPattern(opPos);
+				break;
+			case OpCodes.OP_QUO:
+				error(XPATHErrorResources.ER_UNKNOWN_OPCODE, new Object[] {
+						"quo" }); // "ERROR!
+																								// Unknown
+																								// op
+																								// code:
+																								// "+m_opMap[opPos]);
+				break;
+			default:
+				error(XPATHErrorResources.ER_UNKNOWN_OPCODE, new Object[] {
+						Integer.toString(getOp(opPos)) }); // "ERROR!
+																														// Unknown
+																														// op
+																														// code:
+																														// "+m_opMap[opPos]);
 		}
 		// if(null != expr)
 		// expr.setSourceLocator(m_locator);
@@ -239,16 +242,16 @@ public class Compiler extends OpMap {
 	 * Bottle-neck compilation of an operation with left and right operands.
 	 *
 	 * @param operation
-	 *            non-null reference to parent operation.
+	 *                  non-null reference to parent operation.
 	 * @param opPos
-	 *            The op map position of the parent operation.
+	 *                  The op map position of the parent operation.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Operation}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if there is a syntax or other error.
+	 *                              if there is a syntax or other error.
 	 */
 	private Expression compileOperation(Operation operation, int opPos)
 			throws TransformerException {
@@ -265,16 +268,17 @@ public class Compiler extends OpMap {
 	 * Bottle-neck compilation of a unary operation.
 	 *
 	 * @param unary
-	 *            The parent unary operation.
+	 *              The parent unary operation.
 	 * @param opPos
-	 *            The position in the op map of the parent operation.
+	 *              The position in the op map of the parent operation.
 	 *
 	 * @return The unary argument.
 	 *
 	 * @throws TransformerException
-	 *             if syntax or other error occurs.
+	 *                              if syntax or other error occurs.
 	 */
-	private Expression compileUnary(UnaryOperation unary, int opPos) throws TransformerException {
+	private Expression compileUnary(UnaryOperation unary, int opPos)
+			throws TransformerException {
 
 		int rightPos = getFirstChildPos(opPos);
 
@@ -287,13 +291,13 @@ public class Compiler extends OpMap {
 	 * Compile an 'or' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Or} instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression or(int opPos) throws TransformerException {
 		return compileOperation(new Or(), opPos);
@@ -303,14 +307,14 @@ public class Compiler extends OpMap {
 	 * Compile an 'and' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.And}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression and(int opPos) throws TransformerException {
 		return compileOperation(new And(), opPos);
@@ -320,14 +324,14 @@ public class Compiler extends OpMap {
 	 * Compile a '!=' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.NotEquals}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression notequals(int opPos) throws TransformerException {
 		return compileOperation(new NotEquals(), opPos);
@@ -337,14 +341,14 @@ public class Compiler extends OpMap {
 	 * Compile a '=' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Equals}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression equals(int opPos) throws TransformerException {
 		return compileOperation(new Equals(), opPos);
@@ -354,14 +358,14 @@ public class Compiler extends OpMap {
 	 * Compile a '<=' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Lte}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression lte(int opPos) throws TransformerException {
 		return compileOperation(new Lte(), opPos);
@@ -371,13 +375,13 @@ public class Compiler extends OpMap {
 	 * Compile a '<' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Lt} instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression lt(int opPos) throws TransformerException {
 		return compileOperation(new Lt(), opPos);
@@ -387,14 +391,14 @@ public class Compiler extends OpMap {
 	 * Compile a '>=' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Gte}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression gte(int opPos) throws TransformerException {
 		return compileOperation(new Gte(), opPos);
@@ -404,13 +408,13 @@ public class Compiler extends OpMap {
 	 * Compile a '>' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Gt} instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression gt(int opPos) throws TransformerException {
 		return compileOperation(new Gt(), opPos);
@@ -420,14 +424,14 @@ public class Compiler extends OpMap {
 	 * Compile a '+' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Plus}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression plus(int opPos) throws TransformerException {
 		return compileOperation(new Plus(), opPos);
@@ -437,14 +441,14 @@ public class Compiler extends OpMap {
 	 * Compile a '-' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Minus}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression minus(int opPos) throws TransformerException {
 		return compileOperation(new Minus(), opPos);
@@ -454,14 +458,14 @@ public class Compiler extends OpMap {
 	 * Compile a '*' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Mult}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression mult(int opPos) throws TransformerException {
 		return compileOperation(new Mult(), opPos);
@@ -471,14 +475,14 @@ public class Compiler extends OpMap {
 	 * Compile a 'div' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Div}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression div(int opPos) throws TransformerException {
 		return compileOperation(new Div(), opPos);
@@ -488,14 +492,14 @@ public class Compiler extends OpMap {
 	 * Compile a 'mod' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Mod}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression mod(int opPos) throws TransformerException {
 		return compileOperation(new Mod(), opPos);
@@ -503,12 +507,9 @@ public class Compiler extends OpMap {
 
 	/*
 	 * Compile a 'quo' operation.
-	 *
 	 * @param opPos The current position in the m_opMap array.
-	 *
 	 * @return reference to {@link
 	 * com.sun.org.apache.xpath.internal.operations.Quo} instance.
-	 *
 	 * @throws TransformerException if a error occurs creating the Expression.
 	 */
 	// protected Expression quo(int opPos) throws TransformerException
@@ -520,14 +521,14 @@ public class Compiler extends OpMap {
 	 * Compile a unary '-' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Neg}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression neg(int opPos) throws TransformerException {
 		return compileUnary(new Neg(), opPos);
@@ -537,65 +538,70 @@ public class Compiler extends OpMap {
 	 * Compile a 'string(...)' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.String}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression string(int opPos) throws TransformerException {
-		return compileUnary(new com.sun.org.apache.xpath.internal.operations.String(), opPos);
+		return compileUnary(
+				new com.sun.org.apache.xpath.internal.operations.String(),
+				opPos);
 	}
 
 	/**
 	 * Compile a 'boolean(...)' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Bool}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression bool(int opPos) throws TransformerException {
-		return compileUnary(new com.sun.org.apache.xpath.internal.operations.Bool(), opPos);
+		return compileUnary(
+				new com.sun.org.apache.xpath.internal.operations.Bool(), opPos);
 	}
 
 	/**
 	 * Compile a 'number(...)' operation.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Number}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression number(int opPos) throws TransformerException {
-		return compileUnary(new com.sun.org.apache.xpath.internal.operations.Number(), opPos);
+		return compileUnary(
+				new com.sun.org.apache.xpath.internal.operations.Number(),
+				opPos);
 	}
 
 	/**
 	 * Compile a literal string value.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.objects.XString}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression literal(int opPos) {
 
@@ -608,14 +614,14 @@ public class Compiler extends OpMap {
 	 * Compile a literal number value.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.objects.XNumber}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression numberlit(int opPos) {
 
@@ -628,14 +634,14 @@ public class Compiler extends OpMap {
 	 * Compile a variable reference.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.operations.Variable}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression variable(int opPos) throws TransformerException {
 
@@ -646,7 +652,8 @@ public class Compiler extends OpMap {
 		int nsPos = getOp(opPos);
 		java.lang.String namespace = (OpCodes.EMPTY == nsPos) ? null
 				: (java.lang.String) getTokenQueue().elementAt(nsPos);
-		java.lang.String localname = (java.lang.String) getTokenQueue().elementAt(getOp(opPos + 1));
+		java.lang.String localname = (java.lang.String) getTokenQueue()
+				.elementAt(getOp(opPos + 1));
 		QName qname = new QName(namespace, localname);
 
 		var.setQName(qname);
@@ -658,12 +665,12 @@ public class Compiler extends OpMap {
 	 * Compile an expression group.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to the contained expression.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression group(int opPos) throws TransformerException {
 
@@ -675,12 +682,12 @@ public class Compiler extends OpMap {
 	 * Compile a function argument.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to the argument expression.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression arg(int opPos) throws TransformerException {
 
@@ -693,14 +700,14 @@ public class Compiler extends OpMap {
 	 * {@link com.sun.org.apache.xpath.internal.axes.LocPathIterator} children.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.axes.LocPathIterator}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression union(int opPos) throws TransformerException {
 		locPathDepth++;
@@ -734,19 +741,20 @@ public class Compiler extends OpMap {
 	 * {@link com.sun.org.apache.xpath.internal.axes.AxesWalker} children.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.axes.LocPathIterator}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	public Expression locationPath(int opPos) throws TransformerException {
 		locPathDepth++;
 		try {
-			DTMIterator iter = WalkerFactory.newDTMIterator(this, opPos, (locPathDepth == 0));
+			DTMIterator iter = WalkerFactory.newDTMIterator(this, opPos,
+					(locPathDepth == 0));
 			return (Expression) iter; // cast OK, I guess.
 		} finally {
 			locPathDepth--;
@@ -757,12 +765,12 @@ public class Compiler extends OpMap {
 	 * Compile a location step predicate expression.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return the contained predicate expression.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	public Expression predicate(int opPos) throws TransformerException {
 		return compile(opPos + 2);
@@ -772,14 +780,14 @@ public class Compiler extends OpMap {
 	 * Compile an entire match pattern expression.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.patterns.UnionPattern}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	protected Expression matchPattern(int opPos) throws TransformerException {
 		locPathDepth++;
@@ -788,7 +796,8 @@ public class Compiler extends OpMap {
 			int nextOpPos = opPos;
 			int i;
 
-			for (i = 0; getOp(nextOpPos) == OpCodes.OP_LOCATIONPATHPATTERN; i++) {
+			for (i = 0; getOp(
+					nextOpPos) == OpCodes.OP_LOCATIONPATHPATTERN; i++) {
 				nextOpPos = getNextOpPos(nextOpPos);
 			}
 
@@ -816,16 +825,17 @@ public class Compiler extends OpMap {
 	 * Compile a location match pattern unit expression.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.patterns.StepPattern}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
-	public Expression locationPathPattern(int opPos) throws TransformerException {
+	public Expression locationPathPattern(int opPos)
+			throws TransformerException {
 
 		opPos = getFirstChildPos(opPos);
 
@@ -837,7 +847,7 @@ public class Compiler extends OpMap {
 	 * show for a given node test.
 	 *
 	 * @param opPos
-	 *            the op map position for the location step.
+	 *              the op map position for the location step.
 	 *
 	 * @return {@link org.w3c.dom.traversal.NodeFilter} bit set that tells what
 	 *         to show for a given node test.
@@ -849,56 +859,58 @@ public class Compiler extends OpMap {
 
 		// System.out.println("testType: "+testType);
 		switch (testType) {
-		case OpCodes.NODETYPE_COMMENT:
-			return DTMFilter.SHOW_COMMENT;
-		case OpCodes.NODETYPE_TEXT:
-			// return DTMFilter.SHOW_TEXT | DTMFilter.SHOW_COMMENT;
-			return DTMFilter.SHOW_TEXT | DTMFilter.SHOW_CDATA_SECTION;
-		case OpCodes.NODETYPE_PI:
-			return DTMFilter.SHOW_PROCESSING_INSTRUCTION;
-		case OpCodes.NODETYPE_NODE:
-			// return DTMFilter.SHOW_ALL;
-			switch (axesType) {
-			case OpCodes.FROM_NAMESPACE:
-				return DTMFilter.SHOW_NAMESPACE;
-			case OpCodes.FROM_ATTRIBUTES:
-			case OpCodes.MATCH_ATTRIBUTE:
-				return DTMFilter.SHOW_ATTRIBUTE;
-			case OpCodes.FROM_SELF:
-			case OpCodes.FROM_ANCESTORS_OR_SELF:
-			case OpCodes.FROM_DESCENDANTS_OR_SELF:
+			case OpCodes.NODETYPE_COMMENT:
+				return DTMFilter.SHOW_COMMENT;
+			case OpCodes.NODETYPE_TEXT:
+				// return DTMFilter.SHOW_TEXT | DTMFilter.SHOW_COMMENT;
+				return DTMFilter.SHOW_TEXT | DTMFilter.SHOW_CDATA_SECTION;
+			case OpCodes.NODETYPE_PI:
+				return DTMFilter.SHOW_PROCESSING_INSTRUCTION;
+			case OpCodes.NODETYPE_NODE:
+				// return DTMFilter.SHOW_ALL;
+				switch (axesType) {
+					case OpCodes.FROM_NAMESPACE:
+						return DTMFilter.SHOW_NAMESPACE;
+					case OpCodes.FROM_ATTRIBUTES:
+					case OpCodes.MATCH_ATTRIBUTE:
+						return DTMFilter.SHOW_ATTRIBUTE;
+					case OpCodes.FROM_SELF:
+					case OpCodes.FROM_ANCESTORS_OR_SELF:
+					case OpCodes.FROM_DESCENDANTS_OR_SELF:
+						return DTMFilter.SHOW_ALL;
+					default:
+						if (getOp(0) == OpCodes.OP_MATCHPATTERN)
+							return ~DTMFilter.SHOW_ATTRIBUTE
+									& ~DTMFilter.SHOW_DOCUMENT
+									& ~DTMFilter.SHOW_DOCUMENT_FRAGMENT;
+						else
+							return ~DTMFilter.SHOW_ATTRIBUTE;
+				}
+			case OpCodes.NODETYPE_ROOT:
+				return DTMFilter.SHOW_DOCUMENT
+						| DTMFilter.SHOW_DOCUMENT_FRAGMENT;
+			case OpCodes.NODETYPE_FUNCTEST:
+				return NodeTest.SHOW_BYFUNCTION;
+			case OpCodes.NODENAME:
+				switch (axesType) {
+					case OpCodes.FROM_NAMESPACE:
+						return DTMFilter.SHOW_NAMESPACE;
+					case OpCodes.FROM_ATTRIBUTES:
+					case OpCodes.MATCH_ATTRIBUTE:
+						return DTMFilter.SHOW_ATTRIBUTE;
+
+					// break;
+					case OpCodes.MATCH_ANY_ANCESTOR:
+					case OpCodes.MATCH_IMMEDIATE_ANCESTOR:
+						return DTMFilter.SHOW_ELEMENT;
+
+					// break;
+					default:
+						return DTMFilter.SHOW_ELEMENT;
+				}
+			default:
+				// System.err.println("We should never reach here.");
 				return DTMFilter.SHOW_ALL;
-			default:
-				if (getOp(0) == OpCodes.OP_MATCHPATTERN)
-					return ~DTMFilter.SHOW_ATTRIBUTE & ~DTMFilter.SHOW_DOCUMENT
-							& ~DTMFilter.SHOW_DOCUMENT_FRAGMENT;
-				else
-					return ~DTMFilter.SHOW_ATTRIBUTE;
-			}
-		case OpCodes.NODETYPE_ROOT:
-			return DTMFilter.SHOW_DOCUMENT | DTMFilter.SHOW_DOCUMENT_FRAGMENT;
-		case OpCodes.NODETYPE_FUNCTEST:
-			return NodeTest.SHOW_BYFUNCTION;
-		case OpCodes.NODENAME:
-			switch (axesType) {
-			case OpCodes.FROM_NAMESPACE:
-				return DTMFilter.SHOW_NAMESPACE;
-			case OpCodes.FROM_ATTRIBUTES:
-			case OpCodes.MATCH_ATTRIBUTE:
-				return DTMFilter.SHOW_ATTRIBUTE;
-
-			// break;
-			case OpCodes.MATCH_ANY_ANCESTOR:
-			case OpCodes.MATCH_IMMEDIATE_ANCESTOR:
-				return DTMFilter.SHOW_ELEMENT;
-
-			// break;
-			default:
-				return DTMFilter.SHOW_ELEMENT;
-			}
-		default:
-			// System.err.println("We should never reach here.");
-			return DTMFilter.SHOW_ALL;
 		}
 	}
 
@@ -909,21 +921,21 @@ public class Compiler extends OpMap {
 	 * match patterns.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *                        The current position in the m_opMap array.
 	 * @param stepCount
-	 *            The number of steps to expect.
+	 *                        The number of steps to expect.
 	 * @param ancestorPattern
-	 *            The owning StepPattern, which may be null.
+	 *                        The owning StepPattern, which may be null.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.patterns.StepPattern}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
-	protected StepPattern stepPattern(int opPos, int stepCount, StepPattern ancestorPattern)
-			throws TransformerException {
+	protected StepPattern stepPattern(int opPos, int stepCount,
+			StepPattern ancestorPattern) throws TransformerException {
 
 		int startOpPos = opPos;
 		int stepType = getOp(opPos);
@@ -944,59 +956,66 @@ public class Compiler extends OpMap {
 		int argLen;
 
 		switch (stepType) {
-		case OpCodes.OP_FUNCTION:
-			if (DEBUG)
-				System.out.println("MATCH_FUNCTION: " + m_currentPattern);
-			addMagicSelf = false;
-			argLen = getOp(opPos + OpMap.MAPINDEX_LENGTH);
-			pattern = new FunctionPattern(compileFunction(opPos), Axis.PARENT, Axis.CHILD);
-			break;
-		case OpCodes.FROM_ROOT:
-			if (DEBUG)
-				System.out.println("FROM_ROOT, " + m_currentPattern);
-			addMagicSelf = false;
-			argLen = getArgLengthOfStep(opPos);
-			opPos = getFirstChildPosOfStep(opPos);
-			pattern = new StepPattern(DTMFilter.SHOW_DOCUMENT | DTMFilter.SHOW_DOCUMENT_FRAGMENT,
-					Axis.PARENT, Axis.CHILD);
-			break;
-		case OpCodes.MATCH_ATTRIBUTE:
-			if (DEBUG)
-				System.out.println("MATCH_ATTRIBUTE: " + getStepLocalName(startOpPos) + ", "
-						+ m_currentPattern);
-			argLen = getArgLengthOfStep(opPos);
-			opPos = getFirstChildPosOfStep(opPos);
-			pattern = new StepPattern(DTMFilter.SHOW_ATTRIBUTE, getStepNS(startOpPos),
-					getStepLocalName(startOpPos), Axis.PARENT, Axis.ATTRIBUTE);
-			break;
-		case OpCodes.MATCH_ANY_ANCESTOR:
-			if (DEBUG)
-				System.out.println("MATCH_ANY_ANCESTOR: " + getStepLocalName(startOpPos) + ", "
-						+ m_currentPattern);
-			argLen = getArgLengthOfStep(opPos);
-			opPos = getFirstChildPosOfStep(opPos);
-			int what = getWhatToShow(startOpPos);
-			// bit-o-hackery, but this code is due for the morgue anyway...
-			if (0x00000500 == what)
+			case OpCodes.OP_FUNCTION:
+				if (DEBUG)
+					System.out.println("MATCH_FUNCTION: " + m_currentPattern);
 				addMagicSelf = false;
-			pattern = new StepPattern(getWhatToShow(startOpPos), getStepNS(startOpPos),
-					getStepLocalName(startOpPos), Axis.ANCESTOR, Axis.CHILD);
-			break;
-		case OpCodes.MATCH_IMMEDIATE_ANCESTOR:
-			if (DEBUG)
-				System.out.println("MATCH_IMMEDIATE_ANCESTOR: " + getStepLocalName(startOpPos)
-						+ ", " + m_currentPattern);
-			argLen = getArgLengthOfStep(opPos);
-			opPos = getFirstChildPosOfStep(opPos);
-			pattern = new StepPattern(getWhatToShow(startOpPos), getStepNS(startOpPos),
-					getStepLocalName(startOpPos), Axis.PARENT, Axis.CHILD);
-			break;
-		default:
-			error(XPATHErrorResources.ER_UNKNOWN_MATCH_OPERATION, null); // "unknown
-																			// match
-																			// operation!");
+				argLen = getOp(opPos + OpMap.MAPINDEX_LENGTH);
+				pattern = new FunctionPattern(compileFunction(opPos),
+						Axis.PARENT, Axis.CHILD);
+				break;
+			case OpCodes.FROM_ROOT:
+				if (DEBUG)
+					System.out.println("FROM_ROOT, " + m_currentPattern);
+				addMagicSelf = false;
+				argLen = getArgLengthOfStep(opPos);
+				opPos = getFirstChildPosOfStep(opPos);
+				pattern = new StepPattern(DTMFilter.SHOW_DOCUMENT
+						| DTMFilter.SHOW_DOCUMENT_FRAGMENT, Axis.PARENT,
+						Axis.CHILD);
+				break;
+			case OpCodes.MATCH_ATTRIBUTE:
+				if (DEBUG)
+					System.out.println("MATCH_ATTRIBUTE: " + getStepLocalName(
+							startOpPos) + ", " + m_currentPattern);
+				argLen = getArgLengthOfStep(opPos);
+				opPos = getFirstChildPosOfStep(opPos);
+				pattern = new StepPattern(DTMFilter.SHOW_ATTRIBUTE, getStepNS(
+						startOpPos), getStepLocalName(startOpPos), Axis.PARENT,
+						Axis.ATTRIBUTE);
+				break;
+			case OpCodes.MATCH_ANY_ANCESTOR:
+				if (DEBUG)
+					System.out.println("MATCH_ANY_ANCESTOR: "
+							+ getStepLocalName(startOpPos) + ", "
+							+ m_currentPattern);
+				argLen = getArgLengthOfStep(opPos);
+				opPos = getFirstChildPosOfStep(opPos);
+				int what = getWhatToShow(startOpPos);
+				// bit-o-hackery, but this code is due for the morgue anyway...
+				if (0x00000500 == what)
+					addMagicSelf = false;
+				pattern = new StepPattern(getWhatToShow(startOpPos), getStepNS(
+						startOpPos), getStepLocalName(startOpPos),
+						Axis.ANCESTOR, Axis.CHILD);
+				break;
+			case OpCodes.MATCH_IMMEDIATE_ANCESTOR:
+				if (DEBUG)
+					System.out.println("MATCH_IMMEDIATE_ANCESTOR: "
+							+ getStepLocalName(startOpPos) + ", "
+							+ m_currentPattern);
+				argLen = getArgLengthOfStep(opPos);
+				opPos = getFirstChildPosOfStep(opPos);
+				pattern = new StepPattern(getWhatToShow(startOpPos), getStepNS(
+						startOpPos), getStepLocalName(startOpPos), Axis.PARENT,
+						Axis.CHILD);
+				break;
+			default:
+				error(XPATHErrorResources.ER_UNKNOWN_MATCH_OPERATION, null); // "unknown
+																				// match
+																				// operation!");
 
-			return null;
+				return null;
 		}
 
 		pattern.setPredicates(getCompiledPredicates(opPos + argLen));
@@ -1026,7 +1045,8 @@ public class Compiler extends OpMap {
 			pattern.setRelativePathPattern(ancestorPattern);
 		}
 
-		StepPattern relativePathPattern = stepPattern(endStep, stepCount + 1, pattern);
+		StepPattern relativePathPattern = stepPattern(endStep, stepCount + 1,
+				pattern);
 
 		return (null != relativePathPattern) ? relativePathPattern : pattern;
 	}
@@ -1035,15 +1055,16 @@ public class Compiler extends OpMap {
 	 * Compile a zero or more predicates for a given match pattern.
 	 *
 	 * @param opPos
-	 *            The position of the first predicate the m_opMap array.
+	 *              The position of the first predicate the m_opMap array.
 	 *
 	 * @return reference to array of
 	 *         {@link com.sun.org.apache.xpath.internal.Expression} instances.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
-	public Expression[] getCompiledPredicates(int opPos) throws TransformerException {
+	public Expression[] getCompiledPredicates(int opPos)
+			throws TransformerException {
 
 		int count = countPredicates(opPos);
 
@@ -1062,12 +1083,12 @@ public class Compiler extends OpMap {
 	 * Count the number of predicates in the step.
 	 *
 	 * @param opPos
-	 *            The position of the first predicate the m_opMap array.
+	 *              The position of the first predicate the m_opMap array.
 	 *
 	 * @return The number of predicates for this step.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	public int countPredicates(int opPos) throws TransformerException {
 
@@ -1086,15 +1107,17 @@ public class Compiler extends OpMap {
 	 * Compiles predicates in the step.
 	 *
 	 * @param opPos
-	 *            The position of the first predicate the m_opMap array.
+	 *                   The position of the first predicate the m_opMap array.
 	 * @param predicates
-	 *            An empty pre-determined array of
-	 *            {@link com.sun.org.apache.xpath.internal.Expression}s, that
-	 *            will be filled in.
+	 *                   An empty pre-determined array of
+	 *                   {@link com.sun.org.apache.xpath.internal.Expression}s,
+	 *                   that
+	 *                   will be filled in.
 	 *
 	 * @throws TransformerException
 	 */
-	private void compilePredicates(int opPos, Expression[] predicates) throws TransformerException {
+	private void compilePredicates(int opPos, Expression[] predicates)
+			throws TransformerException {
 
 		for (int i = 0; OpCodes.OP_PREDICATE == getOp(opPos); i++) {
 			predicates[i] = predicate(opPos);
@@ -1106,14 +1129,14 @@ public class Compiler extends OpMap {
 	 * Compile a built-in XPath function.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.functions.Function}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	Expression compileFunction(int opPos) throws TransformerException {
 
@@ -1135,7 +1158,8 @@ public class Compiler extends OpMap {
 			 */
 
 			if (func instanceof FuncExtFunctionAvailable)
-				((FuncExtFunctionAvailable) func).setFunctionTable(m_functionTable);
+				((FuncExtFunctionAvailable) func).setFunctionTable(
+						m_functionTable);
 
 			func.postCompileStep(this);
 
@@ -1153,8 +1177,8 @@ public class Compiler extends OpMap {
 			} catch (WrongNumberArgsException wnae) {
 				java.lang.String name = m_functionTable.getFunctionName(funcID);
 
-				m_errorHandler.fatalError(new TransformerException(
-						XSLMessages.createXPATHMessage(XPATHErrorResources.ER_ONLY_ALLOWS,
+				m_errorHandler.fatalError(new TransformerException(XSLMessages
+						.createXPATHMessage(XPATHErrorResources.ER_ONLY_ALLOWS,
 								new Object[] { name, wnae.getMessage() }),
 						m_locator));
 				// "name + " only allows " + wnae.getMessage() + " arguments",
@@ -1189,14 +1213,14 @@ public class Compiler extends OpMap {
 	 * Compile an extension function.
 	 *
 	 * @param opPos
-	 *            The current position in the m_opMap array.
+	 *              The current position in the m_opMap array.
 	 *
 	 * @return reference to
 	 *         {@link com.sun.org.apache.xpath.internal.functions.FuncExtFunction}
 	 *         instance.
 	 *
 	 * @throws TransformerException
-	 *             if a error occurs creating the Expression.
+	 *                              if a error occurs creating the Expression.
 	 */
 	private Expression compileExtension(int opPos) throws TransformerException {
 
@@ -1204,11 +1228,13 @@ public class Compiler extends OpMap {
 
 		opPos = getFirstChildPos(opPos);
 
-		java.lang.String ns = (java.lang.String) getTokenQueue().elementAt(getOp(opPos));
+		java.lang.String ns = (java.lang.String) getTokenQueue().elementAt(
+				getOp(opPos));
 
 		opPos++;
 
-		java.lang.String funcName = (java.lang.String) getTokenQueue().elementAt(getOp(opPos));
+		java.lang.String funcName = (java.lang.String) getTokenQueue()
+				.elementAt(getOp(opPos));
 
 		opPos++;
 
@@ -1216,7 +1242,8 @@ public class Compiler extends OpMap {
 		// can cache the object needed to invoke it. This way, we only pay the
 		// reflection overhead on the first call.
 
-		Function extension = new FuncExtFunction(ns, funcName, String.valueOf(getNextMethodId()));
+		Function extension = new FuncExtFunction(ns, funcName, String.valueOf(
+				getNextMethodId()));
 
 		try {
 			int i = 0;
@@ -1241,17 +1268,19 @@ public class Compiler extends OpMap {
 	 * Warn the user of an problem.
 	 *
 	 * @param msg
-	 *            An error msgkey that corresponds to one of the constants found
-	 *            in
-	 *            {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-	 *            , which is a key for a format string.
+	 *             An error msgkey that corresponds to one of the constants
+	 *             found
+	 *             in
+	 *             {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+	 *             , which is a key for a format string.
 	 * @param args
-	 *            An array of arguments represented in the format string, which
-	 *            may be null.
+	 *             An array of arguments represented in the format string, which
+	 *             may be null.
 	 *
 	 * @throws TransformerException
-	 *             if the current ErrorListoner determines to throw an
-	 *             exception.
+	 *                              if the current ErrorListoner determines to
+	 *                              throw an
+	 *                              exception.
 	 */
 	public void warn(String msg, Object[] args) throws TransformerException {
 
@@ -1260,8 +1289,9 @@ public class Compiler extends OpMap {
 		if (null != m_errorHandler) {
 			m_errorHandler.warning(new TransformerException(fmsg, m_locator));
 		} else {
-			System.out.println(fmsg + "; file " + m_locator.getSystemId() + "; line "
-					+ m_locator.getLineNumber() + "; column " + m_locator.getColumnNumber());
+			System.out.println(fmsg + "; file " + m_locator.getSystemId()
+					+ "; line " + m_locator.getLineNumber() + "; column "
+					+ m_locator.getColumnNumber());
 		}
 	}
 
@@ -1274,13 +1304,14 @@ public class Compiler extends OpMap {
 	 *            The assertion message, which should be informative.
 	 *
 	 * @throws RuntimeException
-	 *             if the b argument is false.
+	 *                          if the b argument is false.
 	 */
 	public void assertion(boolean b, java.lang.String msg) {
 
 		if (!b) {
 			java.lang.String fMsg = XSLMessages.createXPATHMessage(
-					XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION, new Object[] { msg });
+					XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION,
+					new Object[] { msg });
 
 			throw new RuntimeException(fMsg);
 		}
@@ -1290,24 +1321,27 @@ public class Compiler extends OpMap {
 	 * Tell the user of an error, and probably throw an exception.
 	 *
 	 * @param msg
-	 *            An error msgkey that corresponds to one of the constants found
-	 *            in
-	 *            {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-	 *            , which is a key for a format string.
+	 *             An error msgkey that corresponds to one of the constants
+	 *             found
+	 *             in
+	 *             {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+	 *             , which is a key for a format string.
 	 * @param args
-	 *            An array of arguments represented in the format string, which
-	 *            may be null.
+	 *             An array of arguments represented in the format string, which
+	 *             may be null.
 	 *
 	 * @throws TransformerException
-	 *             if the current ErrorListoner determines to throw an
-	 *             exception.
+	 *                              if the current ErrorListoner determines to
+	 *                              throw an
+	 *                              exception.
 	 */
 	public void error(String msg, Object[] args) throws TransformerException {
 
 		java.lang.String fmsg = XSLMessages.createXPATHMessage(msg, args);
 
 		if (null != m_errorHandler) {
-			m_errorHandler.fatalError(new TransformerException(fmsg, m_locator));
+			m_errorHandler.fatalError(new TransformerException(fmsg,
+					m_locator));
 		} else {
 
 			// System.out.println(te.getMessage()
@@ -1336,7 +1370,7 @@ public class Compiler extends OpMap {
 	 * Set the current namespace context for the xpath.
 	 *
 	 * @param pr
-	 *            The resolver for prefixes in the XPath expression.
+	 *           The resolver for prefixes in the XPath expression.
 	 */
 	public void setNamespaceContext(PrefixResolver pr) {
 		m_currentPrefixResolver = pr;

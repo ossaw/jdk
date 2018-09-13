@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -7,9 +6,9 @@
 /**********************************************************************
  **********************************************************************
  **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company.                 ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
+ *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************
  **********************************************************************
  **********************************************************************/
@@ -104,9 +103,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * each output pixel (ussually 2 for YCC).
 	 * 
 	 * @param component
-	 *            The component being specified.
+	 *                  The component being specified.
 	 * @param subsample
-	 *            The subsampling factor being specified.
+	 *                  The subsampling factor being specified.
 	 */
 	public void setHorizontalSubsampling(int component, int subsample);
 
@@ -116,9 +115,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * output pixel (ussually 2 for YCC).
 	 * 
 	 * @param component
-	 *            The component being specified.
+	 *                  The component being specified.
 	 * @param subsample
-	 *            The subsampling factor being specified.
+	 *                  The subsampling factor being specified.
 	 */
 	public void setVerticalSubsampling(int component, int subsample);
 
@@ -127,9 +126,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * range in value from 0 - 3.
 	 * 
 	 * @param qtable
-	 *            that will be used.
+	 *                 that will be used.
 	 * @param tableNum
-	 *            the index of the table to be set.
+	 *                 the index of the table to be set.
 	 */
 	public void setQTable(int tableNum, JPEGQTable qTable);
 
@@ -137,12 +136,14 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * Sets the DC Huffman coding table at index to the table provided.
 	 * 
 	 * @param huffTable
-	 *            JPEGHuffmanTable that will be assigned to index tableNum.
+	 *                  JPEGHuffmanTable that will be assigned to index
+	 *                  tableNum.
 	 * @param tableNum
-	 *            - the index of the table to be set.
+	 *                  - the index of the table to be set.
 	 * @exception IllegalArgumentException
-	 *                - thrown if the tableNum is out of range. Index must range
-	 *                in value from 0 - 3.
+	 *                                     - thrown if the tableNum is out of
+	 *                                     range. Index must range
+	 *                                     in value from 0 - 3.
 	 */
 	public void setDCHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
 
@@ -150,12 +151,14 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * Sets the AC Huffman coding table at index to the table provided.
 	 * 
 	 * @param huffTable
-	 *            JPEGHuffmanTable that will be assigned to index tableNum.
+	 *                  JPEGHuffmanTable that will be assigned to index
+	 *                  tableNum.
 	 * @param tableNum
-	 *            - the index of the table to be set.
+	 *                  - the index of the table to be set.
 	 * @exception IllegalArgumentException
-	 *                - thrown if the tableNum is out of range. Index must range
-	 *                in value from 0 - 3.
+	 *                                     - thrown if the tableNum is out of
+	 *                                     range. Index must range
+	 *                                     in value from 0 - 3.
 	 */
 	public void setACHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
 
@@ -163,9 +166,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * Sets the mapping between a component and it's DC Huffman Table.
 	 * 
 	 * @param component
-	 *            The component to set the mapping for
+	 *                  The component to set the mapping for
 	 * @param table
-	 *            The DC Huffman table to use for component
+	 *                  The DC Huffman table to use for component
 	 */
 	public void setDCHuffmanComponentMapping(int component, int table);
 
@@ -173,9 +176,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * Sets the mapping between a component and it's AC Huffman Table.
 	 * 
 	 * @param component
-	 *            The component to set the mapping for
+	 *                  The component to set the mapping for
 	 * @param table
-	 *            The AC Huffman table to use for component
+	 *                  The AC Huffman table to use for component
 	 */
 	public void setACHuffmanComponentMapping(int component, int table);
 
@@ -183,9 +186,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * Sets the mapping between a component and it's Quantization Table.
 	 * 
 	 * @param component
-	 *            The component to set the mapping for
+	 *                  The component to set the mapping for
 	 * @param table
-	 *            The Quantization Table to use for component
+	 *                  The Quantization Table to use for component
 	 */
 	public void setQTableComponentMapping(int component, int table);
 
@@ -209,9 +212,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * to remove the default APP0 marker by calling it with data set to null.
 	 * 
 	 * @param marker
-	 *            The marker to set the data for.
+	 *               The marker to set the data for.
 	 * @param data
-	 *            the new set of data to be written.
+	 *               the new set of data to be written.
 	 */
 	public void setMarkerData(int marker, byte[][] data);
 
@@ -221,9 +224,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * byte[] in the array.).
 	 * 
 	 * @param marker
-	 *            The marker to add and instance of.
+	 *               The marker to add and instance of.
 	 * @param data
-	 *            the data to be written.
+	 *               the data to be written.
 	 */
 	public void addMarkerData(int marker, byte[] data);
 
@@ -231,7 +234,7 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * Set the MCUs per restart, or 0 for no restart markers.
 	 * 
 	 * @param restartInterval
-	 *            number MCUs per restart marker.
+	 *                        number MCUs per restart marker.
 	 */
 	public void setRestartInterval(int restartInterval);
 
@@ -240,7 +243,7 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * that marker is written). This value isn't used by the JPEG code.
 	 * 
 	 * @param unit
-	 *            One of the DENSITY_UNIT_* values.
+	 *             One of the DENSITY_UNIT_* values.
 	 */
 	public void setDensityUnit(int unit);
 
@@ -249,8 +252,8 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * marker. It isn't used by the JPEG code.
 	 * 
 	 * @param density
-	 *            the horizontal pixel density, in units described by @see
-	 *            JPEGParam.getDensityUnit.
+	 *                the horizontal pixel density, in units described by @see
+	 *                JPEGParam.getDensityUnit.
 	 */
 	public void setXDensity(int density);
 
@@ -259,8 +262,8 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * marker. It isn't used by the JPEG code.
 	 * 
 	 * @param density
-	 *            The verticle pixel density, in units described by @see
-	 *            JPEGParam.getDensityUnit.
+	 *                The verticle pixel density, in units described by @see
+	 *                JPEGParam.getDensityUnit.
 	 */
 	public void setYDensity(int density);
 
@@ -290,9 +293,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
 	 * </pre>
 	 * 
 	 * @param quality
-	 *            0.0-1.0 setting of desired quality level.
+	 *                      0.0-1.0 setting of desired quality level.
 	 * @param forceBaseline
-	 *            force baseline quantization table
+	 *                      force baseline quantization table
 	 */
 	public void setQuality(float quality, boolean forceBaseline);
 }

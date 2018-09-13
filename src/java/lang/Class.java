@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -94,7 +74,8 @@ import sun.reflect.misc.ReflectUtil;
  * 
  * <pre>
  * void printClassName(Object obj) {
- * 	System.out.println("The class of " + obj + " is " + obj.getClass().getName());
+ * 	System.out.println("The class of " + obj + " is " + obj.getClass()
+ * 			.getName());
  * }
  * </pre>
  * 
@@ -110,16 +91,16 @@ import sun.reflect.misc.ReflectUtil;
  * </blockquote>
  *
  * @param <T>
- *            the type of the class modeled by this {@code Class} object. For
- *            example, the type of {@code String.class} is {@code
+ *        the type of the class modeled by this {@code Class} object. For
+ *        example, the type of {@code String.class} is {@code
  * Class<String>}. Use {@code Class<?>} if the class being modeled is unknown.
  *
  * @author unascribed
  * @see java.lang.ClassLoader#defineClass(byte[], int, int)
  * @since JDK1.0
  */
-public final class Class<T>
-		implements java.io.Serializable, GenericDeclaration, Type, AnnotatedElement {
+public final class Class<T> implements java.io.Serializable, GenericDeclaration,
+		Type, AnnotatedElement {
 	private static final int ANNOTATION = 0x00002000;
 	private static final int ENUM = 0x00004000;
 	private static final int SYNTHETIC = 0x00001000;
@@ -154,7 +135,8 @@ public final class Class<T>
 	 * @return a string representation of this class object.
 	 */
 	public String toString() {
-		return (isInterface() ? "interface " : (isPrimitive() ? "" : "class ")) + getName();
+		return (isInterface() ? "interface " : (isPrimitive() ? "" : "class "))
+				+ getName();
 	}
 
 	/**
@@ -248,19 +230,22 @@ public final class Class<T>
 	 * initialized.
 	 *
 	 * @param className
-	 *            the fully qualified name of the desired class.
+	 *                  the fully qualified name of the desired class.
 	 * @return the {@code Class} object for the class with the specified name.
 	 * @exception LinkageError
-	 *                if the linkage fails
+	 *                                        if the linkage fails
 	 * @exception ExceptionInInitializerError
-	 *                if the initialization provoked by this method fails
+	 *                                        if the initialization provoked by
+	 *                                        this method fails
 	 * @exception ClassNotFoundException
-	 *                if the class cannot be located
+	 *                                        if the class cannot be located
 	 */
 	@CallerSensitive
-	public static Class<?> forName(String className) throws ClassNotFoundException {
+	public static Class<?> forName(String className)
+			throws ClassNotFoundException {
 		Class<?> caller = Reflection.getCallerClass();
-		return forName0(className, true, ClassLoader.getClassLoader(caller), caller);
+		return forName0(className, true, ClassLoader.getClassLoader(caller),
+				caller);
 	}
 
 	/**
@@ -308,29 +293,32 @@ public final class Class<T>
 	 * to access the bootstrap class loader.
 	 *
 	 * @param name
-	 *            fully qualified name of the desired class
+	 *                   fully qualified name of the desired class
 	 * @param initialize
-	 *            if {@code true} the class will be initialized. See Section
-	 *            12.4 of <em>The Java Language Specification</em>.
+	 *                   if {@code true} the class will be initialized. See
+	 *                   Section
+	 *                   12.4 of <em>The Java Language Specification</em>.
 	 * @param loader
-	 *            class loader from which the class must be loaded
+	 *                   class loader from which the class must be loaded
 	 * @return class object representing the desired class
 	 *
 	 * @exception LinkageError
-	 *                if the linkage fails
+	 *                                        if the linkage fails
 	 * @exception ExceptionInInitializerError
-	 *                if the initialization provoked by this method fails
+	 *                                        if the initialization provoked by
+	 *                                        this method fails
 	 * @exception ClassNotFoundException
-	 *                if the class cannot be located by the specified class
-	 *                loader
+	 *                                        if the class cannot be located by
+	 *                                        the specified class
+	 *                                        loader
 	 *
 	 * @see java.lang.Class#forName(String)
 	 * @see java.lang.ClassLoader
 	 * @since 1.2
 	 */
 	@CallerSensitive
-	public static Class<?> forName(String name, boolean initialize, ClassLoader loader)
-			throws ClassNotFoundException {
+	public static Class<?> forName(String name, boolean initialize,
+			ClassLoader loader) throws ClassNotFoundException {
 		Class<?> caller = null;
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
@@ -341,7 +329,8 @@ public final class Class<T>
 			if (sun.misc.VM.isSystemDomainLoader(loader)) {
 				ClassLoader ccl = ClassLoader.getClassLoader(caller);
 				if (!sun.misc.VM.isSystemDomainLoader(ccl)) {
-					sm.checkPermission(SecurityConstants.GET_CLASSLOADER_PERMISSION);
+					sm.checkPermission(
+							SecurityConstants.GET_CLASSLOADER_PERMISSION);
 				}
 			}
 		}
@@ -352,8 +341,8 @@ public final class Class<T>
 	 * Called after security check for system loader access checks have been
 	 * made.
 	 */
-	private static native Class<?> forName0(String name, boolean initialize, ClassLoader loader,
-			Class<?> caller) throws ClassNotFoundException;
+	private static native Class<?> forName0(String name, boolean initialize,
+			ClassLoader loader, Class<?> caller) throws ClassNotFoundException;
 
 	/**
 	 * Creates a new instance of the class represented by this {@code Class}
@@ -374,26 +363,37 @@ public final class Class<T>
 	 * @return a newly allocated instance of the class represented by this
 	 *         object.
 	 * @throws IllegalAccessException
-	 *             if the class or its nullary constructor is not accessible.
+	 *                                     if the class or its nullary
+	 *                                     constructor is not accessible.
 	 * @throws InstantiationException
-	 *             if this {@code Class} represents an abstract class, an
-	 *             interface, an array class, a primitive type, or void; or if
-	 *             the class has no nullary constructor; or if the instantiation
-	 *             fails for some other reason.
+	 *                                     if this {@code Class} represents an
+	 *                                     abstract class, an
+	 *                                     interface, an array class, a
+	 *                                     primitive type, or void; or if
+	 *                                     the class has no nullary constructor;
+	 *                                     or if the instantiation
+	 *                                     fails for some other reason.
 	 * @throws ExceptionInInitializerError
-	 *             if the initialization provoked by this method fails.
+	 *                                     if the initialization provoked by
+	 *                                     this method fails.
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                                     If a security manager, <i>s</i>, is
+	 *                                     present and the caller's
+	 *                                     class loader is not the same as or an
+	 *                                     ancestor of the class
+	 *                                     loader for the current class and
+	 *                                     invocation of
+	 *                                     {@link SecurityManager#checkPackageAccess
+	 *                                     s.checkPackageAccess()} denies access
+	 *                                     to the package of this
+	 *                                     class.
 	 */
 	@CallerSensitive
-	public T newInstance() throws InstantiationException, IllegalAccessException {
+	public T newInstance() throws InstantiationException,
+			IllegalAccessException {
 		if (System.getSecurityManager() != null) {
-			checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), false);
+			checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(),
+					false);
 		}
 
 		// NOTE: the following code may not be strictly correct under
@@ -407,13 +407,14 @@ public final class Class<T>
 			}
 			try {
 				Class<?>[] empty = {};
-				final Constructor<T> c = getConstructor0(empty, Member.DECLARED);
+				final Constructor<T> c = getConstructor0(empty,
+						Member.DECLARED);
 				// Disable accessibility checks on the constructor
 				// since we have to do the security check here anyway
 				// (the stack depth is wrong for the Constructor's
 				// security check to work)
-				java.security.AccessController
-						.doPrivileged(new java.security.PrivilegedAction<Void>() {
+				java.security.AccessController.doPrivileged(
+						new java.security.PrivilegedAction<Void>() {
 							public Void run() {
 								c.setAccessible(true);
 								return null;
@@ -421,7 +422,8 @@ public final class Class<T>
 						});
 				cachedConstructor = c;
 			} catch (NoSuchMethodException e) {
-				throw (InstantiationException) new InstantiationException(getName()).initCause(e);
+				throw (InstantiationException) new InstantiationException(
+						getName()).initCause(e);
 			}
 		}
 		Constructor<T> tmpConstructor = cachedConstructor;
@@ -499,7 +501,7 @@ public final class Class<T>
 	 * @return the {@code boolean} value indicating whether objects of the type
 	 *         {@code cls} can be assigned to objects of this class
 	 * @exception NullPointerException
-	 *                if the specified Class parameter is null.
+	 *                                 if the specified Class parameter is null.
 	 * @since JDK1.1
 	 */
 	public native boolean isAssignableFrom(Class<?> cls);
@@ -699,8 +701,10 @@ public final class Class<T>
 	 * @return the class loader that loaded the class or interface represented
 	 *         by this object.
 	 * @throws SecurityException
-	 *             if a security manager exists and its {@code checkPermission}
-	 *             method denies access to the class loader for the class.
+	 *                           if a security manager exists and its
+	 *                           {@code checkPermission}
+	 *                           method denies access to the class loader for
+	 *                           the class.
 	 * @see java.lang.ClassLoader
 	 * @see SecurityManager#checkPermission
 	 * @see java.lang.RuntimePermission
@@ -712,7 +716,8 @@ public final class Class<T>
 			return null;
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			ClassLoader.checkClassLoaderPermission(cl, Reflection.getCallerClass());
+			ClassLoader.checkClassLoaderPermission(cl, Reflection
+					.getCallerClass());
 		}
 		return cl;
 	}
@@ -737,9 +742,9 @@ public final class Class<T>
 	 * @return an array of {@code TypeVariable} objects that represent the type
 	 *         variables declared by this generic declaration
 	 * @throws java.lang.reflect.GenericSignatureFormatError
-	 *             if the generic signature of this generic declaration does not
-	 *             conform to the format specified in <cite>The Java&trade;
-	 *             Virtual Machine Specification</cite>
+	 *         if the generic signature of this generic declaration does not
+	 *         conform to the format specified in <cite>The Java&trade;
+	 *         Virtual Machine Specification</cite>
 	 * @since 1.5
 	 */
 	@SuppressWarnings("unchecked")
@@ -780,16 +785,20 @@ public final class Class<T>
 	 * an array class then the {@code Class} object representing the
 	 * {@code Object} class is returned.
 	 *
-	 * @throws java.lang.reflect.GenericSignatureFormatError
-	 *             if the generic class signature does not conform to the format
-	 *             specified in <cite>The Java&trade; Virtual Machine
-	 *             Specification</cite>
+	 * @throws                         java.lang.reflect.GenericSignatureFormatError
+	 *                                 if the generic class signature does not
+	 *                                 conform to the format
+	 *                                 specified in <cite>The Java&trade;
+	 *                                 Virtual Machine
+	 *                                 Specification</cite>
 	 * @throws TypeNotPresentException
-	 *             if the generic superclass refers to a non-existent type
-	 *             declaration
-	 * @throws java.lang.reflect.MalformedParameterizedTypeException
-	 *             if the generic superclass refers to a parameterized type that
-	 *             cannot be instantiated for any reason
+	 *                                 if the generic superclass refers to a
+	 *                                 non-existent type
+	 *                                 declaration
+	 * @throws                         java.lang.reflect.MalformedParameterizedTypeException
+	 *                                 if the generic superclass refers to a
+	 *                                 parameterized type that
+	 *                                 cannot be instantiated for any reason
 	 * @return the superclass of the class represented by this object
 	 * @since 1.5
 	 */
@@ -925,16 +934,21 @@ public final class Class<T>
 	 * If this object represents a primitive type or void, the method returns an
 	 * array of length 0.
 	 *
-	 * @throws java.lang.reflect.GenericSignatureFormatError
-	 *             if the generic class signature does not conform to the format
-	 *             specified in <cite>The Java&trade; Virtual Machine
-	 *             Specification</cite>
+	 * @throws                         java.lang.reflect.GenericSignatureFormatError
+	 *                                 if the generic class signature does not
+	 *                                 conform to the format
+	 *                                 specified in <cite>The Java&trade;
+	 *                                 Virtual Machine
+	 *                                 Specification</cite>
 	 * @throws TypeNotPresentException
-	 *             if any of the generic superinterfaces refers to a
-	 *             non-existent type declaration
-	 * @throws java.lang.reflect.MalformedParameterizedTypeException
-	 *             if any of the generic superinterfaces refer to a
-	 *             parameterized type that cannot be instantiated for any reason
+	 *                                 if any of the generic superinterfaces
+	 *                                 refers to a
+	 *                                 non-existent type declaration
+	 * @throws                         java.lang.reflect.MalformedParameterizedTypeException
+	 *                                 if any of the generic superinterfaces
+	 *                                 refer to a
+	 *                                 parameterized type that cannot be
+	 *                                 instantiated for any reason
 	 * @return an array of interfaces implemented by this class
 	 * @since 1.5
 	 */
@@ -1011,25 +1025,34 @@ public final class Class<T>
 	 *         class is a local or anonymous class; otherwise {@code null}.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           any of the
+	 *                           following conditions is met:
 	 *
-	 *             <ul>
+	 *                           <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of the enclosing class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the methods within the enclosing class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as the class
+	 *                           loader of the enclosing class and invocation of
+	 *                           {@link SecurityManager#checkPermission
+	 *                           s.checkPermission}
+	 *                           method with
+	 *                           {@code RuntimePermission("accessDeclaredMembers")}
+	 *                           denies
+	 *                           access to the methods within the enclosing
+	 *                           class
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the enclosing class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of the
-	 *             enclosing class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as or an
+	 *                           ancestor of the class loader for the enclosing
+	 *                           class and
+	 *                           invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of the
+	 *                           enclosing class
 	 *
-	 *             </ul>
+	 *                           </ul>
 	 * @since 1.5
 	 */
 	@CallerSensitive
@@ -1042,8 +1065,8 @@ public final class Class<T>
 			if (!enclosingInfo.isMethod())
 				return null;
 
-			MethodRepository typeInfo = MethodRepository.make(enclosingInfo.getDescriptor(),
-					getFactory());
+			MethodRepository typeInfo = MethodRepository.make(enclosingInfo
+					.getDescriptor(), getFactory());
 			Class<?> returnType = toClass(typeInfo.getReturnType());
 			Type[] parameterTypes = typeInfo.getParameterTypes();
 			Class<?>[] parameterClasses = new Class<?>[parameterTypes.length];
@@ -1056,8 +1079,8 @@ public final class Class<T>
 
 			// Perform access check
 			Class<?> enclosingCandidate = enclosingInfo.getEnclosingClass();
-			enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(),
-					true);
+			enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection
+					.getCallerClass(), true);
 			/*
 			 * Loop over all declared methods; match method name, number of and
 			 * type of parameters, *and* return type. Matching return type is
@@ -1069,7 +1092,8 @@ public final class Class<T>
 					if (candidateParamClasses.length == parameterClasses.length) {
 						boolean matches = true;
 						for (int i = 0; i < candidateParamClasses.length; i++) {
-							if (!candidateParamClasses[i].equals(parameterClasses[i])) {
+							if (!candidateParamClasses[i].equals(
+									parameterClasses[i])) {
 								matches = false;
 								break;
 							}
@@ -1105,7 +1129,8 @@ public final class Class<T>
 
 		private EnclosingMethodInfo(Object[] enclosingInfo) {
 			if (enclosingInfo.length != 3)
-				throw new InternalError("Malformed enclosing method information");
+				throw new InternalError(
+						"Malformed enclosing method information");
 			try {
 				// The array is expected to have three elements:
 
@@ -1120,9 +1145,11 @@ public final class Class<T>
 				// the immediately enclosing method or constructor's
 				// descriptor (null iff name is).
 				descriptor = (String) enclosingInfo[2];
-				assert ((name != null && descriptor != null) || name == descriptor);
+				assert ((name != null && descriptor != null)
+						|| name == descriptor);
 			} catch (ClassCastException cce) {
-				throw new InternalError("Invalid type in enclosing method information", cce);
+				throw new InternalError(
+						"Invalid type in enclosing method information", cce);
 			}
 		}
 
@@ -1154,8 +1181,8 @@ public final class Class<T>
 
 	private static Class<?> toClass(Type o) {
 		if (o instanceof GenericArrayType)
-			return Array.newInstance(toClass(((GenericArrayType) o).getGenericComponentType()), 0)
-					.getClass();
+			return Array.newInstance(toClass(((GenericArrayType) o)
+					.getGenericComponentType()), 0).getClass();
 		return (Class<?>) o;
 	}
 
@@ -1171,25 +1198,34 @@ public final class Class<T>
 	 * @return the immediately enclosing constructor of the underlying class, if
 	 *         that class is a local or anonymous class; otherwise {@code null}.
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           any of the
+	 *                           following conditions is met:
 	 *
-	 *             <ul>
+	 *                           <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of the enclosing class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the constructors within the enclosing class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as the class
+	 *                           loader of the enclosing class and invocation of
+	 *                           {@link SecurityManager#checkPermission
+	 *                           s.checkPermission}
+	 *                           method with
+	 *                           {@code RuntimePermission("accessDeclaredMembers")}
+	 *                           denies
+	 *                           access to the constructors within the enclosing
+	 *                           class
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the enclosing class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of the
-	 *             enclosing class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as or an
+	 *                           ancestor of the class loader for the enclosing
+	 *                           class and
+	 *                           invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of the
+	 *                           enclosing class
 	 *
-	 *             </ul>
+	 *                           </ul>
 	 * @since 1.5
 	 */
 	@CallerSensitive
@@ -1202,8 +1238,8 @@ public final class Class<T>
 			if (!enclosingInfo.isConstructor())
 				return null;
 
-			ConstructorRepository typeInfo = ConstructorRepository
-					.make(enclosingInfo.getDescriptor(), getFactory());
+			ConstructorRepository typeInfo = ConstructorRepository.make(
+					enclosingInfo.getDescriptor(), getFactory());
 			Type[] parameterTypes = typeInfo.getParameterTypes();
 			Class<?>[] parameterClasses = new Class<?>[parameterTypes.length];
 
@@ -1215,18 +1251,20 @@ public final class Class<T>
 
 			// Perform access check
 			Class<?> enclosingCandidate = enclosingInfo.getEnclosingClass();
-			enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(),
-					true);
+			enclosingCandidate.checkMemberAccess(Member.DECLARED, Reflection
+					.getCallerClass(), true);
 			/*
 			 * Loop over all declared constructors; match number of and type of
 			 * parameters.
 			 */
-			for (Constructor<?> c : enclosingCandidate.getDeclaredConstructors()) {
+			for (Constructor<?> c : enclosingCandidate
+					.getDeclaredConstructors()) {
 				Class<?>[] candidateParamClasses = c.getParameterTypes();
 				if (candidateParamClasses.length == parameterClasses.length) {
 					boolean matches = true;
 					for (int i = 0; i < candidateParamClasses.length; i++) {
-						if (!candidateParamClasses[i].equals(parameterClasses[i])) {
+						if (!candidateParamClasses[i].equals(
+								parameterClasses[i])) {
 							matches = false;
 							break;
 						}
@@ -1251,12 +1289,16 @@ public final class Class<T>
 	 *
 	 * @return the declaring class for this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the declaring class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of the
-	 *             declaring class
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           the caller's
+	 *                           class loader is not the same as or an ancestor
+	 *                           of the class
+	 *                           loader for the declaring class and invocation
+	 *                           of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of the
+	 *                           declaring class
 	 * @since JDK1.1
 	 */
 	@CallerSensitive
@@ -1264,8 +1306,8 @@ public final class Class<T>
 		final Class<?> candidate = getDeclaringClass0();
 
 		if (candidate != null)
-			candidate.checkPackageAccess(ClassLoader.getClassLoader(Reflection.getCallerClass()),
-					true);
+			candidate.checkPackageAccess(ClassLoader.getClassLoader(Reflection
+					.getCallerClass()), true);
 		return candidate;
 	}
 
@@ -1277,12 +1319,16 @@ public final class Class<T>
 	 * 
 	 * @return the immediately enclosing class of the underlying class
 	 * @exception SecurityException
-	 *                If a security manager, <i>s</i>, is present and the
-	 *                caller's class loader is not the same as or an ancestor of
-	 *                the class loader for the enclosing class and invocation of
-	 *                {@link SecurityManager#checkPackageAccess
-	 *                s.checkPackageAccess()} denies access to the package of
-	 *                the enclosing class
+	 *                              If a security manager, <i>s</i>, is present
+	 *                              and the
+	 *                              caller's class loader is not the same as or
+	 *                              an ancestor of
+	 *                              the class loader for the enclosing class and
+	 *                              invocation of
+	 *                              {@link SecurityManager#checkPackageAccess
+	 *                              s.checkPackageAccess()} denies access to the
+	 *                              package of
+	 *                              the enclosing class
 	 * @since 1.5
 	 */
 	@CallerSensitive
@@ -1308,14 +1354,15 @@ public final class Class<T>
 			Class<?> enclosingClass = enclosingInfo.getEnclosingClass();
 			// This is a local class or an anonymous class (d or e)
 			if (enclosingClass == this || enclosingClass == null)
-				throw new InternalError("Malformed enclosing method information");
+				throw new InternalError(
+						"Malformed enclosing method information");
 			else
 				enclosingCandidate = enclosingClass;
 		}
 
 		if (enclosingCandidate != null)
-			enclosingCandidate.checkPackageAccess(
-					ClassLoader.getClassLoader(Reflection.getCallerClass()), true);
+			enclosingCandidate.checkPackageAccess(ClassLoader.getClassLoader(
+					Reflection.getCallerClass()), true);
 		return enclosingCandidate;
 	}
 
@@ -1508,12 +1555,15 @@ public final class Class<T>
 	 * @return the array of {@code Class} objects representing the public
 	 *         members of this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           the caller's
+	 *                           class loader is not the same as or an ancestor
+	 *                           of the class
+	 *                           loader for the current class and invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class.
 	 *
 	 * @since JDK1.1
 	 */
@@ -1527,15 +1577,17 @@ public final class Class<T>
 		// out anything other than public members and (2) public member access
 		// has already been ok'd by the SecurityManager.
 
-		return java.security.AccessController
-				.doPrivileged(new java.security.PrivilegedAction<Class<?>[]>() {
+		return java.security.AccessController.doPrivileged(
+				new java.security.PrivilegedAction<Class<?>[]>() {
 					public Class<?>[] run() {
 						List<Class<?>> list = new ArrayList<>();
 						Class<?> currentClass = Class.this;
 						while (currentClass != null) {
-							Class<?>[] members = currentClass.getDeclaredClasses();
+							Class<?>[] members = currentClass
+									.getDeclaredClasses();
 							for (int i = 0; i < members.length; i++) {
-								if (Modifier.isPublic(members[i].getModifiers())) {
+								if (Modifier.isPublic(members[i]
+										.getModifiers())) {
 									list.add(members[i]);
 								}
 							}
@@ -1573,12 +1625,15 @@ public final class Class<T>
 	 *
 	 * @return the array of {@code Field} objects representing the public fields
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           the caller's
+	 *                           class loader is not the same as or an ancestor
+	 *                           of the class
+	 *                           loader for the current class and invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class.
 	 *
 	 * @since JDK1.1
 	 * @jls 8.2 Class Members
@@ -1637,12 +1692,15 @@ public final class Class<T>
 	 * @return the array of {@code Method} objects representing the public
 	 *         methods of this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           the caller's
+	 *                           class loader is not the same as or an ancestor
+	 *                           of the class
+	 *                           loader for the current class and invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class.
 	 *
 	 * @jls 8.2 Class Members
 	 * @jls 8.4 Method Declarations
@@ -1673,12 +1731,15 @@ public final class Class<T>
 	 * @return the array of {@code Constructor} objects representing the public
 	 *         constructors of this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           the caller's
+	 *                           class loader is not the same as or an ancestor
+	 *                           of the class
+	 *                           loader for the current class and invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class.
 	 *
 	 * @since JDK1.1
 	 */
@@ -1714,26 +1775,32 @@ public final class Class<T>
 	 * does not find the {@code length} field of the array type.
 	 *
 	 * @param name
-	 *            the field name
+	 *             the field name
 	 * @return the {@code Field} object of this class specified by {@code name}
 	 * @throws NoSuchFieldException
-	 *             if a field with the specified name is not found.
+	 *                              if a field with the specified name is not
+	 *                              found.
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}
+	 *                              if {@code name} is {@code null}
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                              If a security manager, <i>s</i>, is present
+	 *                              and the caller's
+	 *                              class loader is not the same as or an
+	 *                              ancestor of the class
+	 *                              loader for the current class and invocation
+	 *                              of
+	 *                              {@link SecurityManager#checkPackageAccess
+	 *                              s.checkPackageAccess()} denies access to the
+	 *                              package of this
+	 *                              class.
 	 *
 	 * @since JDK1.1
 	 * @jls 8.2 Class Members
 	 * @jls 8.3 Field Declarations
 	 */
 	@CallerSensitive
-	public Field getField(String name) throws NoSuchFieldException, SecurityException {
+	public Field getField(String name) throws NoSuchFieldException,
+			SecurityException {
 		checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), true);
 		Field field = getField0(name);
 		if (field == null) {
@@ -1798,23 +1865,28 @@ public final class Class<T>
 	 * the class or interface.
 	 *
 	 * @param name
-	 *            the name of the method
+	 *                       the name of the method
 	 * @param parameterTypes
-	 *            the list of parameters
+	 *                       the list of parameters
 	 * @return the {@code Method} object that matches the specified {@code name}
 	 *         and {@code parameterTypes}
 	 * @throws NoSuchMethodException
-	 *             if a matching method is not found or if the name is
-	 *             "&lt;init&gt;"or "&lt;clinit&gt;".
+	 *                               if a matching method is not found or if the
+	 *                               name is
+	 *                               "&lt;init&gt;"or "&lt;clinit&gt;".
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}
+	 *                               if {@code name} is {@code null}
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                               If a security manager, <i>s</i>, is present
+	 *                               and the caller's
+	 *                               class loader is not the same as or an
+	 *                               ancestor of the class
+	 *                               loader for the current class and invocation
+	 *                               of
+	 *                               {@link SecurityManager#checkPackageAccess
+	 *                               s.checkPackageAccess()} denies access to
+	 *                               the package of this
+	 *                               class.
 	 *
 	 * @jls 8.2 Class Members
 	 * @jls 8.4 Method Declarations
@@ -1826,8 +1898,8 @@ public final class Class<T>
 		checkMemberAccess(Member.PUBLIC, Reflection.getCallerClass(), true);
 		Method method = getMethod0(name, parameterTypes, true);
 		if (method == null) {
-			throw new NoSuchMethodException(
-					getName() + "." + name + argumentTypesToString(parameterTypes));
+			throw new NoSuchMethodException(getName() + "." + name
+					+ argumentTypesToString(parameterTypes));
 		}
 		return method;
 	}
@@ -1849,18 +1921,22 @@ public final class Class<T>
 	 * match those specified by {@code parameterTypes}.
 	 *
 	 * @param parameterTypes
-	 *            the parameter array
+	 *                       the parameter array
 	 * @return the {@code Constructor} object of the public constructor that
 	 *         matches the specified {@code parameterTypes}
 	 * @throws NoSuchMethodException
-	 *             if a matching method is not found.
+	 *                               if a matching method is not found.
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the current class and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class.
+	 *                               If a security manager, <i>s</i>, is present
+	 *                               and the caller's
+	 *                               class loader is not the same as or an
+	 *                               ancestor of the class
+	 *                               loader for the current class and invocation
+	 *                               of
+	 *                               {@link SecurityManager#checkPackageAccess
+	 *                               s.checkPackageAccess()} denies access to
+	 *                               the package of this
+	 *                               class.
 	 *
 	 * @since JDK1.1
 	 */
@@ -1884,25 +1960,34 @@ public final class Class<T>
 	 * @return the array of {@code Class} objects representing all the declared
 	 *         members of this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           any of the
+	 *                           following conditions is met:
 	 *
-	 *             <ul>
+	 *                           <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of this class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the declared classes within this class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as the class
+	 *                           loader of this class and invocation of
+	 *                           {@link SecurityManager#checkPermission
+	 *                           s.checkPermission}
+	 *                           method with
+	 *                           {@code RuntimePermission("accessDeclaredMembers")}
+	 *                           denies
+	 *                           access to the declared classes within this
+	 *                           class
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the current class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as or an
+	 *                           ancestor of the class loader for the current
+	 *                           class and
+	 *                           invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class
 	 *
-	 *             </ul>
+	 *                           </ul>
 	 *
 	 * @since JDK1.1
 	 */
@@ -1933,25 +2018,33 @@ public final class Class<T>
 	 * @return the array of {@code Field} objects representing all the declared
 	 *         fields of this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           any of the
+	 *                           following conditions is met:
 	 *
-	 *             <ul>
+	 *                           <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of this class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the declared fields within this class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as the class
+	 *                           loader of this class and invocation of
+	 *                           {@link SecurityManager#checkPermission
+	 *                           s.checkPermission}
+	 *                           method with
+	 *                           {@code RuntimePermission("accessDeclaredMembers")}
+	 *                           denies
+	 *                           access to the declared fields within this class
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the current class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as or an
+	 *                           ancestor of the class loader for the current
+	 *                           class and
+	 *                           invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class
 	 *
-	 *             </ul>
+	 *                           </ul>
 	 *
 	 * @since JDK1.1
 	 * @jls 8.2 Class Members
@@ -1996,25 +2089,34 @@ public final class Class<T>
 	 * @return the array of {@code Method} objects representing all the declared
 	 *         methods of this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           any of the
+	 *                           following conditions is met:
 	 *
-	 *             <ul>
+	 *                           <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of this class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the declared methods within this class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as the class
+	 *                           loader of this class and invocation of
+	 *                           {@link SecurityManager#checkPermission
+	 *                           s.checkPermission}
+	 *                           method with
+	 *                           {@code RuntimePermission("accessDeclaredMembers")}
+	 *                           denies
+	 *                           access to the declared methods within this
+	 *                           class
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the current class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as or an
+	 *                           ancestor of the class loader for the current
+	 *                           class and
+	 *                           invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class
 	 *
-	 *             </ul>
+	 *                           </ul>
 	 *
 	 * @jls 8.2 Class Members
 	 * @jls 8.4 Method Declarations
@@ -2042,25 +2144,34 @@ public final class Class<T>
 	 * @return the array of {@code Constructor} objects representing all the
 	 *         declared constructors of this class
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           any of the
+	 *                           following conditions is met:
 	 *
-	 *             <ul>
+	 *                           <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of this class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the declared constructors within this class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as the class
+	 *                           loader of this class and invocation of
+	 *                           {@link SecurityManager#checkPermission
+	 *                           s.checkPermission}
+	 *                           method with
+	 *                           {@code RuntimePermission("accessDeclaredMembers")}
+	 *                           denies
+	 *                           access to the declared constructors within this
+	 *                           class
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the current class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class
+	 *                           <li>the caller's class loader is not the same
+	 *                           as or an
+	 *                           ancestor of the class loader for the current
+	 *                           class and
+	 *                           invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of this
+	 *                           class
 	 *
-	 *             </ul>
+	 *                           </ul>
 	 *
 	 * @since JDK1.1
 	 */
@@ -2081,39 +2192,49 @@ public final class Class<T>
 	 * does not find the {@code length} field of the array type.
 	 *
 	 * @param name
-	 *            the name of the field
+	 *             the name of the field
 	 * @return the {@code Field} object for the specified field in this class
 	 * @throws NoSuchFieldException
-	 *             if a field with the specified name is not found.
+	 *                              if a field with the specified name is not
+	 *                              found.
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}
+	 *                              if {@code name} is {@code null}
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                              If a security manager, <i>s</i>, is present
+	 *                              and any of the
+	 *                              following conditions is met:
 	 *
-	 *             <ul>
+	 *                              <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of this class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the declared field
+	 *                              <li>the caller's class loader is not the
+	 *                              same as the class
+	 *                              loader of this class and invocation of
+	 *                              {@link SecurityManager#checkPermission
+	 *                              s.checkPermission}
+	 *                              method with
+	 *                              {@code RuntimePermission("accessDeclaredMembers")}
+	 *                              denies
+	 *                              access to the declared field
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the current class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class
+	 *                              <li>the caller's class loader is not the
+	 *                              same as or an
+	 *                              ancestor of the class loader for the current
+	 *                              class and
+	 *                              invocation of
+	 *                              {@link SecurityManager#checkPackageAccess
+	 *                              s.checkPackageAccess()} denies access to the
+	 *                              package of this
+	 *                              class
 	 *
-	 *             </ul>
+	 *                              </ul>
 	 *
 	 * @since JDK1.1
 	 * @jls 8.2 Class Members
 	 * @jls 8.3 Field Declarations
 	 */
 	@CallerSensitive
-	public Field getDeclaredField(String name) throws NoSuchFieldException, SecurityException {
+	public Field getDeclaredField(String name) throws NoSuchFieldException,
+			SecurityException {
 		checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(), true);
 		Field field = searchFields(privateGetDeclaredFields(false), name);
 		if (field == null) {
@@ -2140,35 +2261,43 @@ public final class Class<T>
 	 * does not find the {@code clone()} method.
 	 *
 	 * @param name
-	 *            the name of the method
+	 *                       the name of the method
 	 * @param parameterTypes
-	 *            the parameter array
+	 *                       the parameter array
 	 * @return the {@code Method} object for the method of this class matching
 	 *         the specified name and parameters
 	 * @throws NoSuchMethodException
-	 *             if a matching method is not found.
+	 *                               if a matching method is not found.
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}
+	 *                               if {@code name} is {@code null}
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                               If a security manager, <i>s</i>, is present
+	 *                               and any of the
+	 *                               following conditions is met:
 	 *
-	 *             <ul>
+	 *                               <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of this class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the declared method
+	 *                               <li>the caller's class loader is not the
+	 *                               same as the class
+	 *                               loader of this class and invocation of
+	 *                               {@link SecurityManager#checkPermission
+	 *                               s.checkPermission}
+	 *                               method with
+	 *                               {@code RuntimePermission("accessDeclaredMembers")}
+	 *                               denies
+	 *                               access to the declared method
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the current class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class
+	 *                               <li>the caller's class loader is not the
+	 *                               same as or an
+	 *                               ancestor of the class loader for the
+	 *                               current class and
+	 *                               invocation of
+	 *                               {@link SecurityManager#checkPackageAccess
+	 *                               s.checkPackageAccess()} denies access to
+	 *                               the package of this
+	 *                               class
 	 *
-	 *             </ul>
+	 *                               </ul>
 	 *
 	 * @jls 8.2 Class Members
 	 * @jls 8.4 Method Declarations
@@ -2178,10 +2307,11 @@ public final class Class<T>
 	public Method getDeclaredMethod(String name, Class<?>... parameterTypes)
 			throws NoSuchMethodException, SecurityException {
 		checkMemberAccess(Member.DECLARED, Reflection.getCallerClass(), true);
-		Method method = searchMethods(privateGetDeclaredMethods(false), name, parameterTypes);
+		Method method = searchMethods(privateGetDeclaredMethods(false), name,
+				parameterTypes);
 		if (method == null) {
-			throw new NoSuchMethodException(
-					getName() + "." + name + argumentTypesToString(parameterTypes));
+			throw new NoSuchMethodException(getName() + "." + name
+					+ argumentTypesToString(parameterTypes));
 		}
 		return method;
 	}
@@ -2198,31 +2328,39 @@ public final class Class<T>
 	 * enclosing instance as the first parameter.
 	 *
 	 * @param parameterTypes
-	 *            the parameter array
+	 *                       the parameter array
 	 * @return The {@code Constructor} object for the constructor with the
 	 *         specified parameter list
 	 * @throws NoSuchMethodException
-	 *             if a matching method is not found.
+	 *                               if a matching method is not found.
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and any of the
-	 *             following conditions is met:
+	 *                               If a security manager, <i>s</i>, is present
+	 *                               and any of the
+	 *                               following conditions is met:
 	 *
-	 *             <ul>
+	 *                               <ul>
 	 *
-	 *             <li>the caller's class loader is not the same as the class
-	 *             loader of this class and invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             method with
-	 *             {@code RuntimePermission("accessDeclaredMembers")} denies
-	 *             access to the declared constructor
+	 *                               <li>the caller's class loader is not the
+	 *                               same as the class
+	 *                               loader of this class and invocation of
+	 *                               {@link SecurityManager#checkPermission
+	 *                               s.checkPermission}
+	 *                               method with
+	 *                               {@code RuntimePermission("accessDeclaredMembers")}
+	 *                               denies
+	 *                               access to the declared constructor
 	 *
-	 *             <li>the caller's class loader is not the same as or an
-	 *             ancestor of the class loader for the current class and
-	 *             invocation of {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of this
-	 *             class
+	 *                               <li>the caller's class loader is not the
+	 *                               same as or an
+	 *                               ancestor of the class loader for the
+	 *                               current class and
+	 *                               invocation of
+	 *                               {@link SecurityManager#checkPackageAccess
+	 *                               s.checkPackageAccess()} denies access to
+	 *                               the package of this
+	 *                               class
 	 *
-	 *             </ul>
+	 *                               </ul>
 	 *
 	 * @since JDK1.1
 	 */
@@ -2263,11 +2401,11 @@ public final class Class<T>
 	 * </ul>
 	 *
 	 * @param name
-	 *            name of the desired resource
+	 *             name of the desired resource
 	 * @return A {@link java.io.InputStream} object or {@code null} if no
 	 *         resource with this name is found
 	 * @throws NullPointerException
-	 *             If {@code name} is {@code null}
+	 *                              If {@code name} is {@code null}
 	 * @since JDK1.1
 	 */
 	public InputStream getResourceAsStream(String name) {
@@ -2310,7 +2448,7 @@ public final class Class<T>
 	 * </ul>
 	 *
 	 * @param name
-	 *            name of the desired resource
+	 *             name of the desired resource
 	 * @return A {@link java.net.URL} object or {@code null} if no resource with
 	 *         this name is found
 	 * @since JDK1.1
@@ -2338,8 +2476,10 @@ public final class Class<T>
 	 * @return the ProtectionDomain of this class
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its {@code checkPermission}
-	 *             method doesn't allow getting the ProtectionDomain.
+	 *                           if a security manager exists and its
+	 *                           {@code checkPermission}
+	 *                           method doesn't allow getting the
+	 *                           ProtectionDomain.
 	 *
 	 * @see java.security.ProtectionDomain
 	 * @see SecurityManager#checkPermission
@@ -2376,13 +2516,12 @@ public final class Class<T>
 	/*
 	 * Check if client is allowed to access members. If access is denied, throw
 	 * a SecurityException.
-	 *
 	 * This method also enforces package access.
-	 *
 	 * <p> Default policy: allow all clients access with normal Java access
 	 * control.
 	 */
-	private void checkMemberAccess(int which, Class<?> caller, boolean checkProxyInterfaces) {
+	private void checkMemberAccess(int which, Class<?> caller,
+			boolean checkProxyInterfaces) {
 		final SecurityManager s = System.getSecurityManager();
 		if (s != null) {
 			/*
@@ -2395,7 +2534,8 @@ public final class Class<T>
 			final ClassLoader cl = getClassLoader0();
 			if (which != Member.PUBLIC) {
 				if (ccl != cl) {
-					s.checkPermission(SecurityConstants.CHECK_MEMBER_ACCESS_PERMISSION);
+					s.checkPermission(
+							SecurityConstants.CHECK_MEMBER_ACCESS_PERMISSION);
 				}
 			}
 			this.checkPackageAccess(ccl, checkProxyInterfaces);
@@ -2407,7 +2547,8 @@ public final class Class<T>
 	 * class under the current package access policy. If access is denied, throw
 	 * a SecurityException.
 	 */
-	private void checkPackageAccess(final ClassLoader ccl, boolean checkProxyInterfaces) {
+	private void checkPackageAccess(final ClassLoader ccl,
+			boolean checkProxyInterfaces) {
 		final SecurityManager s = System.getSecurityManager();
 		if (s != null) {
 			final ClassLoader cl = getClassLoader0();
@@ -2419,7 +2560,8 @@ public final class Class<T>
 					// skip the package access check on a proxy class in default
 					// proxy package
 					String pkg = name.substring(0, i);
-					if (!Proxy.isProxyClass(this) || ReflectUtil.isNonPublicProxyClass(this)) {
+					if (!Proxy.isProxyClass(this) || ReflectUtil
+							.isNonPublicProxyClass(this)) {
 						s.checkPackageAccess(pkg);
 					}
 				}
@@ -2447,7 +2589,8 @@ public final class Class<T>
 			String baseName = c.getName();
 			int index = baseName.lastIndexOf('.');
 			if (index != -1) {
-				name = baseName.substring(0, index).replace('.', '/') + "/" + name;
+				name = baseName.substring(0, index).replace('.', '/') + "/"
+						+ name;
 			}
 		} else {
 			name = name.substring(1);
@@ -2479,10 +2622,12 @@ public final class Class<T>
 			annotationDataOffset = objectFieldOffset(fields, "annotationData");
 		}
 
-		private static long objectFieldOffset(Field[] fields, String fieldName) {
+		private static long objectFieldOffset(Field[] fields,
+				String fieldName) {
 			Field field = searchFields(fields, fieldName);
 			if (field == null) {
-				throw new Error("No " + fieldName + " field found in java.lang.Class");
+				throw new Error("No " + fieldName
+						+ " field found in java.lang.Class");
 			}
 			return unsafe.objectFieldOffset(field);
 		}
@@ -2490,17 +2635,20 @@ public final class Class<T>
 		static <T> boolean casReflectionData(Class<?> clazz,
 				SoftReference<ReflectionData<T>> oldData,
 				SoftReference<ReflectionData<T>> newData) {
-			return unsafe.compareAndSwapObject(clazz, reflectionDataOffset, oldData, newData);
+			return unsafe.compareAndSwapObject(clazz, reflectionDataOffset,
+					oldData, newData);
 		}
 
-		static <T> boolean casAnnotationType(Class<?> clazz, AnnotationType oldType,
-				AnnotationType newType) {
-			return unsafe.compareAndSwapObject(clazz, annotationTypeOffset, oldType, newType);
+		static <T> boolean casAnnotationType(Class<?> clazz,
+				AnnotationType oldType, AnnotationType newType) {
+			return unsafe.compareAndSwapObject(clazz, annotationTypeOffset,
+					oldType, newType);
 		}
 
-		static <T> boolean casAnnotationData(Class<?> clazz, AnnotationData oldData,
-				AnnotationData newData) {
-			return unsafe.compareAndSwapObject(clazz, annotationDataOffset, oldData, newData);
+		static <T> boolean casAnnotationData(Class<?> clazz,
+				AnnotationData oldData, AnnotationData newData) {
+			return unsafe.compareAndSwapObject(clazz, annotationDataOffset,
+					oldData, newData);
 		}
 	}
 
@@ -2545,8 +2693,8 @@ public final class Class<T>
 		SoftReference<ReflectionData<T>> reflectionData = this.reflectionData;
 		int classRedefinedCount = this.classRedefinedCount;
 		ReflectionData<T> rd;
-		if (useCaches && reflectionData != null && (rd = reflectionData.get()) != null
-				&& rd.redefinedCount == classRedefinedCount) {
+		if (useCaches && reflectionData != null && (rd = reflectionData
+				.get()) != null && rd.redefinedCount == classRedefinedCount) {
 			return rd;
 		}
 		// else no SoftReference or cleared SoftReference or stale
@@ -2555,7 +2703,8 @@ public final class Class<T>
 		return newReflectionData(reflectionData, classRedefinedCount);
 	}
 
-	private ReflectionData<T> newReflectionData(SoftReference<ReflectionData<T>> oldReflectionData,
+	private ReflectionData<T> newReflectionData(
+			SoftReference<ReflectionData<T>> oldReflectionData,
 			int classRedefinedCount) {
 		if (!useCaches)
 			return null;
@@ -2563,13 +2712,15 @@ public final class Class<T>
 		while (true) {
 			ReflectionData<T> rd = new ReflectionData<>(classRedefinedCount);
 			// try to CAS it...
-			if (Atomic.casReflectionData(this, oldReflectionData, new SoftReference<>(rd))) {
+			if (Atomic.casReflectionData(this, oldReflectionData,
+					new SoftReference<>(rd))) {
 				return rd;
 			}
 			// else retry
 			oldReflectionData = this.reflectionData;
 			classRedefinedCount = this.classRedefinedCount;
-			if (oldReflectionData != null && (rd = oldReflectionData.get()) != null
+			if (oldReflectionData != null && (rd = oldReflectionData
+					.get()) != null
 					&& rd.redefinedCount == classRedefinedCount) {
 				return rd;
 			}
@@ -2709,7 +2860,8 @@ public final class Class<T>
 	// Returns an array of "root" constructors. These Constructor
 	// objects must NOT be propagated to the outside world, but must
 	// instead be copied via ReflectionFactory.copyConstructor.
-	private Constructor<T>[] privateGetDeclaredConstructors(boolean publicOnly) {
+	private Constructor<T>[] privateGetDeclaredConstructors(
+			boolean publicOnly) {
 		checkInitted();
 		Constructor<T>[] res;
 		ReflectionData<T> rd = reflectionData();
@@ -2873,13 +3025,15 @@ public final class Class<T>
 		}
 
 		private boolean matchesNameAndDescriptor(Method m1, Method m2) {
-			return m1.getReturnType() == m2.getReturnType() && m1.getName() == m2.getName() && // name
-																								// is
-																								// guaranteed
-																								// to
-																								// be
-																								// interned
-					arrayContentsEq(m1.getParameterTypes(), m2.getParameterTypes());
+			return m1.getReturnType() == m2.getReturnType() && m1
+					.getName() == m2.getName() && // name
+																										// is
+																										// guaranteed
+																										// to
+																										// be
+																										// interned
+					arrayContentsEq(m1.getParameterTypes(), m2
+							.getParameterTypes());
 		}
 
 		void compactAndTrim() {
@@ -2902,7 +3056,6 @@ public final class Class<T>
 		/*
 		 * Removes all Methods from this MethodArray that have a more specific
 		 * default Method in this MethodArray.
-		 *
 		 * Users of MethodArray are responsible for pruning Methods that have a
 		 * more specific <em>concrete</em> Method.
 		 */
@@ -2981,7 +3134,8 @@ public final class Class<T>
 				// interface methods
 				for (int i = 0; i < supers.length(); i++) {
 					Method m = supers.get(i);
-					if (m != null && !Modifier.isAbstract(m.getModifiers()) && !m.isDefault()) {
+					if (m != null && !Modifier.isAbstract(m.getModifiers())
+							&& !m.isDefault()) {
 						inheritedMethods.removeByNameAndDescriptor(m);
 					}
 				}
@@ -3031,7 +3185,8 @@ public final class Class<T>
 		// class which is being queried.
 		Field res;
 		// Search declared public fields
-		if ((res = searchFields(privateGetDeclaredFields(true), name)) != null) {
+		if ((res = searchFields(privateGetDeclaredFields(true),
+				name)) != null) {
 			return res;
 		}
 		// Direct superinterfaces, recursively
@@ -3054,14 +3209,15 @@ public final class Class<T>
 		return null;
 	}
 
-	private static Method searchMethods(Method[] methods, String name, Class<?>[] parameterTypes) {
+	private static Method searchMethods(Method[] methods, String name,
+			Class<?>[] parameterTypes) {
 		Method res = null;
 		String internedName = name.intern();
 		for (int i = 0; i < methods.length; i++) {
 			Method m = methods[i];
-			if (m.getName() == internedName
-					&& arrayContentsEq(parameterTypes, m.getParameterTypes())
-					&& (res == null || res.getReturnType().isAssignableFrom(m.getReturnType())))
+			if (m.getName() == internedName && arrayContentsEq(parameterTypes, m
+					.getParameterTypes()) && (res == null || res.getReturnType()
+							.isAssignableFrom(m.getReturnType())))
 				res = m;
 		}
 
@@ -3071,8 +3227,8 @@ public final class Class<T>
 	private Method getMethod0(String name, Class<?>[] parameterTypes,
 			boolean includeStaticMethods) {
 		MethodArray interfaceCandidates = new MethodArray(2);
-		Method res = privateGetMethodRecursive(name, parameterTypes, includeStaticMethods,
-				interfaceCandidates);
+		Method res = privateGetMethodRecursive(name, parameterTypes,
+				includeStaticMethods, interfaceCandidates);
 		if (res != null)
 			return res;
 
@@ -3081,8 +3237,9 @@ public final class Class<T>
 		return interfaceCandidates.getFirst(); // may be null
 	}
 
-	private Method privateGetMethodRecursive(String name, Class<?>[] parameterTypes,
-			boolean includeStaticMethods, MethodArray allInterfaceCandidates) {
+	private Method privateGetMethodRecursive(String name,
+			Class<?>[] parameterTypes, boolean includeStaticMethods,
+			MethodArray allInterfaceCandidates) {
 		// Note: the intent is that the search algorithm this routine
 		// uses be equivalent to the ordering imposed by
 		// privateGetPublicMethods(). It fetches only the declared
@@ -3100,7 +3257,8 @@ public final class Class<T>
 		// Must _not_ return root methods
 		Method res;
 		// Search declared public methods
-		if ((res = searchMethods(privateGetDeclaredMethods(true), name, parameterTypes)) != null) {
+		if ((res = searchMethods(privateGetDeclaredMethods(true), name,
+				parameterTypes)) != null) {
 			if (includeStaticMethods || !Modifier.isStatic(res.getModifiers()))
 				return res;
 		}
@@ -3124,14 +3282,16 @@ public final class Class<T>
 
 	private Constructor<T> getConstructor0(Class<?>[] parameterTypes, int which)
 			throws NoSuchMethodException {
-		Constructor<T>[] constructors = privateGetDeclaredConstructors((which == Member.PUBLIC));
+		Constructor<T>[] constructors = privateGetDeclaredConstructors(
+				(which == Member.PUBLIC));
 		for (Constructor<T> constructor : constructors) {
-			if (arrayContentsEq(parameterTypes, constructor.getParameterTypes())) {
+			if (arrayContentsEq(parameterTypes, constructor
+					.getParameterTypes())) {
 				return getReflectionFactory().copyConstructor(constructor);
 			}
 		}
-		throw new NoSuchMethodException(
-				getName() + ".<init>" + argumentTypesToString(parameterTypes));
+		throw new NoSuchMethodException(getName() + ".<init>"
+				+ argumentTypesToString(parameterTypes));
 	}
 
 	//
@@ -3191,7 +3351,8 @@ public final class Class<T>
 
 	private native Method[] getDeclaredMethods0(boolean publicOnly);
 
-	private native Constructor<T>[] getDeclaredConstructors0(boolean publicOnly);
+	private native Constructor<T>[] getDeclaredConstructors0(
+			boolean publicOnly);
 
 	private native Class<?>[] getDeclaredClasses0();
 
@@ -3289,14 +3450,15 @@ public final class Class<T>
 		// An enum must both directly extend java.lang.Enum and have
 		// the ENUM bit set; classes for specialized enum constants
 		// don't do the former.
-		return (this.getModifiers() & ENUM) != 0 && this.getSuperclass() == java.lang.Enum.class;
+		return (this.getModifiers() & ENUM) != 0 && this
+				.getSuperclass() == java.lang.Enum.class;
 	}
 
 	// Fetches the factory for reflective objects
 	private static ReflectionFactory getReflectionFactory() {
 		if (reflectionFactory == null) {
-			reflectionFactory = java.security.AccessController
-					.doPrivileged(new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
+			reflectionFactory = java.security.AccessController.doPrivileged(
+					new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
 		}
 		return reflectionFactory;
 	}
@@ -3362,8 +3524,8 @@ public final class Class<T>
 				return null;
 			try {
 				final Method values = getMethod("values");
-				java.security.AccessController
-						.doPrivileged(new java.security.PrivilegedAction<Void>() {
+				java.security.AccessController.doPrivileged(
+						new java.security.PrivilegedAction<Void>() {
 							public Void run() {
 								values.setAccessible(true);
 								return null;
@@ -3375,7 +3537,8 @@ public final class Class<T>
 			}
 			// These can happen when users concoct enum-like classes
 			// that don't comply with the enum spec.
-			catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException ex) {
+			catch (InvocationTargetException | NoSuchMethodException
+					| IllegalAccessException ex) {
 				return null;
 			}
 		}
@@ -3395,7 +3558,8 @@ public final class Class<T>
 		if (enumConstantDirectory == null) {
 			T[] universe = getEnumConstantsShared();
 			if (universe == null)
-				throw new IllegalArgumentException(getName() + " is not an enum type");
+				throw new IllegalArgumentException(getName()
+						+ " is not an enum type");
 			Map<String, T> m = new HashMap<>(2 * universe.length);
 			for (T constant : universe)
 				m.put(((Enum<?>) constant).name(), constant);
@@ -3415,8 +3579,9 @@ public final class Class<T>
 	 * @return the object after casting, or null if obj is null
 	 *
 	 * @throws ClassCastException
-	 *             if the object is not null and is not assignable to the type
-	 *             T.
+	 *                            if the object is not null and is not
+	 *                            assignable to the type
+	 *                            T.
 	 *
 	 * @since 1.5
 	 */
@@ -3444,16 +3609,18 @@ public final class Class<T>
 	 * a compile-time warning, as the correctness of the cast could not be
 	 * checked at runtime (because generic types are implemented by erasure).
 	 *
-	 * @param <U>
-	 *            the type to cast this class object to
+	 * @param       <U>
+	 *              the type to cast this class object to
 	 * @param clazz
-	 *            the class of the type to cast this class object to
+	 *              the class of the type to cast this class object to
 	 * @return this {@code Class} object, cast to represent a subclass of the
 	 *         specified class object.
 	 * @throws ClassCastException
-	 *             if this {@code Class} object does not represent a subclass of
-	 *             the specified class (here "subclass" includes the class
-	 *             itself).
+	 *                            if this {@code Class} object does not
+	 *                            represent a subclass of
+	 *                            the specified class (here "subclass" includes
+	 *                            the class
+	 *                            itself).
 	 * @since 1.5
 	 */
 	@SuppressWarnings("unchecked")
@@ -3466,7 +3633,7 @@ public final class Class<T>
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.5
 	 */
 	@SuppressWarnings("unchecked")
@@ -3480,26 +3647,28 @@ public final class Class<T>
 	 * {@inheritDoc}
 	 * 
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.5
 	 */
 	@Override
-	public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
+	public boolean isAnnotationPresent(
+			Class<? extends Annotation> annotationClass) {
 		return GenericDeclaration.super.isAnnotationPresent(annotationClass);
 	}
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <A extends Annotation> A[] getAnnotationsByType(Class<A> annotationClass) {
+	public <A extends Annotation> A[] getAnnotationsByType(
+			Class<A> annotationClass) {
 		Objects.requireNonNull(annotationClass);
 
 		AnnotationData annotationData = annotationData();
-		return AnnotationSupport.getAssociatedAnnotations(annotationData.declaredAnnotations, this,
-				annotationClass);
+		return AnnotationSupport.getAssociatedAnnotations(
+				annotationData.declaredAnnotations, this, annotationClass);
 	}
 
 	/**
@@ -3511,12 +3680,13 @@ public final class Class<T>
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public <A extends Annotation> A getDeclaredAnnotation(Class<A> annotationClass) {
+	public <A extends Annotation> A getDeclaredAnnotation(
+			Class<A> annotationClass) {
 		Objects.requireNonNull(annotationClass);
 
 		return (A) annotationData().declaredAnnotations.get(annotationClass);
@@ -3524,11 +3694,12 @@ public final class Class<T>
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <A extends Annotation> A[] getDeclaredAnnotationsByType(Class<A> annotationClass) {
+	public <A extends Annotation> A[] getDeclaredAnnotationsByType(
+			Class<A> annotationClass) {
 		Objects.requireNonNull(annotationClass);
 
 		return AnnotationSupport.getDirectlyAndIndirectlyPresent(
@@ -3569,14 +3740,17 @@ public final class Class<T>
 		while (true) { // retry loop
 			AnnotationData annotationData = this.annotationData;
 			int classRedefinedCount = this.classRedefinedCount;
-			if (annotationData != null && annotationData.redefinedCount == classRedefinedCount) {
+			if (annotationData != null
+					&& annotationData.redefinedCount == classRedefinedCount) {
 				return annotationData;
 			}
 			// null or stale annotationData -> optimistically create new
 			// instance
-			AnnotationData newAnnotationData = createAnnotationData(classRedefinedCount);
+			AnnotationData newAnnotationData = createAnnotationData(
+					classRedefinedCount);
 			// try to install it
-			if (Atomic.casAnnotationData(this, annotationData, newAnnotationData)) {
+			if (Atomic.casAnnotationData(this, annotationData,
+					newAnnotationData)) {
 				// successfully installed new AnnotationData
 				return newAnnotationData;
 			}
@@ -3596,10 +3770,11 @@ public final class Class<T>
 				Class<? extends Annotation> annotationClass = e.getKey();
 				if (AnnotationType.getInstance(annotationClass).isInherited()) {
 					if (annotations == null) { // lazy construction
-						annotations = new LinkedHashMap<>((Math
-								.max(declaredAnnotations.size(), Math.min(12,
-										declaredAnnotations.size() + superAnnotations.size()))
-								* 4 + 2) / 3);
+						annotations = new LinkedHashMap<>((Math.max(
+								declaredAnnotations.size(), Math.min(12,
+										declaredAnnotations.size()
+												+ superAnnotations.size())) * 4
+								+ 2) / 3);
 					}
 					annotations.put(annotationClass, e.getValue());
 				}
@@ -3614,7 +3789,8 @@ public final class Class<T>
 			// inherited
 			annotations.putAll(declaredAnnotations);
 		}
-		return new AnnotationData(annotations, declaredAnnotations, classRedefinedCount);
+		return new AnnotationData(annotations, declaredAnnotations,
+				classRedefinedCount);
 	}
 
 	// Annotation types cache their internal (AnnotationType) form
@@ -3665,8 +3841,8 @@ public final class Class<T>
 			return null;
 		}
 
-		return TypeAnnotationParser.buildAnnotatedSuperclass(getRawTypeAnnotations(),
-				getConstantPool(), this);
+		return TypeAnnotationParser.buildAnnotatedSuperclass(
+				getRawTypeAnnotations(), getConstantPool(), this);
 	}
 
 	/**
@@ -3704,7 +3880,7 @@ public final class Class<T>
 	 * @since 1.8
 	 */
 	public AnnotatedType[] getAnnotatedInterfaces() {
-		return TypeAnnotationParser.buildAnnotatedInterfaces(getRawTypeAnnotations(),
-				getConstantPool(), this);
+		return TypeAnnotationParser.buildAnnotatedInterfaces(
+				getRawTypeAnnotations(), getConstantPool(), this);
 	}
 }

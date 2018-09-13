@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -35,11 +15,9 @@ import java.io.*;
  * @author Steve Wilson
  */
 class CenterLayout implements LayoutManager, Serializable {
-	public void addLayoutComponent(String name, Component comp) {
-	}
+	public void addLayoutComponent(String name, Component comp) {}
 
-	public void removeLayoutComponent(Component comp) {
-	}
+	public void removeLayoutComponent(Component comp) {}
 
 	public Dimension preferredLayoutSize(Container container) {
 		Component c = container.getComponent(0);
@@ -70,7 +48,8 @@ class CenterLayout implements LayoutManager, Serializable {
 			containerHeight -= containerInsets.top + containerInsets.bottom;
 
 			int left = (containerWidth - pref.width) / 2 + containerInsets.left;
-			int right = (containerHeight - pref.height) / 2 + containerInsets.top;
+			int right = (containerHeight - pref.height) / 2
+					+ containerInsets.top;
 
 			c.setBounds(left, right, pref.width, pref.height);
 		}

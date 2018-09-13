@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -92,15 +89,20 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * by the parser are closed.
 	 *
 	 * @param inputSource
-	 *            The input source for the top-level of the XML document.
+	 *                    The input source for the top-level of the XML
+	 *                    document.
 	 *
 	 * @exception XNIException
-	 *                Any XNI exception, possibly wrapping another exception.
+	 *                         Any XNI exception, possibly wrapping another
+	 *                         exception.
 	 * @exception IOException
-	 *                An IO exception from the parser, possibly from a byte
-	 *                stream or character stream supplied by the parser.
+	 *                         An IO exception from the parser, possibly from a
+	 *                         byte
+	 *                         stream or character stream supplied by the
+	 *                         parser.
 	 */
-	public void parse(XMLInputSource inputSource) throws XNIException, IOException;
+	public void parse(XMLInputSource inputSource) throws XNIException,
+			IOException;
 
 	// generic configuration
 
@@ -109,8 +111,8 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * managed by the parser configuration.
 	 *
 	 * @param featureIds
-	 *            An array of the additional feature identifiers to be
-	 *            recognized.
+	 *                   An array of the additional feature identifiers to be
+	 *                   recognized.
 	 */
 	public void addRecognizedFeatures(String[] featureIds);
 
@@ -119,33 +121,37 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * propagated to components in this parser configuration.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 * @param state
-	 *            The state of the feature.
+	 *                  The state of the feature.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown if there is a configuration error.
+	 *                                   Thrown if there is a configuration
+	 *                                   error.
 	 */
-	public void setFeature(String featureId, boolean state) throws XMLConfigurationException;
+	public void setFeature(String featureId, boolean state)
+			throws XMLConfigurationException;
 
 	/**
 	 * Returns the state of a feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown if there is a configuration error.
+	 *                                   Thrown if there is a configuration
+	 *                                   error.
 	 */
-	public boolean getFeature(String featureId) throws XMLConfigurationException;
+	public boolean getFeature(String featureId)
+			throws XMLConfigurationException;
 
 	/**
 	 * Allows a parser to add parser specific properties to be recognized and
 	 * managed by the parser configuration.
 	 *
 	 * @param propertyIds
-	 *            An array of the additional property identifiers to be
-	 *            recognized.
+	 *                    An array of the additional property identifiers to be
+	 *                    recognized.
 	 */
 	public void addRecognizedProperties(String[] propertyIds);
 
@@ -154,25 +160,29 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * gets propagated to components in this parser configuration.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 * @param value
-	 *            The value of the property.
+	 *                   The value of the property.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown if there is a configuration error.
+	 *                                   Thrown if there is a configuration
+	 *                                   error.
 	 */
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException;
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException;
 
 	/**
 	 * Returns the value of a property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown if there is a configuration error.
+	 *                                   Thrown if there is a configuration
+	 *                                   error.
 	 */
-	public Object getProperty(String propertyId) throws XMLConfigurationException;
+	public Object getProperty(String propertyId)
+			throws XMLConfigurationException;
 
 	// handlers
 
@@ -180,7 +190,7 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * Sets the error handler.
 	 *
 	 * @param errorHandler
-	 *            The error resolver.
+	 *                     The error resolver.
 	 */
 	public void setErrorHandler(XMLErrorHandler errorHandler);
 
@@ -191,7 +201,7 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * Sets the document handler to receive information about the document.
 	 *
 	 * @param documentHandler
-	 *            The document handler.
+	 *                        The document handler.
 	 */
 	public void setDocumentHandler(XMLDocumentHandler documentHandler);
 
@@ -202,7 +212,7 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * Sets the DTD handler.
 	 *
 	 * @param dtdHandler
-	 *            The DTD handler.
+	 *                   The DTD handler.
 	 */
 	public void setDTDHandler(XMLDTDHandler dtdHandler);
 
@@ -213,9 +223,10 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * Sets the DTD content model handler.
 	 *
 	 * @param dtdContentModelHandler
-	 *            The DTD content model handler.
+	 *                               The DTD content model handler.
 	 */
-	public void setDTDContentModelHandler(XMLDTDContentModelHandler dtdContentModelHandler);
+	public void setDTDContentModelHandler(
+			XMLDTDContentModelHandler dtdContentModelHandler);
 
 	/** Returns the registered DTD content model handler. */
 	public XMLDTDContentModelHandler getDTDContentModelHandler();
@@ -226,7 +237,7 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * Sets the entity resolver.
 	 *
 	 * @param entityResolver
-	 *            The new entity resolver.
+	 *                       The new entity resolver.
 	 */
 	public void setEntityResolver(XMLEntityResolver entityResolver);
 
@@ -237,11 +248,12 @@ public interface XMLParserConfiguration extends XMLComponentManager {
 	 * Set the locale to use for messages.
 	 *
 	 * @param locale
-	 *            The locale object to use for localization of messages.
+	 *               The locale object to use for localization of messages.
 	 *
 	 * @exception XNIException
-	 *                Thrown if the parser does not support the specified
-	 *                locale.
+	 *                         Thrown if the parser does not support the
+	 *                         specified
+	 *                         locale.
 	 */
 	public void setLocale(Locale locale) throws XNIException;
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -72,11 +69,11 @@ public class XSEmptyCM implements XSCMValidator {
 	 * The method corresponds to one transaction in the content model.
 	 *
 	 * @param elementName
-	 *            the qualified name of the element
+	 *                        the qualified name of the element
 	 * @param currentState
-	 *            Current state
+	 *                        Current state
 	 * @param subGroupHandler
-	 *            the substitution group handler
+	 *                        the substitution group handler
 	 * @return element index corresponding to the element from the Schema
 	 *         grammar
 	 */
@@ -97,7 +94,7 @@ public class XSEmptyCM implements XSCMValidator {
 	 * The method indicates the end of list of children
 	 *
 	 * @param currentState
-	 *            Current state of the content model
+	 *                     Current state of the content model
 	 * @return true if the last state was a valid final state
 	 */
 	public boolean endContentModel(int[] currentState) {
@@ -118,10 +115,11 @@ public class XSEmptyCM implements XSCMValidator {
 	 * check whether this content violates UPA constraint.
 	 *
 	 * @param subGroupHandler
-	 *            the substitution group handler
+	 *                        the substitution group handler
 	 * @return true if this content model contains other or list wildcard
 	 */
-	public boolean checkUniqueParticleAttribution(SubstitutionGroupHandler subGroupHandler)
+	public boolean checkUniqueParticleAttribution(
+			SubstitutionGroupHandler subGroupHandler)
 			throws XMLSchemaException {
 		return false;
 	}
@@ -132,7 +130,7 @@ public class XSEmptyCM implements XSCMValidator {
 	 * been seen.
 	 *
 	 * @param state
-	 *            the current state
+	 *              the current state
 	 * @return a Vector whose entries are instances of either XSWildcardDecl or
 	 *         XSElementDecl.
 	 */

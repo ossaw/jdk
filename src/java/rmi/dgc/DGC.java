@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi.dgc;
 
@@ -82,16 +62,17 @@ public interface DGC extends Remote {
 	 * clean call for the object ID associated with the reference.
 	 *
 	 * @param ids
-	 *            IDs of objects to mark as referenced by calling client
+	 *                    IDs of objects to mark as referenced by calling client
 	 * @param sequenceNum
-	 *            sequence number
+	 *                    sequence number
 	 * @param lease
-	 *            requested lease
+	 *                    requested lease
 	 * @return granted lease
 	 * @throws RemoteException
-	 *             if dirty call fails
+	 *                         if dirty call fails
 	 */
-	Lease dirty(ObjID[] ids, long sequenceNum, Lease lease) throws RemoteException;
+	Lease dirty(ObjID[] ids, long sequenceNum, Lease lease)
+			throws RemoteException;
 
 	/**
 	 * The clean call removes the 'vmid' from the reference list of each remote
@@ -101,15 +82,17 @@ public interface DGC extends Remote {
 	 * 'vmid' needs to be remembered.
 	 *
 	 * @param ids
-	 *            IDs of objects to mark as unreferenced by calling client
+	 *                    IDs of objects to mark as unreferenced by calling
+	 *                    client
 	 * @param sequenceNum
-	 *            sequence number
+	 *                    sequence number
 	 * @param vmid
-	 *            client VMID
+	 *                    client VMID
 	 * @param strong
-	 *            make 'strong' clean call
+	 *                    make 'strong' clean call
 	 * @throws RemoteException
-	 *             if clean call fails
+	 *                         if clean call fails
 	 */
-	void clean(ObjID[] ids, long sequenceNum, VMID vmid, boolean strong) throws RemoteException;
+	void clean(ObjID[] ids, long sequenceNum, VMID vmid, boolean strong)
+			throws RemoteException;
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf;
@@ -53,8 +33,7 @@ public abstract class ComponentUI {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	public ComponentUI() {
-	}
+	public ComponentUI() {}
 
 	/**
 	 * Configures the specified component appropriately for the look and feel.
@@ -77,14 +56,13 @@ public abstract class ComponentUI {
 	 * </ol>
 	 * 
 	 * @param c
-	 *            the component where this UI delegate is being installed
+	 *          the component where this UI delegate is being installed
 	 *
 	 * @see #uninstallUI
 	 * @see javax.swing.JComponent#setUI
 	 * @see javax.swing.JComponent#updateUI
 	 */
-	public void installUI(JComponent c) {
-	}
+	public void installUI(JComponent c) {}
 
 	/**
 	 * Reverses configuration which was done on the specified component during
@@ -105,15 +83,14 @@ public abstract class ComponentUI {
 	 * </ol>
 	 * 
 	 * @param c
-	 *            the component from which this UI delegate is being removed;
-	 *            this argument is often ignored, but might be used if the UI
-	 *            object is stateless and shared by multiple components
+	 *          the component from which this UI delegate is being removed;
+	 *          this argument is often ignored, but might be used if the UI
+	 *          object is stateless and shared by multiple components
 	 *
 	 * @see #installUI
 	 * @see javax.swing.JComponent#updateUI
 	 */
-	public void uninstallUI(JComponent c) {
-	}
+	public void uninstallUI(JComponent c) {}
 
 	/**
 	 * Paints the specified component appropriately for the look and feel. This
@@ -123,16 +100,15 @@ public abstract class ComponentUI {
 	 * content of the component.
 	 *
 	 * @param g
-	 *            the <code>Graphics</code> context in which to paint
+	 *          the <code>Graphics</code> context in which to paint
 	 * @param c
-	 *            the component being painted; this argument is often ignored,
-	 *            but might be used if the UI object is stateless and shared by
-	 *            multiple components
+	 *          the component being painted; this argument is often ignored,
+	 *          but might be used if the UI object is stateless and shared by
+	 *          multiple components
 	 *
 	 * @see #update
 	 */
-	public void paint(Graphics g, JComponent c) {
-	}
+	public void paint(Graphics g, JComponent c) {}
 
 	/**
 	 * Notifies this UI delegate that it is time to paint the specified
@@ -147,11 +123,11 @@ public abstract class ComponentUI {
 	 * in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the <code>Graphics</code> context in which to paint
+	 *          the <code>Graphics</code> context in which to paint
 	 * @param c
-	 *            the component being painted; this argument is often ignored,
-	 *            but might be used if the UI object is stateless and shared by
-	 *            multiple components
+	 *          the component being painted; this argument is often ignored,
+	 *          but might be used if the UI object is stateless and shared by
+	 *          multiple components
 	 *
 	 * @see #paint
 	 * @see javax.swing.JComponent#paintComponent
@@ -173,9 +149,9 @@ public abstract class ComponentUI {
 	 * <code>null</code>.
 	 *
 	 * @param c
-	 *            the component whose preferred size is being queried; this
-	 *            argument is often ignored, but might be used if the UI object
-	 *            is stateless and shared by multiple components
+	 *          the component whose preferred size is being queried; this
+	 *          argument is often ignored, but might be used if the UI object
+	 *          is stateless and shared by multiple components
 	 *
 	 * @see javax.swing.JComponent#getPreferredSize
 	 * @see java.awt.LayoutManager#preferredLayoutSize
@@ -193,9 +169,9 @@ public abstract class ComponentUI {
 	 * <code>getPreferredSize</code> and returns that value.
 	 *
 	 * @param c
-	 *            the component whose minimum size is being queried; this
-	 *            argument is often ignored, but might be used if the UI object
-	 *            is stateless and shared by multiple components
+	 *          the component whose minimum size is being queried; this
+	 *          argument is often ignored, but might be used if the UI object
+	 *          is stateless and shared by multiple components
 	 *
 	 * @return a <code>Dimension</code> object or <code>null</code>
 	 *
@@ -216,9 +192,9 @@ public abstract class ComponentUI {
 	 * <code>getPreferredSize</code> and returns that value.
 	 *
 	 * @param c
-	 *            the component whose maximum size is being queried; this
-	 *            argument is often ignored, but might be used if the UI object
-	 *            is stateless and shared by multiple components
+	 *          the component whose maximum size is being queried; this
+	 *          argument is often ignored, but might be used if the UI object
+	 *          is stateless and shared by multiple components
 	 * @return a <code>Dimension</code> object or <code>null</code>
 	 *
 	 * @see javax.swing.JComponent#getMaximumSize
@@ -238,13 +214,13 @@ public abstract class ComponentUI {
 	 * those bounds for the purpose of hit detection.
 	 *
 	 * @param c
-	 *            the component where the <i>x,y</i> location is being queried;
-	 *            this argument is often ignored, but might be used if the UI
-	 *            object is stateless and shared by multiple components
+	 *          the component where the <i>x,y</i> location is being queried;
+	 *          this argument is often ignored, but might be used if the UI
+	 *          object is stateless and shared by multiple components
 	 * @param x
-	 *            the <i>x</i> coordinate of the point
+	 *          the <i>x</i> coordinate of the point
 	 * @param y
-	 *            the <i>y</i> coordinate of the point
+	 *          the <i>y</i> coordinate of the point
 	 *
 	 * @see javax.swing.JComponent#contains
 	 * @see java.awt.Component#contains
@@ -279,15 +255,15 @@ public abstract class ComponentUI {
 	 * override appropriately.
 	 *
 	 * @param c
-	 *            <code>JComponent</code> baseline is being requested for
+	 *               <code>JComponent</code> baseline is being requested for
 	 * @param width
-	 *            the width to get the baseline for
+	 *               the width to get the baseline for
 	 * @param height
-	 *            the height to get the baseline for
+	 *               the height to get the baseline for
 	 * @throws NullPointerException
-	 *             if <code>c</code> is <code>null</code>
+	 *                                  if <code>c</code> is <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if width or height is &lt; 0
+	 *                                  if width or height is &lt; 0
 	 * @return baseline or a value &lt; 0 indicating there is no reasonable
 	 *         baseline
 	 * @see javax.swing.JComponent#getBaseline(int,int)
@@ -312,15 +288,16 @@ public abstract class ComponentUI {
 	 * that support a baseline should override appropriately.
 	 *
 	 * @param c
-	 *            <code>JComponent</code> to return baseline resize behavior for
+	 *          <code>JComponent</code> to return baseline resize behavior for
 	 * @return an enum indicating how the baseline changes as the component size
 	 *         changes
 	 * @throws NullPointerException
-	 *             if <code>c</code> is <code>null</code>
+	 *                              if <code>c</code> is <code>null</code>
 	 * @see javax.swing.JComponent#getBaseline(int, int)
 	 * @since 1.6
 	 */
-	public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
+	public Component.BaselineResizeBehavior getBaselineResizeBehavior(
+			JComponent c) {
 		if (c == null) {
 			throw new NullPointerException("Component must be non-null");
 		}
@@ -360,7 +337,7 @@ public abstract class ComponentUI {
 	 *
 	 * @see #getAccessibleChildrenCount
 	 * @param i
-	 *            zero-based index of child
+	 *          zero-based index of child
 	 * @return the <code>i</code>th <code>Accessible</code> child of the object
 	 */
 	public Accessible getAccessibleChild(JComponent c, int i) {

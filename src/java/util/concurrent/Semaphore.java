@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -261,9 +236,9 @@ public class Semaphore implements java.io.Serializable {
 	 * fairness setting.
 	 *
 	 * @param permits
-	 *            the initial number of permits available. This value may be
-	 *            negative, in which case releases must occur before any
-	 *            acquires will be granted.
+	 *                the initial number of permits available. This value may be
+	 *                negative, in which case releases must occur before any
+	 *                acquires will be granted.
 	 */
 	public Semaphore(int permits) {
 		sync = new NonfairSync(permits);
@@ -274,13 +249,13 @@ public class Semaphore implements java.io.Serializable {
 	 * given fairness setting.
 	 *
 	 * @param permits
-	 *            the initial number of permits available. This value may be
-	 *            negative, in which case releases must occur before any
-	 *            acquires will be granted.
+	 *                the initial number of permits available. This value may be
+	 *                negative, in which case releases must occur before any
+	 *                acquires will be granted.
 	 * @param fair
-	 *            {@code true} if this semaphore will guarantee first-in
-	 *            first-out granting of permits under contention, else
-	 *            {@code false}
+	 *                {@code true} if this semaphore will guarantee first-in
+	 *                first-out granting of permits under contention, else
+	 *                {@code false}
 	 */
 	public Semaphore(int permits, boolean fair) {
 		sync = fair ? new FairSync(permits) : new NonfairSync(permits);
@@ -316,7 +291,7 @@ public class Semaphore implements java.io.Serializable {
 	 * interrupted status is cleared.
 	 *
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                              if the current thread is interrupted
 	 */
 	public void acquire() throws InterruptedException {
 		sync.acquireSharedInterruptibly(1);
@@ -414,15 +389,16 @@ public class Semaphore implements java.io.Serializable {
 	 * wait at all.
 	 *
 	 * @param timeout
-	 *            the maximum time to wait for a permit
+	 *                the maximum time to wait for a permit
 	 * @param unit
-	 *            the time unit of the {@code timeout} argument
+	 *                the time unit of the {@code timeout} argument
 	 * @return {@code true} if a permit was acquired and {@code false} if the
 	 *         waiting time elapsed before a permit was acquired
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                              if the current thread is interrupted
 	 */
-	public boolean tryAcquire(long timeout, TimeUnit unit) throws InterruptedException {
+	public boolean tryAcquire(long timeout, TimeUnit unit)
+			throws InterruptedException {
 		return sync.tryAcquireSharedNanos(1, unit.toNanos(timeout));
 	}
 
@@ -480,11 +456,11 @@ public class Semaphore implements java.io.Serializable {
 	 * {@link #release()}.
 	 *
 	 * @param permits
-	 *            the number of permits to acquire
+	 *                the number of permits to acquire
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                                  if the current thread is interrupted
 	 * @throws IllegalArgumentException
-	 *             if {@code permits} is negative
+	 *                                  if {@code permits} is negative
 	 */
 	public void acquire(int permits) throws InterruptedException {
 		if (permits < 0)
@@ -515,9 +491,9 @@ public class Semaphore implements java.io.Serializable {
 	 * interrupt status will be set.
 	 *
 	 * @param permits
-	 *            the number of permits to acquire
+	 *                the number of permits to acquire
 	 * @throws IllegalArgumentException
-	 *             if {@code permits} is negative
+	 *                                  if {@code permits} is negative
 	 */
 	public void acquireUninterruptibly(int permits) {
 		if (permits < 0)
@@ -550,11 +526,11 @@ public class Semaphore implements java.io.Serializable {
 	 * also detects interruption).
 	 *
 	 * @param permits
-	 *            the number of permits to acquire
+	 *                the number of permits to acquire
 	 * @return {@code true} if the permits were acquired and {@code false}
 	 *         otherwise
 	 * @throws IllegalArgumentException
-	 *             if {@code permits} is negative
+	 *                                  if {@code permits} is negative
 	 */
 	public boolean tryAcquire(int permits) {
 		if (permits < 0)
@@ -609,17 +585,17 @@ public class Semaphore implements java.io.Serializable {
 	 * permits had been made available by a call to {@link #release()}.
 	 *
 	 * @param permits
-	 *            the number of permits to acquire
+	 *                the number of permits to acquire
 	 * @param timeout
-	 *            the maximum time to wait for the permits
+	 *                the maximum time to wait for the permits
 	 * @param unit
-	 *            the time unit of the {@code timeout} argument
+	 *                the time unit of the {@code timeout} argument
 	 * @return {@code true} if all permits were acquired and {@code false} if
 	 *         the waiting time elapsed before all permits were acquired
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                                  if the current thread is interrupted
 	 * @throws IllegalArgumentException
-	 *             if {@code permits} is negative
+	 *                                  if {@code permits} is negative
 	 */
 	public boolean tryAcquire(int permits, long timeout, TimeUnit unit)
 			throws InterruptedException {
@@ -649,9 +625,9 @@ public class Semaphore implements java.io.Serializable {
 	 * the application.
 	 *
 	 * @param permits
-	 *            the number of permits to release
+	 *                the number of permits to release
 	 * @throws IllegalArgumentException
-	 *             if {@code permits} is negative
+	 *                                  if {@code permits} is negative
 	 */
 	public void release(int permits) {
 		if (permits < 0)
@@ -687,9 +663,9 @@ public class Semaphore implements java.io.Serializable {
 	 * it does not block waiting for permits to become available.
 	 *
 	 * @param reduction
-	 *            the number of permits to remove
+	 *                  the number of permits to remove
 	 * @throws IllegalArgumentException
-	 *             if {@code reduction} is negative
+	 *                                  if {@code reduction} is negative
 	 */
 	protected void reducePermits(int reduction) {
 		if (reduction < 0)

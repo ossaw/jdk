@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -39,8 +19,7 @@ public final class TargetAddress implements org.omg.CORBA.portable.IDLEntity {
 	private short __discriminator;
 	private boolean __uninitialized = true;
 
-	public TargetAddress() {
-	}
+	public TargetAddress() {}
 
 	public short discriminator() {
 		if (__uninitialized)
@@ -91,7 +70,8 @@ public final class TargetAddress implements org.omg.CORBA.portable.IDLEntity {
 		return ___ior;
 	}
 
-	public void ior(com.sun.corba.se.impl.protocol.giopmsgheaders.IORAddressingInfo value) {
+	public void ior(
+			com.sun.corba.se.impl.protocol.giopmsgheaders.IORAddressingInfo value) {
 		__discriminator = com.sun.corba.se.impl.protocol.giopmsgheaders.ReferenceAddr.value;
 		___ior = value;
 		__uninitialized = false;

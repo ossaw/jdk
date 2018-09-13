@@ -79,8 +79,8 @@ public interface EncryptedType {
 	 * Sets the type.
 	 *
 	 * @param type
-	 *            an <code>URI</code> identifying type information about the
-	 *            plaintext form of the encrypted content.
+	 *             an <code>URI</code> identifying type information about the
+	 *             plaintext form of the encrypted content.
 	 */
 	void setType(String type);
 
@@ -106,8 +106,8 @@ public interface EncryptedType {
 	 * Sets the mime type.
 	 *
 	 * @param type
-	 *            a <code>String</code> which describes the media type of the
-	 *            data which has been encrypted.
+	 *             a <code>String</code> which describes the media type of the
+	 *             data which has been encrypted.
 	 */
 	void setMimeType(String type);
 
@@ -141,7 +141,7 @@ public interface EncryptedType {
 	 * Sets the <code>EncryptionMethod</code> used to encrypt the cipher data.
 	 *
 	 * @param method
-	 *            the <code>EncryptionMethod</code>.
+	 *               the <code>EncryptionMethod</code>.
 	 */
 	void setEncryptionMethod(EncryptionMethod method);
 
@@ -159,8 +159,8 @@ public interface EncryptedType {
 	 * Sets the encryption key information.
 	 *
 	 * @param info
-	 *            the <code>ds:KeyInfo</code>, that carries information about
-	 *            the key used to encrypt the data.
+	 *             the <code>ds:KeyInfo</code>, that carries information about
+	 *             the key used to encrypt the data.
 	 */
 	void setKeyInfo(KeyInfo info);
 

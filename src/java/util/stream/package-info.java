@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /**
@@ -30,8 +10,8 @@
  * <pre>
  * {
  * 	&#64;code
- * 	int sum = widgets.stream().filter(b -> b.getColor() == RED).mapToInt(b -> b.getWeight())
- * 			.sum();
+ * 	int sum = widgets.stream().filter(b -> b.getColor() == RED).mapToInt(
+ * 			b -> b.getWeight()).sum();
  * }
  * </pre>
  *
@@ -344,10 +324,11 @@
  * {
  * 	&#64;code
  * 	ArrayList<String> results = new ArrayList<>();
- * 	stream.filter(s -> pattern.matcher(s).matches()).forEach(s -> results.add(s)); // Unnecessary
- * 																					// use
- * 																					// of
- * 																					// side-effects!
+ * 	stream.filter(s -> pattern.matcher(s).matches()).forEach(s -> results
+ * 			.add(s)); // Unnecessary
+ * 																							// use
+ * 																							// of
+ * 																							// side-effects!
  * }
  * </pre>
  *
@@ -496,7 +477,8 @@
  * <pre>
  * {
  * 	&#64;code
- * 	OptionalInt heaviest = widgets.parallelStream().mapToInt(Widget::getWeight).max();
+ * 	OptionalInt heaviest = widgets.parallelStream().mapToInt(
+ * 			Widget::getWeight).max();
  * }
  * </pre>
  *
@@ -617,8 +599,8 @@
  * <pre>
  * {
  * 	&#64;code
- * 	ArrayList<String> strings = stream.collect(() -> new ArrayList<>(),
- * 			(c, e) -> c.add(e.toString()), (c1, c2) -> c1.addAll(c2));
+ * 	ArrayList<String> strings = stream.collect(() -> new ArrayList<>(), (c,
+ * 			e) -> c.add(e.toString()), (c1, c2) -> c1.addAll(c2));
  * }
  * </pre>
  * 
@@ -628,8 +610,8 @@
  * <pre>
  * {
  * 	&#64;code
- * 	List<String> strings = stream.map(Object::toString).collect(ArrayList::new, ArrayList::add,
- * 			ArrayList::addAll);
+ * 	List<String> strings = stream.map(Object::toString).collect(
+ * 			ArrayList::new, ArrayList::add, ArrayList::addAll);
  * }
  * </pre>
  * 
@@ -649,7 +631,8 @@
  * <pre>
  * {
  * 	&#64;code
- * 	List<String> strings = stream.map(Object::toString).collect(Collectors.toList());
+ * 	List<String> strings = stream.map(Object::toString).collect(Collectors
+ * 			.toList());
  * }
  * </pre>
  *
@@ -664,7 +647,8 @@
  * <pre>
  * {
  * 	&#64;code
- * 	Collector<Employee, ?, Integer> summingSalaries = Collectors.summingInt(Employee::getSalary);
+ * 	Collector<Employee, ?, Integer> summingSalaries = Collectors.summingInt(
+ * 			Employee::getSalary);
  * }
  * </pre>
  *
@@ -678,8 +662,8 @@
  * <pre>
  * {
  * 	&#64;code
- * 	Map<Department, Integer> salariesByDept = employees.stream()
- * 			.collect(Collectors.groupingBy(Employee::getDepartment, summingSalaries));
+ * 	Map<Department, Integer> salariesByDept = employees.stream().collect(
+ * 			Collectors.groupingBy(Employee::getDepartment, summingSalaries));
  * }
  * </pre>
  *
@@ -769,8 +753,9 @@
  * <pre>
  * {
  * 	&#64;code
- * 	Map<Buyer, List<Transaction>> salesByBuyer = txns.parallelStream().unordered()
- * 			.collect(groupingByConcurrent(Transaction::getBuyer));
+ * 	Map<Buyer, List<Transaction>> salesByBuyer = txns.parallelStream()
+ * 			.unordered().collect(groupingByConcurrent(
+ * 					Transaction::getBuyer));
  * }
  * </pre>
  * 

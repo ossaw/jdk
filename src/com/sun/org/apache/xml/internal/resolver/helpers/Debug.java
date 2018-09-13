@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,11 +60,12 @@ public class Debug {
 	 * </p>
 	 *
 	 * @param level
-	 *            The debug level of this message. This message will only be
-	 *            displayed if the current debug level is at least equal to this
-	 *            value.
+	 *                The debug level of this message. This message will only be
+	 *                displayed if the current debug level is at least equal to
+	 *                this
+	 *                value.
 	 * @param message
-	 *            The text of the message.
+	 *                The text of the message.
 	 */
 	public void message(int level, String message) {
 		if (debug >= level) {
@@ -83,13 +81,14 @@ public class Debug {
 	 * </p>
 	 *
 	 * @param level
-	 *            The debug level of this message. This message will only be
-	 *            displayed if the current debug level is at least equal to this
-	 *            value.
+	 *                The debug level of this message. This message will only be
+	 *                displayed if the current debug level is at least equal to
+	 *                this
+	 *                value.
 	 * @param message
-	 *            The text of the message.
+	 *                The text of the message.
 	 * @param spec
-	 *            An argument to the message.
+	 *                An argument to the message.
 	 */
 	public void message(int level, String message, String spec) {
 		if (debug >= level) {
@@ -105,15 +104,16 @@ public class Debug {
 	 * </p>
 	 *
 	 * @param level
-	 *            The debug level of this message. This message will only be
-	 *            displayed if the current debug level is at least equal to this
-	 *            value.
+	 *                The debug level of this message. This message will only be
+	 *                displayed if the current debug level is at least equal to
+	 *                this
+	 *                value.
 	 * @param message
-	 *            The text of the message.
+	 *                The text of the message.
 	 * @param spec1
-	 *            An argument to the message.
+	 *                An argument to the message.
 	 * @param spec2
-	 *            Another argument to the message.
+	 *                Another argument to the message.
 	 */
 	public void message(int level, String message, String spec1, String spec2) {
 		if (debug >= level) {

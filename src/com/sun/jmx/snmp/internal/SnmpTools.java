@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -42,7 +22,7 @@ public class SnmpTools implements SnmpDefinitions {
 	 * is an hexadecimal string starting with 0x.
 	 * 
 	 * @param data
-	 *            Binary to translate.
+	 *             Binary to translate.
 	 * @return Translated binary.
 	 */
 	static public String binary2ascii(byte[] data, int length) {
@@ -74,7 +54,7 @@ public class SnmpTools implements SnmpDefinitions {
 	 * is an hexadecimal string starting with 0x.
 	 * 
 	 * @param data
-	 *            Binary to translate.
+	 *             Binary to translate.
 	 * @return Translated binary.
 	 */
 	static public String binary2ascii(byte[] data) {

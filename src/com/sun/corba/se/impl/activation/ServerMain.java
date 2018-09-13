@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.activation;
@@ -59,20 +39,20 @@ public class ServerMain {
 
 	public static String printResult(int result) {
 		switch (result) {
-		case OK:
-			return "Server terminated normally";
-		case MAIN_CLASS_NOT_FOUND:
-			return "main class not found";
-		case NO_MAIN_METHOD:
-			return "no main method";
-		case APPLICATION_ERROR:
-			return "application error";
-		case NO_SERVER_ID:
-			return "server ID not defined";
-		case REGISTRATION_FAILED:
-			return "server registration failed";
-		default:
-			return "unknown error";
+			case OK:
+				return "Server terminated normally";
+			case MAIN_CLASS_NOT_FOUND:
+				return "main class not found";
+			case NO_MAIN_METHOD:
+				return "no main method";
+			case APPLICATION_ERROR:
+				return "application error";
+			case NO_SERVER_ID:
+				return "server ID not defined";
+			case REGISTRATION_FAILED:
+				return "server registration failed";
+			default:
+				return "unknown error";
 		}
 	}
 
@@ -80,14 +60,17 @@ public class ServerMain {
 		// redirect out and err streams
 		try {
 			String logDirName = System.getProperty(ORBConstants.DB_DIR_PROPERTY)
-					+ System.getProperty("file.separator") + ORBConstants.SERVER_LOG_DIR
-					+ System.getProperty("file.separator");
+					+ System.getProperty("file.separator")
+					+ ORBConstants.SERVER_LOG_DIR + System.getProperty(
+							"file.separator");
 
 			File logDir = new File(logDirName);
 			String server = System.getProperty(ORBConstants.SERVER_ID_PROPERTY);
 
-			FileOutputStream foutStream = new FileOutputStream(logDirName + server + ".out", true);
-			FileOutputStream ferrStream = new FileOutputStream(logDirName + server + ".err", true);
+			FileOutputStream foutStream = new FileOutputStream(logDirName
+					+ server + ".out", true);
+			FileOutputStream ferrStream = new FileOutputStream(logDirName
+					+ server + ".err", true);
 
 			PrintStream pSout = new PrintStream(foutStream, true);
 			PrintStream pSerr = new PrintStream(ferrStream, true);
@@ -134,9 +117,11 @@ public class ServerMain {
 		if (code == 0) {
 			writeLogMessage(System.out, "        " + msg);
 		} else {
-			writeLogMessage(System.out, "FATAL:  " + printResult(code) + ": " + msg);
+			writeLogMessage(System.out, "FATAL:  " + printResult(code) + ": "
+					+ msg);
 
-			writeLogMessage(System.err, "FATAL:  " + printResult(code) + ": " + msg);
+			writeLogMessage(System.err, "FATAL:  " + printResult(code) + ": "
+					+ msg);
 		}
 
 		System.exit(code);
@@ -200,7 +185,8 @@ public class ServerMain {
 		try {
 			redirectIOStreams();
 
-			String serverClassName = System.getProperty(ORBConstants.SERVER_NAME_PROPERTY);
+			String serverClassName = System.getProperty(
+					ORBConstants.SERVER_NAME_PROPERTY);
 
 			// determine the class loader to be used for loading the class
 			// since ServerMain is going to be in JDK and we need to have this
@@ -233,7 +219,8 @@ public class ServerMain {
 
 			// verify the server
 
-			boolean serverVerifyFlag = Boolean.getBoolean(ORBConstants.SERVER_DEF_VERIFY_PROPERTY);
+			boolean serverVerifyFlag = Boolean.getBoolean(
+					ORBConstants.SERVER_DEF_VERIFY_PROPERTY);
 			if (serverVerifyFlag) {
 				if (mainMethod == null)
 					logTerminal("", NO_MAIN_METHOD);
@@ -252,7 +239,8 @@ public class ServerMain {
 			mainMethod.invoke(null, params);
 
 		} catch (ClassNotFoundException e) {
-			logTerminal("ClassNotFound exception: " + e.getMessage(), MAIN_CLASS_NOT_FOUND);
+			logTerminal("ClassNotFound exception: " + e.getMessage(),
+					MAIN_CLASS_NOT_FOUND);
 		} catch (Exception e) {
 			logTerminal("Exception: " + e.getMessage(), APPLICATION_ERROR);
 		}
@@ -280,21 +268,23 @@ public class ServerMain {
 		Method shutdownMethod = getNamedMethod(serverClass, "shutdown");
 
 		Properties props = new Properties();
-		props.put("org.omg.CORBA.ORBClass", "com.sun.corba.se.impl.orb.ORBImpl");
+		props.put("org.omg.CORBA.ORBClass",
+				"com.sun.corba.se.impl.orb.ORBImpl");
 		// NOTE: Very important to pass this property, otherwise the
 		// Persistent Server registration will be unsucessfull.
 		props.put(ORBConstants.ACTIVATED_PROPERTY, "false");
 		String args[] = null;
 		ORB orb = ORB.init(args, props);
 
-		ServerCallback serverObj = new ServerCallback(orb, installMethod, uninstallMethod,
-				shutdownMethod);
+		ServerCallback serverObj = new ServerCallback(orb, installMethod,
+				uninstallMethod, shutdownMethod);
 
 		int serverId = getServerId();
 
 		try {
-			Activator activator = ActivatorHelper
-					.narrow(orb.resolve_initial_references(ORBConstants.SERVER_ACTIVATOR_NAME));
+			Activator activator = ActivatorHelper.narrow(orb
+					.resolve_initial_references(
+							ORBConstants.SERVER_ACTIVATOR_NAME));
 			activator.active(serverId, serverObj);
 		} catch (Exception ex) {
 			logTerminal("exception " + ex.getMessage(), REGISTRATION_FAILED);
@@ -309,7 +299,8 @@ class ServerCallback extends com.sun.corba.se.spi.activation._ServerImplBase {
 	private transient Method shutdownMethod;
 	private Object methodArgs[];
 
-	ServerCallback(ORB orb, Method installMethod, Method uninstallMethod, Method shutdownMethod) {
+	ServerCallback(ORB orb, Method installMethod, Method uninstallMethod,
+			Method shutdownMethod) {
 		this.orb = orb;
 		this.installMethod = installMethod;
 		this.uninstallMethod = uninstallMethod;
@@ -325,8 +316,8 @@ class ServerCallback extends com.sun.corba.se.spi.activation._ServerImplBase {
 			try {
 				method.invoke(null, methodArgs);
 			} catch (Exception exc) {
-				ServerMain.logError(
-						"could not invoke " + method.getName() + " method: " + exc.getMessage());
+				ServerMain.logError("could not invoke " + method.getName()
+						+ " method: " + exc.getMessage());
 			}
 	}
 

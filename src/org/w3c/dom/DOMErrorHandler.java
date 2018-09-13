@@ -1,41 +1,14 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2004 World Wide Web Consortium,
- *
  * (Massachusetts Institute of Technology, European Research Consortium for
  * Informatics and Mathematics, Keio University). All Rights Reserved. This
  * work is distributed under the W3C(r) Software License [1] in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
  */
 
@@ -67,9 +40,11 @@ public interface DOMErrorHandler {
 	 * equivalent of returning <code>true</code>.
 	 * 
 	 * @param error
-	 *            The error object that describes the error. This object may be
-	 *            reused by the DOM implementation across multiple calls to the
-	 *            <code>handleError</code> method.
+	 *              The error object that describes the error. This object may
+	 *              be
+	 *              reused by the DOM implementation across multiple calls to
+	 *              the
+	 *              <code>handleError</code> method.
 	 * @return If the <code>handleError</code> method returns <code>false</code>
 	 *         , the DOM implementation should stop the current processing when
 	 *         possible. If the method returns <code>true</code>, the processing

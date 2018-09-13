@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -99,11 +96,13 @@ public interface CoroutineParser {
 	 * more from same file, else end and restart parsing...?
 	 *
 	 * @param source
-	 *            The InputSource to parse from.
+	 *                     The InputSource to parse from.
 	 * @param appCoroutine
-	 *            The coroutine ID number of the coroutine invoking this method,
-	 *            so it can be resumed after the parser has responded to the
-	 *            request.
+	 *                     The coroutine ID number of the coroutine invoking
+	 *                     this method,
+	 *                     so it can be resumed after the parser has responded
+	 *                     to the
+	 *                     request.
 	 * @return Boolean.TRUE if the CoroutineParser believes more data may be
 	 *         available for further parsing. Boolean.FALSE if parsing ran to
 	 *         completion. Exception if the parser objected for some reason.
@@ -118,13 +117,18 @@ public interface CoroutineParser {
 	 * number.
 	 *
 	 * @param parsemore
-	 *            If true, tells the incremental parser to generate another
-	 *            chunk of output. If false, tells the parser that we're
-	 *            satisfied and it can terminate parsing of this document.
+	 *                     If true, tells the incremental parser to generate
+	 *                     another
+	 *                     chunk of output. If false, tells the parser that
+	 *                     we're
+	 *                     satisfied and it can terminate parsing of this
+	 *                     document.
 	 * @param appCoroutine
-	 *            The coroutine ID number of the coroutine invoking this method,
-	 *            so it can be resumed after the parser has responded to the
-	 *            request.
+	 *                     The coroutine ID number of the coroutine invoking
+	 *                     this method,
+	 *                     so it can be resumed after the parser has responded
+	 *                     to the
+	 *                     request.
 	 * @return Boolean.TRUE if the CoroutineParser believes more data may be
 	 *         available for further parsing. Boolean.FALSE if parsing ran to
 	 *         completion. Exception if the parser objected for some reason.
@@ -141,9 +145,11 @@ public interface CoroutineParser {
 	 * Returns only after the CoroutineParser has acknowledged the request.
 	 *
 	 * @param appCoroutine
-	 *            The coroutine ID number of the coroutine invoking this method,
-	 *            so it can be resumed after the parser has responded to the
-	 *            request.
+	 *                     The coroutine ID number of the coroutine invoking
+	 *                     this method,
+	 *                     so it can be resumed after the parser has responded
+	 *                     to the
+	 *                     request.
 	 */
 	public void doTerminate(int appCoroutine);
 

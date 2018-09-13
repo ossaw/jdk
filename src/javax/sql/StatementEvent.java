@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -56,14 +36,16 @@ public class StatementEvent extends EventObject {
 	 * <p>
 	 * 
 	 * @param con
-	 *            The <code>PooledConnection</code> that the closed or invalid
-	 *            <code>PreparedStatement</code>is associated with.
+	 *                  The <code>PooledConnection</code> that the closed or
+	 *                  invalid
+	 *                  <code>PreparedStatement</code>is associated with.
 	 * @param statement
-	 *            The <code>PreparedStatement</code> that is being closed or is
-	 *            invalid
-	 *            <p>
+	 *                  The <code>PreparedStatement</code> that is being closed
+	 *                  or is
+	 *                  invalid
+	 *                  <p>
 	 * @throws IllegalArgumentException
-	 *             if <code>con</code> is null.
+	 *                                  if <code>con</code> is null.
 	 *
 	 * @since 1.6
 	 */
@@ -82,18 +64,21 @@ public class StatementEvent extends EventObject {
 	 * <p>
 	 * 
 	 * @param con
-	 *            The <code>PooledConnection</code> that the closed or invalid
-	 *            <code>PreparedStatement</code> is associated with.
+	 *                  The <code>PooledConnection</code> that the closed or
+	 *                  invalid
+	 *                  <code>PreparedStatement</code> is associated with.
 	 * @param statement
-	 *            The <code>PreparedStatement</code> that is being closed or is
-	 *            invalid
+	 *                  The <code>PreparedStatement</code> that is being closed
+	 *                  or is
+	 *                  invalid
 	 * @param exception
-	 *            The <code>SQLException </code>the driver is about to throw to
-	 *            the application
+	 *                  The <code>SQLException </code>the driver is about to
+	 *                  throw to
+	 *                  the application
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>con</code> is null.
-	 *             <p>
+	 *                                  if <code>con</code> is null.
+	 *                                  <p>
 	 * @since 1.6
 	 */
 	public StatementEvent(PooledConnection con, PreparedStatement statement,

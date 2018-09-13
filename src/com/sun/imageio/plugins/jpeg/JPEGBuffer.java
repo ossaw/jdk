@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.jpeg;
@@ -233,8 +213,8 @@ class JPEGBuffer {
 	 * Prints the contents of the buffer, in hex.
 	 * 
 	 * @param count
-	 *            the number of bytes to print, starting at the current
-	 *            available byte.
+	 *              the number of bytes to print, starting at the current
+	 *              available byte.
 	 */
 	void print(int count) {
 		System.out.print("buffer has ");

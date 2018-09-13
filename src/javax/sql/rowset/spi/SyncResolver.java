@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.spi;
@@ -300,13 +280,14 @@ public interface SyncResolver extends RowSet {
 	 * that caused a conflict.
 	 *
 	 * @param index
-	 *            an <code>int</code> designating the column in this row of this
-	 *            <code>SyncResolver</code> object from which to retrieve the
-	 *            value causing a conflict
+	 *              an <code>int</code> designating the column in this row of
+	 *              this
+	 *              <code>SyncResolver</code> object from which to retrieve the
+	 *              value causing a conflict
 	 * @return the value of the designated column in the current row of this
 	 *         <code>SyncResolver</code> object
 	 * @throws SQLException
-	 *             if a database access error occurs
+	 *                      if a database access error occurs
 	 */
 	public Object getConflictValue(int index) throws SQLException;
 
@@ -316,13 +297,15 @@ public interface SyncResolver extends RowSet {
 	 * that caused a conflict.
 	 *
 	 * @param columnName
-	 *            a <code>String</code> object designating the column in this
-	 *            row of this <code>SyncResolver</code> object from which to
-	 *            retrieve the value causing a conflict
+	 *                   a <code>String</code> object designating the column in
+	 *                   this
+	 *                   row of this <code>SyncResolver</code> object from which
+	 *                   to
+	 *                   retrieve the value causing a conflict
 	 * @return the value of the designated column in the current row of this
 	 *         <code>SyncResolver</code> object
 	 * @throws SQLException
-	 *             if a database access error occurs
+	 *                      if a database access error occurs
 	 */
 	public Object getConflictValue(String columnName) throws SQLException;
 
@@ -332,13 +315,14 @@ public interface SyncResolver extends RowSet {
 	 * set as the value in the data source internally.
 	 *
 	 * @param index
-	 *            an <code>int</code> giving the number of the column into which
-	 *            to set the value to be persisted
+	 *              an <code>int</code> giving the number of the column into
+	 *              which
+	 *              to set the value to be persisted
 	 * @param obj
-	 *            an <code>Object</code> that is the value to be set in the
-	 *            <code>RowSet</code> object and persisted in the data source
+	 *              an <code>Object</code> that is the value to be set in the
+	 *              <code>RowSet</code> object and persisted in the data source
 	 * @throws SQLException
-	 *             if a database access error occurs
+	 *                      if a database access error occurs
 	 */
 	public void setResolvedValue(int index, Object obj) throws SQLException;
 
@@ -348,15 +332,19 @@ public interface SyncResolver extends RowSet {
 	 * <i>obj</i> is set as the value in the data source internally.
 	 *
 	 * @param columnName
-	 *            a <code>String</code> object giving the name of the column
-	 *            into which to set the value to be persisted
+	 *                   a <code>String</code> object giving the name of the
+	 *                   column
+	 *                   into which to set the value to be persisted
 	 * @param obj
-	 *            an <code>Object</code> that is the value to be set in the
-	 *            <code>RowSet</code> object and persisted in the data source
+	 *                   an <code>Object</code> that is the value to be set in
+	 *                   the
+	 *                   <code>RowSet</code> object and persisted in the data
+	 *                   source
 	 * @throws SQLException
-	 *             if a database access error occurs
+	 *                      if a database access error occurs
 	 */
-	public void setResolvedValue(String columnName, Object obj) throws SQLException;
+	public void setResolvedValue(String columnName, Object obj)
+			throws SQLException;
 
 	/**
 	 * Moves the cursor down from its current position to the next row that
@@ -373,8 +361,9 @@ public interface SyncResolver extends RowSet {
 	 * @return <code>true</code> if the new current row is valid;
 	 *         <code>false</code> if there are no more rows
 	 * @throws SQLException
-	 *             if a database access error occurs or the result set type is
-	 *             <code>TYPE_FORWARD_ONLY</code>
+	 *                      if a database access error occurs or the result set
+	 *                      type is
+	 *                      <code>TYPE_FORWARD_ONLY</code>
 	 *
 	 */
 	public boolean nextConflict() throws SQLException;
@@ -390,8 +379,9 @@ public interface SyncResolver extends RowSet {
 	 * @return <code>true</code> if the cursor is on a valid row;
 	 *         <code>false</code> if it is off the result set
 	 * @throws SQLException
-	 *             if a database access error occurs or the result set type is
-	 *             <code>TYPE_FORWARD_ONLY</code>
+	 *                      if a database access error occurs or the result set
+	 *                      type is
+	 *                      <code>TYPE_FORWARD_ONLY</code>
 	 */
 	public boolean previousConflict() throws SQLException;
 

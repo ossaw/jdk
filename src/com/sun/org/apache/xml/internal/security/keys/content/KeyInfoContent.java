@@ -27,5 +27,4 @@ package com.sun.org.apache.xml.internal.security.keys.content;
  *
  * @author $Author: coheigea $
  */
-public interface KeyInfoContent {
-}
+public interface KeyInfoContent {}

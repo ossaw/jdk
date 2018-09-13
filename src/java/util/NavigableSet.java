@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea and Josh Bloch with assistance from members of JCP
  * JSR-166 Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -80,7 +55,7 @@ package java.util;
  * @author Doug Lea
  * @author Josh Bloch
  * @param <E>
- *            the type of elements maintained by this set
+ *        the type of elements maintained by this set
  * @since 1.6
  */
 public interface NavigableSet<E> extends SortedSet<E> {
@@ -89,15 +64,17 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * element, or {@code null} if there is no such element.
 	 *
 	 * @param e
-	 *            the value to match
+	 *          the value to match
 	 * @return the greatest element less than {@code e}, or {@code null} if
 	 *         there is no such element
 	 * @throws ClassCastException
-	 *             if the specified element cannot be compared with the elements
-	 *             currently in the set
+	 *                              if the specified element cannot be compared
+	 *                              with the elements
+	 *                              currently in the set
 	 * @throws NullPointerException
-	 *             if the specified element is null and this set does not permit
-	 *             null elements
+	 *                              if the specified element is null and this
+	 *                              set does not permit
+	 *                              null elements
 	 */
 	E lower(E e);
 
@@ -106,15 +83,17 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * element, or {@code null} if there is no such element.
 	 *
 	 * @param e
-	 *            the value to match
+	 *          the value to match
 	 * @return the greatest element less than or equal to {@code e}, or
 	 *         {@code null} if there is no such element
 	 * @throws ClassCastException
-	 *             if the specified element cannot be compared with the elements
-	 *             currently in the set
+	 *                              if the specified element cannot be compared
+	 *                              with the elements
+	 *                              currently in the set
 	 * @throws NullPointerException
-	 *             if the specified element is null and this set does not permit
-	 *             null elements
+	 *                              if the specified element is null and this
+	 *                              set does not permit
+	 *                              null elements
 	 */
 	E floor(E e);
 
@@ -123,15 +102,17 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * element, or {@code null} if there is no such element.
 	 *
 	 * @param e
-	 *            the value to match
+	 *          the value to match
 	 * @return the least element greater than or equal to {@code e}, or
 	 *         {@code null} if there is no such element
 	 * @throws ClassCastException
-	 *             if the specified element cannot be compared with the elements
-	 *             currently in the set
+	 *                              if the specified element cannot be compared
+	 *                              with the elements
+	 *                              currently in the set
 	 * @throws NullPointerException
-	 *             if the specified element is null and this set does not permit
-	 *             null elements
+	 *                              if the specified element is null and this
+	 *                              set does not permit
+	 *                              null elements
 	 */
 	E ceiling(E e);
 
@@ -140,15 +121,17 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * element, or {@code null} if there is no such element.
 	 *
 	 * @param e
-	 *            the value to match
+	 *          the value to match
 	 * @return the least element greater than {@code e}, or {@code null} if
 	 *         there is no such element
 	 * @throws ClassCastException
-	 *             if the specified element cannot be compared with the elements
-	 *             currently in the set
+	 *                              if the specified element cannot be compared
+	 *                              with the elements
+	 *                              currently in the set
 	 * @throws NullPointerException
-	 *             if the specified element is null and this set does not permit
-	 *             null elements
+	 *                              if the specified element is null and this
+	 *                              set does not permit
+	 *                              null elements
 	 */
 	E higher(E e);
 
@@ -215,34 +198,47 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * attempt to insert an element outside its range.
 	 *
 	 * @param fromElement
-	 *            low endpoint of the returned set
+	 *                      low endpoint of the returned set
 	 * @param fromInclusive
-	 *            {@code true} if the low endpoint is to be included in the
-	 *            returned view
+	 *                      {@code true} if the low endpoint is to be included
+	 *                      in the
+	 *                      returned view
 	 * @param toElement
-	 *            high endpoint of the returned set
+	 *                      high endpoint of the returned set
 	 * @param toInclusive
-	 *            {@code true} if the high endpoint is to be included in the
-	 *            returned view
+	 *                      {@code true} if the high endpoint is to be included
+	 *                      in the
+	 *                      returned view
 	 * @return a view of the portion of this set whose elements range from
 	 *         {@code fromElement}, inclusive, to {@code toElement}, exclusive
 	 * @throws ClassCastException
-	 *             if {@code fromElement} and {@code toElement} cannot be
-	 *             compared to one another using this set's comparator (or, if
-	 *             the set has no comparator, using natural ordering).
-	 *             Implementations may, but are not required to, throw this
-	 *             exception if {@code fromElement} or {@code toElement} cannot
-	 *             be compared to elements currently in the set.
+	 *                                  if {@code fromElement} and
+	 *                                  {@code toElement} cannot be
+	 *                                  compared to one another using this set's
+	 *                                  comparator (or, if
+	 *                                  the set has no comparator, using natural
+	 *                                  ordering).
+	 *                                  Implementations may, but are not
+	 *                                  required to, throw this
+	 *                                  exception if {@code fromElement} or
+	 *                                  {@code toElement} cannot
+	 *                                  be compared to elements currently in the
+	 *                                  set.
 	 * @throws NullPointerException
-	 *             if {@code fromElement} or {@code toElement} is null and this
-	 *             set does not permit null elements
+	 *                                  if {@code fromElement} or
+	 *                                  {@code toElement} is null and this
+	 *                                  set does not permit null elements
 	 * @throws IllegalArgumentException
-	 *             if {@code fromElement} is greater than {@code toElement}; or
-	 *             if this set itself has a restricted range, and
-	 *             {@code fromElement} or {@code toElement} lies outside the
-	 *             bounds of the range.
+	 *                                  if {@code fromElement} is greater than
+	 *                                  {@code toElement}; or
+	 *                                  if this set itself has a restricted
+	 *                                  range, and
+	 *                                  {@code fromElement} or {@code toElement}
+	 *                                  lies outside the
+	 *                                  bounds of the range.
 	 */
-	NavigableSet<E> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive);
+	NavigableSet<E> subSet(E fromElement, boolean fromInclusive, E toElement,
+			boolean toInclusive);
 
 	/**
 	 * Returns a view of the portion of this set whose elements are less than
@@ -256,25 +252,34 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * attempt to insert an element outside its range.
 	 *
 	 * @param toElement
-	 *            high endpoint of the returned set
+	 *                  high endpoint of the returned set
 	 * @param inclusive
-	 *            {@code true} if the high endpoint is to be included in the
-	 *            returned view
+	 *                  {@code true} if the high endpoint is to be included in
+	 *                  the
+	 *                  returned view
 	 * @return a view of the portion of this set whose elements are less than
 	 *         (or equal to, if {@code inclusive} is true) {@code toElement}
 	 * @throws ClassCastException
-	 *             if {@code toElement} is not compatible with this set's
-	 *             comparator (or, if the set has no comparator, if
-	 *             {@code toElement} does not implement {@link Comparable}).
-	 *             Implementations may, but are not required to, throw this
-	 *             exception if {@code toElement} cannot be compared to elements
-	 *             currently in the set.
+	 *                                  if {@code toElement} is not compatible
+	 *                                  with this set's
+	 *                                  comparator (or, if the set has no
+	 *                                  comparator, if
+	 *                                  {@code toElement} does not implement
+	 *                                  {@link Comparable}).
+	 *                                  Implementations may, but are not
+	 *                                  required to, throw this
+	 *                                  exception if {@code toElement} cannot be
+	 *                                  compared to elements
+	 *                                  currently in the set.
 	 * @throws NullPointerException
-	 *             if {@code toElement} is null and this set does not permit
-	 *             null elements
+	 *                                  if {@code toElement} is null and this
+	 *                                  set does not permit
+	 *                                  null elements
 	 * @throws IllegalArgumentException
-	 *             if this set itself has a restricted range, and
-	 *             {@code toElement} lies outside the bounds of the range
+	 *                                  if this set itself has a restricted
+	 *                                  range, and
+	 *                                  {@code toElement} lies outside the
+	 *                                  bounds of the range
 	 */
 	NavigableSet<E> headSet(E toElement, boolean inclusive);
 
@@ -290,25 +295,34 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * attempt to insert an element outside its range.
 	 *
 	 * @param fromElement
-	 *            low endpoint of the returned set
+	 *                    low endpoint of the returned set
 	 * @param inclusive
-	 *            {@code true} if the low endpoint is to be included in the
-	 *            returned view
+	 *                    {@code true} if the low endpoint is to be included in
+	 *                    the
+	 *                    returned view
 	 * @return a view of the portion of this set whose elements are greater than
 	 *         or equal to {@code fromElement}
 	 * @throws ClassCastException
-	 *             if {@code fromElement} is not compatible with this set's
-	 *             comparator (or, if the set has no comparator, if
-	 *             {@code fromElement} does not implement {@link Comparable}).
-	 *             Implementations may, but are not required to, throw this
-	 *             exception if {@code fromElement} cannot be compared to
-	 *             elements currently in the set.
+	 *                                  if {@code fromElement} is not compatible
+	 *                                  with this set's
+	 *                                  comparator (or, if the set has no
+	 *                                  comparator, if
+	 *                                  {@code fromElement} does not implement
+	 *                                  {@link Comparable}).
+	 *                                  Implementations may, but are not
+	 *                                  required to, throw this
+	 *                                  exception if {@code fromElement} cannot
+	 *                                  be compared to
+	 *                                  elements currently in the set.
 	 * @throws NullPointerException
-	 *             if {@code fromElement} is null and this set does not permit
-	 *             null elements
+	 *                                  if {@code fromElement} is null and this
+	 *                                  set does not permit
+	 *                                  null elements
 	 * @throws IllegalArgumentException
-	 *             if this set itself has a restricted range, and
-	 *             {@code fromElement} lies outside the bounds of the range
+	 *                                  if this set itself has a restricted
+	 *                                  range, and
+	 *                                  {@code fromElement} lies outside the
+	 *                                  bounds of the range
 	 */
 	NavigableSet<E> tailSet(E fromElement, boolean inclusive);
 
@@ -319,11 +333,11 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * Equivalent to {@code subSet(fromElement, true, toElement, false)}.
 	 *
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	SortedSet<E> subSet(E fromElement, E toElement);
 
@@ -334,11 +348,11 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * Equivalent to {@code headSet(toElement, false)}.
 	 *
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	SortedSet<E> headSet(E toElement);
 
@@ -349,11 +363,11 @@ public interface NavigableSet<E> extends SortedSet<E> {
 	 * Equivalent to {@code tailSet(fromElement, true)}.
 	 *
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	SortedSet<E> tailSet(E fromElement);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -42,8 +22,9 @@ public interface URLStreamHandlerFactory {
 	 * protocol.
 	 *
 	 * @param protocol
-	 *            the protocol ("{@code ftp}", "{@code http}", "{@code nntp}",
-	 *            etc.).
+	 *                 the protocol ("{@code ftp}", "{@code http}",
+	 *                 "{@code nntp}",
+	 *                 etc.).
 	 * @return a {@code URLStreamHandler} for the specific protocol.
 	 * @see java.net.URLStreamHandler
 	 */

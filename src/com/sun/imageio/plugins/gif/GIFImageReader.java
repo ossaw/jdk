@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.gif;
@@ -128,11 +108,13 @@ public class GIFImageReader extends ImageReader {
 	}
 
 	// Take input from an ImageInputStream
-	public void setInput(Object input, boolean seekForwardOnly, boolean ignoreMetadata) {
+	public void setInput(Object input, boolean seekForwardOnly,
+			boolean ignoreMetadata) {
 		super.setInput(input, seekForwardOnly, ignoreMetadata);
 		if (input != null) {
 			if (!(input instanceof ImageInputStream)) {
-				throw new IllegalArgumentException("input not an ImageInputStream!");
+				throw new IllegalArgumentException(
+						"input not an ImageInputStream!");
 			}
 			this.stream = (ImageInputStream) input;
 		} else {
@@ -148,7 +130,8 @@ public class GIFImageReader extends ImageReader {
 			throw new IllegalStateException("Input not set!");
 		}
 		if (seekForwardOnly && allowSearch) {
-			throw new IllegalStateException("seekForwardOnly and allowSearch can't both be true!");
+			throw new IllegalStateException(
+					"seekForwardOnly and allowSearch can't both be true!");
 		}
 
 		if (numImages > 0) {
@@ -195,12 +178,14 @@ public class GIFImageReader extends ImageReader {
 
 	// We don't check all parameters as ImageTypeSpecifier.createIndexed do
 	// since this method is private and we pass consistent data here
-	private ImageTypeSpecifier createIndexed(byte[] r, byte[] g, byte[] b, int bits) {
+	private ImageTypeSpecifier createIndexed(byte[] r, byte[] g, byte[] b,
+			int bits) {
 		ColorModel colorModel;
 		if (imageMetadata.transparentColorFlag) {
 			// Some files erroneously have a transparent color index
 			// of 255 even though there are fewer than 256 colors.
-			int idx = Math.min(imageMetadata.transparentColorIndex, r.length - 1);
+			int idx = Math.min(imageMetadata.transparentColorIndex, r.length
+					- 1);
 			colorModel = new IndexColorModel(bits, r.length, r, g, b, idx);
 		} else {
 			colorModel = new IndexColorModel(bits, r.length, r, g, b);
@@ -209,10 +194,11 @@ public class GIFImageReader extends ImageReader {
 		SampleModel sampleModel;
 		if (bits == 8) {
 			int[] bandOffsets = { 0 };
-			sampleModel = new PixelInterleavedSampleModel(DataBuffer.TYPE_BYTE, 1, 1, 1, 1,
-					bandOffsets);
+			sampleModel = new PixelInterleavedSampleModel(DataBuffer.TYPE_BYTE,
+					1, 1, 1, 1, bandOffsets);
 		} else {
-			sampleModel = new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE, 1, 1, bits);
+			sampleModel = new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE,
+					1, 1, bits);
 		}
 		return new ImageTypeSpecifier(colorModel, sampleModel);
 	}
@@ -352,7 +338,8 @@ public class GIFImageReader extends ImageReader {
 		return code;
 	}
 
-	public void initializeStringTable(int[] prefix, byte[] suffix, byte[] initial, int[] length) {
+	public void initializeStringTable(int[] prefix, byte[] suffix,
+			byte[] initial, int[] length) {
 		int numEntries = 1 << initCodeSize;
 		for (int i = 0; i < numEntries; i++) {
 			prefix[i] = -1;
@@ -393,7 +380,8 @@ public class GIFImageReader extends ImageReader {
 
 	private void outputRow() {
 		// Clip against ImageReadParam
-		int width = Math.min(sourceRegion.width, destinationRegion.width * sourceXSubsampling);
+		int width = Math.min(sourceRegion.width, destinationRegion.width
+				* sourceXSubsampling);
 		int destX = destinationRegion.x;
 
 		if (sourceXSubsampling == 1) {
@@ -409,18 +397,21 @@ public class GIFImageReader extends ImageReader {
 			int[] bands = { 0 };
 			// updateYStep will have been initialized if
 			// updateListeners is non-null
-			processImageUpdate(theImage, destX, destY, width, 1, 1, updateYStep, bands);
+			processImageUpdate(theImage, destX, destY, width, 1, 1, updateYStep,
+					bands);
 		}
 	}
 
 	private void computeDecodeThisRow() {
-		this.decodeThisRow = (destY < destinationRegion.y + destinationRegion.height)
-				&& (streamY >= sourceRegion.y) && (streamY < sourceRegion.y + sourceRegion.height)
+		this.decodeThisRow = (destY < destinationRegion.y
+				+ destinationRegion.height) && (streamY >= sourceRegion.y)
+				&& (streamY < sourceRegion.y + sourceRegion.height)
 				&& (((streamY - sourceRegion.y) % sourceYSubsampling) == 0);
 	}
 
 	private void outputPixels(byte[] string, int len) {
-		if (interlacePass < sourceMinProgressivePass || interlacePass > sourceMaxProgressivePass) {
+		if (interlacePass < sourceMinProgressivePass
+				|| interlacePass > sourceMaxProgressivePass) {
 			return;
 		}
 
@@ -462,7 +453,8 @@ public class GIFImageReader extends ImageReader {
 
 				// Determine whether pixels from this row will
 				// be written to the destination
-				this.destY = destinationRegion.y + (streamY - sourceRegion.y) / sourceYSubsampling;
+				this.destY = destinationRegion.y + (streamY - sourceRegion.y)
+						/ sourceYSubsampling;
 				computeDecodeThisRow();
 			}
 		}
@@ -640,7 +632,8 @@ public class GIFImageReader extends ImageReader {
 			while (true) {
 				int blockType = stream.readUnsignedByte();
 				if (blockType == 0x2c) { // Image Descriptor
-					imageMetadata.imageLeftPosition = stream.readUnsignedShort();
+					imageMetadata.imageLeftPosition = stream
+							.readUnsignedShort();
 					imageMetadata.imageTopPosition = stream.readUnsignedShort();
 					imageMetadata.imageWidth = stream.readUnsignedShort();
 					imageMetadata.imageHeight = stream.readUnsignedShort();
@@ -653,14 +646,16 @@ public class GIFImageReader extends ImageReader {
 
 					if (localColorTableFlag) {
 						// Read color table if any
-						imageMetadata.localColorTable = new byte[3 * numLCTEntries];
+						imageMetadata.localColorTable = new byte[3
+								* numLCTEntries];
 						stream.readFully(imageMetadata.localColorTable);
 					} else {
 						imageMetadata.localColorTable = null;
 					}
 
 					// Record length of this metadata block
-					this.imageMetadataLength = (int) (stream.getStreamPosition() - startPosition);
+					this.imageMetadataLength = (int) (stream.getStreamPosition()
+							- startPosition);
 
 					// Now positioned at start of LZW-compressed pixels
 					return;
@@ -670,12 +665,16 @@ public class GIFImageReader extends ImageReader {
 					if (label == 0xf9) { // Graphics Control Extension
 						int gceLength = stream.readUnsignedByte(); // 4
 						int gcePackedFields = stream.readUnsignedByte();
-						imageMetadata.disposalMethod = (gcePackedFields >> 2) & 0x3;
-						imageMetadata.userInputFlag = (gcePackedFields & 0x2) != 0;
-						imageMetadata.transparentColorFlag = (gcePackedFields & 0x1) != 0;
+						imageMetadata.disposalMethod = (gcePackedFields >> 2)
+								& 0x3;
+						imageMetadata.userInputFlag = (gcePackedFields
+								& 0x2) != 0;
+						imageMetadata.transparentColorFlag = (gcePackedFields
+								& 0x1) != 0;
 
 						imageMetadata.delayTime = stream.readUnsignedShort();
-						imageMetadata.transparentColorIndex = stream.readUnsignedByte();
+						imageMetadata.transparentColorIndex = stream
+								.readUnsignedByte();
 
 						int terminator = stream.readUnsignedByte();
 					} else if (label == 0x1) { // Plain text extension
@@ -683,12 +682,18 @@ public class GIFImageReader extends ImageReader {
 						imageMetadata.hasPlainTextExtension = true;
 						imageMetadata.textGridLeft = stream.readUnsignedShort();
 						imageMetadata.textGridTop = stream.readUnsignedShort();
-						imageMetadata.textGridWidth = stream.readUnsignedShort();
-						imageMetadata.textGridHeight = stream.readUnsignedShort();
-						imageMetadata.characterCellWidth = stream.readUnsignedByte();
-						imageMetadata.characterCellHeight = stream.readUnsignedByte();
-						imageMetadata.textForegroundColor = stream.readUnsignedByte();
-						imageMetadata.textBackgroundColor = stream.readUnsignedByte();
+						imageMetadata.textGridWidth = stream
+								.readUnsignedShort();
+						imageMetadata.textGridHeight = stream
+								.readUnsignedShort();
+						imageMetadata.characterCellWidth = stream
+								.readUnsignedByte();
+						imageMetadata.characterCellHeight = stream
+								.readUnsignedByte();
+						imageMetadata.textForegroundColor = stream
+								.readUnsignedByte();
+						imageMetadata.textBackgroundColor = stream
+								.readUnsignedByte();
 						imageMetadata.text = concatenateBlocks();
 					} else if (label == 0xfe) { // Comment extension
 						byte[] comment = concatenateBlocks();
@@ -712,10 +717,12 @@ public class GIFImageReader extends ImageReader {
 
 						if (offset < blockSize) {
 							int len = blockSize - offset;
-							byte[] data = new byte[len + applicationData.length];
+							byte[] data = new byte[len
+									+ applicationData.length];
 
 							System.arraycopy(blockData, offset, data, 0, len);
-							System.arraycopy(applicationData, 0, data, len, applicationData.length);
+							System.arraycopy(applicationData, 0, data, len,
+									applicationData.length);
 
 							applicationData = data;
 						}
@@ -741,7 +748,8 @@ public class GIFImageReader extends ImageReader {
 					throw new IndexOutOfBoundsException(
 							"Attempt to read past end of image sequence!");
 				} else {
-					throw new IIOException("Unexpected block type " + blockType + "!");
+					throw new IIOException("Unexpected block type " + blockType
+							+ "!");
 				}
 			}
 		} catch (IIOException iioe) {
@@ -769,12 +777,13 @@ public class GIFImageReader extends ImageReader {
 		int y = interlaceOffset[interlacePass];
 		int yStep = interlaceIncrement[interlacePass];
 
-		int[] vals = ReaderUtil.computeUpdatedPixels(sourceRegion, destinationOffset,
-				destinationRegion.x, destinationRegion.y,
+		int[] vals = ReaderUtil.computeUpdatedPixels(sourceRegion,
+				destinationOffset, destinationRegion.x, destinationRegion.y,
 				destinationRegion.x + destinationRegion.width - 1,
-				destinationRegion.y + destinationRegion.height - 1, sourceXSubsampling,
-				sourceYSubsampling, 0, y, destinationRegion.width,
-				(destinationRegion.height + yStep - 1) / yStep, 1, yStep);
+				destinationRegion.y + destinationRegion.height - 1,
+				sourceXSubsampling, sourceYSubsampling, 0, y,
+				destinationRegion.width, (destinationRegion.height + yStep - 1)
+						/ yStep, 1, yStep);
 
 		// Initialized updateMinY and updateYStep
 		this.updateMinY = vals[1];
@@ -787,7 +796,8 @@ public class GIFImageReader extends ImageReader {
 				sourceMaxProgressivePass, 0, updateMinY, 1, updateYStep, bands);
 	}
 
-	public BufferedImage read(int imageIndex, ImageReadParam param) throws IIOException {
+	public BufferedImage read(int imageIndex, ImageReadParam param)
+			throws IIOException {
 		if (stream == null) {
 			throw new IllegalStateException("Input not set!");
 		}
@@ -808,8 +818,8 @@ public class GIFImageReader extends ImageReader {
 
 		// Initialize the destination image
 		Iterator imageTypes = getImageTypes(imageIndex);
-		this.theImage = getDestination(param, imageTypes, imageMetadata.imageWidth,
-				imageMetadata.imageHeight);
+		this.theImage = getDestination(param, imageTypes,
+				imageMetadata.imageWidth, imageMetadata.imageHeight);
 		this.theTile = theImage.getWritableTile(0, 0);
 		this.width = imageMetadata.imageWidth;
 		this.height = imageMetadata.imageHeight;
@@ -823,15 +833,20 @@ public class GIFImageReader extends ImageReader {
 
 		this.sourceRegion = new Rectangle(0, 0, 0, 0);
 		this.destinationRegion = new Rectangle(0, 0, 0, 0);
-		computeRegions(param, width, height, theImage, sourceRegion, destinationRegion);
-		this.destinationOffset = new Point(destinationRegion.x, destinationRegion.y);
+		computeRegions(param, width, height, theImage, sourceRegion,
+				destinationRegion);
+		this.destinationOffset = new Point(destinationRegion.x,
+				destinationRegion.y);
 
 		this.sourceXSubsampling = param.getSourceXSubsampling();
 		this.sourceYSubsampling = param.getSourceYSubsampling();
-		this.sourceMinProgressivePass = Math.max(param.getSourceMinProgressivePass(), 0);
-		this.sourceMaxProgressivePass = Math.min(param.getSourceMaxProgressivePass(), 3);
+		this.sourceMinProgressivePass = Math.max(param
+				.getSourceMinProgressivePass(), 0);
+		this.sourceMaxProgressivePass = Math.min(param
+				.getSourceMaxProgressivePass(), 3);
 
-		this.destY = destinationRegion.y + (streamY - sourceRegion.y) / sourceYSubsampling;
+		this.destY = destinationRegion.y + (streamY - sourceRegion.y)
+				/ sourceYSubsampling;
 		computeDecodeThisRow();
 
 		// Inform IIOReadProgressListeners of start of image
@@ -919,7 +934,8 @@ public class GIFImageReader extends ImageReader {
 					length[ti] = length[oc] + 1;
 
 					++tableIndex;
-					if ((tableIndex == (1 << codeSize)) && (tableIndex < 4096)) {
+					if ((tableIndex == (1 << codeSize))
+							&& (tableIndex < 4096)) {
 						++codeSize;
 						codeMask = (1 << codeSize) - 1;
 					}
@@ -989,7 +1005,8 @@ public class GIFImageReader extends ImageReader {
 
 	private static synchronized byte[] getDefaultPalette() {
 		if (defaultPalette == null) {
-			BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_BYTE_INDEXED);
+			BufferedImage img = new BufferedImage(1, 1,
+					BufferedImage.TYPE_BYTE_INDEXED);
 			IndexColorModel icm = (IndexColorModel) img.getColorModel();
 
 			final int size = icm.getMapSize();

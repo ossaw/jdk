@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -64,7 +44,7 @@ public class XMLStreamException extends Exception {
 	 * Construct an exception with the assocated exception
 	 *
 	 * @param th
-	 *            a nested exception
+	 *           a nested exception
 	 */
 	public XMLStreamException(Throwable th) {
 		super(th);
@@ -89,11 +69,11 @@ public class XMLStreamException extends Exception {
 	 * location.
 	 *
 	 * @param th
-	 *            a nested exception
+	 *                 a nested exception
 	 * @param msg
-	 *            the message to report
+	 *                 the message to report
 	 * @param location
-	 *            the location of the error
+	 *                 the location of the error
 	 */
 	public XMLStreamException(String msg, Location location, Throwable th) {
 		super("ParseError at [row,col]:[" + location.getLineNumber() + ","
@@ -107,9 +87,9 @@ public class XMLStreamException extends Exception {
 	 * location.
 	 *
 	 * @param msg
-	 *            the message to report
+	 *                 the message to report
 	 * @param location
-	 *            the location of the error
+	 *                 the location of the error
 	 */
 	public XMLStreamException(String msg, Location location) {
 		super("ParseError at [row,col]:[" + location.getLineNumber() + ","

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,9 +28,10 @@ import com.sun.org.apache.regexp.internal.RESyntaxException;
  * <pre>
  *
  * // Pre-compiled regular expression "a*b"
- * char[] re1Instructions = { 0x007c, 0x0000, 0x001a, 0x007c, 0x0000, 0x000d, 0x0041, 0x0001,
- * 		0x0004, 0x0061, 0x007c, 0x0000, 0x0003, 0x0047, 0x0000, 0xfff6, 0x007c, 0x0000, 0x0003,
- * 		0x004e, 0x0000, 0x0003, 0x0041, 0x0001, 0x0004, 0x0062, 0x0045, 0x0000, 0x0000, };
+ * char[] re1Instructions = { 0x007c, 0x0000, 0x001a, 0x007c, 0x0000, 0x000d,
+ * 		0x0041, 0x0001, 0x0004, 0x0061, 0x007c, 0x0000, 0x0003, 0x0047,
+ * 		0x0000, 0xfff6, 0x007c, 0x0000, 0x0003, 0x004e, 0x0000, 0x0003,
+ * 		0x0041, 0x0001, 0x0004, 0x0062, 0x0045, 0x0000, 0x0000, };
  *
  * REProgram re1 = new REProgram(re1Instructions);
  *
@@ -81,8 +79,9 @@ public class recompile {
 				String instructions = name + "PatternInstructions";
 
 				// Output program as a nice, formatted character array
-				System.out.print("\n    // Pre-compiled regular expression '" + pattern + "'\n"
-						+ "    private static char[] " + instructions + " = \n    {");
+				System.out.print("\n    // Pre-compiled regular expression '"
+						+ pattern + "'\n" + "    private static char[] "
+						+ instructions + " = \n    {");
 
 				// Compile program for pattern
 				REProgram program = r.compile(pattern);
@@ -109,10 +108,11 @@ public class recompile {
 				// End of program block
 				System.out.println("\n    };");
 				System.out.println("\n    private static RE " + name
-						+ "Pattern = new RE(new REProgram(" + instructions + "));");
+						+ "Pattern = new RE(new REProgram(" + instructions
+						+ "));");
 			} catch (RESyntaxException e) {
-				System.out
-						.println("Syntax error in expression \"" + arg[i] + "\": " + e.toString());
+				System.out.println("Syntax error in expression \"" + arg[i]
+						+ "\": " + e.toString());
 			} catch (Exception e) {
 				System.out.println("Unexpected exception: " + e.toString());
 			} catch (Error e) {

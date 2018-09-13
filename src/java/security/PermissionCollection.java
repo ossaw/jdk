@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -102,14 +82,17 @@ public abstract class PermissionCollection implements java.io.Serializable {
 	 * Adds a permission object to the current collection of permission objects.
 	 *
 	 * @param permission
-	 *            the Permission object to add.
+	 *                   the Permission object to add.
 	 *
 	 * @exception SecurityException
-	 *                - if this PermissionCollection object has been marked
-	 *                readonly
+	 *                                     - if this PermissionCollection object
+	 *                                     has been marked
+	 *                                     readonly
 	 * @exception IllegalArgumentException
-	 *                - if this PermissionCollection object is a homogeneous
-	 *                collection and the permission is not of the correct type.
+	 *                                     - if this PermissionCollection object
+	 *                                     is a homogeneous
+	 *                                     collection and the permission is not
+	 *                                     of the correct type.
 	 */
 	public abstract void add(Permission permission);
 
@@ -118,7 +101,7 @@ public abstract class PermissionCollection implements java.io.Serializable {
 	 * Permission objects held in this PermissionCollection.
 	 *
 	 * @param permission
-	 *            the Permission object to compare.
+	 *                   the Permission object to compare.
 	 *
 	 * @return true if "permission" is implied by the permissions in the
 	 *         collection, false if not.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -110,8 +90,8 @@ import javax.accessibility.AccessibleStateSet;
  * @author Georges Saab
  * @author David Kloba
  */
-public class JFrame extends Frame implements WindowConstants, Accessible, RootPaneContainer,
-		TransferHandler.HasGetTransferHandler {
+public class JFrame extends Frame implements WindowConstants, Accessible,
+		RootPaneContainer, TransferHandler.HasGetTransferHandler {
 	/**
 	 * The exit application default window close operation. If a window has this
 	 * set as the close operation and is closed in an applet, a
@@ -165,7 +145,8 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * returned by <code>JComponent.getDefaultLocale</code>.
 	 *
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see Component#setSize
 	 * @see Component#setVisible
@@ -184,14 +165,16 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * returned by <code>JComponent.getDefaultLocale</code>.
 	 *
 	 * @param gc
-	 *            the <code>GraphicsConfiguration</code> that is used to
-	 *            construct the new <code>Frame</code>; if <code>gc</code> is
-	 *            <code>null</code>, the system default
-	 *            <code>GraphicsConfiguration</code> is assumed
+	 *           the <code>GraphicsConfiguration</code> that is used to
+	 *           construct the new <code>Frame</code>; if <code>gc</code> is
+	 *           <code>null</code>, the system default
+	 *           <code>GraphicsConfiguration</code> is assumed
 	 * @exception IllegalArgumentException
-	 *                if <code>gc</code> is not from a screen device. This
-	 *                exception is always thrown when
-	 *                GraphicsEnvironment.isHeadless() returns true.
+	 *                                     if <code>gc</code> is not from a
+	 *                                     screen device. This
+	 *                                     exception is always thrown when
+	 *                                     GraphicsEnvironment.isHeadless()
+	 *                                     returns true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see JComponent#getDefaultLocale
 	 * @since 1.3
@@ -209,9 +192,10 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * returned by <code>JComponent.getDefaultLocale</code>.
 	 *
 	 * @param title
-	 *            the title for the frame
+	 *              the title for the frame
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see Component#setSize
 	 * @see Component#setVisible
@@ -230,17 +214,20 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * returned by <code>JComponent.getDefaultLocale</code>.
 	 *
 	 * @param title
-	 *            the title to be displayed in the frame's border. A
-	 *            <code>null</code> value is treated as an empty string, "".
+	 *              the title to be displayed in the frame's border. A
+	 *              <code>null</code> value is treated as an empty string, "".
 	 * @param gc
-	 *            the <code>GraphicsConfiguration</code> that is used to
-	 *            construct the new <code>JFrame</code> with; if <code>gc</code>
-	 *            is <code>null</code>, the system default
-	 *            <code>GraphicsConfiguration</code> is assumed
+	 *              the <code>GraphicsConfiguration</code> that is used to
+	 *              construct the new <code>JFrame</code> with; if
+	 *              <code>gc</code>
+	 *              is <code>null</code>, the system default
+	 *              <code>GraphicsConfiguration</code> is assumed
 	 * @exception IllegalArgumentException
-	 *                if <code>gc</code> is not from a screen device. This
-	 *                exception is always thrown when
-	 *                GraphicsEnvironment.isHeadless() returns true.
+	 *                                     if <code>gc</code> is not from a
+	 *                                     screen device. This
+	 *                                     exception is always thrown when
+	 *                                     GraphicsEnvironment.isHeadless()
+	 *                                     returns true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see JComponent#getDefaultLocale
 	 * @since 1.3
@@ -288,7 +275,7 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * <code>defaultCloseOperation</code> property.
 	 *
 	 * @param e
-	 *            the window event
+	 *          the window event
 	 * @see #setDefaultCloseOperation
 	 * @see java.awt.Window#processWindowEvent
 	 */
@@ -297,19 +284,19 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 
 		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
 			switch (defaultCloseOperation) {
-			case HIDE_ON_CLOSE:
-				setVisible(false);
-				break;
-			case DISPOSE_ON_CLOSE:
-				dispose();
-				break;
-			case EXIT_ON_CLOSE:
-				// This needs to match the checkExit call in
-				// setDefaultCloseOperation
-				System.exit(0);
-				break;
-			case DO_NOTHING_ON_CLOSE:
-			default:
+				case HIDE_ON_CLOSE:
+					setVisible(false);
+					break;
+				case DISPOSE_ON_CLOSE:
+					dispose();
+					break;
+				case EXIT_ON_CLOSE:
+					// This needs to match the checkExit call in
+					// setDefaultCloseOperation
+					System.exit(0);
+					break;
+				case DO_NOTHING_ON_CLOSE:
+				default:
 			}
 		}
 	}
@@ -348,18 +335,22 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * Issues</a> for more information.
 	 *
 	 * @param operation
-	 *            the operation which should be performed when the user closes
-	 *            the frame
+	 *                  the operation which should be performed when the user
+	 *                  closes
+	 *                  the frame
 	 * @exception IllegalArgumentException
-	 *                if defaultCloseOperation value isn't one of the above
-	 *                valid values
+	 *                                     if defaultCloseOperation value isn't
+	 *                                     one of the above
+	 *                                     valid values
 	 * @see #addWindowListener
 	 * @see #getDefaultCloseOperation
 	 * @see WindowConstants
 	 * @throws SecurityException
-	 *             if <code>EXIT_ON_CLOSE</code> has been specified and the
-	 *             <code>SecurityManager</code> will not allow the caller to
-	 *             invoke <code>System.exit</code>
+	 *                           if <code>EXIT_ON_CLOSE</code> has been
+	 *                           specified and the
+	 *                           <code>SecurityManager</code> will not allow the
+	 *                           caller to
+	 *                           invoke <code>System.exit</code>
 	 * @see java.lang.Runtime#exit(int)
 	 *
 	 * @beaninfo preferred: true bound: true enum: DO_NOTHING_ON_CLOSE
@@ -371,7 +362,8 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 */
 	public void setDefaultCloseOperation(int operation) {
 		if (operation != DO_NOTHING_ON_CLOSE && operation != HIDE_ON_CLOSE
-				&& operation != DISPOSE_ON_CLOSE && operation != EXIT_ON_CLOSE) {
+				&& operation != DISPOSE_ON_CLOSE
+				&& operation != EXIT_ON_CLOSE) {
 			throw new IllegalArgumentException(
 					"defaultCloseOperation must be one of: DO_NOTHING_ON_CLOSE, HIDE_ON_CLOSE, DISPOSE_ON_CLOSE, or EXIT_ON_CLOSE");
 		}
@@ -422,7 +414,7 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * <em>The Java Tutorial</em>, for more information.
 	 *
 	 * @param newHandler
-	 *            the new {@code TransferHandler}
+	 *                   the new {@code TransferHandler}
 	 *
 	 * @see TransferHandler
 	 * @see #getTransferHandler
@@ -457,7 +449,7 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * an unnecessary call to clear the background.
 	 *
 	 * @param g
-	 *            the Graphics context in which to paint
+	 *          the Graphics context in which to paint
 	 */
 	public void update(Graphics g) {
 		paint(g);
@@ -467,7 +459,7 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * Sets the menubar for this frame.
 	 * 
 	 * @param menubar
-	 *            the menubar being placed in the frame
+	 *                the menubar being placed in the frame
 	 *
 	 * @see #getJMenuBar
 	 *
@@ -510,9 +502,9 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * forwarded to the <code>contentPane</code>.
 	 *
 	 * @param enabled
-	 *            true if <code>add</code> and <code>setLayout</code> are
-	 *            forwarded, false if they should operate directly on the
-	 *            <code>JFrame</code>.
+	 *                true if <code>add</code> and <code>setLayout</code> are
+	 *                forwarded, false if they should operate directly on the
+	 *                <code>JFrame</code>.
 	 *
 	 * @see #addImpl
 	 * @see #setLayout
@@ -532,17 +524,18 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * of the frame, refer to {@link javax.swing.RootPaneContainer} for details.
 	 *
 	 * @param comp
-	 *            the component to be enhanced
+	 *                    the component to be enhanced
 	 * @param constraints
-	 *            the constraints to be respected
+	 *                    the constraints to be respected
 	 * @param index
-	 *            the index
+	 *                    the index
 	 * @exception IllegalArgumentException
-	 *                if <code>index</code> is invalid
+	 *                                     if <code>index</code> is invalid
 	 * @exception IllegalArgumentException
-	 *                if adding the container's parent to itself
+	 *                                     if adding the container's parent to
+	 *                                     itself
 	 * @exception IllegalArgumentException
-	 *                if adding a window to a container
+	 *                                     if adding a window to a container
 	 *
 	 * @see #setRootPaneCheckingEnabled
 	 * @see javax.swing.RootPaneContainer
@@ -562,9 +555,9 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * not a child of the <code>JFrame</code> or <code>contentPane</code>.
 	 *
 	 * @param comp
-	 *            the component to be removed
+	 *             the component to be removed
 	 * @throws NullPointerException
-	 *             if <code>comp</code> is null
+	 *                              if <code>comp</code> is null
 	 * @see #add
 	 * @see javax.swing.RootPaneContainer
 	 */
@@ -582,7 +575,7 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * {@link javax.swing.RootPaneContainer} for more information.
 	 *
 	 * @param manager
-	 *            the <code>LayoutManager</code>
+	 *                the <code>LayoutManager</code>
 	 * @see #setRootPaneCheckingEnabled
 	 * @see javax.swing.RootPaneContainer
 	 */
@@ -611,7 +604,7 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * constructor.
 	 * 
 	 * @param root
-	 *            the <code>rootPane</code> object for this frame
+	 *             the <code>rootPane</code> object for this frame
 	 *
 	 * @see #getRootPane
 	 *
@@ -662,11 +655,11 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * with an opaque <code>JComponent</code>.
 	 *
 	 * @param contentPane
-	 *            the <code>contentPane</code> object for this frame
+	 *                    the <code>contentPane</code> object for this frame
 	 *
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the content pane parameter is
-	 *                <code>null</code>
+	 *            (a runtime exception) if the content pane parameter is
+	 *            <code>null</code>
 	 * @see #getContentPane
 	 * @see RootPaneContainer#setContentPane
 	 * @see JRootPane
@@ -695,11 +688,11 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * constructor.
 	 * 
 	 * @param layeredPane
-	 *            the <code>layeredPane</code> object for this frame
+	 *                    the <code>layeredPane</code> object for this frame
 	 *
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the layered pane parameter is
-	 *                <code>null</code>
+	 *            (a runtime exception) if the layered pane parameter is
+	 *            <code>null</code>
 	 * @see #getLayeredPane
 	 * @see RootPaneContainer#setLayeredPane
 	 *
@@ -727,7 +720,7 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * constructor.
 	 * 
 	 * @param glassPane
-	 *            the <code>glassPane</code> object for this frame
+	 *                  the <code>glassPane</code> object for this frame
 	 *
 	 * @see #getGlassPane
 	 * @see RootPaneContainer#setGlassPane
@@ -755,21 +748,22 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * details on how the repaint is handled.
 	 *
 	 * @param time
-	 *            maximum time in milliseconds before update
+	 *               maximum time in milliseconds before update
 	 * @param x
-	 *            the <i>x</i> coordinate
+	 *               the <i>x</i> coordinate
 	 * @param y
-	 *            the <i>y</i> coordinate
+	 *               the <i>y</i> coordinate
 	 * @param width
-	 *            the width
+	 *               the width
 	 * @param height
-	 *            the height
+	 *               the height
 	 * @see RepaintManager
 	 * @since 1.6
 	 */
 	public void repaint(long time, int x, int y, int width, int height) {
 		if (RepaintManager.HANDLE_TOP_LEVEL_PAINT) {
-			RepaintManager.currentManager(this).addDirtyRegion(this, x, y, width, height);
+			RepaintManager.currentManager(this).addDirtyRegion(this, x, y,
+					width, height);
 		} else {
 			super.repaint(time, x, y, width, height);
 		}
@@ -796,16 +790,20 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 	 * </pre>
 	 *
 	 * @param defaultLookAndFeelDecorated
-	 *            A hint as to whether or not current look and feel should
-	 *            provide window decorations
+	 *                                    A hint as to whether or not current
+	 *                                    look and feel should
+	 *                                    provide window decorations
 	 * @see javax.swing.LookAndFeel#getSupportsWindowDecorations
 	 * @since 1.4
 	 */
-	public static void setDefaultLookAndFeelDecorated(boolean defaultLookAndFeelDecorated) {
+	public static void setDefaultLookAndFeelDecorated(
+			boolean defaultLookAndFeelDecorated) {
 		if (defaultLookAndFeelDecorated) {
-			SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey, Boolean.TRUE);
+			SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey,
+					Boolean.TRUE);
 		} else {
-			SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey, Boolean.FALSE);
+			SwingUtilities.appContextPut(defaultLookAndFeelDecoratedKey,
+					Boolean.FALSE);
 		}
 	}
 
@@ -847,11 +845,12 @@ public class JFrame extends Frame implements WindowConstants, Accessible, RootPa
 		} else
 			defaultCloseOperationString = "";
 		String rootPaneString = (rootPane != null ? rootPane.toString() : "");
-		String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true" : "false");
+		String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true"
+				: "false");
 
-		return super.paramString() + ",defaultCloseOperation=" + defaultCloseOperationString
-				+ ",rootPane=" + rootPaneString + ",rootPaneCheckingEnabled="
-				+ rootPaneCheckingEnabledString;
+		return super.paramString() + ",defaultCloseOperation="
+				+ defaultCloseOperationString + ",rootPane=" + rootPaneString
+				+ ",rootPaneCheckingEnabled=" + rootPaneCheckingEnabledString;
 	}
 
 	/////////////////

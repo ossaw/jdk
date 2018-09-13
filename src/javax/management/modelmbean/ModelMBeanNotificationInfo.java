@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -129,7 +108,8 @@ import javax.management.RuntimeOperationsException;
  */
 
 @SuppressWarnings("serial") // serialVersionUID is not constant
-public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements DescriptorAccess {
+public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
+		DescriptorAccess {
 
 	// Serialization compatibility stuff:
 	// Two serial forms are supported in this class. The selected form
@@ -156,8 +136,8 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	private static final long serialVersionUID;
 	/**
 	 * @serialField notificationDescriptor
-	 *                  Descriptor The descriptor containing the appropriate
-	 *                  metadata for this instance
+	 *              Descriptor The descriptor containing the appropriate
+	 *              metadata for this instance
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -192,14 +172,16 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 * Constructs a ModelMBeanNotificationInfo object with a default descriptor.
 	 *
 	 * @param notifTypes
-	 *            The array of strings (in dot notation) containing the
-	 *            notification types that may be emitted.
+	 *                    The array of strings (in dot notation) containing the
+	 *                    notification types that may be emitted.
 	 * @param name
-	 *            The name of the Notification class.
+	 *                    The name of the Notification class.
 	 * @param description
-	 *            A human readable description of the Notification. Optional.
+	 *                    A human readable description of the Notification.
+	 *                    Optional.
 	 **/
-	public ModelMBeanNotificationInfo(String[] notifTypes, String name, String description) {
+	public ModelMBeanNotificationInfo(String[] notifTypes, String name,
+			String description) {
 		this(notifTypes, name, description, null);
 	}
 
@@ -207,32 +189,41 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 * Constructs a ModelMBeanNotificationInfo object.
 	 *
 	 * @param notifTypes
-	 *            The array of strings (in dot notation) containing the
-	 *            notification types that may be emitted.
+	 *                    The array of strings (in dot notation) containing the
+	 *                    notification types that may be emitted.
 	 * @param name
-	 *            The name of the Notification class.
+	 *                    The name of the Notification class.
 	 * @param description
-	 *            A human readable description of the Notification. Optional.
+	 *                    A human readable description of the Notification.
+	 *                    Optional.
 	 * @param descriptor
-	 *            An instance of Descriptor containing the appropriate metadata
-	 *            for this instance of the MBeanNotificationInfo. If it is null
-	 *            a default descriptor will be created. If the descriptor does
-	 *            not contain the fields "displayName" or "severity", the
-	 *            missing ones are added with their default values.
+	 *                    An instance of Descriptor containing the appropriate
+	 *                    metadata
+	 *                    for this instance of the MBeanNotificationInfo. If it
+	 *                    is null
+	 *                    a default descriptor will be created. If the
+	 *                    descriptor does
+	 *                    not contain the fields "displayName" or "severity",
+	 *                    the
+	 *                    missing ones are added with their default values.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an {@link IllegalArgumentException}. The descriptor
-	 *                is invalid, or descriptor field "name" is not equal to
-	 *                parameter name, or descriptor field "descriptorType" is
-	 *                not equal to "notification".
+	 *                                       Wraps an
+	 *                                       {@link IllegalArgumentException}.
+	 *                                       The descriptor
+	 *                                       is invalid, or descriptor field
+	 *                                       "name" is not equal to
+	 *                                       parameter name, or descriptor field
+	 *                                       "descriptorType" is
+	 *                                       not equal to "notification".
 	 *
 	 **/
-	public ModelMBeanNotificationInfo(String[] notifTypes, String name, String description,
-			Descriptor descriptor) {
+	public ModelMBeanNotificationInfo(String[] notifTypes, String name,
+			String description, Descriptor descriptor) {
 		super(notifTypes, name, description);
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class.getName(),
-					"ModelMBeanNotificationInfo", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class
+					.getName(), "ModelMBeanNotificationInfo", "Entry");
 		}
 		notificationDescriptor = validDescriptor(descriptor);
 	}
@@ -242,7 +233,7 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 * ModelMBeanNotfication Object.
 	 *
 	 * @param inInfo
-	 *            the ModelMBeanNotificationInfo to be duplicated
+	 *               the ModelMBeanNotificationInfo to be duplicated
 	 *
 	 **/
 	public ModelMBeanNotificationInfo(ModelMBeanNotificationInfo inInfo) {
@@ -256,8 +247,8 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 **/
 	public Object clone() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class.getName(),
-					"clone()", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class
+					.getName(), "clone()", "Entry");
 		}
 		return (new ModelMBeanNotificationInfo(this));
 	}
@@ -272,16 +263,17 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 **/
 	public Descriptor getDescriptor() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class.getName(),
-					"getDescriptor()", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class
+					.getName(), "getDescriptor()", "Entry");
 		}
 
 		if (notificationDescriptor == null) {
 			// Dead code. Should never happen.
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-				MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class.getName(),
-						"getDescriptor()",
-						"Descriptor value is null, " + "setting descriptor to default values");
+				MODELMBEAN_LOGGER.logp(Level.FINER,
+						ModelMBeanNotificationInfo.class.getName(),
+						"getDescriptor()", "Descriptor value is null, "
+								+ "setting descriptor to default values");
 			}
 			notificationDescriptor = validDescriptor(null);
 		}
@@ -298,19 +290,21 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 * thrown.
 	 *
 	 * @param inDescriptor
-	 *            replaces the Descriptor associated with the
-	 *            ModelMBeanNotification interface
+	 *                     replaces the Descriptor associated with the
+	 *                     ModelMBeanNotification interface
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an {@link IllegalArgumentException} for invalid
-	 *                Descriptor.
+	 *                                       Wraps an
+	 *                                       {@link IllegalArgumentException}
+	 *                                       for invalid
+	 *                                       Descriptor.
 	 *
 	 * @see #getDescriptor
 	 **/
 	public void setDescriptor(Descriptor inDescriptor) {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class.getName(),
-					"setDescriptor(Descriptor)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class
+					.getName(), "setDescriptor(Descriptor)", "Entry");
 		}
 		notificationDescriptor = validDescriptor(inDescriptor);
 	}
@@ -322,8 +316,8 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 **/
 	public String toString() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class.getName(),
-					"toString()", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanNotificationInfo.class
+					.getName(), "toString()", "Entry");
 		}
 
 		final StringBuilder retStr = new StringBuilder();
@@ -356,12 +350,13 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 *
 	 *
 	 * @param in
-	 *            Descriptor to be checked, or null which is equivalent to an
-	 *            empty Descriptor.
+	 *           Descriptor to be checked, or null which is equivalent to an
+	 *           empty Descriptor.
 	 * @exception RuntimeOperationsException
-	 *                if Descriptor is invalid
+	 *                                       if Descriptor is invalid
 	 */
-	private Descriptor validDescriptor(final Descriptor in) throws RuntimeOperationsException {
+	private Descriptor validDescriptor(final Descriptor in)
+			throws RuntimeOperationsException {
 		Descriptor clone;
 		boolean defaulted = (in == null);
 		if (defaulted) {
@@ -374,42 +369,47 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 		// Setting defaults.
 		if (defaulted && clone.getFieldValue("name") == null) {
 			clone.setField("name", this.getName());
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this.getName());
+			MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this
+					.getName());
 		}
 		if (defaulted && clone.getFieldValue("descriptorType") == null) {
 			clone.setField("descriptorType", "notification");
-			MODELMBEAN_LOGGER.finer("Defaulting descriptorType to \"notification\"");
+			MODELMBEAN_LOGGER.finer(
+					"Defaulting descriptorType to \"notification\"");
 		}
 		if (clone.getFieldValue("displayName") == null) {
 			clone.setField("displayName", this.getName());
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to " + this.getName());
+			MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to "
+					+ this.getName());
 		}
 		if (clone.getFieldValue("severity") == null) {
 			clone.setField("severity", "6");
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor severity field to 6");
+			MODELMBEAN_LOGGER.finer(
+					"Defaulting Descriptor severity field to 6");
 		}
 
 		// Checking validity
 		if (!clone.isValid()) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The isValid() method of the Descriptor object itself returned false,"
 							+ "one or more required fields are invalid. Descriptor:"
 							+ clone.toString());
 		}
 		if (!getName().equalsIgnoreCase((String) clone.getFieldValue("name"))) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The Descriptor \"name\" field does not match the object described. "
 							+ " Expected: " + this.getName() + " , was: "
 							+ clone.getFieldValue("name"));
 		}
-		if (!"notification".equalsIgnoreCase((String) clone.getFieldValue("descriptorType"))) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+		if (!"notification".equalsIgnoreCase((String) clone.getFieldValue(
+				"descriptorType"))) {
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The Descriptor \"descriptorType\" field does not match the object described. "
-							+ " Expected: \"notification\" ," + " was: "
-							+ clone.getFieldValue("descriptorType"));
+							+ " Expected: \"notification\" ," + " was: " + clone
+									.getFieldValue("descriptorType"));
 		}
 
 		return clone;
@@ -419,7 +419,8 @@ public class ModelMBeanNotificationInfo extends MBeanNotificationInfo implements
 	 * Deserializes a {@link ModelMBeanNotificationInfo} from an
 	 * {@link ObjectInputStream}.
 	 **/
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// New serial form ignores extra field "currClass"
 		in.defaultReadObject();
 	}

@@ -1,36 +1,13 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
-/* ****************************************************************
- ******************************************************************
- ******************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997
- *** As  an unpublished  work pursuant to Title 17 of the United
- *** States Code.  All rights reserved.
- ******************************************************************
- ******************************************************************
+/*
+ * ****************************************************************
+ ****************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997
+ *** As an unpublished work pursuant to Title 17 of the United
+ *** States Code. All rights reserved.
  ******************************************************************/
 
 package java.awt.image;
@@ -63,7 +40,7 @@ public final class DataBufferInt extends DataBuffer {
 	 * and the specified size.
 	 *
 	 * @param size
-	 *            The size of the <CODE>DataBuffer</CODE>.
+	 *             The size of the <CODE>DataBuffer</CODE>.
 	 */
 	public DataBufferInt(int size) {
 		super(STABLE, TYPE_INT, size);
@@ -77,9 +54,9 @@ public final class DataBufferInt extends DataBuffer {
 	 * number of banks, all of which are the specified size.
 	 *
 	 * @param size
-	 *            The size of the banks in the <CODE>DataBuffer</CODE>.
+	 *                 The size of the banks in the <CODE>DataBuffer</CODE>.
 	 * @param numBanks
-	 *            The number of banks in the a<CODE>DataBuffer</CODE>.
+	 *                 The number of banks in the a<CODE>DataBuffer</CODE>.
 	 */
 	public DataBufferInt(int size, int numBanks) {
 		super(STABLE, TYPE_INT, size, numBanks);
@@ -103,9 +80,9 @@ public final class DataBufferInt extends DataBuffer {
 	 * video memory).
 	 *
 	 * @param dataArray
-	 *            The integer array for the <CODE>DataBuffer</CODE>.
+	 *                  The integer array for the <CODE>DataBuffer</CODE>.
 	 * @param size
-	 *            The size of the <CODE>DataBuffer</CODE> bank.
+	 *                  The size of the <CODE>DataBuffer</CODE> bank.
 	 */
 	public DataBufferInt(int dataArray[], int size) {
 		super(UNTRACKABLE, TYPE_INT, size);
@@ -128,11 +105,11 @@ public final class DataBufferInt extends DataBuffer {
 	 * video memory).
 	 *
 	 * @param dataArray
-	 *            The integer array for the <CODE>DataBuffer</CODE>.
+	 *                  The integer array for the <CODE>DataBuffer</CODE>.
 	 * @param size
-	 *            The size of the <CODE>DataBuffer</CODE> bank.
+	 *                  The size of the <CODE>DataBuffer</CODE> bank.
 	 * @param offset
-	 *            The offset into the <CODE>dataArray</CODE>.
+	 *                  The offset into the <CODE>dataArray</CODE>.
 	 */
 	public DataBufferInt(int dataArray[], int size, int offset) {
 		super(UNTRACKABLE, TYPE_INT, size, 1, offset);
@@ -154,9 +131,9 @@ public final class DataBufferInt extends DataBuffer {
 	 * video memory).
 	 *
 	 * @param dataArray
-	 *            The integer arrays for the <CODE>DataBuffer</CODE>.
+	 *                  The integer arrays for the <CODE>DataBuffer</CODE>.
 	 * @param size
-	 *            The size of the banks in the <CODE>DataBuffer</CODE>.
+	 *                  The size of the banks in the <CODE>DataBuffer</CODE>.
 	 */
 	public DataBufferInt(int dataArray[][], int size) {
 		super(UNTRACKABLE, TYPE_INT, size, dataArray.length);
@@ -180,11 +157,11 @@ public final class DataBufferInt extends DataBuffer {
 	 * video memory).
 	 *
 	 * @param dataArray
-	 *            The integer arrays for the <CODE>DataBuffer</CODE>.
+	 *                  The integer arrays for the <CODE>DataBuffer</CODE>.
 	 * @param size
-	 *            The size of the banks in the <CODE>DataBuffer</CODE>.
+	 *                  The size of the banks in the <CODE>DataBuffer</CODE>.
 	 * @param offsets
-	 *            The offsets into each array.
+	 *                  The offsets into each array.
 	 */
 	public DataBufferInt(int dataArray[][], int size, int offsets[]) {
 		super(UNTRACKABLE, TYPE_INT, size, dataArray.length, offsets);
@@ -216,7 +193,7 @@ public final class DataBufferInt extends DataBuffer {
 	 * associated image in video memory).
 	 *
 	 * @param bank
-	 *            The bank whose data array you want to get.
+	 *             The bank whose data array you want to get.
 	 * @return The data array for the specified bank.
 	 */
 	public int[] getData(int bank) {
@@ -243,7 +220,7 @@ public final class DataBufferInt extends DataBuffer {
 	 * Returns the requested data array element from the first (default) bank.
 	 *
 	 * @param i
-	 *            The data array element you want to get.
+	 *          The data array element you want to get.
 	 * @return The requested data array element as an integer.
 	 * @see #setElem(int, int)
 	 * @see #setElem(int, int, int)
@@ -256,9 +233,9 @@ public final class DataBufferInt extends DataBuffer {
 	 * Returns the requested data array element from the specified bank.
 	 *
 	 * @param bank
-	 *            The bank from which you want to get a data array element.
+	 *             The bank from which you want to get a data array element.
 	 * @param i
-	 *            The data array element you want to get.
+	 *             The data array element you want to get.
 	 * @return The requested data array element as an integer.
 	 * @see #setElem(int, int)
 	 * @see #setElem(int, int, int)
@@ -289,12 +266,12 @@ public final class DataBufferInt extends DataBuffer {
 	 * integer value <CODE>i</CODE>.
 	 * 
 	 * @param bank
-	 *            The bank in which you want to set the data array element.
+	 *             The bank in which you want to set the data array element.
 	 * @param i
-	 *            The data array element you want to set.
+	 *             The data array element you want to set.
 	 * @param val
-	 *            The integer value to which you want to set the specified data
-	 *            array element.
+	 *             The integer value to which you want to set the specified data
+	 *             array element.
 	 * @see #getElem(int)
 	 * @see #getElem(int, int)
 	 */

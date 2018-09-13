@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -71,9 +51,11 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 
 	public CorbaResponseWaitingRoomImpl(ORB orb, CorbaConnection connection) {
 		this.orb = orb;
-		wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_TRANSPORT);
+		wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_TRANSPORT);
 		this.connection = connection;
-		out_calls = Collections.synchronizedMap(new HashMap<Integer, OutCallDesc>());
+		out_calls = Collections.synchronizedMap(
+				new HashMap<Integer, OutCallDesc>());
 	}
 
 	////////////////////////////////////////////////////
@@ -126,7 +108,8 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 				// way as a normal request.
 
 				if (orb.transportDebugFlag) {
-					dprint(".waitForResponse: one way - not waiting: " + opAndId(messageMediator));
+					dprint(".waitForResponse: one way - not waiting: "
+							+ opAndId(messageMediator));
 				}
 
 				return null;
@@ -145,7 +128,8 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 					// and signals us.
 					try {
 						if (orb.transportDebugFlag) {
-							dprint(".waitForResponse: waiting: " + opAndId(messageMediator));
+							dprint(".waitForResponse: waiting: " + opAndId(
+									messageMediator));
 						}
 						call.done.wait();
 					} catch (InterruptedException ie) {
@@ -155,7 +139,8 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 
 				if (call.exception != null) {
 					if (orb.transportDebugFlag) {
-						dprint(".waitForResponse: exception: " + opAndId(messageMediator));
+						dprint(".waitForResponse: exception: " + opAndId(
+								messageMediator));
 					}
 					throw call.exception;
 				}
@@ -205,7 +190,8 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 		// out_calls.get line, then it will also be null, so just return;
 		if (call == null) {
 			if (orb.transportDebugFlag) {
-				dprint(".responseReceived: id/" + requestId + ": no waiter: " + header);
+				dprint(".responseReceived: id/" + requestId + ": no waiter: "
+						+ header);
 			}
 			return;
 		}
@@ -219,7 +205,8 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 			CorbaMessageMediator messageMediator = (CorbaMessageMediator) call.messageMediator;
 
 			if (orb.transportDebugFlag) {
-				dprint(".responseReceived: " + opAndId(messageMediator) + ": notifying waiters");
+				dprint(".responseReceived: " + opAndId(messageMediator)
+						+ ": notifying waiters");
 			}
 
 			messageMediator.setReplyHeader(header);
@@ -247,7 +234,8 @@ public class CorbaResponseWaitingRoomImpl implements CorbaResponseWaitingRoom {
 
 		synchronized (out_calls) {
 			if (orb.transportDebugFlag) {
-				dprint(".signalExceptionToAllWaiters: out_calls size :" + out_calls.size());
+				dprint(".signalExceptionToAllWaiters: out_calls size :"
+						+ out_calls.size());
 			}
 
 			for (OutCallDesc call : out_calls.values()) {

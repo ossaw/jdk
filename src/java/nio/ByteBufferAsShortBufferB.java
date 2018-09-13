@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -46,7 +26,8 @@ class ByteBufferAsShortBufferB // package-private
 
 	}
 
-	ByteBufferAsShortBufferB(ByteBuffer bb, int mark, int pos, int lim, int cap, int off) {
+	ByteBufferAsShortBufferB(ByteBuffer bb, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(mark, pos, lim, cap);
 		this.bb = bb;
@@ -65,14 +46,14 @@ class ByteBufferAsShortBufferB // package-private
 	}
 
 	public ShortBuffer duplicate() {
-		return new ByteBufferAsShortBufferB(bb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new ByteBufferAsShortBufferB(bb, this.markValue(), this
+				.position(), this.limit(), this.capacity(), offset);
 	}
 
 	public ShortBuffer asReadOnlyBuffer() {
 
-		return new ByteBufferAsShortBufferRB(bb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new ByteBufferAsShortBufferRB(bb, this.markValue(), this
+				.position(), this.limit(), this.capacity(), offset);
 
 	}
 

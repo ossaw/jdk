@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,49 +26,37 @@ public class ErrorMessages extends ListResourceBundle {
 
 	/*
 	 * XSLTC run-time error messages.
-	 *
 	 * General notes to translators and definitions:
-	 *
 	 * 1) XSLTC is the name of the product. It is an acronym for XML Stylesheet:
 	 * Transformations Compiler
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant output XML document (or HTML document or text)
-	 *
 	 * 3) An axis is a particular "dimension" in a tree representation of an XML
 	 * document; the nodes in the tree are divided along different axes.
 	 * Traversing the "child" axis, for instance, means that the program would
 	 * visit each child of a particular node; traversing the "descendant" axis
 	 * means that the program would visit the child nodes of a particular node,
 	 * their children, and so on until the leaf nodes of the tree are reached.
-	 *
 	 * 4) An iterator is an object that traverses nodes in a tree along a
 	 * particular axis, one at a time.
-	 *
 	 * 5) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 6) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 7) DOM is an acronym for Document Object Model. It is a tree
 	 * representation of an XML document.
-	 *
 	 * SAX is an acronym for the Simple API for XML processing. It is an API
 	 * used inform an XML processor (in this case XSLTC) of the structure and
 	 * content of an XML document.
-	 *
 	 * Input to the stylesheet processor can come from an XML parser in the form
 	 * of a DOM tree or through the SAX API.
-	 *
 	 * 8) DTD is a document type declaration. It is a way of specifying the
 	 * grammar for an XML file, the names and types of elements, attributes,
 	 * etc.
-	 *
 	 * 9) Translet is an invented term that refers to the class file that
 	 * contains the compiled form of a stylesheet.
 	 */
@@ -90,13 +75,15 @@ public class ErrorMessages extends ListResourceBundle {
 				 * message is a class name. Used for internal errors in the
 				 * processor.
 				 */
-				{ BasisLibrary.RUN_TIME_INTERNAL_ERR, "Run-time internal error in ''{0}''" },
+				{ BasisLibrary.RUN_TIME_INTERNAL_ERR,
+						"Run-time internal error in ''{0}''" },
 
 				/*
 				 * Note to translators: <xsl:copy> is a keyword that should not
 				 * be translated.
 				 */
-				{ BasisLibrary.RUN_TIME_COPY_ERR, "Run-time error when executing <xsl:copy>." },
+				{ BasisLibrary.RUN_TIME_COPY_ERR,
+						"Run-time error when executing <xsl:copy>." },
 
 				/*
 				 * Note to translators: The substitution text refers to data
@@ -104,7 +91,8 @@ public class ErrorMessages extends ListResourceBundle {
 				 * context needs to be converted to type {1}, but that's not
 				 * possible for a value of type {0}.
 				 */
-				{ BasisLibrary.DATA_CONVERSION_ERR, "Invalid conversion from ''{0}'' to ''{1}''." },
+				{ BasisLibrary.DATA_CONVERSION_ERR,
+						"Invalid conversion from ''{0}'' to ''{1}''." },
 
 				/*
 				 * Note to translators: This message is displayed if the
@@ -119,7 +107,8 @@ public class ErrorMessages extends ListResourceBundle {
 				 * are compared for equality, but the data type of one of the
 				 * values is unknown.
 				 */
-				{ BasisLibrary.EQUALITY_EXPR_ERR, "Unknown argument type in equality expression." },
+				{ BasisLibrary.EQUALITY_EXPR_ERR,
+						"Unknown argument type in equality expression." },
 
 				/*
 				 * Note to translators: The substitution text for {0} will be a
@@ -144,7 +133,8 @@ public class ErrorMessages extends ListResourceBundle {
 				 * error situation in XSLTC. The processor was unable to create
 				 * a copy of an iterator. (See definition of iterator above.)
 				 */
-				{ BasisLibrary.ITERATOR_CLONE_ERR, "Cannot clone iterator ''{0}''." },
+				{ BasisLibrary.ITERATOR_CLONE_ERR,
+						"Cannot clone iterator ''{0}''." },
 
 				/*
 				 * Note to translators: The following represents an internal
@@ -152,7 +142,8 @@ public class ErrorMessages extends ListResourceBundle {
 				 * an iterator for a particular axis (see definition above) that
 				 * it does not support.
 				 */
-				{ BasisLibrary.AXIS_SUPPORT_ERR, "Iterator for axis ''{0}'' not supported." },
+				{ BasisLibrary.AXIS_SUPPORT_ERR,
+						"Iterator for axis ''{0}'' not supported." },
 
 				/*
 				 * Note to translators: The following represents an internal
@@ -170,7 +161,8 @@ public class ErrorMessages extends ListResourceBundle {
 				 * element. The substitution text specifies the name of the
 				 * attribute.
 				 */
-				{ BasisLibrary.STRAY_ATTRIBUTE_ERR, "Attribute ''{0}'' outside of element." },
+				{ BasisLibrary.STRAY_ATTRIBUTE_ERR,
+						"Attribute ''{0}'' outside of element." },
 
 				/*
 				 * Note to translators: As with the preceding message, a
@@ -227,7 +219,8 @@ public class ErrorMessages extends ListResourceBundle {
 				 * was not recognized as part of the XSL syntax. The
 				 * substitution text gives the element name.
 				 */
-				{ BasisLibrary.UNSUPPORTED_XSL_ERR, "Unsupported XSL element ''{0}''" },
+				{ BasisLibrary.UNSUPPORTED_XSL_ERR,
+						"Unsupported XSL element ''{0}''" },
 
 				/*
 				 * Note to translators: The stylesheet referred to an extension
@@ -235,7 +228,8 @@ public class ErrorMessages extends ListResourceBundle {
 				 * but XSLTC does not recognize the particular extension named.
 				 * The substitution text gives the extension name.
 				 */
-				{ BasisLibrary.UNSUPPORTED_EXT_ERR, "Unrecognized XSLTC extension ''{0}''" },
+				{ BasisLibrary.UNSUPPORTED_EXT_ERR,
+						"Unrecognized XSLTC extension ''{0}''" },
 
 				/*
 				 * Note to translators: This error message is produced if the

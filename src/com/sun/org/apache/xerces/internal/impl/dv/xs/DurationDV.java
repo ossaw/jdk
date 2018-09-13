@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,11 +47,12 @@ public class DurationDV extends AbstractDateTimeDV {
 	// see 3.2.6 duration W3C schema datatype specs
 	//
 	// the dates are in format: {CCYY,MM,DD, H, S, M, MS, timezone}
-	private final static DateTimeData[] DATETIMES = {
-			new DateTimeData(1696, 9, 1, 0, 0, 0, 'Z', null, true, null),
-			new DateTimeData(1697, 2, 1, 0, 0, 0, 'Z', null, true, null),
-			new DateTimeData(1903, 3, 1, 0, 0, 0, 'Z', null, true, null),
-			new DateTimeData(1903, 7, 1, 0, 0, 0, 'Z', null, true, null) };
+	private final static DateTimeData[] DATETIMES = { new DateTimeData(1696, 9,
+			1, 0, 0, 0, 'Z', null, true, null), new DateTimeData(1697, 2, 1, 0,
+					0, 0, 'Z', null, true, null), new DateTimeData(1903, 3, 1,
+							0, 0, 0, 'Z', null, true, null), new DateTimeData(
+									1903, 7, 1, 0, 0, 0, 'Z', null, true,
+									null) };
 
 	public Object getActualValue(String content, ValidationContext context)
 			throws InvalidDatatypeValueException {
@@ -70,13 +68,15 @@ public class DurationDV extends AbstractDateTimeDV {
 	 * Parses, validates and computes normalized version of duration object
 	 *
 	 * @param str
-	 *            The lexical representation of duration object PnYn MnDTnH nMnS
+	 *                     The lexical representation of duration object PnYn
+	 *                     MnDTnH nMnS
 	 * @param durationType
 	 * @return normalized date representation
 	 * @exception SchemaDateTimeException
-	 *                Invalid lexical representation
+	 *                                    Invalid lexical representation
 	 */
-	protected DateTimeData parse(String str, int durationType) throws SchemaDateTimeException {
+	protected DateTimeData parse(String str, int durationType)
+			throws SchemaDateTimeException {
 		int len = str.length();
 		DateTimeData date = new DateTimeData(str, this);
 
@@ -198,13 +198,14 @@ public class DurationDV extends AbstractDateTimeDV {
 	 * "3.2.6 duration")
 	 *
 	 * @param date1
-	 *            Unnormalized duration
+	 *               Unnormalized duration
 	 * @param date2
-	 *            Unnormalized duration
+	 *               Unnormalized duration
 	 * @param strict
-	 *            (min/max)Exclusive strict == true ( LESS_THAN ) or (
-	 *            GREATER_THAN ) (min/max)Inclusive strict == false (LESS_EQUAL)
-	 *            or (GREATER_EQUAL)
+	 *               (min/max)Exclusive strict == true ( LESS_THAN ) or (
+	 *               GREATER_THAN ) (min/max)Inclusive strict == false
+	 *               (LESS_EQUAL)
+	 *               or (GREATER_EQUAL)
 	 * @return INDETERMINATE if the order relationship between date1 and date2
 	 *         is indeterminate. EQUAL if the order relation between date1 and
 	 *         date2 is EQUAL. If the strict parameter is true, return LESS_THAN
@@ -213,7 +214,8 @@ public class DurationDV extends AbstractDateTimeDV {
 	 *         LESS_THAN if date1 is less than OR equal to date2 and return
 	 *         GREATER_THAN if date1 is greater than OR equal to date2
 	 */
-	protected short compareDates(DateTimeData date1, DateTimeData date2, boolean strict) {
+	protected short compareDates(DateTimeData date1, DateTimeData date2,
+			boolean strict) {
 
 		// REVISIT: this is unoptimazed vs of comparing 2 durations
 		// Algorithm is described in 3.2.6.2 W3C Schema Datatype specs
@@ -279,7 +281,8 @@ public class DurationDV extends AbstractDateTimeDV {
 		return resultA;
 	}
 
-	private DateTimeData addDuration(DateTimeData date, DateTimeData addto, DateTimeData duration) {
+	private DateTimeData addDuration(DateTimeData date, DateTimeData addto,
+			DateTimeData duration) {
 
 		// REVISIT: some code could be shared between normalize() and this
 		// method,
@@ -316,7 +319,8 @@ public class DurationDV extends AbstractDateTimeDV {
 
 			temp = maxDayInMonthFor(duration.year, duration.month);
 			if (duration.day < 1) { // original duration was negative
-				duration.day = duration.day + maxDayInMonthFor(duration.year, duration.month - 1);
+				duration.day = duration.day + maxDayInMonthFor(duration.year,
+						duration.month - 1);
 				carry = -1;
 			} else if (duration.day > temp) {
 				duration.day = duration.day - temp;
@@ -333,29 +337,33 @@ public class DurationDV extends AbstractDateTimeDV {
 		return duration;
 	}
 
-	protected double parseSecond(String buffer, int start, int end) throws NumberFormatException {
+	protected double parseSecond(String buffer, int start, int end)
+			throws NumberFormatException {
 		int dot = -1;
 		for (int i = start; i < end; i++) {
 			char ch = buffer.charAt(i);
 			if (ch == '.')
 				dot = i;
 			else if (ch > '9' || ch < '0')
-				throw new NumberFormatException("'" + buffer + "' has wrong format");
+				throw new NumberFormatException("'" + buffer
+						+ "' has wrong format");
 		}
 		if (dot + 1 == end) {
-			throw new NumberFormatException("'" + buffer + "' has wrong format");
+			throw new NumberFormatException("'" + buffer
+					+ "' has wrong format");
 		}
 		double value = Double.parseDouble(buffer.substring(start, end));
 		if (value == Double.POSITIVE_INFINITY) {
-			throw new NumberFormatException("'" + buffer + "' has wrong format");
+			throw new NumberFormatException("'" + buffer
+					+ "' has wrong format");
 		}
 		return value;
 	}
 
 	protected String dateToString(DateTimeData date) {
 		StringBuffer message = new StringBuffer(30);
-		if (date.year < 0 || date.month < 0 || date.day < 0 || date.hour < 0 || date.minute < 0
-				|| date.second < 0) {
+		if (date.year < 0 || date.month < 0 || date.day < 0 || date.hour < 0
+				|| date.minute < 0 || date.second < 0) {
 			message.append('-');
 		}
 		message.append('P');
@@ -378,22 +386,23 @@ public class DurationDV extends AbstractDateTimeDV {
 
 	protected Duration getDuration(DateTimeData date) {
 		int sign = 1;
-		if (date.year < 0 || date.month < 0 || date.day < 0 || date.hour < 0 || date.minute < 0
-				|| date.second < 0) {
+		if (date.year < 0 || date.month < 0 || date.day < 0 || date.hour < 0
+				|| date.minute < 0 || date.second < 0) {
 			sign = -1;
 		}
 		return datatypeFactory.newDuration(sign == 1,
-				date.year != DatatypeConstants.FIELD_UNDEFINED
-						? BigInteger.valueOf(sign * date.year) : null,
-				date.month != DatatypeConstants.FIELD_UNDEFINED
-						? BigInteger.valueOf(sign * date.month) : null,
-				date.day != DatatypeConstants.FIELD_UNDEFINED ? BigInteger.valueOf(sign * date.day)
-						: null,
-				date.hour != DatatypeConstants.FIELD_UNDEFINED
-						? BigInteger.valueOf(sign * date.hour) : null,
-				date.minute != DatatypeConstants.FIELD_UNDEFINED
-						? BigInteger.valueOf(sign * date.minute) : null,
+				date.year != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.year) : null,
+				date.month != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.month) : null,
+				date.day != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.day) : null,
+				date.hour != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.hour) : null,
+				date.minute != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.minute) : null,
 				date.second != DatatypeConstants.FIELD_UNDEFINED
-						? new BigDecimal(String.valueOf(sign * date.second)) : null);
+						? new BigDecimal(String.valueOf(sign * date.second))
+						: null);
 	}
 }

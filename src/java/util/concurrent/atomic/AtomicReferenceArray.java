@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -49,7 +24,7 @@ import sun.misc.Unsafe;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            The base class of elements held in this array
+ *        The base class of elements held in this array
  */
 public class AtomicReferenceArray<E> implements java.io.Serializable {
 	private static final long serialVersionUID = -6209656149925076980L;
@@ -63,8 +38,8 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	static {
 		try {
 			unsafe = Unsafe.getUnsafe();
-			arrayFieldOffset = unsafe
-					.objectFieldOffset(AtomicReferenceArray.class.getDeclaredField("array"));
+			arrayFieldOffset = unsafe.objectFieldOffset(
+					AtomicReferenceArray.class.getDeclaredField("array"));
 			base = unsafe.arrayBaseOffset(Object[].class);
 			int scale = unsafe.arrayIndexScale(Object[].class);
 			if ((scale & (scale - 1)) != 0)
@@ -91,7 +66,7 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * initially null.
 	 *
 	 * @param length
-	 *            the length of the array
+	 *               the length of the array
 	 */
 	public AtomicReferenceArray(int length) {
 		array = new Object[length];
@@ -102,9 +77,9 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * elements copied from, the given array.
 	 *
 	 * @param array
-	 *            the array to copy elements from
+	 *              the array to copy elements from
 	 * @throws NullPointerException
-	 *             if array is null
+	 *                              if array is null
 	 */
 	public AtomicReferenceArray(E[] array) {
 		// Visibility guaranteed by final field guarantees
@@ -124,7 +99,7 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * Gets the current value at position {@code i}.
 	 *
 	 * @param i
-	 *            the index
+	 *          the index
 	 * @return the current value
 	 */
 	public final E get(int i) {
@@ -140,9 +115,9 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * Sets the element at position {@code i} to the given value.
 	 *
 	 * @param i
-	 *            the index
+	 *                 the index
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 */
 	public final void set(int i, E newValue) {
 		unsafe.putObjectVolatile(array, checkedByteOffset(i), newValue);
@@ -152,9 +127,9 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * Eventually sets the element at position {@code i} to the given value.
 	 *
 	 * @param i
-	 *            the index
+	 *                 the index
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 * @since 1.6
 	 */
 	public final void lazySet(int i, E newValue) {
@@ -166,14 +141,15 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * returns the old value.
 	 *
 	 * @param i
-	 *            the index
+	 *                 the index
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 * @return the previous value
 	 */
 	@SuppressWarnings("unchecked")
 	public final E getAndSet(int i, E newValue) {
-		return (E) unsafe.getAndSetObject(array, checkedByteOffset(i), newValue);
+		return (E) unsafe.getAndSetObject(array, checkedByteOffset(i),
+				newValue);
 	}
 
 	/**
@@ -181,11 +157,11 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * value if the current value {@code ==} the expected value.
 	 *
 	 * @param i
-	 *            the index
+	 *               the index
 	 * @param expect
-	 *            the expected value
+	 *               the expected value
 	 * @param update
-	 *            the new value
+	 *               the new value
 	 * @return {@code true} if successful. False return indicates that the
 	 *         actual value was not equal to the expected value.
 	 */
@@ -207,11 +183,11 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * appropriate alternative to {@code compareAndSet}.
 	 *
 	 * @param i
-	 *            the index
+	 *               the index
 	 * @param expect
-	 *            the expected value
+	 *               the expected value
 	 * @param update
-	 *            the new value
+	 *               the new value
 	 * @return {@code true} if successful
 	 */
 	public final boolean weakCompareAndSet(int i, E expect, E update) {
@@ -225,9 +201,9 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * updates fail due to contention among threads.
 	 *
 	 * @param i
-	 *            the index
+	 *                       the index
 	 * @param updateFunction
-	 *            a side-effect-free function
+	 *                       a side-effect-free function
 	 * @return the previous value
 	 * @since 1.8
 	 */
@@ -248,9 +224,9 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * updates fail due to contention among threads.
 	 *
 	 * @param i
-	 *            the index
+	 *                       the index
 	 * @param updateFunction
-	 *            a side-effect-free function
+	 *                       a side-effect-free function
 	 * @return the updated value
 	 * @since 1.8
 	 */
@@ -274,15 +250,16 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * argument.
 	 *
 	 * @param i
-	 *            the index
+	 *                            the index
 	 * @param x
-	 *            the update value
+	 *                            the update value
 	 * @param accumulatorFunction
-	 *            a side-effect-free function of two arguments
+	 *                            a side-effect-free function of two arguments
 	 * @return the previous value
 	 * @since 1.8
 	 */
-	public final E getAndAccumulate(int i, E x, BinaryOperator<E> accumulatorFunction) {
+	public final E getAndAccumulate(int i, E x,
+			BinaryOperator<E> accumulatorFunction) {
 		long offset = checkedByteOffset(i);
 		E prev, next;
 		do {
@@ -302,15 +279,16 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * argument.
 	 *
 	 * @param i
-	 *            the index
+	 *                            the index
 	 * @param x
-	 *            the update value
+	 *                            the update value
 	 * @param accumulatorFunction
-	 *            a side-effect-free function of two arguments
+	 *                            a side-effect-free function of two arguments
 	 * @return the updated value
 	 * @since 1.8
 	 */
-	public final E accumulateAndGet(int i, E x, BinaryOperator<E> accumulatorFunction) {
+	public final E accumulateAndGet(int i, E x,
+			BinaryOperator<E> accumulatorFunction) {
 		long offset = checkedByteOffset(i);
 		E prev, next;
 		do {
@@ -344,7 +322,8 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
 	 * Reconstitutes the instance from a stream (that is, deserializes it).
 	 */
 	private void readObject(java.io.ObjectInputStream s)
-			throws java.io.IOException, ClassNotFoundException, java.io.InvalidObjectException {
+			throws java.io.IOException, ClassNotFoundException,
+			java.io.InvalidObjectException {
 		// Note: This must be changed if any additional fields are defined
 		Object a = s.readFields().get("array", null);
 		if (a == null || !a.getClass().isArray())

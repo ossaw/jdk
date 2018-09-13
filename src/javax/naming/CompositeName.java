@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -73,7 +53,8 @@ import java.util.Properties;
  * corresponding structural form (<tt>CompositeName</tt>).
  *
  * <table border="1" cellpadding=3 summary=
- * "examples showing string form of composite name and its corresponding structural form (CompositeName)"
+ * "examples showing string form of composite name and its corresponding
+ * structural form (CompositeName)"
  * >
  * 
  * <tr>
@@ -183,9 +164,9 @@ public class CompositeName implements Name {
 	 * getPrefix(), getSuffix().
 	 *
 	 * @param comps
-	 *            A non-null enumeration containing the components for the new
-	 *            composite name. Each element is of class String. The
-	 *            enumeration will be consumed to extract its elements.
+	 *              A non-null enumeration containing the components for the new
+	 *              composite name. Each element is of class String. The
+	 *              enumeration will be consumed to extract its elements.
 	 */
 	protected CompositeName(Enumeration<String> comps) {
 		impl = new NameImpl(null, comps); // null means use default syntax
@@ -197,9 +178,9 @@ public class CompositeName implements Name {
 	 * name syntax is described in detail in the class description.
 	 *
 	 * @param n
-	 *            The non-null string to parse.
+	 *          The non-null string to parse.
 	 * @exception InvalidNameException
-	 *                If n has invalid composite name syntax.
+	 *                                 If n has invalid composite name syntax.
 	 */
 	public CompositeName(String n) throws InvalidNameException {
 		impl = new NameImpl(null, n); // null means use default syntax
@@ -244,8 +225,8 @@ public class CompositeName implements Name {
 	 * @see #hashCode
 	 */
 	public boolean equals(Object obj) {
-		return (obj != null && obj instanceof CompositeName
-				&& impl.equals(((CompositeName) obj).impl));
+		return (obj != null && obj instanceof CompositeName && impl.equals(
+				((CompositeName) obj).impl));
 	}
 
 	/**
@@ -284,7 +265,7 @@ public class CompositeName implements Name {
 	 * @return a negative integer, zero, or a positive integer as this Name is
 	 *         less than, equal to, or greater than the given Object.
 	 * @exception ClassCastException
-	 *                if obj is not a CompositeName.
+	 *                               if obj is not a CompositeName.
 	 */
 	public int compareTo(Object obj) {
 		if (!(obj instanceof CompositeName)) {
@@ -338,11 +319,13 @@ public class CompositeName implements Name {
 	 * Retrieves a component of this composite name.
 	 *
 	 * @param posn
-	 *            The 0-based index of the component to retrieve. Must be in the
-	 *            range [0,size()).
+	 *             The 0-based index of the component to retrieve. Must be in
+	 *             the
+	 *             range [0,size()).
 	 * @return The non-null component at index posn.
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                if posn is outside the specified range.
+	 *                                           if posn is outside the
+	 *                                           specified range.
 	 */
 	public String get(int posn) {
 		return (impl.get(posn));
@@ -354,12 +337,13 @@ public class CompositeName implements Name {
 	 * name does not affect the name that is returned.
 	 *
 	 * @param posn
-	 *            The 0-based index of the component at which to stop. Must be
-	 *            in the range [0,size()].
+	 *             The 0-based index of the component at which to stop. Must be
+	 *             in the range [0,size()].
 	 * @return A composite name consisting of the components at indexes in the
 	 *         range [0,posn).
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If posn is outside the specified range.
+	 *                                           If posn is outside the
+	 *                                           specified range.
 	 */
 	public Name getPrefix(int posn) {
 		Enumeration<String> comps = impl.getPrefix(posn);
@@ -372,13 +356,14 @@ public class CompositeName implements Name {
 	 * name does not affect the name that is returned.
 	 *
 	 * @param posn
-	 *            The 0-based index of the component at which to start. Must be
-	 *            in the range [0,size()].
+	 *             The 0-based index of the component at which to start. Must be
+	 *             in the range [0,size()].
 	 * @return A composite name consisting of the components at indexes in the
 	 *         range [posn,size()). If posn is equal to size(), an empty
 	 *         composite name is returned.
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If posn is outside the specified range.
+	 *                                           If posn is outside the
+	 *                                           specified range.
 	 */
 	public Name getSuffix(int posn) {
 		Enumeration<String> comps = impl.getSuffix(posn);
@@ -392,7 +377,7 @@ public class CompositeName implements Name {
 	 * composite name, false is returned.
 	 *
 	 * @param n
-	 *            The possibly null name to check.
+	 *          The possibly null name to check.
 	 * @return true if n is a CompositeName and is a prefix of this composite
 	 *         name, false otherwise.
 	 */
@@ -411,7 +396,7 @@ public class CompositeName implements Name {
 	 * 'n'. If n is null or not a composite name, false is returned.
 	 *
 	 * @param n
-	 *            The possibly null name to check.
+	 *          The possibly null name to check.
 	 * @return true if n is a CompositeName and is a suffix of this composite
 	 *         name, false otherwise.
 	 */
@@ -428,17 +413,18 @@ public class CompositeName implements Name {
 	 * composite name.
 	 *
 	 * @param suffix
-	 *            The non-null components to add.
+	 *               The non-null components to add.
 	 * @return The updated CompositeName, not a new one. Cannot be null.
 	 * @exception InvalidNameException
-	 *                If suffix is not a composite name.
+	 *                                 If suffix is not a composite name.
 	 */
 	public Name addAll(Name suffix) throws InvalidNameException {
 		if (suffix instanceof CompositeName) {
 			impl.addAll(suffix.getAll());
 			return this;
 		} else {
-			throw new InvalidNameException("Not a composite name: " + suffix.toString());
+			throw new InvalidNameException("Not a composite name: " + suffix
+					.toString());
 		}
 	}
 
@@ -449,22 +435,24 @@ public class CompositeName implements Name {
 	 * index 0) to accommodate the new components.
 	 *
 	 * @param n
-	 *            The non-null components to add.
+	 *             The non-null components to add.
 	 * @param posn
-	 *            The index in this name at which to add the new components.
-	 *            Must be in the range [0,size()].
+	 *             The index in this name at which to add the new components.
+	 *             Must be in the range [0,size()].
 	 * @return The updated CompositeName, not a new one. Cannot be null.
 	 * @exception InvalidNameException
-	 *                If n is not a composite name.
+	 *                                           If n is not a composite name.
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If posn is outside the specified range.
+	 *                                           If posn is outside the
+	 *                                           specified range.
 	 */
 	public Name addAll(int posn, Name n) throws InvalidNameException {
 		if (n instanceof CompositeName) {
 			impl.addAll(posn, n.getAll());
 			return this;
 		} else {
-			throw new InvalidNameException("Not a composite name: " + n.toString());
+			throw new InvalidNameException("Not a composite name: " + n
+					.toString());
 		}
 	}
 
@@ -472,11 +460,12 @@ public class CompositeName implements Name {
 	 * Adds a single component to the end of this composite name.
 	 *
 	 * @param comp
-	 *            The non-null component to add.
+	 *             The non-null component to add.
 	 * @return The updated CompositeName, not a new one. Cannot be null.
 	 * @exception InvalidNameException
-	 *                If adding comp at end of the name would violate the name's
-	 *                syntax.
+	 *                                 If adding comp at end of the name would
+	 *                                 violate the name's
+	 *                                 syntax.
 	 */
 	public Name add(String comp) throws InvalidNameException {
 		impl.add(comp);
@@ -490,16 +479,18 @@ public class CompositeName implements Name {
 	 * new component.
 	 *
 	 * @param comp
-	 *            The non-null component to add.
+	 *             The non-null component to add.
 	 * @param posn
-	 *            The index at which to add the new component. Must be in the
-	 *            range [0,size()].
+	 *             The index at which to add the new component. Must be in the
+	 *             range [0,size()].
 	 * @return The updated CompositeName, not a new one. Cannot be null.
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If posn is outside the specified range.
+	 *                                           If posn is outside the
+	 *                                           specified range.
 	 * @exception InvalidNameException
-	 *                If adding comp at the specified position would violate the
-	 *                name's syntax.
+	 *                                           If adding comp at the specified
+	 *                                           position would violate the
+	 *                                           name's syntax.
 	 */
 	public Name add(int posn, String comp) throws InvalidNameException {
 		impl.add(posn, comp);
@@ -512,14 +503,16 @@ public class CompositeName implements Name {
 	 * greater than 'posn' are shifted down (towards index 0) by one.
 	 *
 	 * @param posn
-	 *            The index of the component to delete. Must be in the range
-	 *            [0,size()).
+	 *             The index of the component to delete. Must be in the range
+	 *             [0,size()).
 	 * @return The component removed (a String).
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If posn is outside the specified range (includes case
-	 *                where composite name is empty).
+	 *                                           If posn is outside the
+	 *                                           specified range (includes case
+	 *                                           where composite name is empty).
 	 * @exception InvalidNameException
-	 *                If deleting the component would violate the name's syntax.
+	 *                                           If deleting the component would
+	 *                                           violate the name's syntax.
 	 */
 	public Object remove(int posn) throws InvalidNameException {
 		return impl.remove(posn);
@@ -531,7 +524,8 @@ public class CompositeName implements Name {
 	 * @serialData The number of components (an <tt>int</tt>) followed by the
 	 *             individual components (each a <tt>String</tt>).
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 		s.writeInt(size());
 		Enumeration<String> comps = getAll();
 		while (comps.hasMoreElements()) {
@@ -568,7 +562,6 @@ public class CompositeName implements Name {
 	 * s1.writeObject(c); s1.close(); java.io.FileInputStream f2 = new
 	 * java.io.FileInputStream("/tmp/ser"); java.io.ObjectInputStream s2 = new
 	 * java.io.ObjectInputStream(f2); c = (CompositeName)s2.readObject();
-	 * 
 	 * System.out.println("Size: " + c.size()); System.out.println("Size: " +
 	 * c.snit); }
 	 */

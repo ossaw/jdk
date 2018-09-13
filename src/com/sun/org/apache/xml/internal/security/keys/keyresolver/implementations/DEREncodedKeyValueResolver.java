@@ -32,16 +32,20 @@ public class DEREncodedKeyValueResolver extends KeyResolverSpi {
 			.getLogger(DEREncodedKeyValueResolver.class.getName());
 
 	/** {@inheritDoc}. */
-	public boolean engineCanResolve(Element element, String baseURI, StorageResolver storage) {
-		return XMLUtils.elementIsInSignature11Space(element, Constants._TAG_DERENCODEDKEYVALUE);
+	public boolean engineCanResolve(Element element, String baseURI,
+			StorageResolver storage) {
+		return XMLUtils.elementIsInSignature11Space(element,
+				Constants._TAG_DERENCODEDKEYVALUE);
 	}
 
 	/** {@inheritDoc}. */
-	public PublicKey engineLookupAndResolvePublicKey(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public PublicKey engineLookupAndResolvePublicKey(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE, "Can I resolve " + element.getTagName());
+			log.log(java.util.logging.Level.FINE, "Can I resolve " + element
+					.getTagName());
 		}
 
 		if (!engineCanResolve(element, baseURI, storage)) {
@@ -49,11 +53,13 @@ public class DEREncodedKeyValueResolver extends KeyResolverSpi {
 		}
 
 		try {
-			DEREncodedKeyValue derKeyValue = new DEREncodedKeyValue(element, baseURI);
+			DEREncodedKeyValue derKeyValue = new DEREncodedKeyValue(element,
+					baseURI);
 			return derKeyValue.getPublicKey();
 		} catch (XMLSecurityException e) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "XMLSecurityException", e);
+				log.log(java.util.logging.Level.FINE, "XMLSecurityException",
+						e);
 			}
 		}
 
@@ -61,20 +67,23 @@ public class DEREncodedKeyValueResolver extends KeyResolverSpi {
 	}
 
 	/** {@inheritDoc}. */
-	public X509Certificate engineLookupResolveX509Certificate(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public X509Certificate engineLookupResolveX509Certificate(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		return null;
 	}
 
 	/** {@inheritDoc}. */
-	public SecretKey engineLookupAndResolveSecretKey(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public SecretKey engineLookupAndResolveSecretKey(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		return null;
 	}
 
 	/** {@inheritDoc}. */
-	public PrivateKey engineLookupAndResolvePrivateKey(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public PrivateKey engineLookupAndResolvePrivateKey(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		return null;
 	}
 

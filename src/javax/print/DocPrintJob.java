@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print;
@@ -74,7 +54,7 @@ public interface DocPrintJob {
 	 * @see #removePrintJobListener
 	 *
 	 * @param listener
-	 *            The object implementing the listener interface
+	 *                 The object implementing the listener interface
 	 *
 	 */
 	public void addPrintJobListener(PrintJobListener listener);
@@ -89,7 +69,7 @@ public interface DocPrintJob {
 	 * @see #addPrintJobListener
 	 *
 	 * @param listener
-	 *            The object implementing the listener interface
+	 *                 The object implementing the listener interface
 	 */
 	public void removePrintJobListener(PrintJobListener listener);
 
@@ -115,10 +95,11 @@ public interface DocPrintJob {
 	 * @see #removePrintJobAttributeListener
 	 *
 	 * @param listener
-	 *            The object implementing the listener interface
+	 *                   The object implementing the listener interface
 	 * @param attributes
-	 *            The attributes to listen on, or null to mean all attributes
-	 *            that can change, as determined by the job.
+	 *                   The attributes to listen on, or null to mean all
+	 *                   attributes
+	 *                   that can change, as determined by the job.
 	 */
 	public void addPrintJobAttributeListener(PrintJobAttributeListener listener,
 			PrintJobAttributeSet attributes);
@@ -134,10 +115,11 @@ public interface DocPrintJob {
 	 * @see #addPrintJobAttributeListener
 	 *
 	 * @param listener
-	 *            The object implementing the listener interface
+	 *                 The object implementing the listener interface
 	 *
 	 */
-	public void removePrintJobAttributeListener(PrintJobAttributeListener listener);
+	public void removePrintJobAttributeListener(
+			PrintJobAttributeListener listener);
 
 	/**
 	 * Prints a document with the specified job attributes. This method should
@@ -155,22 +137,29 @@ public interface DocPrintJob {
 	 * generated if a <code>DocFlavor</code> cannot be printed.
 	 *
 	 * @param doc
-	 *            The document to be printed. If must be a flavor supported by
-	 *            this PrintJob.
+	 *                   The document to be printed. If must be a flavor
+	 *                   supported by
+	 *                   this PrintJob.
 	 *
 	 * @param attributes
-	 *            The job attributes to be applied to this print job. If this
-	 *            parameter is null then the default attributes are used.
+	 *                   The job attributes to be applied to this print job. If
+	 *                   this
+	 *                   parameter is null then the default attributes are used.
 	 * @throws PrintException
-	 *             The exception additionally may implement an interface that
-	 *             more precisely describes the cause of the exception
-	 *             <ul>
-	 *             <li>FlavorException. If the document has a flavor not
-	 *             supported by this print job.
-	 *             <li>AttributeException. If one or more of the attributes are
-	 *             not valid for this print job.
-	 *             </ul>
+	 *                        The exception additionally may implement an
+	 *                        interface that
+	 *                        more precisely describes the cause of the
+	 *                        exception
+	 *                        <ul>
+	 *                        <li>FlavorException. If the document has a flavor
+	 *                        not
+	 *                        supported by this print job.
+	 *                        <li>AttributeException. If one or more of the
+	 *                        attributes are
+	 *                        not valid for this print job.
+	 *                        </ul>
 	 */
-	public void print(Doc doc, PrintRequestAttributeSet attributes) throws PrintException;
+	public void print(Doc doc, PrintRequestAttributeSet attributes)
+			throws PrintException;
 
 }

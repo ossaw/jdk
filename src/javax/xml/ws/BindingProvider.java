@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -144,8 +124,8 @@ public interface BindingProvider {
 	 *         <code>BindingProvider</code> instance.
 	 *
 	 * @throws java.lang.UnsupportedOperationException
-	 *             If this <code>BindingProvider</code> uses the XML/HTTP
-	 *             binding.
+	 *         If this <code>BindingProvider</code> uses the XML/HTTP
+	 *         binding.
 	 *
 	 * @see W3CEndpointReference
 	 *
@@ -159,19 +139,22 @@ public interface BindingProvider {
 	 * type <code>clazz</code>.
 	 *
 	 * @param clazz
-	 *            Specifies the type of <code>EndpointReference</code> that MUST
-	 *            be returned.
+	 *              Specifies the type of <code>EndpointReference</code> that
+	 *              MUST
+	 *              be returned.
 	 * 
 	 * @return EndpointReference of the target endpoint associated with this
 	 *         <code>BindingProvider</code> instance. MUST be of type
 	 *         <code>clazz</code>.
 	 * 
 	 * @throws WebServiceException
-	 *             If the Class <code>clazz</code> is not supported by this
-	 *             implementation.
-	 * @throws java.lang.UnsupportedOperationException
-	 *             If this <code>BindingProvider</code> uses the XML/HTTP
-	 *             binding.
+	 *                             If the Class <code>clazz</code> is not
+	 *                             supported by this
+	 *                             implementation.
+	 * @throws                     java.lang.UnsupportedOperationException
+	 *                             If this <code>BindingProvider</code> uses the
+	 *                             XML/HTTP
+	 *                             binding.
 	 *
 	 * @since JAX-WS 2.1
 	 */

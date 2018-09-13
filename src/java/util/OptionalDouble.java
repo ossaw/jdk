@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -91,7 +71,7 @@ public final class OptionalDouble {
 	 * Construct an instance with the value present.
 	 *
 	 * @param value
-	 *            the double value to be present.
+	 *              the double value to be present.
 	 */
 	private OptionalDouble(double value) {
 		this.isPresent = true;
@@ -102,7 +82,7 @@ public final class OptionalDouble {
 	 * Return an {@code OptionalDouble} with the specified value present.
 	 *
 	 * @param value
-	 *            the value to be present
+	 *              the value to be present
 	 * @return an {@code OptionalDouble} with the value present
 	 */
 	public static OptionalDouble of(double value) {
@@ -115,7 +95,7 @@ public final class OptionalDouble {
 	 *
 	 * @return the value held by this {@code OptionalDouble}
 	 * @throws NoSuchElementException
-	 *             if there is no value present
+	 *                                if there is no value present
 	 *
 	 * @see OptionalDouble#isPresent()
 	 */
@@ -140,9 +120,10 @@ public final class OptionalDouble {
 	 * otherwise do nothing.
 	 *
 	 * @param consumer
-	 *            block to be executed if a value is present
+	 *                 block to be executed if a value is present
 	 * @throws NullPointerException
-	 *             if value is present and {@code consumer} is null
+	 *                              if value is present and {@code consumer} is
+	 *                              null
 	 */
 	public void ifPresent(DoubleConsumer consumer) {
 		if (isPresent)
@@ -153,7 +134,7 @@ public final class OptionalDouble {
 	 * Return the value if present, otherwise return {@code other}.
 	 *
 	 * @param other
-	 *            the value to be returned if there is no value present
+	 *              the value to be returned if there is no value present
 	 * @return the value, if present, otherwise {@code other}
 	 */
 	public double orElse(double other) {
@@ -165,12 +146,14 @@ public final class OptionalDouble {
 	 * the result of that invocation.
 	 *
 	 * @param other
-	 *            a {@code DoubleSupplier} whose result is returned if no value
-	 *            is present
+	 *              a {@code DoubleSupplier} whose result is returned if no
+	 *              value
+	 *              is present
 	 * @return the value if present otherwise the result of
 	 *         {@code other.getAsDouble()}
 	 * @throws NullPointerException
-	 *             if value is not present and {@code other} is null
+	 *                              if value is not present and {@code other} is
+	 *                              null
 	 */
 	public double orElseGet(DoubleSupplier other) {
 		return isPresent ? value : other.getAsDouble();
@@ -184,17 +167,20 @@ public final class OptionalDouble {
 	 *          argument list can be used as the supplier. For example,
 	 *          {@code IllegalStateException::new}
 	 *
-	 * @param <X>
-	 *            Type of the exception to be thrown
+	 * @param                   <X>
+	 *                          Type of the exception to be thrown
 	 * @param exceptionSupplier
-	 *            The supplier which will return the exception to be thrown
+	 *                          The supplier which will return the exception to
+	 *                          be thrown
 	 * @return the present value
 	 * @throws X
-	 *             if there is no value present
+	 *                              if there is no value present
 	 * @throws NullPointerException
-	 *             if no value is present and {@code exceptionSupplier} is null
+	 *                              if no value is present and
+	 *                              {@code exceptionSupplier} is null
 	 */
-	public <X extends Throwable> double orElseThrow(Supplier<X> exceptionSupplier) throws X {
+	public <X extends Throwable> double orElseThrow(
+			Supplier<X> exceptionSupplier) throws X {
 		if (isPresent) {
 			return value;
 		} else {
@@ -228,8 +214,8 @@ public final class OptionalDouble {
 		}
 
 		OptionalDouble other = (OptionalDouble) obj;
-		return (isPresent && other.isPresent) ? Double.compare(value, other.value) == 0
-				: isPresent == other.isPresent;
+		return (isPresent && other.isPresent) ? Double.compare(value,
+				other.value) == 0 : isPresent == other.isPresent;
 	}
 
 	/**
@@ -258,6 +244,7 @@ public final class OptionalDouble {
 	 */
 	@Override
 	public String toString() {
-		return isPresent ? String.format("OptionalDouble[%s]", value) : "OptionalDouble.empty";
+		return isPresent ? String.format("OptionalDouble[%s]", value)
+				: "OptionalDouble.empty";
 	}
 }

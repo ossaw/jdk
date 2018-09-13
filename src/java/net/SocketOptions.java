@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -86,12 +66,13 @@ public interface SocketOptions {
 	 * closed, or some low-level error occurred <BR>
 	 * 
 	 * @param optID
-	 *            identifies the option
+	 *              identifies the option
 	 * @param value
-	 *            the parameter of the socket option
+	 *              the parameter of the socket option
 	 * @throws SocketException
-	 *             if the option is unrecognized, the socket is closed, or some
-	 *             low-level error occurred
+	 *                         if the option is unrecognized, the socket is
+	 *                         closed, or some
+	 *                         low-level error occurred
 	 * @see #getOption(int)
 	 */
 	public void setOption(int optID, Object value) throws SocketException;
@@ -125,13 +106,14 @@ public interface SocketOptions {
 	 * </PRE>
 	 *
 	 * @param optID
-	 *            an {@code int} identifying the option to fetch
+	 *              an {@code int} identifying the option to fetch
 	 * @return the value of the option
 	 * @throws SocketException
-	 *             if the socket is closed
+	 *                         if the socket is closed
 	 * @throws SocketException
-	 *             if <I>optID</I> is unknown along the protocol stack
-	 *             (including the SocketImpl)
+	 *                         if <I>optID</I> is unknown along the protocol
+	 *                         stack
+	 *                         (including the SocketImpl)
 	 * @see #setOption(int, java.lang.Object)
 	 */
 	public Object getOption(int optID) throws SocketException;

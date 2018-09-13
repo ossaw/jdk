@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.common;
@@ -36,7 +16,8 @@ public final class SubImageInputStream extends ImageInputStreamImpl {
 	int startingLength;
 	int length;
 
-	public SubImageInputStream(ImageInputStream stream, int length) throws IOException {
+	public SubImageInputStream(ImageInputStream stream, int length)
+			throws IOException {
 		this.stream = stream;
 		this.startingPos = stream.getStreamPosition();
 		this.startingLength = this.length = length;

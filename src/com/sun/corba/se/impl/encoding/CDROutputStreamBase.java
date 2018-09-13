@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.encoding;
 
@@ -88,29 +68,38 @@ abstract class CDROutputStreamBase extends java.io.OutputStream {
 
 	public abstract void write_wstring(String value);
 
-	public abstract void write_boolean_array(boolean[] value, int offset, int length);
+	public abstract void write_boolean_array(boolean[] value, int offset,
+			int length);
 
 	public abstract void write_char_array(char[] value, int offset, int length);
 
-	public abstract void write_wchar_array(char[] value, int offset, int length);
+	public abstract void write_wchar_array(char[] value, int offset,
+			int length);
 
-	public abstract void write_octet_array(byte[] value, int offset, int length);
+	public abstract void write_octet_array(byte[] value, int offset,
+			int length);
 
-	public abstract void write_short_array(short[] value, int offset, int length);
+	public abstract void write_short_array(short[] value, int offset,
+			int length);
 
-	public abstract void write_ushort_array(short[] value, int offset, int length);
+	public abstract void write_ushort_array(short[] value, int offset,
+			int length);
 
 	public abstract void write_long_array(int[] value, int offset, int length);
 
 	public abstract void write_ulong_array(int[] value, int offset, int length);
 
-	public abstract void write_longlong_array(long[] value, int offset, int length);
+	public abstract void write_longlong_array(long[] value, int offset,
+			int length);
 
-	public abstract void write_ulonglong_array(long[] value, int offset, int length);
+	public abstract void write_ulonglong_array(long[] value, int offset,
+			int length);
 
-	public abstract void write_float_array(float[] value, int offset, int length);
+	public abstract void write_float_array(float[] value, int offset,
+			int length);
 
-	public abstract void write_double_array(double[] value, int offset, int length);
+	public abstract void write_double_array(double[] value, int offset,
+			int length);
 
 	public abstract void write_Object(org.omg.CORBA.Object value);
 
@@ -126,7 +115,8 @@ abstract class CDROutputStreamBase extends java.io.OutputStream {
 
 	public abstract void write_fixed(java.math.BigDecimal value);
 
-	public void write_Context(org.omg.CORBA.Context ctx, org.omg.CORBA.ContextList contexts) {
+	public void write_Context(org.omg.CORBA.Context ctx,
+			org.omg.CORBA.ContextList contexts) {
 		throw new org.omg.CORBA.NO_IMPLEMENT();
 	}
 
@@ -135,9 +125,11 @@ abstract class CDROutputStreamBase extends java.io.OutputStream {
 	// org.omg.CORBA_2_3.portable.OutputStream
 	public abstract void write_value(java.io.Serializable value);
 
-	public abstract void write_value(java.io.Serializable value, java.lang.Class clz);
+	public abstract void write_value(java.io.Serializable value,
+			java.lang.Class clz);
 
-	public abstract void write_value(java.io.Serializable value, String repository_id);
+	public abstract void write_value(java.io.Serializable value,
+			String repository_id);
 
 	public abstract void write_value(java.io.Serializable value,
 			org.omg.CORBA.portable.BoxedValueHelper factory);
@@ -167,7 +159,8 @@ abstract class CDROutputStreamBase extends java.io.OutputStream {
 
 	public abstract void write_Value(java.io.Serializable value);
 
-	public abstract void write_any_array(org.omg.CORBA.Any[] seq, int offset, int length);
+	public abstract void write_any_array(org.omg.CORBA.Any[] seq, int offset,
+			int length);
 
 	// org.omg.CORBA.portable.ValueBase
 	public abstract String[] _truncatable_ids();
@@ -194,9 +187,11 @@ abstract class CDROutputStreamBase extends java.io.OutputStream {
 
 	public abstract BufferManagerWrite getBufferManager();
 
-	public abstract void write_fixed(java.math.BigDecimal bigDecimal, short digits, short scale);
+	public abstract void write_fixed(java.math.BigDecimal bigDecimal,
+			short digits, short scale);
 
-	public abstract void writeOctetSequenceTo(org.omg.CORBA.portable.OutputStream s);
+	public abstract void writeOctetSequenceTo(
+			org.omg.CORBA.portable.OutputStream s);
 
 	public abstract GIOPVersion getGIOPVersion();
 

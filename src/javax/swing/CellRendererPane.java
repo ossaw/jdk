@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -75,20 +55,17 @@ public class CellRendererPane extends Container implements Accessible {
 	 * Overridden to avoid propagating a invalidate up the tree when the cell
 	 * renderer child is configured.
 	 */
-	public void invalidate() {
-	}
+	public void invalidate() {}
 
 	/**
 	 * Shouldn't be called.
 	 */
-	public void paint(Graphics g) {
-	}
+	public void paint(Graphics g) {}
 
 	/**
 	 * Shouldn't be called.
 	 */
-	public void update(Graphics g) {
-	}
+	public void update(Graphics g) {}
 
 	/**
 	 * If the specified component is already a child of this then we don't
@@ -114,8 +91,8 @@ public class CellRendererPane extends Container implements Accessible {
 	 * on, typically it's equal to this.getParent(). If shouldValidate is true
 	 * the component c will be validated before painted.
 	 */
-	public void paintComponent(Graphics g, Component c, Container p, int x, int y, int w, int h,
-			boolean shouldValidate) {
+	public void paintComponent(Graphics g, Component c, Container p, int x,
+			int y, int w, int h, boolean shouldValidate) {
 		if (c == null) {
 			if (p != null) {
 				Color oldColor = g.getColor();
@@ -159,14 +136,16 @@ public class CellRendererPane extends Container implements Accessible {
 	/**
 	 * Calls this.paintComponent(g, c, p, x, y, w, h, false).
 	 */
-	public void paintComponent(Graphics g, Component c, Container p, int x, int y, int w, int h) {
+	public void paintComponent(Graphics g, Component c, Container p, int x,
+			int y, int w, int h) {
 		paintComponent(g, c, p, x, y, w, h, false);
 	}
 
 	/**
 	 * Calls this.paintComponent() with the rectangles x,y,width,height fields.
 	 */
-	public void paintComponent(Graphics g, Component c, Container p, Rectangle r) {
+	public void paintComponent(Graphics g, Component c, Container p,
+			Rectangle r) {
 		paintComponent(g, c, p, r.x, r.y, r.width, r.height);
 	}
 

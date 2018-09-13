@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.datatype;
@@ -131,8 +111,7 @@ public abstract class Duration {
 	 * future.
 	 * </p>
 	 */
-	public Duration() {
-	}
+	public Duration() {}
 
 	/**
 	 * <p>
@@ -194,8 +173,9 @@ public abstract class Duration {
 	 *         {@link DatatypeConstants#DURATION_YEARMONTH}.
 	 *
 	 * @throws IllegalStateException
-	 *             If the combination of set fields does not match one of the
-	 *             XML Schema date/time datatypes.
+	 *                               If the combination of set fields does not
+	 *                               match one of the
+	 *                               XML Schema date/time datatypes.
 	 */
 	public QName getXMLSchemaType() {
 
@@ -207,26 +187,31 @@ public abstract class Duration {
 		boolean secondSet = isSet(DatatypeConstants.SECONDS);
 
 		// DURATION
-		if (yearSet && monthSet && daySet && hourSet && minuteSet && secondSet) {
+		if (yearSet && monthSet && daySet && hourSet && minuteSet
+				&& secondSet) {
 			return DatatypeConstants.DURATION;
 		}
 
 		// DURATION_DAYTIME
-		if (!yearSet && !monthSet && daySet && hourSet && minuteSet && secondSet) {
+		if (!yearSet && !monthSet && daySet && hourSet && minuteSet
+				&& secondSet) {
 			return DatatypeConstants.DURATION_DAYTIME;
 		}
 
 		// DURATION_YEARMONTH
-		if (yearSet && monthSet && !daySet && !hourSet && !minuteSet && !secondSet) {
+		if (yearSet && monthSet && !daySet && !hourSet && !minuteSet
+				&& !secondSet) {
 			return DatatypeConstants.DURATION_YEARMONTH;
 		}
 
 		// nothing matches
-		throw new IllegalStateException("javax.xml.datatype.Duration#getXMLSchemaType():"
-				+ " this Duration does not match one of the XML Schema date/time datatypes:"
-				+ " year set = " + yearSet + " month set = " + monthSet + " day set = " + daySet
-				+ " hour set = " + hourSet + " minute set = " + minuteSet + " second set = "
-				+ secondSet);
+		throw new IllegalStateException(
+				"javax.xml.datatype.Duration#getXMLSchemaType():"
+						+ " this Duration does not match one of the XML Schema date/time datatypes:"
+						+ " year set = " + yearSet + " month set = " + monthSet
+						+ " day set = " + daySet + " hour set = " + hourSet
+						+ " minute set = " + minuteSet + " second set = "
+						+ secondSet);
 	}
 
 	/**
@@ -356,23 +341,27 @@ public abstract class Duration {
 	 * details.
 	 *
 	 * @param startInstant
-	 *            The length of a month/year varies. The
-	 *            <code>startInstant</code> is used to disambiguate this
-	 *            variance. Specifically, this method returns the difference
-	 *            between <code>startInstant</code> and
-	 *            <code>startInstant+duration</code>
+	 *                     The length of a month/year varies. The
+	 *                     <code>startInstant</code> is used to disambiguate
+	 *                     this
+	 *                     variance. Specifically, this method returns the
+	 *                     difference
+	 *                     between <code>startInstant</code> and
+	 *                     <code>startInstant+duration</code>
 	 *
 	 * @return milliseconds between <code>startInstant</code> and
 	 *         <code>startInstant</code> plus this <code>Duration</code>
 	 *
 	 * @throws NullPointerException
-	 *             if <code>startInstant</code> parameter is null.
+	 *                              if <code>startInstant</code> parameter is
+	 *                              null.
 	 *
 	 */
 	public long getTimeInMillis(final Calendar startInstant) {
 		Calendar cal = (Calendar) startInstant.clone();
 		addTo(cal);
-		return getCalendarTimeInMillis(cal) - getCalendarTimeInMillis(startInstant);
+		return getCalendarTimeInMillis(cal) - getCalendarTimeInMillis(
+				startInstant);
 	}
 
 	/**
@@ -397,14 +386,16 @@ public abstract class Duration {
 	 * values in its fields. See the {@link #addTo(Date)} method for details.
 	 *
 	 * @param startInstant
-	 *            The length of a month/year varies. The
-	 *            <code>startInstant</code> is used to disambiguate this
-	 *            variance. Specifically, this method returns the difference
-	 *            between <code>startInstant</code> and
-	 *            <code>startInstant+duration</code>.
+	 *                     The length of a month/year varies. The
+	 *                     <code>startInstant</code> is used to disambiguate
+	 *                     this
+	 *                     variance. Specifically, this method returns the
+	 *                     difference
+	 *                     between <code>startInstant</code> and
+	 *                     <code>startInstant+duration</code>.
 	 *
 	 * @throws NullPointerException
-	 *             If the startInstant parameter is null.
+	 *                              If the startInstant parameter is null.
 	 *
 	 * @return milliseconds between <code>startInstant</code> and
 	 *         <code>startInstant</code> plus this <code>Duration</code>
@@ -429,8 +420,8 @@ public abstract class Duration {
 	 * may be a non-negative decimal value.
 	 *
 	 * @param field
-	 *            one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
-	 *            MINUTES, or SECONDS.)
+	 *              one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
+	 *              MINUTES, or SECONDS.)
 	 * @return If the specified field is present, this method returns a non-null
 	 *         non-negative {@link Number} object that represents its value. If
 	 *         it is not present, return null. For YEARS, MONTHS, DAYS, HOURS,
@@ -439,7 +430,8 @@ public abstract class Duration {
 	 *         {@link java.math.BigDecimal}.
 	 *
 	 * @throws NullPointerException
-	 *             If the <code>field</code> is <code>null</code>.
+	 *                              If the <code>field</code> is
+	 *                              <code>null</code>.
 	 */
 	public abstract Number getField(final DatatypeConstants.Field field);
 
@@ -450,12 +442,12 @@ public abstract class Duration {
 	 * be used to test if a field is present.
 	 *
 	 * @param field
-	 *            one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
-	 *            MINUTES, or SECONDS.)
+	 *              one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
+	 *              MINUTES, or SECONDS.)
 	 * @return true if the field is present. false if not.
 	 *
 	 * @throws NullPointerException
-	 *             If the field parameter is null.
+	 *                              If the field parameter is null.
 	 */
 	public abstract boolean isSet(final DatatypeConstants.Field field);
 
@@ -507,10 +499,12 @@ public abstract class Duration {
 	 * @return non-null valid Duration object.
 	 *
 	 * @throws NullPointerException
-	 *             If the rhs parameter is null.
+	 *                               If the rhs parameter is null.
 	 * @throws IllegalStateException
-	 *             If two durations cannot be meaningfully added. For example,
-	 *             adding negative one day to one month causes this exception.
+	 *                               If two durations cannot be meaningfully
+	 *                               added. For example,
+	 *                               adding negative one day to one month causes
+	 *                               this exception.
 	 *
 	 *
 	 * @see #subtract(Duration)
@@ -550,9 +544,9 @@ public abstract class Duration {
 	 * issues.
 	 *
 	 * @param calendar
-	 *            A calendar object whose value will be modified.
+	 *                 A calendar object whose value will be modified.
 	 * @throws NullPointerException
-	 *             if the calendar parameter is null.
+	 *                              if the calendar parameter is null.
 	 */
 	public abstract void addTo(Calendar calendar);
 
@@ -573,16 +567,16 @@ public abstract class Duration {
 	 * determine the duration of months and years.
 	 *
 	 * @param date
-	 *            A date object whose value will be modified.
+	 *             A date object whose value will be modified.
 	 * @throws NullPointerException
-	 *             if the date parameter is null.
+	 *                              if the date parameter is null.
 	 */
 	public void addTo(Date date) {
 
 		// check data parameter
 		if (date == null) {
-			throw new NullPointerException("Cannot call " + this.getClass().getName()
-					+ "#addTo(Date date) with date == null.");
+			throw new NullPointerException("Cannot call " + this.getClass()
+					.getName() + "#addTo(Date date) with date == null.");
 		}
 
 		Calendar cal = new GregorianCalendar();
@@ -646,12 +640,14 @@ public abstract class Duration {
 	 *         <code>rhs</code> from this <code>Duration</code>.
 	 *
 	 * @throws IllegalStateException
-	 *             If two durations cannot be meaningfully subtracted. For
-	 *             example, subtracting one day from one month causes this
-	 *             exception.
+	 *                               If two durations cannot be meaningfully
+	 *                               subtracted. For
+	 *                               example, subtracting one day from one month
+	 *                               causes this
+	 *                               exception.
 	 *
 	 * @throws NullPointerException
-	 *             If the rhs parameter is null.
+	 *                               If the rhs parameter is null.
 	 *
 	 * @see #add(Duration)
 	 */
@@ -675,7 +671,7 @@ public abstract class Duration {
 	 * </pre>
 	 *
 	 * @param factor
-	 *            Factor times longer of new <code>Duration</code> to create.
+	 *               Factor times longer of new <code>Duration</code> to create.
 	 *
 	 * @return New <code>Duration</code> that is <code>factor</code>times longer
 	 *         than this <code>Duration</code>.
@@ -722,15 +718,17 @@ public abstract class Duration {
 	 * fields.
 	 *
 	 * @param factor
-	 *            to multiply by
+	 *               to multiply by
 	 *
 	 * @return returns a non-null valid <code>Duration</code> object
 	 *
 	 * @throws IllegalStateException
-	 *             if operation produces fraction in the months field.
+	 *                               if operation produces fraction in the
+	 *                               months field.
 	 *
 	 * @throws NullPointerException
-	 *             if the <code>factor</code> parameter is <code>null</code>.
+	 *                               if the <code>factor</code> parameter is
+	 *                               <code>null</code>.
 	 *
 	 */
 	public abstract Duration multiply(final BigDecimal factor);
@@ -782,13 +780,13 @@ public abstract class Duration {
 	 * </p>
 	 *
 	 * @param startTimeInstant
-	 *            <code>Calendar</code> reference point.
+	 *                         <code>Calendar</code> reference point.
 	 *
 	 * @return <code>Duration</code> of years and months of this
 	 *         <code>Duration</code> as days.
 	 *
 	 * @throws NullPointerException
-	 *             If the startTimeInstant parameter is null.
+	 *                              If the startTimeInstant parameter is null.
 	 */
 	public abstract Duration normalizeWith(final Calendar startTimeInstant);
 
@@ -819,7 +817,7 @@ public abstract class Duration {
 	 * </ul>
 	 *
 	 * @param duration
-	 *            to compare
+	 *                 to compare
 	 *
 	 * @return the relationship between <code>this</code> <code>Duration</code>
 	 *         and <code>duration</code> parameter as
@@ -828,12 +826,16 @@ public abstract class Duration {
 	 *         {@link DatatypeConstants#INDETERMINATE}.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the underlying implementation cannot reasonably process
-	 *             the request, e.g. W3C XML Schema allows for arbitrarily
-	 *             large/small/precise values, the request may be beyond the
-	 *             implementations capability.
+	 *                                       If the underlying implementation
+	 *                                       cannot reasonably process
+	 *                                       the request, e.g. W3C XML Schema
+	 *                                       allows for arbitrarily
+	 *                                       large/small/precise values, the
+	 *                                       request may be beyond the
+	 *                                       implementations capability.
 	 * @throws NullPointerException
-	 *             if <code>duration</code> is <code>null</code>.
+	 *                                       if <code>duration</code> is
+	 *                                       <code>null</code>.
 	 *
 	 * @see #isShorterThan(Duration)
 	 * @see #isLongerThan(Duration)
@@ -857,16 +859,19 @@ public abstract class Duration {
 	 * </p>
 	 *
 	 * @param duration
-	 *            <code>Duration</code> to test this <code>Duration</code>
-	 *            against.
+	 *                 <code>Duration</code> to test this <code>Duration</code>
+	 *                 against.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the underlying implementation cannot reasonably process
-	 *             the request, e.g. W3C XML Schema allows for arbitrarily
-	 *             large/small/precise values, the request may be beyond the
-	 *             implementations capability.
+	 *                                       If the underlying implementation
+	 *                                       cannot reasonably process
+	 *                                       the request, e.g. W3C XML Schema
+	 *                                       allows for arbitrarily
+	 *                                       large/small/precise values, the
+	 *                                       request may be beyond the
+	 *                                       implementations capability.
 	 * @throws NullPointerException
-	 *             If <code>duration</code> is null.
+	 *                                       If <code>duration</code> is null.
 	 *
 	 * @return true if the duration represented by this object is longer than
 	 *         the given duration. false otherwise.
@@ -885,19 +890,22 @@ public abstract class Duration {
 	 * </p>
 	 *
 	 * @param duration
-	 *            <code>Duration</code> to test this <code>Duration</code>
-	 *            against.
+	 *                 <code>Duration</code> to test this <code>Duration</code>
+	 *                 against.
 	 *
 	 * @return <code>true</code> if <code>duration</code> parameter is shorter
 	 *         than this <code>Duration</code>, else <code>false</code>.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the underlying implementation cannot reasonably process
-	 *             the request, e.g. W3C XML Schema allows for arbitrarily
-	 *             large/small/precise values, the request may be beyond the
-	 *             implementations capability.
+	 *                                       If the underlying implementation
+	 *                                       cannot reasonably process
+	 *                                       the request, e.g. W3C XML Schema
+	 *                                       allows for arbitrarily
+	 *                                       large/small/precise values, the
+	 *                                       request may be beyond the
+	 *                                       implementations capability.
 	 * @throws NullPointerException
-	 *             if <code>duration</code> is null.
+	 *                                       if <code>duration</code> is null.
 	 *
 	 * @see #isLongerThan(Duration duration)
 	 * @see #compare(Duration duration)
@@ -934,7 +942,7 @@ public abstract class Duration {
 	 * </pre>
 	 *
 	 * @param duration
-	 *            The object to compare this <code>Duration</code> against.
+	 *                 The object to compare this <code>Duration</code> against.
 	 *
 	 * @return <code>true</code> if this duration is the same length as
 	 *         <code>duration</code>. <code>false</code> if
@@ -943,10 +951,13 @@ public abstract class Duration {
 	 *         this duration.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the underlying implementation cannot reasonably process
-	 *             the request, e.g. W3C XML Schema allows for arbitrarily
-	 *             large/small/precise values, the request may be beyond the
-	 *             implementations capability.
+	 *                                       If the underlying implementation
+	 *                                       cannot reasonably process
+	 *                                       the request, e.g. W3C XML Schema
+	 *                                       allows for arbitrarily
+	 *                                       large/small/precise values, the
+	 *                                       request may be beyond the
+	 *                                       implementations capability.
 	 *
 	 * @see #compare(Duration duration)
 	 */
@@ -1045,7 +1056,7 @@ public abstract class Duration {
 	 * </p>
 	 *
 	 * @param bd
-	 *            <code>BigDecimal</code> to format as a <code>String</code>
+	 *           <code>BigDecimal</code> to format as a <code>String</code>
 	 *
 	 * @return <code>String</code> representation of <code>BigDecimal</code>
 	 */

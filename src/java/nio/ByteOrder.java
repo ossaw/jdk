@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio;
@@ -51,7 +31,8 @@ public final class ByteOrder {
 	 * Constant denoting little-endian byte order. In this order, the bytes of a
 	 * multibyte value are ordered from least significant to most significant.
 	 */
-	public static final ByteOrder LITTLE_ENDIAN = new ByteOrder("LITTLE_ENDIAN");
+	public static final ByteOrder LITTLE_ENDIAN = new ByteOrder(
+			"LITTLE_ENDIAN");
 
 	/**
 	 * Retrieves the native byte order of the underlying platform.

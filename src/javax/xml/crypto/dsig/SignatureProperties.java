@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: SignatureProperties.java,v 1.4 2005/05/10 16:03:46 mullan Exp $
@@ -54,7 +34,8 @@ import java.util.List;
  *
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
- * SignatureProperties properties = factory.newSignatureProperties(props, "signature-properties-1");
+ * SignatureProperties properties = factory.newSignatureProperties(props,
+ * 		"signature-properties-1");
  * </pre>
  *
  * @author Sean Mullan

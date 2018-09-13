@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -85,14 +65,14 @@ import java.util.concurrent.ForkJoinPool;
  *           serialize tasks managed by stream ops.
  *
  * @param <P_IN>
- *            Type of elements input to the pipeline
+ *        Type of elements input to the pipeline
  * @param <P_OUT>
- *            Type of elements output from the pipeline
+ *        Type of elements output from the pipeline
  * @param <R>
- *            Type of intermediate result, which may be different from operation
- *            result type
+ *        Type of intermediate result, which may be different from operation
+ *        result type
  * @param <K>
- *            Type of parent, child and sibling tasks
+ *        Type of parent, child and sibling tasks
  * @since 1.8
  */
 @SuppressWarnings("serial")
@@ -136,13 +116,15 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
 	 * Constructor for root nodes.
 	 *
 	 * @param helper
-	 *            The {@code PipelineHelper} describing the stream pipeline up
-	 *            to this operation
+	 *                    The {@code PipelineHelper} describing the stream
+	 *                    pipeline up
+	 *                    to this operation
 	 * @param spliterator
-	 *            The {@code Spliterator} describing the source for this
-	 *            pipeline
+	 *                    The {@code Spliterator} describing the source for this
+	 *                    pipeline
 	 */
-	protected AbstractTask(PipelineHelper<P_OUT> helper, Spliterator<P_IN> spliterator) {
+	protected AbstractTask(PipelineHelper<P_OUT> helper,
+			Spliterator<P_IN> spliterator) {
 		super(null);
 		this.helper = helper;
 		this.spliterator = spliterator;
@@ -153,10 +135,12 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
 	 * Constructor for non-root nodes.
 	 *
 	 * @param parent
-	 *            this node's parent task
+	 *                    this node's parent task
 	 * @param spliterator
-	 *            {@code Spliterator} describing the subtree rooted at this
-	 *            node, obtained by splitting the parent {@code Spliterator}
+	 *                    {@code Spliterator} describing the subtree rooted at
+	 *                    this
+	 *                    node, obtained by splitting the parent
+	 *                    {@code Spliterator}
 	 */
 	protected AbstractTask(K parent, Spliterator<P_IN> spliterator) {
 		super(parent);
@@ -171,8 +155,10 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
 	 * provided Spliterator.
 	 *
 	 * @param spliterator
-	 *            {@code Spliterator} describing the subtree rooted at this
-	 *            node, obtained by splitting the parent {@code Spliterator}
+	 *                    {@code Spliterator} describing the subtree rooted at
+	 *                    this
+	 *                    node, obtained by splitting the parent
+	 *                    {@code Spliterator}
 	 * @return newly constructed child node
 	 */
 	protected abstract K makeChild(Spliterator<P_IN> spliterator);
@@ -201,7 +187,8 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
 	 */
 	protected final long getTargetSize(long sizeEstimate) {
 		long s;
-		return ((s = targetSize) != 0 ? s : (targetSize = suggestTargetSize(sizeEstimate)));
+		return ((s = targetSize) != 0 ? s
+				: (targetSize = suggestTargetSize(sizeEstimate)));
 	}
 
 	/**
@@ -223,9 +210,10 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
 	 * {@link #setLocalResult(Object)}} to manage results.
 	 *
 	 * @param result
-	 *            must be null, or an exception is thrown (this is a safety
-	 *            tripwire to detect when {@code setRawResult()} is being used
-	 *            instead of {@code setLocalResult()}
+	 *               must be null, or an exception is thrown (this is a safety
+	 *               tripwire to detect when {@code setRawResult()} is being
+	 *               used
+	 *               instead of {@code setLocalResult()}
 	 */
 	@Override
 	protected void setRawResult(R result) {
@@ -248,7 +236,7 @@ abstract class AbstractTask<P_IN, P_OUT, R, K extends AbstractTask<P_IN, P_OUT, 
 	 * {@link #getLocalResult}
 	 *
 	 * @param localResult
-	 *            local result for this node
+	 *                    local result for this node
 	 */
 	protected void setLocalResult(R localResult) {
 		this.localResult = localResult;

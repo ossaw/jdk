@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -67,17 +47,20 @@ public interface Port extends Line {
 		 * A type of port that gets audio from a built-in microphone or a
 		 * microphone jack.
 		 */
-		public static final Info MICROPHONE = new Info(Port.class, "MICROPHONE", true);
+		public static final Info MICROPHONE = new Info(Port.class, "MICROPHONE",
+				true);
 
 		/**
 		 * A type of port that gets audio from a line-level audio input jack.
 		 */
-		public static final Info LINE_IN = new Info(Port.class, "LINE_IN", true);
+		public static final Info LINE_IN = new Info(Port.class, "LINE_IN",
+				true);
 
 		/**
 		 * A type of port that gets audio from a CD-ROM drive.
 		 */
-		public static final Info COMPACT_DISC = new Info(Port.class, "COMPACT_DISC", true);
+		public static final Info COMPACT_DISC = new Info(Port.class,
+				"COMPACT_DISC", true);
 
 		// TARGET PORTS
 
@@ -85,17 +68,20 @@ public interface Port extends Line {
 		 * A type of port that sends audio to a built-in speaker or a speaker
 		 * jack.
 		 */
-		public static final Info SPEAKER = new Info(Port.class, "SPEAKER", false);
+		public static final Info SPEAKER = new Info(Port.class, "SPEAKER",
+				false);
 
 		/**
 		 * A type of port that sends audio to a headphone jack.
 		 */
-		public static final Info HEADPHONE = new Info(Port.class, "HEADPHONE", false);
+		public static final Info HEADPHONE = new Info(Port.class, "HEADPHONE",
+				false);
 
 		/**
 		 * A type of port that sends audio to a line-level audio output jack.
 		 */
-		public static final Info LINE_OUT = new Info(Port.class, "LINE_OUT", false);
+		public static final Info LINE_OUT = new Info(Port.class, "LINE_OUT",
+				false);
 
 		// FUTURE DIRECTIONS...
 
@@ -116,13 +102,15 @@ public interface Port extends Line {
 		 * describe a supported line.
 		 *
 		 * @param lineClass
-		 *            the class of the port described by the info object.
+		 *                  the class of the port described by the info object.
 		 * @param name
-		 *            the string that names the port
+		 *                  the string that names the port
 		 * @param isSource
-		 *            <code>true</code> if the port is a source port (such as a
-		 *            microphone), <code>false</code> if the port is a target
-		 *            port (such as a speaker).
+		 *                  <code>true</code> if the port is a source port (such
+		 *                  as a
+		 *                  microphone), <code>false</code> if the port is a
+		 *                  target
+		 *                  port (such as a speaker).
 		 */
 		public Info(Class<?> lineClass, String name, boolean isSource) {
 
@@ -159,7 +147,7 @@ public interface Port extends Line {
 		 * types must be equal.
 		 * 
 		 * @param info
-		 *            the info object for which the match is queried
+		 *             the info object for which the match is queried
 		 */
 		public boolean matches(Line.Info info) {
 
@@ -198,7 +186,8 @@ public interface Port extends Line {
 		 * @return a string that describes the port
 		 */
 		public final String toString() {
-			return (name + ((isSource == true) ? " source" : " target") + " port");
+			return (name + ((isSource == true) ? " source" : " target")
+					+ " port");
 		}
 
 	} // class Info

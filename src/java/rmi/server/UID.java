@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi.server;
 
@@ -197,7 +177,8 @@ public final class UID implements Serializable {
 	public boolean equals(Object obj) {
 		if (obj instanceof UID) {
 			UID uid = (UID) obj;
-			return (unique == uid.unique && count == uid.count && time == uid.time);
+			return (unique == uid.unique && count == uid.count
+					&& time == uid.time);
 		} else {
 			return false;
 		}
@@ -209,8 +190,8 @@ public final class UID implements Serializable {
 	 * @return a string representation of this <code>UID</code>
 	 */
 	public String toString() {
-		return Integer.toString(unique, 16) + ":" + Long.toString(time, 16) + ":"
-				+ Integer.toString(count, 16);
+		return Integer.toString(unique, 16) + ":" + Long.toString(time, 16)
+				+ ":" + Integer.toString(count, 16);
 	}
 
 	/**
@@ -231,7 +212,8 @@ public final class UID implements Serializable {
 	 *            <code>UID</code> to
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs while performing this operation
+	 *                     if an I/O error occurs while performing this
+	 *                     operation
 	 */
 	public void write(DataOutput out) throws IOException {
 		out.writeInt(unique);
@@ -254,13 +236,14 @@ public final class UID implements Serializable {
 	 * <code>count</code> values that were read from the stream.
 	 *
 	 * @param in
-	 *            the <code>DataInput</code> instance to read <code>UID</code>
-	 *            from
+	 *           the <code>DataInput</code> instance to read <code>UID</code>
+	 *           from
 	 *
 	 * @return unmarshalled <code>UID</code> instance
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs while performing this operation
+	 *                     if an I/O error occurs while performing this
+	 *                     operation
 	 */
 	public static UID read(DataInput in) throws IOException {
 		int unique = in.readInt();

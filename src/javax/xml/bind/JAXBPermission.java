@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -79,8 +59,8 @@ public final class JAXBPermission extends BasicPermission {
 	 * Creates a new JAXBPermission with the specified name.
 	 *
 	 * @param name
-	 *            The name of the JAXBPermission. As of 2.2 only
-	 *            "setDatatypeConverter" is defined.
+	 *             The name of the JAXBPermission. As of 2.2 only
+	 *             "setDatatypeConverter" is defined.
 	 */
 	public JAXBPermission(String name) {
 		super(name);

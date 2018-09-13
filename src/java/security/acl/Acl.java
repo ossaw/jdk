@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.acl;
@@ -93,14 +73,15 @@ public interface Acl extends Owner {
 	 * Sets the name of this ACL.
 	 *
 	 * @param caller
-	 *            the principal invoking this method. It must be an owner of
-	 *            this ACL.
+	 *               the principal invoking this method. It must be an owner of
+	 *               this ACL.
 	 *
 	 * @param name
-	 *            the name to be given to this ACL.
+	 *               the name to be given to this ACL.
 	 *
 	 * @exception NotOwnerException
-	 *                if the caller principal is not an owner of this ACL.
+	 *                              if the caller principal is not an owner of
+	 *                              this ACL.
 	 *
 	 * @see #getName
 	 */
@@ -124,36 +105,40 @@ public interface Acl extends Owner {
 	 * positive) already in the ACL, false is returned.
 	 *
 	 * @param caller
-	 *            the principal invoking this method. It must be an owner of
-	 *            this ACL.
+	 *               the principal invoking this method. It must be an owner of
+	 *               this ACL.
 	 *
 	 * @param entry
-	 *            the ACL entry to be added to this ACL.
+	 *               the ACL entry to be added to this ACL.
 	 *
 	 * @return true on success, false if an entry of the same type (positive or
 	 *         negative) for the same principal is already present in this ACL.
 	 *
 	 * @exception NotOwnerException
-	 *                if the caller principal is not an owner of this ACL.
+	 *                              if the caller principal is not an owner of
+	 *                              this ACL.
 	 */
-	public boolean addEntry(Principal caller, AclEntry entry) throws NotOwnerException;
+	public boolean addEntry(Principal caller, AclEntry entry)
+			throws NotOwnerException;
 
 	/**
 	 * Removes an ACL entry from this ACL.
 	 *
 	 * @param caller
-	 *            the principal invoking this method. It must be an owner of
-	 *            this ACL.
+	 *               the principal invoking this method. It must be an owner of
+	 *               this ACL.
 	 *
 	 * @param entry
-	 *            the ACL entry to be removed from this ACL.
+	 *               the ACL entry to be removed from this ACL.
 	 *
 	 * @return true on success, false if the entry is not part of this ACL.
 	 *
 	 * @exception NotOwnerException
-	 *                if the caller principal is not an owner of this Acl.
+	 *                              if the caller principal is not an owner of
+	 *                              this Acl.
 	 */
-	public boolean removeEntry(Principal caller, AclEntry entry) throws NotOwnerException;
+	public boolean removeEntry(Principal caller, AclEntry entry)
+			throws NotOwnerException;
 
 	/**
 	 * Returns an enumeration for the set of allowed permissions for the
@@ -195,7 +180,7 @@ public interface Acl extends Owner {
 	 * </ul>
 	 *
 	 * @param user
-	 *            the principal whose permission set is to be returned.
+	 *             the principal whose permission set is to be returned.
 	 *
 	 * @return the permission set specifying the permissions the principal is
 	 *         allowed.
@@ -220,10 +205,11 @@ public interface Acl extends Owner {
 	 * the {@code getPermissions} method.
 	 *
 	 * @param principal
-	 *            the principal, assumed to be a valid authenticated Principal.
+	 *                   the principal, assumed to be a valid authenticated
+	 *                   Principal.
 	 *
 	 * @param permission
-	 *            the permission to be checked for.
+	 *                   the permission to be checked for.
 	 *
 	 * @return true if the principal has the specified permission, false
 	 *         otherwise.

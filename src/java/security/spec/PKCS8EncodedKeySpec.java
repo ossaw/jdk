@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -64,11 +44,13 @@ public class PKCS8EncodedKeySpec extends EncodedKeySpec {
 	 * Creates a new PKCS8EncodedKeySpec with the given encoded key.
 	 *
 	 * @param encodedKey
-	 *            the key, which is assumed to be encoded according to the PKCS
-	 *            #8 standard. The contents of the array are copied to protect
-	 *            against subsequent modification.
+	 *                   the key, which is assumed to be encoded according to
+	 *                   the PKCS
+	 *                   #8 standard. The contents of the array are copied to
+	 *                   protect
+	 *                   against subsequent modification.
 	 * @exception NullPointerException
-	 *                if {@code encodedKey} is null.
+	 *                                 if {@code encodedKey} is null.
 	 */
 	public PKCS8EncodedKeySpec(byte[] encodedKey) {
 		super(encodedKey);

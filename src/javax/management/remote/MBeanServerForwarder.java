@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -58,9 +38,12 @@ public interface MBeanServerForwarder extends MBeanServer {
 	 *            the MBeanServer object to which requests will be forwarded.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if this object is already forwarding to an MBeanServer
-	 *                object or if <code>mbs</code> is null or if
-	 *                <code>mbs</code> is identical to this object.
+	 *                                     if this object is already forwarding
+	 *                                     to an MBeanServer
+	 *                                     object or if <code>mbs</code> is null
+	 *                                     or if
+	 *                                     <code>mbs</code> is identical to this
+	 *                                     object.
 	 *
 	 * @see #getMBeanServer
 	 */

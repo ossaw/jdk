@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -51,8 +31,8 @@ abstract public class IDLTypeHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init()
-					.create_interface_tc(org.omg.CORBA.IDLTypeHelper.id(), "IDLType");
+			__typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
+					org.omg.CORBA.IDLTypeHelper.id(), "IDLType");
 		}
 		return __typeCode;
 	}
@@ -61,7 +41,8 @@ abstract public class IDLTypeHelper {
 		return _id;
 	}
 
-	public static org.omg.CORBA.IDLType read(org.omg.CORBA.portable.InputStream istream) {
+	public static org.omg.CORBA.IDLType read(
+			org.omg.CORBA.portable.InputStream istream) {
 		return narrow(istream.read_Object(_IDLTypeStub.class));
 	}
 

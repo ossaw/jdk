@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -58,7 +38,8 @@ public abstract class WindowsTextUI extends BasicTextUI {
 	}
 
 	/* public */
-	static LayeredHighlighter.LayerPainter WindowsPainter = new WindowsHighlightPainter(null);
+	static LayeredHighlighter.LayerPainter WindowsPainter = new WindowsHighlightPainter(
+			null);
 
 	/* public */
 	static class WindowsCaret extends DefaultCaret implements UIResource {
@@ -73,7 +54,8 @@ public abstract class WindowsTextUI extends BasicTextUI {
 	}
 
 	/* public */
-	static class WindowsHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
+	static class WindowsHighlightPainter extends
+			DefaultHighlighter.DefaultHighlightPainter {
 		WindowsHighlightPainter(Color c) {
 			super(c);
 		}
@@ -84,17 +66,18 @@ public abstract class WindowsTextUI extends BasicTextUI {
 		 * Paints a highlight.
 		 *
 		 * @param g
-		 *            the graphics context
+		 *               the graphics context
 		 * @param offs0
-		 *            the starting model offset >= 0
+		 *               the starting model offset >= 0
 		 * @param offs1
-		 *            the ending model offset >= offs1
+		 *               the ending model offset >= offs1
 		 * @param bounds
-		 *            the bounding box for the highlight
+		 *               the bounding box for the highlight
 		 * @param c
-		 *            the editor
+		 *               the editor
 		 */
-		public void paint(Graphics g, int offs0, int offs1, Shape bounds, JTextComponent c) {
+		public void paint(Graphics g, int offs0, int offs1, Shape bounds,
+				JTextComponent c) {
 			Rectangle alloc = bounds.getBounds();
 			try {
 				// --- determine locations ---
@@ -138,8 +121,8 @@ public abstract class WindowsTextUI extends BasicTextUI {
 					}
 					g.fillRect(p0.x, p0.y, p0ToMarginWidth, p0.height);
 					if ((p0.y + p0.height) != p1.y) {
-						g.fillRect(alloc.x, p0.y + p0.height, alloc.width,
-								p1.y - (p0.y + p0.height));
+						g.fillRect(alloc.x, p0.y + p0.height, alloc.width, p1.y
+								- (p0.y + p0.height));
 					}
 					if (secondIsDot && p1.x > alloc.x) {
 						p1.x--;
@@ -156,22 +139,23 @@ public abstract class WindowsTextUI extends BasicTextUI {
 		 * Paints a portion of a highlight.
 		 *
 		 * @param g
-		 *            the graphics context
+		 *               the graphics context
 		 * @param offs0
-		 *            the starting model offset >= 0
+		 *               the starting model offset >= 0
 		 * @param offs1
-		 *            the ending model offset >= offs1
+		 *               the ending model offset >= offs1
 		 * @param bounds
-		 *            the bounding box of the view, which is not necessarily the
-		 *            region to paint.
+		 *               the bounding box of the view, which is not necessarily
+		 *               the
+		 *               region to paint.
 		 * @param c
-		 *            the editor
+		 *               the editor
 		 * @param view
-		 *            View painting for
+		 *               View painting for
 		 * @return region drawing occurred in
 		 */
-		public Shape paintLayer(Graphics g, int offs0, int offs1, Shape bounds, JTextComponent c,
-				View view) {
+		public Shape paintLayer(Graphics g, int offs0, int offs1, Shape bounds,
+				JTextComponent c, View view) {
 			Color color = getColor();
 
 			if (color == null) {
@@ -186,7 +170,8 @@ public abstract class WindowsTextUI extends BasicTextUI {
 				firstIsDot = (offs0 == dot);
 				secondIsDot = (offs1 == dot);
 			}
-			if (offs0 == view.getStartOffset() && offs1 == view.getEndOffset()) {
+			if (offs0 == view.getStartOffset() && offs1 == view
+					.getEndOffset()) {
 				// Contained in view, can just use bounds.
 				Rectangle alloc;
 				if (bounds instanceof Rectangle) {
@@ -195,7 +180,8 @@ public abstract class WindowsTextUI extends BasicTextUI {
 					alloc = bounds.getBounds();
 				}
 				if (firstIsDot && alloc.width > 0) {
-					g.fillRect(alloc.x + 1, alloc.y, alloc.width - 1, alloc.height);
+					g.fillRect(alloc.x + 1, alloc.y, alloc.width - 1,
+							alloc.height);
 				} else if (secondIsDot && alloc.width > 0) {
 					g.fillRect(alloc.x, alloc.y, alloc.width - 1, alloc.height);
 				} else {
@@ -206,9 +192,10 @@ public abstract class WindowsTextUI extends BasicTextUI {
 				// Should only render part of View.
 				try {
 					// --- determine locations ---
-					Shape shape = view.modelToView(offs0, Position.Bias.Forward, offs1,
-							Position.Bias.Backward, bounds);
-					Rectangle r = (shape instanceof Rectangle) ? (Rectangle) shape
+					Shape shape = view.modelToView(offs0, Position.Bias.Forward,
+							offs1, Position.Bias.Backward, bounds);
+					Rectangle r = (shape instanceof Rectangle)
+							? (Rectangle) shape
 							: shape.getBounds();
 					if (firstIsDot && r.width > 0) {
 						g.fillRect(r.x + 1, r.y, r.width - 1, r.height);

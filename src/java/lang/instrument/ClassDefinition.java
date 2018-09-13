@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.instrument;
@@ -55,12 +35,12 @@ public final class ClassDefinition {
 	 * captures a reference to it.
 	 *
 	 * @param theClass
-	 *            the <code>Class</code> that needs redefining
+	 *                     the <code>Class</code> that needs redefining
 	 * @param theClassFile
-	 *            the new class file bytes
+	 *                     the new class file bytes
 	 *
 	 * @throws java.lang.NullPointerException
-	 *             if the supplied class or array is <code>null</code>.
+	 *         if the supplied class or array is <code>null</code>.
 	 */
 	public ClassDefinition(Class<?> theClass, byte[] theClassFile) {
 		if (theClass == null || theClassFile == null) {

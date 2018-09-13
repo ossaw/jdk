@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -62,13 +42,14 @@ public interface SnmpStandardMetaServer {
 	 *         <CODE>arc</CODE>.
 	 *
 	 * @param userData
-	 *            A contextual object containing user-data. This object is
-	 *            allocated through the <code>
+	 *                 A contextual object containing user-data. This object is
+	 *                 allocated through the <code>
 	 *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for each
-	 *            incoming SNMP request.
+	 *                 incoming SNMP request.
 	 *
 	 * @exception SnmpStatusException
-	 *                If the arc is not valid, or if access is denied.
+	 *                                If the arc is not valid, or if access is
+	 *                                denied.
 	 *
 	 **/
 	public SnmpValue get(long arc, Object userData) throws SnmpStatusException;
@@ -86,38 +67,43 @@ public interface SnmpStandardMetaServer {
 	 *         <CODE>arc</CODE>.
 	 *
 	 * @param userData
-	 *            A contextual object containing user-data. This object is
-	 *            allocated through the <code>
+	 *                 A contextual object containing user-data. This object is
+	 *                 allocated through the <code>
 	 *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for each
-	 *            incoming SNMP request.
+	 *                 incoming SNMP request.
 	 *
 	 * @exception SnmpStatusException
-	 *                If the arc is not valid, or if access is denied.
+	 *                                If the arc is not valid, or if access is
+	 *                                denied.
 	 *
 	 **/
-	public SnmpValue set(SnmpValue x, long arc, Object userData) throws SnmpStatusException;
+	public SnmpValue set(SnmpValue x, long arc, Object userData)
+			throws SnmpStatusException;
 
 	/**
 	 * Checks that the new desired value of the scalar object identified by the
 	 * given OID arc is valid.
 	 *
 	 * @param x
-	 *            New value for the scalar object identified by <CODE>arc</CODE>
+	 *                 New value for the scalar object identified by
+	 *                 <CODE>arc</CODE>
 	 *
 	 * @param arc
-	 *            OID arc of the scalar object whose value is set.
+	 *                 OID arc of the scalar object whose value is set.
 	 *
 	 * @param userData
-	 *            A contextual object containing user-data. This object is
-	 *            allocated through the <code>
+	 *                 A contextual object containing user-data. This object is
+	 *                 allocated through the <code>
 	 *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for each
-	 *            incoming SNMP request.
+	 *                 incoming SNMP request.
 	 *
 	 * @exception SnmpStatusException
-	 *                If the arc is not valid, or if access is denied, or if the
-	 *                new desired value is not valid.
+	 *                                If the arc is not valid, or if access is
+	 *                                denied, or if the
+	 *                                new desired value is not valid.
 	 *
 	 **/
-	public void check(SnmpValue x, long arc, Object userData) throws SnmpStatusException;
+	public void check(SnmpValue x, long arc, Object userData)
+			throws SnmpStatusException;
 
 }

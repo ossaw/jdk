@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -68,11 +48,11 @@ public class Segment implements Cloneable, CharacterIterator, CharSequence {
 	 * Creates a new segment referring to an existing array.
 	 *
 	 * @param array
-	 *            the array to refer to
+	 *               the array to refer to
 	 * @param offset
-	 *            the offset into the array
+	 *               the offset into the array
 	 * @param count
-	 *            the number of characters
+	 *               the number of characters
 	 */
 	public Segment(char[] array, int offset, int count) {
 		this.array = array;
@@ -91,7 +71,7 @@ public class Segment implements Cloneable, CharacterIterator, CharSequence {
 	 * the text depending upon the request.
 	 *
 	 * @param p
-	 *            whether or not partial returns are valid.
+	 *          whether or not partial returns are valid.
 	 * @since 1.4
 	 */
 	public void setPartialReturn(boolean p) {
@@ -212,9 +192,10 @@ public class Segment implements Cloneable, CharacterIterator, CharSequence {
 	 * character.
 	 * 
 	 * @param position
-	 *            the position within the text. Valid values range from
-	 *            getBeginIndex() to getEndIndex(). An IllegalArgumentException
-	 *            is thrown if an invalid value is supplied.
+	 *                 the position within the text. Valid values range from
+	 *                 getBeginIndex() to getEndIndex(). An
+	 *                 IllegalArgumentException
+	 *                 is thrown if an invalid value is supplied.
 	 * @return the character at the specified position or DONE if the specified
 	 *         position is equal to getEndIndex()
 	 * @since 1.3

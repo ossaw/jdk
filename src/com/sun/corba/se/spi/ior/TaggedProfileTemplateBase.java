@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.ior;
@@ -33,8 +13,8 @@ import com.sun.corba.se.spi.orb.ORB;
 
 import com.sun.corba.se.impl.ior.EncapsulationUtility;
 
-public abstract class TaggedProfileTemplateBase extends IdentifiableContainerBase
-		implements TaggedProfileTemplate {
+public abstract class TaggedProfileTemplateBase extends
+		IdentifiableContainerBase implements TaggedProfileTemplate {
 	public void write(OutputStream os) {
 		EncapsulationUtility.writeEncapsulation(this, os);
 	}

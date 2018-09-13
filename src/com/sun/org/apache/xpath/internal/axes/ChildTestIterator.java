@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,10 +44,11 @@ public class ChildTestIterator extends BasicTestIterator {
 	 * Create a ChildTestIterator object.
 	 *
 	 * @param compiler
-	 *            A reference to the Compiler that contains the op map.
+	 *                 A reference to the Compiler that contains the op map.
 	 * @param opPos
-	 *            The position within the op map, which contains the location
-	 *            path expression for this itterator.
+	 *                 The position within the op map, which contains the
+	 *                 location
+	 *                 path expression for this itterator.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -63,7 +61,8 @@ public class ChildTestIterator extends BasicTestIterator {
 	 * Create a ChildTestIterator object.
 	 *
 	 * @param traverser
-	 *            Traverser that tells how the KeyIterator is to be handled.
+	 *                  Traverser that tells how the KeyIterator is to be
+	 *                  handled.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -82,8 +81,8 @@ public class ChildTestIterator extends BasicTestIterator {
 	 */
 	protected int getNextNode() {
 		if (true /* 0 == m_extendedTypeID */) {
-			m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(m_context)
-					: m_traverser.next(m_context, m_lastFetched);
+			m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(
+					m_context) : m_traverser.next(m_context, m_lastFetched);
 		}
 		// else
 		// {
@@ -115,7 +114,7 @@ public class ChildTestIterator extends BasicTestIterator {
 	 * Initialize the context values for this expression after it is cloned.
 	 *
 	 * @param context
-	 *            The XPath runtime context for this transformation.
+	 *                The XPath runtime context for this transformation.
 	 */
 	public void setRoot(int context, Object environment) {
 		super.setRoot(context, environment);

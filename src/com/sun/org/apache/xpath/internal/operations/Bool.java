@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,14 +34,15 @@ public class Bool extends UnaryOperation {
 	 *
 	 *
 	 * @param right
-	 *            non-null reference to the evaluated right operand.
+	 *              non-null reference to the evaluated right operand.
 	 *
 	 * @return non-null reference to the XObject that represents the result of
 	 *         the operation.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject operate(XObject right) throws javax.xml.transform.TransformerException {
+	public XObject operate(XObject right)
+			throws javax.xml.transform.TransformerException {
 
 		if (XObject.CLASS_BOOLEAN == right.getType())
 			return right;
@@ -56,13 +54,14 @@ public class Bool extends UnaryOperation {
 	 * Evaluate this operation directly to a boolean.
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return The result of the operation as a boolean.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean bool(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public boolean bool(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		return m_right.bool(xctxt);
 	}
 

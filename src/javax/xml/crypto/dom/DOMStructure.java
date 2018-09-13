@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: DOMStructure.java,v 1.6 2005/05/09 18:33:26 mullan Exp $
@@ -59,9 +39,9 @@ public class DOMStructure implements XMLStructure {
 	 * Creates a <code>DOMStructure</code> containing the specified node.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @throws NullPointerException
-	 *             if <code>node</code> is <code>null</code>
+	 *                              if <code>node</code> is <code>null</code>
 	 */
 	public DOMStructure(Node node) {
 		if (node == null) {
@@ -81,7 +61,7 @@ public class DOMStructure implements XMLStructure {
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public boolean isFeatureSupported(String feature) {
 		if (feature == null) {

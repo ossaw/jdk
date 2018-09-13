@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SerializerTraceWriter.java,v 1.2.4.1 2005/09/15 08:15:25 suresh_emailid Exp $
+ * $Id: SerializerTraceWriter.java,v 1.2.4.1 2005/09/15 08:15:25 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.serializer;
 
@@ -94,9 +92,9 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
 	 * such as a debugger, can gather information on what is being written out.
 	 *
 	 * @param out
-	 *            the Writer to write to (possibly null)
+	 *               the Writer to write to (possibly null)
 	 * @param tracer
-	 *            the tracer to inform that characters are being written
+	 *               the tracer to inform that characters are being written
 	 */
 	public SerializerTraceWriter(Writer out, SerializerTrace tracer) {
 		m_writer = out;
@@ -121,7 +119,8 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
 				chars[i] = (char) buf[i];
 
 			if (m_tracer != null)
-				m_tracer.fireGenerateEvent(SerializerTrace.EVENTTYPE_OUTPUT_CHARACTERS, chars, 0,
+				m_tracer.fireGenerateEvent(
+						SerializerTrace.EVENTTYPE_OUTPUT_CHARACTERS, chars, 0,
 						chars.length);
 
 			count = 0;
@@ -166,9 +165,9 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
 	 * should override this method.
 	 *
 	 * @param c
-	 *            int specifying a character to be written.
+	 *          int specifying a character to be written.
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(final int c) throws IOException {
 		// send to the real writer
@@ -200,14 +199,14 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
 	 * Write a portion of an array of characters.
 	 *
 	 * @param chars
-	 *            Array of characters
+	 *               Array of characters
 	 * @param start
-	 *            Offset from which to start writing characters
+	 *               Offset from which to start writing characters
 	 * @param length
-	 *            Number of characters to write
+	 *               Number of characters to write
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 *
 	 * @throws java.io.IOException
 	 */
@@ -258,10 +257,10 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
 	 * Write a string.
 	 *
 	 * @param s
-	 *            String to be written
+	 *          String to be written
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(final String s) throws IOException {
 		// send to the real writer

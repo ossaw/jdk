@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -68,8 +48,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected AbstractCollection() {
-	}
+	protected AbstractCollection() {}
 
 	// Query Operations
 
@@ -100,9 +79,9 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * checking each element in turn for equality with the specified element.
 	 *
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public boolean contains(Object o) {
 		Iterator<E> it = iterator();
@@ -187,16 +166,17 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * </pre>
 	 *
 	 * @throws ArrayStoreException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T[] toArray(T[] a) {
 		// Estimate size of array; be prepared to see more or fewer elements
 		int size = size();
 		T[] r = a.length >= size ? a
-				: (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), size);
+				: (T[]) java.lang.reflect.Array.newInstance(a.getClass()
+						.getComponentType(), size);
 		Iterator<E> it = iterator();
 
 		for (int i = 0; i < r.length; i++) {
@@ -232,9 +212,9 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * iterator.
 	 *
 	 * @param r
-	 *            the array, replete with previously stored elements
+	 *           the array, replete with previously stored elements
 	 * @param it
-	 *            the in-progress iterator over this collection
+	 *           the in-progress iterator over this collection
 	 * @return array containing the elements in the given array, plus any
 	 *         further elements returned by the iterator, trimmed to size
 	 */
@@ -259,7 +239,8 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	private static int hugeCapacity(int minCapacity) {
 		if (minCapacity < 0) // overflow
 			throw new OutOfMemoryError("Required array size too large");
-		return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
+		return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE
+				: MAX_ARRAY_SIZE;
 	}
 
 	// Modification Operations
@@ -272,15 +253,15 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * <tt>UnsupportedOperationException</tt>.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public boolean add(E e) {
 		throw new UnsupportedOperationException();
@@ -301,11 +282,11 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * method and this collection contains the specified object.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public boolean remove(Object o) {
 		Iterator<E> it = iterator();
@@ -339,9 +320,9 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * otherwise <tt>false</tt>.
 	 *
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @see #contains(Object)
 	 */
 	public boolean containsAll(Collection<?> c) {
@@ -364,15 +345,15 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * (assuming the specified collection is non-empty).
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 *
 	 * @see #add(Object)
 	 */
@@ -401,11 +382,11 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * specified collection.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 *
 	 * @see #remove(Object)
 	 * @see #contains(Object)
@@ -440,11 +421,11 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * specified collection.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 *
 	 * @see #remove(Object)
 	 * @see #contains(Object)
@@ -477,7 +458,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 	 * <tt>remove</tt> method and this collection is non-empty.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public void clear() {
 		Iterator<E> it = iterator();

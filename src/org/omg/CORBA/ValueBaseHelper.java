@@ -1,41 +1,21 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /**
-* The Helper for <tt>ValueBase</tt>.  For more information on
-* Helper files, see <a href="doc-files/generatedfiles.html#helper">
-* "Generated Files: Helper Files"</a>.<P>
-*/
+ * The Helper for <tt>ValueBase</tt>. For more information on
+ * Helper files, see <a href="doc-files/generatedfiles.html#helper">
+ * "Generated Files: Helper Files"</a>.
+ * <P>
+ */
 
 /*
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package org.omg.CORBA;
@@ -58,7 +38,8 @@ abstract public class ValueBaseHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(TCKind.tk_value);
+			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
+					TCKind.tk_value);
 		}
 		return __typeCode;
 	}
@@ -67,7 +48,8 @@ abstract public class ValueBaseHelper {
 		return _id;
 	}
 
-	public static java.io.Serializable read(org.omg.CORBA.portable.InputStream istream) {
+	public static java.io.Serializable read(
+			org.omg.CORBA.portable.InputStream istream) {
 		return ((org.omg.CORBA_2_3.portable.InputStream) istream).read_value();
 	}
 

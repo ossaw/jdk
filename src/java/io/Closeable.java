@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -47,7 +27,7 @@ public interface Closeable extends AutoCloseable {
 	 * {@code Closeable} as closed, prior to throwing the {@code IOException}.
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
 	public void close() throws IOException;
 }

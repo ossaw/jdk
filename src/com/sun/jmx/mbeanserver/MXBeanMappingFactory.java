@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -56,8 +36,7 @@ import java.lang.reflect.Type;
  *
  * <pre>
  * public class MyLinkedListMappingFactory extends MXBeanMappingFactory {
- * 	public MyLinkedListMappingFactory() {
- * 	}
+ * 	public MyLinkedListMappingFactory() {}
  *
  * 	public MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
  * 			throws OpenDataException {
@@ -105,8 +84,7 @@ public abstract class MXBeanMappingFactory {
 	 * Construct an instance of this class.
 	 * </p>
 	 */
-	protected MXBeanMappingFactory() {
-	}
+	protected MXBeanMappingFactory() {}
 
 	/**
 	 * <p>
@@ -126,20 +104,23 @@ public abstract class MXBeanMappingFactory {
 	 * </p>
 	 * 
 	 * @param t
-	 *            the Java type to be mapped.
+	 *          the Java type to be mapped.
 	 * @param f
-	 *            the original mapping factory that was consulted to do the
-	 *            mapping. A mapping factory should pass this parameter intact
-	 *            if it forwards a type to another mapping factory. In the
-	 *            example, this is how {@code MyLinkedListMappingFactory} works
-	 *            for types like {@code MyLinkedList[]} and
-	 *            {@code List<MyLinkedList>}.
+	 *          the original mapping factory that was consulted to do the
+	 *          mapping. A mapping factory should pass this parameter intact
+	 *          if it forwards a type to another mapping factory. In the
+	 *          example, this is how {@code MyLinkedListMappingFactory} works
+	 *          for types like {@code MyLinkedList[]} and
+	 *          {@code List<MyLinkedList>}.
 	 * @return the mapping for the given type.
 	 * @throws OpenDataException
-	 *             if this type cannot be mapped. This exception is appropriate
-	 *             if the factory is supposed to handle all types of this sort
-	 *             (for example, all linked lists), but cannot handle this
-	 *             particular type.
+	 *                           if this type cannot be mapped. This exception
+	 *                           is appropriate
+	 *                           if the factory is supposed to handle all types
+	 *                           of this sort
+	 *                           (for example, all linked lists), but cannot
+	 *                           handle this
+	 *                           particular type.
 	 */
 	public abstract MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
 			throws OpenDataException;

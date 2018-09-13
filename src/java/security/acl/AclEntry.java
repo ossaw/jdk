@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.acl;
@@ -59,7 +39,7 @@ public interface AclEntry extends Cloneable {
 	 * is returned, otherwise true is returned.
 	 *
 	 * @param user
-	 *            the principal to be set for this entry.
+	 *             the principal to be set for this entry.
 	 *
 	 * @return true if the principal is set, false if there was already a
 	 *         principal set for this entry.
@@ -101,8 +81,9 @@ public interface AclEntry extends Cloneable {
 	 * multiple permissions.
 	 *
 	 * @param permission
-	 *            the permission to be associated with the principal in this
-	 *            entry.
+	 *                   the permission to be associated with the principal in
+	 *                   this
+	 *                   entry.
 	 *
 	 * @return true if the permission was added, false if the permission was
 	 *         already part of this entry's permission set.
@@ -113,7 +94,7 @@ public interface AclEntry extends Cloneable {
 	 * Removes the specified permission from this ACL entry.
 	 *
 	 * @param permission
-	 *            the permission to be removed from this entry.
+	 *                   the permission to be removed from this entry.
 	 *
 	 * @return true if the permission is removed, false if the permission was
 	 *         not part of this entry's permission set.
@@ -125,7 +106,7 @@ public interface AclEntry extends Cloneable {
 	 * entry.
 	 *
 	 * @param permission
-	 *            the permission to be checked for.
+	 *                   the permission to be checked for.
 	 *
 	 * @return true if the permission is part of the permission set in this
 	 *         entry, false otherwise.

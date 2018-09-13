@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -155,7 +152,7 @@ public class StandardParserConfiguration extends DTDConfiguration {
 	 * Constructs a parser configuration using the specified symbol table.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 */
 	public StandardParserConfiguration(SymbolTable symbolTable) {
 		this(symbolTable, null, null);
@@ -169,11 +166,12 @@ public class StandardParserConfiguration extends DTDConfiguration {
 	 * validation engine is implemented.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                    The grammar pool to use.
 	 */
-	public StandardParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
+	public StandardParserConfiguration(SymbolTable symbolTable,
+			XMLGrammarPool grammarPool) {
 		this(symbolTable, grammarPool, null);
 	} // <init>(SymbolTable,XMLGrammarPool)
 
@@ -185,20 +183,22 @@ public class StandardParserConfiguration extends DTDConfiguration {
 	 * validation engine is implemented.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                       The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                       The grammar pool to use.
 	 * @param parentSettings
-	 *            The parent settings.
+	 *                       The parent settings.
 	 */
-	public StandardParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
-			XMLComponentManager parentSettings) {
+	public StandardParserConfiguration(SymbolTable symbolTable,
+			XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
 		super(symbolTable, grammarPool, parentSettings);
 
 		// add default recognized features
-		final String[] recognizedFeatures = { NORMALIZE_DATA, SCHEMA_ELEMENT_DEFAULT,
-				SCHEMA_AUGMENT_PSVI, GENERATE_SYNTHETIC_ANNOTATIONS, VALIDATE_ANNOTATIONS,
-				HONOUR_ALL_SCHEMALOCATIONS, NAMESPACE_GROWTH, TOLERATE_DUPLICATES,
+		final String[] recognizedFeatures = { NORMALIZE_DATA,
+				SCHEMA_ELEMENT_DEFAULT, SCHEMA_AUGMENT_PSVI,
+				GENERATE_SYNTHETIC_ANNOTATIONS, VALIDATE_ANNOTATIONS,
+				HONOUR_ALL_SCHEMALOCATIONS, NAMESPACE_GROWTH,
+				TOLERATE_DUPLICATES,
 				// NOTE: These shouldn't really be here but since the XML Schema
 				// validator is constructed dynamically, its recognized
 				// features might not have been set and it would cause a
@@ -245,9 +245,11 @@ public class StandardParserConfiguration extends DTDConfiguration {
 				fProperties.put(SCHEMA_VALIDATOR, fSchemaValidator);
 				addComponent(fSchemaValidator);
 				// add schema message formatter
-				if (fErrorReporter.getMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN) == null) {
+				if (fErrorReporter.getMessageFormatter(
+						XSMessageFormatter.SCHEMA_DOMAIN) == null) {
 					XSMessageFormatter xmft = new XSMessageFormatter();
-					fErrorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN, xmft);
+					fErrorReporter.putMessageFormatter(
+							XSMessageFormatter.SCHEMA_DOMAIN, xmft);
 				}
 
 			}
@@ -267,28 +269,33 @@ public class StandardParserConfiguration extends DTDConfiguration {
 	 * returns. Otherwise, the appropriate exception is thrown.
 	 *
 	 * @param featureId
-	 *            The unique identifier (URI) of the feature.
+	 *                  The unique identifier (URI) of the feature.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown for configuration error. In general, components should
-	 *             only throw this exception if it is <strong>really</strong> a
-	 *             critical error.
+	 *                                   Thrown for configuration error. In
+	 *                                   general, components should
+	 *                                   only throw this exception if it is
+	 *                                   <strong>really</strong> a
+	 *                                   critical error.
 	 */
-	protected FeatureState checkFeature(String featureId) throws XMLConfigurationException {
+	protected FeatureState checkFeature(String featureId)
+			throws XMLConfigurationException {
 
 		//
 		// Xerces Features
 		//
 
 		if (featureId.startsWith(Constants.XERCES_FEATURE_PREFIX)) {
-			final int suffixLength = featureId.length() - Constants.XERCES_FEATURE_PREFIX.length();
+			final int suffixLength = featureId.length()
+					- Constants.XERCES_FEATURE_PREFIX.length();
 
 			//
 			// http://apache.org/xml/features/validation/schema
 			// Lets the user turn Schema validation support on/off.
 			//
 			if (suffixLength == Constants.SCHEMA_VALIDATION_FEATURE.length()
-					&& featureId.endsWith(Constants.SCHEMA_VALIDATION_FEATURE)) {
+					&& featureId.endsWith(
+							Constants.SCHEMA_VALIDATION_FEATURE)) {
 				return FeatureState.RECOGNIZED;
 			}
 			// activate full schema checking
@@ -323,14 +330,17 @@ public class StandardParserConfiguration extends DTDConfiguration {
 	 * simply returns. Otherwise, the appropriate exception is thrown.
 	 *
 	 * @param propertyId
-	 *            The unique identifier (URI) of the property being set.
+	 *                   The unique identifier (URI) of the property being set.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown for configuration error. In general, components should
-	 *             only throw this exception if it is <strong>really</strong> a
-	 *             critical error.
+	 *                                   Thrown for configuration error. In
+	 *                                   general, components should
+	 *                                   only throw this exception if it is
+	 *                                   <strong>really</strong> a
+	 *                                   critical error.
 	 */
-	protected PropertyState checkProperty(String propertyId) throws XMLConfigurationException {
+	protected PropertyState checkProperty(String propertyId)
+			throws XMLConfigurationException {
 
 		//
 		// Xerces Properties
@@ -340,8 +350,8 @@ public class StandardParserConfiguration extends DTDConfiguration {
 			final int suffixLength = propertyId.length()
 					- Constants.XERCES_PROPERTY_PREFIX.length();
 
-			if (suffixLength == Constants.SCHEMA_LOCATION.length()
-					&& propertyId.endsWith(Constants.SCHEMA_LOCATION)) {
+			if (suffixLength == Constants.SCHEMA_LOCATION.length() && propertyId
+					.endsWith(Constants.SCHEMA_LOCATION)) {
 				return PropertyState.RECOGNIZED;
 			}
 			if (suffixLength == Constants.SCHEMA_NONS_LOCATION.length()
@@ -351,10 +361,11 @@ public class StandardParserConfiguration extends DTDConfiguration {
 		}
 
 		if (propertyId.startsWith(Constants.JAXP_PROPERTY_PREFIX)) {
-			final int suffixLength = propertyId.length() - Constants.JAXP_PROPERTY_PREFIX.length();
+			final int suffixLength = propertyId.length()
+					- Constants.JAXP_PROPERTY_PREFIX.length();
 
-			if (suffixLength == Constants.SCHEMA_SOURCE.length()
-					&& propertyId.endsWith(Constants.SCHEMA_SOURCE)) {
+			if (suffixLength == Constants.SCHEMA_SOURCE.length() && propertyId
+					.endsWith(Constants.SCHEMA_SOURCE)) {
 				return PropertyState.RECOGNIZED;
 			}
 		}

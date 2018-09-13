@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -100,8 +80,8 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 	 * the same as for the specified dimension.
 	 *
 	 * @param d
-	 *            the specified dimension for the <code>width</code> and
-	 *            <code>height</code> values
+	 *          the specified dimension for the <code>width</code> and
+	 *          <code>height</code> values
 	 */
 	public Dimension(Dimension d) {
 		this(d.width, d.height);
@@ -112,9 +92,9 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 	 * width and specified height.
 	 *
 	 * @param width
-	 *            the specified width
+	 *               the specified width
 	 * @param height
-	 *            the specified height
+	 *               the specified height
 	 */
 	public Dimension(int width, int height) {
 		this.width = width;
@@ -146,9 +126,9 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 	 * will be reset to <code>Integer.MAX_VALUE</code>.
 	 *
 	 * @param width
-	 *            the new width for the <code>Dimension</code> object
+	 *               the new width for the <code>Dimension</code> object
 	 * @param height
-	 *            the new height for the <code>Dimension</code> object
+	 *               the new height for the <code>Dimension</code> object
 	 * @since 1.2
 	 */
 	public void setSize(double width, double height) {
@@ -178,7 +158,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 	 * <code>setSize</code> method defined by <code>Component</code>.
 	 * 
 	 * @param d
-	 *            the new size for this <code>Dimension</code> object
+	 *          the new size for this <code>Dimension</code> object
 	 * @see java.awt.Dimension#getSize
 	 * @see java.awt.Component#setSize
 	 * @since 1.1
@@ -193,9 +173,9 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 	 * the <code>setSize</code> method defined by <code>Component</code>.
 	 *
 	 * @param width
-	 *            the new width for this <code>Dimension</code> object
+	 *               the new width for this <code>Dimension</code> object
 	 * @param height
-	 *            the new height for this <code>Dimension</code> object
+	 *               the new height for this <code>Dimension</code> object
 	 * @see java.awt.Dimension#getSize
 	 * @see java.awt.Component#setSize
 	 * @since 1.1
@@ -237,6 +217,7 @@ public class Dimension extends Dimension2D implements java.io.Serializable {
 	 * @return a string representation of this <code>Dimension</code> object
 	 */
 	public String toString() {
-		return getClass().getName() + "[width=" + width + ",height=" + height + "]";
+		return getClass().getName() + "[width=" + width + ",height=" + height
+				+ "]";
 	}
 }

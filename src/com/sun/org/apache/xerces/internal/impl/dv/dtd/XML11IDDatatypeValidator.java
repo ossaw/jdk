@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,12 +55,13 @@ public class XML11IDDatatypeValidator extends IDDatatypeValidator {
 	 * validation exception is thrown.
 	 *
 	 * @param content
-	 *            the string value that needs to be validated
+	 *                the string value that needs to be validated
 	 * @param context
-	 *            the validation context
+	 *                the validation context
 	 * @throws InvalidDatatypeException
-	 *             if the content is invalid according to the rules for the
-	 *             validators
+	 *                                  if the content is invalid according to
+	 *                                  the rules for the
+	 *                                  validators
 	 * @see InvalidDatatypeValueException
 	 */
 	public void validate(String content, ValidationContext context)
@@ -73,17 +71,19 @@ public class XML11IDDatatypeValidator extends IDDatatypeValidator {
 		// '-')*
 		if (context.useNamespaces()) {
 			if (!XML11Char.isXML11ValidNCName(content)) {
-				throw new InvalidDatatypeValueException("IDInvalidWithNamespaces",
-						new Object[] { content });
+				throw new InvalidDatatypeValueException(
+						"IDInvalidWithNamespaces", new Object[] { content });
 			}
 		} else {
 			if (!XML11Char.isXML11ValidName(content)) {
-				throw new InvalidDatatypeValueException("IDInvalid", new Object[] { content });
+				throw new InvalidDatatypeValueException("IDInvalid",
+						new Object[] { content });
 			}
 		}
 
 		if (context.isIdDeclared(content)) {
-			throw new InvalidDatatypeValueException("IDNotUnique", new Object[] { content });
+			throw new InvalidDatatypeValueException("IDNotUnique",
+					new Object[] { content });
 		}
 
 		context.addId(content);

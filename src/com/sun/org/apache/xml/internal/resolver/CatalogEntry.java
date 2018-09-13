@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -76,12 +74,15 @@ public class CatalogEntry {
 	 * Adds a new catalog entry type.
 	 *
 	 * @param name
-	 *            The name of the catalog entry type. This must be unique among
-	 *            all types and is case-sensitive. (Adding a duplicate name
-	 *            effectively replaces the old type with the new type.)
+	 *                The name of the catalog entry type. This must be unique
+	 *                among
+	 *                all types and is case-sensitive. (Adding a duplicate name
+	 *                effectively replaces the old type with the new type.)
 	 * @param numArgs
-	 *            The number of arguments that this entry type is required to
-	 *            have. There is no provision for variable numbers of arguments.
+	 *                The number of arguments that this entry type is required
+	 *                to
+	 *                have. There is no provision for variable numbers of
+	 *                arguments.
 	 * @return The type for the new entry.
 	 */
 	static int addEntryType(String name, int numArgs) {
@@ -96,10 +97,11 @@ public class CatalogEntry {
 	 * Lookup an entry type
 	 *
 	 * @param name
-	 *            The name of the catalog entry type.
+	 *             The name of the catalog entry type.
 	 * @return The type of the catalog entry with the specified name.
 	 * @throws InvalidCatalogEntryTypeException
-	 *             if no entry has the specified name.
+	 *                                          if no entry has the specified
+	 *                                          name.
 	 */
 	public static int getEntryType(String name) throws CatalogException {
 		if (!entryTypes.containsKey(name)) {
@@ -119,10 +121,11 @@ public class CatalogEntry {
 	 * Find out how many arguments an entry is required to have.
 	 *
 	 * @param name
-	 *            The name of the catalog entry type.
+	 *             The name of the catalog entry type.
 	 * @return The number of arguments that entry type is required to have.
 	 * @throws InvalidCatalogEntryTypeException
-	 *             if no entry has the specified name.
+	 *                                          if no entry has the specified
+	 *                                          name.
 	 */
 	public static int getEntryArgCount(String name) throws CatalogException {
 		return getEntryArgCount(getEntryType(name));
@@ -132,10 +135,10 @@ public class CatalogEntry {
 	 * Find out how many arguments an entry is required to have.
 	 *
 	 * @param type
-	 *            A valid catalog entry type.
+	 *             A valid catalog entry type.
 	 * @return The number of arguments that entry type is required to have.
 	 * @throws InvalidCatalogEntryTypeException
-	 *             if the type is invalid.
+	 *                                          if the type is invalid.
 	 */
 	public static int getEntryArgCount(int type) throws CatalogException {
 		try {
@@ -155,20 +158,20 @@ public class CatalogEntry {
 	/**
 	 * Null constructor; something for subclasses to call.
 	 */
-	public CatalogEntry() {
-	}
+	public CatalogEntry() {}
 
 	/**
 	 * Construct a catalog entry of the specified type.
 	 *
 	 * @param name
-	 *            The name of the entry type
+	 *             The name of the entry type
 	 * @param args
-	 *            A String Vector of arguments
+	 *             A String Vector of arguments
 	 * @throws InvalidCatalogEntryTypeException
-	 *             if no such entry type exists.
+	 *                                          if no such entry type exists.
 	 * @throws InvalidCatalogEntryException
-	 *             if the wrong number of arguments is passed.
+	 *                                          if the wrong number of arguments
+	 *                                          is passed.
 	 */
 	public CatalogEntry(String name, Vector args) throws CatalogException {
 		Integer iType = entryTypes.get(name);
@@ -196,13 +199,14 @@ public class CatalogEntry {
 	 * Construct a catalog entry of the specified type.
 	 *
 	 * @param type
-	 *            The entry type
+	 *             The entry type
 	 * @param args
-	 *            A String Vector of arguments
+	 *             A String Vector of arguments
 	 * @throws InvalidCatalogEntryTypeException
-	 *             if no such entry type exists.
+	 *                                          if no such entry type exists.
 	 * @throws InvalidCatalogEntryException
-	 *             if the wrong number of arguments is passed.
+	 *                                          if the wrong number of arguments
+	 *                                          is passed.
 	 */
 	public CatalogEntry(int type, Vector args) throws CatalogException {
 		try {
@@ -231,7 +235,7 @@ public class CatalogEntry {
 	 * Get an entry argument.
 	 *
 	 * @param argNum
-	 *            The argument number (arguments are numbered from 0).
+	 *               The argument number (arguments are numbered from 0).
 	 * @return The specified argument or null if an invalid argNum is provided.
 	 */
 	public String getEntryArg(int argNum) {
@@ -255,11 +259,13 @@ public class CatalogEntry {
 	 * </p>
 	 *
 	 * @param argNum
-	 *            The argument number (arguments are numbered from 0).
+	 *               The argument number (arguments are numbered from 0).
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if an invalid argument number is provided.
+	 *                                        if an invalid argument number is
+	 *                                        provided.
 	 */
-	public void setEntryArg(int argNum, String newspec) throws ArrayIndexOutOfBoundsException {
+	public void setEntryArg(int argNum, String newspec)
+			throws ArrayIndexOutOfBoundsException {
 		args.set(argNum, newspec);
 	}
 }

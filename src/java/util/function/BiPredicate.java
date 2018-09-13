@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.function;
 
@@ -35,9 +15,9 @@ import java.util.Objects;
  * functional method is {@link #test(Object, Object)}.
  *
  * @param <T>
- *            the type of the first argument to the predicate
+ *        the type of the first argument to the predicate
  * @param <U>
- *            the type of the second argument the predicate
+ *        the type of the second argument the predicate
  *
  * @see Predicate
  * @since 1.8
@@ -49,9 +29,9 @@ public interface BiPredicate<T, U> {
 	 * Evaluates this predicate on the given arguments.
 	 *
 	 * @param t
-	 *            the first input argument
+	 *          the first input argument
 	 * @param u
-	 *            the second input argument
+	 *          the second input argument
 	 * @return {@code true} if the input arguments match the predicate,
 	 *         otherwise {@code false}
 	 */
@@ -69,11 +49,11 @@ public interface BiPredicate<T, U> {
 	 * {@code other} predicate will not be evaluated.
 	 *
 	 * @param other
-	 *            a predicate that will be logically-ANDed with this predicate
+	 *              a predicate that will be logically-ANDed with this predicate
 	 * @return a composed predicate that represents the short-circuiting logical
 	 *         AND of this predicate and the {@code other} predicate
 	 * @throws NullPointerException
-	 *             if other is null
+	 *                              if other is null
 	 */
 	default BiPredicate<T, U> and(BiPredicate<? super T, ? super U> other) {
 		Objects.requireNonNull(other);
@@ -103,11 +83,11 @@ public interface BiPredicate<T, U> {
 	 * {@code other} predicate will not be evaluated.
 	 *
 	 * @param other
-	 *            a predicate that will be logically-ORed with this predicate
+	 *              a predicate that will be logically-ORed with this predicate
 	 * @return a composed predicate that represents the short-circuiting logical
 	 *         OR of this predicate and the {@code other} predicate
 	 * @throws NullPointerException
-	 *             if other is null
+	 *                              if other is null
 	 */
 	default BiPredicate<T, U> or(BiPredicate<? super T, ? super U> other) {
 		Objects.requireNonNull(other);

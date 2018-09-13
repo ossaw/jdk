@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -91,14 +71,18 @@ public class FontRenderContext {
 	 * {@link #FontRenderContext(AffineTransform, Object, Object)}.
 	 * 
 	 * @param tx
-	 *            the transform which is used to scale typographical points to
-	 *            pixels in this <code>FontRenderContext</code>. If null, an
-	 *            identity transform is used.
+	 *                              the transform which is used to scale
+	 *                              typographical points to
+	 *                              pixels in this
+	 *                              <code>FontRenderContext</code>. If null, an
+	 *                              identity transform is used.
 	 * @param isAntiAliased
-	 *            determines if the newly constructed object has anti-aliasing.
+	 *                              determines if the newly constructed object
+	 *                              has anti-aliasing.
 	 * @param usesFractionalMetrics
-	 *            determines if the newly constructed object has fractional
-	 *            metrics.
+	 *                              determines if the newly constructed object
+	 *                              has fractional
+	 *                              metrics.
 	 */
 	public FontRenderContext(AffineTransform tx, boolean isAntiAliased,
 			boolean usesFractionalMetrics) {
@@ -123,26 +107,31 @@ public class FontRenderContext {
 	 * if the newly constructed object has anti-aliasing or fractional metrics.
 	 * 
 	 * @param tx
-	 *            the transform which is used to scale typographical points to
-	 *            pixels in this <code>FontRenderContext</code>. If null, an
-	 *            identity transform is used.
+	 *               the transform which is used to scale typographical points
+	 *               to
+	 *               pixels in this <code>FontRenderContext</code>. If null, an
+	 *               identity transform is used.
 	 * @param aaHint
-	 *            - one of the text antialiasing rendering hint values defined
-	 *            in {@link java.awt.RenderingHints java.awt.RenderingHints}.
-	 *            Any other value will throw
-	 *            <code>IllegalArgumentException</code>.
-	 *            {@link java.awt.RenderingHints#VALUE_TEXT_ANTIALIAS_DEFAULT
-	 *            VALUE_TEXT_ANTIALIAS_DEFAULT} may be specified, in which case
-	 *            the mode used is implementation dependent.
+	 *               - one of the text antialiasing rendering hint values
+	 *               defined
+	 *               in {@link java.awt.RenderingHints java.awt.RenderingHints}.
+	 *               Any other value will throw
+	 *               <code>IllegalArgumentException</code>.
+	 *               {@link java.awt.RenderingHints#VALUE_TEXT_ANTIALIAS_DEFAULT
+	 *               VALUE_TEXT_ANTIALIAS_DEFAULT} may be specified, in which
+	 *               case
+	 *               the mode used is implementation dependent.
 	 * @param fmHint
-	 *            - one of the text fractional rendering hint values defined in
-	 *            {@link java.awt.RenderingHints java.awt.RenderingHints}.
-	 *            {@link java.awt.RenderingHints#VALUE_FRACTIONALMETRICS_DEFAULT
-	 *            VALUE_FRACTIONALMETRICS_DEFAULT} may be specified, in which
-	 *            case the mode used is implementation dependent. Any other
-	 *            value will throw <code>IllegalArgumentException</code>
+	 *               - one of the text fractional rendering hint values defined
+	 *               in
+	 *               {@link java.awt.RenderingHints java.awt.RenderingHints}.
+	 *               {@link java.awt.RenderingHints#VALUE_FRACTIONALMETRICS_DEFAULT
+	 *               VALUE_FRACTIONALMETRICS_DEFAULT} may be specified, in which
+	 *               case the mode used is implementation dependent. Any other
+	 *               value will throw <code>IllegalArgumentException</code>
 	 * @throws IllegalArgumentException
-	 *             if the hints are not one of the legal values.
+	 *                                  if the hints are not one of the legal
+	 *                                  values.
 	 * @since 1.6
 	 */
 	public FontRenderContext(AffineTransform tx, Object aaHint, Object fmHint) {
@@ -334,14 +323,15 @@ public class FontRenderContext {
 
 		/* if neither instance is a subclass, reference values directly. */
 		if (!rhs.defaulting && !defaulting) {
-			if (rhs.aaHintValue == aaHintValue && rhs.fmHintValue == fmHintValue) {
+			if (rhs.aaHintValue == aaHintValue
+					&& rhs.fmHintValue == fmHintValue) {
 
 				return tx == null ? rhs.tx == null : tx.equals(rhs.tx);
 			}
 			return false;
 		} else {
-			return rhs.getAntiAliasingHint() == getAntiAliasingHint()
-					&& rhs.getFractionalMetricsHint() == getFractionalMetricsHint()
+			return rhs.getAntiAliasingHint() == getAntiAliasingHint() && rhs
+					.getFractionalMetricsHint() == getFractionalMetricsHint()
 					&& rhs.getTransform().equals(getTransform());
 		}
 	}

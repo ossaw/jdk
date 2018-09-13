@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -41,7 +21,7 @@ public interface Transmitter extends AutoCloseable {
 	 * If a receiver is currently set, it is replaced with this one.
 	 * 
 	 * @param receiver
-	 *            the desired receiver.
+	 *                 the desired receiver.
 	 */
 	public void setReceiver(Receiver receiver);
 

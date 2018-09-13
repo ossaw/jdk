@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -111,15 +91,17 @@ public abstract class Identity implements Principal, Serializable {
 	 * Constructs an identity with the specified name and scope.
 	 *
 	 * @param name
-	 *            the identity name.
+	 *              the identity name.
 	 * @param scope
-	 *            the scope of the identity.
+	 *              the scope of the identity.
 	 *
 	 * @exception KeyManagementException
-	 *                if there is already an identity with the same name in the
-	 *                scope.
+	 *                                   if there is already an identity with
+	 *                                   the same name in the
+	 *                                   scope.
 	 */
-	public Identity(String name, IdentityScope scope) throws KeyManagementException {
+	public Identity(String name, IdentityScope scope)
+			throws KeyManagementException {
 		this(name);
 		if (scope != null) {
 			scope.addIdentity(this);
@@ -131,7 +113,7 @@ public abstract class Identity implements Principal, Serializable {
 	 * Constructs an identity with the specified name and no scope.
 	 *
 	 * @param name
-	 *            the identity name.
+	 *             the identity name.
 	 */
 	public Identity(String name) {
 		this.name = name;
@@ -179,13 +161,16 @@ public abstract class Identity implements Principal, Serializable {
 	 *            the public key for this identity.
 	 *
 	 * @exception KeyManagementException
-	 *                if another identity in the identity's scope has the same
-	 *                public key, or if another exception occurs.
+	 *                                   if another identity in the identity's
+	 *                                   scope has the same
+	 *                                   public key, or if another exception
+	 *                                   occurs.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                {@code checkSecurityAccess} method doesn't allow setting
-	 *                the public key.
+	 *                                   if a security manager exists and its
+	 *                                   {@code checkSecurityAccess} method
+	 *                                   doesn't allow setting
+	 *                                   the public key.
 	 *
 	 * @see #getPublicKey
 	 * @see SecurityManager#checkSecurityAccess
@@ -207,12 +192,13 @@ public abstract class Identity implements Principal, Serializable {
 	 * it's ok to specify the information string.
 	 *
 	 * @param info
-	 *            the information string.
+	 *             the information string.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                {@code checkSecurityAccess} method doesn't allow setting
-	 *                the information string.
+	 *                              if a security manager exists and its
+	 *                              {@code checkSecurityAccess} method doesn't
+	 *                              allow setting
+	 *                              the information string.
 	 *
 	 * @see #getInfo
 	 * @see SecurityManager#checkSecurityAccess
@@ -245,21 +231,26 @@ public abstract class Identity implements Principal, Serializable {
 	 * see if it's ok to add a certificate.
 	 *
 	 * @param certificate
-	 *            the certificate to be added.
+	 *                    the certificate to be added.
 	 *
 	 * @exception KeyManagementException
-	 *                if the certificate is not valid, if the public key in the
-	 *                certificate being added conflicts with this identity's
-	 *                public key, or if another exception occurs.
+	 *                                   if the certificate is not valid, if the
+	 *                                   public key in the
+	 *                                   certificate being added conflicts with
+	 *                                   this identity's
+	 *                                   public key, or if another exception
+	 *                                   occurs.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                {@code checkSecurityAccess} method doesn't allow adding a
-	 *                certificate.
+	 *                                   if a security manager exists and its
+	 *                                   {@code checkSecurityAccess} method
+	 *                                   doesn't allow adding a
+	 *                                   certificate.
 	 *
 	 * @see SecurityManager#checkSecurityAccess
 	 */
-	public void addCertificate(Certificate certificate) throws KeyManagementException {
+	public void addCertificate(Certificate certificate)
+			throws KeyManagementException {
 
 		check("addIdentityCertificate");
 
@@ -268,7 +259,8 @@ public abstract class Identity implements Principal, Serializable {
 		}
 		if (publicKey != null) {
 			if (!keyEquals(publicKey, certificate.getPublicKey())) {
-				throw new KeyManagementException("public key different from cert public key");
+				throw new KeyManagementException(
+						"public key different from cert public key");
 			}
 		} else {
 			publicKey = certificate.getPublicKey();
@@ -284,7 +276,8 @@ public abstract class Identity implements Principal, Serializable {
 		if (aKeyFormat != null && anotherKeyFormat != null)
 			if (!aKeyFormat.equalsIgnoreCase(anotherKeyFormat))
 				return false;
-		return java.util.Arrays.equals(aKey.getEncoded(), anotherKey.getEncoded());
+		return java.util.Arrays.equals(aKey.getEncoded(), anotherKey
+				.getEncoded());
 	}
 
 	/**
@@ -296,20 +289,23 @@ public abstract class Identity implements Principal, Serializable {
 	 * to see if it's ok to remove a certificate.
 	 *
 	 * @param certificate
-	 *            the certificate to be removed.
+	 *                    the certificate to be removed.
 	 *
 	 * @exception KeyManagementException
-	 *                if the certificate is missing, or if another exception
-	 *                occurs.
+	 *                                   if the certificate is missing, or if
+	 *                                   another exception
+	 *                                   occurs.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                {@code checkSecurityAccess} method doesn't allow removing
-	 *                a certificate.
+	 *                                   if a security manager exists and its
+	 *                                   {@code checkSecurityAccess} method
+	 *                                   doesn't allow removing
+	 *                                   a certificate.
 	 *
 	 * @see SecurityManager#checkSecurityAccess
 	 */
-	public void removeCertificate(Certificate certificate) throws KeyManagementException {
+	public void removeCertificate(Certificate certificate)
+			throws KeyManagementException {
 		check("removeIdentityCertificate");
 		if (certificates != null) {
 			certificates.removeElement(certificate);
@@ -340,7 +336,7 @@ public abstract class Identity implements Principal, Serializable {
 	 * which subclasses should override.
 	 *
 	 * @param identity
-	 *            the object to test for equality with this identity.
+	 *                 the object to test for equality with this identity.
 	 *
 	 * @return true if the objects are considered equal, false otherwise.
 	 *
@@ -370,7 +366,7 @@ public abstract class Identity implements Principal, Serializable {
 	 * equal.
 	 *
 	 * @param identity
-	 *            the identity to test for equality with this identity.
+	 *                 the identity to test for equality with this identity.
 	 *
 	 * @return true if the identities are considered equal, false otherwise.
 	 *
@@ -415,9 +411,10 @@ public abstract class Identity implements Principal, Serializable {
 	 *         its scope (if any).
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                {@code checkSecurityAccess} method doesn't allow returning
-	 *                a string describing this identity.
+	 *                              if a security manager exists and its
+	 *                              {@code checkSecurityAccess} method doesn't
+	 *                              allow returning
+	 *                              a string describing this identity.
 	 *
 	 * @see SecurityManager#checkSecurityAccess
 	 */
@@ -441,16 +438,17 @@ public abstract class Identity implements Principal, Serializable {
 	 * it's ok to return the string.
 	 *
 	 * @param detailed
-	 *            whether or not to provide detailed information.
+	 *                 whether or not to provide detailed information.
 	 *
 	 * @return information about this identity. If {@code detailed} is true,
 	 *         then this method returns more information than that provided by
 	 *         the {@code toString} method without any arguments.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                {@code checkSecurityAccess} method doesn't allow returning
-	 *                a string describing this identity.
+	 *                              if a security manager exists and its
+	 *                              {@code checkSecurityAccess} method doesn't
+	 *                              allow returning
+	 *                              a string describing this identity.
 	 *
 	 * @see #toString
 	 * @see SecurityManager#checkSecurityAccess
@@ -489,7 +487,8 @@ public abstract class Identity implements Principal, Serializable {
 
 			int i = 1;
 			for (Certificate cert : certificates) {
-				out += "\tcertificate " + i++ + "\tfor  : " + cert.getPrincipal() + "\n";
+				out += "\tcertificate " + i++ + "\tfor  : " + cert
+						.getPrincipal() + "\n";
 				out += "\t\t\tfrom : " + cert.getGuarantor() + "\n";
 			}
 		}

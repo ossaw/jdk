@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -100,8 +80,7 @@ public class JAXBElement<T> implements Serializable {
 	/**
 	 * Designates global scope for an xml element.
 	 */
-	public static final class GlobalScope {
-	}
+	public static final class GlobalScope {}
 
 	/**
 	 * <p>
@@ -109,18 +88,20 @@ public class JAXBElement<T> implements Serializable {
 	 * </p>
 	 *
 	 * @param name
-	 *            Java binding of xml element tag name
+	 *                     Java binding of xml element tag name
 	 * @param declaredType
-	 *            Java binding of xml element declaration's type
+	 *                     Java binding of xml element declaration's type
 	 * @param scope
-	 *            Java binding of scope of xml element declaration. Passing null
-	 *            is the same as passing <tt>GlobalScope.class</tt>
+	 *                     Java binding of scope of xml element declaration.
+	 *                     Passing null
+	 *                     is the same as passing <tt>GlobalScope.class</tt>
 	 * @param value
-	 *            Java instance representing xml element's value.
+	 *                     Java instance representing xml element's value.
 	 * @see #getScope()
 	 * @see #isTypeSubstituted()
 	 */
-	public JAXBElement(QName name, Class<T> declaredType, Class scope, T value) {
+	public JAXBElement(QName name, Class<T> declaredType, Class scope,
+			T value) {
 		if (declaredType == null || name == null)
 			throw new IllegalArgumentException();
 		this.declaredType = declaredType;

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,9 +50,10 @@ public final class Compile {
 	private static boolean _allowExit = true;
 
 	public static void printUsage() {
-		System.err.println("XSLTC version " + VERSION_MAJOR + "." + VERSION_MINOR
-				+ ((VERSION_DELTA > 0) ? ("." + VERSION_DELTA) : ("")) + "\n"
-				+ new ErrorMsg(ErrorMsg.COMPILE_USAGE_STR));
+		System.err.println("XSLTC version " + VERSION_MAJOR + "."
+				+ VERSION_MINOR + ((VERSION_DELTA > 0) ? ("." + VERSION_DELTA)
+						: ("")) + "\n" + new ErrorMsg(
+								ErrorMsg.COMPILE_USAGE_STR));
 		if (_allowExit)
 			System.exit(-1);
 	}
@@ -82,40 +80,40 @@ public final class Compile {
 			int c;
 			while ((c = getopt.getNextOption()) != -1) {
 				switch (c) {
-				case 'i':
-					useStdIn = true;
-					break;
-				case 'o':
-					xsltc.setClassName(getopt.getOptionArg());
-					classNameSet = true;
-					break;
-				case 'd':
-					xsltc.setDestDirectory(getopt.getOptionArg());
-					break;
-				case 'p':
-					xsltc.setPackageName(getopt.getOptionArg());
-					break;
-				case 'j':
-					xsltc.setJarFileName(getopt.getOptionArg());
-					break;
-				case 'x':
-					xsltc.setDebug(true);
-					break;
-				case 'u':
-					inputIsURL = true;
-					break;
-				case 's':
-					_allowExit = false;
-					break;
-				case 'n':
-					xsltc.setTemplateInlining(true); // used to be 'false'
-					break;
-				case 'v':
-					// fall through to case h
-				case 'h':
-				default:
-					printUsage();
-					break;
+					case 'i':
+						useStdIn = true;
+						break;
+					case 'o':
+						xsltc.setClassName(getopt.getOptionArg());
+						classNameSet = true;
+						break;
+					case 'd':
+						xsltc.setDestDirectory(getopt.getOptionArg());
+						break;
+					case 'p':
+						xsltc.setPackageName(getopt.getOptionArg());
+						break;
+					case 'j':
+						xsltc.setJarFileName(getopt.getOptionArg());
+						break;
+					case 'x':
+						xsltc.setDebug(true);
+						break;
+					case 'u':
+						inputIsURL = true;
+						break;
+					case 's':
+						_allowExit = false;
+						break;
+					case 'n':
+						xsltc.setTemplateInlining(true); // used to be 'false'
+						break;
+					case 'v':
+						// fall through to case h
+					case 'h':
+					default:
+						printUsage();
+						break;
 				}
 			}
 
@@ -123,7 +121,8 @@ public final class Compile {
 
 			if (useStdIn) {
 				if (!classNameSet) {
-					System.err.println(new ErrorMsg(ErrorMsg.COMPILE_STDIN_ERR));
+					System.err.println(new ErrorMsg(
+							ErrorMsg.COMPILE_STDIN_ERR));
 					if (_allowExit)
 						System.exit(-1);
 				}

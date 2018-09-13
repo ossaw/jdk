@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -47,23 +27,28 @@ final class SnmpMibRequestImpl implements SnmpMibRequest {
 
 	/**
 	 * @param engine
-	 *            The local engine.
+	 *                        The local engine.
 	 * @param reqPdu
-	 *            The received pdu.
+	 *                        The received pdu.
 	 * @param vblist
-	 *            The vector of SnmpVarBind objects in which the MIB concerned
-	 *            by this request is involved.
+	 *                        The vector of SnmpVarBind objects in which the MIB
+	 *                        concerned
+	 *                        by this request is involved.
 	 * @param protocolVersion
-	 *            The protocol version of the SNMP request.
+	 *                        The protocol version of the SNMP request.
 	 * @param userData
-	 *            User allocated contextual data. This object must be allocated
-	 *            on a per SNMP request basis through the SnmpUserDataFactory
-	 *            registered with the SnmpAdaptorServer, and is handed back to
-	 *            the user through SnmpMibRequest objects.
+	 *                        User allocated contextual data. This object must
+	 *                        be allocated
+	 *                        on a per SNMP request basis through the
+	 *                        SnmpUserDataFactory
+	 *                        registered with the SnmpAdaptorServer, and is
+	 *                        handed back to
+	 *                        the user through SnmpMibRequest objects.
 	 */
-	public SnmpMibRequestImpl(SnmpEngine engine, SnmpPdu reqPdu, Vector<SnmpVarBind> vblist,
-			int protocolVersion, Object userData, String principal, int securityLevel,
-			int securityModel, byte[] contextName, byte[] accessContextName) {
+	public SnmpMibRequestImpl(SnmpEngine engine, SnmpPdu reqPdu,
+			Vector<SnmpVarBind> vblist, int protocolVersion, Object userData,
+			String principal, int securityLevel, int securityModel,
+			byte[] contextName, byte[] accessContextName) {
 		varbinds = vblist;
 		version = protocolVersion;
 		data = userData;

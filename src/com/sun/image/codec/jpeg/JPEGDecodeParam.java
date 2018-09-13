@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -7,9 +6,9 @@
 /**********************************************************************
  **********************************************************************
  **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company.                 ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
+ *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************
  **********************************************************************
  **********************************************************************/
@@ -201,8 +200,9 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * was felt
 	 * 
 	 * @param component
-	 *            The component of the encoded image to return the subsampling
-	 *            factor for.
+	 *                  The component of the encoded image to return the
+	 *                  subsampling
+	 *                  factor for.
 	 * @return The subsample factor.
 	 */
 	public int getHorizontalSubsampling(int component);
@@ -216,8 +216,9 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * was felt
 	 * 
 	 * @param component
-	 *            The component of the encoded image to return the subsampling
-	 *            factor for.
+	 *                  The component of the encoded image to return the
+	 *                  subsampling
+	 *                  factor for.
 	 * @return The subsample factor.
 	 */
 	public int getVerticalSubsampling(int component);
@@ -227,7 +228,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * tableNum must range in value from 0 - 3.
 	 * 
 	 * @param tableNum
-	 *            the index of the table to be returned.
+	 *                 the index of the table to be returned.
 	 * @return Quantization table stored at index tableNum.
 	 */
 	public JPEGQTable getQTable(int tableNum);
@@ -236,7 +237,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * Returns the Quantization table for the requested component.
 	 * 
 	 * @param component
-	 *            the image component of interest.
+	 *                  the image component of interest.
 	 * @return Quantization table associated with component
 	 */
 	public JPEGQTable getQTableForComponent(int component);
@@ -245,7 +246,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * Returns the DC Huffman coding table requested or null if not defined
 	 * 
 	 * @param tableNum
-	 *            the index of the table to be returned.
+	 *                 the index of the table to be returned.
 	 * @return Huffman table stored at index tableNum.
 	 */
 	public JPEGHuffmanTable getDCHuffmanTable(int tableNum);
@@ -254,7 +255,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * Returns the DC Huffman coding table for the requested component.
 	 * 
 	 * @param component
-	 *            the image component of interest.
+	 *                  the image component of interest.
 	 * @return Huffman table associated with component
 	 */
 	public JPEGHuffmanTable getDCHuffmanTableForComponent(int component);
@@ -263,7 +264,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * Returns the AC Huffman coding table requested or null if not defined
 	 * 
 	 * @param tableNum
-	 *            the index of the table to be returned.
+	 *                 the index of the table to be returned.
 	 * @return Huffman table stored at index tableNum.
 	 */
 	public JPEGHuffmanTable getACHuffmanTable(int tableNum);
@@ -272,7 +273,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * Returns the AC Huffman coding table for the requested component.
 	 * 
 	 * @param component
-	 *            the image component of interest.
+	 *                  the image component of interest.
 	 * @return Huffman table associated with component
 	 */
 	public JPEGHuffmanTable getACHuffmanTableForComponent(int component);
@@ -282,7 +283,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * component.
 	 * 
 	 * @param component
-	 *            The Component of interest.
+	 *                  The Component of interest.
 	 * @return The table number of the DC Huffman table for component.
 	 */
 	public int getDCHuffmanComponentMapping(int component);
@@ -292,7 +293,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * component.
 	 * 
 	 * @param component
-	 *            The Component of interest.
+	 *                  The Component of interest.
 	 * @return The table number of the AC Huffman table for component.
 	 */
 	public int getACHuffmanComponentMapping(int component);
@@ -302,7 +303,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * particular component.
 	 * 
 	 * @param component
-	 *            The Component of interest.
+	 *                  The Component of interest.
 	 * @return The table number of the Quantization table for component.
 	 */
 	public int getQTableComponentMapping(int component);
@@ -327,7 +328,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * instance of the marker to be written.
 	 * 
 	 * @param marker
-	 *            The marker of interest.
+	 *               The marker of interest.
 	 */
 	public boolean getMarker(int marker);
 
@@ -338,7 +339,7 @@ public interface JPEGDecodeParam extends Cloneable {
 	 * number of times in a stream).
 	 * 
 	 * @param marker
-	 *            The marker of interest.
+	 *               The marker of interest.
 	 * @return The 'byte[][]' for this marker or null if none available.
 	 */
 	public byte[][] getMarkerData(int marker);

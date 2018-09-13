@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orb;
@@ -100,8 +80,8 @@ import com.sun.corba.se.impl.presentation.rmi.PresentationManagerImpl;
 import sun.awt.AppContext;
 import sun.corba.SharedSecrets;
 
-public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
-		implements Broker, TypeCodeFactory {
+public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB implements
+		Broker, TypeCodeFactory {
 	// As much as possible, this class should be stateless. However,
 	// there are a few reasons why it is not:
 	//
@@ -184,13 +164,16 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 	protected MonitoringManager monitoringManager;
 
 	private static PresentationManager setupPresentationManager() {
-		staticWrapper = ORBUtilSystemException.get(CORBALogDomains.RPC_PRESENTATION);
+		staticWrapper = ORBUtilSystemException.get(
+				CORBALogDomains.RPC_PRESENTATION);
 
-		boolean useDynamicStub = ((Boolean) AccessController.doPrivileged(new PrivilegedAction() {
-			public java.lang.Object run() {
-				return Boolean.valueOf(Boolean.getBoolean(ORBConstants.USE_DYNAMIC_STUB_PROPERTY));
-			}
-		})).booleanValue();
+		boolean useDynamicStub = ((Boolean) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public java.lang.Object run() {
+						return Boolean.valueOf(Boolean.getBoolean(
+								ORBConstants.USE_DYNAMIC_STUB_PROPERTY));
+					}
+				})).booleanValue();
 
 		PresentationManager.StubFactoryFactory dynamicStubFactoryFactory = (PresentationManager.StubFactoryFactory) AccessController
 				.doPrivileged(new PrivilegedAction() {
@@ -204,11 +187,15 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 
 						try {
 							// First try the configured class name, if any
-							Class<?> cls = SharedSecrets.getJavaCorbaAccess().loadClass(className);
-							sff = (PresentationManager.StubFactoryFactory) cls.newInstance();
+							Class<?> cls = SharedSecrets.getJavaCorbaAccess()
+									.loadClass(className);
+							sff = (PresentationManager.StubFactoryFactory) cls
+									.newInstance();
 						} catch (Exception exc) {
 							// Use the default. Log the error as a warning.
-							staticWrapper.errorInSettingDynamicStubFactoryFactory(exc, className);
+							staticWrapper
+									.errorInSettingDynamicStubFactoryFactory(
+											exc, className);
 						}
 
 						return sff;
@@ -216,7 +203,8 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 				});
 
 		PresentationManager pm = new PresentationManagerImpl(useDynamicStub);
-		pm.setStubFactoryFactory(false, PresentationDefaults.getStaticStubFactoryFactory());
+		pm.setStubFactoryFactory(false, PresentationDefaults
+				.getStaticStubFactoryFactory());
 		pm.setStubFactoryFactory(true, dynamicStubFactoryFactory);
 		return pm;
 	}
@@ -240,8 +228,8 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 			AppContext ac = AppContext.getAppContext();
 			if (ac != null) {
 				synchronized (pmLock) {
-					PresentationManager pm = (PresentationManager) ac
-							.get(PresentationManager.class);
+					PresentationManager pm = (PresentationManager) ac.get(
+							PresentationManager.class);
 					if (pm == null) {
 						pm = setupPresentationManager();
 						ac.put(PresentationManager.class, pm);
@@ -269,39 +257,49 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 		// Initialize logging first, since it is needed nearly
 		// everywhere (for example, in TypeCodeImpl).
 		wrapperMap = new ConcurrentHashMap();
-		wrapper = ORBUtilSystemException.get(this, CORBALogDomains.RPC_PRESENTATION);
-		omgWrapper = OMGSystemException.get(this, CORBALogDomains.RPC_PRESENTATION);
+		wrapper = ORBUtilSystemException.get(this,
+				CORBALogDomains.RPC_PRESENTATION);
+		omgWrapper = OMGSystemException.get(this,
+				CORBALogDomains.RPC_PRESENTATION);
 
 		typeCodeMap = new HashMap();
 
-		primitiveTypeCodeConstants = new TypeCodeImpl[] { new TypeCodeImpl(this, TCKind._tk_null),
-				new TypeCodeImpl(this, TCKind._tk_void), new TypeCodeImpl(this, TCKind._tk_short),
-				new TypeCodeImpl(this, TCKind._tk_long), new TypeCodeImpl(this, TCKind._tk_ushort),
-				new TypeCodeImpl(this, TCKind._tk_ulong), new TypeCodeImpl(this, TCKind._tk_float),
-				new TypeCodeImpl(this, TCKind._tk_double),
-				new TypeCodeImpl(this, TCKind._tk_boolean), new TypeCodeImpl(this, TCKind._tk_char),
-				new TypeCodeImpl(this, TCKind._tk_octet), new TypeCodeImpl(this, TCKind._tk_any),
-				new TypeCodeImpl(this, TCKind._tk_TypeCode),
-				new TypeCodeImpl(this, TCKind._tk_Principal),
-				new TypeCodeImpl(this, TCKind._tk_objref), null, // tk_struct
+		primitiveTypeCodeConstants = new TypeCodeImpl[] { new TypeCodeImpl(this,
+				TCKind._tk_null), new TypeCodeImpl(this, TCKind._tk_void),
+				new TypeCodeImpl(this, TCKind._tk_short), new TypeCodeImpl(this,
+						TCKind._tk_long), new TypeCodeImpl(this,
+								TCKind._tk_ushort), new TypeCodeImpl(this,
+										TCKind._tk_ulong), new TypeCodeImpl(
+												this, TCKind._tk_float),
+				new TypeCodeImpl(this, TCKind._tk_double), new TypeCodeImpl(
+						this, TCKind._tk_boolean), new TypeCodeImpl(this,
+								TCKind._tk_char), new TypeCodeImpl(this,
+										TCKind._tk_octet), new TypeCodeImpl(
+												this, TCKind._tk_any),
+				new TypeCodeImpl(this, TCKind._tk_TypeCode), new TypeCodeImpl(
+						this, TCKind._tk_Principal), new TypeCodeImpl(this,
+								TCKind._tk_objref), null, // tk_struct
 				null, // tk_union
 				null, // tk_enum
 				new TypeCodeImpl(this, TCKind._tk_string), null, // tk_sequence
 				null, // tk_array
 				null, // tk_alias
 				null, // tk_except
-				new TypeCodeImpl(this, TCKind._tk_longlong),
-				new TypeCodeImpl(this, TCKind._tk_ulonglong),
-				new TypeCodeImpl(this, TCKind._tk_longdouble),
-				new TypeCodeImpl(this, TCKind._tk_wchar),
-				new TypeCodeImpl(this, TCKind._tk_wstring),
-				new TypeCodeImpl(this, TCKind._tk_fixed), new TypeCodeImpl(this, TCKind._tk_value),
-				new TypeCodeImpl(this, TCKind._tk_value_box),
-				new TypeCodeImpl(this, TCKind._tk_native),
-				new TypeCodeImpl(this, TCKind._tk_abstract_interface) };
+				new TypeCodeImpl(this, TCKind._tk_longlong), new TypeCodeImpl(
+						this, TCKind._tk_ulonglong), new TypeCodeImpl(this,
+								TCKind._tk_longdouble), new TypeCodeImpl(this,
+										TCKind._tk_wchar), new TypeCodeImpl(
+												this, TCKind._tk_wstring),
+				new TypeCodeImpl(this, TCKind._tk_fixed), new TypeCodeImpl(this,
+						TCKind._tk_value), new TypeCodeImpl(this,
+								TCKind._tk_value_box), new TypeCodeImpl(this,
+										TCKind._tk_native), new TypeCodeImpl(
+												this,
+												TCKind._tk_abstract_interface) };
 
 		monitoringManager = MonitoringFactories.getMonitoringManagerFactory()
-				.createMonitoringManager(MonitoringConstants.DEFAULT_MONITORING_ROOT,
+				.createMonitoringManager(
+						MonitoringConstants.DEFAULT_MONITORING_ROOT,
 						MonitoringConstants.DEFAULT_MONITORING_ROOT_DESCRIPTION);
 	}
 
@@ -388,11 +386,13 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 
 	public abstract ORBData getORBData();
 
-	public abstract void setClientDelegateFactory(ClientDelegateFactory factory);
+	public abstract void setClientDelegateFactory(
+			ClientDelegateFactory factory);
 
 	public abstract ClientDelegateFactory getClientDelegateFactory();
 
-	public abstract void setCorbaContactInfoListFactory(CorbaContactInfoListFactory factory);
+	public abstract void setCorbaContactInfoListFactory(
+			CorbaContactInfoListFactory factory);
 
 	public abstract CorbaContactInfoListFactory getCorbaContactInfoListFactory();
 
@@ -438,7 +438,8 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 	 * Set the ServerRequestDispatcher that should be used for handling INS
 	 * requests.
 	 */
-	public abstract void setINSDelegate(CorbaServerRequestDispatcher insDelegate);
+	public abstract void setINSDelegate(
+			CorbaServerRequestDispatcher insDelegate);
 
 	// XXX The next 5 operations should be moved to an IORManager.
 
@@ -494,7 +495,8 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 	}
 
 	private static Logger getCORBALogger(String ORBId, String domain) {
-		String fqLogDomain = CORBALogDomains.TOP_LEVEL_DOMAIN + "." + ORBId + "." + domain;
+		String fqLogDomain = CORBALogDomains.TOP_LEVEL_DOMAIN + "." + ORBId
+				+ "." + domain;
 
 		return Logger.getLogger(fqLogDomain, ORBConstants.LOG_RESOURCE_FILE);
 	}
@@ -520,8 +522,8 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
 	 * get the log wrapper class (its type is dependent on the exceptionGroup)
 	 * for the given log domain and exception group in this ORB instance.
 	 */
-	public static LogWrapperBase staticGetLogWrapper(String logDomain, String exceptionGroup,
-			LogWrapperFactory factory) {
+	public static LogWrapperBase staticGetLogWrapper(String logDomain,
+			String exceptionGroup, LogWrapperFactory factory) {
 		StringPair key = new StringPair(logDomain, exceptionGroup);
 
 		LogWrapperBase logWrapper = (LogWrapperBase) staticWrapperMap.get(key);

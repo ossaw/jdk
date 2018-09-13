@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.event;
@@ -45,13 +25,15 @@ public class PrintJobAttributeEvent extends PrintEvent {
 	 * Constructs a PrintJobAttributeEvent object.
 	 * 
 	 * @param source
-	 *            the print job generating this event
+	 *                   the print job generating this event
 	 * @param attributes
-	 *            the attribute changes being reported
+	 *                   the attribute changes being reported
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is <code>null</code>.
+	 *                                  if <code>source</code> is
+	 *                                  <code>null</code>.
 	 */
-	public PrintJobAttributeEvent(DocPrintJob source, PrintJobAttributeSet attributes) {
+	public PrintJobAttributeEvent(DocPrintJob source,
+			PrintJobAttributeSet attributes) {
 		super(source);
 
 		this.attributes = AttributeSetUtilities.unmodifiableView(attributes);

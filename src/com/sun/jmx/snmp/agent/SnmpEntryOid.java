@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.agent;
 
@@ -38,9 +18,9 @@ class SnmpEntryOid extends SnmpOid {
 	 * starting at given position.
 	 *
 	 * @param oid
-	 *            The original OID array
+	 *              The original OID array
 	 * @param start
-	 *            The position at which to begin.
+	 *              The position at which to begin.
 	 *
 	 **/
 	public SnmpEntryOid(long[] oid, int start) {

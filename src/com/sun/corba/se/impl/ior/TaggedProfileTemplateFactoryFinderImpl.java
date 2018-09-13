@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -38,7 +18,8 @@ import org.omg.CORBA.INTERNAL;
 /**
  * @author
  */
-public class TaggedProfileTemplateFactoryFinderImpl extends IdentifiableFactoryFinderBase {
+public class TaggedProfileTemplateFactoryFinderImpl extends
+		IdentifiableFactoryFinderBase {
 	public TaggedProfileTemplateFactoryFinderImpl(ORB orb) {
 		super(orb);
 	}

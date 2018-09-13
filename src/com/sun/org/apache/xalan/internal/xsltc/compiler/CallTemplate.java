@@ -3,13 +3,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -71,7 +68,8 @@ final class CallTemplate extends Instruction {
 		final String name = getAttribute("name");
 		if (name.length() > 0) {
 			if (!XML11Char.isXML11ValidQName(name)) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name,
+						this);
 				parser.reportError(Constants.ERROR, err);
 			}
 			_name = parser.getQNameIgnoreDefaultNs(name);
@@ -89,7 +87,8 @@ final class CallTemplate extends Instruction {
 		if (template != null) {
 			typeCheckContents(stable);
 		} else {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.TEMPLATE_UNDEF_ERR, _name, this);
+			ErrorMsg err = new ErrorMsg(ErrorMsg.TEMPLATE_UNDEF_ERR, _name,
+					this);
 			throw new TypeCheckError(err);
 		}
 		return Type.Void;
@@ -112,8 +111,8 @@ final class CallTemplate extends Instruction {
 			// a simple named template.
 			else {
 				// Push parameter frame
-				final int push = cpg.addMethodref(TRANSLET_CLASS, PUSH_PARAM_FRAME,
-						PUSH_PARAM_FRAME_SIG);
+				final int push = cpg.addMethodref(TRANSLET_CLASS,
+						PUSH_PARAM_FRAME, PUSH_PARAM_FRAME_SIG);
 				il.append(classGen.loadTranslet());
 				il.append(new INVOKEVIRTUAL(push));
 				translateContents(classGen, methodGen);
@@ -132,8 +131,8 @@ final class CallTemplate extends Instruction {
 		il.append(methodGen.loadCurrentNode());
 
 		// Initialize prefix of method signature
-		StringBuffer methodSig = new StringBuffer(
-				"(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG + NODE_SIG);
+		StringBuffer methodSig = new StringBuffer("(" + DOM_INTF_SIG
+				+ NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG + NODE_SIG);
 
 		// If calling a simply named template, push actual arguments
 		if (_calleeTemplate != null) {
@@ -155,22 +154,26 @@ final class CallTemplate extends Instruction {
 
 		// Complete signature and generate invokevirtual call
 		methodSig.append(")V");
-		il.append(new INVOKEVIRTUAL(cpg.addMethodref(className, methodName, methodSig.toString())));
+		il.append(new INVOKEVIRTUAL(cpg.addMethodref(className, methodName,
+				methodSig.toString())));
 
 		// release temporary result trees
 		if (_parameters != null) {
 			for (int i = 0; i < _parameters.length; i++) {
 				if (_parameters[i] instanceof WithParam) {
-					((WithParam) _parameters[i]).releaseResultTree(classGen, methodGen);
+					((WithParam) _parameters[i]).releaseResultTree(classGen,
+							methodGen);
 				}
 			}
 		}
 
 		// Do not need to call Translet.popParamFrame() if we are
 		// calling a simple named template.
-		if (_calleeTemplate == null && (stylesheet.hasLocalParams() || hasContents())) {
+		if (_calleeTemplate == null && (stylesheet.hasLocalParams()
+				|| hasContents())) {
 			// Pop parameter frame
-			final int pop = cpg.addMethodref(TRANSLET_CLASS, POP_PARAM_FRAME, POP_PARAM_FRAME_SIG);
+			final int pop = cpg.addMethodref(TRANSLET_CLASS, POP_PARAM_FRAME,
+					POP_PARAM_FRAME_SIG);
 			il.append(classGen.loadTranslet());
 			il.append(new INVOKEVIRTUAL(pop));
 		}
@@ -182,7 +185,8 @@ final class CallTemplate extends Instruction {
 	 * simple named template.
 	 */
 	public Template getCalleeTemplate() {
-		Template foundTemplate = getXSLTC().getParser().getSymbolTable().lookupTemplate(_name);
+		Template foundTemplate = getXSLTC().getParser().getSymbolTable()
+				.lookupTemplate(_name);
 
 		return foundTemplate.isSimpleNamedTemplate() ? foundTemplate : null;
 	}
@@ -216,12 +220,13 @@ final class CallTemplate extends Instruction {
 				// Search for a Param with the same name
 				for (int k = 0; k < numParams; k++) {
 					SyntaxTreeNode parm = _parameters[k];
-					if (parm instanceof Param && ((Param) parm).getName().equals(name)) {
+					if (parm instanceof Param && ((Param) parm).getName()
+							.equals(name)) {
 						withParam.setDoParameterOptimization(true);
 						_parameters[k] = withParam;
 						break;
-					} else if (parm instanceof WithParam
-							&& ((WithParam) parm).getName().equals(name)) {
+					} else if (parm instanceof WithParam && ((WithParam) parm)
+							.getName().equals(name)) {
 						withParam.setDoParameterOptimization(true);
 						_parameters[k] = withParam;
 						break;

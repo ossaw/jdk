@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.function;
 
@@ -46,7 +26,7 @@ public interface IntConsumer {
 	 * Performs this operation on the given argument.
 	 *
 	 * @param value
-	 *            the input argument
+	 *              the input argument
 	 */
 	void accept(int value);
 
@@ -58,11 +38,11 @@ public interface IntConsumer {
 	 * {@code after} operation will not be performed.
 	 *
 	 * @param after
-	 *            the operation to perform after this operation
+	 *              the operation to perform after this operation
 	 * @return a composed {@code IntConsumer} that performs in sequence this
 	 *         operation followed by the {@code after} operation
 	 * @throws NullPointerException
-	 *             if {@code after} is null
+	 *                              if {@code after} is null
 	 */
 	default IntConsumer andThen(IntConsumer after) {
 		Objects.requireNonNull(after);

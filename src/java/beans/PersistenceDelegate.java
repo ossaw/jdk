@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -91,12 +71,12 @@ public abstract class PersistenceDelegate {
 	 * this object.
 	 *
 	 * @param oldInstance
-	 *            The instance that will be created by this expression.
+	 *                    The instance that will be created by this expression.
 	 * @param out
-	 *            The stream to which this expression will be written.
+	 *                    The stream to which this expression will be written.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null}
+	 *                              if {@code out} is {@code null}
 	 */
 	public void writeObject(Object oldInstance, Encoder out) {
 		Object newInstance = out.get(oldInstance);
@@ -124,16 +104,16 @@ public abstract class PersistenceDelegate {
 	 * instances are the same.
 	 *
 	 * @param oldInstance
-	 *            The instance to be copied.
+	 *                    The instance to be copied.
 	 * @param newInstance
-	 *            The instance that is to be modified.
+	 *                    The instance that is to be modified.
 	 * @return True if an equivalent copy of <code>newInstance</code> may be
 	 *         created by applying a series of mutations to
 	 *         <code>oldInstance</code>.
 	 */
 	protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-		return (newInstance != null && oldInstance != null
-				&& oldInstance.getClass() == newInstance.getClass());
+		return (newInstance != null && oldInstance != null && oldInstance
+				.getClass() == newInstance.getClass());
 	}
 
 	/**
@@ -145,7 +125,8 @@ public abstract class PersistenceDelegate {
 	 * 
 	 * <pre>
 	 * Field f = (Field) oldInstance;
-	 * return new Expression(f, f.getDeclaringClass(), "getField", new Object[] { f.getName() });
+	 * return new Expression(f, f.getDeclaringClass(), "getField",
+	 * 		new Object[] { f.getName() });
 	 * </pre>
 	 * 
 	 * Note that we declare the value of the returned expression so that the
@@ -153,14 +134,15 @@ public abstract class PersistenceDelegate {
 	 * identical to <code>oldInstance</code>.
 	 *
 	 * @param oldInstance
-	 *            The instance that will be created by this expression.
+	 *                    The instance that will be created by this expression.
 	 * @param out
-	 *            The stream to which this expression will be written.
+	 *                    The stream to which this expression will be written.
 	 * @return An expression whose value is <code>oldInstance</code>.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null} and this value is used in the
-	 *             method
+	 *                              if {@code out} is {@code null} and this
+	 *                              value is used in the
+	 *                              method
 	 */
 	protected abstract Expression instantiate(Object oldInstance, Encoder out);
 
@@ -194,19 +176,21 @@ public abstract class PersistenceDelegate {
 	 * the type's superclass.
 	 *
 	 * @param type
-	 *            the type of the instances
+	 *                    the type of the instances
 	 * @param oldInstance
-	 *            The instance to be copied.
+	 *                    The instance to be copied.
 	 * @param newInstance
-	 *            The instance that is to be modified.
+	 *                    The instance that is to be modified.
 	 * @param out
-	 *            The stream to which any initialization statements should be
-	 *            written.
+	 *                    The stream to which any initialization statements
+	 *                    should be
+	 *                    written.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null}
+	 *                              if {@code out} is {@code null}
 	 */
-	protected void initialize(Class<?> type, Object oldInstance, Object newInstance, Encoder out) {
+	protected void initialize(Class<?> type, Object oldInstance,
+			Object newInstance, Encoder out) {
 		Class<?> superType = type.getSuperclass();
 		PersistenceDelegate info = out.getPersistenceDelegate(superType);
 		info.initialize(superType, oldInstance, newInstance, out);

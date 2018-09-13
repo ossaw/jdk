@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -47,7 +27,7 @@ public class MissingFormatArgumentException extends IllegalFormatException {
 	 * Constructs an instance of this class with the unmatched format specifier.
 	 *
 	 * @param s
-	 *            Format specifier which does not have a corresponding argument
+	 *          Format specifier which does not have a corresponding argument
 	 */
 	public MissingFormatArgumentException(String s) {
 		if (s == null)

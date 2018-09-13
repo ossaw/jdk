@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp;
 
@@ -56,7 +36,7 @@ public class SnmpEngineId implements Serializable {
 	 * Id format &lt;host&gt:&lt;port&gt.
 	 * 
 	 * @param hexString
-	 *            Hexa string.
+	 *                  Hexa string.
 	 */
 	SnmpEngineId(String hexString) {
 		engineId = SnmpTools.ascii2binary(hexString);
@@ -120,11 +100,13 @@ public class SnmpEngineId implements Serializable {
 		if (arr.length < 5)
 			throw new IllegalArgumentException("Id size lower than 5 bytes.");
 		if (arr.length > 32)
-			throw new IllegalArgumentException("Id size greater than 32 bytes.");
+			throw new IllegalArgumentException(
+					"Id size greater than 32 bytes.");
 
 		// octet strings with very first bit = 0 and length != 12 octets
 		if (((arr[0] & 0x80) == 0) && arr.length != 12)
-			throw new IllegalArgumentException("Very first bit = 0 and length != 12 octets");
+			throw new IllegalArgumentException(
+					"Very first bit = 0 and length != 12 octets");
 
 		byte[] zeroedArrays = new byte[arr.length];
 		if (Arrays.equals(zeroedArrays, arr))
@@ -142,17 +124,21 @@ public class SnmpEngineId implements Serializable {
 	 * @return The created engine Id or null if given arr is null or its length
 	 *         == 0;
 	 * @exception IllegalArgumentException
-	 *                when:
-	 *                <ul>
-	 *                <li>octet string lower than 5 bytes.</li>
-	 *                <li>octet string greater than 32 bytes.</li>
-	 *                <li>octet string = all zeros.</li>
-	 *                <li>octet string = all 'ff'H.</li>
-	 *                <li>octet strings with very first bit = 0 and length != 12
-	 *                octets</li>
-	 *                </ul>
+	 *                                     when:
+	 *                                     <ul>
+	 *                                     <li>octet string lower than 5
+	 *                                     bytes.</li>
+	 *                                     <li>octet string greater than 32
+	 *                                     bytes.</li>
+	 *                                     <li>octet string = all zeros.</li>
+	 *                                     <li>octet string = all 'ff'H.</li>
+	 *                                     <li>octet strings with very first bit
+	 *                                     = 0 and length != 12
+	 *                                     octets</li>
+	 *                                     </ul>
 	 */
-	public static SnmpEngineId createEngineId(byte[] arr) throws IllegalArgumentException {
+	public static SnmpEngineId createEngineId(byte[] arr)
+			throws IllegalArgumentException {
 		if ((arr == null) || arr.length == 0)
 			return null;
 		validateId(arr);
@@ -244,20 +230,25 @@ public class SnmpEngineId implements Serializable {
 	 * </ul>
 	 * 
 	 * @exception UnknownHostException
-	 *                if the host name contained in the textual format is
-	 *                unknown.
+	 *                                     if the host name contained in the
+	 *                                     textual format is
+	 *                                     unknown.
 	 * @exception IllegalArgumentException
-	 *                when :
-	 *                <ul>
-	 *                <li>octet string lower than 5 bytes.</li>
-	 *                <li>octet string greater than 32 bytes.</li>
-	 *                <li>octet string = all zeros.</li>
-	 *                <li>octet string = all 'ff'H.</li>
-	 *                <li>octet strings with very first bit = 0 and length != 12
-	 *                octets</li>
-	 *                <li>An IPv6 address format is used in conjonction with the
-	 *                ":" separator</li>
-	 *                </ul>
+	 *                                     when :
+	 *                                     <ul>
+	 *                                     <li>octet string lower than 5
+	 *                                     bytes.</li>
+	 *                                     <li>octet string greater than 32
+	 *                                     bytes.</li>
+	 *                                     <li>octet string = all zeros.</li>
+	 *                                     <li>octet string = all 'ff'H.</li>
+	 *                                     <li>octet strings with very first bit
+	 *                                     = 0 and length != 12
+	 *                                     octets</li>
+	 *                                     <li>An IPv6 address format is used in
+	 *                                     conjonction with the
+	 *                                     ":" separator</li>
+	 *                                     </ul>
 	 * @param str
 	 *            The string to parse.
 	 * @return The generated engine Id or null if the passed string is null.
@@ -275,26 +266,31 @@ public class SnmpEngineId implements Serializable {
 	 * handling (eg: providing @ as separator).
 	 * 
 	 * @param str
-	 *            The string to parse.
+	 *                  The string to parse.
 	 * @param separator
-	 *            the separator to use. If null is provided, the default
-	 *            separator ":" is used.
+	 *                  the separator to use. If null is provided, the default
+	 *                  separator ":" is used.
 	 * @return The generated engine Id or null if the passed string is null.
 	 * @exception UnknownHostException
-	 *                if the host name contained in the textual format is
-	 *                unknown.
+	 *                                     if the host name contained in the
+	 *                                     textual format is
+	 *                                     unknown.
 	 * @exception IllegalArgumentException
-	 *                when :
-	 *                <ul>
-	 *                <li>octet string lower than 5 bytes.</li>
-	 *                <li>octet string greater than 32 bytes.</li>
-	 *                <li>octet string = all zeros.</li>
-	 *                <li>octet string = all 'ff'H.</li>
-	 *                <li>octet strings with very first bit = 0 and length != 12
-	 *                octets</li>
-	 *                <li>An IPv6 address format is used in conjonction with the
-	 *                ":" separator</li>
-	 *                </ul>
+	 *                                     when :
+	 *                                     <ul>
+	 *                                     <li>octet string lower than 5
+	 *                                     bytes.</li>
+	 *                                     <li>octet string greater than 32
+	 *                                     bytes.</li>
+	 *                                     <li>octet string = all zeros.</li>
+	 *                                     <li>octet string = all 'ff'H.</li>
+	 *                                     <li>octet strings with very first bit
+	 *                                     = 0 and length != 12
+	 *                                     octets</li>
+	 *                                     <li>An IPv6 address format is used in
+	 *                                     conjonction with the
+	 *                                     ":" separator</li>
+	 *                                     </ul>
 	 * @since 1.5
 	 */
 	public static SnmpEngineId createEngineId(String str, String separator)
@@ -321,7 +317,8 @@ public class SnmpEngineId implements Serializable {
 			try {
 				address = token.nextToken();
 			} catch (NoSuchElementException e) {
-				throw new IllegalArgumentException("Passed string is invalid : [" + str + "]");
+				throw new IllegalArgumentException(
+						"Passed string is invalid : [" + str + "]");
 			}
 			if (!address.equals(separator)) {
 				objAddress = InetAddress.getByName(address);
@@ -329,7 +326,8 @@ public class SnmpEngineId implements Serializable {
 					token.nextToken();
 				} catch (NoSuchElementException e) {
 					// No need to go further, no port.
-					eng = SnmpEngineId.createEngineId(objAddress, objPort, objIana);
+					eng = SnmpEngineId.createEngineId(objAddress, objPort,
+							objIana);
 					eng.setStringValue(str);
 					return eng;
 				}
@@ -352,7 +350,8 @@ public class SnmpEngineId implements Serializable {
 					token.nextToken();
 				} catch (NoSuchElementException e) {
 					// No need to go further, no iana.
-					eng = SnmpEngineId.createEngineId(objAddress, objPort, objIana);
+					eng = SnmpEngineId.createEngineId(objAddress, objPort,
+							objIana);
 					eng.setStringValue(str);
 					return eng;
 				}
@@ -377,9 +376,9 @@ public class SnmpEngineId implements Serializable {
 			return eng;
 
 		} catch (Exception e) {
-			throw new IllegalArgumentException(
-					"Passed string is invalid : [" + str + "]. Check that the used separator ["
-							+ separator + "] is compatible with IPv6 address format.");
+			throw new IllegalArgumentException("Passed string is invalid : ["
+					+ str + "]. Check that the used separator [" + separator
+					+ "] is compatible with IPv6 address format.");
 		}
 
 	}
@@ -390,13 +389,15 @@ public class SnmpEngineId implements Serializable {
 	 * creation algorithm uses the SUN Microsystems IANA number (42).
 	 * 
 	 * @param port
-	 *            The TCP/IP port the SNMPv3 Adaptor Server is listening to.
+	 *             The TCP/IP port the SNMPv3 Adaptor Server is listening to.
 	 * @return The generated engine Id.
 	 * @exception UnknownHostException
-	 *                if the local host name used to calculate the id is
-	 *                unknown.
+	 *                                 if the local host name used to calculate
+	 *                                 the id is
+	 *                                 unknown.
 	 */
-	public static SnmpEngineId createEngineId(int port) throws UnknownHostException {
+	public static SnmpEngineId createEngineId(int port)
+			throws UnknownHostException {
 		int suniana = 42;
 		InetAddress address = null;
 		address = InetAddress.getLocalHost();
@@ -409,12 +410,12 @@ public class SnmpEngineId implements Serializable {
 	 * algorithm uses the SUN Microsystems IANA number (42).
 	 * 
 	 * @param address
-	 *            The IP address the SNMPv3 Adaptor Server is listening to.
+	 *                The IP address the SNMPv3 Adaptor Server is listening to.
 	 * @param port
-	 *            The TCP/IP port the SNMPv3 Adaptor Server is listening to.
+	 *                The TCP/IP port the SNMPv3 Adaptor Server is listening to.
 	 * @return The generated engine Id.
 	 * @exception UnknownHostException.
-	 *                if the provided address is null.
+	 *            if the provided address is null.
 	 */
 	public static SnmpEngineId createEngineId(InetAddress address, int port)
 			throws IllegalArgumentException {
@@ -430,15 +431,17 @@ public class SnmpEngineId implements Serializable {
 	 * algorithm uses the passed IANA number.
 	 * 
 	 * @param port
-	 *            The TCP/IP port the SNMPv3 Adaptor Server is listening to.
+	 *             The TCP/IP port the SNMPv3 Adaptor Server is listening to.
 	 * @param iana
-	 *            Your enterprise IANA number.
+	 *             Your enterprise IANA number.
 	 * @exception UnknownHostException
-	 *                if the local host name used to calculate the id is
-	 *                unknown.
+	 *                                 if the local host name used to calculate
+	 *                                 the id is
+	 *                                 unknown.
 	 * @return The generated engine Id.
 	 */
-	public static SnmpEngineId createEngineId(int port, int iana) throws UnknownHostException {
+	public static SnmpEngineId createEngineId(int port, int iana)
+			throws UnknownHostException {
 		InetAddress address = null;
 		address = InetAddress.getLocalHost();
 		return createEngineId(address, port, iana);
@@ -450,16 +453,18 @@ public class SnmpEngineId implements Serializable {
 	 * and IPv6 hosts. The creation algorithm uses the passed IANA number.
 	 * 
 	 * @param addr
-	 *            The IP address the SNMPv3 Adaptor Server is listening to.
+	 *             The IP address the SNMPv3 Adaptor Server is listening to.
 	 * @param port
-	 *            The TCP/IP port the SNMPv3 Adaptor Server is listening to.
+	 *             The TCP/IP port the SNMPv3 Adaptor Server is listening to.
 	 * @param iana
-	 *            Your enterprise IANA number.
+	 *             Your enterprise IANA number.
 	 * @return The generated engine Id.
 	 * @exception UnknownHostException
-	 *                if the provided <CODE>InetAddress </CODE> is null.
+	 *                                 if the provided <CODE>InetAddress </CODE>
+	 *                                 is null.
 	 */
-	public static SnmpEngineId createEngineId(InetAddress addr, int port, int iana) {
+	public static SnmpEngineId createEngineId(InetAddress addr, int port,
+			int iana) {
 		if (addr == null)
 			throw new IllegalArgumentException("InetAddress is null.");
 		byte[] address = addr.getAddress();
@@ -495,13 +500,14 @@ public class SnmpEngineId implements Serializable {
 	 * addresses. The creation algorithm uses the passed IANA number.
 	 * 
 	 * @param iana
-	 *            Your enterprise IANA number.
+	 *             Your enterprise IANA number.
 	 * @param addr
-	 *            The IP address the SNMPv3 Adaptor Server is listening to.
+	 *             The IP address the SNMPv3 Adaptor Server is listening to.
 	 * @return The generated engine Id.
 	 * @since 1.5
 	 * @exception UnknownHostException
-	 *                if the provided <CODE>InetAddress </CODE> is null.
+	 *                                 if the provided <CODE>InetAddress </CODE>
+	 *                                 is null.
 	 */
 	public static SnmpEngineId createEngineId(int iana, InetAddress addr) {
 		if (addr == null)
@@ -532,11 +538,12 @@ public class SnmpEngineId implements Serializable {
 	 * addresses. The creation algorithm uses the sun IANA number (42).
 	 * 
 	 * @param addr
-	 *            The IP address the SNMPv3 Adaptor Server is listening to.
+	 *             The IP address the SNMPv3 Adaptor Server is listening to.
 	 * @return The generated engine Id.
 	 * @since 1.5
 	 * @exception UnknownHostException
-	 *                if the provided <CODE>InetAddress</CODE> is null.
+	 *                                 if the provided <CODE>InetAddress</CODE>
+	 *                                 is null.
 	 */
 	public static SnmpEngineId createEngineId(InetAddress addr) {
 		return createEngineId(42, addr);

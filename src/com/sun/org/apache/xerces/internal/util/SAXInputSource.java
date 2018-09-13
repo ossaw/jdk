@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -92,7 +89,7 @@ public final class SAXInputSource extends XMLInputSource {
 	 * Sets the public identifier.
 	 *
 	 * @param publicId
-	 *            The new public identifier.
+	 *                 The new public identifier.
 	 */
 	public void setPublicId(String publicId) {
 		super.setPublicId(publicId);
@@ -106,7 +103,7 @@ public final class SAXInputSource extends XMLInputSource {
 	 * Sets the system identifier.
 	 *
 	 * @param systemId
-	 *            The new system identifier.
+	 *                 The new system identifier.
 	 */
 	public void setSystemId(String systemId) {
 		super.setSystemId(systemId);
@@ -123,7 +120,7 @@ public final class SAXInputSource extends XMLInputSource {
 	 * auto-detected, then the encoding should also be set on this object.
 	 *
 	 * @param byteStream
-	 *            The new byte stream.
+	 *                   The new byte stream.
 	 */
 	public void setByteStream(InputStream byteStream) {
 		super.setByteStream(byteStream);
@@ -141,7 +138,7 @@ public final class SAXInputSource extends XMLInputSource {
 	 * if known.
 	 *
 	 * @param charStream
-	 *            The new character stream.
+	 *                   The new character stream.
 	 *
 	 * @see #setEncoding
 	 */
@@ -157,7 +154,7 @@ public final class SAXInputSource extends XMLInputSource {
 	 * Sets the encoding of the stream.
 	 *
 	 * @param encoding
-	 *            The new encoding.
+	 *                 The new encoding.
 	 */
 	public void setEncoding(String encoding) {
 		super.setEncoding(encoding);

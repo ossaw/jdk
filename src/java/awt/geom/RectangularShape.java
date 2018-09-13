@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -52,8 +32,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * @see RoundRectangle2D
 	 * @since 1.2
 	 */
-	protected RectangularShape() {
-	}
+	protected RectangularShape() {}
 
 	/**
 	 * Returns the X coordinate of the upper-left corner of the framing
@@ -196,15 +175,15 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * <code>Shape</code> to the specified rectangular values.
 	 *
 	 * @param x
-	 *            the X coordinate of the upper-left corner of the specified
-	 *            rectangular shape
+	 *          the X coordinate of the upper-left corner of the specified
+	 *          rectangular shape
 	 * @param y
-	 *            the Y coordinate of the upper-left corner of the specified
-	 *            rectangular shape
+	 *          the Y coordinate of the upper-left corner of the specified
+	 *          rectangular shape
 	 * @param w
-	 *            the width of the specified rectangular shape
+	 *          the width of the specified rectangular shape
 	 * @param h
-	 *            the height of the specified rectangular shape
+	 *          the height of the specified rectangular shape
 	 * @see #getFrame
 	 * @since 1.2
 	 */
@@ -217,9 +196,9 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * subclasses of <code>RectangularShape</code> to define their geometry.
 	 * 
 	 * @param loc
-	 *            the specified <code>Point2D</code>
+	 *             the specified <code>Point2D</code>
 	 * @param size
-	 *            the specified <code>Dimension2D</code>
+	 *             the specified <code>Dimension2D</code>
 	 * @see #getFrame
 	 * @since 1.2
 	 */
@@ -233,7 +212,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * of <code>RectangularShape</code> to define their geometry.
 	 * 
 	 * @param r
-	 *            the specified <code>Rectangle2D</code>
+	 *          the specified <code>Rectangle2D</code>
 	 * @see #getFrame
 	 * @since 1.2
 	 */
@@ -247,16 +226,17 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * the subclasses of <code>RectangularShape</code> to define their geometry.
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the specified diagonal
+	 *           the X coordinate of the start point of the specified diagonal
 	 * @param y1
-	 *            the Y coordinate of the start point of the specified diagonal
+	 *           the Y coordinate of the start point of the specified diagonal
 	 * @param x2
-	 *            the X coordinate of the end point of the specified diagonal
+	 *           the X coordinate of the end point of the specified diagonal
 	 * @param y2
-	 *            the Y coordinate of the end point of the specified diagonal
+	 *           the Y coordinate of the end point of the specified diagonal
 	 * @since 1.2
 	 */
-	public void setFrameFromDiagonal(double x1, double y1, double x2, double y2) {
+	public void setFrameFromDiagonal(double x1, double y1, double x2,
+			double y2) {
 		if (x2 < x1) {
 			double t = x1;
 			x1 = x2;
@@ -277,9 +257,9 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * define their geometry.
 	 *
 	 * @param p1
-	 *            the start <code>Point2D</code> of the specified diagonal
+	 *           the start <code>Point2D</code> of the specified diagonal
 	 * @param p2
-	 *            the end <code>Point2D</code> of the specified diagonal
+	 *           the end <code>Point2D</code> of the specified diagonal
 	 * @since 1.2
 	 */
 	public void setFrameFromDiagonal(Point2D p1, Point2D p2) {
@@ -293,16 +273,17 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * <code>RectangularShape</code> to define their geometry.
 	 *
 	 * @param centerX
-	 *            the X coordinate of the specified center point
+	 *                the X coordinate of the specified center point
 	 * @param centerY
-	 *            the Y coordinate of the specified center point
+	 *                the Y coordinate of the specified center point
 	 * @param cornerX
-	 *            the X coordinate of the specified corner point
+	 *                the X coordinate of the specified corner point
 	 * @param cornerY
-	 *            the Y coordinate of the specified corner point
+	 *                the Y coordinate of the specified corner point
 	 * @since 1.2
 	 */
-	public void setFrameFromCenter(double centerX, double centerY, double cornerX, double cornerY) {
+	public void setFrameFromCenter(double centerX, double centerY,
+			double cornerX, double cornerY) {
 		double halfW = Math.abs(cornerX - centerX);
 		double halfH = Math.abs(cornerY - centerY);
 		setFrame(centerX - halfW, centerY - halfH, halfW * 2.0, halfH * 2.0);
@@ -315,13 +296,14 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * <code>RectangularShape</code> to define their geometry.
 	 * 
 	 * @param center
-	 *            the specified center <code>Point2D</code>
+	 *               the specified center <code>Point2D</code>
 	 * @param corner
-	 *            the specified corner <code>Point2D</code>
+	 *               the specified corner <code>Point2D</code>
 	 * @since 1.2
 	 */
 	public void setFrameFromCenter(Point2D center, Point2D corner) {
-		setFrameFromCenter(center.getX(), center.getY(), corner.getX(), corner.getY());
+		setFrameFromCenter(center.getX(), center.getY(), corner.getX(), corner
+				.getY());
 	}
 
 	/**
@@ -368,7 +350,8 @@ public abstract class RectangularShape implements Shape, Cloneable {
 		double y1 = Math.floor(y);
 		double x2 = Math.ceil(x + width);
 		double y2 = Math.ceil(y + height);
-		return new Rectangle((int) x1, (int) y1, (int) (x2 - x1), (int) (y2 - y1));
+		return new Rectangle((int) x1, (int) y1, (int) (x2 - x1), (int) (y2
+				- y1));
 	}
 
 	/**
@@ -387,13 +370,16 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * transformed accordingly.
 	 * 
 	 * @param at
-	 *            an optional <code>AffineTransform</code> to be applied to the
-	 *            coordinates as they are returned in the iteration, or
-	 *            <code>null</code> if untransformed coordinates are desired.
+	 *                 an optional <code>AffineTransform</code> to be applied to
+	 *                 the
+	 *                 coordinates as they are returned in the iteration, or
+	 *                 <code>null</code> if untransformed coordinates are
+	 *                 desired.
 	 * @param flatness
-	 *            the maximum distance that the line segments used to
-	 *            approximate the curved segments are allowed to deviate from
-	 *            any point on the original curve
+	 *                 the maximum distance that the line segments used to
+	 *                 approximate the curved segments are allowed to deviate
+	 *                 from
+	 *                 any point on the original curve
 	 * @return a <code>PathIterator</code> object that provides access to the
 	 *         <code>Shape</code> object's flattened geometry.
 	 * @since 1.2
@@ -408,7 +394,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
 	 * 
 	 * @return a clone of this instance.
 	 * @exception OutOfMemoryError
-	 *                if there is not enough memory.
+	 *                             if there is not enough memory.
 	 * @see java.lang.Cloneable
 	 * @since 1.2
 	 */

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -220,7 +217,8 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
 				while (next != null) {
 
 					if (next.getNodeType() == Node.ENTITY_REFERENCE_NODE) {
-						value = ((EntityReferenceImpl) next).getEntityRefValue();
+						value = ((EntityReferenceImpl) next)
+								.getEntityRefValue();
 					} else if (next.getNodeType() == Node.TEXT_NODE) {
 						value = next.getNodeValue();
 					} else {
@@ -261,8 +259,9 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
 
 			// If entity's definition exists, clone its kids
 			isReadOnly(false);
-			for (Node defkid = entDef.getFirstChild(); defkid != null; defkid = defkid
-					.getNextSibling()) {
+			for (Node defkid = entDef
+					.getFirstChild(); defkid != null; defkid = defkid
+							.getNextSibling()) {
 				Node newkid = defkid.cloneNode(true);
 				insertBefore(newkid, null);
 			}

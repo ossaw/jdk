@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -89,9 +69,9 @@ public interface SeekableByteChannel extends ByteChannel {
 	 *         position
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                If this channel is closed
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                If some other I/O error occurs
 	 */
 	long position() throws IOException;
 
@@ -115,17 +95,18 @@ public interface SeekableByteChannel extends ByteChannel {
 	 * writing.
 	 *
 	 * @param newPosition
-	 *            The new position, a non-negative integer counting the number
-	 *            of bytes from the beginning of the entity
+	 *                    The new position, a non-negative integer counting the
+	 *                    number
+	 *                    of bytes from the beginning of the entity
 	 *
 	 * @return This channel
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                  If this channel is closed
 	 * @throws IllegalArgumentException
-	 *             If the new position is negative
+	 *                                  If the new position is negative
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                  If some other I/O error occurs
 	 */
 	SeekableByteChannel position(long newPosition) throws IOException;
 
@@ -135,9 +116,9 @@ public interface SeekableByteChannel extends ByteChannel {
 	 * @return The current size, measured in bytes
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                If this channel is closed
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                If some other I/O error occurs
 	 */
 	long size() throws IOException;
 
@@ -158,18 +139,19 @@ public interface SeekableByteChannel extends ByteChannel {
 	 * {@link java.nio.file.StandardOpenOption#APPEND APPEND} option.
 	 *
 	 * @param size
-	 *            The new size, a non-negative byte count
+	 *             The new size, a non-negative byte count
 	 *
 	 * @return This channel
 	 *
 	 * @throws NonWritableChannelException
-	 *             If this channel was not opened for writing
+	 *                                     If this channel was not opened for
+	 *                                     writing
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                     If this channel is closed
 	 * @throws IllegalArgumentException
-	 *             If the new size is negative
+	 *                                     If the new size is negative
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
 	SeekableByteChannel truncate(long size) throws IOException;
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -332,10 +312,10 @@ public class JRootPane extends JComponent implements Accessible {
 	boolean useTrueDoubleBuffering = true;
 
 	static {
-		LOG_DISABLE_TRUE_DOUBLE_BUFFERING = AccessController
-				.doPrivileged(new GetBooleanAction("swing.logDoubleBufferingDisable"));
-		IGNORE_DISABLE_TRUE_DOUBLE_BUFFERING = AccessController
-				.doPrivileged(new GetBooleanAction("swing.ignoreDoubleBufferingDisable"));
+		LOG_DISABLE_TRUE_DOUBLE_BUFFERING = AccessController.doPrivileged(
+				new GetBooleanAction("swing.logDoubleBufferingDisable"));
+		IGNORE_DISABLE_TRUE_DOUBLE_BUFFERING = AccessController.doPrivileged(
+				new GetBooleanAction("swing.ignoreDoubleBufferingDisable"));
 	}
 
 	/**
@@ -388,17 +368,22 @@ public class JRootPane extends JComponent implements Accessible {
 	 * is a bound property.
 	 *
 	 * @param windowDecorationStyle
-	 *            Constant identifying Window decorations to provide.
+	 *                              Constant identifying Window decorations to
+	 *                              provide.
 	 * @see JDialog#setDefaultLookAndFeelDecorated
 	 * @see JFrame#setDefaultLookAndFeelDecorated
 	 * @see LookAndFeel#getSupportsWindowDecorations
 	 * @throws IllegalArgumentException
-	 *             if <code>style</code> is not one of: <code>NONE</code>,
-	 *             <code>FRAME</code>, <code>PLAIN_DIALOG</code>,
-	 *             <code>INFORMATION_DIALOG</code>, <code>ERROR_DIALOG</code>,
-	 *             <code>COLOR_CHOOSER_DIALOG</code>,
-	 *             <code>FILE_CHOOSER_DIALOG</code>,
-	 *             <code>QUESTION_DIALOG</code>, or <code>WARNING_DIALOG</code>.
+	 *                                  if <code>style</code> is not one of:
+	 *                                  <code>NONE</code>,
+	 *                                  <code>FRAME</code>,
+	 *                                  <code>PLAIN_DIALOG</code>,
+	 *                                  <code>INFORMATION_DIALOG</code>,
+	 *                                  <code>ERROR_DIALOG</code>,
+	 *                                  <code>COLOR_CHOOSER_DIALOG</code>,
+	 *                                  <code>FILE_CHOOSER_DIALOG</code>,
+	 *                                  <code>QUESTION_DIALOG</code>, or
+	 *                                  <code>WARNING_DIALOG</code>.
 	 * @since 1.4
 	 * @beaninfo bound: true enum: NONE JRootPane.NONE FRAME JRootPane.FRAME
 	 *           PLAIN_DIALOG JRootPane.PLAIN_DIALOG INFORMATION_DIALOG
@@ -412,7 +397,8 @@ public class JRootPane extends JComponent implements Accessible {
 	 *           provide
 	 */
 	public void setWindowDecorationStyle(int windowDecorationStyle) {
-		if (windowDecorationStyle < 0 || windowDecorationStyle > WARNING_DIALOG) {
+		if (windowDecorationStyle < 0
+				|| windowDecorationStyle > WARNING_DIALOG) {
 			throw new IllegalArgumentException("Invalid decoration style");
 		}
 		int oldWindowDecorationStyle = getWindowDecorationStyle();
@@ -435,7 +421,7 @@ public class JRootPane extends JComponent implements Accessible {
 	 * Sets the L&amp;F object that renders this component.
 	 *
 	 * @param ui
-	 *            the <code>LabelUI</code> L&amp;F object
+	 *           the <code>LabelUI</code> L&amp;F object
 	 * @see UIDefaults#getUI
 	 * @beaninfo bound: true hidden: true expert: true attribute: visualUpdate
 	 *           true description: The UI object that implements the Component's
@@ -537,7 +523,7 @@ public class JRootPane extends JComponent implements Accessible {
 	 * Adds or changes the menu bar used in the layered pane.
 	 * 
 	 * @param menu
-	 *            the <code>JMenuBar</code> to add
+	 *             the <code>JMenuBar</code> to add
 	 */
 	public void setJMenuBar(JMenuBar menu) {
 		if (menuBar != null && menuBar.getParent() == layeredPane)
@@ -554,7 +540,7 @@ public class JRootPane extends JComponent implements Accessible {
 	 * @deprecated As of Swing version 1.0.3 replaced by
 	 *             <code>setJMenuBar(JMenuBar menu)</code>.
 	 * @param menu
-	 *            the <code>JMenuBar</code> to add.
+	 *             the <code>JMenuBar</code> to add.
 	 */
 	@Deprecated
 	public void setMenuBar(JMenuBar menu) {
@@ -597,14 +583,15 @@ public class JRootPane extends JComponent implements Accessible {
 	 * with an opaque <code>JComponent</code>.
 	 *
 	 * @param content
-	 *            the <code>Container</code> to use for component-contents
+	 *                the <code>Container</code> to use for component-contents
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the content pane parameter is
-	 *                <code>null</code>
+	 *            (a runtime exception) if the content pane parameter is
+	 *            <code>null</code>
 	 */
 	public void setContentPane(Container content) {
 		if (content == null)
-			throw new IllegalComponentStateException("contentPane cannot be set to null.");
+			throw new IllegalComponentStateException(
+					"contentPane cannot be set to null.");
 		if (contentPane != null && contentPane.getParent() == layeredPane)
 			layeredPane.remove(contentPane);
 		contentPane = content;
@@ -628,14 +615,15 @@ public class JRootPane extends JComponent implements Accessible {
 	 * a content pane and an optional <code>JMenuBar</code>.
 	 *
 	 * @param layered
-	 *            the <code>JLayeredPane</code> to use
+	 *                the <code>JLayeredPane</code> to use
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the layered pane parameter is
-	 *                <code>null</code>
+	 *            (a runtime exception) if the layered pane parameter is
+	 *            <code>null</code>
 	 */
 	public void setLayeredPane(JLayeredPane layered) {
 		if (layered == null)
-			throw new IllegalComponentStateException("layeredPane cannot be set to null.");
+			throw new IllegalComponentStateException(
+					"layeredPane cannot be set to null.");
 		if (layeredPane != null && layeredPane.getParent() == this)
 			this.remove(layeredPane);
 		layeredPane = layered;
@@ -677,17 +665,19 @@ public class JRootPane extends JComponent implements Accessible {
 	 * </pre>
 	 *
 	 * @param glass
-	 *            the <code>Component</code> to use as the glass pane for this
-	 *            <code>JRootPane</code>
+	 *              the <code>Component</code> to use as the glass pane for this
+	 *              <code>JRootPane</code>
 	 * @exception NullPointerException
-	 *                if the <code>glass</code> parameter is <code>null</code>
+	 *                                 if the <code>glass</code> parameter is
+	 *                                 <code>null</code>
 	 */
 	public void setGlassPane(Component glass) {
 		if (glass == null) {
 			throw new NullPointerException("glassPane cannot be set to null.");
 		}
 
-		AWTAccessor.getComponentAccessor().setMixingCutoutShape(glass, new Rectangle());
+		AWTAccessor.getComponentAccessor().setMixingCutoutShape(glass,
+				new Rectangle());
 
 		boolean visible = false;
 		if (glassPane != null && glassPane.getParent() == this) {
@@ -774,7 +764,8 @@ public class JRootPane extends JComponent implements Accessible {
 	 *
 	 * @see JButton#isDefaultButton
 	 * @param defaultButton
-	 *            the <code>JButton</code> which is to be the default button
+	 *                      the <code>JButton</code> which is to be the default
+	 *                      button
 	 *
 	 * @beaninfo description: The button activated by default in this root pane
 	 */
@@ -817,11 +808,13 @@ public class JRootPane extends JComponent implements Accessible {
 		if (useTrueDoubleBuffering) {
 			if (!IGNORE_DISABLE_TRUE_DOUBLE_BUFFERING) {
 				if (LOG_DISABLE_TRUE_DOUBLE_BUFFERING) {
-					System.out.println("Disabling true double buffering for " + this);
+					System.out.println("Disabling true double buffering for "
+							+ this);
 					Thread.dumpStack();
 				}
 				useTrueDoubleBuffering = false;
-				RepaintManager.currentManager(this).doubleBufferingChanged(this);
+				RepaintManager.currentManager(this).doubleBufferingChanged(
+						this);
 			}
 		}
 	}
@@ -863,17 +856,18 @@ public class JRootPane extends JComponent implements Accessible {
 	 * child.
 	 *
 	 * @param comp
-	 *            the component to be enhanced
+	 *                    the component to be enhanced
 	 * @param constraints
-	 *            the constraints to be respected
+	 *                    the constraints to be respected
 	 * @param index
-	 *            the index
+	 *                    the index
 	 */
 	protected void addImpl(Component comp, Object constraints, int index) {
 		super.addImpl(comp, constraints, index);
 
 		/// We are making sure the glassPane is on top.
-		if (glassPane != null && glassPane.getParent() == this && getComponent(0) != glassPane) {
+		if (glassPane != null && glassPane.getParent() == this && getComponent(
+				0) != glassPane) {
 			add(glassPane, 0);
 		}
 	}
@@ -899,7 +893,8 @@ public class JRootPane extends JComponent implements Accessible {
 		 * Returns the amount of space the layout would like to have.
 		 *
 		 * @param parent
-		 *            the Container for which this layout manager is being used
+		 *               the Container for which this layout manager is being
+		 *               used
 		 * @return a Dimension object containing the layout's preferred size
 		 */
 		public Dimension preferredLayoutSize(Container parent) {
@@ -916,15 +911,16 @@ public class JRootPane extends JComponent implements Accessible {
 			} else {
 				mbd = new Dimension(0, 0);
 			}
-			return new Dimension(Math.max(rd.width, mbd.width) + i.left + i.right,
-					rd.height + mbd.height + i.top + i.bottom);
+			return new Dimension(Math.max(rd.width, mbd.width) + i.left
+					+ i.right, rd.height + mbd.height + i.top + i.bottom);
 		}
 
 		/**
 		 * Returns the minimum amount of space the layout needs.
 		 *
 		 * @param parent
-		 *            the Container for which this layout manager is being used
+		 *               the Container for which this layout manager is being
+		 *               used
 		 * @return a Dimension object containing the layout's minimum size
 		 */
 		public Dimension minimumLayoutSize(Container parent) {
@@ -940,15 +936,16 @@ public class JRootPane extends JComponent implements Accessible {
 			} else {
 				mbd = new Dimension(0, 0);
 			}
-			return new Dimension(Math.max(rd.width, mbd.width) + i.left + i.right,
-					rd.height + mbd.height + i.top + i.bottom);
+			return new Dimension(Math.max(rd.width, mbd.width) + i.left
+					+ i.right, rd.height + mbd.height + i.top + i.bottom);
 		}
 
 		/**
 		 * Returns the maximum amount of space the layout can use.
 		 *
 		 * @param target
-		 *            the Container for which this layout manager is being used
+		 *               the Container for which this layout manager is being
+		 *               used
 		 * @return a Dimension object containing the layout's maximum size
 		 */
 		public Dimension maximumLayoutSize(Container target) {
@@ -963,11 +960,11 @@ public class JRootPane extends JComponent implements Accessible {
 				rd = contentPane.getMaximumSize();
 			} else {
 				// This is silly, but should stop an overflow error
-				rd = new Dimension(Integer.MAX_VALUE,
-						Integer.MAX_VALUE - i.top - i.bottom - mbd.height - 1);
+				rd = new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE - i.top
+						- i.bottom - mbd.height - 1);
 			}
-			return new Dimension(Math.min(rd.width, mbd.width) + i.left + i.right,
-					rd.height + mbd.height + i.top + i.bottom);
+			return new Dimension(Math.min(rd.width, mbd.width) + i.left
+					+ i.right, rd.height + mbd.height + i.top + i.bottom);
 		}
 
 		/**
@@ -975,7 +972,8 @@ public class JRootPane extends JComponent implements Accessible {
 		 * container.
 		 *
 		 * @param parent
-		 *            the Container for which this layout manager is being used
+		 *               the Container for which this layout manager is being
+		 *               used
 		 */
 		public void layoutContainer(Container parent) {
 			Rectangle b = parent.getBounds();
@@ -1002,14 +1000,11 @@ public class JRootPane extends JComponent implements Accessible {
 			}
 		}
 
-		public void addLayoutComponent(String name, Component comp) {
-		}
+		public void addLayoutComponent(String name, Component comp) {}
 
-		public void removeLayoutComponent(Component comp) {
-		}
+		public void removeLayoutComponent(Component comp) {}
 
-		public void addLayoutComponent(Component comp, Object constraints) {
-		}
+		public void addLayoutComponent(Component comp, Object constraints) {}
 
 		public float getLayoutAlignmentX(Container target) {
 			return 0.0f;
@@ -1019,8 +1014,7 @@ public class JRootPane extends JComponent implements Accessible {
 			return 0.0f;
 		}
 
-		public void invalidateLayout(Container target) {
-		}
+		public void invalidateLayout(Container target) {}
 	}
 
 	/**
@@ -1097,7 +1091,7 @@ public class JRootPane extends JComponent implements Accessible {
 		 * and so on.
 		 *
 		 * @param i
-		 *            zero-based index of child
+		 *          zero-based index of child
 		 * @return the Accessible child of the object
 		 * @see #getAccessibleChildrenCount
 		 */

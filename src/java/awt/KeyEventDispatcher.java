@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -80,7 +60,7 @@ public interface KeyEventDispatcher {
 	 * KeyboardFocusManager will not dispatch a consumed KeyEvent.
 	 *
 	 * @param e
-	 *            the KeyEvent to dispatch
+	 *          the KeyEvent to dispatch
 	 * @return <code>true</code> if the KeyboardFocusManager should take no
 	 *         further action with regard to the KeyEvent; <code>false</code>
 	 *         otherwise

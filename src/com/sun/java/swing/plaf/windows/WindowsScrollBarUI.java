@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -56,7 +36,7 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 	 * Creates a UI for a JScrollBar.
 	 *
 	 * @param c
-	 *            the text field
+	 *          the text field
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -77,7 +57,8 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 		}
 	}
 
-	private static Dimension getSize(Component component, XPStyle xp, Part part) {
+	private static Dimension getSize(Component component, XPStyle xp,
+			Part part) {
 		Skin skin = xp.getSkin(component, part);
 		return new Dimension(skin.getWidth(), skin.getHeight());
 	}
@@ -87,7 +68,8 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 		if ((horizontalThumbSize == null) || (verticalThumbSize == null)) {
 			return super.getMinimumThumbSize();
 		}
-		return JScrollBar.HORIZONTAL == scrollbar.getOrientation() ? horizontalThumbSize
+		return JScrollBar.HORIZONTAL == scrollbar.getOrientation()
+				? horizontalThumbSize
 				: verticalThumbSize;
 	}
 
@@ -110,17 +92,17 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 	}
 
 	protected JButton createDecreaseButton(int orientation) {
-		return new WindowsArrowButton(orientation, UIManager.getColor("ScrollBar.thumb"),
-				UIManager.getColor("ScrollBar.thumbShadow"),
-				UIManager.getColor("ScrollBar.thumbDarkShadow"),
-				UIManager.getColor("ScrollBar.thumbHighlight"));
+		return new WindowsArrowButton(orientation, UIManager.getColor(
+				"ScrollBar.thumb"), UIManager.getColor("ScrollBar.thumbShadow"),
+				UIManager.getColor("ScrollBar.thumbDarkShadow"), UIManager
+						.getColor("ScrollBar.thumbHighlight"));
 	}
 
 	protected JButton createIncreaseButton(int orientation) {
-		return new WindowsArrowButton(orientation, UIManager.getColor("ScrollBar.thumb"),
-				UIManager.getColor("ScrollBar.thumbShadow"),
-				UIManager.getColor("ScrollBar.thumbDarkShadow"),
-				UIManager.getColor("ScrollBar.thumbHighlight"));
+		return new WindowsArrowButton(orientation, UIManager.getColor(
+				"ScrollBar.thumb"), UIManager.getColor("ScrollBar.thumbShadow"),
+				UIManager.getColor("ScrollBar.thumbDarkShadow"), UIManager
+						.getColor("ScrollBar.thumbHighlight"));
 	}
 
 	/**
@@ -169,7 +151,8 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 		} else if (thumbGrid == null) {
 			super.paintTrack(g, c, trackBounds);
 		} else {
-			thumbGrid.paint(g, trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+			thumbGrid.paint(g, trackBounds.x, trackBounds.y, trackBounds.width,
+					trackBounds.height);
 			if (trackHighlight == DECREASE_HIGHLIGHT) {
 				paintDecreaseHighlight(g);
 			} else if (trackHighlight == INCREASE_HIGHLIGHT) {
@@ -193,7 +176,8 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 				state = State.HOT;
 			} else if (XPStyle.isVista()) {
 				if ((incrButton != null && incrButton.getModel().isRollover())
-						|| (decrButton != null && decrButton.getModel().isRollover())) {
+						|| (decrButton != null && decrButton.getModel()
+								.isRollover())) {
 					state = State.HOVER;
 				}
 			}
@@ -203,15 +187,18 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 			// Paint gripper
 			Part gripperPart = v ? Part.SBP_GRIPPERVERT : Part.SBP_GRIPPERHORZ;
 			Skin skin = xp.getSkin(sb, gripperPart);
-			Insets gripperInsets = xp.getMargin(c, thumbPart, null, Prop.CONTENTMARGINS);
-			if (gripperInsets == null
-					|| (v && (thumbBounds.height - gripperInsets.top - gripperInsets.bottom >= skin
-							.getHeight()))
-					|| (!v && (thumbBounds.width - gripperInsets.left - gripperInsets.right >= skin
-							.getWidth()))) {
-				skin.paintSkin(g, thumbBounds.x + (thumbBounds.width - skin.getWidth()) / 2,
-						thumbBounds.y + (thumbBounds.height - skin.getHeight()) / 2,
-						skin.getWidth(), skin.getHeight(), state);
+			Insets gripperInsets = xp.getMargin(c, thumbPart, null,
+					Prop.CONTENTMARGINS);
+			if (gripperInsets == null || (v && (thumbBounds.height
+					- gripperInsets.top - gripperInsets.bottom >= skin
+							.getHeight())) || (!v && (thumbBounds.width
+									- gripperInsets.left
+									- gripperInsets.right >= skin
+											.getWidth()))) {
+				skin.paintSkin(g, thumbBounds.x + (thumbBounds.width - skin
+						.getWidth()) / 2, thumbBounds.y + (thumbBounds.height
+								- skin.getHeight()) / 2, skin.getWidth(), skin
+										.getHeight(), state);
 			}
 		} else {
 			super.paintThumb(g, c, thumbBounds);
@@ -288,8 +275,8 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 	 */
 	private class WindowsArrowButton extends BasicArrowButton {
 
-		public WindowsArrowButton(int direction, Color background, Color shadow, Color darkShadow,
-				Color highlight) {
+		public WindowsArrowButton(int direction, Color background, Color shadow,
+				Color darkShadow, Color highlight) {
 			super(direction, background, shadow, darkShadow, highlight);
 		}
 
@@ -305,84 +292,85 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 				State state = null;
 
 				boolean jointRollover = XPStyle.isVista() && (isThumbRollover()
-						|| (this == incrButton && decrButton.getModel().isRollover())
-						|| (this == decrButton && incrButton.getModel().isRollover()));
+						|| (this == incrButton && decrButton.getModel()
+								.isRollover()) || (this == decrButton
+										&& incrButton.getModel().isRollover()));
 
 				// normal, rollover, pressed, disabled
 				if (model.isArmed() && model.isPressed()) {
 					switch (direction) {
-					case NORTH:
-						state = State.UPPRESSED;
-						break;
-					case SOUTH:
-						state = State.DOWNPRESSED;
-						break;
-					case WEST:
-						state = State.LEFTPRESSED;
-						break;
-					case EAST:
-						state = State.RIGHTPRESSED;
-						break;
+						case NORTH:
+							state = State.UPPRESSED;
+							break;
+						case SOUTH:
+							state = State.DOWNPRESSED;
+							break;
+						case WEST:
+							state = State.LEFTPRESSED;
+							break;
+						case EAST:
+							state = State.RIGHTPRESSED;
+							break;
 					}
 				} else if (!model.isEnabled()) {
 					switch (direction) {
-					case NORTH:
-						state = State.UPDISABLED;
-						break;
-					case SOUTH:
-						state = State.DOWNDISABLED;
-						break;
-					case WEST:
-						state = State.LEFTDISABLED;
-						break;
-					case EAST:
-						state = State.RIGHTDISABLED;
-						break;
+						case NORTH:
+							state = State.UPDISABLED;
+							break;
+						case SOUTH:
+							state = State.DOWNDISABLED;
+							break;
+						case WEST:
+							state = State.LEFTDISABLED;
+							break;
+						case EAST:
+							state = State.RIGHTDISABLED;
+							break;
 					}
 				} else if (model.isRollover() || model.isPressed()) {
 					switch (direction) {
-					case NORTH:
-						state = State.UPHOT;
-						break;
-					case SOUTH:
-						state = State.DOWNHOT;
-						break;
-					case WEST:
-						state = State.LEFTHOT;
-						break;
-					case EAST:
-						state = State.RIGHTHOT;
-						break;
+						case NORTH:
+							state = State.UPHOT;
+							break;
+						case SOUTH:
+							state = State.DOWNHOT;
+							break;
+						case WEST:
+							state = State.LEFTHOT;
+							break;
+						case EAST:
+							state = State.RIGHTHOT;
+							break;
 					}
 				} else if (jointRollover) {
 					switch (direction) {
-					case NORTH:
-						state = State.UPHOVER;
-						break;
-					case SOUTH:
-						state = State.DOWNHOVER;
-						break;
-					case WEST:
-						state = State.LEFTHOVER;
-						break;
-					case EAST:
-						state = State.RIGHTHOVER;
-						break;
+						case NORTH:
+							state = State.UPHOVER;
+							break;
+						case SOUTH:
+							state = State.DOWNHOVER;
+							break;
+						case WEST:
+							state = State.LEFTHOVER;
+							break;
+						case EAST:
+							state = State.RIGHTHOVER;
+							break;
 					}
 				} else {
 					switch (direction) {
-					case NORTH:
-						state = State.UPNORMAL;
-						break;
-					case SOUTH:
-						state = State.DOWNNORMAL;
-						break;
-					case WEST:
-						state = State.LEFTNORMAL;
-						break;
-					case EAST:
-						state = State.RIGHTNORMAL;
-						break;
+						case NORTH:
+							state = State.UPNORMAL;
+							break;
+						case SOUTH:
+							state = State.DOWNNORMAL;
+							break;
+						case WEST:
+							state = State.LEFTNORMAL;
+							break;
+						case EAST:
+							state = State.RIGHTNORMAL;
+							break;
 					}
 				}
 
@@ -396,12 +384,12 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 			int size = 16;
 			if (scrollbar != null) {
 				switch (scrollbar.getOrientation()) {
-				case JScrollBar.VERTICAL:
-					size = scrollbar.getWidth();
-					break;
-				case JScrollBar.HORIZONTAL:
-					size = scrollbar.getHeight();
-					break;
+					case JScrollBar.VERTICAL:
+						size = scrollbar.getWidth();
+						break;
+					case JScrollBar.HORIZONTAL:
+						size = scrollbar.getHeight();
+						break;
 				}
 				size = Math.max(size, 5);
 			}
@@ -444,8 +432,8 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 			int cmap[] = { fg.getRGB(), bg.getRGB() };
 			IndexColorModel icm = new IndexColorModel(8, 2, cmap, 0, false, -1,
 					DataBuffer.TYPE_BYTE);
-			image = new BufferedImage(BUFFER_SIZE, BUFFER_SIZE, BufferedImage.TYPE_BYTE_INDEXED,
-					icm);
+			image = new BufferedImage(BUFFER_SIZE, BUFFER_SIZE,
+					BufferedImage.TYPE_BYTE_INDEXED, icm);
 			Graphics g = image.getGraphics();
 			try {
 				g.setClip(0, 0, BUFFER_SIZE, BUFFER_SIZE);
@@ -475,10 +463,12 @@ public class WindowsScrollBarUI extends BasicScrollBarUI {
 				int width = Math.min(BUFFER_SIZE - xOffset, maxX - xCounter);
 
 				for (int yCounter = minY; yCounter < maxY; yCounter += BUFFER_SIZE) {
-					int height = Math.min(BUFFER_SIZE - yOffset, maxY - yCounter);
+					int height = Math.min(BUFFER_SIZE - yOffset, maxY
+							- yCounter);
 
-					g.drawImage(image, xCounter, yCounter, xCounter + width, yCounter + height,
-							xOffset, yOffset, xOffset + width, yOffset + height, null);
+					g.drawImage(image, xCounter, yCounter, xCounter + width,
+							yCounter + height, xOffset, yOffset, xOffset
+									+ width, yOffset + height, null);
 					if (yOffset != 0) {
 						yCounter -= yOffset;
 						yOffset = 0;

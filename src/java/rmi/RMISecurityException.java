@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi;
 
@@ -46,7 +26,7 @@ public class RMISecurityException extends java.lang.SecurityException {
 	 * Construct an <code>RMISecurityException</code> with a detail message.
 	 * 
 	 * @param name
-	 *            the detail message
+	 *             the detail message
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
@@ -59,9 +39,9 @@ public class RMISecurityException extends java.lang.SecurityException {
 	 * Construct an <code>RMISecurityException</code> with a detail message.
 	 * 
 	 * @param name
-	 *            the detail message
+	 *             the detail message
 	 * @param arg
-	 *            ignored
+	 *             ignored
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orbutil;
@@ -28,7 +8,8 @@ package com.sun.corba.se.impl.orbutil;
 import java.util.Arrays;
 
 public abstract class ObjectWriter {
-	public static ObjectWriter make(boolean isIndenting, int initialLevel, int increment) {
+	public static ObjectWriter make(boolean isIndenting, int initialLevel,
+			int increment) {
 		if (isIndenting)
 			return new IndentingObjectWriter(initialLevel, increment);
 		else
@@ -173,8 +154,7 @@ public abstract class ObjectWriter {
 			startLine();
 		}
 
-		public void endElement() {
-		}
+		public void endElement() {}
 
 		public void endObject(String str) {
 			level--;
@@ -205,8 +185,7 @@ public abstract class ObjectWriter {
 			result.append(")");
 		}
 
-		public void endElement() {
-		}
+		public void endElement() {}
 
 		public void endObject() {
 			result.append(")");

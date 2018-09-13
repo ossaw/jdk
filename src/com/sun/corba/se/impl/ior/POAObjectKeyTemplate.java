@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -60,7 +40,8 @@ public final class POAObjectKeyTemplate extends NewObjectKeyTemplateBase {
 	 * This constructor reads a complete ObjectKey (template and Id) from the
 	 * stream.
 	 */
-	public POAObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is, OctetSeqHolder osh) {
+	public POAObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is,
+			OctetSeqHolder osh) {
 		super(orb, magic, scid, is.read_long(), is.read_string(),
 				new ObjectAdapterIdArray(POANameHelper.read(is)));
 
@@ -71,7 +52,8 @@ public final class POAObjectKeyTemplate extends NewObjectKeyTemplateBase {
 
 	public POAObjectKeyTemplate(ORB orb, int scid, int serverid, String orbid,
 			ObjectAdapterId objectAdapterId) {
-		super(orb, ObjectKeyFactoryImpl.JAVAMAGIC_NEWER, scid, serverid, orbid, objectAdapterId);
+		super(orb, ObjectKeyFactoryImpl.JAVAMAGIC_NEWER, scid, serverid, orbid,
+				objectAdapterId);
 
 		setORBVersion(ORBVersionFactory.getORBVersion());
 	}

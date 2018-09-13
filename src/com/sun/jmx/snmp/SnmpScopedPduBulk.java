@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp;
 
@@ -40,7 +20,8 @@ package com.sun.jmx.snmp;
  * @since 1.5
  */
 
-public class SnmpScopedPduBulk extends SnmpScopedPduPacket implements SnmpPduBulkType {
+public class SnmpScopedPduBulk extends SnmpScopedPduPacket implements
+		SnmpPduBulkType {
 	private static final long serialVersionUID = -1648623646227038885L;
 
 	/**
@@ -76,7 +57,7 @@ public class SnmpScopedPduBulk extends SnmpScopedPduPacket implements SnmpPduBul
 	 * The <CODE>non-repeaters</CODE> setter.
 	 * 
 	 * @param nr
-	 *            Non repeaters.
+	 *           Non repeaters.
 	 */
 	public void setNonRepeaters(int nr) {
 		nonRepeaters = nr;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html.parser;
@@ -94,50 +74,50 @@ class ContentModelState {
 	 */
 	public boolean terminate() {
 		switch (model.type) {
-		case '+':
-			if ((value == 0) && !(model).empty()) {
-				return false;
-			}
-		case '*':
-		case '?':
-			return (next == null) || next.terminate();
-
-		case '|':
-			for (ContentModel m = (ContentModel) model.content; m != null; m = m.next) {
-				if (m.empty()) {
-					return (next == null) || next.terminate();
+			case '+':
+				if ((value == 0) && !(model).empty()) {
+					return false;
 				}
-			}
-			return false;
+			case '*':
+			case '?':
+				return (next == null) || next.terminate();
 
-		case '&': {
-			ContentModel m = (ContentModel) model.content;
-
-			for (int i = 0; m != null; i++, m = m.next) {
-				if ((value & (1L << i)) == 0) {
-					if (!m.empty()) {
-						return false;
+			case '|':
+				for (ContentModel m = (ContentModel) model.content; m != null; m = m.next) {
+					if (m.empty()) {
+						return (next == null) || next.terminate();
 					}
 				}
-			}
-			return (next == null) || next.terminate();
-		}
-
-		case ',': {
-			ContentModel m = (ContentModel) model.content;
-			for (int i = 0; i < value; i++, m = m.next)
-				;
-
-			for (; (m != null) && m.empty(); m = m.next)
-				;
-			if (m != null) {
 				return false;
-			}
-			return (next == null) || next.terminate();
-		}
 
-		default:
-			return false;
+			case '&': {
+				ContentModel m = (ContentModel) model.content;
+
+				for (int i = 0; m != null; i++, m = m.next) {
+					if ((value & (1L << i)) == 0) {
+						if (!m.empty()) {
+							return false;
+						}
+					}
+				}
+				return (next == null) || next.terminate();
+			}
+
+			case ',': {
+				ContentModel m = (ContentModel) model.content;
+				for (int i = 0; i < value; i++, m = m.next)
+					;
+
+				for (; (m != null) && m.empty(); m = m.next)
+					;
+				if (m != null) {
+					return false;
+				}
+				return (next == null) || next.terminate();
+			}
+
+			default:
+				return false;
 		}
 	}
 
@@ -149,24 +129,24 @@ class ContentModelState {
 	 */
 	public Element first() {
 		switch (model.type) {
-		case '*':
-		case '?':
-		case '|':
-		case '&':
-			return null;
+			case '*':
+			case '?':
+			case '|':
+			case '&':
+				return null;
 
-		case '+':
-			return model.first();
+			case '+':
+				return model.first();
 
-		case ',': {
-			ContentModel m = (ContentModel) model.content;
-			for (int i = 0; i < value; i++, m = m.next)
-				;
-			return m.first();
-		}
+			case ',': {
+				ContentModel m = (ContentModel) model.content;
+				for (int i = 0; i < value; i++, m = m.next)
+					;
+				return m.first();
+			}
 
-		default:
-			return model.first();
+			default:
+				return model.first();
 		}
 	}
 
@@ -178,112 +158,114 @@ class ContentModelState {
 	 */
 	public ContentModelState advance(Object token) {
 		switch (model.type) {
-		case '+':
-			if (model.first(token)) {
-				return new ContentModelState(model.content,
-						new ContentModelState(model, next, value + 1)).advance(token);
-			}
-			if (value != 0) {
+			case '+':
+				if (model.first(token)) {
+					return new ContentModelState(model.content,
+							new ContentModelState(model, next, value + 1))
+									.advance(token);
+				}
+				if (value != 0) {
+					if (next != null) {
+						return next.advance(token);
+					} else {
+						return null;
+					}
+				}
+				break;
+
+			case '*':
+				if (model.first(token)) {
+					return new ContentModelState(model.content, this).advance(
+							token);
+				}
 				if (next != null) {
 					return next.advance(token);
 				} else {
 					return null;
 				}
-			}
-			break;
 
-		case '*':
-			if (model.first(token)) {
-				return new ContentModelState(model.content, this).advance(token);
-			}
-			if (next != null) {
-				return next.advance(token);
-			} else {
-				return null;
-			}
-
-		case '?':
-			if (model.first(token)) {
-				return new ContentModelState(model.content, next).advance(token);
-			}
-			if (next != null) {
-				return next.advance(token);
-			} else {
-				return null;
-			}
-
-		case '|':
-			for (ContentModel m = (ContentModel) model.content; m != null; m = m.next) {
-				if (m.first(token)) {
-					return new ContentModelState(m, next).advance(token);
+			case '?':
+				if (model.first(token)) {
+					return new ContentModelState(model.content, next).advance(
+							token);
 				}
-			}
-			break;
-
-		case ',': {
-			ContentModel m = (ContentModel) model.content;
-			for (int i = 0; i < value; i++, m = m.next)
-				;
-
-			if (m.first(token) || m.empty()) {
-				if (m.next == null) {
-					return new ContentModelState(m, next).advance(token);
+				if (next != null) {
+					return next.advance(token);
 				} else {
-					return new ContentModelState(m, new ContentModelState(model, next, value + 1))
-							.advance(token);
+					return null;
 				}
-			}
-			break;
-		}
 
-		case '&': {
-			ContentModel m = (ContentModel) model.content;
-			boolean complete = true;
-
-			for (int i = 0; m != null; i++, m = m.next) {
-				if ((value & (1L << i)) == 0) {
+			case '|':
+				for (ContentModel m = (ContentModel) model.content; m != null; m = m.next) {
 					if (m.first(token)) {
-						return new ContentModelState(m,
-								new ContentModelState(model, next, value | (1L << i)))
-										.advance(token);
-					}
-					if (!m.empty()) {
-						complete = false;
+						return new ContentModelState(m, next).advance(token);
 					}
 				}
-			}
-			if (complete) {
-				if (next != null) {
-					return next.advance(token);
-				} else {
-					return null;
-				}
-			}
-			break;
-		}
+				break;
 
-		default:
-			if (model.content == token) {
-				if (next == null && (token instanceof Element)
-						&& ((Element) token).content != null) {
-					return new ContentModelState(((Element) token).content);
+			case ',': {
+				ContentModel m = (ContentModel) model.content;
+				for (int i = 0; i < value; i++, m = m.next)
+					;
+
+				if (m.first(token) || m.empty()) {
+					if (m.next == null) {
+						return new ContentModelState(m, next).advance(token);
+					} else {
+						return new ContentModelState(m, new ContentModelState(
+								model, next, value + 1)).advance(token);
+					}
 				}
-				return next;
+				break;
 			}
-			// PENDING: Currently we don't correctly deal with optional start
-			// tags. This can most notably be seen with the 4.01 spec where
-			// TBODY's start and end tags are optional.
-			// Uncommenting this and the PENDING in ContentModel will
-			// correctly skip the omit tags, but the delegate is not notified.
-			// Some additional API needs to be added to track skipped tags,
-			// and this can then be added back.
-			/*
-			 * if ((model.content instanceof Element)) { Element e =
-			 * (Element)model.content;
-			 * 
-			 * if (e.omitStart() && e.content != null) { return new
-			 * ContentModelState(e.content, next).advance( token); } }
-			 */
+
+			case '&': {
+				ContentModel m = (ContentModel) model.content;
+				boolean complete = true;
+
+				for (int i = 0; m != null; i++, m = m.next) {
+					if ((value & (1L << i)) == 0) {
+						if (m.first(token)) {
+							return new ContentModelState(m,
+									new ContentModelState(model, next, value
+											| (1L << i))).advance(token);
+						}
+						if (!m.empty()) {
+							complete = false;
+						}
+					}
+				}
+				if (complete) {
+					if (next != null) {
+						return next.advance(token);
+					} else {
+						return null;
+					}
+				}
+				break;
+			}
+
+			default:
+				if (model.content == token) {
+					if (next == null && (token instanceof Element)
+							&& ((Element) token).content != null) {
+						return new ContentModelState(((Element) token).content);
+					}
+					return next;
+				}
+				// PENDING: Currently we don't correctly deal with optional start
+				// tags. This can most notably be seen with the 4.01 spec where
+				// TBODY's start and end tags are optional.
+				// Uncommenting this and the PENDING in ContentModel will
+				// correctly skip the omit tags, but the delegate is not notified.
+				// Some additional API needs to be added to track skipped tags,
+				// and this can then be added back.
+				/*
+				 * if ((model.content instanceof Element)) { Element e =
+				 * (Element)model.content;
+				 * if (e.omitStart() && e.content != null) { return new
+				 * ContentModelState(e.content, next).advance( token); } }
+				 */
 		}
 
 		// We used to throw this exception at this point. However, it

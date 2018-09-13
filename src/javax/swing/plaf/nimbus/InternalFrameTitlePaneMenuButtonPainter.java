@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -30,7 +10,8 @@ import java.awt.image.*;
 import javax.swing.*;
 import javax.swing.Painter;
 
-final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainter {
+final class InternalFrameTitlePaneMenuButtonPainter extends
+		AbstractRegionPainter {
 	// package private integers representing the available states that
 	// this painter will paint. These are used when creating a new instance
 	// of InternalFrameTitlePaneMenuButtonPainter to determine which
@@ -51,7 +32,8 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -59,55 +41,92 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 	// by a particular instance of InternalFrameTitlePaneMenuButtonPainter would
 	// be created. For the moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBlueGrey", 0.0055555105f, -0.0029994324f,
-			-0.38039216f, -185);
-	private Color color2 = decodeColor("nimbusBase", 0.08801502f, 0.3642857f, -0.5019608f, 0);
-	private Color color3 = decodeColor("nimbusBase", 0.030543745f, -0.3835404f, -0.09803924f, 0);
-	private Color color4 = decodeColor("nimbusBase", 0.029191494f, -0.53801316f, 0.13333333f, 0);
-	private Color color5 = decodeColor("nimbusBase", 0.030543745f, -0.3857143f, -0.09411767f, 0);
-	private Color color6 = decodeColor("nimbusBase", 0.030543745f, -0.43148893f, 0.007843137f, 0);
-	private Color color7 = decodeColor("nimbusBase", 0.029191494f, -0.24935067f, -0.20392159f,
-			-132);
-	private Color color8 = decodeColor("nimbusBase", 0.029191494f, -0.24935067f, -0.20392159f, 0);
-	private Color color9 = decodeColor("nimbusBase", 0.029191494f, -0.24935067f, -0.20392159f,
-			-123);
-	private Color color10 = decodeColor("nimbusBase", 0.0f, -0.6357143f, 0.45098037f, 0);
-	private Color color11 = decodeColor("nimbusBlueGrey", 0.0055555105f, -0.0029994324f,
-			-0.38039216f, -208);
-	private Color color12 = decodeColor("nimbusBase", 0.02551502f, -0.5942635f, 0.20784312f, 0);
-	private Color color13 = decodeColor("nimbusBase", 0.032459438f, -0.5490091f, 0.12941176f, 0);
-	private Color color14 = decodeColor("nimbusBase", 0.032459438f, -0.5469569f, 0.11372548f, 0);
-	private Color color15 = decodeColor("nimbusBase", 0.032459438f, -0.5760128f, 0.23921567f, 0);
-	private Color color16 = decodeColor("nimbusBase", 0.08801502f, 0.3642857f, -0.4901961f, 0);
-	private Color color17 = decodeColor("nimbusBase", 0.032459438f, -0.1857143f, -0.23529413f, 0);
-	private Color color18 = decodeColor("nimbusBase", 0.029191494f, -0.5438224f, 0.17647058f, 0);
-	private Color color19 = decodeColor("nimbusBase", 0.030543745f, -0.41929638f, -0.02352941f, 0);
-	private Color color20 = decodeColor("nimbusBase", 0.030543745f, -0.45559007f, 0.082352936f, 0);
-	private Color color21 = decodeColor("nimbusBase", 0.03409344f, -0.329408f, -0.11372551f, -132);
-	private Color color22 = decodeColor("nimbusBase", 0.03409344f, -0.329408f, -0.11372551f, 0);
-	private Color color23 = decodeColor("nimbusBase", 0.03409344f, -0.329408f, -0.11372551f, -123);
-	private Color color24 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f, -0.54901963f, 0);
-	private Color color25 = decodeColor("nimbusBase", 0.031104386f, 0.12354499f, -0.33725494f, 0);
-	private Color color26 = decodeColor("nimbusBase", 0.032459438f, -0.4592437f, -0.015686274f, 0);
-	private Color color27 = decodeColor("nimbusBase", 0.029191494f, -0.2579365f, -0.19607845f, 0);
-	private Color color28 = decodeColor("nimbusBase", 0.03409344f, -0.3149596f, -0.13333336f, 0);
-	private Color color29 = decodeColor("nimbusBase", 0.029681683f, 0.07857144f, -0.3294118f, -132);
-	private Color color30 = decodeColor("nimbusBase", 0.029681683f, 0.07857144f, -0.3294118f, 0);
-	private Color color31 = decodeColor("nimbusBase", 0.029681683f, 0.07857144f, -0.3294118f, -123);
-	private Color color32 = decodeColor("nimbusBase", 0.032459438f, -0.53637654f, 0.043137252f, 0);
-	private Color color33 = decodeColor("nimbusBase", 0.032459438f, -0.49935067f, -0.11764708f, 0);
-	private Color color34 = decodeColor("nimbusBase", 0.021348298f, -0.6133929f, 0.32941175f, 0);
-	private Color color35 = decodeColor("nimbusBase", 0.042560518f, -0.5804379f, 0.23137254f, 0);
-	private Color color36 = decodeColor("nimbusBase", 0.032459438f, -0.57417583f, 0.21568626f, 0);
-	private Color color37 = decodeColor("nimbusBase", 0.027408898f, -0.5784226f, 0.20392156f, -132);
-	private Color color38 = decodeColor("nimbusBase", 0.042560518f, -0.5665319f, 0.0745098f, 0);
-	private Color color39 = decodeColor("nimbusBase", 0.036732912f, -0.5642857f, 0.16470587f, -123);
-	private Color color40 = decodeColor("nimbusBase", 0.021348298f, -0.54480517f, -0.11764708f, 0);
+	private Color color1 = decodeColor("nimbusBlueGrey", 0.0055555105f,
+			-0.0029994324f, -0.38039216f, -185);
+	private Color color2 = decodeColor("nimbusBase", 0.08801502f, 0.3642857f,
+			-0.5019608f, 0);
+	private Color color3 = decodeColor("nimbusBase", 0.030543745f, -0.3835404f,
+			-0.09803924f, 0);
+	private Color color4 = decodeColor("nimbusBase", 0.029191494f, -0.53801316f,
+			0.13333333f, 0);
+	private Color color5 = decodeColor("nimbusBase", 0.030543745f, -0.3857143f,
+			-0.09411767f, 0);
+	private Color color6 = decodeColor("nimbusBase", 0.030543745f, -0.43148893f,
+			0.007843137f, 0);
+	private Color color7 = decodeColor("nimbusBase", 0.029191494f, -0.24935067f,
+			-0.20392159f, -132);
+	private Color color8 = decodeColor("nimbusBase", 0.029191494f, -0.24935067f,
+			-0.20392159f, 0);
+	private Color color9 = decodeColor("nimbusBase", 0.029191494f, -0.24935067f,
+			-0.20392159f, -123);
+	private Color color10 = decodeColor("nimbusBase", 0.0f, -0.6357143f,
+			0.45098037f, 0);
+	private Color color11 = decodeColor("nimbusBlueGrey", 0.0055555105f,
+			-0.0029994324f, -0.38039216f, -208);
+	private Color color12 = decodeColor("nimbusBase", 0.02551502f, -0.5942635f,
+			0.20784312f, 0);
+	private Color color13 = decodeColor("nimbusBase", 0.032459438f, -0.5490091f,
+			0.12941176f, 0);
+	private Color color14 = decodeColor("nimbusBase", 0.032459438f, -0.5469569f,
+			0.11372548f, 0);
+	private Color color15 = decodeColor("nimbusBase", 0.032459438f, -0.5760128f,
+			0.23921567f, 0);
+	private Color color16 = decodeColor("nimbusBase", 0.08801502f, 0.3642857f,
+			-0.4901961f, 0);
+	private Color color17 = decodeColor("nimbusBase", 0.032459438f, -0.1857143f,
+			-0.23529413f, 0);
+	private Color color18 = decodeColor("nimbusBase", 0.029191494f, -0.5438224f,
+			0.17647058f, 0);
+	private Color color19 = decodeColor("nimbusBase", 0.030543745f,
+			-0.41929638f, -0.02352941f, 0);
+	private Color color20 = decodeColor("nimbusBase", 0.030543745f,
+			-0.45559007f, 0.082352936f, 0);
+	private Color color21 = decodeColor("nimbusBase", 0.03409344f, -0.329408f,
+			-0.11372551f, -132);
+	private Color color22 = decodeColor("nimbusBase", 0.03409344f, -0.329408f,
+			-0.11372551f, 0);
+	private Color color23 = decodeColor("nimbusBase", 0.03409344f, -0.329408f,
+			-0.11372551f, -123);
+	private Color color24 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f,
+			-0.54901963f, 0);
+	private Color color25 = decodeColor("nimbusBase", 0.031104386f, 0.12354499f,
+			-0.33725494f, 0);
+	private Color color26 = decodeColor("nimbusBase", 0.032459438f, -0.4592437f,
+			-0.015686274f, 0);
+	private Color color27 = decodeColor("nimbusBase", 0.029191494f, -0.2579365f,
+			-0.19607845f, 0);
+	private Color color28 = decodeColor("nimbusBase", 0.03409344f, -0.3149596f,
+			-0.13333336f, 0);
+	private Color color29 = decodeColor("nimbusBase", 0.029681683f, 0.07857144f,
+			-0.3294118f, -132);
+	private Color color30 = decodeColor("nimbusBase", 0.029681683f, 0.07857144f,
+			-0.3294118f, 0);
+	private Color color31 = decodeColor("nimbusBase", 0.029681683f, 0.07857144f,
+			-0.3294118f, -123);
+	private Color color32 = decodeColor("nimbusBase", 0.032459438f,
+			-0.53637654f, 0.043137252f, 0);
+	private Color color33 = decodeColor("nimbusBase", 0.032459438f,
+			-0.49935067f, -0.11764708f, 0);
+	private Color color34 = decodeColor("nimbusBase", 0.021348298f, -0.6133929f,
+			0.32941175f, 0);
+	private Color color35 = decodeColor("nimbusBase", 0.042560518f, -0.5804379f,
+			0.23137254f, 0);
+	private Color color36 = decodeColor("nimbusBase", 0.032459438f,
+			-0.57417583f, 0.21568626f, 0);
+	private Color color37 = decodeColor("nimbusBase", 0.027408898f, -0.5784226f,
+			0.20392156f, -132);
+	private Color color38 = decodeColor("nimbusBase", 0.042560518f, -0.5665319f,
+			0.0745098f, 0);
+	private Color color39 = decodeColor("nimbusBase", 0.036732912f, -0.5642857f,
+			0.16470587f, -123);
+	private Color color40 = decodeColor("nimbusBase", 0.021348298f,
+			-0.54480517f, -0.11764708f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
 
-	public InternalFrameTitlePaneMenuButtonPainter(PaintContext ctx, int state) {
+	public InternalFrameTitlePaneMenuButtonPainter(PaintContext ctx,
+			int state) {
 		super();
 		this.state = state;
 		this.ctx = ctx;
@@ -122,27 +141,27 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case ICON_ENABLED:
-			painticonEnabled(g);
-			break;
-		case ICON_DISABLED:
-			painticonDisabled(g);
-			break;
-		case ICON_MOUSEOVER:
-			painticonMouseOver(g);
-			break;
-		case ICON_PRESSED:
-			painticonPressed(g);
-			break;
-		case ICON_ENABLED_WINDOWNOTFOCUSED:
-			painticonEnabledAndWindowNotFocused(g);
-			break;
-		case ICON_MOUSEOVER_WINDOWNOTFOCUSED:
-			painticonMouseOverAndWindowNotFocused(g);
-			break;
-		case ICON_PRESSED_WINDOWNOTFOCUSED:
-			painticonPressedAndWindowNotFocused(g);
-			break;
+			case ICON_ENABLED:
+				painticonEnabled(g);
+				break;
+			case ICON_DISABLED:
+				painticonDisabled(g);
+				break;
+			case ICON_MOUSEOVER:
+				painticonMouseOver(g);
+				break;
+			case ICON_PRESSED:
+				painticonPressed(g);
+				break;
+			case ICON_ENABLED_WINDOWNOTFOCUSED:
+				painticonEnabledAndWindowNotFocused(g);
+				break;
+			case ICON_MOUSEOVER_WINDOWNOTFOCUSED:
+				painticonMouseOverAndWindowNotFocused(g);
+				break;
+			case ICON_PRESSED_WINDOWNOTFOCUSED:
+				painticonPressedAndWindowNotFocused(g);
+				break;
 
 		}
 	}
@@ -339,9 +358,10 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y, (0.24868421f * w) + x,
-				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color2, decodeColor(color2, color3, 0.5f), color3 });
+		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y,
+				(0.24868421f * w) + x, (1.0f * h) + y, new float[] { 0.0f, 0.5f,
+						1.0f }, new Color[] { color2, decodeColor(color2,
+								color3, 0.5f), color3 });
 	}
 
 	private Paint decodeGradient2(Shape s) {
@@ -350,13 +370,12 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w) + x,
-				(1.0016667f * h) + y,
-				new float[] { 0.0f, 0.26988637f, 0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f,
-						1.0f },
+		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w)
+				+ x, (1.0016667f * h) + y, new float[] { 0.0f, 0.26988637f,
+						0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f, 1.0f },
 				new Color[] { color4, decodeColor(color4, color5, 0.5f), color5,
-						decodeColor(color5, color3, 0.5f), color3,
-						decodeColor(color3, color6, 0.5f), color6 });
+						decodeColor(color5, color3, 0.5f), color3, decodeColor(
+								color3, color6, 0.5f), color6 });
 	}
 
 	private Paint decodeGradient3(Shape s) {
@@ -365,8 +384,9 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y, (0.49285713f * w) + x,
-				(0.91f * h) + y, new float[] { 0.0f, 0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
+		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y,
+				(0.49285713f * w) + x, (0.91f * h) + y, new float[] { 0.0f,
+						0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
 				new Color[] { color7, decodeColor(color7, color8, 0.5f), color8,
 						decodeColor(color8, color9, 0.5f), color9 });
 	}
@@ -377,10 +397,12 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y, (0.24868421f * w) + x,
-				(1.0f * h) + y, new float[] { 0.0f, 0.31107953f, 0.62215906f, 0.8110795f, 1.0f },
-				new Color[] { color12, decodeColor(color12, color13, 0.5f), color13,
-						decodeColor(color13, color14, 0.5f), color14 });
+		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y,
+				(0.24868421f * w) + x, (1.0f * h) + y, new float[] { 0.0f,
+						0.31107953f, 0.62215906f, 0.8110795f, 1.0f },
+				new Color[] { color12, decodeColor(color12, color13, 0.5f),
+						color13, decodeColor(color13, color14, 0.5f),
+						color14 });
 	}
 
 	private Paint decodeGradient5(Shape s) {
@@ -389,9 +411,10 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y, (0.24868421f * w) + x,
-				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color16, decodeColor(color16, color17, 0.5f), color17 });
+		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y,
+				(0.24868421f * w) + x, (1.0f * h) + y, new float[] { 0.0f, 0.5f,
+						1.0f }, new Color[] { color16, decodeColor(color16,
+								color17, 0.5f), color17 });
 	}
 
 	private Paint decodeGradient6(Shape s) {
@@ -400,12 +423,11 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w) + x,
-				(1.0016667f * h) + y,
-				new float[] { 0.0f, 0.26988637f, 0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f,
-						1.0f },
-				new Color[] { color18, decodeColor(color18, color19, 0.5f), color19,
-						decodeColor(color19, color19, 0.5f), color19,
+		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w)
+				+ x, (1.0016667f * h) + y, new float[] { 0.0f, 0.26988637f,
+						0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f, 1.0f },
+				new Color[] { color18, decodeColor(color18, color19, 0.5f),
+						color19, decodeColor(color19, color19, 0.5f), color19,
 						decodeColor(color19, color20, 0.5f), color20 });
 	}
 
@@ -415,10 +437,12 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y, (0.49285713f * w) + x,
-				(0.91f * h) + y, new float[] { 0.0f, 0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
-				new Color[] { color21, decodeColor(color21, color22, 0.5f), color22,
-						decodeColor(color22, color23, 0.5f), color23 });
+		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y,
+				(0.49285713f * w) + x, (0.91f * h) + y, new float[] { 0.0f,
+						0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
+				new Color[] { color21, decodeColor(color21, color22, 0.5f),
+						color22, decodeColor(color22, color23, 0.5f),
+						color23 });
 	}
 
 	private Paint decodeGradient8(Shape s) {
@@ -427,9 +451,10 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y, (0.24868421f * w) + x,
-				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color24, decodeColor(color24, color25, 0.5f), color25 });
+		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y,
+				(0.24868421f * w) + x, (1.0f * h) + y, new float[] { 0.0f, 0.5f,
+						1.0f }, new Color[] { color24, decodeColor(color24,
+								color25, 0.5f), color25 });
 	}
 
 	private Paint decodeGradient9(Shape s) {
@@ -438,12 +463,11 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w) + x,
-				(1.0016667f * h) + y,
-				new float[] { 0.0f, 0.26988637f, 0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f,
-						1.0f },
-				new Color[] { color26, decodeColor(color26, color27, 0.5f), color27,
-						decodeColor(color27, color27, 0.5f), color27,
+		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w)
+				+ x, (1.0016667f * h) + y, new float[] { 0.0f, 0.26988637f,
+						0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f, 1.0f },
+				new Color[] { color26, decodeColor(color26, color27, 0.5f),
+						color27, decodeColor(color27, color27, 0.5f), color27,
 						decodeColor(color27, color28, 0.5f), color28 });
 	}
 
@@ -453,10 +477,12 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y, (0.49285713f * w) + x,
-				(0.91f * h) + y, new float[] { 0.0f, 0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
-				new Color[] { color29, decodeColor(color29, color30, 0.5f), color30,
-						decodeColor(color30, color31, 0.5f), color31 });
+		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y,
+				(0.49285713f * w) + x, (0.91f * h) + y, new float[] { 0.0f,
+						0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
+				new Color[] { color29, decodeColor(color29, color30, 0.5f),
+						color30, decodeColor(color30, color31, 0.5f),
+						color31 });
 	}
 
 	private Paint decodeGradient11(Shape s) {
@@ -465,9 +491,10 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y, (0.24868421f * w) + x,
-				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color32, decodeColor(color32, color33, 0.5f), color33 });
+		return decodeGradient((0.24868421f * w) + x, (0.0014705883f * h) + y,
+				(0.24868421f * w) + x, (1.0f * h) + y, new float[] { 0.0f, 0.5f,
+						1.0f }, new Color[] { color32, decodeColor(color32,
+								color33, 0.5f), color33 });
 	}
 
 	private Paint decodeGradient12(Shape s) {
@@ -476,12 +503,11 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w) + x,
-				(1.0016667f * h) + y,
-				new float[] { 0.0f, 0.26988637f, 0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f,
-						1.0f },
-				new Color[] { color34, decodeColor(color34, color35, 0.5f), color35,
-						decodeColor(color35, color36, 0.5f), color36,
+		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25441176f * w)
+				+ x, (1.0016667f * h) + y, new float[] { 0.0f, 0.26988637f,
+						0.53977275f, 0.5951705f, 0.6505682f, 0.8252841f, 1.0f },
+				new Color[] { color34, decodeColor(color34, color35, 0.5f),
+						color35, decodeColor(color35, color36, 0.5f), color36,
 						decodeColor(color36, color15, 0.5f), color15 });
 	}
 
@@ -491,10 +517,12 @@ final class InternalFrameTitlePaneMenuButtonPainter extends AbstractRegionPainte
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y, (0.49285713f * w) + x,
-				(0.91f * h) + y, new float[] { 0.0f, 0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
-				new Color[] { color37, decodeColor(color37, color38, 0.5f), color38,
-						decodeColor(color38, color39, 0.5f), color39 });
+		return decodeGradient((0.50714284f * w) + x, (0.095f * h) + y,
+				(0.49285713f * w) + x, (0.91f * h) + y, new float[] { 0.0f,
+						0.24289773f, 0.48579547f, 0.74289775f, 1.0f },
+				new Color[] { color37, decodeColor(color37, color38, 0.5f),
+						color38, decodeColor(color38, color39, 0.5f),
+						color39 });
 	}
 
 }

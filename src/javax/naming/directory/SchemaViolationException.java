@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -63,7 +43,7 @@ public class SchemaViolationException extends NamingException {
 	 * explanation supplied. All other fields are set to null.
 	 * 
 	 * @param explanation
-	 *            Detail about this exception. Can be null.
+	 *                    Detail about this exception. Can be null.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public SchemaViolationException(String explanation) {

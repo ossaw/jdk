@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -123,8 +103,9 @@ final class Streams {
 
 		@Override
 		public int characteristics() {
-			return Spliterator.ORDERED | Spliterator.SIZED | Spliterator.SUBSIZED
-					| Spliterator.IMMUTABLE | Spliterator.NONNULL | Spliterator.DISTINCT
+			return Spliterator.ORDERED | Spliterator.SIZED
+					| Spliterator.SUBSIZED | Spliterator.IMMUTABLE
+					| Spliterator.NONNULL | Spliterator.DISTINCT
 					| Spliterator.SORTED;
 		}
 
@@ -138,7 +119,8 @@ final class Streams {
 			long size = estimateSize();
 			return size <= 1 ? null
 					// Left split always has a half-open range
-					: new RangeIntSpliterator(from, from = from + splitPoint(size), 0);
+					: new RangeIntSpliterator(from, from = from + splitPoint(
+							size), 0);
 		}
 
 		/**
@@ -168,7 +150,8 @@ final class Streams {
 		private static final int RIGHT_BALANCED_SPLIT_RATIO = 1 << 3;
 
 		private int splitPoint(long size) {
-			int d = (size < BALANCED_SPLIT_THRESHOLD) ? 2 : RIGHT_BALANCED_SPLIT_RATIO;
+			int d = (size < BALANCED_SPLIT_THRESHOLD) ? 2
+					: RIGHT_BALANCED_SPLIT_RATIO;
 			// Cast to int is safe since:
 			// 2 <= size < 2^32
 			// 2 <= d <= 8
@@ -246,8 +229,9 @@ final class Streams {
 
 		@Override
 		public int characteristics() {
-			return Spliterator.ORDERED | Spliterator.SIZED | Spliterator.SUBSIZED
-					| Spliterator.IMMUTABLE | Spliterator.NONNULL | Spliterator.DISTINCT
+			return Spliterator.ORDERED | Spliterator.SIZED
+					| Spliterator.SUBSIZED | Spliterator.IMMUTABLE
+					| Spliterator.NONNULL | Spliterator.DISTINCT
 					| Spliterator.SORTED;
 		}
 
@@ -261,7 +245,8 @@ final class Streams {
 			long size = estimateSize();
 			return size <= 1 ? null
 					// Left split always has a half-open range
-					: new RangeLongSpliterator(from, from = from + splitPoint(size), 0);
+					: new RangeLongSpliterator(from, from = from + splitPoint(
+							size), 0);
 		}
 
 		/**
@@ -291,7 +276,8 @@ final class Streams {
 		private static final long RIGHT_BALANCED_SPLIT_RATIO = 1 << 3;
 
 		private long splitPoint(long size) {
-			long d = (size < BALANCED_SPLIT_THRESHOLD) ? 2 : RIGHT_BALANCED_SPLIT_RATIO;
+			long d = (size < BALANCED_SPLIT_THRESHOLD) ? 2
+					: RIGHT_BALANCED_SPLIT_RATIO;
 			// 2 <= size <= Long.MAX_VALUE
 			return size / d;
 		}
@@ -321,13 +307,14 @@ final class Streams {
 
 		@Override
 		public int characteristics() {
-			return Spliterator.SIZED | Spliterator.SUBSIZED | Spliterator.ORDERED
-					| Spliterator.IMMUTABLE;
+			return Spliterator.SIZED | Spliterator.SUBSIZED
+					| Spliterator.ORDERED | Spliterator.IMMUTABLE;
 		}
 	}
 
-	static final class StreamBuilderImpl<T> extends AbstractStreamBuilderImpl<T, Spliterator<T>>
-			implements Stream.Builder<T> {
+	static final class StreamBuilderImpl<T> extends
+			AbstractStreamBuilderImpl<T, Spliterator<T>> implements
+			Stream.Builder<T> {
 		// The first element in the stream
 		// valid if count == 1
 		T first;
@@ -339,14 +326,13 @@ final class Streams {
 		/**
 		 * Constructor for building a stream of 0 or more elements.
 		 */
-		StreamBuilderImpl() {
-		}
+		StreamBuilderImpl() {}
 
 		/**
 		 * Constructor for a singleton stream.
 		 *
 		 * @param t
-		 *            the single element
+		 *          the single element
 		 */
 		StreamBuilderImpl(T t) {
 			first = t;
@@ -422,9 +408,9 @@ final class Streams {
 		}
 	}
 
-	static final class IntStreamBuilderImpl
-			extends AbstractStreamBuilderImpl<Integer, Spliterator.OfInt>
-			implements IntStream.Builder, Spliterator.OfInt {
+	static final class IntStreamBuilderImpl extends
+			AbstractStreamBuilderImpl<Integer, Spliterator.OfInt> implements
+			IntStream.Builder, Spliterator.OfInt {
 		// The first element in the stream
 		// valid if count == 1
 		int first;
@@ -436,14 +422,13 @@ final class Streams {
 		/**
 		 * Constructor for building a stream of 0 or more elements.
 		 */
-		IntStreamBuilderImpl() {
-		}
+		IntStreamBuilderImpl() {}
 
 		/**
 		 * Constructor for a singleton stream.
 		 *
 		 * @param t
-		 *            the single element
+		 *          the single element
 		 */
 		IntStreamBuilderImpl(int t) {
 			first = t;
@@ -514,9 +499,9 @@ final class Streams {
 		}
 	}
 
-	static final class LongStreamBuilderImpl
-			extends AbstractStreamBuilderImpl<Long, Spliterator.OfLong>
-			implements LongStream.Builder, Spliterator.OfLong {
+	static final class LongStreamBuilderImpl extends
+			AbstractStreamBuilderImpl<Long, Spliterator.OfLong> implements
+			LongStream.Builder, Spliterator.OfLong {
 		// The first element in the stream
 		// valid if count == 1
 		long first;
@@ -528,14 +513,13 @@ final class Streams {
 		/**
 		 * Constructor for building a stream of 0 or more elements.
 		 */
-		LongStreamBuilderImpl() {
-		}
+		LongStreamBuilderImpl() {}
 
 		/**
 		 * Constructor for a singleton stream.
 		 *
 		 * @param t
-		 *            the single element
+		 *          the single element
 		 */
 		LongStreamBuilderImpl(long t) {
 			first = t;
@@ -606,9 +590,9 @@ final class Streams {
 		}
 	}
 
-	static final class DoubleStreamBuilderImpl
-			extends AbstractStreamBuilderImpl<Double, Spliterator.OfDouble>
-			implements DoubleStream.Builder, Spliterator.OfDouble {
+	static final class DoubleStreamBuilderImpl extends
+			AbstractStreamBuilderImpl<Double, Spliterator.OfDouble> implements
+			DoubleStream.Builder, Spliterator.OfDouble {
 		// The first element in the stream
 		// valid if count == 1
 		double first;
@@ -620,14 +604,13 @@ final class Streams {
 		/**
 		 * Constructor for building a stream of 0 or more elements.
 		 */
-		DoubleStreamBuilderImpl() {
-		}
+		DoubleStreamBuilderImpl() {}
 
 		/**
 		 * Constructor for a singleton stream.
 		 *
 		 * @param t
-		 *            the single element
+		 *          the single element
 		 */
 		DoubleStreamBuilderImpl(double t) {
 			first = t;
@@ -664,7 +647,8 @@ final class Streams {
 				// Use this spliterator if 0 or 1 elements, otherwise use
 				// the spliterator of the spined buffer
 				return (c < 2) ? StreamSupport.doubleStream(this, false)
-						: StreamSupport.doubleStream(buffer.spliterator(), false);
+						: StreamSupport.doubleStream(buffer.spliterator(),
+								false);
 			}
 
 			throw new IllegalStateException();
@@ -713,13 +697,15 @@ final class Streams {
 			beforeSplit = true;
 			// The spliterator is known to be unsized before splitting if the
 			// sum of the estimates overflows.
-			unsized = aSpliterator.estimateSize() + bSpliterator.estimateSize() < 0;
+			unsized = aSpliterator.estimateSize() + bSpliterator
+					.estimateSize() < 0;
 		}
 
 		@Override
 		public T_SPLITR trySplit() {
 			@SuppressWarnings("unchecked")
-			T_SPLITR ret = beforeSplit ? aSpliterator : (T_SPLITR) bSpliterator.trySplit();
+			T_SPLITR ret = beforeSplit ? aSpliterator
+					: (T_SPLITR) bSpliterator.trySplit();
 			beforeSplit = false;
 			return ret;
 		}
@@ -750,7 +736,8 @@ final class Streams {
 			if (beforeSplit) {
 				// If one or both estimates are Long.MAX_VALUE then the sum
 				// will either be Long.MAX_VALUE or overflow to a negative value
-				long size = aSpliterator.estimateSize() + bSpliterator.estimateSize();
+				long size = aSpliterator.estimateSize() + bSpliterator
+						.estimateSize();
 				return (size >= 0) ? size : Long.MAX_VALUE;
 			} else {
 				return bSpliterator.estimateSize();
@@ -761,9 +748,12 @@ final class Streams {
 		public int characteristics() {
 			if (beforeSplit) {
 				// Concatenation loses DISTINCT and SORTED characteristics
-				return aSpliterator.characteristics() & bSpliterator.characteristics()
-						& ~(Spliterator.DISTINCT | Spliterator.SORTED
-								| (unsized ? Spliterator.SIZED | Spliterator.SUBSIZED : 0));
+				return aSpliterator.characteristics() & bSpliterator
+						.characteristics() & ~(Spliterator.DISTINCT
+								| Spliterator.SORTED | (unsized
+										? Spliterator.SIZED
+												| Spliterator.SUBSIZED
+										: 0));
 			} else {
 				return bSpliterator.characteristics();
 			}
@@ -783,8 +773,8 @@ final class Streams {
 		}
 
 		private static abstract class OfPrimitive<T, T_CONS, T_SPLITR extends Spliterator.OfPrimitive<T, T_CONS, T_SPLITR>>
-				extends ConcatSpliterator<T, T_SPLITR>
-				implements Spliterator.OfPrimitive<T, T_CONS, T_SPLITR> {
+				extends ConcatSpliterator<T, T_SPLITR> implements
+				Spliterator.OfPrimitive<T, T_CONS, T_SPLITR> {
 			private OfPrimitive(T_SPLITR aSpliterator, T_SPLITR bSpliterator) {
 				super(aSpliterator, bSpliterator);
 			}
@@ -811,26 +801,29 @@ final class Streams {
 			}
 		}
 
-		static class OfInt
-				extends ConcatSpliterator.OfPrimitive<Integer, IntConsumer, Spliterator.OfInt>
+		static class OfInt extends
+				ConcatSpliterator.OfPrimitive<Integer, IntConsumer, Spliterator.OfInt>
 				implements Spliterator.OfInt {
-			OfInt(Spliterator.OfInt aSpliterator, Spliterator.OfInt bSpliterator) {
+			OfInt(Spliterator.OfInt aSpliterator,
+					Spliterator.OfInt bSpliterator) {
 				super(aSpliterator, bSpliterator);
 			}
 		}
 
-		static class OfLong
-				extends ConcatSpliterator.OfPrimitive<Long, LongConsumer, Spliterator.OfLong>
+		static class OfLong extends
+				ConcatSpliterator.OfPrimitive<Long, LongConsumer, Spliterator.OfLong>
 				implements Spliterator.OfLong {
-			OfLong(Spliterator.OfLong aSpliterator, Spliterator.OfLong bSpliterator) {
+			OfLong(Spliterator.OfLong aSpliterator,
+					Spliterator.OfLong bSpliterator) {
 				super(aSpliterator, bSpliterator);
 			}
 		}
 
-		static class OfDouble
-				extends ConcatSpliterator.OfPrimitive<Double, DoubleConsumer, Spliterator.OfDouble>
+		static class OfDouble extends
+				ConcatSpliterator.OfPrimitive<Double, DoubleConsumer, Spliterator.OfDouble>
 				implements Spliterator.OfDouble {
-			OfDouble(Spliterator.OfDouble aSpliterator, Spliterator.OfDouble bSpliterator) {
+			OfDouble(Spliterator.OfDouble aSpliterator,
+					Spliterator.OfDouble bSpliterator) {
 				super(aSpliterator, bSpliterator);
 			}
 		}

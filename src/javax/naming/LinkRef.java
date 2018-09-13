@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -81,17 +61,18 @@ public class LinkRef extends Reference {
 	 * Constructs a LinkRef for a name.
 	 * 
 	 * @param linkName
-	 *            The non-null name for which to create this link.
+	 *                 The non-null name for which to create this link.
 	 */
 	public LinkRef(Name linkName) {
-		super(linkClassName, new StringRefAddr(linkAddrType, linkName.toString()));
+		super(linkClassName, new StringRefAddr(linkAddrType, linkName
+				.toString()));
 	}
 
 	/**
 	 * Constructs a LinkRef for a string name.
 	 * 
 	 * @param linkName
-	 *            The non-null name for which to create this link.
+	 *                 The non-null name for which to create this link.
 	 */
 	public LinkRef(String linkName) {
 		super(linkClassName, new StringRefAddr(linkAddrType, linkName));
@@ -102,9 +83,9 @@ public class LinkRef extends Reference {
 	 *
 	 * @return The non-null name of this link.
 	 * @exception MalformedLinkException
-	 *                If a link name could not be extracted
+	 *                                   If a link name could not be extracted
 	 * @exception NamingException
-	 *                If a naming exception was encountered.
+	 *                                   If a naming exception was encountered.
 	 */
 	public String getLinkName() throws NamingException {
 		if (className != null && className.equals(linkClassName)) {

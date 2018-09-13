@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1996, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996, 1997 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998 - All Rights Reserved
- *
  * The original version of this source code and documentation
  * is copyrighted and owned by Taligent, Inc., a wholly-owned
  * subsidiary of IBM. These materials are provided under terms
  * of a License Agreement between Taligent and Sun. This technology
  * is protected by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.util;
@@ -55,11 +32,11 @@ public class MissingResourceException extends RuntimeException {
 	 * detail message is a String that describes this particular exception.
 	 * 
 	 * @param s
-	 *            the detail message
+	 *                  the detail message
 	 * @param className
-	 *            the name of the resource class
+	 *                  the name of the resource class
 	 * @param key
-	 *            the key for the missing resource.
+	 *                  the key for the missing resource.
 	 */
 	public MissingResourceException(String s, String className, String key) {
 		super(s);
@@ -74,18 +51,20 @@ public class MissingResourceException extends RuntimeException {
 	 * <code>ResourceBundle.getBundle</code>.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                  the detail message
 	 * @param className
-	 *            the name of the resource class
+	 *                  the name of the resource class
 	 * @param key
-	 *            the key for the missing resource.
+	 *                  the key for the missing resource.
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link Throwable.getCause()} method). (A null value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *                  the cause (which is saved for later retrieval by the
+	 *                  {@link Throwable.getCause()} method). (A null value is
+	 *                  permitted, and indicates that the cause is nonexistent
+	 *                  or
+	 *                  unknown.)
 	 */
-	MissingResourceException(String message, String className, String key, Throwable cause) {
+	MissingResourceException(String message, String className, String key,
+			Throwable cause) {
 		super(message, cause);
 		this.className = className;
 		this.key = key;

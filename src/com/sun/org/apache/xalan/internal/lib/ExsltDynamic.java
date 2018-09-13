@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -98,23 +95,25 @@ public class ExsltDynamic extends ExsltBase {
 	 * function.
 	 *
 	 * @param myContext
-	 *            The ExpressionContext passed by the extension processor
+	 *                  The ExpressionContext passed by the extension processor
 	 * @param nl
-	 *            The node set
+	 *                  The node set
 	 * @param expr
-	 *            The expression string
+	 *                  The expression string
 	 *
 	 * @return The maximum evaluation value
 	 */
-	public static double max(ExpressionContext myContext, NodeList nl, String expr)
-			throws SAXNotSupportedException {
+	public static double max(ExpressionContext myContext, NodeList nl,
+			String expr) throws SAXNotSupportedException {
 
 		XPathContext xctxt = null;
 		if (myContext instanceof XPathContext.XPathExpressionContext)
-			xctxt = ((XPathContext.XPathExpressionContext) myContext).getXPathContext();
+			xctxt = ((XPathContext.XPathExpressionContext) myContext)
+					.getXPathContext();
 		else
 			throw new SAXNotSupportedException(XSLMessages.createMessage(
-					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] { myContext }));
+					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] {
+							myContext }));
 
 		if (expr == null || expr.length() == 0)
 			return Double.NaN;
@@ -131,8 +130,8 @@ public class ExsltDynamic extends ExsltBase {
 			try {
 				XPath dynamicXPath = new XPath(expr, xctxt.getSAXLocator(),
 						xctxt.getNamespaceContext(), XPath.SELECT);
-				result = dynamicXPath.execute(xctxt, contextNode, xctxt.getNamespaceContext())
-						.num();
+				result = dynamicXPath.execute(xctxt, contextNode, xctxt
+						.getNamespaceContext()).num();
 			} catch (TransformerException e) {
 				xctxt.popCurrentNode();
 				xctxt.popContextNodeList();
@@ -182,23 +181,25 @@ public class ExsltDynamic extends ExsltBase {
 	 * function.
 	 *
 	 * @param myContext
-	 *            The ExpressionContext passed by the extension processor
+	 *                  The ExpressionContext passed by the extension processor
 	 * @param nl
-	 *            The node set
+	 *                  The node set
 	 * @param expr
-	 *            The expression string
+	 *                  The expression string
 	 *
 	 * @return The minimum evaluation value
 	 */
-	public static double min(ExpressionContext myContext, NodeList nl, String expr)
-			throws SAXNotSupportedException {
+	public static double min(ExpressionContext myContext, NodeList nl,
+			String expr) throws SAXNotSupportedException {
 
 		XPathContext xctxt = null;
 		if (myContext instanceof XPathContext.XPathExpressionContext)
-			xctxt = ((XPathContext.XPathExpressionContext) myContext).getXPathContext();
+			xctxt = ((XPathContext.XPathExpressionContext) myContext)
+					.getXPathContext();
 		else
 			throw new SAXNotSupportedException(XSLMessages.createMessage(
-					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] { myContext }));
+					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] {
+							myContext }));
 
 		if (expr == null || expr.length() == 0)
 			return Double.NaN;
@@ -215,8 +216,8 @@ public class ExsltDynamic extends ExsltBase {
 			try {
 				XPath dynamicXPath = new XPath(expr, xctxt.getSAXLocator(),
 						xctxt.getNamespaceContext(), XPath.SELECT);
-				result = dynamicXPath.execute(xctxt, contextNode, xctxt.getNamespaceContext())
-						.num();
+				result = dynamicXPath.execute(xctxt, contextNode, xctxt
+						.getNamespaceContext()).num();
 			} catch (TransformerException e) {
 				xctxt.popCurrentNode();
 				xctxt.popContextNodeList();
@@ -265,22 +266,24 @@ public class ExsltDynamic extends ExsltBase {
 	 * function.
 	 *
 	 * @param myContext
-	 *            The ExpressionContext passed by the extension processor
+	 *                  The ExpressionContext passed by the extension processor
 	 * @param nl
-	 *            The node set
+	 *                  The node set
 	 * @param expr
-	 *            The expression string
+	 *                  The expression string
 	 *
 	 * @return The sum of the evaluation value on each node
 	 */
-	public static double sum(ExpressionContext myContext, NodeList nl, String expr)
-			throws SAXNotSupportedException {
+	public static double sum(ExpressionContext myContext, NodeList nl,
+			String expr) throws SAXNotSupportedException {
 		XPathContext xctxt = null;
 		if (myContext instanceof XPathContext.XPathExpressionContext)
-			xctxt = ((XPathContext.XPathExpressionContext) myContext).getXPathContext();
+			xctxt = ((XPathContext.XPathExpressionContext) myContext)
+					.getXPathContext();
 		else
 			throw new SAXNotSupportedException(XSLMessages.createMessage(
-					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] { myContext }));
+					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] {
+							myContext }));
 
 		if (expr == null || expr.length() == 0)
 			return Double.NaN;
@@ -297,8 +300,8 @@ public class ExsltDynamic extends ExsltBase {
 			try {
 				XPath dynamicXPath = new XPath(expr, xctxt.getSAXLocator(),
 						xctxt.getNamespaceContext(), XPath.SELECT);
-				result = dynamicXPath.execute(xctxt, contextNode, xctxt.getNamespaceContext())
-						.num();
+				result = dynamicXPath.execute(xctxt, contextNode, xctxt
+						.getNamespaceContext()).num();
 			} catch (TransformerException e) {
 				xctxt.popCurrentNode();
 				xctxt.popContextNodeList();
@@ -372,24 +375,26 @@ public class ExsltDynamic extends ExsltBase {
 	 * the relevant node to a string as with the string function.
 	 *
 	 * @param myContext
-	 *            The ExpressionContext passed by the extension processor
+	 *                  The ExpressionContext passed by the extension processor
 	 * @param nl
-	 *            The node set
+	 *                  The node set
 	 * @param expr
-	 *            The expression string
+	 *                  The expression string
 	 *
 	 * @return The node set after evaluation
 	 */
-	public static NodeList map(ExpressionContext myContext, NodeList nl, String expr)
-			throws SAXNotSupportedException {
+	public static NodeList map(ExpressionContext myContext, NodeList nl,
+			String expr) throws SAXNotSupportedException {
 		XPathContext xctxt = null;
 		Document lDoc = null;
 
 		if (myContext instanceof XPathContext.XPathExpressionContext)
-			xctxt = ((XPathContext.XPathExpressionContext) myContext).getXPathContext();
+			xctxt = ((XPathContext.XPathExpressionContext) myContext)
+					.getXPathContext();
 		else
 			throw new SAXNotSupportedException(XSLMessages.createMessage(
-					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] { myContext }));
+					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] {
+							myContext }));
 
 		if (expr == null || expr.length() == 0)
 			return new NodeSet();
@@ -408,7 +413,8 @@ public class ExsltDynamic extends ExsltBase {
 			try {
 				XPath dynamicXPath = new XPath(expr, xctxt.getSAXLocator(),
 						xctxt.getNamespaceContext(), XPath.SELECT);
-				object = dynamicXPath.execute(xctxt, contextNode, xctxt.getNamespaceContext());
+				object = dynamicXPath.execute(xctxt, contextNode, xctxt
+						.getNamespaceContext());
 
 				if (object instanceof XNodeSet) {
 					NodeList nodelist = null;
@@ -421,7 +427,8 @@ public class ExsltDynamic extends ExsltBase {
 					}
 				} else {
 					if (lDoc == null) {
-						DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+						DocumentBuilderFactory dbf = DocumentBuilderFactory
+								.newInstance();
 						dbf.setNamespaceAware(true);
 						DocumentBuilder db = dbf.newDocumentBuilder();
 						lDoc = db.newDocument();
@@ -431,7 +438,8 @@ public class ExsltDynamic extends ExsltBase {
 					if (object instanceof XNumber)
 						element = lDoc.createElementNS(EXSL_URI, "exsl:number");
 					else if (object instanceof XBoolean)
-						element = lDoc.createElementNS(EXSL_URI, "exsl:boolean");
+						element = lDoc.createElementNS(EXSL_URI,
+								"exsl:boolean");
 					else
 						element = lDoc.createElementNS(EXSL_URI, "exsl:string");
 
@@ -468,18 +476,19 @@ public class ExsltDynamic extends ExsltBase {
 	 * literally.
 	 *
 	 * @param myContext
-	 *            The ExpressionContext passed by the extension processor
+	 *                  The ExpressionContext passed by the extension processor
 	 * @param xpathExpr
-	 *            The XPath expression string
+	 *                  The XPath expression string
 	 *
 	 * @return The evaluation result
 	 */
-	public static XObject evaluate(ExpressionContext myContext, String xpathExpr)
-			throws SAXNotSupportedException {
+	public static XObject evaluate(ExpressionContext myContext,
+			String xpathExpr) throws SAXNotSupportedException {
 		if (myContext instanceof XPathContext.XPathExpressionContext) {
 			XPathContext xctxt = null;
 			try {
-				xctxt = ((XPathContext.XPathExpressionContext) myContext).getXPathContext();
+				xctxt = ((XPathContext.XPathExpressionContext) myContext)
+						.getXPathContext();
 				XPath dynamicXPath = new XPath(xpathExpr, xctxt.getSAXLocator(),
 						xctxt.getNamespaceContext(), XPath.SELECT);
 
@@ -490,12 +499,13 @@ public class ExsltDynamic extends ExsltBase {
 			}
 		} else
 			throw new SAXNotSupportedException(XSLMessages.createMessage(
-					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] { myContext })); // "Invalid
-																								// context
-																								// passed
-																								// to
-																								// evaluate
-																								// "
+					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] {
+							myContext })); // "Invalid
+																																										// context
+																																										// passed
+																																										// to
+																																										// evaluate
+																																										// "
 	}
 
 	/**
@@ -541,22 +551,24 @@ public class ExsltDynamic extends ExsltBase {
 	 * not return a node set, this function returns an empty node set.
 	 *
 	 * @param myContext
-	 *            The ExpressionContext passed by the extension processor
+	 *                  The ExpressionContext passed by the extension processor
 	 * @param nl
-	 *            The node set
+	 *                  The node set
 	 * @param expr
-	 *            The expression string
+	 *                  The expression string
 	 *
 	 * @return The node set after evaluation
 	 */
-	public static NodeList closure(ExpressionContext myContext, NodeList nl, String expr)
-			throws SAXNotSupportedException {
+	public static NodeList closure(ExpressionContext myContext, NodeList nl,
+			String expr) throws SAXNotSupportedException {
 		XPathContext xctxt = null;
 		if (myContext instanceof XPathContext.XPathExpressionContext)
-			xctxt = ((XPathContext.XPathExpressionContext) myContext).getXPathContext();
+			xctxt = ((XPathContext.XPathExpressionContext) myContext)
+					.getXPathContext();
 		else
 			throw new SAXNotSupportedException(XSLMessages.createMessage(
-					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] { myContext }));
+					XSLTErrorResources.ER_INVALID_CONTEXT_PASSED, new Object[] {
+							myContext }));
 
 		if (expr == null || expr.length() == 0)
 			return new NodeSet();
@@ -580,7 +592,8 @@ public class ExsltDynamic extends ExsltBase {
 				try {
 					XPath dynamicXPath = new XPath(expr, xctxt.getSAXLocator(),
 							xctxt.getNamespaceContext(), XPath.SELECT);
-					object = dynamicXPath.execute(xctxt, contextNode, xctxt.getNamespaceContext());
+					object = dynamicXPath.execute(xctxt, contextNode, xctxt
+							.getNamespaceContext());
 
 					if (object instanceof XNodeSet) {
 						NodeList nodelist = null;

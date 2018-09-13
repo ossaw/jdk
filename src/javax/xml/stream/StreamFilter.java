@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -46,7 +26,7 @@ public interface StreamFilter {
 	 * state.
 	 *
 	 * @param reader
-	 *            the event to test
+	 *               the event to test
 	 * @return true if this filter accepts this event, false otherwise
 	 */
 	public boolean accept(XMLStreamReader reader);

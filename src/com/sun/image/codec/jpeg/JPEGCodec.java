@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -7,9 +6,9 @@
 /**********************************************************************
  **********************************************************************
  **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company.                 ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
+ *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************
  **********************************************************************
  **********************************************************************/
@@ -41,8 +40,7 @@ import java.io.OutputStream;
  * @see JPEGImageEncoder
  */
 public class JPEGCodec {
-	private JPEGCodec() {
-	}
+	private JPEGCodec() {}
 
 	/**
 	 * This creates an instance of a JPEGImageDecoder that can be used to decode
@@ -56,7 +54,8 @@ public class JPEGCodec {
 	 * This creates an instance of a JPEGImageDecoder that can be used to decode
 	 * JPEG Data streams.
 	 */
-	public static JPEGImageDecoder createJPEGDecoder(InputStream src, JPEGDecodeParam jdp) {
+	public static JPEGImageDecoder createJPEGDecoder(InputStream src,
+			JPEGDecodeParam jdp) {
 		return new JPEGImageDecoderImpl(src, jdp);
 	}
 
@@ -72,7 +71,8 @@ public class JPEGCodec {
 	 * This creates an instance of a JPEGImageEncoder that can be used to encode
 	 * image data as JPEG Data streams.
 	 */
-	public static JPEGImageEncoder createJPEGEncoder(OutputStream dest, JPEGEncodeParam jep) {
+	public static JPEGImageEncoder createJPEGEncoder(OutputStream dest,
+			JPEGEncodeParam jep) {
 		return new JPEGImageEncoderImpl(dest, jep);
 	}
 
@@ -82,8 +82,8 @@ public class JPEGCodec {
 	 * BufferedImage.
 	 * 
 	 * @param bi
-	 *            A BufferedImage that is similar to the BufferedImage(s) that
-	 *            will encoded using the returned JPEGEncodeParam object.
+	 *           A BufferedImage that is similar to the BufferedImage(s) that
+	 *           will encoded using the returned JPEGEncodeParam object.
 	 */
 	public static JPEGEncodeParam getDefaultJPEGEncodeParam(BufferedImage bi) {
 		int colorID = JPEGParam.getDefaultColorId(bi.getColorModel());
@@ -98,12 +98,14 @@ public class JPEGCodec {
 	 * recommended that you stick to the BufferedImage interface.
 	 * 
 	 * @param ras
-	 *            Raster that is similar to those to be encoded later.
+	 *                Raster that is similar to those to be encoded later.
 	 * @param colorID
-	 *            the COLOR_ID for the encoded data. This should match the data
-	 *            in the raster.
+	 *                the COLOR_ID for the encoded data. This should match the
+	 *                data
+	 *                in the raster.
 	 */
-	public static JPEGEncodeParam getDefaultJPEGEncodeParam(Raster ras, int colorID) {
+	public static JPEGEncodeParam getDefaultJPEGEncodeParam(Raster ras,
+			int colorID) {
 		JPEGParam ret = new JPEGParam(colorID, ras.getNumBands());
 		ret.setWidth(ras.getWidth());
 		ret.setHeight(ras.getHeight());
@@ -125,14 +127,15 @@ public class JPEGCodec {
 	 * a JPEG tables only stream.
 	 *
 	 * @param numBands
-	 *            the number of bands that will be encoded (max of four).
+	 *                 the number of bands that will be encoded (max of four).
 	 * @param colorID
-	 *            the COLOR_ID for the encoded data. This is used to set
-	 *            reasonable defaults in the parameter object. This must match
-	 *            the number of bands given.
+	 *                 the COLOR_ID for the encoded data. This is used to set
+	 *                 reasonable defaults in the parameter object. This must
+	 *                 match
+	 *                 the number of bands given.
 	 */
-	public static JPEGEncodeParam getDefaultJPEGEncodeParam(int numBands, int colorID)
-			throws ImageFormatException {
+	public static JPEGEncodeParam getDefaultJPEGEncodeParam(int numBands,
+			int colorID) throws ImageFormatException {
 		return new JPEGParam(colorID, numBands);
 	}
 

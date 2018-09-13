@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.monitor;
@@ -207,27 +187,32 @@ public class MonitorNotification extends javax.management.Notification {
 	 * Creates a monitor notification object.
 	 *
 	 * @param type
-	 *            The notification type.
+	 *                       The notification type.
 	 * @param source
-	 *            The notification producer.
+	 *                       The notification producer.
 	 * @param sequenceNumber
-	 *            The notification sequence number within the source object.
+	 *                       The notification sequence number within the source
+	 *                       object.
 	 * @param timeStamp
-	 *            The notification emission date.
+	 *                       The notification emission date.
 	 * @param msg
-	 *            The notification message.
+	 *                       The notification message.
 	 * @param obsObj
-	 *            The object observed by the producer of this notification.
+	 *                       The object observed by the producer of this
+	 *                       notification.
 	 * @param obsAtt
-	 *            The attribute observed by the producer of this notification.
+	 *                       The attribute observed by the producer of this
+	 *                       notification.
 	 * @param derGauge
-	 *            The derived gauge.
+	 *                       The derived gauge.
 	 * @param trigger
-	 *            The threshold/string (depending on the monitor type) that
-	 *            triggered the notification.
+	 *                       The threshold/string (depending on the monitor
+	 *                       type) that
+	 *                       triggered the notification.
 	 */
-	MonitorNotification(String type, Object source, long sequenceNumber, long timeStamp, String msg,
-			ObjectName obsObj, String obsAtt, Object derGauge, Object trigger) {
+	MonitorNotification(String type, Object source, long sequenceNumber,
+			long timeStamp, String msg, ObjectName obsObj, String obsAtt,
+			Object derGauge, Object trigger) {
 
 		super(type, source, sequenceNumber, timeStamp, msg);
 		this.observedObject = obsObj;

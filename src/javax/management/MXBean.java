@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -60,16 +40,13 @@ import javax.management.openmbean.TabularType;
  * </p>
  * 
  * <pre>
- * public interface WhatsitMXBean {
- * }
+ * public interface WhatsitMXBean {}
  * 
  * &#64;MXBean
- * public interface Whatsit1Interface {
- * }
+ * public interface Whatsit1Interface {}
  * 
  * &#64;MXBean(true)
- * public interface Whatsit2Interface {
- * }
+ * public interface Whatsit2Interface {}
  * </pre>
  * 
  * <p>
@@ -77,15 +54,12 @@ import javax.management.openmbean.TabularType;
  * </p>
  * 
  * <pre>
- * interface NonPublicInterfaceNotMXBean {
- * }
+ * interface NonPublicInterfaceNotMXBean {}
  * 
- * public interface Whatsit3Interface {
- * }
+ * public interface Whatsit3Interface {}
  * 
  * &#64;MXBean(false)
- * public interface MisleadingMXBean {
- * }
+ * public interface MisleadingMXBean {}
  * </pre>
  * 
  * <h3 id="MXBean-spec">MXBean specification</h3>
@@ -678,7 +652,7 @@ registerMBean}(pool, objectName);
  * <p>
  * A {@code List<}<em>E</em>{@code >} or {@code
    Set<}<em>E</em>{@code >}, such as {@code List<String>} or {@code
-   Set<ObjectName>}, is mapped in the same way as an array of the same element
+ Set<ObjectName>}, is mapped in the same way as an array of the same element
  * type, such as {@code String[]} or {@code
  ObjectName[]}.
  * </p>
@@ -709,7 +683,7 @@ registerMBean}(pool, objectName);
  * <p>
  * A {@code Map<}<em>K</em>,<em>V</em>{@code >} or {@code
    SortedMap<}<em>K</em>,<em>V</em>{@code >}, for example {@code
- Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
+Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * {@link TabularData}. The {@code TabularType} has two items called {@code key}
  * and {@code value}. The Open Type of {@code key} is <em>opentype(K)</em>, and
  * the Open Type of {@code value} is <em>opentype(V)</em>. The index of the
@@ -724,9 +698,12 @@ registerMBean}(pool, objectName);
  * <pre>
  * String typeName = "java.util.Map&lt;java.lang.String, javax.management.ObjectName&gt;";
  * String[] keyValue = new String[] { "key", "value" };
- * OpenType[] openTypes = new OpenType[] { SimpleType.STRING, SimpleType.OBJECTNAME };
- * CompositeType rowType = new CompositeType(typeName, typeName, keyValue, keyValue, openTypes);
- * TabularType tabularType = new TabularType(typeName, typeName, rowType, new String[] { "key" });
+ * OpenType[] openTypes = new OpenType[] { SimpleType.STRING,
+ * 		SimpleType.OBJECTNAME };
+ * CompositeType rowType = new CompositeType(typeName, typeName, keyValue,
+ * 		keyValue, openTypes);
+ * TabularType tabularType = new TabularType(typeName, typeName, rowType,
+ * 		new String[] { "key" });
  * </pre>
  * 
  * <p>
@@ -907,7 +884,7 @@ registerMBean}(pool, objectName);
  * <p>
  * If two methods produce the same item name (for example, {@code
    getOwner} and {@code isOwner}, or {@code getOwner} and {@code
- getowner}) then the type is not convertible.
+getowner}) then the type is not convertible.
  * </p>
  * 
  * <p>
@@ -1054,7 +1031,7 @@ registerMBean}(pool, objectName);
  * <p>
  * Here are examples showing different ways to code a type {@code
    NamedNumber} that consists of an {@code int} and a {@code
- String}. In each case, the {@code CompositeType} looks like this:
+String}. In each case, the {@code CompositeType} looks like this:
  * </p>
  * 
  * <blockquote>

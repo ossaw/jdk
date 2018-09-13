@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -74,7 +54,8 @@ public class CorbaOutboundConnectionCacheImpl extends CorbaConnectionCacheBase
 
 	public void put(ContactInfo contactInfo, Connection connection) {
 		if (orb.transportDebugFlag) {
-			dprint(".put: " + contactInfo + " " + contactInfo.hashCode() + " " + connection);
+			dprint(".put: " + contactInfo + " " + contactInfo.hashCode() + " "
+					+ connection);
 		}
 		synchronized (backingStore()) {
 			connectionCache.put(contactInfo, connection);
@@ -110,33 +91,38 @@ public class CorbaOutboundConnectionCacheImpl extends CorbaConnectionCacheBase
 
 	protected void registerWithMonitoring() {
 		// ORB
-		MonitoredObject orbMO = orb.getMonitoringManager().getRootMonitoredObject();
+		MonitoredObject orbMO = orb.getMonitoringManager()
+				.getRootMonitoredObject();
 
 		// CONNECTION
-		MonitoredObject connectionMO = orbMO
-				.getChild(MonitoringConstants.CONNECTION_MONITORING_ROOT);
+		MonitoredObject connectionMO = orbMO.getChild(
+				MonitoringConstants.CONNECTION_MONITORING_ROOT);
 		if (connectionMO == null) {
-			connectionMO = MonitoringFactories.getMonitoredObjectFactory().createMonitoredObject(
-					MonitoringConstants.CONNECTION_MONITORING_ROOT,
-					MonitoringConstants.CONNECTION_MONITORING_ROOT_DESCRIPTION);
+			connectionMO = MonitoringFactories.getMonitoredObjectFactory()
+					.createMonitoredObject(
+							MonitoringConstants.CONNECTION_MONITORING_ROOT,
+							MonitoringConstants.CONNECTION_MONITORING_ROOT_DESCRIPTION);
 			orbMO.addChild(connectionMO);
 		}
 
 		// OUTBOUND CONNECTION
-		MonitoredObject outboundConnectionMO = connectionMO
-				.getChild(MonitoringConstants.OUTBOUND_CONNECTION_MONITORING_ROOT);
+		MonitoredObject outboundConnectionMO = connectionMO.getChild(
+				MonitoringConstants.OUTBOUND_CONNECTION_MONITORING_ROOT);
 		if (outboundConnectionMO == null) {
-			outboundConnectionMO = MonitoringFactories.getMonitoredObjectFactory()
-					.createMonitoredObject(MonitoringConstants.OUTBOUND_CONNECTION_MONITORING_ROOT,
+			outboundConnectionMO = MonitoringFactories
+					.getMonitoredObjectFactory().createMonitoredObject(
+							MonitoringConstants.OUTBOUND_CONNECTION_MONITORING_ROOT,
 							MonitoringConstants.OUTBOUND_CONNECTION_MONITORING_ROOT_DESCRIPTION);
 			connectionMO.addChild(outboundConnectionMO);
 		}
 
 		// NODE FOR THIS CACHE
-		MonitoredObject thisMO = outboundConnectionMO.getChild(getMonitoringName());
+		MonitoredObject thisMO = outboundConnectionMO.getChild(
+				getMonitoringName());
 		if (thisMO == null) {
-			thisMO = MonitoringFactories.getMonitoredObjectFactory().createMonitoredObject(
-					getMonitoringName(), MonitoringConstants.CONNECTION_MONITORING_DESCRIPTION);
+			thisMO = MonitoringFactories.getMonitoredObjectFactory()
+					.createMonitoredObject(getMonitoringName(),
+							MonitoringConstants.CONNECTION_MONITORING_DESCRIPTION);
 			outboundConnectionMO.addChild(thisMO);
 		}
 
@@ -147,7 +133,8 @@ public class CorbaOutboundConnectionCacheImpl extends CorbaConnectionCacheBase
 				MonitoringConstants.CONNECTION_TOTAL_NUMBER_OF_CONNECTIONS,
 				MonitoringConstants.CONNECTION_TOTAL_NUMBER_OF_CONNECTIONS_DESCRIPTION) {
 			public Object getValue() {
-				return new Long(CorbaOutboundConnectionCacheImpl.this.numberOfConnections());
+				return new Long(CorbaOutboundConnectionCacheImpl.this
+						.numberOfConnections());
 			}
 		};
 		thisMO.addAttribute(attribute);
@@ -157,7 +144,8 @@ public class CorbaOutboundConnectionCacheImpl extends CorbaConnectionCacheBase
 				MonitoringConstants.CONNECTION_NUMBER_OF_IDLE_CONNECTIONS,
 				MonitoringConstants.CONNECTION_NUMBER_OF_IDLE_CONNECTIONS_DESCRIPTION) {
 			public Object getValue() {
-				return new Long(CorbaOutboundConnectionCacheImpl.this.numberOfIdleConnections());
+				return new Long(CorbaOutboundConnectionCacheImpl.this
+						.numberOfIdleConnections());
 			}
 		};
 		thisMO.addAttribute(attribute);
@@ -167,7 +155,8 @@ public class CorbaOutboundConnectionCacheImpl extends CorbaConnectionCacheBase
 				MonitoringConstants.CONNECTION_NUMBER_OF_BUSY_CONNECTIONS,
 				MonitoringConstants.CONNECTION_NUMBER_OF_BUSY_CONNECTIONS_DESCRIPTION) {
 			public Object getValue() {
-				return new Long(CorbaOutboundConnectionCacheImpl.this.numberOfBusyConnections());
+				return new Long(CorbaOutboundConnectionCacheImpl.this
+						.numberOfBusyConnections());
 			}
 		};
 		thisMO.addAttribute(attribute);

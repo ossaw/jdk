@@ -69,7 +69,8 @@ public abstract class KeyResolverSpi {
 	 * @return whether the KeyResolverSpi is able to perform the requested
 	 *         action.
 	 */
-	public boolean engineCanResolve(Element element, String baseURI, StorageResolver storage) {
+	public boolean engineCanResolve(Element element, String baseURI,
+			StorageResolver storage) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -98,8 +99,9 @@ public abstract class KeyResolverSpi {
 	 *
 	 * @throws KeyResolverException
 	 */
-	public PublicKey engineLookupAndResolvePublicKey(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public PublicKey engineLookupAndResolvePublicKey(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		KeyResolverSpi tmp = cloneIfNeeded();
 		if (!tmp.engineCanResolve(element, baseURI, storage)) {
 			return null;
@@ -132,8 +134,9 @@ public abstract class KeyResolverSpi {
 	 *
 	 * @throws KeyResolverException
 	 */
-	public X509Certificate engineResolveX509Certificate(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public X509Certificate engineResolveX509Certificate(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		throw new UnsupportedOperationException();
 	};
 
@@ -148,8 +151,9 @@ public abstract class KeyResolverSpi {
 	 *
 	 * @throws KeyResolverException
 	 */
-	public X509Certificate engineLookupResolveX509Certificate(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public X509Certificate engineLookupResolveX509Certificate(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		KeyResolverSpi tmp = cloneIfNeeded();
 		if (!tmp.engineCanResolve(element, baseURI, storage)) {
 			return null;
@@ -183,8 +187,9 @@ public abstract class KeyResolverSpi {
 	 *
 	 * @throws KeyResolverException
 	 */
-	public SecretKey engineLookupAndResolveSecretKey(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public SecretKey engineLookupAndResolveSecretKey(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		KeyResolverSpi tmp = cloneIfNeeded();
 		if (!tmp.engineCanResolve(element, baseURI, storage)) {
 			return null;
@@ -202,8 +207,9 @@ public abstract class KeyResolverSpi {
 	 *
 	 * @throws KeyResolverException
 	 */
-	public PrivateKey engineLookupAndResolvePrivateKey(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public PrivateKey engineLookupAndResolvePrivateKey(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		// This method was added later, it has no equivalent
 		// engineResolvePrivateKey() in the old API.
 		// We cannot throw UnsupportedOperationException because

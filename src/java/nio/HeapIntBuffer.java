@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -43,9 +23,7 @@ class HeapIntBuffer extends IntBuffer {
 	// For speed these fields are actually declared in X-Buffer;
 	// these declarations are here as documentation
 	/*
-	 * 
 	 * protected final int[] hb; protected final int offset;
-	 * 
 	 */
 
 	HeapIntBuffer(int cap, int lim) { // package-private
@@ -66,7 +44,8 @@ class HeapIntBuffer extends IntBuffer {
 
 	}
 
-	protected HeapIntBuffer(int[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapIntBuffer(int[] buf, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(mark, pos, lim, cap, buf, off);
 		/*
@@ -81,14 +60,14 @@ class HeapIntBuffer extends IntBuffer {
 	}
 
 	public IntBuffer duplicate() {
-		return new HeapIntBuffer(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapIntBuffer(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public IntBuffer asReadOnlyBuffer() {
 
-		return new HeapIntBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapIntBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 
 	}
 
@@ -155,7 +134,8 @@ class HeapIntBuffer extends IntBuffer {
 			int n = sb.remaining();
 			if (n > remaining())
 				throw new BufferOverflowException();
-			System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()), n);
+			System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()),
+					n);
 			sb.position(sb.position() + n);
 			position(position() + n);
 		} else if (src.isDirect()) {

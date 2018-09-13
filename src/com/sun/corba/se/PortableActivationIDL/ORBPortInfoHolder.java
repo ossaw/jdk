@@ -8,22 +8,25 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public final class ORBPortInfoHolder implements org.omg.CORBA.portable.Streamable {
+public final class ORBPortInfoHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.PortableActivationIDL.ORBPortInfo value = null;
 
-	public ORBPortInfoHolder() {
-	}
+	public ORBPortInfoHolder() {}
 
-	public ORBPortInfoHolder(com.sun.corba.se.PortableActivationIDL.ORBPortInfo initialValue) {
+	public ORBPortInfoHolder(
+			com.sun.corba.se.PortableActivationIDL.ORBPortInfo initialValue) {
 		value = initialValue;
 	}
 
 	public void _read(org.omg.CORBA.portable.InputStream i) {
-		value = com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.read(i);
+		value = com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.read(
+				i);
 	}
 
 	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.write(o, value);
+		com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.write(o,
+				value);
 	}
 
 	public org.omg.CORBA.TypeCode _type() {

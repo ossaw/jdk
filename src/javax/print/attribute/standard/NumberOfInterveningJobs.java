@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -41,7 +21,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class NumberOfInterveningJobs extends IntegerSyntax implements PrintJobAttribute {
+public final class NumberOfInterveningJobs extends IntegerSyntax implements
+		PrintJobAttribute {
 
 	private static final long serialVersionUID = 2568141124844982746L;
 
@@ -50,11 +31,12 @@ public final class NumberOfInterveningJobs extends IntegerSyntax implements Prin
 	 * integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if <CODE>value</CODE> is less
-	 *                than 0.
+	 *                                     (Unchecked exception) Thrown if
+	 *                                     <CODE>value</CODE> is less
+	 *                                     than 0.
 	 */
 	public NumberOfInterveningJobs(int value) {
 		super(value, 0, Integer.MAX_VALUE);
@@ -72,13 +54,14 @@ public final class NumberOfInterveningJobs extends IntegerSyntax implements Prin
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this number of
 	 *         intervening jobs attribute, false otherwise.
 	 */
 	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof NumberOfInterveningJobs);
+		return (super.equals(object)
+				&& object instanceof NumberOfInterveningJobs);
 	}
 
 	/**

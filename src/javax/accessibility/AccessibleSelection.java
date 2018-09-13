@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -63,7 +43,7 @@ public interface AccessibleSelection {
 	 * different from the i-th child.
 	 *
 	 * @param i
-	 *            the zero-based index of selected children
+	 *          the zero-based index of selected children
 	 * @return the i-th selected child
 	 * @see #getAccessibleSelectionCount
 	 */
@@ -74,7 +54,7 @@ public interface AccessibleSelection {
 	 *
 	 * @return true if the current child of this object is selected; else false.
 	 * @param i
-	 *            the zero-based index of the child in this Accessible object.
+	 *          the zero-based index of the child in this Accessible object.
 	 * @see AccessibleContext#getAccessibleChild
 	 */
 	public boolean isAccessibleChildSelected(int i);
@@ -87,7 +67,7 @@ public interface AccessibleSelection {
 	 * selected, this method has no effect.
 	 *
 	 * @param i
-	 *            the zero-based index of the child
+	 *          the zero-based index of the child
 	 * @see AccessibleContext#getAccessibleChild
 	 */
 	public void addAccessibleSelection(int i);
@@ -97,7 +77,7 @@ public interface AccessibleSelection {
 	 * the specified item isn't currently selected, this method has no effect.
 	 *
 	 * @param i
-	 *            the zero-based index of the child
+	 *          the zero-based index of the child
 	 * @see AccessibleContext#getAccessibleChild
 	 */
 	public void removeAccessibleSelection(int i);

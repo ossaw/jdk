@@ -1,47 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Copyright (c) 2007-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -105,14 +79,15 @@ final class ZoneRegion extends ZoneId implements Serializable {
 	 * Obtains an instance of {@code ZoneId} from an identifier.
 	 *
 	 * @param zoneId
-	 *            the time-zone ID, not null
+	 *                       the time-zone ID, not null
 	 * @param checkAvailable
-	 *            whether to check if the zone ID is available
+	 *                       whether to check if the zone ID is available
 	 * @return the zone ID, not null
 	 * @throws DateTimeException
-	 *             if the ID format is invalid
+	 *                            if the ID format is invalid
 	 * @throws ZoneRulesException
-	 *             if checking availability and the ID cannot be found
+	 *                            if checking availability and the ID cannot be
+	 *                            found
 	 */
 	static ZoneRegion ofId(String zoneId, boolean checkAvailable) {
 		Objects.requireNonNull(zoneId, "zoneId");
@@ -133,15 +108,16 @@ final class ZoneRegion extends ZoneId implements Serializable {
 	 * Checks that the given string is a legal ZondId name.
 	 *
 	 * @param zoneId
-	 *            the time-zone ID, not null
+	 *               the time-zone ID, not null
 	 * @throws DateTimeException
-	 *             if the ID format is invalid
+	 *                           if the ID format is invalid
 	 */
 	private static void checkName(String zoneId) {
 		int n = zoneId.length();
 		if (n < 2) {
 			throw new DateTimeException(
-					"Invalid ID for region-based ZoneId, invalid format: " + zoneId);
+					"Invalid ID for region-based ZoneId, invalid format: "
+							+ zoneId);
 		}
 		for (int i = 0; i < n; i++) {
 			char c = zoneId.charAt(i);
@@ -164,7 +140,8 @@ final class ZoneRegion extends ZoneId implements Serializable {
 			if (c == '-' && i != 0)
 				continue;
 			throw new DateTimeException(
-					"Invalid ID for region-based ZoneId, invalid format: " + zoneId);
+					"Invalid ID for region-based ZoneId, invalid format: "
+							+ zoneId);
 		}
 	}
 
@@ -173,9 +150,9 @@ final class ZoneRegion extends ZoneId implements Serializable {
 	 * Constructor.
 	 *
 	 * @param id
-	 *            the time-zone ID, not null
+	 *              the time-zone ID, not null
 	 * @param rules
-	 *            the rules, null for lazy lookup
+	 *              the rules, null for lazy lookup
 	 */
 	ZoneRegion(String id, ZoneRules rules) {
 		this.id = id;
@@ -218,12 +195,13 @@ final class ZoneRegion extends ZoneId implements Serializable {
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	@Override

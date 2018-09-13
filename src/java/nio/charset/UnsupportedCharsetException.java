@@ -1,28 +1,6 @@
 /*
  * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
- *
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -46,7 +24,7 @@ public class UnsupportedCharsetException extends IllegalArgumentException {
 	 * Constructs an instance of this class.
 	 *
 	 * @param charsetName
-	 *            The name of the unsupported charset
+	 *                    The name of the unsupported charset
 	 */
 	public UnsupportedCharsetException(String charsetName) {
 		super(String.valueOf(charsetName));

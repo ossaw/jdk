@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -48,9 +28,9 @@ public class SimpleBindings implements Bindings {
 	 * Constructor uses an existing <code>Map</code> to store the values.
 	 * 
 	 * @param m
-	 *            The <code>Map</code> backing this <code>SimpleBindings</code>.
+	 *          The <code>Map</code> backing this <code>SimpleBindings</code>.
 	 * @throws NullPointerException
-	 *             if m is null
+	 *                              if m is null
 	 */
 	public SimpleBindings(Map<String, Object> m) {
 		if (m == null) {
@@ -70,17 +50,17 @@ public class SimpleBindings implements Bindings {
 	 * Sets the specified key/value in the underlying <code>map</code> field.
 	 *
 	 * @param name
-	 *            Name of value
+	 *              Name of value
 	 * @param value
-	 *            Value to set.
+	 *              Value to set.
 	 *
 	 * @return Previous value for the specified key. Returns null if key was
 	 *         previously unset.
 	 *
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 * @throws IllegalArgumentException
-	 *             if the name is empty.
+	 *                                  if the name is empty.
 	 */
 	public Object put(String name, Object value) {
 		checkKey(name);
@@ -91,18 +71,21 @@ public class SimpleBindings implements Bindings {
 	 * <code>putAll</code> is implemented using <code>Map.putAll</code>.
 	 *
 	 * @param toMerge
-	 *            The <code>Map</code> of values to add.
+	 *                The <code>Map</code> of values to add.
 	 *
 	 * @throws NullPointerException
-	 *             if toMerge map is null or if some key in the map is null.
+	 *                                  if toMerge map is null or if some key in
+	 *                                  the map is null.
 	 * @throws IllegalArgumentException
-	 *             if some key in the map is an empty String.
+	 *                                  if some key in the map is an empty
+	 *                                  String.
 	 */
 	public void putAll(Map<? extends String, ? extends Object> toMerge) {
 		if (toMerge == null) {
 			throw new NullPointerException("toMerge map is null");
 		}
-		for (Map.Entry<? extends String, ? extends Object> entry : toMerge.entrySet()) {
+		for (Map.Entry<? extends String, ? extends Object> entry : toMerge
+				.entrySet()) {
 			String key = entry.getKey();
 			checkKey(key);
 			put(key, entry.getValue());
@@ -127,11 +110,11 @@ public class SimpleBindings implements Bindings {
 	 *         key.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null
+	 *                                  if key is null
 	 * @throws ClassCastException
-	 *             if key is not String
+	 *                                  if key is not String
 	 * @throws IllegalArgumentException
-	 *             if key is empty String
+	 *                                  if key is empty String
 	 */
 	public boolean containsKey(Object key) {
 		checkKey(key);
@@ -168,11 +151,11 @@ public class SimpleBindings implements Bindings {
 	 *         <tt>null</tt> if the map contains no mapping for this key.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null
+	 *                                  if key is null
 	 * @throws ClassCastException
-	 *             if key is not String
+	 *                                  if key is not String
 	 * @throws IllegalArgumentException
-	 *             if key is empty String
+	 *                                  if key is empty String
 	 */
 	public Object get(Object key) {
 		checkKey(key);
@@ -210,11 +193,11 @@ public class SimpleBindings implements Bindings {
 	 *         there was no mapping for key.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null
+	 *                                  if key is null
 	 * @throws ClassCastException
-	 *             if key is not String
+	 *                                  if key is not String
 	 * @throws IllegalArgumentException
-	 *             if key is empty String
+	 *                                  if key is empty String
 	 */
 	public Object remove(Object key) {
 		checkKey(key);

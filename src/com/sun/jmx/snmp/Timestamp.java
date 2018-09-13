@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -60,10 +59,10 @@ public class Timestamp implements java.io.Serializable {
 	 * Creates a <CODE>TimeStamp</CODE> object using the user parameters.
 	 * 
 	 * @param uptime
-	 *            The time (in hundredths of a second) since the network
-	 *            management portion of the system was last re-initialized.
+	 *               The time (in hundredths of a second) since the network
+	 *               management portion of the system was last re-initialized.
 	 * @param when
-	 *            The current time.
+	 *               The current time.
 	 */
 	public Timestamp(long uptime, long when) {
 		sysUpTime = uptime;
@@ -74,8 +73,8 @@ public class Timestamp implements java.io.Serializable {
 	 * Creates a <CODE>TimeStamp</CODE> object using the user parameters.
 	 * 
 	 * @param uptime
-	 *            The time (in hundredths of a second) since the network
-	 *            management portion of the system was last re-initialized.
+	 *               The time (in hundredths of a second) since the network
+	 *               management portion of the system was last re-initialized.
 	 */
 	public Timestamp(long uptime) {
 		sysUpTime = uptime;

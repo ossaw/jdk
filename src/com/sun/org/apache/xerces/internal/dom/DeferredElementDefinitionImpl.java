@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,7 +29,8 @@ import org.w3c.dom.Node;
  * @xerces.internal
  *
  */
-public class DeferredElementDefinitionImpl extends ElementDefinitionImpl implements DeferredNode {
+public class DeferredElementDefinitionImpl extends ElementDefinitionImpl
+		implements DeferredNode {
 
 	//
 	// Constants
@@ -56,7 +54,8 @@ public class DeferredElementDefinitionImpl extends ElementDefinitionImpl impleme
 	 * This is the deferred constructor. Only the fNodeIndex is given here. All
 	 * other data, can be requested from the ownerDocument via the index.
 	 */
-	DeferredElementDefinitionImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
+	DeferredElementDefinitionImpl(DeferredDocumentImpl ownerDocument,
+			int nodeIndex) {
 		super(ownerDocument, null);
 
 		fNodeIndex = nodeIndex;
@@ -107,7 +106,8 @@ public class DeferredElementDefinitionImpl extends ElementDefinitionImpl impleme
 		// Default attributes dangle as children of the element
 		// definition "node" in the internal fast table.
 		for (int nodeIndex = ownerDocument.getLastChild(
-				fNodeIndex); nodeIndex != -1; nodeIndex = ownerDocument.getPrevSibling(nodeIndex)) {
+				fNodeIndex); nodeIndex != -1; nodeIndex = ownerDocument
+						.getPrevSibling(nodeIndex)) {
 			Node attr = ownerDocument.getNodeObject(nodeIndex);
 			attributes.setNamedItem(attr);
 		}

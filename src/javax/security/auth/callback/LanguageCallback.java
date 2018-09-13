@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.callback;
@@ -48,8 +28,7 @@ public class LanguageCallback implements Callback, java.io.Serializable {
 	/**
 	 * Construct a {@code LanguageCallback}.
 	 */
-	public LanguageCallback() {
-	}
+	public LanguageCallback() {}
 
 	/**
 	 * Set the retrieved {@code Locale}.
@@ -57,7 +36,7 @@ public class LanguageCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param locale
-	 *            the retrieved {@code Locale}.
+	 *               the retrieved {@code Locale}.
 	 *
 	 * @see #getLocale
 	 */

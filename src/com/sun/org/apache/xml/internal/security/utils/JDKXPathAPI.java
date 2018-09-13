@@ -50,23 +50,25 @@ public class JDKXPathAPI implements XPathAPI {
 	 * resolved from the namespaceNode.
 	 *
 	 * @param contextNode
-	 *            The node to start searching from.
+	 *                      The node to start searching from.
 	 * @param xpathnode
 	 * @param str
 	 * @param namespaceNode
-	 *            The node from which prefixes in the XPath will be resolved to
-	 *            namespaces.
+	 *                      The node from which prefixes in the XPath will be
+	 *                      resolved to
+	 *                      namespaces.
 	 * @return A NodeIterator, should never be null.
 	 *
 	 * @throws TransformerException
 	 */
-	public NodeList selectNodeList(Node contextNode, Node xpathnode, String str, Node namespaceNode)
-			throws TransformerException {
+	public NodeList selectNodeList(Node contextNode, Node xpathnode, String str,
+			Node namespaceNode) throws TransformerException {
 		if (!str.equals(xpathStr) || xpathExpression == null) {
 			if (xpf == null) {
 				xpf = XPathFactory.newInstance();
 				try {
-					xpf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
+					xpf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
+							Boolean.TRUE);
 				} catch (XPathFactoryConfigurationException ex) {
 					throw new TransformerException("empty", ex);
 				}
@@ -81,7 +83,8 @@ public class JDKXPathAPI implements XPathAPI {
 			}
 		}
 		try {
-			return (NodeList) xpathExpression.evaluate(contextNode, XPathConstants.NODESET);
+			return (NodeList) xpathExpression.evaluate(contextNode,
+					XPathConstants.NODESET);
 		} catch (XPathExpressionException ex) {
 			throw new TransformerException("empty", ex);
 		}
@@ -92,22 +95,24 @@ public class JDKXPathAPI implements XPathAPI {
 	 * or not.
 	 * 
 	 * @param contextNode
-	 *            The node to start searching from.
+	 *                      The node to start searching from.
 	 * @param xpathnode
-	 *            The XPath node
+	 *                      The XPath node
 	 * @param str
-	 *            The XPath expression
+	 *                      The XPath expression
 	 * @param namespaceNode
-	 *            The node from which prefixes in the XPath will be resolved to
-	 *            namespaces.
+	 *                      The node from which prefixes in the XPath will be
+	 *                      resolved to
+	 *                      namespaces.
 	 */
-	public boolean evaluate(Node contextNode, Node xpathnode, String str, Node namespaceNode)
-			throws TransformerException {
+	public boolean evaluate(Node contextNode, Node xpathnode, String str,
+			Node namespaceNode) throws TransformerException {
 		if (!str.equals(xpathStr) || xpathExpression == null) {
 			if (xpf == null) {
 				xpf = XPathFactory.newInstance();
 				try {
-					xpf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
+					xpf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
+							Boolean.TRUE);
 				} catch (XPathFactoryConfigurationException ex) {
 					throw new TransformerException("empty", ex);
 				}

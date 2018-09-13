@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.spi;
@@ -58,15 +38,15 @@ public abstract class FileTypeDetector {
 		return null;
 	}
 
-	private FileTypeDetector(Void ignore) {
-	}
+	private FileTypeDetector(Void ignore) {}
 
 	/**
 	 * Initializes a new instance of this class.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}<tt>("fileTypeDetector")</tt>
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}<tt>("fileTypeDetector")</tt>
 	 */
 	protected FileTypeDetector() {
 		this(checkPermission());
@@ -90,21 +70,26 @@ public abstract class FileTypeDetector {
 	 * grammar in the RFC 2045.
 	 *
 	 * @param path
-	 *            the path to the file to probe
+	 *             the path to the file to probe
 	 *
 	 * @return The content type or {@code null} if the file type is not
 	 *         recognized
 	 *
 	 * @throws IOException
-	 *             An I/O error occurs
+	 *                           An I/O error occurs
 	 * @throws SecurityException
-	 *             If the implementation requires to access the file, and a
-	 *             security manager is installed, and it denies an unspecified
-	 *             permission required by a file system provider implementation.
-	 *             If the file reference is associated with the default file
-	 *             system provider then the
-	 *             {@link SecurityManager#checkRead(String)} method is invoked
-	 *             to check read access to the file.
+	 *                           If the implementation requires to access the
+	 *                           file, and a
+	 *                           security manager is installed, and it denies an
+	 *                           unspecified
+	 *                           permission required by a file system provider
+	 *                           implementation.
+	 *                           If the file reference is associated with the
+	 *                           default file
+	 *                           system provider then the
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method is invoked
+	 *                           to check read access to the file.
 	 *
 	 * @see java.nio.file.Files#probeContentType
 	 */

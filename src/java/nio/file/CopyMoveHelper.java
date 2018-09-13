@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -35,8 +15,7 @@ import java.io.IOException;
  */
 
 class CopyMoveHelper {
-	private CopyMoveHelper() {
-	}
+	private CopyMoveHelper() {}
 
 	/**
 	 * Parses the arguments for a file copy operation.
@@ -46,8 +25,7 @@ class CopyMoveHelper {
 		boolean copyAttributes = false;
 		boolean followLinks = true;
 
-		private CopyOptions() {
-		}
+		private CopyOptions() {}
 
 		static CopyOptions parse(CopyOption... options) {
 			CopyOptions result = new CopyOptions();
@@ -66,8 +44,8 @@ class CopyMoveHelper {
 				}
 				if (option == null)
 					throw new NullPointerException();
-				throw new UnsupportedOperationException(
-						"'" + option + "' is not a recognized copy option");
+				throw new UnsupportedOperationException("'" + option
+						+ "' is not a recognized copy option");
 			}
 			return result;
 		}
@@ -98,15 +76,15 @@ class CopyMoveHelper {
 	 * Simple copy for use when source and target are associated with different
 	 * providers
 	 */
-	static void copyToForeignTarget(Path source, Path target, CopyOption... options)
-			throws IOException {
+	static void copyToForeignTarget(Path source, Path target,
+			CopyOption... options) throws IOException {
 		CopyOptions opts = CopyOptions.parse(options);
 		LinkOption[] linkOptions = (opts.followLinks) ? new LinkOption[0]
 				: new LinkOption[] { LinkOption.NOFOLLOW_LINKS };
 
 		// attributes of source file
-		BasicFileAttributes attrs = Files.readAttributes(source, BasicFileAttributes.class,
-				linkOptions);
+		BasicFileAttributes attrs = Files.readAttributes(source,
+				BasicFileAttributes.class, linkOptions);
 		if (attrs.isSymbolicLink())
 			throw new IOException("Copying of symbolic links not supported");
 
@@ -148,8 +126,8 @@ class CopyMoveHelper {
 	 * Simple move implements as copy+delete for use when source and target are
 	 * associated with different providers
 	 */
-	static void moveToForeignTarget(Path source, Path target, CopyOption... options)
-			throws IOException {
+	static void moveToForeignTarget(Path source, Path target,
+			CopyOption... options) throws IOException {
 		copyToForeignTarget(source, target, convertMoveToCopyOptions(options));
 		Files.delete(source);
 	}

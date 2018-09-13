@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.daemon;
@@ -147,7 +127,8 @@ final class SnmpMibTree {
 				return;
 			}
 
-			for (Enumeration<SnmpMibAgent> e = agents.elements(); e.hasMoreElements();) {
+			for (Enumeration<SnmpMibAgent> e = agents.elements(); e
+					.hasMoreElements();) {
 				SnmpMibAgent mib = e.nextElement();
 				if (mib == null)
 					buff.append("empty ");
@@ -158,7 +139,8 @@ final class SnmpMibTree {
 			if (children == null) {
 				return;
 			}
-			for (Enumeration<TreeNode> e = children.elements(); e.hasMoreElements();) {
+			for (Enumeration<TreeNode> e = children.elements(); e
+					.hasMoreElements();) {
 				TreeNode node = e.nextElement();
 				node.printTree(ident);
 			}
@@ -179,7 +161,8 @@ final class SnmpMibTree {
 
 		private void removeAgentFully(SnmpMibAgent agent) {
 			Vector<TreeNode> v = new Vector<>();
-			for (Enumeration<TreeNode> e = children.elements(); e.hasMoreElements();) {
+			for (Enumeration<TreeNode> e = children.elements(); e
+					.hasMoreElements();) {
 
 				TreeNode node = e.nextElement();
 				node.removeAgentFully(agent);
@@ -236,7 +219,8 @@ final class SnmpMibTree {
 		private TreeNode retrieveChild(long[] oid, int current) {
 			long theValue = oid[current];
 
-			for (Enumeration<TreeNode> e = children.elements(); e.hasMoreElements();) {
+			for (Enumeration<TreeNode> e = children.elements(); e
+					.hasMoreElements();) {
 				TreeNode node = e.nextElement();
 				if (node.match(theValue))
 					return node;

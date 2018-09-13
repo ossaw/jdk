@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +40,7 @@ public interface XSNamedMap extends Map {
 	 * number of objects in the list. The index starts at 0.
 	 * 
 	 * @param index
-	 *            index into the collection.
+	 *              index into the collection.
 	 * @return The <code>XSObject</code> at the <code>index</code>th position in
 	 *         the <code>XSObjectList</code>, or <code>null</code> if the index
 	 *         specified is not valid.
@@ -58,11 +55,12 @@ public interface XSNamedMap extends Map {
 	 * no namespace.
 	 * 
 	 * @param namespace
-	 *            The namespace URI of the <code>XSObject</code> to retrieve, or
-	 *            <code>null</code> if the <code>XSObject</code> has no
-	 *            namespace.
+	 *                  The namespace URI of the <code>XSObject</code> to
+	 *                  retrieve, or
+	 *                  <code>null</code> if the <code>XSObject</code> has no
+	 *                  namespace.
 	 * @param localName
-	 *            The local name of the <code>XSObject</code> to retrieve.
+	 *                  The local name of the <code>XSObject</code> to retrieve.
 	 * @return A <code>XSObject</code> (of any type) with the specified local
 	 *         name and namespace URI, or <code>null</code> if they do not
 	 *         identify any object in this map.

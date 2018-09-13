@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -33,8 +13,7 @@ import sun.util.logging.LoggingProxy;
 class LoggingProxyImpl implements LoggingProxy {
 	static final LoggingProxy INSTANCE = new LoggingProxyImpl();
 
-	private LoggingProxyImpl() {
-	}
+	private LoggingProxyImpl() {}
 
 	@Override
 	public Object getLogger(String name) {
@@ -96,7 +75,8 @@ class LoggingProxyImpl implements LoggingProxy {
 	public Object parseLevel(String levelName) {
 		Level level = Level.findLevel(levelName);
 		if (level == null) {
-			throw new IllegalArgumentException("Unknown level \"" + levelName + "\"");
+			throw new IllegalArgumentException("Unknown level \"" + levelName
+					+ "\"");
 		}
 		return level;
 	}

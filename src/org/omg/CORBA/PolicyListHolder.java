@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -35,11 +15,11 @@ package org.omg.CORBA;
  * July 17, 1999 12:26:21 AM PDT
  */
 
-public final class PolicyListHolder implements org.omg.CORBA.portable.Streamable {
+public final class PolicyListHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public org.omg.CORBA.Policy value[] = null;
 
-	public PolicyListHolder() {
-	}
+	public PolicyListHolder() {}
 
 	public PolicyListHolder(org.omg.CORBA.Policy[] initialValue) {
 		value = initialValue;

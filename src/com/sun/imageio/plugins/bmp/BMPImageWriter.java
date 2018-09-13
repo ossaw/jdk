@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.bmp;
@@ -99,7 +79,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		super.setOutput(output); // validates output
 		if (output != null) {
 			if (!(output instanceof ImageOutputStream))
-				throw new IllegalArgumentException(I18N.getString("BMPImageWriter0"));
+				throw new IllegalArgumentException(I18N.getString(
+						"BMPImageWriter0"));
 			this.stream = (ImageOutputStream) output;
 			stream.setByteOrder(ByteOrder.LITTLE_ENDIAN);
 		} else
@@ -119,19 +100,22 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		BMPMetadata meta = new BMPMetadata();
 		meta.bmpVersion = VERSION_3;
 		meta.compression = getPreferredCompressionType(imageType);
-		if (param != null && param.getCompressionMode() == ImageWriteParam.MODE_EXPLICIT) {
-			meta.compression = BMPCompressionTypes.getType(param.getCompressionType());
+		if (param != null && param
+				.getCompressionMode() == ImageWriteParam.MODE_EXPLICIT) {
+			meta.compression = BMPCompressionTypes.getType(param
+					.getCompressionType());
 		}
 		meta.bitsPerPixel = (short) imageType.getColorModel().getPixelSize();
 		return meta;
 	}
 
-	public IIOMetadata convertStreamMetadata(IIOMetadata inData, ImageWriteParam param) {
+	public IIOMetadata convertStreamMetadata(IIOMetadata inData,
+			ImageWriteParam param) {
 		return null;
 	}
 
-	public IIOMetadata convertImageMetadata(IIOMetadata metadata, ImageTypeSpecifier type,
-			ImageWriteParam param) {
+	public IIOMetadata convertImageMetadata(IIOMetadata metadata,
+			ImageTypeSpecifier type, ImageWriteParam param) {
 		return null;
 	}
 
@@ -139,15 +123,16 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		return true;
 	}
 
-	public void write(IIOMetadata streamMetadata, IIOImage image, ImageWriteParam param)
-			throws IOException {
+	public void write(IIOMetadata streamMetadata, IIOImage image,
+			ImageWriteParam param) throws IOException {
 
 		if (stream == null) {
 			throw new IllegalStateException(I18N.getString("BMPImageWriter7"));
 		}
 
 		if (image == null) {
-			throw new IllegalArgumentException(I18N.getString("BMPImageWriter8"));
+			throw new IllegalArgumentException(I18N.getString(
+					"BMPImageWriter8"));
 		}
 
 		clearAbortRequest();
@@ -179,13 +164,14 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 			if (sourceRegion == null)
 				sourceRegion = inputRaster.getBounds();
 			else
-				sourceRegion = sourceRegion.intersection(inputRaster.getBounds());
+				sourceRegion = sourceRegion.intersection(inputRaster
+						.getBounds());
 		} else {
 			input = image.getRenderedImage();
 			sampleModel = input.getSampleModel();
 			colorModel = input.getColorModel();
-			Rectangle rect = new Rectangle(input.getMinX(), input.getMinY(), input.getWidth(),
-					input.getHeight());
+			Rectangle rect = new Rectangle(input.getMinX(), input.getMinY(),
+					input.getWidth(), input.getHeight());
 			if (sourceRegion == null)
 				sourceRegion = rect;
 			else
@@ -197,9 +183,11 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		if (imageMetadata != null && imageMetadata instanceof BMPMetadata) {
 			bmpImageMetadata = (BMPMetadata) imageMetadata;
 		} else {
-			ImageTypeSpecifier imageType = new ImageTypeSpecifier(colorModel, sampleModel);
+			ImageTypeSpecifier imageType = new ImageTypeSpecifier(colorModel,
+					sampleModel);
 
-			bmpImageMetadata = (BMPMetadata) getDefaultImageMetadata(imageType, param);
+			bmpImageMetadata = (BMPMetadata) getDefaultImageMetadata(imageType,
+					param);
 		}
 
 		if (sourceRegion.isEmpty())
@@ -257,7 +245,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 				// BGR component order.
 				// In any other case we must use writePixels()
 				for (int i = 0; i < bandOffsets.length; i++) {
-					bgrOrder &= (bandOffsets[i] == (bandOffsets.length - i - 1));
+					bgrOrder &= (bandOffsets[i] == (bandOffsets.length - i
+							- 1));
 				}
 			}
 		} else {
@@ -266,7 +255,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 				// BugId 4892214: we can not work with raster directly
 				// if image have different color order than RGB.
 				// We should use writePixels() for such images.
-				int[] bitOffsets = ((SinglePixelPackedSampleModel) sampleModel).getBitOffsets();
+				int[] bitOffsets = ((SinglePixelPackedSampleModel) sampleModel)
+						.getBitOffsets();
 				for (int i = 0; i < bitOffsets.length - 1; i++) {
 					bgrOrder &= bitOffsets[i] > bitOffsets[i + 1];
 				}
@@ -291,29 +281,33 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		int destScanlineBytes = w * numBands;
 
 		switch (bmpParam.getCompressionMode()) {
-		case ImageWriteParam.MODE_EXPLICIT:
-			compressionType = BMPCompressionTypes.getType(bmpParam.getCompressionType());
-			break;
-		case ImageWriteParam.MODE_COPY_FROM_METADATA:
-			compressionType = bmpImageMetadata.compression;
-			break;
-		case ImageWriteParam.MODE_DEFAULT:
-			compressionType = getPreferredCompressionType(colorModel, sampleModel);
-			break;
-		default:
-			// ImageWriteParam.MODE_DISABLED:
-			compressionType = BI_RGB;
+			case ImageWriteParam.MODE_EXPLICIT:
+				compressionType = BMPCompressionTypes.getType(bmpParam
+						.getCompressionType());
+				break;
+			case ImageWriteParam.MODE_COPY_FROM_METADATA:
+				compressionType = bmpImageMetadata.compression;
+				break;
+			case ImageWriteParam.MODE_DEFAULT:
+				compressionType = getPreferredCompressionType(colorModel,
+						sampleModel);
+				break;
+			default:
+				// ImageWriteParam.MODE_DISABLED:
+				compressionType = BI_RGB;
 		}
 
 		if (!canEncodeImage(compressionType, colorModel, sampleModel)) {
-			throw new IOException("Image can not be encoded with compression type "
-					+ BMPCompressionTypes.getName(compressionType));
+			throw new IOException(
+					"Image can not be encoded with compression type "
+							+ BMPCompressionTypes.getName(compressionType));
 		}
 
 		byte r[] = null, g[] = null, b[] = null, a[] = null;
 
 		if (compressionType == BI_BITFIELDS) {
-			bitsPerPixel = DataBuffer.getDataTypeSize(sampleModel.getDataType());
+			bitsPerPixel = DataBuffer.getDataTypeSize(sampleModel
+					.getDataType());
 
 			if (bitsPerPixel != 16 && bitsPerPixel != 32) {
 				// we should use 32bpp images in case of BI_BITFIELD
@@ -353,8 +347,9 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 				} else {
 					// it is unlikely, but if it happens, we should throw
 					// an exception related to unsupported image format
-					throw new IOException("Image can not be encoded with " + "compression type "
-							+ BMPCompressionTypes.getName(compressionType));
+					throw new IOException("Image can not be encoded with "
+							+ "compression type " + BMPCompressionTypes.getName(
+									compressionType));
 				}
 			}
 			writeMaskToPalette(rmask, 0, r, g, b, a);
@@ -435,7 +430,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 					}
 
 				} else {
-					if (sampleModel instanceof SinglePixelPackedSampleModel && noSubband) {
+					if (sampleModel instanceof SinglePixelPackedSampleModel
+							&& noSubband) {
 						/*
 						 * NB: the actual pixel size can be smaller than size of
 						 * used DataBuffer element. For example: in case of
@@ -448,7 +444,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 							bitsPerPixel += size;
 						}
 						bitsPerPixel = roundBpp(bitsPerPixel);
-						if (bitsPerPixel != DataBuffer.getDataTypeSize(sampleModel.getDataType())) {
+						if (bitsPerPixel != DataBuffer.getDataTypeSize(
+								sampleModel.getDataType())) {
 							noTransform = false;
 						}
 						destScanlineBytes = w * bitsPerPixel + 7 >> 3;
@@ -523,8 +520,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 			if (compressionType == BI_BITFIELDS) {
 				// write masks for red, green and blue components.
 				for (int i = 0; i < 3; i++) {
-					int mask = (a[i] & 0xFF) + ((r[i] & 0xFF) * 0x100) + ((g[i] & 0xFF) * 0x10000)
-							+ ((b[i] & 0xFF) * 0x1000000);
+					int mask = (a[i] & 0xFF) + ((r[i] & 0xFF) * 0x100) + ((g[i]
+							& 0xFF) * 0x10000) + ((b[i] & 0xFF) * 0x1000000);
 					stream.writeInt(mask);
 				}
 			} else {
@@ -588,7 +585,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		int destScanlineLength = destScanlineBytes;
 
 		if (noTransform && noSubband) {
-			destScanlineLength = destScanlineBytes / (DataBuffer.getDataTypeSize(dataType) >> 3);
+			destScanlineLength = destScanlineBytes / (DataBuffer
+					.getDataTypeSize(dataType) >> 3);
 		}
 		for (int i = 0; i < h; i++) {
 			if (abortRequested()) {
@@ -603,8 +601,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 			// Get the pixels
 			Raster src = inputRaster;
 
-			Rectangle srcRect = new Rectangle(minX * scaleX + xOffset, row * scaleY + yOffset,
-					(w - 1) * scaleX + 1, 1);
+			Rectangle srcRect = new Rectangle(minX * scaleX + xOffset, row
+					* scaleY + yOffset, (w - 1) * scaleX + 1, 1);
 			if (!writeRaster)
 				src = input.getData(srcRect);
 
@@ -629,27 +627,32 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 					pos = sppsm.getOffset(startX, startY);
 				}
 
-				if (compressionType == BI_RGB || compressionType == BI_BITFIELDS) {
+				if (compressionType == BI_RGB
+						|| compressionType == BI_BITFIELDS) {
 					switch (dataType) {
-					case DataBuffer.TYPE_BYTE:
-						byte[] bdata = ((DataBufferByte) src.getDataBuffer()).getData();
-						stream.write(bdata, pos, destScanlineLength);
-						break;
+						case DataBuffer.TYPE_BYTE:
+							byte[] bdata = ((DataBufferByte) src
+									.getDataBuffer()).getData();
+							stream.write(bdata, pos, destScanlineLength);
+							break;
 
-					case DataBuffer.TYPE_SHORT:
-						short[] sdata = ((DataBufferShort) src.getDataBuffer()).getData();
-						stream.writeShorts(sdata, pos, destScanlineLength);
-						break;
+						case DataBuffer.TYPE_SHORT:
+							short[] sdata = ((DataBufferShort) src
+									.getDataBuffer()).getData();
+							stream.writeShorts(sdata, pos, destScanlineLength);
+							break;
 
-					case DataBuffer.TYPE_USHORT:
-						short[] usdata = ((DataBufferUShort) src.getDataBuffer()).getData();
-						stream.writeShorts(usdata, pos, destScanlineLength);
-						break;
+						case DataBuffer.TYPE_USHORT:
+							short[] usdata = ((DataBufferUShort) src
+									.getDataBuffer()).getData();
+							stream.writeShorts(usdata, pos, destScanlineLength);
+							break;
 
-					case DataBuffer.TYPE_INT:
-						int[] idata = ((DataBufferInt) src.getDataBuffer()).getData();
-						stream.writeInts(idata, pos, destScanlineLength);
-						break;
+						case DataBuffer.TYPE_INT:
+							int[] idata = ((DataBufferInt) src.getDataBuffer())
+									.getData();
+							stream.writeInts(idata, pos, destScanlineLength);
+							break;
 					}
 
 					for (int k = 0; k < padding; k++) {
@@ -658,7 +661,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 				} else if (compressionType == BI_RLE4) {
 					if (bpixels == null || bpixels.length < scanlineBytes)
 						bpixels = new byte[scanlineBytes];
-					src.getPixels(srcRect.x, srcRect.y, srcRect.width, srcRect.height, pixels);
+					src.getPixels(srcRect.x, srcRect.y, srcRect.width,
+							srcRect.height, pixels);
 					for (int h = 0; h < scanlineBytes; h++) {
 						bpixels[h] = (byte) pixels[h];
 					}
@@ -670,7 +674,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 					// System.arraycopy(bdata, pos, bpixels, 0, scanlineBytes);
 					if (bpixels == null || bpixels.length < scanlineBytes)
 						bpixels = new byte[scanlineBytes];
-					src.getPixels(srcRect.x, srcRect.y, srcRect.width, srcRect.height, pixels);
+					src.getPixels(srcRect.x, srcRect.y, srcRect.width,
+							srcRect.height, pixels);
 					for (int h = 0; h < scanlineBytes; h++) {
 						bpixels[h] = (byte) pixels[h];
 					}
@@ -678,7 +683,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 					encodeRLE8(bpixels, scanlineBytes);
 				}
 			} else {
-				src.getPixels(srcRect.x, srcRect.y, srcRect.width, srcRect.height, pixels);
+				src.getPixels(srcRect.x, srcRect.y, srcRect.width,
+						srcRect.height, pixels);
 
 				if (scaleX != 1 || maxBandOffset != numBands - 1) {
 					for (int j = 0, k = 0, n = 0; j < w; j++, k += scaleX
@@ -691,7 +697,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 						}
 					}
 				}
-				writePixels(0, scanlineBytes, bitsPerPixel, pixels, padding, numBands, icm);
+				writePixels(0, scanlineBytes, bitsPerPixel, pixels, padding,
+						numBands, icm);
 			}
 
 			processImageProgress(100.0f * (((float) i) / ((float) h)));
@@ -721,171 +728,181 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		}
 	}
 
-	private void writePixels(int l, int scanlineBytes, int bitsPerPixel, int pixels[], int padding,
-			int numBands, IndexColorModel icm) throws IOException {
+	private void writePixels(int l, int scanlineBytes, int bitsPerPixel,
+			int pixels[], int padding, int numBands, IndexColorModel icm)
+			throws IOException {
 		int pixel = 0;
 		int k = 0;
 		switch (bitsPerPixel) {
 
-		case 1:
+			case 1:
 
-			for (int j = 0; j < scanlineBytes / 8; j++) {
-				bpixels[k++] = (byte) ((pixels[l++] << 7) | (pixels[l++] << 6) | (pixels[l++] << 5)
-						| (pixels[l++] << 4) | (pixels[l++] << 3) | (pixels[l++] << 2)
-						| (pixels[l++] << 1) | pixels[l++]);
-			}
+				for (int j = 0; j < scanlineBytes / 8; j++) {
+					bpixels[k++] = (byte) ((pixels[l++] << 7)
+							| (pixels[l++] << 6) | (pixels[l++] << 5)
+							| (pixels[l++] << 4) | (pixels[l++] << 3)
+							| (pixels[l++] << 2) | (pixels[l++] << 1)
+							| pixels[l++]);
+				}
 
-			// Partially filled last byte, if any
-			if (scanlineBytes % 8 > 0) {
-				pixel = 0;
-				for (int j = 0; j < scanlineBytes % 8; j++) {
-					pixel |= (pixels[l++] << (7 - j));
-				}
-				bpixels[k++] = (byte) pixel;
-			}
-			stream.write(bpixels, 0, (scanlineBytes + 7) / 8);
-
-			break;
-
-		case 4:
-			if (compressionType == BI_RLE4) {
-				byte[] bipixels = new byte[scanlineBytes];
-				for (int h = 0; h < scanlineBytes; h++) {
-					bipixels[h] = (byte) pixels[l++];
-				}
-				encodeRLE4(bipixels, scanlineBytes);
-			} else {
-				for (int j = 0; j < scanlineBytes / 2; j++) {
-					pixel = (pixels[l++] << 4) | pixels[l++];
-					bpixels[k++] = (byte) pixel;
-				}
-				// Put the last pixel of odd-length lines in the 4 MSBs
-				if ((scanlineBytes % 2) == 1) {
-					pixel = pixels[l] << 4;
-					bpixels[k++] = (byte) pixel;
-				}
-				stream.write(bpixels, 0, (scanlineBytes + 1) / 2);
-			}
-			break;
-
-		case 8:
-			if (compressionType == BI_RLE8) {
-				for (int h = 0; h < scanlineBytes; h++) {
-					bpixels[h] = (byte) pixels[l++];
-				}
-				encodeRLE8(bpixels, scanlineBytes);
-			} else {
-				for (int j = 0; j < scanlineBytes; j++) {
-					bpixels[j] = (byte) pixels[l++];
-				}
-				stream.write(bpixels, 0, scanlineBytes);
-			}
-			break;
-
-		case 16:
-			if (spixels == null)
-				spixels = new short[scanlineBytes / numBands];
-			/*
-			 * We expect that pixel data comes in RGB order. We will assemble
-			 * short pixel taking into account the compression type:
-			 *
-			 * BI_RGB - the RGB order should be maintained. BI_BITFIELDS - use
-			 * bitPos array that was built according to bitfields masks.
-			 */
-			for (int j = 0, m = 0; j < scanlineBytes; m++) {
-				spixels[m] = 0;
-				if (compressionType == BI_RGB) {
-					/*
-					 * please note that despite other cases, the 16bpp BI_RGB
-					 * requires the RGB data order
-					 */
-					spixels[m] = (short) (((0x1f & pixels[j]) << 10) | ((0x1f & pixels[j + 1]) << 5)
-							| ((0x1f & pixels[j + 2])));
-					j += 3;
-				} else {
-					for (int i = 0; i < numBands; i++, j++) {
-						spixels[m] |= (((pixels[j]) << bitPos[i]) & bitMasks[i]);
+				// Partially filled last byte, if any
+				if (scanlineBytes % 8 > 0) {
+					pixel = 0;
+					for (int j = 0; j < scanlineBytes % 8; j++) {
+						pixel |= (pixels[l++] << (7 - j));
 					}
+					bpixels[k++] = (byte) pixel;
 				}
-			}
-			stream.writeShorts(spixels, 0, spixels.length);
-			break;
+				stream.write(bpixels, 0, (scanlineBytes + 7) / 8);
 
-		case 24:
-			if (numBands == 3) {
-				for (int j = 0; j < scanlineBytes; j += 3) {
-					// Since BMP needs BGR format
-					bpixels[k++] = (byte) (pixels[l + 2]);
-					bpixels[k++] = (byte) (pixels[l + 1]);
-					bpixels[k++] = (byte) (pixels[l]);
-					l += 3;
+				break;
+
+			case 4:
+				if (compressionType == BI_RLE4) {
+					byte[] bipixels = new byte[scanlineBytes];
+					for (int h = 0; h < scanlineBytes; h++) {
+						bipixels[h] = (byte) pixels[l++];
+					}
+					encodeRLE4(bipixels, scanlineBytes);
+				} else {
+					for (int j = 0; j < scanlineBytes / 2; j++) {
+						pixel = (pixels[l++] << 4) | pixels[l++];
+						bpixels[k++] = (byte) pixel;
+					}
+					// Put the last pixel of odd-length lines in the 4 MSBs
+					if ((scanlineBytes % 2) == 1) {
+						pixel = pixels[l] << 4;
+						bpixels[k++] = (byte) pixel;
+					}
+					stream.write(bpixels, 0, (scanlineBytes + 1) / 2);
 				}
-				stream.write(bpixels, 0, scanlineBytes);
-			} else {
-				// Case where IndexColorModel had > 256 colors.
-				int entries = icm.getMapSize();
+				break;
 
-				byte r[] = new byte[entries];
-				byte g[] = new byte[entries];
-				byte b[] = new byte[entries];
-
-				icm.getReds(r);
-				icm.getGreens(g);
-				icm.getBlues(b);
-				int index;
-
-				for (int j = 0; j < scanlineBytes; j++) {
-					index = pixels[l];
-					bpixels[k++] = b[index];
-					bpixels[k++] = g[index];
-					bpixels[k++] = b[index];
-					l++;
+			case 8:
+				if (compressionType == BI_RLE8) {
+					for (int h = 0; h < scanlineBytes; h++) {
+						bpixels[h] = (byte) pixels[l++];
+					}
+					encodeRLE8(bpixels, scanlineBytes);
+				} else {
+					for (int j = 0; j < scanlineBytes; j++) {
+						bpixels[j] = (byte) pixels[l++];
+					}
+					stream.write(bpixels, 0, scanlineBytes);
 				}
-				stream.write(bpixels, 0, scanlineBytes * 3);
-			}
-			break;
+				break;
 
-		case 32:
-			if (ipixels == null)
-				ipixels = new int[scanlineBytes / numBands];
-			if (numBands == 3) {
+			case 16:
+				if (spixels == null)
+					spixels = new short[scanlineBytes / numBands];
 				/*
 				 * We expect that pixel data comes in RGB order. We will
-				 * assemble int pixel taking into account the compression type.
-				 *
-				 * BI_RGB - the BGR order should be used. BI_BITFIELDS - use
+				 * assemble
+				 * short pixel taking into account the compression type:
+				 * BI_RGB - the RGB order should be maintained. BI_BITFIELDS -
+				 * use
 				 * bitPos array that was built according to bitfields masks.
 				 */
 				for (int j = 0, m = 0; j < scanlineBytes; m++) {
-					ipixels[m] = 0;
+					spixels[m] = 0;
 					if (compressionType == BI_RGB) {
-						ipixels[m] = ((0xff & pixels[j + 2]) << 16) | ((0xff & pixels[j + 1]) << 8)
-								| ((0xff & pixels[j]));
+						/*
+						 * please note that despite other cases, the 16bpp
+						 * BI_RGB
+						 * requires the RGB data order
+						 */
+						spixels[m] = (short) (((0x1f & pixels[j]) << 10)
+								| ((0x1f & pixels[j + 1]) << 5) | ((0x1f
+										& pixels[j + 2])));
 						j += 3;
 					} else {
 						for (int i = 0; i < numBands; i++, j++) {
-							ipixels[m] |= (((pixels[j]) << bitPos[i]) & bitMasks[i]);
+							spixels[m] |= (((pixels[j]) << bitPos[i])
+									& bitMasks[i]);
 						}
 					}
 				}
-			} else {
-				// We have two possibilities here:
-				// 1. we are writing the indexed image with bitfields
-				// compression (this covers also the case of BYTE_BINARY)
-				// => use icm to get actual RGB color values.
-				// 2. we are writing the gray-scaled image with BI_BITFIELDS
-				// compression
-				// => just replicate the level of gray to color components.
-				for (int j = 0; j < scanlineBytes; j++) {
-					if (icm != null) {
-						ipixels[j] = icm.getRGB(pixels[j]);
-					} else {
-						ipixels[j] = pixels[j] << 16 | pixels[j] << 8 | pixels[j];
+				stream.writeShorts(spixels, 0, spixels.length);
+				break;
+
+			case 24:
+				if (numBands == 3) {
+					for (int j = 0; j < scanlineBytes; j += 3) {
+						// Since BMP needs BGR format
+						bpixels[k++] = (byte) (pixels[l + 2]);
+						bpixels[k++] = (byte) (pixels[l + 1]);
+						bpixels[k++] = (byte) (pixels[l]);
+						l += 3;
+					}
+					stream.write(bpixels, 0, scanlineBytes);
+				} else {
+					// Case where IndexColorModel had > 256 colors.
+					int entries = icm.getMapSize();
+
+					byte r[] = new byte[entries];
+					byte g[] = new byte[entries];
+					byte b[] = new byte[entries];
+
+					icm.getReds(r);
+					icm.getGreens(g);
+					icm.getBlues(b);
+					int index;
+
+					for (int j = 0; j < scanlineBytes; j++) {
+						index = pixels[l];
+						bpixels[k++] = b[index];
+						bpixels[k++] = g[index];
+						bpixels[k++] = b[index];
+						l++;
+					}
+					stream.write(bpixels, 0, scanlineBytes * 3);
+				}
+				break;
+
+			case 32:
+				if (ipixels == null)
+					ipixels = new int[scanlineBytes / numBands];
+				if (numBands == 3) {
+					/*
+					 * We expect that pixel data comes in RGB order. We will
+					 * assemble int pixel taking into account the compression
+					 * type.
+					 * BI_RGB - the BGR order should be used. BI_BITFIELDS - use
+					 * bitPos array that was built according to bitfields masks.
+					 */
+					for (int j = 0, m = 0; j < scanlineBytes; m++) {
+						ipixels[m] = 0;
+						if (compressionType == BI_RGB) {
+							ipixels[m] = ((0xff & pixels[j + 2]) << 16) | ((0xff
+									& pixels[j + 1]) << 8) | ((0xff
+											& pixels[j]));
+							j += 3;
+						} else {
+							for (int i = 0; i < numBands; i++, j++) {
+								ipixels[m] |= (((pixels[j]) << bitPos[i])
+										& bitMasks[i]);
+							}
+						}
+					}
+				} else {
+					// We have two possibilities here:
+					// 1. we are writing the indexed image with bitfields
+					// compression (this covers also the case of BYTE_BINARY)
+					// => use icm to get actual RGB color values.
+					// 2. we are writing the gray-scaled image with BI_BITFIELDS
+					// compression
+					// => just replicate the level of gray to color components.
+					for (int j = 0; j < scanlineBytes; j++) {
+						if (icm != null) {
+							ipixels[j] = icm.getRGB(pixels[j]);
+						} else {
+							ipixels[j] = pixels[j] << 16 | pixels[j] << 8
+									| pixels[j];
+						}
 					}
 				}
-			}
-			stream.writeInts(ipixels, 0, ipixels.length);
-			break;
+				stream.writeInts(ipixels, 0, ipixels.length);
+				break;
 		}
 
 		// Write out the padding
@@ -896,7 +913,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		}
 	}
 
-	private void encodeRLE8(byte[] bpixels, int scanlineBytes) throws IOException {
+	private void encodeRLE8(byte[] bpixels, int scanlineBytes)
+			throws IOException {
 
 		int runCount = 1, absVal = -1, j = -1;
 		byte runVal = 0, nextVal = 0;
@@ -1011,7 +1029,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		}
 	}
 
-	private void encodeRLE4(byte[] bipixels, int scanlineBytes) throws IOException {
+	private void encodeRLE4(byte[] bipixels, int scanlineBytes)
+			throws IOException {
 
 		int runCount = 2, absVal = -1, j = -1, pixel = 0, q = 0;
 		byte runVal1 = 0, runVal2 = 0, nextVal1 = 0, nextVal2 = 0;
@@ -1188,18 +1207,18 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 
 					} else {
 						switch (absVal) {
-						case 0:
-							stream.writeByte(1);
-							int n = absBuf[0] << 4 | 0;
-							stream.writeByte(n);
-							incCompImageSize(2);
-							break;
-						case 1:
-							stream.writeByte(2);
-							pixel = (absBuf[0] << 4) | absBuf[1];
-							stream.writeByte(pixel);
-							incCompImageSize(2);
-							break;
+							case 0:
+								stream.writeByte(1);
+								int n = absBuf[0] << 4 | 0;
+								stream.writeByte(n);
+								incCompImageSize(2);
+								break;
+							case 1:
+								stream.writeByte(2);
+								pixel = (absBuf[0] << 4) | absBuf[1];
+								stream.writeByte(pixel);
+								incCompImageSize(2);
+								break;
 						}
 					}
 
@@ -1234,7 +1253,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		stream.writeInt(offset);
 	}
 
-	private void writeInfoHeader(int headerSize, int bitsPerPixel) throws IOException {
+	private void writeInfoHeader(int headerSize, int bitsPerPixel)
+			throws IOException {
 		// size of header
 		stream.writeInt(headerSize);
 
@@ -1261,7 +1281,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		stream = null;
 	}
 
-	private void writeEmbedded(IIOImage image, ImageWriteParam bmpParam) throws IOException {
+	private void writeEmbedded(IIOImage image, ImageWriteParam bmpParam)
+			throws IOException {
 		String format = compressionType == BI_JPEG ? "jpeg" : "png";
 		Iterator iterator = ImageIO.getImageWritersByFormatName(format);
 		ImageWriter writer = null;
@@ -1269,17 +1290,20 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 			writer = (ImageWriter) iterator.next();
 		if (writer != null) {
 			if (embedded_stream == null) {
-				throw new RuntimeException("No stream for writing embedded image!");
+				throw new RuntimeException(
+						"No stream for writing embedded image!");
 			}
 
 			writer.addIIOWriteProgressListener(new IIOWriteProgressAdapter() {
-				public void imageProgress(ImageWriter source, float percentageDone) {
+				public void imageProgress(ImageWriter source,
+						float percentageDone) {
 					processImageProgress(percentageDone);
 				}
 			});
 
 			writer.addIIOWriteWarningListener(new IIOWriteWarningListener() {
-				public void warningOccurred(ImageWriter source, int imageIndex, String warning) {
+				public void warningOccurred(ImageWriter source, int imageIndex,
+						String warning) {
 					processWarningOccurred(imageIndex, warning);
 				}
 			});
@@ -1291,11 +1315,13 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 			param.setSourceBands(bmpParam.getSourceBands());
 			param.setSourceRegion(bmpParam.getSourceRegion());
 			param.setSourceSubsampling(bmpParam.getSourceXSubsampling(),
-					bmpParam.getSourceYSubsampling(), bmpParam.getSubsamplingXOffset(),
-					bmpParam.getSubsamplingYOffset());
+					bmpParam.getSourceYSubsampling(), bmpParam
+							.getSubsamplingXOffset(), bmpParam
+									.getSubsamplingYOffset());
 			writer.write(null, image, param);
 		} else
-			throw new RuntimeException(I18N.getString("BMPImageWrite5") + " " + format);
+			throw new RuntimeException(I18N.getString("BMPImageWrite5") + " "
+					+ format);
 
 	}
 
@@ -1310,26 +1336,21 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 
 	private class IIOWriteProgressAdapter implements IIOWriteProgressListener {
 
-		public void imageComplete(ImageWriter source) {
-		}
+		public void imageComplete(ImageWriter source) {}
 
-		public void imageProgress(ImageWriter source, float percentageDone) {
-		}
+		public void imageProgress(ImageWriter source, float percentageDone) {}
 
-		public void imageStarted(ImageWriter source, int imageIndex) {
-		}
+		public void imageStarted(ImageWriter source, int imageIndex) {}
 
-		public void thumbnailComplete(ImageWriter source) {
-		}
+		public void thumbnailComplete(ImageWriter source) {}
 
-		public void thumbnailProgress(ImageWriter source, float percentageDone) {
-		}
+		public void thumbnailProgress(ImageWriter source,
+				float percentageDone) {}
 
-		public void thumbnailStarted(ImageWriter source, int imageIndex, int thumbnailIndex) {
-		}
+		public void thumbnailStarted(ImageWriter source, int imageIndex,
+				int thumbnailIndex) {}
 
-		public void writeAborted(ImageWriter source) {
-		}
+		public void writeAborted(ImageWriter source) {}
 	}
 
 	/*
@@ -1338,7 +1359,6 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 	 * using default compression without cahnge color resolution. For example,
 	 * TYPE_USHORT_565_RGB may be encodeed only by using BI_BITFIELDS
 	 * compression type.
-	 *
 	 * NB: we probably need to extend this method if we encounter other image
 	 * types which can not be encoded with BI_RGB compression type.
 	 */
@@ -1348,7 +1368,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 	}
 
 	protected int getPreferredCompressionType(ImageTypeSpecifier imageType) {
-		if (imageType.getBufferedImageType() == BufferedImage.TYPE_USHORT_565_RGB) {
+		if (imageType
+				.getBufferedImageType() == BufferedImage.TYPE_USHORT_565_RGB) {
 			return BI_BITFIELDS;
 		}
 		return BI_RGB;
@@ -1357,19 +1378,19 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 	/*
 	 * Check whether we can encode image of given type using compression method
 	 * in question.
-	 *
 	 * For example, TYPE_USHORT_565_RGB can be encodeed with BI_BITFIELDS
 	 * compression only.
-	 *
 	 * NB: method should be extended if other cases when we can not encode with
 	 * given compression will be discovered.
 	 */
-	protected boolean canEncodeImage(int compression, ColorModel cm, SampleModel sm) {
+	protected boolean canEncodeImage(int compression, ColorModel cm,
+			SampleModel sm) {
 		ImageTypeSpecifier imgType = new ImageTypeSpecifier(cm, sm);
 		return canEncodeImage(compression, imgType);
 	}
 
-	protected boolean canEncodeImage(int compression, ImageTypeSpecifier imgType) {
+	protected boolean canEncodeImage(int compression,
+			ImageTypeSpecifier imgType) {
 		ImageWriterSpi spi = this.getOriginatingProvider();
 		if (!spi.canEncodeImage(imgType)) {
 			return false;
@@ -1388,19 +1409,14 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 			/*
 			 * Technically we expect that we may be able to encode only some of
 			 * SinglePixelPackedSampleModel images here.
-			 *
 			 * In addition we should take into account following:
-			 *
 			 * 1. BI_RGB case, according to the MSDN description:
-			 *
 			 * The bitmap has a maximum of 2^16 colors. If the biCompression
 			 * member of the BITMAPINFOHEADER is BI_RGB, the bmiColors member of
 			 * BITMAPINFO is NULL. Each WORD in the bitmap array represents a
 			 * single pixel. The relative intensities of red, green, and blue
 			 * are represented with five bits for each color component.
-			 *
 			 * 2. BI_BITFIELDS case, according ot the MSDN description:
-			 *
 			 * Windows 95/98/Me: When the biCompression member is BI_BITFIELDS,
 			 * the system supports only the following 16bpp color masks: A 5-5-5
 			 * 16-bit image, where the blue mask is 0x001F, the green mask is
@@ -1413,13 +1429,15 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 
 			SampleModel sm = imgType.getSampleModel();
 			if (sm instanceof SinglePixelPackedSampleModel) {
-				int[] sizes = ((SinglePixelPackedSampleModel) sm).getSampleSize();
+				int[] sizes = ((SinglePixelPackedSampleModel) sm)
+						.getSampleSize();
 
 				canUseRGB = true;
 				canUseBITFIELDS = true;
 				for (int i = 0; i < sizes.length; i++) {
 					canUseRGB &= (sizes[i] == 5);
-					canUseBITFIELDS &= ((sizes[i] == 5) || (i == 1 && sizes[i] == 6));
+					canUseBITFIELDS &= ((sizes[i] == 5) || (i == 1
+							&& sizes[i] == 6));
 				}
 			}
 
@@ -1429,7 +1447,8 @@ public class BMPImageWriter extends ImageWriter implements BMPConstants {
 		return true;
 	}
 
-	protected void writeMaskToPalette(int mask, int i, byte[] r, byte[] g, byte[] b, byte[] a) {
+	protected void writeMaskToPalette(int mask, int i, byte[] r, byte[] g,
+			byte[] b, byte[] a) {
 		b[i] = (byte) (0xff & (mask >> 24));
 		g[i] = (byte) (0xff & (mask >> 16));
 		r[i] = (byte) (0xff & (mask >> 8));

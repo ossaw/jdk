@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -49,7 +29,7 @@ public class ProviderException extends RuntimeException {
 	 * detail message is a String that describes this particular exception.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public ProviderException(String s) {
 		super(s);
@@ -60,13 +40,14 @@ public class ProviderException extends RuntimeException {
 	 * cause.
 	 *
 	 * @param message
-	 *            the detail message (which is saved for later retrieval by the
-	 *            {@link #getMessage()} method).
+	 *                the detail message (which is saved for later retrieval by
+	 *                the
+	 *                {@link #getMessage()} method).
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *                the cause (which is saved for later retrieval by the
+	 *                {@link #getCause()} method). (A {@code null} value is
+	 *                permitted, and indicates that the cause is nonexistent or
+	 *                unknown.)
 	 * @since 1.5
 	 */
 	public ProviderException(String message, Throwable cause) {
@@ -79,10 +60,10 @@ public class ProviderException extends RuntimeException {
 	 * typically contains the class and detail message of {@code cause}).
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link #getCause()} method). (A {@code null} value is
+	 *              permitted, and indicates that the cause is nonexistent or
+	 *              unknown.)
 	 * @since 1.5
 	 */
 	public ProviderException(Throwable cause) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -49,8 +29,7 @@ public abstract class FileStore {
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected FileStore() {
-	}
+	protected FileStore() {}
 
 	/**
 	 * Returns the name of this file store. The format of the name is highly
@@ -91,7 +70,7 @@ public abstract class FileStore {
 	 * @return the size of the file store, in bytes
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
 	public abstract long getTotalSpace() throws IOException;
 
@@ -110,7 +89,7 @@ public abstract class FileStore {
 	 * @return the number of bytes available
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
 	public abstract long getUsableSpace() throws IOException;
 
@@ -128,7 +107,7 @@ public abstract class FileStore {
 	 * @return the number of unallocated bytes
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
 	public abstract long getUnallocatedSpace() throws IOException;
 
@@ -144,12 +123,13 @@ public abstract class FileStore {
 	 * reasons for this are implementation specific and therefore unspecified.
 	 *
 	 * @param type
-	 *            the file attribute view type
+	 *             the file attribute view type
 	 *
 	 * @return {@code true} if, and only if, the file attribute view is
 	 *         supported
 	 */
-	public abstract boolean supportsFileAttributeView(Class<? extends FileAttributeView> type);
+	public abstract boolean supportsFileAttributeView(
+			Class<? extends FileAttributeView> type);
 
 	/**
 	 * Tells whether or not this file store supports the file attributes
@@ -164,7 +144,8 @@ public abstract class FileStore {
 	 * implementation specific and therefore unspecified.
 	 *
 	 * @param name
-	 *            the {@link FileAttributeView#name name} of file attribute view
+	 *             the {@link FileAttributeView#name name} of file attribute
+	 *             view
 	 *
 	 * @return {@code true} if, and only if, the file attribute view is
 	 *         supported
@@ -180,15 +161,16 @@ public abstract class FileStore {
 	 * The {@code type} parameter is the type of the attribute view required and
 	 * the method returns an instance of that type if supported.
 	 *
-	 * @param <V>
-	 *            The {@code FileStoreAttributeView} type
+	 * @param      <V>
+	 *             The {@code FileStoreAttributeView} type
 	 * @param type
-	 *            the {@code Class} object corresponding to the attribute view
+	 *             the {@code Class} object corresponding to the attribute view
 	 *
 	 * @return a file store attribute view of the specified type or {@code null}
 	 *         if the attribute view is not available
 	 */
-	public abstract <V extends FileStoreAttributeView> V getFileStoreAttributeView(Class<V> type);
+	public abstract <V extends FileStoreAttributeView> V getFileStoreAttributeView(
+			Class<V> type);
 
 	/**
 	 * Reads the value of a file store attribute.
@@ -213,16 +195,17 @@ public abstract class FileStore {
 	 * </pre>
 	 *
 	 * @param attribute
-	 *            the attribute to read
+	 *                  the attribute to read
 	 * 
 	 * @return the attribute value; {@code null} may be a valid valid for some
 	 *         attributes
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if the attribute view is not available or it does not support
-	 *             reading the attribute
+	 *                                       if the attribute view is not
+	 *                                       available or it does not support
+	 *                                       reading the attribute
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                       if an I/O error occurs
 	 */
 	public abstract Object getAttribute(String attribute) throws IOException;
 }

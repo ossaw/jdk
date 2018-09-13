@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.table;
 
@@ -60,8 +40,8 @@ import javax.swing.SortOrder;
  * the underlying model do the inverse:
  * 
  * <pre>
- * table.setRowSelectionInterval(table.convertRowIndexToView(row),
- * 		table.convertRowIndexToView(row));
+ * table.setRowSelectionInterval(table.convertRowIndexToView(row), table
+ * 		.convertRowIndexToView(row));
  * </pre>
  * <p>
  * The previous example assumes you have not enabled filtering. If you have
@@ -119,8 +99,8 @@ import javax.swing.SortOrder;
  * class.
  *
  * @param <M>
- *            the type of the model, which must be an implementation of
- *            <code>TableModel</code>
+ *        the type of the model, which must be an implementation of
+ *        <code>TableModel</code>
  * @see javax.swing.JTable
  * @see javax.swing.RowFilter
  * @see javax.swing.table.DefaultTableModel
@@ -128,7 +108,8 @@ import javax.swing.SortOrder;
  * @see java.util.Comparator
  * @since 1.6
  */
-public class TableRowSorter<M extends TableModel> extends DefaultRowSorter<M, Integer> {
+public class TableRowSorter<M extends TableModel> extends
+		DefaultRowSorter<M, Integer> {
 	/**
 	 * Comparator that uses compareTo on the contents.
 	 */
@@ -156,8 +137,8 @@ public class TableRowSorter<M extends TableModel> extends DefaultRowSorter<M, In
 	 * underlying <code>TableModel</code>.
 	 *
 	 * @param model
-	 *            the underlying <code>TableModel</code> to use,
-	 *            <code>null</code> is treated as an empty model
+	 *              the underlying <code>TableModel</code> to use,
+	 *              <code>null</code> is treated as an empty model
 	 */
 	public TableRowSorter(M model) {
 		setModel(model);
@@ -169,7 +150,7 @@ public class TableRowSorter<M extends TableModel> extends DefaultRowSorter<M, In
 	 * set an empty model.
 	 *
 	 * @param model
-	 *            the underlying model to use, or <code>null</code>
+	 *              the underlying model to use, or <code>null</code>
 	 */
 	public void setModel(M model) {
 		tableModel = model;
@@ -183,8 +164,9 @@ public class TableRowSorter<M extends TableModel> extends DefaultRowSorter<M, In
 	 * strings.
 	 *
 	 * @param stringConverter
-	 *            the object responsible for converting values from the model to
-	 *            strings
+	 *                        the object responsible for converting values from
+	 *                        the model to
+	 *                        strings
 	 */
 	public void setStringConverter(TableStringConverter stringConverter) {
 		this.stringConverter = stringConverter;
@@ -213,7 +195,7 @@ public class TableRowSorter<M extends TableModel> extends DefaultRowSorter<M, In
 	 * <code>Collator.getInstance</code> is returned.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public Comparator<?> getComparator(int column) {
 		Comparator comparator = super.getComparator(column);
@@ -234,7 +216,7 @@ public class TableRowSorter<M extends TableModel> extends DefaultRowSorter<M, In
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	protected boolean useToString(int column) {
 		Comparator comparator = super.getComparator(column);

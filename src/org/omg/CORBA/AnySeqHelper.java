@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -63,10 +43,12 @@ public abstract class AnySeqHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_any);
-			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
-			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CORBA.AnySeqHelper.id(),
-					"AnySeq", __typeCode);
+			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
+					org.omg.CORBA.TCKind.tk_any);
+			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
+					__typeCode);
+			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
+					org.omg.CORBA.AnySeqHelper.id(), "AnySeq", __typeCode);
 		}
 		return __typeCode;
 	}
@@ -75,7 +57,8 @@ public abstract class AnySeqHelper {
 		return _id;
 	}
 
-	public static org.omg.CORBA.Any[] read(org.omg.CORBA.portable.InputStream istream) {
+	public static org.omg.CORBA.Any[] read(
+			org.omg.CORBA.portable.InputStream istream) {
 		org.omg.CORBA.Any value[] = null;
 		int _len0 = istream.read_long();
 		value = new org.omg.CORBA.Any[_len0];

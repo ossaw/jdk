@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -38,7 +18,7 @@ public interface OptionChecker {
 	 * arguments the option takes.
 	 *
 	 * @param option
-	 *            an option
+	 *               an option
 	 * @return the number of arguments the given option takes or -1 if the
 	 *         option is not supported
 	 */

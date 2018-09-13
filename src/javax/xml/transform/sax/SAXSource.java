@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.sax;
@@ -67,8 +47,7 @@ public class SAXSource implements Source {
 	 * @see javax.xml.transform.Transformer#transform(Source xmlSource, Result
 	 *      outputTarget)
 	 */
-	public SAXSource() {
-	}
+	public SAXSource() {}
 
 	/**
 	 * Create a <code>SAXSource</code>, using an {@link org.xml.sax.XMLReader}
@@ -78,10 +57,11 @@ public class SAXSource implements Source {
 	 * reader.parse(inputSource).
 	 *
 	 * @param reader
-	 *            An XMLReader to be used for the parse.
+	 *                    An XMLReader to be used for the parse.
 	 * @param inputSource
-	 *            A SAX input source reference that must be non-null and that
-	 *            will be passed to the reader parse method.
+	 *                    A SAX input source reference that must be non-null and
+	 *                    that
+	 *                    will be passed to the reader parse method.
 	 */
 	public SAXSource(XMLReader reader, InputSource inputSource) {
 		this.reader = reader;
@@ -97,8 +77,9 @@ public class SAXSource implements Source {
 	 * and calls reader.parse(inputSource).
 	 *
 	 * @param inputSource
-	 *            An input source reference that must be non-null and that will
-	 *            be passed to the parse method of the reader.
+	 *                    An input source reference that must be non-null and
+	 *                    that will
+	 *                    be passed to the parse method of the reader.
 	 */
 	public SAXSource(InputSource inputSource) {
 		this.inputSource = inputSource;
@@ -108,7 +89,7 @@ public class SAXSource implements Source {
 	 * Set the XMLReader to be used for the Source.
 	 *
 	 * @param reader
-	 *            A valid XMLReader or XMLFilter reference.
+	 *               A valid XMLReader or XMLFilter reference.
 	 */
 	public void setXMLReader(XMLReader reader) {
 		this.reader = reader;
@@ -127,7 +108,7 @@ public class SAXSource implements Source {
 	 * Set the SAX InputSource to be used for the Source.
 	 *
 	 * @param inputSource
-	 *            A valid InputSource reference.
+	 *                    A valid InputSource reference.
 	 */
 	public void setInputSource(InputSource inputSource) {
 		this.inputSource = inputSource;
@@ -156,7 +137,7 @@ public class SAXSource implements Source {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system identifier as a URI string.
+	 *                 The system identifier as a URI string.
 	 */
 	public void setSystemId(String systemId) {
 
@@ -200,7 +181,7 @@ public class SAXSource implements Source {
 	 * Attempt to obtain a SAX InputSource object from a Source object.
 	 *
 	 * @param source
-	 *            Must be a non-null Source reference.
+	 *               Must be a non-null Source reference.
 	 *
 	 * @return An InputSource, or null if Source can not be converted.
 	 */

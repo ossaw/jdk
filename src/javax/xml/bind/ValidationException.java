@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -50,7 +30,7 @@ public class ValidationException extends JAXBException {
 	 * errorCode and linkedException will default to null.
 	 *
 	 * @param message
-	 *            a description of the exception
+	 *                a description of the exception
 	 */
 	public ValidationException(String message) {
 		this(message, null, null);
@@ -61,9 +41,9 @@ public class ValidationException extends JAXBException {
 	 * vendor specific errorCode. The linkedException will default to null.
 	 *
 	 * @param message
-	 *            a description of the exception
+	 *                  a description of the exception
 	 * @param errorCode
-	 *            a string specifying the vendor specific error code
+	 *                  a string specifying the vendor specific error code
 	 */
 	public ValidationException(String message, String errorCode) {
 		this(message, errorCode, null);
@@ -74,7 +54,7 @@ public class ValidationException extends JAXBException {
 	 * message and vendor specific errorCode will default to null.
 	 *
 	 * @param exception
-	 *            the linked exception
+	 *                  the linked exception
 	 */
 	public ValidationException(Throwable exception) {
 		this(null, null, exception);
@@ -85,9 +65,9 @@ public class ValidationException extends JAXBException {
 	 * linkedException. The errorCode will default to null.
 	 *
 	 * @param message
-	 *            a description of the exception
+	 *                  a description of the exception
 	 * @param exception
-	 *            the linked exception
+	 *                  the linked exception
 	 */
 	public ValidationException(String message, Throwable exception) {
 		this(message, null, exception);
@@ -98,13 +78,14 @@ public class ValidationException extends JAXBException {
 	 * vendor specific errorCode, and linkedException.
 	 *
 	 * @param message
-	 *            a description of the exception
+	 *                  a description of the exception
 	 * @param errorCode
-	 *            a string specifying the vendor specific error code
+	 *                  a string specifying the vendor specific error code
 	 * @param exception
-	 *            the linked exception
+	 *                  the linked exception
 	 */
-	public ValidationException(String message, String errorCode, Throwable exception) {
+	public ValidationException(String message, String errorCode,
+			Throwable exception) {
 		super(message, errorCode, exception);
 	}
 

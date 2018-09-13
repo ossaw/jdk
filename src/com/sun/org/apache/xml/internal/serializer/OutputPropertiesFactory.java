@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: OutputPropertiesFactory.java,v 1.2.4.1 2005/09/15 08:15:21 suresh_emailid Exp $
+ * $Id: OutputPropertiesFactory.java,v 1.2.4.1 2005/09/15 08:15:21
+ * suresh_emailid Exp $
  */
 package com.sun.org.apache.xml.internal.serializer;
 
@@ -105,8 +103,8 @@ public final class OutputPropertiesFactory {
 	 * reexpressed in {namespaceURI} syntax suitable for prepending to a
 	 * localname to produce a "universal name".
 	 */
-	public static final String S_BUILTIN_EXTENSIONS_UNIVERSAL = "{" + S_BUILTIN_EXTENSIONS_URL
-			+ "}";
+	public static final String S_BUILTIN_EXTENSIONS_UNIVERSAL = "{"
+			+ S_BUILTIN_EXTENSIONS_URL + "}";
 
 	// Some special Xalan keys.
 
@@ -138,7 +136,8 @@ public final class OutputPropertiesFactory {
 	 * This non-standard property key is used to specify the name of the
 	 * property file that specifies character to entity reference mappings.
 	 */
-	public static final String S_KEY_ENTITIES = S_BUILTIN_EXTENSIONS_UNIVERSAL + "entities";
+	public static final String S_KEY_ENTITIES = S_BUILTIN_EXTENSIONS_UNIVERSAL
+			+ "entities";
 
 	/**
 	 * This non-standard property key is used to set a value of "yes" if the
@@ -151,7 +150,8 @@ public final class OutputPropertiesFactory {
 	 * This non-standard property key is used to set a value of "yes" if the
 	 * META tag should be omitted where it would otherwise be supplied.
 	 */
-	public static final String S_OMIT_META_TAG = S_BUILTIN_EXTENSIONS_UNIVERSAL + "omit-meta-tag";
+	public static final String S_OMIT_META_TAG = S_BUILTIN_EXTENSIONS_UNIVERSAL
+			+ "omit-meta-tag";
 
 	/**
 	 * The old built-in extension namespace, this is not a public API.
@@ -264,7 +264,7 @@ public final class OutputPropertiesFactory {
 	 * </p>
 	 *
 	 * @param method
-	 *            non-null reference to method name.
+	 *               non-null reference to method name.
 	 *
 	 * @return Properties object that holds the defaults for the given method.
 	 */
@@ -288,7 +288,8 @@ public final class OutputPropertiesFactory {
 				if (null == m_html_properties) // double check
 				{
 					fileName = PROP_FILE_HTML;
-					m_html_properties = loadPropertiesFile(fileName, m_xml_properties);
+					m_html_properties = loadPropertiesFile(fileName,
+							m_xml_properties);
 				}
 
 				defaultProperties = m_html_properties;
@@ -296,19 +297,24 @@ public final class OutputPropertiesFactory {
 				if (null == m_text_properties) // double check
 				{
 					fileName = PROP_FILE_TEXT;
-					m_text_properties = loadPropertiesFile(fileName, m_xml_properties);
-					if (null == m_text_properties.getProperty(OutputKeys.ENCODING)) {
+					m_text_properties = loadPropertiesFile(fileName,
+							m_xml_properties);
+					if (null == m_text_properties.getProperty(
+							OutputKeys.ENCODING)) {
 						String mimeEncoding = Encodings.getMimeEncoding(null);
-						m_text_properties.put(OutputKeys.ENCODING, mimeEncoding);
+						m_text_properties.put(OutputKeys.ENCODING,
+								mimeEncoding);
 					}
 				}
 
 				defaultProperties = m_text_properties;
-			} else if (method.equals(com.sun.org.apache.xml.internal.serializer.Method.UNKNOWN)) {
+			} else if (method.equals(
+					com.sun.org.apache.xml.internal.serializer.Method.UNKNOWN)) {
 				if (null == m_unknown_properties) // double check
 				{
 					fileName = PROP_FILE_UNKNOWN;
-					m_unknown_properties = loadPropertiesFile(fileName, m_xml_properties);
+					m_unknown_properties = loadPropertiesFile(fileName,
+							m_xml_properties);
 				}
 
 				defaultProperties = m_unknown_properties;
@@ -317,10 +323,9 @@ public final class OutputPropertiesFactory {
 				defaultProperties = m_xml_properties;
 			}
 		} catch (IOException ioe) {
-			throw new WrappedRuntimeException(
-					Utils.messages.createMessage(MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY,
-							new Object[] { fileName, method }),
-					ioe);
+			throw new WrappedRuntimeException(Utils.messages.createMessage(
+					MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY, new Object[] {
+							fileName, method }), ioe);
 		}
 		// wrap these cached defaultProperties in a new Property object just so
 		// that the caller of this method can't modify the default values
@@ -336,12 +341,12 @@ public final class OutputPropertiesFactory {
 	 * the JDK do not handle the escape sequence (at least in key names).
 	 *
 	 * @param resourceName
-	 *            non-null reference to resource name.
+	 *                     non-null reference to resource name.
 	 * @param defaults
-	 *            Default properties, which may be null.
+	 *                     Default properties, which may be null.
 	 */
-	static private Properties loadPropertiesFile(final String resourceName, Properties defaults)
-			throws IOException {
+	static private Properties loadPropertiesFile(final String resourceName,
+			Properties defaults) throws IOException {
 
 		// This static method should eventually be moved to a thread-specific
 		// class
@@ -356,14 +361,17 @@ public final class OutputPropertiesFactory {
 
 		try {
 			if (ACCESS_CONTROLLER_CLASS != null) {
-				is = (InputStream) AccessController.doPrivileged(new PrivilegedAction() {
-					public Object run() {
-						return OutputPropertiesFactory.class.getResourceAsStream(resourceName);
-					}
-				});
+				is = (InputStream) AccessController.doPrivileged(
+						new PrivilegedAction() {
+							public Object run() {
+								return OutputPropertiesFactory.class
+										.getResourceAsStream(resourceName);
+							}
+						});
 			} else {
 				// User may be using older JDK ( JDK < 1.2 )
-				is = OutputPropertiesFactory.class.getResourceAsStream(resourceName);
+				is = OutputPropertiesFactory.class.getResourceAsStream(
+						resourceName);
 			}
 
 			bis = new BufferedInputStream(is);
@@ -373,7 +381,8 @@ public final class OutputPropertiesFactory {
 				throw ioe;
 			} else {
 				throw new WrappedRuntimeException(Utils.messages.createMessage(
-						MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] { resourceName }), ioe);
+						MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] {
+								resourceName }), ioe);
 				// "Could not load '"+resourceName+"' (check CLASSPATH), now
 				// using just the defaults ", ioe);
 			}
@@ -383,7 +392,8 @@ public final class OutputPropertiesFactory {
 				throw se;
 			} else {
 				throw new WrappedRuntimeException(Utils.messages.createMessage(
-						MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] { resourceName }), se);
+						MsgKey.ER_COULD_NOT_LOAD_RESOURCE, new Object[] {
+								resourceName }), se);
 				// "Could not load '"+resourceName+"' (check CLASSPATH, applet
 				// security), now using just the defaults ", se);
 			}
@@ -452,7 +462,7 @@ public final class OutputPropertiesFactory {
 	 * {@link #loadPropertiesFile}.
 	 *
 	 * @param s
-	 *            non-null reference to string that may need to be fixed up.
+	 *          non-null reference to string that may need to be fixed up.
 	 * @return A new string if fixup occured, otherwise the s argument.
 	 */
 	static private String fixupPropertyString(String s, boolean doClipping) {
@@ -461,7 +471,8 @@ public final class OutputPropertiesFactory {
 			s = s.substring(S_XSLT_PREFIX_LEN);
 		}
 		if (s.startsWith(S_XALAN_PREFIX)) {
-			s = S_BUILTIN_EXTENSIONS_UNIVERSAL + s.substring(S_XALAN_PREFIX_LEN);
+			s = S_BUILTIN_EXTENSIONS_UNIVERSAL + s.substring(
+					S_XALAN_PREFIX_LEN);
 		}
 		if ((index = s.indexOf("\\u003a")) > 0) {
 			String temp = s.substring(index + 6);

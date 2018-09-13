@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.element;
@@ -56,7 +36,8 @@ import javax.lang.model.util.*;
  * @see DeclaredType
  * @since 1.6
  */
-public interface TypeElement extends Element, Parameterizable, QualifiedNameable {
+public interface TypeElement extends Element, Parameterizable,
+		QualifiedNameable {
 	/**
 	 * Returns the fields, methods, constructors, and member types that are
 	 * directly declared in this class or interface.

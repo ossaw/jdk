@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,10 +43,10 @@ public final class MultiHashtable<K, V> {
 	 * contained a mapping for the key, the value is added to the set.
 	 * 
 	 * @param key
-	 *            key with which the specified value is to be associated
+	 *              key with which the specified value is to be associated
 	 * @param value
-	 *            value to be added to a set that is associated with the
-	 *            specified key
+	 *              value to be added to a set that is associated with the
+	 *              specified key
 	 * @return the set that is associated with the specified key.
 	 * @throw UnsupportedOperationException is the MultiHashtable is not
 	 *        modifiable.
@@ -63,7 +61,8 @@ public final class MultiHashtable<K, V> {
 			set.add(value);
 			return set;
 		}
-		throw new UnsupportedOperationException("The MultiHashtable instance is not modifiable.");
+		throw new UnsupportedOperationException(
+				"The MultiHashtable instance is not modifiable.");
 	}
 
 	/**
@@ -72,9 +71,9 @@ public final class MultiHashtable<K, V> {
 	 * the specified value.
 	 *
 	 * @param key
-	 *            key with which the specified value is to be associated
+	 *              key with which the specified value is to be associated
 	 * @param value
-	 *            value in a set that is associated with the specified key
+	 *              value in a set that is associated with the specified key
 	 * @return the item in the set if a match is found.
 	 */
 	public V maps(K key, V value) {

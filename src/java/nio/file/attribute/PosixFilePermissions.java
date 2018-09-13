@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -36,11 +16,11 @@ import java.util.*;
  */
 
 public final class PosixFilePermissions {
-	private PosixFilePermissions() {
-	}
+	private PosixFilePermissions() {}
 
 	// Write string representation of permission bits to {@code sb}.
-	private static void writeBits(StringBuilder sb, boolean r, boolean w, boolean x) {
+	private static void writeBits(StringBuilder sb, boolean r, boolean w,
+			boolean x) {
 		if (r) {
 			sb.append('r');
 		} else {
@@ -68,7 +48,7 @@ public final class PosixFilePermissions {
 	 * {@code PosixFilePermission} then these elements are ignored.
 	 *
 	 * @param perms
-	 *            the set of permissions
+	 *              the set of permissions
 	 *
 	 * @return the string representation of the permission set
 	 */
@@ -123,23 +103,26 @@ public final class PosixFilePermissions {
 	 * has read and execute permissions and others have none.
 	 * 
 	 * <pre>
-	 * Set&lt;PosixFilePermission&gt; perms = PosixFilePermissions.fromString("rwxr-x---");
+	 * Set&lt;PosixFilePermission&gt; perms = PosixFilePermissions.fromString(
+	 * 		"rwxr-x---");
 	 * </pre>
 	 *
 	 * @param perms
-	 *            string representing a set of permissions
+	 *              string representing a set of permissions
 	 *
 	 * @return the resulting set of permissions
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the string cannot be converted to a set of permissions
+	 *                                  if the string cannot be converted to a
+	 *                                  set of permissions
 	 *
 	 * @see #toString(Set)
 	 */
 	public static Set<PosixFilePermission> fromString(String perms) {
 		if (perms.length() != 9)
 			throw new IllegalArgumentException("Invalid mode");
-		Set<PosixFilePermission> result = EnumSet.noneOf(PosixFilePermission.class);
+		Set<PosixFilePermission> result = EnumSet.noneOf(
+				PosixFilePermission.class);
 		if (isR(perms.charAt(0)))
 			result.add(OWNER_READ);
 		if (isW(perms.charAt(1)))
@@ -168,13 +151,14 @@ public final class PosixFilePermissions {
 	 * {@link java.nio.file.Files#createDirectory createDirectory} methods.
 	 *
 	 * @param perms
-	 *            the set of permissions
+	 *              the set of permissions
 	 *
 	 * @return an attribute encapsulating the given file permissions with
 	 *         {@link FileAttribute#name name} {@code "posix:permissions"}
 	 *
 	 * @throws ClassCastException
-	 *             if the set contains elements that are not of type {@code
+	 *                            if the set contains elements that are not of
+	 *                            type {@code
 	 *          PosixFilePermission}
 	 */
 	public static FileAttribute<Set<PosixFilePermission>> asFileAttribute(

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orbutil;
@@ -50,8 +30,7 @@ import java.math.BigInteger;
 import java.math.BigDecimal;
 
 public final class ObjectUtility {
-	private ObjectUtility() {
-	}
+	private ObjectUtility() {}
 
 	/**
 	 * If arr1 and arr2 are both arrays of the same component type, return an

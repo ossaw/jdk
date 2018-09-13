@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.spi;
@@ -48,8 +28,8 @@ public class RAFImageInputStreamSpi extends ImageInputStreamSpi {
 		return "Service provider that instantiates a FileImageInputStream from a RandomAccessFile";
 	}
 
-	public ImageInputStream createInputStreamInstance(Object input, boolean useCache,
-			File cacheDir) {
+	public ImageInputStream createInputStreamInstance(Object input,
+			boolean useCache, File cacheDir) {
 		if (input instanceof RandomAccessFile) {
 			try {
 				return new FileImageInputStream((RandomAccessFile) input);

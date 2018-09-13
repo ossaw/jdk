@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -68,12 +48,12 @@ public interface RMIClientSocketFactory {
 	 * Create a client socket connected to the specified host and port.
 	 * 
 	 * @param host
-	 *            the host name
+	 *             the host name
 	 * @param port
-	 *            the port number
+	 *             the port number
 	 * @return a socket connected to the specified host and port.
 	 * @exception IOException
-	 *                if an I/O error occurs during socket creation
+	 *                        if an I/O error occurs during socket creation
 	 * @since 1.2
 	 */
 	public Socket createSocket(String host, int port) throws IOException;

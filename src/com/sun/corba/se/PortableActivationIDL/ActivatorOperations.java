@@ -42,7 +42,8 @@ public interface ActivatorOperations {
 	 * object template and return it. Called whenever a persistent POA is
 	 * created.
 	 */
-	org.omg.PortableInterceptor.ObjectReferenceTemplate registerPOA(String serverId, String orbId,
+	org.omg.PortableInterceptor.ObjectReferenceTemplate registerPOA(
+			String serverId, String orbId,
 			org.omg.PortableInterceptor.ObjectReferenceTemplate poaTemplate);
 
 	/**
@@ -63,14 +64,16 @@ public interface ActivatorOperations {
 	/**
 	 * If the server is running, shut it down
 	 */
-	void shutdown(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotActive,
+	void shutdown(String serverId)
+			throws com.sun.corba.se.PortableActivationIDL.ServerNotActive,
 			com.sun.corba.se.PortableActivationIDL.ServerNotRegistered;
 
 	/**
 	 * Invoke the server install hook. If the server is not currently running,
 	 * this method will activate it.
 	 */
-	void install(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
+	void install(String serverId)
+			throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
 			com.sun.corba.se.PortableActivationIDL.ServerHeldDown,
 			com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalled;
 
@@ -98,6 +101,6 @@ public interface ActivatorOperations {
 	/**
 	 * Find the server template that corresponds to the ORBD's adapter id.
 	 */
-	org.omg.PortableInterceptor.ObjectReferenceTemplate lookupPOATemplate(String serverId,
-			String orbId, String[] orbAdapterName);
+	org.omg.PortableInterceptor.ObjectReferenceTemplate lookupPOATemplate(
+			String serverId, String orbId, String[] orbAdapterName);
 } // interface ActivatorOperations

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -53,8 +33,7 @@ public abstract class ControlFactory {
 	/**
 	 * Creates a new instance of a control factory.
 	 */
-	protected ControlFactory() {
-	}
+	protected ControlFactory() {}
 
 	/**
 	 * Creates a control using this control factory.
@@ -86,13 +65,18 @@ public abstract class ControlFactory {
 	 *
 	 * @return A possibly null Control.
 	 * @exception NamingException
-	 *                If <tt>ctl</tt> contains invalid data that prevents it
-	 *                from being used to create a control. A factory should only
-	 *                throw an exception if it knows how to produce the control
-	 *                (identified by the OID) but is unable to because of, for
-	 *                example invalid BER data.
+	 *                            If <tt>ctl</tt> contains invalid data that
+	 *                            prevents it
+	 *                            from being used to create a control. A factory
+	 *                            should only
+	 *                            throw an exception if it knows how to produce
+	 *                            the control
+	 *                            (identified by the OID) but is unable to
+	 *                            because of, for
+	 *                            example invalid BER data.
 	 */
-	public abstract Control getControlInstance(Control ctl) throws NamingException;
+	public abstract Control getControlInstance(Control ctl)
+			throws NamingException;
 
 	/**
 	 * Creates a control using known control factories.
@@ -126,21 +110,27 @@ public abstract class ControlFactory {
 	 *         <code>ctl</code> if a control object cannot be created using the
 	 *         algorithm described above.
 	 * @exception NamingException
-	 *                if a naming exception was encountered while attempting to
-	 *                create the control object. If one of the factories
-	 *                accessed throws an exception, it is propagated up to the
-	 *                caller. If an error was encountered while loading and
-	 *                instantiating the factory and object classes, the
-	 *                exception is wrapped inside a <tt>NamingException</tt> and
-	 *                then rethrown.
+	 *                            if a naming exception was encountered while
+	 *                            attempting to
+	 *                            create the control object. If one of the
+	 *                            factories
+	 *                            accessed throws an exception, it is propagated
+	 *                            up to the
+	 *                            caller. If an error was encountered while
+	 *                            loading and
+	 *                            instantiating the factory and object classes,
+	 *                            the
+	 *                            exception is wrapped inside a
+	 *                            <tt>NamingException</tt> and
+	 *                            then rethrown.
 	 */
-	public static Control getControlInstance(Control ctl, Context ctx, Hashtable<?, ?> env)
-			throws NamingException {
+	public static Control getControlInstance(Control ctl, Context ctx,
+			Hashtable<?, ?> env) throws NamingException {
 
 		// Get object factories list from environment properties or
 		// provider resource file.
-		FactoryEnumeration factories = ResourceManager.getFactories(LdapContext.CONTROL_FACTORIES,
-				env, ctx);
+		FactoryEnumeration factories = ResourceManager.getFactories(
+				LdapContext.CONTROL_FACTORIES, env, ctx);
 
 		if (factories == null) {
 			return ctl;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.spi;
@@ -41,7 +21,8 @@ class ContinuationContext implements Context, Resolver {
 	protected Hashtable<?, ?> env;
 	protected Context contCtx = null;
 
-	protected ContinuationContext(CannotProceedException cpe, Hashtable<?, ?> env) {
+	protected ContinuationContext(CannotProceedException cpe,
+			Hashtable<?, ?> env) {
 		this.cpe = cpe;
 		this.env = env;
 	}
@@ -51,8 +32,8 @@ class ContinuationContext implements Context, Resolver {
 			if (cpe.getResolvedObj() == null)
 				throw (NamingException) cpe.fillInStackTrace();
 
-			contCtx = NamingManager.getContext(cpe.getResolvedObj(), cpe.getAltName(),
-					cpe.getAltNameCtx(), env);
+			contCtx = NamingManager.getContext(cpe.getResolvedObj(), cpe
+					.getAltName(), cpe.getAltNameCtx(), env);
 			if (contCtx == null)
 				throw (NamingException) cpe.fillInStackTrace();
 		}
@@ -109,22 +90,26 @@ class ContinuationContext implements Context, Resolver {
 		ctx.rename(name, newName);
 	}
 
-	public NamingEnumeration<NameClassPair> list(Name name) throws NamingException {
+	public NamingEnumeration<NameClassPair> list(Name name)
+			throws NamingException {
 		Context ctx = getTargetContext();
 		return ctx.list(name);
 	}
 
-	public NamingEnumeration<NameClassPair> list(String name) throws NamingException {
+	public NamingEnumeration<NameClassPair> list(String name)
+			throws NamingException {
 		Context ctx = getTargetContext();
 		return ctx.list(name);
 	}
 
-	public NamingEnumeration<Binding> listBindings(Name name) throws NamingException {
+	public NamingEnumeration<Binding> listBindings(Name name)
+			throws NamingException {
 		Context ctx = getTargetContext();
 		return ctx.listBindings(name);
 	}
 
-	public NamingEnumeration<Binding> listBindings(String name) throws NamingException {
+	public NamingEnumeration<Binding> listBindings(String name)
+			throws NamingException {
 		Context ctx = getTargetContext();
 		return ctx.listBindings(name);
 	}
@@ -174,17 +159,20 @@ class ContinuationContext implements Context, Resolver {
 		return ctx.composeName(name, prefix);
 	}
 
-	public String composeName(String name, String prefix) throws NamingException {
+	public String composeName(String name, String prefix)
+			throws NamingException {
 		Context ctx = getTargetContext();
 		return ctx.composeName(name, prefix);
 	}
 
-	public Object addToEnvironment(String propName, Object value) throws NamingException {
+	public Object addToEnvironment(String propName, Object value)
+			throws NamingException {
 		Context ctx = getTargetContext();
 		return ctx.addToEnvironment(propName, value);
 	}
 
-	public Object removeFromEnvironment(String propName) throws NamingException {
+	public Object removeFromEnvironment(String propName)
+			throws NamingException {
 		Context ctx = getTargetContext();
 		return ctx.removeFromEnvironment(propName);
 	}
@@ -199,25 +187,25 @@ class ContinuationContext implements Context, Resolver {
 		return ctx.getNameInNamespace();
 	}
 
-	public ResolveResult resolveToClass(Name name, Class<? extends Context> contextType)
-			throws NamingException {
+	public ResolveResult resolveToClass(Name name,
+			Class<? extends Context> contextType) throws NamingException {
 		if (cpe.getResolvedObj() == null)
 			throw (NamingException) cpe.fillInStackTrace();
 
-		Resolver res = NamingManager.getResolver(cpe.getResolvedObj(), cpe.getAltName(),
-				cpe.getAltNameCtx(), env);
+		Resolver res = NamingManager.getResolver(cpe.getResolvedObj(), cpe
+				.getAltName(), cpe.getAltNameCtx(), env);
 		if (res == null)
 			throw (NamingException) cpe.fillInStackTrace();
 		return res.resolveToClass(name, contextType);
 	}
 
-	public ResolveResult resolveToClass(String name, Class<? extends Context> contextType)
-			throws NamingException {
+	public ResolveResult resolveToClass(String name,
+			Class<? extends Context> contextType) throws NamingException {
 		if (cpe.getResolvedObj() == null)
 			throw (NamingException) cpe.fillInStackTrace();
 
-		Resolver res = NamingManager.getResolver(cpe.getResolvedObj(), cpe.getAltName(),
-				cpe.getAltNameCtx(), env);
+		Resolver res = NamingManager.getResolver(cpe.getResolvedObj(), cpe
+				.getAltName(), cpe.getAltNameCtx(), env);
 		if (res == null)
 			throw (NamingException) cpe.fillInStackTrace();
 		return res.resolveToClass(name, contextType);

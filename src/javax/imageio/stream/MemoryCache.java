@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -79,7 +59,8 @@ class MemoryCache {
 	 * the source is reached. The return value is equal to the smaller of
 	 * <code>pos</code> and the length of the source.
 	 */
-	public long loadFromStream(InputStream stream, long pos) throws IOException {
+	public long loadFromStream(InputStream stream, long pos)
+			throws IOException {
 		// We've already got enough data cached
 		if (pos < length) {
 			return pos;
@@ -135,12 +116,16 @@ class MemoryCache {
 	 * {@link #disposeBefore <code>disposeBefore()</code>}.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if any portion of the requested data is not in the cache
-	 *                (including if <code>pos</code> is in a block already
-	 *                disposed), or if either <code>pos</code> or
-	 *                <code>len</code> is < 0.
+	 *                                      if any portion of the requested data
+	 *                                      is not in the cache
+	 *                                      (including if <code>pos</code> is in
+	 *                                      a block already
+	 *                                      disposed), or if either
+	 *                                      <code>pos</code> or
+	 *                                      <code>len</code> is < 0.
 	 */
-	public void writeToStream(OutputStream stream, long pos, long len) throws IOException {
+	public void writeToStream(OutputStream stream, long pos, long len)
+			throws IOException {
 		if (pos + len > length) {
 			throw new IndexOutOfBoundsException("Argument out of cache");
 		}
@@ -200,17 +185,22 @@ class MemoryCache {
 	 *            the cache position at which to begin writing.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
+	 *                                      if <code>b</code> is
+	 *                                      <code>null</code>.
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code>, <code>len</code>, or <code>pos</code>
-	 *                are negative, or if <code>off+len > b.length</code>.
+	 *                                      if <code>off</code>,
+	 *                                      <code>len</code>, or
+	 *                                      <code>pos</code>
+	 *                                      are negative, or if
+	 *                                      <code>off+len > b.length</code>.
 	 */
 	public void write(byte[] b, int off, int len, long pos) throws IOException {
 		if (b == null) {
 			throw new NullPointerException("b == null!");
 		}
 		// Fix 4430357 - if off + len < 0, overflow occurred
-		if ((off < 0) || (len < 0) || (pos < 0) || (off + len > b.length) || (off + len < 0)) {
+		if ((off < 0) || (len < 0) || (pos < 0) || (off + len > b.length)
+				|| (off + len < 0)) {
 			throw new IndexOutOfBoundsException();
 		}
 
@@ -246,7 +236,7 @@ class MemoryCache {
 	 *            the cache position at which to begin writing.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>pos</code> is negative.
+	 *                                      if <code>pos</code> is negative.
 	 */
 	public void write(int b, long pos) throws IOException {
 		if (pos < 0) {
@@ -297,20 +287,26 @@ class MemoryCache {
 	 * <code>off</code>.
 	 *
 	 * @exception NullPointerException
-	 *                if b is <code>null</code>
+	 *                                      if b is <code>null</code>
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code>, <code>len</code> or <code>pos</code>
-	 *                are negative or if <code>off + len > b.length</code> or if
-	 *                any portion of the requested data is not in the cache
-	 *                (including if <code>pos</code> is in a block that has
-	 *                already been disposed).
+	 *                                      if <code>off</code>,
+	 *                                      <code>len</code> or <code>pos</code>
+	 *                                      are negative or if
+	 *                                      <code>off + len > b.length</code> or
+	 *                                      if
+	 *                                      any portion of the requested data is
+	 *                                      not in the cache
+	 *                                      (including if <code>pos</code> is in
+	 *                                      a block that has
+	 *                                      already been disposed).
 	 */
 	public void read(byte[] b, int off, int len, long pos) throws IOException {
 		if (b == null) {
 			throw new NullPointerException("b == null!");
 		}
 		// Fix 4430357 - if off + len < 0, overflow occurred
-		if ((off < 0) || (len < 0) || (pos < 0) || (off + len > b.length) || (off + len < 0)) {
+		if ((off < 0) || (len < 0) || (pos < 0) || (off + len > b.length)
+				|| (off + len < 0)) {
 			throw new IndexOutOfBoundsException();
 		}
 		if (pos + len > length) {
@@ -335,8 +331,9 @@ class MemoryCache {
 	 * <code>pos</code> remains available.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>pos</code> is in a block that has already been
-	 *                disposed.
+	 *                                      if <code>pos</code> is in a block
+	 *                                      that has already been
+	 *                                      disposed.
 	 */
 	public void disposeBefore(long pos) {
 		long index = pos / BUFFER_LENGTH;

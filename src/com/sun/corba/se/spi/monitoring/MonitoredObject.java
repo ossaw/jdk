@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.spi.monitoring;
 
@@ -82,8 +62,8 @@ public interface MonitoredObject {
 	 * <p>
 	 * 
 	 * @param name
-	 *            of the ChildMonitored Object
-	 *            </p>
+	 *             of the ChildMonitored Object
+	 *             </p>
 	 */
 	public void removeChild(String name);
 
@@ -99,8 +79,8 @@ public interface MonitoredObject {
 	 *         </p>
 	 *         <p>
 	 * @param name
-	 *            of the ChildMonitored Object
-	 *            </p>
+	 *             of the ChildMonitored Object
+	 *             </p>
 	 */
 	public MonitoredObject getChild(String name);
 
@@ -148,9 +128,9 @@ public interface MonitoredObject {
 	 * <p>
 	 * 
 	 * @param value
-	 *            is the MonitoredAttribute which will be set as one of the
-	 *            attribute of this MonitoredObject.
-	 *            </p>
+	 *              is the MonitoredAttribute which will be set as one of the
+	 *              attribute of this MonitoredObject.
+	 *              </p>
 	 */
 	public void addAttribute(MonitoredAttribute value);
 
@@ -164,8 +144,8 @@ public interface MonitoredObject {
 	 * <p>
 	 * 
 	 * @param name
-	 *            is the MonitoredAttribute name
-	 *            </p>
+	 *             is the MonitoredAttribute name
+	 *             </p>
 	 */
 	public void removeAttribute(String name);
 
@@ -180,8 +160,8 @@ public interface MonitoredObject {
 	 *         </p>
 	 *         <p>
 	 * @param name
-	 *            of the attribute
-	 *            </p>
+	 *             of the attribute
+	 *             </p>
 	 */
 	public MonitoredAttribute getAttribute(String name);
 

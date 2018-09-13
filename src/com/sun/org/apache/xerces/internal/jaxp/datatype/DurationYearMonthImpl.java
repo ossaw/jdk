@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xerces.internal.jaxp.datatype;
@@ -64,19 +44,23 @@ class DurationYearMonthImpl extends DurationImpl {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param years
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param months
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If years, months parameters are all <code>null</code>. Or if
-	 *             any of those parameters are negative.
+	 *                                  If years, months parameters are all
+	 *                                  <code>null</code>. Or if
+	 *                                  any of those parameters are negative.
 	 */
-	public DurationYearMonthImpl(boolean isPositive, BigInteger years, BigInteger months) {
+	public DurationYearMonthImpl(boolean isPositive, BigInteger years,
+			BigInteger months) {
 
 		super(isPositive, years, months, null, null, null, null);
 		convertToCanonicalYearMonth();
@@ -97,20 +81,25 @@ class DurationYearMonthImpl extends DurationImpl {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param year
-	 *            Year of <code>Duration</code>.
+	 *                   Year of <code>Duration</code>.
 	 * @param month
-	 *            Month of <code>Duration</code>.
+	 *                   Month of <code>Duration</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the values are not a valid representation of a
-	 *             <code>Duration</code>: if any of the fields (year, month) is
-	 *             negative.
+	 *                                  If the values are not a valid
+	 *                                  representation of a
+	 *                                  <code>Duration</code>: if any of the
+	 *                                  fields (year, month) is
+	 *                                  negative.
 	 */
-	protected DurationYearMonthImpl(final boolean isPositive, final int years, final int months) {
+	protected DurationYearMonthImpl(final boolean isPositive, final int years,
+			final int months) {
 
 		this(isPositive, wrap(years), wrap(months));
 
@@ -161,7 +150,8 @@ class DurationYearMonthImpl extends DurationImpl {
 	 * </p>
 	 *
 	 * @param durationInMilliseconds
-	 *            Milliseconds of <code>Duration</code> to create.
+	 *                               Milliseconds of <code>Duration</code> to
+	 *                               create.
 	 */
 	protected DurationYearMonthImpl(long durationInMilliseconds) {
 
@@ -206,23 +196,32 @@ class DurationYearMonthImpl extends DurationImpl {
 	 * </p>
 	 *
 	 * @param lexicalRepresentation
-	 *            Lexical representation of a duration.
+	 *                              Lexical representation of a duration.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>lexicalRepresentation</code> is not a valid
-	 *             representation of a <code>Duration</code> expressed only in
-	 *             terms of years and months.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code> expressed
+	 *                                       only in
+	 *                                       terms of years and months.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 * @throws NullPointerException
-	 *             If <code>lexicalRepresentation</code> is <code>null</code>.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is <code>null</code>.
 	 */
 	protected DurationYearMonthImpl(String lexicalRepresentation) {
 		super(lexicalRepresentation);
-		if (getDays() > 0 || getHours() > 0 || getMinutes() > 0 || getSeconds() > 0) {
+		if (getDays() > 0 || getHours() > 0 || getMinutes() > 0
+				|| getSeconds() > 0) {
 			throw new IllegalArgumentException(
 					"Trying to create an xdt:yearMonthDuration with an invalid"
-							+ " lexical representation of \"" + lexicalRepresentation
+							+ " lexical representation of \""
+							+ lexicalRepresentation
 							+ "\", data model requires PnYnM.");
 		}
 		convertToCanonicalYearMonth();

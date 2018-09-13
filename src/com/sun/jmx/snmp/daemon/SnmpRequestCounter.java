@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -21,8 +20,7 @@ final class SnmpRequestCounter {
 	 */
 	int reqid = 0;
 
-	public SnmpRequestCounter() {
-	}
+	public SnmpRequestCounter() {}
 
 	/**
 	 * Returns the next request identifier.

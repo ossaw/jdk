@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp;
 
@@ -35,7 +15,8 @@ package com.sun.jmx.snmp;
  * 
  * @since 1.5
  */
-public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements SnmpPduRequestType {
+public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements
+		SnmpPduRequestType {
 	private static final long serialVersionUID = 6463060973056773680L;
 
 	int errorStatus = 0;
@@ -48,7 +29,7 @@ public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements SnmpPdu
 	 * <CODE>varBindList[errorIndex-1]</CODE>.
 	 * 
 	 * @param i
-	 *            Error index.
+	 *          Error index.
 	 */
 	public void setErrorIndex(int i) {
 		errorIndex = i;
@@ -59,7 +40,7 @@ public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements SnmpPdu
 	 * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
 	 * 
 	 * @param s
-	 *            Error status.
+	 *          Error status.
 	 */
 	public void setErrorStatus(int s) {
 		errorStatus = s;

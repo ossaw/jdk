@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -113,8 +93,9 @@ public class LinkException extends NamingException {
 	 * other fields are initialized to null.
 	 * 
 	 * @param explanation
-	 *            A possibly null string containing additional detail about this
-	 *            exception.
+	 *                    A possibly null string containing additional detail
+	 *                    about this
+	 *                    exception.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public LinkException(String explanation) {
@@ -217,8 +198,8 @@ public class LinkException extends NamingException {
 	 *
 	 *
 	 * @param name
-	 *            The name to set resolved link name to. This can be null. If
-	 *            null, it sets the link resolved name field to null.
+	 *             The name to set resolved link name to. This can be null. If
+	 *             null, it sets the link resolved name field to null.
 	 * @see #getLinkResolvedName
 	 */
 	public void setLinkResolvedName(Name name) {
@@ -242,8 +223,8 @@ public class LinkException extends NamingException {
 	 * vice versa.
 	 *
 	 * @param name
-	 *            The name to set remaining link name to. This can be null. If
-	 *            null, it sets the remaining name field to null.
+	 *             The name to set remaining link name to. This can be null. If
+	 *             null, it sets the remaining name field to null.
 	 * @see #getLinkRemainingName
 	 */
 	public void setLinkRemainingName(Name name) {
@@ -275,7 +256,8 @@ public class LinkException extends NamingException {
 	 * @return The non-null string representation of this link exception.
 	 */
 	public String toString() {
-		return super.toString() + "; Link Remaining Name: '" + this.linkRemainingName + "'";
+		return super.toString() + "; Link Remaining Name: '"
+				+ this.linkRemainingName + "'";
 	}
 
 	/**
@@ -288,14 +270,15 @@ public class LinkException extends NamingException {
 	 * programmatically.
 	 *
 	 * @param detail
-	 *            If true, add information about the link resolved object.
+	 *               If true, add information about the link resolved object.
 	 * @return The non-null string representation of this link exception.
 	 */
 	public String toString(boolean detail) {
 		if (!detail || this.linkResolvedObj == null)
 			return this.toString();
 
-		return this.toString() + "; Link Resolved Object: " + this.linkResolvedObj;
+		return this.toString() + "; Link Resolved Object: "
+				+ this.linkResolvedObj;
 	}
 
 	/**

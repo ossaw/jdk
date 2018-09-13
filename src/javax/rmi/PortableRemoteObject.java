@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package javax.rmi;
@@ -77,7 +56,7 @@ public class PortableRemoteObject {
 	 * Initializes the object by calling <code>exportObject(this)</code>.
 	 * 
 	 * @exception RemoteException
-	 *                if export fails.
+	 *                            if export fails.
 	 */
 	protected PortableRemoteObject() throws RemoteException {
 		if (proDelegate != null) {
@@ -93,7 +72,7 @@ public class PortableRemoteObject {
 	 * @param obj
 	 *            the server object to export.
 	 * @exception RemoteException
-	 *                if export fails.
+	 *                            if export fails.
 	 */
 	public static void exportObject(Remote obj) throws RemoteException {
 
@@ -112,7 +91,8 @@ public class PortableRemoteObject {
 	 *            target of a call to {@link #exportObject}.
 	 * @return the most derived stub for the object.
 	 * @exception NoSuchObjectException
-	 *                if a stub cannot be located for the given server object.
+	 *                                  if a stub cannot be located for the
+	 *                                  given server object.
 	 */
 	public static Remote toStub(Remote obj) throws NoSuchObjectException {
 
@@ -129,7 +109,8 @@ public class PortableRemoteObject {
 	 * @param obj
 	 *            the object to unexport.
 	 * @exception NoSuchObjectException
-	 *                if the remote object is not currently exported.
+	 *                                  if the remote object is not currently
+	 *                                  exported.
 	 */
 	public static void unexportObject(Remote obj) throws NoSuchObjectException {
 
@@ -144,15 +125,15 @@ public class PortableRemoteObject {
 	 * can be cast to a desired type.
 	 * 
 	 * @param narrowFrom
-	 *            the object to check.
+	 *                   the object to check.
 	 * @param narrowTo
-	 *            the desired type.
+	 *                   the desired type.
 	 * @return an object which can be cast to the desired type.
 	 * @throws ClassCastException
-	 *             if narrowFrom cannot be cast to narrowTo.
+	 *                            if narrowFrom cannot be cast to narrowTo.
 	 */
-	public static java.lang.Object narrow(java.lang.Object narrowFrom, java.lang.Class narrowTo)
-			throws ClassCastException {
+	public static java.lang.Object narrow(java.lang.Object narrowFrom,
+			java.lang.Class narrowTo) throws ClassCastException {
 
 		if (proDelegate != null) {
 			return proDelegate.narrow(narrowFrom, narrowTo);
@@ -169,15 +150,17 @@ public class PortableRemoteObject {
 	 * {@link javax.rmi.CORBA.Stub#connect} method for more information.
 	 * 
 	 * @param target
-	 *            the object to connect.
+	 *               the object to connect.
 	 * @param source
-	 *            a previously connected object.
+	 *               a previously connected object.
 	 * @throws RemoteException
-	 *             if <code>source</code> is not connected or if
-	 *             <code>target</code> is already connected to a different ORB
-	 *             than <code>source</code>.
+	 *                         if <code>source</code> is not connected or if
+	 *                         <code>target</code> is already connected to a
+	 *                         different ORB
+	 *                         than <code>source</code>.
 	 */
-	public static void connect(Remote target, Remote source) throws RemoteException {
+	public static void connect(Remote target, Remote source)
+			throws RemoteException {
 
 		if (proDelegate != null) {
 			proDelegate.connect(target, source);
@@ -190,7 +173,8 @@ public class PortableRemoteObject {
 	// security reasons. If you know a better solution how to share this code
 	// then remove it from here.
 	private static Object createDelegate(String classKey) {
-		String className = (String) AccessController.doPrivileged(new GetPropertyAction(classKey));
+		String className = (String) AccessController.doPrivileged(
+				new GetPropertyAction(classKey));
 		if (className == null) {
 			Properties props = getORBPropertiesFile();
 			if (props != null) {
@@ -208,14 +192,16 @@ public class PortableRemoteObject {
 			exc.initCause(ex);
 			throw exc;
 		} catch (Exception ex) {
-			INITIALIZE exc = new INITIALIZE("Error while instantiating" + className);
+			INITIALIZE exc = new INITIALIZE("Error while instantiating"
+					+ className);
 			exc.initCause(ex);
 			throw exc;
 		}
 
 	}
 
-	private static Class loadDelegateClass(String className) throws ClassNotFoundException {
+	private static Class loadDelegateClass(String className)
+			throws ClassNotFoundException {
 		try {
 			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			return Class.forName(className, false, loader);
@@ -236,24 +222,25 @@ public class PortableRemoteObject {
 	 * Load the orb.properties file.
 	 */
 	private static Properties getORBPropertiesFile() {
-		return (Properties) AccessController.doPrivileged(new GetORBPropertiesFileAction());
+		return (Properties) AccessController.doPrivileged(
+				new GetORBPropertiesFileAction());
 	}
 }
 
 class GetORBPropertiesFileAction implements PrivilegedAction {
 	private boolean debug = false;
 
-	public GetORBPropertiesFileAction() {
-	}
+	public GetORBPropertiesFileAction() {}
 
 	private String getSystemProperty(final String name) {
 		// This will not throw a SecurityException because this
 		// class was loaded from rt.jar using the bootstrap classloader.
-		String propValue = (String) AccessController.doPrivileged(new PrivilegedAction() {
-			public java.lang.Object run() {
-				return System.getProperty(name);
-			}
-		});
+		String propValue = (String) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public java.lang.Object run() {
+						return System.getProperty(name);
+					}
+				});
 
 		return propValue;
 	}
@@ -273,7 +260,8 @@ class GetORBPropertiesFileAction implements PrivilegedAction {
 			}
 		} catch (Exception exc) {
 			if (debug)
-				System.out.println("ORB properties file " + fileName + " not found: " + exc);
+				System.out.println("ORB properties file " + fileName
+						+ " not found: " + exc);
 		}
 	}
 
@@ -281,7 +269,8 @@ class GetORBPropertiesFileAction implements PrivilegedAction {
 		Properties defaults = new Properties();
 
 		String javaHome = getSystemProperty("java.home");
-		String fileName = javaHome + File.separator + "lib" + File.separator + "orb.properties";
+		String fileName = javaHome + File.separator + "lib" + File.separator
+				+ "orb.properties";
 
 		getPropertiesFromFile(defaults, fileName);
 

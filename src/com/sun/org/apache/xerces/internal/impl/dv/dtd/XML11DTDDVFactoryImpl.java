@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,7 +42,8 @@ public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
 		xml11BuiltInTypes.put("XML11IDREFS", new ListDatatypeValidator(dvTemp));
 		dvTemp = new XML11NMTOKENDatatypeValidator();
 		xml11BuiltInTypes.put("XML11NMTOKEN", dvTemp);
-		xml11BuiltInTypes.put("XML11NMTOKENS", new ListDatatypeValidator(dvTemp));
+		xml11BuiltInTypes.put("XML11NMTOKENS", new ListDatatypeValidator(
+				dvTemp));
 		XML11BUILTINTYPES = Collections.unmodifiableMap(xml11BuiltInTypes);
 	} // <clinit>
 
@@ -53,7 +52,7 @@ public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
 	 * only if it does not recognize the passed-in name.
 	 *
 	 * @param name
-	 *            the name of the datatype
+	 *             the name of the datatype
 	 * @return the datatype validator of the given name
 	 */
 	@Override
@@ -72,7 +71,8 @@ public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
 	 */
 	@Override
 	public Map<String, DatatypeValidator> getBuiltInTypes() {
-		final HashMap<String, DatatypeValidator> toReturn = new HashMap<>(fBuiltInTypes);
+		final HashMap<String, DatatypeValidator> toReturn = new HashMap<>(
+				fBuiltInTypes);
 		toReturn.putAll(XML11BUILTINTYPES);
 		return toReturn;
 	}

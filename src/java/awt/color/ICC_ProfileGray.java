@@ -1,37 +1,12 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- **********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997                      ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
- **********************************************************************
- **********************************************************************
+ ********************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997 ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************/
 
 package java.awt.color;
@@ -111,8 +86,9 @@ public class ICC_ProfileGray extends ICC_Profile {
 	 * 
 	 * @return the gamma value as a float.
 	 * @exception ProfileDataException
-	 *                if the profile does not specify the TRC as a single gamma
-	 *                value.
+	 *                                 if the profile does not specify the TRC
+	 *                                 as a single gamma
+	 *                                 value.
 	 */
 	public float getGamma() {
 		float theGamma;
@@ -136,7 +112,8 @@ public class ICC_ProfileGray extends ICC_Profile {
 	 * 
 	 * @return a short array representing the TRC.
 	 * @exception ProfileDataException
-	 *                if the profile does not specify the TRC as a table.
+	 *                                 if the profile does not specify the TRC
+	 *                                 as a table.
 	 */
 	public short[] getTRC() {
 		short[] theTRC;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -75,9 +55,9 @@ public class Observable {
 	 * specified. See the class comment.
 	 *
 	 * @param o
-	 *            an observer to be added.
+	 *          an observer to be added.
 	 * @throws NullPointerException
-	 *             if the parameter o is null.
+	 *                              if the parameter o is null.
 	 */
 	public synchronized void addObserver(Observer o) {
 		if (o == null)
@@ -92,7 +72,7 @@ public class Observable {
 	 * <CODE>null</CODE> to this method will have no effect.
 	 * 
 	 * @param o
-	 *            the observer to be deleted.
+	 *          the observer to be deleted.
 	 */
 	public synchronized void deleteObserver(Observer o) {
 		obs.removeElement(o);

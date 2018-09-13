@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xerces.internal.impl;
@@ -115,8 +95,9 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
 	 * @return
 	 */
 	public int nextTag() throws XMLStreamException {
-		if (fStreamAdvancedByHasNext && fEventAccepted && (fCurrentEvent == XMLEvent.START_ELEMENT
-				|| fCurrentEvent == XMLEvent.START_ELEMENT)) {
+		if (fStreamAdvancedByHasNext && fEventAccepted
+				&& (fCurrentEvent == XMLEvent.START_ELEMENT
+						|| fCurrentEvent == XMLEvent.START_ELEMENT)) {
 			fStreamAdvancedByHasNext = false;
 			return fCurrentEvent;
 		}
@@ -393,7 +374,8 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
 	 * @throws IllegalArgumentException
 	 * @return
 	 */
-	public Object getProperty(java.lang.String name) throws java.lang.IllegalArgumentException {
+	public Object getProperty(java.lang.String name)
+			throws java.lang.IllegalArgumentException {
 		return fStreamReader.getProperty(name);
 	}
 
@@ -422,9 +404,10 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
 	 * @throws XMLStreamException
 	 * @return
 	 */
-	public int getTextCharacters(int sourceStart, char[] target, int targetStart, int length)
-			throws XMLStreamException {
-		return fStreamReader.getTextCharacters(sourceStart, target, targetStart, length);
+	public int getTextCharacters(int sourceStart, char[] target,
+			int targetStart, int length) throws XMLStreamException {
+		return fStreamReader.getTextCharacters(sourceStart, target, targetStart,
+				length);
 	}
 
 	/**
@@ -523,7 +506,8 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
 	 * @param localName
 	 * @throws XMLStreamException
 	 */
-	public void require(int type, String namespaceURI, String localName) throws XMLStreamException {
+	public void require(int type, String namespaceURI, String localName)
+			throws XMLStreamException {
 		fStreamReader.require(type, namespaceURI, localName);
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -48,11 +28,13 @@ public class FileReader extends InputStreamReader {
 	 * from.
 	 *
 	 * @param fileName
-	 *            the name of the file to read from
+	 *                 the name of the file to read from
 	 * @exception FileNotFoundException
-	 *                if the named file does not exist, is a directory rather
-	 *                than a regular file, or for some other reason cannot be
-	 *                opened for reading.
+	 *                                  if the named file does not exist, is a
+	 *                                  directory rather
+	 *                                  than a regular file, or for some other
+	 *                                  reason cannot be
+	 *                                  opened for reading.
 	 */
 	public FileReader(String fileName) throws FileNotFoundException {
 		super(new FileInputStream(fileName));
@@ -62,11 +44,13 @@ public class FileReader extends InputStreamReader {
 	 * Creates a new <tt>FileReader</tt>, given the <tt>File</tt> to read from.
 	 *
 	 * @param file
-	 *            the <tt>File</tt> to read from
+	 *             the <tt>File</tt> to read from
 	 * @exception FileNotFoundException
-	 *                if the file does not exist, is a directory rather than a
-	 *                regular file, or for some other reason cannot be opened
-	 *                for reading.
+	 *                                  if the file does not exist, is a
+	 *                                  directory rather than a
+	 *                                  regular file, or for some other reason
+	 *                                  cannot be opened
+	 *                                  for reading.
 	 */
 	public FileReader(File file) throws FileNotFoundException {
 		super(new FileInputStream(file));
@@ -77,7 +61,7 @@ public class FileReader extends InputStreamReader {
 	 * read from.
 	 *
 	 * @param fd
-	 *            the FileDescriptor to read from
+	 *           the FileDescriptor to read from
 	 */
 	public FileReader(FileDescriptor fd) {
 		super(new FileInputStream(fd));

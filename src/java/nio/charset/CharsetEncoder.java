@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -176,42 +156,50 @@ public abstract class CharsetEncoder {
 
 	private int state = ST_RESET;
 
-	private static String stateNames[] = { "RESET", "CODING", "CODING_END", "FLUSHED" };
+	private static String stateNames[] = { "RESET", "CODING", "CODING_END",
+			"FLUSHED" };
 
 	/**
 	 * Initializes a new encoder. The new encoder will have the given
 	 * bytes-per-char and replacement values.
 	 *
 	 * @param cs
-	 *            The charset that created this encoder
+	 *                            The charset that created this encoder
 	 *
 	 * @param averageBytesPerChar
-	 *            A positive float value indicating the expected number of bytes
-	 *            that will be produced for each input character
+	 *                            A positive float value indicating the expected
+	 *                            number of bytes
+	 *                            that will be produced for each input character
 	 *
 	 * @param maxBytesPerChar
-	 *            A positive float value indicating the maximum number of bytes
-	 *            that will be produced for each input character
+	 *                            A positive float value indicating the maximum
+	 *                            number of bytes
+	 *                            that will be produced for each input character
 	 *
 	 * @param replacement
-	 *            The initial replacement; must not be <tt>null</tt>, must have
-	 *            non-zero length, must not be longer than maxBytesPerChar, and
-	 *            must be {@linkplain #isLegalReplacement legal}
+	 *                            The initial replacement; must not be
+	 *                            <tt>null</tt>, must have
+	 *                            non-zero length, must not be longer than
+	 *                            maxBytesPerChar, and
+	 *                            must be {@linkplain #isLegalReplacement legal}
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameters do not hold
+	 *                                  If the preconditions on the parameters
+	 *                                  do not hold
 	 */
-	protected CharsetEncoder(Charset cs, float averageBytesPerChar, float maxBytesPerChar,
-			byte[] replacement) {
+	protected CharsetEncoder(Charset cs, float averageBytesPerChar,
+			float maxBytesPerChar, byte[] replacement) {
 		this.charset = cs;
 		if (averageBytesPerChar <= 0.0f)
-			throw new IllegalArgumentException("Non-positive " + "averageBytesPerChar");
+			throw new IllegalArgumentException("Non-positive "
+					+ "averageBytesPerChar");
 		if (maxBytesPerChar <= 0.0f)
-			throw new IllegalArgumentException("Non-positive " + "maxBytesPerChar");
+			throw new IllegalArgumentException("Non-positive "
+					+ "maxBytesPerChar");
 		if (!Charset.atBugLevel("1.4")) {
 			if (averageBytesPerChar > maxBytesPerChar)
-				throw new IllegalArgumentException(
-						"averageBytesPerChar" + " exceeds " + "maxBytesPerChar");
+				throw new IllegalArgumentException("averageBytesPerChar"
+						+ " exceeds " + "maxBytesPerChar");
 		}
 		this.replacement = replacement;
 		this.averageBytesPerChar = averageBytesPerChar;
@@ -225,21 +213,26 @@ public abstract class CharsetEncoder {
 	 * <tt>{</tt>&nbsp;<tt>(byte)'?'</tt>&nbsp;<tt>}</tt>.
 	 *
 	 * @param cs
-	 *            The charset that created this encoder
+	 *                            The charset that created this encoder
 	 *
 	 * @param averageBytesPerChar
-	 *            A positive float value indicating the expected number of bytes
-	 *            that will be produced for each input character
+	 *                            A positive float value indicating the expected
+	 *                            number of bytes
+	 *                            that will be produced for each input character
 	 *
 	 * @param maxBytesPerChar
-	 *            A positive float value indicating the maximum number of bytes
-	 *            that will be produced for each input character
+	 *                            A positive float value indicating the maximum
+	 *                            number of bytes
+	 *                            that will be produced for each input character
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameters do not hold
+	 *                                  If the preconditions on the parameters
+	 *                                  do not hold
 	 */
-	protected CharsetEncoder(Charset cs, float averageBytesPerChar, float maxBytesPerChar) {
-		this(cs, averageBytesPerChar, maxBytesPerChar, new byte[] { (byte) '?' });
+	protected CharsetEncoder(Charset cs, float averageBytesPerChar,
+			float maxBytesPerChar) {
+		this(cs, averageBytesPerChar, maxBytesPerChar, new byte[] {
+				(byte) '?' });
 	}
 
 	/**
@@ -273,23 +266,27 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param newReplacement
-	 *            The replacement value
+	 *                       The replacement value
 	 *
 	 * 
 	 * 
 	 * 
 	 * 
 	 * 
-	 *            The new replacement; must not be <tt>null</tt>, must have
-	 *            non-zero length, must not be longer than the value returned by
-	 *            the {@link #maxBytesPerChar() maxBytesPerChar} method, and
-	 *            must be {@link #isLegalReplacement legal}
+	 *                       The new replacement; must not be <tt>null</tt>,
+	 *                       must have
+	 *                       non-zero length, must not be longer than the value
+	 *                       returned by
+	 *                       the {@link #maxBytesPerChar() maxBytesPerChar}
+	 *                       method, and
+	 *                       must be {@link #isLegalReplacement legal}
 	 *
 	 * 
 	 * @return This encoder
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameter do not hold
+	 *                                  If the preconditions on the parameter do
+	 *                                  not hold
 	 */
 	public final CharsetEncoder replaceWith(byte[] newReplacement) {
 		if (newReplacement == null)
@@ -318,10 +315,9 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param newReplacement
-	 *            The replacement value
+	 *                       The replacement value
 	 */
-	protected void implReplaceWith(byte[] newReplacement) {
-	}
+	protected void implReplaceWith(byte[] newReplacement) {}
 
 	private WeakReference<CharsetDecoder> cachedDecoder = null;
 
@@ -340,7 +336,7 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param repl
-	 *            The byte array to be tested
+	 *             The byte array to be tested
 	 *
 	 * @return <tt>true</tt> if, and only if, the given byte array is a legal
 	 *         replacement value for this encoder
@@ -357,7 +353,8 @@ public abstract class CharsetEncoder {
 			dec.reset();
 		}
 		ByteBuffer bb = ByteBuffer.wrap(repl);
-		CharBuffer cb = CharBuffer.allocate((int) (bb.remaining() * dec.maxCharsPerByte()));
+		CharBuffer cb = CharBuffer.allocate((int) (bb.remaining() * dec
+				.maxCharsPerByte()));
 		CoderResult cr = dec.decode(bb, cb, true);
 		return !cr.isError();
 	}
@@ -380,12 +377,13 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param newAction
-	 *            The new action; must not be <tt>null</tt>
+	 *                  The new action; must not be <tt>null</tt>
 	 *
 	 * @return This encoder
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the precondition on the parameter does not hold
+	 *                                  If the precondition on the parameter
+	 *                                  does not hold
 	 */
 	public final CharsetEncoder onMalformedInput(CodingErrorAction newAction) {
 		if (newAction == null)
@@ -405,10 +403,9 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param newAction
-	 *            The new action
+	 *                  The new action
 	 */
-	protected void implOnMalformedInput(CodingErrorAction newAction) {
-	}
+	protected void implOnMalformedInput(CodingErrorAction newAction) {}
 
 	/**
 	 * Returns this encoder's current action for unmappable-character errors.
@@ -429,14 +426,16 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param newAction
-	 *            The new action; must not be <tt>null</tt>
+	 *                  The new action; must not be <tt>null</tt>
 	 *
 	 * @return This encoder
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the precondition on the parameter does not hold
+	 *                                  If the precondition on the parameter
+	 *                                  does not hold
 	 */
-	public final CharsetEncoder onUnmappableCharacter(CodingErrorAction newAction) {
+	public final CharsetEncoder onUnmappableCharacter(
+			CodingErrorAction newAction) {
 		if (newAction == null)
 			throw new IllegalArgumentException("Null action");
 		unmappableCharacterAction = newAction;
@@ -454,10 +453,9 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param newAction
-	 *            The new action
+	 *                  The new action
 	 */
-	protected void implOnUnmappableCharacter(CodingErrorAction newAction) {
-	}
+	protected void implOnUnmappableCharacter(CodingErrorAction newAction) {}
 
 	/**
 	 * Returns the average number of bytes that will be produced for each
@@ -575,33 +573,44 @@ public abstract class CharsetEncoder {
 	 *
 	 *
 	 * @param in
-	 *            The input character buffer
+	 *                   The input character buffer
 	 *
 	 * @param out
-	 *            The output byte buffer
+	 *                   The output byte buffer
 	 *
 	 * @param endOfInput
-	 *            <tt>true</tt> if, and only if, the invoker can provide no
-	 *            additional input characters beyond those in the given buffer
+	 *                   <tt>true</tt> if, and only if, the invoker can provide
+	 *                   no
+	 *                   additional input characters beyond those in the given
+	 *                   buffer
 	 *
 	 * @return A coder-result object describing the reason for termination
 	 *
 	 * @throws IllegalStateException
-	 *             If an encoding operation is already in progress and the
-	 *             previous step was an invocation neither of the {@link #reset
-	 *             reset} method, nor of this method with a value of
-	 *             <tt>false</tt> for the <tt>endOfInput</tt> parameter, nor of
-	 *             this method with a value of <tt>true</tt> for the
-	 *             <tt>endOfInput</tt> parameter but a return value indicating
-	 *             an incomplete encoding operation
+	 *                               If an encoding operation is already in
+	 *                               progress and the
+	 *                               previous step was an invocation neither of
+	 *                               the {@link #reset
+	 *                               reset} method, nor of this method with a
+	 *                               value of
+	 *                               <tt>false</tt> for the <tt>endOfInput</tt>
+	 *                               parameter, nor of
+	 *                               this method with a value of <tt>true</tt>
+	 *                               for the
+	 *                               <tt>endOfInput</tt> parameter but a return
+	 *                               value indicating
+	 *                               an incomplete encoding operation
 	 *
 	 * @throws CoderMalfunctionError
-	 *             If an invocation of the encodeLoop method threw an unexpected
-	 *             exception
+	 *                               If an invocation of the encodeLoop method
+	 *                               threw an unexpected
+	 *                               exception
 	 */
-	public final CoderResult encode(CharBuffer in, ByteBuffer out, boolean endOfInput) {
+	public final CoderResult encode(CharBuffer in, ByteBuffer out,
+			boolean endOfInput) {
 		int newState = endOfInput ? ST_END : ST_CODING;
-		if ((state != ST_RESET) && (state != ST_CODING) && !(endOfInput && (state == ST_END)))
+		if ((state != ST_RESET) && (state != ST_CODING) && !(endOfInput
+				&& (state == ST_END)))
 			throwIllegalStateException(state, newState);
 		state = newState;
 
@@ -645,7 +654,8 @@ public abstract class CharsetEncoder {
 				out.put(replacement);
 			}
 
-			if ((action == CodingErrorAction.IGNORE) || (action == CodingErrorAction.REPLACE)) {
+			if ((action == CodingErrorAction.IGNORE)
+					|| (action == CodingErrorAction.REPLACE)) {
 				// Skip erroneous input either way
 				in.position(in.position() + cr.length());
 				continue;
@@ -693,12 +703,16 @@ public abstract class CharsetEncoder {
 	 *         {@link CoderResult#OVERFLOW}
 	 *
 	 * @throws IllegalStateException
-	 *             If the previous step of the current encoding operation was an
-	 *             invocation neither of the {@link #flush flush} method nor of
-	 *             the three-argument
-	 *             {@link #encode(CharBuffer,ByteBuffer,boolean) encode} method
-	 *             with a value of <tt>true</tt> for the <tt>endOfInput</tt>
-	 *             parameter
+	 *                               If the previous step of the current
+	 *                               encoding operation was an
+	 *                               invocation neither of the {@link #flush
+	 *                               flush} method nor of
+	 *                               the three-argument
+	 *                               {@link #encode(CharBuffer,ByteBuffer,boolean)
+	 *                               encode} method
+	 *                               with a value of <tt>true</tt> for the
+	 *                               <tt>endOfInput</tt>
+	 *                               parameter
 	 */
 	public final CoderResult flush(ByteBuffer out) {
 		if (state == ST_END) {
@@ -760,8 +774,7 @@ public abstract class CharsetEncoder {
 	 * should be overridden by encoders that maintain internal state.
 	 * </p>
 	 */
-	protected void implReset() {
-	}
+	protected void implReset() {}
 
 	/**
 	 * Encodes one or more characters into one or more bytes.
@@ -818,28 +831,36 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param in
-	 *            The input character buffer
+	 *           The input character buffer
 	 *
 	 * @return A newly-allocated byte buffer containing the result of the
 	 *         encoding operation. The buffer's position will be zero and its
 	 *         limit will follow the last byte written.
 	 *
 	 * @throws IllegalStateException
-	 *             If an encoding operation is already in progress
+	 *                                      If an encoding operation is already
+	 *                                      in progress
 	 *
 	 * @throws MalformedInputException
-	 *             If the character sequence starting at the input buffer's
-	 *             current position is not a legal sixteen-bit Unicode sequence
-	 *             and the current malformed-input action is
-	 *             {@link CodingErrorAction#REPORT}
+	 *                                      If the character sequence starting
+	 *                                      at the input buffer's
+	 *                                      current position is not a legal
+	 *                                      sixteen-bit Unicode sequence
+	 *                                      and the current malformed-input
+	 *                                      action is
+	 *                                      {@link CodingErrorAction#REPORT}
 	 *
 	 * @throws UnmappableCharacterException
-	 *             If the character sequence starting at the input buffer's
-	 *             current position cannot be mapped to an equivalent byte
-	 *             sequence and the current unmappable-character action is
-	 *             {@link CodingErrorAction#REPORT}
+	 *                                      If the character sequence starting
+	 *                                      at the input buffer's
+	 *                                      current position cannot be mapped to
+	 *                                      an equivalent byte
+	 *                                      sequence and the current
+	 *                                      unmappable-character action is
+	 *                                      {@link CodingErrorAction#REPORT}
 	 */
-	public final ByteBuffer encode(CharBuffer in) throws CharacterCodingException {
+	public final ByteBuffer encode(CharBuffer in)
+			throws CharacterCodingException {
 		int n = (int) (in.remaining() * averageBytesPerChar());
 		ByteBuffer out = ByteBuffer.allocate(n);
 
@@ -847,7 +868,8 @@ public abstract class CharsetEncoder {
 			return out;
 		reset();
 		for (;;) {
-			CoderResult cr = in.hasRemaining() ? encode(in, out, true) : CoderResult.UNDERFLOW;
+			CoderResult cr = in.hasRemaining() ? encode(in, out, true)
+					: CoderResult.UNDERFLOW;
 			if (cr.isUnderflow())
 				cr = flush(out);
 
@@ -909,13 +931,14 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param c
-	 *            The given character
+	 *          The given character
 	 *
 	 * @return <tt>true</tt> if, and only if, this encoder can encode the given
 	 *         character
 	 *
 	 * @throws IllegalStateException
-	 *             If an encoding operation is already in progress
+	 *                               If an encoding operation is already in
+	 *                               progress
 	 */
 	public boolean canEncode(char c) {
 		CharBuffer cb = CharBuffer.allocate(1);
@@ -943,14 +966,15 @@ public abstract class CharsetEncoder {
 	 * </p>
 	 *
 	 * @param cs
-	 *            The given character sequence
+	 *           The given character sequence
 	 *
 	 * @return <tt>true</tt> if, and only if, this encoder can encode the given
 	 *         character without throwing any exceptions and without performing
 	 *         any replacements
 	 *
 	 * @throws IllegalStateException
-	 *             If an encoding operation is already in progress
+	 *                               If an encoding operation is already in
+	 *                               progress
 	 */
 	public boolean canEncode(CharSequence cs) {
 		CharBuffer cb;
@@ -962,8 +986,8 @@ public abstract class CharsetEncoder {
 	}
 
 	private void throwIllegalStateException(int from, int to) {
-		throw new IllegalStateException(
-				"Current state = " + stateNames[from] + ", new state = " + stateNames[to]);
+		throw new IllegalStateException("Current state = " + stateNames[from]
+				+ ", new state = " + stateNames[to]);
 	}
 
 }

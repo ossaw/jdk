@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -170,13 +150,15 @@ public interface LdapContext extends DirContext {
 	 * This method is used to support LDAPv3 extended operations.
 	 * 
 	 * @param request
-	 *            The non-null request to be performed.
+	 *                The non-null request to be performed.
 	 * @return The possibly null response of the operation. null means the
 	 *         operation did not generate any response.
 	 * @throws NamingException
-	 *             If an error occurred while performing the extended operation.
+	 *                         If an error occurred while performing the
+	 *                         extended operation.
 	 */
-	public ExtendedResponse extendedOperation(ExtendedRequest request) throws NamingException;
+	public ExtendedResponse extendedOperation(ExtendedRequest request)
+			throws NamingException;
 
 	/**
 	 * Creates a new instance of this context initialized using request
@@ -196,15 +178,19 @@ public interface LdapContext extends DirContext {
 	 * impede the independence of either context.
 	 *
 	 * @param requestControls
-	 *            The possibly null request controls to use for the new context.
-	 *            If null, the context is initialized with no request controls.
+	 *                        The possibly null request controls to use for the
+	 *                        new context.
+	 *                        If null, the context is initialized with no
+	 *                        request controls.
 	 *
 	 * @return A non-null <tt>LdapContext</tt> instance.
 	 * @exception NamingException
-	 *                If an error occurred while creating the new instance.
+	 *                            If an error occurred while creating the new
+	 *                            instance.
 	 * @see InitialLdapContext
 	 */
-	public LdapContext newInstance(Control[] requestControls) throws NamingException;
+	public LdapContext newInstance(Control[] requestControls)
+			throws NamingException;
 
 	/**
 	 * Reconnects to the LDAP server using the supplied controls and this
@@ -227,10 +213,11 @@ public interface LdapContext extends DirContext {
 	 * in the class description for implementation details.
 	 * 
 	 * @param connCtls
-	 *            The possibly null controls to use. If null, no controls are
-	 *            used.
+	 *                 The possibly null controls to use. If null, no controls
+	 *                 are
+	 *                 used.
 	 * @exception NamingException
-	 *                If an error occurred while reconnecting.
+	 *                            If an error occurred while reconnecting.
 	 * @see #getConnectControls
 	 * @see #newInstance
 	 */
@@ -244,7 +231,8 @@ public interface LdapContext extends DirContext {
 	 * @return A possibly-null array of controls. null means no connect controls
 	 *         have been set for this context.
 	 * @exception NamingException
-	 *                If an error occurred while getting the request controls.
+	 *                            If an error occurred while getting the request
+	 *                            controls.
 	 */
 	public Control[] getConnectControls() throws NamingException;
 
@@ -267,13 +255,16 @@ public interface LdapContext extends DirContext {
 	 * context, use <tt>getRequestControls()</tt>.
 	 * 
 	 * @param requestControls
-	 *            The possibly null controls to use. If null, no controls are
-	 *            used.
+	 *                        The possibly null controls to use. If null, no
+	 *                        controls are
+	 *                        used.
 	 * @exception NamingException
-	 *                If an error occurred while setting the request controls.
+	 *                            If an error occurred while setting the request
+	 *                            controls.
 	 * @see #getRequestControls
 	 */
-	public void setRequestControls(Control[] requestControls) throws NamingException;
+	public void setRequestControls(Control[] requestControls)
+			throws NamingException;
 
 	/**
 	 * Retrieves the request controls in effect for this context. The request
@@ -283,7 +274,8 @@ public interface LdapContext extends DirContext {
 	 * @return A possibly-null array of controls. null means no request controls
 	 *         have been set for this context.
 	 * @exception NamingException
-	 *                If an error occurred while getting the request controls.
+	 *                            If an error occurred while getting the request
+	 *                            controls.
 	 * @see #setRequestControls
 	 */
 	public Control[] getRequestControls() throws NamingException;
@@ -310,7 +302,8 @@ public interface LdapContext extends DirContext {
 	 * @return A possibly null array of controls. If null, the previous method
 	 *         invoked on this context did not produce any controls.
 	 * @exception NamingException
-	 *                If an error occurred while getting the response controls.
+	 *                            If an error occurred while getting the
+	 *                            response controls.
 	 */
 	public Control[] getResponseControls() throws NamingException;
 

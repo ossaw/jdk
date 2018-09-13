@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -66,7 +63,8 @@ import com.sun.org.apache.xml.internal.resolver.readers.SAXCatalogReader;
  * @author Michael Glavassevich, IBM
  *
  */
-public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, LSResourceResolver {
+public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2,
+		LSResourceResolver {
 
 	/** Internal catalog manager for Apache catalogs. **/
 	private CatalogManager fResolverCatalogManager = null;
@@ -108,7 +106,7 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param catalogs
-	 *            an ordered array list of absolute URIs
+	 *                 an ordered array list of absolute URIs
 	 */
 	public XMLCatalogResolver(String[] catalogs) {
 		this(catalogs, true);
@@ -121,9 +119,9 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param catalogs
-	 *            an ordered array list of absolute URIs
+	 *                     an ordered array list of absolute URIs
 	 * @param preferPublic
-	 *            the prefer public setting
+	 *                     the prefer public setting
 	 */
 	public XMLCatalogResolver(String[] catalogs, boolean preferPublic) {
 		init(catalogs, preferPublic);
@@ -137,7 +135,8 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * @return the initial list of catalog entry files
 	 */
 	public final synchronized String[] getCatalogList() {
-		return (fCatalogsList != null) ? (String[]) fCatalogsList.clone() : null;
+		return (fCatalogsList != null) ? (String[]) fCatalogsList.clone()
+				: null;
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param catalogs
-	 *            an ordered array list of absolute URIs
+	 *                 an ordered array list of absolute URIs
 	 */
 	public final synchronized void setCatalogList(String[] catalogs) {
 		fCatalogsChanged = true;
@@ -187,7 +186,7 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param preferPublic
-	 *            the prefer public setting
+	 *                     the prefer public setting
 	 */
 	public final void setPreferPublic(boolean preferPublic) {
 		fPreferPublic = preferPublic;
@@ -232,8 +231,9 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param useLiteralSystemId
-	 *            the preference for using literal system identifers for catalog
-	 *            resolution
+	 *                           the preference for using literal system
+	 *                           identifers for catalog
+	 *                           resolution
 	 */
 	public final void setUseLiteralSystemId(boolean useLiteralSystemId) {
 		fUseLiteralSystemId = useLiteralSystemId;
@@ -248,15 +248,16 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param publicId
-	 *            the public identifier, or <code>null</code> if none was
-	 *            supplied
+	 *                 the public identifier, or <code>null</code> if none was
+	 *                 supplied
 	 * @param systemId
-	 *            the system identifier
+	 *                 the system identifier
 	 *
 	 * @throws SAXException
-	 *             any SAX exception, possibly wrapping another exception
+	 *                      any SAX exception, possibly wrapping another
+	 *                      exception
 	 * @throws IOException
-	 *             thrown if some i/o error occurs
+	 *                      thrown if some i/o error occurs
 	 */
 	public InputSource resolveEntity(String publicId, String systemId)
 			throws SAXException, IOException {
@@ -285,23 +286,24 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param name
-	 *            the identifier of the external entity
+	 *                 the identifier of the external entity
 	 * @param publicId
-	 *            the public identifier, or <code>null</code> if none was
-	 *            supplied
+	 *                 the public identifier, or <code>null</code> if none was
+	 *                 supplied
 	 * @param baseURI
-	 *            the URI with respect to which relative systemIDs are
-	 *            interpreted.
+	 *                 the URI with respect to which relative systemIDs are
+	 *                 interpreted.
 	 * @param systemId
-	 *            the system identifier
+	 *                 the system identifier
 	 *
 	 * @throws SAXException
-	 *             any SAX exception, possibly wrapping another exception
+	 *                      any SAX exception, possibly wrapping another
+	 *                      exception
 	 * @throws IOException
-	 *             thrown if some i/o error occurs
+	 *                      thrown if some i/o error occurs
 	 */
-	public InputSource resolveEntity(String name, String publicId, String baseURI, String systemId)
-			throws SAXException, IOException {
+	public InputSource resolveEntity(String name, String publicId,
+			String baseURI, String systemId) throws SAXException, IOException {
 
 		String resolvedId = null;
 
@@ -338,14 +340,15 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param name
-	 *            the identifier of the document root element
+	 *                the identifier of the document root element
 	 * @param baseURI
-	 *            the document's base URI
+	 *                the document's base URI
 	 *
 	 * @throws SAXException
-	 *             any SAX exception, possibly wrapping another exception
+	 *                      any SAX exception, possibly wrapping another
+	 *                      exception
 	 * @throws IOException
-	 *             thrown if some i/o error occurs
+	 *                      thrown if some i/o error occurs
 	 */
 	public InputSource getExternalSubset(String name, String baseURI)
 			throws SAXException, IOException {
@@ -361,22 +364,25 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param type
-	 *            the type of the resource being resolved
+	 *                     the type of the resource being resolved
 	 * @param namespaceURI
-	 *            the namespace of the resource being resolved, or
-	 *            <code>null</code> if none was supplied
+	 *                     the namespace of the resource being resolved, or
+	 *                     <code>null</code> if none was supplied
 	 * @param publicId
-	 *            the public identifier of the resource being resolved, or
-	 *            <code>null</code> if none was supplied
+	 *                     the public identifier of the resource being resolved,
+	 *                     or
+	 *                     <code>null</code> if none was supplied
 	 * @param systemId
-	 *            the system identifier of the resource being resolved, or
-	 *            <code>null</code> if none was supplied
+	 *                     the system identifier of the resource being resolved,
+	 *                     or
+	 *                     <code>null</code> if none was supplied
 	 * @param baseURI
-	 *            the absolute base URI of the resource being parsed, or
-	 *            <code>null</code> if there is no base URI
+	 *                     the absolute base URI of the resource being parsed,
+	 *                     or
+	 *                     <code>null</code> if there is no base URI
 	 */
-	public LSInput resolveResource(String type, String namespaceURI, String publicId,
-			String systemId, String baseURI) {
+	public LSInput resolveResource(String type, String namespaceURI,
+			String publicId, String systemId, String baseURI) {
 
 		String resolvedId = null;
 
@@ -434,20 +440,21 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param resourceIdentifier
-	 *            location of the XML resource to resolve
+	 *                           location of the XML resource to resolve
 	 *
 	 * @throws XNIException
-	 *             thrown on general error
+	 *                      thrown on general error
 	 * @throws IOException
-	 *             thrown if some i/o error occurs
+	 *                      thrown if some i/o error occurs
 	 */
-	public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
-			throws XNIException, IOException {
+	public XMLInputSource resolveEntity(
+			XMLResourceIdentifier resourceIdentifier) throws XNIException,
+			IOException {
 
 		String resolvedId = resolveIdentifier(resourceIdentifier);
 		if (resolvedId != null) {
-			return new XMLInputSource(resourceIdentifier.getPublicId(), resolvedId,
-					resourceIdentifier.getBaseSystemId());
+			return new XMLInputSource(resourceIdentifier.getPublicId(),
+					resolvedId, resourceIdentifier.getBaseSystemId());
 		}
 		return null;
 	}
@@ -461,12 +468,12 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param resourceIdentifier
-	 *            the identifier to resolve
+	 *                           the identifier to resolve
 	 *
 	 * @throws XNIException
-	 *             thrown on general error
+	 *                      thrown on general error
 	 * @throws IOException
-	 *             thrown if some i/o error occurs
+	 *                      thrown if some i/o error occurs
 	 */
 	public String resolveIdentifier(XMLResourceIdentifier resourceIdentifier)
 			throws IOException, XNIException {
@@ -488,7 +495,8 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 		// specified as a location hint.
 		if (resolvedId == null) {
 			String publicId = resourceIdentifier.getPublicId();
-			String systemId = getUseLiteralSystemId() ? resourceIdentifier.getLiteralSystemId()
+			String systemId = getUseLiteralSystemId() ? resourceIdentifier
+					.getLiteralSystemId()
 					: resourceIdentifier.getExpandedSystemId();
 			if (publicId != null && systemId != null) {
 				resolvedId = resolvePublic(publicId, systemId);
@@ -509,15 +517,16 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param systemId
-	 *            the system identifier to locate in the catalog
+	 *                 the system identifier to locate in the catalog
 	 *
 	 * @return the mapped URI or <code>null</code> if no mapping was found in
 	 *         the catalog
 	 *
 	 * @throws IOException
-	 *             if an i/o error occurred while reading the catalog
+	 *                     if an i/o error occurred while reading the catalog
 	 */
-	public final synchronized String resolveSystem(String systemId) throws IOException {
+	public final synchronized String resolveSystem(String systemId)
+			throws IOException {
 
 		if (fCatalogsChanged) {
 			parseCatalogs();
@@ -534,24 +543,25 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 * </p>
 	 *
 	 * @param publicId
-	 *            the public identifier to locate in the catalog
+	 *                 the public identifier to locate in the catalog
 	 * @param systemId
-	 *            the system identifier to locate in the catalog
+	 *                 the system identifier to locate in the catalog
 	 *
 	 * @return the mapped URI or <code>null</code> if no mapping was found in
 	 *         the catalog
 	 *
 	 * @throws IOException
-	 *             if an i/o error occurred while reading the catalog
+	 *                     if an i/o error occurred while reading the catalog
 	 */
-	public final synchronized String resolvePublic(String publicId, String systemId)
-			throws IOException {
+	public final synchronized String resolvePublic(String publicId,
+			String systemId) throws IOException {
 
 		if (fCatalogsChanged) {
 			parseCatalogs();
 			fCatalogsChanged = false;
 		}
-		return (fCatalog != null) ? fCatalog.resolvePublic(publicId, systemId) : null;
+		return (fCatalog != null) ? fCatalog.resolvePublic(publicId, systemId)
+				: null;
 	}
 
 	/**
@@ -571,7 +581,7 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 	 *         the catalog
 	 *
 	 * @throws IOException
-	 *             if an i/o error occurred while reading the catalog
+	 *                     if an i/o error occurred while reading the catalog
 	 */
 	public final synchronized String resolveURI(String uri) throws IOException {
 
@@ -593,8 +603,8 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 		fPreferPublic = preferPublic;
 		fResolverCatalogManager = new CatalogManager();
 		fResolverCatalogManager.setAllowOasisXMLCatalogPI(false);
-		fResolverCatalogManager
-				.setCatalogClassName("com.sun.org.apache.xml.internal.resolver.Catalog");
+		fResolverCatalogManager.setCatalogClassName(
+				"com.sun.org.apache.xml.internal.resolver.Catalog");
 		fResolverCatalogManager.setCatalogFiles("");
 		fResolverCatalogManager.setIgnoreMissingProperties(true);
 		fResolverCatalogManager.setPreferPublic(fPreferPublic);
@@ -633,7 +643,8 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
 		spf.setValidating(false);
 
 		SAXCatalogReader saxReader = new SAXCatalogReader(spf);
-		saxReader.setCatalogParser(OASISXMLCatalogReader.namespaceName, "catalog",
+		saxReader.setCatalogParser(OASISXMLCatalogReader.namespaceName,
+				"catalog",
 				"com.sun.org.apache.xml.internal.resolver.readers.OASISXMLCatalogReader");
 		catalog.addReader("application/xml", saxReader);
 	}

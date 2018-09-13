@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.bmp;
@@ -95,8 +75,8 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 	public List comments = null; // new ArrayList();
 
 	public BMPMetadata() {
-		super(true, nativeMetadataFormatName, "com.sun.imageio.plugins.bmp.BMPMetadataFormat", null,
-				null);
+		super(true, nativeMetadataFormatName,
+				"com.sun.imageio.plugins.bmp.BMPMetadataFormat", null, null);
 	}
 
 	public boolean isReadOnly() {
@@ -106,7 +86,8 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 	public Node getAsTree(String formatName) {
 		if (formatName.equals(nativeMetadataFormatName)) {
 			return getNativeTree();
-		} else if (formatName.equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
+		} else if (formatName.equals(
+				IIOMetadataFormatImpl.standardMetadataFormatName)) {
 			return getStandardTree();
 		} else {
 			throw new IllegalArgumentException(I18N.getString("BMPMetadata0"));
@@ -166,7 +147,8 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 			int numComps = palette.length / paletteSize;
 
 			for (int i = 0, j = 0; i < paletteSize; i++) {
-				IIOMetadataNode entry = addChildNode(node, "PaletteEntry", null);
+				IIOMetadataNode entry = addChildNode(node, "PaletteEntry",
+						null);
 				red = palette[j++] & 0xff;
 				green = palette[j++] & 0xff;
 				blue = palette[j++] & 0xff;
@@ -174,7 +156,8 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 				addChildNode(entry, "Green", new Byte((byte) green));
 				addChildNode(entry, "Blue", new Byte((byte) blue));
 				if (numComps == 4)
-					addChildNode(entry, "Alpha", new Byte((byte) (palette[j++] & 0xff)));
+					addChildNode(entry, "Alpha", new Byte((byte) (palette[j++]
+							& 0xff)));
 			}
 		}
 
@@ -224,8 +207,8 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 		if (bitsPerPixel == 24)
 			bits = "8 8 8 ";
 		else if (bitsPerPixel == 16 || bitsPerPixel == 32) {
-			bits = "" + countBits(redMask) + " " + countBits(greenMask) + countBits(blueMask) + ""
-					+ countBits(alphaMask);
+			bits = "" + countBits(redMask) + " " + countBits(greenMask)
+					+ countBits(blueMask) + "" + countBits(alphaMask);
 		}
 
 		IIOMetadataNode subNode = new IIOMetadataNode("BitsPerSample");
@@ -279,14 +262,16 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 		return count == 0 ? "" : "" + count;
 	}
 
-	private void addXYZPoints(IIOMetadataNode root, String name, double x, double y, double z) {
+	private void addXYZPoints(IIOMetadataNode root, String name, double x,
+			double y, double z) {
 		IIOMetadataNode node = addChildNode(root, name, null);
 		addChildNode(node, "X", new Double(x));
 		addChildNode(node, "Y", new Double(y));
 		addChildNode(node, "Z", new Double(z));
 	}
 
-	private IIOMetadataNode addChildNode(IIOMetadataNode root, String name, Object object) {
+	private IIOMetadataNode addChildNode(IIOMetadataNode root, String name,
+			Object object) {
 		IIOMetadataNode child = new IIOMetadataNode(name);
 		if (object != null) {
 			child.setUserObject(object);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth.module;
@@ -91,23 +71,27 @@ public class NTLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @param subject
-	 *            the <code>Subject</code> to be authenticated.
-	 *            <p>
+	 *                        the <code>Subject</code> to be authenticated.
+	 *                        <p>
 	 *
 	 * @param callbackHandler
-	 *            a <code>CallbackHandler</code> for communicating with the end
-	 *            user (prompting for usernames and passwords, for example).
-	 *            This particular LoginModule only extracts the underlying NT
-	 *            system information, so this parameter is ignored.
-	 *            <p>
+	 *                        a <code>CallbackHandler</code> for communicating
+	 *                        with the end
+	 *                        user (prompting for usernames and passwords, for
+	 *                        example).
+	 *                        This particular LoginModule only extracts the
+	 *                        underlying NT
+	 *                        system information, so this parameter is ignored.
+	 *                        <p>
 	 *
 	 * @param sharedState
-	 *            shared <code>LoginModule</code> state.
-	 *            <p>
+	 *                        shared <code>LoginModule</code> state.
+	 *                        <p>
 	 *
 	 * @param options
-	 *            options specified in the login <code>Configuration</code> for
-	 *            this particular <code>LoginModule</code>.
+	 *                        options specified in the login
+	 *                        <code>Configuration</code> for
+	 *                        this particular <code>LoginModule</code>.
 	 */
 	public void initialize(Subject subject, CallbackHandler callbackHandler,
 			Map<String, ?> sharedState, Map<String, ?> options) {
@@ -119,7 +103,8 @@ public class NTLoginModule implements LoginModule {
 
 		// initialize any configured options
 		debug = "true".equalsIgnoreCase((String) options.get("debug"));
-		debugNative = "true".equalsIgnoreCase((String) options.get("debugNative"));
+		debugNative = "true".equalsIgnoreCase((String) options.get(
+				"debugNative"));
 
 		if (debugNative == true) {
 			debug = true;
@@ -135,12 +120,13 @@ public class NTLoginModule implements LoginModule {
 	 *         be ignored.
 	 *
 	 * @exception FailedLoginException
-	 *                if the authentication fails.
-	 *                <p>
+	 *                                 if the authentication fails.
+	 *                                 <p>
 	 *
 	 * @exception LoginException
-	 *                if this <code>LoginModule</code> is unable to perform the
-	 *                authentication.
+	 *                                 if this <code>LoginModule</code> is
+	 *                                 unable to perform the
+	 *                                 authentication.
 	 */
 	public boolean login() throws LoginException {
 
@@ -149,7 +135,8 @@ public class NTLoginModule implements LoginModule {
 		ntSystem = new NTSystem(debugNative);
 		if (ntSystem == null) {
 			if (debug) {
-				System.out.println("\t\t[NTLoginModule] " + "Failed in NT login");
+				System.out.println("\t\t[NTLoginModule] "
+						+ "Failed in NT login");
 			}
 			throw new FailedLoginException("Failed in attempt to import the "
 					+ "underlying NT system identity information");
@@ -161,7 +148,8 @@ public class NTLoginModule implements LoginModule {
 		}
 		userPrincipal = new NTUserPrincipal(ntSystem.getName());
 		if (debug) {
-			System.out.println("\t\t[NTLoginModule] " + "succeeded importing info: ");
+			System.out.println("\t\t[NTLoginModule] "
+					+ "succeeded importing info: ");
 			System.out.println("\t\t\tuser name = " + userPrincipal.getName());
 		}
 
@@ -174,37 +162,43 @@ public class NTLoginModule implements LoginModule {
 		if (ntSystem.getDomain() != null) {
 			userDomain = new NTDomainPrincipal(ntSystem.getDomain());
 			if (debug) {
-				System.out.println("\t\t\tuser domain = " + userDomain.getName());
+				System.out.println("\t\t\tuser domain = " + userDomain
+						.getName());
 			}
 		}
 		if (ntSystem.getDomainSID() != null) {
 			domainSID = new NTSidDomainPrincipal(ntSystem.getDomainSID());
 			if (debug) {
-				System.out.println("\t\t\tuser domain SID = " + domainSID.getName());
+				System.out.println("\t\t\tuser domain SID = " + domainSID
+						.getName());
 			}
 		}
 		if (ntSystem.getPrimaryGroupID() != null) {
-			primaryGroup = new NTSidPrimaryGroupPrincipal(ntSystem.getPrimaryGroupID());
+			primaryGroup = new NTSidPrimaryGroupPrincipal(ntSystem
+					.getPrimaryGroupID());
 			if (debug) {
-				System.out.println("\t\t\tuser primary group = " + primaryGroup.getName());
+				System.out.println("\t\t\tuser primary group = " + primaryGroup
+						.getName());
 			}
 		}
-		if (ntSystem.getGroupIDs() != null && ntSystem.getGroupIDs().length > 0) {
+		if (ntSystem.getGroupIDs() != null && ntSystem
+				.getGroupIDs().length > 0) {
 
 			String groupSIDs[] = ntSystem.getGroupIDs();
 			groups = new NTSidGroupPrincipal[groupSIDs.length];
 			for (int i = 0; i < groupSIDs.length; i++) {
 				groups[i] = new NTSidGroupPrincipal(groupSIDs[i]);
 				if (debug) {
-					System.out.println("\t\t\tuser group = " + groups[i].getName());
+					System.out.println("\t\t\tuser group = " + groups[i]
+							.getName());
 				}
 			}
 		}
 		if (ntSystem.getImpersonationToken() != 0) {
 			iToken = new NTNumericCredential(ntSystem.getImpersonationToken());
 			if (debug) {
-				System.out
-						.println("\t\t\timpersonation token = " + ntSystem.getImpersonationToken());
+				System.out.println("\t\t\timpersonation token = " + ntSystem
+						.getImpersonationToken());
 			}
 		}
 
@@ -230,7 +224,7 @@ public class NTLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the commit fails.
+	 *                           if the commit fails.
 	 *
 	 * @return true if this LoginModule's own login and commit attempts
 	 *         succeeded, or false otherwise.
@@ -238,9 +232,9 @@ public class NTLoginModule implements LoginModule {
 	public boolean commit() throws LoginException {
 		if (succeeded == false) {
 			if (debug) {
-				System.out
-						.println("\t\t[NTLoginModule]: " + "did not add any Principals to Subject "
-								+ "because own authentication failed.");
+				System.out.println("\t\t[NTLoginModule]: "
+						+ "did not add any Principals to Subject "
+						+ "because own authentication failed.");
 			}
 			return false;
 		}
@@ -296,14 +290,15 @@ public class NTLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the abort fails.
+	 *                           if the abort fails.
 	 *
 	 * @return false if this LoginModule's own login and/or commit attempts
 	 *         failed, and true otherwise.
 	 */
 	public boolean abort() throws LoginException {
 		if (debug) {
-			System.out.println("\t\t[NTLoginModule]: " + "aborted authentication attempt");
+			System.out.println("\t\t[NTLoginModule]: "
+					+ "aborted authentication attempt");
 		}
 
 		if (succeeded == false) {
@@ -339,7 +334,7 @@ public class NTLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the logout fails.
+	 *                           if the logout fails.
 	 *
 	 * @return true in all cases since this <code>LoginModule</code> should not
 	 *         be ignored.
@@ -388,7 +383,8 @@ public class NTLoginModule implements LoginModule {
 		ntSystem = null;
 
 		if (debug) {
-			System.out.println("\t\t[NTLoginModule] " + "completed logout processing");
+			System.out.println("\t\t[NTLoginModule] "
+					+ "completed logout processing");
 		}
 		return true;
 	}

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,58 +29,44 @@ public class ErrorMessages_cs extends ListResourceBundle {
 
 	/*
 	 * XSLTC compile-time error messages.
-	 *
 	 * General notes to translators and definitions:
-	 *
 	 * 1) XSLTC is the name of the product. It is an acronym for "XSLT Compiler"
 	 * . XSLT is an acronym for "XML Stylesheet Language: Transformations".
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An axis is a particular "dimension" in a tree representation of an XML
 	 * document; the nodes in the tree are divided along different axes.
 	 * Traversing the "child" axis, for instance, means that the program would
 	 * visit each child of a particular node; traversing the "descendant" axis
 	 * means that the program would visit the child nodes of a particular node,
 	 * their children, and so on until the leaf nodes of the tree are reached.
-	 *
 	 * 5) An iterator is an object that traverses nodes in a tree along a
 	 * particular axis, one at a time.
-	 *
 	 * 6) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 7) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 8) DOM is an acronym for Document Object Model. It is a tree
 	 * representation of an XML document.
-	 *
 	 * SAX is an acronym for the Simple API for XML processing. It is an API
 	 * used inform an XML processor (in this case XSLTC) of the structure and
 	 * content of an XML document.
-	 *
 	 * Input to the stylesheet processor can come from an XML parser in the form
 	 * of a DOM tree or through the SAX API.
-	 *
 	 * 9) DTD is a document type declaration. It is a way of specifying the
 	 * grammar for an XML file, the names and types of elements, attributes,
 	 * etc.
-	 *
 	 * 10) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 11) Translet is an invented term that refers to the class file that
 	 * contains the compiled form of a stylesheet.
 	 */
@@ -135,7 +118,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * loaded, but it could not be found. The substitution text is
 				 * the name of the class.
 				 */
-				{ ErrorMsg.CLASS_NOT_FOUND_ERR, "Nelze naj\u00edt t\u0159\u00eddu ''{0}''." },
+				{ ErrorMsg.CLASS_NOT_FOUND_ERR,
+						"Nelze naj\u00edt t\u0159\u00eddu ''{0}''." },
 
 				/*
 				 * Note to translators: The word "method" here refers to a Java
@@ -159,7 +143,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * Note to translators: The file or URI named in the
 				 * substitution text is missing.
 				 */
-				{ ErrorMsg.FILE_NOT_FOUND_ERR, "Soubor nebo URI ''{0}'' nebyl nalezen." },
+				{ ErrorMsg.FILE_NOT_FOUND_ERR,
+						"Soubor nebo URI ''{0}'' nebyl nalezen." },
 
 				/*
 				 * Note to translators: This message is displayed when the URI
@@ -172,7 +157,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * Note to translators: The file or URI named in the
 				 * substitution text exists but could not be opened.
 				 */
-				{ ErrorMsg.FILE_ACCESS_ERR, "Nelze otev\u0159\u00edt soubor nebo URI ''{0}''." },
+				{ ErrorMsg.FILE_ACCESS_ERR,
+						"Nelze otev\u0159\u00edt soubor nebo URI ''{0}''." },
 
 				/*
 				 * Note to translators: <xsl:stylesheet> and <xsl:transform> are
@@ -217,14 +203,16 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * particular attribute named by the substitution text, but that
 				 * attribute was not specified in the stylesheet.
 				 */
-				{ ErrorMsg.REQUIRED_ATTR_ERR, "Po\u017eadovan\u00fd atribut ''{0}'' chyb\u00ed." },
+				{ ErrorMsg.REQUIRED_ATTR_ERR,
+						"Po\u017eadovan\u00fd atribut ''{0}'' chyb\u00ed." },
 
 				/*
 				 * Note to translators: This message indicates that a character
 				 * not permitted in an XPath expression was encountered. The
 				 * substitution text is the offending character.
 				 */
-				{ ErrorMsg.ILLEGAL_CHAR_ERR, "Neplatn\u00fd znak ''{0}'' ve v\u00fdrazu XPath." },
+				{ ErrorMsg.ILLEGAL_CHAR_ERR,
+						"Neplatn\u00fd znak ''{0}'' ve v\u00fdrazu XPath." },
 
 				/*
 				 * Note to translators: A processing instruction is a mark-up
@@ -242,14 +230,16 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * element. The substitution text specifies the name of the
 				 * attribute.
 				 */
-				{ ErrorMsg.STRAY_ATTRIBUTE_ERR, "Atribut ''{0}'' je vn\u011b prvku." },
+				{ ErrorMsg.STRAY_ATTRIBUTE_ERR,
+						"Atribut ''{0}'' je vn\u011b prvku." },
 
 				/*
 				 * Note to translators: An attribute that wasn't recognized was
 				 * specified on an element in the stylesheet. The attribute is
 				 * named by the substitution text.
 				 */
-				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "Neplatn\u00fd atribut ''{0}''." },
+				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
+						"Neplatn\u00fd atribut ''{0}''." },
 
 				/*
 				 * Note to translators: "import" and "include" are keywords that
@@ -302,7 +292,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * Note to translators: This message is produced if a reference
 				 * to a function has too many or too few arguments.
 				 */
-				{ ErrorMsg.ILLEGAL_ARG_ERR, "Neplatn\u00fd argument pro vol\u00e1n\u00ed funkce." },
+				{ ErrorMsg.ILLEGAL_ARG_ERR,
+						"Neplatn\u00fd argument pro vol\u00e1n\u00ed funkce." },
 
 				/*
 				 * Note to translators: "document()" is the name of function and
@@ -377,7 +368,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * attribute with a name that was not a valid XML name. The
 				 * substitution text contains the name.
 				 */
-				{ ErrorMsg.ILLEGAL_ATTR_NAME_ERR, "Nelze volat atribut ''{0}''" },
+				{ ErrorMsg.ILLEGAL_ATTR_NAME_ERR,
+						"Nelze volat atribut ''{0}''" },
 
 				/*
 				 * Note to translators: The children of the outermost element of
@@ -403,14 +395,16 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * Note to translators: The substitution text names the internal
 				 * error encountered.
 				 */
-				{ ErrorMsg.INTERNAL_ERR, "Neopraviteln\u00e1 chyba XSLTC-internal: ''{0}''" },
+				{ ErrorMsg.INTERNAL_ERR,
+						"Neopraviteln\u00e1 chyba XSLTC-internal: ''{0}''" },
 
 				/*
 				 * Note to translators: The stylesheet contained an element that
 				 * was not recognized as part of the XSL syntax. The
 				 * substitution text gives the element name.
 				 */
-				{ ErrorMsg.UNSUPPORTED_XSL_ERR, "Nepodporovan\u00fd prvek XSL ''{0}''." },
+				{ ErrorMsg.UNSUPPORTED_XSL_ERR,
+						"Nepodporovan\u00fd prvek XSL ''{0}''." },
 
 				/*
 				 * Note to translators: The stylesheet referred to an extension
@@ -451,7 +445,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * error in condition in XSLTC. The substitution text is the
 				 * class name in XSLTC that is missing some functionality.
 				 */
-				{ ErrorMsg.NOT_IMPLEMENTED_ERR, "Neimplementov\u00e1no: ''{0}''." },
+				{ ErrorMsg.NOT_IMPLEMENTED_ERR,
+						"Neimplementov\u00e1no: ''{0}''." },
 
 				/*
 				 * Note to translators: The XML document given to XSLTC as a
@@ -464,7 +459,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * Note to translators: The element named in the substitution
 				 * text was encountered in the stylesheet but is not recognized.
 				 */
-				{ ErrorMsg.ELEMENT_PARSE_ERR, "Nelze analyzovat prvek ''{0}''" },
+				{ ErrorMsg.ELEMENT_PARSE_ERR,
+						"Nelze analyzovat prvek ''{0}''" },
 
 				/*
 				 * Note to translators: "use", "<key>", "node", "node-set",
@@ -579,7 +575,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * Note to translators: The message indicates that XSLTC failed
 				 * to compile the stylesheet into a translet (class file).
 				 */
-				{ ErrorMsg.JAXP_COMPILE_ERR, "Nelze kompilovat p\u0159edlohu se stylem" },
+				{ ErrorMsg.JAXP_COMPILE_ERR,
+						"Nelze kompilovat p\u0159edlohu se stylem" },
 
 				/*
 				 * Note to translators: "TransformerFactory" is a class name. In
@@ -727,7 +724,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * required in a particular context. The substitution text is
 				 * the expression that was in error.
 				 */
-				{ ErrorMsg.TYPE_CHECK_ERR, "Chyba p\u0159i kontrole typu v\u00fdrazu ''{0}''." },
+				{ ErrorMsg.TYPE_CHECK_ERR,
+						"Chyba p\u0159i kontrole typu v\u00fdrazu ''{0}''." },
 
 				/*
 				 * Note to translators: An XPath expression was not of the type
@@ -758,7 +756,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "VAROV\u00c1N\u00cd: ''{0}''\n        :{1}" },
+				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
+						"VAROV\u00c1N\u00cd: ''{0}''\n        :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -782,7 +781,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * severity of another message. The substitution text is an
 				 * error message.
 				 */
-				{ ErrorMsg.FATAL_ERR_MSG, "Z\u00c1VA\u017dN\u00c1 CHYBA: ''{0}''" },
+				{ ErrorMsg.FATAL_ERR_MSG,
+						"Z\u00c1VA\u017dN\u00c1 CHYBA: ''{0}''" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -791,7 +791,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "CHYBA: ''{0}''\n     :{1}" },
+				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
+						"CHYBA: ''{0}''\n     :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -835,7 +836,8 @@ public class ErrorMessages_cs extends ListResourceBundle {
 				 * header. All the warning messages are collected together and
 				 * displayed beneath this message.
 				 */
-				{ ErrorMsg.COMPILER_WARNING_KEY, "Varov\u00e1n\u00ed kompil\u00e1toru:" },
+				{ ErrorMsg.COMPILER_WARNING_KEY,
+						"Varov\u00e1n\u00ed kompil\u00e1toru:" },
 
 				/*
 				 * Note to translators: The following message is used as a

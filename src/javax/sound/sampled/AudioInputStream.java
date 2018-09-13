@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -114,14 +94,16 @@ public class AudioInputStream extends InputStream {
 	 * in sample frames, using audio data from the specified input stream.
 	 * 
 	 * @param stream
-	 *            the stream on which this <code>AudioInputStream</code> object
-	 *            is based
+	 *               the stream on which this <code>AudioInputStream</code>
+	 *               object
+	 *               is based
 	 * @param format
-	 *            the format of this stream's audio data
+	 *               the format of this stream's audio data
 	 * @param length
-	 *            the length in sample frames of the data in this stream
+	 *               the length in sample frames of the data in this stream
 	 */
-	public AudioInputStream(InputStream stream, AudioFormat format, long length) {
+	public AudioInputStream(InputStream stream, AudioFormat format,
+			long length) {
 
 		super();
 
@@ -146,7 +128,7 @@ public class AudioInputStream extends InputStream {
 	 * target data line, and the length is AudioSystem#NOT_SPECIFIED.
 	 * 
 	 * @param line
-	 *            the target data line from which this stream obtains its data.
+	 *             the target data line from which this stream obtains its data.
 	 * @see AudioSystem#NOT_SPECIFIED
 	 */
 	public AudioInputStream(TargetDataLine line) {
@@ -190,7 +172,7 @@ public class AudioInputStream extends InputStream {
 	 *
 	 * @return the next byte of data, or -1 if the end of the stream is reached
 	 * @throws IOException
-	 *             if an input or output error occurs
+	 *                     if an input or output error occurs
 	 * @see #read(byte[], int, int)
 	 * @see #read(byte[])
 	 * @see #available
@@ -198,7 +180,8 @@ public class AudioInputStream extends InputStream {
 	 */
 	public int read() throws IOException {
 		if (frameSize != 1) {
-			throw new IOException("cannot read a single byte if frame size > 1");
+			throw new IOException(
+					"cannot read a single byte if frame size > 1");
 		}
 
 		byte[] data = new byte[1];
@@ -222,11 +205,11 @@ public class AudioInputStream extends InputStream {
 	 * </code> bytes will be read.
 	 *
 	 * @param b
-	 *            the buffer into which the data is read
+	 *          the buffer into which the data is read
 	 * @return the total number of bytes read into the buffer, or -1 if there is
 	 *         no more data because the end of the stream has been reached
 	 * @throws IOException
-	 *             if an input or output error occurs
+	 *                     if an input or output error occurs
 	 * @see #read(byte[], int, int)
 	 * @see #read()
 	 * @see #available
@@ -254,7 +237,7 @@ public class AudioInputStream extends InputStream {
 	 * @return the total number of bytes read into the buffer, or -1 if there is
 	 *         no more data because the end of the stream has been reached
 	 * @throws IOException
-	 *             if an input or output error occurs
+	 *                     if an input or output error occurs
 	 * @see #read(byte[])
 	 * @see #read()
 	 * @see #skip
@@ -310,7 +293,8 @@ public class AudioInputStream extends InputStream {
 				if (pushBackBuffer == null) {
 					pushBackBuffer = new byte[frameSize];
 				}
-				System.arraycopy(b, off + bytesRead - pushBackLen, pushBackBuffer, 0, pushBackLen);
+				System.arraycopy(b, off + bytesRead - pushBackLen,
+						pushBackBuffer, 0, pushBackLen);
 				bytesRead -= pushBackLen;
 			}
 			// make sure to update our framePos
@@ -324,10 +308,10 @@ public class AudioInputStream extends InputStream {
 	 * stream.
 	 * 
 	 * @param n
-	 *            the requested number of bytes to be skipped
+	 *          the requested number of bytes to be skipped
 	 * @return the actual number of bytes skipped
 	 * @throws IOException
-	 *             if an input or output error occurs
+	 *                     if an input or output error occurs
 	 * @see #read
 	 * @see #available
 	 */
@@ -351,7 +335,8 @@ public class AudioInputStream extends InputStream {
 
 			// Throw an IOException if we've skipped a fractional number of
 			// frames
-			throw new IOException("Could not skip an integer number of frames.");
+			throw new IOException(
+					"Could not skip an integer number of frames.");
 		}
 		if (temp >= 0) {
 			framePos += temp / frameSize;
@@ -371,7 +356,7 @@ public class AudioInputStream extends InputStream {
 	 * @return the number of bytes that can be read from this audio input stream
 	 *         without blocking
 	 * @throws IOException
-	 *             if an input or output error occurs
+	 *                     if an input or output error occurs
 	 * @see #read(byte[], int, int)
 	 * @see #read(byte[])
 	 * @see #read()
@@ -382,8 +367,8 @@ public class AudioInputStream extends InputStream {
 		int temp = stream.available();
 
 		// don't return greater than our set length in frames
-		if ((frameLength != AudioSystem.NOT_SPECIFIED)
-				&& ((temp / frameSize) > (frameLength - framePos))) {
+		if ((frameLength != AudioSystem.NOT_SPECIFIED) && ((temp
+				/ frameSize) > (frameLength - framePos))) {
 			return (int) (frameLength - framePos) * frameSize;
 		} else {
 			return temp;
@@ -395,7 +380,7 @@ public class AudioInputStream extends InputStream {
 	 * associated with the stream.
 	 * 
 	 * @throws IOException
-	 *             if an input or output error occurs
+	 *                     if an input or output error occurs
 	 */
 	public void close() throws IOException {
 		stream.close();
@@ -405,8 +390,9 @@ public class AudioInputStream extends InputStream {
 	 * Marks the current position in this audio input stream.
 	 * 
 	 * @param readlimit
-	 *            the maximum number of bytes that can be read before the mark
-	 *            position becomes invalid.
+	 *                  the maximum number of bytes that can be read before the
+	 *                  mark
+	 *                  position becomes invalid.
 	 * @see #reset
 	 * @see #markSupported
 	 */
@@ -422,7 +408,8 @@ public class AudioInputStream extends InputStream {
 				if (markPushBackBuffer == null) {
 					markPushBackBuffer = new byte[frameSize];
 				}
-				System.arraycopy(pushBackBuffer, 0, markPushBackBuffer, 0, markPushBackLen);
+				System.arraycopy(pushBackBuffer, 0, markPushBackBuffer, 0,
+						markPushBackLen);
 			}
 		}
 	}
@@ -432,7 +419,7 @@ public class AudioInputStream extends InputStream {
 	 * its <code>mark</code> method was last invoked.
 	 * 
 	 * @throws IOException
-	 *             if an input or output error occurs.
+	 *                     if an input or output error occurs.
 	 * @see #mark
 	 * @see #markSupported
 	 */
@@ -446,7 +433,8 @@ public class AudioInputStream extends InputStream {
 			if (pushBackBuffer == null) {
 				pushBackBuffer = new byte[frameSize - 1];
 			}
-			System.arraycopy(markPushBackBuffer, 0, pushBackBuffer, 0, pushBackLen);
+			System.arraycopy(markPushBackBuffer, 0, pushBackBuffer, 0,
+					pushBackLen);
 		}
 	}
 
@@ -508,7 +496,8 @@ public class AudioInputStream extends InputStream {
 
 			value = (int) b[0];
 
-			if (line.getFormat().getEncoding().equals(AudioFormat.Encoding.PCM_SIGNED)) {
+			if (line.getFormat().getEncoding().equals(
+					AudioFormat.Encoding.PCM_SIGNED)) {
 				value += 128;
 			}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.undo;
@@ -224,9 +204,9 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * <code>from</code> &gt; <code>to</code>.
 	 *
 	 * @param from
-	 *            the minimum index to remove
+	 *             the minimum index to remove
 	 * @param to
-	 *            the maximum index to remove
+	 *             the maximum index to remove
 	 */
 	protected void trimEdits(int from, int to) {
 		if (from <= to) {
@@ -262,10 +242,11 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * invoked on them in the reverse order they were added. The default is 100.
 	 *
 	 * @param l
-	 *            the new limit
+	 *          the new limit
 	 * @throws RuntimeException
-	 *             if this {@code UndoManager} is not in progress ({@code end}
-	 *             has been invoked)
+	 *                          if this {@code UndoManager} is not in progress
+	 *                          ({@code end}
+	 *                          has been invoked)
 	 * @see #isInProgress
 	 * @see #end
 	 * @see #addEdit
@@ -324,7 +305,8 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * updating the index of the next edit appropriately.
 	 *
 	 * @throws CannotUndoException
-	 *             if one of the edits throws <code>CannotUndoException</code>
+	 *                             if one of the edits throws
+	 *                             <code>CannotUndoException</code>
 	 */
 	protected void undoTo(UndoableEdit edit) throws CannotUndoException {
 		boolean done = false;
@@ -340,7 +322,8 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * updating the index of the next edit appropriately.
 	 *
 	 * @throws CannotRedoException
-	 *             if one of the edits throws <code>CannotRedoException</code>
+	 *                             if one of the edits throws
+	 *                             <code>CannotRedoException</code>
 	 */
 	protected void redoTo(UndoableEdit edit) throws CannotRedoException {
 		boolean done = false;
@@ -360,11 +343,14 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * @see #canUndoOrRedo
 	 * @see #getUndoOrRedoPresentationName
 	 * @throws CannotUndoException
-	 *             if one of the edits throws <code>CannotUndoException</code>
+	 *                             if one of the edits throws
+	 *                             <code>CannotUndoException</code>
 	 * @throws CannotRedoException
-	 *             if one of the edits throws <code>CannotRedoException</code>
+	 *                             if one of the edits throws
+	 *                             <code>CannotRedoException</code>
 	 */
-	public synchronized void undoOrRedo() throws CannotRedoException, CannotUndoException {
+	public synchronized void undoOrRedo() throws CannotRedoException,
+			CannotUndoException {
 		if (indexOfNextAdd == edits.size()) {
 			undo();
 		} else {
@@ -394,8 +380,9 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * edit, updating the index of the next edit appropriately.
 	 *
 	 * @throws CannotUndoException
-	 *             if one of the edits throws <code>CannotUndoException</code>
-	 *             or there are no edits to be undone
+	 *                             if one of the edits throws
+	 *                             <code>CannotUndoException</code>
+	 *                             or there are no edits to be undone
 	 * @see CompoundEdit#end
 	 * @see #canUndo
 	 * @see #editToBeUndone
@@ -438,8 +425,9 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * edit, updating the index of the next edit appropriately.
 	 *
 	 * @throws CannotRedoException
-	 *             if one of the edits throws <code>CannotRedoException</code>
-	 *             or there are no edits to be redone
+	 *                             if one of the edits throws
+	 *                             <code>CannotRedoException</code>
+	 *                             or there are no edits to be redone
 	 * @see CompoundEdit#end
 	 * @see #canRedo
 	 * @see #editToBeRedone
@@ -483,7 +471,7 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * hasn't been invoked this returns <code>true</code>.
 	 *
 	 * @param anEdit
-	 *            the edit to be added
+	 *               the edit to be added
 	 * @return true if <code>anEdit</code> can be incorporated into this edit
 	 * @see CompoundEdit#end
 	 * @see CompoundEdit#addEdit
@@ -593,8 +581,8 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * <code>addEdit</code> with <code>e.getEdit()</code>.
 	 *
 	 * @param e
-	 *            the <code>UndoableEditEvent</code> the
-	 *            <code>UndoableEditEvent</code> will be added from
+	 *          the <code>UndoableEditEvent</code> the
+	 *          <code>UndoableEditEvent</code> will be added from
 	 * @see #addEdit
 	 */
 	public void undoableEditHappened(UndoableEditEvent e) {
@@ -607,6 +595,7 @@ public class UndoManager extends CompoundEdit implements UndoableEditListener {
 	 * @return a String representation of this object
 	 */
 	public String toString() {
-		return super.toString() + " limit: " + limit + " indexOfNextAdd: " + indexOfNextAdd;
+		return super.toString() + " limit: " + limit + " indexOfNextAdd: "
+				+ indexOfNextAdd;
 	}
 }

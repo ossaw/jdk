@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.metadata;
@@ -73,14 +53,15 @@ public interface IIOMetadataController {
 	 * canceled the operation).
 	 *
 	 * @param metadata
-	 *            the <code>IIOMetadata</code> object to be modified.
+	 *                 the <code>IIOMetadata</code> object to be modified.
 	 *
 	 * @return <code>true</code> if the <code>IIOMetadata</code> has been
 	 *         modified, <code>false</code> otherwise.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>metadata</code> is <code>null</code> or is not an
-	 *                instance of the correct class.
+	 *                                     if <code>metadata</code> is
+	 *                                     <code>null</code> or is not an
+	 *                                     instance of the correct class.
 	 */
 	boolean activate(IIOMetadata metadata);
 }

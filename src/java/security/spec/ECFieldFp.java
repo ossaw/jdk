@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.security.spec;
 
@@ -45,11 +25,11 @@ public class ECFieldFp implements ECField {
 	 * {@code p}.
 	 * 
 	 * @param p
-	 *            the prime.
+	 *          the prime.
 	 * @exception NullPointerException
-	 *                if {@code p} is null.
+	 *                                     if {@code p} is null.
 	 * @exception IllegalArgumentException
-	 *                if {@code p} is not positive.
+	 *                                     if {@code p} is not positive.
 	 */
 	public ECFieldFp(BigInteger p) {
 		if (p.signum() != 1) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -35,8 +15,10 @@ import java.awt.geom.NoninvertibleTransformException;
 import java.lang.ref.WeakReference;
 
 class GradientPaintContext implements PaintContext {
-	static ColorModel xrgbmodel = new DirectColorModel(24, 0x00ff0000, 0x0000ff00, 0x000000ff);
-	static ColorModel xbgrmodel = new DirectColorModel(24, 0x000000ff, 0x0000ff00, 0x00ff0000);
+	static ColorModel xrgbmodel = new DirectColorModel(24, 0x00ff0000,
+			0x0000ff00, 0x000000ff);
+	static ColorModel xbgrmodel = new DirectColorModel(24, 0x000000ff,
+			0x0000ff00, 0x00ff0000);
 
 	static ColorModel cachedModel;
 	static WeakReference<Raster> cached;
@@ -45,7 +27,8 @@ class GradientPaintContext implements PaintContext {
 		if (cm == cachedModel) {
 			if (cached != null) {
 				Raster ras = (Raster) cached.get();
-				if (ras != null && ras.getWidth() >= w && ras.getHeight() >= h) {
+				if (ras != null && ras.getWidth() >= w && ras
+						.getHeight() >= h) {
 					cached = null;
 					return ras;
 				}
@@ -83,8 +66,8 @@ class GradientPaintContext implements PaintContext {
 	Raster saved;
 	ColorModel model;
 
-	public GradientPaintContext(ColorModel cm, Point2D p1, Point2D p2, AffineTransform xform,
-			Color c1, Color c2, boolean cyclic) {
+	public GradientPaintContext(ColorModel cm, Point2D p1, Point2D p2,
+			AffineTransform xform, Color c1, Color c2, boolean cyclic) {
 		// First calculate the distance moved in user space when
 		// we move a single unit along the X & Y axes in device space.
 		Point2D xvec = new Point2D.Double(1, 0);
@@ -170,8 +153,9 @@ class GradientPaintContext implements PaintContext {
 			if (cm instanceof DirectColorModel) {
 				DirectColorModel dcm = (DirectColorModel) cm;
 				int tmp = dcm.getAlphaMask();
-				if ((tmp == 0 || tmp == 0xff) && dcm.getRedMask() == 0xff
-						&& dcm.getGreenMask() == 0xff00 && dcm.getBlueMask() == 0xff0000) {
+				if ((tmp == 0 || tmp == 0xff) && dcm.getRedMask() == 0xff && dcm
+						.getGreenMask() == 0xff00 && dcm
+								.getBlueMask() == 0xff0000) {
 					model = xbgrmodel;
 					tmp = r1;
 					r1 = b1;
@@ -187,8 +171,9 @@ class GradientPaintContext implements PaintContext {
 		interp = new int[cyclic ? 513 : 257];
 		for (int i = 0; i <= 256; i++) {
 			float rel = i / 256.0f;
-			int rgb = (((int) (a1 + da * rel)) << 24) | (((int) (r1 + dr * rel)) << 16)
-					| (((int) (g1 + dg * rel)) << 8) | (((int) (b1 + db * rel)));
+			int rgb = (((int) (a1 + da * rel)) << 24) | (((int) (r1 + dr
+					* rel)) << 16) | (((int) (g1 + dg * rel)) << 8)
+					| (((int) (b1 + db * rel)));
 			interp[i] = rgb;
 			if (cyclic) {
 				interp[512 - i] = rgb;
@@ -218,7 +203,7 @@ class GradientPaintContext implements PaintContext {
 	 * operation.
 	 * 
 	 * @param x,y,w,h
-	 *            The area in device space for which colors are generated.
+	 *        The area in device space for which colors are generated.
 	 */
 	public Raster getRaster(int x, int y, int w, int h) {
 		double rowrel = (x - x1) * dx + (y - y1) * dy;
@@ -244,8 +229,8 @@ class GradientPaintContext implements PaintContext {
 		return rast;
 	}
 
-	void cycleFillRaster(int[] pixels, int off, int adjust, int w, int h, double rowrel, double dx,
-			double dy) {
+	void cycleFillRaster(int[] pixels, int off, int adjust, int w, int h,
+			double rowrel, double dx, double dy) {
 		rowrel = rowrel % 2.0;
 		int irowrel = ((int) (rowrel * (1 << 30))) << 1;
 		int idx = (int) (-dx * (1 << 31));
@@ -262,8 +247,8 @@ class GradientPaintContext implements PaintContext {
 		}
 	}
 
-	void clipFillRaster(int[] pixels, int off, int adjust, int w, int h, double rowrel, double dx,
-			double dy) {
+	void clipFillRaster(int[] pixels, int off, int adjust, int w, int h,
+			double rowrel, double dx, double dy) {
 		while (--h >= 0) {
 			double colrel = rowrel;
 			int j = w;

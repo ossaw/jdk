@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: IncrementalSAXSource_Xerces.java,v 1.2.4.1 2005/09/15 08:15:08 suresh_emailid Exp $
+ * $Id: IncrementalSAXSource_Xerces.java,v 1.2.4.1 2005/09/15 08:15:08
+ * suresh_emailid Exp $
  */
 
 package com.sun.org.apache.xml.internal.dtm.ref;
@@ -104,7 +102,8 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 
 			// If we can't get the magic constructor, no need to look further.
 			Class xniConfigClass = ObjectFactory.findProviderClass(
-					"com.sun.org.apache.xerces.internal.xni.parser.XMLParserConfiguration", true);
+					"com.sun.org.apache.xerces.internal.xni.parser.XMLParserConfiguration",
+					true);
 			Class[] args1 = { xniConfigClass };
 			Constructor ctor = SAXParser.class.getConstructor(args1);
 
@@ -113,7 +112,8 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 			// happens to implement XMLPullParserConfiguration, which is the API
 			// we're going to want to use.
 			Class xniStdConfigClass = ObjectFactory.findProviderClass(
-					"com.sun.org.apache.xerces.internal.parsers.StandardParserConfiguration", true);
+					"com.sun.org.apache.xerces.internal.parsers.StandardParserConfiguration",
+					true);
 			fPullParserConfig = xniStdConfigClass.newInstance();
 			Object[] args2 = { fPullParserConfig };
 			fIncrementalParser = (SAXParser) ctor.newInstance(args2);
@@ -123,18 +123,23 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 			// all here before we commit to trying to use them, just in case the
 			// API changes again.
 			Class fXniInputSourceClass = ObjectFactory.findProviderClass(
-					"com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource", true);
+					"com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource",
+					true);
 			Class[] args3 = { fXniInputSourceClass };
-			fConfigSetInput = xniStdConfigClass.getMethod("setInputSource", args3);
+			fConfigSetInput = xniStdConfigClass.getMethod("setInputSource",
+					args3);
 
 			Class[] args4 = { String.class, String.class, String.class };
 			fConfigInputSourceCtor = fXniInputSourceClass.getConstructor(args4);
 			Class[] args5 = { java.io.InputStream.class };
-			fConfigSetByteStream = fXniInputSourceClass.getMethod("setByteStream", args5);
+			fConfigSetByteStream = fXniInputSourceClass.getMethod(
+					"setByteStream", args5);
 			Class[] args6 = { java.io.Reader.class };
-			fConfigSetCharStream = fXniInputSourceClass.getMethod("setCharacterStream", args6);
+			fConfigSetCharStream = fXniInputSourceClass.getMethod(
+					"setCharacterStream", args6);
 			Class[] args7 = { String.class };
-			fConfigSetEncoding = fXniInputSourceClass.getMethod("setEncoding", args7);
+			fConfigSetEncoding = fXniInputSourceClass.getMethod("setEncoding",
+					args7);
 
 			Class[] argsb = { Boolean.TYPE };
 			fConfigParse = xniStdConfigClass.getMethod("parse", argsb);
@@ -146,7 +151,8 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 			// to attempt Xerces-1 incremental setup. Can't do tail-call in
 			// constructor, so create new, copy Xerces-1 initialization,
 			// then throw it away... Ugh.
-			IncrementalSAXSource_Xerces dummy = new IncrementalSAXSource_Xerces(new SAXParser());
+			IncrementalSAXSource_Xerces dummy = new IncrementalSAXSource_Xerces(
+					new SAXParser());
 			this.fParseSomeSetup = dummy.fParseSomeSetup;
 			this.fParseSome = dummy.fParseSome;
 			this.fIncrementalParser = dummy.fIncrementalParser;
@@ -161,11 +167,12 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 	 * Xerces-2 Beta 3; see the no-args constructor for that code.
 	 *
 	 * @exception if
-	 *                the SAXParser class doesn't support the Xerces incremental
-	 *                parse operations. In that case, caller should fall back
-	 *                upon the IncrementalSAXSource_Filter approach.
+	 *            the SAXParser class doesn't support the Xerces incremental
+	 *            parse operations. In that case, caller should fall back
+	 *            upon the IncrementalSAXSource_Filter approach.
 	 */
-	public IncrementalSAXSource_Xerces(SAXParser parser) throws NoSuchMethodException {
+	public IncrementalSAXSource_Xerces(SAXParser parser)
+			throws NoSuchMethodException {
 		// Reflection is used to allow us to compile against
 		// Xerces2. If/when we can abandon the older versions of the parser,
 		// this constructor will simply have to fail until/unless the
@@ -196,7 +203,8 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 		}
 	}
 
-	static public IncrementalSAXSource createIncrementalSAXSource(SAXParser parser) {
+	static public IncrementalSAXSource createIncrementalSAXSource(
+			SAXParser parser) {
 		try {
 			return new IncrementalSAXSource_Xerces(parser);
 		} catch (NoSuchMethodException e) {
@@ -225,8 +233,8 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 		try {
 			// Typecast required in Xerces2; SAXParser doesn't inheret XMLReader
 			// %OPT% Cast at asignment?
-			((XMLReader) fIncrementalParser)
-					.setProperty("http://xml.org/sax/properties/lexical-handler", handler);
+			((XMLReader) fIncrementalParser).setProperty(
+					"http://xml.org/sax/properties/lexical-handler", handler);
 		} catch (org.xml.sax.SAXNotRecognizedException e) {
 			// Nothing we can do about it
 		} catch (org.xml.sax.SAXNotSupportedException e) {
@@ -247,26 +255,27 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 	 * begin reading a document.
 	 *
 	 * @throws SAXException
-	 *             is parse thread is already in progress or parsing can not be
-	 *             started.
+	 *                      is parse thread is already in progress or parsing
+	 *                      can not be
+	 *                      started.
 	 */
 	public void startParse(InputSource source) throws SAXException {
 		if (fIncrementalParser == null)
-			throw new SAXException(XMLMessages
-					.createXMLMessage(XMLErrorResources.ER_STARTPARSE_NEEDS_SAXPARSER, null)); // "startParse
-																								// needs
-																								// a
-																								// non-null
-																								// SAXParser.");
+			throw new SAXException(XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_STARTPARSE_NEEDS_SAXPARSER, null)); // "startParse
+																																	// needs
+																																	// a
+																																	// non-null
+																																	// SAXParser.");
 		if (fParseInProgress)
-			throw new SAXException(XMLMessages
-					.createXMLMessage(XMLErrorResources.ER_STARTPARSE_WHILE_PARSING, null)); // "startParse
-																								// may
-																								// not
-																								// be
-																								// called
-																								// while
-																								// parsing.");
+			throw new SAXException(XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_STARTPARSE_WHILE_PARSING, null)); // "startParse
+																																// may
+																																// not
+																																// be
+																																// called
+																																// while
+																																// parsing.");
 
 		boolean ok = false;
 
@@ -277,12 +286,12 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 		}
 
 		if (!ok)
-			throw new SAXException(
-					XMLMessages.createXMLMessage(XMLErrorResources.ER_COULD_NOT_INIT_PARSER, null)); // "could
-																										// not
-																										// initialize
-																										// parser
-																										// with");
+			throw new SAXException(XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_COULD_NOT_INIT_PARSER, null)); // "could
+																															// not
+																															// initialize
+																															// parser
+																															// with");
 	}
 
 	/**
@@ -292,9 +301,10 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 	 * parsing has been achieved.
 	 *
 	 * @param parsemore
-	 *            If true, tells the incremental parser to generate another
-	 *            chunk of output. If false, tells the parser that we're
-	 *            satisfied and it can terminate parsing of this document.
+	 *                  If true, tells the incremental parser to generate
+	 *                  another
+	 *                  chunk of output. If false, tells the parser that we're
+	 *                  satisfied and it can terminate parsing of this document.
 	 * @return Boolean.TRUE if the CoroutineParser believes more data may be
 	 *         available for further parsing. Boolean.FALSE if parsing ran to
 	 *         completion. Exception if the parser objected for some reason.
@@ -320,14 +330,16 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 	}
 
 	// Private methods -- conveniences to hide the reflection details
-	private boolean parseSomeSetup(InputSource source)
-			throws SAXException, IOException, IllegalAccessException,
-			java.lang.reflect.InvocationTargetException, java.lang.InstantiationException {
+	private boolean parseSomeSetup(InputSource source) throws SAXException,
+			IOException, IllegalAccessException,
+			java.lang.reflect.InvocationTargetException,
+			java.lang.InstantiationException {
 		if (fConfigSetInput != null) {
 			// Obtain input from SAX inputSource object, construct XNI version
 			// of
 			// that object. Logic adapted from Xerces2.
-			Object[] parms1 = { source.getPublicId(), source.getSystemId(), null };
+			Object[] parms1 = { source.getPublicId(), source.getSystemId(),
+					null };
 			Object xmlsource = fConfigInputSourceCtor.newInstance(parms1);
 			Object[] parmsa = { source.getByteStream() };
 			fConfigSetByteStream.invoke(xmlsource, parmsa);
@@ -359,11 +371,13 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 	private static final Object[] noparms = new Object[0];
 	private static final Object[] parmsfalse = { Boolean.FALSE };
 
-	private boolean parseSome() throws SAXException, IOException, IllegalAccessException,
+	private boolean parseSome() throws SAXException, IOException,
+			IllegalAccessException,
 			java.lang.reflect.InvocationTargetException {
 		// Take next parsing step, return false iff parsing complete:
 		if (fConfigSetInput != null) {
-			Object ret = (Boolean) (fConfigParse.invoke(fPullParserConfig, parmsfalse));
+			Object ret = (Boolean) (fConfigParse.invoke(fPullParserConfig,
+					parmsfalse));
 			return ((Boolean) ret).booleanValue();
 		} else {
 			Object ret = fParseSome.invoke(fIncrementalParser, noparms);
@@ -389,7 +403,8 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 
 		// Use a serializer as our sample output
 		com.sun.org.apache.xml.internal.serialize.XMLSerializer trace;
-		trace = new com.sun.org.apache.xml.internal.serialize.XMLSerializer(System.out, null);
+		trace = new com.sun.org.apache.xml.internal.serialize.XMLSerializer(
+				System.out, null);
 		parser.setContentHandler(trace);
 		parser.setLexicalHandler(trace);
 
@@ -401,9 +416,11 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 				Object result = null;
 				boolean more = true;
 				parser.startParse(source);
-				for (result = parser.deliverMoreNodes(more); result == Boolean.TRUE; result = parser
-						.deliverMoreNodes(more)) {
-					System.out.println("\nSome parsing successful, trying more.\n");
+				for (result = parser.deliverMoreNodes(
+						more); result == Boolean.TRUE; result = parser
+								.deliverMoreNodes(more)) {
+					System.out.println(
+							"\nSome parsing successful, trying more.\n");
 
 					// Special test: Terminate parsing early.
 					if (arg + 1 < args.length && "!".equals(args[arg + 1])) {
@@ -413,10 +430,12 @@ public class IncrementalSAXSource_Xerces implements IncrementalSAXSource {
 
 				}
 
-				if (result instanceof Boolean && ((Boolean) result) == Boolean.FALSE) {
+				if (result instanceof Boolean
+						&& ((Boolean) result) == Boolean.FALSE) {
 					System.out.println("\nParser ended (EOF or on request).\n");
 				} else if (result == null) {
-					System.out.println("\nUNEXPECTED: Parser says shut down prematurely.\n");
+					System.out.println(
+							"\nUNEXPECTED: Parser says shut down prematurely.\n");
 				} else if (result instanceof Exception) {
 					throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
 							(Exception) result);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.relation;
@@ -64,20 +44,22 @@ public class RoleResult implements Serializable {
 	// Serializable fields in old serial form
 	private static final ObjectStreamField[] oldSerialPersistentFields = {
 			new ObjectStreamField("myRoleList", RoleList.class),
-			new ObjectStreamField("myRoleUnresList", RoleUnresolvedList.class) };
+			new ObjectStreamField("myRoleUnresList",
+					RoleUnresolvedList.class) };
 	//
 	// Serializable fields in new serial form
 	private static final ObjectStreamField[] newSerialPersistentFields = {
 			new ObjectStreamField("roleList", RoleList.class),
-			new ObjectStreamField("unresolvedRoleList", RoleUnresolvedList.class) };
+			new ObjectStreamField("unresolvedRoleList",
+					RoleUnresolvedList.class) };
 	//
 	// Actual serial version and serial form
 	private static final long serialVersionUID;
 	/**
 	 * @serialField roleList
-	 *                  RoleList List of roles successfully accessed
+	 *              RoleList List of roles successfully accessed
 	 * @serialField unresolvedRoleList
-	 *                  RoleUnresolvedList List of roles unsuccessfully accessed
+	 *              RoleUnresolvedList List of roles unsuccessfully accessed
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -122,9 +104,10 @@ public class RoleResult implements Serializable {
 	 * Constructor.
 	 *
 	 * @param list
-	 *            list of roles successfully accessed.
+	 *                       list of roles successfully accessed.
 	 * @param unresolvedList
-	 *            list of roles not accessed (with problem descriptions).
+	 *                       list of roles not accessed (with problem
+	 *                       descriptions).
 	 */
 	public RoleResult(RoleList list, RoleUnresolvedList unresolvedList) {
 
@@ -163,7 +146,7 @@ public class RoleResult implements Serializable {
 	 * Sets list of roles successfully accessed.
 	 *
 	 * @param list
-	 *            list of roles successfully accessed
+	 *             list of roles successfully accessed
 	 *
 	 * @see #getRoles
 	 */
@@ -186,7 +169,7 @@ public class RoleResult implements Serializable {
 	 * Sets list of roles unsuccessfully accessed.
 	 *
 	 * @param unresolvedList
-	 *            list of roles unsuccessfully accessed
+	 *                       list of roles unsuccessfully accessed
 	 *
 	 * @see #getRolesUnresolved
 	 */
@@ -195,9 +178,12 @@ public class RoleResult implements Serializable {
 
 			unresolvedRoleList = new RoleUnresolvedList();
 
-			for (Iterator<?> roleUnresIter = unresolvedList.iterator(); roleUnresIter.hasNext();) {
-				RoleUnresolved currRoleUnres = (RoleUnresolved) (roleUnresIter.next());
-				unresolvedRoleList.add((RoleUnresolved) (currRoleUnres.clone()));
+			for (Iterator<?> roleUnresIter = unresolvedList
+					.iterator(); roleUnresIter.hasNext();) {
+				RoleUnresolved currRoleUnres = (RoleUnresolved) (roleUnresIter
+						.next());
+				unresolvedRoleList.add((RoleUnresolved) (currRoleUnres
+						.clone()));
 			}
 		} else {
 			unresolvedRoleList = null;
@@ -208,7 +194,8 @@ public class RoleResult implements Serializable {
 	/**
 	 * Deserializes a {@link RoleResult} from an {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		if (compat) {
 			// Read an object serialized in the old serial form
 			//
@@ -217,7 +204,8 @@ public class RoleResult implements Serializable {
 			if (fields.defaulted("myRoleList")) {
 				throw new NullPointerException("myRoleList");
 			}
-			unresolvedRoleList = (RoleUnresolvedList) fields.get("myRoleUnresList", null);
+			unresolvedRoleList = (RoleUnresolvedList) fields.get(
+					"myRoleUnresList", null);
 			if (fields.defaulted("myRoleUnresList")) {
 				throw new NullPointerException("myRoleUnresList");
 			}

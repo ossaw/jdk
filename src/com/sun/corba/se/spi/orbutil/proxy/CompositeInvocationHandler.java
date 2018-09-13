@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orbutil.proxy;
@@ -28,7 +8,8 @@ package com.sun.corba.se.spi.orbutil.proxy;
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 
-public interface CompositeInvocationHandler extends InvocationHandler, Serializable {
+public interface CompositeInvocationHandler extends InvocationHandler,
+		Serializable {
 	/**
 	 * Add an invocation handler for all methods on interface interf.
 	 */

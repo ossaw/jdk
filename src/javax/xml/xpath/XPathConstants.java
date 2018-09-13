@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.xpath;
@@ -45,8 +25,7 @@ public class XPathConstants {
 	 * Private constructor to prevent instantiation.
 	 * </p>
 	 */
-	private XPathConstants() {
-	}
+	private XPathConstants() {}
 
 	/**
 	 * <p>
@@ -57,7 +36,8 @@ public class XPathConstants {
 	 * Maps to Java {@link Double}.
 	 * </p>
 	 */
-	public static final QName NUMBER = new QName("http://www.w3.org/1999/XSL/Transform", "NUMBER");
+	public static final QName NUMBER = new QName(
+			"http://www.w3.org/1999/XSL/Transform", "NUMBER");
 
 	/**
 	 * <p>
@@ -68,7 +48,8 @@ public class XPathConstants {
 	 * Maps to Java {@link String}.
 	 * </p>
 	 */
-	public static final QName STRING = new QName("http://www.w3.org/1999/XSL/Transform", "STRING");
+	public static final QName STRING = new QName(
+			"http://www.w3.org/1999/XSL/Transform", "STRING");
 
 	/**
 	 * <p>
@@ -79,8 +60,8 @@ public class XPathConstants {
 	 * Maps to Java {@link Boolean}.
 	 * </p>
 	 */
-	public static final QName BOOLEAN = new QName("http://www.w3.org/1999/XSL/Transform",
-			"BOOLEAN");
+	public static final QName BOOLEAN = new QName(
+			"http://www.w3.org/1999/XSL/Transform", "BOOLEAN");
 
 	/**
 	 * <p>
@@ -91,8 +72,8 @@ public class XPathConstants {
 	 * Maps to Java {@link org.w3c.dom.NodeList}.
 	 * </p>
 	 */
-	public static final QName NODESET = new QName("http://www.w3.org/1999/XSL/Transform",
-			"NODESET");
+	public static final QName NODESET = new QName(
+			"http://www.w3.org/1999/XSL/Transform", "NODESET");
 
 	/**
 	 * <p>
@@ -102,7 +83,8 @@ public class XPathConstants {
 	 * Maps to Java {@link org.w3c.dom.Node}.
 	 * </p>
 	 */
-	public static final QName NODE = new QName("http://www.w3.org/1999/XSL/Transform", "NODE");
+	public static final QName NODE = new QName(
+			"http://www.w3.org/1999/XSL/Transform", "NODE");
 
 	/**
 	 * <p>

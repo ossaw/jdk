@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -44,15 +24,14 @@ public class CRC32 implements Checksum {
 	/**
 	 * Creates a new CRC32 object.
 	 */
-	public CRC32() {
-	}
+	public CRC32() {}
 
 	/**
 	 * Updates the CRC-32 checksum with the specified byte (the low eight bits
 	 * of the argument b).
 	 *
 	 * @param b
-	 *            the byte to update the checksum with
+	 *          the byte to update the checksum with
 	 */
 	public void update(int b) {
 		crc = update(crc, b);
@@ -62,9 +41,11 @@ public class CRC32 implements Checksum {
 	 * Updates the CRC-32 checksum with the specified array of bytes.
 	 *
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code off} is negative, or {@code len} is negative, or
-	 *             {@code off+len} is greater than the length of the array
-	 *             {@code b}
+	 *                                        if {@code off} is negative, or
+	 *                                        {@code len} is negative, or
+	 *                                        {@code off+len} is greater than
+	 *                                        the length of the array
+	 *                                        {@code b}
 	 */
 	public void update(byte[] b, int off, int len) {
 		if (b == null) {
@@ -80,7 +61,7 @@ public class CRC32 implements Checksum {
 	 * Updates the CRC-32 checksum with the specified array of bytes.
 	 *
 	 * @param b
-	 *            the array of bytes to update the checksum with
+	 *          the array of bytes to update the checksum with
 	 */
 	public void update(byte[] b) {
 		crc = updateBytes(crc, b, 0, b.length);
@@ -95,7 +76,7 @@ public class CRC32 implements Checksum {
 	 * limit; its limit will not have been changed.
 	 *
 	 * @param buffer
-	 *            the ByteBuffer to update the checksum with
+	 *               the ByteBuffer to update the checksum with
 	 * @since 1.8
 	 */
 	public void update(ByteBuffer buffer) {
@@ -106,9 +87,11 @@ public class CRC32 implements Checksum {
 		if (rem <= 0)
 			return;
 		if (buffer instanceof DirectBuffer) {
-			crc = updateByteBuffer(crc, ((DirectBuffer) buffer).address(), pos, rem);
+			crc = updateByteBuffer(crc, ((DirectBuffer) buffer).address(), pos,
+					rem);
 		} else if (buffer.hasArray()) {
-			crc = updateBytes(crc, buffer.array(), pos + buffer.arrayOffset(), rem);
+			crc = updateBytes(crc, buffer.array(), pos + buffer.arrayOffset(),
+					rem);
 		} else {
 			byte[] b = new byte[rem];
 			buffer.get(b);
@@ -135,5 +118,6 @@ public class CRC32 implements Checksum {
 
 	private native static int updateBytes(int crc, byte[] b, int off, int len);
 
-	private native static int updateByteBuffer(int adler, long addr, int off, int len);
+	private native static int updateByteBuffer(int adler, long addr, int off,
+			int len);
 }

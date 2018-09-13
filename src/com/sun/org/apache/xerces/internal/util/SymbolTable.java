@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -101,17 +99,19 @@ public class SymbolTable {
 	 * and the specified load factor.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the SymbolTable.
+	 *                        the initial capacity of the SymbolTable.
 	 * @param loadFactor
-	 *            the load factor of the SymbolTable.
+	 *                        the load factor of the SymbolTable.
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero, or if the load
-	 *             factor is nonpositive.
+	 *                                  if the initial capacity is less than
+	 *                                  zero, or if the load
+	 *                                  factor is nonpositive.
 	 */
 	public SymbolTable(int initialCapacity, float loadFactor) {
 
 		if (initialCapacity < 0) {
-			throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+			throw new IllegalArgumentException("Illegal Capacity: "
+					+ initialCapacity);
 		}
 
 		if (loadFactor <= 0 || Float.isNaN(loadFactor)) {
@@ -135,9 +135,10 @@ public class SymbolTable {
 	 * and default load factor, which is <tt>0.75</tt>.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the hashtable.
+	 *                        the initial capacity of the hashtable.
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero.
+	 *                                  if the initial capacity is less than
+	 *                                  zero.
 	 */
 	public SymbolTable(int initialCapacity) {
 		this(initialCapacity, 0.75f);
@@ -162,7 +163,7 @@ public class SymbolTable {
 	 * remain unique.
 	 *
 	 * @param symbol
-	 *            The new symbol.
+	 *               The new symbol.
 	 */
 	public String addSymbol(String symbol) {
 
@@ -207,11 +208,11 @@ public class SymbolTable {
 	 * remain unique.
 	 *
 	 * @param buffer
-	 *            The buffer containing the new symbol.
+	 *               The buffer containing the new symbol.
 	 * @param offset
-	 *            The offset into the buffer of the new symbol.
+	 *               The offset into the buffer of the new symbol.
 	 * @param length
-	 *            The length of the new symbol in the buffer.
+	 *               The length of the new symbol in the buffer.
 	 */
 	public String addSymbol(char[] buffer, int offset, int length) {
 
@@ -263,7 +264,7 @@ public class SymbolTable {
 	 * array that comprises the symbol string.
 	 *
 	 * @param symbol
-	 *            The symbol to hash.
+	 *               The symbol to hash.
 	 */
 	public int hash(String symbol) {
 		if (fHashMultipliers == null) {
@@ -289,12 +290,12 @@ public class SymbolTable {
 	 * created from the symbol information.
 	 *
 	 * @param buffer
-	 *            The character buffer containing the symbol.
+	 *               The character buffer containing the symbol.
 	 * @param offset
-	 *            The offset into the character buffer of the start of the
-	 *            symbol.
+	 *               The offset into the character buffer of the start of the
+	 *               symbol.
 	 * @param length
-	 *            The length of the symbol.
+	 *               The length of the symbol.
 	 */
 	public int hash(char[] buffer, int offset, int length) {
 		if (fHashMultipliers == null) {
@@ -312,7 +313,8 @@ public class SymbolTable {
 		int code = 0;
 		final int[] multipliers = fHashMultipliers;
 		for (int i = 0; i < length; ++i) {
-			code = code * multipliers[i & MULTIPLIERS_MASK] + buffer[offset + i];
+			code = code * multipliers[i & MULTIPLIERS_MASK] + buffer[offset
+					+ i];
 		}
 		return code & 0x7FFFFFFF;
 	} // hash0(char[],int,int):int
@@ -368,7 +370,7 @@ public class SymbolTable {
 	 * Returns true if the symbol table already contains the specified symbol.
 	 *
 	 * @param symbol
-	 *            The symbol to look for.
+	 *               The symbol to look for.
 	 */
 	public boolean containsSymbol(String symbol) {
 
@@ -394,11 +396,11 @@ public class SymbolTable {
 	 * Returns true if the symbol table already contains the specified symbol.
 	 *
 	 * @param buffer
-	 *            The buffer containing the symbol to look for.
+	 *               The buffer containing the symbol to look for.
 	 * @param offset
-	 *            The offset into the buffer.
+	 *               The offset into the buffer.
 	 * @param length
-	 *            The length of the symbol in the buffer.
+	 *               The length of the symbol in the buffer.
 	 */
 	public boolean containsSymbol(char[] buffer, int offset, int length) {
 

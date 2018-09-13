@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.event;
@@ -53,9 +33,9 @@ public interface IIOReadWarningListener extends EventListener {
 	 * or take any other action it chooses.
 	 *
 	 * @param source
-	 *            the <code>ImageReader</code> object calling this method.
+	 *                the <code>ImageReader</code> object calling this method.
 	 * @param warning
-	 *            a <code>String</code> containing the warning.
+	 *                a <code>String</code> containing the warning.
 	 */
 	void warningOccurred(ImageReader source, String warning);
 }

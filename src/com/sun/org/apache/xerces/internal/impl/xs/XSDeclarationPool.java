@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -195,7 +192,8 @@ public final class XSDeclarationPool {
 		return true;
 	}
 
-	private static XSElementDecl[][] resize(XSElementDecl array[][], int newsize) {
+	private static XSElementDecl[][] resize(XSElementDecl array[][],
+			int newsize) {
 		XSElementDecl newarray[][] = new XSElementDecl[newsize][];
 		System.arraycopy(array, 0, newarray, 0, array.length);
 		return newarray;
@@ -223,13 +221,15 @@ public final class XSDeclarationPool {
 		return true;
 	}
 
-	private static XSParticleDecl[][] resize(XSParticleDecl array[][], int newsize) {
+	private static XSParticleDecl[][] resize(XSParticleDecl array[][],
+			int newsize) {
 		XSParticleDecl newarray[][] = new XSParticleDecl[newsize][];
 		System.arraycopy(array, 0, newarray, 0, array.length);
 		return newarray;
 	}
 
-	private static XSModelGroupImpl[][] resize(XSModelGroupImpl array[][], int newsize) {
+	private static XSModelGroupImpl[][] resize(XSModelGroupImpl array[][],
+			int newsize) {
 		XSModelGroupImpl newarray[][] = new XSModelGroupImpl[newsize][];
 		System.arraycopy(array, 0, newarray, 0, array.length);
 		return newarray;
@@ -246,7 +246,8 @@ public final class XSDeclarationPool {
 		return true;
 	}
 
-	private static XSAttributeDecl[][] resize(XSAttributeDecl array[][], int newsize) {
+	private static XSAttributeDecl[][] resize(XSAttributeDecl array[][],
+			int newsize) {
 		XSAttributeDecl newarray[][] = new XSAttributeDecl[newsize][];
 		System.arraycopy(array, 0, newarray, 0, array.length);
 		return newarray;
@@ -263,7 +264,8 @@ public final class XSDeclarationPool {
 		return true;
 	}
 
-	private static XSAttributeUseImpl[][] resize(XSAttributeUseImpl array[][], int newsize) {
+	private static XSAttributeUseImpl[][] resize(XSAttributeUseImpl array[][],
+			int newsize) {
 		XSAttributeUseImpl newarray[][] = new XSAttributeUseImpl[newsize][];
 		System.arraycopy(array, 0, newarray, 0, array.length);
 		return newarray;
@@ -280,7 +282,8 @@ public final class XSDeclarationPool {
 		return true;
 	}
 
-	private static XSSimpleTypeDecl[][] resize(XSSimpleTypeDecl array[][], int newsize) {
+	private static XSSimpleTypeDecl[][] resize(XSSimpleTypeDecl array[][],
+			int newsize) {
 		XSSimpleTypeDecl newarray[][] = new XSSimpleTypeDecl[newsize][];
 		System.arraycopy(array, 0, newarray, 0, array.length);
 		return newarray;
@@ -298,7 +301,8 @@ public final class XSDeclarationPool {
 		return true;
 	}
 
-	private static XSComplexTypeDecl[][] resize(XSComplexTypeDecl array[][], int newsize) {
+	private static XSComplexTypeDecl[][] resize(XSComplexTypeDecl array[][],
+			int newsize) {
 		XSComplexTypeDecl newarray[][] = new XSComplexTypeDecl[newsize][];
 		System.arraycopy(array, 0, newarray, 0, array.length);
 		return newarray;

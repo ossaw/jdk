@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -485,7 +465,8 @@ public class Font implements java.io.Serializable {
 				&& ((CompositeFont) (font2DHandle.font2D)).isStdComposite()) {
 			return fm.findFont2D(name, style, FontManager.LOGICAL_FALLBACK);
 		} else if (font2DHandle == null) {
-			font2DHandle = fm.findFont2D(name, style, FontManager.LOGICAL_FALLBACK).handle;
+			font2DHandle = fm.findFont2D(name, style,
+					FontManager.LOGICAL_FALLBACK).handle;
 		}
 		/*
 		 * Do not cache the de-referenced font2D. It must be explicitly
@@ -530,24 +511,28 @@ public class Font implements java.io.Serializable {
 	 * <p>
 	 *
 	 * @param name
-	 *            the font name. This can be a font face name or a font family
-	 *            name, and may represent either a logical font or a physical
-	 *            font found in this {@code GraphicsEnvironment}. The family
-	 *            names for logical fonts are: Dialog, DialogInput, Monospaced,
-	 *            Serif, or SansSerif. Pre-defined String constants exist for
-	 *            all of these names, for example, {@code DIALOG}. If
-	 *            {@code name} is {@code null}, the <em>logical font name</em>
-	 *            of the new {@code Font} as returned by {@code getName()} is
-	 *            set to the name "Default".
+	 *              the font name. This can be a font face name or a font family
+	 *              name, and may represent either a logical font or a physical
+	 *              font found in this {@code GraphicsEnvironment}. The family
+	 *              names for logical fonts are: Dialog, DialogInput,
+	 *              Monospaced,
+	 *              Serif, or SansSerif. Pre-defined String constants exist for
+	 *              all of these names, for example, {@code DIALOG}. If
+	 *              {@code name} is {@code null}, the <em>logical font name</em>
+	 *              of the new {@code Font} as returned by {@code getName()} is
+	 *              set to the name "Default".
 	 * @param style
-	 *            the style constant for the {@code Font} The style argument is
-	 *            an integer bitmask that may be {@code PLAIN}, or a bitwise
-	 *            union of {@code BOLD} and/or {@code ITALIC} (for example,
-	 *            {@code ITALIC} or {@code BOLD|ITALIC}). If the style argument
-	 *            does not conform to one of the expected integer bitmasks then
-	 *            the style is set to {@code PLAIN}.
+	 *              the style constant for the {@code Font} The style argument
+	 *              is
+	 *              an integer bitmask that may be {@code PLAIN}, or a bitwise
+	 *              union of {@code BOLD} and/or {@code ITALIC} (for example,
+	 *              {@code ITALIC} or {@code BOLD|ITALIC}). If the style
+	 *              argument
+	 *              does not conform to one of the expected integer bitmasks
+	 *              then
+	 *              the style is set to {@code PLAIN}.
 	 * @param size
-	 *            the point size of the {@code Font}
+	 *              the point size of the {@code Font}
 	 * @see GraphicsEnvironment#getAllFonts
 	 * @see GraphicsEnvironment#getAvailableFontFamilyNames
 	 * @since JDK1.0
@@ -567,7 +552,8 @@ public class Font implements java.io.Serializable {
 	}
 
 	/* This constructor is used by deriveFont when attributes is null */
-	private Font(String name, int style, float sizePts, boolean created, Font2DHandle handle) {
+	private Font(String name, int style, float sizePts, boolean created,
+			Font2DHandle handle) {
 		this(name, style, sizePts);
 		this.createdFont = created;
 		/*
@@ -580,7 +566,8 @@ public class Font implements java.io.Serializable {
 		 * "Font.createFont()" and shouldn't get this treatment.
 		 */
 		if (created) {
-			if (handle.font2D instanceof CompositeFont && handle.font2D.getStyle() != style) {
+			if (handle.font2D instanceof CompositeFont && handle.font2D
+					.getStyle() != style) {
 				FontManager fm = FontManagerFactory.getInstance();
 				this.font2DHandle = fm.getNewComposite(null, style, handle);
 			} else {
@@ -590,15 +577,16 @@ public class Font implements java.io.Serializable {
 	}
 
 	/* used to implement Font.createFont */
-	private Font(File fontFile, int fontFormat, boolean isCopy, CreatedFontTracker tracker)
-			throws FontFormatException {
+	private Font(File fontFile, int fontFormat, boolean isCopy,
+			CreatedFontTracker tracker) throws FontFormatException {
 		this.createdFont = true;
 		/*
 		 * Font2D instances created by this method track their font file so that
 		 * when the Font2D is GC'd it can also remove the file.
 		 */
 		FontManager fm = FontManagerFactory.getInstance();
-		this.font2DHandle = fm.createFont2D(fontFile, fontFormat, isCopy, tracker).handle;
+		this.font2DHandle = fm.createFont2D(fontFile, fontFormat, isCopy,
+				tracker).handle;
 		this.name = this.font2DHandle.font2D.getFontName(Locale.getDefault());
 		this.style = Font.PLAIN;
 		this.size = 1;
@@ -626,8 +614,8 @@ public class Font implements java.io.Serializable {
 	 * as the name is unchanged. oldStyle = -1 will be interpreted as the style
 	 * is unchanged. In these cases there is no need to interrogate "values".
 	 */
-	private Font(AttributeValues values, String oldName, int oldStyle, boolean created,
-			Font2DHandle handle) {
+	private Font(AttributeValues values, String oldName, int oldStyle,
+			boolean created, Font2DHandle handle) {
 
 		this.createdFont = created;
 		if (created) {
@@ -653,7 +641,8 @@ public class Font implements java.io.Serializable {
 			if (handle.font2D instanceof CompositeFont) {
 				if (newStyle != -1 || newName != null) {
 					FontManager fm = FontManagerFactory.getInstance();
-					this.font2DHandle = fm.getNewComposite(newName, newStyle, handle);
+					this.font2DHandle = fm.getNewComposite(newName, newStyle,
+							handle);
 				}
 			} else if (newName != null) {
 				this.createdFont = false;
@@ -675,8 +664,9 @@ public class Font implements java.io.Serializable {
 	 * 
 	 * @see java.awt.font.TextAttribute
 	 * @param attributes
-	 *            the attributes to assign to the new <code>Font</code>, or
-	 *            <code>null</code>
+	 *                   the attributes to assign to the new <code>Font</code>,
+	 *                   or
+	 *                   <code>null</code>
 	 */
 	public Font(Map<? extends Attribute, ?> attributes) {
 		initFromValues(AttributeValues.fromMap(attributes, RECOGNIZED_MASK));
@@ -687,9 +677,9 @@ public class Font implements java.io.Serializable {
 	 * This constructor is intended for use by subclasses.
 	 * 
 	 * @param font
-	 *            from which to create this <code>Font</code>.
+	 *             from which to create this <code>Font</code>.
 	 * @throws NullPointerException
-	 *             if <code>font</code> is null
+	 *                              if <code>font</code> is null
 	 * @since 1.6
 	 */
 	protected Font(Font font) {
@@ -714,8 +704,9 @@ public class Font implements java.io.Serializable {
 	/**
 	 * These attributes are considered primary by the FONT attribute.
 	 */
-	private static final int PRIMARY_MASK = AttributeValues.getMask(EFAMILY, EWEIGHT, EWIDTH,
-			EPOSTURE, ESIZE, ETRANSFORM, ESUPERSCRIPT, ETRACKING);
+	private static final int PRIMARY_MASK = AttributeValues.getMask(EFAMILY,
+			EWEIGHT, EWIDTH, EPOSTURE, ESIZE, ETRANSFORM, ESUPERSCRIPT,
+			ETRACKING);
 
 	/**
 	 * These attributes are considered secondary by the FONT attribute.
@@ -725,12 +716,14 @@ public class Font implements java.io.Serializable {
 	/**
 	 * These attributes are handled by layout.
 	 */
-	private static final int LAYOUT_MASK = AttributeValues.getMask(ECHAR_REPLACEMENT, EFOREGROUND,
-			EBACKGROUND, EUNDERLINE, ESTRIKETHROUGH, ERUN_DIRECTION, EBIDI_EMBEDDING,
-			EJUSTIFICATION, EINPUT_METHOD_HIGHLIGHT, EINPUT_METHOD_UNDERLINE, ESWAP_COLORS,
+	private static final int LAYOUT_MASK = AttributeValues.getMask(
+			ECHAR_REPLACEMENT, EFOREGROUND, EBACKGROUND, EUNDERLINE,
+			ESTRIKETHROUGH, ERUN_DIRECTION, EBIDI_EMBEDDING, EJUSTIFICATION,
+			EINPUT_METHOD_HIGHLIGHT, EINPUT_METHOD_UNDERLINE, ESWAP_COLORS,
 			ENUMERIC_SHAPING, EKERNING, ELIGATURES, ETRACKING, ESUPERSCRIPT);
 
-	private static final int EXTRA_MASK = AttributeValues.getMask(ETRANSFORM, ESUPERSCRIPT, EWIDTH);
+	private static final int EXTRA_MASK = AttributeValues.getMask(ETRANSFORM,
+			ESUPERSCRIPT, EWIDTH);
 
 	/**
 	 * Initialize the standard Font fields from the values object.
@@ -759,10 +752,10 @@ public class Font implements java.io.Serializable {
 	 * more information.
 	 *
 	 * @param attributes
-	 *            the attributes to assign to the new <code>Font</code>
+	 *                   the attributes to assign to the new <code>Font</code>
 	 * @return a new <code>Font</code> created with the specified attributes
 	 * @throws NullPointerException
-	 *             if <code>attributes</code> is null.
+	 *                              if <code>attributes</code> is null.
 	 * @since 1.2
 	 * @see java.awt.font.TextAttribute
 	 */
@@ -772,7 +765,8 @@ public class Font implements java.io.Serializable {
 		// 2) attributes, but no FONT
 
 		// avoid turning the attributemap into a regular map for no reason
-		if (attributes instanceof AttributeMap && ((AttributeMap) attributes).getValues() != null) {
+		if (attributes instanceof AttributeMap && ((AttributeMap) attributes)
+				.getValues() != null) {
 			AttributeValues values = ((AttributeMap) attributes).getValues();
 			if (values.isNonDefault(EFONT)) {
 				Font font = values.getFont();
@@ -782,7 +776,8 @@ public class Font implements java.io.Serializable {
 				// merge
 				values = font.getAttributeValues().clone();
 				values.merge(attributes, SECONDARY_MASK);
-				return new Font(values, font.name, font.style, font.createdFont, font.font2DHandle);
+				return new Font(values, font.name, font.style, font.createdFont,
+						font.font2DHandle);
 			}
 			return new Font(attributes);
 		}
@@ -792,7 +787,8 @@ public class Font implements java.io.Serializable {
 			if (attributes.size() > 1) { // oh well, check for anything else
 				AttributeValues values = font.getAttributeValues().clone();
 				values.merge(attributes, SECONDARY_MASK);
-				return new Font(values, font.name, font.style, font.createdFont, font.font2DHandle);
+				return new Font(values, font.name, font.style, font.createdFont,
+						font.font2DHandle);
 			}
 
 			return font;
@@ -837,22 +833,29 @@ public class Font implements java.io.Serializable {
 	 * {@link GraphicsEnvironment#registerFont(Font) registerFont(Font)}.
 	 * 
 	 * @param fontFormat
-	 *            the type of the <code>Font</code>, which is
-	 *            {@link #TRUETYPE_FONT TRUETYPE_FONT} if a TrueType resource is
-	 *            specified. or {@link #TYPE1_FONT TYPE1_FONT} if a Type 1
-	 *            resource is specified.
+	 *                   the type of the <code>Font</code>, which is
+	 *                   {@link #TRUETYPE_FONT TRUETYPE_FONT} if a TrueType
+	 *                   resource is
+	 *                   specified. or {@link #TYPE1_FONT TYPE1_FONT} if a Type
+	 *                   1
+	 *                   resource is specified.
 	 * @param fontStream
-	 *            an <code>InputStream</code> object representing the input data
-	 *            for the font.
+	 *                   an <code>InputStream</code> object representing the
+	 *                   input data
+	 *                   for the font.
 	 * @return a new <code>Font</code> created with the specified font type.
 	 * @throws IllegalArgumentException
-	 *             if <code>fontFormat</code> is not <code>TRUETYPE_FONT</code>
-	 *             or<code>TYPE1_FONT</code>.
+	 *                                  if <code>fontFormat</code> is not
+	 *                                  <code>TRUETYPE_FONT</code>
+	 *                                  or<code>TYPE1_FONT</code>.
 	 * @throws FontFormatException
-	 *             if the <code>fontStream</code> data does not contain the
-	 *             required font tables for the specified format.
+	 *                                  if the <code>fontStream</code> data does
+	 *                                  not contain the
+	 *                                  required font tables for the specified
+	 *                                  format.
 	 * @throws IOException
-	 *             if the <code>fontStream</code> cannot be completely read.
+	 *                                  if the <code>fontStream</code> cannot be
+	 *                                  completely read.
 	 * @see GraphicsEnvironment#registerFont(Font)
 	 * @since 1.3
 	 */
@@ -883,26 +886,29 @@ public class Font implements java.io.Serializable {
 	}
 
 	private static Font createFont0(int fontFormat, InputStream fontStream,
-			CreatedFontTracker tracker) throws java.awt.FontFormatException, java.io.IOException {
+			CreatedFontTracker tracker) throws java.awt.FontFormatException,
+			java.io.IOException {
 
 		if (fontFormat != Font.TRUETYPE_FONT && fontFormat != Font.TYPE1_FONT) {
 			throw new IllegalArgumentException("font format not recognized");
 		}
 		boolean copiedFontData = false;
 		try {
-			final File tFile = AccessController.doPrivileged(new PrivilegedExceptionAction<File>() {
-				public File run() throws IOException {
-					return Files.createTempFile("+~JF", ".tmp").toFile();
-				}
-			});
+			final File tFile = AccessController.doPrivileged(
+					new PrivilegedExceptionAction<File>() {
+						public File run() throws IOException {
+							return Files.createTempFile("+~JF", ".tmp")
+									.toFile();
+						}
+					});
 			if (tracker != null) {
 				tracker.add(tFile);
 			}
 
 			int totalSize = 0;
 			try {
-				final OutputStream outStream = AccessController
-						.doPrivileged(new PrivilegedExceptionAction<OutputStream>() {
+				final OutputStream outStream = AccessController.doPrivileged(
+						new PrivilegedExceptionAction<OutputStream>() {
 							public OutputStream run() throws IOException {
 								return new FileOutputStream(tFile);
 							}
@@ -918,11 +924,12 @@ public class Font implements java.io.Serializable {
 							break;
 						}
 						if (tracker != null) {
-							if (totalSize + bytesRead > CreatedFontTracker.MAX_FILE_SIZE) {
+							if (totalSize
+									+ bytesRead > CreatedFontTracker.MAX_FILE_SIZE) {
 								throw new IOException("File too big.");
 							}
-							if (totalSize
-									+ tracker.getNumBytes() > CreatedFontTracker.MAX_TOTAL_BYTES) {
+							if (totalSize + tracker
+									.getNumBytes() > CreatedFontTracker.MAX_TOTAL_BYTES) {
 								throw new IOException("Total files too big.");
 							}
 							totalSize += bytesRead;
@@ -955,12 +962,13 @@ public class Font implements java.io.Serializable {
 					if (tracker != null) {
 						tracker.subBytes(totalSize);
 					}
-					AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-						public Void run() {
-							tFile.delete();
-							return null;
-						}
-					});
+					AccessController.doPrivileged(
+							new PrivilegedExceptionAction<Void>() {
+								public Void run() {
+									tFile.delete();
+									return null;
+								}
+							});
 				}
 			}
 		} catch (Throwable t) {
@@ -987,37 +995,49 @@ public class Font implements java.io.Serializable {
 	 * features.
 	 * 
 	 * @param fontFormat
-	 *            the type of the <code>Font</code>, which is
-	 *            {@link #TRUETYPE_FONT TRUETYPE_FONT} if a TrueType resource is
-	 *            specified or {@link #TYPE1_FONT TYPE1_FONT} if a Type 1
-	 *            resource is specified. So long as the returned font, or its
-	 *            derived fonts are referenced the implementation may continue
-	 *            to access <code>fontFile</code> to retrieve font data. Thus
-	 *            the results are undefined if the file is changed, or becomes
-	 *            inaccessible.
-	 *            <p>
-	 *            To make the <code>Font</code> available to Font constructors
-	 *            the returned <code>Font</code> must be registered in the
-	 *            <code>GraphicsEnviroment</code> by calling
-	 *            {@link GraphicsEnvironment#registerFont(Font)
-	 *            registerFont(Font)}.
+	 *                   the type of the <code>Font</code>, which is
+	 *                   {@link #TRUETYPE_FONT TRUETYPE_FONT} if a TrueType
+	 *                   resource is
+	 *                   specified or {@link #TYPE1_FONT TYPE1_FONT} if a Type 1
+	 *                   resource is specified. So long as the returned font, or
+	 *                   its
+	 *                   derived fonts are referenced the implementation may
+	 *                   continue
+	 *                   to access <code>fontFile</code> to retrieve font data.
+	 *                   Thus
+	 *                   the results are undefined if the file is changed, or
+	 *                   becomes
+	 *                   inaccessible.
+	 *                   <p>
+	 *                   To make the <code>Font</code> available to Font
+	 *                   constructors
+	 *                   the returned <code>Font</code> must be registered in
+	 *                   the
+	 *                   <code>GraphicsEnviroment</code> by calling
+	 *                   {@link GraphicsEnvironment#registerFont(Font)
+	 *                   registerFont(Font)}.
 	 * @param fontFile
-	 *            a <code>File</code> object representing the input data for the
-	 *            font.
+	 *                   a <code>File</code> object representing the input data
+	 *                   for the
+	 *                   font.
 	 * @return a new <code>Font</code> created with the specified font type.
 	 * @throws IllegalArgumentException
-	 *             if <code>fontFormat</code> is not <code>TRUETYPE_FONT</code>
-	 *             or<code>TYPE1_FONT</code>.
+	 *                                  if <code>fontFormat</code> is not
+	 *                                  <code>TRUETYPE_FONT</code>
+	 *                                  or<code>TYPE1_FONT</code>.
 	 * @throws NullPointerException
-	 *             if <code>fontFile</code> is null.
+	 *                                  if <code>fontFile</code> is null.
 	 * @throws IOException
-	 *             if the <code>fontFile</code> cannot be read.
+	 *                                  if the <code>fontFile</code> cannot be
+	 *                                  read.
 	 * @throws FontFormatException
-	 *             if <code>fontFile</code> does not contain the required font
-	 *             tables for the specified format.
+	 *                                  if <code>fontFile</code> does not
+	 *                                  contain the required font
+	 *                                  tables for the specified format.
 	 * @throws SecurityException
-	 *             if the executing code does not have permission to read from
-	 *             the file.
+	 *                                  if the executing code does not have
+	 *                                  permission to read from
+	 *                                  the file.
 	 * @see GraphicsEnvironment#registerFont(Font)
 	 * @since 1.5
 	 */
@@ -1031,7 +1051,8 @@ public class Font implements java.io.Serializable {
 		}
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			FilePermission filePermission = new FilePermission(fontFile.getPath(), "read");
+			FilePermission filePermission = new FilePermission(fontFile
+					.getPath(), "read");
 			sm.checkPermission(filePermission);
 		}
 		if (!fontFile.canRead()) {
@@ -1060,7 +1081,6 @@ public class Font implements java.io.Serializable {
 		 * transform, but some may not. Here we check to see if we have a
 		 * nonidentity transform, and only do the work to fetch and/or compute
 		 * it if so, otherwise we return a new identity transform.
-		 *
 		 * Note that the transform is _not_ necessarily the same as the
 		 * transform passed in as an Attribute in a Map, as the transform
 		 * returned will also reflect the effects of WIDTH and SUPERSCRIPT
@@ -1071,7 +1091,8 @@ public class Font implements java.io.Serializable {
 			AttributeValues values = getAttributeValues();
 
 			AffineTransform at = values.isNonDefault(ETRANSFORM)
-					? new AffineTransform(values.getTransform()) : new AffineTransform();
+					? new AffineTransform(values.getTransform())
+					: new AffineTransform();
 
 			if (values.getSuperscript() != 0) {
 				// can't get ascent and descent here, recursive call to this fn,
@@ -1096,7 +1117,8 @@ public class Font implements java.io.Serializable {
 				trans *= pointSize;
 				double scale = Math.pow(2. / 3., n);
 
-				at.preConcatenate(AffineTransform.getTranslateInstance(0, trans));
+				at.preConcatenate(AffineTransform.getTranslateInstance(0,
+						trans));
 				at.scale(scale, scale);
 
 				// note on placement and italics
@@ -1144,8 +1166,8 @@ public class Font implements java.io.Serializable {
 	// trans = 1/2 of ascent * x
 	// assume ascent is 3/4 of point size
 
-	private static final float[] ssinfo = { 0.0f, 0.375f, 0.625f, 0.7916667f, 0.9027778f,
-			0.9768519f, 1.0262346f, 1.0591564f, };
+	private static final float[] ssinfo = { 0.0f, 0.375f, 0.625f, 0.7916667f,
+			0.9027778f, 0.9768519f, 1.0262346f, 1.0591564f, };
 
 	/**
 	 * Returns the family name of this <code>Font</code>.
@@ -1196,7 +1218,7 @@ public class Font implements java.io.Serializable {
 	 * Use <code>getFontName</code> to get the font face name of the font.
 	 * 
 	 * @param l
-	 *            locale for which to get the family name
+	 *          locale for which to get the family name
 	 * @return a <code>String</code> representing the family name of the font,
 	 *         localized for the specified locale.
 	 * @see #getFontName
@@ -1261,7 +1283,7 @@ public class Font implements java.io.Serializable {
 	 * font.
 	 * 
 	 * @param l
-	 *            a locale for which to get the font face name
+	 *          a locale for which to get the font face name
 	 * @return a <code>String</code> representing the font face name, localized
 	 *         for the specified locale.
 	 * @see #getFamily
@@ -1397,11 +1419,11 @@ public class Font implements java.io.Serializable {
 	 * property, null is returned instead.
 	 *
 	 * @param nm
-	 *            the property name
+	 *           the property name
 	 * @return a <code>Font</code> object that the property name describes, or
 	 *         null if no such property exists.
 	 * @throws NullPointerException
-	 *             if nm is null.
+	 *                              if nm is null.
 	 * @since 1.2
 	 * @see #decode(String)
 	 */
@@ -1494,7 +1516,8 @@ public class Font implements java.io.Serializable {
 
 		if (sizeIndex > 0 && sizeIndex + 1 < strlen) {
 			try {
-				fontSize = Integer.valueOf(str.substring(sizeIndex + 1)).intValue();
+				fontSize = Integer.valueOf(str.substring(sizeIndex + 1))
+						.intValue();
 				if (fontSize <= 0) {
 					fontSize = 12;
 				}
@@ -1563,13 +1586,13 @@ public class Font implements java.io.Serializable {
 	 * <code>font</code> argument is returned instead.
 	 * 
 	 * @param nm
-	 *            the case-insensitive property name
+	 *             the case-insensitive property name
 	 * @param font
-	 *            a default <code>Font</code> to return if property
-	 *            <code>nm</code> is not defined
+	 *             a default <code>Font</code> to return if property
+	 *             <code>nm</code> is not defined
 	 * @return the <code>Font</code> value of the property.
 	 * @throws NullPointerException
-	 *             if nm is null.
+	 *                              if nm is null.
 	 * @see #decode(String)
 	 */
 	public static Font getFont(String nm, Font font) {
@@ -1601,7 +1624,8 @@ public class Font implements java.io.Serializable {
 			 * whenever there is a transform in 'values'. The tests for null are
 			 * required because it can also be set for other reasons.
 			 */
-			if (nonIdentityTx && values != null && values.getTransform() != null) {
+			if (nonIdentityTx && values != null && values
+					.getTransform() != null) {
 				hash ^= values.getTransform().hashCode();
 			}
 		}
@@ -1627,9 +1651,11 @@ public class Font implements java.io.Serializable {
 		if (obj != null) {
 			try {
 				Font font = (Font) obj;
-				if (size == font.size && style == font.style && nonIdentityTx == font.nonIdentityTx
+				if (size == font.size && style == font.style
+						&& nonIdentityTx == font.nonIdentityTx
 						&& hasLayoutAttributes == font.hasLayoutAttributes
-						&& pointSize == font.pointSize && name.equals(font.name)) {
+						&& pointSize == font.pointSize && name.equals(
+								font.name)) {
 
 					/*
 					 * 'values' is usually initialized lazily, except when the
@@ -1673,8 +1699,8 @@ public class Font implements java.io.Serializable {
 			strStyle = isItalic() ? "italic" : "plain";
 		}
 
-		return getClass().getName() + "[family=" + getFamily() + ",name=" + name + ",style="
-				+ strStyle + ",size=" + size + "]";
+		return getClass().getName() + "[family=" + getFamily() + ",name=" + name
+				+ ",style=" + strStyle + ",size=" + size + "]";
 	} // toString()
 
 	/**
@@ -1696,7 +1722,7 @@ public class Font implements java.io.Serializable {
 	 * Writes default serializable fields to a stream.
 	 *
 	 * @param s
-	 *            the <code>ObjectOutputStream</code> to write
+	 *          the <code>ObjectOutputStream</code> to write
 	 * @see AWTEventMulticaster#save(ObjectOutputStream, String, EventListener)
 	 * @see #readObject(java.io.ObjectInputStream)
 	 */
@@ -1719,7 +1745,7 @@ public class Font implements java.io.Serializable {
 	 * will be ignored.
 	 *
 	 * @param s
-	 *            the <code>ObjectInputStream</code> to read
+	 *          the <code>ObjectInputStream</code> to read
 	 * @serial
 	 * @see #writeObject(java.io.ObjectOutputStream)
 	 */
@@ -1740,8 +1766,8 @@ public class Font implements java.io.Serializable {
 
 		if (fRequestedAttributes != null) {
 			values = getAttributeValues(); // init
-			AttributeValues extras = AttributeValues
-					.fromSerializableHashtable(fRequestedAttributes);
+			AttributeValues extras = AttributeValues.fromSerializableHashtable(
+					fRequestedAttributes);
 			if (!AttributeValues.is16Hashtable(fRequestedAttributes)) {
 				extras.unsetDefault(); // if legacy stream, undefine these
 			}
@@ -1784,7 +1810,7 @@ public class Font implements java.io.Serializable {
 	 * baseline.
 	 *
 	 * @param c
-	 *            a character used to identify the writing system
+	 *          a character used to identify the writing system
 	 * @return the baseline appropriate for the specified character.
 	 * @see LineMetrics#getBaselineOffsets
 	 * @see #ROMAN_BASELINE
@@ -1817,15 +1843,17 @@ public class Font implements java.io.Serializable {
 	public Attribute[] getAvailableAttributes() {
 		// FONT is not supported by Font
 
-		Attribute attributes[] = { TextAttribute.FAMILY, TextAttribute.WEIGHT, TextAttribute.WIDTH,
-				TextAttribute.POSTURE, TextAttribute.SIZE, TextAttribute.TRANSFORM,
-				TextAttribute.SUPERSCRIPT, TextAttribute.CHAR_REPLACEMENT, TextAttribute.FOREGROUND,
-				TextAttribute.BACKGROUND, TextAttribute.UNDERLINE, TextAttribute.STRIKETHROUGH,
-				TextAttribute.RUN_DIRECTION, TextAttribute.BIDI_EMBEDDING,
-				TextAttribute.JUSTIFICATION, TextAttribute.INPUT_METHOD_HIGHLIGHT,
+		Attribute attributes[] = { TextAttribute.FAMILY, TextAttribute.WEIGHT,
+				TextAttribute.WIDTH, TextAttribute.POSTURE, TextAttribute.SIZE,
+				TextAttribute.TRANSFORM, TextAttribute.SUPERSCRIPT,
+				TextAttribute.CHAR_REPLACEMENT, TextAttribute.FOREGROUND,
+				TextAttribute.BACKGROUND, TextAttribute.UNDERLINE,
+				TextAttribute.STRIKETHROUGH, TextAttribute.RUN_DIRECTION,
+				TextAttribute.BIDI_EMBEDDING, TextAttribute.JUSTIFICATION,
+				TextAttribute.INPUT_METHOD_HIGHLIGHT,
 				TextAttribute.INPUT_METHOD_UNDERLINE, TextAttribute.SWAP_COLORS,
-				TextAttribute.NUMERIC_SHAPING, TextAttribute.KERNING, TextAttribute.LIGATURES,
-				TextAttribute.TRACKING, };
+				TextAttribute.NUMERIC_SHAPING, TextAttribute.KERNING,
+				TextAttribute.LIGATURES, TextAttribute.TRACKING, };
 
 		return attributes;
 	}
@@ -1835,9 +1863,9 @@ public class Font implements java.io.Serializable {
 	 * <code>Font</code> object and applying a new style and size.
 	 * 
 	 * @param style
-	 *            the style for the new <code>Font</code>
+	 *              the style for the new <code>Font</code>
 	 * @param size
-	 *            the size for the new <code>Font</code>
+	 *              the size for the new <code>Font</code>
 	 * @return a new <code>Font</code> object.
 	 * @since 1.2
 	 */
@@ -1857,13 +1885,14 @@ public class Font implements java.io.Serializable {
 	 * <code>Font</code> object and applying a new style and transform.
 	 * 
 	 * @param style
-	 *            the style for the new <code>Font</code>
+	 *              the style for the new <code>Font</code>
 	 * @param trans
-	 *            the <code>AffineTransform</code> associated with the new
-	 *            <code>Font</code>
+	 *              the <code>AffineTransform</code> associated with the new
+	 *              <code>Font</code>
 	 * @return a new <code>Font</code> object.
 	 * @throws IllegalArgumentException
-	 *             if <code>trans</code> is <code>null</code>
+	 *                                  if <code>trans</code> is
+	 *                                  <code>null</code>
 	 * @since 1.2
 	 */
 	public Font deriveFont(int style, AffineTransform trans) {
@@ -1879,7 +1908,7 @@ public class Font implements java.io.Serializable {
 	 * <code>Font</code> object and applying a new size to it.
 	 * 
 	 * @param size
-	 *            the size for the new <code>Font</code>.
+	 *             the size for the new <code>Font</code>.
 	 * @return a new <code>Font</code> object.
 	 * @since 1.2
 	 */
@@ -1897,11 +1926,12 @@ public class Font implements java.io.Serializable {
 	 * <code>Font</code> object and applying a new transform to it.
 	 * 
 	 * @param trans
-	 *            the <code>AffineTransform</code> associated with the new
-	 *            <code>Font</code>
+	 *              the <code>AffineTransform</code> associated with the new
+	 *              <code>Font</code>
 	 * @return a new <code>Font</code> object.
 	 * @throws IllegalArgumentException
-	 *             if <code>trans</code> is <code>null</code>
+	 *                                  if <code>trans</code> is
+	 *                                  <code>null</code>
 	 * @since 1.2
 	 */
 	public Font deriveFont(AffineTransform trans) {
@@ -1915,7 +1945,7 @@ public class Font implements java.io.Serializable {
 	 * <code>Font</code> object and applying a new style to it.
 	 * 
 	 * @param style
-	 *            the style for the new <code>Font</code>
+	 *              the style for the new <code>Font</code>
 	 * @return a new <code>Font</code> object.
 	 * @since 1.2
 	 */
@@ -1934,7 +1964,8 @@ public class Font implements java.io.Serializable {
 	 * <code>Font</code> object and applying a new set of font attributes to it.
 	 *
 	 * @param attributes
-	 *            a map of attributes enabled for the new <code>Font</code>
+	 *                   a map of attributes enabled for the new
+	 *                   <code>Font</code>
 	 * @return a new <code>Font</code> object.
 	 * @since 1.2
 	 */
@@ -1959,7 +1990,7 @@ public class Font implements java.io.Serializable {
 	 * <code>canDisplayUpTo</code> methods.
 	 *
 	 * @param c
-	 *            the character for which a glyph is needed
+	 *          the character for which a glyph is needed
 	 * @return <code>true</code> if this <code>Font</code> has a glyph for this
 	 *         character; <code>false</code> otherwise.
 	 * @since 1.2
@@ -1972,19 +2003,20 @@ public class Font implements java.io.Serializable {
 	 * Checks if this <code>Font</code> has a glyph for the specified character.
 	 *
 	 * @param codePoint
-	 *            the character (Unicode code point) for which a glyph is
-	 *            needed.
+	 *                  the character (Unicode code point) for which a glyph is
+	 *                  needed.
 	 * @return <code>true</code> if this <code>Font</code> has a glyph for the
 	 *         character; <code>false</code> otherwise.
 	 * @throws IllegalArgumentException
-	 *             if the code point is not a valid Unicode code point.
+	 *                                  if the code point is not a valid Unicode
+	 *                                  code point.
 	 * @see Character#isValidCodePoint(int)
 	 * @since 1.5
 	 */
 	public boolean canDisplay(int codePoint) {
 		if (!Character.isValidCodePoint(codePoint)) {
-			throw new IllegalArgumentException(
-					"invalid code point: " + Integer.toHexString(codePoint));
+			throw new IllegalArgumentException("invalid code point: " + Integer
+					.toHexString(codePoint));
 		}
 		return getFont2D().canDisplay(codePoint);
 	}
@@ -2032,13 +2064,14 @@ public class Font implements java.io.Serializable {
 	 * convenience overload.
 	 * 
 	 * @param text
-	 *            the specified array of <code>char</code> values
+	 *              the specified array of <code>char</code> values
 	 * @param start
-	 *            the specified starting offset (in <code>char</code>s) into the
-	 *            specified array of <code>char</code> values
+	 *              the specified starting offset (in <code>char</code>s) into
+	 *              the
+	 *              specified array of <code>char</code> values
 	 * @param limit
-	 *            the specified ending offset (in <code>char</code>s) into the
-	 *            specified array of <code>char</code> values
+	 *              the specified ending offset (in <code>char</code>s) into the
+	 *              specified array of <code>char</code> values
 	 * @return an offset into <code>text</code> that points to the first
 	 *         character in <code>text</code> that this <code>Font</code> cannot
 	 *         display; or <code>-1</code> if this <code>Font</code> can display
@@ -2069,13 +2102,13 @@ public class Font implements java.io.Serializable {
 	 * ending at <code>limit</code>.
 	 *
 	 * @param iter
-	 *            a {@link CharacterIterator} object
+	 *              a {@link CharacterIterator} object
 	 * @param start
-	 *            the specified starting offset into the specified
-	 *            <code>CharacterIterator</code>.
+	 *              the specified starting offset into the specified
+	 *              <code>CharacterIterator</code>.
 	 * @param limit
-	 *            the specified ending offset into the specified
-	 *            <code>CharacterIterator</code>.
+	 *              the specified ending offset into the specified
+	 *              <code>CharacterIterator</code>.
 	 * @return an offset into <code>iter</code> that points to the first
 	 *         character in <code>iter</code> that this <code>Font</code> cannot
 	 *         display; or <code>-1</code> if this <code>Font</code> can display
@@ -2156,7 +2189,8 @@ public class Font implements java.io.Serializable {
 
 	private FontLineMetrics defaultLineMetrics(FontRenderContext frc) {
 		FontLineMetrics flm = null;
-		if (flmref == null || (flm = flmref.get()) == null || !flm.frc.equals(frc)) {
+		if (flmref == null || (flm = flmref.get()) == null || !flm.frc.equals(
+				frc)) {
 
 			/*
 			 * The device transform in the frc is not used in obtaining line
@@ -2165,8 +2199,9 @@ public class Font implements java.io.Serializable {
 			 * pass identity here
 			 */
 			float[] metrics = new float[8];
-			getFont2D().getFontMetrics(this, identityTx, frc.getAntiAliasingHint(),
-					frc.getFractionalMetricsHint(), metrics);
+			getFont2D().getFontMetrics(this, identityTx, frc
+					.getAntiAliasingHint(), frc.getFractionalMetricsHint(),
+					metrics);
 			float ascent = metrics[0];
 			float descent = metrics[1];
 			float leading = metrics[2];
@@ -2180,8 +2215,9 @@ public class Font implements java.io.Serializable {
 
 			int baselineIndex = 0; // need real index, assumes roman for
 									// everything
-			// need real baselines eventually
-			float[] baselineOffsets = { 0, (descent / 2f - ascent) / 2f, -ascent };
+									// need real baselines eventually
+			float[] baselineOffsets = { 0, (descent / 2f - ascent) / 2f,
+					-ascent };
 
 			float strikethroughOffset = metrics[4];
 			float strikethroughThickness = metrics[5];
@@ -2213,9 +2249,10 @@ public class Font implements java.io.Serializable {
 			strikethroughOffset += ssOffset;
 			underlineOffset += ssOffset;
 
-			CoreMetrics cm = new CoreMetrics(ascent, descent, leading, height, baselineIndex,
-					baselineOffsets, strikethroughOffset, strikethroughThickness, underlineOffset,
-					underlineThickness, ssOffset, italicAngle);
+			CoreMetrics cm = new CoreMetrics(ascent, descent, leading, height,
+					baselineIndex, baselineOffsets, strikethroughOffset,
+					strikethroughThickness, underlineOffset, underlineThickness,
+					ssOffset, italicAngle);
 
 			flm = new FontLineMetrics(0, cm, frc);
 			flmref = new SoftReference<FontLineMetrics>(flm);
@@ -2246,13 +2283,13 @@ public class Font implements java.io.Serializable {
 	 * arguments.
 	 * 
 	 * @param str
-	 *            the specified <code>String</code>
+	 *                   the specified <code>String</code>
 	 * @param beginIndex
-	 *            the initial offset of <code>str</code>
+	 *                   the initial offset of <code>str</code>
 	 * @param limit
-	 *            the end offset of <code>str</code>
+	 *                   the end offset of <code>str</code>
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *                   the specified <code>FontRenderContext</code>
 	 * @return a <code>LineMetrics</code> object created with the specified
 	 *         arguments.
 	 */
@@ -2269,13 +2306,13 @@ public class Font implements java.io.Serializable {
 	 * arguments.
 	 * 
 	 * @param chars
-	 *            an array of characters
+	 *                   an array of characters
 	 * @param beginIndex
-	 *            the initial offset of <code>chars</code>
+	 *                   the initial offset of <code>chars</code>
 	 * @param limit
-	 *            the end offset of <code>chars</code>
+	 *                   the end offset of <code>chars</code>
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *                   the specified <code>FontRenderContext</code>
 	 * @return a <code>LineMetrics</code> object created with the specified
 	 *         arguments.
 	 */
@@ -2292,18 +2329,18 @@ public class Font implements java.io.Serializable {
 	 * arguments.
 	 * 
 	 * @param ci
-	 *            the specified <code>CharacterIterator</code>
+	 *                   the specified <code>CharacterIterator</code>
 	 * @param beginIndex
-	 *            the initial offset in <code>ci</code>
+	 *                   the initial offset in <code>ci</code>
 	 * @param limit
-	 *            the end offset of <code>ci</code>
+	 *                   the end offset of <code>ci</code>
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *                   the specified <code>FontRenderContext</code>
 	 * @return a <code>LineMetrics</code> object created with the specified
 	 *         arguments.
 	 */
-	public LineMetrics getLineMetrics(CharacterIterator ci, int beginIndex, int limit,
-			FontRenderContext frc) {
+	public LineMetrics getLineMetrics(CharacterIterator ci, int beginIndex,
+			int limit, FontRenderContext frc) {
 		FontLineMetrics flm = defaultLineMetrics(frc);
 		int numChars = limit - beginIndex;
 		flm.numchars = (numChars < 0) ? 0 : numChars;
@@ -2353,21 +2390,24 @@ public class Font implements java.io.Serializable {
 	 * {@link java.awt.Font class notes}).
 	 * 
 	 * @param str
-	 *            the specified <code>String</code>
+	 *                   the specified <code>String</code>
 	 * @param beginIndex
-	 *            the initial offset of <code>str</code>
+	 *                   the initial offset of <code>str</code>
 	 * @param limit
-	 *            the end offset of <code>str</code>
+	 *                   the end offset of <code>str</code>
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *                   the specified <code>FontRenderContext</code>
 	 * @return a <code>Rectangle2D</code> that is the bounding box of the
 	 *         specified <code>String</code> in the specified
 	 *         <code>FontRenderContext</code>.
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>beginIndex</code> is less than zero, or
-	 *             <code>limit</code> is greater than the length of
-	 *             <code>str</code>, or <code>beginIndex</code> is greater than
-	 *             <code>limit</code>.
+	 *                                   if <code>beginIndex</code> is less than
+	 *                                   zero, or
+	 *                                   <code>limit</code> is greater than the
+	 *                                   length of
+	 *                                   <code>str</code>, or
+	 *                                   <code>beginIndex</code> is greater than
+	 *                                   <code>limit</code>.
 	 * @see FontRenderContext
 	 * @see Font#createGlyphVector
 	 * @since 1.2
@@ -2392,21 +2432,24 @@ public class Font implements java.io.Serializable {
 	 * {@link java.awt.Font class notes}).
 	 * 
 	 * @param chars
-	 *            an array of characters
+	 *                   an array of characters
 	 * @param beginIndex
-	 *            the initial offset in the array of characters
+	 *                   the initial offset in the array of characters
 	 * @param limit
-	 *            the end offset in the array of characters
+	 *                   the end offset in the array of characters
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *                   the specified <code>FontRenderContext</code>
 	 * @return a <code>Rectangle2D</code> that is the bounding box of the
 	 *         specified array of characters in the specified
 	 *         <code>FontRenderContext</code>.
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>beginIndex</code> is less than zero, or
-	 *             <code>limit</code> is greater than the length of
-	 *             <code>chars</code>, or <code>beginIndex</code> is greater
-	 *             than <code>limit</code>.
+	 *                                   if <code>beginIndex</code> is less than
+	 *                                   zero, or
+	 *                                   <code>limit</code> is greater than the
+	 *                                   length of
+	 *                                   <code>chars</code>, or
+	 *                                   <code>beginIndex</code> is greater
+	 *                                   than <code>limit</code>.
 	 * @see FontRenderContext
 	 * @see Font#createGlyphVector
 	 * @since 1.2
@@ -2420,28 +2463,29 @@ public class Font implements java.io.Serializable {
 			throw new IndexOutOfBoundsException("limit: " + limit);
 		}
 		if (beginIndex > limit) {
-			throw new IndexOutOfBoundsException("range length: " + (limit - beginIndex));
+			throw new IndexOutOfBoundsException("range length: " + (limit
+					- beginIndex));
 		}
 
 		// this code should be in textlayout
 		// quick check for simple text, assume GV ok to use if simple
 
-		boolean simple = values == null || (values.getKerning() == 0 && values.getLigatures() == 0
-				&& values.getBaselineTransform() == null);
+		boolean simple = values == null || (values.getKerning() == 0 && values
+				.getLigatures() == 0 && values.getBaselineTransform() == null);
 		if (simple) {
 			simple = !FontUtilities.isComplexText(chars, beginIndex, limit);
 		}
 
 		if (simple) {
-			GlyphVector gv = new StandardGlyphVector(this, chars, beginIndex, limit - beginIndex,
-					frc);
+			GlyphVector gv = new StandardGlyphVector(this, chars, beginIndex,
+					limit - beginIndex, frc);
 			return gv.getLogicalBounds();
 		} else {
 			// need char array constructor on textlayout
 			String str = new String(chars, beginIndex, limit - beginIndex);
 			TextLayout tl = new TextLayout(str, this, frc);
-			return new Rectangle2D.Float(0, -tl.getAscent(), tl.getAdvance(),
-					tl.getAscent() + tl.getDescent() + tl.getLeading());
+			return new Rectangle2D.Float(0, -tl.getAscent(), tl.getAdvance(), tl
+					.getAscent() + tl.getDescent() + tl.getLeading());
 		}
 	}
 
@@ -2460,13 +2504,13 @@ public class Font implements java.io.Serializable {
 	 * {@link java.awt.Font class notes}).
 	 * 
 	 * @param ci
-	 *            the specified <code>CharacterIterator</code>
+	 *                   the specified <code>CharacterIterator</code>
 	 * @param beginIndex
-	 *            the initial offset in <code>ci</code>
+	 *                   the initial offset in <code>ci</code>
 	 * @param limit
-	 *            the end offset in <code>ci</code>
+	 *                   the end offset in <code>ci</code>
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *                   the specified <code>FontRenderContext</code>
 	 * @return a <code>Rectangle2D</code> that is the bounding box of the
 	 *         characters indexed in the specified
 	 *         <code>CharacterIterator</code> in the specified
@@ -2475,13 +2519,16 @@ public class Font implements java.io.Serializable {
 	 * @see Font#createGlyphVector
 	 * @since 1.2
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>beginIndex</code> is less than the start index of
-	 *             <code>ci</code>, or <code>limit</code> is greater than the
-	 *             end index of <code>ci</code>, or <code>beginIndex</code> is
-	 *             greater than <code>limit</code>
+	 *                                   if <code>beginIndex</code> is less than
+	 *                                   the start index of
+	 *                                   <code>ci</code>, or <code>limit</code>
+	 *                                   is greater than the
+	 *                                   end index of <code>ci</code>, or
+	 *                                   <code>beginIndex</code> is
+	 *                                   greater than <code>limit</code>
 	 */
-	public Rectangle2D getStringBounds(CharacterIterator ci, int beginIndex, int limit,
-			FontRenderContext frc) {
+	public Rectangle2D getStringBounds(CharacterIterator ci, int beginIndex,
+			int limit, FontRenderContext frc) {
 		int start = ci.getBeginIndex();
 		int end = ci.getEndIndex();
 
@@ -2492,7 +2539,8 @@ public class Font implements java.io.Serializable {
 			throw new IndexOutOfBoundsException("limit: " + limit);
 		}
 		if (beginIndex > limit) {
-			throw new IndexOutOfBoundsException("range length: " + (limit - beginIndex));
+			throw new IndexOutOfBoundsException("range length: " + (limit
+					- beginIndex));
 		}
 
 		char[] arr = new char[limit - beginIndex];
@@ -2523,8 +2571,8 @@ public class Font implements java.io.Serializable {
 
 		getFont2D().getFontMetrics(this, frc, metrics);
 
-		return new Rectangle2D.Float(0, -metrics[0], metrics[3],
-				metrics[0] + metrics[1] + metrics[2]);
+		return new Rectangle2D.Float(0, -metrics[0], metrics[3], metrics[0]
+				+ metrics[1] + metrics[2]);
 	}
 
 	/**
@@ -2556,9 +2604,9 @@ public class Font implements java.io.Serializable {
 	 * require reordering, shaping, or ligature substitution.
 	 * 
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *              the specified <code>FontRenderContext</code>
 	 * @param chars
-	 *            the specified array of characters
+	 *              the specified array of characters
 	 * @return a new <code>GlyphVector</code> created with the specified array
 	 *         of characters and the specified <code>FontRenderContext</code>.
 	 */
@@ -2582,7 +2630,8 @@ public class Font implements java.io.Serializable {
 	 *         <code>CharacterIterator</code> and the specified
 	 *         <code>FontRenderContext</code>.
 	 */
-	public GlyphVector createGlyphVector(FontRenderContext frc, CharacterIterator ci) {
+	public GlyphVector createGlyphVector(FontRenderContext frc,
+			CharacterIterator ci) {
 		return (GlyphVector) new StandardGlyphVector(this, ci, frc);
 	}
 
@@ -2595,13 +2644,14 @@ public class Font implements java.io.Serializable {
 	 * require reordering, shaping, or ligature substitution.
 	 * 
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *                   the specified <code>FontRenderContext</code>
 	 * @param glyphCodes
-	 *            the specified integer array
+	 *                   the specified integer array
 	 * @return a new <code>GlyphVector</code> created with the specified integer
 	 *         array and the specified <code>FontRenderContext</code>.
 	 */
-	public GlyphVector createGlyphVector(FontRenderContext frc, int[] glyphCodes) {
+	public GlyphVector createGlyphVector(FontRenderContext frc,
+			int[] glyphCodes) {
 		return (GlyphVector) new StandardGlyphVector(this, glyphCodes, frc);
 	}
 
@@ -2629,20 +2679,22 @@ public class Font implements java.io.Serializable {
 	 * All other values for the flags parameter are reserved.
 	 *
 	 * @param frc
-	 *            the specified <code>FontRenderContext</code>
+	 *              the specified <code>FontRenderContext</code>
 	 * @param text
-	 *            the text to layout
+	 *              the text to layout
 	 * @param start
-	 *            the start of the text to use for the <code>GlyphVector</code>
+	 *              the start of the text to use for the
+	 *              <code>GlyphVector</code>
 	 * @param limit
-	 *            the limit of the text to use for the <code>GlyphVector</code>
+	 *              the limit of the text to use for the
+	 *              <code>GlyphVector</code>
 	 * @param flags
-	 *            control flags as described above
+	 *              control flags as described above
 	 * @return a new <code>GlyphVector</code> representing the text between
 	 *         start and limit, with glyphs chosen and positioned so as to best
 	 *         represent the text
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if start or limit is out of bounds
+	 *                                        if start or limit is out of bounds
 	 * @see java.text.Bidi
 	 * @see #LAYOUT_LEFT_TO_RIGHT
 	 * @see #LAYOUT_RIGHT_TO_LEFT
@@ -2650,11 +2702,12 @@ public class Font implements java.io.Serializable {
 	 * @see #LAYOUT_NO_LIMIT_CONTEXT
 	 * @since 1.4
 	 */
-	public GlyphVector layoutGlyphVector(FontRenderContext frc, char[] text, int start, int limit,
-			int flags) {
+	public GlyphVector layoutGlyphVector(FontRenderContext frc, char[] text,
+			int start, int limit, int flags) {
 
 		GlyphLayout gl = GlyphLayout.get(null); // !!! no custom layout engines
-		StandardGlyphVector gv = gl.layout(this, frc, text, start, limit - start, flags, null);
+		StandardGlyphVector gv = gl.layout(this, frc, text, start, limit
+				- start, flags, null);
 		GlyphLayout.done(gl);
 		return gv;
 	}
@@ -2683,7 +2736,8 @@ public class Font implements java.io.Serializable {
 	 */
 	public static final int LAYOUT_NO_LIMIT_CONTEXT = 4;
 
-	private static void applyTransform(AffineTransform trans, AttributeValues values) {
+	private static void applyTransform(AffineTransform trans,
+			AttributeValues values) {
 		if (trans == null) {
 			throw new IllegalArgumentException("transform must not be null");
 		}

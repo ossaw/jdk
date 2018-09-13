@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -156,19 +136,21 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * axis.
 	 *
 	 * @param target
-	 *            the container that needs to be laid out
+	 *               the container that needs to be laid out
 	 * @param axis
-	 *            the axis to lay out components along. Can be one of:
-	 *            <code>BoxLayout.X_AXIS</code>, <code>BoxLayout.Y_AXIS</code>,
-	 *            <code>BoxLayout.LINE_AXIS</code> or
-	 *            <code>BoxLayout.PAGE_AXIS</code>
+	 *               the axis to lay out components along. Can be one of:
+	 *               <code>BoxLayout.X_AXIS</code>,
+	 *               <code>BoxLayout.Y_AXIS</code>,
+	 *               <code>BoxLayout.LINE_AXIS</code> or
+	 *               <code>BoxLayout.PAGE_AXIS</code>
 	 *
 	 * @exception AWTError
-	 *                if the value of <code>axis</code> is invalid
+	 *                     if the value of <code>axis</code> is invalid
 	 */
 	@ConstructorProperties({ "target", "axis" })
 	public BoxLayout(Container target, int axis) {
-		if (axis != X_AXIS && axis != Y_AXIS && axis != LINE_AXIS && axis != PAGE_AXIS) {
+		if (axis != X_AXIS && axis != Y_AXIS && axis != LINE_AXIS
+				&& axis != PAGE_AXIS) {
 			throw new AWTError("Invalid axis");
 		}
 		this.axis = axis;
@@ -179,16 +161,18 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * Constructs a BoxLayout that produces debugging messages.
 	 *
 	 * @param target
-	 *            the container that needs to be laid out
+	 *               the container that needs to be laid out
 	 * @param axis
-	 *            the axis to lay out components along. Can be one of:
-	 *            <code>BoxLayout.X_AXIS</code>, <code>BoxLayout.Y_AXIS</code>,
-	 *            <code>BoxLayout.LINE_AXIS</code> or
-	 *            <code>BoxLayout.PAGE_AXIS</code>
+	 *               the axis to lay out components along. Can be one of:
+	 *               <code>BoxLayout.X_AXIS</code>,
+	 *               <code>BoxLayout.Y_AXIS</code>,
+	 *               <code>BoxLayout.LINE_AXIS</code> or
+	 *               <code>BoxLayout.PAGE_AXIS</code>
 	 *
 	 * @param dbg
-	 *            the stream to which debugging messages should be sent, null if
-	 *            none
+	 *               the stream to which debugging messages should be sent, null
+	 *               if
+	 *               none
 	 */
 	BoxLayout(Container target, int axis, PrintStream dbg) {
 		this(target, axis);
@@ -228,11 +212,11 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * the event thread, this method may be called asynchronously.
 	 *
 	 * @param target
-	 *            the affected container
+	 *               the affected container
 	 *
 	 * @exception AWTError
-	 *                if the target isn't the container specified to the
-	 *                BoxLayout constructor
+	 *                     if the target isn't the container specified to the
+	 *                     BoxLayout constructor
 	 */
 	public synchronized void invalidateLayout(Container target) {
 		checkContainer(target);
@@ -246,9 +230,9 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * Not used by this class.
 	 *
 	 * @param name
-	 *            the name of the component
+	 *             the name of the component
 	 * @param comp
-	 *            the component
+	 *             the component
 	 */
 	public void addLayoutComponent(String name, Component comp) {
 		invalidateLayout(comp.getParent());
@@ -258,7 +242,7 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * Not used by this class.
 	 *
 	 * @param comp
-	 *            the component
+	 *             the component
 	 */
 	public void removeLayoutComponent(Component comp) {
 		invalidateLayout(comp.getParent());
@@ -268,9 +252,9 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * Not used by this class.
 	 *
 	 * @param comp
-	 *            the component
+	 *                    the component
 	 * @param constraints
-	 *            constraints
+	 *                    constraints
 	 */
 	public void addLayoutComponent(Component comp, Object constraints) {
 		invalidateLayout(comp.getParent());
@@ -281,11 +265,11 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * the specified target container.
 	 *
 	 * @param target
-	 *            the container that needs to be laid out
+	 *               the container that needs to be laid out
 	 * @return the dimensions &gt;= 0 &amp;&amp; &lt;= Integer.MAX_VALUE
 	 * @exception AWTError
-	 *                if the target isn't the container specified to the
-	 *                BoxLayout constructor
+	 *                     if the target isn't the container specified to the
+	 *                     BoxLayout constructor
 	 * @see Container
 	 * @see #minimumLayoutSize
 	 * @see #maximumLayoutSize
@@ -299,10 +283,10 @@ public class BoxLayout implements LayoutManager2, Serializable {
 		}
 
 		Insets insets = target.getInsets();
-		size.width = (int) Math.min((long) size.width + (long) insets.left + (long) insets.right,
-				Integer.MAX_VALUE);
-		size.height = (int) Math.min((long) size.height + (long) insets.top + (long) insets.bottom,
-				Integer.MAX_VALUE);
+		size.width = (int) Math.min((long) size.width + (long) insets.left
+				+ (long) insets.right, Integer.MAX_VALUE);
+		size.height = (int) Math.min((long) size.height + (long) insets.top
+				+ (long) insets.bottom, Integer.MAX_VALUE);
 		return size;
 	}
 
@@ -311,11 +295,11 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * in the specified target container.
 	 *
 	 * @param target
-	 *            the container that needs to be laid out
+	 *               the container that needs to be laid out
 	 * @return the dimensions &gt;= 0 &amp;&amp; &lt;= Integer.MAX_VALUE
 	 * @exception AWTError
-	 *                if the target isn't the container specified to the
-	 *                BoxLayout constructor
+	 *                     if the target isn't the container specified to the
+	 *                     BoxLayout constructor
 	 * @see #preferredLayoutSize
 	 * @see #maximumLayoutSize
 	 */
@@ -328,10 +312,10 @@ public class BoxLayout implements LayoutManager2, Serializable {
 		}
 
 		Insets insets = target.getInsets();
-		size.width = (int) Math.min((long) size.width + (long) insets.left + (long) insets.right,
-				Integer.MAX_VALUE);
-		size.height = (int) Math.min((long) size.height + (long) insets.top + (long) insets.bottom,
-				Integer.MAX_VALUE);
+		size.width = (int) Math.min((long) size.width + (long) insets.left
+				+ (long) insets.right, Integer.MAX_VALUE);
+		size.height = (int) Math.min((long) size.height + (long) insets.top
+				+ (long) insets.bottom, Integer.MAX_VALUE);
 		return size;
 	}
 
@@ -340,11 +324,11 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * the components it contains.
 	 *
 	 * @param target
-	 *            the container that needs to be laid out
+	 *               the container that needs to be laid out
 	 * @return the dimensions &gt;= 0 &amp;&amp; &lt;= Integer.MAX_VALUE
 	 * @exception AWTError
-	 *                if the target isn't the container specified to the
-	 *                BoxLayout constructor
+	 *                     if the target isn't the container specified to the
+	 *                     BoxLayout constructor
 	 * @see #preferredLayoutSize
 	 * @see #minimumLayoutSize
 	 */
@@ -357,10 +341,10 @@ public class BoxLayout implements LayoutManager2, Serializable {
 		}
 
 		Insets insets = target.getInsets();
-		size.width = (int) Math.min((long) size.width + (long) insets.left + (long) insets.right,
-				Integer.MAX_VALUE);
-		size.height = (int) Math.min((long) size.height + (long) insets.top + (long) insets.bottom,
-				Integer.MAX_VALUE);
+		size.width = (int) Math.min((long) size.width + (long) insets.left
+				+ (long) insets.right, Integer.MAX_VALUE);
+		size.height = (int) Math.min((long) size.height + (long) insets.top
+				+ (long) insets.bottom, Integer.MAX_VALUE);
 		return size;
 	}
 
@@ -370,11 +354,11 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * alignment needed to place the children along the X axis will be returned.
 	 *
 	 * @param target
-	 *            the container
+	 *               the container
 	 * @return the alignment &gt;= 0.0f &amp;&amp; &lt;= 1.0f
 	 * @exception AWTError
-	 *                if the target isn't the container specified to the
-	 *                BoxLayout constructor
+	 *                     if the target isn't the container specified to the
+	 *                     BoxLayout constructor
 	 */
 	public synchronized float getLayoutAlignmentX(Container target) {
 		checkContainer(target);
@@ -388,11 +372,11 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * alignment needed to place the children along the Y axis will be returned.
 	 *
 	 * @param target
-	 *            the container
+	 *               the container
 	 * @return the alignment &gt;= 0.0f &amp;&amp; &lt;= 1.0f
 	 * @exception AWTError
-	 *                if the target isn't the container specified to the
-	 *                BoxLayout constructor
+	 *                     if the target isn't the container specified to the
+	 *                     BoxLayout constructor
 	 */
 	public synchronized float getLayoutAlignmentY(Container target) {
 		checkContainer(target);
@@ -405,11 +389,11 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * to be laid out.
 	 *
 	 * @param target
-	 *            the container to lay out
+	 *               the container to lay out
 	 *
 	 * @exception AWTError
-	 *                if the target isn't the container specified to the
-	 *                BoxLayout constructor
+	 *                     if the target isn't the container specified to the
+	 *                     BoxLayout constructor
 	 */
 	public void layoutContainer(Container target) {
 		checkContainer(target);
@@ -434,24 +418,25 @@ public class BoxLayout implements LayoutManager2, Serializable {
 			checkRequests();
 
 			if (absoluteAxis == X_AXIS) {
-				SizeRequirements.calculateTiledPositions(alloc.width, xTotal, xChildren, xOffsets,
-						xSpans, ltr);
-				SizeRequirements.calculateAlignedPositions(alloc.height, yTotal, yChildren,
-						yOffsets, ySpans);
+				SizeRequirements.calculateTiledPositions(alloc.width, xTotal,
+						xChildren, xOffsets, xSpans, ltr);
+				SizeRequirements.calculateAlignedPositions(alloc.height, yTotal,
+						yChildren, yOffsets, ySpans);
 			} else {
-				SizeRequirements.calculateAlignedPositions(alloc.width, xTotal, xChildren, xOffsets,
-						xSpans, ltr);
-				SizeRequirements.calculateTiledPositions(alloc.height, yTotal, yChildren, yOffsets,
-						ySpans);
+				SizeRequirements.calculateAlignedPositions(alloc.width, xTotal,
+						xChildren, xOffsets, xSpans, ltr);
+				SizeRequirements.calculateTiledPositions(alloc.height, yTotal,
+						yChildren, yOffsets, ySpans);
 			}
 		}
 
 		// flush changes to the container
 		for (int i = 0; i < nChildren; i++) {
 			Component c = target.getComponent(i);
-			c.setBounds((int) Math.min((long) in.left + (long) xOffsets[i], Integer.MAX_VALUE),
-					(int) Math.min((long) in.top + (long) yOffsets[i], Integer.MAX_VALUE),
-					xSpans[i], ySpans[i]);
+			c.setBounds((int) Math.min((long) in.left + (long) xOffsets[i],
+					Integer.MAX_VALUE), (int) Math.min((long) in.top
+							+ (long) yOffsets[i], Integer.MAX_VALUE), xSpans[i],
+					ySpans[i]);
 
 		}
 		if (dbg != null) {
@@ -481,21 +466,24 @@ public class BoxLayout implements LayoutManager2, Serializable {
 			for (int i = 0; i < n; i++) {
 				Component c = target.getComponent(i);
 				if (!c.isVisible()) {
-					xChildren[i] = new SizeRequirements(0, 0, 0, c.getAlignmentX());
-					yChildren[i] = new SizeRequirements(0, 0, 0, c.getAlignmentY());
+					xChildren[i] = new SizeRequirements(0, 0, 0, c
+							.getAlignmentX());
+					yChildren[i] = new SizeRequirements(0, 0, 0, c
+							.getAlignmentY());
 					continue;
 				}
 				Dimension min = c.getMinimumSize();
 				Dimension typ = c.getPreferredSize();
 				Dimension max = c.getMaximumSize();
-				xChildren[i] = new SizeRequirements(min.width, typ.width, max.width,
-						c.getAlignmentX());
-				yChildren[i] = new SizeRequirements(min.height, typ.height, max.height,
-						c.getAlignmentY());
+				xChildren[i] = new SizeRequirements(min.width, typ.width,
+						max.width, c.getAlignmentX());
+				yChildren[i] = new SizeRequirements(min.height, typ.height,
+						max.height, c.getAlignmentY());
 			}
 
 			// Resolve axis to an absolute value (either X_AXIS or Y_AXIS)
-			int absoluteAxis = resolveAxis(axis, target.getComponentOrientation());
+			int absoluteAxis = resolveAxis(axis, target
+					.getComponentOrientation());
 
 			if (absoluteAxis == X_AXIS) {
 				xTotal = SizeRequirements.getTiledSizeRequirements(xChildren);
@@ -514,9 +502,9 @@ public class BoxLayout implements LayoutManager2, Serializable {
 	 * absolute axes, X_AXIS and Y_AXIS are returned unmodified.
 	 *
 	 * @param axis
-	 *            the axis to resolve
+	 *             the axis to resolve
 	 * @param o
-	 *            the ComponentOrientation to resolve against
+	 *             the ComponentOrientation to resolve against
 	 * @return the resolved axis
 	 */
 	private int resolveAxis(int axis, ComponentOrientation o) {

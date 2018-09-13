@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -43,7 +23,7 @@ public interface Filter {
 	 * Check if a given log record should be published.
 	 * 
 	 * @param record
-	 *            a LogRecord
+	 *               a LogRecord
 	 * @return true if the log record should be published.
 	 */
 	public boolean isLoggable(LogRecord record);

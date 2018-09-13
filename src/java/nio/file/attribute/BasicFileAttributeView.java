@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -117,11 +97,14 @@ public interface BasicFileAttributeView extends FileAttributeView {
 	 * @return the file attributes
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, its {@link SecurityManager#checkRead(String)
-	 *             checkRead} method is invoked to check read access to the file
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, its
+	 *                           {@link SecurityManager#checkRead(String)
+	 *                           checkRead} method is invoked to check read
+	 *                           access to the file
 	 */
 	BasicFileAttributes readAttributes() throws IOException;
 
@@ -161,24 +144,30 @@ public interface BasicFileAttributeView extends FileAttributeView {
 	 * </pre>
 	 *
 	 * @param lastModifiedTime
-	 *            the new last modified time, or {@code null} to not change the
-	 *            value
+	 *                         the new last modified time, or {@code null} to
+	 *                         not change the
+	 *                         value
 	 * @param lastAccessTime
-	 *            the last access time, or {@code null} to not change the value
+	 *                         the last access time, or {@code null} to not
+	 *                         change the value
 	 * @param createTime
-	 *            the file's create time, or {@code null} to not change the
-	 *            value
+	 *                         the file's create time, or {@code null} to not
+	 *                         change the
+	 *                         value
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, its {@link SecurityManager#checkWrite(String)
-	 *             checkWrite} method is invoked to check write access to the
-	 *             file
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method is invoked to check write
+	 *                           access to the
+	 *                           file
 	 *
 	 * @see java.nio.file.Files#setLastModifiedTime
 	 */
-	void setTimes(FileTime lastModifiedTime, FileTime lastAccessTime, FileTime createTime)
-			throws IOException;
+	void setTimes(FileTime lastModifiedTime, FileTime lastAccessTime,
+			FileTime createTime) throws IOException;
 }

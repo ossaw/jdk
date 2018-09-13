@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,18 +47,18 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 	 * plain catalog format and instantiates CatalogEntry objects for them.
 	 *
 	 * @param namespaceURI
-	 *            The namespace name of the element.
+	 *                     The namespace name of the element.
 	 * @param localName
-	 *            The local name of the element.
+	 *                     The local name of the element.
 	 * @param qName
-	 *            The QName of the element.
+	 *                     The QName of the element.
 	 * @param atts
-	 *            The list of attributes on the element.
+	 *                     The list of attributes on the element.
 	 *
 	 * @see CatalogEntry
 	 */
-	public void startElement(String namespaceURI, String localName, String qName, Attributes atts)
-			throws SAXException {
+	public void startElement(String namespaceURI, String localName,
+			String qName, Attributes atts) throws SAXException {
 
 		// Check before calling the super because super will report our
 		// namespace as an extension namespace, but that doesn't count
@@ -73,7 +70,8 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 		int entryType = -1;
 		Vector entryArgs = new Vector();
 
-		if (namespaceURI != null && extendedNamespaceName.equals(namespaceURI) && !inExtension) {
+		if (namespaceURI != null && extendedNamespaceName.equals(namespaceURI)
+				&& !inExtension) {
 			// This is an Extended XML Catalog entry
 
 			if (atts.getValue("xml:base") != null) {
@@ -89,9 +87,12 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 					catalog.addEntry(ce);
 				} catch (CatalogException cex) {
 					if (cex.getExceptionType() == CatalogException.INVALID_ENTRY_TYPE) {
-						debug.message(1, "Invalid catalog entry type", localName);
-					} else if (cex.getExceptionType() == CatalogException.INVALID_ENTRY) {
-						debug.message(1, "Invalid catalog entry (base)", localName);
+						debug.message(1, "Invalid catalog entry type",
+								localName);
+					} else if (cex
+							.getExceptionType() == CatalogException.INVALID_ENTRY) {
+						debug.message(1, "Invalid catalog entry (base)",
+								localName);
 					}
 				}
 
@@ -107,7 +108,8 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 					entryArgs.add(atts.getValue("suffix"));
 					entryArgs.add(atts.getValue("uri"));
 
-					debug.message(4, "uriSuffix", atts.getValue("suffix"), atts.getValue("uri"));
+					debug.message(4, "uriSuffix", atts.getValue("suffix"), atts
+							.getValue("uri"));
 				}
 			} else if (localName.equals("systemSuffix")) {
 				if (checkAttributes(atts, "suffix", "uri")) {
@@ -115,7 +117,8 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 					entryArgs.add(atts.getValue("suffix"));
 					entryArgs.add(atts.getValue("uri"));
 
-					debug.message(4, "systemSuffix", atts.getValue("suffix"), atts.getValue("uri"));
+					debug.message(4, "systemSuffix", atts.getValue("suffix"),
+							atts.getValue("uri"));
 				}
 			} else {
 				// This is equivalent to an invalid catalog entry type
@@ -128,8 +131,10 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 					catalog.addEntry(ce);
 				} catch (CatalogException cex) {
 					if (cex.getExceptionType() == CatalogException.INVALID_ENTRY_TYPE) {
-						debug.message(1, "Invalid catalog entry type", localName);
-					} else if (cex.getExceptionType() == CatalogException.INVALID_ENTRY) {
+						debug.message(1, "Invalid catalog entry type",
+								localName);
+					} else if (cex
+							.getExceptionType() == CatalogException.INVALID_ENTRY) {
 						debug.message(1, "Invalid catalog entry", localName);
 					}
 				}
@@ -150,7 +155,8 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 		int entryType = -1;
 		Vector entryArgs = new Vector();
 
-		if (namespaceURI != null && (extendedNamespaceName.equals(namespaceURI)) && !inExtension) {
+		if (namespaceURI != null && (extendedNamespaceName.equals(namespaceURI))
+				&& !inExtension) {
 
 			String popURI = (String) baseURIStack.pop();
 			String baseURI = (String) baseURIStack.peek();
@@ -166,9 +172,12 @@ public class ExtendedXMLCatalogReader extends OASISXMLCatalogReader {
 					catalog.addEntry(ce);
 				} catch (CatalogException cex) {
 					if (cex.getExceptionType() == CatalogException.INVALID_ENTRY_TYPE) {
-						debug.message(1, "Invalid catalog entry type", localName);
-					} else if (cex.getExceptionType() == CatalogException.INVALID_ENTRY) {
-						debug.message(1, "Invalid catalog entry (rbase)", localName);
+						debug.message(1, "Invalid catalog entry type",
+								localName);
+					} else if (cex
+							.getExceptionType() == CatalogException.INVALID_ENTRY) {
+						debug.message(1, "Invalid catalog entry (rbase)",
+								localName);
 					}
 				}
 			}

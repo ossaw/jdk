@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,49 +31,37 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 
 	/*
 	 * General notes to translators:
-	 *
 	 * This file contains error and warning messages related to XPath Error
 	 * Handling.
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 8) The context node is the node in the document with respect to which an
 	 * XPath expression is being evaluated.
-	 *
 	 * 9) An iterator is an object that traverses nodes in the tree, one at a
 	 * time.
-	 *
 	 * 10) NCName is an XML term used to describe a name that does not contain a
 	 * colon (a "no-colon name").
-	 *
 	 * 11) QName is an XML term meaning "qualified name".
 	 */
 
@@ -283,18 +268,23 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ ER_CURRENT_NOT_ALLOWED_IN_MATCH,
 					"current()-Funktion ist nicht zul\u00E4ssig in einem Vergleichsmuster." },
 
-			{ ER_CURRENT_TAKES_NO_ARGS, "current()-Funktion akzeptiert keine Argumente." },
+			{ ER_CURRENT_TAKES_NO_ARGS,
+					"current()-Funktion akzeptiert keine Argumente." },
 
 			{ ER_DOCUMENT_REPLACED,
 					"document()-Funktionsimplementierung wurde durch com.sun.org.apache.xalan.internal.xslt.FuncDocument ersetzt." },
 
-			{ ER_CONTEXT_HAS_NO_OWNERDOC, "Kontext hat kein Eigent\u00FCmerdokument." },
+			{ ER_CONTEXT_HAS_NO_OWNERDOC,
+					"Kontext hat kein Eigent\u00FCmerdokument." },
 
-			{ ER_LOCALNAME_HAS_TOO_MANY_ARGS, "local-name() hat zu viele Argumente." },
+			{ ER_LOCALNAME_HAS_TOO_MANY_ARGS,
+					"local-name() hat zu viele Argumente." },
 
-			{ ER_NAMESPACEURI_HAS_TOO_MANY_ARGS, "namespace-uri() hat zu viele Argumente." },
+			{ ER_NAMESPACEURI_HAS_TOO_MANY_ARGS,
+					"namespace-uri() hat zu viele Argumente." },
 
-			{ ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS, "normalize-space() hat zu viele Argumente." },
+			{ ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS,
+					"normalize-space() hat zu viele Argumente." },
 
 			{ ER_NUMBER_HAS_TOO_MANY_ARGS, "number() hat zu viele Argumente." },
 
@@ -302,14 +292,17 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 
 			{ ER_STRING_HAS_TOO_MANY_ARGS, "string() hat zu viele Argumente." },
 
-			{ ER_STRINGLENGTH_HAS_TOO_MANY_ARGS, "string-length() hat zu viele Argumente." },
+			{ ER_STRINGLENGTH_HAS_TOO_MANY_ARGS,
+					"string-length() hat zu viele Argumente." },
 
-			{ ER_TRANSLATE_TAKES_3_ARGS, "translate()-Funktion akzeptiert drei Argumente." },
+			{ ER_TRANSLATE_TAKES_3_ARGS,
+					"translate()-Funktion akzeptiert drei Argumente." },
 
 			{ ER_UNPARSEDENTITYURI_TAKES_1_ARG,
 					"unparsed-entity-uri-Funktion sollte ein Argument akzeptieren." },
 
-			{ ER_NAMESPACEAXIS_NOT_IMPLEMENTED, "Namespace-Achse noch nicht implementiert." },
+			{ ER_NAMESPACEAXIS_NOT_IMPLEMENTED,
+					"Namespace-Achse noch nicht implementiert." },
 
 			{ ER_UNKNOWN_AXIS, "Unbekannte Achse: {0}" },
 
@@ -318,22 +311,28 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ ER_INCORRECT_ARG_LENGTH,
 					"Argumentl\u00E4nge von processing-instruction()-Knotentest ist falsch." },
 
-			{ ER_CANT_CONVERT_TO_NUMBER, "{0} kann nicht in eine Zahl konvertiert werden" },
+			{ ER_CANT_CONVERT_TO_NUMBER,
+					"{0} kann nicht in eine Zahl konvertiert werden" },
 
-			{ ER_CANT_CONVERT_TO_NODELIST, "{0} kann nicht in eine NodeList konvertiert werden." },
+			{ ER_CANT_CONVERT_TO_NODELIST,
+					"{0} kann nicht in eine NodeList konvertiert werden." },
 
 			{ ER_CANT_CONVERT_TO_MUTABLENODELIST,
 					"{0} kann nicht in NodeSetDTM konvertiert werden." },
 
-			{ ER_CANT_CONVERT_TO_TYPE, "{0} kann nicht in type#{1} konvertiert werden" },
+			{ ER_CANT_CONVERT_TO_TYPE,
+					"{0} kann nicht in type#{1} konvertiert werden" },
 
-			{ ER_EXPECTED_MATCH_PATTERN, "Vergleichsmuster in getMatchScore erwartet." },
+			{ ER_EXPECTED_MATCH_PATTERN,
+					"Vergleichsmuster in getMatchScore erwartet." },
 
-			{ ER_COULDNOT_GET_VAR_NAMED, "Variable mit Namen {0} kann nicht abgerufen werden" },
+			{ ER_COULDNOT_GET_VAR_NAMED,
+					"Variable mit Namen {0} kann nicht abgerufen werden" },
 
 			{ ER_UNKNOWN_OPCODE, "ERROR. Unbekannter Vorgangscode: {0}" },
 
-			{ ER_EXTRA_ILLEGAL_TOKENS, "Zus\u00E4tzliche ung\u00FCltige Tokens: {0}" },
+			{ ER_EXTRA_ILLEGAL_TOKENS,
+					"Zus\u00E4tzliche ung\u00FCltige Tokens: {0}" },
 
 			{ ER_EXPECTED_DOUBLE_QUOTE,
 					"Literal in falschen Anf\u00FChrungszeichen... Doppelte Anf\u00FChrungszeichen erwartet." },
@@ -345,7 +344,8 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 
 			{ ER_EXPECTED_BUT_FOUND, "{0} erwartet, aber {1} gefunden" },
 
-			{ ER_INCORRECT_PROGRAMMER_ASSERTION, "Programmierer-Assertion ist falsch. - {0}" },
+			{ ER_INCORRECT_PROGRAMMER_ASSERTION,
+					"Programmierer-Assertion ist falsch. - {0}" },
 
 			{ ER_BOOLEAN_ARG_NO_LONGER_OPTIONAL,
 					"boolean(...)-Argument ist nicht mehr optional bei 19990709 XPath-Entwurf." },
@@ -366,7 +366,8 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ ER_PATTERN_LITERAL_NEEDS_BE_QUOTED,
 					"Musterliteral ({0}) muss in Anf\u00FChrungszeichen gesetzt werden." },
 
-			{ ER_COULDNOT_BE_FORMATTED_TO_NUMBER, "{0} konnte nicht als Zahl formatiert werden." },
+			{ ER_COULDNOT_BE_FORMATTED_TO_NUMBER,
+					"{0} konnte nicht als Zahl formatiert werden." },
 
 			{ ER_COULDNOT_CREATE_XMLPROCESSORLIAISON,
 					"XML-TransformerFactory-Liaison konnte nicht erstellt werden: {0}" },
@@ -385,13 +386,17 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ ER_AXES_NOT_ALLOWED,
 					"Nur \"child::\"- und \"attribute::\"-Achsen sind in Vergleichsmustern zul\u00E4ssig. Betreffende Achsen = {0}" },
 
-			{ ER_KEY_HAS_TOO_MANY_ARGS, "key() hat eine falsche Anzahl Argumente." },
+			{ ER_KEY_HAS_TOO_MANY_ARGS,
+					"key() hat eine falsche Anzahl Argumente." },
 
-			{ ER_COUNT_TAKES_1_ARG, "count-Funktion sollte ein Argument akzeptieren." },
+			{ ER_COUNT_TAKES_1_ARG,
+					"count-Funktion sollte ein Argument akzeptieren." },
 
-			{ ER_COULDNOT_FIND_FUNCTION, "Funktion konnte nicht gefunden werden: {0}" },
+			{ ER_COULDNOT_FIND_FUNCTION,
+					"Funktion konnte nicht gefunden werden: {0}" },
 
-			{ ER_UNSUPPORTED_ENCODING, "Nicht unterst\u00FCtzte Codierung: {0}" },
+			{ ER_UNSUPPORTED_ENCODING,
+					"Nicht unterst\u00FCtzte Codierung: {0}" },
 
 			{ ER_PROBLEM_IN_DTM_NEXTSIBLING,
 					"Problem in DTM in getNextSibling aufgetreten... Es wird versucht, das Problem zu beheben" },
@@ -402,17 +407,20 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ ER_SETDOMFACTORY_NOT_SUPPORTED,
 					"setDOMFactory wird nicht von XPathContext unterst\u00FCtzt." },
 
-			{ ER_PREFIX_MUST_RESOLVE, "Pr\u00E4fix muss als Namespace aufgel\u00F6st werden: {0}" },
+			{ ER_PREFIX_MUST_RESOLVE,
+					"Pr\u00E4fix muss als Namespace aufgel\u00F6st werden: {0}" },
 
 			{ ER_PARSE_NOT_SUPPORTED,
 					"parse (InputSource-Quelle) nicht unterst\u00FCtzt in XPathContext. {0} kann nicht ge\u00F6ffnet werden" },
 
-			{ ER_SAX_API_NOT_HANDLED, "SAX-API-Zeichen(char ch[]... nicht verarbeitet von DTM." },
+			{ ER_SAX_API_NOT_HANDLED,
+					"SAX-API-Zeichen(char ch[]... nicht verarbeitet von DTM." },
 
 			{ ER_IGNORABLE_WHITESPACE_NOT_HANDLED,
 					"ignorableWhitespace(char ch[]... nicht verarbeitet von DTM." },
 
-			{ ER_DTM_CANNOT_HANDLE_NODES, "DTMLiaison kann keine Knoten des Typs {0} verarbeiten" },
+			{ ER_DTM_CANNOT_HANDLE_NODES,
+					"DTMLiaison kann keine Knoten des Typs {0} verarbeiten" },
 
 			{ ER_XERCES_CANNOT_HANDLE_NODES,
 					"DOM2Helper kann keine Knoten des Typs {0} verarbeiten" },
@@ -422,23 +430,28 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 
 			{ ER_XERCES_PARSE_ERROR, "DOM2Helper.parse-Fehler" },
 
-			{ ER_INVALID_UTF16_SURROGATE, "Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
+			{ ER_INVALID_UTF16_SURROGATE,
+					"Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
 
 			{ ER_OIERROR, "I/O-Fehler" },
 
-			{ ER_CANNOT_CREATE_URL, "URL f\u00FCr {0} kann nicht erstellt werden" },
+			{ ER_CANNOT_CREATE_URL,
+					"URL f\u00FCr {0} kann nicht erstellt werden" },
 
 			{ ER_XPATH_READOBJECT, "In XPath.readObject: {0}" },
 
 			{ ER_FUNCTION_TOKEN_NOT_FOUND, "Funktionstoken nicht gefunden." },
 
-			{ ER_CANNOT_DEAL_XPATH_TYPE, "XPath-Typ {0} kann nicht bearbeitet werden" },
+			{ ER_CANNOT_DEAL_XPATH_TYPE,
+					"XPath-Typ {0} kann nicht bearbeitet werden" },
 
 			{ ER_NODESET_NOT_MUTABLE, "Dieses NodeSet ist nicht mutierbar" },
 
-			{ ER_NODESETDTM_NOT_MUTABLE, "Dieses NodeSetDTM ist nicht mutierbar" },
+			{ ER_NODESETDTM_NOT_MUTABLE,
+					"Dieses NodeSetDTM ist nicht mutierbar" },
 
-			{ ER_VAR_NOT_RESOLVABLE, "Variable kann nicht aufgel\u00F6st werden: {0}" },
+			{ ER_VAR_NOT_RESOLVABLE,
+					"Variable kann nicht aufgel\u00F6st werden: {0}" },
 
 			{ ER_NULL_ERROR_HANDLER, "Null-Error Handler" },
 
@@ -472,7 +485,8 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS,
 					"fsb() nicht unterst\u00FCtzt f\u00FCr XStringForChars" },
 
-			{ ER_COULD_NOT_FIND_VAR, "Variable mit Namen {0} konnte nicht gefunden werden" },
+			{ ER_COULD_NOT_FIND_VAR,
+					"Variable mit Namen {0} konnte nicht gefunden werden" },
 
 			{ ER_XSTRINGFORCHARS_CANNOT_TAKE_STRING,
 					"XStringForChars kann keine Zeichenfolge als Argument akzeptieren" },
@@ -567,7 +581,8 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			// The message indicates that syntactically such an expression was
 			// expected,
 			// but was not found.
-			{ ER_EXPECTED_REL_PATH_PATTERN, "Ein relatives Pfadmuster wurde erwartet." },
+			{ ER_EXPECTED_REL_PATH_PATTERN,
+					"Ein relatives Pfadmuster wurde erwartet." },
 
 			// Note to translators: The substitution text is the name of a data
 			// type. The
@@ -634,7 +649,8 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			// Note to translators: The XPath expression cannot be evaluated
 			// with respect
 			// to this type of node.
-			{ ER_WRONG_NODETYPE, "Kontextknotentyp wird nicht unterst\u00FCtzt." },
+			{ ER_WRONG_NODETYPE,
+					"Kontextknotentyp wird nicht unterst\u00FCtzt." },
 
 			{ ER_XPATH_ERROR, "Unbekannter Fehler in XPath." },
 
@@ -656,7 +672,8 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 
 			/** Field ER_UNSUPPORTED_RETURN_TYPE */
 
-			{ ER_UNSUPPORTED_RETURN_TYPE, "Nicht unterst\u00FCtzter R\u00FCckgabetyp: {0}" },
+			{ ER_UNSUPPORTED_RETURN_TYPE,
+					"Nicht unterst\u00FCtzter R\u00FCckgabetyp: {0}" },
 
 			/** Field ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL */
 
@@ -723,7 +740,8 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ WG_LOCALE_NAME_NOT_HANDLED,
 					"Gebietsschemaname in der format-number-Funktion wird noch nicht verarbeitet." },
 
-			{ WG_PROPERTY_NOT_SUPPORTED, "XSL-Eigenschaft nicht unterst\u00FCtzt: {0}" },
+			{ WG_PROPERTY_NOT_SUPPORTED,
+					"XSL-Eigenschaft nicht unterst\u00FCtzt: {0}" },
 
 			{ WG_DONT_DO_ANYTHING_WITH_NS,
 					"Derzeit keine Aktion mit Namespace {0} in Eigenschaft {1} ausf\u00FChren" },
@@ -731,16 +749,19 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ WG_SECURITY_EXCEPTION,
 					"SecurityException beim Versuch, auf XSL-Systemeigenschaft {0} zuzugreifen" },
 
-			{ WG_QUO_NO_LONGER_DEFINED, "Alte Syntax: quo(...) nicht mehr definiert in XPath." },
+			{ WG_QUO_NO_LONGER_DEFINED,
+					"Alte Syntax: quo(...) nicht mehr definiert in XPath." },
 
 			{ WG_NEED_DERIVED_OBJECT_TO_IMPLEMENT_NODETEST,
 					"XPath ben\u00F6tigt ein abgeleitetes Objekt, um nodeTest zu implementieren." },
 
 			{ WG_FUNCTION_TOKEN_NOT_FOUND, "Funktionstoken nicht gefunden." },
 
-			{ WG_COULDNOT_FIND_FUNCTION, "Funktion konnte nicht gefunden werden: {0}" },
+			{ WG_COULDNOT_FIND_FUNCTION,
+					"Funktion konnte nicht gefunden werden: {0}" },
 
-			{ WG_CANNOT_MAKE_URL_FROM, "URL kann nicht erstellt werden aus: {0}" },
+			{ WG_CANNOT_MAKE_URL_FROM,
+					"URL kann nicht erstellt werden aus: {0}" },
 
 			{ WG_EXPAND_ENTITIES_NOT_SUPPORTED,
 					"Option \"-E\" nicht unterst\u00FCtzt f\u00FCr DTM-Parser" },
@@ -748,27 +769,37 @@ public class XPATHErrorResources_de extends ListResourceBundle {
 			{ WG_ILLEGAL_VARIABLE_REFERENCE,
 					"VariableReference au\u00DFerhalb des Kontexts oder ohne Definition f\u00FCr Variable angegeben. Name = {0}" },
 
-			{ WG_UNSUPPORTED_ENCODING, "Nicht unterst\u00FCtzte Codierung: {0}" },
+			{ WG_UNSUPPORTED_ENCODING,
+					"Nicht unterst\u00FCtzte Codierung: {0}" },
 
 			// Other miscellaneous text used inside the code...
-			{ "ui_language", "de" }, { "help_language", "de" }, { "language", "de" },
-			{ "BAD_CODE",
-					"Parameter f\u00FCr createMessage war au\u00DFerhalb des g\u00FCltigen Bereichs" },
-			{ "FORMAT_FAILED", "Ausnahme bei messageFormat-Aufruf ausgel\u00F6st" },
-			{ "version", ">>>>>>> Xalan-Version " }, { "version2", "<<<<<<<" }, { "yes", "Ja" },
-			{ "line", "Zeilennummer" }, { "column", "Spaltennummer" },
-			{ "xsldone", "XSLProcessor: Fertig" }, { "xpath_option", "xpath-Optionen: " },
-			{ "optionIN", "   [-in inputXMLURL]" },
-			{ "optionSelect", "   [-select xpath expression]" },
-			{ "optionMatch", "   [-match match pattern (f\u00FCr Vergleichsdiagnose)]" },
-			{ "optionAnyExpr", "Oder nur ein XPath-Ausdruck f\u00FChrt einen Diagnosedump aus" },
-			{ "noParsermsg1", "XSL-Prozess war nicht erfolgreich." },
-			{ "noParsermsg2", "** Parser konnte nicht gefunden werden **" },
-			{ "noParsermsg3", "Pr\u00FCfen Sie den Classpath." },
+			{ "ui_language", "de" }, { "help_language", "de" }, { "language",
+					"de" }, { "BAD_CODE",
+							"Parameter f\u00FCr createMessage war au\u00DFerhalb des g\u00FCltigen Bereichs" },
+			{ "FORMAT_FAILED",
+					"Ausnahme bei messageFormat-Aufruf ausgel\u00F6st" }, {
+							"version", ">>>>>>> Xalan-Version " }, { "version2",
+									"<<<<<<<" }, { "yes", "Ja" }, { "line",
+											"Zeilennummer" }, { "column",
+													"Spaltennummer" }, {
+															"xsldone",
+															"XSLProcessor: Fertig" },
+			{ "xpath_option", "xpath-Optionen: " }, { "optionIN",
+					"   [-in inputXMLURL]" }, { "optionSelect",
+							"   [-select xpath expression]" }, { "optionMatch",
+									"   [-match match pattern (f\u00FCr Vergleichsdiagnose)]" },
+			{ "optionAnyExpr",
+					"Oder nur ein XPath-Ausdruck f\u00FChrt einen Diagnosedump aus" },
+			{ "noParsermsg1", "XSL-Prozess war nicht erfolgreich." }, {
+					"noParsermsg2",
+					"** Parser konnte nicht gefunden werden **" }, {
+							"noParsermsg3", "Pr\u00FCfen Sie den Classpath." },
 			{ "noParsermsg4",
 					"Wenn Sie nicht \u00FCber den XML-Parser f\u00FCr Java von IBM verf\u00FCgen, k\u00F6nnen Sie ihn hier herunterladen:" },
-			{ "noParsermsg5", "IBMs AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
+			{ "noParsermsg5",
+					"IBMs AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
+			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
+			{ "three", "3" }
 
 	};
 

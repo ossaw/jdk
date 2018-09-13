@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -78,30 +58,45 @@ public interface CallableStatement extends PreparedStatement {
 	 * retrieves the value.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param sqlType
-	 *            the JDBC type code defined by <code>java.sql.Types</code>. If
-	 *            the parameter is of JDBC type <code>NUMERIC</code> or
-	 *            <code>DECIMAL</code>, the version of
-	 *            <code>registerOutParameter</code> that accepts a scale value
-	 *            should be used.
+	 *                       the JDBC type code defined by
+	 *                       <code>java.sql.Types</code>. If
+	 *                       the parameter is of JDBC type <code>NUMERIC</code>
+	 *                       or
+	 *                       <code>DECIMAL</code>, the version of
+	 *                       <code>registerOutParameter</code> that accepts a
+	 *                       scale value
+	 *                       should be used.
 	 *
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if <code>sqlType</code> is a <code>ARRAY</code>,
-	 *                <code>BLOB</code>, <code>CLOB</code>,
-	 *                <code>DATALINK</code>, <code>JAVA_OBJECT</code>,
-	 *                <code>NCHAR</code>, <code>NCLOB</code>,
-	 *                <code>NVARCHAR</code>, <code>LONGNVARCHAR</code>,
-	 *                <code>REF</code>, <code>ROWID</code>, <code>SQLXML</code>
-	 *                or <code>STRUCT</code> data type and the JDBC driver does
-	 *                not support this data type
+	 *                                            if <code>sqlType</code> is a
+	 *                                            <code>ARRAY</code>,
+	 *                                            <code>BLOB</code>,
+	 *                                            <code>CLOB</code>,
+	 *                                            <code>DATALINK</code>,
+	 *                                            <code>JAVA_OBJECT</code>,
+	 *                                            <code>NCHAR</code>,
+	 *                                            <code>NCLOB</code>,
+	 *                                            <code>NVARCHAR</code>,
+	 *                                            <code>LONGNVARCHAR</code>,
+	 *                                            <code>REF</code>,
+	 *                                            <code>ROWID</code>,
+	 *                                            <code>SQLXML</code>
+	 *                                            or <code>STRUCT</code> data
+	 *                                            type and the JDBC driver does
+	 *                                            not support this data type
 	 * @see Types
 	 */
-	void registerOutParameter(int parameterIndex, int sqlType) throws SQLException;
+	void registerOutParameter(int parameterIndex, int sqlType)
+			throws SQLException;
 
 	/**
 	 * Registers the parameter in ordinal position <code>parameterIndex</code>
@@ -116,28 +111,42 @@ public interface CallableStatement extends PreparedStatement {
 	 * parameter is of JDBC type <code>NUMERIC</code> or <code>DECIMAL</code>.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param sqlType
-	 *            the SQL type code defined by <code>java.sql.Types</code>.
+	 *                       the SQL type code defined by
+	 *                       <code>java.sql.Types</code>.
 	 * @param scale
-	 *            the desired number of digits to the right of the decimal
-	 *            point. It must be greater than or equal to zero.
+	 *                       the desired number of digits to the right of the
+	 *                       decimal
+	 *                       point. It must be greater than or equal to zero.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if <code>sqlType</code> is a <code>ARRAY</code>,
-	 *                <code>BLOB</code>, <code>CLOB</code>,
-	 *                <code>DATALINK</code>, <code>JAVA_OBJECT</code>,
-	 *                <code>NCHAR</code>, <code>NCLOB</code>,
-	 *                <code>NVARCHAR</code>, <code>LONGNVARCHAR</code>,
-	 *                <code>REF</code>, <code>ROWID</code>, <code>SQLXML</code>
-	 *                or <code>STRUCT</code> data type and the JDBC driver does
-	 *                not support this data type
+	 *                                            if <code>sqlType</code> is a
+	 *                                            <code>ARRAY</code>,
+	 *                                            <code>BLOB</code>,
+	 *                                            <code>CLOB</code>,
+	 *                                            <code>DATALINK</code>,
+	 *                                            <code>JAVA_OBJECT</code>,
+	 *                                            <code>NCHAR</code>,
+	 *                                            <code>NCLOB</code>,
+	 *                                            <code>NVARCHAR</code>,
+	 *                                            <code>LONGNVARCHAR</code>,
+	 *                                            <code>REF</code>,
+	 *                                            <code>ROWID</code>,
+	 *                                            <code>SQLXML</code>
+	 *                                            or <code>STRUCT</code> data
+	 *                                            type and the JDBC driver does
+	 *                                            not support this data type
 	 * @see Types
 	 */
-	void registerOutParameter(int parameterIndex, int sqlType, int scale) throws SQLException;
+	void registerOutParameter(int parameterIndex, int sqlType, int scale)
+			throws SQLException;
 
 	/**
 	 * Retrieves whether the last OUT parameter read had the value of SQL
@@ -148,8 +157,9 @@ public interface CallableStatement extends PreparedStatement {
 	 * @return <code>true</code> if the last parameter read was SQL
 	 *         <code>NULL</code>; <code>false</code> otherwise
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed <code>CallableStatement</code>
 	 */
 	boolean wasNull() throws SQLException;
 
@@ -163,13 +173,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * value had in the database, including any padding added by the database.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setString
 	 */
 	String getString(int parameterIndex) throws SQLException;
@@ -180,13 +192,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * programming language.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>false</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setBoolean
 	 */
 	boolean getBoolean(int parameterIndex) throws SQLException;
@@ -196,13 +210,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * as a <code>byte</code> in the Java programming language.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setByte
 	 */
 	byte getByte(int parameterIndex) throws SQLException;
@@ -212,13 +228,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * parameter as a <code>short</code> in the Java programming language.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setShort
 	 */
 	short getShort(int parameterIndex) throws SQLException;
@@ -228,13 +246,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * as an <code>int</code> in the Java programming language.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setInt
 	 */
 	int getInt(int parameterIndex) throws SQLException;
@@ -244,13 +264,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * as a <code>long</code> in the Java programming language.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setLong
 	 */
 	long getLong(int parameterIndex) throws SQLException;
@@ -260,13 +282,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * as a <code>float</code> in the Java programming language.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setFloat
 	 */
 	float getFloat(int parameterIndex) throws SQLException;
@@ -276,13 +300,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * as a <code>double</code> in the Java programming language.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setDouble
 	 */
 	double getDouble(int parameterIndex) throws SQLException;
@@ -293,17 +319,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * the right of the decimal point.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param scale
-	 *            the number of digits to the right of the decimal point
+	 *                       the number of digits to the right of the decimal
+	 *                       point
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @deprecated use <code>getBigDecimal(int parameterIndex)</code> or
 	 *             <code>getBigDecimal(String parameterName)</code>
 	 * @see #setBigDecimal
@@ -317,13 +348,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * in the Java programming language.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setBytes
 	 */
 	byte[] getBytes(int parameterIndex) throws SQLException;
@@ -333,13 +366,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * a <code>java.sql.Date</code> object.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setDate
 	 */
 	java.sql.Date getDate(int parameterIndex) throws SQLException;
@@ -349,13 +384,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * a <code>java.sql.Time</code> object.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setTime
 	 */
 	java.sql.Time getTime(int parameterIndex) throws SQLException;
@@ -365,13 +402,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * parameter as a <code>java.sql.Timestamp</code> object.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setTimestamp
 	 */
 	java.sql.Timestamp getTimestamp(int parameterIndex) throws SQLException;
@@ -391,12 +430,14 @@ public interface CallableStatement extends PreparedStatement {
 	 * database-specific abstract data types.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return A <code>java.lang.Object</code> holding the OUT parameter value
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see Types
 	 * @see #setObject
 	 */
@@ -410,13 +451,15 @@ public interface CallableStatement extends PreparedStatement {
 	 * right of the decimal point as the value contains.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value in full precision. If the value is SQL
 	 *         <code>NULL</code>, the result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setBigDecimal
 	 * @since 1.2
 	 */
@@ -434,20 +477,25 @@ public interface CallableStatement extends PreparedStatement {
 	 * database-specific abstract data types.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param map
-	 *            the mapping from SQL type names to Java classes
+	 *                       the mapping from SQL type names to Java classes
 	 * @return a <code>java.lang.Object</code> holding the OUT parameter value
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setObject
 	 * @since 1.2
 	 */
-	Object getObject(int parameterIndex, java.util.Map<String, Class<?>> map) throws SQLException;
+	Object getObject(int parameterIndex, java.util.Map<String, Class<?>> map)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of the designated JDBC
@@ -455,16 +503,20 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@link java.sql.Ref} object in the Java programming language.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value as a <code>Ref</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	Ref getRef(int parameterIndex) throws SQLException;
@@ -474,16 +526,20 @@ public interface CallableStatement extends PreparedStatement {
 	 * a {@link java.sql.Blob} object in the Java programming language.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value as a <code>Blob</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	Blob getBlob(int parameterIndex) throws SQLException;
@@ -493,16 +549,20 @@ public interface CallableStatement extends PreparedStatement {
 	 * a <code>java.sql.Clob</code> object in the Java programming language.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value as a <code>Clob</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	Clob getClob(int parameterIndex) throws SQLException;
@@ -513,16 +573,20 @@ public interface CallableStatement extends PreparedStatement {
 	 * as an {@link java.sql.Array} object in the Java programming language.
 	 * 
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value as an <code>Array</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	Array getArray(int parameterIndex) throws SQLException;
@@ -536,16 +600,19 @@ public interface CallableStatement extends PreparedStatement {
 	 * object is specified, the driver uses the default timezone and locale.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the date
+	 *                       the <code>Calendar</code> object the driver will
+	 *                       use to
+	 *                       construct the date
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setDate
 	 * @since 1.2
 	 */
@@ -560,16 +627,19 @@ public interface CallableStatement extends PreparedStatement {
 	 * object is specified, the driver uses the default timezone and locale.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the time
+	 *                       the <code>Calendar</code> object the driver will
+	 *                       use to
+	 *                       construct the time
 	 * @return the parameter value; if the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setTime
 	 * @since 1.2
 	 */
@@ -586,20 +656,24 @@ public interface CallableStatement extends PreparedStatement {
 	 *
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the timestamp
+	 *                       the <code>Calendar</code> object the driver will
+	 *                       use to
+	 *                       construct the timestamp
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @see #setTimestamp
 	 * @since 1.2
 	 */
-	java.sql.Timestamp getTimestamp(int parameterIndex, Calendar cal) throws SQLException;
+	java.sql.Timestamp getTimestamp(int parameterIndex, Calendar cal)
+			throws SQLException;
 
 	/**
 	 * Registers the designated output parameter. This version of the method
@@ -630,28 +704,39 @@ public interface CallableStatement extends PreparedStatement {
 	 * SQL type.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2,...
+	 *                       the first parameter is 1, the second is 2,...
 	 * @param sqlType
-	 *            a value from {@link java.sql.Types}
+	 *                       a value from {@link java.sql.Types}
 	 * @param typeName
-	 *            the fully-qualified name of an SQL structured type
+	 *                       the fully-qualified name of an SQL structured type
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if <code>sqlType</code> is a <code>ARRAY</code>,
-	 *                <code>BLOB</code>, <code>CLOB</code>,
-	 *                <code>DATALINK</code>, <code>JAVA_OBJECT</code>,
-	 *                <code>NCHAR</code>, <code>NCLOB</code>,
-	 *                <code>NVARCHAR</code>, <code>LONGNVARCHAR</code>,
-	 *                <code>REF</code>, <code>ROWID</code>, <code>SQLXML</code>
-	 *                or <code>STRUCT</code> data type and the JDBC driver does
-	 *                not support this data type
+	 *                                            if <code>sqlType</code> is a
+	 *                                            <code>ARRAY</code>,
+	 *                                            <code>BLOB</code>,
+	 *                                            <code>CLOB</code>,
+	 *                                            <code>DATALINK</code>,
+	 *                                            <code>JAVA_OBJECT</code>,
+	 *                                            <code>NCHAR</code>,
+	 *                                            <code>NCLOB</code>,
+	 *                                            <code>NVARCHAR</code>,
+	 *                                            <code>LONGNVARCHAR</code>,
+	 *                                            <code>REF</code>,
+	 *                                            <code>ROWID</code>,
+	 *                                            <code>SQLXML</code>
+	 *                                            or <code>STRUCT</code> data
+	 *                                            type and the JDBC driver does
+	 *                                            not support this data type
 	 * @see Types
 	 * @since 1.2
 	 */
-	void registerOutParameter(int parameterIndex, int sqlType, String typeName) throws SQLException;
+	void registerOutParameter(int parameterIndex, int sqlType, String typeName)
+			throws SQLException;
 
 	// --------------------------JDBC 3.0-----------------------------
 
@@ -670,31 +755,49 @@ public interface CallableStatement extends PreparedStatement {
 	 * retrieves the value.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            the JDBC type code defined by <code>java.sql.Types</code>. If
-	 *            the parameter is of JDBC type <code>NUMERIC</code> or
-	 *            <code>DECIMAL</code>, the version of
-	 *            <code>registerOutParameter</code> that accepts a scale value
-	 *            should be used.
+	 *                      the JDBC type code defined by
+	 *                      <code>java.sql.Types</code>. If
+	 *                      the parameter is of JDBC type <code>NUMERIC</code>
+	 *                      or
+	 *                      <code>DECIMAL</code>, the version of
+	 *                      <code>registerOutParameter</code> that accepts a
+	 *                      scale value
+	 *                      should be used.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if <code>sqlType</code> is a <code>ARRAY</code>,
-	 *                <code>BLOB</code>, <code>CLOB</code>,
-	 *                <code>DATALINK</code>, <code>JAVA_OBJECT</code>,
-	 *                <code>NCHAR</code>, <code>NCLOB</code>,
-	 *                <code>NVARCHAR</code>, <code>LONGNVARCHAR</code>,
-	 *                <code>REF</code>, <code>ROWID</code>, <code>SQLXML</code>
-	 *                or <code>STRUCT</code> data type and the JDBC driver does
-	 *                not support this data type or if the JDBC driver does not
-	 *                support this method
+	 *                                            if <code>sqlType</code> is a
+	 *                                            <code>ARRAY</code>,
+	 *                                            <code>BLOB</code>,
+	 *                                            <code>CLOB</code>,
+	 *                                            <code>DATALINK</code>,
+	 *                                            <code>JAVA_OBJECT</code>,
+	 *                                            <code>NCHAR</code>,
+	 *                                            <code>NCLOB</code>,
+	 *                                            <code>NVARCHAR</code>,
+	 *                                            <code>LONGNVARCHAR</code>,
+	 *                                            <code>REF</code>,
+	 *                                            <code>ROWID</code>,
+	 *                                            <code>SQLXML</code>
+	 *                                            or <code>STRUCT</code> data
+	 *                                            type and the JDBC driver does
+	 *                                            not support this data type or
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 * @see Types
 	 */
-	void registerOutParameter(String parameterName, int sqlType) throws SQLException;
+	void registerOutParameter(String parameterName, int sqlType)
+			throws SQLException;
 
 	/**
 	 * Registers the parameter named <code>parameterName</code> to be of JDBC
@@ -709,30 +812,47 @@ public interface CallableStatement extends PreparedStatement {
 	 * parameter is of JDBC type <code>NUMERIC</code> or <code>DECIMAL</code>.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            SQL type code defined by <code>java.sql.Types</code>.
+	 *                      SQL type code defined by
+	 *                      <code>java.sql.Types</code>.
 	 * @param scale
-	 *            the desired number of digits to the right of the decimal
-	 *            point. It must be greater than or equal to zero.
+	 *                      the desired number of digits to the right of the
+	 *                      decimal
+	 *                      point. It must be greater than or equal to zero.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if <code>sqlType</code> is a <code>ARRAY</code>,
-	 *                <code>BLOB</code>, <code>CLOB</code>,
-	 *                <code>DATALINK</code>, <code>JAVA_OBJECT</code>,
-	 *                <code>NCHAR</code>, <code>NCLOB</code>,
-	 *                <code>NVARCHAR</code>, <code>LONGNVARCHAR</code>,
-	 *                <code>REF</code>, <code>ROWID</code>, <code>SQLXML</code>
-	 *                or <code>STRUCT</code> data type and the JDBC driver does
-	 *                not support this data type or if the JDBC driver does not
-	 *                support this method
+	 *                                            if <code>sqlType</code> is a
+	 *                                            <code>ARRAY</code>,
+	 *                                            <code>BLOB</code>,
+	 *                                            <code>CLOB</code>,
+	 *                                            <code>DATALINK</code>,
+	 *                                            <code>JAVA_OBJECT</code>,
+	 *                                            <code>NCHAR</code>,
+	 *                                            <code>NCLOB</code>,
+	 *                                            <code>NVARCHAR</code>,
+	 *                                            <code>LONGNVARCHAR</code>,
+	 *                                            <code>REF</code>,
+	 *                                            <code>ROWID</code>,
+	 *                                            <code>SQLXML</code>
+	 *                                            or <code>STRUCT</code> data
+	 *                                            type and the JDBC driver does
+	 *                                            not support this data type or
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 * @see Types
 	 */
-	void registerOutParameter(String parameterName, int sqlType, int scale) throws SQLException;
+	void registerOutParameter(String parameterName, int sqlType, int scale)
+			throws SQLException;
 
 	/**
 	 * Registers the designated output parameter. This version of the method
@@ -761,46 +881,65 @@ public interface CallableStatement extends PreparedStatement {
 	 * parameter's registered SQL type.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            a value from {@link java.sql.Types}
+	 *                      a value from {@link java.sql.Types}
 	 * @param typeName
-	 *            the fully-qualified name of an SQL structured type
+	 *                      the fully-qualified name of an SQL structured type
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if <code>sqlType</code> is a <code>ARRAY</code>,
-	 *                <code>BLOB</code>, <code>CLOB</code>,
-	 *                <code>DATALINK</code>, <code>JAVA_OBJECT</code>,
-	 *                <code>NCHAR</code>, <code>NCLOB</code>,
-	 *                <code>NVARCHAR</code>, <code>LONGNVARCHAR</code>,
-	 *                <code>REF</code>, <code>ROWID</code>, <code>SQLXML</code>
-	 *                or <code>STRUCT</code> data type and the JDBC driver does
-	 *                not support this data type or if the JDBC driver does not
-	 *                support this method
+	 *                                            if <code>sqlType</code> is a
+	 *                                            <code>ARRAY</code>,
+	 *                                            <code>BLOB</code>,
+	 *                                            <code>CLOB</code>,
+	 *                                            <code>DATALINK</code>,
+	 *                                            <code>JAVA_OBJECT</code>,
+	 *                                            <code>NCHAR</code>,
+	 *                                            <code>NCLOB</code>,
+	 *                                            <code>NVARCHAR</code>,
+	 *                                            <code>LONGNVARCHAR</code>,
+	 *                                            <code>REF</code>,
+	 *                                            <code>ROWID</code>,
+	 *                                            <code>SQLXML</code>
+	 *                                            or <code>STRUCT</code> data
+	 *                                            type and the JDBC driver does
+	 *                                            not support this data type or
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see Types
 	 * @since 1.4
 	 */
-	void registerOutParameter(String parameterName, int sqlType, String typeName)
-			throws SQLException;
+	void registerOutParameter(String parameterName, int sqlType,
+			String typeName) throws SQLException;
 
 	/**
 	 * Retrieves the value of the designated JDBC <code>DATALINK</code>
 	 * parameter as a <code>java.net.URL</code> object.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2,...
+	 *                       the first parameter is 1, the second is 2,...
 	 * @return a <code>java.net.URL</code> object that represents the JDBC
 	 *         <code>DATALINK</code> value used as the designated parameter
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs, this method is called on a closed
-	 *                <code>CallableStatement</code>, or if the URL being
-	 *                returned is not a valid URL on the Java platform
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs, this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>,
+	 *                                            or if the URL being
+	 *                                            returned is not a valid URL on
+	 *                                            the Java platform
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setURL
 	 * @since 1.4
 	 */
@@ -812,16 +951,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * when it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param val
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs; this method is called
-	 *                on a closed <code>CallableStatement</code> or if a URL is
-	 *                malformed
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs; this method is called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
+	 *                                            or if a URL is
+	 *                                            malformed
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getURL
 	 * @since 1.4
 	 */
@@ -834,15 +979,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * <B>Note:</B> You must specify the parameter's SQL type.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            the SQL type code defined in <code>java.sql.Types</code>
+	 *                      the SQL type code defined in
+	 *                      <code>java.sql.Types</code>
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	void setNull(String parameterName, int sqlType) throws SQLException;
@@ -853,16 +1005,19 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>BOOLEAN</code> value when it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                         if parameterName does not correspond to a named
+	 *                         parameter;
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed <code>CallableStatement</code>
 	 * @see #getBoolean
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	void setBoolean(String parameterName, boolean x) throws SQLException;
@@ -873,15 +1028,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getByte
 	 * @since 1.4
 	 */
@@ -893,15 +1054,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getShort
 	 * @since 1.4
 	 */
@@ -913,15 +1080,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getInt
 	 * @since 1.4
 	 */
@@ -933,15 +1106,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getLong
 	 * @since 1.4
 	 */
@@ -953,15 +1132,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getFloat
 	 * @since 1.4
 	 */
@@ -973,15 +1158,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getDouble
 	 * @since 1.4
 	 */
@@ -993,15 +1184,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * SQL <code>NUMERIC</code> value when it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getBigDecimal
 	 * @since 1.4
 	 */
@@ -1015,15 +1212,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getString
 	 * @since 1.4
 	 */
@@ -1037,15 +1240,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getBytes
 	 * @since 1.4
 	 */
@@ -1058,15 +1267,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * value when it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getDate
 	 * @since 1.4
 	 */
@@ -1078,15 +1293,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getTime
 	 * @since 1.4
 	 */
@@ -1098,19 +1319,26 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>TIMESTAMP</code> value when it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getTimestamp
 	 * @since 1.4
 	 */
-	void setTimestamp(String parameterName, java.sql.Timestamp x) throws SQLException;
+	void setTimestamp(String parameterName, java.sql.Timestamp x)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given input stream, which will have
@@ -1125,17 +1353,24 @@ public interface CallableStatement extends PreparedStatement {
 	 * object or your own subclass that implements the standard interface.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the Java input stream that contains the ASCII parameter value
+	 *                      the Java input stream that contains the ASCII
+	 *                      parameter value
 	 * @param length
-	 *            the number of bytes in the stream
+	 *                      the number of bytes in the stream
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	void setAsciiStream(String parameterName, java.io.InputStream x, int length)
@@ -1153,22 +1388,29 @@ public interface CallableStatement extends PreparedStatement {
 	 * object or your own subclass that implements the standard interface.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the java input stream which contains the binary parameter
-	 *            value
+	 *                      the java input stream which contains the binary
+	 *                      parameter
+	 *                      value
 	 * @param length
-	 *            the number of bytes in the stream
+	 *                      the number of bytes in the stream
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
-	void setBinaryStream(String parameterName, java.io.InputStream x, int length)
-			throws SQLException;
+	void setBinaryStream(String parameterName, java.io.InputStream x,
+			int length) throws SQLException;
 
 	/**
 	 * Sets the value of the designated parameter with the given object.
@@ -1190,23 +1432,33 @@ public interface CallableStatement extends PreparedStatement {
 	 * data types.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the object containing the input parameter value
+	 *                      the object containing the input parameter value
 	 * @param targetSqlType
-	 *            the SQL type (as defined in java.sql.Types) to be sent to the
-	 *            database. The scale argument may further qualify this type.
+	 *                      the SQL type (as defined in java.sql.Types) to be
+	 *                      sent to the
+	 *                      database. The scale argument may further qualify
+	 *                      this type.
 	 * @param scale
-	 *            for java.sql.Types.DECIMAL or java.sql.Types.NUMERIC types,
-	 *            this is the number of digits after the decimal point. For all
-	 *            other types, this value will be ignored.
+	 *                      for java.sql.Types.DECIMAL or java.sql.Types.NUMERIC
+	 *                      types,
+	 *                      this is the number of digits after the decimal
+	 *                      point. For all
+	 *                      other types, this value will be ignored.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified
-	 *                targetSqlType
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified
+	 *                                            targetSqlType
 	 * @see Types
 	 * @see #getObject
 	 * @since 1.4
@@ -1222,23 +1474,31 @@ public interface CallableStatement extends PreparedStatement {
 	 * , except that it assumes a scale of zero.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the object containing the input parameter value
+	 *                      the object containing the input parameter value
 	 * @param targetSqlType
-	 *            the SQL type (as defined in java.sql.Types) to be sent to the
-	 *            database
+	 *                      the SQL type (as defined in java.sql.Types) to be
+	 *                      sent to the
+	 *                      database
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified
-	 *                targetSqlType
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified
+	 *                                            targetSqlType
 	 * @see #getObject
 	 * @since 1.4
 	 */
-	void setObject(String parameterName, Object x, int targetSqlType) throws SQLException;
+	void setObject(String parameterName, Object x, int targetSqlType)
+			throws SQLException;
 
 	/**
 	 * Sets the value of the designated parameter with the given object.
@@ -1273,16 +1533,23 @@ public interface CallableStatement extends PreparedStatement {
 	 * <p>
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the object containing the input parameter value
+	 *                      the object containing the input parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs, this method is called
-	 *                on a closed <code>CallableStatement</code> or if the given
-	 *                <code>Object</code> parameter is ambiguous
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
+	 *                                            or if the given
+	 *                                            <code>Object</code> parameter
+	 *                                            is ambiguous
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getObject
 	 * @since 1.4
 	 */
@@ -1302,22 +1569,29 @@ public interface CallableStatement extends PreparedStatement {
 	 * object or your own subclass that implements the standard interface.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param reader
-	 *            the <code>java.io.Reader</code> object that contains the
-	 *            UNICODE data used as the designated parameter
+	 *                      the <code>java.io.Reader</code> object that contains
+	 *                      the
+	 *                      UNICODE data used as the designated parameter
 	 * @param length
-	 *            the number of characters in the stream
+	 *                      the number of characters in the stream
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
-	void setCharacterStream(String parameterName, java.io.Reader reader, int length)
-			throws SQLException;
+	void setCharacterStream(String parameterName, java.io.Reader reader,
+			int length) throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given <code>java.sql.Date</code>
@@ -1330,22 +1604,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * virtual machine running the application.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the date
+	 *                      the <code>Calendar</code> object the driver will use
+	 *                      to
+	 *                      construct the date
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getDate
 	 * @since 1.4
 	 */
-	void setDate(String parameterName, java.sql.Date x, Calendar cal) throws SQLException;
+	void setDate(String parameterName, java.sql.Date x, Calendar cal)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given <code>java.sql.Time</code>
@@ -1358,22 +1640,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * virtual machine running the application.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the time
+	 *                      the <code>Calendar</code> object the driver will use
+	 *                      to
+	 *                      construct the time
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getTime
 	 * @since 1.4
 	 */
-	void setTime(String parameterName, java.sql.Time x, Calendar cal) throws SQLException;
+	void setTime(String parameterName, java.sql.Time x, Calendar cal)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given
@@ -1387,22 +1677,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * application.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the timestamp
+	 *                      the <code>Calendar</code> object the driver will use
+	 *                      to
+	 *                      construct the timestamp
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #getTimestamp
 	 * @since 1.4
 	 */
-	void setTimestamp(String parameterName, java.sql.Timestamp x, Calendar cal) throws SQLException;
+	void setTimestamp(String parameterName, java.sql.Timestamp x, Calendar cal)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to SQL <code>NULL</code>. This version of
@@ -1423,22 +1721,30 @@ public interface CallableStatement extends PreparedStatement {
 	 *
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            a value from <code>java.sql.Types</code>
+	 *                      a value from <code>java.sql.Types</code>
 	 * @param typeName
-	 *            the fully-qualified name of an SQL user-defined type; ignored
-	 *            if the parameter is not a user-defined type or SQL
-	 *            <code>REF</code> value
+	 *                      the fully-qualified name of an SQL user-defined
+	 *                      type; ignored
+	 *                      if the parameter is not a user-defined type or SQL
+	 *                      <code>REF</code> value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
-	void setNull(String parameterName, int sqlType, String typeName) throws SQLException;
+	void setNull(String parameterName, int sqlType, String typeName)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of a JDBC <code>CHAR</code>, <code>VARCHAR</code>, or
@@ -1450,15 +1756,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * value had in the database, including any padding added by the database.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setString
 	 * @since 1.4
 	 */
@@ -1469,15 +1781,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * parameter as a <code>boolean</code> in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>false</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setBoolean
 	 * @since 1.4
 	 */
@@ -1488,15 +1806,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>byte</code> in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setByte
 	 * @since 1.4
 	 */
@@ -1507,15 +1831,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>short</code> in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setShort
 	 * @since 1.4
 	 */
@@ -1526,15 +1856,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>int</code> in the Java programming language.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setInt
 	 * @since 1.4
 	 */
@@ -1545,15 +1881,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>long</code> in the Java programming language.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setLong
 	 * @since 1.4
 	 */
@@ -1564,15 +1906,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>float</code> in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setFloat
 	 * @since 1.4
 	 */
@@ -1583,15 +1931,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>double</code> in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>0</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setDouble
 	 * @since 1.4
 	 */
@@ -1603,15 +1957,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setBytes
 	 * @since 1.4
 	 */
@@ -1622,15 +1982,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.sql.Date</code> object.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setDate
 	 * @since 1.4
 	 */
@@ -1641,15 +2007,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.sql.Time</code> object.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setTime
 	 * @since 1.4
 	 */
@@ -1660,15 +2032,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.sql.Timestamp</code> object.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setTimestamp
 	 * @since 1.4
 	 */
@@ -1686,14 +2064,20 @@ public interface CallableStatement extends PreparedStatement {
 	 * database-specific abstract data types.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return A <code>java.lang.Object</code> holding the OUT parameter value.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see Types
 	 * @see #setObject
 	 * @since 1.4
@@ -1706,15 +2090,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * of the decimal point as the value contains.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value in full precision. If the value is SQL
 	 *         <code>NULL</code>, the result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setBigDecimal
 	 * @since 1.4
 	 */
@@ -1732,20 +2122,27 @@ public interface CallableStatement extends PreparedStatement {
 	 * database-specific abstract data types.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param map
-	 *            the mapping from SQL type names to Java classes
+	 *                      the mapping from SQL type names to Java classes
 	 * @return a <code>java.lang.Object</code> holding the OUT parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setObject
 	 * @since 1.4
 	 */
-	Object getObject(String parameterName, java.util.Map<String, Class<?>> map) throws SQLException;
+	Object getObject(String parameterName, java.util.Map<String, Class<?>> map)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of a JDBC <code>REF(&lt;structured-type&gt;)</code>
@@ -1753,16 +2150,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * language.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value as a <code>Ref</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	Ref getRef(String parameterName) throws SQLException;
@@ -1772,16 +2175,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@link java.sql.Blob} object in the Java programming language.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value as a <code>Blob</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	Blob getBlob(String parameterName) throws SQLException;
@@ -1791,16 +2200,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.sql.Clob</code> object in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value as a <code>Clob</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	Clob getClob(String parameterName) throws SQLException;
@@ -1810,16 +2225,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@link java.sql.Array} object in the Java programming language.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value as an <code>Array</code> object in Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	Array getArray(String parameterName) throws SQLException;
@@ -1833,22 +2254,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * the default timezone and locale.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the date
+	 *                      the <code>Calendar</code> object the driver will use
+	 *                      to
+	 *                      construct the date
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setDate
 	 * @since 1.4
 	 */
-	java.sql.Date getDate(String parameterName, Calendar cal) throws SQLException;
+	java.sql.Date getDate(String parameterName, Calendar cal)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of a JDBC <code>TIME</code> parameter as a
@@ -1859,22 +2288,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * the default timezone and locale.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the time
+	 *                      the <code>Calendar</code> object the driver will use
+	 *                      to
+	 *                      construct the time
 	 * @return the parameter value; if the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setTime
 	 * @since 1.4
 	 */
-	java.sql.Time getTime(String parameterName, Calendar cal) throws SQLException;
+	java.sql.Time getTime(String parameterName, Calendar cal)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of a JDBC <code>TIMESTAMP</code> parameter as a
@@ -1887,39 +2324,53 @@ public interface CallableStatement extends PreparedStatement {
 	 *
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param cal
-	 *            the <code>Calendar</code> object the driver will use to
-	 *            construct the timestamp
+	 *                      the <code>Calendar</code> object the driver will use
+	 *                      to
+	 *                      construct the timestamp
 	 * @return the parameter value. If the value is SQL <code>NULL</code>, the
 	 *         result is <code>null</code>.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setTimestamp
 	 * @since 1.4
 	 */
-	java.sql.Timestamp getTimestamp(String parameterName, Calendar cal) throws SQLException;
+	java.sql.Timestamp getTimestamp(String parameterName, Calendar cal)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of a JDBC <code>DATALINK</code> parameter as a
 	 * <code>java.net.URL</code> object.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value as a <code>java.net.URL</code> object in the
 	 *         Java programming language. If the value was SQL <code>NULL</code>
 	 *         , the value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs, this method is called
-	 *                on a closed <code>CallableStatement</code>, or if there is
-	 *                a problem with the URL
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>,
+	 *                                            or if there is
+	 *                                            a problem with the URL
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setURL
 	 * @since 1.4
 	 */
@@ -1932,17 +2383,19 @@ public interface CallableStatement extends PreparedStatement {
 	 * as a <code>java.sql.RowId</code> object.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2,...
+	 *                       the first parameter is 1, the second is 2,...
 	 * @return a <code>RowId</code> object that represents the JDBC
 	 *         <code>ROWID</code> value is used as the designated parameter. If
 	 *         the parameter contains a SQL <code>NULL</code>, then a
 	 *         <code>null</code> value is returned.
 	 * @throws SQLException
-	 *             if the parameterIndex is not valid; if a database access
-	 *             error occurs or this method is called on a closed
-	 *             <code>CallableStatement</code>
+	 *                      if the parameterIndex is not valid; if a database
+	 *                      access
+	 *                      error occurs or this method is called on a closed
+	 *                      <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	RowId getRowId(int parameterIndex) throws SQLException;
@@ -1952,17 +2405,20 @@ public interface CallableStatement extends PreparedStatement {
 	 * as a <code>java.sql.RowId</code> object.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return a <code>RowId</code> object that represents the JDBC
 	 *         <code>ROWID</code> value is used as the designated parameter. If
 	 *         the parameter contains a SQL <code>NULL</code>, then a
 	 *         <code>null</code> value is returned.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             a database access error occurs or this method is called on a
-	 *             closed <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      a database access error occurs or this method is
+	 *                      called on a
+	 *                      closed <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	RowId getRowId(String parameterName) throws SQLException;
@@ -1973,15 +2429,18 @@ public interface CallableStatement extends PreparedStatement {
 	 * sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the parameter value
+	 *                      the parameter value
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             a database access error occurs or this method is called on a
-	 *             closed <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      a database access error occurs or this method is
+	 *                      called on a
+	 *                      closed <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void setRowId(String parameterName, RowId x) throws SQLException;
@@ -1992,17 +2451,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>NVARCHAR</code> or <code>LONGNVARCHAR</code>
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter to be set
+	 *                      the name of the parameter to be set
 	 * @param value
-	 *            the parameter value
+	 *                      the parameter value
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the driver does not support national character sets; if the
-	 *             driver can detect that a data conversion error could occur;
-	 *             if a database access error occurs or this method is called on
-	 *             a closed <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      the driver does not support national character sets;
+	 *                      if the
+	 *                      driver can detect that a data conversion error could
+	 *                      occur;
+	 *                      if a database access error occurs or this method is
+	 *                      called on
+	 *                      a closed <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void setNString(String parameterName, String value) throws SQLException;
@@ -2014,22 +2478,28 @@ public interface CallableStatement extends PreparedStatement {
 	 * national character set in the database.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter to be set
+	 *                      the name of the parameter to be set
 	 * @param value
-	 *            the parameter value
+	 *                      the parameter value
 	 * @param length
-	 *            the number of characters in the parameter data.
+	 *                      the number of characters in the parameter data.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the driver does not support national character sets; if the
-	 *             driver can detect that a data conversion error could occur;
-	 *             if a database access error occurs or this method is called on
-	 *             a closed <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      the driver does not support national character sets;
+	 *                      if the
+	 *                      driver can detect that a data conversion error could
+	 *                      occur;
+	 *                      if a database access error occurs or this method is
+	 *                      called on
+	 *                      a closed <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
-	void setNCharacterStream(String parameterName, Reader value, long length) throws SQLException;
+	void setNCharacterStream(String parameterName, Reader value, long length)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to a <code>java.sql.NClob</code> object.
@@ -2037,17 +2507,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>NClob</code> object maps to a SQL <code>NCLOB</code>.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter to be set
+	 *                      the name of the parameter to be set
 	 * @param value
-	 *            the parameter value
+	 *                      the parameter value
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the driver does not support national character sets; if the
-	 *             driver can detect that a data conversion error could occur;
-	 *             if a database access error occurs or this method is called on
-	 *             a closed <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      the driver does not support national character sets;
+	 *                      if the
+	 *                      driver can detect that a data conversion error could
+	 *                      occur;
+	 *                      if a database access error occurs or this method is
+	 *                      called on
+	 *                      a closed <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void setNClob(String parameterName, NClob value) throws SQLException;
@@ -2065,23 +2540,28 @@ public interface CallableStatement extends PreparedStatement {
 	 * or a <code>CLOB</code>
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter to be set
+	 *                      the name of the parameter to be set
 	 * @param reader
-	 *            An object that contains the data to set the parameter value
-	 *            to.
+	 *                      An object that contains the data to set the
+	 *                      parameter value
+	 *                      to.
 	 * @param length
-	 *            the number of characters in the parameter data.
+	 *                      the number of characters in the parameter data.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the length specified is less than zero; a database access
-	 *             error occurs or this method is called on a closed
-	 *             <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      the length specified is less than zero; a database
+	 *                      access
+	 *                      error occurs or this method is called on a closed
+	 *                      <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 *
 	 * @since 1.6
 	 */
-	void setClob(String parameterName, Reader reader, long length) throws SQLException;
+	void setClob(String parameterName, Reader reader, long length)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to a <code>InputStream</code> object. The
@@ -2096,25 +2576,33 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>LONGVARBINARY</code> or a <code>BLOB</code>
 	 *
 	 * @param parameterName
-	 *            the name of the parameter to be set the second is 2, ...
+	 *                      the name of the parameter to be set the second is 2,
+	 *                      ...
 	 *
 	 * @param inputStream
-	 *            An object that contains the data to set the parameter value
-	 *            to.
+	 *                      An object that contains the data to set the
+	 *                      parameter value
+	 *                      to.
 	 * @param length
-	 *            the number of bytes in the parameter data.
+	 *                      the number of bytes in the parameter data.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the length specified is less than zero; if the number of
-	 *             bytes in the inputstream does not match the specified length;
-	 *             if a database access error occurs or this method is called on
-	 *             a closed <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      the length specified is less than zero; if the
+	 *                      number of
+	 *                      bytes in the inputstream does not match the
+	 *                      specified length;
+	 *                      if a database access error occurs or this method is
+	 *                      called on
+	 *                      a closed <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 *
 	 * @since 1.6
 	 */
-	void setBlob(String parameterName, InputStream inputStream, long length) throws SQLException;
+	void setBlob(String parameterName, InputStream inputStream, long length)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to a <code>Reader</code> object. The
@@ -2129,42 +2617,56 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>LONGNVARCHAR</code> or a <code>NCLOB</code>
 	 *
 	 * @param parameterName
-	 *            the name of the parameter to be set
+	 *                      the name of the parameter to be set
 	 * @param reader
-	 *            An object that contains the data to set the parameter value
-	 *            to.
+	 *                      An object that contains the data to set the
+	 *                      parameter value
+	 *                      to.
 	 * @param length
-	 *            the number of characters in the parameter data.
+	 *                      the number of characters in the parameter data.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the length specified is less than zero; if the driver does
-	 *             not support national character sets; if the driver can detect
-	 *             that a data conversion error could occur; if a database
-	 *             access error occurs or this method is called on a closed
-	 *             <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      the length specified is less than zero; if the
+	 *                      driver does
+	 *                      not support national character sets; if the driver
+	 *                      can detect
+	 *                      that a data conversion error could occur; if a
+	 *                      database
+	 *                      access error occurs or this method is called on a
+	 *                      closed
+	 *                      <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
-	void setNClob(String parameterName, Reader reader, long length) throws SQLException;
+	void setNClob(String parameterName, Reader reader, long length)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of the designated JDBC <code>NCLOB</code> parameter
 	 * as a <code>java.sql.NClob</code> object in the Java programming language.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @return the parameter value as a <code>NClob</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if the driver does not
-	 *                support national character sets; if the driver can detect
-	 *                that a data conversion error could occur; if a database
-	 *                access error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if the driver does not
+	 *                                            support national character
+	 *                                            sets; if the driver can detect
+	 *                                            that a data conversion error
+	 *                                            could occur; if a database
+	 *                                            access error occurs or this
+	 *                                            method is called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	NClob getNClob(int parameterIndex) throws SQLException;
@@ -2174,18 +2676,25 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.sql.NClob</code> object in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return the parameter value as a <code>NClob</code> object in the Java
 	 *         programming language. If the value was SQL <code>NULL</code>, the
 	 *         value <code>null</code> is returned.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if the driver does not support national character sets; if
-	 *                the driver can detect that a data conversion error could
-	 *                occur; if a database access error occurs or this method is
-	 *                called on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if the driver does not support
+	 *                                            national character sets; if
+	 *                                            the driver can detect that a
+	 *                                            data conversion error could
+	 *                                            occur; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	NClob getNClob(String parameterName) throws SQLException;
@@ -2196,19 +2705,25 @@ public interface CallableStatement extends PreparedStatement {
 	 * sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param xmlObject
-	 *            a <code>SQLXML</code> object that maps an <code>SQL XML</code>
-	 *            value
+	 *                      a <code>SQLXML</code> object that maps an
+	 *                      <code>SQL XML</code>
+	 *                      value
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             a database access error occurs; this method is called on a
-	 *             closed <code>CallableStatement</code> or the
-	 *             <code>java.xml.transform.Result</code>, <code>Writer</code>
-	 *             or <code>OutputStream</code> has not been closed for the
-	 *             <code>SQLXML</code> object
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      a database access error occurs; this method is
+	 *                      called on a
+	 *                      closed <code>CallableStatement</code> or the
+	 *                      <code>java.xml.transform.Result</code>,
+	 *                      <code>Writer</code>
+	 *                      or <code>OutputStream</code> has not been closed for
+	 *                      the
+	 *                      <code>SQLXML</code> object
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 *
 	 * @since 1.6
 	 */
@@ -2219,15 +2734,18 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.sql.SQLXML</code> object in the Java programming language.
 	 * 
 	 * @param parameterIndex
-	 *            index of the first parameter is 1, the second is 2, ...
+	 *                       index of the first parameter is 1, the second is 2,
+	 *                       ...
 	 * @return a <code>SQLXML</code> object that maps an <code>SQL XML</code>
 	 *         value
 	 * @throws SQLException
-	 *             if the parameterIndex is not valid; if a database access
-	 *             error occurs or this method is called on a closed
-	 *             <code>CallableStatement</code>
+	 *                      if the parameterIndex is not valid; if a database
+	 *                      access
+	 *                      error occurs or this method is called on a closed
+	 *                      <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	SQLXML getSQLXML(int parameterIndex) throws SQLException;
@@ -2237,15 +2755,18 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.sql.SQLXML</code> object in the Java programming language.
 	 * 
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return a <code>SQLXML</code> object that maps an <code>SQL XML</code>
 	 *         value
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             a database access error occurs or this method is called on a
-	 *             closed <code>CallableStatement</code>
+	 *                      if parameterName does not correspond to a named
+	 *                      parameter; if
+	 *                      a database access error occurs or this method is
+	 *                      called on a
+	 *                      closed <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	SQLXML getSQLXML(String parameterName) throws SQLException;
@@ -2261,15 +2782,19 @@ public interface CallableStatement extends PreparedStatement {
 	 * by the database.
 	 *
 	 * @param parameterIndex
-	 *            index of the first parameter is 1, the second is 2, ...
+	 *                       index of the first parameter is 1, the second is 2,
+	 *                       ...
 	 * @return a <code>String</code> object that maps an <code>NCHAR</code>,
 	 *         <code>NVARCHAR</code> or <code>LONGNVARCHAR</code> value
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 * @see #setNString
 	 */
@@ -2286,15 +2811,21 @@ public interface CallableStatement extends PreparedStatement {
 	 * by the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return a <code>String</code> object that maps an <code>NCHAR</code>,
 	 *         <code>NVARCHAR</code> or <code>LONGNVARCHAR</code> value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 * @see #setNString
 	 */
@@ -2310,13 +2841,16 @@ public interface CallableStatement extends PreparedStatement {
 	 *         value; if the value is SQL <code>NULL</code>, the value returned
 	 *         is <code>null</code> in the Java programming language.
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, ...
+	 *                       the first parameter is 1, the second is 2, ...
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	java.io.Reader getNCharacterStream(int parameterIndex) throws SQLException;
@@ -2328,19 +2862,26 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>NVARCHAR</code> and <code>LONGNVARCHAR</code> parameters.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return a <code>java.io.Reader</code> object that contains the parameter
 	 *         value; if the value is SQL <code>NULL</code>, the value returned
 	 *         is <code>null</code> in the Java programming language
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
-	java.io.Reader getNCharacterStream(String parameterName) throws SQLException;
+	java.io.Reader getNCharacterStream(String parameterName)
+			throws SQLException;
 
 	/**
 	 * Retrieves the value of the designated parameter as a
@@ -2350,11 +2891,12 @@ public interface CallableStatement extends PreparedStatement {
 	 *         value; if the value is SQL <code>NULL</code>, the value returned
 	 *         is <code>null</code> in the Java programming language.
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, ...
+	 *                       the first parameter is 1, the second is 2, ...
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                <code>CallableStatement</code>
+	 *                         if the parameterIndex is not valid; if a database
+	 *                         access
+	 *                         error occurs or this method is called on a closed
+	 *                         <code>CallableStatement</code>
 	 * @since 1.6
 	 */
 	java.io.Reader getCharacterStream(int parameterIndex) throws SQLException;
@@ -2364,16 +2906,22 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>java.io.Reader</code> object in the Java programming language.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @return a <code>java.io.Reader</code> object that contains the parameter
 	 *         value; if the value is SQL <code>NULL</code>, the value returned
 	 *         is <code>null</code> in the Java programming language
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	java.io.Reader getCharacterStream(String parameterName) throws SQLException;
@@ -2384,16 +2932,23 @@ public interface CallableStatement extends PreparedStatement {
 	 * it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            a <code>Blob</code> object that maps an SQL <code>BLOB</code>
-	 *            value
+	 *                      a <code>Blob</code> object that maps an SQL
+	 *                      <code>BLOB</code>
+	 *                      value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void setBlob(String parameterName, Blob x) throws SQLException;
@@ -2404,16 +2959,23 @@ public interface CallableStatement extends PreparedStatement {
 	 * it sends it to the database.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            a <code>Clob</code> object that maps an SQL <code>CLOB</code>
-	 *            value
+	 *                      a <code>Clob</code> object that maps an SQL
+	 *                      <code>CLOB</code>
+	 *                      value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void setClob(String parameterName, Clob x) throws SQLException;
@@ -2431,21 +2993,28 @@ public interface CallableStatement extends PreparedStatement {
 	 * object or your own subclass that implements the standard interface.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the Java input stream that contains the ASCII parameter value
+	 *                      the Java input stream that contains the ASCII
+	 *                      parameter value
 	 * @param length
-	 *            the number of bytes in the stream
+	 *                      the number of bytes in the stream
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
-	void setAsciiStream(String parameterName, java.io.InputStream x, long length)
-			throws SQLException;
+	void setAsciiStream(String parameterName, java.io.InputStream x,
+			long length) throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given input stream, which will have
@@ -2459,22 +3028,29 @@ public interface CallableStatement extends PreparedStatement {
 	 * object or your own subclass that implements the standard interface.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the java input stream which contains the binary parameter
-	 *            value
+	 *                      the java input stream which contains the binary
+	 *                      parameter
+	 *                      value
 	 * @param length
-	 *            the number of bytes in the stream
+	 *                      the number of bytes in the stream
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
-	void setBinaryStream(String parameterName, java.io.InputStream x, long length)
-			throws SQLException;
+	void setBinaryStream(String parameterName, java.io.InputStream x,
+			long length) throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given <code>Reader</code> object,
@@ -2490,22 +3066,29 @@ public interface CallableStatement extends PreparedStatement {
 	 * object or your own subclass that implements the standard interface.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param reader
-	 *            the <code>java.io.Reader</code> object that contains the
-	 *            UNICODE data used as the designated parameter
+	 *                      the <code>java.io.Reader</code> object that contains
+	 *                      the
+	 *                      UNICODE data used as the designated parameter
 	 * @param length
-	 *            the number of characters in the stream
+	 *                      the number of characters in the stream
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            <code>CallableStatement</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
-	void setCharacterStream(String parameterName, java.io.Reader reader, long length)
-			throws SQLException;
+	void setCharacterStream(String parameterName, java.io.Reader reader,
+			long length) throws SQLException;
 
 	// --
 	/**
@@ -2525,18 +3108,23 @@ public interface CallableStatement extends PreparedStatement {
 	 * which takes a length parameter.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the Java input stream that contains the ASCII parameter value
+	 *                      the Java input stream that contains the ASCII
+	 *                      parameter value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                         if parameterName does not correspond to a named
+	 *                         parameter;
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed <code>CallableStatement</code>
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 * @since 1.6
 	 */
-	void setAsciiStream(String parameterName, java.io.InputStream x) throws SQLException;
+	void setAsciiStream(String parameterName, java.io.InputStream x)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given input stream. When a very
@@ -2554,19 +3142,24 @@ public interface CallableStatement extends PreparedStatement {
 	 * which takes a length parameter.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the java input stream which contains the binary parameter
-	 *            value
+	 *                      the java input stream which contains the binary
+	 *                      parameter
+	 *                      value
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                         if parameterName does not correspond to a named
+	 *                         parameter;
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed <code>CallableStatement</code>
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 * @since 1.6
 	 */
-	void setBinaryStream(String parameterName, java.io.InputStream x) throws SQLException;
+	void setBinaryStream(String parameterName, java.io.InputStream x)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to the given <code>Reader</code> object.
@@ -2585,19 +3178,24 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>setCharacterStream</code> which takes a length parameter.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param reader
-	 *            the <code>java.io.Reader</code> object that contains the
-	 *            Unicode data
+	 *                      the <code>java.io.Reader</code> object that contains
+	 *                      the
+	 *                      Unicode data
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed <code>CallableStatement</code>
+	 *                         if parameterName does not correspond to a named
+	 *                         parameter;
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed <code>CallableStatement</code>
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 * @since 1.6
 	 */
-	void setCharacterStream(String parameterName, java.io.Reader reader) throws SQLException;
+	void setCharacterStream(String parameterName, java.io.Reader reader)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to a <code>Reader</code> object. The
@@ -2614,20 +3212,28 @@ public interface CallableStatement extends PreparedStatement {
 	 * <code>setNCharacterStream</code> which takes a length parameter.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param value
-	 *            the parameter value
+	 *                      the parameter value
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the driver does not support national character sets; if the
-	 *             driver can detect that a data conversion error could occur;
-	 *             if a database access error occurs; or this method is called
-	 *             on a closed <code>CallableStatement</code>
+	 *                                         if parameterName does not
+	 *                                         correspond to a named parameter;
+	 *                                         if
+	 *                                         the driver does not support
+	 *                                         national character sets; if the
+	 *                                         driver can detect that a data
+	 *                                         conversion error could occur;
+	 *                                         if a database access error
+	 *                                         occurs; or this method is called
+	 *                                         on a closed
+	 *                                         <code>CallableStatement</code>
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 * @since 1.6
 	 */
-	void setNCharacterStream(String parameterName, Reader value) throws SQLException;
+	void setNCharacterStream(String parameterName, Reader value)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to a <code>Reader</code> object. This
@@ -2644,17 +3250,23 @@ public interface CallableStatement extends PreparedStatement {
 	 * takes a length parameter.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param reader
-	 *            An object that contains the data to set the parameter value
-	 *            to.
+	 *                      An object that contains the data to set the
+	 *                      parameter value
+	 *                      to.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             a database access error occurs or this method is called on a
-	 *             closed <code>CallableStatement</code>
+	 *                                         if parameterName does not
+	 *                                         correspond to a named parameter;
+	 *                                         if
+	 *                                         a database access error occurs or
+	 *                                         this method is called on a
+	 *                                         closed
+	 *                                         <code>CallableStatement</code>
 	 *
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 * @since 1.6
 	 */
 	void setClob(String parameterName, Reader reader) throws SQLException;
@@ -2674,20 +3286,27 @@ public interface CallableStatement extends PreparedStatement {
 	 * takes a length parameter.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param inputStream
-	 *            An object that contains the data to set the parameter value
-	 *            to.
+	 *                      An object that contains the data to set the
+	 *                      parameter value
+	 *                      to.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             a database access error occurs or this method is called on a
-	 *             closed <code>CallableStatement</code>
+	 *                                         if parameterName does not
+	 *                                         correspond to a named parameter;
+	 *                                         if
+	 *                                         a database access error occurs or
+	 *                                         this method is called on a
+	 *                                         closed
+	 *                                         <code>CallableStatement</code>
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 *
 	 * @since 1.6
 	 */
-	void setBlob(String parameterName, InputStream inputStream) throws SQLException;
+	void setBlob(String parameterName, InputStream inputStream)
+			throws SQLException;
 
 	/**
 	 * Sets the designated parameter to a <code>Reader</code> object. This
@@ -2703,18 +3322,26 @@ public interface CallableStatement extends PreparedStatement {
 	 * takes a length parameter.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param reader
-	 *            An object that contains the data to set the parameter value
-	 *            to.
+	 *                      An object that contains the data to set the
+	 *                      parameter value
+	 *                      to.
 	 * @throws SQLException
-	 *             if parameterName does not correspond to a named parameter; if
-	 *             the driver does not support national character sets; if the
-	 *             driver can detect that a data conversion error could occur;
-	 *             if a database access error occurs or this method is called on
-	 *             a closed <code>CallableStatement</code>
+	 *                                         if parameterName does not
+	 *                                         correspond to a named parameter;
+	 *                                         if
+	 *                                         the driver does not support
+	 *                                         national character sets; if the
+	 *                                         driver can detect that a data
+	 *                                         conversion error could occur;
+	 *                                         if a database access error occurs
+	 *                                         or this method is called on
+	 *                                         a closed
+	 *                                         <code>CallableStatement</code>
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 *
 	 * @since 1.6
 	 */
@@ -2736,23 +3363,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * Additional conversions may be supported and are vendor defined.
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param type
-	 *            Class representing the Java data type to convert the
-	 *            designated parameter to.
-	 * @param <T>
-	 *            the type of the class modeled by this Class object
+	 *                       Class representing the Java data type to convert
+	 *                       the
+	 *                       designated parameter to.
+	 * @param                <T>
+	 *                       the type of the class modeled by this Class object
 	 * @return an instance of {@code type} holding the OUT parameter value
 	 * @throws SQLException
-	 *             if conversion is not supported, type is null or another error
-	 *             occurs. The getCause() method of the exception may provide a
-	 *             more detailed exception, for example, if a conversion error
-	 *             occurs
+	 *                                         if conversion is not supported,
+	 *                                         type is null or another error
+	 *                                         occurs. The getCause() method of
+	 *                                         the exception may provide a
+	 *                                         more detailed exception, for
+	 *                                         example, if a conversion error
+	 *                                         occurs
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 * @since 1.7
 	 */
-	public <T> T getObject(int parameterIndex, Class<T> type) throws SQLException;
+	public <T> T getObject(int parameterIndex, Class<T> type)
+			throws SQLException;
 
 	/**
 	 * <p>
@@ -2768,23 +3402,28 @@ public interface CallableStatement extends PreparedStatement {
 	 * Additional conversions may be supported and are vendor defined.
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param type
-	 *            Class representing the Java data type to convert the
-	 *            designated parameter to.
-	 * @param <T>
-	 *            the type of the class modeled by this Class object
+	 *                      Class representing the Java data type to convert the
+	 *                      designated parameter to.
+	 * @param               <T>
+	 *                      the type of the class modeled by this Class object
 	 * @return an instance of {@code type} holding the OUT parameter value
 	 * @throws SQLException
-	 *             if conversion is not supported, type is null or another error
-	 *             occurs. The getCause() method of the exception may provide a
-	 *             more detailed exception, for example, if a conversion error
-	 *             occurs
+	 *                                         if conversion is not supported,
+	 *                                         type is null or another error
+	 *                                         occurs. The getCause() method of
+	 *                                         the exception may provide a
+	 *                                         more detailed exception, for
+	 *                                         example, if a conversion error
+	 *                                         occurs
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this method
+	 *                                         if the JDBC driver does not
+	 *                                         support this method
 	 * @since 1.7
 	 */
-	public <T> T getObject(String parameterName, Class<T> type) throws SQLException;
+	public <T> T getObject(String parameterName, Class<T> type)
+			throws SQLException;
 
 	// ------------------------- JDBC 4.2 -----------------------------------
 
@@ -2819,35 +3458,49 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the object containing the input parameter value
+	 *                      the object containing the input parameter value
 	 * @param targetSqlType
-	 *            the SQL type to be sent to the database. The scale argument
-	 *            may further qualify this type.
+	 *                      the SQL type to be sent to the database. The scale
+	 *                      argument
+	 *                      may further qualify this type.
 	 * @param scaleOrLength
-	 *            for {@code java.sql.JDBCType.DECIMAL} or
-	 *            {@code java.sql.JDBCType.NUMERIC types}, this is the number of
-	 *            digits after the decimal point. For Java Object types
-	 *            {@code InputStream} and {@code Reader}, this is the length of
-	 *            the data in the stream or reader. For all other types, this
-	 *            value will be ignored.
+	 *                      for {@code java.sql.JDBCType.DECIMAL} or
+	 *                      {@code java.sql.JDBCType.NUMERIC types}, this is the
+	 *                      number of
+	 *                      digits after the decimal point. For Java Object
+	 *                      types
+	 *                      {@code InputStream} and {@code Reader}, this is the
+	 *                      length of
+	 *                      the data in the stream or reader. For all other
+	 *                      types, this
+	 *                      value will be ignored.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed {@code CallableStatement} or if the Java
-	 *                Object specified by x is an InputStream or Reader object
-	 *                and the value of the scale parameter is less than zero
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            {@code CallableStatement} or
+	 *                                            if the Java
+	 *                                            Object specified by x is an
+	 *                                            InputStream or Reader object
+	 *                                            and the value of the scale
+	 *                                            parameter is less than zero
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified
-	 *                targetSqlType
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified
+	 *                                            targetSqlType
 	 * @see JDBCType
 	 * @see SQLType
 	 *
 	 * @since 1.8
 	 */
-	default void setObject(String parameterName, Object x, SQLType targetSqlType, int scaleOrLength)
-			throws SQLException {
+	default void setObject(String parameterName, Object x,
+			SQLType targetSqlType, int scaleOrLength) throws SQLException {
 		throw new SQLFeatureNotSupportedException("setObject not implemented");
 	}
 
@@ -2862,24 +3515,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param x
-	 *            the object containing the input parameter value
+	 *                      the object containing the input parameter value
 	 * @param targetSqlType
-	 *            the SQL type to be sent to the database
+	 *                      the SQL type to be sent to the database
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed {@code CallableStatement}
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            {@code CallableStatement}
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified
-	 *                targetSqlType
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified
+	 *                                            targetSqlType
 	 * @see JDBCType
 	 * @see SQLType
 	 * @since 1.8
 	 */
-	default void setObject(String parameterName, Object x, SQLType targetSqlType)
-			throws SQLException {
+	default void setObject(String parameterName, Object x,
+			SQLType targetSqlType) throws SQLException {
 		throw new SQLFeatureNotSupportedException("setObject not implemented");
 	}
 
@@ -2901,26 +3560,36 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param sqlType
-	 *            the JDBC type code defined by {@code SQLType} to use to
-	 *            register the OUT Parameter. If the parameter is of JDBC type
-	 *            {@code JDBCType.NUMERIC} or {@code JDBCType.DECIMAL}, the
-	 *            version of {@code registerOutParameter} that accepts a scale
-	 *            value should be used.
+	 *                       the JDBC type code defined by {@code SQLType} to
+	 *                       use to
+	 *                       register the OUT Parameter. If the parameter is of
+	 *                       JDBC type
+	 *                       {@code JDBCType.NUMERIC} or
+	 *                       {@code JDBCType.DECIMAL}, the
+	 *                       version of {@code registerOutParameter} that
+	 *                       accepts a scale
+	 *                       value should be used.
 	 *
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                {@code CallableStatement}
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            {@code CallableStatement}
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified sqlType
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified sqlType
 	 * @see JDBCType
 	 * @see SQLType
 	 * @since 1.8
 	 */
-	default void registerOutParameter(int parameterIndex, SQLType sqlType) throws SQLException {
-		throw new SQLFeatureNotSupportedException("registerOutParameter not implemented");
+	default void registerOutParameter(int parameterIndex, SQLType sqlType)
+			throws SQLException {
+		throw new SQLFeatureNotSupportedException(
+				"registerOutParameter not implemented");
 	}
 
 	/**
@@ -2940,26 +3609,33 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2, and so on
+	 *                       the first parameter is 1, the second is 2, and so
+	 *                       on
 	 * @param sqlType
-	 *            the JDBC type code defined by {@code SQLType} to use to
-	 *            register the OUT Parameter.
+	 *                       the JDBC type code defined by {@code SQLType} to
+	 *                       use to
+	 *                       register the OUT Parameter.
 	 * @param scale
-	 *            the desired number of digits to the right of the decimal
-	 *            point. It must be greater than or equal to zero.
+	 *                       the desired number of digits to the right of the
+	 *                       decimal
+	 *                       point. It must be greater than or equal to zero.
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                {@code CallableStatement}
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            {@code CallableStatement}
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified sqlType
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified sqlType
 	 * @see JDBCType
 	 * @see SQLType
 	 * @since 1.8
 	 */
-	default void registerOutParameter(int parameterIndex, SQLType sqlType, int scale)
-			throws SQLException {
-		throw new SQLFeatureNotSupportedException("registerOutParameter not implemented");
+	default void registerOutParameter(int parameterIndex, SQLType sqlType,
+			int scale) throws SQLException {
+		throw new SQLFeatureNotSupportedException(
+				"registerOutParameter not implemented");
 	}
 
 	/**
@@ -2993,25 +3669,30 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterIndex
-	 *            the first parameter is 1, the second is 2,...
+	 *                       the first parameter is 1, the second is 2,...
 	 * @param sqlType
-	 *            the JDBC type code defined by {@code SQLType} to use to
-	 *            register the OUT Parameter.
+	 *                       the JDBC type code defined by {@code SQLType} to
+	 *                       use to
+	 *                       register the OUT Parameter.
 	 * @param typeName
-	 *            the fully-qualified name of an SQL structured type
+	 *                       the fully-qualified name of an SQL structured type
 	 * @exception SQLException
-	 *                if the parameterIndex is not valid; if a database access
-	 *                error occurs or this method is called on a closed
-	 *                {@code CallableStatement}
+	 *                                            if the parameterIndex is not
+	 *                                            valid; if a database access
+	 *                                            error occurs or this method is
+	 *                                            called on a closed
+	 *                                            {@code CallableStatement}
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified sqlType
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified sqlType
 	 * @see JDBCType
 	 * @see SQLType
 	 * @since 1.8
 	 */
-	default void registerOutParameter(int parameterIndex, SQLType sqlType, String typeName)
-			throws SQLException {
-		throw new SQLFeatureNotSupportedException("registerOutParameter not implemented");
+	default void registerOutParameter(int parameterIndex, SQLType sqlType,
+			String typeName) throws SQLException {
+		throw new SQLFeatureNotSupportedException(
+				"registerOutParameter not implemented");
 	}
 
 	/**
@@ -3032,26 +3713,39 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            the JDBC type code defined by {@code SQLType} to use to
-	 *            register the OUT Parameter. If the parameter is of JDBC type
-	 *            {@code JDBCType.NUMERIC} or {@code JDBCType.DECIMAL}, the
-	 *            version of {@code  registerOutParameter} that accepts a scale
-	 *            value should be used.
+	 *                      the JDBC type code defined by {@code SQLType} to use
+	 *                      to
+	 *                      register the OUT Parameter. If the parameter is of
+	 *                      JDBC type
+	 *                      {@code JDBCType.NUMERIC} or
+	 *                      {@code JDBCType.DECIMAL}, the
+	 *                      version of {@code  registerOutParameter} that
+	 *                      accepts a scale
+	 *                      value should be used.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed {@code CallableStatement}
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            {@code CallableStatement}
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified sqlType
-	 *                or if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified sqlType
+	 *                                            or if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.8
 	 * @see JDBCType
 	 * @see SQLType
 	 */
-	default void registerOutParameter(String parameterName, SQLType sqlType) throws SQLException {
-		throw new SQLFeatureNotSupportedException("registerOutParameter not implemented");
+	default void registerOutParameter(String parameterName, SQLType sqlType)
+			throws SQLException {
+		throw new SQLFeatureNotSupportedException(
+				"registerOutParameter not implemented");
 	}
 
 	/**
@@ -3071,27 +3765,37 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            the JDBC type code defined by {@code SQLType} to use to
-	 *            register the OUT Parameter.
+	 *                      the JDBC type code defined by {@code SQLType} to use
+	 *                      to
+	 *                      register the OUT Parameter.
 	 * @param scale
-	 *            the desired number of digits to the right of the decimal
-	 *            point. It must be greater than or equal to zero.
+	 *                      the desired number of digits to the right of the
+	 *                      decimal
+	 *                      point. It must be greater than or equal to zero.
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed {@code CallableStatement}
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            {@code CallableStatement}
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified sqlType
-	 *                or if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified sqlType
+	 *                                            or if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.8
 	 * @see JDBCType
 	 * @see SQLType
 	 */
-	default void registerOutParameter(String parameterName, SQLType sqlType, int scale)
-			throws SQLException {
-		throw new SQLFeatureNotSupportedException("registerOutParameter not implemented");
+	default void registerOutParameter(String parameterName, SQLType sqlType,
+			int scale) throws SQLException {
+		throw new SQLFeatureNotSupportedException(
+				"registerOutParameter not implemented");
 	}
 
 	/**
@@ -3124,25 +3828,34 @@ public interface CallableStatement extends PreparedStatement {
 	 * {@code SQLFeatureNotSupportedException}
 	 *
 	 * @param parameterName
-	 *            the name of the parameter
+	 *                      the name of the parameter
 	 * @param sqlType
-	 *            the JDBC type code defined by {@code SQLType} to use to
-	 *            register the OUT Parameter.
+	 *                      the JDBC type code defined by {@code SQLType} to use
+	 *                      to
+	 *                      register the OUT Parameter.
 	 * @param typeName
-	 *            the fully-qualified name of an SQL structured type
+	 *                      the fully-qualified name of an SQL structured type
 	 * @exception SQLException
-	 *                if parameterName does not correspond to a named parameter;
-	 *                if a database access error occurs or this method is called
-	 *                on a closed {@code CallableStatement}
+	 *                                            if parameterName does not
+	 *                                            correspond to a named
+	 *                                            parameter;
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed
+	 *                                            {@code CallableStatement}
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support the specified sqlType
-	 *                or if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support the specified sqlType
+	 *                                            or if the JDBC driver does not
+	 *                                            support this method
 	 * @see JDBCType
 	 * @see SQLType
 	 * @since 1.8
 	 */
-	default void registerOutParameter(String parameterName, SQLType sqlType, String typeName)
-			throws SQLException {
-		throw new SQLFeatureNotSupportedException("registerOutParameter not implemented");
+	default void registerOutParameter(String parameterName, SQLType sqlType,
+			String typeName) throws SQLException {
+		throw new SQLFeatureNotSupportedException(
+				"registerOutParameter not implemented");
 	}
 }

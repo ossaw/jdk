@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -70,7 +50,7 @@ public abstract class Reader implements Readable, Closeable {
 	 * synchronize on the given object.
 	 *
 	 * @param lock
-	 *            The Object to synchronize on.
+	 *             The Object to synchronize on.
 	 */
 	protected Reader(Object lock) {
 		if (lock == null) {
@@ -86,15 +66,15 @@ public abstract class Reader implements Readable, Closeable {
 	 * buffer is performed.
 	 *
 	 * @param target
-	 *            the buffer to read characters into
+	 *               the buffer to read characters into
 	 * @return The number of characters added to the buffer, or -1 if this
 	 *         source of characters is at its end
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                              if an I/O error occurs
 	 * @throws NullPointerException
-	 *             if target is null
-	 * @throws java.nio.ReadOnlyBufferException
-	 *             if target is a read only buffer
+	 *                              if target is null
+	 * @throws                      java.nio.ReadOnlyBufferException
+	 *                              if target is a read only buffer
 	 * @since 1.5
 	 */
 	public int read(java.nio.CharBuffer target) throws IOException {
@@ -119,7 +99,7 @@ public abstract class Reader implements Readable, Closeable {
 	 *         reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read() throws IOException {
 		char cb[] = new char[1];
@@ -134,13 +114,13 @@ public abstract class Reader implements Readable, Closeable {
 	 * is available, an I/O error occurs, or the end of the stream is reached.
 	 *
 	 * @param cbuf
-	 *            Destination buffer
+	 *             Destination buffer
 	 *
 	 * @return The number of characters read, or -1 if the end of the stream has
 	 *         been reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read(char cbuf[]) throws IOException {
 		return read(cbuf, 0, cbuf.length);
@@ -152,17 +132,17 @@ public abstract class Reader implements Readable, Closeable {
 	 * reached.
 	 *
 	 * @param cbuf
-	 *            Destination buffer
+	 *             Destination buffer
 	 * @param off
-	 *            Offset at which to start storing characters
+	 *             Offset at which to start storing characters
 	 * @param len
-	 *            Maximum number of characters to read
+	 *             Maximum number of characters to read
 	 *
 	 * @return The number of characters read, or -1 if the end of the stream has
 	 *         been reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	abstract public int read(char cbuf[], int off, int len) throws IOException;
 
@@ -177,14 +157,14 @@ public abstract class Reader implements Readable, Closeable {
 	 * available, an I/O error occurs, or the end of the stream is reached.
 	 *
 	 * @param n
-	 *            The number of characters to skip
+	 *          The number of characters to skip
 	 *
 	 * @return The number of characters actually skipped
 	 *
 	 * @exception IllegalArgumentException
-	 *                If <code>n</code> is negative.
+	 *                                     If <code>n</code> is negative.
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                                     If an I/O error occurs
 	 */
 	public long skip(long n) throws IOException {
 		if (n < 0L)
@@ -212,7 +192,7 @@ public abstract class Reader implements Readable, Closeable {
 	 *         that the next read will block.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public boolean ready() throws IOException {
 		return false;
@@ -235,13 +215,16 @@ public abstract class Reader implements Readable, Closeable {
 	 * character-input streams support the mark() operation.
 	 *
 	 * @param readAheadLimit
-	 *            Limit on the number of characters that may be read while still
-	 *            preserving the mark. After reading this many characters,
-	 *            attempting to reset the stream may fail.
+	 *                       Limit on the number of characters that may be read
+	 *                       while still
+	 *                       preserving the mark. After reading this many
+	 *                       characters,
+	 *                       attempting to reset the stream may fail.
 	 *
 	 * @exception IOException
-	 *                If the stream does not support mark(), or if some other
-	 *                I/O error occurs
+	 *                        If the stream does not support mark(), or if some
+	 *                        other
+	 *                        I/O error occurs
 	 */
 	public void mark(int readAheadLimit) throws IOException {
 		throw new IOException("mark() not supported");
@@ -256,9 +239,11 @@ public abstract class Reader implements Readable, Closeable {
 	 * reset() without supporting mark().
 	 *
 	 * @exception IOException
-	 *                If the stream has not been marked, or if the mark has been
-	 *                invalidated, or if the stream does not support reset(), or
-	 *                if some other I/O error occurs
+	 *                        If the stream has not been marked, or if the mark
+	 *                        has been
+	 *                        invalidated, or if the stream does not support
+	 *                        reset(), or
+	 *                        if some other I/O error occurs
 	 */
 	public void reset() throws IOException {
 		throw new IOException("reset() not supported");
@@ -271,7 +256,7 @@ public abstract class Reader implements Readable, Closeable {
 	 * previously closed stream has no effect.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	abstract public void close() throws IOException;
 

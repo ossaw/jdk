@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -130,13 +105,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the function's return type
+	 *           the function to use to compute the value of the returned
+	 *           CompletionStage
+	 * @param    <U>
+	 *           the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<U> thenApply(Function<? super T, ? extends U> fn);
+	public <U> CompletionStage<U> thenApply(
+			Function<? super T, ? extends U> fn);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes normally,
@@ -147,13 +123,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the function's return type
+	 *           the function to use to compute the value of the returned
+	 *           CompletionStage
+	 * @param    <U>
+	 *           the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<U> thenApplyAsync(Function<? super T, ? extends U> fn);
+	public <U> CompletionStage<U> thenApplyAsync(
+			Function<? super T, ? extends U> fn);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes normally,
@@ -164,16 +141,16 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
+	 *                 the function to use to compute the value of the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
-	 * @param <U>
-	 *            the function's return type
+	 *                 the executor to use for asynchronous execution
+	 * @param          <U>
+	 *                 the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<U> thenApplyAsync(Function<? super T, ? extends U> fn,
-			Executor executor);
+	public <U> CompletionStage<U> thenApplyAsync(
+			Function<? super T, ? extends U> fn, Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes normally,
@@ -184,8 +161,8 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
 	public CompletionStage<Void> thenAccept(Consumer<? super T> action);
@@ -199,8 +176,8 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
 	public CompletionStage<Void> thenAcceptAsync(Consumer<? super T> action);
@@ -214,13 +191,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *                 the action to perform before completing the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
+	 *                 the executor to use for asynchronous execution
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> thenAcceptAsync(Consumer<? super T> action, Executor executor);
+	public CompletionStage<Void> thenAcceptAsync(Consumer<? super T> action,
+			Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes normally,
@@ -230,8 +208,8 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
 	public CompletionStage<Void> thenRun(Runnable action);
@@ -245,8 +223,8 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
 	public CompletionStage<Void> thenRunAsync(Runnable action);
@@ -259,13 +237,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *                 the action to perform before completing the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
+	 *                 the executor to use for asynchronous execution
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> thenRunAsync(Runnable action, Executor executor);
+	public CompletionStage<Void> thenRunAsync(Runnable action,
+			Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when this and the other given stage
@@ -276,17 +255,18 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *              the other CompletionStage
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the type of the other CompletionStage's result
-	 * @param <V>
-	 *            the function's return type
+	 *              the function to use to compute the value of the returned
+	 *              CompletionStage
+	 * @param       <U>
+	 *              the type of the other CompletionStage's result
+	 * @param       <V>
+	 *              the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U, V> CompletionStage<V> thenCombine(CompletionStage<? extends U> other,
+	public <U, V> CompletionStage<V> thenCombine(
+			CompletionStage<? extends U> other,
 			BiFunction<? super T, ? super U, ? extends V> fn);
 
 	/**
@@ -299,17 +279,18 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *              the other CompletionStage
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the type of the other CompletionStage's result
-	 * @param <V>
-	 *            the function's return type
+	 *              the function to use to compute the value of the returned
+	 *              CompletionStage
+	 * @param       <U>
+	 *              the type of the other CompletionStage's result
+	 * @param       <V>
+	 *              the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U, V> CompletionStage<V> thenCombineAsync(CompletionStage<? extends U> other,
+	public <U, V> CompletionStage<V> thenCombineAsync(
+			CompletionStage<? extends U> other,
 			BiFunction<? super T, ? super U, ? extends V> fn);
 
 	/**
@@ -321,20 +302,22 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *                 the other CompletionStage
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
+	 *                 the function to use to compute the value of the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
-	 * @param <U>
-	 *            the type of the other CompletionStage's result
-	 * @param <V>
-	 *            the function's return type
+	 *                 the executor to use for asynchronous execution
+	 * @param          <U>
+	 *                 the type of the other CompletionStage's result
+	 * @param          <V>
+	 *                 the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U, V> CompletionStage<V> thenCombineAsync(CompletionStage<? extends U> other,
-			BiFunction<? super T, ? super U, ? extends V> fn, Executor executor);
+	public <U, V> CompletionStage<V> thenCombineAsync(
+			CompletionStage<? extends U> other,
+			BiFunction<? super T, ? super U, ? extends V> fn,
+			Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when this and the other given stage
@@ -345,15 +328,16 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the type of the other CompletionStage's result
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
+	 * @param        <U>
+	 *               the type of the other CompletionStage's result
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<Void> thenAcceptBoth(CompletionStage<? extends U> other,
+	public <U> CompletionStage<Void> thenAcceptBoth(
+			CompletionStage<? extends U> other,
 			BiConsumer<? super T, ? super U> action);
 
 	/**
@@ -363,15 +347,16 @@ public interface CompletionStage<T> {
 	 * action.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the type of the other CompletionStage's result
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
+	 * @param        <U>
+	 *               the type of the other CompletionStage's result
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<Void> thenAcceptBothAsync(CompletionStage<? extends U> other,
+	public <U> CompletionStage<Void> thenAcceptBothAsync(
+			CompletionStage<? extends U> other,
 			BiConsumer<? super T, ? super U> action);
 
 	/**
@@ -380,17 +365,18 @@ public interface CompletionStage<T> {
 	 * results as arguments to the supplied function.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *                 the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *                 the action to perform before completing the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
-	 * @param <U>
-	 *            the type of the other CompletionStage's result
+	 *                 the executor to use for asynchronous execution
+	 * @param          <U>
+	 *                 the type of the other CompletionStage's result
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<Void> thenAcceptBothAsync(CompletionStage<? extends U> other,
+	public <U> CompletionStage<Void> thenAcceptBothAsync(
+			CompletionStage<? extends U> other,
 			BiConsumer<? super T, ? super U> action, Executor executor);
 
 	/**
@@ -401,13 +387,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> runAfterBoth(CompletionStage<?> other, Runnable action);
+	public CompletionStage<Void> runAfterBoth(CompletionStage<?> other,
+			Runnable action);
 
 	/**
 	 * Returns a new CompletionStage that, when this and the other given stage
@@ -418,13 +405,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> runAfterBothAsync(CompletionStage<?> other, Runnable action);
+	public CompletionStage<Void> runAfterBothAsync(CompletionStage<?> other,
+			Runnable action);
 
 	/**
 	 * Returns a new CompletionStage that, when this and the other given stage
@@ -434,97 +422,98 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *                 the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *                 the action to perform before completing the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
+	 *                 the executor to use for asynchronous execution
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> runAfterBothAsync(CompletionStage<?> other, Runnable action,
+	public CompletionStage<Void> runAfterBothAsync(CompletionStage<?> other,
+			Runnable action, Executor executor);
+
+	/**
+	 * Returns a new CompletionStage that, when either this or the other given
+	 * stage complete normally, is executed with the corresponding result as
+	 * argument to the supplied function.
+	 *
+	 * See the {@link CompletionStage} documentation for rules covering
+	 * exceptional completion.
+	 *
+	 * @param other
+	 *              the other CompletionStage
+	 * @param fn
+	 *              the function to use to compute the value of the returned
+	 *              CompletionStage
+	 * @param       <U>
+	 *              the function's return type
+	 * @return the new CompletionStage
+	 */
+	public <U> CompletionStage<U> applyToEither(
+			CompletionStage<? extends T> other, Function<? super T, U> fn);
+
+	/**
+	 * Returns a new CompletionStage that, when either this or the other given
+	 * stage complete normally, is executed using this stage's default
+	 * asynchronous execution facility, with the corresponding result as
+	 * argument to the supplied function.
+	 *
+	 * See the {@link CompletionStage} documentation for rules covering
+	 * exceptional completion.
+	 *
+	 * @param other
+	 *              the other CompletionStage
+	 * @param fn
+	 *              the function to use to compute the value of the returned
+	 *              CompletionStage
+	 * @param       <U>
+	 *              the function's return type
+	 * @return the new CompletionStage
+	 */
+	public <U> CompletionStage<U> applyToEitherAsync(
+			CompletionStage<? extends T> other, Function<? super T, U> fn);
+
+	/**
+	 * Returns a new CompletionStage that, when either this or the other given
+	 * stage complete normally, is executed using the supplied executor, with
+	 * the corresponding result as argument to the supplied function.
+	 *
+	 * See the {@link CompletionStage} documentation for rules covering
+	 * exceptional completion.
+	 *
+	 * @param other
+	 *                 the other CompletionStage
+	 * @param fn
+	 *                 the function to use to compute the value of the returned
+	 *                 CompletionStage
+	 * @param executor
+	 *                 the executor to use for asynchronous execution
+	 * @param          <U>
+	 *                 the function's return type
+	 * @return the new CompletionStage
+	 */
+	public <U> CompletionStage<U> applyToEitherAsync(
+			CompletionStage<? extends T> other, Function<? super T, U> fn,
 			Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when either this or the other given
 	 * stage complete normally, is executed with the corresponding result as
-	 * argument to the supplied function.
-	 *
-	 * See the {@link CompletionStage} documentation for rules covering
-	 * exceptional completion.
-	 *
-	 * @param other
-	 *            the other CompletionStage
-	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the function's return type
-	 * @return the new CompletionStage
-	 */
-	public <U> CompletionStage<U> applyToEither(CompletionStage<? extends T> other,
-			Function<? super T, U> fn);
-
-	/**
-	 * Returns a new CompletionStage that, when either this or the other given
-	 * stage complete normally, is executed using this stage's default
-	 * asynchronous execution facility, with the corresponding result as
-	 * argument to the supplied function.
-	 *
-	 * See the {@link CompletionStage} documentation for rules covering
-	 * exceptional completion.
-	 *
-	 * @param other
-	 *            the other CompletionStage
-	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the function's return type
-	 * @return the new CompletionStage
-	 */
-	public <U> CompletionStage<U> applyToEitherAsync(CompletionStage<? extends T> other,
-			Function<? super T, U> fn);
-
-	/**
-	 * Returns a new CompletionStage that, when either this or the other given
-	 * stage complete normally, is executed using the supplied executor, with
-	 * the corresponding result as argument to the supplied function.
-	 *
-	 * See the {@link CompletionStage} documentation for rules covering
-	 * exceptional completion.
-	 *
-	 * @param other
-	 *            the other CompletionStage
-	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param executor
-	 *            the executor to use for asynchronous execution
-	 * @param <U>
-	 *            the function's return type
-	 * @return the new CompletionStage
-	 */
-	public <U> CompletionStage<U> applyToEitherAsync(CompletionStage<? extends T> other,
-			Function<? super T, U> fn, Executor executor);
-
-	/**
-	 * Returns a new CompletionStage that, when either this or the other given
-	 * stage complete normally, is executed with the corresponding result as
 	 * argument to the supplied action.
 	 *
 	 * See the {@link CompletionStage} documentation for rules covering
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> acceptEither(CompletionStage<? extends T> other,
-			Consumer<? super T> action);
+	public CompletionStage<Void> acceptEither(
+			CompletionStage<? extends T> other, Consumer<? super T> action);
 
 	/**
 	 * Returns a new CompletionStage that, when either this or the other given
@@ -536,14 +525,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> acceptEitherAsync(CompletionStage<? extends T> other,
-			Consumer<? super T> action);
+	public CompletionStage<Void> acceptEitherAsync(
+			CompletionStage<? extends T> other, Consumer<? super T> action);
 
 	/**
 	 * Returns a new CompletionStage that, when either this or the other given
@@ -554,16 +543,17 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *                 the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *                 the action to perform before completing the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
+	 *                 the executor to use for asynchronous execution
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> acceptEitherAsync(CompletionStage<? extends T> other,
-			Consumer<? super T> action, Executor executor);
+	public CompletionStage<Void> acceptEitherAsync(
+			CompletionStage<? extends T> other, Consumer<? super T> action,
+			Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when either this or the other given
@@ -573,13 +563,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> runAfterEither(CompletionStage<?> other, Runnable action);
+	public CompletionStage<Void> runAfterEither(CompletionStage<?> other,
+			Runnable action);
 
 	/**
 	 * Returns a new CompletionStage that, when either this or the other given
@@ -590,13 +581,14 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *               the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *               the action to perform before completing the returned
+	 *               CompletionStage
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> runAfterEitherAsync(CompletionStage<?> other, Runnable action);
+	public CompletionStage<Void> runAfterEitherAsync(CompletionStage<?> other,
+			Runnable action);
 
 	/**
 	 * Returns a new CompletionStage that, when either this or the other given
@@ -607,16 +599,16 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param other
-	 *            the other CompletionStage
+	 *                 the other CompletionStage
 	 * @param action
-	 *            the action to perform before completing the returned
-	 *            CompletionStage
+	 *                 the action to perform before completing the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
+	 *                 the executor to use for asynchronous execution
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<Void> runAfterEitherAsync(CompletionStage<?> other, Runnable action,
-			Executor executor);
+	public CompletionStage<Void> runAfterEitherAsync(CompletionStage<?> other,
+			Runnable action, Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes normally,
@@ -626,12 +618,13 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param fn
-	 *            the function returning a new CompletionStage
-	 * @param <U>
-	 *            the type of the returned CompletionStage's result
+	 *           the function returning a new CompletionStage
+	 * @param    <U>
+	 *           the type of the returned CompletionStage's result
 	 * @return the CompletionStage
 	 */
-	public <U> CompletionStage<U> thenCompose(Function<? super T, ? extends CompletionStage<U>> fn);
+	public <U> CompletionStage<U> thenCompose(
+			Function<? super T, ? extends CompletionStage<U>> fn);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes normally,
@@ -642,9 +635,9 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param fn
-	 *            the function returning a new CompletionStage
-	 * @param <U>
-	 *            the type of the returned CompletionStage's result
+	 *           the function returning a new CompletionStage
+	 * @param    <U>
+	 *           the type of the returned CompletionStage's result
 	 * @return the CompletionStage
 	 */
 	public <U> CompletionStage<U> thenComposeAsync(
@@ -659,15 +652,16 @@ public interface CompletionStage<T> {
 	 * exceptional completion.
 	 *
 	 * @param fn
-	 *            the function returning a new CompletionStage
+	 *                 the function returning a new CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
-	 * @param <U>
-	 *            the type of the returned CompletionStage's result
+	 *                 the executor to use for asynchronous execution
+	 * @param          <U>
+	 *                 the type of the returned CompletionStage's result
 	 * @return the CompletionStage
 	 */
 	public <U> CompletionStage<U> thenComposeAsync(
-			Function<? super T, ? extends CompletionStage<U>> fn, Executor executor);
+			Function<? super T, ? extends CompletionStage<U>> fn,
+			Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes
@@ -676,12 +670,13 @@ public interface CompletionStage<T> {
 	 * the returned stage also completes normally with the same value.
 	 *
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage if this CompletionStage completed
-	 *            exceptionally
+	 *           the function to use to compute the value of the returned
+	 *           CompletionStage if this CompletionStage completed
+	 *           exceptionally
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<T> exceptionally(Function<Throwable, ? extends T> fn);
+	public CompletionStage<T> exceptionally(
+			Function<Throwable, ? extends T> fn);
 
 	/**
 	 * Returns a new CompletionStage with the same result or exception as this
@@ -696,10 +691,11 @@ public interface CompletionStage<T> {
 	 * stage also completed exceptionally.
 	 *
 	 * @param action
-	 *            the action to perform
+	 *               the action to perform
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<T> whenComplete(BiConsumer<? super T, ? super Throwable> action);
+	public CompletionStage<T> whenComplete(
+			BiConsumer<? super T, ? super Throwable> action);
 
 	/**
 	 * Returns a new CompletionStage with the same result or exception as this
@@ -715,10 +711,11 @@ public interface CompletionStage<T> {
 	 * stage also completed exceptionally.
 	 *
 	 * @param action
-	 *            the action to perform
+	 *               the action to perform
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action);
+	public CompletionStage<T> whenCompleteAsync(
+			BiConsumer<? super T, ? super Throwable> action);
 
 	/**
 	 * Returns a new CompletionStage with the same result or exception as this
@@ -734,13 +731,13 @@ public interface CompletionStage<T> {
 	 * stage also completed exceptionally.
 	 *
 	 * @param action
-	 *            the action to perform
+	 *                 the action to perform
 	 * @param executor
-	 *            the executor to use for asynchronous execution
+	 *                 the executor to use for asynchronous execution
 	 * @return the new CompletionStage
 	 */
-	public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action,
-			Executor executor);
+	public CompletionStage<T> whenCompleteAsync(
+			BiConsumer<? super T, ? super Throwable> action, Executor executor);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes either
@@ -754,13 +751,14 @@ public interface CompletionStage<T> {
 	 * complete the returned stage.
 	 *
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the function's return type
+	 *           the function to use to compute the value of the returned
+	 *           CompletionStage
+	 * @param    <U>
+	 *           the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<U> handle(BiFunction<? super T, Throwable, ? extends U> fn);
+	public <U> CompletionStage<U> handle(
+			BiFunction<? super T, Throwable, ? extends U> fn);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes either
@@ -775,13 +773,14 @@ public interface CompletionStage<T> {
 	 * complete the returned stage.
 	 *
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
-	 * @param <U>
-	 *            the function's return type
+	 *           the function to use to compute the value of the returned
+	 *           CompletionStage
+	 * @param    <U>
+	 *           the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn);
+	public <U> CompletionStage<U> handleAsync(
+			BiFunction<? super T, Throwable, ? extends U> fn);
 
 	/**
 	 * Returns a new CompletionStage that, when this stage completes either
@@ -795,15 +794,16 @@ public interface CompletionStage<T> {
 	 * complete the returned stage.
 	 *
 	 * @param fn
-	 *            the function to use to compute the value of the returned
-	 *            CompletionStage
+	 *                 the function to use to compute the value of the returned
+	 *                 CompletionStage
 	 * @param executor
-	 *            the executor to use for asynchronous execution
-	 * @param <U>
-	 *            the function's return type
+	 *                 the executor to use for asynchronous execution
+	 * @param          <U>
+	 *                 the function's return type
 	 * @return the new CompletionStage
 	 */
-	public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn,
+	public <U> CompletionStage<U> handleAsync(
+			BiFunction<? super T, Throwable, ? extends U> fn,
 			Executor executor);
 
 	/**
@@ -817,8 +817,9 @@ public interface CompletionStage<T> {
 	 *
 	 * @return the CompletableFuture
 	 * @throws UnsupportedOperationException
-	 *             if this implementation does not interoperate with
-	 *             CompletableFuture
+	 *                                       if this implementation does not
+	 *                                       interoperate with
+	 *                                       CompletableFuture
 	 */
 	public CompletableFuture<T> toCompletableFuture();
 

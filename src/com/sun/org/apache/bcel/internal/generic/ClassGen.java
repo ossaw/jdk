@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -90,20 +82,21 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Convenience constructor to set up some important values initially.
 	 *
 	 * @param class_name
-	 *            fully qualified class name
+	 *                         fully qualified class name
 	 * @param super_class_name
-	 *            fully qualified superclass name
+	 *                         fully qualified superclass name
 	 * @param file_name
-	 *            source file name
+	 *                         source file name
 	 * @param access_flags
-	 *            access qualifiers
+	 *                         access qualifiers
 	 * @param interfaces
-	 *            implemented interfaces
+	 *                         implemented interfaces
 	 * @param cp
-	 *            constant pool to use
+	 *                         constant pool to use
 	 */
-	public ClassGen(String class_name, String super_class_name, String file_name, int access_flags,
-			String[] interfaces, ConstantPoolGen cp) {
+	public ClassGen(String class_name, String super_class_name,
+			String file_name, int access_flags, String[] interfaces,
+			ConstantPoolGen cp) {
 		this.class_name = class_name;
 		this.super_class_name = super_class_name;
 		this.file_name = file_name;
@@ -113,8 +106,8 @@ public class ClassGen extends AccessFlags implements Cloneable {
 		// Put everything needed by default into the constant pool and the
 		// vectors
 		if (file_name != null)
-			addAttribute(new SourceFile(cp.addUtf8("SourceFile"), 2, cp.addUtf8(file_name),
-					cp.getConstantPool()));
+			addAttribute(new SourceFile(cp.addUtf8("SourceFile"), 2, cp.addUtf8(
+					file_name), cp.getConstantPool()));
 
 		class_name_index = cp.addClass(class_name);
 		superclass_name_index = cp.addClass(super_class_name);
@@ -128,18 +121,18 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Convenience constructor to set up some important values initially.
 	 *
 	 * @param class_name
-	 *            fully qualified class name
+	 *                         fully qualified class name
 	 * @param super_class_name
-	 *            fully qualified superclass name
+	 *                         fully qualified superclass name
 	 * @param file_name
-	 *            source file name
+	 *                         source file name
 	 * @param access_flags
-	 *            access qualifiers
+	 *                         access qualifiers
 	 * @param interfaces
-	 *            implemented interfaces
+	 *                         implemented interfaces
 	 */
-	public ClassGen(String class_name, String super_class_name, String file_name, int access_flags,
-			String[] interfaces) {
+	public ClassGen(String class_name, String super_class_name,
+			String file_name, int access_flags, String[] interfaces) {
 		this(class_name, super_class_name, file_name, access_flags, interfaces,
 				new ConstantPoolGen());
 	}
@@ -148,7 +141,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Initialize with existing class.
 	 * 
 	 * @param clazz
-	 *            JavaClass object (e.g. read from file)
+	 *              JavaClass object (e.g. read from file)
 	 */
 	public ClassGen(JavaClass clazz) {
 		class_name_index = clazz.getClassNameIndex();
@@ -191,15 +184,16 @@ public class ClassGen extends AccessFlags implements Cloneable {
 		// Must be last since the above calls may still add something to it
 		ConstantPool cp = this.cp.getFinalConstantPool();
 
-		return new JavaClass(class_name_index, superclass_name_index, file_name, major, minor,
-				access_flags, cp, interfaces, fields, methods, attributes);
+		return new JavaClass(class_name_index, superclass_name_index, file_name,
+				major, minor, access_flags, cp, interfaces, fields, methods,
+				attributes);
 	}
 
 	/**
 	 * Add an interface to this class, i.e., this class has to implement it.
 	 * 
 	 * @param name
-	 *            interface to implement (fully qualified class name)
+	 *             interface to implement (fully qualified class name)
 	 */
 	public void addInterface(String name) {
 		interface_vec.add(name);
@@ -209,7 +203,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Remove an interface from this class.
 	 * 
 	 * @param name
-	 *            interface to remove (fully qualified name)
+	 *             interface to remove (fully qualified name)
 	 */
 	public void removeInterface(String name) {
 		interface_vec.remove(name);
@@ -226,7 +220,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Set major version number of class file, default value is 45 (JDK 1.1)
 	 * 
 	 * @param major
-	 *            major version number
+	 *              major version number
 	 */
 	public void setMajor(int major) {
 		this.major = major;
@@ -236,7 +230,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Set minor version number of class file, default value is 3 (JDK 1.1)
 	 * 
 	 * @param minor
-	 *            minor version number
+	 *              minor version number
 	 */
 	public void setMinor(int minor) {
 		this.minor = minor;
@@ -253,7 +247,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Add an attribute to this class.
 	 * 
 	 * @param a
-	 *            attribute to add
+	 *          attribute to add
 	 */
 	public void addAttribute(Attribute a) {
 		attribute_vec.add(a);
@@ -263,7 +257,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Add a method to this class.
 	 * 
 	 * @param m
-	 *            method to add
+	 *          method to add
 	 */
 	public void addMethod(Method m) {
 		method_vec.add(m);
@@ -276,16 +270,17 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * super().
 	 * 
 	 * @param access
-	 *            rights for constructor
+	 *               rights for constructor
 	 */
 	public void addEmptyConstructor(int access_flags) {
 		InstructionList il = new InstructionList();
 		il.append(InstructionConstants.THIS); // Push `this'
-		il.append(new INVOKESPECIAL(cp.addMethodref(super_class_name, "<init>", "()V")));
+		il.append(new INVOKESPECIAL(cp.addMethodref(super_class_name, "<init>",
+				"()V")));
 		il.append(InstructionConstants.RETURN);
 
-		MethodGen mg = new MethodGen(access_flags, Type.VOID, Type.NO_ARGS, null, "<init>",
-				class_name, il, cp);
+		MethodGen mg = new MethodGen(access_flags, Type.VOID, Type.NO_ARGS,
+				null, "<init>", class_name, il, cp);
 		mg.setMaxStack(1);
 		addMethod(mg.getMethod());
 	}
@@ -294,7 +289,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Add a field to this class.
 	 * 
 	 * @param f
-	 *            field to add
+	 *          field to add
 	 */
 	public void addField(Field f) {
 		field_vec.add(f);
@@ -334,7 +329,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Remove an attribute from this class.
 	 * 
 	 * @param a
-	 *            attribute to remove
+	 *          attribute to remove
 	 */
 	public void removeAttribute(Attribute a) {
 		attribute_vec.remove(a);
@@ -344,7 +339,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Remove a method from this class.
 	 * 
 	 * @param m
-	 *            method to remove
+	 *          method to remove
 	 */
 	public void removeMethod(Method m) {
 		method_vec.remove(m);
@@ -386,7 +381,7 @@ public class ClassGen extends AccessFlags implements Cloneable {
 	 * Remove a field to this class.
 	 * 
 	 * @param f
-	 *            field to remove
+	 *          field to remove
 	 */
 	public void removeField(Field f) {
 		field_vec.remove(f);
@@ -474,15 +469,15 @@ public class ClassGen extends AccessFlags implements Cloneable {
 
 	public void setClassNameIndex(int class_name_index) {
 		this.class_name_index = class_name_index;
-		class_name = cp.getConstantPool()
-				.getConstantString(class_name_index, Constants.CONSTANT_Class).replace('/', '.');
+		class_name = cp.getConstantPool().getConstantString(class_name_index,
+				Constants.CONSTANT_Class).replace('/', '.');
 	}
 
 	public void setSuperclassNameIndex(int superclass_name_index) {
 		this.superclass_name_index = superclass_name_index;
-		super_class_name = cp.getConstantPool()
-				.getConstantString(superclass_name_index, Constants.CONSTANT_Class)
-				.replace('/', '.');
+		super_class_name = cp.getConstantPool().getConstantString(
+				superclass_name_index, Constants.CONSTANT_Class).replace('/',
+						'.');
 	}
 
 	public int getSuperclassNameIndex() {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -202,6 +182,5 @@ public abstract class BufferStrategy {
 	 * @see java.awt.Canvas#getBufferStrategy
 	 * @since 1.6
 	 */
-	public void dispose() {
-	}
+	public void dispose() {}
 }

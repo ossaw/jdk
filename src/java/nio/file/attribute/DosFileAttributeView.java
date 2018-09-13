@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -93,9 +73,9 @@ public interface DosFileAttributeView extends BasicFileAttributeView {
 
 	/**
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                           {@inheritDoc}
 	 * @throws SecurityException
-	 *             {@inheritDoc}
+	 *                           {@inheritDoc}
 	 */
 	@Override
 	DosFileAttributes readAttributes() throws IOException;
@@ -110,15 +90,18 @@ public interface DosFileAttributeView extends BasicFileAttributeView {
 	 * the DOS attribute in order to update this attribute.
 	 *
 	 * @param value
-	 *            the new value of the attribute
+	 *              the new value of the attribute
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default, and a security manager is
-	 *             installed, its {@link SecurityManager#checkWrite(String)
-	 *             checkWrite} method is invoked to check write access to the
-	 *             file
+	 *                           In the case of the default, and a security
+	 *                           manager is
+	 *                           installed, its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method is invoked to check write
+	 *                           access to the
+	 *                           file
 	 */
 	void setReadOnly(boolean value) throws IOException;
 
@@ -132,15 +115,18 @@ public interface DosFileAttributeView extends BasicFileAttributeView {
 	 * the DOS attribute in order to update this attribute.
 	 *
 	 * @param value
-	 *            the new value of the attribute
+	 *              the new value of the attribute
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default, and a security manager is
-	 *             installed, its {@link SecurityManager#checkWrite(String)
-	 *             checkWrite} method is invoked to check write access to the
-	 *             file
+	 *                           In the case of the default, and a security
+	 *                           manager is
+	 *                           installed, its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method is invoked to check write
+	 *                           access to the
+	 *                           file
 	 */
 	void setHidden(boolean value) throws IOException;
 
@@ -154,15 +140,18 @@ public interface DosFileAttributeView extends BasicFileAttributeView {
 	 * the DOS attribute in order to update this attribute.
 	 *
 	 * @param value
-	 *            the new value of the attribute
+	 *              the new value of the attribute
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default, and a security manager is
-	 *             installed, its {@link SecurityManager#checkWrite(String)
-	 *             checkWrite} method is invoked to check write access to the
-	 *             file
+	 *                           In the case of the default, and a security
+	 *                           manager is
+	 *                           installed, its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method is invoked to check write
+	 *                           access to the
+	 *                           file
 	 */
 	void setSystem(boolean value) throws IOException;
 
@@ -176,15 +165,18 @@ public interface DosFileAttributeView extends BasicFileAttributeView {
 	 * the DOS attribute in order to update this attribute.
 	 *
 	 * @param value
-	 *            the new value of the attribute
+	 *              the new value of the attribute
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default, and a security manager is
-	 *             installed, its {@link SecurityManager#checkWrite(String)
-	 *             checkWrite} method is invoked to check write access to the
-	 *             file
+	 *                           In the case of the default, and a security
+	 *                           manager is
+	 *                           installed, its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method is invoked to check write
+	 *                           access to the
+	 *                           file
 	 */
 	void setArchive(boolean value) throws IOException;
 }

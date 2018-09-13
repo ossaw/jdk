@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -198,7 +195,7 @@ public final class ToUnknownStream extends SerializerBase {
 	 * Converts the DOM node to output
 	 * 
 	 * @param node
-	 *            the DOM node to transform to output
+	 *             the DOM node to transform to output
 	 * @see DOMSerializer#serialize(Node)
 	 *
 	 */
@@ -220,7 +217,7 @@ public final class ToUnknownStream extends SerializerBase {
 	 * Set the properties of the handler
 	 * 
 	 * @param format
-	 *            the output properties to set
+	 *               the output properties to set
 	 * @see Serializer#setOutputFormat(Properties)
 	 */
 	public void setOutputFormat(Properties format) {
@@ -231,7 +228,7 @@ public final class ToUnknownStream extends SerializerBase {
 	 * Sets the output stream to write to
 	 * 
 	 * @param output
-	 *            the OutputStream to write to
+	 *               the OutputStream to write to
 	 * @see Serializer#setOutputStream(OutputStream)
 	 */
 	public void setOutputStream(OutputStream output) {
@@ -242,7 +239,7 @@ public final class ToUnknownStream extends SerializerBase {
 	 * Sets the writer to write to
 	 * 
 	 * @param writer
-	 *            the writer to write to
+	 *               the writer to write to
 	 * @see Serializer#setWriter(Writer)
 	 */
 	public void setWriter(Writer writer) {
@@ -253,22 +250,23 @@ public final class ToUnknownStream extends SerializerBase {
 	 * Adds an attribute to the currenly open tag
 	 * 
 	 * @param uri
-	 *            the URI of a namespace
+	 *                     the URI of a namespace
 	 * @param localName
-	 *            the attribute name, without prefix
+	 *                     the attribute name, without prefix
 	 * @param rawName
-	 *            the attribute name, with prefix (if any)
+	 *                     the attribute name, with prefix (if any)
 	 * @param type
-	 *            the type of the attribute, typically "CDATA"
+	 *                     the type of the attribute, typically "CDATA"
 	 * @param value
-	 *            the value of the parameter
+	 *                     the value of the parameter
 	 * @param XSLAttribute
-	 *            true if this attribute is coming from an xsl:attribute element
+	 *                     true if this attribute is coming from an
+	 *                     xsl:attribute element
 	 * @see ExtendedContentHandler#addAttribute(String, String, String, String,
 	 *      String)
 	 */
-	public void addAttribute(String uri, String localName, String rawName, String type,
-			String value) throws SAXException {
+	public void addAttribute(String uri, String localName, String rawName,
+			String type, String value) throws SAXException {
 		addAttribute(uri, localName, rawName, type, value, false);
 	}
 
@@ -276,35 +274,38 @@ public final class ToUnknownStream extends SerializerBase {
 	 * Adds an attribute to the currenly open tag
 	 * 
 	 * @param uri
-	 *            the URI of a namespace
+	 *                     the URI of a namespace
 	 * @param localName
-	 *            the attribute name, without prefix
+	 *                     the attribute name, without prefix
 	 * @param rawName
-	 *            the attribute name, with prefix (if any)
+	 *                     the attribute name, with prefix (if any)
 	 * @param type
-	 *            the type of the attribute, typically "CDATA"
+	 *                     the type of the attribute, typically "CDATA"
 	 * @param value
-	 *            the value of the parameter
+	 *                     the value of the parameter
 	 * @param XSLAttribute
-	 *            true if this attribute is coming from an xsl:attribute element
+	 *                     true if this attribute is coming from an
+	 *                     xsl:attribute element
 	 * @see ExtendedContentHandler#addAttribute(String, String, String, String,
 	 *      String)
 	 */
-	public void addAttribute(String uri, String localName, String rawName, String type,
-			String value, boolean XSLAttribute) throws SAXException {
+	public void addAttribute(String uri, String localName, String rawName,
+			String type, String value, boolean XSLAttribute)
+			throws SAXException {
 		if (m_firstTagNotEmitted) {
 			flush();
 		}
-		m_handler.addAttribute(uri, localName, rawName, type, value, XSLAttribute);
+		m_handler.addAttribute(uri, localName, rawName, type, value,
+				XSLAttribute);
 	}
 
 	/**
 	 * Adds an attribute to the currenly open tag
 	 * 
 	 * @param rawName
-	 *            the attribute name, with prefix (if any)
+	 *                the attribute name, with prefix (if any)
 	 * @param value
-	 *            the value of the parameter
+	 *                the value of the parameter
 	 * @see ExtendedContentHandler#addAttribute(String, String)
 	 */
 	public void addAttribute(String rawName, String value) {
@@ -318,7 +319,8 @@ public final class ToUnknownStream extends SerializerBase {
 	/**
 	 * Adds a unique attribute to the currenly open tag
 	 */
-	public void addUniqueAttribute(String rawName, String value, int flags) throws SAXException {
+	public void addUniqueAttribute(String rawName, String value, int flags)
+			throws SAXException {
 		if (m_firstTagNotEmitted) {
 			flush();
 		}
@@ -356,11 +358,12 @@ public final class ToUnknownStream extends SerializerBase {
 	/**
 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(String, String)
 	 * @param prefix
-	 *            The prefix that maps to the URI
+	 *               The prefix that maps to the URI
 	 * @param uri
-	 *            The URI for the namespace
+	 *               The URI for the namespace
 	 */
-	public void startPrefixMapping(String prefix, String uri) throws SAXException {
+	public void startPrefixMapping(String prefix, String uri)
+			throws SAXException {
 		this.startPrefixMapping(prefix, uri, true);
 	}
 
@@ -371,15 +374,17 @@ public final class ToUnknownStream extends SerializerBase {
 	 * startElement() call.
 	 * 
 	 * @param uri
-	 *            the URI of the namespace
+	 *               the URI of the namespace
 	 * @param prefix
-	 *            the prefix associated with the given URI.
+	 *               the prefix associated with the given URI.
 	 *
 	 * @see ExtendedContentHandler#namespaceAfterStartElement(String, String)
 	 */
-	public void namespaceAfterStartElement(String prefix, String uri) throws SAXException {
+	public void namespaceAfterStartElement(String prefix, String uri)
+			throws SAXException {
 		// hack for XSLTC with finding URI for default namespace
-		if (m_firstTagNotEmitted && m_firstElementURI == null && m_firstElementName != null) {
+		if (m_firstTagNotEmitted && m_firstElementURI == null
+				&& m_firstElementName != null) {
 			String prefix1 = getPrefixPart(m_firstElementName);
 			if (prefix1 == null && EMPTYSTRING.equals(prefix)) {
 				// the elements URI is not known yet, and it
@@ -392,8 +397,8 @@ public final class ToUnknownStream extends SerializerBase {
 		startPrefixMapping(prefix, uri, false);
 	}
 
-	public boolean startPrefixMapping(String prefix, String uri, boolean shouldFlush)
-			throws SAXException {
+	public boolean startPrefixMapping(String prefix, String uri,
+			boolean shouldFlush) throws SAXException {
 		boolean pushed = false;
 		if (m_firstTagNotEmitted) {
 			if (m_firstElementName != null && shouldFlush) {
@@ -448,13 +453,13 @@ public final class ToUnknownStream extends SerializerBase {
 		this.startElement(null, null, qName, null);
 	}
 
-	public void startElement(String namespaceURI, String localName, String qName)
-			throws SAXException {
+	public void startElement(String namespaceURI, String localName,
+			String qName) throws SAXException {
 		this.startElement(namespaceURI, localName, qName, null);
 	}
 
-	public void startElement(String namespaceURI, String localName, String elementName,
-			Attributes atts) throws SAXException {
+	public void startElement(String namespaceURI, String localName,
+			String elementName, Attributes atts) throws SAXException {
 
 		if (m_needToCallSetDocumentInfo) {
 			super.setDocumentInfo();
@@ -471,7 +476,8 @@ public final class ToUnknownStream extends SerializerBase {
 				 * on its way.
 				 */
 				flush();
-				m_handler.startElement(namespaceURI, localName, elementName, atts);
+				m_handler.startElement(namespaceURI, localName, elementName,
+						atts);
 			} else {
 				/*
 				 * this is the very first element that we have seen, so save it
@@ -631,7 +637,7 @@ public final class ToUnknownStream extends SerializerBase {
 	 * handler
 	 * 
 	 * @param doctype
-	 *            the public doctype to set
+	 *                the public doctype to set
 	 * @see XSLOutputAttributes#setDoctypePublic(String)
 	 */
 	public void setDoctypePublic(String doctype) {
@@ -645,7 +651,7 @@ public final class ToUnknownStream extends SerializerBase {
 	 * handler
 	 * 
 	 * @param doctype
-	 *            the system doctype to set
+	 *                the system doctype to set
 	 * @see XSLOutputAttributes#setDoctypeSystem(String)
 	 */
 	public void setDoctypeSystem(String doctype) {
@@ -714,8 +720,8 @@ public final class ToUnknownStream extends SerializerBase {
 	 * @see org.xml.sax.ext.DeclHandler#attributeDecl(String, String, String,
 	 *      String, String)
 	 */
-	public void attributeDecl(String arg0, String arg1, String arg2, String arg3, String arg4)
-			throws SAXException {
+	public void attributeDecl(String arg0, String arg1, String arg2,
+			String arg3, String arg4) throws SAXException {
 		m_handler.attributeDecl(arg0, arg1, arg2, arg3, arg4);
 	}
 
@@ -737,8 +743,8 @@ public final class ToUnknownStream extends SerializerBase {
 	 * @see org.xml.sax.ext.DeclHandler#externalEntityDecl(String, String,
 	 *      String)
 	 */
-	public void externalEntityDecl(String name, String publicId, String systemId)
-			throws SAXException {
+	public void externalEntityDecl(String name, String publicId,
+			String systemId) throws SAXException {
 		if (m_firstTagNotEmitted) {
 			flush();
 		}
@@ -750,7 +756,8 @@ public final class ToUnknownStream extends SerializerBase {
 	 * 
 	 * @see org.xml.sax.ext.DeclHandler#internalEntityDecl(String, String)
 	 */
-	public void internalEntityDecl(String arg0, String arg1) throws SAXException {
+	public void internalEntityDecl(String arg0, String arg1)
+			throws SAXException {
 		if (m_firstTagNotEmitted) {
 			flush();
 		}
@@ -762,7 +769,8 @@ public final class ToUnknownStream extends SerializerBase {
 	 * 
 	 * @see org.xml.sax.ContentHandler#characters(char[], int, int)
 	 */
-	public void characters(char[] characters, int offset, int length) throws SAXException {
+	public void characters(char[] characters, int offset, int length)
+			throws SAXException {
 		if (m_firstTagNotEmitted) {
 			flush();
 		}
@@ -818,7 +826,8 @@ public final class ToUnknownStream extends SerializerBase {
 	 * 
 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
 	 */
-	public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
+	public void ignorableWhitespace(char[] ch, int start, int length)
+			throws SAXException {
 		if (m_firstTagNotEmitted) {
 			flush();
 		}
@@ -830,7 +839,8 @@ public final class ToUnknownStream extends SerializerBase {
 	 * 
 	 * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
 	 */
-	public void processingInstruction(String target, String data) throws SAXException {
+	public void processingInstruction(String target, String data)
+			throws SAXException {
 		if (m_firstTagNotEmitted) {
 			flush();
 		}
@@ -916,7 +926,8 @@ public final class ToUnknownStream extends SerializerBase {
 	 * 
 	 * @see org.xml.sax.ext.LexicalHandler#startDTD(String, String, String)
 	 */
-	public void startDTD(String name, String publicId, String systemId) throws SAXException {
+	public void startDTD(String name, String publicId, String systemId)
+			throws SAXException {
 		m_handler.startDTD(name, publicId, systemId);
 	}
 
@@ -956,7 +967,8 @@ public final class ToUnknownStream extends SerializerBase {
 
 			Properties htmlProperties = OutputPropertiesFactory
 					.getDefaultMethodProperties(Method.HTML);
-			Serializer serializer = SerializerFactory.getSerializer(htmlProperties);
+			Serializer serializer = SerializerFactory.getSerializer(
+					htmlProperties);
 
 			// The factory should be returning a ToStream
 			// Don't know what to do if it doesn't
@@ -1019,7 +1031,8 @@ public final class ToUnknownStream extends SerializerBase {
 				m_wrapped_handler_not_initialized = false;
 			}
 			// Output first tag
-			m_handler.startElement(m_firstElementURI, null, m_firstElementName, m_attributes);
+			m_handler.startElement(m_firstElementURI, null, m_firstElementName,
+					m_attributes);
 			// don't need the collected attributes of the first element anymore.
 			m_attributes = null;
 
@@ -1027,7 +1040,8 @@ public final class ToUnknownStream extends SerializerBase {
 			if (m_namespacePrefix != null) {
 				final int n = m_namespacePrefix.size();
 				for (int i = 0; i < n; i++) {
-					final String prefix = (String) m_namespacePrefix.elementAt(i);
+					final String prefix = (String) m_namespacePrefix.elementAt(
+							i);
 					final String uri = (String) m_namespaceURI.elementAt(i);
 					m_handler.startPrefixMapping(prefix, uri, false);
 				}
@@ -1076,10 +1090,12 @@ public final class ToUnknownStream extends SerializerBase {
 		boolean isHTML;
 
 		// is the first tag html, not considering the prefix ?
-		isHTML = getLocalNameUnknown(m_firstElementName).equalsIgnoreCase("html");
+		isHTML = getLocalNameUnknown(m_firstElementName).equalsIgnoreCase(
+				"html");
 
 		// Try to rule out if this is not to be an HTML document based on URI
-		if (isHTML && m_firstElementURI != null && !EMPTYSTRING.equals(m_firstElementURI)) {
+		if (isHTML && m_firstElementURI != null && !EMPTYSTRING.equals(
+				m_firstElementURI)) {
 			// the <html> element has a non-trivial namespace
 			isHTML = false;
 		}
@@ -1097,8 +1113,8 @@ public final class ToUnknownStream extends SerializerBase {
 				final String prefix = (String) m_namespacePrefix.elementAt(i);
 				final String uri = (String) m_namespaceURI.elementAt(i);
 
-				if (m_firstElementPrefix != null && m_firstElementPrefix.equals(prefix)
-						&& !EMPTYSTRING.equals(uri)) {
+				if (m_firstElementPrefix != null && m_firstElementPrefix.equals(
+						prefix) && !EMPTYSTRING.equals(uri)) {
 					// The first element has a prefix, so it can't be <html>
 					isHTML = false;
 					break;
@@ -1118,8 +1134,9 @@ public final class ToUnknownStream extends SerializerBase {
 
 	/**
 	 * @param URI_and_localNames
-	 *            Vector a list of pairs of URI/localName specified in the
-	 *            cdata-section-elements attribute.
+	 *                           Vector a list of pairs of URI/localName
+	 *                           specified in the
+	 *                           cdata-section-elements attribute.
 	 * @see SerializationHandler#setCdataSectionElements(java.util.Vector)
 	 */
 	public void setCdataSectionElements(Vector URI_and_localNames) {
@@ -1199,7 +1216,8 @@ public final class ToUnknownStream extends SerializerBase {
 
 	public void setTransformer(Transformer t) {
 		m_handler.setTransformer(t);
-		if ((t instanceof SerializerTrace) && (((SerializerTrace) t).hasTraceListeners())) {
+		if ((t instanceof SerializerTrace) && (((SerializerTrace) t)
+				.hasTraceListeners())) {
 			m_tracer = (SerializerTrace) t;
 		} else {
 			m_tracer = null;
@@ -1222,7 +1240,7 @@ public final class ToUnknownStream extends SerializerBase {
 	 * generated an error message.
 	 * 
 	 * @param locator
-	 *            the source locator
+	 *                the source locator
 	 *
 	 * @see ExtendedContentHandler#setSourceLocator(javax.xml.transform.SourceLocator)
 	 */
@@ -1242,7 +1260,8 @@ public final class ToUnknownStream extends SerializerBase {
 			// emit the trace event that these characters "might"
 			// be written
 			char ch[] = sb.toString().toCharArray();
-			m_tracer.fireGenerateEvent(SerializerTrace.EVENTTYPE_OUTPUT_PSEUDO_CHARACTERS, ch, 0,
+			m_tracer.fireGenerateEvent(
+					SerializerTrace.EVENTTYPE_OUTPUT_PSEUDO_CHARACTERS, ch, 0,
 					ch.length);
 		}
 	}

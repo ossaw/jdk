@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orbutil;
@@ -41,7 +21,8 @@ package com.sun.corba.se.impl.orbutil;
  * <p>
  *
  * <pre>
- * String s = (String) java.security.AccessController.doPrivileged(new GetPropertyAction("prop"));
+ * String s = (String) java.security.AccessController.doPrivileged(
+ * 		new GetPropertyAction("prop"));
  * </pre>
  *
  * @author Roland Schemers
@@ -59,7 +40,7 @@ public class GetPropertyAction implements java.security.PrivilegedAction {
 	 * needs to be determined.
 	 *
 	 * @param theProp
-	 *            the name of the system property.
+	 *                the name of the system property.
 	 */
 	public GetPropertyAction(String theProp) {
 		this.theProp = theProp;
@@ -70,9 +51,9 @@ public class GetPropertyAction implements java.security.PrivilegedAction {
 	 * value of that property.
 	 *
 	 * @param theProp
-	 *            the name of the system property.
+	 *                  the name of the system property.
 	 * @param defaulVal
-	 *            the default value.
+	 *                  the default value.
 	 */
 	public GetPropertyAction(String theProp, String defaultVal) {
 		this.theProp = theProp;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth.login;
@@ -85,7 +65,8 @@ public class ConfigFile extends Configuration {
 	 * Create a new {@code Configuration} object.
 	 *
 	 * @throws SecurityException
-	 *             if the {@code Configuration} can not be initialized
+	 *                           if the {@code Configuration} can not be
+	 *                           initialized
 	 */
 	public ConfigFile() {
 		spi = new sun.security.provider.ConfigFile.Spi();
@@ -97,9 +78,10 @@ public class ConfigFile extends Configuration {
 	 * @param uri
 	 *            the {@code URI}
 	 * @throws SecurityException
-	 *             if the {@code Configuration} can not be initialized
+	 *                              if the {@code Configuration} can not be
+	 *                              initialized
 	 * @throws NullPointerException
-	 *             if {@code uri} is null
+	 *                              if {@code uri} is null
 	 */
 	public ConfigFile(URI uri) {
 		spi = new sun.security.provider.ConfigFile.Spi(uri);
@@ -110,14 +92,15 @@ public class ConfigFile extends Configuration {
 	 * name as an index.
 	 *
 	 * @param applicationName
-	 *            the name used to index the {@code Configuration}
+	 *                        the name used to index the {@code Configuration}
 	 * @return an array of {@code AppConfigurationEntry} which correspond to the
 	 *         stacked configuration of {@code LoginModule}s for this
 	 *         application, or null if this application has no configured
 	 *         {@code LoginModule}s.
 	 */
 	@Override
-	public AppConfigurationEntry[] getAppConfigurationEntry(String applicationName) {
+	public AppConfigurationEntry[] getAppConfigurationEntry(
+			String applicationName) {
 
 		return spi.engineGetAppConfigurationEntry(applicationName);
 	}
@@ -127,8 +110,9 @@ public class ConfigFile extends Configuration {
 	 * login configurations.
 	 *
 	 * @throws SecurityException
-	 *             if the caller does not have permission to refresh the
-	 *             {@code Configuration}
+	 *                           if the caller does not have permission to
+	 *                           refresh the
+	 *                           {@code Configuration}
 	 */
 	@Override
 	public void refresh() {

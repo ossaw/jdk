@@ -66,7 +66,7 @@ public interface CipherData {
 	 * Sets the <code>CipherData</code>'s value.
 	 *
 	 * @param value
-	 *            the value of the <code>CipherData</code>.
+	 *              the value of the <code>CipherData</code>.
 	 * @throws XMLEncryptionException
 	 */
 	void setCipherValue(CipherValue value) throws XMLEncryptionException;
@@ -84,8 +84,10 @@ public interface CipherData {
 	 * Sets the <code>CipherData</code>'s reference.
 	 *
 	 * @param reference
-	 *            an external location containing the encrypted octet sequence.
+	 *                  an external location containing the encrypted octet
+	 *                  sequence.
 	 * @throws XMLEncryptionException
 	 */
-	void setCipherReference(CipherReference reference) throws XMLEncryptionException;
+	void setCipherReference(CipherReference reference)
+			throws XMLEncryptionException;
 }

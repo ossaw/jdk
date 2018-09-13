@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -44,7 +24,7 @@ public class SnmpOpaque extends SnmpString {
 	 * Constructs a new <CODE>SnmpOpaque</CODE> from the specified bytes array.
 	 * 
 	 * @param v
-	 *            The bytes composing the opaque value.
+	 *          The bytes composing the opaque value.
 	 */
 	public SnmpOpaque(byte[] v) {
 		super(v);
@@ -55,7 +35,7 @@ public class SnmpOpaque extends SnmpString {
 	 * <CODE>Bytes</CODE> array.
 	 * 
 	 * @param v
-	 *            The <CODE>Bytes</CODE> composing the opaque value.
+	 *          The <CODE>Bytes</CODE> composing the opaque value.
 	 */
 	public SnmpOpaque(Byte[] v) {
 		super(v);
@@ -66,7 +46,7 @@ public class SnmpOpaque extends SnmpString {
 	 * <CODE>String</CODE> value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 */
 	public SnmpOpaque(String v) {
 		super(v);

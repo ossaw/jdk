@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -49,8 +29,7 @@ import sun.nio.cs.ArrayEncoder;
 
 class StringCoding {
 
-	private StringCoding() {
-	}
+	private StringCoding() {}
 
 	/** The cached coders for each thread */
 	private final static ThreadLocal<SoftReference<StringDecoder>> decoder = new ThreadLocal<>();
@@ -71,8 +50,10 @@ class StringCoding {
 
 	// Trim the given byte array to the given length
 	//
-	private static byte[] safeTrim(byte[] ba, int len, Charset cs, boolean isTrusted) {
-		if (len == ba.length && (isTrusted || System.getSecurityManager() == null))
+	private static byte[] safeTrim(byte[] ba, int len, Charset cs,
+			boolean isTrusted) {
+		if (len == ba.length && (isTrusted || System
+				.getSecurityManager() == null))
 			return ba;
 		else
 			return Arrays.copyOf(ba, len);
@@ -80,8 +61,10 @@ class StringCoding {
 
 	// Trim the given char array to the given length
 	//
-	private static char[] safeTrim(char[] ca, int len, Charset cs, boolean isTrusted) {
-		if (len == ca.length && (isTrusted || System.getSecurityManager() == null))
+	private static char[] safeTrim(char[] ca, int len, Charset cs,
+			boolean isTrusted) {
+		if (len == ca.length && (isTrusted || System
+				.getSecurityManager() == null))
 			return ca;
 		else
 			return Arrays.copyOf(ca, len);
@@ -109,8 +92,8 @@ class StringCoding {
 			// Use sun.misc.MessageUtils rather than the Logging API or
 			// System.err since this method may be called during VM
 			// initialization before either is available.
-			MessageUtils.err(
-					"WARNING: Default charset " + csn + " not supported, using ISO-8859-1 instead");
+			MessageUtils.err("WARNING: Default charset " + csn
+					+ " not supported, using ISO-8859-1 instead");
 			warnUnsupportedCharset = false;
 		}
 	}
@@ -125,8 +108,9 @@ class StringCoding {
 		private StringDecoder(Charset cs, String rcn) {
 			this.requestedCharsetName = rcn;
 			this.cs = cs;
-			this.cd = cs.newDecoder().onMalformedInput(CodingErrorAction.REPLACE)
-					.onUnmappableCharacter(CodingErrorAction.REPLACE);
+			this.cd = cs.newDecoder().onMalformedInput(
+					CodingErrorAction.REPLACE).onUnmappableCharacter(
+							CodingErrorAction.REPLACE);
 			this.isTrusted = (cs.getClass().getClassLoader0() == null);
 		}
 
@@ -173,8 +157,8 @@ class StringCoding {
 			throws UnsupportedEncodingException {
 		StringDecoder sd = deref(decoder);
 		String csn = (charsetName == null) ? "ISO-8859-1" : charsetName;
-		if ((sd == null)
-				|| !(csn.equals(sd.requestedCharsetName()) || csn.equals(sd.charsetName()))) {
+		if ((sd == null) || !(csn.equals(sd.requestedCharsetName()) || csn
+				.equals(sd.charsetName()))) {
 			sd = null;
 			try {
 				Charset cs = lookupCharset(csn);
@@ -219,8 +203,8 @@ class StringCoding {
 				off = 0;
 			}
 		}
-		cd.onMalformedInput(CodingErrorAction.REPLACE)
-				.onUnmappableCharacter(CodingErrorAction.REPLACE).reset();
+		cd.onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(
+				CodingErrorAction.REPLACE).reset();
 		if (cd instanceof ArrayDecoder) {
 			int clen = ((ArrayDecoder) cd).decode(ba, off, len, ca);
 			return safeTrim(ca, clen, cs, isTrusted);
@@ -256,7 +240,8 @@ class StringCoding {
 		} catch (UnsupportedEncodingException x) {
 			// If this code is hit during VM initialization, MessageUtils is
 			// the only way we will be able to get any kind of error message.
-			MessageUtils.err("ISO-8859-1 charset not available: " + x.toString());
+			MessageUtils.err("ISO-8859-1 charset not available: " + x
+					.toString());
 			// If we can not find ISO-8859-1 (a required encoding) then things
 			// are seriously wrong with the installation.
 			System.exit(1);
@@ -274,8 +259,9 @@ class StringCoding {
 		private StringEncoder(Charset cs, String rcn) {
 			this.requestedCharsetName = rcn;
 			this.cs = cs;
-			this.ce = cs.newEncoder().onMalformedInput(CodingErrorAction.REPLACE)
-					.onUnmappableCharacter(CodingErrorAction.REPLACE);
+			this.ce = cs.newEncoder().onMalformedInput(
+					CodingErrorAction.REPLACE).onUnmappableCharacter(
+							CodingErrorAction.REPLACE);
 			this.isTrusted = (cs.getClass().getClassLoader0() == null);
 		}
 
@@ -322,8 +308,8 @@ class StringCoding {
 			throws UnsupportedEncodingException {
 		StringEncoder se = deref(encoder);
 		String csn = (charsetName == null) ? "ISO-8859-1" : charsetName;
-		if ((se == null)
-				|| !(csn.equals(se.requestedCharsetName()) || csn.equals(se.charsetName()))) {
+		if ((se == null) || !(csn.equals(se.requestedCharsetName()) || csn
+				.equals(se.charsetName()))) {
 			se = null;
 			try {
 				Charset cs = lookupCharset(csn);
@@ -351,8 +337,8 @@ class StringCoding {
 				off = 0;
 			}
 		}
-		ce.onMalformedInput(CodingErrorAction.REPLACE)
-				.onUnmappableCharacter(CodingErrorAction.REPLACE).reset();
+		ce.onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(
+				CodingErrorAction.REPLACE).reset();
 		if (ce instanceof ArrayEncoder) {
 			int blen = ((ArrayEncoder) ce).encode(ca, off, len, ba);
 			return safeTrim(ba, blen, cs, isTrusted);
@@ -386,7 +372,8 @@ class StringCoding {
 		} catch (UnsupportedEncodingException x) {
 			// If this code is hit during VM initialization, MessageUtils is
 			// the only way we will be able to get any kind of error message.
-			MessageUtils.err("ISO-8859-1 charset not available: " + x.toString());
+			MessageUtils.err("ISO-8859-1 charset not available: " + x
+					.toString());
 			// If we can not find ISO-8859-1 (a required encoding) then things
 			// are seriously wrong with the installation.
 			System.exit(1);

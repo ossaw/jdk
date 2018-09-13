@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -91,7 +71,8 @@ import sun.security.x509.X509CertImpl;
  * <pre>
  * try (InputStream inStream = new FileInputStream("fileName-of-cert")) {
  * 	CertificateFactory cf = CertificateFactory.getInstance("X.509");
- * 	X509Certificate cert = (X509Certificate) cf.generateCertificate(inStream);
+ * 	X509Certificate cert = (X509Certificate) cf.generateCertificate(
+ * 			inStream);
  * }
  * </pre>
  *
@@ -103,7 +84,8 @@ import sun.security.x509.X509CertImpl;
  * @see X509Extension
  */
 
-public abstract class X509Certificate extends Certificate implements X509Extension {
+public abstract class X509Certificate extends Certificate implements
+		X509Extension {
 
 	private static final long serialVersionUID = -2491127588187038216L;
 
@@ -137,12 +119,14 @@ public abstract class X509Certificate extends Certificate implements X509Extensi
 	 * </pre>
 	 *
 	 * @exception CertificateExpiredException
-	 *                if the certificate has expired.
+	 *                                            if the certificate has
+	 *                                            expired.
 	 * @exception CertificateNotYetValidException
-	 *                if the certificate is not yet valid.
+	 *                                            if the certificate is not yet
+	 *                                            valid.
 	 */
-	public abstract void checkValidity()
-			throws CertificateExpiredException, CertificateNotYetValidException;
+	public abstract void checkValidity() throws CertificateExpiredException,
+			CertificateNotYetValidException;
 
 	/**
 	 * Checks that the given date is within the certificate's validity period.
@@ -150,15 +134,17 @@ public abstract class X509Certificate extends Certificate implements X509Extensi
 	 * the given date/time.
 	 *
 	 * @param date
-	 *            the Date to check against to see if this certificate is valid
-	 *            at that date/time.
+	 *             the Date to check against to see if this certificate is valid
+	 *             at that date/time.
 	 *
 	 * @exception CertificateExpiredException
-	 *                if the certificate has expired with respect to the
-	 *                {@code date} supplied.
+	 *                                            if the certificate has expired
+	 *                                            with respect to the
+	 *                                            {@code date} supplied.
 	 * @exception CertificateNotYetValidException
-	 *                if the certificate is not yet valid with respect to the
-	 *                {@code date} supplied.
+	 *                                            if the certificate is not yet
+	 *                                            valid with respect to the
+	 *                                            {@code date} supplied.
 	 *
 	 * @see #checkValidity()
 	 */
@@ -338,9 +324,10 @@ public abstract class X509Certificate extends Certificate implements X509Extensi
 	 *
 	 * @return the DER-encoded certificate information.
 	 * @exception CertificateEncodingException
-	 *                if an encoding error occurs.
+	 *                                         if an encoding error occurs.
 	 */
-	public abstract byte[] getTBSCertificate() throws CertificateEncodingException;
+	public abstract byte[] getTBSCertificate()
+			throws CertificateEncodingException;
 
 	/**
 	 * Gets the {@code signature} value (the raw signature bits) from the
@@ -512,10 +499,11 @@ public abstract class X509Certificate extends Certificate implements X509Extensi
 	 *         Returns null if this certificate does not contain an
 	 *         ExtendedKeyUsage extension.
 	 * @throws CertificateParsingException
-	 *             if the extension cannot be decoded
+	 *                                     if the extension cannot be decoded
 	 * @since 1.4
 	 */
-	public List<String> getExtendedKeyUsage() throws CertificateParsingException {
+	public List<String> getExtendedKeyUsage()
+			throws CertificateParsingException {
 		return X509CertImpl.getExtendedKeyUsage(this);
 	}
 
@@ -608,10 +596,11 @@ public abstract class X509Certificate extends Certificate implements X509Extensi
 	 * @return an immutable {@code Collection} of subject alternative names (or
 	 *         {@code null})
 	 * @throws CertificateParsingException
-	 *             if the extension cannot be decoded
+	 *                                     if the extension cannot be decoded
 	 * @since 1.4
 	 */
-	public Collection<List<?>> getSubjectAlternativeNames() throws CertificateParsingException {
+	public Collection<List<?>> getSubjectAlternativeNames()
+			throws CertificateParsingException {
 		return X509CertImpl.getSubjectAlternativeNames(this);
 	}
 
@@ -651,10 +640,11 @@ public abstract class X509Certificate extends Certificate implements X509Extensi
 	 * @return an immutable {@code Collection} of issuer alternative names (or
 	 *         {@code null})
 	 * @throws CertificateParsingException
-	 *             if the extension cannot be decoded
+	 *                                     if the extension cannot be decoded
 	 * @since 1.4
 	 */
-	public Collection<List<?>> getIssuerAlternativeNames() throws CertificateParsingException {
+	public Collection<List<?>> getIssuerAlternativeNames()
+			throws CertificateParsingException {
 		return X509CertImpl.getIssuerAlternativeNames(this);
 	}
 
@@ -671,24 +661,26 @@ public abstract class X509Certificate extends Certificate implements X509Extensi
 	 * default implementation.
 	 *
 	 * @param key
-	 *            the PublicKey used to carry out the verification.
+	 *                    the PublicKey used to carry out the verification.
 	 * @param sigProvider
-	 *            the signature provider.
+	 *                    the signature provider.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                on unsupported signature algorithms.
+	 *                                          on unsupported signature
+	 *                                          algorithms.
 	 * @exception InvalidKeyException
-	 *                on incorrect key.
+	 *                                          on incorrect key.
 	 * @exception SignatureException
-	 *                on signature errors.
+	 *                                          on signature errors.
 	 * @exception CertificateException
-	 *                on encoding errors.
+	 *                                          on encoding errors.
 	 * @exception UnsupportedOperationException
-	 *                if the method is not supported
+	 *                                          if the method is not supported
 	 * @since 1.8
 	 */
-	public void verify(PublicKey key, Provider sigProvider) throws CertificateException,
-			NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+	public void verify(PublicKey key, Provider sigProvider)
+			throws CertificateException, NoSuchAlgorithmException,
+			InvalidKeyException, SignatureException {
 		X509CertImpl.verify(this, key, sigProvider);
 	}
 }

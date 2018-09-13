@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -53,7 +33,7 @@ public abstract class QueryEval implements Serializable {
 	 * </p>
 	 *
 	 * @param s
-	 *            The MBean server on which the query is to be performed.
+	 *          The MBean server on which the query is to be performed.
 	 *
 	 * @see #getMBeanServer
 	 */

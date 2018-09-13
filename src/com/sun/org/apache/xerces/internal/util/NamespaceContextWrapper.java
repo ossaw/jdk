@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xerces.internal.util;
@@ -73,8 +53,8 @@ public class NamespaceContextWrapper implements NamespaceContext {
 		if (namespaceURI == null) {
 			throw new IllegalArgumentException("URI can't be null.");
 		} else {
-			Vector vector = ((NamespaceSupport) fNamespaceContext)
-					.getPrefixes(namespaceURI.intern());
+			Vector vector = ((NamespaceSupport) fNamespaceContext).getPrefixes(
+					namespaceURI.intern());
 			return vector.iterator();
 		}
 	}

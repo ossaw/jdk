@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml;
@@ -54,8 +34,7 @@ public final class XMLConstants {
 	 * Private constructor to prevent instantiation.
 	 * </p>
 	 */
-	private XMLConstants() {
-	}
+	private XMLConstants() {}
 
 	/**
 	 * <p>

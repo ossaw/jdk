@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -58,8 +33,9 @@ public interface Range {
 	 * Node within which the Range begins
 	 * 
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public Node getStartContainer() throws DOMException;
 
@@ -67,8 +43,9 @@ public interface Range {
 	 * Offset within the starting node of the Range.
 	 * 
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public int getStartOffset() throws DOMException;
 
@@ -76,8 +53,9 @@ public interface Range {
 	 * Node within which the Range ends
 	 * 
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public Node getEndContainer() throws DOMException;
 
@@ -85,8 +63,9 @@ public interface Range {
 	 * Offset within the ending node of the Range.
 	 * 
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public int getEndOffset() throws DOMException;
 
@@ -94,8 +73,9 @@ public interface Range {
 	 * TRUE if the Range is collapsed
 	 * 
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public boolean getCollapsed() throws DOMException;
 
@@ -103,8 +83,9 @@ public interface Range {
 	 * The deepest common ancestor container of the Range's two boundary-points.
 	 * 
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public Node getCommonAncestorContainer() throws DOMException;
 
@@ -112,93 +93,130 @@ public interface Range {
 	 * Sets the attributes describing the start of the Range.
 	 * 
 	 * @param refNode
-	 *            The <code>refNode</code> value. This parameter must be
-	 *            different from <code>null</code>.
+	 *                The <code>refNode</code> value. This parameter must be
+	 *                different from <code>null</code>.
 	 * @param offset
-	 *            The <code>startOffset</code> value.
+	 *                The <code>startOffset</code> value.
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if <code>refNode</code> or
-	 *                an ancestor of <code>refNode</code> is an Entity,
-	 *                Notation, or DocumentType node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if
+	 *                           <code>refNode</code> or
+	 *                           an ancestor of <code>refNode</code> is an
+	 *                           Entity,
+	 *                           Notation, or DocumentType node.
 	 * @exception DOMException
-	 *                INDEX_SIZE_ERR: Raised if <code>offset</code> is negative
-	 *                or greater than the number of child units in
-	 *                <code>refNode</code>. Child units are 16-bit units if
-	 *                <code>refNode</code> is a type of CharacterData node
-	 *                (e.g., a Text or Comment node) or a ProcessingInstruction
-	 *                node. Child units are Nodes in all other cases. <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INDEX_SIZE_ERR: Raised if <code>offset</code>
+	 *                           is negative
+	 *                           or greater than the number of child units in
+	 *                           <code>refNode</code>. Child units are 16-bit
+	 *                           units if
+	 *                           <code>refNode</code> is a type of CharacterData
+	 *                           node
+	 *                           (e.g., a Text or Comment node) or a
+	 *                           ProcessingInstruction
+	 *                           node. Child units are Nodes in all other cases.
+	 *                           <br>
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
-	public void setStart(Node refNode, int offset) throws RangeException, DOMException;
+	public void setStart(Node refNode, int offset) throws RangeException,
+			DOMException;
 
 	/**
 	 * Sets the attributes describing the end of a Range.
 	 * 
 	 * @param refNode
-	 *            The <code>refNode</code> value. This parameter must be
-	 *            different from <code>null</code>.
+	 *                The <code>refNode</code> value. This parameter must be
+	 *                different from <code>null</code>.
 	 * @param offset
-	 *            The <code>endOffset</code> value.
+	 *                The <code>endOffset</code> value.
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if <code>refNode</code> or
-	 *                an ancestor of <code>refNode</code> is an Entity,
-	 *                Notation, or DocumentType node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if
+	 *                           <code>refNode</code> or
+	 *                           an ancestor of <code>refNode</code> is an
+	 *                           Entity,
+	 *                           Notation, or DocumentType node.
 	 * @exception DOMException
-	 *                INDEX_SIZE_ERR: Raised if <code>offset</code> is negative
-	 *                or greater than the number of child units in
-	 *                <code>refNode</code>. Child units are 16-bit units if
-	 *                <code>refNode</code> is a type of CharacterData node
-	 *                (e.g., a Text or Comment node) or a ProcessingInstruction
-	 *                node. Child units are Nodes in all other cases. <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INDEX_SIZE_ERR: Raised if <code>offset</code>
+	 *                           is negative
+	 *                           or greater than the number of child units in
+	 *                           <code>refNode</code>. Child units are 16-bit
+	 *                           units if
+	 *                           <code>refNode</code> is a type of CharacterData
+	 *                           node
+	 *                           (e.g., a Text or Comment node) or a
+	 *                           ProcessingInstruction
+	 *                           node. Child units are Nodes in all other cases.
+	 *                           <br>
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
-	public void setEnd(Node refNode, int offset) throws RangeException, DOMException;
+	public void setEnd(Node refNode, int offset) throws RangeException,
+			DOMException;
 
 	/**
 	 * Sets the start position to be before a node
 	 * 
 	 * @param refNode
-	 *            Range starts before <code>refNode</code>
+	 *                Range starts before <code>refNode</code>
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if the root container of
-	 *                <code>refNode</code> is not an Attr, Document, or
-	 *                DocumentFragment node or if <code>refNode</code> is a
-	 *                Document, DocumentFragment, Attr, Entity, or Notation
-	 *                node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if the root
+	 *                           container of
+	 *                           <code>refNode</code> is not an Attr, Document,
+	 *                           or
+	 *                           DocumentFragment node or if
+	 *                           <code>refNode</code> is a
+	 *                           Document, DocumentFragment, Attr, Entity, or
+	 *                           Notation
+	 *                           node.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
-	public void setStartBefore(Node refNode) throws RangeException, DOMException;
+	public void setStartBefore(Node refNode) throws RangeException,
+			DOMException;
 
 	/**
 	 * Sets the start position to be after a node
 	 * 
 	 * @param refNode
-	 *            Range starts after <code>refNode</code>
+	 *                Range starts after <code>refNode</code>
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if the root container of
-	 *                <code>refNode</code> is not an Attr, Document, or
-	 *                DocumentFragment node or if <code>refNode</code> is a
-	 *                Document, DocumentFragment, Attr, Entity, or Notation
-	 *                node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if the root
+	 *                           container of
+	 *                           <code>refNode</code> is not an Attr, Document,
+	 *                           or
+	 *                           DocumentFragment node or if
+	 *                           <code>refNode</code> is a
+	 *                           Document, DocumentFragment, Attr, Entity, or
+	 *                           Notation
+	 *                           node.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
 	public void setStartAfter(Node refNode) throws RangeException, DOMException;
 
@@ -206,19 +224,26 @@ public interface Range {
 	 * Sets the end position to be before a node.
 	 * 
 	 * @param refNode
-	 *            Range ends before <code>refNode</code>
+	 *                Range ends before <code>refNode</code>
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if the root container of
-	 *                <code>refNode</code> is not an Attr, Document, or
-	 *                DocumentFragment node or if <code>refNode</code> is a
-	 *                Document, DocumentFragment, Attr, Entity, or Notation
-	 *                node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if the root
+	 *                           container of
+	 *                           <code>refNode</code> is not an Attr, Document,
+	 *                           or
+	 *                           DocumentFragment node or if
+	 *                           <code>refNode</code> is a
+	 *                           Document, DocumentFragment, Attr, Entity, or
+	 *                           Notation
+	 *                           node.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
 	public void setEndBefore(Node refNode) throws RangeException, DOMException;
 
@@ -226,19 +251,26 @@ public interface Range {
 	 * Sets the end of a Range to be after a node
 	 * 
 	 * @param refNode
-	 *            Range ends after <code>refNode</code>.
+	 *                Range ends after <code>refNode</code>.
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if the root container of
-	 *                <code>refNode</code> is not an Attr, Document or
-	 *                DocumentFragment node or if <code>refNode</code> is a
-	 *                Document, DocumentFragment, Attr, Entity, or Notation
-	 *                node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if the root
+	 *                           container of
+	 *                           <code>refNode</code> is not an Attr, Document
+	 *                           or
+	 *                           DocumentFragment node or if
+	 *                           <code>refNode</code> is a
+	 *                           Document, DocumentFragment, Attr, Entity, or
+	 *                           Notation
+	 *                           node.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
 	public void setEndAfter(Node refNode) throws RangeException, DOMException;
 
@@ -246,11 +278,12 @@ public interface Range {
 	 * Collapse a Range onto one of its boundary-points
 	 * 
 	 * @param toStart
-	 *            If TRUE, collapses the Range onto its start; if FALSE,
-	 *            collapses it onto its end.
+	 *                If TRUE, collapses the Range onto its start; if FALSE,
+	 *                collapses it onto its end.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public void collapse(boolean toStart) throws DOMException;
 
@@ -258,19 +291,24 @@ public interface Range {
 	 * Select a node and its contents
 	 * 
 	 * @param refNode
-	 *            The node to select.
+	 *                The node to select.
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if an ancestor of
-	 *                <code>refNode</code> is an Entity, Notation or
-	 *                DocumentType node or if <code>refNode</code> is a
-	 *                Document, DocumentFragment, Attr, Entity, or Notation
-	 *                node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if an ancestor of
+	 *                           <code>refNode</code> is an Entity, Notation or
+	 *                           DocumentType node or if <code>refNode</code> is
+	 *                           a
+	 *                           Document, DocumentFragment, Attr, Entity, or
+	 *                           Notation
+	 *                           node.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
 	public void selectNode(Node refNode) throws RangeException, DOMException;
 
@@ -278,19 +316,25 @@ public interface Range {
 	 * Select the contents within a node
 	 * 
 	 * @param refNode
-	 *            Node to select from
+	 *                Node to select from
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if <code>refNode</code> or
-	 *                an ancestor of <code>refNode</code> is an Entity, Notation
-	 *                or DocumentType node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if
+	 *                           <code>refNode</code> or
+	 *                           an ancestor of <code>refNode</code> is an
+	 *                           Entity, Notation
+	 *                           or DocumentType node.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>refNode</code> was
-	 *                created from a different document than the one that
-	 *                created this range.
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>refNode</code> was
+	 *                           created from a different document than the one
+	 *                           that
+	 *                           created this range.
 	 */
-	public void selectNodeContents(Node refNode) throws RangeException, DOMException;
+	public void selectNodeContents(Node refNode) throws RangeException,
+			DOMException;
 
 	// CompareHow
 	/**
@@ -322,32 +366,40 @@ public interface Range {
 	 * Compare the boundary-points of two Ranges in a document.
 	 * 
 	 * @param how
-	 *            A code representing the type of comparison, as defined above.
+	 *                    A code representing the type of comparison, as defined
+	 *                    above.
 	 * @param sourceRange
-	 *            The <code>Range</code> on which this current
-	 *            <code>Range</code> is compared to.
+	 *                    The <code>Range</code> on which this current
+	 *                    <code>Range</code> is compared to.
 	 * @return -1, 0 or 1 depending on whether the corresponding boundary-point
 	 *         of the Range is respectively before, equal to, or after the
 	 *         corresponding boundary-point of <code>sourceRange</code>.
 	 * @exception DOMException
-	 *                WRONG_DOCUMENT_ERR: Raised if the two Ranges are not in
-	 *                the same Document or DocumentFragment. <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         WRONG_DOCUMENT_ERR: Raised if the two Ranges are
+	 *                         not in
+	 *                         the same Document or DocumentFragment. <br>
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
-	public short compareBoundaryPoints(short how, Range sourceRange) throws DOMException;
+	public short compareBoundaryPoints(short how, Range sourceRange)
+			throws DOMException;
 
 	/**
 	 * Removes the contents of a Range from the containing document or document
 	 * fragment without returning a reference to the removed content.
 	 * 
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if any portion of the
-	 *                content of the Range is read-only or any of the nodes that
-	 *                contain any of the content of the Range are read-only.
-	 *                <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if any
+	 *                         portion of the
+	 *                         content of the Range is read-only or any of the
+	 *                         nodes that
+	 *                         contain any of the content of the Range are
+	 *                         read-only.
+	 *                         <br>
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public void deleteContents() throws DOMException;
 
@@ -357,14 +409,18 @@ public interface Range {
 	 * 
 	 * @return A DocumentFragment containing the extracted contents.
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if any portion of the
-	 *                content of the Range is read-only or any of the nodes
-	 *                which contain any of the content of the Range are
-	 *                read-only. <br>
-	 *                HIERARCHY_REQUEST_ERR: Raised if a DocumentType node would
-	 *                be extracted into the new DocumentFragment. <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if any
+	 *                         portion of the
+	 *                         content of the Range is read-only or any of the
+	 *                         nodes
+	 *                         which contain any of the content of the Range are
+	 *                         read-only. <br>
+	 *                         HIERARCHY_REQUEST_ERR: Raised if a DocumentType
+	 *                         node would
+	 *                         be extracted into the new DocumentFragment. <br>
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public DocumentFragment extractContents() throws DOMException;
 
@@ -374,10 +430,12 @@ public interface Range {
 	 * @return A DocumentFragment that contains content equivalent to this
 	 *         Range.
 	 * @exception DOMException
-	 *                HIERARCHY_REQUEST_ERR: Raised if a DocumentType node would
-	 *                be extracted into the new DocumentFragment. <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         HIERARCHY_REQUEST_ERR: Raised if a DocumentType
+	 *                         node would
+	 *                         be extracted into the new DocumentFragment. <br>
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public DocumentFragment cloneContents() throws DOMException;
 
@@ -391,22 +449,32 @@ public interface Range {
 	 * inserted rather than the DocumentFragment node itself.
 	 * 
 	 * @param newNode
-	 *            The node to insert at the start of the Range
+	 *                The node to insert at the start of the Range
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if an ancestor
-	 *                container of the start of the Range is read-only. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>newNode</code> and the
-	 *                container of the start of the Range were not created from
-	 *                the same document. <br>
-	 *                HIERARCHY_REQUEST_ERR: Raised if the container of the
-	 *                start of the Range is of a type that does not allow
-	 *                children of the type of <code>newNode</code> or if
-	 *                <code>newNode</code> is an ancestor of the container. <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                           NO_MODIFICATION_ALLOWED_ERR: Raised if an
+	 *                           ancestor
+	 *                           container of the start of the Range is
+	 *                           read-only. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code>newNode</code> and the
+	 *                           container of the start of the Range were not
+	 *                           created from
+	 *                           the same document. <br>
+	 *                           HIERARCHY_REQUEST_ERR: Raised if the container
+	 *                           of the
+	 *                           start of the Range is of a type that does not
+	 *                           allow
+	 *                           children of the type of <code>newNode</code> or
+	 *                           if
+	 *                           <code>newNode</code> is an ancestor of the
+	 *                           container. <br>
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object.
 	 * @exception RangeException
-	 *                INVALID_NODE_TYPE_ERR: Raised if <code>newNode</code> is
-	 *                an Attr, Entity, Notation, or Document node.
+	 *                           INVALID_NODE_TYPE_ERR: Raised if
+	 *                           <code>newNode</code> is
+	 *                           an Attr, Entity, Notation, or Document node.
 	 */
 	public void insertNode(Node newNode) throws DOMException, RangeException;
 
@@ -415,30 +483,45 @@ public interface Range {
 	 * node at the position of the start of the Range.
 	 * 
 	 * @param newParent
-	 *            The node to surround the contents with.
+	 *                  The node to surround the contents with.
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if an ancestor
-	 *                container of either boundary-point of the Range is
-	 *                read-only. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code> newParent</code> and
-	 *                the container of the start of the Range were not created
-	 *                from the same document. <br>
-	 *                HIERARCHY_REQUEST_ERR: Raised if the container of the
-	 *                start of the Range is of a type that does not allow
-	 *                children of the type of <code>newParent</code> or if
-	 *                <code>newParent</code> is an ancestor of the container or
-	 *                if <code>node</code> would end up with a child node of a
-	 *                type not allowed by the type of <code>node</code>. <br>
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                           NO_MODIFICATION_ALLOWED_ERR: Raised if an
+	 *                           ancestor
+	 *                           container of either boundary-point of the Range
+	 *                           is
+	 *                           read-only. <br>
+	 *                           WRONG_DOCUMENT_ERR: Raised if
+	 *                           <code> newParent</code> and
+	 *                           the container of the start of the Range were
+	 *                           not created
+	 *                           from the same document. <br>
+	 *                           HIERARCHY_REQUEST_ERR: Raised if the container
+	 *                           of the
+	 *                           start of the Range is of a type that does not
+	 *                           allow
+	 *                           children of the type of <code>newParent</code>
+	 *                           or if
+	 *                           <code>newParent</code> is an ancestor of the
+	 *                           container or
+	 *                           if <code>node</code> would end up with a child
+	 *                           node of a
+	 *                           type not allowed by the type of
+	 *                           <code>node</code>. <br>
+	 *                           INVALID_STATE_ERR: Raised if
+	 *                           <code>detach()</code> has
+	 *                           already been invoked on this object.
 	 * @exception RangeException
-	 *                BAD_BOUNDARYPOINTS_ERR: Raised if the Range partially
-	 *                selects a non-text node. <br>
-	 *                INVALID_NODE_TYPE_ERR: Raised if <code> node</code> is an
-	 *                Attr, Entity, DocumentType, Notation, Document, or
-	 *                DocumentFragment node.
+	 *                           BAD_BOUNDARYPOINTS_ERR: Raised if the Range
+	 *                           partially
+	 *                           selects a non-text node. <br>
+	 *                           INVALID_NODE_TYPE_ERR: Raised if
+	 *                           <code> node</code> is an
+	 *                           Attr, Entity, DocumentType, Notation, Document,
+	 *                           or
+	 *                           DocumentFragment node.
 	 */
-	public void surroundContents(Node newParent) throws DOMException, RangeException;
+	public void surroundContents(Node newParent) throws DOMException,
+			RangeException;
 
 	/**
 	 * Produces a new Range whose boundary-points are equal to the
@@ -446,8 +529,9 @@ public interface Range {
 	 * 
 	 * @return The duplicated Range.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public Range cloneRange() throws DOMException;
 
@@ -457,8 +541,9 @@ public interface Range {
 	 * 
 	 * @return The contents of the Range.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public String toString() throws DOMException;
 
@@ -470,8 +555,9 @@ public interface Range {
 	 * <code>INVALID_STATE_ERR</code>.
 	 * 
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: Raised if <code>detach()</code> has
-	 *                already been invoked on this object.
+	 *                         INVALID_STATE_ERR: Raised if
+	 *                         <code>detach()</code> has
+	 *                         already been invoked on this object.
 	 */
 	public void detach() throws DOMException;
 

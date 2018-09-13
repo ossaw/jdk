@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.prefs;
@@ -63,14 +43,15 @@ public class PreferenceChangeEvent extends java.util.EventObject {
 	 * Constructs a new <code>PreferenceChangeEvent</code> instance.
 	 *
 	 * @param node
-	 *            The Preferences node that emitted the event.
+	 *                 The Preferences node that emitted the event.
 	 * @param key
-	 *            The key of the preference that was changed.
+	 *                 The key of the preference that was changed.
 	 * @param newValue
-	 *            The new value of the preference, or <tt>null</tt> if the
-	 *            preference is being removed.
+	 *                 The new value of the preference, or <tt>null</tt> if the
+	 *                 preference is being removed.
 	 */
-	public PreferenceChangeEvent(Preferences node, String key, String newValue) {
+	public PreferenceChangeEvent(Preferences node, String key,
+			String newValue) {
 		super(node);
 		this.key = key;
 		this.newValue = newValue;
@@ -108,7 +89,8 @@ public class PreferenceChangeEvent extends java.util.EventObject {
 	 * Throws NotSerializableException, since NodeChangeEvent objects are not
 	 * intended to be serializable.
 	 */
-	private void writeObject(java.io.ObjectOutputStream out) throws NotSerializableException {
+	private void writeObject(java.io.ObjectOutputStream out)
+			throws NotSerializableException {
 		throw new NotSerializableException("Not serializable.");
 	}
 
@@ -116,7 +98,8 @@ public class PreferenceChangeEvent extends java.util.EventObject {
 	 * Throws NotSerializableException, since PreferenceChangeEvent objects are
 	 * not intended to be serializable.
 	 */
-	private void readObject(java.io.ObjectInputStream in) throws NotSerializableException {
+	private void readObject(java.io.ObjectInputStream in)
+			throws NotSerializableException {
 		throw new NotSerializableException("Not serializable.");
 	}
 

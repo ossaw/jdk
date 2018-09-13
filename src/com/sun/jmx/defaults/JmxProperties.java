@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.defaults;
@@ -36,8 +16,7 @@ import java.util.logging.Logger;
 public class JmxProperties {
 
 	// private constructor defined to "hide" the default public constructor
-	private JmxProperties() {
-	}
+	private JmxProperties() {}
 
 	// PUBLIC STATIC CONSTANTS
 	// ------------------------
@@ -114,7 +93,8 @@ public class JmxProperties {
 	/**
 	 * Logger for MBean Server information.
 	 */
-	public static final Logger MBEANSERVER_LOGGER = Logger.getLogger(MBEANSERVER_LOGGER_NAME);
+	public static final Logger MBEANSERVER_LOGGER = Logger.getLogger(
+			MBEANSERVER_LOGGER_NAME);
 
 	/**
 	 * Logger name for MLet service information.
@@ -134,7 +114,8 @@ public class JmxProperties {
 	/**
 	 * Logger for Monitor information.
 	 */
-	public static final Logger MONITOR_LOGGER = Logger.getLogger(MONITOR_LOGGER_NAME);
+	public static final Logger MONITOR_LOGGER = Logger.getLogger(
+			MONITOR_LOGGER_NAME);
 
 	/**
 	 * Logger name for Timer information.
@@ -144,7 +125,8 @@ public class JmxProperties {
 	/**
 	 * Logger for Timer information.
 	 */
-	public static final Logger TIMER_LOGGER = Logger.getLogger(TIMER_LOGGER_NAME);
+	public static final Logger TIMER_LOGGER = Logger.getLogger(
+			TIMER_LOGGER_NAME);
 
 	/**
 	 * Logger name for Event Management information.
@@ -154,7 +136,8 @@ public class JmxProperties {
 	/**
 	 * Logger for Event Management information.
 	 */
-	public static final Logger NOTIFICATION_LOGGER = Logger.getLogger(NOTIFICATION_LOGGER_NAME);
+	public static final Logger NOTIFICATION_LOGGER = Logger.getLogger(
+			NOTIFICATION_LOGGER_NAME);
 
 	/**
 	 * Logger name for Relation Service.
@@ -164,7 +147,8 @@ public class JmxProperties {
 	/**
 	 * Logger for Relation Service.
 	 */
-	public static final Logger RELATION_LOGGER = Logger.getLogger(RELATION_LOGGER_NAME);
+	public static final Logger RELATION_LOGGER = Logger.getLogger(
+			RELATION_LOGGER_NAME);
 
 	/**
 	 * Logger name for Model MBean.
@@ -174,7 +158,8 @@ public class JmxProperties {
 	/**
 	 * Logger for Model MBean.
 	 */
-	public static final Logger MODELMBEAN_LOGGER = Logger.getLogger(MODELMBEAN_LOGGER_NAME);
+	public static final Logger MODELMBEAN_LOGGER = Logger.getLogger(
+			MODELMBEAN_LOGGER_NAME);
 
 	/**
 	 * Logger name for all other JMX classes.
@@ -204,5 +189,6 @@ public class JmxProperties {
 	/**
 	 * Logger for SNMP Adaptor.
 	 */
-	public static final Logger SNMP_ADAPTOR_LOGGER = Logger.getLogger(SNMP_ADAPTOR_LOGGER_NAME);
+	public static final Logger SNMP_ADAPTOR_LOGGER = Logger.getLogger(
+			SNMP_ADAPTOR_LOGGER_NAME);
 }

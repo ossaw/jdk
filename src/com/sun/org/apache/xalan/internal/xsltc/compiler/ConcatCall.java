@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,30 +60,32 @@ final class ConcatCall extends FunctionCall {
 		final int nArgs = argumentCount();
 
 		switch (nArgs) {
-		case 0:
-			il.append(new PUSH(cpg, EMPTYSTRING));
-			break;
+			case 0:
+				il.append(new PUSH(cpg, EMPTYSTRING));
+				break;
 
-		case 1:
-			argument().translate(classGen, methodGen);
-			break;
+			case 1:
+				argument().translate(classGen, methodGen);
+				break;
 
-		default:
-			final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS, "<init>", "()V");
-			final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(STRING_BUFFER_CLASS,
-					"append", "(" + STRING_SIG + ")" + STRING_BUFFER_SIG));
+			default:
+				final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS,
+						"<init>", "()V");
+				final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(
+						STRING_BUFFER_CLASS, "append", "(" + STRING_SIG + ")"
+								+ STRING_BUFFER_SIG));
 
-			final int toString = cpg.addMethodref(STRING_BUFFER_CLASS, "toString",
-					"()" + STRING_SIG);
+				final int toString = cpg.addMethodref(STRING_BUFFER_CLASS,
+						"toString", "()" + STRING_SIG);
 
-			il.append(new NEW(cpg.addClass(STRING_BUFFER_CLASS)));
-			il.append(DUP);
-			il.append(new INVOKESPECIAL(initBuffer));
-			for (int i = 0; i < nArgs; i++) {
-				argument(i).translate(classGen, methodGen);
-				il.append(append);
-			}
-			il.append(new INVOKEVIRTUAL(toString));
+				il.append(new NEW(cpg.addClass(STRING_BUFFER_CLASS)));
+				il.append(DUP);
+				il.append(new INVOKESPECIAL(initBuffer));
+				for (int i = 0; i < nArgs; i++) {
+					argument(i).translate(classGen, methodGen);
+					il.append(append);
+				}
+				il.append(new INVOKEVIRTUAL(toString));
 		}
 	}
 }

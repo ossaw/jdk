@@ -1,41 +1,14 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2004 World Wide Web Consortium,
- *
  * (Massachusetts Institute of Technology, European Research Consortium for
  * Informatics and Mathematics, Keio University). All Rights Reserved. This
  * work is distributed under the W3C(r) Software License [1] in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
  */
 
@@ -62,7 +35,7 @@ public interface NamedNodeMap {
 	 * Retrieves a node specified by name.
 	 * 
 	 * @param name
-	 *            The <code>nodeName</code> of a node to retrieve.
+	 *             The <code>nodeName</code> of a node to retrieve.
 	 * @return A <code>Node</code> (of any type) with the specified
 	 *         <code>nodeName</code>, or <code>null</code> if it does not
 	 *         identify any node in this map.
@@ -85,21 +58,32 @@ public interface NamedNodeMap {
 	 *         replaced <code>Node</code> is returned, otherwise
 	 *         <code>null</code> is returned.
 	 * @exception DOMException
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>arg</code> was created
-	 *                from a different document than the one that created this
-	 *                map. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this map is
-	 *                readonly. <br>
-	 *                INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code> is an
-	 *                <code>Attr</code> that is already an attribute of another
-	 *                <code>Element</code> object. The DOM user must explicitly
-	 *                clone <code>Attr</code> nodes to re-use them in other
-	 *                elements. <br>
-	 *                HIERARCHY_REQUEST_ERR: Raised if an attempt is made to add
-	 *                a node doesn't belong in this NamedNodeMap. Examples would
-	 *                include trying to insert something other than an Attr node
-	 *                into an Element's map of attributes, or a non-Entity node
-	 *                into the DocumentType's map of Entities.
+	 *                         WRONG_DOCUMENT_ERR: Raised if <code>arg</code>
+	 *                         was created
+	 *                         from a different document than the one that
+	 *                         created this
+	 *                         map. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+	 *                         is
+	 *                         readonly. <br>
+	 *                         INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code>
+	 *                         is an
+	 *                         <code>Attr</code> that is already an attribute of
+	 *                         another
+	 *                         <code>Element</code> object. The DOM user must
+	 *                         explicitly
+	 *                         clone <code>Attr</code> nodes to re-use them in
+	 *                         other
+	 *                         elements. <br>
+	 *                         HIERARCHY_REQUEST_ERR: Raised if an attempt is
+	 *                         made to add
+	 *                         a node doesn't belong in this NamedNodeMap.
+	 *                         Examples would
+	 *                         include trying to insert something other than an
+	 *                         Attr node
+	 *                         into an Element's map of attributes, or a
+	 *                         non-Entity node
+	 *                         into the DocumentType's map of Entities.
 	 */
 	public Node setNamedItem(Node arg) throws DOMException;
 
@@ -111,13 +95,14 @@ public interface NamedNodeMap {
 	 * when applicable.
 	 * 
 	 * @param name
-	 *            The <code>nodeName</code> of the node to remove.
+	 *             The <code>nodeName</code> of the node to remove.
 	 * @return The node removed from this map if a node with such a name exists.
 	 * @exception DOMException
-	 *                NOT_FOUND_ERR: Raised if there is no node named
-	 *                <code>name</code> in this map. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this map is
-	 *                readonly.
+	 *                         NOT_FOUND_ERR: Raised if there is no node named
+	 *                         <code>name</code> in this map. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+	 *                         is
+	 *                         readonly.
 	 */
 	public Node removeNamedItem(String name) throws DOMException;
 
@@ -127,7 +112,7 @@ public interface NamedNodeMap {
 	 * <code>null</code>.
 	 * 
 	 * @param index
-	 *            Index into this map.
+	 *              Index into this map.
 	 * @return The node at the <code>index</code>th position in the map, or
 	 *         <code>null</code> if that is not a valid index.
 	 */
@@ -146,22 +131,26 @@ public interface NamedNodeMap {
 	 * namespaceURI parameter for methods if they wish to have no namespace.
 	 * 
 	 * @param namespaceURI
-	 *            The namespace URI of the node to retrieve.
+	 *                     The namespace URI of the node to retrieve.
 	 * @param localName
-	 *            The local name of the node to retrieve.
+	 *                     The local name of the node to retrieve.
 	 * @return A <code>Node</code> (of any type) with the specified local name
 	 *         and namespace URI, or <code>null</code> if they do not identify
 	 *         any node in this map.
 	 * @exception DOMException
-	 *                NOT_SUPPORTED_ERR: May be raised if the implementation
-	 *                does not support the feature "XML" and the language
-	 *                exposed through the Document does not support XML
-	 *                Namespaces (such as [
-	 *                <a href='http://www.w3.org/TR/1999/REC-html401-19991224/'>
-	 *                HTML 4.01</a>]).
+	 *                         NOT_SUPPORTED_ERR: May be raised if the
+	 *                         implementation
+	 *                         does not support the feature "XML" and the
+	 *                         language
+	 *                         exposed through the Document does not support XML
+	 *                         Namespaces (such as [
+	 *                         <a href=
+	 *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+	 *                         HTML 4.01</a>]).
 	 * @since DOM Level 2
 	 */
-	public Node getNamedItemNS(String namespaceURI, String localName) throws DOMException;
+	public Node getNamedItemNS(String namespaceURI, String localName)
+			throws DOMException;
 
 	/**
 	 * Adds a node using its <code>namespaceURI</code> and
@@ -180,27 +169,41 @@ public interface NamedNodeMap {
 	 *         replaced <code>Node</code> is returned, otherwise
 	 *         <code>null</code> is returned.
 	 * @exception DOMException
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>arg</code> was created
-	 *                from a different document than the one that created this
-	 *                map. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this map is
-	 *                readonly. <br>
-	 *                INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code> is an
-	 *                <code>Attr</code> that is already an attribute of another
-	 *                <code>Element</code> object. The DOM user must explicitly
-	 *                clone <code>Attr</code> nodes to re-use them in other
-	 *                elements. <br>
-	 *                HIERARCHY_REQUEST_ERR: Raised if an attempt is made to add
-	 *                a node doesn't belong in this NamedNodeMap. Examples would
-	 *                include trying to insert something other than an Attr node
-	 *                into an Element's map of attributes, or a non-Entity node
-	 *                into the DocumentType's map of Entities. <br>
-	 *                NOT_SUPPORTED_ERR: May be raised if the implementation
-	 *                does not support the feature "XML" and the language
-	 *                exposed through the Document does not support XML
-	 *                Namespaces (such as [
-	 *                <a href='http://www.w3.org/TR/1999/REC-html401-19991224/'>
-	 *                HTML 4.01</a>]).
+	 *                         WRONG_DOCUMENT_ERR: Raised if <code>arg</code>
+	 *                         was created
+	 *                         from a different document than the one that
+	 *                         created this
+	 *                         map. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+	 *                         is
+	 *                         readonly. <br>
+	 *                         INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code>
+	 *                         is an
+	 *                         <code>Attr</code> that is already an attribute of
+	 *                         another
+	 *                         <code>Element</code> object. The DOM user must
+	 *                         explicitly
+	 *                         clone <code>Attr</code> nodes to re-use them in
+	 *                         other
+	 *                         elements. <br>
+	 *                         HIERARCHY_REQUEST_ERR: Raised if an attempt is
+	 *                         made to add
+	 *                         a node doesn't belong in this NamedNodeMap.
+	 *                         Examples would
+	 *                         include trying to insert something other than an
+	 *                         Attr node
+	 *                         into an Element's map of attributes, or a
+	 *                         non-Entity node
+	 *                         into the DocumentType's map of Entities. <br>
+	 *                         NOT_SUPPORTED_ERR: May be raised if the
+	 *                         implementation
+	 *                         does not support the feature "XML" and the
+	 *                         language
+	 *                         exposed through the Document does not support XML
+	 *                         Namespaces (such as [
+	 *                         <a href=
+	 *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+	 *                         HTML 4.01</a>]).
 	 * @since DOM Level 2
 	 */
 	public Node setNamedItemNS(Node arg) throws DOMException;
@@ -217,25 +220,31 @@ public interface NamedNodeMap {
 	 * namespaceURI parameter for methods if they wish to have no namespace.
 	 * 
 	 * @param namespaceURI
-	 *            The namespace URI of the node to remove.
+	 *                     The namespace URI of the node to remove.
 	 * @param localName
-	 *            The local name of the node to remove.
+	 *                     The local name of the node to remove.
 	 * @return The node removed from this map if a node with such a local name
 	 *         and namespace URI exists.
 	 * @exception DOMException
-	 *                NOT_FOUND_ERR: Raised if there is no node with the
-	 *                specified <code>namespaceURI</code> and
-	 *                <code>localName</code> in this map. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this map is
-	 *                readonly. <br>
-	 *                NOT_SUPPORTED_ERR: May be raised if the implementation
-	 *                does not support the feature "XML" and the language
-	 *                exposed through the Document does not support XML
-	 *                Namespaces (such as [
-	 *                <a href='http://www.w3.org/TR/1999/REC-html401-19991224/'>
-	 *                HTML 4.01</a>]).
+	 *                         NOT_FOUND_ERR: Raised if there is no node with
+	 *                         the
+	 *                         specified <code>namespaceURI</code> and
+	 *                         <code>localName</code> in this map. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+	 *                         is
+	 *                         readonly. <br>
+	 *                         NOT_SUPPORTED_ERR: May be raised if the
+	 *                         implementation
+	 *                         does not support the feature "XML" and the
+	 *                         language
+	 *                         exposed through the Document does not support XML
+	 *                         Namespaces (such as [
+	 *                         <a href=
+	 *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+	 *                         HTML 4.01</a>]).
 	 * @since DOM Level 2
 	 */
-	public Node removeNamedItemNS(String namespaceURI, String localName) throws DOMException;
+	public Node removeNamedItemNS(String namespaceURI, String localName)
+			throws DOMException;
 
 }

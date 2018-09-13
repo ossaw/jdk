@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.io;
@@ -93,16 +72,17 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
  */
 
 public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
-	private static Bridge bridge = (Bridge) AccessController.doPrivileged(new PrivilegedAction() {
-		public Object run() {
-			return Bridge.get();
-		}
-	});
+	private static Bridge bridge = (Bridge) AccessController.doPrivileged(
+			new PrivilegedAction() {
+				public Object run() {
+					return Bridge.get();
+				}
+			});
 
-	private static OMGSystemException omgWrapper = OMGSystemException
-			.get(CORBALogDomains.RPC_ENCODING);
-	private static UtilSystemException utilWrapper = UtilSystemException
-			.get(CORBALogDomains.RPC_ENCODING);
+	private static OMGSystemException omgWrapper = OMGSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
+	private static UtilSystemException utilWrapper = UtilSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
 
 	// Necessary to pass the appropriate fields into the
 	// defaultReadObjectDelegate method (which takes no
@@ -171,8 +151,10 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	// public static final TypeCode kValueTypeCode = new
 	// TypeCodeImpl(TCKind._tk_value);
 	// removed TypeCodeImpl dependency
-	public static final TypeCode kRemoteTypeCode = ORB.init().get_primitive_tc(TCKind.tk_objref);
-	public static final TypeCode kValueTypeCode = ORB.init().get_primitive_tc(TCKind.tk_value);
+	public static final TypeCode kRemoteTypeCode = ORB.init().get_primitive_tc(
+			TCKind.tk_objref);
+	public static final TypeCode kValueTypeCode = ORB.init().get_primitive_tc(
+			TCKind.tk_value);
 
 	// TESTING CODE - useFVDOnly should be made final before FCS in order to
 	// optimize out the check.
@@ -200,22 +182,27 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 			Constructor result =
 
-					(Constructor) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-						public java.lang.Object run()
-								throws NoSuchMethodException, SecurityException {
+					(Constructor) AccessController.doPrivileged(
+							new PrivilegedExceptionAction() {
+								public java.lang.Object run()
+										throws NoSuchMethodException,
+										SecurityException {
 
-							Constructor boolCtor = OptionalDataException.class
-									.getDeclaredConstructor(new Class[] { Boolean.TYPE });
+									Constructor boolCtor = OptionalDataException.class
+											.getDeclaredConstructor(
+													new Class[] {
+															Boolean.TYPE });
 
-							boolCtor.setAccessible(true);
+									boolCtor.setAccessible(true);
 
-							return boolCtor;
-						}
-					});
+									return boolCtor;
+								}
+							});
 
 			if (result == null)
 				// XXX I18N, logging needed.
-				throw new Error("Unable to find OptionalDataException constructor");
+				throw new Error(
+						"Unable to find OptionalDataException constructor");
 
 			return result;
 
@@ -257,21 +244,21 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 		streamFormatVersion = orbStream.read_octet();
 
-		if (streamFormatVersion < 1
-				|| streamFormatVersion > vhandler.getMaximumStreamFormatVersion()) {
-			SystemException sysex = omgWrapper
-					.unsupportedFormatVersion(CompletionStatus.COMPLETED_MAYBE);
+		if (streamFormatVersion < 1 || streamFormatVersion > vhandler
+				.getMaximumStreamFormatVersion()) {
+			SystemException sysex = omgWrapper.unsupportedFormatVersion(
+					CompletionStatus.COMPLETED_MAYBE);
 			// XXX I18N? Logging for IOException?
-			IOException result = new IOException(
-					"Unsupported format version: " + streamFormatVersion);
+			IOException result = new IOException("Unsupported format version: "
+					+ streamFormatVersion);
 			result.initCause(sysex);
 			throw result;
 		}
 
 		if (streamFormatVersion == 2) {
 			if (!(orbStream instanceof ValueInputStream)) {
-				SystemException sysex = omgWrapper
-						.notAValueinputstream(CompletionStatus.COMPLETED_MAYBE);
+				SystemException sysex = omgWrapper.notAValueinputstream(
+						CompletionStatus.COMPLETED_MAYBE);
 				// XXX I18N? Logging for IOException?
 				IOException result = new IOException("Not a ValueInputStream");
 				result.initCause(sysex);
@@ -353,16 +340,21 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 *        classes that should not be deserialized. All exceptions are fatal
 	 *        to the InputStream and leave it in an indeterminate state; it is
 	 *        up to the caller to ignore or recover the stream state.
-	 * @exception java.lang.ClassNotFoundException
-	 *                Class of a serialized object cannot be found.
+	 * @exception                          java.lang.ClassNotFoundException
+	 *                                     Class of a serialized object cannot
+	 *                                     be found.
 	 * @exception InvalidClassException
-	 *                Something is wrong with a class used by serialization.
+	 *                                     Something is wrong with a class used
+	 *                                     by serialization.
 	 * @exception StreamCorruptedException
-	 *                Control information in the stream is inconsistent.
+	 *                                     Control information in the stream is
+	 *                                     inconsistent.
 	 * @exception OptionalDataException
-	 *                Primitive data was found in the stream instead of objects.
+	 *                                     Primitive data was found in the
+	 *                                     stream instead of objects.
 	 * @exception IOException
-	 *                Any of the usual Input/Output related exceptions.
+	 *                                     Any of the usual Input/Output related
+	 *                                     exceptions.
 	 * @since JDK1.1
 	 */
 	public final synchronized Object readObjectDelegate() throws IOException {
@@ -515,8 +507,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * @see #readObject
 	 * @since JDK 1.2
 	 */
-	protected final Object readObjectOverride()
-			throws OptionalDataException, ClassNotFoundException, IOException {
+	protected final Object readObjectOverride() throws OptionalDataException,
+			ClassNotFoundException, IOException {
 		return readObjectDelegate();
 	}
 
@@ -531,12 +523,14 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 *        method of the class being deserialized. It will throw the
 	 *        NotActiveException if it is called otherwise.
 	 *
-	 * @exception java.lang.ClassNotFoundException
-	 *                if the class of a serialized object could not be found.
+	 * @exception                    java.lang.ClassNotFoundException
+	 *                               if the class of a serialized object could
+	 *                               not be found.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                               if an I/O error occurs.
 	 * @exception NotActiveException
-	 *                if the stream is not currently reading objects.
+	 *                               if the stream is not currently reading
+	 *                               objects.
 	 * @since JDK1.1
 	 */
 	final synchronized void defaultReadObjectDelegate()
@@ -547,7 +541,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				// XXX I18N, logging needed.
 				throw new NotActiveException("defaultReadObjectDelegate");
 
-			if (!currentClassDesc.forClass().isAssignableFrom(currentObject.getClass())) {
+			if (!currentClassDesc.forClass().isAssignableFrom(currentObject
+					.getClass())) {
 				throw new IOException("Object Type mismatch");
 			}
 
@@ -555,7 +550,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			// remotely because of a serializable version difference.
 			// Bug fix for 4365188. See the definition of
 			// defaultReadObjectFVDMembers for more information.
-			if (defaultReadObjectFVDMembers != null && defaultReadObjectFVDMembers.length > 0) {
+			if (defaultReadObjectFVDMembers != null
+					&& defaultReadObjectFVDMembers.length > 0) {
 
 				// WARNING: Be very careful! What if some of
 				// these fields actually have to do this, too?
@@ -574,7 +570,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				// Use the local fields to unmarshal.
 				ObjectStreamField[] fields = currentClassDesc.getFieldsNoCopy();
 				if (fields.length > 0) {
-					inputClassFields(currentObject, currentClass, fields, cbSender);
+					inputClassFields(currentObject, currentClass, fields,
+							cbSender);
 				}
 			}
 		} catch (NotActiveException nae) {
@@ -603,7 +600,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 *        being deserialized.
 	 *
 	 * @exception SecurityException
-	 *                The classloader of this stream object is non-null.
+	 *                              The classloader of this stream object is
+	 *                              non-null.
 	 * @since JDK1.1
 	 */
 	public final boolean enableResolveObjectDelegate(boolean enable)
@@ -660,7 +658,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 		}
 	}
 
-	public final int read(byte data[], int offset, int length) throws IOException {
+	public final int read(byte data[], int offset, int length)
+			throws IOException {
 		try {
 			readObjectState.readData(this);
 
@@ -766,7 +765,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 		readFully(data, 0, data.length);
 	}
 
-	public final void readFully(byte data[], int offset, int size) throws IOException {
+	public final void readFully(byte data[], int offset, int size)
+			throws IOException {
 		// d11623 : implement readFully, required for serializing some core
 		// classes
 		try {
@@ -834,7 +834,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 		}
 	}
 
-	protected final void readStreamHeader() throws IOException, StreamCorruptedException {
+	protected final void readStreamHeader() throws IOException,
+			StreamCorruptedException {
 		// no op
 	}
 
@@ -874,7 +875,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * orbutil.IIOPInputStream_1_3 in order to interoperate with our legacy
 	 * ORBs.
 	 */
-	protected String internalReadUTF(org.omg.CORBA.portable.InputStream stream) {
+	protected String internalReadUTF(
+			org.omg.CORBA.portable.InputStream stream) {
 		return stream.read_wstring();
 	}
 
@@ -900,8 +902,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	// So far in RMI-IIOP, this process isn't specific enough to
 	// tell the readObject how much data is available, so we always
 	// set the OptionalDataException's EOF marker to true.
-	private void handleOptionalDataMarshalException(MARSHAL marshalException, boolean objectRead)
-			throws IOException {
+	private void handleOptionalDataMarshalException(MARSHAL marshalException,
+			boolean objectRead) throws IOException {
 
 		// Java Object Serialization spec 3.4: "If the readObject method
 		// of the class attempts to read more data than is present in the
@@ -926,14 +928,14 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 		}
 	}
 
-	public final synchronized void registerValidation(ObjectInputValidation obj, int prio)
-			throws NotActiveException, InvalidObjectException {
+	public final synchronized void registerValidation(ObjectInputValidation obj,
+			int prio) throws NotActiveException, InvalidObjectException {
 		// XXX I18N, logging needed.
 		throw new Error("Method registerValidation not supported");
 	}
 
-	protected final Class resolveClass(ObjectStreamClass v)
-			throws IOException, ClassNotFoundException {
+	protected final Class resolveClass(ObjectStreamClass v) throws IOException,
+			ClassNotFoundException {
 		// XXX I18N, logging needed.
 		throw new IOException("Method resolveClass not supported");
 	}
@@ -987,7 +989,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				return Enum.valueOf(clz, value);
 			} else if (currentClassDesc.isExternalizable()) {
 				try {
-					currentObject = (currentClass == null) ? null : currentClassDesc.newInstance();
+					currentObject = (currentClass == null) ? null
+							: currentClassDesc.newInstance();
 					if (currentObject != null) {
 
 						// Store this object and its beginning position
@@ -1002,17 +1005,20 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 						ext.readExternal(this);
 					}
 				} catch (InvocationTargetException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InvocationTargetException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (UnsupportedOperationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"UnsupportedOperationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (InstantiationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InstantiationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
@@ -1037,7 +1043,6 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				 * subtype Push all the clases of the current object onto a
 				 * stack. Note that only the serializable classes are
 				 * represented in the descriptor list.
-				 *
 				 * Handle versioning where one or more supertypes of have been
 				 * inserted or removed. The stack will contain pairs of
 				 * descriptors and the corresponding class. If the object has a
@@ -1045,7 +1050,6 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				 * be null. If the original object had a descriptor for a class
 				 * not present in the local hierarchy of the object the class
 				 * will be null.
-				 *
 				 */
 
 				/*
@@ -1065,9 +1069,10 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				// is needed in other cases.
 
 				for (currdesc = currentClassDesc, currclass = currentClass; currdesc != null
-						&& currdesc
-								.isSerializable(); /* sun.4296963 ibm.11861 */
-				currdesc = currdesc.getSuperclass()) {
+						&& currdesc.isSerializable(); /*
+														 * sun.4296963 ibm.11861
+														 */
+						currdesc = currdesc.getSuperclass()) {
 
 					/*
 					 * Search the classes to see if the class of this descriptor
@@ -1089,18 +1094,21 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 						}
 					} // end : for (cl = currclass; cl != null; cl =
 						// cl.getSuperclass())
-					/*
-					 * Test if there is room for this new entry. If not, double
-					 * the size of the arrays and copy the contents.
-					 */
+						/*
+						 * Test if there is room for this new entry. If not,
+						 * double
+						 * the size of the arrays and copy the contents.
+						 */
 					spClass++;
 					if (spClass >= classes.length) {
 						int newlen = classes.length * 2;
 						Class[] newclasses = new Class[newlen];
 						ObjectStreamClass[] newclassdesc = new ObjectStreamClass[newlen];
 
-						System.arraycopy(classes, 0, newclasses, 0, classes.length);
-						System.arraycopy(classdesc, 0, newclassdesc, 0, classes.length);
+						System.arraycopy(classes, 0, newclasses, 0,
+								classes.length);
+						System.arraycopy(classdesc, 0, newclassdesc, 0,
+								classes.length);
 
 						classes = newclasses;
 						classdesc = newclassdesc;
@@ -1133,24 +1141,28 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				 * for all more specialized classes.
 				 */
 				try {
-					currentObject = (currentClass == null) ? null : currentClassDesc.newInstance();
+					currentObject = (currentClass == null) ? null
+							: currentClassDesc.newInstance();
 
 					// Store this object and its beginning position
 					// since there might be indirections to it while
 					// it's been unmarshalled.
 					activeRecursionMgr.addObject(offset, currentObject);
 				} catch (InvocationTargetException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InvocationTargetException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (UnsupportedOperationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"UnsupportedOperationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (InstantiationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InstantiationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
@@ -1189,16 +1201,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 									// Read defaultWriteObject indicator
 									boolean calledDefaultWriteObject = readBoolean();
 
-									readObjectState.beginUnmarshalCustomValue(this,
-											calledDefaultWriteObject,
+									readObjectState.beginUnmarshalCustomValue(
+											this, calledDefaultWriteObject,
 											(currentClassDesc.readObjectMethod != null));
 								} else {
 									if (currentClassDesc.hasReadObject())
-										setState(IN_READ_OBJECT_REMOTE_NOT_CUSTOM_MARSHALED);
+										setState(
+												IN_READ_OBJECT_REMOTE_NOT_CUSTOM_MARSHALED);
 								}
 
-								if (!invokeObjectReader(currentClassDesc, currentObject,
-										currentClass)
+								if (!invokeObjectReader(currentClassDesc,
+										currentObject, currentClass)
 										|| readObjectState == IN_READ_OBJECT_DEFAULTS_SENT) {
 
 									// Error case of no readObject and didn't
@@ -1206,15 +1219,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 									// defaultWriteObject handled in default
 									// state
 
-									ObjectStreamField[] fields = currentClassDesc.getFieldsNoCopy();
+									ObjectStreamField[] fields = currentClassDesc
+											.getFieldsNoCopy();
 									if (fields.length > 0) {
-										inputClassFields(currentObject, currentClass, fields,
-												sender);
+										inputClassFields(currentObject,
+												currentClass, fields, sender);
 									}
 								}
 
 								if (currentClassDesc.hasWriteObject())
-									readObjectState.endUnmarshalCustomValue(this);
+									readObjectState.endUnmarshalCustomValue(
+											this);
 
 							} finally {
 								setState(oldState);
@@ -1229,9 +1244,11 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 							 * a null currentObject. The code will read the
 							 * values but discard them.
 							 */
-							ObjectStreamField[] fields = currentClassDesc.getFieldsNoCopy();
+							ObjectStreamField[] fields = currentClassDesc
+									.getFieldsNoCopy();
 							if (fields.length > 0) {
-								inputClassFields(null, currentClass, fields, sender);
+								inputClassFields(null, currentClass, fields,
+										sender);
 							}
 
 						}
@@ -1270,7 +1287,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 		FullValueDescription aFVD = sender.meta(repositoryID);
 		while (aFVD != null) {
 			descs.insertElementAt(aFVD, 0);
-			if ((aFVD.base_value != null) && !kEmptyStr.equals(aFVD.base_value)) {
+			if ((aFVD.base_value != null) && !kEmptyStr.equals(
+					aFVD.base_value)) {
 				aFVD = sender.meta(aFVD.base_value);
 			} else
 				return descs;
@@ -1294,9 +1312,9 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * of custom marshaling.
 	 *
 	 */
-	private synchronized Object inputObjectUsingFVD(Class clz, String repositoryID,
-			com.sun.org.omg.SendingContext.CodeBase sender, int offset)
-			throws IOException, ClassNotFoundException {
+	private synchronized Object inputObjectUsingFVD(Class clz,
+			String repositoryID, com.sun.org.omg.SendingContext.CodeBase sender,
+			int offset) throws IOException, ClassNotFoundException {
 		int spBase = spClass; // current top of stack
 		try {
 
@@ -1304,7 +1322,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			 * Get the descriptor and then class of the incoming object.
 			 */
 
-			ObjectStreamClass currdesc = currentClassDesc = ObjectStreamClass.lookup(clz);
+			ObjectStreamClass currdesc = currentClassDesc = ObjectStreamClass
+					.lookup(clz);
 			Class currclass = currentClass = clz;
 
 			/*
@@ -1313,7 +1332,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			 */
 			if (currentClassDesc.isExternalizable()) {
 				try {
-					currentObject = (currentClass == null) ? null : currentClassDesc.newInstance();
+					currentObject = (currentClass == null) ? null
+							: currentClassDesc.newInstance();
 					if (currentObject != null) {
 						// Store this object and its beginning position
 						// since there might be indirections to it while
@@ -1327,17 +1347,20 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 						ext.readExternal(this);
 					}
 				} catch (InvocationTargetException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InvocationTargetException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (UnsupportedOperationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"UnsupportedOperationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (InstantiationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InstantiationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
@@ -1348,10 +1371,11 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				 * reordering is not allowed.
 				 */
 				for (currdesc = currentClassDesc, currclass = currentClass; currdesc != null
-						&& currdesc
-								.isSerializable(); /* sun.4296963 ibm.11861 */
+						&& currdesc.isSerializable(); /*
+														 * sun.4296963 ibm.11861
+														 */
 
-				currdesc = currdesc.getSuperclass()) {
+						currdesc = currdesc.getSuperclass()) {
 
 					/*
 					 * Search the classes to see if the class of this descriptor
@@ -1373,18 +1397,21 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 						}
 					} // end : for (cl = currclass; cl != null; cl =
 						// cl.getSuperclass())
-					/*
-					 * Test if there is room for this new entry. If not, double
-					 * the size of the arrays and copy the contents.
-					 */
+						/*
+						 * Test if there is room for this new entry. If not,
+						 * double
+						 * the size of the arrays and copy the contents.
+						 */
 					spClass++;
 					if (spClass >= classes.length) {
 						int newlen = classes.length * 2;
 						Class[] newclasses = new Class[newlen];
 						ObjectStreamClass[] newclassdesc = new ObjectStreamClass[newlen];
 
-						System.arraycopy(classes, 0, newclasses, 0, classes.length);
-						System.arraycopy(classdesc, 0, newclassdesc, 0, classes.length);
+						System.arraycopy(classes, 0, newclasses, 0,
+								classes.length);
+						System.arraycopy(classdesc, 0, newclassdesc, 0,
+								classes.length);
 
 						classes = newclasses;
 						classdesc = newclassdesc;
@@ -1415,45 +1442,53 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				 * Allocate a new object.
 				 */
 				try {
-					currentObject = (currentClass == null) ? null : currentClassDesc.newInstance();
+					currentObject = (currentClass == null) ? null
+							: currentClassDesc.newInstance();
 
 					// Store this object and its beginning position
 					// since there might be indirections to it while
 					// it's been unmarshalled.
 					activeRecursionMgr.addObject(offset, currentObject);
 				} catch (InvocationTargetException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InvocationTargetException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (UnsupportedOperationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"UnsupportedOperationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				} catch (InstantiationException e) {
-					InvalidClassException exc = new InvalidClassException(currentClass.getName(),
+					InvalidClassException exc = new InvalidClassException(
+							currentClass.getName(),
 							"InstantiationException accessing no-arg constructor");
 					exc.initCause(e);
 					throw exc;
 				}
 
-				Enumeration fvdsList = getOrderedDescriptions(repositoryID, sender).elements();
+				Enumeration fvdsList = getOrderedDescriptions(repositoryID,
+						sender).elements();
 
 				while ((fvdsList.hasMoreElements()) && (spClass > spBase)) {
-					FullValueDescription fvd = (FullValueDescription) fvdsList.nextElement();
+					FullValueDescription fvd = (FullValueDescription) fvdsList
+							.nextElement();
 					// d4365188: backward compatability
 					String repIDForFVD = vhandler.getClassName(fvd.id);
-					String repIDForClass = vhandler
-							.getClassName(vhandler.getRMIRepositoryID(currentClass));
+					String repIDForClass = vhandler.getClassName(vhandler
+							.getRMIRepositoryID(currentClass));
 
-					while ((spClass > spBase) && (!repIDForFVD.equals(repIDForClass))) {
-						int pos = findNextClass(repIDForFVD, classes, spClass, spBase);
+					while ((spClass > spBase) && (!repIDForFVD.equals(
+							repIDForClass))) {
+						int pos = findNextClass(repIDForFVD, classes, spClass,
+								spBase);
 						if (pos != -1) {
 							spClass = pos;
 							currclass = currentClass = classes[spClass];
-							repIDForClass = vhandler
-									.getClassName(vhandler.getRMIRepositoryID(currentClass));
+							repIDForClass = vhandler.getClassName(vhandler
+									.getRMIRepositoryID(currentClass));
 						} else { // Read and throw away one level of the
 									// fvdslist
 
@@ -1467,12 +1502,15 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 								boolean calledDefaultWriteObject = readBoolean();
 
 								if (calledDefaultWriteObject)
-									inputClassFields(null, null, null, fvd.members, sender);
+									inputClassFields(null, null, null,
+											fvd.members, sender);
 
 								if (getStreamFormatVersion() == 2) {
 
-									((ValueInputStream) getOrbStream()).start_value();
-									((ValueInputStream) getOrbStream()).end_value();
+									((ValueInputStream) getOrbStream())
+											.start_value();
+									((ValueInputStream) getOrbStream())
+											.end_value();
 								}
 
 								// WARNING: If stream format version is 1 and
@@ -1483,18 +1521,21 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 							} else {
 
-								inputClassFields(null, currentClass, null, fvd.members, sender);
+								inputClassFields(null, currentClass, null,
+										fvd.members, sender);
 							}
 
 							if (fvdsList.hasMoreElements()) {
-								fvd = (FullValueDescription) fvdsList.nextElement();
+								fvd = (FullValueDescription) fvdsList
+										.nextElement();
 								repIDForFVD = vhandler.getClassName(fvd.id);
 							} else
 								return currentObject;
 						}
 					}
 
-					currdesc = currentClassDesc = ObjectStreamClass.lookup(currentClass);
+					currdesc = currentClassDesc = ObjectStreamClass.lookup(
+							currentClass);
 
 					if (!repIDForClass.equals("java.lang.Object")) {
 
@@ -1530,8 +1571,10 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 							// unmarshaling if it doesn't.
 							try {
 
-								if (!fvd.is_custom && currentClassDesc.hasReadObject())
-									setState(IN_READ_OBJECT_REMOTE_NOT_CUSTOM_MARSHALED);
+								if (!fvd.is_custom && currentClassDesc
+										.hasReadObject())
+									setState(
+											IN_READ_OBJECT_REMOTE_NOT_CUSTOM_MARSHALED);
 
 								// See the definition of
 								// defaultReadObjectFVDMembers
@@ -1540,7 +1583,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 								// we use the remote FVD's members in
 								// defaultReadObject.
 								defaultReadObjectFVDMembers = fvd.members;
-								usedReadObject = invokeObjectReader(currentClassDesc, currentObject,
+								usedReadObject = invokeObjectReader(
+										currentClassDesc, currentObject,
 										currentClass);
 
 							} finally {
@@ -1552,9 +1596,10 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 							// case is handled by the beginUnmarshalCustomValue
 							// method
 							// of the default state
-							if (!usedReadObject || readObjectState == IN_READ_OBJECT_DEFAULTS_SENT)
-								inputClassFields(currentObject, currentClass, currdesc, fvd.members,
-										sender);
+							if (!usedReadObject
+									|| readObjectState == IN_READ_OBJECT_DEFAULTS_SENT)
+								inputClassFields(currentObject, currentClass,
+										currdesc, fvd.members, sender);
 
 							if (fvd.is_custom)
 								readObjectState.endUnmarshalCustomValue(this);
@@ -1572,7 +1617,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 						// So, use remaining FVDs to read data off wire. If any
 						// remaining FVDs indicate
 						// custom marshaling, throw MARSHAL error.
-						inputClassFields(null, currentClass, null, fvd.members, sender);
+						inputClassFields(null, currentClass, null, fvd.members,
+								sender);
 
 						while (fvdsList.hasMoreElements()) {
 							fvd = (FullValueDescription) fvdsList.nextElement();
@@ -1580,7 +1626,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 							if (fvd.is_custom)
 								skipCustomUsingFVD(fvd.members, sender);
 							else
-								inputClassFields(null, currentClass, null, fvd.members, sender);
+								inputClassFields(null, currentClass, null,
+										fvd.members, sender);
 						}
 
 					}
@@ -1588,7 +1635,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				} // end : while(fvdsList.hasMoreElements())
 				while (fvdsList.hasMoreElements()) {
 
-					FullValueDescription fvd = (FullValueDescription) fvdsList.nextElement();
+					FullValueDescription fvd = (FullValueDescription) fvdsList
+							.nextElement();
 					if (fvd.is_custom)
 						skipCustomUsingFVD(fvd.members, sender);
 					else
@@ -1623,13 +1671,15 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 *
 	 */
 	private Object skipObjectUsingFVD(String repositoryID,
-			com.sun.org.omg.SendingContext.CodeBase sender)
-			throws IOException, ClassNotFoundException {
+			com.sun.org.omg.SendingContext.CodeBase sender) throws IOException,
+			ClassNotFoundException {
 
-		Enumeration fvdsList = getOrderedDescriptions(repositoryID, sender).elements();
+		Enumeration fvdsList = getOrderedDescriptions(repositoryID, sender)
+				.elements();
 
 		while (fvdsList.hasMoreElements()) {
-			FullValueDescription fvd = (FullValueDescription) fvdsList.nextElement();
+			FullValueDescription fvd = (FullValueDescription) fvdsList
+					.nextElement();
 			String repIDForFVD = vhandler.getClassName(fvd.id);
 
 			if (!repIDForFVD.equals("java.lang.Object")) {
@@ -1665,7 +1715,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 	///////////////////
 
-	private int findNextClass(String classname, Class classes[], int _spClass, int _spBase) {
+	private int findNextClass(String classname, Class classes[], int _spClass,
+			int _spBase) {
 
 		for (int i = _spClass; i > _spBase; i--) {
 			if (classname.equals(classes[i].getName())) {
@@ -1681,9 +1732,9 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * custom marshaling, the format version and defaultWriteObject indicator
 	 * were already removed.
 	 */
-	private boolean invokeObjectReader(ObjectStreamClass osc, Object obj, Class aclass)
-			throws InvalidClassException, StreamCorruptedException, ClassNotFoundException,
-			IOException {
+	private boolean invokeObjectReader(ObjectStreamClass osc, Object obj,
+			Class aclass) throws InvalidClassException,
+			StreamCorruptedException, ClassNotFoundException, IOException {
 		if (osc.readObjectMethod == null) {
 			return false;
 		}
@@ -1739,77 +1790,77 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * Note that reflection cannot be used here, because reflection cannot be
 	 * used to set final fields.
 	 */
-	private void inputPrimitiveField(Object o, Class cl, ObjectStreamField field)
-			throws InvalidClassException, IOException {
+	private void inputPrimitiveField(Object o, Class cl,
+			ObjectStreamField field) throws InvalidClassException, IOException {
 
 		try {
 			switch (field.getTypeCode()) {
-			case 'B':
-				byte byteValue = orbStream.read_octet();
-				if (field.getField() != null) {
-					bridge.putByte(o, field.getFieldID(), byteValue);
-					// reflective code: field.getField().setByte( o, byteValue )
-					// ;
-				}
-				break;
-			case 'Z':
-				boolean booleanValue = orbStream.read_boolean();
-				if (field.getField() != null) {
-					bridge.putBoolean(o, field.getFieldID(), booleanValue);
-					// reflective code: field.getField().setBoolean( o,
-					// booleanValue ) ;
-				}
-				break;
-			case 'C':
-				char charValue = orbStream.read_wchar();
-				if (field.getField() != null) {
-					bridge.putChar(o, field.getFieldID(), charValue);
-					// reflective code: field.getField().setChar( o, charValue )
-					// ;
-				}
-				break;
-			case 'S':
-				short shortValue = orbStream.read_short();
-				if (field.getField() != null) {
-					bridge.putShort(o, field.getFieldID(), shortValue);
-					// reflective code: field.getField().setShort( o, shortValue
-					// ) ;
-				}
-				break;
-			case 'I':
-				int intValue = orbStream.read_long();
-				if (field.getField() != null) {
-					bridge.putInt(o, field.getFieldID(), intValue);
-					// reflective code: field.getField().setInt( o, intValue ) ;
-				}
-				break;
-			case 'J':
-				long longValue = orbStream.read_longlong();
-				if (field.getField() != null) {
-					bridge.putLong(o, field.getFieldID(), longValue);
-					// reflective code: field.getField().setLong( o, longValue )
-					// ;
-				}
-				break;
-			case 'F':
-				float floatValue = orbStream.read_float();
-				if (field.getField() != null) {
-					bridge.putFloat(o, field.getFieldID(), floatValue);
-					// reflective code: field.getField().setFloat( o, floatValue
-					// ) ;
-				}
-				break;
-			case 'D':
-				double doubleValue = orbStream.read_double();
-				if (field.getField() != null) {
-					bridge.putDouble(o, field.getFieldID(), doubleValue);
-					// reflective code: field.getField().setDouble( o,
-					// doubleValue ) ;
-				}
-				break;
-			default:
-				// XXX I18N, logging needed.
-				throw new InvalidClassException(cl.getName());
+				case 'B':
+					byte byteValue = orbStream.read_octet();
+					if (field.getField() != null) {
+						bridge.putByte(o, field.getFieldID(), byteValue);
+						// reflective code: field.getField().setByte( o, byteValue )
+						// ;
+					}
+					break;
+				case 'Z':
+					boolean booleanValue = orbStream.read_boolean();
+					if (field.getField() != null) {
+						bridge.putBoolean(o, field.getFieldID(), booleanValue);
+						// reflective code: field.getField().setBoolean( o,
+						// booleanValue ) ;
+					}
+					break;
+				case 'C':
+					char charValue = orbStream.read_wchar();
+					if (field.getField() != null) {
+						bridge.putChar(o, field.getFieldID(), charValue);
+						// reflective code: field.getField().setChar( o, charValue )
+						// ;
+					}
+					break;
+				case 'S':
+					short shortValue = orbStream.read_short();
+					if (field.getField() != null) {
+						bridge.putShort(o, field.getFieldID(), shortValue);
+						// reflective code: field.getField().setShort( o, shortValue
+						// ) ;
+					}
+					break;
+				case 'I':
+					int intValue = orbStream.read_long();
+					if (field.getField() != null) {
+						bridge.putInt(o, field.getFieldID(), intValue);
+						// reflective code: field.getField().setInt( o, intValue ) ;
+					}
+					break;
+				case 'J':
+					long longValue = orbStream.read_longlong();
+					if (field.getField() != null) {
+						bridge.putLong(o, field.getFieldID(), longValue);
+						// reflective code: field.getField().setLong( o, longValue )
+						// ;
+					}
+					break;
+				case 'F':
+					float floatValue = orbStream.read_float();
+					if (field.getField() != null) {
+						bridge.putFloat(o, field.getFieldID(), floatValue);
+						// reflective code: field.getField().setFloat( o, floatValue
+						// ) ;
+					}
+					break;
+				case 'D':
+					double doubleValue = orbStream.read_double();
+					if (field.getField() != null) {
+						bridge.putDouble(o, field.getFieldID(), doubleValue);
+						// reflective code: field.getField().setDouble( o,
+						// doubleValue ) ;
+					}
+					break;
+				default:
+					// XXX I18N, logging needed.
+					throw new InvalidClassException(cl.getName());
 			}
 		} catch (IllegalArgumentException e) {
 			/*
@@ -1818,16 +1869,18 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			 * class to the serialized ObjectStreamClass.
 			 */
 			ClassCastException cce = new ClassCastException(
-					"Assigning instance of class " + field.getType().getName() + " to field "
-							+ currentClassDesc.getName() + '#' + field.getField().getName());
+					"Assigning instance of class " + field.getType().getName()
+							+ " to field " + currentClassDesc.getName() + '#'
+							+ field.getField().getName());
 			cce.initCause(e);
 			throw cce;
 		}
 	}
 
 	private Object inputObjectField(org.omg.CORBA.ValueMember field,
-			com.sun.org.omg.SendingContext.CodeBase sender) throws IndirectionException,
-			ClassNotFoundException, IOException, StreamCorruptedException {
+			com.sun.org.omg.SendingContext.CodeBase sender)
+			throws IndirectionException, ClassNotFoundException, IOException,
+			StreamCorruptedException {
 
 		Object objectValue = null;
 		Class type = null;
@@ -1845,8 +1898,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			signature = ValueUtility.getSignature(field);
 
 		if (signature != null && (signature.equals("Ljava/lang/Object;")
-				|| signature.equals("Ljava/io/Serializable;")
-				|| signature.equals("Ljava/io/Externalizable;"))) {
+				|| signature.equals("Ljava/io/Serializable;") || signature
+						.equals("Ljava/io/Externalizable;"))) {
 			objectValue = javax.rmi.CORBA.Util.readAny(orbStream);
 		} else {
 			// Decide what method call to make based on the type. If
@@ -1861,7 +1914,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 			if (!vhandler.isSequence(id)) {
 
-				if (field.type.kind().value() == kRemoteTypeCode.kind().value()) {
+				if (field.type.kind().value() == kRemoteTypeCode.kind()
+						.value()) {
 
 					// RMI Object reference...
 					callType = ValueHandlerImpl.kRemoteType;
@@ -1881,8 +1935,9 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 					// evolve to become a CORBA abstract interface or
 					// a RMI abstract interface.
 
-					if (type != null && type.isInterface() && (vhandler.isAbstractBase(type)
-							|| ObjectStreamClassCorbaExt.isAbstractInterface(type))) {
+					if (type != null && type.isInterface() && (vhandler
+							.isAbstractBase(type) || ObjectStreamClassCorbaExt
+									.isAbstractInterface(type))) {
 
 						callType = ValueHandlerImpl.kAbstractType;
 					}
@@ -1896,27 +1951,30 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			// the rep. id for this read will also follow on the wire.
 
 			switch (callType) {
-			case ValueHandlerImpl.kRemoteType:
-				if (type != null)
-					objectValue = Utility.readObjectAndNarrow(orbStream, type);
-				else
-					objectValue = orbStream.read_Object();
-				break;
-			case ValueHandlerImpl.kAbstractType:
-				if (type != null)
-					objectValue = Utility.readAbstractAndNarrow(orbStream, type);
-				else
-					objectValue = orbStream.read_abstract_interface();
-				break;
-			case ValueHandlerImpl.kValueType:
-				if (type != null)
-					objectValue = orbStream.read_value(type);
-				else
-					objectValue = orbStream.read_value();
-				break;
-			default:
-				// XXX I18N, logging needed.
-				throw new StreamCorruptedException("Unknown callType: " + callType);
+				case ValueHandlerImpl.kRemoteType:
+					if (type != null)
+						objectValue = Utility.readObjectAndNarrow(orbStream,
+								type);
+					else
+						objectValue = orbStream.read_Object();
+					break;
+				case ValueHandlerImpl.kAbstractType:
+					if (type != null)
+						objectValue = Utility.readAbstractAndNarrow(orbStream,
+								type);
+					else
+						objectValue = orbStream.read_abstract_interface();
+					break;
+				case ValueHandlerImpl.kValueType:
+					if (type != null)
+						objectValue = orbStream.read_value(type);
+					else
+						objectValue = orbStream.read_value();
+					break;
+				default:
+					// XXX I18N, logging needed.
+					throw new StreamCorruptedException("Unknown callType: "
+							+ callType);
 			}
 		}
 
@@ -1930,8 +1988,9 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * Reads the field (which of an Object type as opposed to a primitive)
 	 * described by ObjectStreamField field and returns it.
 	 */
-	private Object inputObjectField(ObjectStreamField field) throws InvalidClassException,
-			StreamCorruptedException, ClassNotFoundException, IndirectionException, IOException {
+	private Object inputObjectField(ObjectStreamField field)
+			throws InvalidClassException, StreamCorruptedException,
+			ClassNotFoundException, IndirectionException, IOException {
 
 		if (ObjectStreamClassCorbaExt.isAny(field.getTypeString())) {
 			return javax.rmi.CORBA.Util.readAny(orbStream);
@@ -1971,7 +2030,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 				callType = ValueHandlerImpl.kAbstractType;
 				loadStubClass = true;
-			} else if (ObjectStreamClassCorbaExt.isAbstractInterface(fieldType)) {
+			} else if (ObjectStreamClassCorbaExt.isAbstractInterface(
+					fieldType)) {
 				// RMI Abstract Object reference...
 
 				callType = ValueHandlerImpl.kAbstractType;
@@ -1981,7 +2041,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				try {
 					String codebase = Util.getCodebase(fieldType);
 					String repID = vhandler.createForAnyType(fieldType);
-					Class stubType = Utility.loadStubClass(repID, codebase, fieldType);
+					Class stubType = Utility.loadStubClass(repID, codebase,
+							fieldType);
 					actualType = stubType;
 				} catch (ClassNotFoundException e) {
 					narrow = true;
@@ -1992,24 +2053,28 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 		}
 
 		switch (callType) {
-		case ValueHandlerImpl.kRemoteType:
-			if (!narrow)
-				objectValue = (Object) orbStream.read_Object(actualType);
-			else
-				objectValue = Utility.readObjectAndNarrow(orbStream, actualType);
-			break;
-		case ValueHandlerImpl.kAbstractType:
-			if (!narrow)
-				objectValue = (Object) orbStream.read_abstract_interface(actualType);
-			else
-				objectValue = Utility.readAbstractAndNarrow(orbStream, actualType);
-			break;
-		case ValueHandlerImpl.kValueType:
-			objectValue = (Object) orbStream.read_value(actualType);
-			break;
-		default:
-			// XXX I18N, logging needed.
-			throw new StreamCorruptedException("Unknown callType: " + callType);
+			case ValueHandlerImpl.kRemoteType:
+				if (!narrow)
+					objectValue = (Object) orbStream.read_Object(actualType);
+				else
+					objectValue = Utility.readObjectAndNarrow(orbStream,
+							actualType);
+				break;
+			case ValueHandlerImpl.kAbstractType:
+				if (!narrow)
+					objectValue = (Object) orbStream.read_abstract_interface(
+							actualType);
+				else
+					objectValue = Utility.readAbstractAndNarrow(orbStream,
+							actualType);
+				break;
+			case ValueHandlerImpl.kValueType:
+				objectValue = (Object) orbStream.read_value(actualType);
+				break;
+			default:
+				// XXX I18N, logging needed.
+				throw new StreamCorruptedException("Unknown callType: "
+						+ callType);
 		}
 
 		return objectValue;
@@ -2028,9 +2093,9 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			inputCurrentClassFieldsForReadFields(fieldToValueMap);
 	}
 
-	private final void inputRemoteMembersForReadFields(java.util.Map fieldToValueMap)
-			throws InvalidClassException, StreamCorruptedException, ClassNotFoundException,
-			IOException {
+	private final void inputRemoteMembersForReadFields(
+			java.util.Map fieldToValueMap) throws InvalidClassException,
+			StreamCorruptedException, ClassNotFoundException, IOException {
 
 		// Must have this local variable since defaultReadObjectFVDMembers
 		// may get mangled by recursion.
@@ -2042,69 +2107,79 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 				switch (fields[i].type.kind().value()) {
 
-				case TCKind._tk_octet:
-					byte byteValue = orbStream.read_octet();
-					fieldToValueMap.put(fields[i].name, new Byte(byteValue));
-					break;
-				case TCKind._tk_boolean:
-					boolean booleanValue = orbStream.read_boolean();
-					fieldToValueMap.put(fields[i].name, new Boolean(booleanValue));
-					break;
-				case TCKind._tk_char:
-					// Backwards compatibility. Older Sun ORBs sent
-					// _tk_char even though they read and wrote wchars
-					// correctly.
-					//
-					// Fall through to the _tk_wchar case.
-				case TCKind._tk_wchar:
-					char charValue = orbStream.read_wchar();
-					fieldToValueMap.put(fields[i].name, new Character(charValue));
-					break;
-				case TCKind._tk_short:
-					short shortValue = orbStream.read_short();
-					fieldToValueMap.put(fields[i].name, new Short(shortValue));
-					break;
-				case TCKind._tk_long:
-					int intValue = orbStream.read_long();
-					fieldToValueMap.put(fields[i].name, new Integer(intValue));
-					break;
-				case TCKind._tk_longlong:
-					long longValue = orbStream.read_longlong();
-					fieldToValueMap.put(fields[i].name, new Long(longValue));
-					break;
-				case TCKind._tk_float:
-					float floatValue = orbStream.read_float();
-					fieldToValueMap.put(fields[i].name, new Float(floatValue));
-					break;
-				case TCKind._tk_double:
-					double doubleValue = orbStream.read_double();
-					fieldToValueMap.put(fields[i].name, new Double(doubleValue));
-					break;
-				case TCKind._tk_value:
-				case TCKind._tk_objref:
-				case TCKind._tk_value_box:
-					Object objectValue = null;
-					try {
-						objectValue = inputObjectField(fields[i], cbSender);
+					case TCKind._tk_octet:
+						byte byteValue = orbStream.read_octet();
+						fieldToValueMap.put(fields[i].name, new Byte(
+								byteValue));
+						break;
+					case TCKind._tk_boolean:
+						boolean booleanValue = orbStream.read_boolean();
+						fieldToValueMap.put(fields[i].name, new Boolean(
+								booleanValue));
+						break;
+					case TCKind._tk_char:
+						// Backwards compatibility. Older Sun ORBs sent
+						// _tk_char even though they read and wrote wchars
+						// correctly.
+						//
+						// Fall through to the _tk_wchar case.
+					case TCKind._tk_wchar:
+						char charValue = orbStream.read_wchar();
+						fieldToValueMap.put(fields[i].name, new Character(
+								charValue));
+						break;
+					case TCKind._tk_short:
+						short shortValue = orbStream.read_short();
+						fieldToValueMap.put(fields[i].name, new Short(
+								shortValue));
+						break;
+					case TCKind._tk_long:
+						int intValue = orbStream.read_long();
+						fieldToValueMap.put(fields[i].name, new Integer(
+								intValue));
+						break;
+					case TCKind._tk_longlong:
+						long longValue = orbStream.read_longlong();
+						fieldToValueMap.put(fields[i].name, new Long(
+								longValue));
+						break;
+					case TCKind._tk_float:
+						float floatValue = orbStream.read_float();
+						fieldToValueMap.put(fields[i].name, new Float(
+								floatValue));
+						break;
+					case TCKind._tk_double:
+						double doubleValue = orbStream.read_double();
+						fieldToValueMap.put(fields[i].name, new Double(
+								doubleValue));
+						break;
+					case TCKind._tk_value:
+					case TCKind._tk_objref:
+					case TCKind._tk_value_box:
+						Object objectValue = null;
+						try {
+							objectValue = inputObjectField(fields[i], cbSender);
 
-					} catch (IndirectionException cdrie) {
-						// The CDR stream had never seen the given offset
-						// before,
-						// so check the recursion manager (it will throw an
-						// IOException if it doesn't have a reference, either).
-						objectValue = activeRecursionMgr.getObject(cdrie.offset);
-					}
+						} catch (IndirectionException cdrie) {
+							// The CDR stream had never seen the given offset
+							// before,
+							// so check the recursion manager (it will throw an
+							// IOException if it doesn't have a reference, either).
+							objectValue = activeRecursionMgr.getObject(
+									cdrie.offset);
+						}
 
-					fieldToValueMap.put(fields[i].name, objectValue);
-					break;
-				default:
-					// XXX I18N, logging needed.
-					throw new StreamCorruptedException(
-							"Unknown kind: " + fields[i].type.kind().value());
+						fieldToValueMap.put(fields[i].name, objectValue);
+						break;
+					default:
+						// XXX I18N, logging needed.
+						throw new StreamCorruptedException("Unknown kind: "
+								+ fields[i].type.kind().value());
 				}
 			}
 		} catch (Throwable t) {
-			StreamCorruptedException result = new StreamCorruptedException(t.getMessage());
+			StreamCorruptedException result = new StreamCorruptedException(t
+					.getMessage());
 			result.initCause(t);
 			throw result;
 		}
@@ -2117,9 +2192,9 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * remote FVD) and puts them in the given Map, name to value. Wraps
 	 * primitives in the corresponding java.lang Objects.
 	 */
-	private final void inputCurrentClassFieldsForReadFields(java.util.Map fieldToValueMap)
-			throws InvalidClassException, StreamCorruptedException, ClassNotFoundException,
-			IOException {
+	private final void inputCurrentClassFieldsForReadFields(
+			java.util.Map fieldToValueMap) throws InvalidClassException,
+			StreamCorruptedException, ClassNotFoundException, IOException {
 
 		ObjectStreamField[] fields = currentClassDesc.getFieldsNoCopy();
 
@@ -2129,41 +2204,49 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 		for (int i = 0; i < primFields; ++i) {
 
 			switch (fields[i].getTypeCode()) {
-			case 'B':
-				byte byteValue = orbStream.read_octet();
-				fieldToValueMap.put(fields[i].getName(), new Byte(byteValue));
-				break;
-			case 'Z':
-				boolean booleanValue = orbStream.read_boolean();
-				fieldToValueMap.put(fields[i].getName(), new Boolean(booleanValue));
-				break;
-			case 'C':
-				char charValue = orbStream.read_wchar();
-				fieldToValueMap.put(fields[i].getName(), new Character(charValue));
-				break;
-			case 'S':
-				short shortValue = orbStream.read_short();
-				fieldToValueMap.put(fields[i].getName(), new Short(shortValue));
-				break;
-			case 'I':
-				int intValue = orbStream.read_long();
-				fieldToValueMap.put(fields[i].getName(), new Integer(intValue));
-				break;
-			case 'J':
-				long longValue = orbStream.read_longlong();
-				fieldToValueMap.put(fields[i].getName(), new Long(longValue));
-				break;
-			case 'F':
-				float floatValue = orbStream.read_float();
-				fieldToValueMap.put(fields[i].getName(), new Float(floatValue));
-				break;
-			case 'D':
-				double doubleValue = orbStream.read_double();
-				fieldToValueMap.put(fields[i].getName(), new Double(doubleValue));
-				break;
-			default:
-				// XXX I18N, logging needed.
-				throw new InvalidClassException(currentClassDesc.getName());
+				case 'B':
+					byte byteValue = orbStream.read_octet();
+					fieldToValueMap.put(fields[i].getName(), new Byte(
+							byteValue));
+					break;
+				case 'Z':
+					boolean booleanValue = orbStream.read_boolean();
+					fieldToValueMap.put(fields[i].getName(), new Boolean(
+							booleanValue));
+					break;
+				case 'C':
+					char charValue = orbStream.read_wchar();
+					fieldToValueMap.put(fields[i].getName(), new Character(
+							charValue));
+					break;
+				case 'S':
+					short shortValue = orbStream.read_short();
+					fieldToValueMap.put(fields[i].getName(), new Short(
+							shortValue));
+					break;
+				case 'I':
+					int intValue = orbStream.read_long();
+					fieldToValueMap.put(fields[i].getName(), new Integer(
+							intValue));
+					break;
+				case 'J':
+					long longValue = orbStream.read_longlong();
+					fieldToValueMap.put(fields[i].getName(), new Long(
+							longValue));
+					break;
+				case 'F':
+					float floatValue = orbStream.read_float();
+					fieldToValueMap.put(fields[i].getName(), new Float(
+							floatValue));
+					break;
+				case 'D':
+					double doubleValue = orbStream.read_double();
+					fieldToValueMap.put(fields[i].getName(), new Double(
+							doubleValue));
+					break;
+				default:
+					// XXX I18N, logging needed.
+					throw new InvalidClassException(currentClassDesc.getName());
 			}
 		}
 
@@ -2191,13 +2274,14 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * null, just consume the fields without setting any values. If any
 	 * ObjectStreamField does not have a reflected Field, don't try to set that
 	 * field in the object.
-	 *
 	 * REVISIT -- This code doesn't do what the comment says to when getField()
 	 * is null!
 	 */
-	private void inputClassFields(Object o, final Class<?> cl, ObjectStreamField[] fields,
-			com.sun.org.omg.SendingContext.CodeBase sender) throws InvalidClassException,
-			StreamCorruptedException, ClassNotFoundException, IOException {
+	private void inputClassFields(Object o, final Class<?> cl,
+			ObjectStreamField[] fields,
+			com.sun.org.omg.SendingContext.CodeBase sender)
+			throws InvalidClassException, StreamCorruptedException,
+			ClassNotFoundException, IOException {
 
 		int primFields = fields.length - currentClassDesc.objFields;
 
@@ -2227,14 +2311,15 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 				try {
 					Class<?> fieldCl = fields[i].getClazz();
-					if ((objectValue != null)
-							&& (!fieldCl.isAssignableFrom(objectValue.getClass()))) {
+					if ((objectValue != null) && (!fieldCl.isAssignableFrom(
+							objectValue.getClass()))) {
 						throw new IllegalArgumentException("Field mismatch");
 					}
 					Field declaredClassField = null;
 					final String inputStreamFieldName = fields[i].getName();
 					try {
-						declaredClassField = getDeclaredField(cl, inputStreamFieldName);
+						declaredClassField = getDeclaredField(cl,
+								inputStreamFieldName);
 					} catch (PrivilegedActionException paEx) {
 						throw new IllegalArgumentException(
 								(NoSuchFieldException) paEx.getException());
@@ -2254,9 +2339,11 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 					// check input field type is a declared field type
 					// input field is a subclass of the declared field
 					if (!declaredFieldClass.isAssignableFrom(fieldCl)) {
-						throw new IllegalArgumentException("Field Type mismatch");
+						throw new IllegalArgumentException(
+								"Field Type mismatch");
 					}
-					if (objectValue != null && !fieldCl.isInstance(objectValue)) {
+					if (objectValue != null && !fieldCl.isInstance(
+							objectValue)) {
 						throw new IllegalArgumentException();
 					}
 					bridge.putObject(o, fields[i].getFieldID(), objectValue);
@@ -2276,8 +2363,10 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 						fieldName = fields[i].getField().getName();
 					}
 					ClassCastException ccEx = new ClassCastException(
-							"Assigning instance of class " + objectValueClassName + " to field "
-									+ currentClassDescClassName + '#' + fieldName);
+							"Assigning instance of class "
+									+ objectValueClassName + " to field "
+									+ currentClassDescClassName + '#'
+									+ fieldName);
 					ccEx.initCause(iaEx);
 					throw ccEx;
 				}
@@ -2292,106 +2381,117 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * ObjectStreamField does not have a reflected Field, don't try to set that
 	 * field in the object.
 	 */
-	private void inputClassFields(Object o, Class cl, ObjectStreamClass osc, ValueMember[] fields,
-			com.sun.org.omg.SendingContext.CodeBase sender) throws InvalidClassException,
-			StreamCorruptedException, ClassNotFoundException, IOException {
+	private void inputClassFields(Object o, Class cl, ObjectStreamClass osc,
+			ValueMember[] fields,
+			com.sun.org.omg.SendingContext.CodeBase sender)
+			throws InvalidClassException, StreamCorruptedException,
+			ClassNotFoundException, IOException {
 		try {
 			for (int i = 0; i < fields.length; ++i) {
 				try {
 					switch (fields[i].type.kind().value()) {
-					case TCKind._tk_octet:
-						byte byteValue = orbStream.read_octet();
-						if ((o != null) && osc.hasField(fields[i]))
-							setByteField(o, cl, fields[i].name, byteValue);
-						break;
-					case TCKind._tk_boolean:
-						boolean booleanValue = orbStream.read_boolean();
-						if ((o != null) && osc.hasField(fields[i]))
-							setBooleanField(o, cl, fields[i].name, booleanValue);
-						break;
-					case TCKind._tk_char:
-						// Backwards compatibility. Older Sun ORBs sent
-						// _tk_char even though they read and wrote wchars
-						// correctly.
-						//
-						// Fall through to the _tk_wchar case.
-					case TCKind._tk_wchar:
-						char charValue = orbStream.read_wchar();
-						if ((o != null) && osc.hasField(fields[i]))
-							setCharField(o, cl, fields[i].name, charValue);
-						break;
-					case TCKind._tk_short:
-						short shortValue = orbStream.read_short();
-						if ((o != null) && osc.hasField(fields[i]))
-							setShortField(o, cl, fields[i].name, shortValue);
-						break;
-					case TCKind._tk_long:
-						int intValue = orbStream.read_long();
-						if ((o != null) && osc.hasField(fields[i]))
-							setIntField(o, cl, fields[i].name, intValue);
-						break;
-					case TCKind._tk_longlong:
-						long longValue = orbStream.read_longlong();
-						if ((o != null) && osc.hasField(fields[i]))
-							setLongField(o, cl, fields[i].name, longValue);
-						break;
-					case TCKind._tk_float:
-						float floatValue = orbStream.read_float();
-						if ((o != null) && osc.hasField(fields[i]))
-							setFloatField(o, cl, fields[i].name, floatValue);
-						break;
-					case TCKind._tk_double:
-						double doubleValue = orbStream.read_double();
-						if ((o != null) && osc.hasField(fields[i]))
-							setDoubleField(o, cl, fields[i].name, doubleValue);
-						break;
-					case TCKind._tk_value:
-					case TCKind._tk_objref:
-					case TCKind._tk_value_box:
-						Object objectValue = null;
-						try {
-							objectValue = inputObjectField(fields[i], sender);
-						} catch (IndirectionException cdrie) {
-							// The CDR stream had never seen the given offset
-							// before,
-							// so check the recursion manager (it will throw an
-							// IOException if it doesn't have a reference,
-							// either).
-							objectValue = activeRecursionMgr.getObject(cdrie.offset);
-						}
-
-						if (o == null)
-							continue;
-						try {
-							if (osc.hasField(fields[i])) {
-								setObjectField(o, cl, fields[i].name, objectValue);
-							} else {
-								// REVISIT. Convert to a log message.
-								// This is a normal case when fields have
-								// been added as part of evolution, but
-								// silently skipping can make it hard to
-								// debug if there's an error
-								// System.out.println("**** warning, not setting
-								// field: "
-								// + fields[i].name
-								// + " since not on class "
-								// + osc.getName());
-
+						case TCKind._tk_octet:
+							byte byteValue = orbStream.read_octet();
+							if ((o != null) && osc.hasField(fields[i]))
+								setByteField(o, cl, fields[i].name, byteValue);
+							break;
+						case TCKind._tk_boolean:
+							boolean booleanValue = orbStream.read_boolean();
+							if ((o != null) && osc.hasField(fields[i]))
+								setBooleanField(o, cl, fields[i].name,
+										booleanValue);
+							break;
+						case TCKind._tk_char:
+							// Backwards compatibility. Older Sun ORBs sent
+							// _tk_char even though they read and wrote wchars
+							// correctly.
+							//
+							// Fall through to the _tk_wchar case.
+						case TCKind._tk_wchar:
+							char charValue = orbStream.read_wchar();
+							if ((o != null) && osc.hasField(fields[i]))
+								setCharField(o, cl, fields[i].name, charValue);
+							break;
+						case TCKind._tk_short:
+							short shortValue = orbStream.read_short();
+							if ((o != null) && osc.hasField(fields[i]))
+								setShortField(o, cl, fields[i].name,
+										shortValue);
+							break;
+						case TCKind._tk_long:
+							int intValue = orbStream.read_long();
+							if ((o != null) && osc.hasField(fields[i]))
+								setIntField(o, cl, fields[i].name, intValue);
+							break;
+						case TCKind._tk_longlong:
+							long longValue = orbStream.read_longlong();
+							if ((o != null) && osc.hasField(fields[i]))
+								setLongField(o, cl, fields[i].name, longValue);
+							break;
+						case TCKind._tk_float:
+							float floatValue = orbStream.read_float();
+							if ((o != null) && osc.hasField(fields[i]))
+								setFloatField(o, cl, fields[i].name,
+										floatValue);
+							break;
+						case TCKind._tk_double:
+							double doubleValue = orbStream.read_double();
+							if ((o != null) && osc.hasField(fields[i]))
+								setDoubleField(o, cl, fields[i].name,
+										doubleValue);
+							break;
+						case TCKind._tk_value:
+						case TCKind._tk_objref:
+						case TCKind._tk_value_box:
+							Object objectValue = null;
+							try {
+								objectValue = inputObjectField(fields[i],
+										sender);
+							} catch (IndirectionException cdrie) {
+								// The CDR stream had never seen the given offset
+								// before,
+								// so check the recursion manager (it will throw an
+								// IOException if it doesn't have a reference,
+								// either).
+								objectValue = activeRecursionMgr.getObject(
+										cdrie.offset);
 							}
-						} catch (IllegalArgumentException e) {
+
+							if (o == null)
+								continue;
+							try {
+								if (osc.hasField(fields[i])) {
+									setObjectField(o, cl, fields[i].name,
+											objectValue);
+								} else {
+									// REVISIT. Convert to a log message.
+									// This is a normal case when fields have
+									// been added as part of evolution, but
+									// silently skipping can make it hard to
+									// debug if there's an error
+									// System.out.println("**** warning, not setting
+									// field: "
+									// + fields[i].name
+									// + " since not on class "
+									// + osc.getName());
+
+								}
+							} catch (IllegalArgumentException e) {
+								// XXX I18N, logging needed.
+								ClassCastException cce = new ClassCastException(
+										"Assigning instance of class "
+												+ objectValue.getClass()
+														.getName()
+												+ " to field "
+												+ fields[i].name);
+								cce.initCause(e);
+								throw cce;
+							}
+							break;
+						default:
 							// XXX I18N, logging needed.
-							ClassCastException cce = new ClassCastException(
-									"Assigning instance of class "
-											+ objectValue.getClass().getName() + " to field "
-											+ fields[i].name);
-							cce.initCause(e);
-							throw cce;
-						}
-						break;
-					default:
-						// XXX I18N, logging needed.
-						throw new StreamCorruptedException(
-								"Unknown kind: " + fields[i].type.kind().value());
+							throw new StreamCorruptedException("Unknown kind: "
+									+ fields[i].type.kind().value());
 					}
 				} catch (IllegalArgumentException e) {
 					/*
@@ -2401,23 +2501,26 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 					 */
 					// XXX I18N, logging needed.
 					ClassCastException cce = new ClassCastException(
-							"Assigning instance of class " + fields[i].id + " to field "
-									+ currentClassDesc.getName() + '#' + fields[i].name);
+							"Assigning instance of class " + fields[i].id
+									+ " to field " + currentClassDesc.getName()
+									+ '#' + fields[i].name);
 					cce.initCause(e);
 					throw cce;
 				}
 			}
 		} catch (Throwable t) {
 			// XXX I18N, logging needed.
-			StreamCorruptedException sce = new StreamCorruptedException(t.getMessage());
+			StreamCorruptedException sce = new StreamCorruptedException(t
+					.getMessage());
 			sce.initCause(t);
 			throw sce;
 		}
 	}
 
 	private void skipCustomUsingFVD(ValueMember[] fields,
-			com.sun.org.omg.SendingContext.CodeBase sender) throws InvalidClassException,
-			StreamCorruptedException, ClassNotFoundException, IOException {
+			com.sun.org.omg.SendingContext.CodeBase sender)
+			throws InvalidClassException, StreamCorruptedException,
+			ClassNotFoundException, IOException {
 		readFormatVersion();
 		boolean calledDefaultWriteObject = readBoolean();
 
@@ -2435,130 +2538,136 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 	 * Read the fields of the specified class from the input stream throw data
 	 * away. This must handle same switch logic as above.
 	 */
-	private void throwAwayData(ValueMember[] fields, com.sun.org.omg.SendingContext.CodeBase sender)
-			throws InvalidClassException, StreamCorruptedException, ClassNotFoundException,
-			IOException {
+	private void throwAwayData(ValueMember[] fields,
+			com.sun.org.omg.SendingContext.CodeBase sender)
+			throws InvalidClassException, StreamCorruptedException,
+			ClassNotFoundException, IOException {
 
 		for (int i = 0; i < fields.length; ++i) {
 
 			try {
 
 				switch (fields[i].type.kind().value()) {
-				case TCKind._tk_octet:
-					orbStream.read_octet();
-					break;
-				case TCKind._tk_boolean:
-					orbStream.read_boolean();
-					break;
-				case TCKind._tk_char:
-					// Backwards compatibility. Older Sun ORBs sent
-					// _tk_char even though they read and wrote wchars
-					// correctly.
-					//
-					// Fall through to the _tk_wchar case.
-				case TCKind._tk_wchar:
-					orbStream.read_wchar();
-					break;
-				case TCKind._tk_short:
-					orbStream.read_short();
-					break;
-				case TCKind._tk_long:
-					orbStream.read_long();
-					break;
-				case TCKind._tk_longlong:
-					orbStream.read_longlong();
-					break;
-				case TCKind._tk_float:
-					orbStream.read_float();
-					break;
-				case TCKind._tk_double:
-					orbStream.read_double();
-					break;
-				case TCKind._tk_value:
-				case TCKind._tk_objref:
-				case TCKind._tk_value_box:
-					Class type = null;
-					String id = fields[i].id;
+					case TCKind._tk_octet:
+						orbStream.read_octet();
+						break;
+					case TCKind._tk_boolean:
+						orbStream.read_boolean();
+						break;
+					case TCKind._tk_char:
+						// Backwards compatibility. Older Sun ORBs sent
+						// _tk_char even though they read and wrote wchars
+						// correctly.
+						//
+						// Fall through to the _tk_wchar case.
+					case TCKind._tk_wchar:
+						orbStream.read_wchar();
+						break;
+					case TCKind._tk_short:
+						orbStream.read_short();
+						break;
+					case TCKind._tk_long:
+						orbStream.read_long();
+						break;
+					case TCKind._tk_longlong:
+						orbStream.read_longlong();
+						break;
+					case TCKind._tk_float:
+						orbStream.read_float();
+						break;
+					case TCKind._tk_double:
+						orbStream.read_double();
+						break;
+					case TCKind._tk_value:
+					case TCKind._tk_objref:
+					case TCKind._tk_value_box:
+						Class type = null;
+						String id = fields[i].id;
 
-					try {
-						type = vhandler.getClassFromType(id);
-					} catch (ClassNotFoundException cnfe) {
-						// Make sure type = null
-						type = null;
-					}
-					String signature = null;
-					if (type != null)
-						signature = ValueUtility.getSignature(fields[i]);
+						try {
+							type = vhandler.getClassFromType(id);
+						} catch (ClassNotFoundException cnfe) {
+							// Make sure type = null
+							type = null;
+						}
+						String signature = null;
+						if (type != null)
+							signature = ValueUtility.getSignature(fields[i]);
 
-					// Read value
-					try {
-						if ((signature != null) && (signature.equals("Ljava/lang/Object;")
-								|| signature.equals("Ljava/io/Serializable;")
-								|| signature.equals("Ljava/io/Externalizable;"))) {
-							javax.rmi.CORBA.Util.readAny(orbStream);
-						} else {
-							// Decide what method call to make based on the
-							// type.
-							//
-							// NOTE : Since FullValueDescription does not allow
-							// us
-							// to ask whether something is an interface we do
-							// not
-							// have the ability to optimize this check.
+						// Read value
+						try {
+							if ((signature != null) && (signature.equals(
+									"Ljava/lang/Object;") || signature.equals(
+											"Ljava/io/Serializable;")
+									|| signature.equals(
+											"Ljava/io/Externalizable;"))) {
+								javax.rmi.CORBA.Util.readAny(orbStream);
+							} else {
+								// Decide what method call to make based on the
+								// type.
+								//
+								// NOTE : Since FullValueDescription does not allow
+								// us
+								// to ask whether something is an interface we do
+								// not
+								// have the ability to optimize this check.
 
-							int callType = ValueHandlerImpl.kValueType;
+								int callType = ValueHandlerImpl.kValueType;
 
-							if (!vhandler.isSequence(id)) {
-								FullValueDescription fieldFVD = sender.meta(fields[i].id);
-								if (kRemoteTypeCode == fields[i].type) {
+								if (!vhandler.isSequence(id)) {
+									FullValueDescription fieldFVD = sender.meta(
+											fields[i].id);
+									if (kRemoteTypeCode == fields[i].type) {
 
-									// RMI Object reference...
-									callType = ValueHandlerImpl.kRemoteType;
-								} else if (fieldFVD.is_abstract) {
-									// RMI Abstract Object reference...
+										// RMI Object reference...
+										callType = ValueHandlerImpl.kRemoteType;
+									} else if (fieldFVD.is_abstract) {
+										// RMI Abstract Object reference...
 
-									callType = ValueHandlerImpl.kAbstractType;
+										callType = ValueHandlerImpl.kAbstractType;
+									}
+								}
+
+								// Now that we have used the FVD of the field to
+								// determine the proper course
+								// of action, it is ok to use the type (Class) from
+								// this point forward since
+								// the rep. id for this read will also follow on the
+								// wire.
+
+								switch (callType) {
+									case ValueHandlerImpl.kRemoteType:
+										orbStream.read_Object();
+										break;
+									case ValueHandlerImpl.kAbstractType:
+										orbStream.read_abstract_interface();
+										break;
+									case ValueHandlerImpl.kValueType:
+										if (type != null) {
+											orbStream.read_value(type);
+										} else {
+											orbStream.read_value();
+										}
+										break;
+									default:
+										// XXX I18N, logging needed.
+										throw new StreamCorruptedException(
+												"Unknown callType: "
+														+ callType);
 								}
 							}
 
-							// Now that we have used the FVD of the field to
-							// determine the proper course
-							// of action, it is ok to use the type (Class) from
-							// this point forward since
-							// the rep. id for this read will also follow on the
-							// wire.
-
-							switch (callType) {
-							case ValueHandlerImpl.kRemoteType:
-								orbStream.read_Object();
-								break;
-							case ValueHandlerImpl.kAbstractType:
-								orbStream.read_abstract_interface();
-								break;
-							case ValueHandlerImpl.kValueType:
-								if (type != null) {
-									orbStream.read_value(type);
-								} else {
-									orbStream.read_value();
-								}
-								break;
-							default:
-								// XXX I18N, logging needed.
-								throw new StreamCorruptedException("Unknown callType: " + callType);
-							}
+						} catch (IndirectionException cdrie) {
+							// Since we are throwing this away, don't bother
+							// handling recursion.
+							continue;
 						}
 
-					} catch (IndirectionException cdrie) {
-						// Since we are throwing this away, don't bother
-						// handling recursion.
-						continue;
-					}
-
-					break;
-				default:
-					// XXX I18N, logging needed.
-					throw new StreamCorruptedException(
-							"Unknown kind: " + fields[i].type.kind().value());
+						break;
+					default:
+						// XXX I18N, logging needed.
+						throw new StreamCorruptedException("Unknown kind: "
+								+ fields[i].type.kind().value());
 
 				}
 			} catch (IllegalArgumentException e) {
@@ -2569,8 +2678,9 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 				 */
 				// XXX I18N, logging needed.
 				ClassCastException cce = new ClassCastException(
-						"Assigning instance of class " + fields[i].id + " to field "
-								+ currentClassDesc.getName() + '#' + fields[i].name);
+						"Assigning instance of class " + fields[i].id
+								+ " to field " + currentClassDesc.getName()
+								+ '#' + fields[i].name);
 				cce.initCause(e);
 				throw cce;
 			}
@@ -2578,7 +2688,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 	}
 
-	private static void setObjectField(Object o, Class<?> c, String fieldName, Object v) {
+	private static void setObjectField(Object o, Class<?> c, String fieldName,
+			Object v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			Class fieldCl = fld.getType();
@@ -2589,15 +2700,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			bridge.putObject(o, key, v);
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetObjectField(e, fieldName, o.toString(), v.toString());
+				throw utilWrapper.errorSetObjectField(e, fieldName, o
+						.toString(), v.toString());
 			} else {
-				throw utilWrapper.errorSetObjectField(e, fieldName,
-						"null " + c.getName() + " object", v.toString());
+				throw utilWrapper.errorSetObjectField(e, fieldName, "null " + c
+						.getName() + " object", v.toString());
 			}
 		}
 	}
 
-	private static void setBooleanField(Object o, Class<?> c, String fieldName, boolean v) {
+	private static void setBooleanField(Object o, Class<?> c, String fieldName,
+			boolean v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Boolean.TYPE)) {
@@ -2608,15 +2721,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetBooleanField(e, fieldName, o.toString(), new Boolean(v));
+				throw utilWrapper.errorSetBooleanField(e, fieldName, o
+						.toString(), new Boolean(v));
 			} else {
-				throw utilWrapper.errorSetBooleanField(e, fieldName,
-						"null " + c.getName() + " object", new Boolean(v));
+				throw utilWrapper.errorSetBooleanField(e, fieldName, "null " + c
+						.getName() + " object", new Boolean(v));
 			}
 		}
 	}
 
-	private static void setByteField(Object o, Class<?> c, String fieldName, byte v) {
+	private static void setByteField(Object o, Class<?> c, String fieldName,
+			byte v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Byte.TYPE)) {
@@ -2627,15 +2742,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetByteField(e, fieldName, o.toString(), new Byte(v));
-			} else {
-				throw utilWrapper.errorSetByteField(e, fieldName, "null " + c.getName() + " object",
+				throw utilWrapper.errorSetByteField(e, fieldName, o.toString(),
 						new Byte(v));
+			} else {
+				throw utilWrapper.errorSetByteField(e, fieldName, "null " + c
+						.getName() + " object", new Byte(v));
 			}
 		}
 	}
 
-	private static void setCharField(Object o, Class<?> c, String fieldName, char v) {
+	private static void setCharField(Object o, Class<?> c, String fieldName,
+			char v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Character.TYPE)) {
@@ -2646,15 +2763,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetCharField(e, fieldName, o.toString(), new Character(v));
-			} else {
-				throw utilWrapper.errorSetCharField(e, fieldName, "null " + c.getName() + " object",
+				throw utilWrapper.errorSetCharField(e, fieldName, o.toString(),
 						new Character(v));
+			} else {
+				throw utilWrapper.errorSetCharField(e, fieldName, "null " + c
+						.getName() + " object", new Character(v));
 			}
 		}
 	}
 
-	private static void setShortField(Object o, Class<?> c, String fieldName, short v) {
+	private static void setShortField(Object o, Class<?> c, String fieldName,
+			short v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Short.TYPE)) {
@@ -2665,15 +2784,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetShortField(e, fieldName, o.toString(), new Short(v));
+				throw utilWrapper.errorSetShortField(e, fieldName, o.toString(),
+						new Short(v));
 			} else {
-				throw utilWrapper.errorSetShortField(e, fieldName,
-						"null " + c.getName() + " object", new Short(v));
+				throw utilWrapper.errorSetShortField(e, fieldName, "null " + c
+						.getName() + " object", new Short(v));
 			}
 		}
 	}
 
-	private static void setIntField(Object o, final Class<?> c, final String fieldName, int v) {
+	private static void setIntField(Object o, final Class<?> c,
+			final String fieldName, int v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Integer.TYPE)) {
@@ -2684,15 +2805,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetIntField(e, fieldName, o.toString(), new Integer(v));
-			} else {
-				throw utilWrapper.errorSetIntField(e, fieldName, "null " + c.getName() + " object",
+				throw utilWrapper.errorSetIntField(e, fieldName, o.toString(),
 						new Integer(v));
+			} else {
+				throw utilWrapper.errorSetIntField(e, fieldName, "null " + c
+						.getName() + " object", new Integer(v));
 			}
 		}
 	}
 
-	private static void setLongField(Object o, Class<?> c, String fieldName, long v) {
+	private static void setLongField(Object o, Class<?> c, String fieldName,
+			long v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Long.TYPE)) {
@@ -2703,15 +2826,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetLongField(e, fieldName, o.toString(), new Long(v));
-			} else {
-				throw utilWrapper.errorSetLongField(e, fieldName, "null " + c.getName() + " object",
+				throw utilWrapper.errorSetLongField(e, fieldName, o.toString(),
 						new Long(v));
+			} else {
+				throw utilWrapper.errorSetLongField(e, fieldName, "null " + c
+						.getName() + " object", new Long(v));
 			}
 		}
 	}
 
-	private static void setFloatField(Object o, Class<?> c, String fieldName, float v) {
+	private static void setFloatField(Object o, Class<?> c, String fieldName,
+			float v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Float.TYPE)) {
@@ -2722,15 +2847,17 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetFloatField(e, fieldName, o.toString(), new Float(v));
+				throw utilWrapper.errorSetFloatField(e, fieldName, o.toString(),
+						new Float(v));
 			} else {
-				throw utilWrapper.errorSetFloatField(e, fieldName,
-						"null " + c.getName() + " object", new Float(v));
+				throw utilWrapper.errorSetFloatField(e, fieldName, "null " + c
+						.getName() + " object", new Float(v));
 			}
 		}
 	}
 
-	private static void setDoubleField(Object o, Class<?> c, String fieldName, double v) {
+	private static void setDoubleField(Object o, Class<?> c, String fieldName,
+			double v) {
 		try {
 			Field fld = getDeclaredField(c, fieldName);
 			if ((fld != null) && (fld.getType() == Double.TYPE)) {
@@ -2741,24 +2868,27 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 			}
 		} catch (Exception e) {
 			if (o != null) {
-				throw utilWrapper.errorSetDoubleField(e, fieldName, o.toString(), new Double(v));
+				throw utilWrapper.errorSetDoubleField(e, fieldName, o
+						.toString(), new Double(v));
 			} else {
-				throw utilWrapper.errorSetDoubleField(e, fieldName,
-						"null " + c.getName() + " object", new Double(v));
+				throw utilWrapper.errorSetDoubleField(e, fieldName, "null " + c
+						.getName() + " object", new Double(v));
 			}
 		}
 	}
 
-	private static Field getDeclaredField(final Class<?> c, final String fieldName)
-			throws PrivilegedActionException, NoSuchFieldException, SecurityException {
+	private static Field getDeclaredField(final Class<?> c,
+			final String fieldName) throws PrivilegedActionException,
+			NoSuchFieldException, SecurityException {
 		if (System.getSecurityManager() == null) {
 			return c.getDeclaredField(fieldName);
 		} else {
-			return AccessController.doPrivileged(new PrivilegedExceptionAction<Field>() {
-				public Field run() throws NoSuchFieldException {
-					return c.getDeclaredField(fieldName);
-				}
-			});
+			return AccessController.doPrivileged(
+					new PrivilegedExceptionAction<Field>() {
+						public Field run() throws NoSuchFieldException {
+							return c.getDeclaredField(fieldName);
+						}
+					});
 		}
 	}
 
@@ -2795,7 +2925,8 @@ public class IIOPInputStream extends com.sun.corba.se.impl.io.InputStreamHook {
 
 			if (!offsetToObjectMap.containsKey(position))
 				// XXX I18N, logging needed.
-				throw new IOException("Invalid indirection to offset " + offset);
+				throw new IOException("Invalid indirection to offset "
+						+ offset);
 
 			return offsetToObjectMap.get(position);
 		}

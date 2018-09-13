@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.ietf.jgss;
@@ -60,14 +40,16 @@ import java.util.Enumeration;
  * GSSManager manager = GSSManager.getInstance();
  *
  * // create a host based service name
- * GSSName name = manager.createName("service@host", GSSName.NT_HOSTBASED_SERVICE);
+ * GSSName name = manager.createName("service@host",
+ * 		GSSName.NT_HOSTBASED_SERVICE);
  *
  * Oid krb5 = new Oid("1.2.840.113554.1.2.2");
  *
  * GSSName mechName = name.canonicalize(krb5);
  *
  * // the above two steps are equivalent to the following
- * GSSName mechName = manager.createName("service@host", GSSName.NT_HOSTBASED_SERVICE, krb5);
+ * GSSName mechName = manager.createName("service@host",
+ * 		GSSName.NT_HOSTBASED_SERVICE, krb5);
  *
  * // perform name comparison
  * if (name.equals(mechName))
@@ -108,7 +90,8 @@ public interface GSSName {
 	 * States(840) mit(113554) infosys(1) gssapi(2) generic(1) service_name(4)
 	 * }</code>
 	 */
-	public static final Oid NT_HOSTBASED_SERVICE = Oid.getInstance("1.2.840.113554.1.2.1.4");
+	public static final Oid NT_HOSTBASED_SERVICE = Oid.getInstance(
+			"1.2.840.113554.1.2.1.4");
 
 	/**
 	 * Name type to indicate a named user on a local system.
@@ -118,7 +101,8 @@ public interface GSSName {
 	 * States(840) mit(113554) infosys(1) gssapi(2) generic(1) user_name(1)
 	 * }</code>
 	 */
-	public static final Oid NT_USER_NAME = Oid.getInstance("1.2.840.113554.1.2.1.1");
+	public static final Oid NT_USER_NAME = Oid.getInstance(
+			"1.2.840.113554.1.2.1.1");
 
 	/**
 	 * Name type to indicate a numeric user identifier corresponding to a user
@@ -129,7 +113,8 @@ public interface GSSName {
 	 * <code>{ iso(1) member-body(2) United States(840) mit(113554)
 	 * infosys(1) gssapi(2) generic(1) machine_uid_name(2) }</code>
 	 */
-	public static final Oid NT_MACHINE_UID_NAME = Oid.getInstance("1.2.840.113554.1.2.1.2");
+	public static final Oid NT_MACHINE_UID_NAME = Oid.getInstance(
+			"1.2.840.113554.1.2.1.2");
 
 	/**
 	 * Name type to indicate a string of digits representing the numeric user
@@ -141,7 +126,8 @@ public interface GSSName {
 	 * States(840) mit(113554) infosys(1) gssapi(2) generic(1)
 	 * string_uid_name(3) }</code>
 	 */
-	public static final Oid NT_STRING_UID_NAME = Oid.getInstance("1.2.840.113554.1.2.1.3");
+	public static final Oid NT_STRING_UID_NAME = Oid.getInstance(
+			"1.2.840.113554.1.2.1.3");
 
 	/**
 	 * Name type for representing an anonymous entity.
@@ -169,16 +155,18 @@ public interface GSSName {
 	 * the same entity.
 	 *
 	 * @param another
-	 *            the <code>GSSName</code> to compare this name with
+	 *                the <code>GSSName</code> to compare this name with
 	 * @return true if the two names contain at least one primitive element in
 	 *         common. If either of the names represents an anonymous entity,
 	 *         the method will return false.
 	 *
 	 * @throws GSSException
-	 *             when the names cannot be compared, containing the following
-	 *             major error codes: {@link GSSException#BAD_NAMETYPE
-	 *             GSSException.BAD_NAMETYPE}, {@link GSSException#FAILURE
-	 *             GSSException.FAILURE}
+	 *                      when the names cannot be compared, containing the
+	 *                      following
+	 *                      major error codes: {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#FAILURE
+	 *                      GSSException.FAILURE}
 	 */
 	public boolean equals(GSSName another) throws GSSException;
 
@@ -191,7 +179,7 @@ public interface GSSName {
 	 * @return true if the object to compare to is also a <code>GSSName</code>
 	 *         and the two names refer to the same entity.
 	 * @param another
-	 *            the object to compare this name to
+	 *                the object to compare this name to
 	 * @see #equals(GSSName)
 	 */
 	public boolean equals(Object another);
@@ -210,15 +198,16 @@ public interface GSSName {
 	 *         representing this name in a canonicalized form for the desired
 	 *         mechanism.
 	 * @param mech
-	 *            the oid for the mechanism for which the canonical form of the
-	 *            name is requested.
+	 *             the oid for the mechanism for which the canonical form of the
+	 *             name is requested.
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
 	public GSSName canonicalize(Oid mech) throws GSSException;
 
@@ -252,10 +241,11 @@ public interface GSSName {
 	 *         bytes.
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
 	public byte[] export() throws GSSException;
 
@@ -278,8 +268,8 @@ public interface GSSName {
 	 *         toString method.
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
 	public Oid getStringNameType() throws GSSException;
 

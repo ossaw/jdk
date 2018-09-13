@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -41,8 +21,7 @@ package java.net;
  */
 
 public final class StandardSocketOptions {
-	private StandardSocketOptions() {
-	}
+	private StandardSocketOptions() {}
 
 	// -- SOL_SOCKET --
 
@@ -121,8 +100,8 @@ public final class StandardSocketOptions {
 	 *
 	 * @see Socket#setSendBufferSize
 	 */
-	public static final SocketOption<Integer> SO_SNDBUF = new StdSocketOption<Integer>("SO_SNDBUF",
-			Integer.class);
+	public static final SocketOption<Integer> SO_SNDBUF = new StdSocketOption<Integer>(
+			"SO_SNDBUF", Integer.class);
 
 	/**
 	 * The size of the socket receive buffer.
@@ -164,8 +143,8 @@ public final class StandardSocketOptions {
 	 * @see Socket#setReceiveBufferSize
 	 * @see ServerSocket#setReceiveBufferSize
 	 */
-	public static final SocketOption<Integer> SO_RCVBUF = new StdSocketOption<Integer>("SO_RCVBUF",
-			Integer.class);
+	public static final SocketOption<Integer> SO_RCVBUF = new StdSocketOption<Integer>(
+			"SO_RCVBUF", Integer.class);
 
 	/**
 	 * Re-use address.
@@ -234,8 +213,8 @@ public final class StandardSocketOptions {
 	 *
 	 * @see Socket#setSoLinger
 	 */
-	public static final SocketOption<Integer> SO_LINGER = new StdSocketOption<Integer>("SO_LINGER",
-			Integer.class);
+	public static final SocketOption<Integer> SO_LINGER = new StdSocketOption<Integer>(
+			"SO_LINGER", Integer.class);
 
 	// -- IPPROTO_IP --
 
@@ -268,8 +247,8 @@ public final class StandardSocketOptions {
 	 *
 	 * @see DatagramSocket#setTrafficClass
 	 */
-	public static final SocketOption<Integer> IP_TOS = new StdSocketOption<Integer>("IP_TOS",
-			Integer.class);
+	public static final SocketOption<Integer> IP_TOS = new StdSocketOption<Integer>(
+			"IP_TOS", Integer.class);
 
 	/**
 	 * The network interface for Internet Protocol (IP) multicast datagrams.

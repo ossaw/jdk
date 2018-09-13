@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -39,7 +19,7 @@ public class NotLinkException extends FileSystemException {
 	 * Constructs an instance of this class.
 	 *
 	 * @param file
-	 *            a string identifying the file or {@code null} if not known
+	 *             a string identifying the file or {@code null} if not known
 	 */
 	public NotLinkException(String file) {
 		super(file);
@@ -49,12 +29,13 @@ public class NotLinkException extends FileSystemException {
 	 * Constructs an instance of this class.
 	 *
 	 * @param file
-	 *            a string identifying the file or {@code null} if not known
+	 *               a string identifying the file or {@code null} if not known
 	 * @param other
-	 *            a string identifying the other file or {@code null} if not
-	 *            known
+	 *               a string identifying the other file or {@code null} if not
+	 *               known
 	 * @param reason
-	 *            a reason message with additional information or {@code null}
+	 *               a reason message with additional information or
+	 *               {@code null}
 	 */
 	public NotLinkException(String file, String other, String reason) {
 		super(file, other, reason);

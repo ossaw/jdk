@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.cosnaming;
@@ -42,8 +22,7 @@ public class InternalBindingKey {
 	private int hashVal;
 
 	// Default Constructor
-	public InternalBindingKey() {
-	}
+	public InternalBindingKey() {}
 
 	// Normal constructor
 	public InternalBindingKey(NameComponent n) {
@@ -84,7 +63,8 @@ public class InternalBindingKey {
 				return false;
 			}
 			// If kind is set it must be equal
-			if (this.kindLen > 0 && this.name.kind.equals(that.name.kind) == false) {
+			if (this.kindLen > 0 && this.name.kind.equals(
+					that.name.kind) == false) {
 				return false;
 			}
 			// Must be the same

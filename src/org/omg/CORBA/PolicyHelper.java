@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -53,8 +33,8 @@ abstract public class PolicyHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init()
-					.create_interface_tc(org.omg.CORBA.PolicyHelper.id(), "Policy");
+			__typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
+					org.omg.CORBA.PolicyHelper.id(), "Policy");
 		}
 		return __typeCode;
 	}
@@ -63,7 +43,8 @@ abstract public class PolicyHelper {
 		return _id;
 	}
 
-	public static org.omg.CORBA.Policy read(org.omg.CORBA.portable.InputStream istream) {
+	public static org.omg.CORBA.Policy read(
+			org.omg.CORBA.portable.InputStream istream) {
 		return narrow(istream.read_Object(_PolicyStub.class));
 	}
 

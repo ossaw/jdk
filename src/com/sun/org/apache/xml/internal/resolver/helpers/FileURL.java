@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,8 +44,7 @@ import java.io.File;
  * @version 1.0
  */
 public abstract class FileURL {
-	protected FileURL() {
-	}
+	protected FileURL() {}
 
 	/**
 	 * Construct a file: URL for a path name.
@@ -73,21 +69,20 @@ public abstract class FileURL {
 	 * </p>
 	 *
 	 * @param pathname
-	 *            The path name component for which to construct a URL.
+	 *                 The path name component for which to construct a URL.
 	 *
 	 * @return The appropriate file: URL.
 	 *
 	 * @throws MalformedURLException
-	 *             if the pathname can't be turned into a proper URL.
+	 *                               if the pathname can't be turned into a
+	 *                               proper URL.
 	 */
 	public static URL makeURL(String pathname) throws MalformedURLException {
 		/*
 		 * if (pathname.startsWith("/")) { return new URL("file://" + pathname);
 		 * }
-		 * 
 		 * String userdir = System.getProperty("user.dir");
 		 * userdir.replace('\\', '/');
-		 * 
 		 * if (userdir.endsWith("/")) { return new URL("file:///" + userdir +
 		 * pathname); } else { return new URL("file:///" + userdir + "/" +
 		 * pathname); }

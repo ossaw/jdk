@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -134,13 +114,15 @@ public class MemoryNotificationInfo {
 	 * Constructs a <tt>MemoryNotificationInfo</tt> object.
 	 *
 	 * @param poolName
-	 *            The name of the memory pool which triggers this notification.
+	 *                 The name of the memory pool which triggers this
+	 *                 notification.
 	 * @param usage
-	 *            Memory usage of the memory pool.
+	 *                 Memory usage of the memory pool.
 	 * @param count
-	 *            The threshold crossing count.
+	 *                 The threshold crossing count.
 	 */
-	public MemoryNotificationInfo(String poolName, MemoryUsage usage, long count) {
+	public MemoryNotificationInfo(String poolName, MemoryUsage usage,
+			long count) {
 		if (poolName == null) {
 			throw new NullPointerException("Null poolName");
 		}
@@ -222,12 +204,12 @@ public class MemoryNotificationInfo {
 	 * </blockquote>
 	 *
 	 * @param cd
-	 *            <tt>CompositeData</tt> representing a
-	 *            <tt>MemoryNotificationInfo</tt>
+	 *           <tt>CompositeData</tt> representing a
+	 *           <tt>MemoryNotificationInfo</tt>
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <tt>cd</tt> does not represent a
-	 *             <tt>MemoryNotificationInfo</tt> object.
+	 *                                  if <tt>cd</tt> does not represent a
+	 *                                  <tt>MemoryNotificationInfo</tt> object.
 	 *
 	 * @return a <tt>MemoryNotificationInfo</tt> object represented by
 	 *         <tt>cd</tt> if <tt>cd</tt> is not <tt>null</tt>; <tt>null</tt>

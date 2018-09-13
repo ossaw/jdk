@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.util;
@@ -57,15 +37,17 @@ public interface DocSourcePositions extends SourcePositions {
 	 * </p>
 	 *
 	 * @param file
-	 *            CompilationUnit in which to find tree.
+	 *                CompilationUnit in which to find tree.
 	 * @param comment
-	 *            the comment tree that encloses the tree for which the position
-	 *            is being sought
+	 *                the comment tree that encloses the tree for which the
+	 *                position
+	 *                is being sought
 	 * @param tree
-	 *            tree for which a position is sought.
+	 *                tree for which a position is sought.
 	 * @return the start position of tree.
 	 */
-	long getStartPosition(CompilationUnitTree file, DocCommentTree comment, DocTree tree);
+	long getStartPosition(CompilationUnitTree file, DocCommentTree comment,
+			DocTree tree);
 
 	/**
 	 * Gets the ending position of the tree within the comment within the file.
@@ -93,14 +75,16 @@ public interface DocSourcePositions extends SourcePositions {
 	 * </p>
 	 *
 	 * @param file
-	 *            CompilationUnit in which to find tree.
+	 *                CompilationUnit in which to find tree.
 	 * @param comment
-	 *            the comment tree that encloses the tree for which the position
-	 *            is being sought
+	 *                the comment tree that encloses the tree for which the
+	 *                position
+	 *                is being sought
 	 * @param tree
-	 *            tree for which a position is sought.
+	 *                tree for which a position is sought.
 	 * @return the start position of tree.
 	 */
-	long getEndPosition(CompilationUnitTree file, DocCommentTree comment, DocTree tree);
+	long getEndPosition(CompilationUnitTree file, DocCommentTree comment,
+			DocTree tree);
 
 }

@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.corba;
@@ -79,8 +58,8 @@ public class AnyImpl extends Any {
 
 		public org.omg.CORBA.portable.InputStream create_input_stream() {
 			final org.omg.CORBA.portable.InputStream is = super.create_input_stream();
-			AnyInputStream aIS = AccessController
-					.doPrivileged(new PrivilegedAction<AnyInputStream>() {
+			AnyInputStream aIS = AccessController.doPrivileged(
+					new PrivilegedAction<AnyInputStream>() {
 						@Override
 						public AnyInputStream run() {
 							return new AnyInputStream(
@@ -161,7 +140,8 @@ public class AnyImpl extends Any {
 			return (AnyImpl) any;
 		} else {
 			AnyImpl anyImpl = new AnyImpl(orb, any);
-			anyImpl.typeCode = TypeCodeImpl.convertToNative(orb, anyImpl.typeCode);
+			anyImpl.typeCode = TypeCodeImpl.convertToNative(orb,
+					anyImpl.typeCode);
 			return anyImpl;
 		}
 	}
@@ -241,7 +221,7 @@ public class AnyImpl extends Any {
 	 * sets the type of the element to be contained in the Any.
 	 *
 	 * @param tc
-	 *            the TypeCode for the element in the Any
+	 *           the TypeCode for the element in the Any
 	 */
 	public void type(TypeCode tc) {
 		// debug.log ("type2");
@@ -260,7 +240,7 @@ public class AnyImpl extends Any {
 	 * checks for equality between Anys.
 	 *
 	 * @param otherAny
-	 *            the Any to be compared with.
+	 *                 the Any to be compared with.
 	 * @result true if the Anys are equal, false otherwise.
 	 */
 	public boolean equal(Any otherAny) {
@@ -290,77 +270,79 @@ public class AnyImpl extends Any {
 		// }
 		// }
 		switch (realType.kind().value()) {
-		// handle primitive types
-		case TCKind._tk_null:
-		case TCKind._tk_void:
-			return true;
-		case TCKind._tk_short:
-			return (extract_short() == otherAny.extract_short());
-		case TCKind._tk_long:
-			return (extract_long() == otherAny.extract_long());
-		case TCKind._tk_ushort:
-			return (extract_ushort() == otherAny.extract_ushort());
-		case TCKind._tk_ulong:
-			return (extract_ulong() == otherAny.extract_ulong());
-		case TCKind._tk_float:
-			return (extract_float() == otherAny.extract_float());
-		case TCKind._tk_double:
-			return (extract_double() == otherAny.extract_double());
-		case TCKind._tk_boolean:
-			return (extract_boolean() == otherAny.extract_boolean());
-		case TCKind._tk_char:
-			return (extract_char() == otherAny.extract_char());
-		case TCKind._tk_wchar:
-			return (extract_wchar() == otherAny.extract_wchar());
-		case TCKind._tk_octet:
-			return (extract_octet() == otherAny.extract_octet());
-		case TCKind._tk_any:
-			return extract_any().equal(otherAny.extract_any());
-		case TCKind._tk_TypeCode:
-			return extract_TypeCode().equal(otherAny.extract_TypeCode());
-		case TCKind._tk_string:
-			return extract_string().equals(otherAny.extract_string());
-		case TCKind._tk_wstring:
-			return (extract_wstring().equals(otherAny.extract_wstring()));
-		case TCKind._tk_longlong:
-			return (extract_longlong() == otherAny.extract_longlong());
-		case TCKind._tk_ulonglong:
-			return (extract_ulonglong() == otherAny.extract_ulonglong());
+			// handle primitive types
+			case TCKind._tk_null:
+			case TCKind._tk_void:
+				return true;
+			case TCKind._tk_short:
+				return (extract_short() == otherAny.extract_short());
+			case TCKind._tk_long:
+				return (extract_long() == otherAny.extract_long());
+			case TCKind._tk_ushort:
+				return (extract_ushort() == otherAny.extract_ushort());
+			case TCKind._tk_ulong:
+				return (extract_ulong() == otherAny.extract_ulong());
+			case TCKind._tk_float:
+				return (extract_float() == otherAny.extract_float());
+			case TCKind._tk_double:
+				return (extract_double() == otherAny.extract_double());
+			case TCKind._tk_boolean:
+				return (extract_boolean() == otherAny.extract_boolean());
+			case TCKind._tk_char:
+				return (extract_char() == otherAny.extract_char());
+			case TCKind._tk_wchar:
+				return (extract_wchar() == otherAny.extract_wchar());
+			case TCKind._tk_octet:
+				return (extract_octet() == otherAny.extract_octet());
+			case TCKind._tk_any:
+				return extract_any().equal(otherAny.extract_any());
+			case TCKind._tk_TypeCode:
+				return extract_TypeCode().equal(otherAny.extract_TypeCode());
+			case TCKind._tk_string:
+				return extract_string().equals(otherAny.extract_string());
+			case TCKind._tk_wstring:
+				return (extract_wstring().equals(otherAny.extract_wstring()));
+			case TCKind._tk_longlong:
+				return (extract_longlong() == otherAny.extract_longlong());
+			case TCKind._tk_ulonglong:
+				return (extract_ulonglong() == otherAny.extract_ulonglong());
 
-		case TCKind._tk_objref:
-			return (extract_Object().equals(otherAny.extract_Object()));
-		case TCKind._tk_Principal:
-			return (extract_Principal().equals(otherAny.extract_Principal()));
+			case TCKind._tk_objref:
+				return (extract_Object().equals(otherAny.extract_Object()));
+			case TCKind._tk_Principal:
+				return (extract_Principal().equals(otherAny
+						.extract_Principal()));
 
-		case TCKind._tk_enum:
-			return (extract_long() == otherAny.extract_long());
-		case TCKind._tk_fixed:
-			return (extract_fixed().compareTo(otherAny.extract_fixed()) == 0);
-		case TCKind._tk_except:
-		case TCKind._tk_struct:
-		case TCKind._tk_union:
-		case TCKind._tk_sequence:
-		case TCKind._tk_array:
-			InputStream copyOfMyStream = this.create_input_stream();
-			InputStream copyOfOtherStream = otherAny.create_input_stream();
-			return equalMember(realType, copyOfMyStream, copyOfOtherStream);
+			case TCKind._tk_enum:
+				return (extract_long() == otherAny.extract_long());
+			case TCKind._tk_fixed:
+				return (extract_fixed().compareTo(otherAny
+						.extract_fixed()) == 0);
+			case TCKind._tk_except:
+			case TCKind._tk_struct:
+			case TCKind._tk_union:
+			case TCKind._tk_sequence:
+			case TCKind._tk_array:
+				InputStream copyOfMyStream = this.create_input_stream();
+				InputStream copyOfOtherStream = otherAny.create_input_stream();
+				return equalMember(realType, copyOfMyStream, copyOfOtherStream);
 
-		// Too complicated to handle value types the way we handle
-		// other complex types above. Don't try to decompose it here
-		// for faster comparison, just use Object.equals().
-		case TCKind._tk_value:
-		case TCKind._tk_value_box:
-			return extract_Value().equals(otherAny.extract_Value());
+			// Too complicated to handle value types the way we handle
+			// other complex types above. Don't try to decompose it here
+			// for faster comparison, just use Object.equals().
+			case TCKind._tk_value:
+			case TCKind._tk_value_box:
+				return extract_Value().equals(otherAny.extract_Value());
 
-		case TCKind._tk_alias:
-			throw wrapper.errorResolvingAlias();
+			case TCKind._tk_alias:
+				throw wrapper.errorResolvingAlias();
 
-		case TCKind._tk_longdouble:
-			// Unspecified for Java
-			throw wrapper.tkLongDoubleNotSupported();
+			case TCKind._tk_longdouble:
+				// Unspecified for Java
+				throw wrapper.tkLongDoubleNotSupported();
 
-		default:
-			throw wrapper.typecodeNotSupported();
+			default:
+				throw wrapper.typecodeNotSupported();
 		}
 	}
 
@@ -375,120 +357,139 @@ public class AnyImpl extends Any {
 
 		try {
 			switch (realType.kind().value()) {
-			// handle primitive types
-			case TCKind._tk_null:
-			case TCKind._tk_void:
-				return true;
-			case TCKind._tk_short:
-				return (myStream.read_short() == otherStream.read_short());
-			case TCKind._tk_long:
-				return (myStream.read_long() == otherStream.read_long());
-			case TCKind._tk_ushort:
-				return (myStream.read_ushort() == otherStream.read_ushort());
-			case TCKind._tk_ulong:
-				return (myStream.read_ulong() == otherStream.read_ulong());
-			case TCKind._tk_float:
-				return (myStream.read_float() == otherStream.read_float());
-			case TCKind._tk_double:
-				return (myStream.read_double() == otherStream.read_double());
-			case TCKind._tk_boolean:
-				return (myStream.read_boolean() == otherStream.read_boolean());
-			case TCKind._tk_char:
-				return (myStream.read_char() == otherStream.read_char());
-			case TCKind._tk_wchar:
-				return (myStream.read_wchar() == otherStream.read_wchar());
-			case TCKind._tk_octet:
-				return (myStream.read_octet() == otherStream.read_octet());
-			case TCKind._tk_any:
-				return myStream.read_any().equal(otherStream.read_any());
-			case TCKind._tk_TypeCode:
-				return myStream.read_TypeCode().equal(otherStream.read_TypeCode());
-			case TCKind._tk_string:
-				return myStream.read_string().equals(otherStream.read_string());
-			case TCKind._tk_wstring:
-				return (myStream.read_wstring().equals(otherStream.read_wstring()));
-			case TCKind._tk_longlong:
-				return (myStream.read_longlong() == otherStream.read_longlong());
-			case TCKind._tk_ulonglong:
-				return (myStream.read_ulonglong() == otherStream.read_ulonglong());
+				// handle primitive types
+				case TCKind._tk_null:
+				case TCKind._tk_void:
+					return true;
+				case TCKind._tk_short:
+					return (myStream.read_short() == otherStream.read_short());
+				case TCKind._tk_long:
+					return (myStream.read_long() == otherStream.read_long());
+				case TCKind._tk_ushort:
+					return (myStream.read_ushort() == otherStream
+							.read_ushort());
+				case TCKind._tk_ulong:
+					return (myStream.read_ulong() == otherStream.read_ulong());
+				case TCKind._tk_float:
+					return (myStream.read_float() == otherStream.read_float());
+				case TCKind._tk_double:
+					return (myStream.read_double() == otherStream
+							.read_double());
+				case TCKind._tk_boolean:
+					return (myStream.read_boolean() == otherStream
+							.read_boolean());
+				case TCKind._tk_char:
+					return (myStream.read_char() == otherStream.read_char());
+				case TCKind._tk_wchar:
+					return (myStream.read_wchar() == otherStream.read_wchar());
+				case TCKind._tk_octet:
+					return (myStream.read_octet() == otherStream.read_octet());
+				case TCKind._tk_any:
+					return myStream.read_any().equal(otherStream.read_any());
+				case TCKind._tk_TypeCode:
+					return myStream.read_TypeCode().equal(otherStream
+							.read_TypeCode());
+				case TCKind._tk_string:
+					return myStream.read_string().equals(otherStream
+							.read_string());
+				case TCKind._tk_wstring:
+					return (myStream.read_wstring().equals(otherStream
+							.read_wstring()));
+				case TCKind._tk_longlong:
+					return (myStream.read_longlong() == otherStream
+							.read_longlong());
+				case TCKind._tk_ulonglong:
+					return (myStream.read_ulonglong() == otherStream
+							.read_ulonglong());
 
-			case TCKind._tk_objref:
-				return (myStream.read_Object().equals(otherStream.read_Object()));
-			case TCKind._tk_Principal:
-				return (myStream.read_Principal().equals(otherStream.read_Principal()));
+				case TCKind._tk_objref:
+					return (myStream.read_Object().equals(otherStream
+							.read_Object()));
+				case TCKind._tk_Principal:
+					return (myStream.read_Principal().equals(otherStream
+							.read_Principal()));
 
-			case TCKind._tk_enum:
-				return (myStream.read_long() == otherStream.read_long());
-			case TCKind._tk_fixed:
-				return (myStream.read_fixed().compareTo(otherStream.read_fixed()) == 0);
-			case TCKind._tk_except:
-			case TCKind._tk_struct: {
-				int length = realType.member_count();
-				for (int i = 0; i < length; i++) {
-					if (!equalMember(realType.member_type(i), myStream, otherStream)) {
+				case TCKind._tk_enum:
+					return (myStream.read_long() == otherStream.read_long());
+				case TCKind._tk_fixed:
+					return (myStream.read_fixed().compareTo(otherStream
+							.read_fixed()) == 0);
+				case TCKind._tk_except:
+				case TCKind._tk_struct: {
+					int length = realType.member_count();
+					for (int i = 0; i < length; i++) {
+						if (!equalMember(realType.member_type(i), myStream,
+								otherStream)) {
+							return false;
+						}
+					}
+					return true;
+				}
+				case TCKind._tk_union: {
+					Any myDiscriminator = orb.create_any();
+					Any otherDiscriminator = orb.create_any();
+					myDiscriminator.read_value(myStream, realType
+							.discriminator_type());
+					otherDiscriminator.read_value(otherStream, realType
+							.discriminator_type());
+
+					if (!myDiscriminator.equal(otherDiscriminator)) {
 						return false;
 					}
-				}
-				return true;
-			}
-			case TCKind._tk_union: {
-				Any myDiscriminator = orb.create_any();
-				Any otherDiscriminator = orb.create_any();
-				myDiscriminator.read_value(myStream, realType.discriminator_type());
-				otherDiscriminator.read_value(otherStream, realType.discriminator_type());
+					TypeCodeImpl realTypeCodeImpl = TypeCodeImpl
+							.convertToNative(orb, realType);
+					int memberIndex = realTypeCodeImpl.currentUnionMemberIndex(
+							myDiscriminator);
+					if (memberIndex == -1)
+						throw wrapper.unionDiscriminatorError();
 
-				if (!myDiscriminator.equal(otherDiscriminator)) {
-					return false;
-				}
-				TypeCodeImpl realTypeCodeImpl = TypeCodeImpl.convertToNative(orb, realType);
-				int memberIndex = realTypeCodeImpl.currentUnionMemberIndex(myDiscriminator);
-				if (memberIndex == -1)
-					throw wrapper.unionDiscriminatorError();
-
-				if (!equalMember(realType.member_type(memberIndex), myStream, otherStream)) {
-					return false;
-				}
-				return true;
-			}
-			case TCKind._tk_sequence: {
-				int length = myStream.read_long();
-				otherStream.read_long(); // just so that the two stream are in
-											// sync
-				for (int i = 0; i < length; i++) {
-					if (!equalMember(realType.content_type(), myStream, otherStream)) {
+					if (!equalMember(realType.member_type(memberIndex),
+							myStream, otherStream)) {
 						return false;
 					}
+					return true;
 				}
-				return true;
-			}
-			case TCKind._tk_array: {
-				int length = realType.member_count();
-				for (int i = 0; i < length; i++) {
-					if (!equalMember(realType.content_type(), myStream, otherStream)) {
-						return false;
+				case TCKind._tk_sequence: {
+					int length = myStream.read_long();
+					otherStream.read_long(); // just so that the two stream are in
+												// sync
+					for (int i = 0; i < length; i++) {
+						if (!equalMember(realType.content_type(), myStream,
+								otherStream)) {
+							return false;
+						}
 					}
+					return true;
 				}
-				return true;
-			}
+				case TCKind._tk_array: {
+					int length = realType.member_count();
+					for (int i = 0; i < length; i++) {
+						if (!equalMember(realType.content_type(), myStream,
+								otherStream)) {
+							return false;
+						}
+					}
+					return true;
+				}
 
-			// Too complicated to handle value types the way we handle
-			// other complex types above. Don't try to decompose it here
-			// for faster comparison, just use Object.equals().
-			case TCKind._tk_value:
-			case TCKind._tk_value_box:
-				org.omg.CORBA_2_3.portable.InputStream mine = (org.omg.CORBA_2_3.portable.InputStream) myStream;
-				org.omg.CORBA_2_3.portable.InputStream other = (org.omg.CORBA_2_3.portable.InputStream) otherStream;
-				return mine.read_value().equals(other.read_value());
+				// Too complicated to handle value types the way we handle
+				// other complex types above. Don't try to decompose it here
+				// for faster comparison, just use Object.equals().
+				case TCKind._tk_value:
+				case TCKind._tk_value_box:
+					org.omg.CORBA_2_3.portable.InputStream mine = (org.omg.CORBA_2_3.portable.InputStream) myStream;
+					org.omg.CORBA_2_3.portable.InputStream other = (org.omg.CORBA_2_3.portable.InputStream) otherStream;
+					return mine.read_value().equals(other.read_value());
 
-			case TCKind._tk_alias:
-				// error resolving alias above
-				throw wrapper.errorResolvingAlias();
+				case TCKind._tk_alias:
+					// error resolving alias above
+					throw wrapper.errorResolvingAlias();
 
-			case TCKind._tk_longdouble:
-				throw wrapper.tkLongDoubleNotSupported();
+				case TCKind._tk_longdouble:
+					throw wrapper.tkLongDoubleNotSupported();
 
-			default:
-				throw wrapper.typecodeNotSupported();
+				default:
+					throw wrapper.typecodeNotSupported();
 			}
 		} catch (BadKind badKind) { // impossible
 			throw wrapper.badkindCannotOccur();
@@ -508,12 +509,13 @@ public class AnyImpl extends Any {
 	public org.omg.CORBA.portable.OutputStream create_output_stream() {
 		// debug.log ("create_output_stream");
 		final ORB finalorb = this.orb;
-		return AccessController.doPrivileged(new PrivilegedAction<AnyOutputStream>() {
-			@Override
-			public AnyOutputStream run() {
-				return new AnyOutputStream(finalorb);
-			}
-		});
+		return AccessController.doPrivileged(
+				new PrivilegedAction<AnyOutputStream>() {
+					@Override
+					public AnyOutputStream run() {
+						return new AnyOutputStream(finalorb);
+					}
+				});
 	}
 
 	/**
@@ -561,8 +563,8 @@ public class AnyImpl extends Any {
 		typeCode = TypeCodeImpl.convertToNative(orb, tc);
 		int kind = realType().kind().value();
 		if (kind >= isStreamed.length) {
-			throw wrapper.invalidIsstreamedTckind(CompletionStatus.COMPLETED_MAYBE,
-					new Integer(kind));
+			throw wrapper.invalidIsstreamedTckind(
+					CompletionStatus.COMPLETED_MAYBE, new Integer(kind));
 		}
 
 		if (AnyImpl.isStreamed[kind]) {
@@ -608,7 +610,7 @@ public class AnyImpl extends Any {
 	 * takes a streamable and inserts its reference into the any
 	 *
 	 * @param s
-	 *            the streamable to insert
+	 *          the streamable to insert
 	 */
 	public void insert_Streamable(Streamable s) {
 		// debug.log ("insert_Streamable");
@@ -701,7 +703,8 @@ public class AnyImpl extends Any {
 	 */
 	public int extract_long() {
 		// debug.log ("extract_long");
-		checkExtractBadOperationList(new int[] { TCKind._tk_long, TCKind._tk_enum });
+		checkExtractBadOperationList(new int[] { TCKind._tk_long,
+				TCKind._tk_enum });
 		return (int) value;
 	}
 
@@ -911,7 +914,8 @@ public class AnyImpl extends Any {
 
 			// Check if bounded strings length is not exceeded
 			if (length != 0 && s != null && s.length() > length) {
-				throw wrapper.badStringBounds(new Integer(s.length()), new Integer(length));
+				throw wrapper.badStringBounds(new Integer(s.length()),
+						new Integer(length));
 			}
 		} else {
 			typeCode = orb.get_primitive_tc(TCKind._tk_string);
@@ -945,7 +949,8 @@ public class AnyImpl extends Any {
 
 			// Check if bounded strings length is not exceeded
 			if (length != 0 && s != null && s.length() > length) {
-				throw wrapper.badStringBounds(new Integer(s.length()), new Integer(length));
+				throw wrapper.badStringBounds(new Integer(s.length()),
+						new Integer(length));
 			}
 		} else {
 			typeCode = orb.get_primitive_tc(TCKind._tk_wstring);
@@ -995,8 +1000,9 @@ public class AnyImpl extends Any {
 				String[] ids = StubAdapter.getTypeIds(o);
 				typeCode = new TypeCodeImpl(orb, TCKind._tk_objref, ids[0], "");
 			} else {
-				throw wrapper.badInsertobjParam(CompletionStatus.COMPLETED_MAYBE,
-						o.getClass().getName());
+				throw wrapper.badInsertobjParam(
+						CompletionStatus.COMPLETED_MAYBE, o.getClass()
+								.getName());
 			}
 		}
 
@@ -1011,7 +1017,8 @@ public class AnyImpl extends Any {
 	public void insert_Object(org.omg.CORBA.Object o, TypeCode tc) {
 		// debug.log ("insert_Object2");
 		try {
-			if (tc.id().equals("IDL:omg.org/CORBA/Object:1.0") || o._is_a(tc.id())) {
+			if (tc.id().equals("IDL:omg.org/CORBA/Object:1.0") || o._is_a(tc
+					.id())) {
 				typeCode = TypeCodeImpl.convertToNative(orb, tc);
 				object = o;
 			} else {
@@ -1035,7 +1042,8 @@ public class AnyImpl extends Any {
 		org.omg.CORBA.Object obj = null;
 		try {
 			obj = (org.omg.CORBA.Object) object;
-			if (typeCode.id().equals("IDL:omg.org/CORBA/Object:1.0") || obj._is_a(typeCode.id())) {
+			if (typeCode.id().equals("IDL:omg.org/CORBA/Object:1.0") || obj
+					._is_a(typeCode.id())) {
 				return obj;
 			} else {
 				throw wrapper.extractObjectIncompatible();
@@ -1091,8 +1099,8 @@ public class AnyImpl extends Any {
 	 */
 	public Serializable extract_Value() {
 		// debug.log ("extract_Value");
-		checkExtractBadOperationList(new int[] { TCKind._tk_value, TCKind._tk_value_box,
-				TCKind._tk_abstract_interface });
+		checkExtractBadOperationList(new int[] { TCKind._tk_value,
+				TCKind._tk_value_box, TCKind._tk_abstract_interface });
 		return (Serializable) object;
 	}
 
@@ -1129,16 +1137,17 @@ public class AnyImpl extends Any {
 	}
 
 	public void insert_fixed(java.math.BigDecimal value) {
-		typeCode = TypeCodeImpl.convertToNative(orb,
-				orb.create_fixed_tc(TypeCodeImpl.digits(value), TypeCodeImpl.scale(value)));
+		typeCode = TypeCodeImpl.convertToNative(orb, orb.create_fixed_tc(
+				TypeCodeImpl.digits(value), TypeCodeImpl.scale(value)));
 		object = value;
 		isInitialized = true;
 	}
 
-	public void insert_fixed(java.math.BigDecimal value, org.omg.CORBA.TypeCode type) {
+	public void insert_fixed(java.math.BigDecimal value,
+			org.omg.CORBA.TypeCode type) {
 		try {
-			if (TypeCodeImpl.digits(value) > type.fixed_digits()
-					|| TypeCodeImpl.scale(value) > type.fixed_scale()) {
+			if (TypeCodeImpl.digits(value) > type.fixed_digits() || TypeCodeImpl
+					.scale(value) > type.fixed_scale()) {
 				throw wrapper.fixedNotMatch();
 			}
 		} catch (org.omg.CORBA.TypeCodePackage.BadKind bk) {
@@ -1171,7 +1180,8 @@ public class AnyImpl extends Any {
 		//
 		// See bug 4391648 for more info about the tcORB in this
 		// case.
-		RepositoryIdStrings repStrs = RepositoryIdFactory.getRepIdStringsFactory();
+		RepositoryIdStrings repStrs = RepositoryIdFactory
+				.getRepIdStringsFactory();
 
 		// Assertion: c instanceof Serializable?
 
@@ -1180,7 +1190,8 @@ public class AnyImpl extends Any {
 			Class componentClass = c.getComponentType();
 			TypeCode embeddedType;
 			if (componentClass.isPrimitive()) {
-				embeddedType = getPrimitiveTypeCodeForClass(componentClass, tcORB);
+				embeddedType = getPrimitiveTypeCodeForClass(componentClass,
+						tcORB);
 			} else {
 				embeddedType = createTypeCodeForClass(componentClass, tcORB);
 			}
@@ -1242,8 +1253,9 @@ public class AnyImpl extends Any {
 			// sent out with -- it could be different than
 			// the one used to create the Any -- so we use the
 			// most recent version (see insert_Value).
-			if (ORBVersionFactory.getFOREIGN().compareTo(tcORB.getORBVersion()) == 0
-					|| ORBVersionFactory.getNEWER().compareTo(tcORB.getORBVersion()) <= 0)
+			if (ORBVersionFactory.getFOREIGN().compareTo(tcORB
+					.getORBVersion()) == 0 || ORBVersionFactory.getNEWER()
+							.compareTo(tcORB.getORBVersion()) <= 0)
 				return tcORB.get_primitive_tc(TCKind.tk_wchar);
 			else
 				return tcORB.get_primitive_tc(TCKind.tk_char);
@@ -1263,7 +1275,8 @@ public class AnyImpl extends Any {
 	public Any extractAny(TypeCode memberType, ORB orb) {
 		Any returnValue = orb.create_any();
 		OutputStream out = returnValue.create_output_stream();
-		TypeCodeImpl.convertToNative(orb, memberType).copy((InputStream) stream, out);
+		TypeCodeImpl.convertToNative(orb, memberType).copy((InputStream) stream,
+				out);
 		returnValue.read_value(out.create_input_stream(), memberType);
 		return returnValue;
 	}
@@ -1271,7 +1284,8 @@ public class AnyImpl extends Any {
 	// This method could very well be moved into TypeCodeImpl or a common
 	// utility class,
 	// but is has to be in this package.
-	static public Any extractAnyFromStream(TypeCode memberType, InputStream input, ORB orb) {
+	static public Any extractAnyFromStream(TypeCode memberType,
+			InputStream input, ORB orb) {
 		Any returnValue = orb.create_any();
 		OutputStream out = returnValue.create_output_stream();
 		TypeCodeImpl.convertToNative(orb, memberType).copy(input, out);

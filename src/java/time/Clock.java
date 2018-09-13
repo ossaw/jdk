@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2007-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -204,8 +173,8 @@ public abstract class Clock {
 	 * {@code Serializable}.
 	 *
 	 * @param zone
-	 *            the time-zone to use to convert the instant to date-time, not
-	 *            null
+	 *             the time-zone to use to convert the instant to date-time, not
+	 *             null
 	 * @return a clock that uses the best available system clock in the
 	 *         specified zone, not null
 	 */
@@ -233,8 +202,8 @@ public abstract class Clock {
 	 * {@code tick(system(zone), Duration.ofSeconds(1))}.
 	 *
 	 * @param zone
-	 *            the time-zone to use to convert the instant to date-time, not
-	 *            null
+	 *             the time-zone to use to convert the instant to date-time, not
+	 *             null
 	 * @return a clock that ticks in whole seconds using the specified zone, not
 	 *         null
 	 */
@@ -260,8 +229,8 @@ public abstract class Clock {
 	 * {@code tick(system(zone), Duration.ofMinutes(1))}.
 	 *
 	 * @param zone
-	 *            the time-zone to use to convert the instant to date-time, not
-	 *            null
+	 *             the time-zone to use to convert the instant to date-time, not
+	 *             null
 	 * @return a clock that ticks in whole minutes using the specified zone, not
 	 *         null
 	 */
@@ -295,22 +264,27 @@ public abstract class Clock {
 	 * {@code Serializable} providing that the base clock is.
 	 *
 	 * @param baseClock
-	 *            the base clock to base the ticking clock on, not null
+	 *                     the base clock to base the ticking clock on, not null
 	 * @param tickDuration
-	 *            the duration of each visible tick, not negative, not null
+	 *                     the duration of each visible tick, not negative, not
+	 *                     null
 	 * @return a clock that ticks in whole units of the duration, not null
 	 * @throws IllegalArgumentException
-	 *             if the duration is negative, or has a part smaller than a
-	 *             whole millisecond such that the whole duration is not
-	 *             divisible into one second
+	 *                                  if the duration is negative, or has a
+	 *                                  part smaller than a
+	 *                                  whole millisecond such that the whole
+	 *                                  duration is not
+	 *                                  divisible into one second
 	 * @throws ArithmeticException
-	 *             if the duration is too large to be represented as nanos
+	 *                                  if the duration is too large to be
+	 *                                  represented as nanos
 	 */
 	public static Clock tick(Clock baseClock, Duration tickDuration) {
 		Objects.requireNonNull(baseClock, "baseClock");
 		Objects.requireNonNull(tickDuration, "tickDuration");
 		if (tickDuration.isNegative()) {
-			throw new IllegalArgumentException("Tick duration must not be negative");
+			throw new IllegalArgumentException(
+					"Tick duration must not be negative");
 		}
 		long tickNanos = tickDuration.toNanos();
 		if (tickNanos % 1000_000 == 0) {
@@ -339,10 +313,11 @@ public abstract class Clock {
 	 * {@code Serializable}.
 	 *
 	 * @param fixedInstant
-	 *            the instant to use as the clock, not null
+	 *                     the instant to use as the clock, not null
 	 * @param zone
-	 *            the time-zone to use to convert the instant to date-time, not
-	 *            null
+	 *                     the time-zone to use to convert the instant to
+	 *                     date-time, not
+	 *                     null
 	 * @return a clock that always returns the same instant, not null
 	 */
 	public static Clock fixed(Instant fixedInstant, ZoneId zone) {
@@ -368,9 +343,9 @@ public abstract class Clock {
 	 * {@code Serializable} providing that the base clock is.
 	 *
 	 * @param baseClock
-	 *            the base clock to add the duration to, not null
+	 *                       the base clock to add the duration to, not null
 	 * @param offsetDuration
-	 *            the duration to add, not null
+	 *                       the duration to add, not null
 	 * @return a clock based on the base clock with the duration added, not null
 	 */
 	public static Clock offset(Clock baseClock, Duration offsetDuration) {
@@ -386,8 +361,7 @@ public abstract class Clock {
 	/**
 	 * Constructor accessible by subclasses.
 	 */
-	protected Clock() {
-	}
+	protected Clock() {}
 
 	// -----------------------------------------------------------------------
 	/**
@@ -409,7 +383,7 @@ public abstract class Clock {
 	 * similar properties but using a different time-zone.
 	 *
 	 * @param zone
-	 *            the time-zone to change to, not null
+	 *             the time-zone to change to, not null
 	 * @return a clock based on this clock with the specified time-zone, not
 	 *         null
 	 */
@@ -434,8 +408,9 @@ public abstract class Clock {
 	 * @return the current millisecond instant from this clock, measured from
 	 *         the Java epoch of 1970-01-01T00:00Z (UTC), not null
 	 * @throws DateTimeException
-	 *             if the instant cannot be obtained, not thrown by most
-	 *             implementations
+	 *                           if the instant cannot be obtained, not thrown
+	 *                           by most
+	 *                           implementations
 	 */
 	public long millis() {
 		return instant().toEpochMilli();
@@ -450,8 +425,9 @@ public abstract class Clock {
 	 *
 	 * @return the current instant from this clock, not null
 	 * @throws DateTimeException
-	 *             if the instant cannot be obtained, not thrown by most
-	 *             implementations
+	 *                           if the instant cannot be obtained, not thrown
+	 *                           by most
+	 *                           implementations
 	 */
 	public abstract Instant instant();
 
@@ -640,7 +616,8 @@ public abstract class Clock {
 		public boolean equals(Object obj) {
 			if (obj instanceof OffsetClock) {
 				OffsetClock other = (OffsetClock) obj;
-				return baseClock.equals(other.baseClock) && offset.equals(other.offset);
+				return baseClock.equals(other.baseClock) && offset.equals(
+						other.offset);
 			}
 			return false;
 		}
@@ -693,7 +670,8 @@ public abstract class Clock {
 		public Instant instant() {
 			if ((tickNanos % 1000_000) == 0) {
 				long millis = baseClock.millis();
-				return Instant.ofEpochMilli(millis - Math.floorMod(millis, tickNanos / 1000_000L));
+				return Instant.ofEpochMilli(millis - Math.floorMod(millis,
+						tickNanos / 1000_000L));
 			}
 			Instant instant = baseClock.instant();
 			long nanos = instant.getNano();
@@ -705,19 +683,22 @@ public abstract class Clock {
 		public boolean equals(Object obj) {
 			if (obj instanceof TickClock) {
 				TickClock other = (TickClock) obj;
-				return baseClock.equals(other.baseClock) && tickNanos == other.tickNanos;
+				return baseClock.equals(other.baseClock)
+						&& tickNanos == other.tickNanos;
 			}
 			return false;
 		}
 
 		@Override
 		public int hashCode() {
-			return baseClock.hashCode() ^ ((int) (tickNanos ^ (tickNanos >>> 32)));
+			return baseClock.hashCode() ^ ((int) (tickNanos
+					^ (tickNanos >>> 32)));
 		}
 
 		@Override
 		public String toString() {
-			return "TickClock[" + baseClock + "," + Duration.ofNanos(tickNanos) + "]";
+			return "TickClock[" + baseClock + "," + Duration.ofNanos(tickNanos)
+					+ "]";
 		}
 	}
 

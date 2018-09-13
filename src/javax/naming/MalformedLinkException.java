@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -46,8 +26,9 @@ public class MalformedLinkException extends LinkException {
 	 * All the other fields are initialized to null.
 	 * 
 	 * @param explanation
-	 *            A possibly null string containing additional detail about this
-	 *            exception.
+	 *                    A possibly null string containing additional detail
+	 *                    about this
+	 *                    exception.
 	 */
 	public MalformedLinkException(String explanation) {
 		super(explanation);

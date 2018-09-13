@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.interceptors;
@@ -49,7 +29,8 @@ import org.omg.IOP.CodecPackage.TypeMismatch;
  * CDREncapsCodec is an implementation of Codec, as described in orbos/99-12-02,
  * that supports CDR encapsulation version 1.0, 1.1, and 1.2.
  */
-public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements Codec {
+public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements
+		Codec {
 	// The ORB that created the factory this codec was created from
 	private ORB orb;
 	ORBUtilSystemException wrapper;
@@ -58,8 +39,7 @@ public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements C
 	private GIOPVersion giopVersion;
 
 	/*
-	 *******************************************************************
-	 * NOTE: CDREncapsCodec must remain immutable! This is so that we can
+	 ******************************************************************* NOTE: CDREncapsCodec must remain immutable! This is so that we can
 	 * pre-create CDREncapsCodecs for each version of GIOP in CodecFactoryImpl.
 	 *******************************************************************/
 
@@ -68,11 +48,11 @@ public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements C
 	 * CDRInputStreams when necessary.
 	 *
 	 * @param orb
-	 *            The ORB to use to create a CDRInputStream or CDROutputStream
+	 *              The ORB to use to create a CDRInputStream or CDROutputStream
 	 * @param major
-	 *            The major version of GIOP we are encoding for
+	 *              The major version of GIOP we are encoding for
 	 * @param minor
-	 *            The minor version of GIOP we are encoding for
+	 *              The minor version of GIOP we are encoding for
 	 */
 	public CDREncapsCodec(ORB orb, int major, int minor) {
 		this.orb = orb;
@@ -116,7 +96,8 @@ public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements C
 	 * octet sequence. The type code is expected not to appear in the octet
 	 * sequence, and the given type code is used instead.
 	 */
-	public Any decode_value(byte[] data, TypeCode tc) throws FormatMismatch, TypeMismatch {
+	public Any decode_value(byte[] data, TypeCode tc) throws FormatMismatch,
+			TypeMismatch {
 		if (data == null)
 			throw wrapper.nullParam();
 		if (tc == null)
@@ -130,7 +111,8 @@ public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements C
 	 * standard encapsulation. If it is false, only the data is sent. Either
 	 * way, the endian type is sent as the first part of the message.
 	 */
-	private byte[] encodeImpl(Any data, boolean sendTypeCode) throws InvalidTypeForEncoding {
+	private byte[] encodeImpl(Any data, boolean sendTypeCode)
+			throws InvalidTypeForEncoding {
 		if (data == null)
 			throw wrapper.nullParam();
 
@@ -146,7 +128,8 @@ public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements C
 
 		// Create output stream with default endianness.
 		EncapsOutputStream cdrOut = sun.corba.OutputStreamFactory
-				.newEncapsOutputStream((com.sun.corba.se.spi.orb.ORB) orb, giopVersion);
+				.newEncapsOutputStream((com.sun.corba.se.spi.orb.ORB) orb,
+						giopVersion);
 
 		// This is an encapsulation, so put out the endian:
 		cdrOut.putEndian();
@@ -179,8 +162,8 @@ public final class CDREncapsCodec extends org.omg.CORBA.LocalObject implements C
 		// it is turned into a FormatMismatch exception.
 
 		try {
-			EncapsInputStream cdrIn = EncapsInputStreamFactory.newEncapsInputStream(orb, data,
-					data.length, giopVersion);
+			EncapsInputStream cdrIn = EncapsInputStreamFactory
+					.newEncapsInputStream(orb, data, data.length, giopVersion);
 
 			cdrIn.consumeEndian();
 

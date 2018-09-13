@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -50,8 +30,9 @@ public interface DynFixed extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
 	 * @param val
 	 *            the value of the fixed type as a byte array
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the given argument is bad
+	 *         if the given argument is bad
 	 * @see #get_value
 	 */
-	public void set_value(byte[] val) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void set_value(byte[] val)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 }

@@ -1,41 +1,14 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2004 World Wide Web Consortium,
- *
  * (Massachusetts Institute of Technology, European Research Consortium for
  * Informatics and Mathematics, Keio University). All Rights Reserved. This
  * work is distributed under the W3C(r) Software License [1] in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
  */
 
@@ -78,31 +51,47 @@ public interface DOMImplementationLS {
 	 * used to parse documents by means of its <code>parse</code> method.
 	 * 
 	 * @param mode
-	 *            The <code>mode</code> argument is either
-	 *            <code>MODE_SYNCHRONOUS</code> or
-	 *            <code>MODE_ASYNCHRONOUS</code>, if <code>mode</code> is
-	 *            <code>MODE_SYNCHRONOUS</code> then the <code>LSParser</code>
-	 *            that is created will operate in synchronous mode, if it's
-	 *            <code>MODE_ASYNCHRONOUS</code> then the <code>LSParser</code>
-	 *            that is created will operate in asynchronous mode.
+	 *                   The <code>mode</code> argument is either
+	 *                   <code>MODE_SYNCHRONOUS</code> or
+	 *                   <code>MODE_ASYNCHRONOUS</code>, if <code>mode</code> is
+	 *                   <code>MODE_SYNCHRONOUS</code> then the
+	 *                   <code>LSParser</code>
+	 *                   that is created will operate in synchronous mode, if
+	 *                   it's
+	 *                   <code>MODE_ASYNCHRONOUS</code> then the
+	 *                   <code>LSParser</code>
+	 *                   that is created will operate in asynchronous mode.
 	 * @param schemaType
-	 *            An absolute URI representing the type of the schema language
-	 *            used during the load of a <code>Document</code> using the
-	 *            newly created <code>LSParser</code>. Note that no lexical
-	 *            checking is done on the absolute URI. In order to create a
-	 *            <code>LSParser</code> for any kind of schema types (i.e. the
-	 *            LSParser will be free to use any schema found), use the value
-	 *            <code>null</code>.
-	 *            <p >
-	 *            <b>Note:</b> For W3C XML Schema [
-	 *            <a href='http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
-	 *            XML Schema Part 1</a>] , applications must use the value
-	 *            <code>"http://www.w3.org/2001/XMLSchema"</code>. For XML DTD [
-	 *            <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML
-	 *            1.0</a>], applications must use the value
-	 *            <code>"http://www.w3.org/TR/REC-xml"</code>. Other Schema
-	 *            languages are outside the scope of the W3C and therefore
-	 *            should recommend an absolute URI in order to use this method.
+	 *                   An absolute URI representing the type of the schema
+	 *                   language
+	 *                   used during the load of a <code>Document</code> using
+	 *                   the
+	 *                   newly created <code>LSParser</code>. Note that no
+	 *                   lexical
+	 *                   checking is done on the absolute URI. In order to
+	 *                   create a
+	 *                   <code>LSParser</code> for any kind of schema types
+	 *                   (i.e. the
+	 *                   LSParser will be free to use any schema found), use the
+	 *                   value
+	 *                   <code>null</code>.
+	 *                   <p >
+	 *                   <b>Note:</b> For W3C XML Schema [
+	 *                   <a href=
+	 *                   'http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
+	 *                   XML Schema Part 1</a>] , applications must use the
+	 *                   value
+	 *                   <code>"http://www.w3.org/2001/XMLSchema"</code>. For
+	 *                   XML DTD [
+	 *                   <a href=
+	 *                   'http://www.w3.org/TR/2004/REC-xml-20040204'>XML
+	 *                   1.0</a>], applications must use the value
+	 *                   <code>"http://www.w3.org/TR/REC-xml"</code>. Other
+	 *                   Schema
+	 *                   languages are outside the scope of the W3C and
+	 *                   therefore
+	 *                   should recommend an absolute URI in order to use this
+	 *                   method.
 	 * @return The newly created <code>LSParser</code> object. This
 	 *         <code>LSParser</code> is either synchronous or asynchronous
 	 *         depending on the value of the <code>mode</code> argument.
@@ -118,10 +107,12 @@ public interface DOMImplementationLS {
 	 *         <code>LSParser</code> object contains a reference to the default
 	 *         error handler.
 	 * @exception DOMException
-	 *                NOT_SUPPORTED_ERR: Raised if the requested mode or schema
-	 *                type is not supported.
+	 *                         NOT_SUPPORTED_ERR: Raised if the requested mode
+	 *                         or schema
+	 *                         type is not supported.
 	 */
-	public LSParser createLSParser(short mode, String schemaType) throws DOMException;
+	public LSParser createLSParser(short mode, String schemaType)
+			throws DOMException;
 
 	/**
 	 * Create a new <code>LSSerializer</code> object.

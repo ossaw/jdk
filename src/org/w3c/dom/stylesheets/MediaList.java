@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -70,10 +45,12 @@ public interface MediaList {
 	 * comma-separated list of media.
 	 * 
 	 * @exception DOMException
-	 *                SYNTAX_ERR: Raised if the specified string value has a
-	 *                syntax error and is unparsable. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this media list is
-	 *                readonly.
+	 *                         SYNTAX_ERR: Raised if the specified string value
+	 *                         has a
+	 *                         syntax error and is unparsable. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this media
+	 *                         list is
+	 *                         readonly.
 	 */
 	public void setMediaText(String mediaText) throws DOMException;
 
@@ -89,7 +66,7 @@ public interface MediaList {
 	 * <code>null</code>.
 	 * 
 	 * @param index
-	 *            Index into the collection.
+	 *              Index into the collection.
 	 * @return The medium at the <code>index</code>th position in the
 	 *         <code>MediaList</code>, or <code>null</code> if that is not a
 	 *         valid index.
@@ -100,12 +77,14 @@ public interface MediaList {
 	 * Deletes the medium indicated by <code>oldMedium</code> from the list.
 	 * 
 	 * @param oldMedium
-	 *            The medium to delete in the media list.
+	 *                  The medium to delete in the media list.
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this list is
-	 *                readonly. <br>
-	 *                NOT_FOUND_ERR: Raised if <code>oldMedium</code> is not in
-	 *                the list.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this list
+	 *                         is
+	 *                         readonly. <br>
+	 *                         NOT_FOUND_ERR: Raised if <code>oldMedium</code>
+	 *                         is not in
+	 *                         the list.
 	 */
 	public void deleteMedium(String oldMedium) throws DOMException;
 
@@ -114,12 +93,15 @@ public interface MediaList {
 	 * <code>newMedium</code> is already used, it is first removed.
 	 * 
 	 * @param newMedium
-	 *            The new medium to add.
+	 *                  The new medium to add.
 	 * @exception DOMException
-	 *                INVALID_CHARACTER_ERR: If the medium contains characters
-	 *                that are invalid in the underlying style language. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this list is
-	 *                readonly.
+	 *                         INVALID_CHARACTER_ERR: If the medium contains
+	 *                         characters
+	 *                         that are invalid in the underlying style
+	 *                         language. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this list
+	 *                         is
+	 *                         readonly.
 	 */
 	public void appendMedium(String newMedium) throws DOMException;
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -43,8 +23,8 @@ import java.util.function.Predicate;
  * <pre>
  * {
  * 	&#64;code
- * 	int sum = widgets.stream().filter(w -> w.getColor() == RED).mapToInt(w -> w.getWeight())
- * 			.sum();
+ * 	int sum = widgets.stream().filter(w -> w.getColor() == RED).mapToInt(
+ * 			w -> w.getWeight()).sum();
  * }
  * </pre>
  *
@@ -54,9 +34,9 @@ import java.util.function.Predicate;
  * parallelism, which governs the behavior of all stream types.
  *
  * @param <T>
- *            the type of the stream elements
+ *        the type of the stream elements
  * @param <S>
- *            the type of of the stream implementing {@code BaseStream}
+ *        the type of of the stream implementing {@code BaseStream}
  * @since 1.8
  * @see Stream
  * @see IntStream
@@ -64,7 +44,8 @@ import java.util.function.Predicate;
  * @see DoubleStream
  * @see <a href="package-summary.html">java.util.stream</a>
  */
-public interface BaseStream<T, S extends BaseStream<T, S>> extends AutoCloseable {
+public interface BaseStream<T, S extends BaseStream<T, S>> extends
+		AutoCloseable {
 	/**
 	 * Returns an iterator for the elements of this stream.
 	 *
@@ -152,7 +133,7 @@ public interface BaseStream<T, S extends BaseStream<T, S>> extends AutoCloseable
 	 * operation</a>.
 	 *
 	 * @param closeHandler
-	 *            A task to execute when the stream is closed
+	 *                     A task to execute when the stream is closed
 	 * @return a stream with a handler that is run if the stream is closed
 	 */
 	S onClose(Runnable closeHandler);

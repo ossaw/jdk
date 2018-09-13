@@ -1,47 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -107,7 +81,8 @@ import java.util.Map;
  *
  * @since 1.8
  */
-public final class ThaiBuddhistChronology extends AbstractChronology implements Serializable {
+public final class ThaiBuddhistChronology extends AbstractChronology implements
+		Serializable {
 
 	/**
 	 * Singleton instance of the Buddhist chronology.
@@ -151,7 +126,8 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 		ERA_SHORT_NAMES.put(FALLBACK_LANGUAGE, new String[] { "B.B.", "B.E." });
 		ERA_SHORT_NAMES.put(TARGET_LANGUAGE, new String[] { "\u0e1e.\u0e28.",
 				"\u0e1b\u0e35\u0e01\u0e48\u0e2d\u0e19\u0e04\u0e23\u0e34\u0e2a\u0e15\u0e4c\u0e01\u0e32\u0e25\u0e17\u0e35\u0e48" });
-		ERA_FULL_NAMES.put(FALLBACK_LANGUAGE, new String[] { "Before Buddhist", "Budhhist Era" });
+		ERA_FULL_NAMES.put(FALLBACK_LANGUAGE, new String[] { "Before Buddhist",
+				"Budhhist Era" });
 		ERA_FULL_NAMES.put(TARGET_LANGUAGE, new String[] {
 				"\u0e1e\u0e38\u0e17\u0e18\u0e28\u0e31\u0e01\u0e23\u0e32\u0e0a",
 				"\u0e1b\u0e35\u0e01\u0e48\u0e2d\u0e19\u0e04\u0e23\u0e34\u0e2a\u0e15\u0e4c\u0e01\u0e32\u0e25\u0e17\u0e35\u0e48" });
@@ -160,8 +136,7 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	/**
 	 * Restricted constructor.
 	 */
-	private ThaiBuddhistChronology() {
-	}
+	private ThaiBuddhistChronology() {}
 
 	// -----------------------------------------------------------------------
 	/**
@@ -202,21 +177,23 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	 * year-of-era, month-of-year and day-of-month fields.
 	 *
 	 * @param era
-	 *            the Thai Buddhist era, not null
+	 *                   the Thai Buddhist era, not null
 	 * @param yearOfEra
-	 *            the year-of-era
+	 *                   the year-of-era
 	 * @param month
-	 *            the month-of-year
+	 *                   the month-of-year
 	 * @param dayOfMonth
-	 *            the day-of-month
+	 *                   the day-of-month
 	 * @return the Thai Buddhist local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                            if unable to create the date
 	 * @throws ClassCastException
-	 *             if the {@code era} is not a {@code ThaiBuddhistEra}
+	 *                            if the {@code era} is not a
+	 *                            {@code ThaiBuddhistEra}
 	 */
 	@Override
-	public ThaiBuddhistDate date(Era era, int yearOfEra, int month, int dayOfMonth) {
+	public ThaiBuddhistDate date(Era era, int yearOfEra, int month,
+			int dayOfMonth) {
 		return date(prolepticYear(era, yearOfEra), month, dayOfMonth);
 	}
 
@@ -225,19 +202,19 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	 * proleptic-year, month-of-year and day-of-month fields.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year
+	 *                      the proleptic-year
 	 * @param month
-	 *            the month-of-year
+	 *                      the month-of-year
 	 * @param dayOfMonth
-	 *            the day-of-month
+	 *                      the day-of-month
 	 * @return the Thai Buddhist local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override
 	public ThaiBuddhistDate date(int prolepticYear, int month, int dayOfMonth) {
-		return new ThaiBuddhistDate(
-				LocalDate.of(prolepticYear - YEARS_DIFFERENCE, month, dayOfMonth));
+		return new ThaiBuddhistDate(LocalDate.of(prolepticYear
+				- YEARS_DIFFERENCE, month, dayOfMonth));
 	}
 
 	/**
@@ -245,16 +222,17 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	 * year-of-era and day-of-year fields.
 	 *
 	 * @param era
-	 *            the Thai Buddhist era, not null
+	 *                  the Thai Buddhist era, not null
 	 * @param yearOfEra
-	 *            the year-of-era
+	 *                  the year-of-era
 	 * @param dayOfYear
-	 *            the day-of-year
+	 *                  the day-of-year
 	 * @return the Thai Buddhist local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                            if unable to create the date
 	 * @throws ClassCastException
-	 *             if the {@code era} is not a {@code ThaiBuddhistEra}
+	 *                            if the {@code era} is not a
+	 *                            {@code ThaiBuddhistEra}
 	 */
 	@Override
 	public ThaiBuddhistDate dateYearDay(Era era, int yearOfEra, int dayOfYear) {
@@ -266,17 +244,17 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	 * proleptic-year and day-of-year fields.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year
+	 *                      the proleptic-year
 	 * @param dayOfYear
-	 *            the day-of-year
+	 *                      the day-of-year
 	 * @return the Thai Buddhist local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override
 	public ThaiBuddhistDate dateYearDay(int prolepticYear, int dayOfYear) {
-		return new ThaiBuddhistDate(
-				LocalDate.ofYearDay(prolepticYear - YEARS_DIFFERENCE, dayOfYear));
+		return new ThaiBuddhistDate(LocalDate.ofYearDay(prolepticYear
+				- YEARS_DIFFERENCE, dayOfYear));
 	}
 
 	/**
@@ -284,10 +262,10 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	 * epoch-day.
 	 *
 	 * @param epochDay
-	 *            the epoch day
+	 *                 the epoch day
 	 * @return the Thai Buddhist local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override // override with covariant return type
 	public ThaiBuddhistDate dateEpochDay(long epochDay) {
@@ -319,20 +297,26 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoLocalDateTime<ThaiBuddhistDate> localDateTime(TemporalAccessor temporal) {
-		return (ChronoLocalDateTime<ThaiBuddhistDate>) super.localDateTime(temporal);
+	public ChronoLocalDateTime<ThaiBuddhistDate> localDateTime(
+			TemporalAccessor temporal) {
+		return (ChronoLocalDateTime<ThaiBuddhistDate>) super.localDateTime(
+				temporal);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<ThaiBuddhistDate> zonedDateTime(TemporalAccessor temporal) {
-		return (ChronoZonedDateTime<ThaiBuddhistDate>) super.zonedDateTime(temporal);
+	public ChronoZonedDateTime<ThaiBuddhistDate> zonedDateTime(
+			TemporalAccessor temporal) {
+		return (ChronoZonedDateTime<ThaiBuddhistDate>) super.zonedDateTime(
+				temporal);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<ThaiBuddhistDate> zonedDateTime(Instant instant, ZoneId zone) {
-		return (ChronoZonedDateTime<ThaiBuddhistDate>) super.zonedDateTime(instant, zone);
+	public ChronoZonedDateTime<ThaiBuddhistDate> zonedDateTime(Instant instant,
+			ZoneId zone) {
+		return (ChronoZonedDateTime<ThaiBuddhistDate>) super.zonedDateTime(
+				instant, zone);
 	}
 
 	// -----------------------------------------------------------------------
@@ -344,12 +328,13 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	 * result for years in the supported range.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year to check, not validated for range
+	 *                      the proleptic-year to check, not validated for range
 	 * @return true if the year is a leap year
 	 */
 	@Override
 	public boolean isLeapYear(long prolepticYear) {
-		return IsoChronology.INSTANCE.isLeapYear(prolepticYear - YEARS_DIFFERENCE);
+		return IsoChronology.INSTANCE.isLeapYear(prolepticYear
+				- YEARS_DIFFERENCE);
 	}
 
 	@Override
@@ -367,28 +352,28 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 
 	@Override
 	public List<Era> eras() {
-		return Arrays.<Era> asList(ThaiBuddhistEra.values());
+		return Arrays.<Era>asList(ThaiBuddhistEra.values());
 	}
 
 	// -----------------------------------------------------------------------
 	@Override
 	public ValueRange range(ChronoField field) {
 		switch (field) {
-		case PROLEPTIC_MONTH: {
-			ValueRange range = PROLEPTIC_MONTH.range();
-			return ValueRange.of(range.getMinimum() + YEARS_DIFFERENCE * 12L,
-					range.getMaximum() + YEARS_DIFFERENCE * 12L);
-		}
-		case YEAR_OF_ERA: {
-			ValueRange range = YEAR.range();
-			return ValueRange.of(1, -(range.getMinimum() + YEARS_DIFFERENCE) + 1,
-					range.getMaximum() + YEARS_DIFFERENCE);
-		}
-		case YEAR: {
-			ValueRange range = YEAR.range();
-			return ValueRange.of(range.getMinimum() + YEARS_DIFFERENCE,
-					range.getMaximum() + YEARS_DIFFERENCE);
-		}
+			case PROLEPTIC_MONTH: {
+				ValueRange range = PROLEPTIC_MONTH.range();
+				return ValueRange.of(range.getMinimum() + YEARS_DIFFERENCE
+						* 12L, range.getMaximum() + YEARS_DIFFERENCE * 12L);
+			}
+			case YEAR_OF_ERA: {
+				ValueRange range = YEAR.range();
+				return ValueRange.of(1, -(range.getMinimum() + YEARS_DIFFERENCE)
+						+ 1, range.getMaximum() + YEARS_DIFFERENCE);
+			}
+			case YEAR: {
+				ValueRange range = YEAR.range();
+				return ValueRange.of(range.getMinimum() + YEARS_DIFFERENCE,
+						range.getMaximum() + YEARS_DIFFERENCE);
+			}
 		}
 		return field.range();
 	}
@@ -424,11 +409,12 @@ public final class ThaiBuddhistChronology extends AbstractChronology implements 
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 }

@@ -11,8 +11,7 @@ package org.omg.CosNaming;
 public final class BindingHolder implements org.omg.CORBA.portable.Streamable {
 	public org.omg.CosNaming.Binding value = null;
 
-	public BindingHolder() {
-	}
+	public BindingHolder() {}
 
 	public BindingHolder(org.omg.CosNaming.Binding initialValue) {
 		value = initialValue;

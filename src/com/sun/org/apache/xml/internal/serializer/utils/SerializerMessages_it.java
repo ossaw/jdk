@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,25 +41,18 @@ public class SerializerMessages_it extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Serializer Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 * 
 	 * 1) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
-	 * 
 	 * 2) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 3) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
-	 *
 	 */
 
 	/** The lookup table for error messages. */
@@ -76,14 +66,17 @@ public class SerializerMessages_it extends ListResourceBundle {
 				{ MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
 						"La classe serializzatore ''{0}'' non implementa org.xml.sax.ContentHandler." },
 
-				{ MsgKey.ER_RESOURCE_COULD_NOT_FIND, "Risorsa [ {0} ] non trovata.\n {1}" },
+				{ MsgKey.ER_RESOURCE_COULD_NOT_FIND,
+						"Risorsa [ {0} ] non trovata.\n {1}" },
 
 				{ MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
 						"Impossibile caricare la risorsa [ {0} ]: {1} \n {2} \t {3}" },
 
-				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Dimensione buffer <=0" },
+				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
+						"Dimensione buffer <=0" },
 
-				{ MsgKey.ER_INVALID_UTF16_SURROGATE, "Rilevato surrogato UTF-16 non valido: {0}?" },
+				{ MsgKey.ER_INVALID_UTF16_SURROGATE,
+						"Rilevato surrogato UTF-16 non valido: {0}?" },
 
 				{ MsgKey.ER_OIERROR, "Errore di I/O" },
 
@@ -105,7 +98,8 @@ public class SerializerMessages_it extends ListResourceBundle {
 				 * element. The substitution text specifies the name of the
 				 * attribute.
 				 */
-				{ MsgKey.ER_STRAY_ATTRIBUTE, "Attributo ''{0}'' al di fuori dell''elemento." },
+				{ MsgKey.ER_STRAY_ATTRIBUTE,
+						"Attributo ''{0}'' al di fuori dell''elemento." },
 
 				/*
 				 * Note to translators: As with the preceding message, a
@@ -131,9 +125,11 @@ public class SerializerMessages_it extends ListResourceBundle {
 				{ MsgKey.ER_PORT_WHEN_HOST_NULL,
 						"La porta non pu\u00F2 essere impostata se l'host \u00E8 nullo" },
 
-				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED, "Host non \u00E8 un indirizzo corretto" },
+				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
+						"Host non \u00E8 un indirizzo corretto" },
 
-				{ MsgKey.ER_SCHEME_NOT_CONFORMANT, "Lo schema non \u00E8 conforme." },
+				{ MsgKey.ER_SCHEME_NOT_CONFORMANT,
+						"Lo schema non \u00E8 conforme." },
 
 				{ MsgKey.ER_SCHEME_FROM_NULL_STRING,
 						"Impossibile impostare lo schema da una stringa nulla" },
@@ -144,7 +140,8 @@ public class SerializerMessages_it extends ListResourceBundle {
 				{ MsgKey.ER_PATH_INVALID_CHAR,
 						"Il percorso contiene un carattere non valido: {0}" },
 
-				{ MsgKey.ER_FRAG_INVALID_CHAR, "Il frammento contiene un carattere non valido" },
+				{ MsgKey.ER_FRAG_INVALID_CHAR,
+						"Il frammento contiene un carattere non valido" },
 
 				{ MsgKey.ER_FRAG_WHEN_PATH_NULL,
 						"Il frammento non pu\u00F2 essere impostato se il percorso \u00E8 nullo" },
@@ -152,7 +149,8 @@ public class SerializerMessages_it extends ListResourceBundle {
 				{ MsgKey.ER_FRAG_FOR_GENERIC_URI,
 						"Il frammento pu\u00F2 essere impostato solo per un URI generico" },
 
-				{ MsgKey.ER_NO_SCHEME_IN_URI, "Nessuno schema trovato nell'URI" },
+				{ MsgKey.ER_NO_SCHEME_IN_URI,
+						"Nessuno schema trovato nell'URI" },
 
 				{ MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
 						"Impossibile inizializzare l'URI con i parametri vuoti" },

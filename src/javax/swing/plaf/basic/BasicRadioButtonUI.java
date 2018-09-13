@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -63,13 +43,13 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 	 * Returns an instance of {@code BasicRadioButtonUI}.
 	 *
 	 * @param b
-	 *            a component
+	 *          a component
 	 * @return an instance of {@code BasicRadioButtonUI}
 	 */
 	public static ComponentUI createUI(JComponent b) {
 		AppContext appContext = AppContext.getAppContext();
-		BasicRadioButtonUI radioButtonUI = (BasicRadioButtonUI) appContext
-				.get(BASIC_RADIO_BUTTON_UI_KEY);
+		BasicRadioButtonUI radioButtonUI = (BasicRadioButtonUI) appContext.get(
+				BASIC_RADIO_BUTTON_UI_KEY);
 		if (radioButtonUI == null) {
 			radioButtonUI = new BasicRadioButtonUI();
 			appContext.put(BASIC_RADIO_BUTTON_UI_KEY, radioButtonUI);
@@ -133,14 +113,14 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 		button.getActionMap().put("Previous", new SelectPreviousBtn());
 		button.getActionMap().put("Next", new SelectNextBtn());
 
-		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-				.put(KeyStroke.getKeyStroke("UP"), "Previous");
-		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-				.put(KeyStroke.getKeyStroke("DOWN"), "Next");
-		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-				.put(KeyStroke.getKeyStroke("LEFT"), "Previous");
-		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-				.put(KeyStroke.getKeyStroke("RIGHT"), "Next");
+		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
+				KeyStroke.getKeyStroke("UP"), "Previous");
+		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
+				KeyStroke.getKeyStroke("DOWN"), "Next");
+		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
+				KeyStroke.getKeyStroke("LEFT"), "Previous");
+		button.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
+				KeyStroke.getKeyStroke("RIGHT"), "Next");
 	}
 
 	// ********************************
@@ -209,10 +189,12 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 		Icon disabledIcon = null;
 
 		String text = SwingUtilities.layoutCompoundLabel(c, fm, b.getText(),
-				altIcon != null ? altIcon : getDefaultIcon(), b.getVerticalAlignment(),
-				b.getHorizontalAlignment(), b.getVerticalTextPosition(),
-				b.getHorizontalTextPosition(), viewRect, iconRect, textRect,
-				b.getText() == null ? 0 : b.getIconTextGap());
+				altIcon != null ? altIcon : getDefaultIcon(), b
+						.getVerticalAlignment(), b.getHorizontalAlignment(), b
+								.getVerticalTextPosition(), b
+										.getHorizontalTextPosition(), viewRect,
+				iconRect, textRect, b.getText() == null ? 0
+						: b.getIconTextGap());
 
 		// fill background
 		if (c.isOpaque()) {
@@ -266,7 +248,8 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 			} else {
 				paintText(g, b, textRect, text);
 			}
-			if (b.hasFocus() && b.isFocusPainted() && textRect.width > 0 && textRect.height > 0) {
+			if (b.hasFocus() && b.isFocusPainted() && textRect.width > 0
+					&& textRect.height > 0) {
 				paintFocus(g, textRect, size);
 			}
 		}
@@ -276,14 +259,13 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 	 * Paints focused radio button.
 	 *
 	 * @param g
-	 *            an instance of {@code Graphics}
+	 *                 an instance of {@code Graphics}
 	 * @param textRect
-	 *            bounds
+	 *                 bounds
 	 * @param size
-	 *            the size of radio button
+	 *                 the size of radio button
 	 */
-	protected void paintFocus(Graphics g, Rectangle textRect, Dimension size) {
-	}
+	protected void paintFocus(Graphics g, Rectangle textRect, Dimension size) {}
 
 	/*
 	 * These Insets/Rectangles are allocated once for all
@@ -323,17 +305,20 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 		prefIconRect.x = prefIconRect.y = prefIconRect.width = prefIconRect.height = 0;
 		prefTextRect.x = prefTextRect.y = prefTextRect.width = prefTextRect.height = 0;
 
-		SwingUtilities.layoutCompoundLabel(c, fm, text, buttonIcon, b.getVerticalAlignment(),
-				b.getHorizontalAlignment(), b.getVerticalTextPosition(),
-				b.getHorizontalTextPosition(), prefViewRect, prefIconRect, prefTextRect,
-				text == null ? 0 : b.getIconTextGap());
+		SwingUtilities.layoutCompoundLabel(c, fm, text, buttonIcon, b
+				.getVerticalAlignment(), b.getHorizontalAlignment(), b
+						.getVerticalTextPosition(), b
+								.getHorizontalTextPosition(), prefViewRect,
+				prefIconRect, prefTextRect, text == null ? 0
+						: b.getIconTextGap());
 
 		// find the union of the icon and text rects (from Rectangle.java)
 		int x1 = Math.min(prefIconRect.x, prefTextRect.x);
-		int x2 = Math.max(prefIconRect.x + prefIconRect.width, prefTextRect.x + prefTextRect.width);
+		int x2 = Math.max(prefIconRect.x + prefIconRect.width, prefTextRect.x
+				+ prefTextRect.width);
 		int y1 = Math.min(prefIconRect.y, prefTextRect.y);
-		int y2 = Math.max(prefIconRect.y + prefIconRect.height,
-				prefTextRect.y + prefTextRect.height);
+		int y2 = Math.max(prefIconRect.y + prefIconRect.height, prefTextRect.y
+				+ prefTextRect.height);
 		int width = x2 - x1;
 		int height = y2 - y1;
 
@@ -355,17 +340,17 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 	}
 
 	private boolean isValidRadioButtonObj(Object obj) {
-		return ((obj instanceof JRadioButton) && ((JRadioButton) obj).isVisible()
-				&& ((JRadioButton) obj).isEnabled());
+		return ((obj instanceof JRadioButton) && ((JRadioButton) obj)
+				.isVisible() && ((JRadioButton) obj).isEnabled());
 	}
 
 	/**
 	 * Select radio button based on "Previous" or "Next" operation
 	 *
 	 * @param event,
-	 *            the event object.
+	 *        the event object.
 	 * @param next,
-	 *            indicate if it's next one
+	 *        indicate if it's next one
 	 */
 	private void selectRadioButton(ActionEvent event, boolean next) {
 		// Get the source of the event.
@@ -376,7 +361,8 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 		if (!isValidRadioButtonObj(eventSrc))
 			return;
 
-		ButtonGroupInfo btnGroupInfo = new ButtonGroupInfo((JRadioButton) eventSrc);
+		ButtonGroupInfo btnGroupInfo = new ButtonGroupInfo(
+				(JRadioButton) eventSrc);
 		btnGroupInfo.selectNewButton(next);
 	}
 
@@ -437,8 +423,10 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 			Component focusBaseComp = activeBtn;
 			Container container = focusBaseComp.getFocusCycleRootAncestor();
 			if (container != null) {
-				FocusTraversalPolicy policy = container.getFocusTraversalPolicy();
-				Component comp = next ? policy.getComponentAfter(container, activeBtn)
+				FocusTraversalPolicy policy = container
+						.getFocusTraversalPolicy();
+				Component comp = next ? policy.getComponentAfter(container,
+						activeBtn)
 						: policy.getComponentBefore(container, activeBtn);
 
 				// If next component in the button group, use last/first button
@@ -512,7 +500,7 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 		 * group, select the button
 		 *
 		 * @param next,
-		 *            indicate if it's arrow up/left or down/right
+		 *        indicate if it's arrow up/left or down/right
 		 */
 		void selectNewButton(boolean next) {
 			if (!getButtonGroupInfo())
@@ -529,7 +517,8 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 					// Select previous button. Cycle to the last button if the
 					// source
 					// button is the first button of the group.
-					newSelectedBtn = (null == previousBtn) ? lastBtn : previousBtn;
+					newSelectedBtn = (null == previousBtn) ? lastBtn
+							: previousBtn;
 				}
 				if (newSelectedBtn != null && (newSelectedBtn != activeBtn)) {
 					newSelectedBtn.requestFocusInWindow();
@@ -544,7 +533,7 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 		 * component of first button
 		 *
 		 * @param next,
-		 *            indicate if jump to next component or previous
+		 *        indicate if jump to next component or previous
 		 */
 		void jumpToNextComponent(boolean next) {
 			if (!getButtonGroupInfo()) {
@@ -595,16 +584,15 @@ public class BasicRadioButtonUI extends BasicToggleButtonUI {
 				// JRadioButton
 				if (isValidRadioButtonObj(eventSrc)) {
 					e.consume();
-					ButtonGroupInfo btnGroupInfo = new ButtonGroupInfo((JRadioButton) eventSrc);
+					ButtonGroupInfo btnGroupInfo = new ButtonGroupInfo(
+							(JRadioButton) eventSrc);
 					btnGroupInfo.jumpToNextComponent(!e.isShiftDown());
 				}
 			}
 		}
 
-		public void keyReleased(KeyEvent e) {
-		}
+		public void keyReleased(KeyEvent e) {}
 
-		public void keyTyped(KeyEvent e) {
-		}
+		public void keyTyped(KeyEvent e) {}
 	}
 }

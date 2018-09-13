@@ -160,13 +160,14 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 	 * @param inclusiveNamespaces
 	 * @return none it always fails
 	 * @throws CanonicalizationException
-	 *             always
+	 *                                   always
 	 */
-	public byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet, String inclusiveNamespaces)
-			throws CanonicalizationException {
+	public byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet,
+			String inclusiveNamespaces) throws CanonicalizationException {
 
 		/** $todo$ well, should we throw UnsupportedOperationException ? */
-		throw new CanonicalizationException("c14n.Canonicalizer.UnsupportedOperation");
+		throw new CanonicalizationException(
+				"c14n.Canonicalizer.UnsupportedOperation");
 	}
 
 	/**
@@ -177,11 +178,12 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 	 * @return none it always fails
 	 * @throws CanonicalizationException
 	 */
-	public byte[] engineCanonicalizeSubTree(Node rootNode, String inclusiveNamespaces)
-			throws CanonicalizationException {
+	public byte[] engineCanonicalizeSubTree(Node rootNode,
+			String inclusiveNamespaces) throws CanonicalizationException {
 
 		/** $todo$ well, should we throw UnsupportedOperationException ? */
-		throw new CanonicalizationException("c14n.Canonicalizer.UnsupportedOperation");
+		throw new CanonicalizationException(
+				"c14n.Canonicalizer.UnsupportedOperation");
 	}
 
 	/**
@@ -198,8 +200,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 	 * @throws CanonicalizationException
 	 */
 	@Override
-	protected Iterator<Attr> handleAttributesSubtree(Element element, NameSpaceSymbTable ns)
-			throws CanonicalizationException {
+	protected Iterator<Attr> handleAttributesSubtree(Element element,
+			NameSpaceSymbTable ns) throws CanonicalizationException {
 		if (!element.hasAttributes() && !firstCall) {
 			return null;
 		}
@@ -221,7 +223,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 					// It's not a namespace attr node. Add to the result and
 					// continue.
 					result.add(attribute);
-				} else if (!(XML.equals(NName) && XML_LANG_URI.equals(NValue))) {
+				} else if (!(XML.equals(NName) && XML_LANG_URI.equals(
+						NValue))) {
 					// The default mapping for xml must not be output.
 					Node n = ns.addMappingAndRender(NName, NValue, attribute);
 
@@ -232,7 +235,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 							Object exArgs[] = { element.getTagName(), NName,
 									attribute.getNodeValue() };
 							throw new CanonicalizationException(
-									"c14n.Canonicalizer.RelativeNamespace", exArgs);
+									"c14n.Canonicalizer.RelativeNamespace",
+									exArgs);
 						}
 					}
 				}
@@ -265,8 +269,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 	 * @throws CanonicalizationException
 	 */
 	@Override
-	protected Iterator<Attr> handleAttributes(Element element, NameSpaceSymbTable ns)
-			throws CanonicalizationException {
+	protected Iterator<Attr> handleAttributes(Element element,
+			NameSpaceSymbTable ns) throws CanonicalizationException {
 		// result will contain the attrs which have to be output
 		xmlattrStack.push(ns.getLevel());
 		boolean isRealVisible = isVisibleDO(element, ns.getLevel()) == 1;
@@ -302,14 +306,16 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 					if (isVisible(attribute)) {
 						if (isRealVisible || !ns.removeMappingIfRender(NName)) {
 							// The xpath select this node output it if needed.
-							Node n = ns.addMappingAndRender(NName, NValue, attribute);
+							Node n = ns.addMappingAndRender(NName, NValue,
+									attribute);
 							if (n != null) {
 								result.add((Attr) n);
 								if (C14nHelper.namespaceIsRelative(attribute)) {
-									Object exArgs[] = { element.getTagName(), NName,
-											attribute.getNodeValue() };
+									Object exArgs[] = { element.getTagName(),
+											NName, attribute.getNodeValue() };
 									throw new CanonicalizationException(
-											"c14n.Canonicalizer.RelativeNamespace", exArgs);
+											"c14n.Canonicalizer.RelativeNamespace",
+											exArgs);
 								}
 							}
 						}
@@ -334,7 +340,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 				// There is a definition but the xmlns is not selected by the
 				// xpath.
 				// then xmlns=""
-				n = ns.addMappingAndRender(XMLNS, "", getNullNode(xmlns.getOwnerDocument()));
+				n = ns.addMappingAndRender(XMLNS, "", getNullNode(xmlns
+						.getOwnerDocument()));
 			}
 			// output the xmlns def if needed.
 			if (n != null) {
@@ -349,8 +356,9 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 		return result.iterator();
 	}
 
-	protected void circumventBugIfNeeded(XMLSignatureInput input) throws CanonicalizationException,
-			ParserConfigurationException, IOException, SAXException {
+	protected void circumventBugIfNeeded(XMLSignatureInput input)
+			throws CanonicalizationException, ParserConfigurationException,
+			IOException, SAXException {
 		if (!input.isNeedsToBeExpanded()) {
 			return;
 		}
@@ -377,7 +385,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 			String NValue = attribute.getNodeValue();
 
 			if (Constants.NamespaceSpecNS.equals(attribute.getNamespaceURI())) {
-				if (!XML.equals(NName) || !Constants.XML_LANG_SPACE_SpecNS.equals(NValue)) {
+				if (!XML.equals(NName) || !Constants.XML_LANG_SPACE_SpecNS
+						.equals(NValue)) {
 					ns.addMapping(NName, NValue, attribute);
 				}
 			} else if (XML_LANG_URI.equals(attribute.getNamespaceURI())) {
@@ -394,7 +403,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
 			} else {
 				Name = "xmlns:" + NName;
 			}
-			Attr n = e.getOwnerDocument().createAttributeNS("http://www.w3.org/2000/xmlns/", Name);
+			Attr n = e.getOwnerDocument().createAttributeNS(
+					"http://www.w3.org/2000/xmlns/", Name);
 			n.setValue(NValue);
 			ns.addMapping(NName, NValue, n);
 		}

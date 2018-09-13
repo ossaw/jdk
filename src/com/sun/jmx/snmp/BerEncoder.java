@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -49,7 +29,7 @@ public class BerEncoder {
 	 * Constructs a new encoder and attaches it to the specified byte string.
 	 *
 	 * @param b
-	 *            The byte string containing the encoded data.
+	 *          The byte string containing the encoded data.
 	 */
 
 	public BerEncoder(byte b[]) {
@@ -91,7 +71,7 @@ public class BerEncoder {
 	 * Put an integer.
 	 *
 	 * @param v
-	 *            The integer to encode.
+	 *          The integer to encode.
 	 */
 
 	public void putInteger(int v) {
@@ -116,7 +96,7 @@ public class BerEncoder {
 	 * Put an integer expressed as a long.
 	 *
 	 * @param v
-	 *            The long to encode.
+	 *          The long to encode.
 	 */
 
 	public void putInteger(long v) {
@@ -141,7 +121,7 @@ public class BerEncoder {
 	 * Put an octet string.
 	 *
 	 * @param s
-	 *            The bytes to encode
+	 *          The bytes to encode
 	 */
 
 	public void putOctetString(byte[] s) {
@@ -166,7 +146,7 @@ public class BerEncoder {
 	 * Put an object identifier.
 	 *
 	 * @param s
-	 *            The oid to encode.
+	 *          The oid to encode.
 	 */
 
 	public void putOid(long[] s) {
@@ -212,7 +192,7 @@ public class BerEncoder {
 	 * anything. It simply copies the specified bytes into the encoding.
 	 *
 	 * @param s
-	 *            The encoding of the <CODE>ANY</CODE> value.
+	 *          The encoding of the <CODE>ANY</CODE> value.
 	 */
 
 	public void putAny(byte[] s) {
@@ -224,9 +204,9 @@ public class BerEncoder {
 	 * considered.
 	 *
 	 * @param s
-	 *            The encoding of the <CODE>ANY</CODE> value.
+	 *                  The encoding of the <CODE>ANY</CODE> value.
 	 * @param byteCount
-	 *            The number of bytes of the encoding.
+	 *                  The number of bytes of the encoding.
 	 */
 
 	public void putAny(byte[] s, int byteCount) {
@@ -298,7 +278,7 @@ public class BerEncoder {
 	 * Put a length and move the current position backward.
 	 *
 	 * @param length
-	 *            The length to encode.
+	 *               The length to encode.
 	 */
 
 	protected final void putLength(final int length) {
@@ -331,7 +311,7 @@ public class BerEncoder {
 	 * Put an integer value and move the current position backward.
 	 *
 	 * @param v
-	 *            The integer to encode.
+	 *          The integer to encode.
 	 */
 
 	protected final void putIntegerValue(int v) {
@@ -360,7 +340,7 @@ public class BerEncoder {
 	 * Put an integer value expressed as a long.
 	 *
 	 * @param v
-	 *            The integer to encode.
+	 *          The integer to encode.
 	 */
 
 	protected final void putIntegerValue(long v) {
@@ -389,7 +369,7 @@ public class BerEncoder {
 	 * Put a byte string and move the current position backward.
 	 *
 	 * @param s
-	 *            The byte string to encode.
+	 *          The byte string to encode.
 	 */
 
 	protected final void putStringValue(byte[] s) {
@@ -406,7 +386,7 @@ public class BerEncoder {
 	 * Put an oid and move the current position backward.
 	 *
 	 * @param s
-	 *            The oid to encode.
+	 *          The oid to encode.
 	 */
 
 	protected final void putOidValue(final long[] s) {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +30,30 @@ public class XMLErrorResources_ja extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -258,7 +246,8 @@ public class XMLErrorResources_ja extends ListResourceBundle {
 			{ ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
 					"\u30D1\u30B9\u306B\u7121\u52B9\u306A\u30A8\u30B9\u30B1\u30FC\u30D7\u30FB\u30B7\u30FC\u30B1\u30F3\u30B9\u304C\u542B\u307E\u308C\u3066\u3044\u307E\u3059" },
 
-			{ ER_SCHEME_REQUIRED, "\u30B9\u30AD\u30FC\u30E0\u304C\u5FC5\u8981\u3067\u3059\u3002" },
+			{ ER_SCHEME_REQUIRED,
+					"\u30B9\u30AD\u30FC\u30E0\u304C\u5FC5\u8981\u3067\u3059\u3002" },
 
 			{ ER_NO_SCHEME_IN_URI,
 					"\u30B9\u30AD\u30FC\u30E0\u304CURI\u306B\u898B\u3064\u304B\u308A\u307E\u305B\u3093: {0}" },
@@ -281,7 +270,8 @@ public class XMLErrorResources_ja extends ListResourceBundle {
 			{ ER_PORT_WHEN_HOST_NULL,
 					"\u30DB\u30B9\u30C8\u304Cnull\u306E\u5834\u5408\u306F\u30DD\u30FC\u30C8\u3092\u8A2D\u5B9A\u3067\u304D\u307E\u305B\u3093" },
 
-			{ ER_INVALID_PORT, "\u7121\u52B9\u306A\u30DD\u30FC\u30C8\u756A\u53F7" },
+			{ ER_INVALID_PORT,
+					"\u7121\u52B9\u306A\u30DD\u30FC\u30C8\u756A\u53F7" },
 
 			{ ER_FRAG_FOR_GENERIC_URI,
 					"\u6C4E\u7528URI\u306E\u30D5\u30E9\u30B0\u30E1\u30F3\u30C8\u306E\u307F\u8A2D\u5B9A\u3067\u304D\u307E\u3059" },
@@ -354,7 +344,8 @@ public class XMLErrorResources_ja extends ListResourceBundle {
 			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
 					"DOM\u306B\u8907\u6570\u306E\u30EB\u30FC\u30C8\u3092\u6301\u3064\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093\u3002" },
 
-			{ ER_ARG_LOCALNAME_NULL, "\u5F15\u6570'localName'\u306Fnull\u3067\u3059" },
+			{ ER_ARG_LOCALNAME_NULL,
+					"\u5F15\u6570'localName'\u306Fnull\u3067\u3059" },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
@@ -379,7 +370,8 @@ public class XMLErrorResources_ja extends ListResourceBundle {
 					"createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
 			{ "FORMAT_FAILED",
 					"messageFormat\u306E\u547C\u51FA\u3057\u4E2D\u306B\u4F8B\u5916\u304C\u30B9\u30ED\u30FC\u3055\u308C\u307E\u3057\u305F" },
-			{ "line", "\u884C\u756A\u53F7" }, { "column", "\u5217\u756A\u53F7" },
+			{ "line", "\u884C\u756A\u53F7" }, { "column",
+					"\u5217\u756A\u53F7" },
 
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"\u30B7\u30EA\u30A2\u30E9\u30A4\u30B6\u30FB\u30AF\u30E9\u30B9''{0}''\u306Forg.xml.sax.ContentHandler\u3092\u5B9F\u88C5\u3057\u307E\u305B\u3093\u3002" },
@@ -390,7 +382,8 @@ public class XMLErrorResources_ja extends ListResourceBundle {
 			{ ER_RESOURCE_COULD_NOT_LOAD,
 					"\u30EA\u30BD\u30FC\u30B9[ {0} ]\u3092\u30ED\u30FC\u30C9\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F: {1} \n {2} \t {3}" },
 
-			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "\u30D0\u30C3\u30D5\u30A1\u30FB\u30B5\u30A4\u30BA<=0" },
+			{ ER_BUFFER_SIZE_LESSTHAN_ZERO,
+					"\u30D0\u30C3\u30D5\u30A1\u30FB\u30B5\u30A4\u30BA<=0" },
 
 			{ ER_INVALID_UTF16_SURROGATE,
 					"\u7121\u52B9\u306AUTF-16\u30B5\u30ED\u30B2\u30FC\u30C8\u304C\u691C\u51FA\u3055\u308C\u307E\u3057\u305F: {0}\u3002" },

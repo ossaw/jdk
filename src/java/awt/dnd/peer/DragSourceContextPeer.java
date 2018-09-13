@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd.peer;
@@ -47,8 +27,8 @@ public interface DragSourceContextPeer {
 	 * start a drag
 	 */
 
-	void startDrag(DragSourceContext dsc, Cursor c, Image dragImage, Point imageOffset)
-			throws InvalidDnDOperationException;
+	void startDrag(DragSourceContext dsc, Cursor c, Image dragImage,
+			Point imageOffset) throws InvalidDnDOperationException;
 
 	/**
 	 * return the current drag cursor

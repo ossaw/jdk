@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -69,7 +61,8 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  * @see InstructionList
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class BranchInstruction extends Instruction implements InstructionTargeter {
+public abstract class BranchInstruction extends Instruction implements
+		InstructionTargeter {
 	protected int index; // Branch target relative to this instruction
 	protected InstructionHandle target; // Target object in instruction list
 	protected int position; // Byte code offset
@@ -78,16 +71,15 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 	 * Empty constructor needed for the Class.newInstance() statement in
 	 * Instruction.readInstruction(). Not to be used otherwise.
 	 */
-	BranchInstruction() {
-	}
+	BranchInstruction() {}
 
 	/**
 	 * Common super constructor
 	 * 
 	 * @param opcodee
-	 *            Instruction opcode
+	 *                Instruction opcode
 	 * @param target
-	 *            instruction to branch to
+	 *                instruction to branch to
 	 */
 	protected BranchInstruction(short opcode, InstructionHandle target) {
 		super(opcode, (short) 3);
@@ -107,26 +99,28 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 		index = getTargetOffset();
 
 		if (Math.abs(index) >= 32767) // too large for short
-			throw new ClassGenException("Branch target offset too large for short");
+			throw new ClassGenException(
+					"Branch target offset too large for short");
 
 		out.writeShort(index); // May be negative, i.e., point backwards
 	}
 
 	/**
 	 * @param target
-	 *            branch target
+	 *               branch target
 	 * @return the offset to `target' relative to this instruction
 	 */
 	protected int getTargetOffset(InstructionHandle target) {
 		if (target == null)
-			throw new ClassGenException(
-					"Target of " + super.toString(true) + " is invalid null handle");
+			throw new ClassGenException("Target of " + super.toString(true)
+					+ " is invalid null handle");
 
 		int t = target.getPosition();
 
 		if (t < 0)
-			throw new ClassGenException("Invalid branch target position offset for "
-					+ super.toString(true) + ":" + t + ":" + target);
+			throw new ClassGenException(
+					"Invalid branch target position offset for "
+							+ super.toString(true) + ":" + t + ":" + target);
 
 		return t - position;
 	}
@@ -146,10 +140,11 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 	 * function.
 	 *
 	 * @param offset
-	 *            additional offset caused by preceding (variable length)
-	 *            instructions
+	 *                   additional offset caused by preceding (variable length)
+	 *                   instructions
 	 * @param max_offset
-	 *            the maximum offset that may be caused by these instructions
+	 *                   the maximum offset that may be caused by these
+	 *                   instructions
 	 * @return additional offset caused by possible change of this instruction's
 	 *         length
 	 */
@@ -166,7 +161,7 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 	 * instruction&gt;"&gt;" "@"&lt;branch target offset&gt;
 	 *
 	 * @param verbose
-	 *            long/short format switch
+	 *                long/short format switch
 	 * @return mnemonic for instruction
 	 */
 	@Override
@@ -199,13 +194,14 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 	 * InstructionHandle is done in InstructionList(byte[]).
 	 *
 	 * @param bytes
-	 *            input stream
+	 *              input stream
 	 * @param wide
-	 *            wide prefix?
+	 *              wide prefix?
 	 * @see InstructionList
 	 */
 	@Override
-	protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
+	protected void initFromFile(ByteSequence bytes, boolean wide)
+			throws IOException {
 		length = 3;
 		index = bytes.readShort();
 	}
@@ -228,7 +224,7 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 	 * Set branch target
 	 * 
 	 * @param target
-	 *            branch target
+	 *               branch target
 	 */
 	public final void setTarget(InstructionHandle target) {
 		notifyTargetChanging(this.target, this);
@@ -240,7 +236,8 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 	 * Used by BranchInstruction, LocalVariableGen, CodeExceptionGen. Must be
 	 * called before the target is actually changed in the InstructionTargeter.
 	 */
-	static void notifyTargetChanging(InstructionHandle old_ih, InstructionTargeter t) {
+	static void notifyTargetChanging(InstructionHandle old_ih,
+			InstructionTargeter t) {
 		if (old_ih != null) {
 			old_ih.removeTargeter(t);
 		}
@@ -250,7 +247,8 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 	 * Used by BranchInstruction, LocalVariableGen, CodeExceptionGen. Must be
 	 * called after the target is actually changed in the InstructionTargeter.
 	 */
-	static void notifyTargetChanged(InstructionHandle new_ih, InstructionTargeter t) {
+	static void notifyTargetChanged(InstructionHandle new_ih,
+			InstructionTargeter t) {
 		if (new_ih != null) {
 			new_ih.addTargeter(t);
 		}
@@ -258,16 +256,18 @@ public abstract class BranchInstruction extends Instruction implements Instructi
 
 	/**
 	 * @param old_ih
-	 *            old target
+	 *               old target
 	 * @param new_ih
-	 *            new target
+	 *               new target
 	 */
 	@Override
-	public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
+	public void updateTarget(InstructionHandle old_ih,
+			InstructionHandle new_ih) {
 		if (target == old_ih)
 			setTarget(new_ih);
 		else
-			throw new ClassGenException("Not targeting " + old_ih + ", but " + target);
+			throw new ClassGenException("Not targeting " + old_ih + ", but "
+					+ target);
 	}
 
 	/**

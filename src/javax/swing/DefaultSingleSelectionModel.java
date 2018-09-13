@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -41,7 +21,8 @@ import java.util.EventListener;
  *
  * @author Dave Moore
  */
-public class DefaultSingleSelectionModel implements SingleSelectionModel, Serializable {
+public class DefaultSingleSelectionModel implements SingleSelectionModel,
+		Serializable {
 	/*
 	 * Only one ModelChangeEvent is needed per model instance since the event's
 	 * only (read-only) state is the source property. The source of events
@@ -143,22 +124,25 @@ public class DefaultSingleSelectionModel implements SingleSelectionModel, Serial
 	 * <code>m</code> for its change listeners with the following code:
 	 *
 	 * <pre>
-	 * ChangeListener[] cls = (ChangeListener[]) (m.getListeners(ChangeListener.class));
+	 * ChangeListener[] cls = (ChangeListener[]) (m.getListeners(
+	 * 		ChangeListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this model, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getChangeListeners
 	 *

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.interceptors;
 
@@ -152,8 +132,9 @@ public class PIHandlerImpl implements PIHandler {
 	// Table to convert from a ReplyMessage.? to a PI replyStatus short.
 	// Note that this table relies on the order and constants of
 	// ReplyMessage not to change.
-	private final static short REPLY_MESSAGE_TO_PI_REPLY_STATUS[] = { SUCCESSFUL.value, // =
-																						// ReplyMessage.NO_EXCEPTION
+	private final static short REPLY_MESSAGE_TO_PI_REPLY_STATUS[] = {
+			SUCCESSFUL.value, // =
+			// ReplyMessage.NO_EXCEPTION
 			USER_EXCEPTION.value, // = ReplyMessage.USER_EXCEPTION
 			SYSTEM_EXCEPTION.value, // = ReplyMessage.SYSTEM_EXCEPTION
 			LOCATION_FORWARD.value, // = ReplyMessage.LOCATION_FORWARD
@@ -206,8 +187,10 @@ public class PIHandlerImpl implements PIHandler {
 
 	public PIHandlerImpl(ORB orb, String[] args) {
 		this.orb = orb;
-		wrapper = InterceptorsSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
-		orbutilWrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+		wrapper = InterceptorsSystemException.get(orb,
+				CORBALogDomains.RPC_PROTOCOL);
+		orbutilWrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PROTOCOL);
 		omgWrapper = OMGSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
 		arguments = args;
 
@@ -221,7 +204,8 @@ public class PIHandlerImpl implements PIHandler {
 		current = new PICurrent(orb);
 
 		// Create new interceptor invoker, initially disabled:
-		interceptorInvoker = new InterceptorInvoker(orb, interceptorList, current);
+		interceptorInvoker = new InterceptorInvoker(orb, interceptorList,
+				current);
 
 		// Register the PI current and Codec factory objects
 		orb.getLocalResolver().register(ORBConstants.PI_CURRENT_NAME,
@@ -258,8 +242,8 @@ public class PIHandlerImpl implements PIHandler {
 
 			// Set cached flags indicating whether we have interceptors
 			// registered of a given type.
-			hasIORInterceptors = interceptorList
-					.hasInterceptorsOfType(InterceptorList.INTERCEPTOR_TYPE_IOR);
+			hasIORInterceptors = interceptorList.hasInterceptorsOfType(
+					InterceptorList.INTERCEPTOR_TYPE_IOR);
 			// XXX This must always be true, so that using the new generic
 			// RPC framework can pass info between the PI stack and the
 			// framework invocation stack. Temporary until Harold fixes
@@ -268,8 +252,8 @@ public class PIHandlerImpl implements PIHandler {
 			// hasClientInterceptors = interceptorList.hasInterceptorsOfType(
 			// InterceptorList.INTERCEPTOR_TYPE_CLIENT );
 			hasClientInterceptors = true;
-			hasServerInterceptors = interceptorList
-					.hasInterceptorsOfType(InterceptorList.INTERCEPTOR_TYPE_SERVER);
+			hasServerInterceptors = interceptorList.hasInterceptorsOfType(
+					InterceptorList.INTERCEPTOR_TYPE_SERVER);
 
 			// Enable interceptor invoker (not necessary if no interceptors
 			// are registered). This should be the last stage of ORB
@@ -305,7 +289,8 @@ public class PIHandlerImpl implements PIHandler {
 		interceptorInvoker.adapterManagerStateChanged(managerId, newState);
 	}
 
-	public void adapterStateChanged(ObjectReferenceTemplate[] templates, short newState) {
+	public void adapterStateChanged(ObjectReferenceTemplate[] templates,
+			short newState) {
 		if (!hasIORInterceptors)
 			return;
 
@@ -313,15 +298,15 @@ public class PIHandlerImpl implements PIHandler {
 	}
 
 	/*
-	 *****************
-	 * Client PI hooks
+	 ***************** Client PI hooks
 	 *****************/
 
 	public void disableInterceptorsThisThread() {
 		if (!hasClientInterceptors)
 			return;
 
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack
+				.get();
 		infoStack.disableCount++;
 	}
 
@@ -329,7 +314,8 @@ public class PIHandlerImpl implements PIHandler {
 		if (!hasClientInterceptors)
 			return;
 
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack
+				.get();
 		infoStack.disableCount--;
 	}
 
@@ -347,12 +333,14 @@ public class PIHandlerImpl implements PIHandler {
 		// Check reply status. If we will not have another chance later
 		// to invoke the client ending points, do it now.
 		short replyStatus = info.getReplyStatus();
-		if ((replyStatus == SYSTEM_EXCEPTION.value) || (replyStatus == LOCATION_FORWARD.value)) {
+		if ((replyStatus == SYSTEM_EXCEPTION.value)
+				|| (replyStatus == LOCATION_FORWARD.value)) {
 			// Note: Transport retry cannot happen here since this happens
 			// before the request hits the wire.
 
 			Exception exception = invokeClientPIEndingPoint(
-					convertPIReplyStatusToReplyMessage(replyStatus), info.getException());
+					convertPIReplyStatusToReplyMessage(replyStatus), info
+							.getException());
 			if (exception == null) {
 				// Do not throw anything. Otherwise, it must be a
 				// SystemException, UserException or RemarshalException.
@@ -376,20 +364,22 @@ public class PIHandlerImpl implements PIHandler {
 
 	// Needed when an error forces a retry AFTER initiateClientPIRequest
 	// but BEFORE invokeClientPIStartingPoint.
-	public Exception makeCompletedClientRequest(int replyStatus, Exception exception) {
+	public Exception makeCompletedClientRequest(int replyStatus,
+			Exception exception) {
 
 		// 6763340
 		return handleClientPIEndingPoint(replyStatus, exception, false);
 	}
 
-	public Exception invokeClientPIEndingPoint(int replyStatus, Exception exception) {
+	public Exception invokeClientPIEndingPoint(int replyStatus,
+			Exception exception) {
 
 		// 6763340
 		return handleClientPIEndingPoint(replyStatus, exception, true);
 	}
 
-	public Exception handleClientPIEndingPoint(int replyStatus, Exception exception,
-			boolean invokeEndingPoint) {
+	public Exception handleClientPIEndingPoint(int replyStatus,
+			Exception exception, boolean invokeEndingPoint) {
 		if (!hasClientInterceptors)
 			return exception;
 		if (!isClientPIEnabledForThisThread())
@@ -413,7 +403,8 @@ public class PIHandlerImpl implements PIHandler {
 		}
 
 		// Check reply status:
-		if ((piReplyStatus == LOCATION_FORWARD.value) || (piReplyStatus == TRANSPORT_RETRY.value)) {
+		if ((piReplyStatus == LOCATION_FORWARD.value)
+				|| (piReplyStatus == TRANSPORT_RETRY.value)) {
 			// If this is a forward or a retry, reset and reuse
 			// info object:
 			info.reset();
@@ -443,7 +434,8 @@ public class PIHandlerImpl implements PIHandler {
 
 		// Get the most recent info object from the thread local
 		// ClientRequestInfoImpl stack:
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack
+				.get();
 		ClientRequestInfoImpl info = null;
 
 		if (!infoStack.empty()) {
@@ -507,8 +499,9 @@ public class PIHandlerImpl implements PIHandler {
 			// This is a rare corner case, so we will ignore this for now.
 			short replyStatus = info.getReplyStatus();
 			if (replyStatus == info.UNINITIALIZED) {
-				invokeClientPIEndingPoint(ReplyMessage.SYSTEM_EXCEPTION,
-						wrapper.unknownRequestInvoke(CompletionStatus.COMPLETED_MAYBE));
+				invokeClientPIEndingPoint(ReplyMessage.SYSTEM_EXCEPTION, wrapper
+						.unknownRequestInvoke(
+								CompletionStatus.COMPLETED_MAYBE));
 			}
 		}
 
@@ -519,7 +512,8 @@ public class PIHandlerImpl implements PIHandler {
 		if (info.getEntryCount() == 0 && !info.getRetryRequest().isRetry()) {
 			// RequestInfoStack<ClientRequestInfoImpl> infoStack =
 			// threadLocalClientRequestInfoStack.get();
-			RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack.get();
+			RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack
+					.get();
 			infoStack.pop();
 			printPop();
 		}
@@ -544,8 +538,7 @@ public class PIHandlerImpl implements PIHandler {
 	}
 
 	/*
-	 *****************
-	 * Server PI hooks
+	 ***************** Server PI hooks
 	 *****************/
 
 	public void invokeServerPIStartingPoint() {
@@ -615,8 +608,8 @@ public class PIHandlerImpl implements PIHandler {
 			// this point, so treat it as an UNKNOWN for now.
 			// Note that if this is a DSI call, we do have the user exception.
 			if (!info.isDynamic() && (piReplyStatus == USER_EXCEPTION.value)) {
-				info.setException(
-						omgWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE));
+				info.setException(omgWrapper.unknownUserException(
+						CompletionStatus.COMPLETED_MAYBE));
 			}
 
 			// Invoke the ending interception points:
@@ -628,7 +621,8 @@ public class PIHandlerImpl implements PIHandler {
 			// Check reply status. If an interceptor threw a SystemException
 			// and it is different than the one that we came in with,
 			// rethrow it so the proper response can be constructed:
-			if ((newPIReplyStatus == SYSTEM_EXCEPTION.value) && (newException != prevException)) {
+			if ((newPIReplyStatus == SYSTEM_EXCEPTION.value)
+					&& (newException != prevException)) {
 				throw (SystemException) newException;
 			}
 
@@ -678,12 +672,13 @@ public class PIHandlerImpl implements PIHandler {
 		info.setDSIResult(result);
 	}
 
-	public void initializeServerPIInfo(CorbaMessageMediator request, ObjectAdapter oa,
-			byte[] objectId, ObjectKeyTemplate oktemp) {
+	public void initializeServerPIInfo(CorbaMessageMediator request,
+			ObjectAdapter oa, byte[] objectId, ObjectKeyTemplate oktemp) {
 		if (!hasServerInterceptors)
 			return;
 
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalServerRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalServerRequestInfoStack
+				.get();
 		ServerRequestInfoImpl info = new ServerRequestInfoImpl(orb);
 		infoStack.push(info);
 		printPush();
@@ -695,7 +690,8 @@ public class PIHandlerImpl implements PIHandler {
 		info.setInfo(request, oa, objectId, oktemp);
 	}
 
-	public void setServerPIInfo(java.lang.Object servant, String targetMostDerivedInterface) {
+	public void setServerPIInfo(java.lang.Object servant,
+			String targetMostDerivedInterface) {
 		if (!hasServerInterceptors)
 			return;
 
@@ -707,14 +703,14 @@ public class PIHandlerImpl implements PIHandler {
 		if (!hasServerInterceptors)
 			return;
 
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalServerRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalServerRequestInfoStack
+				.get();
 		infoStack.pop();
 		printPop();
 	}
 
 	/*
-	 **********************************************************************
-	 * The following methods are private utility methods.
+	 ********************************************************************** The following methods are private utility methods.
 	 ************************************************************************/
 
 	/**
@@ -761,7 +757,8 @@ public class PIHandlerImpl implements PIHandler {
 	 * empty.
 	 */
 	private ClientRequestInfoImpl peekClientRequestInfoImplStack() {
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack
+				.get();
 		ClientRequestInfoImpl info = null;
 		if (!infoStack.empty()) {
 			info = (ClientRequestInfoImpl) infoStack.peek();
@@ -777,7 +774,8 @@ public class PIHandlerImpl implements PIHandler {
 	 * the ThreadLocal stack. Returns null if there are none.
 	 */
 	private ServerRequestInfoImpl peekServerRequestInfoImplStack() {
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalServerRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalServerRequestInfoStack
+				.get();
 		ServerRequestInfoImpl info = null;
 
 		if (!infoStack.empty()) {
@@ -794,7 +792,8 @@ public class PIHandlerImpl implements PIHandler {
 	 * on this thread.
 	 */
 	private boolean isClientPIEnabledForThisThread() {
-		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack.get();
+		RequestInfoStack infoStack = (RequestInfoStack) threadLocalClientRequestInfoStack
+				.get();
 		return (infoStack.disableCount == 0);
 	}
 
@@ -873,10 +872,12 @@ public class PIHandlerImpl implements PIHandler {
 	 * </ul>
 	 *
 	 * @exception DuplicateName
-	 *                Thrown if an interceptor of the given name already exists
-	 *                for the given type.
+	 *                          Thrown if an interceptor of the given name
+	 *                          already exists
+	 *                          for the given type.
 	 */
-	public void register_interceptor(Interceptor interceptor, int type) throws DuplicateName {
+	public void register_interceptor(Interceptor interceptor, int type)
+			throws DuplicateName {
 		// We will assume interceptor is not null, since it is called
 		// internally.
 		if ((type >= InterceptorList.NUM_INTERCEPTOR_TYPES) || (type < 0)) {
@@ -920,12 +921,15 @@ public class PIHandlerImpl implements PIHandler {
 		}
 		if (policyFactoryTable == null) {
 			throw new org.omg.CORBA.PolicyError(
-					"There is no PolicyFactory Registered for type " + type, BAD_POLICY.value);
+					"There is no PolicyFactory Registered for type " + type,
+					BAD_POLICY.value);
 		}
-		PolicyFactory factory = (PolicyFactory) policyFactoryTable.get(new Integer(type));
+		PolicyFactory factory = (PolicyFactory) policyFactoryTable.get(
+				new Integer(type));
 		if (factory == null) {
 			throw new org.omg.CORBA.PolicyError(
-					" Could Not Find PolicyFactory for the Type " + type, BAD_POLICY.value);
+					" Could Not Find PolicyFactory for the Type " + type,
+					BAD_POLICY.value);
 		}
 		org.omg.CORBA.Policy policy = factory.create_policy(type, val);
 		return policy;

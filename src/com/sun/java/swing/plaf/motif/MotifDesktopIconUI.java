@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -60,14 +40,14 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 	final static int LABEL_HEIGHT = 18;
 	final static int LABEL_DIVIDER = 4; // padding between icon and label
 
-	final static Font defaultTitleFont = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
+	final static Font defaultTitleFont = new Font(Font.SANS_SERIF, Font.PLAIN,
+			12);
 
 	public static ComponentUI createUI(JComponent c) {
 		return new MotifDesktopIconUI();
 	}
 
-	public MotifDesktopIconUI() {
-	}
+	public MotifDesktopIconUI() {}
 
 	protected void installDefaults() {
 		super.installDefaults();
@@ -77,7 +57,8 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 		sysMenuTitlePane = new MotifInternalFrameTitlePane(frame);
 		systemMenu = sysMenuTitlePane.getSystemMenu();
 
-		MotifBorders.FrameBorder border = new MotifBorders.FrameBorder(desktopIcon);
+		MotifBorders.FrameBorder border = new MotifBorders.FrameBorder(
+				desktopIcon);
 		desktopIcon.setLayout(new BorderLayout());
 		iconButton.setBorder(border);
 		desktopIcon.add(iconButton, BorderLayout.CENTER);
@@ -89,11 +70,9 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 		JLayeredPane.putLayer(desktopIcon, JLayeredPane.getLayer(frame));
 	}
 
-	protected void installComponents() {
-	}
+	protected void installComponents() {}
 
-	protected void uninstallComponents() {
-	}
+	protected void uninstallComponents() {}
 
 	protected void installListeners() {
 		super.installListeners();
@@ -166,8 +145,10 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 
 		Border border = iframe.getBorder();
 		if (border != null) {
-			w += border.getBorderInsets(iframe).left + border.getBorderInsets(iframe).right;
-			h += border.getBorderInsets(iframe).bottom + border.getBorderInsets(iframe).top;
+			w += border.getBorderInsets(iframe).left + border.getBorderInsets(
+					iframe).right;
+			h += border.getBorderInsets(iframe).bottom + border.getBorderInsets(
+					iframe).top;
 		}
 
 		return new Dimension(w, h);
@@ -237,9 +218,11 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 		}
 
 		void forwardEventToParent(MouseEvent e) {
-			getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e.getWhen(),
-					e.getModifiers(), e.getX(), e.getY(), e.getXOnScreen(), e.getYOnScreen(),
-					e.getClickCount(), e.isPopupTrigger(), MouseEvent.NOBUTTON));
+			getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e
+					.getWhen(), e.getModifiers(), e.getX(), e.getY(), e
+							.getXOnScreen(), e.getYOnScreen(), e
+									.getClickCount(), e.isPopupTrigger(),
+					MouseEvent.NOBUTTON));
 		}
 
 		public boolean isFocusTraversable() {
@@ -247,7 +230,8 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 		}
 
 		public Dimension getMinimumSize() {
-			return new Dimension(defaultIcon.getIconWidth() + 1, LABEL_HEIGHT + LABEL_DIVIDER);
+			return new Dimension(defaultIcon.getIconWidth() + 1, LABEL_HEIGHT
+					+ LABEL_DIVIDER);
 		}
 
 		public Dimension getPreferredSize() {
@@ -265,7 +249,8 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 
 			// touch-up frame
 			int maxX = getWidth() - 1;
-			Color shadow = UIManager.getColor("inactiveCaptionBorder").darker().darker();
+			Color shadow = UIManager.getColor("inactiveCaptionBorder").darker()
+					.darker();
 			g.setColor(shadow);
 			g.setClip(0, 0, getWidth(), getHeight());
 			g.drawLine(maxX - 1, 1, maxX - 1, 1);
@@ -277,7 +262,8 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 
 			// draw text -- clipping to truncate text like CDE/Motif
 			g.setClip(2, 1, maxX - 4, LABEL_HEIGHT);
-			int y = LABEL_HEIGHT - SwingUtilities2.getFontMetrics(frame, g).getDescent();
+			int y = LABEL_HEIGHT - SwingUtilities2.getFontMetrics(frame, g)
+					.getDescent();
 			g.setColor(UIManager.getColor("inactiveCaptionText"));
 			String title = frame.getTitle();
 			if (title != null) {
@@ -328,9 +314,11 @@ public class MotifDesktopIconUI extends BasicDesktopIconUI {
 		}
 
 		void forwardEventToParent(MouseEvent e) {
-			getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e.getWhen(),
-					e.getModifiers(), e.getX(), e.getY(), e.getXOnScreen(), e.getYOnScreen(),
-					e.getClickCount(), e.isPopupTrigger(), MouseEvent.NOBUTTON));
+			getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e
+					.getWhen(), e.getModifiers(), e.getX(), e.getY(), e
+							.getXOnScreen(), e.getYOnScreen(), e
+									.getClickCount(), e.isPopupTrigger(),
+					MouseEvent.NOBUTTON));
 		}
 
 		public boolean isFocusTraversable() {

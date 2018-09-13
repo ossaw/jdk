@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.im.spi;
@@ -52,8 +32,9 @@ public interface InputMethodContext extends InputMethodRequests {
 	 * to the client component. For arguments, see
 	 * {@link java.awt.event.InputMethodEvent#InputMethodEvent}.
 	 */
-	public void dispatchInputMethodEvent(int id, AttributedCharacterIterator text,
-			int committedCharacterCount, TextHitInfo caret, TextHitInfo visiblePosition);
+	public void dispatchInputMethodEvent(int id,
+			AttributedCharacterIterator text, int committedCharacterCount,
+			TextHitInfo caret, TextHitInfo visiblePosition);
 
 	/**
 	 * Creates a top-level window for use by the input method. The intended
@@ -82,18 +63,22 @@ public interface InputMethodContext extends InputMethodRequests {
 	 * <p>
 	 * 
 	 * @param title
-	 *            the title to be displayed in the window's title bar, if there
-	 *            is such a title bar. A <code>null</code> value is treated as
-	 *            an empty string, "".
+	 *                             the title to be displayed in the window's
+	 *                             title bar, if there
+	 *                             is such a title bar. A <code>null</code>
+	 *                             value is treated as
+	 *                             an empty string, "".
 	 * @param attachToInputContext
-	 *            whether this window should share the input context that
-	 *            corresponds to this input method context
+	 *                             whether this window should share the input
+	 *                             context that
+	 *                             corresponds to this input method context
 	 * @return a window with special characteristics for use by input methods
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless
-	 *              </code> returns <code>true</code>
+	 *                              if <code>GraphicsEnvironment.isHeadless
+	 *              </code>      returns <code>true</code>
 	 */
-	public Window createInputMethodWindow(String title, boolean attachToInputContext);
+	public Window createInputMethodWindow(String title,
+			boolean attachToInputContext);
 
 	/**
 	 * Creates a top-level Swing JFrame for use by the input method. The
@@ -122,20 +107,24 @@ public interface InputMethodContext extends InputMethodRequests {
 	 * <p>
 	 * 
 	 * @param title
-	 *            the title to be displayed in the window's title bar, if there
-	 *            is such a title bar. A <code>null</code> value is treated as
-	 *            an empty string, "".
+	 *                             the title to be displayed in the window's
+	 *                             title bar, if there
+	 *                             is such a title bar. A <code>null</code>
+	 *                             value is treated as
+	 *                             an empty string, "".
 	 * @param attachToInputContext
-	 *            whether this window should share the input context that
-	 *            corresponds to this input method context
+	 *                             whether this window should share the input
+	 *                             context that
+	 *                             corresponds to this input method context
 	 * @return a JFrame with special characteristics for use by input methods
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless
-	 *              </code> returns <code>true</code>
+	 *                              if <code>GraphicsEnvironment.isHeadless
+	 *              </code>      returns <code>true</code>
 	 *
 	 * @since 1.4
 	 */
-	public JFrame createInputMethodJFrame(String title, boolean attachToInputContext);
+	public JFrame createInputMethodJFrame(String title,
+			boolean attachToInputContext);
 
 	/**
 	 * Enables or disables notification of the current client window's location
@@ -147,10 +136,12 @@ public interface InputMethodContext extends InputMethodRequests {
 	 * method is disposed.
 	 *
 	 * @param inputMethod
-	 *            the input method for which notifications are enabled or
-	 *            disabled
+	 *                    the input method for which notifications are enabled
+	 *                    or
+	 *                    disabled
 	 * @param enable
-	 *            true to enable, false to disable
+	 *                    true to enable, false to disable
 	 */
-	public void enableClientWindowNotification(InputMethod inputMethod, boolean enable);
+	public void enableClientWindowNotification(InputMethod inputMethod,
+			boolean enable);
 }

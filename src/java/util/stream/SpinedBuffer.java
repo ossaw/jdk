@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -52,10 +32,11 @@ import java.util.function.LongConsumer;
  * the results will be traversed a small number of times.
  *
  * @param <E>
- *            the type of elements in this list
+ *        the type of elements in this list
  * @since 1.8
  */
-class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Iterable<E> {
+class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>,
+		Iterable<E> {
 
 	/*
 	 * We optimistically hope that all the data will fit into the first chunk,
@@ -65,7 +46,6 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 	 * within the spine, otherwise it is zero. The spine and priorElementCount
 	 * arrays are always the same size, and for any i <= spineIndex,
 	 * priorElementCount[i] is the sum of the sizes of all the prior chunks.
-	 *
 	 * The curChunk pointer is always valid. The elementIndex is the index of
 	 * the next element to be written in curChunk; this may be past the end of
 	 * curChunk so we have to check before writing. When we inflate the spine
@@ -89,9 +69,10 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 	 * Constructs an empty list with the specified initial capacity.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the list
+	 *                        the initial capacity of the list
 	 * @throws IllegalArgumentException
-	 *             if the specified initial capacity is negative
+	 *                                  if the specified initial capacity is
+	 *                                  negative
 	 */
 	@SuppressWarnings("unchecked")
 	SpinedBuffer(int initialCapacity) {
@@ -137,11 +118,13 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 				if (i >= spine.length) {
 					int newSpineSize = spine.length * 2;
 					spine = Arrays.copyOf(spine, newSpineSize);
-					priorElementCount = Arrays.copyOf(priorElementCount, newSpineSize);
+					priorElementCount = Arrays.copyOf(priorElementCount,
+							newSpineSize);
 				}
 				int nextChunkSize = chunkSize(i);
 				spine[i] = (E[]) new Object[nextChunkSize];
-				priorElementCount[i] = priorElementCount[i - 1] + spine[i - 1].length;
+				priorElementCount[i] = priorElementCount[i - 1] + spine[i
+						- 1].length;
 				capacity += nextChunkSize;
 			}
 		}
@@ -269,8 +252,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		return "SpinedBuffer:" + list.toString();
 	}
 
-	private static final int SPLITERATOR_CHARACTERISTICS = Spliterator.SIZED | Spliterator.ORDERED
-			| Spliterator.SUBSIZED;
+	private static final int SPLITERATOR_CHARACTERISTICS = Spliterator.SIZED
+			| Spliterator.ORDERED | Spliterator.SUBSIZED;
 
 	/**
 	 * Return a {@link Spliterator} describing the contents of the buffer.
@@ -298,29 +281,33 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 			// The current spine array
 			E[] splChunk;
 
-			Splitr(int firstSpineIndex, int lastSpineIndex, int firstSpineElementIndex,
-					int lastSpineElementFence) {
+			Splitr(int firstSpineIndex, int lastSpineIndex,
+					int firstSpineElementIndex, int lastSpineElementFence) {
 				this.splSpineIndex = firstSpineIndex;
 				this.lastSpineIndex = lastSpineIndex;
 				this.splElementIndex = firstSpineElementIndex;
 				this.lastSpineElementFence = lastSpineElementFence;
-				assert spine != null || firstSpineIndex == 0 && lastSpineIndex == 0;
+				assert spine != null || firstSpineIndex == 0
+						&& lastSpineIndex == 0;
 				splChunk = (spine == null) ? curChunk : spine[firstSpineIndex];
 			}
 
 			@Override
 			public long estimateSize() {
 				return (splSpineIndex == lastSpineIndex)
-						? (long) lastSpineElementFence - splElementIndex : // #
-																			// of
-																			// elements
-																			// prior
-																			// to
-																			// end
-																			// -
-						priorElementCount[lastSpineIndex] + lastSpineElementFence -
-						// # of elements prior to current
-								priorElementCount[splSpineIndex] - splElementIndex;
+						? (long) lastSpineElementFence - splElementIndex
+						: // #
+																													// of
+																													// elements
+																													// prior
+																													// to
+																													// end
+																													// -
+						priorElementCount[lastSpineIndex]
+								+ lastSpineElementFence -
+								// # of elements prior to current
+								priorElementCount[splSpineIndex]
+								- splElementIndex;
 			}
 
 			@Override
@@ -332,8 +319,9 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 			public boolean tryAdvance(Consumer<? super E> consumer) {
 				Objects.requireNonNull(consumer);
 
-				if (splSpineIndex < lastSpineIndex || (splSpineIndex == lastSpineIndex
-						&& splElementIndex < lastSpineElementFence)) {
+				if (splSpineIndex < lastSpineIndex
+						|| (splSpineIndex == lastSpineIndex
+								&& splElementIndex < lastSpineElementFence)) {
 					consumer.accept(splChunk[splElementIndex++]);
 
 					if (splElementIndex == splChunk.length) {
@@ -351,8 +339,9 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 			public void forEachRemaining(Consumer<? super E> consumer) {
 				Objects.requireNonNull(consumer);
 
-				if (splSpineIndex < lastSpineIndex || (splSpineIndex == lastSpineIndex
-						&& splElementIndex < lastSpineElementFence)) {
+				if (splSpineIndex < lastSpineIndex
+						|| (splSpineIndex == lastSpineIndex
+								&& splElementIndex < lastSpineElementFence)) {
 					int i = splElementIndex;
 					// completed chunks, if any
 					for (int sp = splSpineIndex; sp < lastSpineIndex; sp++) {
@@ -380,8 +369,9 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 				if (splSpineIndex < lastSpineIndex) {
 					// split just before last chunk (if it is full this means
 					// 50:50 split)
-					Spliterator<E> ret = new Splitr(splSpineIndex, lastSpineIndex - 1,
-							splElementIndex, spine[lastSpineIndex - 1].length);
+					Spliterator<E> ret = new Splitr(splSpineIndex,
+							lastSpineIndex - 1, splElementIndex,
+							spine[lastSpineIndex - 1].length);
 					// position to start of last chunk
 					splSpineIndex = lastSpineIndex;
 					splElementIndex = 0;
@@ -392,8 +382,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 					if (t == 0)
 						return null;
 					else {
-						Spliterator<E> ret = Arrays.spliterator(splChunk, splElementIndex,
-								splElementIndex + t);
+						Spliterator<E> ret = Arrays.spliterator(splChunk,
+								splElementIndex, splElementIndex + t);
 						splElementIndex += t;
 						return ret;
 					}
@@ -419,14 +409,14 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 	 * case where the results will be traversed a small number of times.
 	 *
 	 * @param <E>
-	 *            the wrapper type for this primitive type
+	 *        the wrapper type for this primitive type
 	 * @param <T_ARR>
-	 *            the array type for this primitive type
+	 *        the array type for this primitive type
 	 * @param <T_CONS>
-	 *            the Consumer type for this primitive type
+	 *        the Consumer type for this primitive type
 	 */
-	abstract static class OfPrimitive<E, T_ARR, T_CONS> extends AbstractSpinedBuffer
-			implements Iterable<E> {
+	abstract static class OfPrimitive<E, T_ARR, T_CONS> extends
+			AbstractSpinedBuffer implements Iterable<E> {
 
 		/*
 		 * We optimistically hope that all the data will fit into the first
@@ -437,7 +427,6 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		 * is zero. The spine and priorElementCount arrays are always the same
 		 * size, and for any i <= spineIndex, priorElementCount[i] is the sum of
 		 * the sizes of all the prior chunks.
-		 *
 		 * The curChunk pointer is always valid. The elementIndex is the index
 		 * of the next element to be written in curChunk; this may be past the
 		 * end of curChunk so we have to check before writing. When we inflate
@@ -456,9 +445,10 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		 * Constructs an empty list with the specified initial capacity.
 		 *
 		 * @param initialCapacity
-		 *            the initial capacity of the list
+		 *                        the initial capacity of the list
 		 * @throws IllegalArgumentException
-		 *             if the specified initial capacity is negative
+		 *                                  if the specified initial capacity is
+		 *                                  negative
 		 */
 		OfPrimitive(int initialCapacity) {
 			super(initialCapacity);
@@ -489,11 +479,13 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		protected abstract int arrayLength(T_ARR array);
 
 		/** Iterate an array with the provided consumer */
-		protected abstract void arrayForEach(T_ARR array, int from, int to, T_CONS consumer);
+		protected abstract void arrayForEach(T_ARR array, int from, int to,
+				T_CONS consumer);
 
 		protected long capacity() {
 			return (spineIndex == 0) ? arrayLength(curChunk)
-					: priorElementCount[spineIndex] + arrayLength(spine[spineIndex]);
+					: priorElementCount[spineIndex] + arrayLength(
+							spine[spineIndex]);
 		}
 
 		private void inflateSpine() {
@@ -512,11 +504,13 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 					if (i >= spine.length) {
 						int newSpineSize = spine.length * 2;
 						spine = Arrays.copyOf(spine, newSpineSize);
-						priorElementCount = Arrays.copyOf(priorElementCount, newSpineSize);
+						priorElementCount = Arrays.copyOf(priorElementCount,
+								newSpineSize);
 					}
 					int nextChunkSize = chunkSize(i);
 					spine[i] = newArray(nextChunkSize);
-					priorElementCount[i] = priorElementCount[i - 1] + arrayLength(spine[i - 1]);
+					priorElementCount[i] = priorElementCount[i - 1]
+							+ arrayLength(spine[i - 1]);
 					capacity += nextChunkSize;
 				}
 			}
@@ -555,7 +549,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 			else {
 				// full chunks
 				for (int i = 0; i < spineIndex; i++) {
-					System.arraycopy(spine[i], 0, array, offset, arrayLength(spine[i]));
+					System.arraycopy(spine[i], 0, array, offset, arrayLength(
+							spine[i]));
 					offset += arrayLength(spine[i]);
 				}
 				if (elementIndex > 0)
@@ -575,7 +570,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		protected void preAccept() {
 			if (elementIndex == arrayLength(curChunk)) {
 				inflateSpine();
-				if (spineIndex + 1 >= spine.length || spine[spineIndex + 1] == null)
+				if (spineIndex + 1 >= spine.length || spine[spineIndex
+						+ 1] == null)
 					increaseCapacity();
 				elementIndex = 0;
 				++spineIndex;
@@ -626,36 +622,42 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 			// The current spine array
 			T_ARR splChunk;
 
-			BaseSpliterator(int firstSpineIndex, int lastSpineIndex, int firstSpineElementIndex,
-					int lastSpineElementFence) {
+			BaseSpliterator(int firstSpineIndex, int lastSpineIndex,
+					int firstSpineElementIndex, int lastSpineElementFence) {
 				this.splSpineIndex = firstSpineIndex;
 				this.lastSpineIndex = lastSpineIndex;
 				this.splElementIndex = firstSpineElementIndex;
 				this.lastSpineElementFence = lastSpineElementFence;
-				assert spine != null || firstSpineIndex == 0 && lastSpineIndex == 0;
+				assert spine != null || firstSpineIndex == 0
+						&& lastSpineIndex == 0;
 				splChunk = (spine == null) ? curChunk : spine[firstSpineIndex];
 			}
 
-			abstract T_SPLITR newSpliterator(int firstSpineIndex, int lastSpineIndex,
-					int firstSpineElementIndex, int lastSpineElementFence);
+			abstract T_SPLITR newSpliterator(int firstSpineIndex,
+					int lastSpineIndex, int firstSpineElementIndex,
+					int lastSpineElementFence);
 
 			abstract void arrayForOne(T_ARR array, int index, T_CONS consumer);
 
-			abstract T_SPLITR arraySpliterator(T_ARR array, int offset, int len);
+			abstract T_SPLITR arraySpliterator(T_ARR array, int offset,
+					int len);
 
 			@Override
 			public long estimateSize() {
 				return (splSpineIndex == lastSpineIndex)
-						? (long) lastSpineElementFence - splElementIndex : // #
-																			// of
-																			// elements
-																			// prior
-																			// to
-																			// end
-																			// -
-						priorElementCount[lastSpineIndex] + lastSpineElementFence -
-						// # of elements prior to current
-								priorElementCount[splSpineIndex] - splElementIndex;
+						? (long) lastSpineElementFence - splElementIndex
+						: // #
+																													// of
+																													// elements
+																													// prior
+																													// to
+																													// end
+																													// -
+						priorElementCount[lastSpineIndex]
+								+ lastSpineElementFence -
+								// # of elements prior to current
+								priorElementCount[splSpineIndex]
+								- splElementIndex;
 			}
 
 			@Override
@@ -667,8 +669,9 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 			public boolean tryAdvance(T_CONS consumer) {
 				Objects.requireNonNull(consumer);
 
-				if (splSpineIndex < lastSpineIndex || (splSpineIndex == lastSpineIndex
-						&& splElementIndex < lastSpineElementFence)) {
+				if (splSpineIndex < lastSpineIndex
+						|| (splSpineIndex == lastSpineIndex
+								&& splElementIndex < lastSpineElementFence)) {
 					arrayForOne(splChunk, splElementIndex++, consumer);
 
 					if (splElementIndex == arrayLength(splChunk)) {
@@ -686,8 +689,9 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 			public void forEachRemaining(T_CONS consumer) {
 				Objects.requireNonNull(consumer);
 
-				if (splSpineIndex < lastSpineIndex || (splSpineIndex == lastSpineIndex
-						&& splElementIndex < lastSpineElementFence)) {
+				if (splSpineIndex < lastSpineIndex
+						|| (splSpineIndex == lastSpineIndex
+								&& splElementIndex < lastSpineElementFence)) {
 					int i = splElementIndex;
 					// completed chunks, if any
 					for (int sp = splSpineIndex; sp < lastSpineIndex; sp++) {
@@ -710,8 +714,9 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 				if (splSpineIndex < lastSpineIndex) {
 					// split just before last chunk (if it is full this means
 					// 50:50 split)
-					T_SPLITR ret = newSpliterator(splSpineIndex, lastSpineIndex - 1,
-							splElementIndex, arrayLength(spine[lastSpineIndex - 1]));
+					T_SPLITR ret = newSpliterator(splSpineIndex, lastSpineIndex
+							- 1, splElementIndex, arrayLength(
+									spine[lastSpineIndex - 1]));
 					// position us to start of last chunk
 					splSpineIndex = lastSpineIndex;
 					splElementIndex = 0;
@@ -722,7 +727,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 					if (t == 0)
 						return null;
 					else {
-						T_SPLITR ret = arraySpliterator(splChunk, splElementIndex, t);
+						T_SPLITR ret = arraySpliterator(splChunk,
+								splElementIndex, t);
 						splElementIndex += t;
 						return ret;
 					}
@@ -736,10 +742,10 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 	/**
 	 * An ordered collection of {@code int} values.
 	 */
-	static class OfInt extends SpinedBuffer.OfPrimitive<Integer, int[], IntConsumer>
-			implements IntConsumer {
-		OfInt() {
-		}
+	static class OfInt extends
+			SpinedBuffer.OfPrimitive<Integer, int[], IntConsumer> implements
+			IntConsumer {
+		OfInt() {}
 
 		OfInt(int initialCapacity) {
 			super(initialCapacity);
@@ -751,7 +757,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 				forEach((IntConsumer) consumer);
 			} else {
 				if (Tripwire.ENABLED)
-					Tripwire.trip(getClass(), "{0} calling SpinedBuffer.OfInt.forEach(Consumer)");
+					Tripwire.trip(getClass(),
+							"{0} calling SpinedBuffer.OfInt.forEach(Consumer)");
 				spliterator().forEachRemaining(consumer);
 			}
 		}
@@ -772,7 +779,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		}
 
 		@Override
-		protected void arrayForEach(int[] array, int from, int to, IntConsumer consumer) {
+		protected void arrayForEach(int[] array, int from, int to,
+				IntConsumer consumer) {
 			for (int i = from; i < to; i++)
 				consumer.accept(array[i]);
 		}
@@ -800,18 +808,19 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		}
 
 		public Spliterator.OfInt spliterator() {
-			class Splitr extends BaseSpliterator<Spliterator.OfInt> implements Spliterator.OfInt {
-				Splitr(int firstSpineIndex, int lastSpineIndex, int firstSpineElementIndex,
-						int lastSpineElementFence) {
-					super(firstSpineIndex, lastSpineIndex, firstSpineElementIndex,
-							lastSpineElementFence);
+			class Splitr extends BaseSpliterator<Spliterator.OfInt> implements
+					Spliterator.OfInt {
+				Splitr(int firstSpineIndex, int lastSpineIndex,
+						int firstSpineElementIndex, int lastSpineElementFence) {
+					super(firstSpineIndex, lastSpineIndex,
+							firstSpineElementIndex, lastSpineElementFence);
 				}
 
 				@Override
 				Splitr newSpliterator(int firstSpineIndex, int lastSpineIndex,
 						int firstSpineElementIndex, int lastSpineElementFence) {
-					return new Splitr(firstSpineIndex, lastSpineIndex, firstSpineElementIndex,
-							lastSpineElementFence);
+					return new Splitr(firstSpineIndex, lastSpineIndex,
+							firstSpineElementIndex, lastSpineElementFence);
 				}
 
 				@Override
@@ -820,7 +829,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 				}
 
 				@Override
-				Spliterator.OfInt arraySpliterator(int[] array, int offset, int len) {
+				Spliterator.OfInt arraySpliterator(int[] array, int offset,
+						int len) {
 					return Arrays.spliterator(array, offset, offset + len);
 				}
 			}
@@ -831,12 +841,14 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		public String toString() {
 			int[] array = asPrimitiveArray();
 			if (array.length < 200) {
-				return String.format("%s[length=%d, chunks=%d]%s", getClass().getSimpleName(),
-						array.length, spineIndex, Arrays.toString(array));
+				return String.format("%s[length=%d, chunks=%d]%s", getClass()
+						.getSimpleName(), array.length, spineIndex, Arrays
+								.toString(array));
 			} else {
 				int[] array2 = Arrays.copyOf(array, 200);
-				return String.format("%s[length=%d, chunks=%d]%s...", getClass().getSimpleName(),
-						array.length, spineIndex, Arrays.toString(array2));
+				return String.format("%s[length=%d, chunks=%d]%s...", getClass()
+						.getSimpleName(), array.length, spineIndex, Arrays
+								.toString(array2));
 			}
 		}
 	}
@@ -844,10 +856,10 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 	/**
 	 * An ordered collection of {@code long} values.
 	 */
-	static class OfLong extends SpinedBuffer.OfPrimitive<Long, long[], LongConsumer>
-			implements LongConsumer {
-		OfLong() {
-		}
+	static class OfLong extends
+			SpinedBuffer.OfPrimitive<Long, long[], LongConsumer> implements
+			LongConsumer {
+		OfLong() {}
 
 		OfLong(int initialCapacity) {
 			super(initialCapacity);
@@ -859,7 +871,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 				forEach((LongConsumer) consumer);
 			} else {
 				if (Tripwire.ENABLED)
-					Tripwire.trip(getClass(), "{0} calling SpinedBuffer.OfLong.forEach(Consumer)");
+					Tripwire.trip(getClass(),
+							"{0} calling SpinedBuffer.OfLong.forEach(Consumer)");
 				spliterator().forEachRemaining(consumer);
 			}
 		}
@@ -880,7 +893,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		}
 
 		@Override
-		protected void arrayForEach(long[] array, int from, int to, LongConsumer consumer) {
+		protected void arrayForEach(long[] array, int from, int to,
+				LongConsumer consumer) {
 			for (int i = from; i < to; i++)
 				consumer.accept(array[i]);
 		}
@@ -908,27 +922,30 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		}
 
 		public Spliterator.OfLong spliterator() {
-			class Splitr extends BaseSpliterator<Spliterator.OfLong> implements Spliterator.OfLong {
-				Splitr(int firstSpineIndex, int lastSpineIndex, int firstSpineElementIndex,
-						int lastSpineElementFence) {
-					super(firstSpineIndex, lastSpineIndex, firstSpineElementIndex,
-							lastSpineElementFence);
+			class Splitr extends BaseSpliterator<Spliterator.OfLong> implements
+					Spliterator.OfLong {
+				Splitr(int firstSpineIndex, int lastSpineIndex,
+						int firstSpineElementIndex, int lastSpineElementFence) {
+					super(firstSpineIndex, lastSpineIndex,
+							firstSpineElementIndex, lastSpineElementFence);
 				}
 
 				@Override
 				Splitr newSpliterator(int firstSpineIndex, int lastSpineIndex,
 						int firstSpineElementIndex, int lastSpineElementFence) {
-					return new Splitr(firstSpineIndex, lastSpineIndex, firstSpineElementIndex,
-							lastSpineElementFence);
+					return new Splitr(firstSpineIndex, lastSpineIndex,
+							firstSpineElementIndex, lastSpineElementFence);
 				}
 
 				@Override
-				void arrayForOne(long[] array, int index, LongConsumer consumer) {
+				void arrayForOne(long[] array, int index,
+						LongConsumer consumer) {
 					consumer.accept(array[index]);
 				}
 
 				@Override
-				Spliterator.OfLong arraySpliterator(long[] array, int offset, int len) {
+				Spliterator.OfLong arraySpliterator(long[] array, int offset,
+						int len) {
 					return Arrays.spliterator(array, offset, offset + len);
 				}
 			}
@@ -939,12 +956,14 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		public String toString() {
 			long[] array = asPrimitiveArray();
 			if (array.length < 200) {
-				return String.format("%s[length=%d, chunks=%d]%s", getClass().getSimpleName(),
-						array.length, spineIndex, Arrays.toString(array));
+				return String.format("%s[length=%d, chunks=%d]%s", getClass()
+						.getSimpleName(), array.length, spineIndex, Arrays
+								.toString(array));
 			} else {
 				long[] array2 = Arrays.copyOf(array, 200);
-				return String.format("%s[length=%d, chunks=%d]%s...", getClass().getSimpleName(),
-						array.length, spineIndex, Arrays.toString(array2));
+				return String.format("%s[length=%d, chunks=%d]%s...", getClass()
+						.getSimpleName(), array.length, spineIndex, Arrays
+								.toString(array2));
 			}
 		}
 	}
@@ -952,10 +971,10 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 	/**
 	 * An ordered collection of {@code double} values.
 	 */
-	static class OfDouble extends SpinedBuffer.OfPrimitive<Double, double[], DoubleConsumer>
+	static class OfDouble extends
+			SpinedBuffer.OfPrimitive<Double, double[], DoubleConsumer>
 			implements DoubleConsumer {
-		OfDouble() {
-		}
+		OfDouble() {}
 
 		OfDouble(int initialCapacity) {
 			super(initialCapacity);
@@ -989,7 +1008,8 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		}
 
 		@Override
-		protected void arrayForEach(double[] array, int from, int to, DoubleConsumer consumer) {
+		protected void arrayForEach(double[] array, int from, int to,
+				DoubleConsumer consumer) {
 			for (int i = from; i < to; i++)
 				consumer.accept(array[i]);
 		}
@@ -1019,26 +1039,28 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		public Spliterator.OfDouble spliterator() {
 			class Splitr extends BaseSpliterator<Spliterator.OfDouble>
 					implements Spliterator.OfDouble {
-				Splitr(int firstSpineIndex, int lastSpineIndex, int firstSpineElementIndex,
-						int lastSpineElementFence) {
-					super(firstSpineIndex, lastSpineIndex, firstSpineElementIndex,
-							lastSpineElementFence);
+				Splitr(int firstSpineIndex, int lastSpineIndex,
+						int firstSpineElementIndex, int lastSpineElementFence) {
+					super(firstSpineIndex, lastSpineIndex,
+							firstSpineElementIndex, lastSpineElementFence);
 				}
 
 				@Override
 				Splitr newSpliterator(int firstSpineIndex, int lastSpineIndex,
 						int firstSpineElementIndex, int lastSpineElementFence) {
-					return new Splitr(firstSpineIndex, lastSpineIndex, firstSpineElementIndex,
-							lastSpineElementFence);
+					return new Splitr(firstSpineIndex, lastSpineIndex,
+							firstSpineElementIndex, lastSpineElementFence);
 				}
 
 				@Override
-				void arrayForOne(double[] array, int index, DoubleConsumer consumer) {
+				void arrayForOne(double[] array, int index,
+						DoubleConsumer consumer) {
 					consumer.accept(array[index]);
 				}
 
 				@Override
-				Spliterator.OfDouble arraySpliterator(double[] array, int offset, int len) {
+				Spliterator.OfDouble arraySpliterator(double[] array,
+						int offset, int len) {
 					return Arrays.spliterator(array, offset, offset + len);
 				}
 			}
@@ -1049,12 +1071,14 @@ class SpinedBuffer<E> extends AbstractSpinedBuffer implements Consumer<E>, Itera
 		public String toString() {
 			double[] array = asPrimitiveArray();
 			if (array.length < 200) {
-				return String.format("%s[length=%d, chunks=%d]%s", getClass().getSimpleName(),
-						array.length, spineIndex, Arrays.toString(array));
+				return String.format("%s[length=%d, chunks=%d]%s", getClass()
+						.getSimpleName(), array.length, spineIndex, Arrays
+								.toString(array));
 			} else {
 				double[] array2 = Arrays.copyOf(array, 200);
-				return String.format("%s[length=%d, chunks=%d]%s...", getClass().getSimpleName(),
-						array.length, spineIndex, Arrays.toString(array2));
+				return String.format("%s[length=%d, chunks=%d]%s...", getClass()
+						.getSimpleName(), array.length, spineIndex, Arrays
+								.toString(array2));
 			}
 		}
 	}

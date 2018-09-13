@@ -1,47 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -102,8 +76,9 @@ import java.util.Objects;
  *
  * @since 1.8
  */
-public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate>
-		implements ChronoLocalDate, Serializable {
+public final class ThaiBuddhistDate extends
+		ChronoLocalDateImpl<ThaiBuddhistDate> implements ChronoLocalDate,
+		Serializable {
 
 	/**
 	 * Serialization version.
@@ -145,7 +120,7 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * testing because the clock is hard-coded.
 	 *
 	 * @param zone
-	 *            the zone ID to use, not null
+	 *             the zone ID to use, not null
 	 * @return the current date using the system clock, not null
 	 */
 	public static ThaiBuddhistDate now(ZoneId zone) {
@@ -161,10 +136,10 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * injection}.
 	 *
 	 * @param clock
-	 *            the clock to use, not null
+	 *              the clock to use, not null
 	 * @return the current date, not null
 	 * @throws DateTimeException
-	 *             if the current date cannot be obtained
+	 *                           if the current date cannot be obtained
 	 */
 	public static ThaiBuddhistDate now(Clock clock) {
 		return new ThaiBuddhistDate(LocalDate.now(clock));
@@ -180,19 +155,21 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * thrown.
 	 *
 	 * @param prolepticYear
-	 *            the Thai Buddhist proleptic-year
+	 *                      the Thai Buddhist proleptic-year
 	 * @param month
-	 *            the Thai Buddhist month-of-year, from 1 to 12
+	 *                      the Thai Buddhist month-of-year, from 1 to 12
 	 * @param dayOfMonth
-	 *            the Thai Buddhist day-of-month, from 1 to 31
+	 *                      the Thai Buddhist day-of-month, from 1 to 31
 	 * @return the date in Thai Buddhist calendar system, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range, or if the
-	 *             day-of-month is invalid for the month-year
+	 *                           if the value of any field is out of range, or
+	 *                           if the
+	 *                           day-of-month is invalid for the month-year
 	 */
-	public static ThaiBuddhistDate of(int prolepticYear, int month, int dayOfMonth) {
-		return new ThaiBuddhistDate(
-				LocalDate.of(prolepticYear - YEARS_DIFFERENCE, month, dayOfMonth));
+	public static ThaiBuddhistDate of(int prolepticYear, int month,
+			int dayOfMonth) {
+		return new ThaiBuddhistDate(LocalDate.of(prolepticYear
+				- YEARS_DIFFERENCE, month, dayOfMonth));
 	}
 
 	/**
@@ -211,10 +188,11 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * reference, {@code ThaiBuddhistDate::from}.
 	 *
 	 * @param temporal
-	 *            the temporal object to convert, not null
+	 *                 the temporal object to convert, not null
 	 * @return the date in Thai Buddhist calendar system, not null
 	 * @throws DateTimeException
-	 *             if unable to convert to a {@code ThaiBuddhistDate}
+	 *                           if unable to convert to a
+	 *                           {@code ThaiBuddhistDate}
 	 */
 	public static ThaiBuddhistDate from(TemporalAccessor temporal) {
 		return ThaiBuddhistChronology.INSTANCE.date(temporal);
@@ -225,7 +203,7 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * Creates an instance from an ISO date.
 	 *
 	 * @param isoDate
-	 *            the standard local date, validated not null
+	 *                the standard local date, validated not null
 	 */
 	ThaiBuddhistDate(LocalDate isoDate) {
 		Objects.requireNonNull(isoDate, "isoDate");
@@ -257,7 +235,8 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 */
 	@Override
 	public ThaiBuddhistEra getEra() {
-		return (getProlepticYear() >= 1 ? ThaiBuddhistEra.BE : ThaiBuddhistEra.BEFORE_BE);
+		return (getProlepticYear() >= 1 ? ThaiBuddhistEra.BE
+				: ThaiBuddhistEra.BEFORE_BE);
 	}
 
 	/**
@@ -280,21 +259,22 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 			if (isSupported(field)) {
 				ChronoField f = (ChronoField) field;
 				switch (f) {
-				case DAY_OF_MONTH:
-				case DAY_OF_YEAR:
-				case ALIGNED_WEEK_OF_MONTH:
-					return isoDate.range(field);
-				case YEAR_OF_ERA: {
-					ValueRange range = YEAR.range();
-					long max = (getProlepticYear() <= 0
-							? -(range.getMinimum() + YEARS_DIFFERENCE) + 1
-							: range.getMaximum() + YEARS_DIFFERENCE);
-					return ValueRange.of(1, max);
-				}
+					case DAY_OF_MONTH:
+					case DAY_OF_YEAR:
+					case ALIGNED_WEEK_OF_MONTH:
+						return isoDate.range(field);
+					case YEAR_OF_ERA: {
+						ValueRange range = YEAR.range();
+						long max = (getProlepticYear() <= 0 ? -(range
+								.getMinimum() + YEARS_DIFFERENCE) + 1
+								: range.getMaximum() + YEARS_DIFFERENCE);
+						return ValueRange.of(1, max);
+					}
 				}
 				return getChronology().range(f);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+			throw new UnsupportedTemporalTypeException("Unsupported field: "
+					+ field);
 		}
 		return field.rangeRefinedBy(this);
 	}
@@ -303,16 +283,17 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	public long getLong(TemporalField field) {
 		if (field instanceof ChronoField) {
 			switch ((ChronoField) field) {
-			case PROLEPTIC_MONTH:
-				return getProlepticMonth();
-			case YEAR_OF_ERA: {
-				int prolepticYear = getProlepticYear();
-				return (prolepticYear >= 1 ? prolepticYear : 1 - prolepticYear);
-			}
-			case YEAR:
-				return getProlepticYear();
-			case ERA:
-				return (getProlepticYear() >= 1 ? 1 : 0);
+				case PROLEPTIC_MONTH:
+					return getProlepticMonth();
+				case YEAR_OF_ERA: {
+					int prolepticYear = getProlepticYear();
+					return (prolepticYear >= 1 ? prolepticYear
+							: 1 - prolepticYear);
+				}
+				case YEAR:
+					return getProlepticYear();
+				case ERA:
+					return (getProlepticYear() >= 1 ? 1 : 0);
 			}
 			return isoDate.getLong(field);
 		}
@@ -336,23 +317,27 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 				return this;
 			}
 			switch (f) {
-			case PROLEPTIC_MONTH:
-				getChronology().range(f).checkValidValue(newValue, f);
-				return plusMonths(newValue - getProlepticMonth());
-			case YEAR_OF_ERA:
-			case YEAR:
-			case ERA: {
-				int nvalue = getChronology().range(f).checkValidIntValue(newValue, f);
-				switch (f) {
+				case PROLEPTIC_MONTH:
+					getChronology().range(f).checkValidValue(newValue, f);
+					return plusMonths(newValue - getProlepticMonth());
 				case YEAR_OF_ERA:
-					return with(isoDate.withYear(
-							(getProlepticYear() >= 1 ? nvalue : 1 - nvalue) - YEARS_DIFFERENCE));
 				case YEAR:
-					return with(isoDate.withYear(nvalue - YEARS_DIFFERENCE));
-				case ERA:
-					return with(isoDate.withYear((1 - getProlepticYear()) - YEARS_DIFFERENCE));
+				case ERA: {
+					int nvalue = getChronology().range(f).checkValidIntValue(
+							newValue, f);
+					switch (f) {
+						case YEAR_OF_ERA:
+							return with(isoDate.withYear(
+									(getProlepticYear() >= 1 ? nvalue
+											: 1 - nvalue) - YEARS_DIFFERENCE));
+						case YEAR:
+							return with(isoDate.withYear(nvalue
+									- YEARS_DIFFERENCE));
+						case ERA:
+							return with(isoDate.withYear((1
+									- getProlepticYear()) - YEARS_DIFFERENCE));
+					}
 				}
-			}
 			}
 			return with(isoDate.with(field, newValue));
 		}
@@ -363,9 +348,9 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * {@inheritDoc}
 	 * 
 	 * @throws DateTimeException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 * @throws ArithmeticException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 */
 	@Override
 	public ThaiBuddhistDate with(TemporalAdjuster adjuster) {
@@ -376,9 +361,9 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * {@inheritDoc}
 	 * 
 	 * @throws DateTimeException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 * @throws ArithmeticException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 */
 	@Override
 	public ThaiBuddhistDate plus(TemporalAmount amount) {
@@ -389,9 +374,9 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * {@inheritDoc}
 	 * 
 	 * @throws DateTimeException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 * @throws ArithmeticException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 */
 	@Override
 	public ThaiBuddhistDate minus(TemporalAmount amount) {
@@ -455,14 +440,16 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 
 	@Override // for javadoc and covariant return type
 	@SuppressWarnings("unchecked")
-	public final ChronoLocalDateTime<ThaiBuddhistDate> atTime(LocalTime localTime) {
+	public final ChronoLocalDateTime<ThaiBuddhistDate> atTime(
+			LocalTime localTime) {
 		return (ChronoLocalDateTime<ThaiBuddhistDate>) super.atTime(localTime);
 	}
 
 	@Override
 	public ChronoPeriod until(ChronoLocalDate endDate) {
 		Period period = isoDate.until(endDate);
-		return getChronology().period(period.getYears(), period.getMonths(), period.getDays());
+		return getChronology().period(period.getYears(), period.getMonths(),
+				period.getDays());
 	}
 
 	@Override // override for performance
@@ -513,12 +500,13 @@ public final class ThaiBuddhistDate extends ChronoLocalDateImpl<ThaiBuddhistDate
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	/**

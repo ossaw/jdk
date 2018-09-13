@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +16,8 @@
  * limitations under the License.
  */
 /*
- * $Id: AttributesImplSerializer.java,v 1.2.4.1 2005/09/15 08:15:14 suresh_emailid Exp $
+ * $Id: AttributesImplSerializer.java,v 1.2.4.1 2005/09/15 08:15:14
+ * suresh_emailid Exp $
  */
 
 package com.sun.org.apache.xml.internal.serializer;
@@ -65,7 +64,7 @@ public final class AttributesImplSerializer extends AttributesImpl {
 	 * This method gets the index of an attribute given its qName.
 	 * 
 	 * @param qname
-	 *            the qualified name of the attribute, e.g. "prefix1:locName1"
+	 *              the qualified name of the attribute, e.g. "prefix1:locName1"
 	 * @return the integer index of the attribute.
 	 * @see org.xml.sax.Attributes#getIndex(String)
 	 */
@@ -93,22 +92,22 @@ public final class AttributesImplSerializer extends AttributesImpl {
 	 * the hashtable for fast lookup by getIndex(qName).
 	 * 
 	 * @param uri
-	 *            the URI of the attribute
+	 *              the URI of the attribute
 	 * @param local
-	 *            the local name of the attribute
+	 *              the local name of the attribute
 	 * @param qname
-	 *            the qualified name of the attribute
+	 *              the qualified name of the attribute
 	 * @param type
-	 *            the type of the attribute
+	 *              the type of the attribute
 	 * @param val
-	 *            the value of the attribute
+	 *              the value of the attribute
 	 *
 	 * @see org.xml.sax.helpers.AttributesImpl#addAttribute(String, String,
 	 *      String, String, String)
 	 * @see #getIndex(String)
 	 */
-	public final void addAttribute(String uri, String local, String qname, String type,
-			String val) {
+	public final void addAttribute(String uri, String local, String qname,
+			String type, String val) {
 		int index = super.getLength();
 		super.addAttribute(uri, local, qname, type, val);
 		// (index + 1) is now the number of attributes
@@ -178,7 +177,7 @@ public final class AttributesImplSerializer extends AttributesImpl {
 	 * keeps the hashtable up to date for quick lookup via getIndex(qName).
 	 * 
 	 * @param atts
-	 *            the attributes to copy into these attributes.
+	 *             the attributes to copy into these attributes.
 	 * @see org.xml.sax.helpers.AttributesImpl#setAttributes(Attributes)
 	 * @see #getIndex(String)
 	 */
@@ -199,9 +198,9 @@ public final class AttributesImplSerializer extends AttributesImpl {
 	 * This method gets the index of an attribute given its uri and locanName.
 	 * 
 	 * @param uri
-	 *            the URI of the attribute name.
+	 *                  the URI of the attribute name.
 	 * @param localName
-	 *            the local namer (after the ':' ) of the attribute name.
+	 *                  the local namer (after the ':' ) of the attribute name.
 	 * @return the integer index of the attribute.
 	 * @see org.xml.sax.Attributes#getIndex(String)
 	 */

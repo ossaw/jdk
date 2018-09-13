@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.spi;
@@ -43,16 +23,15 @@ public abstract class ImageTranscoderSpi extends IIOServiceProvider {
 	 * subclass to initialize instance variables and/or override method
 	 * implementations in order to provide working versions of all methods.
 	 */
-	protected ImageTranscoderSpi() {
-	}
+	protected ImageTranscoderSpi() {}
 
 	/**
 	 * Constructs an <code>ImageTranscoderSpi</code> with a given set of values.
 	 *
 	 * @param vendorName
-	 *            the vendor name.
+	 *                   the vendor name.
 	 * @param version
-	 *            a version identifier.
+	 *                   a version identifier.
 	 */
 	public ImageTranscoderSpi(String vendorName, String version) {
 		super(vendorName, version);

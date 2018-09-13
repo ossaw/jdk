@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.resolver;
@@ -93,11 +73,12 @@ public class FileResolverImpl implements Resolver {
 				fileIS.close();
 				fileModified = lastMod;
 			} catch (java.io.FileNotFoundException e) {
-				System.err.println(CorbaResourceUtil.getText("bootstrap.filenotfound",
-						file.getAbsolutePath()));
+				System.err.println(CorbaResourceUtil.getText(
+						"bootstrap.filenotfound", file.getAbsolutePath()));
 			} catch (java.io.IOException e) {
-				System.err.println(CorbaResourceUtil.getText("bootstrap.exception",
-						file.getAbsolutePath(), e.toString()));
+				System.err.println(CorbaResourceUtil.getText(
+						"bootstrap.exception", file.getAbsolutePath(), e
+								.toString()));
 			}
 		}
 	}

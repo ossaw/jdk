@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,8 +52,7 @@ public class EntityResolverWrapper implements XMLEntityResolver {
 	//
 
 	/** Default constructor. */
-	public EntityResolverWrapper() {
-	}
+	public EntityResolverWrapper() {}
 
 	/** Wraps the specified SAX entity resolver. */
 	public EntityResolverWrapper(EntityResolver entityResolver) {
@@ -86,17 +82,20 @@ public class EntityResolverWrapper implements XMLEntityResolver {
 	 * this method should return null.
 	 *
 	 * @param resourceIdentifier
-	 *            contains the physical co-ordinates of the resource to be
-	 *            resolved
+	 *                           contains the physical co-ordinates of the
+	 *                           resource to be
+	 *                           resolved
 	 *
 	 * @throws XNIException
-	 *             Thrown on general error.
+	 *                      Thrown on general error.
 	 * @throws IOException
-	 *             Thrown if resolved entity stream cannot be opened or some
-	 *             other i/o error occurs.
+	 *                      Thrown if resolved entity stream cannot be opened or
+	 *                      some
+	 *                      other i/o error occurs.
 	 */
-	public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
-			throws XNIException, IOException {
+	public XMLInputSource resolveEntity(
+			XMLResourceIdentifier resourceIdentifier) throws XNIException,
+			IOException {
 
 		// When both pubId and sysId are null, the user's entity resolver
 		// can do nothing about it. We'd better not bother calling it.
@@ -111,7 +110,8 @@ public class EntityResolverWrapper implements XMLEntityResolver {
 		// resolve entity using SAX entity resolver
 		if (fEntityResolver != null && resourceIdentifier != null) {
 			try {
-				InputSource inputSource = fEntityResolver.resolveEntity(pubId, sysId);
+				InputSource inputSource = fEntityResolver.resolveEntity(pubId,
+						sysId);
 				if (inputSource != null) {
 					String publicId = inputSource.getPublicId();
 					String systemId = inputSource.getSystemId();
@@ -119,8 +119,8 @@ public class EntityResolverWrapper implements XMLEntityResolver {
 					InputStream byteStream = inputSource.getByteStream();
 					Reader charStream = inputSource.getCharacterStream();
 					String encoding = inputSource.getEncoding();
-					XMLInputSource xmlInputSource = new XMLInputSource(publicId, systemId,
-							baseSystemId);
+					XMLInputSource xmlInputSource = new XMLInputSource(publicId,
+							systemId, baseSystemId);
 					xmlInputSource.setByteStream(byteStream);
 					xmlInputSource.setCharacterStream(charStream);
 					xmlInputSource.setEncoding(encoding);

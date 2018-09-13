@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.kerberos;
@@ -49,7 +29,8 @@ import java.io.IOException;
  * target permission is specified as follows:
  *
  * <pre>
- * DelegationPermission("\"host/foo.example.com@EXAMPLE.COM\" \"krbtgt/EXAMPLE.COM@EXAMPLE.COM\"");
+ * DelegationPermission(
+ * 		"\"host/foo.example.com@EXAMPLE.COM\" \"krbtgt/EXAMPLE.COM@EXAMPLE.COM\"");
  * </pre>
  * <p>
  * To give the "backup" service a proxiable nfs service ticket the target
@@ -63,7 +44,8 @@ import java.io.IOException;
  * @since 1.4
  */
 
-public final class DelegationPermission extends BasicPermission implements java.io.Serializable {
+public final class DelegationPermission extends BasicPermission implements
+		java.io.Serializable {
 
 	private static final long serialVersionUID = 883133252142523922L;
 
@@ -76,12 +58,12 @@ public final class DelegationPermission extends BasicPermission implements java.
 	 * <p>
 	 *
 	 * @param principals
-	 *            the name of the subordinate and target principals
+	 *                   the name of the subordinate and target principals
 	 *
 	 * @throws NullPointerException
-	 *             if {@code principals} is {@code null}.
+	 *                                  if {@code principals} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code principals} is empty.
+	 *                                  if {@code principals} is empty.
 	 */
 	public DelegationPermission(String principals) {
 		super(principals);
@@ -94,15 +76,15 @@ public final class DelegationPermission extends BasicPermission implements java.
 	 * <p>
 	 *
 	 * @param principals
-	 *            the name of the subordinate and target principals
-	 *            <p>
+	 *                   the name of the subordinate and target principals
+	 *                   <p>
 	 * @param actions
-	 *            should be null.
+	 *                   should be null.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code principals} is {@code null}.
+	 *                                  if {@code principals} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code principals} is empty.
+	 *                                  if {@code principals} is empty.
 	 */
 	public DelegationPermission(String principals, String actions) {
 		super(principals, actions);
@@ -116,8 +98,8 @@ public final class DelegationPermission extends BasicPermission implements java.
 
 		StringTokenizer t = null;
 		if (!target.startsWith("\"")) {
-			throw new IllegalArgumentException(
-					"service principal [" + target + "] syntax invalid: " + "improperly quoted");
+			throw new IllegalArgumentException("service principal [" + target
+					+ "] syntax invalid: " + "improperly quoted");
 		} else {
 			t = new StringTokenizer(target, "\"", false);
 			subordinate = t.nextToken();
@@ -125,8 +107,9 @@ public final class DelegationPermission extends BasicPermission implements java.
 				t.nextToken(); // bypass whitespace
 				service = t.nextToken();
 			} else if (t.countTokens() > 0) {
-				throw new IllegalArgumentException("service principal [" + t.nextToken()
-						+ "] syntax invalid: " + "improperly quoted");
+				throw new IllegalArgumentException("service principal [" + t
+						.nextToken() + "] syntax invalid: "
+						+ "improperly quoted");
 			}
 		}
 	}
@@ -138,7 +121,7 @@ public final class DelegationPermission extends BasicPermission implements java.
 	 * If none of the above are true, {@code implies} returns false.
 	 * 
 	 * @param p
-	 *            the permission to check against.
+	 *          the permission to check against.
 	 *
 	 * @return true if the specified permission is implied by this object, false
 	 *         if not.
@@ -148,7 +131,8 @@ public final class DelegationPermission extends BasicPermission implements java.
 			return false;
 
 		DelegationPermission that = (DelegationPermission) p;
-		if (this.subordinate.equals(that.subordinate) && this.service.equals(that.service))
+		if (this.subordinate.equals(that.subordinate) && this.service.equals(
+				that.service))
 			return true;
 
 		return false;
@@ -206,7 +190,8 @@ public final class DelegationPermission extends BasicPermission implements java.
 	 * stream. The actions are serialized, and the superclass takes care of the
 	 * name.
 	 */
-	private synchronized void writeObject(java.io.ObjectOutputStream s) throws IOException {
+	private synchronized void writeObject(java.io.ObjectOutputStream s)
+			throws IOException {
 		s.defaultWriteObject();
 	}
 
@@ -229,7 +214,6 @@ public final class DelegationPermission extends BasicPermission implements java.
 	 * + this_.implies(that_)); System.out.println("-----\n");
 	 * System.out.println("this = "+this_); System.out.println("-----\n");
 	 * System.out.println("that = "+that_); System.out.println("-----\n");
-	 * 
 	 * KrbDelegationPermissionCollection nps = new
 	 * KrbDelegationPermissionCollection(); nps.add(this_); nps.add(new
 	 * DelegationPermission(
@@ -237,12 +221,9 @@ public final class DelegationPermission extends BasicPermission implements java.
 	 * )); try { nps.add(new DelegationPermission(
 	 * "host/foo.example.com@EXAMPLE.COM \"CN=Gary Ellison/OU=JSN/O=SUNW/L=Palo Alto/ST=CA/C=US\""
 	 * )); } catch (Exception e) { System.err.println(e); }
-	 * 
 	 * System.out.println("nps.implies(that) = " + nps.implies(that_));
 	 * System.out.println("-----\n");
-	 * 
 	 * Enumeration e = nps.elements();
-	 * 
 	 * while (e.hasMoreElements()) { DelegationPermission x =
 	 * (DelegationPermission) e.nextElement(); System.out.println("nps.e = " +
 	 * x); } }
@@ -264,7 +245,7 @@ final class KrbDelegationPermissionCollection extends PermissionCollection
 	 * expressed in "permission".
 	 *
 	 * @param permission
-	 *            the Permission object to compare
+	 *                   the Permission object to compare
 	 *
 	 * @return true if "permission" is a proper subset of a permission in the
 	 *         collection, false if not.
@@ -288,18 +269,21 @@ final class KrbDelegationPermissionCollection extends PermissionCollection
 	 * the name.
 	 *
 	 * @param permission
-	 *            the Permission object to add.
+	 *                   the Permission object to add.
 	 *
 	 * @exception IllegalArgumentException
-	 *                - if the permission is not a DelegationPermission
+	 *                                     - if the permission is not a
+	 *                                     DelegationPermission
 	 *
 	 * @exception SecurityException
-	 *                - if this PermissionCollection object has been marked
-	 *                readonly
+	 *                                     - if this PermissionCollection object
+	 *                                     has been marked
+	 *                                     readonly
 	 */
 	public void add(Permission permission) {
 		if (!(permission instanceof DelegationPermission))
-			throw new IllegalArgumentException("invalid permission: " + permission);
+			throw new IllegalArgumentException("invalid permission: "
+					+ permission);
 		if (isReadOnly())
 			throw new SecurityException(
 					"attempt to add a Permission to a readonly PermissionCollection");
@@ -329,7 +313,7 @@ final class KrbDelegationPermissionCollection extends PermissionCollection
 	// private Vector permissions;
 	/**
 	 * @serialField permissions
-	 *                  java.util.Vector A list of DelegationPermission objects.
+	 *              java.util.Vector A list of DelegationPermission objects.
 	 */
 	private static final ObjectStreamField[] serialPersistentFields = {
 			new ObjectStreamField("permissions", Vector.class), };
@@ -362,14 +346,16 @@ final class KrbDelegationPermissionCollection extends PermissionCollection
 	 * field.
 	 */
 	@SuppressWarnings("unchecked")
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// Don't call defaultReadObject()
 
 		// Read in serialized fields
 		ObjectInputStream.GetField gfields = in.readFields();
 
 		// Get the one we want
-		Vector<Permission> permissions = (Vector<Permission>) gfields.get("permissions", null);
+		Vector<Permission> permissions = (Vector<Permission>) gfields.get(
+				"permissions", null);
 		perms = new ArrayList<Permission>(permissions.size());
 		perms.addAll(permissions);
 	}

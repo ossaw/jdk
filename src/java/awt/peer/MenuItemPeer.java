@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -40,7 +20,7 @@ public interface MenuItemPeer extends MenuComponentPeer {
 	 * Sets the label to be displayed in this menu item.
 	 *
 	 * @param label
-	 *            the label to be displayed
+	 *              the label to be displayed
 	 */
 	void setLabel(String label);
 
@@ -48,8 +28,8 @@ public interface MenuItemPeer extends MenuComponentPeer {
 	 * Enables or disables the menu item.
 	 *
 	 * @param e
-	 *            {@code true} to enable the menu item, {@code false} to disable
-	 *            it
+	 *          {@code true} to enable the menu item, {@code false} to disable
+	 *          it
 	 */
 	void setEnabled(boolean e);
 

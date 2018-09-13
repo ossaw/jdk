@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -56,15 +36,15 @@ public class RequestProcessingPolicyImpl extends org.omg.CORBA.LocalObject
 	public String toString() {
 		String type = null;
 		switch (value.value()) {
-		case RequestProcessingPolicyValue._USE_ACTIVE_OBJECT_MAP_ONLY:
-			type = "USE_ACTIVE_OBJECT_MAP_ONLY";
-			break;
-		case RequestProcessingPolicyValue._USE_DEFAULT_SERVANT:
-			type = "USE_DEFAULT_SERVANT";
-			break;
-		case RequestProcessingPolicyValue._USE_SERVANT_MANAGER:
-			type = "USE_SERVANT_MANAGER";
-			break;
+			case RequestProcessingPolicyValue._USE_ACTIVE_OBJECT_MAP_ONLY:
+				type = "USE_ACTIVE_OBJECT_MAP_ONLY";
+				break;
+			case RequestProcessingPolicyValue._USE_DEFAULT_SERVANT:
+				type = "USE_DEFAULT_SERVANT";
+				break;
+			case RequestProcessingPolicyValue._USE_SERVANT_MANAGER:
+				type = "USE_SERVANT_MANAGER";
+				break;
 		}
 
 		return "RequestProcessingPolicy[" + type + "]";

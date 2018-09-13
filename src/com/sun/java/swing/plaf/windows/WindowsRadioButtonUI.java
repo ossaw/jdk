@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -74,11 +54,14 @@ public class WindowsRadioButtonUI extends BasicRadioButtonUI {
 	public void installDefaults(AbstractButton b) {
 		super.installDefaults(b);
 		if (!initialized) {
-			dashedRectGapX = ((Integer) UIManager.get("Button.dashedRectGapX")).intValue();
-			dashedRectGapY = ((Integer) UIManager.get("Button.dashedRectGapY")).intValue();
-			dashedRectGapWidth = ((Integer) UIManager.get("Button.dashedRectGapWidth")).intValue();
-			dashedRectGapHeight = ((Integer) UIManager.get("Button.dashedRectGapHeight"))
+			dashedRectGapX = ((Integer) UIManager.get("Button.dashedRectGapX"))
 					.intValue();
+			dashedRectGapY = ((Integer) UIManager.get("Button.dashedRectGapY"))
+					.intValue();
+			dashedRectGapWidth = ((Integer) UIManager.get(
+					"Button.dashedRectGapWidth")).intValue();
+			dashedRectGapHeight = ((Integer) UIManager.get(
+					"Button.dashedRectGapHeight")).intValue();
 			focusColor = UIManager.getColor(getPropertyPrefix() + "focus");
 			initialized = true;
 		}
@@ -103,14 +86,16 @@ public class WindowsRadioButtonUI extends BasicRadioButtonUI {
 	/**
 	 * Overridden method to render the text without the mnemonic
 	 */
-	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
-		WindowsGraphicsUtils.paintText(g, b, textRect, text, getTextShiftOffset());
+	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect,
+			String text) {
+		WindowsGraphicsUtils.paintText(g, b, textRect, text,
+				getTextShiftOffset());
 	}
 
 	protected void paintFocus(Graphics g, Rectangle textRect, Dimension d) {
 		g.setColor(getFocusColor());
-		BasicGraphicsUtils.drawDashedRect(g, textRect.x, textRect.y, textRect.width,
-				textRect.height);
+		BasicGraphicsUtils.drawDashedRect(g, textRect.x, textRect.y,
+				textRect.width, textRect.height);
 	}
 
 	// ********************************

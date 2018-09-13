@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -42,7 +22,8 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public class PDLOverrideSupported extends EnumSyntax implements PrintServiceAttribute {
+public class PDLOverrideSupported extends EnumSyntax implements
+		PrintServiceAttribute {
 
 	private static final long serialVersionUID = -4393264467928463934L;
 
@@ -50,29 +31,33 @@ public class PDLOverrideSupported extends EnumSyntax implements PrintServiceAttr
 	 * The printer makes no attempt to make the external job attribute values
 	 * take precedence over embedded instructions in the documents' print data.
 	 */
-	public static final PDLOverrideSupported NOT_ATTEMPTED = new PDLOverrideSupported(0);
+	public static final PDLOverrideSupported NOT_ATTEMPTED = new PDLOverrideSupported(
+			0);
 
 	/**
 	 * The printer attempts to make the external job attribute values take
 	 * precedence over embedded instructions in the documents' print data,
 	 * however there is no guarantee.
 	 */
-	public static final PDLOverrideSupported ATTEMPTED = new PDLOverrideSupported(1);
+	public static final PDLOverrideSupported ATTEMPTED = new PDLOverrideSupported(
+			1);
 
 	/**
 	 * Construct a new PDL override supported enumeration value with the given
 	 * integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected PDLOverrideSupported(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "not-attempted", "attempted" };
+	private static final String[] myStringTable = { "not-attempted",
+			"attempted" };
 
-	private static final PDLOverrideSupported[] myEnumValueTable = { NOT_ATTEMPTED, ATTEMPTED };
+	private static final PDLOverrideSupported[] myEnumValueTable = {
+			NOT_ATTEMPTED, ATTEMPTED };
 
 	/**
 	 * Returns the string table for class PDLOverrideSupported.

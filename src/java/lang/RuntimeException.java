@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -58,8 +38,8 @@ public class RuntimeException extends Exception {
 	 * to {@link #initCause}.
 	 *
 	 * @param message
-	 *            the detail message. The detail message is saved for later
-	 *            retrieval by the {@link #getMessage()} method.
+	 *                the detail message. The detail message is saved for later
+	 *                retrieval by the {@link #getMessage()} method.
 	 */
 	public RuntimeException(String message) {
 		super(message);
@@ -73,13 +53,14 @@ public class RuntimeException extends Exception {
 	 * automatically incorporated in this runtime exception's detail message.
 	 *
 	 * @param message
-	 *            the detail message (which is saved for later retrieval by the
-	 *            {@link #getMessage()} method).
+	 *                the detail message (which is saved for later retrieval by
+	 *                the
+	 *                {@link #getMessage()} method).
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method). (A <tt>null</tt> value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *                the cause (which is saved for later retrieval by the
+	 *                {@link #getCause()} method). (A <tt>null</tt> value is
+	 *                permitted, and indicates that the cause is nonexistent or
+	 *                unknown.)
 	 * @since 1.4
 	 */
 	public RuntimeException(String message, Throwable cause) {
@@ -94,10 +75,10 @@ public class RuntimeException extends Exception {
 	 * wrappers for other throwables.
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method). (A <tt>null</tt> value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link #getCause()} method). (A <tt>null</tt> value is
+	 *              permitted, and indicates that the cause is nonexistent or
+	 *              unknown.)
 	 * @since 1.4
 	 */
 	public RuntimeException(Throwable cause) {
@@ -110,19 +91,22 @@ public class RuntimeException extends Exception {
 	 * or disabled.
 	 *
 	 * @param message
-	 *            the detail message.
+	 *                           the detail message.
 	 * @param cause
-	 *            the cause. (A {@code null} value is permitted, and indicates
-	 *            that the cause is nonexistent or unknown.)
+	 *                           the cause. (A {@code null} value is permitted,
+	 *                           and indicates
+	 *                           that the cause is nonexistent or unknown.)
 	 * @param enableSuppression
-	 *            whether or not suppression is enabled or disabled
+	 *                           whether or not suppression is enabled or
+	 *                           disabled
 	 * @param writableStackTrace
-	 *            whether or not the stack trace should be writable
+	 *                           whether or not the stack trace should be
+	 *                           writable
 	 *
 	 * @since 1.7
 	 */
-	protected RuntimeException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
+	protected RuntimeException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 }

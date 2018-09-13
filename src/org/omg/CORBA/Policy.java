@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -38,6 +18,5 @@ package org.omg.CORBA;
  * July 17, 1999 12:26:20 AM PDT
  */
 
-public interface Policy
-		extends PolicyOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {
-} // interface Policy
+public interface Policy extends PolicyOperations, org.omg.CORBA.Object,
+		org.omg.CORBA.portable.IDLEntity {} // interface Policy

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -54,7 +34,7 @@ public class InterruptedNamingException extends NamingException {
 	 * null.
 	 * 
 	 * @param explanation
-	 *            A possibly null message explaining the problem.
+	 *                    A possibly null message explaining the problem.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public InterruptedNamingException(String explanation) {

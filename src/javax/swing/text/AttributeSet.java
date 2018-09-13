@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -52,30 +32,26 @@ public interface AttributeSet {
 	 * by additional user added entries that correspond to logical settings that
 	 * are specific to some type of content.
 	 */
-	public interface FontAttribute {
-	}
+	public interface FontAttribute {}
 
 	/**
 	 * This interface is the type signature that is expected to be present on
 	 * any attribute key that contributes to presentation of color.
 	 */
-	public interface ColorAttribute {
-	}
+	public interface ColorAttribute {}
 
 	/**
 	 * This interface is the type signature that is expected to be present on
 	 * any attribute key that contributes to character level presentation. This
 	 * would be any attribute that applies to a so-called <i>run</i> of style.
 	 */
-	public interface CharacterAttribute {
-	}
+	public interface CharacterAttribute {}
 
 	/**
 	 * This interface is the type signature that is expected to be present on
 	 * any attribute key that contributes to the paragraph level presentation.
 	 */
-	public interface ParagraphAttribute {
-	}
+	public interface ParagraphAttribute {}
 
 	/**
 	 * Returns the number of attributes that are defined locally in this set.
@@ -90,7 +66,7 @@ public interface AttributeSet {
 	 * without resolving through another attribute set.
 	 *
 	 * @param attrName
-	 *            the attribute name
+	 *                 the attribute name
 	 * @return true if the attribute has a value specified
 	 */
 	public boolean isDefined(Object attrName);
@@ -99,7 +75,7 @@ public interface AttributeSet {
 	 * Determines if the two attribute sets are equivalent.
 	 *
 	 * @param attr
-	 *            an attribute set
+	 *             an attribute set
 	 * @return true if the sets are equivalent
 	 */
 	public boolean isEqual(AttributeSet attr);
@@ -143,13 +119,14 @@ public interface AttributeSet {
 	 * searched through in the resolving parent hierarchy.
 	 *
 	 * @param name
-	 *            the non-null attribute name
+	 *              the non-null attribute name
 	 * @param value
-	 *            the value
+	 *              the value
 	 * @return {@code true} if the set defines the attribute with an equal
 	 *         value, either locally or through its resolving parent
 	 * @throws NullPointerException
-	 *             if either {@code name} or {@code value} is {@code null}
+	 *                              if either {@code name} or {@code value} is
+	 *                              {@code null}
 	 */
 	public boolean containsAttribute(Object name, Object value);
 
@@ -159,11 +136,11 @@ public interface AttributeSet {
 	 * searched through in the resolving parent hierarchy.
 	 *
 	 * @param attributes
-	 *            the set of attributes to check against
+	 *                   the set of attributes to check against
 	 * @return {@code true} if this set defines all the attributes with equal
 	 *         values, either locally or through its resolving parent
 	 * @throws NullPointerException
-	 *             if {@code attributes} is {@code null}
+	 *                              if {@code attributes} is {@code null}
 	 */
 	public boolean containsAttributes(AttributeSet attributes);
 

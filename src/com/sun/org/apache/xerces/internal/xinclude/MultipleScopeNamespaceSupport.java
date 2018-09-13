@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,7 +61,6 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.NamespaceContext#getAllPrefixes()
 	 */
@@ -77,7 +73,8 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
 		}
 		String prefix = null;
 		boolean unique = true;
-		for (int i = fContext[fScope[fCurrentScope]]; i <= (fNamespaceSize - 2); i += 2) {
+		for (int i = fContext[fScope[fCurrentScope]]; i <= (fNamespaceSize
+				- 2); i += 2) {
 			prefix = fNamespace[i];
 			for (int k = 0; k < count; k++) {
 				if (fPrefixes[k] == prefix) {
@@ -103,7 +100,6 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.NamespaceContext#getPrefix(java.
 	 * lang.String)
@@ -114,7 +110,6 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.NamespaceContext#getURI(java.lang.
 	 * String)
@@ -124,11 +119,13 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
 	}
 
 	public String getPrefix(String uri, int context) {
-		return getPrefix(uri, fContext[context + 1], fContext[fScope[getScopeForContext(context)]]);
+		return getPrefix(uri, fContext[context + 1],
+				fContext[fScope[getScopeForContext(context)]]);
 	}
 
 	public String getURI(String prefix, int context) {
-		return getURI(prefix, fContext[context + 1], fContext[fScope[getScopeForContext(context)]]);
+		return getURI(prefix, fContext[context + 1],
+				fContext[fScope[getScopeForContext(context)]]);
 	}
 
 	public String getPrefix(String uri, int start, int end) {

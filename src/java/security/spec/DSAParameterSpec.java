@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -38,8 +18,8 @@ import java.math.BigInteger;
  * @since 1.2
  */
 
-public class DSAParameterSpec
-		implements AlgorithmParameterSpec, java.security.interfaces.DSAParams {
+public class DSAParameterSpec implements AlgorithmParameterSpec,
+		java.security.interfaces.DSAParams {
 
 	BigInteger p;
 	BigInteger q;
@@ -49,13 +29,13 @@ public class DSAParameterSpec
 	 * Creates a new DSAParameterSpec with the specified parameter values.
 	 *
 	 * @param p
-	 *            the prime.
+	 *          the prime.
 	 *
 	 * @param q
-	 *            the sub-prime.
+	 *          the sub-prime.
 	 *
 	 * @param g
-	 *            the base.
+	 *          the base.
 	 */
 	public DSAParameterSpec(BigInteger p, BigInteger q, BigInteger g) {
 		this.p = p;

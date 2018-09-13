@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -52,8 +27,7 @@ public class ExecutionException extends Exception {
 	 * cause is not initialized, and may subsequently be initialized by a call
 	 * to {@link #initCause(Throwable) initCause}.
 	 */
-	protected ExecutionException() {
-	}
+	protected ExecutionException() {}
 
 	/**
 	 * Constructs an {@code ExecutionException} with the specified detail
@@ -61,7 +35,7 @@ public class ExecutionException extends Exception {
 	 * initialized by a call to {@link #initCause(Throwable) initCause}.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 */
 	protected ExecutionException(String message) {
 		super(message);
@@ -72,10 +46,10 @@ public class ExecutionException extends Exception {
 	 * message and cause.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method)
+	 *                the cause (which is saved for later retrieval by the
+	 *                {@link #getCause()} method)
 	 */
 	public ExecutionException(String message, Throwable cause) {
 		super(message, cause);
@@ -88,8 +62,8 @@ public class ExecutionException extends Exception {
 	 * of {@code cause}).
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link #getCause()} method)
 	 */
 	public ExecutionException(Throwable cause) {
 		super(cause);

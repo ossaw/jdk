@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi.spi;
@@ -41,8 +21,8 @@ public abstract class MidiDeviceProvider {
 	 * the specified device info object.
 	 *
 	 * @param info
-	 *            an info object that describes the device for which support is
-	 *            queried
+	 *             an info object that describes the device for which support is
+	 *             queried
 	 * @return {@code true} if the specified device is supported, otherwise
 	 *         {@code false}
 	 */
@@ -70,11 +50,13 @@ public abstract class MidiDeviceProvider {
 	 * Obtains an instance of the device represented by the info object.
 	 *
 	 * @param info
-	 *            an info object that describes the desired device
+	 *             an info object that describes the desired device
 	 * @return device instance
 	 * @throws IllegalArgumentException
-	 *             if the info object specified does not match the info object
-	 *             for a device supported by this {@code MidiDeviceProvider}
+	 *                                  if the info object specified does not
+	 *                                  match the info object
+	 *                                  for a device supported by this
+	 *                                  {@code MidiDeviceProvider}
 	 */
 	public abstract MidiDevice getDevice(MidiDevice.Info info);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.lang;
 
@@ -29,7 +9,6 @@ import java.util.*;
 /*
  * Class to track and run user level shutdown hooks registered through
  * <tt>{@link Runtime#addShutdownHook Runtime.addShutdownHook}</tt>.
- *
  * @see java.lang.Runtime#addShutdownHook
  * @see java.lang.Runtime#removeShutdownHook
  */
@@ -39,8 +18,15 @@ class ApplicationShutdownHooks {
 	private static IdentityHashMap<Thread, Thread> hooks;
 	static {
 		try {
-			Shutdown.add(1 /* shutdown hook invocation order */,
-					false /* not registered if shutdown in progress */, new Runnable() {
+			Shutdown.add(1 /* shutdown hook invocation order */, false /*
+																		 * not
+																		 * registered
+																		 * if
+																		 * shutdown
+																		 * in
+																		 * progress
+																		 */,
+					new Runnable() {
 						public void run() {
 							runHooks();
 						}
@@ -53,8 +39,7 @@ class ApplicationShutdownHooks {
 		}
 	}
 
-	private ApplicationShutdownHooks() {
-	}
+	private ApplicationShutdownHooks() {}
 
 	/*
 	 * Add a new shutdown hook. Checks the shutdown state and the hook itself,

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -50,7 +30,8 @@ import com.sun.corba.se.spi.orb.ORB;
  * 
  * @author
  */
-public class IORTemplateImpl extends IdentifiableContainerBase implements IORTemplate {
+public class IORTemplateImpl extends IdentifiableContainerBase implements
+		IORTemplate {
 	private ObjectKeyTemplate oktemp;
 
 	public boolean equals(Object obj) {
@@ -90,8 +71,10 @@ public class IORTemplateImpl extends IdentifiableContainerBase implements IORTem
 		Iterator thisIterator = iterator();
 		Iterator listIterator = list.iterator();
 		while (thisIterator.hasNext() && listIterator.hasNext()) {
-			TaggedProfileTemplate thisTemplate = (TaggedProfileTemplate) thisIterator.next();
-			TaggedProfileTemplate listTemplate = (TaggedProfileTemplate) listIterator.next();
+			TaggedProfileTemplate thisTemplate = (TaggedProfileTemplate) thisIterator
+					.next();
+			TaggedProfileTemplate listTemplate = (TaggedProfileTemplate) listIterator
+					.next();
 			if (!thisTemplate.isEquivalent(listTemplate))
 				return false;
 		}
@@ -117,7 +100,8 @@ public class IORTemplateImpl extends IdentifiableContainerBase implements IORTem
 
 	public IORTemplateImpl(InputStream is) {
 		ORB orb = (ORB) (is.orb());
-		IdentifiableFactoryFinder finder = orb.getTaggedProfileTemplateFactoryFinder();
+		IdentifiableFactoryFinder finder = orb
+				.getTaggedProfileTemplateFactoryFinder();
 
 		oktemp = orb.getObjectKeyFactory().createTemplate(is);
 		EncapsulationUtility.readIdentifiableSequence(this, finder, is);

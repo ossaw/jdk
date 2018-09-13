@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.security.spec;
 
@@ -45,14 +25,16 @@ public class ECPublicKeySpec implements KeySpec {
 	 * Creates a new ECPublicKeySpec with the specified parameter values.
 	 * 
 	 * @param w
-	 *            the public point.
+	 *               the public point.
 	 * @param params
-	 *            the associated elliptic curve domain parameters.
+	 *               the associated elliptic curve domain parameters.
 	 * @exception NullPointerException
-	 *                if {@code w} or {@code params} is null.
+	 *                                     if {@code w} or {@code params} is
+	 *                                     null.
 	 * @exception IllegalArgumentException
-	 *                if {@code w} is point at infinity, i.e.
-	 *                ECPoint.POINT_INFINITY
+	 *                                     if {@code w} is point at infinity,
+	 *                                     i.e.
+	 *                                     ECPoint.POINT_INFINITY
 	 */
 	public ECPublicKeySpec(ECPoint w, ECParameterSpec params) {
 		if (w == null) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -94,8 +74,8 @@ public class ListenerThreadImpl implements ListenerThread, Work {
 					if (orb.transportDebugFlag) {
 						dprint(".doWork: Exception in accept: " + acceptor, t);
 					}
-					orb.getTransportManager().getSelector(0)
-							.unregisterForEvent(getAcceptor().getEventHandler());
+					orb.getTransportManager().getSelector(0).unregisterForEvent(
+							getAcceptor().getEventHandler());
 					getAcceptor().close();
 				}
 			}

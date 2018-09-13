@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -79,8 +59,8 @@ public class Notification extends EventObject {
 			new ObjectStreamField("source", Object.class),
 			new ObjectStreamField("sourceObjectName", ObjectName.class),
 			new ObjectStreamField("timeStamp", Long.TYPE),
-			new ObjectStreamField("type", String.class),
-			new ObjectStreamField("userData", Object.class) };
+			new ObjectStreamField("type", String.class), new ObjectStreamField(
+					"userData", Object.class) };
 	//
 	// Serializable fields in new serial form
 	private static final ObjectStreamField[] newSerialPersistentFields = {
@@ -88,32 +68,32 @@ public class Notification extends EventObject {
 			new ObjectStreamField("sequenceNumber", Long.TYPE),
 			new ObjectStreamField("source", Object.class),
 			new ObjectStreamField("timeStamp", Long.TYPE),
-			new ObjectStreamField("type", String.class),
-			new ObjectStreamField("userData", Object.class) };
+			new ObjectStreamField("type", String.class), new ObjectStreamField(
+					"userData", Object.class) };
 	//
 	// Actual serial version and serial form
 	private static final long serialVersionUID;
 	/**
 	 * @serialField type
-	 *                  String The notification type. A string expressed in a
-	 *                  dot notation similar to Java properties. An example of a
-	 *                  notification type is network.alarm.router
+	 *              String The notification type. A string expressed in a
+	 *              dot notation similar to Java properties. An example of a
+	 *              notification type is network.alarm.router
 	 * @serialField sequenceNumber
-	 *                  long The notification sequence number. A serial number
-	 *                  which identify particular instance of notification in
-	 *                  the context of the notification source.
+	 *              long The notification sequence number. A serial number
+	 *              which identify particular instance of notification in
+	 *              the context of the notification source.
 	 * @serialField timeStamp
-	 *                  long The notification timestamp. Indicating when the
-	 *                  notification was generated
+	 *              long The notification timestamp. Indicating when the
+	 *              notification was generated
 	 * @serialField userData
-	 *                  Object The notification user data. Used for whatever
-	 *                  other data the notification source wishes to communicate
-	 *                  to its consumers
+	 *              Object The notification user data. Used for whatever
+	 *              other data the notification source wishes to communicate
+	 *              to its consumers
 	 * @serialField message
-	 *                  String The notification message.
+	 *              String The notification message.
 	 * @serialField source
-	 *                  Object The object on which the notification initially
-	 *                  occurred.
+	 *              Object The object on which the notification initially
+	 *              occurred.
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -182,11 +162,12 @@ public class Notification extends EventObject {
 	 * current date.
 	 *
 	 * @param type
-	 *            The notification type.
+	 *                       The notification type.
 	 * @param source
-	 *            The notification source.
+	 *                       The notification source.
 	 * @param sequenceNumber
-	 *            The notification sequence number within the source object.
+	 *                       The notification sequence number within the source
+	 *                       object.
 	 *
 	 */
 	public Notification(String type, Object source, long sequenceNumber) {
@@ -202,16 +183,18 @@ public class Notification extends EventObject {
 	 * current date.
 	 *
 	 * @param type
-	 *            The notification type.
+	 *                       The notification type.
 	 * @param source
-	 *            The notification source.
+	 *                       The notification source.
 	 * @param sequenceNumber
-	 *            The notification sequence number within the source object.
+	 *                       The notification sequence number within the source
+	 *                       object.
 	 * @param message
-	 *            The detailed message.
+	 *                       The detailed message.
 	 *
 	 */
-	public Notification(String type, Object source, long sequenceNumber, String message) {
+	public Notification(String type, Object source, long sequenceNumber,
+			String message) {
 		super(source);
 		this.source = source;
 		this.type = type;
@@ -224,16 +207,18 @@ public class Notification extends EventObject {
 	 * Creates a Notification object.
 	 *
 	 * @param type
-	 *            The notification type.
+	 *                       The notification type.
 	 * @param source
-	 *            The notification source.
+	 *                       The notification source.
 	 * @param sequenceNumber
-	 *            The notification sequence number within the source object.
+	 *                       The notification sequence number within the source
+	 *                       object.
 	 * @param timeStamp
-	 *            The notification emission date.
+	 *                       The notification emission date.
 	 *
 	 */
-	public Notification(String type, Object source, long sequenceNumber, long timeStamp) {
+	public Notification(String type, Object source, long sequenceNumber,
+			long timeStamp) {
 		super(source);
 		this.source = source;
 		this.type = type;
@@ -245,19 +230,20 @@ public class Notification extends EventObject {
 	 * Creates a Notification object.
 	 *
 	 * @param type
-	 *            The notification type.
+	 *                       The notification type.
 	 * @param source
-	 *            The notification source.
+	 *                       The notification source.
 	 * @param sequenceNumber
-	 *            The notification sequence number within the source object.
+	 *                       The notification sequence number within the source
+	 *                       object.
 	 * @param timeStamp
-	 *            The notification emission date.
+	 *                       The notification emission date.
 	 * @param message
-	 *            The detailed message.
+	 *                       The detailed message.
 	 *
 	 */
-	public Notification(String type, Object source, long sequenceNumber, long timeStamp,
-			String message) {
+	public Notification(String type, Object source, long sequenceNumber,
+			long timeStamp, String message) {
 		super(source);
 		this.source = source;
 		this.type = type;
@@ -270,7 +256,7 @@ public class Notification extends EventObject {
 	 * Sets the source.
 	 *
 	 * @param source
-	 *            the new source for this object.
+	 *               the new source for this object.
 	 *
 	 * @see EventObject#getSource
 	 */
@@ -299,9 +285,12 @@ public class Notification extends EventObject {
 	 * Set the notification sequence number.
 	 *
 	 * @param sequenceNumber
-	 *            The notification sequence number within the source object. It
-	 *            is a serial number identifying a particular instance of
-	 *            notification in the context of the notification source.
+	 *                       The notification sequence number within the source
+	 *                       object. It
+	 *                       is a serial number identifying a particular
+	 *                       instance of
+	 *                       notification in the context of the notification
+	 *                       source.
 	 *
 	 * @see #getSequenceNumber
 	 */
@@ -337,8 +326,9 @@ public class Notification extends EventObject {
 	 * Set the notification timestamp.
 	 *
 	 * @param timeStamp
-	 *            The notification timestamp. It indicates when the notification
-	 *            was generated.
+	 *                  The notification timestamp. It indicates when the
+	 *                  notification
+	 *                  was generated.
 	 *
 	 * @see #getTimeStamp
 	 */
@@ -372,8 +362,9 @@ public class Notification extends EventObject {
 	 * Set the user data.
 	 *
 	 * @param userData
-	 *            The user data object. It is used for whatever data the
-	 *            notification source wishes to communicate to its consumers.
+	 *                 The user data object. It is used for whatever data the
+	 *                 notification source wishes to communicate to its
+	 *                 consumers.
 	 *
 	 * @see #getUserData
 	 */
@@ -389,13 +380,15 @@ public class Notification extends EventObject {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "[type=" + type + "][message=" + message + "]";
+		return super.toString() + "[type=" + type + "][message=" + message
+				+ "]";
 	}
 
 	/**
 	 * Deserializes a {@link Notification} from an {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// New serial form ignores extra field "sourceObjectName"
 		in.defaultReadObject();
 		super.source = source;

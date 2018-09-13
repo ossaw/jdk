@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text;
@@ -217,7 +197,7 @@ public class MaskFormatter extends DefaultFormatter {
 	 * invalid mask.
 	 *
 	 * @throws ParseException
-	 *             if mask does not contain valid mask characters
+	 *                        if mask does not contain valid mask characters
 	 */
 	public MaskFormatter(String mask) throws ParseException {
 		this();
@@ -229,7 +209,7 @@ public class MaskFormatter extends DefaultFormatter {
 	 * <code>ParseException</code> if <code>mask</code> is not valid.
 	 *
 	 * @throws ParseException
-	 *             if mask does not contain valid mask characters
+	 *                        if mask does not contain valid mask characters
 	 */
 	public void setMask(String mask) throws ParseException {
 		this.mask = mask;
@@ -253,7 +233,7 @@ public class MaskFormatter extends DefaultFormatter {
 	 * characters are only bound by the mask and the invalid characters.
 	 *
 	 * @param validCharacters
-	 *            If non-null, specifies legal characters.
+	 *                        If non-null, specifies legal characters.
 	 */
 	public void setValidCharacters(String validCharacters) {
 		this.validCharacters = validCharacters;
@@ -276,7 +256,7 @@ public class MaskFormatter extends DefaultFormatter {
 	 * characters are only bound by the mask and the valid characters.
 	 *
 	 * @param invalidCharacters
-	 *            If non-null, specifies illegal characters.
+	 *                          If non-null, specifies illegal characters.
 	 */
 	public void setInvalidCharacters(String invalidCharacters) {
 		this.invalidCharacters = invalidCharacters;
@@ -296,8 +276,9 @@ public class MaskFormatter extends DefaultFormatter {
 	 * A null value implies the placeholder char should be used.
 	 *
 	 * @param placeholder
-	 *            String used when formatting if the value does not completely
-	 *            fill the mask
+	 *                    String used when formatting if the value does not
+	 *                    completely
+	 *                    fill the mask
 	 */
 	public void setPlaceholder(String placeholder) {
 		this.placeholderString = placeholder;
@@ -322,8 +303,8 @@ public class MaskFormatter extends DefaultFormatter {
 	 * or does not completely fill in the mask.
 	 *
 	 * @param placeholder
-	 *            Character used when formatting if the value does not
-	 *            completely fill the mask
+	 *                    Character used when formatting if the value does not
+	 *                    completely fill the mask
 	 */
 	public void setPlaceholderCharacter(char placeholder) {
 		this.placeholder = placeholder;
@@ -352,10 +333,12 @@ public class MaskFormatter extends DefaultFormatter {
 	 * <code>stringToValue</code> will return <code>'4155551212'</code>.
 	 *
 	 * @param containsLiteralChars
-	 *            Used to indicate if literal characters in mask should be
-	 *            returned in stringToValue
+	 *                             Used to indicate if literal characters in
+	 *                             mask should be
+	 *                             returned in stringToValue
 	 */
-	public void setValueContainsLiteralCharacters(boolean containsLiteralChars) {
+	public void setValueContainsLiteralCharacters(
+			boolean containsLiteralChars) {
 		this.containsLiteralChars = containsLiteralChars;
 	}
 
@@ -381,9 +364,9 @@ public class MaskFormatter extends DefaultFormatter {
 	 * are treated.
 	 *
 	 * @throws ParseException
-	 *             if there is an error in the conversion
+	 *                        if there is an error in the conversion
 	 * @param value
-	 *            String to convert
+	 *              String to convert
 	 * @see #setValueContainsLiteralCharacters
 	 * @return Object representation of text
 	 */
@@ -397,9 +380,9 @@ public class MaskFormatter extends DefaultFormatter {
 	 * on how literals are treated.
 	 *
 	 * @throws ParseException
-	 *             if there is an error in the conversion
+	 *                        if there is an error in the conversion
 	 * @param value
-	 *            Value to convert
+	 *              Value to convert
 	 * @see #setValueContainsLiteralCharacters
 	 * @return String representation of value
 	 */
@@ -461,7 +444,8 @@ public class MaskFormatter extends DefaultFormatter {
 	 * mask, on the other hand if <code>completeMatch</code> is false the string
 	 * must match the mask or the placeholder string.
 	 */
-	private Object stringToValue(String value, boolean completeMatch) throws ParseException {
+	private Object stringToValue(String value, boolean completeMatch)
+			throws ParseException {
 		int errorOffset;
 
 		if ((errorOffset = getInvalidOffset(value, completeMatch)) == -1) {
@@ -470,7 +454,8 @@ public class MaskFormatter extends DefaultFormatter {
 			}
 			return super.stringToValue(value);
 		}
-		throw new ParseException("stringToValue passed invalid value", errorOffset);
+		throw new ParseException("stringToValue passed invalid value",
+				errorOffset);
 	}
 
 	/**
@@ -487,8 +472,8 @@ public class MaskFormatter extends DefaultFormatter {
 		for (int counter = 0, max = string.length(); counter < max; counter++) {
 			char aChar = string.charAt(counter);
 
-			if (!isValidCharacter(counter, aChar)
-					&& (completeMatch || !isPlaceholder(counter, aChar))) {
+			if (!isValidCharacter(counter, aChar) && (completeMatch
+					|| !isPlaceholder(counter, aChar))) {
 				return counter;
 			}
 		}
@@ -498,8 +483,8 @@ public class MaskFormatter extends DefaultFormatter {
 	/**
 	 * Invokes <code>append</code> on the mask characters in <code>mask</code>.
 	 */
-	private void append(StringBuilder result, String value, int[] index, String placeholder,
-			MaskCharacter[] mask) throws ParseException {
+	private void append(StringBuilder result, String value, int[] index,
+			String placeholder, MaskCharacter[] mask) throws ParseException {
 		for (int counter = 0, maxCounter = mask.length; counter < maxCounter; counter++) {
 			mask[counter].append(result, value, index, placeholder);
 		}
@@ -514,41 +499,42 @@ public class MaskFormatter extends DefaultFormatter {
 		ArrayList<MaskCharacter> temp = fixed;
 
 		if (mask != null) {
-			for (int counter = 0, maxCounter = mask.length(); counter < maxCounter; counter++) {
+			for (int counter = 0, maxCounter = mask
+					.length(); counter < maxCounter; counter++) {
 				char maskChar = mask.charAt(counter);
 
 				switch (maskChar) {
-				case DIGIT_KEY:
-					temp.add(new DigitMaskCharacter());
-					break;
-				case LITERAL_KEY:
-					if (++counter < maxCounter) {
-						maskChar = mask.charAt(counter);
+					case DIGIT_KEY:
+						temp.add(new DigitMaskCharacter());
+						break;
+					case LITERAL_KEY:
+						if (++counter < maxCounter) {
+							maskChar = mask.charAt(counter);
+							temp.add(new LiteralCharacter(maskChar));
+						}
+						// else: Could actually throw if else
+						break;
+					case UPPERCASE_KEY:
+						temp.add(new UpperCaseCharacter());
+						break;
+					case LOWERCASE_KEY:
+						temp.add(new LowerCaseCharacter());
+						break;
+					case ALPHA_NUMERIC_KEY:
+						temp.add(new AlphaNumericCharacter());
+						break;
+					case CHARACTER_KEY:
+						temp.add(new CharCharacter());
+						break;
+					case ANYTHING_KEY:
+						temp.add(new MaskCharacter());
+						break;
+					case HEX_KEY:
+						temp.add(new HexCharacter());
+						break;
+					default:
 						temp.add(new LiteralCharacter(maskChar));
-					}
-					// else: Could actually throw if else
-					break;
-				case UPPERCASE_KEY:
-					temp.add(new UpperCaseCharacter());
-					break;
-				case LOWERCASE_KEY:
-					temp.add(new LowerCaseCharacter());
-					break;
-				case ALPHA_NUMERIC_KEY:
-					temp.add(new AlphaNumericCharacter());
-					break;
-				case CHARACTER_KEY:
-					temp.add(new CharCharacter());
-					break;
-				case ANYTHING_KEY:
-					temp.add(new MaskCharacter());
-					break;
-				case HEX_KEY:
-					temp.add(new HexCharacter());
-					break;
-				default:
-					temp.add(new LiteralCharacter(maskChar));
-					break;
+						break;
 				}
 			}
 		}
@@ -653,7 +639,8 @@ public class MaskFormatter extends DefaultFormatter {
 	 * Subclassed to update the internal representation of the mask after the
 	 * default read operation has completed.
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		s.defaultReadObject();
 		try {
 			updateInternalMask();
@@ -726,17 +713,18 @@ public class MaskFormatter extends DefaultFormatter {
 			String text = rh.text;
 			int tl = (text != null) ? text.length() : 0;
 
-			if (tl == 0 && rh.length == 1
-					&& getFormattedTextField().getSelectionStart() != rh.offset) {
+			if (tl == 0 && rh.length == 1 && getFormattedTextField()
+					.getSelectionStart() != rh.offset) {
 				// Backspace, adjust to actually delete next non-literal.
 				while (rh.offset > 0 && isLiteral(rh.offset)) {
 					rh.offset--;
 				}
 			}
-			int max = Math.min(getMaxLength() - rh.offset, Math.max(tl, rh.length));
+			int max = Math.min(getMaxLength() - rh.offset, Math.max(tl,
+					rh.length));
 			for (int counter = 0, textIndex = 0; counter < max; counter++) {
-				if (textIndex < tl
-						&& isValidCharacter(rh.offset + counter, text.charAt(textIndex))) {
+				if (textIndex < tl && isValidCharacter(rh.offset + counter, text
+						.charAt(textIndex))) {
 					char aChar = text.charAt(textIndex);
 					if (aChar != getCharacter(rh.offset + counter, aChar)) {
 						if (replace == null) {
@@ -747,7 +735,8 @@ public class MaskFormatter extends DefaultFormatter {
 						}
 					}
 					if (replace != null) {
-						replace.append(getCharacter(rh.offset + counter, aChar));
+						replace.append(getCharacter(rh.offset + counter,
+								aChar));
 					}
 					textIndex++;
 				} else if (isLiteral(rh.offset + counter)) {
@@ -854,8 +843,8 @@ public class MaskFormatter extends DefaultFormatter {
 		 * Appends the necessary character in <code>formatting</code> at
 		 * <code>index</code> to <code>buff</code>.
 		 */
-		public void append(StringBuilder buff, String formatting, int[] index, String placeholder)
-				throws ParseException {
+		public void append(StringBuilder buff, String formatting, int[] index,
+				String placeholder) throws ParseException {
 			boolean inString = index[0] < formatting.length();
 			char aChar = inString ? formatting.charAt(index[0]) : 0;
 
@@ -863,7 +852,8 @@ public class MaskFormatter extends DefaultFormatter {
 				buff.append(getChar(aChar));
 				if (getValueContainsLiteralCharacters()) {
 					if (inString && aChar != getChar(aChar)) {
-						throw new ParseException("Invalid character: " + aChar, index[0]);
+						throw new ParseException("Invalid character: " + aChar,
+								index[0]);
 					}
 					index[0] = index[0] + 1;
 				}
@@ -878,7 +868,8 @@ public class MaskFormatter extends DefaultFormatter {
 				buff.append(getChar(aChar));
 				index[0] = index[0] + 1;
 			} else {
-				throw new ParseException("Invalid character: " + aChar, index[0]);
+				throw new ParseException("Invalid character: " + aChar,
+						index[0]);
 			}
 		}
 	}
@@ -945,7 +936,8 @@ public class MaskFormatter extends DefaultFormatter {
 	 */
 	private class AlphaNumericCharacter extends MaskCharacter {
 		public boolean isValidCharacter(char aChar) {
-			return (Character.isLetterOrDigit(aChar) && super.isValidCharacter(aChar));
+			return (Character.isLetterOrDigit(aChar) && super.isValidCharacter(
+					aChar));
 		}
 	}
 
@@ -963,11 +955,14 @@ public class MaskFormatter extends DefaultFormatter {
 	 */
 	private class HexCharacter extends MaskCharacter {
 		public boolean isValidCharacter(char aChar) {
-			return ((aChar == '0' || aChar == '1' || aChar == '2' || aChar == '3' || aChar == '4'
-					|| aChar == '5' || aChar == '6' || aChar == '7' || aChar == '8' || aChar == '9'
-					|| aChar == 'a' || aChar == 'A' || aChar == 'b' || aChar == 'B' || aChar == 'c'
-					|| aChar == 'C' || aChar == 'd' || aChar == 'D' || aChar == 'e' || aChar == 'E'
-					|| aChar == 'f' || aChar == 'F') && super.isValidCharacter(aChar));
+			return ((aChar == '0' || aChar == '1' || aChar == '2'
+					|| aChar == '3' || aChar == '4' || aChar == '5'
+					|| aChar == '6' || aChar == '7' || aChar == '8'
+					|| aChar == '9' || aChar == 'a' || aChar == 'A'
+					|| aChar == 'b' || aChar == 'B' || aChar == 'c'
+					|| aChar == 'C' || aChar == 'd' || aChar == 'D'
+					|| aChar == 'e' || aChar == 'E' || aChar == 'f'
+					|| aChar == 'F') && super.isValidCharacter(aChar));
 		}
 
 		public char getChar(char aChar) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -41,7 +21,7 @@ public interface MenuBarPeer extends MenuComponentPeer {
 	 * Adds a menu to the menu bar.
 	 *
 	 * @param m
-	 *            the menu to add
+	 *          the menu to add
 	 *
 	 * @see MenuBar#add(Menu)
 	 */
@@ -51,7 +31,7 @@ public interface MenuBarPeer extends MenuComponentPeer {
 	 * Deletes a menu from the menu bar.
 	 *
 	 * @param index
-	 *            the index of the menu to remove
+	 *              the index of the menu to remove
 	 *
 	 * @see MenuBar#remove(int)
 	 */
@@ -61,7 +41,7 @@ public interface MenuBarPeer extends MenuComponentPeer {
 	 * Adds a help menu to the menu bar.
 	 *
 	 * @param m
-	 *            the help menu to add
+	 *          the help menu to add
 	 *
 	 * @see MenuBar#setHelpMenu(Menu)
 	 */

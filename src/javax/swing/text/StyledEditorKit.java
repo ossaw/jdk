@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -102,14 +82,15 @@ public class StyledEditorKit extends DefaultEditorKit {
 	 * Called when the kit is being installed into a JEditorPane.
 	 *
 	 * @param c
-	 *            the JEditorPane
+	 *          the JEditorPane
 	 */
 	public void install(JEditorPane c) {
 		c.addCaretListener(inputAttributeUpdater);
 		c.addPropertyChangeListener(inputAttributeUpdater);
 		Caret caret = c.getCaret();
 		if (caret != null) {
-			inputAttributeUpdater.updateInputAttributes(caret.getDot(), caret.getMark(), c);
+			inputAttributeUpdater.updateInputAttributes(caret.getDot(), caret
+					.getMark(), c);
 		}
 	}
 
@@ -118,7 +99,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 	 * to unregister any listeners that were attached.
 	 *
 	 * @param c
-	 *            the JEditorPane
+	 *          the JEditorPane
 	 */
 	public void deinstall(JEditorPane c) {
 		c.removeCaretListener(inputAttributeUpdater);
@@ -166,7 +147,8 @@ public class StyledEditorKit extends DefaultEditorKit {
 	private void createInputAttributes() {
 		inputAttributes = new SimpleAttributeSet() {
 			public AttributeSet getResolveParent() {
-				return (currentParagraph != null) ? currentParagraph.getAttributes() : null;
+				return (currentParagraph != null) ? currentParagraph
+						.getAttributes() : null;
 			}
 
 			public Object clone() {
@@ -207,7 +189,8 @@ public class StyledEditorKit extends DefaultEditorKit {
 	 * when the Document changes, as if the Document changes the attributes will
 	 * almost certainly change.
 	 */
-	class AttributeTracker implements CaretListener, PropertyChangeListener, Serializable {
+	class AttributeTracker implements CaretListener, PropertyChangeListener,
+			Serializable {
 
 		/**
 		 * Updates the attributes. <code>dot</code> and <code>mark</code> mark
@@ -251,14 +234,16 @@ public class StyledEditorKit extends DefaultEditorKit {
 			Object newValue = evt.getNewValue();
 			Object source = evt.getSource();
 
-			if ((source instanceof JTextComponent) && (newValue instanceof Document)) {
+			if ((source instanceof JTextComponent)
+					&& (newValue instanceof Document)) {
 				// New document will have changed selection to 0,0.
 				updateInputAttributes(0, 0, (JTextComponent) source);
 			}
 		}
 
 		public void caretUpdate(CaretEvent e) {
-			updateInputAttributes(e.getDot(), e.getMark(), (JTextComponent) e.getSource());
+			updateInputAttributes(e.getDot(), e.getMark(), (JTextComponent) e
+					.getSource());
 		}
 	}
 
@@ -272,10 +257,11 @@ public class StyledEditorKit extends DefaultEditorKit {
 	 * This is called anytime the caret moves over a different location.
 	 *
 	 */
-	protected void createInputAttributes(Element element, MutableAttributeSet set) {
-		if (element.getAttributes().getAttributeCount() > 0
-				|| element.getEndOffset() - element.getStartOffset() > 1
-				|| element.getEndOffset() < element.getDocument().getLength()) {
+	protected void createInputAttributes(Element element,
+			MutableAttributeSet set) {
+		if (element.getAttributes().getAttributeCount() > 0 || element
+				.getEndOffset() - element.getStartOffset() > 1 || element
+						.getEndOffset() < element.getDocument().getLength()) {
 			set.removeAttributes(set);
 			set.addAttributes(element.getAttributes());
 			set.removeAttribute(StyleConstants.ComponentAttribute);
@@ -313,19 +299,21 @@ public class StyledEditorKit extends DefaultEditorKit {
 
 	// --- Action implementations ---------------------------------
 
-	private static final Action[] defaultActions = {
-			new FontFamilyAction("font-family-SansSerif", "SansSerif"),
-			new FontFamilyAction("font-family-Monospaced", "Monospaced"),
+	private static final Action[] defaultActions = { new FontFamilyAction(
+			"font-family-SansSerif", "SansSerif"), new FontFamilyAction(
+					"font-family-Monospaced", "Monospaced"),
 			new FontFamilyAction("font-family-Serif", "Serif"),
-			new FontSizeAction("font-size-8", 8), new FontSizeAction("font-size-10", 10),
-			new FontSizeAction("font-size-12", 12), new FontSizeAction("font-size-14", 14),
-			new FontSizeAction("font-size-16", 16), new FontSizeAction("font-size-18", 18),
-			new FontSizeAction("font-size-24", 24), new FontSizeAction("font-size-36", 36),
-			new FontSizeAction("font-size-48", 48),
+			new FontSizeAction("font-size-8", 8), new FontSizeAction(
+					"font-size-10", 10), new FontSizeAction("font-size-12", 12),
+			new FontSizeAction("font-size-14", 14), new FontSizeAction(
+					"font-size-16", 16), new FontSizeAction("font-size-18", 18),
+			new FontSizeAction("font-size-24", 24), new FontSizeAction(
+					"font-size-36", 36), new FontSizeAction("font-size-48", 48),
 			new AlignmentAction("left-justify", StyleConstants.ALIGN_LEFT),
 			new AlignmentAction("center-justify", StyleConstants.ALIGN_CENTER),
-			new AlignmentAction("right-justify", StyleConstants.ALIGN_RIGHT), new BoldAction(),
-			new ItalicAction(), new StyledInsertBreakAction(), new UnderlineAction() };
+			new AlignmentAction("right-justify", StyleConstants.ALIGN_RIGHT),
+			new BoldAction(), new ItalicAction(), new StyledInsertBreakAction(),
+			new UnderlineAction() };
 
 	/**
 	 * An action that assumes it's being fired on a JEditorPane with a
@@ -354,7 +342,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Creates a new StyledTextAction from a string action name.
 		 *
 		 * @param nm
-		 *            the name of the action
+		 *           the name of the action
 		 */
 		public StyledTextAction(String nm) {
 			super(nm);
@@ -364,7 +352,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Gets the target editor for an action.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 * @return the editor
 		 */
 		protected final JEditorPane getEditor(ActionEvent e) {
@@ -379,34 +367,36 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Gets the document associated with an editor pane.
 		 *
 		 * @param e
-		 *            the editor
+		 *          the editor
 		 * @return the document
 		 * @exception IllegalArgumentException
-		 *                for the wrong document type
+		 *                                     for the wrong document type
 		 */
 		protected final StyledDocument getStyledDocument(JEditorPane e) {
 			Document d = e.getDocument();
 			if (d instanceof StyledDocument) {
 				return (StyledDocument) d;
 			}
-			throw new IllegalArgumentException("document must be StyledDocument");
+			throw new IllegalArgumentException(
+					"document must be StyledDocument");
 		}
 
 		/**
 		 * Gets the editor kit associated with an editor pane.
 		 *
 		 * @param e
-		 *            the editor pane
+		 *          the editor pane
 		 * @return the kit
 		 * @exception IllegalArgumentException
-		 *                for the wrong document type
+		 *                                     for the wrong document type
 		 */
 		protected final StyledEditorKit getStyledEditorKit(JEditorPane e) {
 			EditorKit k = e.getEditorKit();
 			if (k instanceof StyledEditorKit) {
 				return (StyledEditorKit) k;
 			}
-			throw new IllegalArgumentException("EditorKit must be StyledEditorKit");
+			throw new IllegalArgumentException(
+					"EditorKit must be StyledEditorKit");
 		}
 
 		/**
@@ -417,14 +407,14 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * inserted.
 		 *
 		 * @param editor
-		 *            the editor
+		 *                the editor
 		 * @param attr
-		 *            the attributes
+		 *                the attributes
 		 * @param replace
-		 *            if true, then replace the existing attributes first
+		 *                if true, then replace the existing attributes first
 		 */
-		protected final void setCharacterAttributes(JEditorPane editor, AttributeSet attr,
-				boolean replace) {
+		protected final void setCharacterAttributes(JEditorPane editor,
+				AttributeSet attr, boolean replace) {
 			int p0 = editor.getSelectionStart();
 			int p1 = editor.getSelectionEnd();
 			if (p0 != p1) {
@@ -446,14 +436,14 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * the paragraph at the current caret position.
 		 *
 		 * @param editor
-		 *            the editor
+		 *                the editor
 		 * @param attr
-		 *            the attributes
+		 *                the attributes
 		 * @param replace
-		 *            if true, replace the existing attributes first
+		 *                if true, replace the existing attributes first
 		 */
-		protected final void setParagraphAttributes(JEditorPane editor, AttributeSet attr,
-				boolean replace) {
+		protected final void setParagraphAttributes(JEditorPane editor,
+				AttributeSet attr, boolean replace) {
 			int p0 = editor.getSelectionStart();
 			int p1 = editor.getSelectionEnd();
 			StyledDocument doc = getStyledDocument(editor);
@@ -481,9 +471,9 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Creates a new FontFamilyAction.
 		 *
 		 * @param nm
-		 *            the action name
+		 *               the action name
 		 * @param family
-		 *            the font family
+		 *               the font family
 		 */
 		public FontFamilyAction(String nm, String family) {
 			super(nm);
@@ -494,7 +484,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Sets the font family.
 		 *
 		 * @param e
-		 *            the event
+		 *          the event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JEditorPane editor = getEditor(e);
@@ -537,9 +527,9 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Creates a new FontSizeAction.
 		 *
 		 * @param nm
-		 *            the action name
+		 *             the action name
 		 * @param size
-		 *            the font size
+		 *             the font size
 		 */
 		public FontSizeAction(String nm, int size) {
 			super(nm);
@@ -550,7 +540,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Sets the font size.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JEditorPane editor = getEditor(e);
@@ -602,9 +592,9 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Creates a new ForegroundAction.
 		 *
 		 * @param nm
-		 *            the action name
+		 *           the action name
 		 * @param fg
-		 *            the foreground color
+		 *           the foreground color
 		 */
 		public ForegroundAction(String nm, Color fg) {
 			super(nm);
@@ -615,7 +605,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Sets the foreground color.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JEditorPane editor = getEditor(e);
@@ -666,9 +656,9 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Creates a new AlignmentAction.
 		 *
 		 * @param nm
-		 *            the action name
+		 *           the action name
 		 * @param a
-		 *            the alignment &gt;= 0
+		 *           the alignment &gt;= 0
 		 */
 		public AlignmentAction(String nm, int a) {
 			super(nm);
@@ -679,7 +669,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Sets the alignment.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JEditorPane editor = getEditor(e);
@@ -724,7 +714,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Toggles the bold attribute.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JEditorPane editor = getEditor(e);
@@ -762,7 +752,7 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Toggles the italic attribute.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JEditorPane editor = getEditor(e);
@@ -800,14 +790,15 @@ public class StyledEditorKit extends DefaultEditorKit {
 		 * Toggles the Underline attribute.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			JEditorPane editor = getEditor(e);
 			if (editor != null) {
 				StyledEditorKit kit = getStyledEditorKit(editor);
 				MutableAttributeSet attr = kit.getInputAttributes();
-				boolean underline = (StyleConstants.isUnderline(attr)) ? false : true;
+				boolean underline = (StyleConstants.isUnderline(attr)) ? false
+						: true;
 				SimpleAttributeSet sas = new SimpleAttributeSet();
 				StyleConstants.setUnderline(sas, underline);
 				setCharacterAttributes(editor, sas, false);

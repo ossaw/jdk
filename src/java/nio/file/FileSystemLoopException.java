@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -39,8 +19,8 @@ public class FileSystemLoopException extends FileSystemException {
 	 * Constructs an instance of this class.
 	 *
 	 * @param file
-	 *            a string identifying the file causing the cycle or
-	 *            {@code null} if not known
+	 *             a string identifying the file causing the cycle or
+	 *             {@code null} if not known
 	 */
 	public FileSystemLoopException(String file) {
 		super(file);

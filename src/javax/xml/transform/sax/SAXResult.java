@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.sax;
@@ -49,15 +29,14 @@ public class SAXResult implements Result {
 	/**
 	 * Zero-argument default constructor.
 	 */
-	public SAXResult() {
-	}
+	public SAXResult() {}
 
 	/**
 	 * Create a SAXResult that targets a SAX2 {@link org.xml.sax.ContentHandler}
 	 * .
 	 *
 	 * @param handler
-	 *            Must be a non-null ContentHandler reference.
+	 *                Must be a non-null ContentHandler reference.
 	 */
 	public SAXResult(ContentHandler handler) {
 		setHandler(handler);
@@ -67,7 +46,7 @@ public class SAXResult implements Result {
 	 * Set the target to be a SAX2 {@link org.xml.sax.ContentHandler}.
 	 *
 	 * @param handler
-	 *            Must be a non-null ContentHandler reference.
+	 *                Must be a non-null ContentHandler reference.
 	 */
 	public void setHandler(ContentHandler handler) {
 		this.handler = handler;
@@ -92,8 +71,9 @@ public class SAXResult implements Result {
 	 * </p>
 	 *
 	 * @param handler
-	 *            A non-null <code>LexicalHandler</code> for handling lexical
-	 *            parse events.
+	 *                A non-null <code>LexicalHandler</code> for handling
+	 *                lexical
+	 *                parse events.
 	 */
 	public void setLexicalHandler(LexicalHandler handler) {
 		this.lexhandler = handler;
@@ -113,7 +93,7 @@ public class SAXResult implements Result {
 	 * the {@link org.xml.sax.ContentHandler}.
 	 *
 	 * @param systemId
-	 *            The system identifier as a URI string.
+	 *                 The system identifier as a URI string.
 	 */
 	public void setSystemId(String systemId) {
 		this.systemId = systemId;

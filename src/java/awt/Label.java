@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -116,7 +96,8 @@ public class Label extends Component implements Accessible {
 	 * <code>""</code>.
 	 * 
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public Label() throws HeadlessException {
@@ -127,11 +108,12 @@ public class Label extends Component implements Accessible {
 	 * Constructs a new label with the specified string of text, left justified.
 	 * 
 	 * @param text
-	 *            the string that the label presents. A <code>null</code> value
-	 *            will be accepted without causing a NullPointerException to be
-	 *            thrown.
+	 *             the string that the label presents. A <code>null</code> value
+	 *             will be accepted without causing a NullPointerException to be
+	 *             thrown.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public Label(String text) throws HeadlessException {
@@ -145,13 +127,16 @@ public class Label extends Component implements Accessible {
 	 * <code>Label.CENTER</code>.
 	 * 
 	 * @param text
-	 *            the string that the label presents. A <code>null</code> value
-	 *            will be accepted without causing a NullPointerException to be
-	 *            thrown.
+	 *                  the string that the label presents. A <code>null</code>
+	 *                  value
+	 *                  will be accepted without causing a NullPointerException
+	 *                  to be
+	 *                  thrown.
 	 * @param alignment
-	 *            the alignment value.
+	 *                  the alignment value.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public Label(String text, int alignment) throws HeadlessException {
@@ -164,14 +149,16 @@ public class Label extends Component implements Accessible {
 	 * Read a label from an object input stream.
 	 * 
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless()</code> returns
-	 *                <code>true</code>
+	 *                              if
+	 *                              <code>GraphicsEnvironment.isHeadless()</code>
+	 *                              returns
+	 *                              <code>true</code>
 	 * @serial
 	 * @since 1.4
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
-	private void readObject(ObjectInputStream s)
-			throws ClassNotFoundException, IOException, HeadlessException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException, HeadlessException {
 		GraphicsEnvironment.checkHeadless();
 		s.defaultReadObject();
 	}
@@ -215,22 +202,23 @@ public class Label extends Component implements Accessible {
 	 * <code>Label.CENTER</code>.
 	 * 
 	 * @param alignment
-	 *            the alignment to be set.
+	 *                  the alignment to be set.
 	 * @exception IllegalArgumentException
-	 *                if an improper value for <code>alignment</code> is given.
+	 *                                     if an improper value for
+	 *                                     <code>alignment</code> is given.
 	 * @see java.awt.Label#getAlignment
 	 */
 	public synchronized void setAlignment(int alignment) {
 		switch (alignment) {
-		case LEFT:
-		case CENTER:
-		case RIGHT:
-			this.alignment = alignment;
-			LabelPeer peer = (LabelPeer) this.peer;
-			if (peer != null) {
-				peer.setAlignment(alignment);
-			}
-			return;
+			case LEFT:
+			case CENTER:
+			case RIGHT:
+				this.alignment = alignment;
+				LabelPeer peer = (LabelPeer) this.peer;
+				if (peer != null) {
+					peer.setAlignment(alignment);
+				}
+				return;
 		}
 		throw new IllegalArgumentException("improper alignment: " + alignment);
 	}
@@ -250,15 +238,16 @@ public class Label extends Component implements Accessible {
 	 * Sets the text for this label to the specified text.
 	 * 
 	 * @param text
-	 *            the text that this label displays. If <code>text</code> is
-	 *            <code>null</code>, it is treated for display purposes like an
-	 *            empty string <code>""</code>.
+	 *             the text that this label displays. If <code>text</code> is
+	 *             <code>null</code>, it is treated for display purposes like an
+	 *             empty string <code>""</code>.
 	 * @see java.awt.Label#getText
 	 */
 	public void setText(String text) {
 		boolean testvalid = false;
 		synchronized (this) {
-			if (text != this.text && (this.text == null || !this.text.equals(text))) {
+			if (text != this.text && (this.text == null || !this.text.equals(
+					text))) {
 				this.text = text;
 				LabelPeer peer = (LabelPeer) this.peer;
 				if (peer != null) {
@@ -286,15 +275,15 @@ public class Label extends Component implements Accessible {
 	protected String paramString() {
 		String align = "";
 		switch (alignment) {
-		case LEFT:
-			align = "left";
-			break;
-		case CENTER:
-			align = "center";
-			break;
-		case RIGHT:
-			align = "right";
-			break;
+			case LEFT:
+				align = "left";
+				break;
+			case CENTER:
+				align = "center";
+				break;
+			case RIGHT:
+				align = "right";
+				break;
 		}
 		return super.paramString() + ",align=" + align + ",text=" + text;
 	}

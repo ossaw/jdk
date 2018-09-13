@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -127,7 +107,8 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * the <code>select</code> methods.
 	 * 
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see #select(int)
 	 * @see #select(java.lang.String)
@@ -186,7 +167,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * Gets the string at the specified index in this <code>Choice</code> menu.
 	 * 
 	 * @param index
-	 *            the index at which to begin
+	 *              the index at which to begin
 	 * @see #getItemCount
 	 */
 	public String getItem(int index) {
@@ -205,9 +186,9 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * Adds an item to this <code>Choice</code> menu.
 	 * 
 	 * @param item
-	 *            the item to be added
+	 *             the item to be added
 	 * @exception NullPointerException
-	 *                if the item's value is <code>null</code>
+	 *                                 if the item's value is <code>null</code>
 	 * @since JDK1.1
 	 */
 	public void add(String item) {
@@ -221,9 +202,10 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * Adds an item to this <code>Choice</code> menu.
 	 * 
 	 * @param item
-	 *            the item to be added
+	 *             the item to be added
 	 * @exception NullPointerException
-	 *                if the item's value is equal to <code>null</code>
+	 *                                 if the item's value is equal to
+	 *                                 <code>null</code>
 	 */
 	public void addItem(String item) {
 		synchronized (this) {
@@ -240,11 +222,12 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * synchronization before invoking this method.
 	 * 
 	 * @param item
-	 *            the item to be added
+	 *              the item to be added
 	 * @param index
-	 *            the new item position
+	 *              the new item position
 	 * @exception NullPointerException
-	 *                if the item's value is equal to <code>null</code>
+	 *                                 if the item's value is equal to
+	 *                                 <code>null</code>
 	 */
 	private void insertNoInvalidate(String item, int index) {
 		if (item == null) {
@@ -274,11 +257,11 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * selected item was no among those shifted, it remains the selected item.
 	 * 
 	 * @param item
-	 *            the non-<code>null</code> item to be inserted
+	 *              the non-<code>null</code> item to be inserted
 	 * @param index
-	 *            the position at which the item should be inserted
+	 *              the position at which the item should be inserted
 	 * @exception IllegalArgumentException
-	 *                if index is less than 0
+	 *                                     if index is less than 0
 	 */
 	public void insert(String item, int index) {
 		synchronized (this) {
@@ -303,16 +286,18 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * selected index is updated accordingly).
 	 * 
 	 * @param item
-	 *            the item to remove from this <code>Choice</code> menu
+	 *             the item to remove from this <code>Choice</code> menu
 	 * @exception IllegalArgumentException
-	 *                if the item doesn't exist in the choice menu
+	 *                                     if the item doesn't exist in the
+	 *                                     choice menu
 	 * @since JDK1.1
 	 */
 	public void remove(String item) {
 		synchronized (this) {
 			int index = pItems.indexOf(item);
 			if (index < 0) {
-				throw new IllegalArgumentException("item " + item + " not found in choice");
+				throw new IllegalArgumentException("item " + item
+						+ " not found in choice");
 			} else {
 				removeNoInvalidate(index);
 			}
@@ -329,9 +314,10 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * item remains selected (and the selected index is updated accordingly).
 	 * 
 	 * @param position
-	 *            the position of the item
+	 *                 the position of the item
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified position is out of bounds
+	 *                                   if the specified position is out of
+	 *                                   bounds
 	 * @since JDK1.1
 	 */
 	public void remove(int position) {
@@ -349,7 +335,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * provide their own synchronization before invoking this method.
 	 * 
 	 * @param position
-	 *            the position of the item
+	 *                 the position of the item
 	 */
 	private void removeNoInvalidate(int position) {
 		pItems.removeElementAt(position);
@@ -437,14 +423,16 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * @param pos
 	 *            the position of the selected item
 	 * @exception IllegalArgumentException
-	 *                if the specified position is greater than the number of
-	 *                items or less than zero
+	 *                                     if the specified position is greater
+	 *                                     than the number of
+	 *                                     items or less than zero
 	 * @see #getSelectedItem
 	 * @see #getSelectedIndex
 	 */
 	public synchronized void select(int pos) {
 		if ((pos >= pItems.size()) || (pos < 0)) {
-			throw new IllegalArgumentException("illegal Choice item position: " + pos);
+			throw new IllegalArgumentException("illegal Choice item position: "
+					+ pos);
 		}
 		if (pItems.size() > 0) {
 			selectedIndex = pos;
@@ -489,7 +477,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 * 
 	 * @param l
-	 *            the item listener
+	 *          the item listener
 	 * @see #removeItemListener
 	 * @see #getItemListeners
 	 * @see #select
@@ -514,7 +502,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 * 
 	 * @param l
-	 *            the item listener
+	 *          the item listener
 	 * @see #addItemListener
 	 * @see #getItemListeners
 	 * @see java.awt.event.ItemEvent
@@ -563,16 +551,18 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this choice, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getItemListeners
 	 * @since 1.3
@@ -590,7 +580,8 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	// REMIND: remove when filtering is done at lower level
 	boolean eventEnabled(AWTEvent e) {
 		if (e.id == ItemEvent.ITEM_STATE_CHANGED) {
-			if ((eventMask & AWTEvent.ITEM_EVENT_MASK) != 0 || itemListener != null) {
+			if ((eventMask & AWTEvent.ITEM_EVENT_MASK) != 0
+					|| itemListener != null) {
 				return true;
 			}
 			return false;
@@ -608,7 +599,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see java.awt.event.ItemEvent
 	 * @see #processItemEvent
 	 * @since JDK1.1
@@ -637,7 +628,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the item event
+	 *          the item event
 	 * @see java.awt.event.ItemEvent
 	 * @see java.awt.event.ItemListener
 	 * @see #addItemListener(ItemListener)
@@ -670,7 +661,6 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 
 	/*
 	 * Choice Serial Data Version.
-	 * 
 	 * @serial
 	 */
 	private int choiceSerializedDataVersion = 1;
@@ -682,7 +672,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * is made to serialize them.
 	 *
 	 * @param s
-	 *            the <code>ObjectOutputStream</code> to write
+	 *          the <code>ObjectOutputStream</code> to write
 	 * @serialData <code>null</code> terminated sequence of 0 or more pairs; the
 	 *             pair consists of a <code>String</code> and an
 	 *             <code>Object</code>; the <code>String</code> indicates the
@@ -707,18 +697,20 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * <code>Choice</code> item. Unrecognized keys or values will be ignored.
 	 *
 	 * @param s
-	 *            the <code>ObjectInputStream</code> to read
+	 *          the <code>ObjectInputStream</code> to read
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless</code> returns
-	 *                <code>true</code>
+	 *                              if
+	 *                              <code>GraphicsEnvironment.isHeadless</code>
+	 *                              returns
+	 *                              <code>true</code>
 	 * @serial
 	 * @see #removeItemListener(ItemListener)
 	 * @see #addItemListener(ItemListener)
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see #writeObject(ObjectOutputStream)
 	 */
-	private void readObject(ObjectInputStream s)
-			throws ClassNotFoundException, IOException, HeadlessException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException, HeadlessException {
 		GraphicsEnvironment.checkHeadless();
 		s.defaultReadObject();
 
@@ -768,7 +760,8 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 	 * 
 	 * @since 1.3
 	 */
-	protected class AccessibleAWTChoice extends AccessibleAWTComponent implements AccessibleAction {
+	protected class AccessibleAWTChoice extends AccessibleAWTComponent
+			implements AccessibleAction {
 		/*
 		 * JDK 1.3 serialVersionUID
 		 */
@@ -817,7 +810,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 		 * Returns a description of the specified action of the object.
 		 *
 		 * @param i
-		 *            zero-based index of the actions
+		 *          zero-based index of the actions
 		 * @return a String description of the action
 		 * @see #getAccessibleActionCount
 		 */
@@ -829,7 +822,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
 		 * Perform the specified Action on the object
 		 *
 		 * @param i
-		 *            zero-based index of actions
+		 *          zero-based index of actions
 		 * @return true if the action was performed; otherwise false.
 		 * @see #getAccessibleActionCount
 		 */

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.event;
@@ -40,7 +20,7 @@ public interface PrintJobAttributeListener {
 	 * changed from <code>PROCESSING</code> to <code>PROCESSING_STOPPED</code>.
 	 * 
 	 * @param pjae
-	 *            the event.
+	 *             the event.
 	 */
 	public void attributeUpdate(PrintJobAttributeEvent pjae);
 

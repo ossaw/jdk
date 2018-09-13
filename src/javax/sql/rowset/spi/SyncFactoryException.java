@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.spi;
@@ -41,8 +21,7 @@ public class SyncFactoryException extends java.sql.SQLException {
 	/**
 	 * Creates new <code>SyncFactoryException</code> without detail message.
 	 */
-	public SyncFactoryException() {
-	}
+	public SyncFactoryException() {}
 
 	/**
 	 * Constructs an <code>SyncFactoryException</code> with the specified detail

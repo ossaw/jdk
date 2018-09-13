@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -570,7 +550,7 @@ public enum RoundingMode {
 	 * Constructor
 	 *
 	 * @param oldMode
-	 *            The {@code BigDecimal} constant corresponding to this mode
+	 *                The {@code BigDecimal} constant corresponding to this mode
 	 */
 	private RoundingMode(int oldMode) {
 		this.oldMode = oldMode;
@@ -581,40 +561,40 @@ public enum RoundingMode {
 	 * rounding mode constant in {@link BigDecimal}.
 	 *
 	 * @param rm
-	 *            legacy integer rounding mode to convert
+	 *           legacy integer rounding mode to convert
 	 * @return {@code RoundingMode} corresponding to the given integer.
 	 * @throws IllegalArgumentException
-	 *             integer is out of range
+	 *                                  integer is out of range
 	 */
 	public static RoundingMode valueOf(int rm) {
 		switch (rm) {
 
-		case BigDecimal.ROUND_UP:
-			return UP;
+			case BigDecimal.ROUND_UP:
+				return UP;
 
-		case BigDecimal.ROUND_DOWN:
-			return DOWN;
+			case BigDecimal.ROUND_DOWN:
+				return DOWN;
 
-		case BigDecimal.ROUND_CEILING:
-			return CEILING;
+			case BigDecimal.ROUND_CEILING:
+				return CEILING;
 
-		case BigDecimal.ROUND_FLOOR:
-			return FLOOR;
+			case BigDecimal.ROUND_FLOOR:
+				return FLOOR;
 
-		case BigDecimal.ROUND_HALF_UP:
-			return HALF_UP;
+			case BigDecimal.ROUND_HALF_UP:
+				return HALF_UP;
 
-		case BigDecimal.ROUND_HALF_DOWN:
-			return HALF_DOWN;
+			case BigDecimal.ROUND_HALF_DOWN:
+				return HALF_DOWN;
 
-		case BigDecimal.ROUND_HALF_EVEN:
-			return HALF_EVEN;
+			case BigDecimal.ROUND_HALF_EVEN:
+				return HALF_EVEN;
 
-		case BigDecimal.ROUND_UNNECESSARY:
-			return UNNECESSARY;
+			case BigDecimal.ROUND_UNNECESSARY:
+				return UNNECESSARY;
 
-		default:
-			throw new IllegalArgumentException("argument out of range");
+			default:
+				throw new IllegalArgumentException("argument out of range");
 		}
 	}
 }

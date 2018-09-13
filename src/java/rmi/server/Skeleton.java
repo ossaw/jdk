@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi.server;
 
@@ -48,20 +28,21 @@ public interface Skeleton {
 	 * marshals the return value or any exception.
 	 *
 	 * @param obj
-	 *            remote implementation to dispatch call to
+	 *                remote implementation to dispatch call to
 	 * @param theCall
-	 *            object representing remote call
+	 *                object representing remote call
 	 * @param opnum
-	 *            operation number
+	 *                operation number
 	 * @param hash
-	 *            stub/skeleton interface hash
+	 *                stub/skeleton interface hash
 	 * @exception java.lang.Exception
-	 *                if a general exception occurs.
+	 *            if a general exception occurs.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
 	@Deprecated
-	void dispatch(Remote obj, RemoteCall theCall, int opnum, long hash) throws Exception;
+	void dispatch(Remote obj, RemoteCall theCall, int opnum, long hash)
+			throws Exception;
 
 	/**
 	 * Returns the operations supported by the skeleton.

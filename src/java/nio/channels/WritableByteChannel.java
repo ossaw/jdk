@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -86,22 +66,27 @@ public interface WritableByteChannel extends Channel {
 	 * @return The number of bytes written, possibly zero
 	 *
 	 * @throws NonWritableChannelException
-	 *             If this channel was not opened for writing
+	 *                                     If this channel was not opened for
+	 *                                     writing
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                     If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the write
-	 *             operation is in progress
+	 *                                     If another thread closes this channel
+	 *                                     while the write
+	 *                                     operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             write operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                     If another thread interrupts the
+	 *                                     current thread while the
+	 *                                     write operation is in progress,
+	 *                                     thereby closing the channel
+	 *                                     and setting the current thread's
+	 *                                     interrupt status
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
 	public int write(ByteBuffer src) throws IOException;
 

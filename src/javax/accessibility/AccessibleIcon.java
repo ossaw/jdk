@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -57,7 +37,7 @@ public interface AccessibleIcon {
 	 * user to give an indication of the purpose of the icon.
 	 *
 	 * @param description
-	 *            the description of the icon
+	 *                    the description of the icon
 	 */
 	public void setAccessibleIconDescription(String description);
 

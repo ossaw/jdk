@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -84,11 +64,11 @@ public class AccessibleObject implements AnnotatedElement {
 	 * the element for which the exception occurred is unchanged.
 	 *
 	 * @param array
-	 *            the array of AccessibleObjects
+	 *              the array of AccessibleObjects
 	 * @param flag
-	 *            the new value for the {@code accessible} flag in each object
+	 *              the new value for the {@code accessible} flag in each object
 	 * @throws SecurityException
-	 *             if the request is denied.
+	 *                           if the request is denied.
 	 * @see SecurityManager#checkPermission
 	 * @see java.lang.RuntimePermission
 	 */
@@ -126,9 +106,9 @@ public class AccessibleObject implements AnnotatedElement {
 	 * {@code java.lang.Class}, and {@code flag} is true.
 	 *
 	 * @param flag
-	 *            the new value for the {@code accessible} flag
+	 *             the new value for the {@code accessible} flag
 	 * @throws SecurityException
-	 *             if the request is denied.
+	 *                           if the request is denied.
 	 * @see SecurityManager#checkPermission
 	 * @see java.lang.RuntimePermission
 	 */
@@ -148,8 +128,8 @@ public class AccessibleObject implements AnnotatedElement {
 		if (obj instanceof Constructor && flag == true) {
 			Constructor<?> c = (Constructor<?>) obj;
 			if (c.getDeclaringClass() == Class.class) {
-				throw new SecurityException(
-						"Cannot make a java.lang.Class" + " constructor accessible");
+				throw new SecurityException("Cannot make a java.lang.Class"
+						+ " constructor accessible");
 			}
 		}
 		obj.override = flag;
@@ -167,8 +147,7 @@ public class AccessibleObject implements AnnotatedElement {
 	/**
 	 * Constructor: only used by the Java Virtual Machine.
 	 */
-	protected AccessibleObject() {
-	}
+	protected AccessibleObject() {}
 
 	// Indicates whether language-level access checks are overridden
 	// by this object. Initializes to "false". This field is used by
@@ -182,11 +161,12 @@ public class AccessibleObject implements AnnotatedElement {
 	// method, and constructor accessors. Note that this is called
 	// very early in the bootstrapping process.
 	static final ReflectionFactory reflectionFactory = AccessController
-			.doPrivileged(new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
+			.doPrivileged(
+					new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.5
 	 */
 	public <T extends Annotation> T getAnnotation(Class<T> annotationClass) {
@@ -197,21 +177,23 @@ public class AccessibleObject implements AnnotatedElement {
 	 * {@inheritDoc}
 	 * 
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.5
 	 */
 	@Override
-	public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
+	public boolean isAnnotationPresent(
+			Class<? extends Annotation> annotationClass) {
 		return AnnotatedElement.super.isAnnotationPresent(annotationClass);
 	}
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass) {
+	public <T extends Annotation> T[] getAnnotationsByType(
+			Class<T> annotationClass) {
 		throw new AssertionError("All subclasses should override this method");
 	}
 
@@ -224,11 +206,12 @@ public class AccessibleObject implements AnnotatedElement {
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <T extends Annotation> T getDeclaredAnnotation(Class<T> annotationClass) {
+	public <T extends Annotation> T getDeclaredAnnotation(
+			Class<T> annotationClass) {
 		// Only annotations on classes are inherited, for all other
 		// objects getDeclaredAnnotation is the same as
 		// getAnnotation.
@@ -237,11 +220,12 @@ public class AccessibleObject implements AnnotatedElement {
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <T extends Annotation> T[] getDeclaredAnnotationsByType(Class<T> annotationClass) {
+	public <T extends Annotation> T[] getDeclaredAnnotationsByType(
+			Class<T> annotationClass) {
 		// Only annotations on classes are inherited, for all other
 		// objects getDeclaredAnnotationsByType is the same as
 		// getAnnotationsByType.
@@ -302,12 +286,13 @@ public class AccessibleObject implements AnnotatedElement {
 	}
 
 	// Keep all this slow stuff out of line:
-	void slowCheckMemberAccess(Class<?> caller, Class<?> clazz, Object obj, int modifiers,
-			Class<?> targetClass) throws IllegalAccessException {
+	void slowCheckMemberAccess(Class<?> caller, Class<?> clazz, Object obj,
+			int modifiers, Class<?> targetClass) throws IllegalAccessException {
 		Reflection.ensureMemberAccess(caller, clazz, obj, modifiers);
 
 		// Success: Update the cache.
-		Object cache = ((targetClass == clazz) ? caller : new Class<?>[] { caller, targetClass });
+		Object cache = ((targetClass == clazz) ? caller
+				: new Class<?>[] { caller, targetClass });
 
 		// Note: The two cache elements are not volatile,
 		// but they are effectively final. The Java memory model

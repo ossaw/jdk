@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.annotation;
@@ -58,11 +38,13 @@ public class AnnotationTypeMismatchException extends RuntimeException {
 	 * annotation type element and found data type.
 	 *
 	 * @param element
-	 *            the <tt>Method</tt> object for the annotation element
+	 *                  the <tt>Method</tt> object for the annotation element
 	 * @param foundType
-	 *            the (erroneous) type of data found in the annotation. This
-	 *            string may, but is not required to, contain the value as well.
-	 *            The exact format of the string is unspecified.
+	 *                  the (erroneous) type of data found in the annotation.
+	 *                  This
+	 *                  string may, but is not required to, contain the value as
+	 *                  well.
+	 *                  The exact format of the string is unspecified.
 	 */
 	public AnnotationTypeMismatchException(Method element, String foundType) {
 		super("Incorrectly typed data found for annotation element " + element

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,8 +49,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Constants;
  * @author Santiago Pericas-Geertsen
  */
 public final class BooleanType extends Type {
-	protected BooleanType() {
-	}
+	protected BooleanType() {}
 
 	public String toString() {
 		return "boolean";
@@ -82,7 +78,8 @@ public final class BooleanType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			Type type) {
 		if (type == Type.String) {
 			translateTo(classGen, methodGen, (StringType) type);
 		} else if (type == Type.Real) {
@@ -90,7 +87,8 @@ public final class BooleanType extends Type {
 		} else if (type == Type.Reference) {
 			translateTo(classGen, methodGen, (ReferenceType) type);
 		} else {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
+			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					toString(), type.toString());
 			classGen.getParser().reportError(Constants.FATAL, err);
 		}
 	}
@@ -102,7 +100,8 @@ public final class BooleanType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, StringType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			StringType type) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 		final BranchHandle falsec = il.append(new IFEQ(null));
@@ -118,7 +117,8 @@ public final class BooleanType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, RealType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			RealType type) {
 		methodGen.getInstructionList().append(I2D);
 	}
 
@@ -135,13 +135,15 @@ public final class BooleanType extends Type {
 		il.append(new NEW(cpg.addClass(BOOLEAN_CLASS)));
 		il.append(DUP_X1);
 		il.append(SWAP);
-		il.append(new INVOKESPECIAL(cpg.addMethodref(BOOLEAN_CLASS, "<init>", "(Z)V")));
+		il.append(new INVOKESPECIAL(cpg.addMethodref(BOOLEAN_CLASS, "<init>",
+				"(Z)V")));
 	}
 
 	/**
 	 * Translates an internal boolean into an external (Java) boolean.
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			Class clazz) {
 		if (clazz == java.lang.Boolean.TYPE) {
 			methodGen.getInstructionList().append(NOP);
 		}
@@ -149,7 +151,8 @@ public final class BooleanType extends Type {
 		else if (clazz.isAssignableFrom(java.lang.Boolean.class)) {
 			translateTo(classGen, methodGen, Type.Reference);
 		} else {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getName());
+			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					toString(), clazz.getName());
 			classGen.getParser().reportError(Constants.FATAL, err);
 		}
 	}
@@ -157,26 +160,29 @@ public final class BooleanType extends Type {
 	/**
 	 * Translates an external (Java) boolean into internal boolean.
 	 */
-	public void translateFrom(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
+	public void translateFrom(ClassGenerator classGen,
+			MethodGenerator methodGen, Class clazz) {
 		translateTo(classGen, methodGen, clazz);
 	}
 
 	/**
 	 * Translates an object of this type to its boxed representation.
 	 */
-	public void translateBox(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateBox(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		translateTo(classGen, methodGen, Type.Reference);
 	}
 
 	/**
 	 * Translates an object of this type to its unboxed representation.
 	 */
-	public void translateUnBox(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateUnBox(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 		il.append(new CHECKCAST(cpg.addClass(BOOLEAN_CLASS)));
-		il.append(new INVOKEVIRTUAL(
-				cpg.addMethodref(BOOLEAN_CLASS, BOOLEAN_VALUE, BOOLEAN_VALUE_SIG)));
+		il.append(new INVOKEVIRTUAL(cpg.addMethodref(BOOLEAN_CLASS,
+				BOOLEAN_VALUE, BOOLEAN_VALUE_SIG)));
 	}
 
 	public Instruction LOAD(int slot) {

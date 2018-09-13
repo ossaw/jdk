@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -47,7 +27,7 @@ public class ExportException extends java.rmi.RemoteException {
 	 * message.
 	 *
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 * @since JDK1.1
 	 */
 	public ExportException(String s) {
@@ -59,9 +39,9 @@ public class ExportException extends java.rmi.RemoteException {
 	 * message and nested exception.
 	 *
 	 * @param s
-	 *            the detail message
+	 *           the detail message
 	 * @param ex
-	 *            the nested exception
+	 *           the nested exception
 	 * @since JDK1.1
 	 */
 	public ExportException(String s, Exception ex) {

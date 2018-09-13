@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -53,12 +33,14 @@ public interface JMXConnectorServerMBean {
 	 * </p>
 	 *
 	 * @exception IOException
-	 *                if it is not possible to start listening or if the
-	 *                connector server has been stopped.
+	 *                                  if it is not possible to start listening
+	 *                                  or if the
+	 *                                  connector server has been stopped.
 	 *
 	 * @exception IllegalStateException
-	 *                if the connector server has not been attached to an MBean
-	 *                server.
+	 *                                  if the connector server has not been
+	 *                                  attached to an MBean
+	 *                                  server.
 	 */
 	public void start() throws IOException;
 
@@ -97,11 +79,14 @@ public interface JMXConnectorServerMBean {
 	 * </p>
 	 *
 	 * @exception IOException
-	 *                if the server cannot be closed cleanly. When this
-	 *                exception is thrown, the server has already attempted to
-	 *                close all client connections. All client connections are
-	 *                closed except possibly those that generated exceptions
-	 *                when the server attempted to close them.
+	 *                        if the server cannot be closed cleanly. When this
+	 *                        exception is thrown, the server has already
+	 *                        attempted to
+	 *                        close all client connections. All client
+	 *                        connections are
+	 *                        closed except possibly those that generated
+	 *                        exceptions
+	 *                        when the server attempted to close them.
 	 */
 	public void stop() throws IOException;
 
@@ -153,13 +138,15 @@ public interface JMXConnectorServerMBean {
 	 * </ul>
 	 *
 	 * @param mbsf
-	 *            the new <code>MBeanServerForwarder</code>.
+	 *             the new <code>MBeanServerForwarder</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the call to {@link MBeanServerForwarder#setMBeanServer
-	 *                mbsf.setMBeanServer} fails with
-	 *                <code>IllegalArgumentException</code>. This includes the
-	 *                case where <code>mbsf</code> is null.
+	 *                                     if the call to
+	 *                                     {@link MBeanServerForwarder#setMBeanServer
+	 *                                     mbsf.setMBeanServer} fails with
+	 *                                     <code>IllegalArgumentException</code>.
+	 *                                     This includes the
+	 *                                     case where <code>mbsf</code> is null.
 	 */
 	public void setMBeanServerForwarder(MBeanServerForwarder mbsf);
 
@@ -231,16 +218,19 @@ public interface JMXConnectorServerMBean {
 	 *         connector server.
 	 *
 	 * @exception UnsupportedOperationException
-	 *                if this connector server does not support the generation
-	 *                of client stubs.
+	 *                                          if this connector server does
+	 *                                          not support the generation
+	 *                                          of client stubs.
 	 *
 	 * @exception IllegalStateException
-	 *                if the JMXConnectorServer is not started (see
-	 *                {@link JMXConnectorServerMBean#isActive()}).
+	 *                                          if the JMXConnectorServer is not
+	 *                                          started (see
+	 *                                          {@link JMXConnectorServerMBean#isActive()}).
 	 *
 	 * @exception IOException
-	 *                if a communications problem means that a stub cannot be
-	 *                created.
+	 *                                          if a communications problem
+	 *                                          means that a stub cannot be
+	 *                                          created.
 	 *
 	 */
 	public JMXConnector toJMXConnector(Map<String, ?> env) throws IOException;

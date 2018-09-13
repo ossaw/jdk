@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.tree;
@@ -80,14 +60,16 @@ import java.util.*;
  *
  * @author Rob Davis
  */
-public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Serializable {
+public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode,
+		Serializable {
 	private static final long serialVersionUID = -4298474751201349152L;
 
 	/**
 	 * An enumeration that is always empty. This is used when an enumeration of
 	 * a leaf node's children is requested.
 	 */
-	static public final Enumeration<TreeNode> EMPTY_ENUMERATION = Collections.emptyEnumeration();
+	static public final Enumeration<TreeNode> EMPTY_ENUMERATION = Collections
+			.emptyEnumeration();
 
 	/** this node's parent, or null if this node has no parent */
 	protected MutableTreeNode parent;
@@ -114,8 +96,9 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * children, and initializes it with the specified user object.
 	 *
 	 * @param userObject
-	 *            an Object provided by the user that constitutes the node's
-	 *            data
+	 *                   an Object provided by the user that constitutes the
+	 *                   node's
+	 *                   data
 	 */
 	public DefaultMutableTreeNode(Object userObject) {
 		this(userObject, true);
@@ -126,11 +109,13 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * specified user object, and that allows children only if specified.
 	 *
 	 * @param userObject
-	 *            an Object provided by the user that constitutes the node's
-	 *            data
+	 *                       an Object provided by the user that constitutes the
+	 *                       node's
+	 *                       data
 	 * @param allowsChildren
-	 *            if true, the node is allowed to have child nodes -- otherwise,
-	 *            it is always a leaf node
+	 *                       if true, the node is allowed to have child nodes --
+	 *                       otherwise,
+	 *                       it is always a leaf node
 	 */
 	public DefaultMutableTreeNode(Object userObject, boolean allowsChildren) {
 		super();
@@ -151,17 +136,21 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * this node.
 	 *
 	 * @param newChild
-	 *            the MutableTreeNode to insert under this node
+	 *                   the MutableTreeNode to insert under this node
 	 * @param childIndex
-	 *            the index in this node's child array where this node is to be
-	 *            inserted
+	 *                   the index in this node's child array where this node is
+	 *                   to be
+	 *                   inserted
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                if <code>childIndex</code> is out of bounds
+	 *                                           if <code>childIndex</code> is
+	 *                                           out of bounds
 	 * @exception IllegalArgumentException
-	 *                if <code>newChild</code> is null or is an ancestor of this
-	 *                node
+	 *                                           if <code>newChild</code> is
+	 *                                           null or is an ancestor of this
+	 *                                           node
 	 * @exception IllegalStateException
-	 *                if this node does not allow children
+	 *                                           if this node does not allow
+	 *                                           children
 	 * @see #isNodeDescendant
 	 */
 	public void insert(MutableTreeNode newChild, int childIndex) {
@@ -191,9 +180,11 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * <code>MutableTreeNode</code>.
 	 *
 	 * @param childIndex
-	 *            the index in this node's child array of the child to remove
+	 *                   the index in this node's child array of the child to
+	 *                   remove
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                if <code>childIndex</code> is out of bounds
+	 *                                           if <code>childIndex</code> is
+	 *                                           out of bounds
 	 */
 	public void remove(int childIndex) {
 		MutableTreeNode child = (MutableTreeNode) getChildAt(childIndex);
@@ -208,7 +199,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * messaged from anywhere else.
 	 *
 	 * @param newParent
-	 *            this node's new parent
+	 *                  this node's new parent
 	 */
 	@Transient
 	public void setParent(MutableTreeNode newParent) {
@@ -228,9 +219,10 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * Returns the child at the specified index in this node's child array.
 	 *
 	 * @param index
-	 *            an index into this node's child array
+	 *              an index into this node's child array
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                if <code>index</code> is out of bounds
+	 *                                           if <code>index</code> is out of
+	 *                                           bounds
 	 * @return the TreeNode in this node's child array at the specified index
 	 */
 	public TreeNode getChildAt(int index) {
@@ -260,9 +252,9 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * children.
 	 *
 	 * @param aChild
-	 *            the TreeNode to search for among this node's children
+	 *               the TreeNode to search for among this node's children
 	 * @exception IllegalArgumentException
-	 *                if <code>aChild</code> is null
+	 *                                     if <code>aChild</code> is null
 	 * @return an int giving the index of the node in this node's child array,
 	 *         or <code>-1</code> if the specified node is a not a child of this
 	 *         node
@@ -300,7 +292,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * Note: By default, a node allows children.
 	 *
 	 * @param allows
-	 *            true if this node is allowed to have children
+	 *               true if this node is allowed to have children
 	 */
 	public void setAllowsChildren(boolean allows) {
 		if (allows != allowsChildren) {
@@ -324,7 +316,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * Sets the user object for this node to <code>userObject</code>.
 	 *
 	 * @param userObject
-	 *            the Object that constitutes this node's user-specified data
+	 *                   the Object that constitutes this node's user-specified
+	 *                   data
 	 * @see #getUserObject
 	 * @see #toString
 	 */
@@ -363,10 +356,11 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * null parent.
 	 *
 	 * @param aChild
-	 *            a child of this node to remove
+	 *               a child of this node to remove
 	 * @exception IllegalArgumentException
-	 *                if <code>aChild</code> is null or is not a child of this
-	 *                node
+	 *                                     if <code>aChild</code> is null or is
+	 *                                     not a child of this
+	 *                                     node
 	 */
 	public void remove(MutableTreeNode aChild) {
 		if (aChild == null) {
@@ -395,11 +389,11 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 *
 	 * @see #insert
 	 * @param newChild
-	 *            node to add as a child of this node
+	 *                 node to add as a child of this node
 	 * @exception IllegalArgumentException
-	 *                if <code>newChild</code> is null
+	 *                                     if <code>newChild</code> is null
 	 * @exception IllegalStateException
-	 *                if this node does not allow children
+	 *                                     if this node does not allow children
 	 */
 	public void add(MutableTreeNode newChild) {
 		if (newChild != null && newChild.getParent() == this)
@@ -423,7 +417,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * @see #isNodeDescendant
 	 * @see #getSharedAncestor
 	 * @param anotherNode
-	 *            node to test as an ancestor of this node
+	 *                    node to test as an ancestor of this node
 	 * @return true if this node is a descendant of <code>anotherNode</code>
 	 */
 	public boolean isNodeAncestor(TreeNode anotherNode) {
@@ -453,7 +447,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * @see #isNodeAncestor
 	 * @see #getSharedAncestor
 	 * @param anotherNode
-	 *            node to test as descendant of this node
+	 *                    node to test as descendant of this node
 	 * @return true if this node is an ancestor of <code>anotherNode</code>
 	 */
 	public boolean isNodeDescendant(DefaultMutableTreeNode anotherNode) {
@@ -472,7 +466,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * @see #isNodeAncestor
 	 * @see #isNodeDescendant
 	 * @param aNode
-	 *            node to find common ancestor with
+	 *              node to find common ancestor with
 	 * @return nearest ancestor common to this node and <code>aNode</code>, or
 	 *         null if none
 	 */
@@ -600,10 +594,10 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * the returned array gives the node's depth in the tree.
 	 *
 	 * @param aNode
-	 *            the TreeNode to get the path for
+	 *              the TreeNode to get the path for
 	 * @param depth
-	 *            an int giving the number of steps already taken towards the
-	 *            root (on recursive calls), used to size the returned array
+	 *              an int giving the number of steps already taken towards the
+	 *              root (on recursive calls), used to size the returned array
 	 * @return an array of TreeNodes giving the path from the root to the
 	 *         specified node
 	 */
@@ -637,7 +631,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 		Object[] retPath = new Object[realPath.length];
 
 		for (int counter = 0; counter < realPath.length; counter++)
-			retPath[counter] = ((DefaultMutableTreeNode) realPath[counter]).getUserObject();
+			retPath[counter] = ((DefaultMutableTreeNode) realPath[counter])
+					.getUserObject();
 		return retPath;
 	}
 
@@ -823,7 +818,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * @see #isNodeAncestor
 	 * @see #isNodeDescendant
 	 * @exception IllegalArgumentException
-	 *                if <code>ancestor</code> is not an ancestor of this node
+	 *                                     if <code>ancestor</code> is not an
+	 *                                     ancestor of this node
 	 * @return an enumeration for following the path from an ancestor of this
 	 *         node to this one
 	 */
@@ -864,7 +860,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 *
 	 * @return the first child of this node
 	 * @exception NoSuchElementException
-	 *                if this node has no children
+	 *                                   if this node has no children
 	 */
 	public TreeNode getFirstChild() {
 		if (getChildCount() == 0) {
@@ -879,7 +875,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 *
 	 * @return the last child of this node
 	 * @exception NoSuchElementException
-	 *                if this node has no children
+	 *                                   if this node has no children
 	 */
 	public TreeNode getLastChild() {
 		if (getChildCount() == 0) {
@@ -898,8 +894,9 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 *
 	 * @see #children
 	 * @exception IllegalArgumentException
-	 *                if <code>aChild</code> is null or is not a child of this
-	 *                node
+	 *                                     if <code>aChild</code> is null or is
+	 *                                     not a child of this
+	 *                                     node
 	 * @return the child of this node that immediately follows
 	 *         <code>aChild</code>
 	 */
@@ -929,8 +926,9 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * and is O(n) where n is the number of children.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>aChild</code> is null or is not a child of this
-	 *                node
+	 *                                     if <code>aChild</code> is null or is
+	 *                                     not a child of this
+	 *                                     node
 	 * @return the child of this node that immediately precedes
 	 *         <code>aChild</code>
 	 */
@@ -962,7 +960,7 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	 * <code>anotherNode</code> is null, returns false.
 	 *
 	 * @param anotherNode
-	 *            node to test as sibling of this node
+	 *                    node to test as sibling of this node
 	 * @return true if <code>anotherNode</code> is a sibling of this node
 	 */
 	public boolean isNodeSibling(TreeNode anotherNode) {
@@ -976,7 +974,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 			TreeNode myParent = getParent();
 			retval = (myParent != null && myParent == anotherNode.getParent());
 
-			if (retval && !((DefaultMutableTreeNode) getParent()).isNodeChild(anotherNode)) {
+			if (retval && !((DefaultMutableTreeNode) getParent()).isNodeChild(
+					anotherNode)) {
 				throw new Error("sibling has different parent");
 			}
 		}
@@ -1265,7 +1264,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 		s.writeObject(tValues);
 	}
 
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		Object[] tValues;
 
 		s.defaultReadObject();
@@ -1352,7 +1352,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 		}
 
 		public boolean hasMoreElements() {
-			return (!queue.isEmpty() && ((Enumeration) queue.firstObject()).hasMoreElements());
+			return (!queue.isEmpty() && ((Enumeration) queue.firstObject())
+					.hasMoreElements());
 		}
 
 		public TreeNode nextElement() {
@@ -1428,7 +1429,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 	final class PathBetweenNodesEnumeration implements Enumeration<TreeNode> {
 		protected Stack<TreeNode> stack;
 
-		public PathBetweenNodesEnumeration(TreeNode ancestor, TreeNode descendant) {
+		public PathBetweenNodesEnumeration(TreeNode ancestor,
+				TreeNode descendant) {
 			super();
 
 			if (ancestor == null || descendant == null) {
@@ -1444,8 +1446,8 @@ public class DefaultMutableTreeNode implements Cloneable, MutableTreeNode, Seria
 			while (current != ancestor) {
 				current = current.getParent();
 				if (current == null && descendant != ancestor) {
-					throw new IllegalArgumentException(
-							"node " + ancestor + " is not an ancestor of " + descendant);
+					throw new IllegalArgumentException("node " + ancestor
+							+ " is not an ancestor of " + descendant);
 				}
 				stack.push(current);
 			}

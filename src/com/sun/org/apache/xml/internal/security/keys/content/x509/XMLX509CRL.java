@@ -28,7 +28,8 @@ import com.sun.org.apache.xml.internal.security.utils.SignatureElementProxy;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLX509CRL extends SignatureElementProxy implements XMLX509DataContent {
+public class XMLX509CRL extends SignatureElementProxy implements
+		XMLX509DataContent {
 
 	/**
 	 * Constructor XMLX509CRL
@@ -37,7 +38,8 @@ public class XMLX509CRL extends SignatureElementProxy implements XMLX509DataCont
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public XMLX509CRL(Element element, String BaseURI) throws XMLSecurityException {
+	public XMLX509CRL(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 

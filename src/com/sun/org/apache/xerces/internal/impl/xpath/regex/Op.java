@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -147,10 +144,12 @@ class Op {
 		return op;
 	}
 
-	static ConditionOp createCondition(Op next, int ref, Op conditionflow, Op yesflow, Op noflow) {
+	static ConditionOp createCondition(Op next, int ref, Op conditionflow,
+			Op yesflow, Op noflow) {
 		if (Op.COUNT)
 			Op.nofinstances++;
-		ConditionOp op = new ConditionOp(Op.CONDITION, ref, conditionflow, yesflow, noflow);
+		ConditionOp op = new ConditionOp(Op.CONDITION, ref, conditionflow,
+				yesflow, noflow);
 		op.next = next;
 		return op;
 	}
@@ -299,7 +298,8 @@ class Op {
 		Op yes;
 		Op no;
 
-		ConditionOp(int type, int refno, Op conditionflow, Op yesflow, Op noflow) {
+		ConditionOp(int type, int refno, Op conditionflow, Op yesflow,
+				Op noflow) {
 			super(type);
 			this.refNumber = refno;
 			this.condition = conditionflow;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -51,11 +31,13 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 	private static final long serialVersionUID = -7840670002439379038L;
 
 	private static final java.util.ResourceBundle rb = java.security.AccessController
-			.doPrivileged(new java.security.PrivilegedAction<java.util.ResourceBundle>() {
-				public java.util.ResourceBundle run() {
-					return (java.util.ResourceBundle.getBundle("sun.security.util.AuthResources"));
-				}
-			});
+			.doPrivileged(
+					new java.security.PrivilegedAction<java.util.ResourceBundle>() {
+						public java.util.ResourceBundle run() {
+							return (java.util.ResourceBundle.getBundle(
+									"sun.security.util.AuthResources"));
+						}
+					});
 
 	/**
 	 * @serial
@@ -68,10 +50,11 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param name
-	 *            the Unix username for this user.
+	 *             the Unix username for this user.
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>name</code> is <code>null</code>.
+	 *                                 if the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public SolarisPrincipal(String name) {
 		if (name == null)
@@ -111,8 +94,8 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>SolarisPrincipal</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>SolarisPrincipal</code>.
 	 *
 	 * @return true if the specified Object is equal equal to this
 	 *         <code>SolarisPrincipal</code>.

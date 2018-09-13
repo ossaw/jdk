@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -207,7 +187,8 @@ import java.util.Spliterator;
  * <pre>
  * {
  * 	&#64;code
- * 	int flagsForThisStage = combineOpFlags(flagsForPreviousStage, thisOpFlags);
+ * 	int flagsForThisStage = combineOpFlags(flagsForPreviousStage,
+ * 			thisOpFlags);
  * }
  * </pre>
  *
@@ -232,21 +213,16 @@ enum StreamOpFlag {
 	/*
 	 * Each characteristic takes up 2 bits in a bit set to accommodate
 	 * preserving, clearing and setting/injecting information.
-	 *
 	 * This applies to stream flags, intermediate/terminal operation flags, and
 	 * combined stream and operation flags. Even though the former only requires
 	 * 1 bit of information per characteristic, is it more efficient when
 	 * combining flags to align set and inject bits.
-	 *
 	 * Characteristics belong to certain types, see the Type enum. Bit masks for
 	 * the types are constructed as per the following table:
-	 *
 	 * DISTINCT SORTED ORDERED SIZED SHORT_CIRCUIT SPLITERATOR 01 01 01 01 00
 	 * STREAM 01 01 01 01 00 OP 11 11 11 10 01 TERMINAL_OP 00 00 10 00 01
 	 * UPSTREAM_TERMINAL_OP 00 00 10 00 00
-	 *
 	 * 01 = set/inject 10 = clear 11 = preserve
-	 *
 	 * Construction of the columns is performed using a simple builder for
 	 * non-zero values.
 	 */
@@ -296,7 +272,8 @@ enum StreamOpFlag {
 	 */
 	// 2, 0x00000010
 	// Matches Spliterator.ORDERED
-	ORDERED(2, set(Type.SPLITERATOR).set(Type.STREAM).setAndClear(Type.OP).clear(Type.TERMINAL_OP).clear(Type.UPSTREAM_TERMINAL_OP)),
+	ORDERED(2, set(Type.SPLITERATOR).set(Type.STREAM).setAndClear(Type.OP)
+			.clear(Type.TERMINAL_OP).clear(Type.UPSTREAM_TERMINAL_OP)),
 
 	/**
 	 * Characteristic value signifying that size of the stream is of a known
@@ -497,8 +474,8 @@ enum StreamOpFlag {
 	 * and injected on combined stream and operation flags.
 	 *
 	 * @param flags
-	 *            the stream flags, operation flags, or combined stream and
-	 *            operation flags
+	 *              the stream flags, operation flags, or combined stream and
+	 *              operation flags
 	 * @return true if this flag is known, otherwise false.
 	 */
 	boolean isKnown(int flags) {
@@ -510,7 +487,7 @@ enum StreamOpFlag {
 	 * operation flags.
 	 *
 	 * @param flags
-	 *            the operation flags or combined stream and operations flags.
+	 *              the operation flags or combined stream and operations flags.
 	 * @return true if this flag is preserved, otherwise false.
 	 */
 	boolean isCleared(int flags) {
@@ -521,7 +498,7 @@ enum StreamOpFlag {
 	 * Checks if this flag is preserved on combined stream and operation flags.
 	 *
 	 * @param flags
-	 *            the combined stream and operations flags.
+	 *              the combined stream and operations flags.
 	 * @return true if this flag is preserved, otherwise false.
 	 */
 	boolean isPreserved(int flags) {
@@ -532,7 +509,7 @@ enum StreamOpFlag {
 	 * Determines if this flag can be set for a flag type.
 	 *
 	 * @param t
-	 *            the flag type.
+	 *          the flag type.
 	 * @return true if this flag can be set for the flag type, otherwise false.
 	 */
 	boolean canSet(Type t) {
@@ -542,7 +519,8 @@ enum StreamOpFlag {
 	/**
 	 * The bit mask for spliterator characteristics
 	 */
-	static final int SPLITERATOR_CHARACTERISTICS_MASK = createMask(Type.SPLITERATOR);
+	static final int SPLITERATOR_CHARACTERISTICS_MASK = createMask(
+			Type.SPLITERATOR);
 
 	/**
 	 * The bit mask for source stream flags.
@@ -562,7 +540,8 @@ enum StreamOpFlag {
 	/**
 	 * The bit mask for upstream terminal operation flags.
 	 */
-	static final int UPSTREAM_TERMINAL_OP_MASK = createMask(Type.UPSTREAM_TERMINAL_OP);
+	static final int UPSTREAM_TERMINAL_OP_MASK = createMask(
+			Type.UPSTREAM_TERMINAL_OP);
 
 	private static int createMask(Type t) {
 		int mask = 0;
@@ -648,7 +627,8 @@ enum StreamOpFlag {
 
 	private static int getMask(int flags) {
 		return (flags == 0) ? FLAG_MASK
-				: ~(flags | ((FLAG_MASK_IS & flags) << 1) | ((FLAG_MASK_NOT & flags) >> 1));
+				: ~(flags | ((FLAG_MASK_IS & flags) << 1) | ((FLAG_MASK_NOT
+						& flags) >> 1));
 	}
 
 	/**
@@ -695,10 +675,12 @@ enum StreamOpFlag {
 	 * operation flags.
 	 *
 	 * @param newStreamOrOpFlags
-	 *            the stream or operation flags.
+	 *                           the stream or operation flags.
 	 * @param prevCombOpFlags
-	 *            previously combined stream and operation flags. The value
-	 *            {#link INITIAL_OPS_VALUE} must be used as the seed value.
+	 *                           previously combined stream and operation flags.
+	 *                           The value
+	 *                           {#link INITIAL_OPS_VALUE} must be used as the
+	 *                           seed value.
 	 * @return the updated combined stream and operation flags.
 	 */
 	static int combineOpFlags(int newStreamOrOpFlags, int prevCombOpFlags) {
@@ -706,7 +688,8 @@ enum StreamOpFlag {
 		// 0x00 nibbles remain unchanged
 		// Then all the bits are flipped
 		// Then the result is logically or'ed with the operation flags.
-		return (prevCombOpFlags & StreamOpFlag.getMask(newStreamOrOpFlags)) | newStreamOrOpFlags;
+		return (prevCombOpFlags & StreamOpFlag.getMask(newStreamOrOpFlags))
+				| newStreamOrOpFlags;
 	}
 
 	/**
@@ -717,7 +700,7 @@ enum StreamOpFlag {
 	 * on the stream flags.
 	 *
 	 * @param combOpFlags
-	 *            the combined stream and operation flags.
+	 *                    the combined stream and operation flags.
 	 * @return the stream flags.
 	 */
 	static int toStreamFlags(int combOpFlags) {
@@ -731,7 +714,7 @@ enum StreamOpFlag {
 	 * Converts stream flags to a spliterator characteristic bit set.
 	 *
 	 * @param streamFlags
-	 *            the stream flags.
+	 *                    the stream flags.
 	 * @return the spliterator characteristic bit set.
 	 */
 	static int toCharacteristics(int streamFlags) {
@@ -747,16 +730,19 @@ enum StreamOpFlag {
 	 *           characteristic is not converted.
 	 *
 	 * @param spliterator
-	 *            the spliterator from which to obtain characteristic bit set.
+	 *                    the spliterator from which to obtain characteristic
+	 *                    bit set.
 	 * @return the stream flags.
 	 */
 	static int fromCharacteristics(Spliterator<?> spliterator) {
 		int characteristics = spliterator.characteristics();
-		if ((characteristics & Spliterator.SORTED) != 0 && spliterator.getComparator() != null) {
+		if ((characteristics & Spliterator.SORTED) != 0 && spliterator
+				.getComparator() != null) {
 			// Do not propagate the SORTED characteristic if it does not
 			// correspond
 			// to a natural sort order
-			return characteristics & SPLITERATOR_CHARACTERISTICS_MASK & ~Spliterator.SORTED;
+			return characteristics & SPLITERATOR_CHARACTERISTICS_MASK
+					& ~Spliterator.SORTED;
 		} else {
 			return characteristics & SPLITERATOR_CHARACTERISTICS_MASK;
 		}
@@ -766,7 +752,7 @@ enum StreamOpFlag {
 	 * Converts a spliterator characteristic bit set to stream flags.
 	 *
 	 * @param characteristics
-	 *            the spliterator characteristic bit set.
+	 *                        the spliterator characteristic bit set.
 	 * @return the stream flags.
 	 */
 	static int fromCharacteristics(int characteristics) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.parsers;
@@ -53,8 +33,7 @@ public abstract class DocumentBuilderFactory {
 	 * {@link #newInstance()}.
 	 * </p>
 	 */
-	protected DocumentBuilderFactory() {
-	}
+	protected DocumentBuilderFactory() {}
 
 	/**
 	 * Obtain a new instance of a <code>DocumentBuilderFactory</code>. This
@@ -111,9 +90,11 @@ public abstract class DocumentBuilderFactory {
 	 * @return New instance of a <code>DocumentBuilderFactory</code>
 	 *
 	 * @throws FactoryConfigurationError
-	 *             in case of {@linkplain java.util.ServiceConfigurationError
-	 *             service configuration error} or if the implementation is not
-	 *             available or cannot be instantiated.
+	 *                                   in case of
+	 *                                   {@linkplain java.util.ServiceConfigurationError
+	 *                                   service configuration error} or if the
+	 *                                   implementation is not
+	 *                                   available or cannot be instantiated.
 	 */
 	public static DocumentBuilderFactory newInstance() {
 		return FactoryFinder.find(
@@ -154,20 +135,24 @@ public abstract class DocumentBuilderFactory {
 	 * </pre>
 	 *
 	 * @param factoryClassName
-	 *            fully qualified factory class name that provides
-	 *            implementation of
-	 *            <code>javax.xml.parsers.DocumentBuilderFactory</code>.
+	 *                         fully qualified factory class name that provides
+	 *                         implementation of
+	 *                         <code>javax.xml.parsers.DocumentBuilderFactory</code>.
 	 *
 	 * @param classLoader
-	 *            <code>ClassLoader</code> used to load the factory class. If
-	 *            <code>null</code> current <code>Thread</code>'s context
-	 *            classLoader is used to load the factory class.
+	 *                         <code>ClassLoader</code> used to load the factory
+	 *                         class. If
+	 *                         <code>null</code> current <code>Thread</code>'s
+	 *                         context
+	 *                         classLoader is used to load the factory class.
 	 *
 	 * @return New instance of a <code>DocumentBuilderFactory</code>
 	 *
 	 * @throws FactoryConfigurationError
-	 *             if <code>factoryClassName</code> is <code>null</code>, or the
-	 *             factory class cannot be loaded, instantiated.
+	 *                                   if <code>factoryClassName</code> is
+	 *                                   <code>null</code>, or the
+	 *                                   factory class cannot be loaded,
+	 *                                   instantiated.
 	 *
 	 * @see #newInstance()
 	 *
@@ -177,8 +162,8 @@ public abstract class DocumentBuilderFactory {
 			ClassLoader classLoader) {
 		// do not fallback if given classloader can't find the class, throw
 		// exception
-		return FactoryFinder.newInstance(DocumentBuilderFactory.class, factoryClassName,
-				classLoader, false);
+		return FactoryFinder.newInstance(DocumentBuilderFactory.class,
+				factoryClassName, classLoader, false);
 	}
 
 	/**
@@ -188,19 +173,21 @@ public abstract class DocumentBuilderFactory {
 	 * @return A new instance of a DocumentBuilder.
 	 *
 	 * @throws ParserConfigurationException
-	 *             if a DocumentBuilder cannot be created which satisfies the
-	 *             configuration requested.
+	 *                                      if a DocumentBuilder cannot be
+	 *                                      created which satisfies the
+	 *                                      configuration requested.
 	 */
 
-	public abstract DocumentBuilder newDocumentBuilder() throws ParserConfigurationException;
+	public abstract DocumentBuilder newDocumentBuilder()
+			throws ParserConfigurationException;
 
 	/**
 	 * Specifies that the parser produced by this code will provide support for
 	 * XML namespaces. By default the value of this is set to <code>false</code>
 	 *
 	 * @param awareness
-	 *            true if the parser produced will provide support for XML
-	 *            namespaces; false otherwise.
+	 *                  true if the parser produced will provide support for XML
+	 *                  namespaces; false otherwise.
 	 */
 
 	public void setNamespaceAware(boolean awareness) {
@@ -229,8 +216,9 @@ public abstract class DocumentBuilderFactory {
 	 * </p>
 	 *
 	 * @param validating
-	 *            true if the parser produced will validate documents as they
-	 *            are parsed; false otherwise.
+	 *                   true if the parser produced will validate documents as
+	 *                   they
+	 *                   are parsed; false otherwise.
 	 */
 
 	public void setValidating(boolean validating) {
@@ -248,8 +236,10 @@ public abstract class DocumentBuilderFactory {
 	 * <code>false</code>.
 	 *
 	 * @param whitespace
-	 *            true if the parser created must eliminate whitespace in the
-	 *            element content when parsing XML documents; false otherwise.
+	 *                   true if the parser created must eliminate whitespace in
+	 *                   the
+	 *                   element content when parsing XML documents; false
+	 *                   otherwise.
 	 */
 
 	public void setIgnoringElementContentWhitespace(boolean whitespace) {
@@ -261,8 +251,9 @@ public abstract class DocumentBuilderFactory {
 	 * reference nodes. By default the value of this is set to <code>true</code>
 	 *
 	 * @param expandEntityRef
-	 *            true if the parser produced will expand entity reference
-	 *            nodes; false otherwise.
+	 *                        true if the parser produced will expand entity
+	 *                        reference
+	 *                        nodes; false otherwise.
 	 */
 
 	public void setExpandEntityReferences(boolean expandEntityRef) {
@@ -277,8 +268,9 @@ public abstract class DocumentBuilderFactory {
 	 * </p>
 	 *
 	 * @param ignoreComments
-	 *            <code>boolean</code> value to ignore comments during
-	 *            processing
+	 *                       <code>boolean</code> value to ignore comments
+	 *                       during
+	 *                       processing
 	 */
 
 	public void setIgnoringComments(boolean ignoreComments) {
@@ -291,9 +283,11 @@ public abstract class DocumentBuilderFactory {
 	 * default the value of this is set to <code>false</code>
 	 *
 	 * @param coalescing
-	 *            true if the parser produced will convert CDATA nodes to Text
-	 *            nodes and append it to the adjacent (if any) text node; false
-	 *            otherwise.
+	 *                   true if the parser produced will convert CDATA nodes to
+	 *                   Text
+	 *                   nodes and append it to the adjacent (if any) text node;
+	 *                   false
+	 *                   otherwise.
 	 */
 
 	public void setCoalescing(boolean coalescing) {
@@ -404,30 +398,34 @@ public abstract class DocumentBuilderFactory {
 	 * </ul>
 	 *
 	 * @param name
-	 *            The name of the attribute.
+	 *              The name of the attribute.
 	 * @param value
-	 *            The value of the attribute.
+	 *              The value of the attribute.
 	 *
 	 * @throws IllegalArgumentException
-	 *             thrown if the underlying implementation doesn't recognize the
-	 *             attribute.
+	 *                                  thrown if the underlying implementation
+	 *                                  doesn't recognize the
+	 *                                  attribute.
 	 */
-	public abstract void setAttribute(String name, Object value) throws IllegalArgumentException;
+	public abstract void setAttribute(String name, Object value)
+			throws IllegalArgumentException;
 
 	/**
 	 * Allows the user to retrieve specific attributes on the underlying
 	 * implementation.
 	 *
 	 * @param name
-	 *            The name of the attribute.
+	 *             The name of the attribute.
 	 *
 	 * @return value The value of the attribute.
 	 *
 	 * @throws IllegalArgumentException
-	 *             thrown if the underlying implementation doesn't recognize the
-	 *             attribute.
+	 *                                  thrown if the underlying implementation
+	 *                                  doesn't recognize the
+	 *                                  attribute.
 	 */
-	public abstract Object getAttribute(String name) throws IllegalArgumentException;
+	public abstract Object getAttribute(String name)
+			throws IllegalArgumentException;
 
 	/**
 	 * <p>
@@ -465,18 +463,23 @@ public abstract class DocumentBuilderFactory {
 	 * </ul>
 	 *
 	 * @param name
-	 *            Feature name.
+	 *              Feature name.
 	 * @param value
-	 *            Is feature state <code>true</code> or <code>false</code>.
+	 *              Is feature state <code>true</code> or <code>false</code>.
 	 *
 	 * @throws ParserConfigurationException
-	 *             if this <code>DocumentBuilderFactory</code> or the
-	 *             <code>DocumentBuilder</code>s it creates cannot support this
-	 *             feature.
+	 *                                      if this
+	 *                                      <code>DocumentBuilderFactory</code>
+	 *                                      or the
+	 *                                      <code>DocumentBuilder</code>s it
+	 *                                      creates cannot support this
+	 *                                      feature.
 	 * @throws NullPointerException
-	 *             If the <code>name</code> parameter is null.
+	 *                                      If the <code>name</code> parameter
+	 *                                      is null.
 	 */
-	public abstract void setFeature(String name, boolean value) throws ParserConfigurationException;
+	public abstract void setFeature(String name, boolean value)
+			throws ParserConfigurationException;
 
 	/**
 	 * <p>
@@ -493,16 +496,20 @@ public abstract class DocumentBuilderFactory {
 	 * </p>
 	 *
 	 * @param name
-	 *            Feature name.
+	 *             Feature name.
 	 *
 	 * @return State of the named feature.
 	 *
 	 * @throws ParserConfigurationException
-	 *             if this <code>DocumentBuilderFactory</code> or the
-	 *             <code>DocumentBuilder</code>s it creates cannot support this
-	 *             feature.
+	 *                                      if this
+	 *                                      <code>DocumentBuilderFactory</code>
+	 *                                      or the
+	 *                                      <code>DocumentBuilder</code>s it
+	 *                                      creates cannot support this
+	 *                                      feature.
 	 */
-	public abstract boolean getFeature(String name) throws ParserConfigurationException;
+	public abstract boolean getFeature(String name)
+			throws ParserConfigurationException;
 
 	/**
 	 * Gets the {@link Schema} object specified through the
@@ -513,14 +520,17 @@ public abstract class DocumentBuilderFactory {
 	 *         invoked since a {@link DocumentBuilderFactory} is created.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method.
+	 *                                       When implementation does not
+	 *                                       override this method.
 	 *
 	 * @since 1.5
 	 */
 	public Schema getSchema() {
-		throw new UnsupportedOperationException("This parser does not support specification \""
-				+ this.getClass().getPackage().getSpecificationTitle() + "\" version \""
-				+ this.getClass().getPackage().getSpecificationVersion() + "\"");
+		throw new UnsupportedOperationException(
+				"This parser does not support specification \"" + this
+						.getClass().getPackage().getSpecificationTitle()
+						+ "\" version \"" + this.getClass().getPackage()
+								.getSpecificationVersion() + "\"");
 
 	}
 
@@ -576,18 +586,21 @@ public abstract class DocumentBuilderFactory {
 	 * </p>
 	 *
 	 * @param schema
-	 *            <code>Schema</code> to use or <code>null</code> to remove a
-	 *            schema.
+	 *               <code>Schema</code> to use or <code>null</code> to remove a
+	 *               schema.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method.
+	 *                                       When implementation does not
+	 *                                       override this method.
 	 *
 	 * @since 1.5
 	 */
 	public void setSchema(Schema schema) {
-		throw new UnsupportedOperationException("This parser does not support specification \""
-				+ this.getClass().getPackage().getSpecificationTitle() + "\" version \""
-				+ this.getClass().getPackage().getSpecificationVersion() + "\"");
+		throw new UnsupportedOperationException(
+				"This parser does not support specification \"" + this
+						.getClass().getPackage().getSpecificationTitle()
+						+ "\" version \"" + this.getClass().getPackage()
+								.getSpecificationVersion() + "\"");
 	}
 
 	/**
@@ -606,19 +619,20 @@ public abstract class DocumentBuilderFactory {
 	 * </p>
 	 *
 	 * @param state
-	 *            Set XInclude processing to <code>true</code> or
-	 *            <code>false</code>
+	 *              Set XInclude processing to <code>true</code> or
+	 *              <code>false</code>
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method.
+	 *                                       When implementation does not
+	 *                                       override this method.
 	 *
 	 * @since 1.5
 	 */
 	public void setXIncludeAware(final boolean state) {
 		if (state) {
-			throw new UnsupportedOperationException(
-					" setXIncludeAware " + "is not supported on this JAXP"
-							+ " implementation or earlier: " + this.getClass());
+			throw new UnsupportedOperationException(" setXIncludeAware "
+					+ "is not supported on this JAXP"
+					+ " implementation or earlier: " + this.getClass());
 		}
 	}
 
@@ -630,13 +644,16 @@ public abstract class DocumentBuilderFactory {
 	 * @return current state of XInclude processing
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method.
+	 *                                       When implementation does not
+	 *                                       override this method.
 	 *
 	 * @since 1.5
 	 */
 	public boolean isXIncludeAware() {
-		throw new UnsupportedOperationException("This parser does not support specification \""
-				+ this.getClass().getPackage().getSpecificationTitle() + "\" version \""
-				+ this.getClass().getPackage().getSpecificationVersion() + "\"");
+		throw new UnsupportedOperationException(
+				"This parser does not support specification \"" + this
+						.getClass().getPackage().getSpecificationTitle()
+						+ "\" version \"" + this.getClass().getPackage()
+								.getSpecificationVersion() + "\"");
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -46,7 +26,8 @@ public abstract class CacheResponse {
 	 * @return An immutable Map from response header field names to lists of
 	 *         field values. The status line has null as its field name.
 	 * @throws IOException
-	 *             if an I/O error occurs while getting the response headers
+	 *                     if an I/O error occurs while getting the response
+	 *                     headers
 	 */
 	public abstract Map<String, List<String>> getHeaders() throws IOException;
 
@@ -55,7 +36,8 @@ public abstract class CacheResponse {
 	 *
 	 * @return an InputStream from which the response body can be accessed
 	 * @throws IOException
-	 *             if an I/O error occurs while getting the response body
+	 *                     if an I/O error occurs while getting the response
+	 *                     body
 	 */
 	public abstract InputStream getBody() throws IOException;
 }

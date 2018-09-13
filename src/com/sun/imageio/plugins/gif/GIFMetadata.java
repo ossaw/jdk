@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.gif;
@@ -47,13 +27,15 @@ abstract class GIFMetadata extends IIOMetadata {
 	//
 
 	// Shorthand for throwing an IIOInvalidTreeException
-	protected static void fatal(Node node, String reason) throws IIOInvalidTreeException {
+	protected static void fatal(Node node, String reason)
+			throws IIOInvalidTreeException {
 		throw new IIOInvalidTreeException(reason, node);
 	}
 
 	// Get an integer-valued attribute
-	protected static String getStringAttribute(Node node, String name, String defaultValue,
-			boolean required, String[] range) throws IIOInvalidTreeException {
+	protected static String getStringAttribute(Node node, String name,
+			String defaultValue, boolean required, String[] range)
+			throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
 			if (!required) {
@@ -66,7 +48,8 @@ abstract class GIFMetadata extends IIOMetadata {
 
 		if (range != null) {
 			if (value == null) {
-				fatal(node, "Null value for " + node.getNodeName() + " attribute " + name + "!");
+				fatal(node, "Null value for " + node.getNodeName()
+						+ " attribute " + name + "!");
 			}
 			boolean validValue = false;
 			int len = range.length;
@@ -77,7 +60,8 @@ abstract class GIFMetadata extends IIOMetadata {
 				}
 			}
 			if (!validValue) {
-				fatal(node, "Bad value for " + node.getNodeName() + " attribute " + name + "!");
+				fatal(node, "Bad value for " + node.getNodeName()
+						+ " attribute " + name + "!");
 			}
 		}
 
@@ -85,8 +69,9 @@ abstract class GIFMetadata extends IIOMetadata {
 	}
 
 	// Get an integer-valued attribute
-	protected static int getIntAttribute(Node node, String name, int defaultValue, boolean required,
-			boolean bounded, int min, int max) throws IIOInvalidTreeException {
+	protected static int getIntAttribute(Node node, String name,
+			int defaultValue, boolean required, boolean bounded, int min,
+			int max) throws IIOInvalidTreeException {
 		String value = getStringAttribute(node, name, null, required, null);
 		if (value == null || "".equals(value)) {
 			return defaultValue;
@@ -96,17 +81,20 @@ abstract class GIFMetadata extends IIOMetadata {
 		try {
 			intValue = Integer.parseInt(value);
 		} catch (NumberFormatException e) {
-			fatal(node, "Bad value for " + node.getNodeName() + " attribute " + name + "!");
+			fatal(node, "Bad value for " + node.getNodeName() + " attribute "
+					+ name + "!");
 		}
 		if (bounded && (intValue < min || intValue > max)) {
-			fatal(node, "Bad value for " + node.getNodeName() + " attribute " + name + "!");
+			fatal(node, "Bad value for " + node.getNodeName() + " attribute "
+					+ name + "!");
 		}
 		return intValue;
 	}
 
 	// Get a float-valued attribute
-	protected static float getFloatAttribute(Node node, String name, float defaultValue,
-			boolean required) throws IIOInvalidTreeException {
+	protected static float getFloatAttribute(Node node, String name,
+			float defaultValue, boolean required)
+			throws IIOInvalidTreeException {
 		String value = getStringAttribute(node, name, null, required, null);
 		if (value == null) {
 			return defaultValue;
@@ -115,8 +103,8 @@ abstract class GIFMetadata extends IIOMetadata {
 	}
 
 	// Get a required integer-valued attribute
-	protected static int getIntAttribute(Node node, String name, boolean bounded, int min, int max)
-			throws IIOInvalidTreeException {
+	protected static int getIntAttribute(Node node, String name,
+			boolean bounded, int min, int max) throws IIOInvalidTreeException {
 		return getIntAttribute(node, name, -1, true, bounded, min, max);
 	}
 
@@ -127,8 +115,9 @@ abstract class GIFMetadata extends IIOMetadata {
 	}
 
 	// Get a boolean-valued attribute
-	protected static boolean getBooleanAttribute(Node node, String name, boolean defaultValue,
-			boolean required) throws IIOInvalidTreeException {
+	protected static boolean getBooleanAttribute(Node node, String name,
+			boolean defaultValue, boolean required)
+			throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
 			if (!required) {
@@ -156,8 +145,9 @@ abstract class GIFMetadata extends IIOMetadata {
 	}
 
 	// Get an enumerated attribute as an index into a String array
-	protected static int getEnumeratedAttribute(Node node, String name, String[] legalNames,
-			int defaultValue, boolean required) throws IIOInvalidTreeException {
+	protected static int getEnumeratedAttribute(Node node, String name,
+			String[] legalNames, int defaultValue, boolean required)
+			throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
 			if (!required) {
@@ -178,14 +168,15 @@ abstract class GIFMetadata extends IIOMetadata {
 	}
 
 	// Get a required enumerated attribute as an index into a String array
-	protected static int getEnumeratedAttribute(Node node, String name, String[] legalNames)
-			throws IIOInvalidTreeException {
+	protected static int getEnumeratedAttribute(Node node, String name,
+			String[] legalNames) throws IIOInvalidTreeException {
 		return getEnumeratedAttribute(node, name, legalNames, -1, true);
 	}
 
 	// Get a String-valued attribute
-	protected static String getAttribute(Node node, String name, String defaultValue,
-			boolean required) throws IIOInvalidTreeException {
+	protected static String getAttribute(Node node, String name,
+			String defaultValue, boolean required)
+			throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
 			if (!required) {
@@ -198,25 +189,30 @@ abstract class GIFMetadata extends IIOMetadata {
 	}
 
 	// Get a required String-valued attribute
-	protected static String getAttribute(Node node, String name) throws IIOInvalidTreeException {
+	protected static String getAttribute(Node node, String name)
+			throws IIOInvalidTreeException {
 		return getAttribute(node, name, null, true);
 	}
 
-	protected GIFMetadata(boolean standardMetadataFormatSupported, String nativeMetadataFormatName,
-			String nativeMetadataFormatClassName, String[] extraMetadataFormatNames,
+	protected GIFMetadata(boolean standardMetadataFormatSupported,
+			String nativeMetadataFormatName,
+			String nativeMetadataFormatClassName,
+			String[] extraMetadataFormatNames,
 			String[] extraMetadataFormatClassNames) {
 		super(standardMetadataFormatSupported, nativeMetadataFormatName,
 				nativeMetadataFormatClassName, extraMetadataFormatNames,
 				extraMetadataFormatClassNames);
 	}
 
-	public void mergeTree(String formatName, Node root) throws IIOInvalidTreeException {
+	public void mergeTree(String formatName, Node root)
+			throws IIOInvalidTreeException {
 		if (formatName.equals(nativeMetadataFormatName)) {
 			if (root == null) {
 				throw new IllegalArgumentException("root == null!");
 			}
 			mergeNativeTree(root);
-		} else if (formatName.equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
+		} else if (formatName.equals(
+				IIOMetadataFormatImpl.standardMetadataFormatName)) {
 			if (root == null) {
 				throw new IllegalArgumentException("root == null!");
 			}
@@ -227,7 +223,8 @@ abstract class GIFMetadata extends IIOMetadata {
 	}
 
 	protected byte[] getColorTable(Node colorTableNode, String entryNodeName,
-			boolean lengthExpected, int expectedLength) throws IIOInvalidTreeException {
+			boolean lengthExpected, int expectedLength)
+			throws IIOInvalidTreeException {
 		byte[] red = new byte[256];
 		byte[] green = new byte[256];
 		byte[] blue = new byte[256];
@@ -240,8 +237,8 @@ abstract class GIFMetadata extends IIOMetadata {
 
 		while (entry != null) {
 			if (!entry.getNodeName().equals(entryNodeName)) {
-				fatal(colorTableNode, "Only a " + entryNodeName + " may be a child of a "
-						+ entry.getNodeName() + "!");
+				fatal(colorTableNode, "Only a " + entryNodeName
+						+ " may be a child of a " + entry.getNodeName() + "!");
 			}
 
 			int index = getIntAttribute(entry, "index", true, 0, 255);
@@ -271,7 +268,9 @@ abstract class GIFMetadata extends IIOMetadata {
 		return colorTable;
 	}
 
-	protected abstract void mergeNativeTree(Node root) throws IIOInvalidTreeException;
+	protected abstract void mergeNativeTree(Node root)
+			throws IIOInvalidTreeException;
 
-	protected abstract void mergeStandardTree(Node root) throws IIOInvalidTreeException;
+	protected abstract void mergeStandardTree(Node root)
+			throws IIOInvalidTreeException;
 }

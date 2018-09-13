@@ -1,36 +1,13 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
-/* ********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997                      ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
- **********************************************************************
- **********************************************************************
+/*
+ * ********************************************************************
+ ********************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997 ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************/
 
 package java.awt.image.renderable;
@@ -64,12 +41,14 @@ public class RenderableImageOp implements RenderableImage {
 	 * will be ignored.
 	 *
 	 * @param CRIF
-	 *            a ContextualRenderedImageFactory object
+	 *                   a ContextualRenderedImageFactory object
 	 * @param paramBlock
-	 *            a ParameterBlock containing this operation's source images and
-	 *            other parameters necessary for the operation to run.
+	 *                   a ParameterBlock containing this operation's source
+	 *                   images and
+	 *                   other parameters necessary for the operation to run.
 	 */
-	public RenderableImageOp(ContextualRenderedImageFactory CRIF, ParameterBlock paramBlock) {
+	public RenderableImageOp(ContextualRenderedImageFactory CRIF,
+			ParameterBlock paramBlock) {
 		this.myCRIF = CRIF;
 		this.paramBlock = (ParameterBlock) paramBlock.clone();
 	}
@@ -110,7 +89,7 @@ public class RenderableImageOp implements RenderableImage {
 	 * is not recognized, java.awt.Image.UndefinedProperty will be returned.
 	 *
 	 * @param name
-	 *            the name of the property to get, as a String.
+	 *             the name of the property to get, as a String.
 	 * @return a reference to the property Object, or the value
 	 *         java.awt.Image.UndefinedProperty.
 	 */
@@ -196,7 +175,7 @@ public class RenderableImageOp implements RenderableImage {
 	 * RenderableImageOp.
 	 *
 	 * @param paramBlock
-	 *            the new ParameterBlock.
+	 *                   the new ParameterBlock.
 	 * @return the old ParameterBlock.
 	 * @see #getParameterBlock
 	 */
@@ -237,14 +216,15 @@ public class RenderableImageOp implements RenderableImage {
 	 * property.
 	 *
 	 * @param w
-	 *            the width of rendered image in pixels, or 0.
+	 *              the width of rendered image in pixels, or 0.
 	 * @param h
-	 *            the height of rendered image in pixels, or 0.
+	 *              the height of rendered image in pixels, or 0.
 	 * @param hints
-	 *            a RenderingHints object containing hints.
+	 *              a RenderingHints object containing hints.
 	 * @return a RenderedImage containing the rendered data.
 	 */
-	public RenderedImage createScaledRendering(int w, int h, RenderingHints hints) {
+	public RenderedImage createScaledRendering(int w, int h,
+			RenderingHints hints) {
 		// DSR -- code to try to get a unit scale
 		double sx = (double) w / getWidth();
 		double sy = (double) h / getHeight();
@@ -307,7 +287,7 @@ public class RenderableImageOp implements RenderableImage {
 	 * have such a property.
 	 *
 	 * @param renderContext
-	 *            The RenderContext to use to perform the rendering.
+	 *                      The RenderContext to use to perform the rendering.
 	 * @return a RenderedImage containing the desired output image.
 	 */
 	public RenderedImage createRendering(RenderContext renderContext) {
@@ -327,9 +307,10 @@ public class RenderableImageOp implements RenderableImage {
 			if (sources != null) {
 				Vector renderedSources = new Vector();
 				for (int i = 0; i < sources.size(); i++) {
-					rcOut = myCRIF.mapRenderContext(i, renderContext, paramBlock, this);
-					RenderedImage rdrdImage = ((RenderableImage) sources.elementAt(i))
-							.createRendering(rcOut);
+					rcOut = myCRIF.mapRenderContext(i, renderContext,
+							paramBlock, this);
+					RenderedImage rdrdImage = ((RenderableImage) sources
+							.elementAt(i)).createRendering(rcOut);
 					if (rdrdImage == null) {
 						return null;
 					}

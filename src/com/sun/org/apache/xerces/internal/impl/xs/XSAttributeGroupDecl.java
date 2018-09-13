@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -96,7 +93,8 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 		return null;
 	}
 
-	public void replaceAttributeUse(XSAttributeUse oldUse, XSAttributeUseImpl newUse) {
+	public void replaceAttributeUse(XSAttributeUse oldUse,
+			XSAttributeUseImpl newUse) {
 		for (int i = 0; i < fAttrUseNum; i++) {
 			if (fAttributeUses[i] == oldUse) {
 				fAttributeUses[i] = newUse;
@@ -114,7 +112,8 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 		return null;
 	}
 
-	public XSAttributeUse getAttributeUseNoProhibited(String namespace, String name) {
+	public XSAttributeUse getAttributeUseNoProhibited(String namespace,
+			String name) {
 		for (int i = 0; i < fAttrUseNum; i++) {
 			if ((fAttributeUses[i].fAttrDecl.fTargetNamespace == namespace)
 					&& (fAttributeUses[i].fAttrDecl.fName == name)
@@ -174,13 +173,16 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 	 * for the error?
 	 *
 	 * @param typeName
-	 *            the name of the type containing this attribute group, used for
-	 *            error reporting purposes
+	 *                  the name of the type containing this attribute group,
+	 *                  used for
+	 *                  error reporting purposes
 	 * @param baseGroup
-	 *            the XSAttributeGroupDecl that is the base we are checking
-	 *            against
+	 *                  the XSAttributeGroupDecl that is the base we are
+	 *                  checking
+	 *                  against
 	 */
-	public Object[] validRestrictionOf(String typeName, XSAttributeGroupDecl baseGroup) {
+	public Object[] validRestrictionOf(String typeName,
+			XSAttributeGroupDecl baseGroup) {
 
 		Object[] errorArgs = null;
 		XSAttributeUseImpl attrUse = null;
@@ -194,8 +196,8 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 			attrDecl = attrUse.fAttrDecl;
 
 			// Look for a match in the base
-			baseAttrUse = (XSAttributeUseImpl) baseGroup.getAttributeUse(attrDecl.fTargetNamespace,
-					attrDecl.fName);
+			baseAttrUse = (XSAttributeUseImpl) baseGroup.getAttributeUse(
+					attrDecl.fTargetNamespace, attrDecl.fName);
 			if (baseAttrUse != null) {
 				//
 				// derivation-ok-restriction. Constraint 2.1.1
@@ -220,10 +222,12 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 				//
 				// derivation-ok-restriction. Constraint 2.1.1
 				//
-				if (!XSConstraints.checkSimpleDerivationOk(attrDecl.fType, baseAttrDecl.fType,
-						baseAttrDecl.fType.getFinal())) {
-					errorArgs = new Object[] { typeName, attrDecl.fName, attrDecl.fType.getName(),
-							baseAttrDecl.fType.getName(), "derivation-ok-restriction.2.1.2" };
+				if (!XSConstraints.checkSimpleDerivationOk(attrDecl.fType,
+						baseAttrDecl.fType, baseAttrDecl.fType.getFinal())) {
+					errorArgs = new Object[] { typeName, attrDecl.fName,
+							attrDecl.fType.getName(), baseAttrDecl.fType
+									.getName(),
+							"derivation-ok-restriction.2.1.2" };
 					return errorArgs;
 				}
 
@@ -231,9 +235,11 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 				// derivation-ok-restriction. Constraint 2.1.3
 				//
 				int baseConsType = baseAttrUse.fConstraintType != XSConstants.VC_NONE
-						? baseAttrUse.fConstraintType : baseAttrDecl.getConstraintType();
+						? baseAttrUse.fConstraintType
+						: baseAttrDecl.getConstraintType();
 				int thisConstType = attrUse.fConstraintType != XSConstants.VC_NONE
-						? attrUse.fConstraintType : attrDecl.getConstraintType();
+						? attrUse.fConstraintType
+						: attrDecl.getConstraintType();
 
 				if (baseConsType == XSConstants.VC_FIXED) {
 
@@ -244,12 +250,16 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 					} else {
 						// check the values are the same.
 						ValidatedInfo baseFixedValue = (baseAttrUse.fDefault != null
-								? baseAttrUse.fDefault : baseAttrDecl.fDefault);
-						ValidatedInfo thisFixedValue = (attrUse.fDefault != null ? attrUse.fDefault
+								? baseAttrUse.fDefault
+								: baseAttrDecl.fDefault);
+						ValidatedInfo thisFixedValue = (attrUse.fDefault != null
+								? attrUse.fDefault
 								: attrDecl.fDefault);
-						if (!baseFixedValue.actualValue.equals(thisFixedValue.actualValue)) {
+						if (!baseFixedValue.actualValue.equals(
+								thisFixedValue.actualValue)) {
 							errorArgs = new Object[] { typeName, attrDecl.fName,
-									thisFixedValue.stringValue(), baseFixedValue.stringValue(),
+									thisFixedValue.stringValue(), baseFixedValue
+											.stringValue(),
 									"derivation-ok-restriction.2.1.3.b" };
 							return errorArgs;
 						}
@@ -268,9 +278,11 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 					errorArgs = new Object[] { typeName, attrDecl.fName,
 							"derivation-ok-restriction.2.2.a" };
 					return errorArgs;
-				} else if (!baseGroup.fAttributeWC.allowNamespace(attrDecl.fTargetNamespace)) {
+				} else if (!baseGroup.fAttributeWC.allowNamespace(
+						attrDecl.fTargetNamespace)) {
 					errorArgs = new Object[] { typeName, attrDecl.fName,
-							attrDecl.fTargetNamespace == null ? "" : attrDecl.fTargetNamespace,
+							attrDecl.fTargetNamespace == null ? ""
+									: attrDecl.fTargetNamespace,
 							"derivation-ok-restriction.2.2.b" };
 					return errorArgs;
 				}
@@ -291,8 +303,10 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 
 				baseAttrDecl = baseAttrUse.fAttrDecl;
 				// Look for a match in this group
-				if (getAttributeUse(baseAttrDecl.fTargetNamespace, baseAttrDecl.fName) == null) {
-					errorArgs = new Object[] { typeName, baseAttrUse.fAttrDecl.fName,
+				if (getAttributeUse(baseAttrDecl.fTargetNamespace,
+						baseAttrDecl.fName) == null) {
+					errorArgs = new Object[] { typeName,
+							baseAttrUse.fAttrDecl.fName,
 							"derivation-ok-restriction.3" };
 					return errorArgs;
 				}
@@ -305,16 +319,19 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 		//
 		if (fAttributeWC != null) {
 			if (baseGroup.fAttributeWC == null) {
-				errorArgs = new Object[] { typeName, "derivation-ok-restriction.4.1" };
+				errorArgs = new Object[] { typeName,
+						"derivation-ok-restriction.4.1" };
 				return errorArgs;
 			}
 			if (!fAttributeWC.isSubsetOf(baseGroup.fAttributeWC)) {
-				errorArgs = new Object[] { typeName, "derivation-ok-restriction.4.2" };
+				errorArgs = new Object[] { typeName,
+						"derivation-ok-restriction.4.2" };
 				return errorArgs;
 			}
 			if (fAttributeWC.weakerProcessContents(baseGroup.fAttributeWC)) {
-				errorArgs = new Object[] { typeName, fAttributeWC.getProcessContentsAsString(),
-						baseGroup.fAttributeWC.getProcessContentsAsString(),
+				errorArgs = new Object[] { typeName, fAttributeWC
+						.getProcessContentsAsString(), baseGroup.fAttributeWC
+								.getProcessContentsAsString(),
 						"derivation-ok-restriction.4.3" };
 				return errorArgs;
 			}
@@ -324,9 +341,11 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 
 	}
 
-	static final XSAttributeUseImpl[] resize(XSAttributeUseImpl[] oldArray, int newSize) {
+	static final XSAttributeUseImpl[] resize(XSAttributeUseImpl[] oldArray,
+			int newSize) {
 		XSAttributeUseImpl[] newArray = new XSAttributeUseImpl[newSize];
-		System.arraycopy(oldArray, 0, newArray, 0, Math.min(oldArray.length, newSize));
+		System.arraycopy(oldArray, 0, newArray, 0, Math.min(oldArray.length,
+				newSize));
 		return newArray;
 	}
 
@@ -390,14 +409,16 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 	 * Optional. Annotation.
 	 */
 	public XSAnnotation getAnnotation() {
-		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0) : null;
+		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0)
+				: null;
 	}
 
 	/**
 	 * Optional. Annotations.
 	 */
 	public XSObjectList getAnnotations() {
-		return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
+		return (fAnnotations != null) ? fAnnotations
+				: XSObjectListImpl.EMPTY_LIST;
 	}
 
 	/**

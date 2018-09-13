@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -279,9 +259,9 @@ public class AccessibleRelation extends AccessibleBundle {
 	 * get the localized string, use toDisplayString.
 	 *
 	 * @param key
-	 *            the locale independent name of the relation.
+	 *               the locale independent name of the relation.
 	 * @param target
-	 *            the target object for this relation
+	 *               the target object for this relation
 	 * @see AccessibleBundle#toDisplayString
 	 */
 	public AccessibleRelation(String key, Object target) {
@@ -297,9 +277,9 @@ public class AccessibleRelation extends AccessibleBundle {
 	 * get the localized string, use toDisplayString.
 	 *
 	 * @param key
-	 *            the locale independent name of the relation.
+	 *               the locale independent name of the relation.
 	 * @param target
-	 *            the target object(s) for this relation
+	 *               the target object(s) for this relation
 	 * @see AccessibleBundle#toDisplayString
 	 */
 	public AccessibleRelation(String key, Object[] target) {
@@ -342,7 +322,7 @@ public class AccessibleRelation extends AccessibleBundle {
 	 * Sets the target object for this relation
 	 *
 	 * @param target
-	 *            the target object for this relation
+	 *               the target object for this relation
 	 */
 	public void setTarget(Object target) {
 		this.target = new Object[1];
@@ -353,7 +333,7 @@ public class AccessibleRelation extends AccessibleBundle {
 	 * Sets the target objects for this relation
 	 *
 	 * @param target
-	 *            an array containing the target objects for this relation
+	 *               an array containing the target objects for this relation
 	 */
 	public void setTarget(Object[] target) {
 		this.target = target;

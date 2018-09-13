@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -49,10 +29,11 @@ public class BasicCheckBoxMenuItemUI extends BasicMenuItemUI {
 		return "CheckBoxMenuItem";
 	}
 
-	public void processMouseEvent(JMenuItem item, MouseEvent e, MenuElement path[],
-			MenuSelectionManager manager) {
+	public void processMouseEvent(JMenuItem item, MouseEvent e,
+			MenuElement path[], MenuSelectionManager manager) {
 		Point p = e.getPoint();
-		if (p.x >= 0 && p.x < item.getWidth() && p.y >= 0 && p.y < item.getHeight()) {
+		if (p.x >= 0 && p.x < item.getWidth() && p.y >= 0 && p.y < item
+				.getHeight()) {
 			if (e.getID() == MouseEvent.MOUSE_RELEASED) {
 				manager.clearSelectedPath();
 				item.doClick(0);

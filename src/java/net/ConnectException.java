@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -50,6 +30,5 @@ public class ConnectException extends SocketException {
 	/**
 	 * Construct a new ConnectException with no detailed message.
 	 */
-	public ConnectException() {
-	}
+	public ConnectException() {}
 }

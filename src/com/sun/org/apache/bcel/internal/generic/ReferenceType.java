@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -113,12 +105,14 @@ public abstract class ReferenceType extends Type {
 		/*
 		 * If this is a class type then
 		 */
-		if ((this instanceof ObjectType) && (((ObjectType) this).referencesClass())) {
+		if ((this instanceof ObjectType) && (((ObjectType) this)
+				.referencesClass())) {
 			/*
 			 * If T is a class type, then this must be the same class as T, or
 			 * this must be a subclass of T;
 			 */
-			if ((T instanceof ObjectType) && (((ObjectType) T).referencesClass())) {
+			if ((T instanceof ObjectType) && (((ObjectType) T)
+					.referencesClass())) {
 				if (this.equals(T))
 					return true;
 
@@ -130,9 +124,10 @@ public abstract class ReferenceType extends Type {
 			/*
 			 * If T is an interface type, this must implement interface T.
 			 */
-			if ((T instanceof ObjectType) && (((ObjectType) T).referencesInterface())) {
-				if (Repository.implementationOf(((ObjectType) this).getClassName(),
-						((ObjectType) T).getClassName()))
+			if ((T instanceof ObjectType) && (((ObjectType) T)
+					.referencesInterface())) {
+				if (Repository.implementationOf(((ObjectType) this)
+						.getClassName(), ((ObjectType) T).getClassName()))
 					return true;
 			}
 		}
@@ -140,11 +135,13 @@ public abstract class ReferenceType extends Type {
 		/*
 		 * If this is an interface type, then:
 		 */
-		if ((this instanceof ObjectType) && (((ObjectType) this).referencesInterface())) {
+		if ((this instanceof ObjectType) && (((ObjectType) this)
+				.referencesInterface())) {
 			/*
 			 * If T is a class type, then T must be Object (2.4.7).
 			 */
-			if ((T instanceof ObjectType) && (((ObjectType) T).referencesClass())) {
+			if ((T instanceof ObjectType) && (((ObjectType) T)
+					.referencesClass())) {
 				if (T.equals(Type.OBJECT))
 					return true;
 			}
@@ -153,11 +150,12 @@ public abstract class ReferenceType extends Type {
 			 * If T is an interface type, then T must be the same interface as
 			 * this or a superinterface of this (2.13.2).
 			 */
-			if ((T instanceof ObjectType) && (((ObjectType) T).referencesInterface())) {
+			if ((T instanceof ObjectType) && (((ObjectType) T)
+					.referencesInterface())) {
 				if (this.equals(T))
 					return true;
-				if (Repository.implementationOf(((ObjectType) this).getClassName(),
-						((ObjectType) T).getClassName()))
+				if (Repository.implementationOf(((ObjectType) this)
+						.getClassName(), ((ObjectType) T).getClassName()))
 					return true;
 			}
 		}
@@ -170,7 +168,8 @@ public abstract class ReferenceType extends Type {
 			/*
 			 * If T is a class type, then T must be Object (2.4.7).
 			 */
-			if ((T instanceof ObjectType) && (((ObjectType) T).referencesClass())) {
+			if ((T instanceof ObjectType) && (((ObjectType) T)
+					.referencesClass())) {
 				if (T.equals(Type.OBJECT))
 					return true;
 			}
@@ -186,7 +185,8 @@ public abstract class ReferenceType extends Type {
 				Type sc = ((ArrayType) this).getElementType();
 				Type tc = ((ArrayType) this).getElementType();
 
-				if (sc instanceof BasicType && tc instanceof BasicType && sc.equals(tc))
+				if (sc instanceof BasicType && tc instanceof BasicType && sc
+						.equals(tc))
 					return true;
 
 				/*
@@ -194,7 +194,8 @@ public abstract class ReferenceType extends Type {
 				 * assignable to TC by these runtime rules.
 				 */
 				if (tc instanceof ReferenceType && sc instanceof ReferenceType
-						&& ((ReferenceType) sc).isAssignmentCompatibleWith((ReferenceType) tc))
+						&& ((ReferenceType) sc).isAssignmentCompatibleWith(
+								(ReferenceType) tc))
 					return true;
 			}
 
@@ -211,9 +212,11 @@ public abstract class ReferenceType extends Type {
 			// on one of them "interfaces implemented by arrays" is exchanged
 			// with "'Cloneable' or
 			// 'java.io.Serializable'"
-			if ((T instanceof ObjectType) && (((ObjectType) T).referencesInterface())) {
+			if ((T instanceof ObjectType) && (((ObjectType) T)
+					.referencesInterface())) {
 				for (int ii = 0; ii < Constants.INTERFACES_IMPLEMENTED_BY_ARRAYS.length; ii++) {
-					if (T.equals(new ObjectType(Constants.INTERFACES_IMPLEMENTED_BY_ARRAYS[ii])))
+					if (T.equals(new ObjectType(
+							Constants.INTERFACES_IMPLEMENTED_BY_ARRAYS[ii])))
 						return true;
 				}
 			}
@@ -259,11 +262,11 @@ public abstract class ReferenceType extends Type {
 			ArrayType arrType1 = (ArrayType) this;
 			ArrayType arrType2 = (ArrayType) t;
 			if ((arrType1.getDimensions() == arrType2.getDimensions())
-					&& arrType1.getBasicType() instanceof ObjectType
-					&& arrType2.getBasicType() instanceof ObjectType) {
+					&& arrType1.getBasicType() instanceof ObjectType && arrType2
+							.getBasicType() instanceof ObjectType) {
 				return new ArrayType(((ObjectType) arrType1.getBasicType())
-						.getFirstCommonSuperclass((ObjectType) arrType2.getBasicType()),
-						arrType1.getDimensions());
+						.getFirstCommonSuperclass((ObjectType) arrType2
+								.getBasicType()), arrType1.getDimensions());
 
 			}
 		}
@@ -273,8 +276,9 @@ public abstract class ReferenceType extends Type {
 		// TODO: Is there a proof of OBJECT being the direct ancestor of every
 		// ArrayType?
 
-		if (((this instanceof ObjectType) && ((ObjectType) this).referencesInterface())
-				|| ((t instanceof ObjectType) && ((ObjectType) t).referencesInterface()))
+		if (((this instanceof ObjectType) && ((ObjectType) this)
+				.referencesInterface()) || ((t instanceof ObjectType)
+						&& ((ObjectType) t).referencesInterface()))
 			return Type.OBJECT;
 		// TODO: The above line is correct comparing to the vmspec2. But one
 		// could
@@ -286,7 +290,8 @@ public abstract class ReferenceType extends Type {
 		ObjectType thiz = (ObjectType) this;
 		ObjectType other = (ObjectType) t;
 		JavaClass[] thiz_sups = Repository.getSuperClasses(thiz.getClassName());
-		JavaClass[] other_sups = Repository.getSuperClasses(other.getClassName());
+		JavaClass[] other_sups = Repository.getSuperClasses(other
+				.getClassName());
 
 		if ((thiz_sups == null) || (other_sups == null)) {
 			return null;
@@ -346,8 +351,9 @@ public abstract class ReferenceType extends Type {
 		// TODO: Is there a proof of OBJECT being the direct ancestor of every
 		// ArrayType?
 
-		if (((this instanceof ObjectType) && ((ObjectType) this).referencesInterface())
-				|| ((t instanceof ObjectType) && ((ObjectType) t).referencesInterface()))
+		if (((this instanceof ObjectType) && ((ObjectType) this)
+				.referencesInterface()) || ((t instanceof ObjectType)
+						&& ((ObjectType) t).referencesInterface()))
 			return Type.OBJECT;
 		// TODO: The above line is correct comparing to the vmspec2. But one
 		// could
@@ -359,7 +365,8 @@ public abstract class ReferenceType extends Type {
 		ObjectType thiz = (ObjectType) this;
 		ObjectType other = (ObjectType) t;
 		JavaClass[] thiz_sups = Repository.getSuperClasses(thiz.getClassName());
-		JavaClass[] other_sups = Repository.getSuperClasses(other.getClassName());
+		JavaClass[] other_sups = Repository.getSuperClasses(other
+				.getClassName());
 
 		if ((thiz_sups == null) || (other_sups == null)) {
 			return null;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orbutil.fsm;
@@ -54,8 +34,7 @@ import com.sun.corba.se.impl.orbutil.fsm.GuardedAction;
 public class StateEngineImpl implements StateEngine {
 	// An action that does nothing at all.
 	private static Action emptyAction = new ActionBase("Empty") {
-		public void doIt(FSM fsm, Input in) {
-		}
+		public void doIt(FSM fsm, Input in) {}
 	};
 
 	private boolean initializing;
@@ -65,14 +44,15 @@ public class StateEngineImpl implements StateEngine {
 		initializing = true;
 		defaultAction = new ActionBase("Invalid Transition") {
 			public void doIt(FSM fsm, Input in) {
-				throw new INTERNAL(
-						"Invalid transition attempted from " + fsm.getState() + " under " + in);
+				throw new INTERNAL("Invalid transition attempted from " + fsm
+						.getState() + " under " + in);
 			}
 		};
 	}
 
-	public StateEngine add(State oldState, Input input, Guard guard, Action action, State newState)
-			throws IllegalArgumentException, IllegalStateException {
+	public StateEngine add(State oldState, Input input, Guard guard,
+			Action action, State newState) throws IllegalArgumentException,
+			IllegalStateException {
 		mustBeInitializing();
 
 		StateImpl oldStateImpl = (StateImpl) oldState;
@@ -82,8 +62,9 @@ public class StateEngineImpl implements StateEngine {
 		return this;
 	}
 
-	public StateEngine add(State oldState, Input input, Action action, State newState)
-			throws IllegalArgumentException, IllegalStateException {
+	public StateEngine add(State oldState, Input input, Action action,
+			State newState) throws IllegalArgumentException,
+			IllegalStateException {
 		mustBeInitializing();
 
 		StateImpl oldStateImpl = (StateImpl) oldState;
@@ -135,7 +116,8 @@ public class StateEngineImpl implements StateEngine {
 		// innerDoIt does the actual transition.
 
 		if (debug)
-			ORBUtility.dprint(this, "doIt enter: currentState = " + fsm.getState() + " in = " + in);
+			ORBUtility.dprint(this, "doIt enter: currentState = " + fsm
+					.getState() + " in = " + in);
 
 		try {
 			innerDoIt(fsm, in, debug);
@@ -200,7 +182,8 @@ public class StateEngineImpl implements StateEngine {
 					GuardedAction ga = (GuardedAction) iter.next();
 					Guard.Result gr = ga.getGuard().evaluate(fsm, in);
 					if (debug)
-						ORBUtility.dprint(this, "doIt: evaluated " + ga + " with result " + gr);
+						ORBUtility.dprint(this, "doIt: evaluated " + ga
+								+ " with result " + gr);
 
 					if (gr == Guard.Result.ENABLED) {
 						// ga has the next state and action.
@@ -222,8 +205,8 @@ public class StateEngineImpl implements StateEngine {
 		performStateTransition(fsm, in, nextState, action, debug);
 	}
 
-	private void performStateTransition(FSM fsm, Input in, StateImpl nextState, Action action,
-			boolean debug) {
+	private void performStateTransition(FSM fsm, Input in, StateImpl nextState,
+			Action action, boolean debug) {
 		StateImpl currentState = (StateImpl) fsm.getState();
 
 		// Perform the state transition. Pre and post actions are only
@@ -233,7 +216,8 @@ public class StateEngineImpl implements StateEngine {
 
 		if (different) {
 			if (debug)
-				ORBUtility.dprint(this, "doIt: executing postAction for state " + currentState);
+				ORBUtility.dprint(this, "doIt: executing postAction for state "
+						+ currentState);
 			try {
 				currentState.postAction(fsm);
 			} catch (Throwable thr) {
@@ -256,7 +240,8 @@ public class StateEngineImpl implements StateEngine {
 		} finally {
 			if (different) {
 				if (debug)
-					ORBUtility.dprint(this, "doIt: executing preAction for state " + nextState);
+					ORBUtility.dprint(this,
+							"doIt: executing preAction for state " + nextState);
 
 				try {
 					nextState.preAction(fsm);
@@ -284,12 +269,14 @@ public class StateEngineImpl implements StateEngine {
 
 	private void mustBeInitializing() throws IllegalStateException {
 		if (!initializing)
-			throw new IllegalStateException("Invalid method call after initialization completed");
+			throw new IllegalStateException(
+					"Invalid method call after initialization completed");
 	}
 
 	private void mustNotBeInitializing() throws IllegalStateException {
 		if (initializing)
-			throw new IllegalStateException("Invalid method call before initialization completed");
+			throw new IllegalStateException(
+					"Invalid method call before initialization completed");
 	}
 }
 

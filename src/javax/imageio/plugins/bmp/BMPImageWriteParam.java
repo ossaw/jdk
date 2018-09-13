@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.plugins.bmp;
@@ -95,8 +75,9 @@ public class BMPImageWriteParam extends ImageWriteParam {
 	 * <code>Locale</code> and with default values for all parameters.
 	 *
 	 * @param locale
-	 *            a <code>Locale</code> to be used to localize compression type
-	 *            names and quality descriptions, or <code>null</code>.
+	 *               a <code>Locale</code> to be used to localize compression
+	 *               type
+	 *               names and quality descriptions, or <code>null</code>.
 	 */
 	public BMPImageWriteParam(Locale locale) {
 		super(locale);
@@ -123,7 +104,7 @@ public class BMPImageWriteParam extends ImageWriteParam {
 	 * scanline being written first.
 	 *
 	 * @param topDown
-	 *            whether the data are written in top-down order.
+	 *                whether the data are written in top-down order.
 	 */
 	public void setTopDown(boolean topDown) {
 		this.topDown = topDown;

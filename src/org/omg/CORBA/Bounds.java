@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -46,7 +26,7 @@ public final class Bounds extends org.omg.CORBA.UserException {
 	 * Constructs an <code>Bounds</code> with the specified detail message.
 	 *
 	 * @param reason
-	 *            the detail message.
+	 *               the detail message.
 	 */
 	public Bounds(String reason) {
 		super(reason);

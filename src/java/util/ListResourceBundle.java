@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996, 1997 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998 - All Rights Reserved
- *
  * The original version of this source code and documentation
  * is copyrighted and owned by Taligent, Inc., a wholly-owned
  * subsidiary of IBM. These materials are provided under terms
  * of a License Agreement between Taligent and Sun. This technology
  * is protected by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.util;
@@ -73,7 +50,7 @@ import sun.util.ResourceBundleEnumeration;
  * 		return new Object[][] {
  * 				// LOCALIZE THIS
  * 				{ "s1", "The disk \"{1}\" contains {0}." }, // MessageFormat
- * 															// pattern
+ * 				// pattern
  * 				{ "s2", "1" }, // location of {0} in pattern
  * 				{ "s3", "My Disk" }, // sample disk name
  * 				{ "s4", "no files" }, // first ChoiceFormat choice
@@ -94,13 +71,13 @@ import sun.util.ResourceBundleEnumeration;
  * 				{ "s2", "1" }, // location of {0} in pattern
  * 				{ "s3", "Mon disque" }, // sample disk name
  * 				{ "s4", "ne contient pas de fichiers" }, // first
- * 															// ChoiceFormat
- * 															// choice
+ * 				// ChoiceFormat
+ * 				// choice
  * 				{ "s5", "contient un fichier" }, // second ChoiceFormat
- * 													// choice
+ * 				// choice
  * 				{ "s6", "contient {0,number} fichiers" }, // third
- * 															// ChoiceFormat
- * 															// choice
+ * 				// ChoiceFormat
+ * 				// choice
  * 				{ "s7", "3 mars 1996" }, // sample date
  * 				{ "s8", new Dimension(1, 3) } // real object, not just string
  * 				// END OF MATERIAL TO LOCALIZE
@@ -125,8 +102,7 @@ public abstract class ListResourceBundle extends ResourceBundle {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	public ListResourceBundle() {
-	}
+	public ListResourceBundle() {}
 
 	// Implements java.util.ResourceBundle.handleGetObject; inherits javadoc
 	// specification.
@@ -156,8 +132,9 @@ public abstract class ListResourceBundle extends ResourceBundle {
 		}
 
 		ResourceBundle parent = this.parent;
-		return new ResourceBundleEnumeration(lookup.keySet(),
-				(parent != null) ? parent.getKeys() : null);
+		return new ResourceBundleEnumeration(lookup.keySet(), (parent != null)
+				? parent.getKeys()
+				: null);
 	}
 
 	/**

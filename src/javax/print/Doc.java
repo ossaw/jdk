@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print;
@@ -125,8 +105,9 @@ public interface Doc {
 	 * @return Print data representation object.
 	 *
 	 * @exception IOException
-	 *                Thrown if the representation class is a stream and there
-	 *                was an I/O error while constructing the stream.
+	 *                        Thrown if the representation class is a stream and
+	 *                        there
+	 *                        was an I/O error while constructing the stream.
 	 */
 	public Object getPrintData() throws IOException;
 
@@ -168,8 +149,9 @@ public interface Doc {
 	 *         criteria stated above, null is returned.
 	 *
 	 * @exception IOException
-	 *                Thrown if there was an I/O error while creating the
-	 *                reader.
+	 *                        Thrown if there was an I/O error while creating
+	 *                        the
+	 *                        reader.
 	 */
 	public Reader getReaderForText() throws IOException;
 
@@ -194,8 +176,9 @@ public interface Doc {
 	 *         the criteria stated above, null is returned.
 	 *
 	 * @exception IOException
-	 *                Thrown if there was an I/O error while creating the input
-	 *                stream.
+	 *                        Thrown if there was an I/O error while creating
+	 *                        the input
+	 *                        stream.
 	 */
 	public InputStream getStreamForBytes() throws IOException;
 

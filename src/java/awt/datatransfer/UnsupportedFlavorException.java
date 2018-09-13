@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.datatransfer;
@@ -43,8 +23,8 @@ public class UnsupportedFlavorException extends Exception {
 	 * Constructs an UnsupportedFlavorException.
 	 *
 	 * @param flavor
-	 *            the flavor object which caused the exception. May be
-	 *            <code>null</code>.
+	 *               the flavor object which caused the exception. May be
+	 *               <code>null</code>.
 	 */
 	public UnsupportedFlavorException(DataFlavor flavor) {
 		super((flavor != null) ? flavor.getHumanPresentableName() : null);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.synth;
 
@@ -64,7 +44,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	/**
 	 * Used in a handful of places where we need an empty Insets.
 	 */
-	static final Insets EMPTY_UIRESOURCE_INSETS = new InsetsUIResource(0, 0, 0, 0);
+	static final Insets EMPTY_UIRESOURCE_INSETS = new InsetsUIResource(0, 0, 0,
+			0);
 
 	/**
 	 * AppContext key to get the current SynthStyleFactory.
@@ -75,12 +56,14 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	/**
 	 * AppContext key to get selectedUI.
 	 */
-	private static final Object SELECTED_UI_KEY = new StringBuilder("selectedUI");
+	private static final Object SELECTED_UI_KEY = new StringBuilder(
+			"selectedUI");
 
 	/**
 	 * AppContext key to get selectedUIState.
 	 */
-	private static final Object SELECTED_UI_STATE_KEY = new StringBuilder("selectedUIState");
+	private static final Object SELECTED_UI_STATE_KEY = new StringBuilder(
+			"selectedUIState");
 
 	/**
 	 * The last SynthStyleFactory that was asked for from AppContext
@@ -116,8 +99,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * state as set by this method is returned. This provides a way for labels
 	 * to have a state other than selected.
 	 */
-	static void setSelectedUI(ComponentUI uix, boolean selected, boolean focused, boolean enabled,
-			boolean rollover) {
+	static void setSelectedUI(ComponentUI uix, boolean selected,
+			boolean focused, boolean enabled, boolean rollover) {
 		int selectedUIState = 0;
 
 		if (selected) {
@@ -126,7 +109,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 				selectedUIState |= SynthConstants.FOCUSED;
 			}
 		} else if (rollover && enabled) {
-			selectedUIState |= SynthConstants.MOUSE_OVER | SynthConstants.ENABLED;
+			selectedUIState |= SynthConstants.MOUSE_OVER
+					| SynthConstants.ENABLED;
 			if (focused) {
 				selectedUIState |= SynthConstants.FOCUSED;
 			}
@@ -148,7 +132,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	}
 
 	static int getSelectedUIState() {
-		Integer result = (Integer) AppContext.getAppContext().get(SELECTED_UI_STATE_KEY);
+		Integer result = (Integer) AppContext.getAppContext().get(
+				SELECTED_UI_STATE_KEY);
 
 		return result == null ? 0 : result.intValue();
 	}
@@ -165,7 +150,7 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * to obtain a SynthStyle.
 	 *
 	 * @param cache
-	 *            SynthStyleFactory the UIs should use.
+	 *              SynthStyleFactory the UIs should use.
 	 */
 	public static void setStyleFactory(SynthStyleFactory cache) {
 		// We assume the setter is called BEFORE the getter has been invoked
@@ -218,9 +203,9 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * method.
 	 *
 	 * @param c
-	 *            JComponent to get the SynthStyle for
+	 *               JComponent to get the SynthStyle for
 	 * @param region
-	 *            Identifies the region of the specified component
+	 *               Identifies the region of the specified component
 	 * @return SynthStyle to use.
 	 */
 	public static SynthStyle getStyle(JComponent c, Region region) {
@@ -234,8 +219,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 */
 	static boolean shouldUpdateStyle(PropertyChangeEvent event) {
 		LookAndFeel laf = UIManager.getLookAndFeel();
-		return (laf instanceof SynthLookAndFeel
-				&& ((SynthLookAndFeel) laf).shouldUpdateStyleOnEvent(event));
+		return (laf instanceof SynthLookAndFeel && ((SynthLookAndFeel) laf)
+				.shouldUpdateStyleOnEvent(event));
 	}
 
 	/**
@@ -245,7 +230,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * @return newStyle
 	 */
 	static SynthStyle updateStyle(SynthContext context, SynthUI ui) {
-		SynthStyle newStyle = getStyle(context.getComponent(), context.getRegion());
+		SynthStyle newStyle = getStyle(context.getComponent(), context
+				.getRegion());
 		SynthStyle oldStyle = context.getStyle();
 
 		if (newStyle != oldStyle) {
@@ -264,7 +250,7 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * <code>SwingUtilities.updateComponentTreeUI</code>.
 	 *
 	 * @param c
-	 *            Component to update style for.
+	 *          Component to update style for.
 	 */
 	public static void updateStyles(Component c) {
 		if (c instanceof JComponent) {
@@ -296,7 +282,7 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * Returns the Region for the JComponent <code>c</code>.
 	 *
 	 * @param c
-	 *            JComponent to fetch the Region for
+	 *          JComponent to fetch the Region for
 	 * @return Region corresponding to <code>c</code>
 	 */
 	public static Region getRegion(JComponent c) {
@@ -329,11 +315,13 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * subregions. All SynthUI's that have subregions should invoke this method,
 	 * than paint the foreground.
 	 */
-	static void updateSubregion(SynthContext state, Graphics g, Rectangle bounds) {
+	static void updateSubregion(SynthContext state, Graphics g,
+			Rectangle bounds) {
 		paintRegion(state, g, bounds);
 	}
 
-	private static void paintRegion(SynthContext state, Graphics g, Rectangle bounds) {
+	private static void paintRegion(SynthContext state, Graphics g,
+			Rectangle bounds) {
 		JComponent c = state.getComponent();
 		SynthStyle style = state.getStyle();
 		int x, y, width, height;
@@ -352,7 +340,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 
 		// Fill in the background, if necessary.
 		boolean subregion = state.isSubregion();
-		if ((subregion && style.isOpaque(state)) || (!subregion && c.isOpaque())) {
+		if ((subregion && style.isOpaque(state)) || (!subregion && c
+				.isOpaque())) {
 			g.setColor(style.getColor(state, ColorType.BACKGROUND));
 			g.fillRect(x, y, width, height);
 		}
@@ -378,7 +367,7 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * in <code>JComponent</code>.
 	 *
 	 * @param c
-	 *            JComponent to create the <code>ComponentUI</code> for
+	 *          JComponent to create the <code>ComponentUI</code> for
 	 * @return ComponentUI to use for <code>c</code>
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -498,25 +487,28 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * information.
 	 *
 	 * @param input
-	 *            InputStream to load from
+	 *                     InputStream to load from
 	 * @param resourceBase
-	 *            used to resolve any images or other resources
+	 *                     used to resolve any images or other resources
 	 * @throws ParseException
-	 *             if there is an error in parsing
+	 *                                  if there is an error in parsing
 	 * @throws IllegalArgumentException
-	 *             if input or resourceBase is <code>null</code>
+	 *                                  if input or resourceBase is
+	 *                                  <code>null</code>
 	 */
-	public void load(InputStream input, Class<?> resourceBase) throws ParseException {
+	public void load(InputStream input, Class<?> resourceBase)
+			throws ParseException {
 		if (resourceBase == null) {
-			throw new IllegalArgumentException("You must supply a valid resource base Class");
+			throw new IllegalArgumentException(
+					"You must supply a valid resource base Class");
 		}
 
 		if (defaultsMap == null) {
 			defaultsMap = new HashMap<String, Object>();
 		}
 
-		new SynthParser().parse(input, (DefaultSynthStyleFactory) factory, null, resourceBase,
-				defaultsMap);
+		new SynthParser().parse(input, (DefaultSynthStyleFactory) factory, null,
+				resourceBase, defaultsMap);
 	}
 
 	/**
@@ -532,16 +524,18 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 *            the <code>URL</code> to load the set of
 	 *            <code>SynthStyle</code> from
 	 * @throws ParseException
-	 *             if there is an error in parsing
+	 *                                  if there is an error in parsing
 	 * @throws IllegalArgumentException
-	 *             if synthSet is <code>null</code>
+	 *                                  if synthSet is <code>null</code>
 	 * @throws IOException
-	 *             if synthSet cannot be opened as an <code>InputStream</code>
+	 *                                  if synthSet cannot be opened as an
+	 *                                  <code>InputStream</code>
 	 * @since 1.6
 	 */
 	public void load(URL url) throws ParseException, IOException {
 		if (url == null) {
-			throw new IllegalArgumentException("You must supply a valid Synth set URL");
+			throw new IllegalArgumentException(
+					"You must supply a valid Synth set URL");
 		}
 
 		if (defaultsMap == null) {
@@ -549,7 +543,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 		}
 
 		InputStream input = url.openStream();
-		new SynthParser().parse(input, (DefaultSynthStyleFactory) factory, url, null, defaultsMap);
+		new SynthParser().parse(input, (DefaultSynthStyleFactory) factory, url,
+				null, defaultsMap);
 	}
 
 	/**
@@ -560,7 +555,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 		super.initialize();
 		DefaultLookup.setDefaultLookup(new SynthDefaultLookup());
 		setStyleFactory(factory);
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().addPropertyChangeListener(_handler);
+		KeyboardFocusManager.getCurrentKeyboardFocusManager()
+				.addPropertyChangeListener(_handler);
 	}
 
 	/**
@@ -587,32 +583,36 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 
 		Region.registerUIs(table);
 		table.setDefaultLocale(Locale.getDefault());
-		table.addResourceBundle("com.sun.swing.internal.plaf.basic.resources.basic");
-		table.addResourceBundle("com.sun.swing.internal.plaf.synth.resources.synth");
+		table.addResourceBundle(
+				"com.sun.swing.internal.plaf.basic.resources.basic");
+		table.addResourceBundle(
+				"com.sun.swing.internal.plaf.synth.resources.synth");
 
 		// SynthTabbedPaneUI supports rollover on tabs, GTK does not
 		table.put("TabbedPane.isTabRollover", Boolean.TRUE);
 
 		// These need to be defined for JColorChooser to work.
-		table.put("ColorChooser.swatchesRecentSwatchSize", new Dimension(10, 10));
+		table.put("ColorChooser.swatchesRecentSwatchSize", new Dimension(10,
+				10));
 		table.put("ColorChooser.swatchesDefaultRecentColor", Color.RED);
 		table.put("ColorChooser.swatchesSwatchSize", new Dimension(10, 10));
 
 		// These need to be defined for ImageView.
-		table.put("html.pendingImage", SwingUtilities2.makeIcon(getClass(), BasicLookAndFeel.class,
-				"icons/image-delayed.png"));
-		table.put("html.missingImage", SwingUtilities2.makeIcon(getClass(), BasicLookAndFeel.class,
-				"icons/image-failed.png"));
+		table.put("html.pendingImage", SwingUtilities2.makeIcon(getClass(),
+				BasicLookAndFeel.class, "icons/image-delayed.png"));
+		table.put("html.missingImage", SwingUtilities2.makeIcon(getClass(),
+				BasicLookAndFeel.class, "icons/image-failed.png"));
 
 		// These are needed for PopupMenu.
-		table.put("PopupMenu.selectedWindowInputMapBindings",
-				new Object[] { "ESCAPE", "cancel", "DOWN", "selectNext", "KP_DOWN", "selectNext",
-						"UP", "selectPrevious", "KP_UP", "selectPrevious", "LEFT", "selectParent",
-						"KP_LEFT", "selectParent", "RIGHT", "selectChild", "KP_RIGHT",
-						"selectChild", "ENTER", "return", "SPACE", "return" });
+		table.put("PopupMenu.selectedWindowInputMapBindings", new Object[] {
+				"ESCAPE", "cancel", "DOWN", "selectNext", "KP_DOWN",
+				"selectNext", "UP", "selectPrevious", "KP_UP", "selectPrevious",
+				"LEFT", "selectParent", "KP_LEFT", "selectParent", "RIGHT",
+				"selectChild", "KP_RIGHT", "selectChild", "ENTER", "return",
+				"SPACE", "return" });
 		table.put("PopupMenu.selectedWindowInputMapBindings.RightToLeft",
-				new Object[] { "LEFT", "selectChild", "KP_LEFT", "selectChild", "RIGHT",
-						"selectParent", "KP_RIGHT", "selectParent", });
+				new Object[] { "LEFT", "selectChild", "KP_LEFT", "selectChild",
+						"RIGHT", "selectParent", "KP_RIGHT", "selectParent", });
 
 		// enabled antialiasing depending on desktop settings
 		flushUnreferenced();
@@ -697,7 +697,7 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 * particular event occurs.
 	 *
 	 * @param ev
-	 *            a {@code PropertyChangeEvent}
+	 *           a {@code PropertyChangeEvent}
 	 * @return whether or not the UIs should update their styles
 	 * @since 1.7
 	 */
@@ -725,7 +725,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 	 */
 	private static Object getAATextInfo() {
 		String language = Locale.getDefault().getLanguage();
-		String desktop = AccessController.doPrivileged(new GetPropertyAction("sun.desktop"));
+		String desktop = AccessController.doPrivileged(new GetPropertyAction(
+				"sun.desktop"));
 
 		boolean isCjkLocale = (Locale.CHINESE.getLanguage().equals(language)
 				|| Locale.JAPANESE.getLanguage().equals(language)
@@ -838,7 +839,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 		}
 	}
 
-	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+	private void writeObject(java.io.ObjectOutputStream out)
+			throws IOException {
 		throw new NotSerializableException(this.getClass().getName());
 	}
 
@@ -861,7 +863,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 			} else if ("managingFocus" == propertyName) {
 				// De-register listener on old keyboard focus manager and
 				// register it on the new one.
-				KeyboardFocusManager manager = (KeyboardFocusManager) evt.getSource();
+				KeyboardFocusManager manager = (KeyboardFocusManager) evt
+						.getSource();
 				if (newValue.equals(Boolean.FALSE)) {
 					manager.removePropertyChangeListener(_handler);
 				} else {
@@ -878,8 +881,8 @@ public class SynthLookAndFeel extends BasicLookAndFeel {
 		 * @comp the component to check
 		 */
 		private void repaintIfBackgroundsDiffer(JComponent comp) {
-			ComponentUI ui = (ComponentUI) comp
-					.getClientProperty(SwingUtilities2.COMPONENT_UI_PROPERTY_KEY);
+			ComponentUI ui = (ComponentUI) comp.getClientProperty(
+					SwingUtilities2.COMPONENT_UI_PROPERTY_KEY);
 			if (ui instanceof SynthUI) {
 				SynthUI synthUI = (SynthUI) ui;
 				SynthContext context = synthUI.getContext(comp);

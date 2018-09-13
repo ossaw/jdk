@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -32,8 +12,7 @@ import javax.management.ImmutableDescriptor;
 import javax.management.JMX;
 
 public class DescriptorCache {
-	private DescriptorCache() {
-	}
+	private DescriptorCache() {}
 
 	static DescriptorCache getInstance() {
 		return instance;

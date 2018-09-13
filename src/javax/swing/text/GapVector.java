@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -53,7 +33,7 @@ abstract class GapVector implements Serializable {
 	 * Creates a new GapVector object, with the initial size specified.
 	 *
 	 * @param initialLength
-	 *            the initial size
+	 *                      the initial size
 	 */
 	public GapVector(int initialLength) {
 		array = allocateArray(initialLength);
@@ -119,15 +99,17 @@ abstract class GapVector implements Serializable {
 	 * currently located at the change location.
 	 *
 	 * @param position
-	 *            the location to make the replacement. This is not the location
-	 *            in the underlying storage array, but the location in the
-	 *            contiguous space being modeled.
+	 *                 the location to make the replacement. This is not the
+	 *                 location
+	 *                 in the underlying storage array, but the location in the
+	 *                 contiguous space being modeled.
 	 * @param rmSize
-	 *            the number of items to remove
+	 *                 the number of items to remove
 	 * @param addItems
-	 *            the new items to place in storage.
+	 *                 the new items to place in storage.
 	 */
-	protected void replace(int position, int rmSize, Object addItems, int addSize) {
+	protected void replace(int position, int rmSize, Object addItems,
+			int addSize) {
 		int addOffset = 0;
 		if (addSize == 0) {
 			close(position, rmSize);
@@ -208,7 +190,8 @@ abstract class GapVector implements Serializable {
 	 */
 	void resize(int nsize) {
 		Object narray = allocateArray(nsize);
-		System.arraycopy(array, 0, narray, 0, Math.min(nsize, getArrayLength()));
+		System.arraycopy(array, 0, narray, 0, Math.min(nsize,
+				getArrayLength()));
 		array = narray;
 	}
 
@@ -236,7 +219,7 @@ abstract class GapVector implements Serializable {
 	 * capacity.
 	 * 
 	 * @param reqSize
-	 *            the size which is necessary for new content
+	 *                the size which is necessary for new content
 	 * @return the new size of the storage array
 	 */
 	int getNewArraySize(int reqSize) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans.beancontext;
@@ -81,11 +61,12 @@ public interface BeanContextChild {
 	 * </p>
 	 * 
 	 * @param bc
-	 *            The <code>BeanContext</code> with which to associate this
-	 *            <code>BeanContextChild</code>.
+	 *           The <code>BeanContext</code> with which to associate this
+	 *           <code>BeanContextChild</code>.
 	 * @throws PropertyVetoException
-	 *             if the addition of the specified <code>BeanContext</code> is
-	 *             refused.
+	 *                               if the addition of the specified
+	 *                               <code>BeanContext</code> is
+	 *                               refused.
 	 */
 	void setBeanContext(BeanContext bc) throws PropertyVetoException;
 
@@ -105,9 +86,9 @@ public interface BeanContextChild {
 	 * changed.
 	 * 
 	 * @param name
-	 *            the name of the property to listen on
+	 *             the name of the property to listen on
 	 * @param pcl
-	 *            the <code>PropertyChangeListener</code> to add
+	 *             the <code>PropertyChangeListener</code> to add
 	 */
 	void addPropertyChangeListener(String name, PropertyChangeListener pcl);
 
@@ -117,9 +98,9 @@ public interface BeanContextChild {
 	 * <code>PropertyChangeEvents</code> when the specified property is changed.
 	 *
 	 * @param name
-	 *            the name of the property that was listened on
+	 *             the name of the property that was listened on
 	 * @param pcl
-	 *            the <code>PropertyChangeListener</code> to remove
+	 *             the <code>PropertyChangeListener</code> to remove
 	 */
 	void removePropertyChangeListener(String name, PropertyChangeListener pcl);
 
@@ -129,9 +110,9 @@ public interface BeanContextChild {
 	 * property changes.
 	 * 
 	 * @param name
-	 *            the name of the property to listen on
+	 *             the name of the property to listen on
 	 * @param vcl
-	 *            the <code>VetoableChangeListener</code> to add
+	 *             the <code>VetoableChangeListener</code> to add
 	 */
 	void addVetoableChangeListener(String name, VetoableChangeListener vcl);
 
@@ -141,9 +122,9 @@ public interface BeanContextChild {
 	 * the specified property changes.
 	 * 
 	 * @param name
-	 *            the name of the property that was listened on.
+	 *             the name of the property that was listened on.
 	 * @param vcl
-	 *            the <code>VetoableChangeListener</code> to remove.
+	 *             the <code>VetoableChangeListener</code> to remove.
 	 */
 	void removeVetoableChangeListener(String name, VetoableChangeListener vcl);
 

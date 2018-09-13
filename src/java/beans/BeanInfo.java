@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -136,7 +116,7 @@ public interface BeanInfo {
 	 * recommendation is to set a transparent background for the icons.
 	 *
 	 * @param iconKind
-	 *            the kind of icon requested
+	 *                 the kind of icon requested
 	 * @return an image object representing the requested icon, or {@code null}
 	 *         if no suitable icon is available
 	 *

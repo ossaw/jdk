@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.datatype;
@@ -191,8 +171,7 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * removed in the future.
 	 * </p>
 	 */
-	public XMLGregorianCalendar() {
-	}
+	public XMLGregorianCalendar() {}
 
 	/**
 	 * <p>
@@ -249,15 +228,18 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param year
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-year">year field of date/time field
-	 *            mapping table</a>.
+	 *             value constraints summarized in
+	 *             <a href="#datetimefield-year">year field of date/time field
+	 *             mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>year</code> parameter is outside value constraints
-	 *             for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>year</code> parameter is
+	 *                                  outside value constraints
+	 *                                  for the field as specified in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setYear(BigInteger year);
 
@@ -278,11 +260,11 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param year
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-year">year field of date/time field
-	 *            mapping table</a>. If year is
-	 *            {@link DatatypeConstants#FIELD_UNDEFINED}, then eon is set to
-	 *            <code>null</code>.
+	 *             value constraints are summarized in
+	 *             <a href="#datetimefield-year">year field of date/time field
+	 *             mapping table</a>. If year is
+	 *             {@link DatatypeConstants#FIELD_UNDEFINED}, then eon is set to
+	 *             <code>null</code>.
 	 */
 	public abstract void setYear(int year);
 
@@ -297,15 +279,19 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param month
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-month">month field of date/time field
-	 *            mapping table</a>.
+	 *              value constraints summarized in
+	 *              <a href="#datetimefield-month">month field of date/time
+	 *              field
+	 *              mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>month</code> parameter is outside value constraints
-	 *             for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>month</code> parameter is
+	 *                                  outside value constraints
+	 *                                  for the field as specified in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setMonth(int month);
 
@@ -325,10 +311,13 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 *            mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>day</code> parameter is outside value constraints
-	 *             for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>day</code> parameter is outside
+	 *                                  value constraints
+	 *                                  for the field as specified in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setDay(int day);
 
@@ -343,15 +332,19 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param offset
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-timezone"> timezone field of date/time
-	 *            field mapping table</a>.
+	 *               value constraints summarized in
+	 *               <a href="#datetimefield-timezone"> timezone field of
+	 *               date/time
+	 *               field mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>offset</code> parameter is outside value constraints
-	 *             for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>offset</code> parameter is
+	 *                                  outside value constraints
+	 *                                  for the field as specified in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setTimezone(int offset);
 
@@ -361,24 +354,26 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param hour
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-hour">hour field of date/time field
-	 *            mapping table</a>.
+	 *               value constraints are summarized in
+	 *               <a href="#datetimefield-hour">hour field of date/time field
+	 *               mapping table</a>.
 	 * @param minute
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-minute">minute field of date/time
-	 *            field mapping table</a>.
+	 *               value constraints are summarized in
+	 *               <a href="#datetimefield-minute">minute field of date/time
+	 *               field mapping table</a>.
 	 * @param second
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-second">second field of date/time
-	 *            field mapping table</a>.
+	 *               value constraints are summarized in
+	 *               <a href="#datetimefield-second">second field of date/time
+	 *               field mapping table</a>.
 	 *
 	 * @see #setTime(int, int, int, BigDecimal)
 	 *
 	 * @throws IllegalArgumentException
-	 *             if any parameter is outside value constraints for the field
-	 *             as specified in <a href="#datetimefieldmapping">date/time
-	 *             field mapping table</a>.
+	 *                                  if any parameter is outside value
+	 *                                  constraints for the field
+	 *                                  as specified in <a href=
+	 *                                  "#datetimefieldmapping">date/time
+	 *                                  field mapping table</a>.
 	 */
 	public void setTime(int hour, int minute, int second) {
 
@@ -397,15 +392,18 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param hour
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-hour">hour field of date/time field
-	 *            mapping table</a>.
+	 *             value constraints summarized in
+	 *             <a href="#datetimefield-hour">hour field of date/time field
+	 *             mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>hour</code> parameter is outside value constraints
-	 *             for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>hour</code> parameter is
+	 *                                  outside value constraints
+	 *                                  for the field as specified in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setHour(int hour);
 
@@ -420,15 +418,18 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param minute
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-minute">minute field of date/time
-	 *            field mapping table</a>.
+	 *               value constraints summarized in
+	 *               <a href="#datetimefield-minute">minute field of date/time
+	 *               field mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>minute</code> parameter is outside value constraints
-	 *             for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>minute</code> parameter is
+	 *                                  outside value constraints
+	 *                                  for the field as specified in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setMinute(int minute);
 
@@ -443,15 +444,18 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param second
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-second">second field of date/time
-	 *            field mapping table</a>.
+	 *               value constraints summarized in
+	 *               <a href="#datetimefield-second">second field of date/time
+	 *               field mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>second</code> parameter is outside value constraints
-	 *             for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>second</code> parameter is
+	 *                                  outside value constraints
+	 *                                  for the field as specified in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setSecond(int second);
 
@@ -466,15 +470,20 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param millisecond
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-second">second field of date/time
-	 *            field mapping table</a>.
+	 *                    value constraints summarized in
+	 *                    <a href="#datetimefield-second">second field of
+	 *                    date/time
+	 *                    field mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>millisecond</code> parameter is outside value
-	 *             constraints for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>millisecond</code> parameter is
+	 *                                  outside value
+	 *                                  constraints for the field as specified
+	 *                                  in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setMillisecond(int millisecond);
 
@@ -489,15 +498,20 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param fractional
-	 *            value constraints summarized in
-	 *            <a href="#datetimefield-second">second field of date/time
-	 *            field mapping table</a>.
+	 *                   value constraints summarized in
+	 *                   <a href="#datetimefield-second">second field of
+	 *                   date/time
+	 *                   field mapping table</a>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>fractional</code> parameter is outside value
-	 *             constraints for the field as specified in
-	 *             <a href="#datetimefieldmapping">date/time field mapping
-	 *             table</a>.
+	 *                                  if <code>fractional</code> parameter is
+	 *                                  outside value
+	 *                                  constraints for the field as specified
+	 *                                  in
+	 *                                  <a href=
+	 *                                  "#datetimefieldmapping">date/time field
+	 *                                  mapping
+	 *                                  table</a>.
 	 */
 	public abstract void setFractionalSecond(BigDecimal fractional);
 
@@ -508,27 +522,34 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param hour
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-hour">hour field of date/time field
-	 *            mapping table</a>.
+	 *                   value constraints are summarized in
+	 *                   <a href="#datetimefield-hour">hour field of date/time
+	 *                   field
+	 *                   mapping table</a>.
 	 * @param minute
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-minute">minute field of date/time
-	 *            field mapping table</a>.
+	 *                   value constraints are summarized in
+	 *                   <a href="#datetimefield-minute">minute field of
+	 *                   date/time
+	 *                   field mapping table</a>.
 	 * @param second
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-second">second field of date/time
-	 *            field mapping table</a>.
+	 *                   value constraints are summarized in
+	 *                   <a href="#datetimefield-second">second field of
+	 *                   date/time
+	 *                   field mapping table</a>.
 	 * @param fractional
-	 *            value of <code>null</code> indicates this optional field is
-	 *            not set.
+	 *                   value of <code>null</code> indicates this optional
+	 *                   field is
+	 *                   not set.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if any parameter is outside value constraints for the field
-	 *             as specified in <a href="#datetimefieldmapping">date/time
-	 *             field mapping table</a>.
+	 *                                  if any parameter is outside value
+	 *                                  constraints for the field
+	 *                                  as specified in <a href=
+	 *                                  "#datetimefieldmapping">date/time
+	 *                                  field mapping table</a>.
 	 */
-	public void setTime(int hour, int minute, int second, BigDecimal fractional) {
+	public void setTime(int hour, int minute, int second,
+			BigDecimal fractional) {
 
 		setHour(hour);
 		setMinute(minute);
@@ -542,25 +563,31 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param hour
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-hour">hour field of date/time field
-	 *            mapping table</a>.
+	 *                    value constraints are summarized in
+	 *                    <a href="#datetimefield-hour">hour field of date/time
+	 *                    field
+	 *                    mapping table</a>.
 	 * @param minute
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-minute">minute field of date/time
-	 *            field mapping table</a>.
+	 *                    value constraints are summarized in
+	 *                    <a href="#datetimefield-minute">minute field of
+	 *                    date/time
+	 *                    field mapping table</a>.
 	 * @param second
-	 *            value constraints are summarized in
-	 *            <a href="#datetimefield-second">second field of date/time
-	 *            field mapping table</a>.
+	 *                    value constraints are summarized in
+	 *                    <a href="#datetimefield-second">second field of
+	 *                    date/time
+	 *                    field mapping table</a>.
 	 * @param millisecond
-	 *            value of {@link DatatypeConstants#FIELD_UNDEFINED} indicates
-	 *            this optional field is not set.
+	 *                    value of {@link DatatypeConstants#FIELD_UNDEFINED}
+	 *                    indicates
+	 *                    this optional field is not set.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if any parameter is outside value constraints for the field
-	 *             as specified in <a href="#datetimefieldmapping">date/time
-	 *             field mapping table</a>.
+	 *                                  if any parameter is outside value
+	 *                                  constraints for the field
+	 *                                  as specified in <a href=
+	 *                                  "#datetimefieldmapping">date/time
+	 *                                  field mapping table</a>.
 	 */
 	public void setTime(int hour, int minute, int second, int millisecond) {
 
@@ -812,7 +839,8 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param xmlGregorianCalendar
-	 *            Instance of <code>XMLGregorianCalendar</code> to compare
+	 *                             Instance of <code>XMLGregorianCalendar</code>
+	 *                             to compare
 	 *
 	 * @return The relationship between <code>this</code>
 	 *         <code>XMLGregorianCalendar</code> and the specified
@@ -822,7 +850,8 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 *         {@link DatatypeConstants#INDETERMINATE}.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>xmlGregorianCalendar</code> is null.
+	 *                              if <code>xmlGregorianCalendar</code> is
+	 *                              null.
 	 */
 	public abstract int compare(XMLGregorianCalendar xmlGregorianCalendar);
 
@@ -889,8 +918,8 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 		if (timezone != 0) {
 			gc = this.normalize();
 		}
-		return gc.getYear() + gc.getMonth() + gc.getDay() + gc.getHour() + gc.getMinute()
-				+ gc.getSecond();
+		return gc.getYear() + gc.getMonth() + gc.getDay() + gc.getHour() + gc
+				.getMinute() + gc.getSecond();
 	}
 
 	/**
@@ -910,8 +939,10 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 *         <code>XMLGregorianCalendar</code>
 	 *
 	 * @throws IllegalStateException
-	 *             if the combination of set fields does not match one of the
-	 *             eight defined XML Schema builtin date/time datatypes.
+	 *                               if the combination of set fields does not
+	 *                               match one of the
+	 *                               eight defined XML Schema builtin date/time
+	 *                               datatypes.
 	 */
 	public abstract String toXMLFormat();
 
@@ -1014,8 +1045,8 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </table>
 	 *
 	 * @throws java.lang.IllegalStateException
-	 *             if the combination of set fields does not match one of the
-	 *             eight defined XML Schema builtin date/time datatypes.
+	 *         if the combination of set fields does not match one of the
+	 *         eight defined XML Schema builtin date/time datatypes.
 	 * @return One of the following class constants:
 	 *         {@link DatatypeConstants#DATETIME},
 	 *         {@link DatatypeConstants#TIME}, {@link DatatypeConstants#DATE},
@@ -1041,8 +1072,10 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 *         of this <code>XMLGregorianCalendar</code>.
 	 *
 	 * @throws IllegalStateException
-	 *             if the combination of set fields does not match one of the
-	 *             eight defined XML Schema builtin date/time datatypes.
+	 *                               if the combination of set fields does not
+	 *                               match one of the
+	 *                               eight defined XML Schema builtin date/time
+	 *                               datatypes.
 	 *
 	 * @see #toXMLFormat()
 	 */
@@ -1073,10 +1106,12 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param duration
-	 *            Duration to add to this <code>XMLGregorianCalendar</code>.
+	 *                 Duration to add to this
+	 *                 <code>XMLGregorianCalendar</code>.
 	 *
 	 * @throws NullPointerException
-	 *             when <code>duration</code> parameter is <code>null</code>.
+	 *                              when <code>duration</code> parameter is
+	 *                              <code>null</code>.
 	 */
 	public abstract void add(Duration duration);
 
@@ -1225,20 +1260,25 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </ul>
 	 *
 	 * @param timezone
-	 *            provide Timezone. <code>null</code> is a legal value.
+	 *                 provide Timezone. <code>null</code> is a legal value.
 	 * @param aLocale
-	 *            provide explicit Locale. Use default GregorianCalendar locale
-	 *            if value is <code>null</code>.
+	 *                 provide explicit Locale. Use default GregorianCalendar
+	 *                 locale
+	 *                 if value is <code>null</code>.
 	 * @param defaults
-	 *            provide default field values to use when corresponding field
-	 *            for this instance is FIELD_UNDEFINED or null. If
-	 *            <code>defaults</code>is <code>null</code> or a field within
-	 *            the specified <code>defaults</code> is undefined, just use
-	 *            <code>java.util.GregorianCalendar</code> defaults.
+	 *                 provide default field values to use when corresponding
+	 *                 field
+	 *                 for this instance is FIELD_UNDEFINED or null. If
+	 *                 <code>defaults</code>is <code>null</code> or a field
+	 *                 within
+	 *                 the specified <code>defaults</code> is undefined, just
+	 *                 use
+	 *                 <code>java.util.GregorianCalendar</code> defaults.
 	 * @return a java.util.GregorianCalendar conversion of this instance.
 	 */
-	public abstract GregorianCalendar toGregorianCalendar(java.util.TimeZone timezone,
-			java.util.Locale aLocale, XMLGregorianCalendar defaults);
+	public abstract GregorianCalendar toGregorianCalendar(
+			java.util.TimeZone timezone, java.util.Locale aLocale,
+			XMLGregorianCalendar defaults);
 
 	/**
 	 * <p>
@@ -1254,8 +1294,8 @@ public abstract class XMLGregorianCalendar implements Cloneable {
 	 * </p>
 	 *
 	 * @param defaultZoneoffset
-	 *            default zoneoffset if this zoneoffset is
-	 *            {@link DatatypeConstants#FIELD_UNDEFINED}.
+	 *                          default zoneoffset if this zoneoffset is
+	 *                          {@link DatatypeConstants#FIELD_UNDEFINED}.
 	 *
 	 * @return TimeZone for this.
 	 */

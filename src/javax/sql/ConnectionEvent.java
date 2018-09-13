@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql;
@@ -53,7 +33,7 @@ public class ConnectionEvent extends java.util.EventObject {
 	 * @param con
 	 *            the pooled connection that is the source of the event
 	 * @throws IllegalArgumentException
-	 *             if <code>con</code> is null.
+	 *                                  if <code>con</code> is null.
 	 */
 	public ConnectionEvent(PooledConnection con) {
 		super(con);
@@ -70,7 +50,7 @@ public class ConnectionEvent extends java.util.EventObject {
 	 * @param ex
 	 *            the SQLException about to be thrown to the application
 	 * @throws IllegalArgumentException
-	 *             if <code>con</code> is null.
+	 *                                  if <code>con</code> is null.
 	 */
 	public ConnectionEvent(PooledConnection con, SQLException ex) {
 		super(con);

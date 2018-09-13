@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.annotation;
@@ -62,8 +42,9 @@ public class W3CDomHandler implements DomHandler<Element, DOMResult> {
 	 * to be used.
 	 *
 	 * @param builder
-	 *            must not be null. JAXB uses this {@link DocumentBuilder} to
-	 *            create a new element.
+	 *                must not be null. JAXB uses this {@link DocumentBuilder}
+	 *                to
+	 *                create a new element.
 	 */
 	public W3CDomHandler(DocumentBuilder builder) {
 		if (builder == null)
@@ -104,7 +85,8 @@ public class W3CDomHandler implements DomHandler<Element, DOMResult> {
 		throw new IllegalStateException(n.toString());
 	}
 
-	public Source marshal(Element element, ValidationEventHandler errorHandler) {
+	public Source marshal(Element element,
+			ValidationEventHandler errorHandler) {
 		return new DOMSource(element);
 	}
 }

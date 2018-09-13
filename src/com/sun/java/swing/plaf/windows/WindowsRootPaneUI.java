@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -141,8 +121,11 @@ public class WindowsRootPaneUI extends BasicRootPaneUI {
 				if (tk instanceof SunToolkit) {
 					Component originalSource = AWTAccessor.getKeyEventAccessor()
 							.getOriginalSource(ev);
-					skip = SunToolkit.getContainingWindow(originalSource) != winAncestor || ev
-							.getWhen() <= ((SunToolkit) tk).getWindowDeactivationTime(winAncestor);
+					skip = SunToolkit.getContainingWindow(
+							originalSource) != winAncestor || ev
+									.getWhen() <= ((SunToolkit) tk)
+											.getWindowDeactivationTime(
+													winAncestor);
 				}
 
 				if (menu != null && !skip) {
@@ -173,7 +156,8 @@ public class WindowsRootPaneUI extends BasicRootPaneUI {
 			}
 			if (ev.getKeyCode() == KeyEvent.VK_ALT) {
 				root = SwingUtilities.getRootPane(ev.getComponent());
-				winAncestor = (root == null ? null : SwingUtilities.getWindowAncestor(root));
+				winAncestor = (root == null ? null
+						: SwingUtilities.getWindowAncestor(root));
 
 				if (ev.getID() == KeyEvent.KEY_PRESSED) {
 					if (!altKeyPressed) {
@@ -185,11 +169,13 @@ public class WindowsRootPaneUI extends BasicRootPaneUI {
 					if (altKeyPressed) {
 						altReleased(ev);
 					} else {
-						MenuSelectionManager msm = MenuSelectionManager.defaultManager();
+						MenuSelectionManager msm = MenuSelectionManager
+								.defaultManager();
 						MenuElement[] path = msm.getSelectedPath();
 						if (path.length <= 0) {
 							WindowsLookAndFeel.setMnemonicHidden(true);
-							WindowsGraphicsUtils.repaintMnemonicsInWindow(winAncestor);
+							WindowsGraphicsUtils.repaintMnemonicsInWindow(
+									winAncestor);
 						}
 					}
 					altKeyPressed = false;

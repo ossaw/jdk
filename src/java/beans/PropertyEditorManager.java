@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -61,34 +41,38 @@ public class PropertyEditorManager {
 	 * is called. This could result in a {@linkplain SecurityException}.
 	 *
 	 * @param targetType
-	 *            the class object of the type to be edited
+	 *                    the class object of the type to be edited
 	 * @param editorClass
-	 *            the class object of the editor class
+	 *                    the class object of the editor class
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@code checkPropertiesAccess} method doesn't allow setting of
-	 *             system properties
+	 *                           if a security manager exists and its
+	 *                           {@code checkPropertiesAccess} method doesn't
+	 *                           allow setting of
+	 *                           system properties
 	 *
 	 * @see SecurityManager#checkPropertiesAccess
 	 */
-	public static void registerEditor(Class<?> targetType, Class<?> editorClass) {
+	public static void registerEditor(Class<?> targetType,
+			Class<?> editorClass) {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
 			sm.checkPropertiesAccess();
 		}
-		ThreadGroupContext.getContext().getPropertyEditorFinder().register(targetType, editorClass);
+		ThreadGroupContext.getContext().getPropertyEditorFinder().register(
+				targetType, editorClass);
 	}
 
 	/**
 	 * Locate a value editor for a given target type.
 	 *
 	 * @param targetType
-	 *            The Class object for the type to be edited
+	 *                   The Class object for the type to be edited
 	 * @return An editor object for the given target class. The result is null
 	 *         if no suitable editor can be found.
 	 */
 	public static PropertyEditor findEditor(Class<?> targetType) {
-		return ThreadGroupContext.getContext().getPropertyEditorFinder().find(targetType);
+		return ThreadGroupContext.getContext().getPropertyEditorFinder().find(
+				targetType);
 	}
 
 	/**
@@ -101,7 +85,8 @@ public class PropertyEditorManager {
 	 *         e.g. Sun implementation initially sets to {"sun.beans.editors"}.
 	 */
 	public static String[] getEditorSearchPath() {
-		return ThreadGroupContext.getContext().getPropertyEditorFinder().getPackages();
+		return ThreadGroupContext.getContext().getPropertyEditorFinder()
+				.getPackages();
 	}
 
 	/**
@@ -114,11 +99,12 @@ public class PropertyEditorManager {
 	 * a SecurityException.
 	 *
 	 * @param path
-	 *            Array of package names.
+	 *             Array of package names.
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkPropertiesAccess</code> method doesn't allow
-	 *                setting of system properties.
+	 *                              if a security manager exists and its
+	 *                              <code>checkPropertiesAccess</code> method
+	 *                              doesn't allow
+	 *                              setting of system properties.
 	 * @see SecurityManager#checkPropertiesAccess
 	 */
 	public static void setEditorSearchPath(String[] path) {
@@ -126,6 +112,7 @@ public class PropertyEditorManager {
 		if (sm != null) {
 			sm.checkPropertiesAccess();
 		}
-		ThreadGroupContext.getContext().getPropertyEditorFinder().setPackages(path);
+		ThreadGroupContext.getContext().getPropertyEditorFinder().setPackages(
+				path);
 	}
 }

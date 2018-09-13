@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -61,7 +41,8 @@ public class BufferManagerWriteGrow extends BufferManagerWrite {
 	}
 
 	public void sendMessage() {
-		Connection conn = ((OutputObject) outputObject).getMessageMediator().getConnection();
+		Connection conn = ((OutputObject) outputObject).getMessageMediator()
+				.getConnection();
 
 		conn.writeLock();
 
@@ -82,7 +63,6 @@ public class BufferManagerWriteGrow extends BufferManagerWrite {
 	 *
 	 * No work to do for a BufferManagerWriteGrow.
 	 */
-	public void close() {
-	}
+	public void close() {}
 
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -59,16 +39,19 @@ public final class LoggingPermission extends java.security.BasicPermission {
 	 * Creates a new LoggingPermission object.
 	 *
 	 * @param name
-	 *            Permission name. Must be "control".
+	 *                Permission name. Must be "control".
 	 * @param actions
-	 *            Must be either null or the empty string.
+	 *                Must be either null or the empty string.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty or if arguments are invalid.
+	 *                                  if <code>name</code> is empty or if
+	 *                                  arguments are invalid.
 	 */
-	public LoggingPermission(String name, String actions) throws IllegalArgumentException {
+	public LoggingPermission(String name, String actions)
+			throws IllegalArgumentException {
 		super(name);
 		if (!name.equals("control")) {
 			throw new IllegalArgumentException("name: " + name);

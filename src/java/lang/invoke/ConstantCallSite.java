@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -39,9 +19,9 @@ public class ConstantCallSite extends CallSite {
 	 * Creates a call site with a permanent target.
 	 * 
 	 * @param target
-	 *            the target to be permanently associated with this call site
+	 *               the target to be permanently associated with this call site
 	 * @throws NullPointerException
-	 *             if the proposed target is null
+	 *                              if the proposed target is null
 	 */
 	public ConstantCallSite(MethodHandle target) {
 		super(target);
@@ -75,25 +55,31 @@ public class ConstantCallSite extends CallSite {
 	 * call site's type using the {@code type} method.
 	 *
 	 * @param targetType
-	 *            the type of the method handle to be permanently associated
-	 *            with this call site
+	 *                         the type of the method handle to be permanently
+	 *                         associated
+	 *                         with this call site
 	 * @param createTargetHook
-	 *            a method handle to invoke (on the call site) to produce the
-	 *            call site's target
+	 *                         a method handle to invoke (on the call site) to
+	 *                         produce the
+	 *                         call site's target
 	 * @throws WrongMethodTypeException
-	 *             if the hook cannot be invoked on the required arguments, or
-	 *             if the target returned by the hook is not of the given
-	 *             {@code targetType}
+	 *                                  if the hook cannot be invoked on the
+	 *                                  required arguments, or
+	 *                                  if the target returned by the hook is
+	 *                                  not of the given
+	 *                                  {@code targetType}
 	 * @throws NullPointerException
-	 *             if the hook returns a null value
+	 *                                  if the hook returns a null value
 	 * @throws ClassCastException
-	 *             if the hook returns something other than a
-	 *             {@code MethodHandle}
+	 *                                  if the hook returns something other than
+	 *                                  a
+	 *                                  {@code MethodHandle}
 	 * @throws Throwable
-	 *             anything else thrown by the hook function
+	 *                                  anything else thrown by the hook
+	 *                                  function
 	 */
-	protected ConstantCallSite(MethodType targetType, MethodHandle createTargetHook)
-			throws Throwable {
+	protected ConstantCallSite(MethodType targetType,
+			MethodHandle createTargetHook) throws Throwable {
 		super(targetType, createTargetHook);
 		isFrozen = true;
 	}
@@ -107,7 +93,8 @@ public class ConstantCallSite extends CallSite {
 	 * @return the immutable linkage state of this call site, a constant method
 	 *         handle
 	 * @throws IllegalStateException
-	 *             if the {@code ConstantCallSite} constructor has not completed
+	 *                               if the {@code ConstantCallSite} constructor
+	 *                               has not completed
 	 */
 	@Override
 	public final MethodHandle getTarget() {
@@ -121,9 +108,10 @@ public class ConstantCallSite extends CallSite {
 	 * site cannot change its target.
 	 * 
 	 * @param ignore
-	 *            a new target proposed for the call site, which is ignored
+	 *               a new target proposed for the call site, which is ignored
 	 * @throws UnsupportedOperationException
-	 *             because this kind of call site cannot change its target
+	 *                                       because this kind of call site
+	 *                                       cannot change its target
 	 */
 	@Override
 	public final void setTarget(MethodHandle ignore) {
@@ -138,7 +126,8 @@ public class ConstantCallSite extends CallSite {
 	 * @return the immutable linkage state of this call site, a constant method
 	 *         handle
 	 * @throws IllegalStateException
-	 *             if the {@code ConstantCallSite} constructor has not completed
+	 *                               if the {@code ConstantCallSite} constructor
+	 *                               has not completed
 	 */
 	@Override
 	public final MethodHandle dynamicInvoker() {

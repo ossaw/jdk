@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -48,8 +28,7 @@ public abstract class ClassValue<T> {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected ClassValue() {
-	}
+	protected ClassValue() {}
 
 	/**
 	 * Computes the given class's derived value for this {@code ClassValue}.
@@ -65,7 +44,7 @@ public abstract class ClassValue<T> {
 	 * recorded.
 	 *
 	 * @param type
-	 *            the type whose class value must be computed
+	 *             the type whose class value must be computed
 	 * @return the newly computed value associated with this {@code ClassValue},
 	 *         for the given class or interface
 	 * @see #get
@@ -92,11 +71,11 @@ public abstract class ClassValue<T> {
 	 * documentation for {@link #remove remove} for more information.
 	 *
 	 * @param type
-	 *            the type whose class value must be computed or retrieved
+	 *             the type whose class value must be computed or retrieved
 	 * @return the current value associated with this {@code ClassValue}, for
 	 *         the given class or interface
 	 * @throws NullPointerException
-	 *             if the argument is null
+	 *                              if the argument is null
 	 * @see #remove
 	 * @see #computeValue
 	 */
@@ -182,17 +161,17 @@ public abstract class ClassValue<T> {
 	 * synchronization is possible during this time.
 	 *
 	 * @param type
-	 *            the type whose class value must be removed
+	 *             the type whose class value must be removed
 	 * @throws NullPointerException
-	 *             if the argument is null
+	 *                              if the argument is null
 	 */
 	public void remove(Class<?> type) {
 		ClassValueMap map = getMap(type);
 		map.removeEntry(this);
 	}
 
-			// Possible functionality for JSR 292 MR 1
-			/* public */ void put(Class<?> type, T value) {
+	// Possible functionality for JSR 292 MR 1
+	/* public */ void put(Class<?> type, T value) {
 		ClassValueMap map = getMap(type);
 		map.changeEntry(this, value);
 	}
@@ -279,7 +258,8 @@ public abstract class ClassValue<T> {
 	}
 
 	/** Internal hash code for accessing Class.classValueMap.cacheArray. */
-	final int hashCodeForCache = nextHashCode.getAndAdd(HASH_INCREMENT) & HASH_MASK;
+	final int hashCodeForCache = nextHashCode.getAndAdd(HASH_INCREMENT)
+			& HASH_MASK;
 
 	/**
 	 * Value stream for hashCodeForCache. See similar structure in ThreadLocal.
@@ -297,8 +277,7 @@ public abstract class ClassValue<T> {
 	/**
 	 * Private key for retrieval of this object from ClassValueMap.
 	 */
-	static class Identity {
-	}
+	static class Identity {}
 
 	/**
 	 * This ClassValue's identity, expressed as an opaque object. The main
@@ -485,7 +464,8 @@ public abstract class ClassValue<T> {
 	 * fully serialized "true state" for each pair (ClassValue cv, Class type).
 	 * Also manages an unserialized fast-path cache.
 	 */
-	static class ClassValueMap extends WeakHashMap<ClassValue.Identity, Entry<?>> {
+	static class ClassValueMap extends
+			WeakHashMap<ClassValue.Identity, Entry<?>> {
 		private final Class<?> type;
 		private Entry<?>[] cacheArray;
 		private int cacheLoad, cacheLoadLimit;
@@ -557,7 +537,8 @@ public abstract class ClassValue<T> {
 		 * Finish a query. Overwrite a matching placeholder. Drop stale incoming
 		 * values.
 		 */
-		synchronized <T> Entry<T> finishEntry(ClassValue<T> classValue, Entry<T> e) {
+		synchronized <T> Entry<T> finishEntry(ClassValue<T> classValue,
+				Entry<T> e) {
 			@SuppressWarnings("unchecked") // one map has entries for all value
 											// types <T>
 			Entry<T> e0 = (Entry<T>) get(classValue.identity);
@@ -567,7 +548,8 @@ public abstract class ClassValue<T> {
 				assert (e.isPromise());
 				remove(classValue.identity);
 				return null;
-			} else if (e0 != null && e0.isPromise() && e0.version() == e.version()) {
+			} else if (e0 != null && e0.isPromise() && e0.version() == e
+					.version()) {
 				// If e0 matches the intended entry, there has not been a remove
 				// call
 				// between the previous startEntry and now. So now overwrite e0.
@@ -640,14 +622,17 @@ public abstract class ClassValue<T> {
 		}
 
 		/** Look in the cache, at the home location for the given ClassValue. */
-		static <T> Entry<T> probeHomeLocation(Entry<?>[] cache, ClassValue<T> classValue) {
-			return classValue.castEntry(loadFromCache(cache, classValue.hashCodeForCache));
+		static <T> Entry<T> probeHomeLocation(Entry<?>[] cache,
+				ClassValue<T> classValue) {
+			return classValue.castEntry(loadFromCache(cache,
+					classValue.hashCodeForCache));
 		}
 
 		/**
 		 * Given that first probe was a collision, retry at nearby locations.
 		 */
-		static <T> Entry<T> probeBackupLocations(Entry<?>[] cache, ClassValue<T> classValue) {
+		static <T> Entry<T> probeBackupLocations(Entry<?>[] cache,
+				ClassValue<T> classValue) {
 			if (PROBE_LIMIT <= 0)
 				return null;
 			// Probe the cache carefully, in a range of slots.
@@ -673,13 +658,14 @@ public abstract class ClassValue<T> {
 					} else {
 						pos2 = i;
 					}
-					cache[pos2 & mask] = ((entryDislocation(cache, pos2, e2) < PROBE_LIMIT) ? e2 // put
-																									// e2
-																									// here
-																									// if
-																									// it
-																									// fits
-							: Entry.DEAD_ENTRY);
+					cache[pos2 & mask] = ((entryDislocation(cache, pos2,
+							e2) < PROBE_LIMIT) ? e2 // put
+									// e2
+									// here
+									// if
+									// it
+									// fits
+									: Entry.DEAD_ENTRY);
 					return classValue.castEntry(e);
 				}
 				// Remember first empty slot, if any:
@@ -690,7 +676,8 @@ public abstract class ClassValue<T> {
 		}
 
 		/** How far out of place is e? */
-		private static int entryDislocation(Entry<?>[] cache, int pos, Entry<?> e) {
+		private static int entryDislocation(Entry<?>[] cache, int pos,
+				Entry<?> e) {
 			ClassValue<?> cv = e.classValueOrNull();
 			if (cv == null)
 				return 0; // entry is not live!
@@ -736,7 +723,8 @@ public abstract class ClassValue<T> {
 		 * Remove stale entries in the given range. Should be executed under a
 		 * Map lock.
 		 */
-		private void removeStaleEntries(Entry<?>[] cache, int begin, int count) {
+		private void removeStaleEntries(Entry<?>[] cache, int begin,
+				int count) {
 			if (PROBE_LIMIT <= 0)
 				return;
 			int mask = (cache.length - 1);
@@ -806,7 +794,8 @@ public abstract class ClassValue<T> {
 
 		/** Remove stale entries in the range near classValue. */
 		private void removeStaleEntries(ClassValue<?> classValue) {
-			removeStaleEntries(getCache(), classValue.hashCodeForCache, PROBE_LIMIT);
+			removeStaleEntries(getCache(), classValue.hashCodeForCache,
+					PROBE_LIMIT);
 		}
 
 		/** Remove all stale entries, everywhere. */
@@ -853,7 +842,8 @@ public abstract class ClassValue<T> {
 		 * Store the given entry. Update cacheLoad, and return any live victim.
 		 * 'Gently' means return self rather than dislocating a live victim.
 		 */
-		private Entry<?> placeInCache(Entry<?>[] cache, int pos, Entry<?> e, boolean gently) {
+		private Entry<?> placeInCache(Entry<?>[] cache, int pos, Entry<?> e,
+				boolean gently) {
 			Entry<?> e2 = overwrittenEntry(cache[pos]);
 			if (gently && e2 != null) {
 				// do not overwrite a live entry

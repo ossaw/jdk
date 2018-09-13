@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package org.omg.SendingContext;
@@ -39,5 +18,4 @@ package org.omg.SendingContext;
  * may need to ask the sender about the CodeBase for the implementation of the
  * value type.
  */
-public interface RunTimeOperations {
-}
+public interface RunTimeOperations {}

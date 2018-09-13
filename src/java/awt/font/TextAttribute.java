@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - 1997, All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998, All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by Taligent, Inc., a wholly-owned subsidiary
  * of IBM. These materials are provided under terms of a License
  * Agreement between Taligent and Sun. This technology is protected
  * by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.awt.font;
@@ -261,8 +238,8 @@ public final class TextAttribute extends Attribute {
 	 * Constructs a <code>TextAttribute</code> with the specified name.
 	 * 
 	 * @param name
-	 *            the attribute name to assign to this
-	 *            <code>TextAttribute</code>
+	 *             the attribute name to assign to this
+	 *             <code>TextAttribute</code>
 	 */
 	protected TextAttribute(String name) {
 		super(name);
@@ -276,7 +253,8 @@ public final class TextAttribute extends Attribute {
 	 */
 	protected Object readResolve() throws InvalidObjectException {
 		if (this.getClass() != TextAttribute.class) {
-			throw new InvalidObjectException("subclass didn't correctly implement readResolve");
+			throw new InvalidObjectException(
+					"subclass didn't correctly implement readResolve");
 		}
 
 		TextAttribute instance = instanceMap.get(getName());
@@ -581,7 +559,8 @@ public final class TextAttribute extends Attribute {
 	 * @see TransformAttribute
 	 * @see java.awt.geom.AffineTransform
 	 */
-	public static final TextAttribute TRANSFORM = new TextAttribute("transform");
+	public static final TextAttribute TRANSFORM = new TextAttribute(
+			"transform");
 
 	/**
 	 * Attribute key for superscripting and subscripting. Values are instances
@@ -601,7 +580,8 @@ public final class TextAttribute extends Attribute {
 	 * <code>SUPERSCRIPT</code> can impact the ascent and descent of a font. The
 	 * ascent and descent can never become negative, however.
 	 */
-	public static final TextAttribute SUPERSCRIPT = new TextAttribute("superscript");
+	public static final TextAttribute SUPERSCRIPT = new TextAttribute(
+			"superscript");
 
 	/**
 	 * Standard superscript.
@@ -697,7 +677,8 @@ public final class TextAttribute extends Attribute {
 	 *
 	 * @see GraphicAttribute
 	 */
-	public static final TextAttribute CHAR_REPLACEMENT = new TextAttribute("char_replacement");
+	public static final TextAttribute CHAR_REPLACEMENT = new TextAttribute(
+			"char_replacement");
 
 	//
 	// Adornments added to text.
@@ -717,7 +698,8 @@ public final class TextAttribute extends Attribute {
 	 * @see java.awt.Paint
 	 * @see #SWAP_COLORS
 	 */
-	public static final TextAttribute FOREGROUND = new TextAttribute("foreground");
+	public static final TextAttribute FOREGROUND = new TextAttribute(
+			"foreground");
 
 	/**
 	 * Attribute key for the paint used to render the background of the text.
@@ -736,7 +718,8 @@ public final class TextAttribute extends Attribute {
 	 * @see java.awt.Paint
 	 * @see #SWAP_COLORS
 	 */
-	public static final TextAttribute BACKGROUND = new TextAttribute("background");
+	public static final TextAttribute BACKGROUND = new TextAttribute(
+			"background");
 
 	/**
 	 * Attribute key for underline. Values are instances of <b>
@@ -749,7 +732,8 @@ public final class TextAttribute extends Attribute {
 	 * <p>
 	 * The underline affects both the visual bounds and the outline of the text.
 	 */
-	public static final TextAttribute UNDERLINE = new TextAttribute("underline");
+	public static final TextAttribute UNDERLINE = new TextAttribute(
+			"underline");
 
 	/**
 	 * Standard underline.
@@ -770,7 +754,8 @@ public final class TextAttribute extends Attribute {
 	 * The strikethrough affects both the visual bounds and the outline of the
 	 * text.
 	 */
-	public static final TextAttribute STRIKETHROUGH = new TextAttribute("strikethrough");
+	public static final TextAttribute STRIKETHROUGH = new TextAttribute(
+			"strikethrough");
 
 	/**
 	 * A single strikethrough.
@@ -804,7 +789,8 @@ public final class TextAttribute extends Attribute {
 	 *
 	 * @see java.text.Bidi
 	 */
-	public static final TextAttribute RUN_DIRECTION = new TextAttribute("run_direction");
+	public static final TextAttribute RUN_DIRECTION = new TextAttribute(
+			"run_direction");
 
 	/**
 	 * Left-to-right run direction.
@@ -840,7 +826,8 @@ public final class TextAttribute extends Attribute {
 	 *
 	 * @see java.text.Bidi
 	 */
-	public static final TextAttribute BIDI_EMBEDDING = new TextAttribute("bidi_embedding");
+	public static final TextAttribute BIDI_EMBEDDING = new TextAttribute(
+			"bidi_embedding");
 
 	/**
 	 * Attribute key for the justification of a paragraph. Values are instances
@@ -865,7 +852,8 @@ public final class TextAttribute extends Attribute {
 	 *
 	 * @see TextLayout#getJustifiedLayout
 	 */
-	public static final TextAttribute JUSTIFICATION = new TextAttribute("justification");
+	public static final TextAttribute JUSTIFICATION = new TextAttribute(
+			"justification");
 
 	/**
 	 * Justify the line to the full requested width. This is the default value
@@ -997,7 +985,8 @@ public final class TextAttribute extends Attribute {
 	 * @see #FOREGROUND
 	 * @see #BACKGROUND
 	 */
-	public static final TextAttribute SWAP_COLORS = new TextAttribute("swap_colors");
+	public static final TextAttribute SWAP_COLORS = new TextAttribute(
+			"swap_colors");
 
 	/**
 	 * Swap foreground and background.
@@ -1023,7 +1012,8 @@ public final class TextAttribute extends Attribute {
 	 * @see NumericShaper
 	 * @since 1.4
 	 */
-	public static final TextAttribute NUMERIC_SHAPING = new TextAttribute("numeric_shaping");
+	public static final TextAttribute NUMERIC_SHAPING = new TextAttribute(
+			"numeric_shaping");
 
 	/**
 	 * Attribute key to request kerning. Values are instances of <b>
@@ -1065,7 +1055,8 @@ public final class TextAttribute extends Attribute {
 	 *
 	 * @since 1.6
 	 */
-	public static final TextAttribute LIGATURES = new TextAttribute("ligatures");
+	public static final TextAttribute LIGATURES = new TextAttribute(
+			"ligatures");
 
 	/**
 	 * Request standard optional ligatures.

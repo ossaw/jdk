@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -43,14 +23,13 @@ public class FactoryConfigurationError extends Error {
 	/**
 	 * Default constructor
 	 */
-	public FactoryConfigurationError() {
-	}
+	public FactoryConfigurationError() {}
 
 	/**
 	 * Construct an exception with a nested inner exception
 	 *
 	 * @param e
-	 *            the exception to nest
+	 *          the exception to nest
 	 */
 	public FactoryConfigurationError(java.lang.Exception e) {
 		nested = e;
@@ -64,7 +43,8 @@ public class FactoryConfigurationError extends Error {
 	 * @param msg
 	 *            the message to report
 	 */
-	public FactoryConfigurationError(java.lang.Exception e, java.lang.String msg) {
+	public FactoryConfigurationError(java.lang.Exception e,
+			java.lang.String msg) {
 		super(msg);
 		nested = e;
 	}
@@ -77,7 +57,8 @@ public class FactoryConfigurationError extends Error {
 	 * @param e
 	 *            the exception to nest
 	 */
-	public FactoryConfigurationError(java.lang.String msg, java.lang.Exception e) {
+	public FactoryConfigurationError(java.lang.String msg,
+			java.lang.Exception e) {
 		super(msg);
 		nested = e;
 	}

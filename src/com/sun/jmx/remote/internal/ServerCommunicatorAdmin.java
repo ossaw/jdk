@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.internal;
@@ -32,8 +12,9 @@ import com.sun.jmx.remote.util.ClassLogger;
 public abstract class ServerCommunicatorAdmin {
 	public ServerCommunicatorAdmin(long timeout) {
 		if (logger.traceOn()) {
-			logger.trace("Constructor", "Creates a new ServerCommunicatorAdmin object "
-					+ "with the timeout " + timeout);
+			logger.trace("Constructor",
+					"Creates a new ServerCommunicatorAdmin object "
+							+ "with the timeout " + timeout);
 		}
 
 		this.timeout = timeout;
@@ -69,8 +50,8 @@ public abstract class ServerCommunicatorAdmin {
 
 		synchronized (lock) {
 			if (terminated) {
-				logger.warning("reqIncoming",
-						"The server has decided to close " + "this client connection.");
+				logger.warning("reqIncoming", "The server has decided to close "
+						+ "this client connection.");
 			}
 			++currentJobs;
 
@@ -115,7 +96,8 @@ public abstract class ServerCommunicatorAdmin {
 	 */
 	public void terminate() {
 		if (logger.traceOn()) {
-			logger.trace("terminate", "terminate the ServerCommunicatorAdmin object.");
+			logger.trace("terminate",
+					"terminate the ServerCommunicatorAdmin object.");
 		}
 
 		synchronized (lock) {
@@ -148,7 +130,8 @@ public abstract class ServerCommunicatorAdmin {
 						// wait until there is no more job
 						while (!terminated && currentJobs != 0) {
 							if (logger.traceOn()) {
-								logger.trace("Timeout-run", "Waiting without timeout.");
+								logger.trace("Timeout-run",
+										"Waiting without timeout.");
 							}
 
 							lock.wait();
@@ -157,7 +140,8 @@ public abstract class ServerCommunicatorAdmin {
 						if (terminated)
 							return;
 
-						final long remaining = timeout - (System.currentTimeMillis() - timestamp);
+						final long remaining = timeout - (System
+								.currentTimeMillis() - timestamp);
 
 						logtime("Admin: remaining timeout=", remaining);
 
@@ -165,7 +149,8 @@ public abstract class ServerCommunicatorAdmin {
 
 							if (logger.traceOn()) {
 								logger.trace("Timeout-run",
-										"Waiting with timeout: " + remaining + " ms remaining");
+										"Waiting with timeout: " + remaining
+												+ " ms remaining");
 							}
 
 							lock.wait(remaining);
@@ -174,14 +159,16 @@ public abstract class ServerCommunicatorAdmin {
 						if (currentJobs > 0)
 							continue;
 
-						final long elapsed = System.currentTimeMillis() - timestamp;
+						final long elapsed = System.currentTimeMillis()
+								- timestamp;
 						logtime("Admin: elapsed=", elapsed);
 
 						if (!terminated && elapsed > timeout) {
 							if (logger.traceOn()) {
 								logger.trace("Timeout-run", "timeout elapsed");
 							}
-							logtime("Admin: timeout elapsed! " + elapsed + ">", timeout);
+							logtime("Admin: timeout elapsed! " + elapsed + ">",
+									timeout);
 							// stopping
 							terminated = true;
 
@@ -189,7 +176,8 @@ public abstract class ServerCommunicatorAdmin {
 							break;
 						}
 					} catch (InterruptedException ire) {
-						logger.warning("Timeout-run", "Unexpected Exception: " + ire);
+						logger.warning("Timeout-run", "Unexpected Exception: "
+								+ ire);
 						logger.debug("Timeout-run", ire);
 						return;
 					}
@@ -223,8 +211,8 @@ public abstract class ServerCommunicatorAdmin {
 	// state issue
 	private boolean terminated = false;
 
-	private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
-			"ServerCommunicatorAdmin");
-	private static final ClassLogger timelogger = new ClassLogger("javax.management.remote.timeout",
-			"ServerCommunicatorAdmin");
+	private static final ClassLogger logger = new ClassLogger(
+			"javax.management.remote.misc", "ServerCommunicatorAdmin");
+	private static final ClassLogger timelogger = new ClassLogger(
+			"javax.management.remote.timeout", "ServerCommunicatorAdmin");
 }

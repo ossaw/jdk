@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -40,8 +20,9 @@ import java.util.stream.Collector;
  * <pre>
  * {
  * 	&#64;code
- * 	LongSummaryStatistics stats = longStream.collect(LongSummaryStatistics::new,
- * 			LongSummaryStatistics::accept, LongSummaryStatistics::combine);
+ * 	LongSummaryStatistics stats = longStream.collect(
+ * 			LongSummaryStatistics::new, LongSummaryStatistics::accept,
+ * 			LongSummaryStatistics::combine);
  * }
  * </pre>
  *
@@ -53,8 +34,8 @@ import java.util.stream.Collector;
  * <pre>
  * {
  * 	&#64;code
- * 	LongSummaryStatistics stats = people.stream()
- * 			.collect(Collectors.summarizingLong(Person::getAge));
+ * 	LongSummaryStatistics stats = people.stream().collect(Collectors
+ * 			.summarizingLong(Person::getAge));
  * }
  * </pre>
  *
@@ -82,14 +63,13 @@ public class LongSummaryStatistics implements LongConsumer, IntConsumer {
 	 * Construct an empty instance with zero count, zero sum,
 	 * {@code Long.MAX_VALUE} min, {@code Long.MIN_VALUE} max and zero average.
 	 */
-	public LongSummaryStatistics() {
-	}
+	public LongSummaryStatistics() {}
 
 	/**
 	 * Records a new {@code int} value into the summary information.
 	 *
 	 * @param value
-	 *            the input value
+	 *              the input value
 	 */
 	@Override
 	public void accept(int value) {
@@ -100,7 +80,7 @@ public class LongSummaryStatistics implements LongConsumer, IntConsumer {
 	 * Records a new {@code long} value into the summary information.
 	 *
 	 * @param value
-	 *            the input value
+	 *              the input value
 	 */
 	@Override
 	public void accept(long value) {
@@ -115,9 +95,9 @@ public class LongSummaryStatistics implements LongConsumer, IntConsumer {
 	 * one.
 	 *
 	 * @param other
-	 *            another {@code LongSummaryStatistics}
+	 *              another {@code LongSummaryStatistics}
 	 * @throws NullPointerException
-	 *             if {@code other} is null
+	 *                              if {@code other} is null
 	 */
 	public void combine(LongSummaryStatistics other) {
 		count += other.count;
@@ -185,7 +165,7 @@ public class LongSummaryStatistics implements LongConsumer, IntConsumer {
 	 */
 	public String toString() {
 		return String.format("%s{count=%d, sum=%d, min=%d, average=%f, max=%d}",
-				this.getClass().getSimpleName(), getCount(), getSum(), getMin(), getAverage(),
-				getMax());
+				this.getClass().getSimpleName(), getCount(), getSum(), getMin(),
+				getAverage(), getMax());
 	}
 }

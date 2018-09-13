@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -38,8 +18,7 @@ package org.omg.CORBA;
 public final class CurrentHolder implements org.omg.CORBA.portable.Streamable {
 	public org.omg.CORBA.Current value = null;
 
-	public CurrentHolder() {
-	}
+	public CurrentHolder() {}
 
 	public CurrentHolder(org.omg.CORBA.Current initialValue) {
 		value = initialValue;

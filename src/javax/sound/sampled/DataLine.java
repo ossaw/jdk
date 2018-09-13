@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -298,16 +278,19 @@ public interface DataLine extends Line {
 		 * implementations when returning information about a supported line.
 		 *
 		 * @param lineClass
-		 *            the class of the data line described by the info object
+		 *                      the class of the data line described by the info
+		 *                      object
 		 * @param formats
-		 *            set of formats supported
+		 *                      set of formats supported
 		 * @param minBufferSize
-		 *            minimum buffer size supported by the data line, in bytes
+		 *                      minimum buffer size supported by the data line,
+		 *                      in bytes
 		 * @param maxBufferSize
-		 *            maximum buffer size supported by the data line, in bytes
+		 *                      maximum buffer size supported by the data line,
+		 *                      in bytes
 		 */
-		public Info(Class<?> lineClass, AudioFormat[] formats, int minBufferSize,
-				int maxBufferSize) {
+		public Info(Class<?> lineClass, AudioFormat[] formats,
+				int minBufferSize, int maxBufferSize) {
 
 			super(lineClass);
 
@@ -328,11 +311,12 @@ public interface DataLine extends Line {
 		 * line.
 		 *
 		 * @param lineClass
-		 *            the class of the data line described by the info object
+		 *                   the class of the data line described by the info
+		 *                   object
 		 * @param format
-		 *            desired format
+		 *                   desired format
 		 * @param bufferSize
-		 *            desired buffer size in bytes
+		 *                   desired buffer size in bytes
 		 */
 		public Info(Class<?> lineClass, AudioFormat format, int bufferSize) {
 
@@ -354,9 +338,10 @@ public interface DataLine extends Line {
 		 * used by an application to describe a desired line.
 		 *
 		 * @param lineClass
-		 *            the class of the data line described by the info object
+		 *                  the class of the data line described by the info
+		 *                  object
 		 * @param format
-		 *            desired format
+		 *                  desired format
 		 */
 		public Info(Class<?> lineClass, AudioFormat format) {
 			this(lineClass, format, AudioSystem.NOT_SPECIFIED);
@@ -393,7 +378,7 @@ public interface DataLine extends Line {
 		 * supported formats.
 		 *
 		 * @param format
-		 *            the audio format for which support is queried.
+		 *               the audio format for which support is queried.
 		 * @return <code>true</code> if the format is supported, otherwise
 		 *         <code>false</code>
 		 * @see #getFormats
@@ -452,13 +437,15 @@ public interface DataLine extends Line {
 			// treat anything < 0 as NOT_SPECIFIED
 			// demo code in old Java Sound Demo used a wrong buffer calculation
 			// that would lead to arbitrary negative values
-			if ((getMaxBufferSize() >= 0) && (dataLineInfo.getMaxBufferSize() >= 0)) {
+			if ((getMaxBufferSize() >= 0) && (dataLineInfo
+					.getMaxBufferSize() >= 0)) {
 				if (getMaxBufferSize() > dataLineInfo.getMaxBufferSize()) {
 					return false;
 				}
 			}
 
-			if ((getMinBufferSize() >= 0) && (dataLineInfo.getMinBufferSize() >= 0)) {
+			if ((getMinBufferSize() >= 0) && (dataLineInfo
+					.getMinBufferSize() >= 0)) {
 				if (getMinBufferSize() < dataLineInfo.getMinBufferSize()) {
 					return false;
 				}
@@ -470,7 +457,8 @@ public interface DataLine extends Line {
 
 				for (int i = 0; i < localFormats.length; i++) {
 					if (!(localFormats[i] == null)) {
-						if (!(dataLineInfo.isFormatSupported(localFormats[i]))) {
+						if (!(dataLineInfo.isFormatSupported(
+								localFormats[i]))) {
 							return false;
 						}
 					}
@@ -492,16 +480,21 @@ public interface DataLine extends Line {
 			if ((formats.length == 1) && (formats[0] != null)) {
 				buf.append(" supporting format " + formats[0]);
 			} else if (getFormats().length > 1) {
-				buf.append(" supporting " + getFormats().length + " audio formats");
+				buf.append(" supporting " + getFormats().length
+						+ " audio formats");
 			}
 
 			if ((minBufferSize != AudioSystem.NOT_SPECIFIED)
 					&& (maxBufferSize != AudioSystem.NOT_SPECIFIED)) {
-				buf.append(", and buffers of " + minBufferSize + " to " + maxBufferSize + " bytes");
-			} else if ((minBufferSize != AudioSystem.NOT_SPECIFIED) && (minBufferSize > 0)) {
-				buf.append(", and buffers of at least " + minBufferSize + " bytes");
+				buf.append(", and buffers of " + minBufferSize + " to "
+						+ maxBufferSize + " bytes");
+			} else if ((minBufferSize != AudioSystem.NOT_SPECIFIED)
+					&& (minBufferSize > 0)) {
+				buf.append(", and buffers of at least " + minBufferSize
+						+ " bytes");
 			} else if (maxBufferSize != AudioSystem.NOT_SPECIFIED) {
-				buf.append(", and buffers of up to " + minBufferSize + " bytes");
+				buf.append(", and buffers of up to " + minBufferSize
+						+ " bytes");
 			}
 
 			return new String(super.toString() + buf);

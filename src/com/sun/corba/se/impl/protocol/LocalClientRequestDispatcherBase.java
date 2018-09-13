@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol;
@@ -39,7 +19,8 @@ import com.sun.corba.se.spi.ior.TaggedProfile;
 import com.sun.corba.se.spi.ior.ObjectKeyTemplate;
 import com.sun.corba.se.spi.ior.ObjectId;
 
-public abstract class LocalClientRequestDispatcherBase implements LocalClientRequestDispatcher {
+public abstract class LocalClientRequestDispatcherBase implements
+		LocalClientRequestDispatcher {
 	protected ORB orb;
 	int scid;
 
@@ -61,7 +42,8 @@ public abstract class LocalClientRequestDispatcherBase implements LocalClientReq
 		this.orb = orb;
 
 		TaggedProfile prof = ior.getProfile();
-		servantIsLocal = orb.getORBData().isLocalOptimizationAllowed() && prof.isLocal();
+		servantIsLocal = orb.getORBData().isLocalOptimizationAllowed() && prof
+				.isLocal();
 
 		ObjectKeyTemplate oktemp = prof.getObjectKeyTemplate();
 		this.scid = oktemp.getSubcontractId();
@@ -83,12 +65,10 @@ public abstract class LocalClientRequestDispatcherBase implements LocalClientReq
 	/*
 	 * Possible paths through
 	 * useLocalInvocation/servant_preinvoke/servant_postinvoke:
-	 *
 	 * A: call useLocalInvocation If useLocalInvocation returns false,
 	 * servant_preinvoke is not called. If useLocalInvocation returns true, call
 	 * servant_preinvoke If servant_preinvoke returns null, goto A else (local
 	 * invocation proceeds normally) servant_postinvoke is called
-	 *
 	 */
 	public boolean useLocalInvocation(org.omg.CORBA.Object self) {
 		if (isNextCallValid.get() == Boolean.TRUE)
@@ -103,7 +83,8 @@ public abstract class LocalClientRequestDispatcherBase implements LocalClientReq
 	 * Check that the servant in info (which must not be null) is an instance of
 	 * the expectedType. If not, set the thread local flag and return false.
 	 */
-	protected boolean checkForCompatibleServant(ServantObject so, Class expectedType) {
+	protected boolean checkForCompatibleServant(ServantObject so,
+			Class expectedType) {
 		if (so == null)
 			return false;
 

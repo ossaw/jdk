@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -50,22 +30,28 @@ public class MXBeanSupport extends MBeanSupport<ConvertingMethod> {
 	 * </p>
 	 * 
 	 * @param resource
-	 *            the underlying resource for the new MXBean.
+	 *                        the underlying resource for the new MXBean.
 	 * 
 	 * @param mxbeanInterface
-	 *            the interface to be used to determine the MXBean's management
-	 *            interface.
+	 *                        the interface to be used to determine the MXBean's
+	 *                        management
+	 *                        interface.
 	 * 
-	 * @param <T>
-	 *            a type parameter that allows the compiler to check that
-	 *            {@code resource} implements {@code mxbeanInterface}, provided
-	 *            that {@code mxbeanInterface} is a class constant like
-	 *            {@code SomeMXBean.class}.
+	 * @param                 <T>
+	 *                        a type parameter that allows the compiler to check
+	 *                        that
+	 *                        {@code resource} implements
+	 *                        {@code mxbeanInterface}, provided
+	 *                        that {@code mxbeanInterface} is a class constant
+	 *                        like
+	 *                        {@code SomeMXBean.class}.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             if {@code resource} is null or if it does not implement the
-	 *             class {@code mxbeanInterface} or if that class is not a valid
-	 *             MXBean interface.
+	 *                                  if {@code resource} is null or if it
+	 *                                  does not implement the
+	 *                                  class {@code mxbeanInterface} or if that
+	 *                                  class is not a valid
+	 *                                  MXBean interface.
 	 */
 	public <T> MXBeanSupport(T resource, Class<T> mxbeanInterface)
 			throws NotCompliantMBeanException {
@@ -93,7 +79,8 @@ public class MXBeanSupport extends MBeanSupport<ConvertingMethod> {
 		}
 		reduce: while (candidates.size() > 1) {
 			for (Class<?> intf : candidates) {
-				for (Iterator<Class<?>> it = candidates.iterator(); it.hasNext();) {
+				for (Iterator<Class<?>> it = candidates.iterator(); it
+						.hasNext();) {
 					final Class<?> intf2 = it.next();
 					if (intf != intf2 && intf2.isAssignableFrom(intf)) {
 						it.remove();
@@ -101,8 +88,9 @@ public class MXBeanSupport extends MBeanSupport<ConvertingMethod> {
 					}
 				}
 			}
-			final String msg = "Class " + resourceClass.getName() + " implements more than "
-					+ "one MXBean interface: " + candidates;
+			final String msg = "Class " + resourceClass.getName()
+					+ " implements more than " + "one MXBean interface: "
+					+ candidates;
 			throw new IllegalArgumentException(msg);
 		}
 		if (candidates.iterator().hasNext()) {
@@ -144,7 +132,6 @@ public class MXBeanSupport extends MBeanSupport<ConvertingMethod> {
 	 * registerFailed() which will call the unregister method. (Also call
 	 * postRegister(false).) (4) If we get this far, we can call
 	 * postRegister(true).
-	 *
 	 * When we are wrapped in an instance of javax.management.StandardMBean,
 	 * things are simpler. That class calls this method from its preRegister,
 	 * and propagates any exception. There is no user preRegister in this case.

@@ -8,13 +8,14 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ORBPortInfoListHolder implements org.omg.CORBA.portable.Streamable {
+public final class ORBPortInfoListHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.spi.activation.ORBPortInfo value[] = null;
 
-	public ORBPortInfoListHolder() {
-	}
+	public ORBPortInfoListHolder() {}
 
-	public ORBPortInfoListHolder(com.sun.corba.se.spi.activation.ORBPortInfo[] initialValue) {
+	public ORBPortInfoListHolder(
+			com.sun.corba.se.spi.activation.ORBPortInfo[] initialValue) {
 		value = initialValue;
 	}
 

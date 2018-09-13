@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -38,7 +18,8 @@ import java.awt.Window;
  *
  * @author David Mendenhall
  */
-final class LayoutComparator implements Comparator<Component>, java.io.Serializable {
+final class LayoutComparator implements Comparator<Component>,
+		java.io.Serializable {
 
 	private static final int ROW_TOLERANCE = 10;
 
@@ -88,7 +69,8 @@ final class LayoutComparator implements Comparator<Component>, java.io.Serializa
 			}
 
 			for (ListIterator<Component> aIter = aAncestory.listIterator(
-					aAncestory.size()), bIter = bAncestory.listIterator(bAncestory.size());;) {
+					aAncestory.size()), bIter = bAncestory.listIterator(
+							bAncestory.size());;) {
 				if (aIter.hasPrevious()) {
 					a = aIter.previous();
 				} else {
@@ -111,7 +93,8 @@ final class LayoutComparator implements Comparator<Component>, java.io.Serializa
 
 		int ax = a.getX(), ay = a.getY(), bx = b.getX(), by = b.getY();
 
-		int zOrder = a.getParent().getComponentZOrder(a) - b.getParent().getComponentZOrder(b);
+		int zOrder = a.getParent().getComponentZOrder(a) - b.getParent()
+				.getComponentZOrder(b);
 		if (horizontal) {
 			if (leftToRight) {
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.daemon;
@@ -46,7 +26,8 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_ADAPTOR_LOGGER;
 
 abstract class ClientHandler implements Runnable {
 
-	public ClientHandler(CommunicatorServer server, int id, MBeanServer f, ObjectName n) {
+	public ClientHandler(CommunicatorServer server, int id, MBeanServer f,
+			ObjectName n) {
 		adaptorServer = server;
 		requestId = id;
 		mbs = f;
@@ -123,7 +104,7 @@ abstract class ClientHandler implements Runnable {
 	protected String dbgTag = null;
 
 	protected String makeDebugTag() {
-		return "ClientHandler[" + adaptorServer.getProtocol() + ":" + adaptorServer.getPort() + "]["
-				+ requestId + "]";
+		return "ClientHandler[" + adaptorServer.getProtocol() + ":"
+				+ adaptorServer.getPort() + "][" + requestId + "]";
 	}
 }

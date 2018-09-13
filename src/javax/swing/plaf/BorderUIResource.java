@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf;
@@ -38,10 +18,9 @@ import javax.swing.Icon;
 import javax.swing.plaf.UIResource;
 
 /*
- * A Border wrapper class which implements UIResource.  UI
+ * A Border wrapper class which implements UIResource. UI
  * classes which set border properties should use this class
  * to wrap any borders specified as defaults.
- *
  * This class delegates all method invocations to the
  * Border "delegate" object specified at construction.
  * <p>
@@ -49,14 +28,12 @@ import javax.swing.plaf.UIResource;
  * Serialized objects of this class will not be compatible with
  * future Swing releases. The current serialization support is
  * appropriate for short term storage or RMI between applications running
- * the same version of Swing.  As of 1.4, support for long term storage
+ * the same version of Swing. As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
  * Please see {@link java.beans.XMLEncoder}.
- *
  * @see javax.swing.plaf.UIResource
  * @author Amy Fowler
- *
  */
 public class BorderUIResource implements Border, UIResource, Serializable {
 	static Border etched;
@@ -99,7 +76,7 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 	 * instance.
 	 * 
 	 * @param delegate
-	 *            the border being wrapped
+	 *                 the border being wrapped
 	 */
 	public BorderUIResource(Border delegate) {
 		if (delegate == null) {
@@ -108,7 +85,8 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 		this.delegate = delegate;
 	}
 
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height) {
 		delegate.paintBorder(c, g, x, y, width, height);
 	}
 
@@ -120,15 +98,18 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 		return delegate.isBorderOpaque();
 	}
 
-	public static class CompoundBorderUIResource extends CompoundBorder implements UIResource {
+	public static class CompoundBorderUIResource extends CompoundBorder
+			implements UIResource {
 		@ConstructorProperties({ "outsideBorder", "insideBorder" })
-		public CompoundBorderUIResource(Border outsideBorder, Border insideBorder) {
+		public CompoundBorderUIResource(Border outsideBorder,
+				Border insideBorder) {
 			super(outsideBorder, insideBorder);
 		}
 
 	}
 
-	public static class EmptyBorderUIResource extends EmptyBorder implements UIResource {
+	public static class EmptyBorderUIResource extends EmptyBorder implements
+			UIResource {
 
 		public EmptyBorderUIResource(int top, int left, int bottom, int right) {
 			super(top, left, bottom, right);
@@ -140,7 +121,8 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 		}
 	}
 
-	public static class LineBorderUIResource extends LineBorder implements UIResource {
+	public static class LineBorderUIResource extends LineBorder implements
+			UIResource {
 
 		public LineBorderUIResource(Color color) {
 			super(color);
@@ -152,25 +134,29 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 		}
 	}
 
-	public static class BevelBorderUIResource extends BevelBorder implements UIResource {
+	public static class BevelBorderUIResource extends BevelBorder implements
+			UIResource {
 
 		public BevelBorderUIResource(int bevelType) {
 			super(bevelType);
 		}
 
-		public BevelBorderUIResource(int bevelType, Color highlight, Color shadow) {
+		public BevelBorderUIResource(int bevelType, Color highlight,
+				Color shadow) {
 			super(bevelType, highlight, shadow);
 		}
 
-		@ConstructorProperties({ "bevelType", "highlightOuterColor", "highlightInnerColor",
-				"shadowOuterColor", "shadowInnerColor" })
-		public BevelBorderUIResource(int bevelType, Color highlightOuter, Color highlightInner,
-				Color shadowOuter, Color shadowInner) {
-			super(bevelType, highlightOuter, highlightInner, shadowOuter, shadowInner);
+		@ConstructorProperties({ "bevelType", "highlightOuterColor",
+				"highlightInnerColor", "shadowOuterColor", "shadowInnerColor" })
+		public BevelBorderUIResource(int bevelType, Color highlightOuter,
+				Color highlightInner, Color shadowOuter, Color shadowInner) {
+			super(bevelType, highlightOuter, highlightInner, shadowOuter,
+					shadowInner);
 		}
 	}
 
-	public static class EtchedBorderUIResource extends EtchedBorder implements UIResource {
+	public static class EtchedBorderUIResource extends EtchedBorder implements
+			UIResource {
 
 		public EtchedBorderUIResource() {
 			super();
@@ -185,18 +171,22 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 		}
 
 		@ConstructorProperties({ "etchType", "highlightColor", "shadowColor" })
-		public EtchedBorderUIResource(int etchType, Color highlight, Color shadow) {
+		public EtchedBorderUIResource(int etchType, Color highlight,
+				Color shadow) {
 			super(etchType, highlight, shadow);
 		}
 	}
 
-	public static class MatteBorderUIResource extends MatteBorder implements UIResource {
+	public static class MatteBorderUIResource extends MatteBorder implements
+			UIResource {
 
-		public MatteBorderUIResource(int top, int left, int bottom, int right, Color color) {
+		public MatteBorderUIResource(int top, int left, int bottom, int right,
+				Color color) {
 			super(top, left, bottom, right, color);
 		}
 
-		public MatteBorderUIResource(int top, int left, int bottom, int right, Icon tileIcon) {
+		public MatteBorderUIResource(int top, int left, int bottom, int right,
+				Icon tileIcon) {
 			super(top, left, bottom, right, tileIcon);
 		}
 
@@ -205,7 +195,8 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 		}
 	}
 
-	public static class TitledBorderUIResource extends TitledBorder implements UIResource {
+	public static class TitledBorderUIResource extends TitledBorder implements
+			UIResource {
 
 		public TitledBorderUIResource(String title) {
 			super(title);
@@ -219,21 +210,23 @@ public class BorderUIResource implements Border, UIResource, Serializable {
 			super(border, title);
 		}
 
-		public TitledBorderUIResource(Border border, String title, int titleJustification,
-				int titlePosition) {
+		public TitledBorderUIResource(Border border, String title,
+				int titleJustification, int titlePosition) {
 			super(border, title, titleJustification, titlePosition);
 		}
 
-		public TitledBorderUIResource(Border border, String title, int titleJustification,
-				int titlePosition, Font titleFont) {
+		public TitledBorderUIResource(Border border, String title,
+				int titleJustification, int titlePosition, Font titleFont) {
 			super(border, title, titleJustification, titlePosition, titleFont);
 		}
 
-		@ConstructorProperties({ "border", "title", "titleJustification", "titlePosition",
-				"titleFont", "titleColor" })
-		public TitledBorderUIResource(Border border, String title, int titleJustification,
-				int titlePosition, Font titleFont, Color titleColor) {
-			super(border, title, titleJustification, titlePosition, titleFont, titleColor);
+		@ConstructorProperties({ "border", "title", "titleJustification",
+				"titlePosition", "titleFont", "titleColor" })
+		public TitledBorderUIResource(Border border, String title,
+				int titleJustification, int titlePosition, Font titleFont,
+				Color titleColor) {
+			super(border, title, titleJustification, titlePosition, titleFont,
+					titleColor);
 		}
 	}
 

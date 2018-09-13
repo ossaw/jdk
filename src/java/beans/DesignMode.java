@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -73,7 +53,7 @@ public interface DesignMode {
 	 * associated with a BeanContext that it is nested within.
 	 *
 	 * @param designTime
-	 *            the current "value" of the "designTime" property
+	 *                   the current "value" of the "designTime" property
 	 * @see java.beans.beancontext.BeanContext
 	 * @see java.beans.beancontext.BeanContextMembershipListener
 	 * @see java.beans.PropertyChangeEvent

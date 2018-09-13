@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.event;
@@ -43,10 +23,12 @@ public interface IIOWriteProgressListener extends EventListener {
 	 * exactly once when beginning an image write operation.
 	 *
 	 * @param source
-	 *            the <code>ImageWriter</code> object calling this method.
+	 *                   the <code>ImageWriter</code> object calling this
+	 *                   method.
 	 * @param imageIndex
-	 *            the index of the image being written within its containing
-	 *            input file or stream.
+	 *                   the index of the image being written within its
+	 *                   containing
+	 *                   input file or stream.
 	 */
 	void imageStarted(ImageWriter source, int imageIndex);
 
@@ -73,10 +55,12 @@ public interface IIOWriteProgressListener extends EventListener {
 	 * around each 5 percent mark.
 	 *
 	 * @param source
-	 *            the <code>ImageWriter</code> object calling this method.
+	 *                       the <code>ImageWriter</code> object calling this
+	 *                       method.
 	 * @param percentageDone
-	 *            the approximate percentage of decoding that has been
-	 *            completed.
+	 *                       the approximate percentage of decoding that has
+	 *                       been
+	 *                       completed.
 	 */
 	void imageProgress(ImageWriter source, float percentageDone);
 
@@ -86,7 +70,7 @@ public interface IIOWriteProgressListener extends EventListener {
 	 * exactly once upon completion of each image write operation.
 	 *
 	 * @param source
-	 *            the <code>ImageWriter</code> object calling this method.
+	 *               the <code>ImageWriter</code> object calling this method.
 	 */
 	void imageComplete(ImageWriter source);
 
@@ -96,14 +80,17 @@ public interface IIOWriteProgressListener extends EventListener {
 	 * exactly once when beginning a thumbnail write operation.
 	 *
 	 * @param source
-	 *            the <code>ImageWrite</code> object calling this method.
+	 *                       the <code>ImageWrite</code> object calling this
+	 *                       method.
 	 * @param imageIndex
-	 *            the index of the image being written within its containing
-	 *            input file or stream.
+	 *                       the index of the image being written within its
+	 *                       containing
+	 *                       input file or stream.
 	 * @param thumbnailIndex
-	 *            the index of the thumbnail being written.
+	 *                       the index of the thumbnail being written.
 	 */
-	void thumbnailStarted(ImageWriter source, int imageIndex, int thumbnailIndex);
+	void thumbnailStarted(ImageWriter source, int imageIndex,
+			int thumbnailIndex);
 
 	/**
 	 * Reports the approximate degree of completion of the current thumbnail
@@ -111,10 +98,12 @@ public interface IIOWriteProgressListener extends EventListener {
 	 * identical to those of <code>imageProgress</code>.
 	 *
 	 * @param source
-	 *            the <code>ImageWriter</code> object calling this method.
+	 *                       the <code>ImageWriter</code> object calling this
+	 *                       method.
 	 * @param percentageDone
-	 *            the approximate percentage of decoding that has been
-	 *            completed.
+	 *                       the approximate percentage of decoding that has
+	 *                       been
+	 *                       completed.
 	 */
 	void thumbnailProgress(ImageWriter source, float percentageDone);
 
@@ -124,7 +113,7 @@ public interface IIOWriteProgressListener extends EventListener {
 	 * exactly once upon completion of each thumbnail write operation.
 	 *
 	 * @param source
-	 *            the <code>ImageWriter</code> object calling this method.
+	 *               the <code>ImageWriter</code> object calling this method.
 	 */
 	void thumbnailComplete(ImageWriter source);
 
@@ -133,7 +122,7 @@ public interface IIOWriteProgressListener extends EventListener {
 	 * method. No further notifications will be given.
 	 *
 	 * @param source
-	 *            the <code>ImageWriter</code> object calling this method.
+	 *               the <code>ImageWriter</code> object calling this method.
 	 */
 	void writeAborted(ImageWriter source);
 }

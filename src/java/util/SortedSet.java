@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -100,7 +80,7 @@ package java.util;
  * Framework</a>.
  *
  * @param <E>
- *            the type of elements maintained by this set
+ *        the type of elements maintained by this set
  *
  * @author Josh Bloch
  * @see Set
@@ -138,26 +118,36 @@ public interface SortedSet<E> extends Set<E> {
 	 * attempt to insert an element outside its range.
 	 *
 	 * @param fromElement
-	 *            low endpoint (inclusive) of the returned set
+	 *                    low endpoint (inclusive) of the returned set
 	 * @param toElement
-	 *            high endpoint (exclusive) of the returned set
+	 *                    high endpoint (exclusive) of the returned set
 	 * @return a view of the portion of this set whose elements range from
 	 *         <tt>fromElement</tt>, inclusive, to <tt>toElement</tt>, exclusive
 	 * @throws ClassCastException
-	 *             if <tt>fromElement</tt> and <tt>toElement</tt> cannot be
-	 *             compared to one another using this set's comparator (or, if
-	 *             the set has no comparator, using natural ordering).
-	 *             Implementations may, but are not required to, throw this
-	 *             exception if <tt>fromElement</tt> or <tt>toElement</tt>
-	 *             cannot be compared to elements currently in the set.
+	 *                                  if <tt>fromElement</tt> and
+	 *                                  <tt>toElement</tt> cannot be
+	 *                                  compared to one another using this set's
+	 *                                  comparator (or, if
+	 *                                  the set has no comparator, using natural
+	 *                                  ordering).
+	 *                                  Implementations may, but are not
+	 *                                  required to, throw this
+	 *                                  exception if <tt>fromElement</tt> or
+	 *                                  <tt>toElement</tt>
+	 *                                  cannot be compared to elements currently
+	 *                                  in the set.
 	 * @throws NullPointerException
-	 *             if <tt>fromElement</tt> or <tt>toElement</tt> is null and
-	 *             this set does not permit null elements
+	 *                                  if <tt>fromElement</tt> or
+	 *                                  <tt>toElement</tt> is null and
+	 *                                  this set does not permit null elements
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromElement</tt> is greater than <tt>toElement</tt>;
-	 *             or if this set itself has a restricted range, and
-	 *             <tt>fromElement</tt> or <tt>toElement</tt> lies outside the
-	 *             bounds of the range
+	 *                                  if <tt>fromElement</tt> is greater than
+	 *                                  <tt>toElement</tt>;
+	 *                                  or if this set itself has a restricted
+	 *                                  range, and
+	 *                                  <tt>fromElement</tt> or
+	 *                                  <tt>toElement</tt> lies outside the
+	 *                                  bounds of the range
 	 */
 	SortedSet<E> subSet(E fromElement, E toElement);
 
@@ -173,22 +163,30 @@ public interface SortedSet<E> extends Set<E> {
 	 * attempt to insert an element outside its range.
 	 *
 	 * @param toElement
-	 *            high endpoint (exclusive) of the returned set
+	 *                  high endpoint (exclusive) of the returned set
 	 * @return a view of the portion of this set whose elements are strictly
 	 *         less than <tt>toElement</tt>
 	 * @throws ClassCastException
-	 *             if <tt>toElement</tt> is not compatible with this set's
-	 *             comparator (or, if the set has no comparator, if
-	 *             <tt>toElement</tt> does not implement {@link Comparable}).
-	 *             Implementations may, but are not required to, throw this
-	 *             exception if <tt>toElement</tt> cannot be compared to
-	 *             elements currently in the set.
+	 *                                  if <tt>toElement</tt> is not compatible
+	 *                                  with this set's
+	 *                                  comparator (or, if the set has no
+	 *                                  comparator, if
+	 *                                  <tt>toElement</tt> does not implement
+	 *                                  {@link Comparable}).
+	 *                                  Implementations may, but are not
+	 *                                  required to, throw this
+	 *                                  exception if <tt>toElement</tt> cannot
+	 *                                  be compared to
+	 *                                  elements currently in the set.
 	 * @throws NullPointerException
-	 *             if <tt>toElement</tt> is null and this set does not permit
-	 *             null elements
+	 *                                  if <tt>toElement</tt> is null and this
+	 *                                  set does not permit
+	 *                                  null elements
 	 * @throws IllegalArgumentException
-	 *             if this set itself has a restricted range, and
-	 *             <tt>toElement</tt> lies outside the bounds of the range
+	 *                                  if this set itself has a restricted
+	 *                                  range, and
+	 *                                  <tt>toElement</tt> lies outside the
+	 *                                  bounds of the range
 	 */
 	SortedSet<E> headSet(E toElement);
 
@@ -204,22 +202,30 @@ public interface SortedSet<E> extends Set<E> {
 	 * attempt to insert an element outside its range.
 	 *
 	 * @param fromElement
-	 *            low endpoint (inclusive) of the returned set
+	 *                    low endpoint (inclusive) of the returned set
 	 * @return a view of the portion of this set whose elements are greater than
 	 *         or equal to <tt>fromElement</tt>
 	 * @throws ClassCastException
-	 *             if <tt>fromElement</tt> is not compatible with this set's
-	 *             comparator (or, if the set has no comparator, if
-	 *             <tt>fromElement</tt> does not implement {@link Comparable}).
-	 *             Implementations may, but are not required to, throw this
-	 *             exception if <tt>fromElement</tt> cannot be compared to
-	 *             elements currently in the set.
+	 *                                  if <tt>fromElement</tt> is not
+	 *                                  compatible with this set's
+	 *                                  comparator (or, if the set has no
+	 *                                  comparator, if
+	 *                                  <tt>fromElement</tt> does not implement
+	 *                                  {@link Comparable}).
+	 *                                  Implementations may, but are not
+	 *                                  required to, throw this
+	 *                                  exception if <tt>fromElement</tt> cannot
+	 *                                  be compared to
+	 *                                  elements currently in the set.
 	 * @throws NullPointerException
-	 *             if <tt>fromElement</tt> is null and this set does not permit
-	 *             null elements
+	 *                                  if <tt>fromElement</tt> is null and this
+	 *                                  set does not permit
+	 *                                  null elements
 	 * @throws IllegalArgumentException
-	 *             if this set itself has a restricted range, and
-	 *             <tt>fromElement</tt> lies outside the bounds of the range
+	 *                                  if this set itself has a restricted
+	 *                                  range, and
+	 *                                  <tt>fromElement</tt> lies outside the
+	 *                                  bounds of the range
 	 */
 	SortedSet<E> tailSet(E fromElement);
 
@@ -228,7 +234,7 @@ public interface SortedSet<E> extends Set<E> {
 	 *
 	 * @return the first (lowest) element currently in this set
 	 * @throws NoSuchElementException
-	 *             if this set is empty
+	 *                                if this set is empty
 	 */
 	E first();
 
@@ -237,7 +243,7 @@ public interface SortedSet<E> extends Set<E> {
 	 *
 	 * @return the last (highest) element currently in this set
 	 * @throws NoSuchElementException
-	 *             if this set is empty
+	 *                                if this set is empty
 	 */
 	E last();
 
@@ -276,7 +282,8 @@ public interface SortedSet<E> extends Set<E> {
 	@Override
 	default Spliterator<E> spliterator() {
 		return new Spliterators.IteratorSpliterator<E>(this,
-				Spliterator.DISTINCT | Spliterator.SORTED | Spliterator.ORDERED) {
+				Spliterator.DISTINCT | Spliterator.SORTED
+						| Spliterator.ORDERED) {
 			@Override
 			public Comparator<? super E> getComparator() {
 				return SortedSet.this.comparator();

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -51,7 +31,7 @@ public class InvalidNameException extends NamingException {
 	 * the problem. All other fields are initialized to null.
 	 * 
 	 * @param explanation
-	 *            A possibly null message explaining the problem.
+	 *                    A possibly null message explaining the problem.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public InvalidNameException(String explanation) {

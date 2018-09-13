@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.png;
@@ -72,8 +52,7 @@ class CRC {
 		}
 	}
 
-	public CRC() {
-	}
+	public CRC() {}
 
 	public void reset() {
 		crc = 0xffffffff;
@@ -150,7 +129,8 @@ final class ChunkStream extends ImageOutputStreamImpl {
 // fixed length.
 final class IDATOutputStream extends ImageOutputStreamImpl {
 
-	private static byte[] chunkType = { (byte) 'I', (byte) 'D', (byte) 'A', (byte) 'T' };
+	private static byte[] chunkType = { (byte) 'I', (byte) 'D', (byte) 'A',
+			(byte) 'T' };
 
 	private ImageOutputStream stream;
 	private int chunkLength;
@@ -162,7 +142,8 @@ final class IDATOutputStream extends ImageOutputStreamImpl {
 
 	private int bytesRemaining;
 
-	public IDATOutputStream(ImageOutputStream stream, int chunkLength) throws IOException {
+	public IDATOutputStream(ImageOutputStream stream, int chunkLength)
+			throws IOException {
 		this.stream = stream;
 		this.chunkLength = chunkLength;
 		startChunk();
@@ -324,7 +305,8 @@ public class PNGImageWriter extends ImageWriter {
 		super.setOutput(output);
 		if (output != null) {
 			if (!(output instanceof ImageOutputStream)) {
-				throw new IllegalArgumentException("output not an ImageOutputStream!");
+				throw new IllegalArgumentException(
+						"output not an ImageOutputStream!");
 			}
 			this.stream = (ImageOutputStream) output;
 		} else {
@@ -349,12 +331,13 @@ public class PNGImageWriter extends ImageWriter {
 		return m;
 	}
 
-	public IIOMetadata convertStreamMetadata(IIOMetadata inData, ImageWriteParam param) {
+	public IIOMetadata convertStreamMetadata(IIOMetadata inData,
+			ImageWriteParam param) {
 		return null;
 	}
 
-	public IIOMetadata convertImageMetadata(IIOMetadata inData, ImageTypeSpecifier imageType,
-			ImageWriteParam param) {
+	public IIOMetadata convertImageMetadata(IIOMetadata inData,
+			ImageTypeSpecifier imageType, ImageWriteParam param) {
 		// TODO - deal with imageType
 		if (inData instanceof PNGMetadata) {
 			return (PNGMetadata) ((PNGMetadata) inData).clone();
@@ -377,14 +360,17 @@ public class PNGImageWriter extends ImageWriter {
 		cs.writeByte(metadata.IHDR_bitDepth);
 		cs.writeByte(metadata.IHDR_colorType);
 		if (metadata.IHDR_compressionMethod != 0) {
-			throw new IIOException("Only compression method 0 is defined in PNG 1.1");
+			throw new IIOException(
+					"Only compression method 0 is defined in PNG 1.1");
 		}
 		cs.writeByte(metadata.IHDR_compressionMethod);
 		if (metadata.IHDR_filterMethod != 0) {
-			throw new IIOException("Only filter method 0 is defined in PNG 1.1");
+			throw new IIOException(
+					"Only filter method 0 is defined in PNG 1.1");
 		}
 		cs.writeByte(metadata.IHDR_filterMethod);
-		if (metadata.IHDR_interlaceMethod < 0 || metadata.IHDR_interlaceMethod > 1) {
+		if (metadata.IHDR_interlaceMethod < 0
+				|| metadata.IHDR_interlaceMethod > 1) {
 			throw new IIOException(
 					"Only interlace methods 0 (node) and 1 (adam7) are defined in PNG 1.1");
 		}
@@ -433,7 +419,8 @@ public class PNGImageWriter extends ImageWriter {
 			int colorType = metadata.IHDR_colorType;
 			if (metadata.sBIT_colorType != colorType) {
 				processWarningOccurred(0,
-						"sBIT metadata has wrong color type.\n" + "The chunk will not be written.");
+						"sBIT metadata has wrong color type.\n"
+								+ "The chunk will not be written.");
 				return;
 			}
 
@@ -500,7 +487,8 @@ public class PNGImageWriter extends ImageWriter {
 				throw new IIOException("hIST chunk without PLTE chunk!");
 			}
 
-			cs.writeChars(metadata.hIST_histogram, 0, metadata.hIST_histogram.length);
+			cs.writeChars(metadata.hIST_histogram, 0,
+					metadata.hIST_histogram.length);
 			cs.finish();
 		}
 	}
@@ -523,8 +511,9 @@ public class PNGImageWriter extends ImageWriter {
 			}
 
 			if (chunkType != colorType) {
-				processWarningOccurred(0, "tRNS metadata has incompatible color type.\n"
-						+ "The chunk will not be written.");
+				processWarningOccurred(0,
+						"tRNS metadata has incompatible color type.\n"
+								+ "The chunk will not be written.");
 				return;
 			}
 
@@ -566,8 +555,9 @@ public class PNGImageWriter extends ImageWriter {
 
 			// Ignore status of alpha in colorType
 			if (chunkType != colorType) {
-				processWarningOccurred(0, "bKGD metadata has incompatible color type.\n"
-						+ "The chunk will not be written.");
+				processWarningOccurred(0,
+						"bKGD metadata has incompatible color type.\n"
+								+ "The chunk will not be written.");
 				return;
 			}
 
@@ -667,9 +657,11 @@ public class PNGImageWriter extends ImageWriter {
 	private void write_iTXt() throws IOException {
 		Iterator<String> keywordIter = metadata.iTXt_keyword.iterator();
 		Iterator<Boolean> flagIter = metadata.iTXt_compressionFlag.iterator();
-		Iterator<Integer> methodIter = metadata.iTXt_compressionMethod.iterator();
+		Iterator<Integer> methodIter = metadata.iTXt_compressionMethod
+				.iterator();
 		Iterator<String> languageIter = metadata.iTXt_languageTag.iterator();
-		Iterator<String> translatedKeywordIter = metadata.iTXt_translatedKeyword.iterator();
+		Iterator<String> translatedKeywordIter = metadata.iTXt_translatedKeyword
+				.iterator();
 		Iterator<String> textIter = metadata.iTXt_text.iterator();
 
 		while (keywordIter.hasNext()) {
@@ -742,8 +734,8 @@ public class PNGImageWriter extends ImageWriter {
 		return type;
 	}
 
-	private void encodePass(ImageOutputStream os, RenderedImage image, int xOffset, int yOffset,
-			int xSkip, int ySkip) throws IOException {
+	private void encodePass(ImageOutputStream os, RenderedImage image,
+			int xOffset, int yOffset, int xSkip, int ySkip) throws IOException {
 		int minX = sourceXOffset;
 		int minY = sourceYOffset;
 		int width = sourceWidth;
@@ -797,17 +789,20 @@ public class PNGImageWriter extends ImageWriter {
 			Rectangle rect = new Rectangle(minX, row, width, 1);
 			Raster ras = image.getData(rect);
 			if (sourceBands != null) {
-				ras = ras.createChild(minX, row, width, 1, minX, row, sourceBands);
+				ras = ras.createChild(minX, row, width, 1, minX, row,
+						sourceBands);
 			}
 
 			ras.getPixels(minX, row, width, 1, samples);
 
 			if (image.getColorModel().isAlphaPremultiplied()) {
 				WritableRaster wr = ras.createCompatibleWritableRaster();
-				wr.setPixels(wr.getMinX(), wr.getMinY(), wr.getWidth(), wr.getHeight(), samples);
+				wr.setPixels(wr.getMinX(), wr.getMinY(), wr.getWidth(), wr
+						.getHeight(), samples);
 
 				image.getColorModel().coerceData(wr, false);
-				wr.getPixels(wr.getMinX(), wr.getMinY(), wr.getWidth(), wr.getHeight(), samples);
+				wr.getPixels(wr.getMinX(), wr.getMinY(), wr.getWidth(), wr
+						.getHeight(), samples);
 			}
 
 			// Reorder palette data if necessary
@@ -823,60 +818,61 @@ public class PNGImageWriter extends ImageWriter {
 			int tmp = 0;
 
 			switch (bitDepth) {
-			case 1:
-			case 2:
-			case 4:
-				// Image can only have a single band
+				case 1:
+				case 2:
+				case 4:
+					// Image can only have a single band
 
-				int mask = samplesPerByte - 1;
-				for (int s = xOffset; s < numSamples; s += xSkip) {
-					byte val = scale0[samples[s]];
-					tmp = (tmp << bitDepth) | val;
-
-					if ((pos++ & mask) == mask) {
-						currRow[count++] = (byte) tmp;
-						tmp = 0;
-						pos = 0;
-					}
-				}
-
-				// Left shift the last byte
-				if ((pos & mask) != 0) {
-					tmp <<= ((8 / bitDepth) - pos) * bitDepth;
-					currRow[count++] = (byte) tmp;
-				}
-				break;
-
-			case 8:
-				if (numBands == 1) {
+					int mask = samplesPerByte - 1;
 					for (int s = xOffset; s < numSamples; s += xSkip) {
-						currRow[count++] = scale0[samples[s]];
-						if (icm_gray_alpha != null) {
-							currRow[count++] = scale0[icm_gray_alpha.getAlpha(0xff & samples[s])];
+						byte val = scale0[samples[s]];
+						tmp = (tmp << bitDepth) | val;
+
+						if ((pos++ & mask) == mask) {
+							currRow[count++] = (byte) tmp;
+							tmp = 0;
+							pos = 0;
 						}
 					}
-				} else {
+
+					// Left shift the last byte
+					if ((pos & mask) != 0) {
+						tmp <<= ((8 / bitDepth) - pos) * bitDepth;
+						currRow[count++] = (byte) tmp;
+					}
+					break;
+
+				case 8:
+					if (numBands == 1) {
+						for (int s = xOffset; s < numSamples; s += xSkip) {
+							currRow[count++] = scale0[samples[s]];
+							if (icm_gray_alpha != null) {
+								currRow[count++] = scale0[icm_gray_alpha
+										.getAlpha(0xff & samples[s])];
+							}
+						}
+					} else {
+						for (int s = xOffset; s < numSamples; s += xSkip) {
+							for (int b = 0; b < numBands; b++) {
+								currRow[count++] = scale[b][samples[s + b]];
+							}
+						}
+					}
+					break;
+
+				case 16:
 					for (int s = xOffset; s < numSamples; s += xSkip) {
 						for (int b = 0; b < numBands; b++) {
-							currRow[count++] = scale[b][samples[s + b]];
+							currRow[count++] = scaleh[b][samples[s + b]];
+							currRow[count++] = scalel[b][samples[s + b]];
 						}
 					}
-				}
-				break;
-
-			case 16:
-				for (int s = xOffset; s < numSamples; s += xSkip) {
-					for (int b = 0; b < numBands; b++) {
-						currRow[count++] = scaleh[b][samples[s + b]];
-						currRow[count++] = scalel[b][samples[s + b]];
-					}
-				}
-				break;
+					break;
 			}
 
 			// Perform filtering
-			int filterType = rowFilter.filterRow(metadata.IHDR_colorType, currRow, prevRow,
-					filteredRows, bytesPerRow, bpp);
+			int filterType = rowFilter.filterRow(metadata.IHDR_colorType,
+					currRow, prevRow, filteredRows, bytesPerRow, bpp);
 
 			os.write(filterType);
 			os.write(filteredRows[filterType], bpp, bytesPerRow);
@@ -904,7 +900,8 @@ public class PNGImageWriter extends ImageWriter {
 			if (metadata.IHDR_interlaceMethod == 1) {
 				for (int i = 0; i < 7; i++) {
 					encodePass(ios, image, PNGImageReader.adam7XOffset[i],
-							PNGImageReader.adam7YOffset[i], PNGImageReader.adam7XSubsampling[i],
+							PNGImageReader.adam7YOffset[i],
+							PNGImageReader.adam7XSubsampling[i],
 							PNGImageReader.adam7YSubsampling[i]);
 					if (abortRequested()) {
 						break;
@@ -947,7 +944,8 @@ public class PNGImageWriter extends ImageWriter {
 		int bitDepth = metadata.IHDR_bitDepth;
 
 		// If the existing tables are still valid, just return
-		if (bitDepth == scalingBitDepth && equals(sampleSize, this.sampleSize)) {
+		if (bitDepth == scalingBitDepth && equals(sampleSize,
+				this.sampleSize)) {
 			return;
 		}
 
@@ -962,7 +960,8 @@ public class PNGImageWriter extends ImageWriter {
 				int halfMaxInSample = maxInSample / 2;
 				scale[b] = new byte[maxInSample + 1];
 				for (int s = 0; s <= maxInSample; s++) {
-					scale[b][s] = (byte) ((s * maxOutSample + halfMaxInSample) / maxInSample);
+					scale[b][s] = (byte) ((s * maxOutSample + halfMaxInSample)
+							/ maxInSample);
 				}
 			}
 			scale0 = scale[0];
@@ -978,7 +977,8 @@ public class PNGImageWriter extends ImageWriter {
 				scaleh[b] = new byte[maxInSample + 1];
 				scalel[b] = new byte[maxInSample + 1];
 				for (int s = 0; s <= maxInSample; s++) {
-					int val = (s * maxOutSample + halfMaxInSample) / maxInSample;
+					int val = (s * maxOutSample + halfMaxInSample)
+							/ maxInSample;
 					scaleh[b][s] = (byte) (val >> 8);
 					scalel[b][s] = (byte) (val & 0xff);
 				}
@@ -988,8 +988,8 @@ public class PNGImageWriter extends ImageWriter {
 		}
 	}
 
-	public void write(IIOMetadata streamMetadata, IIOImage image, ImageWriteParam param)
-			throws IIOException {
+	public void write(IIOMetadata streamMetadata, IIOImage image,
+			ImageWriteParam param) throws IIOException {
 		if (stream == null) {
 			throw new IllegalStateException("output == null!");
 		}
@@ -1017,8 +1017,8 @@ public class PNGImageWriter extends ImageWriter {
 			// Get source region and subsampling factors
 			Rectangle sourceRegion = param.getSourceRegion();
 			if (sourceRegion != null) {
-				Rectangle imageBounds = new Rectangle(im.getMinX(), im.getMinY(), im.getWidth(),
-						im.getHeight());
+				Rectangle imageBounds = new Rectangle(im.getMinX(), im
+						.getMinY(), im.getWidth(), im.getHeight());
 				// Clip to actual image bounds
 				sourceRegion = sourceRegion.intersection(imageBounds);
 				sourceXOffset = sourceRegion.x;
@@ -1069,14 +1069,14 @@ public class PNGImageWriter extends ImageWriter {
 		if (param != null) {
 			// Use Adam7 interlacing if set in write param
 			switch (param.getProgressiveMode()) {
-			case ImageWriteParam.MODE_DEFAULT:
-				metadata.IHDR_interlaceMethod = 1;
-				break;
-			case ImageWriteParam.MODE_DISABLED:
-				metadata.IHDR_interlaceMethod = 0;
-				break;
-			// MODE_COPY_FROM_METADATA should alreay be taken care of
-			// MODE_EXPLICIT is not allowed
+				case ImageWriteParam.MODE_DEFAULT:
+					metadata.IHDR_interlaceMethod = 1;
+					break;
+				case ImageWriteParam.MODE_DISABLED:
+					metadata.IHDR_interlaceMethod = 0;
+					break;
+				// MODE_COPY_FROM_METADATA should alreay be taken care of
+				// MODE_EXPLICIT is not allowed
 			}
 		}
 

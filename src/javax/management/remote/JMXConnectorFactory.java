@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -209,12 +189,11 @@ public class JMXConnectorFactory {
 
 	private static final String PROTOCOL_PROVIDER_DEFAULT_PACKAGE = "com.sun.jmx.remote.protocol";
 
-	private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
-			"JMXConnectorFactory");
+	private static final ClassLogger logger = new ClassLogger(
+			"javax.management.remote.misc", "JMXConnectorFactory");
 
 	/** There are no instances of this class. */
-	private JMXConnectorFactory() {
-	}
+	private JMXConnectorFactory() {}
 
 	/**
 	 * <p>
@@ -227,22 +206,25 @@ public class JMXConnectorFactory {
 	 * </p>
 	 *
 	 * @param serviceURL
-	 *            the address of the connector server to connect to.
+	 *                   the address of the connector server to connect to.
 	 *
 	 * @return a <code>JMXConnector</code> whose {@link JMXConnector#connect
 	 *         connect} method has been called.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>serviceURL</code> is null.
+	 *                                 if <code>serviceURL</code> is null.
 	 *
 	 * @exception IOException
-	 *                if the connector client or the connection cannot be made
-	 *                because of a communication problem.
+	 *                                 if the connector client or the connection
+	 *                                 cannot be made
+	 *                                 because of a communication problem.
 	 *
 	 * @exception SecurityException
-	 *                if the connection cannot be made for security reasons.
+	 *                                 if the connection cannot be made for
+	 *                                 security reasons.
 	 */
-	public static JMXConnector connect(JMXServiceURL serviceURL) throws IOException {
+	public static JMXConnector connect(JMXServiceURL serviceURL)
+			throws IOException {
 		return connect(serviceURL, null);
 	}
 
@@ -256,36 +238,43 @@ public class JMXConnectorFactory {
 	 * </p>
 	 *
 	 * <pre>
-	 * JMXConnector conn = JMXConnectorFactory.newJMXConnector(serviceURL, environment);
+	 * JMXConnector conn = JMXConnectorFactory.newJMXConnector(serviceURL,
+	 * 		environment);
 	 * conn.connect(environment);
 	 * </pre>
 	 *
 	 * @param serviceURL
-	 *            the address of the connector server to connect to.
+	 *                    the address of the connector server to connect to.
 	 *
 	 * @param environment
-	 *            a set of attributes to determine how the connection is made.
-	 *            This parameter can be null. Keys in this map must be Strings.
-	 *            The appropriate type of each associated value depends on the
-	 *            attribute. The contents of <code>environment</code> are not
-	 *            changed by this call.
+	 *                    a set of attributes to determine how the connection is
+	 *                    made.
+	 *                    This parameter can be null. Keys in this map must be
+	 *                    Strings.
+	 *                    The appropriate type of each associated value depends
+	 *                    on the
+	 *                    attribute. The contents of <code>environment</code>
+	 *                    are not
+	 *                    changed by this call.
 	 *
 	 * @return a <code>JMXConnector</code> representing the newly-made
 	 *         connection. Each successful call to this method produces a
 	 *         different object.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>serviceURL</code> is null.
+	 *                                 if <code>serviceURL</code> is null.
 	 *
 	 * @exception IOException
-	 *                if the connector client or the connection cannot be made
-	 *                because of a communication problem.
+	 *                                 if the connector client or the connection
+	 *                                 cannot be made
+	 *                                 because of a communication problem.
 	 *
 	 * @exception SecurityException
-	 *                if the connection cannot be made for security reasons.
+	 *                                 if the connection cannot be made for
+	 *                                 security reasons.
 	 */
-	public static JMXConnector connect(JMXServiceURL serviceURL, Map<String, ?> environment)
-			throws IOException {
+	public static JMXConnector connect(JMXServiceURL serviceURL,
+			Map<String, ?> environment) throws IOException {
 		if (serviceURL == null)
 			throw new NullPointerException("Null JMXServiceURL");
 		JMXConnector conn = newJMXConnector(serviceURL, environment);
@@ -309,37 +298,45 @@ public class JMXConnectorFactory {
 	 * </p>
 	 *
 	 * @param serviceURL
-	 *            the address of the connector server to connect to.
+	 *                    the address of the connector server to connect to.
 	 *
 	 * @param environment
-	 *            a set of attributes to determine how the connection is made.
-	 *            This parameter can be null. Keys in this map must be Strings.
-	 *            The appropriate type of each associated value depends on the
-	 *            attribute. The contents of <code>environment</code> are not
-	 *            changed by this call.
+	 *                    a set of attributes to determine how the connection is
+	 *                    made.
+	 *                    This parameter can be null. Keys in this map must be
+	 *                    Strings.
+	 *                    The appropriate type of each associated value depends
+	 *                    on the
+	 *                    attribute. The contents of <code>environment</code>
+	 *                    are not
+	 *                    changed by this call.
 	 *
 	 * @return a <code>JMXConnector</code> representing the new connector
 	 *         client. Each successful call to this method produces a different
 	 *         object.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>serviceURL</code> is null.
+	 *                                  if <code>serviceURL</code> is null.
 	 *
 	 * @exception IOException
-	 *                if the connector client cannot be made because of a
-	 *                communication problem.
+	 *                                  if the connector client cannot be made
+	 *                                  because of a
+	 *                                  communication problem.
 	 *
 	 * @exception MalformedURLException
-	 *                if there is no provider for the protocol in
-	 *                <code>serviceURL</code>.
+	 *                                  if there is no provider for the protocol
+	 *                                  in
+	 *                                  <code>serviceURL</code>.
 	 *
 	 * @exception JMXProviderException
-	 *                if there is a provider for the protocol in
-	 *                <code>serviceURL</code> but it cannot be used for some
-	 *                reason.
+	 *                                  if there is a provider for the protocol
+	 *                                  in
+	 *                                  <code>serviceURL</code> but it cannot be
+	 *                                  used for some
+	 *                                  reason.
 	 */
-	public static JMXConnector newJMXConnector(JMXServiceURL serviceURL, Map<String, ?> environment)
-			throws IOException {
+	public static JMXConnector newJMXConnector(JMXServiceURL serviceURL,
+			Map<String, ?> environment) throws IOException {
 
 		final Map<String, Object> envcopy;
 		if (environment == null)
@@ -355,8 +352,8 @@ public class JMXConnectorFactory {
 		final String providerClassName = "ClientProvider";
 		final JMXServiceURL providerURL = serviceURL;
 
-		JMXConnectorProvider provider = getProvider(providerURL, envcopy, providerClassName,
-				targetInterface, loader);
+		JMXConnectorProvider provider = getProvider(providerURL, envcopy,
+				providerClassName, targetInterface, loader);
 
 		IOException exception = null;
 		if (provider == null) {
@@ -366,7 +363,8 @@ public class JMXConnectorFactory {
 			// provider search algorithm doesn't handle well null classloader.
 			if (loader != null) {
 				try {
-					JMXConnector connection = getConnectorAsService(loader, providerURL, envcopy);
+					JMXConnector connection = getConnectorAsService(loader,
+							providerURL, envcopy);
 					if (connection != null)
 						return connection;
 				} catch (JMXProviderException e) {
@@ -376,7 +374,8 @@ public class JMXConnectorFactory {
 				}
 			}
 			provider = getProvider(protocol, PROTOCOL_PROVIDER_DEFAULT_PACKAGE,
-					JMXConnectorFactory.class.getClassLoader(), providerClassName, targetInterface);
+					JMXConnectorFactory.class.getClassLoader(),
+					providerClassName, targetInterface);
 		}
 
 		if (provider == null) {
@@ -389,12 +388,14 @@ public class JMXConnectorFactory {
 			}
 		}
 
-		final Map<String, Object> fixedenv = Collections.unmodifiableMap(envcopy);
+		final Map<String, Object> fixedenv = Collections.unmodifiableMap(
+				envcopy);
 
 		return provider.newJMXConnector(serviceURL, fixedenv);
 	}
 
-	private static String resolvePkgs(Map<String, ?> env) throws JMXProviderException {
+	private static String resolvePkgs(Map<String, ?> env)
+			throws JMXProviderException {
 
 		Object pkgsObject = null;
 
@@ -402,18 +403,21 @@ public class JMXConnectorFactory {
 			pkgsObject = env.get(PROTOCOL_PROVIDER_PACKAGES);
 
 		if (pkgsObject == null)
-			pkgsObject = AccessController.doPrivileged(new PrivilegedAction<String>() {
-				public String run() {
-					return System.getProperty(PROTOCOL_PROVIDER_PACKAGES);
-				}
-			});
+			pkgsObject = AccessController.doPrivileged(
+					new PrivilegedAction<String>() {
+						public String run() {
+							return System.getProperty(
+									PROTOCOL_PROVIDER_PACKAGES);
+						}
+					});
 
 		if (pkgsObject == null)
 			return null;
 
 		if (!(pkgsObject instanceof String)) {
 			final String msg = "Value of " + PROTOCOL_PROVIDER_PACKAGES
-					+ " parameter is not a String: " + pkgsObject.getClass().getName();
+					+ " parameter is not a String: " + pkgsObject.getClass()
+							.getName();
 			throw new JMXProviderException(msg);
 		}
 
@@ -422,7 +426,8 @@ public class JMXConnectorFactory {
 			return null;
 
 		// pkgs may not contain an empty element
-		if (pkgs.startsWith("|") || pkgs.endsWith("|") || pkgs.indexOf("||") >= 0) {
+		if (pkgs.startsWith("|") || pkgs.endsWith("|") || pkgs.indexOf(
+				"||") >= 0) {
 			final String msg = "Value of " + PROTOCOL_PROVIDER_PACKAGES
 					+ " contains an empty element: " + pkgs;
 			throw new JMXProviderException(msg);
@@ -431,8 +436,9 @@ public class JMXConnectorFactory {
 		return pkgs;
 	}
 
-	static <T> T getProvider(JMXServiceURL serviceURL, final Map<String, Object> environment,
-			String providerClassName, Class<T> targetInterface, final ClassLoader loader)
+	static <T> T getProvider(JMXServiceURL serviceURL,
+			final Map<String, Object> environment, String providerClassName,
+			Class<T> targetInterface, final ClassLoader loader)
 			throws IOException {
 
 		final String protocol = serviceURL.getProtocol();
@@ -442,11 +448,15 @@ public class JMXConnectorFactory {
 		T instance = null;
 
 		if (pkgs != null) {
-			instance = getProvider(protocol, pkgs, loader, providerClassName, targetInterface);
+			instance = getProvider(protocol, pkgs, loader, providerClassName,
+					targetInterface);
 
 			if (instance != null) {
-				boolean needsWrap = (loader != instance.getClass().getClassLoader());
-				environment.put(PROTOCOL_PROVIDER_CLASS_LOADER, needsWrap ? wrap(loader) : loader);
+				boolean needsWrap = (loader != instance.getClass()
+						.getClassLoader());
+				environment.put(PROTOCOL_PROVIDER_CLASS_LOADER, needsWrap
+						? wrap(loader)
+						: loader);
 			}
 		}
 
@@ -455,31 +465,34 @@ public class JMXConnectorFactory {
 
 	static <T> Iterator<T> getProviderIterator(final Class<T> providerClass,
 			final ClassLoader loader) {
-		ServiceLoader<T> serviceLoader = ServiceLoader.load(providerClass, loader);
+		ServiceLoader<T> serviceLoader = ServiceLoader.load(providerClass,
+				loader);
 		return serviceLoader.iterator();
 	}
 
 	private static ClassLoader wrap(final ClassLoader parent) {
-		return parent != null ? AccessController.doPrivileged(new PrivilegedAction<ClassLoader>() {
-			@Override
-			public ClassLoader run() {
-				return new ClassLoader(parent) {
+		return parent != null ? AccessController.doPrivileged(
+				new PrivilegedAction<ClassLoader>() {
 					@Override
-					protected Class<?> loadClass(String name, boolean resolve)
-							throws ClassNotFoundException {
-						ReflectUtil.checkPackageAccess(name);
-						return super.loadClass(name, resolve);
+					public ClassLoader run() {
+						return new ClassLoader(parent) {
+							@Override
+							protected Class<?> loadClass(String name,
+									boolean resolve)
+									throws ClassNotFoundException {
+								ReflectUtil.checkPackageAccess(name);
+								return super.loadClass(name, resolve);
+							}
+						};
 					}
-				};
-			}
-		}) : null;
+				}) : null;
 	}
 
-	private static JMXConnector getConnectorAsService(ClassLoader loader, JMXServiceURL url,
-			Map<String, ?> map) throws IOException {
+	private static JMXConnector getConnectorAsService(ClassLoader loader,
+			JMXServiceURL url, Map<String, ?> map) throws IOException {
 
-		Iterator<JMXConnectorProvider> providers = getProviderIterator(JMXConnectorProvider.class,
-				loader);
+		Iterator<JMXConnectorProvider> providers = getProviderIterator(
+				JMXConnectorProvider.class, loader);
 		JMXConnector connection;
 		IOException exception = null;
 		while (providers.hasNext()) {
@@ -491,14 +504,15 @@ public class JMXConnectorFactory {
 				throw e;
 			} catch (Exception e) {
 				if (logger.traceOn())
-					logger.trace("getConnectorAsService",
-							"URL[" + url + "] Service provider exception: " + e);
+					logger.trace("getConnectorAsService", "URL[" + url
+							+ "] Service provider exception: " + e);
 				if (!(e instanceof MalformedURLException)) {
 					if (exception == null) {
 						if (e instanceof IOException) {
 							exception = (IOException) e;
 						} else {
-							exception = EnvHelp.initCause(new IOException(e.getMessage()), e);
+							exception = EnvHelp.initCause(new IOException(e
+									.getMessage()), e);
 						}
 					}
 				}
@@ -512,13 +526,15 @@ public class JMXConnectorFactory {
 	}
 
 	static <T> T getProvider(String protocol, String pkgs, ClassLoader loader,
-			String providerClassName, Class<T> targetInterface) throws IOException {
+			String providerClassName, Class<T> targetInterface)
+			throws IOException {
 
 		StringTokenizer tokenizer = new StringTokenizer(pkgs, "|");
 
 		while (tokenizer.hasMoreTokens()) {
 			String pkg = tokenizer.nextToken();
-			String className = (pkg + "." + protocol2package(protocol) + "." + providerClassName);
+			String className = (pkg + "." + protocol2package(protocol) + "."
+					+ providerClassName);
 			Class<?> providerClass;
 			try {
 				providerClass = Class.forName(className, true, loader);
@@ -528,8 +544,9 @@ public class JMXConnectorFactory {
 			}
 
 			if (!targetInterface.isAssignableFrom(providerClass)) {
-				final String msg = "Provider class does not implement " + targetInterface.getName()
-						+ ": " + providerClass.getName();
+				final String msg = "Provider class does not implement "
+						+ targetInterface.getName() + ": " + providerClass
+								.getName();
 				throw new JMXProviderException(msg);
 			}
 
@@ -538,7 +555,8 @@ public class JMXConnectorFactory {
 			try {
 				return providerClassT.newInstance();
 			} catch (Exception e) {
-				final String msg = "Exception when instantiating provider [" + className + "]";
+				final String msg = "Exception when instantiating provider ["
+						+ className + "]";
 				throw new JMXProviderException(msg, e);
 			}
 		}
@@ -551,10 +569,11 @@ public class JMXConnectorFactory {
 
 		if (environment != null) {
 			try {
-				loader = (ClassLoader) environment.get(PROTOCOL_PROVIDER_CLASS_LOADER);
+				loader = (ClassLoader) environment.get(
+						PROTOCOL_PROVIDER_CLASS_LOADER);
 			} catch (ClassCastException e) {
-				final String msg = "The ClassLoader supplied in the environment map using " + "the "
-						+ PROTOCOL_PROVIDER_CLASS_LOADER
+				final String msg = "The ClassLoader supplied in the environment map using "
+						+ "the " + PROTOCOL_PROVIDER_CLASS_LOADER
 						+ " attribute is not an instance of java.lang.ClassLoader";
 				throw new IllegalArgumentException(msg);
 			}

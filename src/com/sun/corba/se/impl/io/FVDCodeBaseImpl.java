@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.io;
@@ -60,8 +39,8 @@ public class FVDCodeBaseImpl extends _CodeBaseImplBase {
 	// having a delegate set.
 	private transient ORB orb = null;
 
-	private transient OMGSystemException wrapper = OMGSystemException
-			.get(CORBALogDomains.RPC_ENCODING);
+	private transient OMGSystemException wrapper = OMGSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
 
 	// backward compatability so that appropriate rep-id calculations
 	// can take place
@@ -95,7 +74,8 @@ public class FVDCodeBaseImpl extends _CodeBaseImplBase {
 			else
 				return result;
 		} catch (ClassNotFoundException cnfe) {
-			throw wrapper.missingLocalValueImpl(CompletionStatus.COMPLETED_MAYBE, cnfe);
+			throw wrapper.missingLocalValueImpl(
+					CompletionStatus.COMPLETED_MAYBE, cnfe);
 		}
 	}
 
@@ -121,25 +101,27 @@ public class FVDCodeBaseImpl extends _CodeBaseImplBase {
 				}
 
 				try {
-					result = ValueUtility.translate(_orb(),
-							ObjectStreamClass.lookup(vhandler.getAnyClassFromType(x)), vhandler);
+					result = ValueUtility.translate(_orb(), ObjectStreamClass
+							.lookup(vhandler.getAnyClassFromType(x)), vhandler);
 				} catch (Throwable t) {
 					if (orb == null)
 						orb = ORB.init(); // d11638
-					result = ValueUtility.translate(orb,
-							ObjectStreamClass.lookup(vhandler.getAnyClassFromType(x)), vhandler);
+					result = ValueUtility.translate(orb, ObjectStreamClass
+							.lookup(vhandler.getAnyClassFromType(x)), vhandler);
 				}
 
 				if (result != null) {
 					fvds.put(x, result);
 				} else {
-					throw wrapper.missingLocalValueImpl(CompletionStatus.COMPLETED_MAYBE);
+					throw wrapper.missingLocalValueImpl(
+							CompletionStatus.COMPLETED_MAYBE);
 				}
 			}
 
 			return result;
 		} catch (Throwable t) {
-			throw wrapper.incompatibleValueImpl(CompletionStatus.COMPLETED_MAYBE, t);
+			throw wrapper.incompatibleValueImpl(
+					CompletionStatus.COMPLETED_MAYBE, t);
 		}
 	}
 
@@ -162,8 +144,8 @@ public class FVDCodeBaseImpl extends _CodeBaseImplBase {
 			}
 
 			Stack repIds = new Stack();
-			Class parent = ObjectStreamClass.lookup(vhandler.getClassFromType(x)).forClass()
-					.getSuperclass();
+			Class parent = ObjectStreamClass.lookup(vhandler.getClassFromType(
+					x)).forClass().getSuperclass();
 
 			while (!parent.equals(java.lang.Object.class)) {
 				repIds.push(vhandler.createForAnyType(parent));
@@ -176,7 +158,8 @@ public class FVDCodeBaseImpl extends _CodeBaseImplBase {
 
 			return result;
 		} catch (Throwable t) {
-			throw wrapper.missingLocalValueImpl(CompletionStatus.COMPLETED_MAYBE, t);
+			throw wrapper.missingLocalValueImpl(
+					CompletionStatus.COMPLETED_MAYBE, t);
 		}
 	}
 }

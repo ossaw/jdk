@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -84,15 +64,15 @@ public interface ValidationEventHandler {
 	 * current unmarshal, validate, or marshal operation.
 	 *
 	 * @param event
-	 *            the encapsulated validation event information. It is a
-	 *            provider error if this parameter is null.
+	 *              the encapsulated validation event information. It is a
+	 *              provider error if this parameter is null.
 	 * @return true if the JAXB Provider should attempt to continue the current
 	 *         unmarshal, validate, or marshal operation after handling this
 	 *         warning/error, false if the provider should terminate the current
 	 *         operation with the appropriate <tt>UnmarshalException</tt>,
 	 *         <tt>ValidationException</tt>, or <tt>MarshalException</tt>.
 	 * @throws IllegalArgumentException
-	 *             if the event object is null.
+	 *                                  if the event object is null.
 	 */
 	public boolean handleEvent(ValidationEvent event);
 

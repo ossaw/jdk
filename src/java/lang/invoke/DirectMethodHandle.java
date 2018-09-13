@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -50,16 +30,19 @@ class DirectMethodHandle extends MethodHandle {
 
 	// Constructors and factory methods in this class *must* be package scoped
 	// or private.
-	private DirectMethodHandle(MethodType mtype, LambdaForm form, MemberName member) {
+	private DirectMethodHandle(MethodType mtype, LambdaForm form,
+			MemberName member) {
 		super(mtype, form);
 		if (!member.isResolved())
 			throw new InternalError();
 
-		if (member.getDeclaringClass().isInterface() && member.isMethod() && !member.isAbstract()) {
+		if (member.getDeclaringClass().isInterface() && member.isMethod()
+				&& !member.isAbstract()) {
 			// Check for corner case: invokeinterface of Object method
-			MemberName m = new MemberName(Object.class, member.getName(), member.getMethodType(),
-					member.getReferenceKind());
-			m = MemberName.getFactory().resolveOrNull(m.getReferenceKind(), m, null);
+			MemberName m = new MemberName(Object.class, member.getName(), member
+					.getMethodType(), member.getReferenceKind());
+			m = MemberName.getFactory().resolveOrNull(m.getReferenceKind(), m,
+					null);
 			if (m != null && m.isPublic()) {
 				assert (member.getReferenceKind() == m.getReferenceKind()); // else
 																			// this.form
@@ -73,10 +56,12 @@ class DirectMethodHandle extends MethodHandle {
 	}
 
 	// Factory methods:
-	static DirectMethodHandle make(byte refKind, Class<?> receiver, MemberName member) {
+	static DirectMethodHandle make(byte refKind, Class<?> receiver,
+			MemberName member) {
 		MethodType mtype = member.getMethodOrFieldType();
 		if (!member.isStatic()) {
-			if (!member.getDeclaringClass().isAssignableFrom(receiver) || member.isConstructor())
+			if (!member.getDeclaringClass().isAssignableFrom(receiver) || member
+					.isConstructor())
 				throw new InternalError(member.toString());
 			mtype = mtype.insertParameterTypes(0, receiver);
 		}
@@ -128,7 +113,8 @@ class DirectMethodHandle extends MethodHandle {
 		assert (ctor.isConstructor() && ctor.getName().equals("<init>"));
 		Class<?> instanceClass = ctor.getDeclaringClass();
 		ctor = ctor.asConstructor();
-		assert (ctor.isConstructor() && ctor.getReferenceKind() == REF_newInvokeSpecial) : ctor;
+		assert (ctor.isConstructor() && ctor
+				.getReferenceKind() == REF_newInvokeSpecial) : ctor;
 		MethodType mtype = ctor.getMethodType().changeReturnType(instanceClass);
 		LambdaForm lform = preparedLambdaForm(ctor);
 		MemberName init = ctor.asSpecial();
@@ -160,7 +146,8 @@ class DirectMethodHandle extends MethodHandle {
 		return member;
 	}
 
-	private static final MemberName.Factory IMPL_NAMES = MemberName.getFactory();
+	private static final MemberName.Factory IMPL_NAMES = MemberName
+			.getFactory();
 
 	/**
 	 * Create a LF which can invoke the given method. Cache and share this
@@ -172,23 +159,23 @@ class DirectMethodHandle extends MethodHandle {
 		assert (!m.isMethodHandleInvoke()) : m;
 		int which;
 		switch (m.getReferenceKind()) {
-		case REF_invokeVirtual:
-			which = LF_INVVIRTUAL;
-			break;
-		case REF_invokeStatic:
-			which = LF_INVSTATIC;
-			break;
-		case REF_invokeSpecial:
-			which = LF_INVSPECIAL;
-			break;
-		case REF_invokeInterface:
-			which = LF_INVINTERFACE;
-			break;
-		case REF_newInvokeSpecial:
-			which = LF_NEWINVSPECIAL;
-			break;
-		default:
-			throw new InternalError(m.toString());
+			case REF_invokeVirtual:
+				which = LF_INVVIRTUAL;
+				break;
+			case REF_invokeStatic:
+				which = LF_INVSTATIC;
+				break;
+			case REF_invokeSpecial:
+				which = LF_INVSPECIAL;
+				break;
+			case REF_invokeInterface:
+				which = LF_INVINTERFACE;
+				break;
+			case REF_newInvokeSpecial:
+				which = LF_NEWINVSPECIAL;
+				break;
+			default:
+				throw new InternalError(m.toString());
 		}
 		if (which == LF_INVSTATIC && shouldBeInitialized(m)) {
 			// precompute the barrier-free version:
@@ -197,9 +184,10 @@ class DirectMethodHandle extends MethodHandle {
 		}
 		LambdaForm lform = preparedLambdaForm(mtype, which);
 		maybeCompile(lform, m);
-		assert (lform.methodType().dropParameterTypes(0, 1)
-				.equals(m.getInvocationType().basicType())) : Arrays.asList(m,
-						m.getInvocationType().basicType(), lform, lform.methodType());
+		assert (lform.methodType().dropParameterTypes(0, 1).equals(m
+				.getInvocationType().basicType())) : Arrays.asList(m, m
+						.getInvocationType().basicType(), lform, lform
+								.methodType());
 		return lform;
 	}
 
@@ -211,47 +199,48 @@ class DirectMethodHandle extends MethodHandle {
 		return mtype.form().setCachedLambdaForm(which, lform);
 	}
 
-	private static LambdaForm makePreparedLambdaForm(MethodType mtype, int which) {
+	private static LambdaForm makePreparedLambdaForm(MethodType mtype,
+			int which) {
 		boolean needsInit = (which == LF_INVSTATIC_INIT);
 		boolean doesAlloc = (which == LF_NEWINVSPECIAL);
 		String linkerName, lambdaName;
 		switch (which) {
-		case LF_INVVIRTUAL:
-			linkerName = "linkToVirtual";
-			lambdaName = "DMH.invokeVirtual";
-			break;
-		case LF_INVSTATIC:
-			linkerName = "linkToStatic";
-			lambdaName = "DMH.invokeStatic";
-			break;
-		case LF_INVSTATIC_INIT:
-			linkerName = "linkToStatic";
-			lambdaName = "DMH.invokeStaticInit";
-			break;
-		case LF_INVSPECIAL:
-			linkerName = "linkToSpecial";
-			lambdaName = "DMH.invokeSpecial";
-			break;
-		case LF_INVINTERFACE:
-			linkerName = "linkToInterface";
-			lambdaName = "DMH.invokeInterface";
-			break;
-		case LF_NEWINVSPECIAL:
-			linkerName = "linkToSpecial";
-			lambdaName = "DMH.newInvokeSpecial";
-			break;
-		default:
-			throw new InternalError("which=" + which);
+			case LF_INVVIRTUAL:
+				linkerName = "linkToVirtual";
+				lambdaName = "DMH.invokeVirtual";
+				break;
+			case LF_INVSTATIC:
+				linkerName = "linkToStatic";
+				lambdaName = "DMH.invokeStatic";
+				break;
+			case LF_INVSTATIC_INIT:
+				linkerName = "linkToStatic";
+				lambdaName = "DMH.invokeStaticInit";
+				break;
+			case LF_INVSPECIAL:
+				linkerName = "linkToSpecial";
+				lambdaName = "DMH.invokeSpecial";
+				break;
+			case LF_INVINTERFACE:
+				linkerName = "linkToInterface";
+				lambdaName = "DMH.invokeInterface";
+				break;
+			case LF_NEWINVSPECIAL:
+				linkerName = "linkToSpecial";
+				lambdaName = "DMH.newInvokeSpecial";
+				break;
+			default:
+				throw new InternalError("which=" + which);
 		}
 		MethodType mtypeWithArg = mtype.appendParameterTypes(MemberName.class);
 		if (doesAlloc)
 			mtypeWithArg = mtypeWithArg.insertParameterTypes(0, Object.class) // insert
-																				// newly
-																				// allocated
-																				// obj
+					// newly
+					// allocated
+					// obj
 					.changeReturnType(void.class); // <init> returns void
-		MemberName linker = new MemberName(MethodHandle.class, linkerName, mtypeWithArg,
-				REF_invokeStatic);
+		MemberName linker = new MemberName(MethodHandle.class, linkerName,
+				mtypeWithArg, REF_invokeStatic);
 		try {
 			linker = IMPL_NAMES.resolveOrFail(REF_invokeStatic, linker, null,
 					NoSuchMethodException.class);
@@ -269,15 +258,20 @@ class DirectMethodHandle extends MethodHandle {
 		assert (names.length == nameCursor);
 		if (doesAlloc) {
 			// names = { argx,y,z,... new C, init method }
-			names[NEW_OBJ] = new Name(Lazy.NF_allocateInstance, names[DMH_THIS]);
-			names[GET_MEMBER] = new Name(Lazy.NF_constructorMethod, names[DMH_THIS]);
+			names[NEW_OBJ] = new Name(Lazy.NF_allocateInstance,
+					names[DMH_THIS]);
+			names[GET_MEMBER] = new Name(Lazy.NF_constructorMethod,
+					names[DMH_THIS]);
 		} else if (needsInit) {
-			names[GET_MEMBER] = new Name(Lazy.NF_internalMemberNameEnsureInit, names[DMH_THIS]);
+			names[GET_MEMBER] = new Name(Lazy.NF_internalMemberNameEnsureInit,
+					names[DMH_THIS]);
 		} else {
-			names[GET_MEMBER] = new Name(Lazy.NF_internalMemberName, names[DMH_THIS]);
+			names[GET_MEMBER] = new Name(Lazy.NF_internalMemberName,
+					names[DMH_THIS]);
 		}
 		assert (findDirectMethodHandle(names[GET_MEMBER]) == names[DMH_THIS]);
-		Object[] outArgs = Arrays.copyOfRange(names, ARG_BASE, GET_MEMBER + 1, Object[].class);
+		Object[] outArgs = Arrays.copyOfRange(names, ARG_BASE, GET_MEMBER + 1,
+				Object[].class);
 		assert (outArgs[outArgs.length - 1] == names[GET_MEMBER]); // look,
 																	// shifted
 																	// args!
@@ -310,7 +304,8 @@ class DirectMethodHandle extends MethodHandle {
 	}
 
 	private static void maybeCompile(LambdaForm lform, MemberName m) {
-		if (VerifyAccess.isSamePackage(m.getDeclaringClass(), MethodHandle.class))
+		if (VerifyAccess.isSamePackage(m.getDeclaringClass(),
+				MethodHandle.class))
 			// Help along bootstrapping...
 			lform.compileToBytecode();
 	}
@@ -333,14 +328,14 @@ class DirectMethodHandle extends MethodHandle {
 
 	/* non-public */ static boolean shouldBeInitialized(MemberName member) {
 		switch (member.getReferenceKind()) {
-		case REF_invokeStatic:
-		case REF_getStatic:
-		case REF_putStatic:
-		case REF_newInvokeSpecial:
-			break;
-		default:
-			// No need to initialize the class on this kind of member.
-			return false;
+			case REF_invokeStatic:
+			case REF_getStatic:
+			case REF_putStatic:
+			case REF_newInvokeSpecial:
+				break;
+			default:
+				// No need to initialize the class on this kind of member.
+				return false;
 		}
 		Class<?> cls = member.getDeclaringClass();
 		if (cls == ValueConversions.class || cls == MethodHandleImpl.class
@@ -349,8 +344,8 @@ class DirectMethodHandle extends MethodHandle {
 			// the MHs will not be used until the system is booted.
 			return false;
 		}
-		if (VerifyAccess.isSamePackage(MethodHandle.class, cls)
-				|| VerifyAccess.isSamePackage(ValueConversions.class, cls)) {
+		if (VerifyAccess.isSamePackage(MethodHandle.class, cls) || VerifyAccess
+				.isSamePackage(ValueConversions.class, cls)) {
 			// It is a system class. It is probably in the process of
 			// being initialized, but we will help it along just to be safe.
 			if (UNSAFE.shouldBeInitialized(cls)) {
@@ -361,7 +356,8 @@ class DirectMethodHandle extends MethodHandle {
 		return UNSAFE.shouldBeInitialized(cls);
 	}
 
-	private static class EnsureInitialized extends ClassValue<WeakReference<Thread>> {
+	private static class EnsureInitialized extends
+			ClassValue<WeakReference<Thread>> {
 		@Override
 		protected WeakReference<Thread> computeValue(Class<?> type) {
 			UNSAFE.ensureClassInitialized(type);
@@ -434,8 +430,9 @@ class DirectMethodHandle extends MethodHandle {
 		final MemberName initMethod;
 		final Class<?> instanceClass;
 
-		private Constructor(MethodType mtype, LambdaForm form, MemberName constructor,
-				MemberName initMethod, Class<?> instanceClass) {
+		private Constructor(MethodType mtype, LambdaForm form,
+				MemberName constructor, MemberName initMethod,
+				Class<?> instanceClass) {
 			super(mtype, form, constructor);
 			this.initMethod = initMethod;
 			this.instanceClass = instanceClass;
@@ -453,7 +450,8 @@ class DirectMethodHandle extends MethodHandle {
 		return dmh.initMethod;
 	}
 
-	/* non-public */ static Object allocateInstance(Object mh) throws InstantiationException {
+	/* non-public */ static Object allocateInstance(Object mh)
+			throws InstantiationException {
 		Constructor dmh = (Constructor) mh;
 		return UNSAFE.allocateInstance(dmh.instanceClass);
 	}
@@ -463,7 +461,8 @@ class DirectMethodHandle extends MethodHandle {
 		final Class<?> fieldType;
 		final int fieldOffset;
 
-		private Accessor(MethodType mtype, LambdaForm form, MemberName member, int fieldOffset) {
+		private Accessor(MethodType mtype, LambdaForm form, MemberName member,
+				int fieldOffset) {
 			super(mtype, form, member);
 			this.fieldType = member.getFieldType();
 			this.fieldOffset = fieldOffset;
@@ -506,8 +505,8 @@ class DirectMethodHandle extends MethodHandle {
 		final private Object staticBase;
 		final private long staticOffset;
 
-		private StaticAccessor(MethodType mtype, LambdaForm form, MemberName member,
-				Object staticBase, long staticOffset) {
+		private StaticAccessor(MethodType mtype, LambdaForm form,
+				MemberName member, Object staticBase, long staticOffset) {
 			super(mtype, form, member);
 			this.fieldType = member.getFieldType();
 			this.staticBase = staticBase;
@@ -551,19 +550,23 @@ class DirectMethodHandle extends MethodHandle {
 	}
 
 	// Caching machinery for field accessors:
-	private static byte AF_GETFIELD = 0, AF_PUTFIELD = 1, AF_GETSTATIC = 2, AF_PUTSTATIC = 3,
-			AF_GETSTATIC_INIT = 4, AF_PUTSTATIC_INIT = 5, AF_LIMIT = 6;
+	private static byte AF_GETFIELD = 0, AF_PUTFIELD = 1, AF_GETSTATIC = 2,
+			AF_PUTSTATIC = 3, AF_GETSTATIC_INIT = 4, AF_PUTSTATIC_INIT = 5,
+			AF_LIMIT = 6;
 	// Enumerate the different field kinds using Wrapper,
 	// with an extra case added for checked references.
 	private static int FT_LAST_WRAPPER = Wrapper.values().length - 1,
-			FT_UNCHECKED_REF = Wrapper.OBJECT.ordinal(), FT_CHECKED_REF = FT_LAST_WRAPPER + 1,
-			FT_LIMIT = FT_LAST_WRAPPER + 2;
+			FT_UNCHECKED_REF = Wrapper.OBJECT.ordinal(),
+			FT_CHECKED_REF = FT_LAST_WRAPPER + 1, FT_LIMIT = FT_LAST_WRAPPER
+					+ 2;
 
 	private static int afIndex(byte formOp, boolean isVolatile, int ftypeKind) {
-		return ((formOp * FT_LIMIT * 2) + (isVolatile ? FT_LIMIT : 0) + ftypeKind);
+		return ((formOp * FT_LIMIT * 2) + (isVolatile ? FT_LIMIT : 0)
+				+ ftypeKind);
 	}
 
-	private static final LambdaForm[] ACCESSOR_FORMS = new LambdaForm[afIndex(AF_LIMIT, false, 0)];
+	private static final LambdaForm[] ACCESSOR_FORMS = new LambdaForm[afIndex(
+			AF_LIMIT, false, 0)];
 
 	private static int ftypeKind(Class<?> ftype) {
 		if (ftype.isPrimitive())
@@ -583,48 +586,51 @@ class DirectMethodHandle extends MethodHandle {
 		boolean isVolatile = m.isVolatile();
 		byte formOp;
 		switch (m.getReferenceKind()) {
-		case REF_getField:
-			formOp = AF_GETFIELD;
-			break;
-		case REF_putField:
-			formOp = AF_PUTFIELD;
-			break;
-		case REF_getStatic:
-			formOp = AF_GETSTATIC;
-			break;
-		case REF_putStatic:
-			formOp = AF_PUTSTATIC;
-			break;
-		default:
-			throw new InternalError(m.toString());
+			case REF_getField:
+				formOp = AF_GETFIELD;
+				break;
+			case REF_putField:
+				formOp = AF_PUTFIELD;
+				break;
+			case REF_getStatic:
+				formOp = AF_GETSTATIC;
+				break;
+			case REF_putStatic:
+				formOp = AF_PUTSTATIC;
+				break;
+			default:
+				throw new InternalError(m.toString());
 		}
 		if (shouldBeInitialized(m)) {
 			// precompute the barrier-free version:
 			preparedFieldLambdaForm(formOp, isVolatile, ftype);
-			assert ((AF_GETSTATIC_INIT - AF_GETSTATIC) == (AF_PUTSTATIC_INIT - AF_PUTSTATIC));
+			assert ((AF_GETSTATIC_INIT - AF_GETSTATIC) == (AF_PUTSTATIC_INIT
+					- AF_PUTSTATIC));
 			formOp += (AF_GETSTATIC_INIT - AF_GETSTATIC);
 		}
 		LambdaForm lform = preparedFieldLambdaForm(formOp, isVolatile, ftype);
 		maybeCompile(lform, m);
-		assert (lform.methodType().dropParameterTypes(0, 1)
-				.equals(m.getInvocationType().basicType())) : Arrays.asList(m,
-						m.getInvocationType().basicType(), lform, lform.methodType());
+		assert (lform.methodType().dropParameterTypes(0, 1).equals(m
+				.getInvocationType().basicType())) : Arrays.asList(m, m
+						.getInvocationType().basicType(), lform, lform
+								.methodType());
 		return lform;
 	}
 
-	private static LambdaForm preparedFieldLambdaForm(byte formOp, boolean isVolatile,
-			Class<?> ftype) {
+	private static LambdaForm preparedFieldLambdaForm(byte formOp,
+			boolean isVolatile, Class<?> ftype) {
 		int afIndex = afIndex(formOp, isVolatile, ftypeKind(ftype));
 		LambdaForm lform = ACCESSOR_FORMS[afIndex];
 		if (lform != null)
 			return lform;
-		lform = makePreparedFieldLambdaForm(formOp, isVolatile, ftypeKind(ftype));
+		lform = makePreparedFieldLambdaForm(formOp, isVolatile, ftypeKind(
+				ftype));
 		ACCESSOR_FORMS[afIndex] = lform; // don't bother with a CAS
 		return lform;
 	}
 
-	private static LambdaForm makePreparedFieldLambdaForm(byte formOp, boolean isVolatile,
-			int ftypeKind) {
+	private static LambdaForm makePreparedFieldLambdaForm(byte formOp,
+			boolean isVolatile, int ftypeKind) {
 		boolean isGetter = (formOp & 1) == (AF_GETFIELD & 1);
 		boolean isStatic = (formOp >= AF_GETSTATIC);
 		boolean needsInit = (formOp >= AF_GETSTATIC_INIT);
@@ -633,7 +639,8 @@ class DirectMethodHandle extends MethodHandle {
 		Class<?> ft = fw.primitiveType();
 		assert (ftypeKind(needsCast ? String.class : ft) == ftypeKind);
 		String tname = fw.primitiveSimpleName();
-		String ctname = Character.toUpperCase(tname.charAt(0)) + tname.substring(1);
+		String ctname = Character.toUpperCase(tname.charAt(0)) + tname
+				.substring(1);
 		if (isVolatile)
 			ctname += "Volatile";
 		String getOrPut = (isGetter ? "get" : "put");
@@ -643,8 +650,10 @@ class DirectMethodHandle extends MethodHandle {
 		if (isGetter)
 			linkerType = MethodType.methodType(ft, Object.class, long.class);
 		else
-			linkerType = MethodType.methodType(void.class, Object.class, long.class, ft);
-		MemberName linker = new MemberName(Unsafe.class, linkerName, linkerType, REF_invokeVirtual);
+			linkerType = MethodType.methodType(void.class, Object.class,
+					long.class, ft);
+		MemberName linker = new MemberName(Unsafe.class, linkerName, linkerType,
+				REF_invokeVirtual);
 		try {
 			linker = IMPL_NAMES.resolveOrFail(REF_invokeVirtual, linker, null,
 					NoSuchMethodException.class);
@@ -683,18 +692,24 @@ class DirectMethodHandle extends MethodHandle {
 		final int RESULT = nameCursor - 1; // either the call or the cast
 		Name[] names = arguments(nameCursor - ARG_LIMIT, mtype.invokerType());
 		if (needsInit)
-			names[INIT_BAR] = new Name(Lazy.NF_ensureInitialized, names[DMH_THIS]);
+			names[INIT_BAR] = new Name(Lazy.NF_ensureInitialized,
+					names[DMH_THIS]);
 		if (needsCast && !isGetter)
-			names[PRE_CAST] = new Name(Lazy.NF_checkCast, names[DMH_THIS], names[SET_VALUE]);
+			names[PRE_CAST] = new Name(Lazy.NF_checkCast, names[DMH_THIS],
+					names[SET_VALUE]);
 		Object[] outArgs = new Object[1 + linkerType.parameterCount()];
 		assert (outArgs.length == (isGetter ? 3 : 4));
 		outArgs[0] = UNSAFE;
 		if (isStatic) {
-			outArgs[1] = names[F_HOLDER] = new Name(Lazy.NF_staticBase, names[DMH_THIS]);
-			outArgs[2] = names[F_OFFSET] = new Name(Lazy.NF_staticOffset, names[DMH_THIS]);
+			outArgs[1] = names[F_HOLDER] = new Name(Lazy.NF_staticBase,
+					names[DMH_THIS]);
+			outArgs[2] = names[F_OFFSET] = new Name(Lazy.NF_staticOffset,
+					names[DMH_THIS]);
 		} else {
-			outArgs[1] = names[OBJ_CHECK] = new Name(Lazy.NF_checkBase, names[OBJ_BASE]);
-			outArgs[2] = names[F_OFFSET] = new Name(Lazy.NF_fieldOffset, names[DMH_THIS]);
+			outArgs[1] = names[OBJ_CHECK] = new Name(Lazy.NF_checkBase,
+					names[OBJ_BASE]);
+			outArgs[2] = names[F_OFFSET] = new Name(Lazy.NF_fieldOffset,
+					names[DMH_THIS]);
 		}
 		if (!isGetter) {
 			outArgs[3] = (needsCast ? names[PRE_CAST] : names[SET_VALUE]);
@@ -703,7 +718,8 @@ class DirectMethodHandle extends MethodHandle {
 			assert (a != null);
 		names[LINKER_CALL] = new Name(linker, outArgs);
 		if (needsCast && isGetter)
-			names[POST_CAST] = new Name(Lazy.NF_checkCast, names[DMH_THIS], names[LINKER_CALL]);
+			names[POST_CAST] = new Name(Lazy.NF_checkCast, names[DMH_THIS],
+					names[LINKER_CALL]);
 		for (Name n : names)
 			assert (n != null);
 		String fieldOrStatic = (isStatic ? "Static" : "Field");
@@ -721,36 +737,50 @@ class DirectMethodHandle extends MethodHandle {
 	 * inner class to delay initialization until first usage.
 	 */
 	private static class Lazy {
-		static final NamedFunction NF_internalMemberName, NF_internalMemberNameEnsureInit,
-				NF_ensureInitialized, NF_fieldOffset, NF_checkBase, NF_staticBase, NF_staticOffset,
+		static final NamedFunction NF_internalMemberName,
+				NF_internalMemberNameEnsureInit, NF_ensureInitialized,
+				NF_fieldOffset, NF_checkBase, NF_staticBase, NF_staticOffset,
 				NF_checkCast, NF_allocateInstance, NF_constructorMethod;
 		static {
 			try {
 				NamedFunction nfs[] = {
-						NF_internalMemberName = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("internalMemberName", Object.class)),
-						NF_internalMemberNameEnsureInit = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("internalMemberNameEnsureInit", Object.class)),
-						NF_ensureInitialized = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("ensureInitialized", Object.class)),
-						NF_fieldOffset = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("fieldOffset", Object.class)),
-						NF_checkBase = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("checkBase", Object.class)),
-						NF_staticBase = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("staticBase", Object.class)),
-						NF_staticOffset = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("staticOffset", Object.class)),
-						NF_checkCast = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("checkCast", Object.class, Object.class)),
-						NF_allocateInstance = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("allocateInstance", Object.class)),
-						NF_constructorMethod = new NamedFunction(DirectMethodHandle.class
-								.getDeclaredMethod("constructorMethod", Object.class)) };
+						NF_internalMemberName = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"internalMemberName", Object.class)),
+						NF_internalMemberNameEnsureInit = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"internalMemberNameEnsureInit",
+										Object.class)),
+						NF_ensureInitialized = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"ensureInitialized", Object.class)),
+						NF_fieldOffset = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"fieldOffset", Object.class)),
+						NF_checkBase = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"checkBase", Object.class)),
+						NF_staticBase = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"staticBase", Object.class)),
+						NF_staticOffset = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"staticOffset", Object.class)),
+						NF_checkCast = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"checkCast", Object.class,
+										Object.class)),
+						NF_allocateInstance = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"allocateInstance", Object.class)),
+						NF_constructorMethod = new NamedFunction(
+								DirectMethodHandle.class.getDeclaredMethod(
+										"constructorMethod", Object.class)) };
 				for (NamedFunction nf : nfs) {
 					// Each nf must be statically invocable or we get tied up in
 					// our bootstraps.
-					assert (InvokerBytecodeGenerator.isStaticallyInvocable(nf.member)) : nf;
+					assert (InvokerBytecodeGenerator.isStaticallyInvocable(
+							nf.member)) : nf;
 					nf.resolve();
 				}
 			} catch (ReflectiveOperationException ex) {

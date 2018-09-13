@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.dom;
@@ -88,7 +68,7 @@ public class DOMResult implements Result {
 	 * </p>
 	 *
 	 * @param node
-	 *            The DOM node that will contain the result tree.
+	 *             The DOM node that will contain the result tree.
 	 */
 	public DOMResult(Node node) {
 		setNode(node);
@@ -114,10 +94,11 @@ public class DOMResult implements Result {
 	 * </p>
 	 *
 	 * @param node
-	 *            The DOM node that will contain the result tree.
+	 *                 The DOM node that will contain the result tree.
 	 * @param systemId
-	 *            The system identifier which may be used in association with
-	 *            this node.
+	 *                 The system identifier which may be used in association
+	 *                 with
+	 *                 this node.
 	 */
 	public DOMResult(Node node, String systemId) {
 		setNode(node);
@@ -155,15 +136,19 @@ public class DOMResult implements Result {
 	 * </p>
 	 *
 	 * @param node
-	 *            The DOM node that will contain the result tree.
+	 *                    The DOM node that will contain the result tree.
 	 * @param nextSibling
-	 *            The child node where the result nodes should be inserted
-	 *            before.
+	 *                    The child node where the result nodes should be
+	 *                    inserted
+	 *                    before.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>nextSibling</code> is not a sibling of
-	 *             <code>node</code> or <code>node</code> is <code>null</code>
-	 *             and <code>nextSibling</code> is not <code>null</code>.
+	 *                                  If <code>nextSibling</code> is not a
+	 *                                  sibling of
+	 *                                  <code>node</code> or <code>node</code>
+	 *                                  is <code>null</code>
+	 *                                  and <code>nextSibling</code> is not
+	 *                                  <code>null</code>.
 	 *
 	 * @since 1.5
 	 */
@@ -218,18 +203,23 @@ public class DOMResult implements Result {
 	 * </p>
 	 *
 	 * @param node
-	 *            The DOM node that will contain the result tree.
+	 *                    The DOM node that will contain the result tree.
 	 * @param nextSibling
-	 *            The child node where the result nodes should be inserted
-	 *            before.
+	 *                    The child node where the result nodes should be
+	 *                    inserted
+	 *                    before.
 	 * @param systemId
-	 *            The system identifier which may be used in association with
-	 *            this node.
+	 *                    The system identifier which may be used in association
+	 *                    with
+	 *                    this node.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>nextSibling</code> is not a sibling of
-	 *             <code>node</code> or <code>node</code> is <code>null</code>
-	 *             and <code>nextSibling</code> is not <code>null</code>.
+	 *                                  If <code>nextSibling</code> is not a
+	 *                                  sibling of
+	 *                                  <code>node</code> or <code>node</code>
+	 *                                  is <code>null</code>
+	 *                                  and <code>nextSibling</code> is not
+	 *                                  <code>null</code>.
 	 *
 	 * @since 1.5
 	 */
@@ -277,13 +267,17 @@ public class DOMResult implements Result {
 	 * </p>
 	 *
 	 * @param node
-	 *            The node to which the transformation will be appended.
+	 *             The node to which the transformation will be appended.
 	 *
 	 * @throws IllegalStateException
-	 *             If <code>nextSibling</code> is not <code>null</code> and
-	 *             <code>nextSibling</code> is not a child of <code>node</code>
-	 *             or <code>node</code> is <code>null</code> and
-	 *             <code>nextSibling</code> is not <code>null</code>.
+	 *                               If <code>nextSibling</code> is not
+	 *                               <code>null</code> and
+	 *                               <code>nextSibling</code> is not a child of
+	 *                               <code>node</code>
+	 *                               or <code>node</code> is <code>null</code>
+	 *                               and
+	 *                               <code>nextSibling</code> is not
+	 *                               <code>null</code>.
 	 */
 	public void setNode(Node node) {
 		// does the corrent parent/child relationship exist?
@@ -345,14 +339,18 @@ public class DOMResult implements Result {
 	 * </p>
 	 *
 	 * @param nextSibling
-	 *            The child node before which the result nodes will be inserted.
+	 *                    The child node before which the result nodes will be
+	 *                    inserted.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>nextSibling</code> is not a descendant of
-	 *             <code>node</code>.
+	 *                                  If <code>nextSibling</code> is not a
+	 *                                  descendant of
+	 *                                  <code>node</code>.
 	 * @throws IllegalStateException
-	 *             If <code>node</code> is <code>null</code> and
-	 *             <code>nextSibling</code> is not <code>null</code>.
+	 *                                  If <code>node</code> is
+	 *                                  <code>null</code> and
+	 *                                  <code>nextSibling</code> is not
+	 *                                  <code>null</code>.
 	 *
 	 * @since 1.5
 	 */
@@ -403,7 +401,7 @@ public class DOMResult implements Result {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system identifier as a URI string.
+	 *                 The system identifier as a URI string.
 	 */
 	public void setSystemId(String systemId) {
 		this.systemId = systemId;

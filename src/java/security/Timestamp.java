@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -69,11 +49,12 @@ public final class Timestamp implements Serializable {
 	 * Constructs a Timestamp.
 	 *
 	 * @param timestamp
-	 *            is the timestamp's date and time. It must not be null.
+	 *                       is the timestamp's date and time. It must not be
+	 *                       null.
 	 * @param signerCertPath
-	 *            is the TSA's certificate path. It must not be null.
+	 *                       is the TSA's certificate path. It must not be null.
 	 * @throws NullPointerException
-	 *             if timestamp or signerCertPath is null.
+	 *                              if timestamp or signerCertPath is null.
 	 */
 	public Timestamp(Date timestamp, CertPath signerCertPath) {
 		if (timestamp == null || signerCertPath == null) {
@@ -134,8 +115,8 @@ public final class Timestamp implements Serializable {
 		if (this == that) {
 			return true;
 		}
-		return (timestamp.equals(that.getTimestamp())
-				&& signerCertPath.equals(that.getSignerCertPath()));
+		return (timestamp.equals(that.getTimestamp()) && signerCertPath.equals(
+				that.getSignerCertPath()));
 	}
 
 	/**
@@ -159,7 +140,8 @@ public final class Timestamp implements Serializable {
 	}
 
 	// Explicitly reset hash code value to -1
-	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		ois.defaultReadObject();
 		myhash = -1;
 		timestamp = new Date(timestamp.getTime());

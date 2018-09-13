@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -207,7 +204,8 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 
 				return iSource;
 			} catch (Exception e) {
-				catalogManager.debug.message(1, "Failed to create InputSource", resolved);
+				catalogManager.debug.message(1, "Failed to create InputSource",
+						resolved);
 				return null;
 			}
 		} else {
@@ -224,7 +222,8 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 	 * through.
 	 * </p>
 	 */
-	public void notationDecl(String name, String publicId, String systemId) throws SAXException {
+	public void notationDecl(String name, String publicId, String systemId)
+			throws SAXException {
 		allowXMLCatalogPI = false;
 		super.notationDecl(name, publicId, systemId);
 	}
@@ -238,8 +237,8 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 	 * through.
 	 * </p>
 	 */
-	public void unparsedEntityDecl(String name, String publicId, String systemId,
-			String notationName) throws SAXException {
+	public void unparsedEntityDecl(String name, String publicId,
+			String systemId, String notationName) throws SAXException {
 		allowXMLCatalogPI = false;
 		super.unparsedEntityDecl(name, publicId, systemId, notationName);
 	}
@@ -253,8 +252,8 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 	 * through.
 	 * </p>
 	 */
-	public void startElement(String uri, String localName, String qName, Attributes atts)
-			throws SAXException {
+	public void startElement(String uri, String localName, String qName,
+			Attributes atts) throws SAXException {
 		allowXMLCatalogPI = false;
 		super.startElement(uri, localName, qName, atts);
 	}
@@ -266,7 +265,8 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 	 * Detect and use the oasis-xml-catalog PI if it occurs.
 	 * </p>
 	 */
-	public void processingInstruction(String target, String pidata) throws SAXException {
+	public void processingInstruction(String target, String pidata)
+			throws SAXException {
 		if (target.equals("oasis-xml-catalog")) {
 			URL catalog = null;
 			String data = pidata;
@@ -295,7 +295,8 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 
 			if (allowXMLCatalogPI) {
 				if (catalogManager.getAllowOasisXMLCatalogPI()) {
-					catalogManager.debug.message(4, "oasis-xml-catalog PI", pidata);
+					catalogManager.debug.message(4, "oasis-xml-catalog PI",
+							pidata);
 
 					if (catalog != null) {
 						try {
@@ -307,21 +308,25 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 								piCatalogResolver = new CatalogResolver(true);
 							}
 
-							piCatalogResolver.getCatalog().parseCatalog(catalog.toString());
+							piCatalogResolver.getCatalog().parseCatalog(catalog
+									.toString());
 						} catch (Exception e) {
 							catalogManager.debug.message(3,
-									"Exception parsing oasis-xml-catalog: " + catalog.toString());
+									"Exception parsing oasis-xml-catalog: "
+											+ catalog.toString());
 						}
 					} else {
 						catalogManager.debug.message(3,
 								"PI oasis-xml-catalog unparseable: " + pidata);
 					}
 				} else {
-					catalogManager.debug.message(4, "PI oasis-xml-catalog ignored: " + pidata);
+					catalogManager.debug.message(4,
+							"PI oasis-xml-catalog ignored: " + pidata);
 				}
 			} else {
 				catalogManager.debug.message(3,
-						"PI oasis-xml-catalog occurred in an invalid place: " + pidata);
+						"PI oasis-xml-catalog occurred in an invalid place: "
+								+ pidata);
 			}
 		} else {
 			super.processingInstruction(target, pidata);
@@ -358,8 +363,10 @@ public class ResolvingXMLFilter extends XMLFilterImpl {
 	/** Provide one possible explanation for an InternalError. */
 	private void explain(String systemId) {
 		if (!suppressExplanation) {
-			System.out.println("XMLReader probably encountered bad URI in " + systemId);
-			System.out.println("For example, replace '/some/uri' with 'file:/some/uri'.");
+			System.out.println("XMLReader probably encountered bad URI in "
+					+ systemId);
+			System.out.println(
+					"For example, replace '/some/uri' with 'file:/some/uri'.");
 		}
 		suppressExplanation = true;
 	}

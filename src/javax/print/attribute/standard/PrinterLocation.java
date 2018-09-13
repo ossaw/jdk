@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -42,7 +22,8 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterLocation extends TextSyntax implements PrintServiceAttribute {
+public final class PrinterLocation extends TextSyntax implements
+		PrintServiceAttribute {
 
 	private static final long serialVersionUID = -1598610039865566337L;
 
@@ -51,15 +32,17 @@ public final class PrinterLocation extends TextSyntax implements PrintServiceAtt
 	 * locale.
 	 *
 	 * @param location
-	 *            Printer location.
+	 *                 Printer location.
 	 * @param locale
-	 *            Natural language of the text string. null is interpreted to
-	 *            mean the default locale as returned by
-	 *            <code>Locale.getDefault()</code>
+	 *                 Natural language of the text string. null is interpreted
+	 *                 to
+	 *                 mean the default locale as returned by
+	 *                 <code>Locale.getDefault()</code>
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>location</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>location</CODE> is
+	 *                                 null.
 	 */
 	public PrinterLocation(String location, Locale locale) {
 		super(location, locale);
@@ -79,7 +62,7 @@ public final class PrinterLocation extends TextSyntax implements PrintServiceAtt
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this printer
 	 *         location attribute, false otherwise.

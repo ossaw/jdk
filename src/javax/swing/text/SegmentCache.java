@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -120,6 +100,5 @@ class SegmentCache {
 	 * CachedSegment is used as a tagging interface to determine if a Segment
 	 * can successfully be shared.
 	 */
-	private static class CachedSegment extends Segment {
-	}
+	private static class CachedSegment extends Segment {}
 }

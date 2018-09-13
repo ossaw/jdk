@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -62,8 +59,8 @@ import org.w3c.dom.TypeInfo;
  *
  * @see org.w3c.dom
  */
-public class DTMNodeProxy implements Node, Document, Text, Element, Attr, ProcessingInstruction,
-		Comment, DocumentFragment {
+public class DTMNodeProxy implements Node, Document, Text, Element, Attr,
+		ProcessingInstruction, Comment, DocumentFragment {
 
 	/** The DTM for this node. */
 	public DTM dtm;
@@ -81,9 +78,9 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * Create a DTMNodeProxy Node representing a specific Node in a DTM
 	 *
 	 * @param dtm
-	 *            The DTM Reference, must be non-null.
+	 *             The DTM Reference, must be non-null.
 	 * @param node
-	 *            The DTM node handle.
+	 *             The DTM node handle.
 	 */
 	public DTMNodeProxy(DTM dtm, int node) {
 		this.dtm = dtm;
@@ -112,7 +109,7 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * Test for equality based on node number.
 	 *
 	 * @param node
-	 *            A DTM node proxy reference.
+	 *             A DTM node proxy reference.
 	 *
 	 * @return true if the given node has the same handle as this node.
 	 */
@@ -133,7 +130,7 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * Test for equality based on node number.
 	 *
 	 * @param node
-	 *            A DTM node proxy reference.
+	 *             A DTM node proxy reference.
 	 *
 	 * @return true if the given node has the same handle as this node.
 	 */
@@ -482,7 +479,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
 	 */
 	@Override
-	public final Node insertBefore(Node newChild, Node refChild) throws DOMException {
+	public final Node insertBefore(Node newChild, Node refChild)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR);
 	}
 
@@ -497,7 +495,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
 	 */
 	@Override
-	public final Node replaceChild(Node newChild, Node oldChild) throws DOMException {
+	public final Node replaceChild(Node newChild, Node oldChild)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR);
 	}
 
@@ -583,27 +582,28 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	public final Element getDocumentElement() {
 		int dochandle = dtm.getDocument();
 		int elementhandle = DTM.NULL;
-		for (int kidhandle = dtm.getFirstChild(dochandle); kidhandle != DTM.NULL; kidhandle = dtm
-				.getNextSibling(kidhandle)) {
+		for (int kidhandle = dtm.getFirstChild(
+				dochandle); kidhandle != DTM.NULL; kidhandle = dtm
+						.getNextSibling(kidhandle)) {
 			switch (dtm.getNodeType(kidhandle)) {
-			case Node.ELEMENT_NODE:
-				if (elementhandle != DTM.NULL) {
-					elementhandle = DTM.NULL; // More than one; ill-formed.
+				case Node.ELEMENT_NODE:
+					if (elementhandle != DTM.NULL) {
+						elementhandle = DTM.NULL; // More than one; ill-formed.
+						kidhandle = dtm.getLastChild(dochandle); // End loop
+					} else
+						elementhandle = kidhandle;
+					break;
+
+				// These are harmless; document is still wellformed
+				case Node.COMMENT_NODE:
+				case Node.PROCESSING_INSTRUCTION_NODE:
+				case Node.DOCUMENT_TYPE_NODE:
+					break;
+
+				default:
+					elementhandle = DTM.NULL; // ill-formed
 					kidhandle = dtm.getLastChild(dochandle); // End loop
-				} else
-					elementhandle = kidhandle;
-				break;
-
-			// These are harmless; document is still wellformed
-			case Node.COMMENT_NODE:
-			case Node.PROCESSING_INSTRUCTION_NODE:
-			case Node.DOCUMENT_TYPE_NODE:
-				break;
-
-			default:
-				elementhandle = DTM.NULL; // ill-formed
-				kidhandle = dtm.getLastChild(dochandle); // End loop
-				break;
+					break;
 			}
 		}
 		if (elementhandle == DTM.NULL)
@@ -670,7 +670,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Document
 	 */
 	@Override
-	public final CDATASection createCDATASection(String data) throws DOMException {
+	public final CDATASection createCDATASection(String data)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -685,8 +686,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Document
 	 */
 	@Override
-	public final ProcessingInstruction createProcessingInstruction(String target, String data)
-			throws DOMException {
+	public final ProcessingInstruction createProcessingInstruction(
+			String target, String data) throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -714,7 +715,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Document
 	 */
 	@Override
-	public final EntityReference createEntityReference(String name) throws DOMException {
+	public final EntityReference createEntityReference(String name)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -734,10 +736,12 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 			if (DTM.ELEMENT_NODE == retNode.getNodeType()) {
 				NodeList nodeList = retNode.getChildNodes();
 				for (int i = 0; i < nodeList.getLength(); i++) {
-					traverseChildren(listVector, nodeList.item(i), tagname, isTagNameWildCard);
+					traverseChildren(listVector, nodeList.item(i), tagname,
+							isTagNameWildCard);
 				}
 			} else if (DTM.DOCUMENT_NODE == retNode.getNodeType()) {
-				traverseChildren(listVector, dtm.getNode(node), tagname, isTagNameWildCard);
+				traverseChildren(listVector, dtm.getNode(node), tagname,
+						isTagNameWildCard);
 			}
 		}
 		int size = listVector.size();
@@ -756,22 +760,24 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @param isTagNameWildCard
 	 *
 	 *
-	 *            Private method to be used for recursive iterations to obtain
-	 *            elements by tag name.
+	 *                          Private method to be used for recursive
+	 *                          iterations to obtain
+	 *                          elements by tag name.
 	 */
-	private final void traverseChildren(Vector listVector, Node tempNode, String tagname,
-			boolean isTagNameWildCard) {
+	private final void traverseChildren(Vector listVector, Node tempNode,
+			String tagname, boolean isTagNameWildCard) {
 		if (tempNode == null) {
 			return;
 		} else {
-			if (tempNode.getNodeType() == DTM.ELEMENT_NODE
-					&& (isTagNameWildCard || tempNode.getNodeName().equals(tagname))) {
+			if (tempNode.getNodeType() == DTM.ELEMENT_NODE && (isTagNameWildCard
+					|| tempNode.getNodeName().equals(tagname))) {
 				listVector.add(tempNode);
 			}
 			if (tempNode.hasChildNodes()) {
 				NodeList nodeList = tempNode.getChildNodes();
 				for (int i = 0; i < nodeList.getLength(); i++) {
-					traverseChildren(listVector, nodeList.item(i), tagname, isTagNameWildCard);
+					traverseChildren(listVector, nodeList.item(i), tagname,
+							isTagNameWildCard);
 				}
 			}
 		}
@@ -788,7 +794,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Document as of DOM Level 2 -- DTMNodeProxy is read-only
 	 */
 	@Override
-	public final Node importNode(Node importedNode, boolean deep) throws DOMException {
+	public final Node importNode(Node importedNode, boolean deep)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR);
 	}
 
@@ -803,8 +810,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Document as of DOM Level 2
 	 */
 	@Override
-	public final Element createElementNS(String namespaceURI, String qualifiedName)
-			throws DOMException {
+	public final Element createElementNS(String namespaceURI,
+			String qualifiedName) throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -819,8 +826,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Document as of DOM Level 2
 	 */
 	@Override
-	public final Attr createAttributeNS(String namespaceURI, String qualifiedName)
-			throws DOMException {
+	public final Attr createAttributeNS(String namespaceURI,
+			String qualifiedName) throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -833,7 +840,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Document as of DOM Level 2
 	 */
 	@Override
-	public final NodeList getElementsByTagNameNS(String namespaceURI, String localName) {
+	public final NodeList getElementsByTagNameNS(String namespaceURI,
+			String localName) {
 		Vector listVector = new Vector();
 		Node retNode = dtm.getNode(node);
 		if (retNode != null) {
@@ -842,12 +850,13 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 			if (DTM.ELEMENT_NODE == retNode.getNodeType()) {
 				NodeList nodeList = retNode.getChildNodes();
 				for (int i = 0; i < nodeList.getLength(); i++) {
-					traverseChildren(listVector, nodeList.item(i), namespaceURI, localName,
-							isNamespaceURIWildCard, isLocalNameWildCard);
+					traverseChildren(listVector, nodeList.item(i), namespaceURI,
+							localName, isNamespaceURIWildCard,
+							isLocalNameWildCard);
 				}
 			} else if (DTM.DOCUMENT_NODE == retNode.getNodeType()) {
-				traverseChildren(listVector, dtm.getNode(node), namespaceURI, localName,
-						isNamespaceURIWildCard, isLocalNameWildCard);
+				traverseChildren(listVector, dtm.getNode(node), namespaceURI,
+						localName, isNamespaceURIWildCard, isLocalNameWildCard);
 			}
 		}
 		int size = listVector.size();
@@ -867,27 +876,32 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @param isNamespaceURIWildCard
 	 * @param isLocalNameWildCard
 	 *
-	 *            Private method to be used for recursive iterations to obtain
-	 *            elements by tag name and namespaceURI.
+	 *                               Private method to be used for recursive
+	 *                               iterations to obtain
+	 *                               elements by tag name and namespaceURI.
 	 */
-	private final void traverseChildren(Vector listVector, Node tempNode, String namespaceURI,
-			String localname, boolean isNamespaceURIWildCard, boolean isLocalNameWildCard) {
+	private final void traverseChildren(Vector listVector, Node tempNode,
+			String namespaceURI, String localname,
+			boolean isNamespaceURIWildCard, boolean isLocalNameWildCard) {
 		if (tempNode == null) {
 			return;
 		} else {
 			if (tempNode.getNodeType() == DTM.ELEMENT_NODE
-					&& (isLocalNameWildCard || tempNode.getLocalName().equals(localname))) {
+					&& (isLocalNameWildCard || tempNode.getLocalName().equals(
+							localname))) {
 				String nsURI = tempNode.getNamespaceURI();
-				if ((namespaceURI == null && nsURI == null) || isNamespaceURIWildCard
-						|| (namespaceURI != null && namespaceURI.equals(nsURI))) {
+				if ((namespaceURI == null && nsURI == null)
+						|| isNamespaceURIWildCard || (namespaceURI != null
+								&& namespaceURI.equals(nsURI))) {
 					listVector.add(tempNode);
 				}
 			}
 			if (tempNode.hasChildNodes()) {
 				NodeList nl = tempNode.getChildNodes();
 				for (int i = 0; i < nl.getLength(); i++) {
-					traverseChildren(listVector, nl.item(i), namespaceURI, localname,
-							isNamespaceURIWildCard, isLocalNameWildCard);
+					traverseChildren(listVector, nl.item(i), namespaceURI,
+							localname, isNamespaceURIWildCard,
+							isLocalNameWildCard);
 				}
 			}
 		}
@@ -965,7 +979,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.CharacterData
 	 */
 	@Override
-	public final String substringData(int offset, int count) throws DOMException {
+	public final String substringData(int offset, int count)
+			throws DOMException {
 		return getData().substring(offset, offset + count);
 	}
 
@@ -1017,7 +1032,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.CharacterData
 	 */
 	@Override
-	public final void replaceData(int offset, int count, String arg) throws DOMException {
+	public final void replaceData(int offset, int count, String arg)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -1054,7 +1070,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Element
 	 */
 	@Override
-	public final void setAttribute(String name, String value) throws DOMException {
+	public final void setAttribute(String name, String value)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -1154,8 +1171,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Element
 	 */
 	@Override
-	public final void setAttributeNS(String namespaceURI, String qualifiedName, String value)
-			throws DOMException {
+	public final void setAttributeNS(String namespaceURI, String qualifiedName,
+			String value) throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -1168,7 +1185,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Element
 	 */
 	@Override
-	public final void removeAttributeNS(String namespaceURI, String localName) throws DOMException {
+	public final void removeAttributeNS(String namespaceURI, String localName)
+			throws DOMException {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 	}
 
@@ -1181,7 +1199,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * @see org.w3c.dom.Element
 	 */
 	@Override
-	public final Attr getAttributeNodeNS(String namespaceURI, String localName) {
+	public final Attr getAttributeNodeNS(String namespaceURI,
+			String localName) {
 		Attr retAttr = null;
 		int n = dtm.getAttributeNode(node, namespaceURI, localName);
 		if (n != DTM.NULL)
@@ -1429,8 +1448,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 */
 	static class DTMNodeProxyImplementation implements DOMImplementation {
 		@Override
-		public DocumentType createDocumentType(String qualifiedName, String publicId,
-				String systemId) {
+		public DocumentType createDocumentType(String qualifiedName,
+				String publicId, String systemId) {
 			throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
 		}
 
@@ -1453,8 +1472,9 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 		 */
 		@Override
 		public boolean hasFeature(String feature, String version) {
-			if (("CORE".equals(feature.toUpperCase()) || "XML".equals(feature.toUpperCase()))
-					&& ("1.0".equals(version) || "2.0".equals(version)))
+			if (("CORE".equals(feature.toUpperCase()) || "XML".equals(feature
+					.toUpperCase())) && ("1.0".equals(version) || "2.0".equals(
+							version)))
 				return true;
 			return false;
 		}
@@ -1467,13 +1487,14 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 		 * Mixed DOM implementations .
 		 * 
 		 * @param feature
-		 *            The name of the feature requested (case-insensitive).
+		 *                The name of the feature requested (case-insensitive).
 		 * @param version
-		 *            This is the version number of the feature to test. If the
-		 *            version is <code>null</code> or the empty string,
-		 *            supporting any version of the feature will cause the
-		 *            method to return an object that supports at least one
-		 *            version of the feature.
+		 *                This is the version number of the feature to test. If
+		 *                the
+		 *                version is <code>null</code> or the empty string,
+		 *                supporting any version of the feature will cause the
+		 *                method to return an object that supports at least one
+		 *                version of the feature.
 		 * @return Returns an object which implements the specialized APIs of
 		 *         the specified feature and version, if any, or
 		 *         <code>null</code> if there is no object which implements
@@ -1498,7 +1519,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	// RAMESH : Pending proper implementation of DOM Level 3
 
 	@Override
-	public Object setUserData(String key, Object data, UserDataHandler handler) {
+	public Object setUserData(String key, Object data,
+			UserDataHandler handler) {
 		return getOwnerDocument().setUserData(key, data, handler);
 	}
 
@@ -1525,12 +1547,14 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * necessarily expected to, as discussed in Mixed DOM implementations.
 	 * 
 	 * @param feature
-	 *            The name of the feature requested (case-insensitive).
+	 *                The name of the feature requested (case-insensitive).
 	 * @param version
-	 *            This is the version number of the feature to test. If the
-	 *            version is <code>null</code> or the empty string, supporting
-	 *            any version of the feature will cause the method to return an
-	 *            object that supports at least one version of the feature.
+	 *                This is the version number of the feature to test. If the
+	 *                version is <code>null</code> or the empty string,
+	 *                supporting
+	 *                any version of the feature will cause the method to return
+	 *                an
+	 *                object that supports at least one version of the feature.
 	 * @return Returns an object which implements the specialized APIs of the
 	 *         specified feature and version, if any, or <code>null</code> if
 	 *         there is no object which implements interfaces associated with
@@ -1584,11 +1608,12 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * nodes.
 	 * 
 	 * @param arg
-	 *            The node to compare equality with.
+	 *             The node to compare equality with.
 	 * @param deep
-	 *            If <code>true</code>, recursively compare the subtrees; if
-	 *            <code>false</code>, compare only the nodes themselves (and its
-	 *            attributes, if it is an <code>Element</code>).
+	 *             If <code>true</code>, recursively compare the subtrees; if
+	 *             <code>false</code>, compare only the nodes themselves (and
+	 *             its
+	 *             attributes, if it is an <code>Element</code>).
 	 * @return If the nodes, and possibly subtrees are equal, <code>true</code>
 	 *         otherwise <code>false</code>.
 	 * @since DOM Level 3
@@ -1664,77 +1689,82 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	public String lookupNamespaceURI(String specifiedPrefix) {
 		short type = this.getNodeType();
 		switch (type) {
-		case Node.ELEMENT_NODE: {
+			case Node.ELEMENT_NODE: {
 
-			String namespace = this.getNamespaceURI();
-			String prefix = this.getPrefix();
-			if (namespace != null) {
-				// REVISIT: is it possible that prefix is empty string?
-				if (specifiedPrefix == null && prefix == specifiedPrefix) {
-					// looking for default namespace
-					return namespace;
-				} else if (prefix != null && prefix.equals(specifiedPrefix)) {
-					// non default namespace
-					return namespace;
+				String namespace = this.getNamespaceURI();
+				String prefix = this.getPrefix();
+				if (namespace != null) {
+					// REVISIT: is it possible that prefix is empty string?
+					if (specifiedPrefix == null && prefix == specifiedPrefix) {
+						// looking for default namespace
+						return namespace;
+					} else if (prefix != null && prefix.equals(
+							specifiedPrefix)) {
+						// non default namespace
+						return namespace;
+					}
 				}
-			}
-			if (this.hasAttributes()) {
-				NamedNodeMap map = this.getAttributes();
-				int length = map.getLength();
-				for (int i = 0; i < length; i++) {
-					Node attr = map.item(i);
-					String attrPrefix = attr.getPrefix();
-					String value = attr.getNodeValue();
-					namespace = attr.getNamespaceURI();
-					if (namespace != null && namespace.equals("http://www.w3.org/2000/xmlns/")) {
-						// at this point we are dealing with DOM Level 2 nodes
-						// only
-						if (specifiedPrefix == null && attr.getNodeName().equals("xmlns")) {
-							// default namespace
-							return value;
-						} else if (attrPrefix != null && attrPrefix.equals("xmlns")
-								&& attr.getLocalName().equals(specifiedPrefix)) {
-							// non default namespace
-							return value;
+				if (this.hasAttributes()) {
+					NamedNodeMap map = this.getAttributes();
+					int length = map.getLength();
+					for (int i = 0; i < length; i++) {
+						Node attr = map.item(i);
+						String attrPrefix = attr.getPrefix();
+						String value = attr.getNodeValue();
+						namespace = attr.getNamespaceURI();
+						if (namespace != null && namespace.equals(
+								"http://www.w3.org/2000/xmlns/")) {
+							// at this point we are dealing with DOM Level 2 nodes
+							// only
+							if (specifiedPrefix == null && attr.getNodeName()
+									.equals("xmlns")) {
+								// default namespace
+								return value;
+							} else if (attrPrefix != null && attrPrefix.equals(
+									"xmlns") && attr.getLocalName().equals(
+											specifiedPrefix)) {
+								// non default namespace
+								return value;
+							}
 						}
 					}
 				}
-			}
-			/*
-			 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
-			 * (ancestor != null) { return
-			 * ancestor.lookupNamespaceURI(specifiedPrefix); }
-			 */
+				/*
+				 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
+				 * (ancestor != null) { return
+				 * ancestor.lookupNamespaceURI(specifiedPrefix); }
+				 */
 
-			return null;
-
-		}
-		/*
-		 * case Node.DOCUMENT_NODE : {
-		 * return((NodeImpl)((Document)this).getDocumentElement()).
-		 * lookupNamespaceURI(specifiedPrefix) ; }
-		 */
-		case Node.ENTITY_NODE:
-		case Node.NOTATION_NODE:
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-			// type is unknown
-			return null;
-		case Node.ATTRIBUTE_NODE: {
-			if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
-				return getOwnerElement().lookupNamespaceURI(specifiedPrefix);
+				return null;
 
 			}
-			return null;
-		}
-		default: {
 			/*
-			 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
-			 * (ancestor != null) { return
-			 * ancestor.lookupNamespaceURI(specifiedPrefix); }
+			 * case Node.DOCUMENT_NODE : {
+			 * return((NodeImpl)((Document)this).getDocumentElement()).
+			 * lookupNamespaceURI(specifiedPrefix) ; }
 			 */
-			return null;
-		}
+			case Node.ENTITY_NODE:
+			case Node.NOTATION_NODE:
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+				// type is unknown
+				return null;
+			case Node.ATTRIBUTE_NODE: {
+				if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
+					return getOwnerElement().lookupNamespaceURI(
+							specifiedPrefix);
+
+				}
+				return null;
+			}
+			default: {
+				/*
+				 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
+				 * (ancestor != null) { return
+				 * ancestor.lookupNamespaceURI(specifiedPrefix); }
+				 */
+				return null;
+			}
 
 		}
 	}
@@ -1744,7 +1774,7 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * is the default namespace or not.
 	 * 
 	 * @param namespaceURI
-	 *            The namespace URI to look for.
+	 *                     The namespace URI to look for.
 	 * @return <code>true</code> if the specified <code>namespaceURI</code> is
 	 *         the default namespace, <code>false</code> otherwise.
 	 * @since DOM Level 3
@@ -1755,7 +1785,6 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 		 * // REVISIT: remove casts when DOM L3 becomes REC. short type =
 		 * this.getNodeType(); switch (type) { case Node.ELEMENT_NODE: { String
 		 * namespace = this.getNamespaceURI(); String prefix = this.getPrefix();
-		 * 
 		 * // REVISIT: is it possible that prefix is empty string? if (prefix ==
 		 * null || prefix.length() == 0) { if (namespaceURI == null) { return
 		 * (namespace == namespaceURI); } return namespaceURI.equals(namespace);
@@ -1765,23 +1794,19 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 		 * "xmlns"); if (attr != null) { String value = attr.getNodeValue(); if
 		 * (namespaceURI == null) { return (namespace == value); } return
 		 * namespaceURI.equals(value); } }
-		 * 
 		 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if (ancestor
 		 * != null) { return ancestor.isDefaultNamespace(namespaceURI); } return
 		 * false; } case Node.DOCUMENT_NODE:{
 		 * return((NodeImpl)((Document)this).getDocumentElement()).
 		 * isDefaultNamespace(namespaceURI); }
-		 * 
 		 * case Node.ENTITY_NODE : case Node.NOTATION_NODE: case
 		 * Node.DOCUMENT_FRAGMENT_NODE: case Node.DOCUMENT_TYPE_NODE: // type is
 		 * unknown return false; case Node.ATTRIBUTE_NODE:{ if
 		 * (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) { return
 		 * ownerNode.isDefaultNamespace(namespaceURI);
-		 * 
 		 * } return false; } default:{ NodeImpl ancestor =
 		 * (NodeImpl)getElementAncestor(this); if (ancestor != null) { return
 		 * ancestor.isDefaultNamespace(namespaceURI); } return false; }
-		 * 
 		 * }
 		 */
 		return false;
@@ -1808,37 +1833,38 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 		short type = this.getNodeType();
 
 		switch (type) {
-		/*
-		 * case Node.ELEMENT_NODE: {
-		 * 
-		 * String namespace = this.getNamespaceURI(); // to flip out children
-		 * return lookupNamespacePrefix(namespaceURI, (ElementImpl)this); }
-		 * 
-		 * case Node.DOCUMENT_NODE:{
-		 * return((NodeImpl)((Document)this).getDocumentElement()).lookupPrefix(
-		 * namespaceURI); }
-		 */
-		case Node.ENTITY_NODE:
-		case Node.NOTATION_NODE:
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-			// type is unknown
-			return null;
-		case Node.ATTRIBUTE_NODE: {
-			if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
-				return getOwnerElement().lookupPrefix(namespaceURI);
-
-			}
-			return null;
-		}
-		default: {
 			/*
-			 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
-			 * (ancestor != null) { return ancestor.lookupPrefix(namespaceURI);
-			 * }
+			 * case Node.ELEMENT_NODE: {
+			 * String namespace = this.getNamespaceURI(); // to flip out
+			 * children
+			 * return lookupNamespacePrefix(namespaceURI, (ElementImpl)this); }
+			 * case Node.DOCUMENT_NODE:{
+			 * return((NodeImpl)((Document)this).getDocumentElement()).
+			 * lookupPrefix(
+			 * namespaceURI); }
 			 */
-			return null;
-		}
+			case Node.ENTITY_NODE:
+			case Node.NOTATION_NODE:
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+				// type is unknown
+				return null;
+			case Node.ATTRIBUTE_NODE: {
+				if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
+					return getOwnerElement().lookupPrefix(namespaceURI);
+
+				}
+				return null;
+			}
+			default: {
+				/*
+				 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
+				 * (ancestor != null) { return
+				 * ancestor.lookupPrefix(namespaceURI);
+				 * }
+				 */
+				return null;
+			}
 		}
 	}
 
@@ -1852,7 +1878,7 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * method on either reference always has exactly the same effect.
 	 * 
 	 * @param other
-	 *            The node to test against.
+	 *              The node to test against.
 	 * @return Returns <code>true</code> if the nodes are the same,
 	 *         <code>false</code> otherwise.
 	 * @since DOM Level 3
@@ -1900,12 +1926,15 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * </table>
 	 * 
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised when the node is
-	 *                readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+	 *                         is
+	 *                         readonly.
 	 * @exception DOMException
-	 *                DOMSTRING_SIZE_ERR: Raised when it would return more
-	 *                characters than fit in a <code>DOMString</code> variable
-	 *                on the implementation platform.
+	 *                         DOMSTRING_SIZE_ERR: Raised when it would return
+	 *                         more
+	 *                         characters than fit in a <code>DOMString</code>
+	 *                         variable
+	 *                         on the implementation platform.
 	 * @since DOM Level 3
 	 */
 	@Override
@@ -1950,12 +1979,15 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * </table>
 	 * 
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised when the node is
-	 *                readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+	 *                         is
+	 *                         readonly.
 	 * @exception DOMException
-	 *                DOMSTRING_SIZE_ERR: Raised when it would return more
-	 *                characters than fit in a <code>DOMString</code> variable
-	 *                on the implementation platform.
+	 *                         DOMSTRING_SIZE_ERR: Raised when it would return
+	 *                         more
+	 *                         characters than fit in a <code>DOMString</code>
+	 *                         variable
+	 *                         on the implementation platform.
 	 * @since DOM Level 3
 	 */
 	@Override
@@ -1968,7 +2000,7 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * document.
 	 * 
 	 * @param other
-	 *            The node to compare against this node.
+	 *              The node to compare against this node.
 	 * @return Returns how the given node is positioned relatively to this node.
 	 * @since DOM Level 3
 	 */
@@ -2010,7 +2042,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * DOM Level 3 Renaming node
 	 */
 	@Override
-	public Node renameNode(Node n, String namespaceURI, String name) throws DOMException {
+	public Node renameNode(Node n, String namespaceURI, String name)
+			throws DOMException {
 		return n;
 	}
 
@@ -2091,14 +2124,11 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	@Override
 	public Text replaceWholeText(String content) throws DOMException {
 		/*
-		 * 
 		 * if (needsSyncData()) { synchronizeData(); }
-		 * 
 		 * // make sure we can make the replacement if (!canModify(nextSibling))
 		 * { throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
 		 * DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
 		 * "NO_MODIFICATION_ALLOWED_ERR", null)); }
-		 * 
 		 * Node parent = this.getParentNode(); if (content == null ||
 		 * content.length() == 0) { // remove current node if (parent !=null) {
 		 * // check if node in the tree parent.removeChild(this); return null; }
@@ -2110,7 +2140,6 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 		 * sibling = currentNode.getNextSibling(); while ( sibling !=null) {
 		 * parent.removeChild(sibling); sibling = currentNode.getNextSibling();
 		 * }
-		 * 
 		 * return currentNode;
 		 */
 		return null; // Pending
@@ -2174,7 +2203,8 @@ public class DTMNodeProxy implements Node, Document, Text, Element, Attr, Proces
 	 * DOM Level 3: register the given attribute node as an ID attribute
 	 */
 	@Override
-	public void setIdAttributeNS(String namespaceURI, String localName, boolean makeId) {
+	public void setIdAttributeNS(String namespaceURI, String localName,
+			boolean makeId) {
 		// PENDING
 	}
 

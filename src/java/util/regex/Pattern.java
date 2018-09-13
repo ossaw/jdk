@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.regex;
@@ -1494,10 +1474,10 @@ public final class Pattern implements java.io.Serializable {
 	 * Compiles the given regular expression into a pattern.
 	 *
 	 * @param regex
-	 *            The expression to be compiled
+	 *              The expression to be compiled
 	 * @return the given regular expression compiled into a pattern
 	 * @throws PatternSyntaxException
-	 *             If the expression's syntax is invalid
+	 *                                If the expression's syntax is invalid
 	 */
 	public static Pattern compile(String regex) {
 		return new Pattern(regex, 0);
@@ -1508,23 +1488,25 @@ public final class Pattern implements java.io.Serializable {
 	 * flags.
 	 *
 	 * @param regex
-	 *            The expression to be compiled
+	 *              The expression to be compiled
 	 *
 	 * @param flags
-	 *            Match flags, a bit mask that may include
-	 *            {@link #CASE_INSENSITIVE}, {@link #MULTILINE}, {@link #DOTALL}
-	 *            , {@link #UNICODE_CASE}, {@link #CANON_EQ},
-	 *            {@link #UNIX_LINES}, {@link #LITERAL},
-	 *            {@link #UNICODE_CHARACTER_CLASS} and {@link #COMMENTS}
+	 *              Match flags, a bit mask that may include
+	 *              {@link #CASE_INSENSITIVE}, {@link #MULTILINE},
+	 *              {@link #DOTALL}
+	 *              , {@link #UNICODE_CASE}, {@link #CANON_EQ},
+	 *              {@link #UNIX_LINES}, {@link #LITERAL},
+	 *              {@link #UNICODE_CHARACTER_CLASS} and {@link #COMMENTS}
 	 *
 	 * @return the given regular expression compiled into a pattern with the
 	 *         given flags
 	 * @throws IllegalArgumentException
-	 *             If bit values other than those corresponding to the defined
-	 *             match flags are set in <tt>flags</tt>
+	 *                                  If bit values other than those
+	 *                                  corresponding to the defined
+	 *                                  match flags are set in <tt>flags</tt>
 	 *
 	 * @throws PatternSyntaxException
-	 *             If the expression's syntax is invalid
+	 *                                  If the expression's syntax is invalid
 	 */
 	public static Pattern compile(String regex, int flags) {
 		return new Pattern(regex, flags);
@@ -1556,7 +1538,7 @@ public final class Pattern implements java.io.Serializable {
 	 * Creates a matcher that will match the given input against this pattern.
 	 *
 	 * @param input
-	 *            The character sequence to be matched
+	 *              The character sequence to be matched
 	 *
 	 * @return A new matcher for this pattern
 	 */
@@ -1611,13 +1593,13 @@ public final class Pattern implements java.io.Serializable {
 	 * </p>
 	 *
 	 * @param regex
-	 *            The expression to be compiled
+	 *              The expression to be compiled
 	 *
 	 * @param input
-	 *            The character sequence to be matched
+	 *              The character sequence to be matched
 	 * @return whether or not the regular expression matches on the input
 	 * @throws PatternSyntaxException
-	 *             If the expression's syntax is invalid
+	 *                                If the expression's syntax is invalid
 	 */
 	public static boolean matches(String regex, CharSequence input) {
 		Pattern p = Pattern.compile(regex);
@@ -1700,10 +1682,10 @@ public final class Pattern implements java.io.Serializable {
 	 * </blockquote>
 	 *
 	 * @param input
-	 *            The character sequence to be split
+	 *              The character sequence to be split
 	 *
 	 * @param limit
-	 *            The result threshold, as described above
+	 *              The result threshold, as described above
 	 *
 	 * @return The array of strings computed by splitting the input around
 	 *         matches of this pattern
@@ -1726,7 +1708,8 @@ public final class Pattern implements java.io.Serializable {
 				matchList.add(match);
 				index = m.end();
 			} else if (matchList.size() == limit - 1) { // last one
-				String match = input.subSequence(index, input.length()).toString();
+				String match = input.subSequence(index, input.length())
+						.toString();
 				matchList.add(match);
 				index = m.end();
 			}
@@ -1783,7 +1766,7 @@ public final class Pattern implements java.io.Serializable {
 	 *
 	 *
 	 * @param input
-	 *            The character sequence to be split
+	 *              The character sequence to be split
 	 *
 	 * @return The array of strings computed by splitting the input around
 	 *         matches of this pattern
@@ -1805,7 +1788,7 @@ public final class Pattern implements java.io.Serializable {
 	 * special meaning.
 	 *
 	 * @param s
-	 *            The string to be literalized
+	 *          The string to be literalized
 	 * @return A literal string replacement
 	 * @since 1.5
 	 */
@@ -1894,7 +1877,8 @@ public final class Pattern implements java.io.Serializable {
 		for (int i = 0; i < patternLength;) {
 			int c = normalizedPattern.codePointAt(i);
 			StringBuilder sequenceBuffer;
-			if ((Character.getType(c) == Character.NON_SPACING_MARK) && (lastCodePoint != -1)) {
+			if ((Character.getType(c) == Character.NON_SPACING_MARK)
+					&& (lastCodePoint != -1)) {
 				sequenceBuffer = new StringBuilder();
 				sequenceBuffer.appendCodePoint(lastCodePoint);
 				sequenceBuffer.appendCodePoint(c);
@@ -1905,8 +1889,10 @@ public final class Pattern implements java.io.Serializable {
 					c = normalizedPattern.codePointAt(i);
 					sequenceBuffer.appendCodePoint(c);
 				}
-				String ea = produceEquivalentAlternation(sequenceBuffer.toString());
-				newPattern.setLength(newPattern.length() - Character.charCount(lastCodePoint));
+				String ea = produceEquivalentAlternation(sequenceBuffer
+						.toString());
+				newPattern.setLength(newPattern.length() - Character.charCount(
+						lastCodePoint));
 				newPattern.append("(?:").append(ea).append(")");
 			} else if (c == '[' && lastCodePoint != '\\') {
 				i = normalizeCharClass(newPattern, i);
@@ -1949,9 +1935,11 @@ public final class Pattern implements java.io.Serializable {
 						break;
 					c = normalizedPattern.codePointAt(i);
 				}
-				String ea = produceEquivalentAlternation(sequenceBuffer.toString());
+				String ea = produceEquivalentAlternation(sequenceBuffer
+						.toString());
 
-				charClass.setLength(charClass.length() - Character.charCount(lastCodePoint));
+				charClass.setLength(charClass.length() - Character.charCount(
+						lastCodePoint));
 				if (eq == null)
 					eq = new StringBuilder();
 				eq.append('|');
@@ -2086,7 +2074,8 @@ public final class Pattern implements java.io.Serializable {
 	private String composeOneStep(String input) {
 		int len = countChars(input, 0, 2);
 		String firstTwoCharacters = input.substring(0, len);
-		String result = Normalizer.normalize(firstTwoCharacters, Normalizer.Form.NFC);
+		String result = Normalizer.normalize(firstTwoCharacters,
+				Normalizer.Form.NFC);
 
 		if (result.equals(firstTwoCharacters))
 			return null;
@@ -2227,12 +2216,14 @@ public final class Pattern implements java.io.Serializable {
 		if (matchRoot instanceof Slice) {
 			root = BnM.optimize(matchRoot);
 			if (root == matchRoot) {
-				root = hasSupplementary ? new StartS(matchRoot) : new Start(matchRoot);
+				root = hasSupplementary ? new StartS(matchRoot)
+						: new Start(matchRoot);
 			}
 		} else if (matchRoot instanceof Begin || matchRoot instanceof First) {
 			root = matchRoot;
 		} else {
-			root = hasSupplementary ? new StartS(matchRoot) : new Start(matchRoot);
+			root = hasSupplementary ? new StartS(matchRoot)
+					: new Start(matchRoot);
 		}
 
 		// Release temporary storage
@@ -2443,7 +2434,8 @@ public final class Pattern implements java.io.Serializable {
 		if (has(UNIX_LINES)) {
 			return ch == '\n';
 		} else {
-			return (ch == '\n' || ch == '\r' || (ch | 1) == '\u2029' || ch == '\u0085');
+			return (ch == '\n' || ch == '\r' || (ch | 1) == '\u2029'
+					|| ch == '\u0085');
 		}
 	}
 
@@ -2489,7 +2481,8 @@ public final class Pattern implements java.io.Serializable {
 	 * unpaired surrogate.
 	 */
 	private static final boolean isSupplementary(int ch) {
-		return ch >= Character.MIN_SUPPLEMENTARY_CODE_POINT || Character.isSurrogate((char) ch);
+		return ch >= Character.MIN_SUPPLEMENTARY_CODE_POINT || Character
+				.isSurrogate((char) ch);
 	}
 
 	/**
@@ -2561,90 +2554,91 @@ public final class Pattern implements java.io.Serializable {
 		LOOP: for (;;) {
 			int ch = peek();
 			switch (ch) {
-			case '(':
-				// Because group handles its own closure,
-				// we need to treat it differently
-				node = group0();
-				// Check for comment or flag group
-				if (node == null)
-					continue;
-				if (head == null)
-					head = node;
-				else
-					tail.next = node;
-				// Double return: Tail was returned in root
-				tail = root;
-				continue;
-			case '[':
-				node = clazz(true);
-				break;
-			case '\\':
-				ch = nextEscaped();
-				if (ch == 'p' || ch == 'P') {
-					boolean oneLetter = true;
-					boolean comp = (ch == 'P');
-					ch = next(); // Consume { if present
-					if (ch != '{') {
-						unread();
-					} else {
-						oneLetter = false;
-					}
-					node = family(oneLetter, comp);
-				} else {
-					unread();
-					node = atom();
-				}
-				break;
-			case '^':
-				next();
-				if (has(MULTILINE)) {
-					if (has(UNIX_LINES))
-						node = new UnixCaret();
+				case '(':
+					// Because group handles its own closure,
+					// we need to treat it differently
+					node = group0();
+					// Check for comment or flag group
+					if (node == null)
+						continue;
+					if (head == null)
+						head = node;
 					else
-						node = new Caret();
-				} else {
-					node = new Begin();
-				}
-				break;
-			case '$':
-				next();
-				if (has(UNIX_LINES))
-					node = new UnixDollar(has(MULTILINE));
-				else
-					node = new Dollar(has(MULTILINE));
-				break;
-			case '.':
-				next();
-				if (has(DOTALL)) {
-					node = new All();
-				} else {
-					if (has(UNIX_LINES))
-						node = new UnixDot();
-					else {
-						node = new Dot();
+						tail.next = node;
+					// Double return: Tail was returned in root
+					tail = root;
+					continue;
+				case '[':
+					node = clazz(true);
+					break;
+				case '\\':
+					ch = nextEscaped();
+					if (ch == 'p' || ch == 'P') {
+						boolean oneLetter = true;
+						boolean comp = (ch == 'P');
+						ch = next(); // Consume { if present
+						if (ch != '{') {
+							unread();
+						} else {
+							oneLetter = false;
+						}
+						node = family(oneLetter, comp);
+					} else {
+						unread();
+						node = atom();
 					}
-				}
-				break;
-			case '|':
-			case ')':
-				break LOOP;
-			case ']': // Now interpreting dangling ] and } as literals
-			case '}':
-				node = atom();
-				break;
-			case '?':
-			case '*':
-			case '+':
-				next();
-				throw error("Dangling meta character '" + ((char) ch) + "'");
-			case 0:
-				if (cursor >= patternLength) {
+					break;
+				case '^':
+					next();
+					if (has(MULTILINE)) {
+						if (has(UNIX_LINES))
+							node = new UnixCaret();
+						else
+							node = new Caret();
+					} else {
+						node = new Begin();
+					}
+					break;
+				case '$':
+					next();
+					if (has(UNIX_LINES))
+						node = new UnixDollar(has(MULTILINE));
+					else
+						node = new Dollar(has(MULTILINE));
+					break;
+				case '.':
+					next();
+					if (has(DOTALL)) {
+						node = new All();
+					} else {
+						if (has(UNIX_LINES))
+							node = new UnixDot();
+						else {
+							node = new Dot();
+						}
+					}
+					break;
+				case '|':
+				case ')':
 					break LOOP;
-				}
-				// Fall through
-			default:
-				node = atom();
-				break;
+				case ']': // Now interpreting dangling ] and } as literals
+				case '}':
+					node = atom();
+					break;
+				case '?':
+				case '*':
+				case '+':
+					next();
+					throw error("Dangling meta character '" + ((char) ch)
+							+ "'");
+				case 0:
+					if (cursor >= patternLength) {
+						break LOOP;
+					}
+					// Fall through
+				default:
+					node = atom();
+					break;
 			}
 
 			node = closure(node);
@@ -2675,71 +2669,71 @@ public final class Pattern implements java.io.Serializable {
 		int ch = peek();
 		for (;;) {
 			switch (ch) {
-			case '*':
-			case '+':
-			case '?':
-			case '{':
-				if (first > 1) {
-					cursor = prev; // Unwind one character
-					first--;
-				}
-				break;
-			case '$':
-			case '.':
-			case '^':
-			case '(':
-			case '[':
-			case '|':
-			case ')':
-				break;
-			case '\\':
-				ch = nextEscaped();
-				if (ch == 'p' || ch == 'P') { // Property
-					if (first > 0) { // Slice is waiting; handle it first
-						unread();
-						break;
-					} else { // No slice; just return the family node
-						boolean comp = (ch == 'P');
-						boolean oneLetter = true;
-						ch = next(); // Consume { if present
-						if (ch != '{')
-							unread();
-						else
-							oneLetter = false;
-						return family(oneLetter, comp);
+				case '*':
+				case '+':
+				case '?':
+				case '{':
+					if (first > 1) {
+						cursor = prev; // Unwind one character
+						first--;
 					}
-				}
-				unread();
-				prev = cursor;
-				ch = escape(false, first == 0, false);
-				if (ch >= 0) {
+					break;
+				case '$':
+				case '.':
+				case '^':
+				case '(':
+				case '[':
+				case '|':
+				case ')':
+					break;
+				case '\\':
+					ch = nextEscaped();
+					if (ch == 'p' || ch == 'P') { // Property
+						if (first > 0) { // Slice is waiting; handle it first
+							unread();
+							break;
+						} else { // No slice; just return the family node
+							boolean comp = (ch == 'P');
+							boolean oneLetter = true;
+							ch = next(); // Consume { if present
+							if (ch != '{')
+								unread();
+							else
+								oneLetter = false;
+							return family(oneLetter, comp);
+						}
+					}
+					unread();
+					prev = cursor;
+					ch = escape(false, first == 0, false);
+					if (ch >= 0) {
+						append(ch, first);
+						first++;
+						if (isSupplementary(ch)) {
+							hasSupplementary = true;
+						}
+						ch = peek();
+						continue;
+					} else if (first == 0) {
+						return root;
+					}
+					// Unwind meta escape sequence
+					cursor = prev;
+					break;
+				case 0:
+					if (cursor >= patternLength) {
+						break;
+					}
+					// Fall through
+				default:
+					prev = cursor;
 					append(ch, first);
 					first++;
 					if (isSupplementary(ch)) {
 						hasSupplementary = true;
 					}
-					ch = peek();
+					ch = next();
 					continue;
-				} else if (first == 0) {
-					return root;
-				}
-				// Unwind meta escape sequence
-				cursor = prev;
-				break;
-			case 0:
-				if (cursor >= patternLength) {
-					break;
-				}
-				// Fall through
-			default:
-				prev = cursor;
-				append(ch, first);
-				first++;
-				if (isSupplementary(ch)) {
-					hasSupplementary = true;
-				}
-				ch = next();
-				continue;
 			}
 			break;
 		}
@@ -2770,29 +2764,29 @@ public final class Pattern implements java.io.Serializable {
 		while (!done) {
 			int ch = peek();
 			switch (ch) {
-			case '0':
-			case '1':
-			case '2':
-			case '3':
-			case '4':
-			case '5':
-			case '6':
-			case '7':
-			case '8':
-			case '9':
-				int newRefNum = (refNum * 10) + (ch - '0');
-				// Add another number if it doesn't make a group
-				// that doesn't exist
-				if (capturingGroupCount - 1 < newRefNum) {
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+					int newRefNum = (refNum * 10) + (ch - '0');
+					// Add another number if it doesn't make a group
+					// that doesn't exist
+					if (capturingGroupCount - 1 < newRefNum) {
+						done = true;
+						break;
+					}
+					refNum = newRefNum;
+					read();
+					break;
+				default:
 					done = true;
 					break;
-				}
-				refNum = newRefNum;
-				read();
-				break;
-			default:
-				done = true;
-				break;
 			}
 		}
 		if (has(CASE_INSENSITIVE))
@@ -2810,196 +2804,201 @@ public final class Pattern implements java.io.Serializable {
 	private int escape(boolean inclass, boolean create, boolean isrange) {
 		int ch = skip();
 		switch (ch) {
-		case '0':
-			return o();
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
-		case '6':
-		case '7':
-		case '8':
-		case '9':
-			if (inclass)
+			case '0':
+				return o();
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
+				if (inclass)
+					break;
+				if (create) {
+					root = ref((ch - '0'));
+				}
+				return -1;
+			case 'A':
+				if (inclass)
+					break;
+				if (create)
+					root = new Begin();
+				return -1;
+			case 'B':
+				if (inclass)
+					break;
+				if (create)
+					root = new Bound(Bound.NONE, has(UNICODE_CHARACTER_CLASS));
+				return -1;
+			case 'C':
 				break;
-			if (create) {
-				root = ref((ch - '0'));
-			}
-			return -1;
-		case 'A':
-			if (inclass)
+			case 'D':
+				if (create)
+					root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
+							UnicodeProp.DIGIT).complement()
+							: new Ctype(ASCII.DIGIT).complement();
+				return -1;
+			case 'E':
+			case 'F':
 				break;
-			if (create)
-				root = new Begin();
-			return -1;
-		case 'B':
-			if (inclass)
+			case 'G':
+				if (inclass)
+					break;
+				if (create)
+					root = new LastMatch();
+				return -1;
+			case 'H':
+				if (create)
+					root = new HorizWS().complement();
+				return -1;
+			case 'I':
+			case 'J':
+			case 'K':
+			case 'L':
+			case 'M':
+			case 'N':
+			case 'O':
+			case 'P':
+			case 'Q':
 				break;
-			if (create)
-				root = new Bound(Bound.NONE, has(UNICODE_CHARACTER_CLASS));
-			return -1;
-		case 'C':
-			break;
-		case 'D':
-			if (create)
-				root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.DIGIT).complement()
-						: new Ctype(ASCII.DIGIT).complement();
-			return -1;
-		case 'E':
-		case 'F':
-			break;
-		case 'G':
-			if (inclass)
+			case 'R':
+				if (inclass)
+					break;
+				if (create)
+					root = new LineEnding();
+				return -1;
+			case 'S':
+				if (create)
+					root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
+							UnicodeProp.WHITE_SPACE).complement()
+							: new Ctype(ASCII.SPACE).complement();
+				return -1;
+			case 'T':
+			case 'U':
 				break;
-			if (create)
-				root = new LastMatch();
-			return -1;
-		case 'H':
-			if (create)
-				root = new HorizWS().complement();
-			return -1;
-		case 'I':
-		case 'J':
-		case 'K':
-		case 'L':
-		case 'M':
-		case 'N':
-		case 'O':
-		case 'P':
-		case 'Q':
-			break;
-		case 'R':
-			if (inclass)
+			case 'V':
+				if (create)
+					root = new VertWS().complement();
+				return -1;
+			case 'W':
+				if (create)
+					root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
+							UnicodeProp.WORD).complement()
+							: new Ctype(ASCII.WORD).complement();
+				return -1;
+			case 'X':
+			case 'Y':
 				break;
-			if (create)
-				root = new LineEnding();
-			return -1;
-		case 'S':
-			if (create)
-				root = has(UNICODE_CHARACTER_CLASS)
-						? new Utype(UnicodeProp.WHITE_SPACE).complement()
-						: new Ctype(ASCII.SPACE).complement();
-			return -1;
-		case 'T':
-		case 'U':
-			break;
-		case 'V':
-			if (create)
-				root = new VertWS().complement();
-			return -1;
-		case 'W':
-			if (create)
-				root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.WORD).complement()
-						: new Ctype(ASCII.WORD).complement();
-			return -1;
-		case 'X':
-		case 'Y':
-			break;
-		case 'Z':
-			if (inclass)
+			case 'Z':
+				if (inclass)
+					break;
+				if (create) {
+					if (has(UNIX_LINES))
+						root = new UnixDollar(false);
+					else
+						root = new Dollar(false);
+				}
+				return -1;
+			case 'a':
+				return '\007';
+			case 'b':
+				if (inclass)
+					break;
+				if (create)
+					root = new Bound(Bound.BOTH, has(UNICODE_CHARACTER_CLASS));
+				return -1;
+			case 'c':
+				return c();
+			case 'd':
+				if (create)
+					root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
+							UnicodeProp.DIGIT) : new Ctype(ASCII.DIGIT);
+				return -1;
+			case 'e':
+				return '\033';
+			case 'f':
+				return '\f';
+			case 'g':
 				break;
-			if (create) {
-				if (has(UNIX_LINES))
-					root = new UnixDollar(false);
-				else
-					root = new Dollar(false);
-			}
-			return -1;
-		case 'a':
-			return '\007';
-		case 'b':
-			if (inclass)
+			case 'h':
+				if (create)
+					root = new HorizWS();
+				return -1;
+			case 'i':
+			case 'j':
 				break;
-			if (create)
-				root = new Bound(Bound.BOTH, has(UNICODE_CHARACTER_CLASS));
-			return -1;
-		case 'c':
-			return c();
-		case 'd':
-			if (create)
-				root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.DIGIT)
-						: new Ctype(ASCII.DIGIT);
-			return -1;
-		case 'e':
-			return '\033';
-		case 'f':
-			return '\f';
-		case 'g':
-			break;
-		case 'h':
-			if (create)
-				root = new HorizWS();
-			return -1;
-		case 'i':
-		case 'j':
-			break;
-		case 'k':
-			if (inclass)
+			case 'k':
+				if (inclass)
+					break;
+				if (read() != '<')
+					throw error(
+							"\\k is not followed by '<' for named capturing group");
+				String name = groupname(read());
+				if (!namedGroups().containsKey(name))
+					throw error("(named capturing group <" + name
+							+ "> does not exit");
+				if (create) {
+					if (has(CASE_INSENSITIVE))
+						root = new CIBackRef(namedGroups().get(name), has(
+								UNICODE_CASE));
+					else
+						root = new BackRef(namedGroups().get(name));
+				}
+				return -1;
+			case 'l':
+			case 'm':
 				break;
-			if (read() != '<')
-				throw error("\\k is not followed by '<' for named capturing group");
-			String name = groupname(read());
-			if (!namedGroups().containsKey(name))
-				throw error("(named capturing group <" + name + "> does not exit");
-			if (create) {
-				if (has(CASE_INSENSITIVE))
-					root = new CIBackRef(namedGroups().get(name), has(UNICODE_CASE));
-				else
-					root = new BackRef(namedGroups().get(name));
-			}
-			return -1;
-		case 'l':
-		case 'm':
-			break;
-		case 'n':
-			return '\n';
-		case 'o':
-		case 'p':
-		case 'q':
-			break;
-		case 'r':
-			return '\r';
-		case 's':
-			if (create)
-				root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.WHITE_SPACE)
-						: new Ctype(ASCII.SPACE);
-			return -1;
-		case 't':
-			return '\t';
-		case 'u':
-			return u();
-		case 'v':
-			// '\v' was implemented as VT/0x0B in releases < 1.8 (though
-			// undocumented). In JDK8 '\v' is specified as a predefined
-			// character class for all vertical whitespace characters.
-			// So [-1, root=VertWS node] pair is returned (instead of a
-			// single 0x0B). This breaks the range if '\v' is used as
-			// the start or end value, such as [\v-...] or [...-\v], in
-			// which a single definite value (0x0B) is expected. For
-			// compatibility concern '\013'/0x0B is returned if isrange.
-			if (isrange)
-				return '\013';
-			if (create)
-				root = new VertWS();
-			return -1;
-		case 'w':
-			if (create)
-				root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.WORD)
-						: new Ctype(ASCII.WORD);
-			return -1;
-		case 'x':
-			return x();
-		case 'y':
-			break;
-		case 'z':
-			if (inclass)
+			case 'n':
+				return '\n';
+			case 'o':
+			case 'p':
+			case 'q':
 				break;
-			if (create)
-				root = new End();
-			return -1;
-		default:
-			return ch;
+			case 'r':
+				return '\r';
+			case 's':
+				if (create)
+					root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
+							UnicodeProp.WHITE_SPACE) : new Ctype(ASCII.SPACE);
+				return -1;
+			case 't':
+				return '\t';
+			case 'u':
+				return u();
+			case 'v':
+				// '\v' was implemented as VT/0x0B in releases < 1.8 (though
+				// undocumented). In JDK8 '\v' is specified as a predefined
+				// character class for all vertical whitespace characters.
+				// So [-1, root=VertWS node] pair is returned (instead of a
+				// single 0x0B). This breaks the range if '\v' is used as
+				// the start or end value, such as [\v-...] or [...-\v], in
+				// which a single definite value (0x0B) is expected. For
+				// compatibility concern '\013'/0x0B is returned if isrange.
+				if (isrange)
+					return '\013';
+				if (create)
+					root = new VertWS();
+				return -1;
+			case 'w':
+				if (create)
+					root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
+							UnicodeProp.WORD) : new Ctype(ASCII.WORD);
+				return -1;
+			case 'x':
+				return x();
+			case 'y':
+				break;
+			case 'z':
+				if (inclass)
+					break;
+				if (create)
+					root = new End();
+				return -1;
+			default:
+				return ch;
 		}
 		throw error("Illegal/unsupported escape sequence");
 	}
@@ -3020,77 +3019,77 @@ public final class Pattern implements java.io.Serializable {
 		int ch = next();
 		for (;;) {
 			switch (ch) {
-			case '^':
-				// Negates if first char in a class, otherwise literal
-				if (firstInClass) {
-					if (temp[cursor - 1] != '[')
-						break;
-					ch = next();
-					include = !include;
-					continue;
-				} else {
-					// ^ not first in class, treat as literal
-					break;
-				}
-			case '[':
-				firstInClass = false;
-				node = clazz(true);
-				if (prev == null)
-					prev = node;
-				else
-					prev = union(prev, node);
-				ch = peek();
-				continue;
-			case '&':
-				firstInClass = false;
-				ch = next();
-				if (ch == '&') {
-					ch = next();
-					CharProperty rightNode = null;
-					while (ch != ']' && ch != '&') {
-						if (ch == '[') {
-							if (rightNode == null)
-								rightNode = clazz(true);
-							else
-								rightNode = union(rightNode, clazz(true));
-						} else { // abc&&def
-							unread();
-							rightNode = clazz(false);
-						}
-						ch = peek();
-					}
-					if (rightNode != null)
-						node = rightNode;
-					if (prev == null) {
-						if (rightNode == null)
-							throw error("Bad class syntax");
-						else
-							prev = rightNode;
+				case '^':
+					// Negates if first char in a class, otherwise literal
+					if (firstInClass) {
+						if (temp[cursor - 1] != '[')
+							break;
+						ch = next();
+						include = !include;
+						continue;
 					} else {
-						prev = intersection(prev, node);
+						// ^ not first in class, treat as literal
+						break;
 					}
-				} else {
-					// treat as a literal &
-					unread();
+				case '[':
+					firstInClass = false;
+					node = clazz(true);
+					if (prev == null)
+						prev = node;
+					else
+						prev = union(prev, node);
+					ch = peek();
+					continue;
+				case '&':
+					firstInClass = false;
+					ch = next();
+					if (ch == '&') {
+						ch = next();
+						CharProperty rightNode = null;
+						while (ch != ']' && ch != '&') {
+							if (ch == '[') {
+								if (rightNode == null)
+									rightNode = clazz(true);
+								else
+									rightNode = union(rightNode, clazz(true));
+							} else { // abc&&def
+								unread();
+								rightNode = clazz(false);
+							}
+							ch = peek();
+						}
+						if (rightNode != null)
+							node = rightNode;
+						if (prev == null) {
+							if (rightNode == null)
+								throw error("Bad class syntax");
+							else
+								prev = rightNode;
+						} else {
+							prev = intersection(prev, node);
+						}
+					} else {
+						// treat as a literal &
+						unread();
+						break;
+					}
+					continue;
+				case 0:
+					firstInClass = false;
+					if (cursor >= patternLength)
+						throw error("Unclosed character class");
 					break;
-				}
-				continue;
-			case 0:
-				firstInClass = false;
-				if (cursor >= patternLength)
-					throw error("Unclosed character class");
-				break;
-			case ']':
-				firstInClass = false;
-				if (prev != null) {
-					if (consume)
-						next();
-					return prev;
-				}
-				break;
-			default:
-				firstInClass = false;
-				break;
+				case ']':
+					firstInClass = false;
+					if (prev != null) {
+						if (consume)
+							next();
+						return prev;
+					}
+					break;
+				default:
+					firstInClass = false;
+					break;
 			}
 			node = range(bits);
 			if (include) {
@@ -3127,8 +3126,8 @@ public final class Pattern implements java.io.Serializable {
 		int d;
 		if (ch < 256 && !(has(CASE_INSENSITIVE) && has(UNICODE_CASE)
 				&& (ch == 0xff || ch == 0xb5 || ch == 0x49 || ch == 0x69 || // I
-																			// and
-																			// i
+																																			// and
+																																			// i
 						ch == 0x53 || ch == 0x73 || // S and s
 						ch == 0x4b || ch == 0x6b || // K and k
 						ch == 0xc5 || ch == 0xe5))) // A+ring
@@ -3234,8 +3233,8 @@ public final class Pattern implements java.io.Serializable {
 			} else if ("gc".equals(name) || "general_category".equals(name)) {
 				node = charPropertyNodeFor(value);
 			} else {
-				throw error("Unknown Unicode property {name=<" + name + ">, " + "value=<" + value
-						+ ">}");
+				throw error("Unknown Unicode property {name=<" + name + ">, "
+						+ "value=<" + value + ">}");
 			}
 		} else {
 			if (name.startsWith("In")) {
@@ -3312,7 +3311,8 @@ public final class Pattern implements java.io.Serializable {
 	private String groupname(int ch) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(Character.toChars(ch));
-		while (ASCII.isLower(ch = read()) || ASCII.isUpper(ch) || ASCII.isDigit(ch)) {
+		while (ASCII.isLower(ch = read()) || ASCII.isUpper(ch) || ASCII.isDigit(
+				ch)) {
 			sb.append(Character.toChars(ch));
 		}
 		if (sb.length() == 0)
@@ -3337,82 +3337,87 @@ public final class Pattern implements java.io.Serializable {
 		if (ch == '?') {
 			ch = skip();
 			switch (ch) {
-			case ':': // (?:xxx) pure group
-				head = createGroup(true);
-				tail = root;
-				head.next = expr(tail);
-				break;
-			case '=': // (?=xxx) and (?!xxx) lookahead
-			case '!':
-				head = createGroup(true);
-				tail = root;
-				head.next = expr(tail);
-				if (ch == '=') {
-					head = tail = new Pos(head);
-				} else {
-					head = tail = new Neg(head);
-				}
-				break;
-			case '>': // (?>xxx) independent group
-				head = createGroup(true);
-				tail = root;
-				head.next = expr(tail);
-				head = tail = new Ques(head, INDEPENDENT);
-				break;
-			case '<': // (?<xxx) look behind
-				ch = read();
-				if (ASCII.isLower(ch) || ASCII.isUpper(ch)) {
-					// named captured group
-					String name = groupname(ch);
-					if (namedGroups().containsKey(name))
-						throw error("Named capturing group <" + name + "> is already defined");
-					capturingGroup = true;
-					head = createGroup(false);
+				case ':': // (?:xxx) pure group
+					head = createGroup(true);
 					tail = root;
-					namedGroups().put(name, capturingGroupCount - 1);
 					head.next = expr(tail);
 					break;
-				}
-				int start = cursor;
-				head = createGroup(true);
-				tail = root;
-				head.next = expr(tail);
-				tail.next = lookbehindEnd;
-				TreeInfo info = new TreeInfo();
-				head.study(info);
-				if (info.maxValid == false) {
-					throw error("Look-behind group does not have " + "an obvious maximum length");
-				}
-				boolean hasSupplementary = findSupplementary(start, patternLength);
-				if (ch == '=') {
-					head = tail = (hasSupplementary
-							? new BehindS(head, info.maxLength, info.minLength)
-							: new Behind(head, info.maxLength, info.minLength));
-				} else if (ch == '!') {
-					head = tail = (hasSupplementary
-							? new NotBehindS(head, info.maxLength, info.minLength)
-							: new NotBehind(head, info.maxLength, info.minLength));
-				} else {
-					throw error("Unknown look-behind group");
-				}
-				break;
-			case '$':
-			case '@':
-				throw error("Unknown group type");
-			default: // (?xxx:) inlined match flags
-				unread();
-				addFlag();
-				ch = read();
-				if (ch == ')') {
-					return null; // Inline modifier only
-				}
-				if (ch != ':') {
-					throw error("Unknown inline modifier");
-				}
-				head = createGroup(true);
-				tail = root;
-				head.next = expr(tail);
-				break;
+				case '=': // (?=xxx) and (?!xxx) lookahead
+				case '!':
+					head = createGroup(true);
+					tail = root;
+					head.next = expr(tail);
+					if (ch == '=') {
+						head = tail = new Pos(head);
+					} else {
+						head = tail = new Neg(head);
+					}
+					break;
+				case '>': // (?>xxx) independent group
+					head = createGroup(true);
+					tail = root;
+					head.next = expr(tail);
+					head = tail = new Ques(head, INDEPENDENT);
+					break;
+				case '<': // (?<xxx) look behind
+					ch = read();
+					if (ASCII.isLower(ch) || ASCII.isUpper(ch)) {
+						// named captured group
+						String name = groupname(ch);
+						if (namedGroups().containsKey(name))
+							throw error("Named capturing group <" + name
+									+ "> is already defined");
+						capturingGroup = true;
+						head = createGroup(false);
+						tail = root;
+						namedGroups().put(name, capturingGroupCount - 1);
+						head.next = expr(tail);
+						break;
+					}
+					int start = cursor;
+					head = createGroup(true);
+					tail = root;
+					head.next = expr(tail);
+					tail.next = lookbehindEnd;
+					TreeInfo info = new TreeInfo();
+					head.study(info);
+					if (info.maxValid == false) {
+						throw error("Look-behind group does not have "
+								+ "an obvious maximum length");
+					}
+					boolean hasSupplementary = findSupplementary(start,
+							patternLength);
+					if (ch == '=') {
+						head = tail = (hasSupplementary ? new BehindS(head,
+								info.maxLength, info.minLength)
+								: new Behind(head, info.maxLength,
+										info.minLength));
+					} else if (ch == '!') {
+						head = tail = (hasSupplementary ? new NotBehindS(head,
+								info.maxLength, info.minLength)
+								: new NotBehind(head, info.maxLength,
+										info.minLength));
+					} else {
+						throw error("Unknown look-behind group");
+					}
+					break;
+				case '$':
+				case '@':
+					throw error("Unknown group type");
+				default: // (?xxx:) inlined match flags
+					unread();
+					addFlag();
+					ch = read();
+					if (ch == ')') {
+						return null; // Inline modifier only
+					}
+					if (ch != ':') {
+						throw error("Unknown inline modifier");
+					}
+					head = createGroup(true);
+					tail = root;
+					head.next = expr(tail);
+					break;
 			}
 		} else { // (xxx) a regular group
 			capturingGroup = true;
@@ -3460,9 +3465,9 @@ public final class Pattern implements java.io.Serializable {
 			TreeInfo info = new TreeInfo();
 			if (head.study(info)) { // Deterministic
 				GroupTail temp = (GroupTail) tail;
-				head = root = new GroupCurly(head.next, curly.cmin, curly.cmax, curly.type,
-						((GroupTail) tail).localIndex, ((GroupTail) tail).groupIndex,
-						capturingGroup);
+				head = root = new GroupCurly(head.next, curly.cmin, curly.cmax,
+						curly.type, ((GroupTail) tail).localIndex,
+						((GroupTail) tail).groupIndex, capturingGroup);
 				return head;
 			} else { // Non-deterministic
 				int temp = ((GroupHead) head).localIndex;
@@ -3509,35 +3514,35 @@ public final class Pattern implements java.io.Serializable {
 		int ch = peek();
 		for (;;) {
 			switch (ch) {
-			case 'i':
-				flags |= CASE_INSENSITIVE;
-				break;
-			case 'm':
-				flags |= MULTILINE;
-				break;
-			case 's':
-				flags |= DOTALL;
-				break;
-			case 'd':
-				flags |= UNIX_LINES;
-				break;
-			case 'u':
-				flags |= UNICODE_CASE;
-				break;
-			case 'c':
-				flags |= CANON_EQ;
-				break;
-			case 'x':
-				flags |= COMMENTS;
-				break;
-			case 'U':
-				flags |= (UNICODE_CHARACTER_CLASS | UNICODE_CASE);
-				break;
-			case '-': // subFlag then fall through
-				ch = next();
-				subFlag();
-			default:
-				return;
+				case 'i':
+					flags |= CASE_INSENSITIVE;
+					break;
+				case 'm':
+					flags |= MULTILINE;
+					break;
+				case 's':
+					flags |= DOTALL;
+					break;
+				case 'd':
+					flags |= UNIX_LINES;
+					break;
+				case 'u':
+					flags |= UNICODE_CASE;
+					break;
+				case 'c':
+					flags |= CANON_EQ;
+					break;
+				case 'x':
+					flags |= COMMENTS;
+					break;
+				case 'U':
+					flags |= (UNICODE_CHARACTER_CLASS | UNICODE_CASE);
+					break;
+				case '-': // subFlag then fall through
+					ch = next();
+					subFlag();
+				default:
+					return;
 			}
 			ch = next();
 		}
@@ -3552,31 +3557,31 @@ public final class Pattern implements java.io.Serializable {
 		int ch = peek();
 		for (;;) {
 			switch (ch) {
-			case 'i':
-				flags &= ~CASE_INSENSITIVE;
-				break;
-			case 'm':
-				flags &= ~MULTILINE;
-				break;
-			case 's':
-				flags &= ~DOTALL;
-				break;
-			case 'd':
-				flags &= ~UNIX_LINES;
-				break;
-			case 'u':
-				flags &= ~UNICODE_CASE;
-				break;
-			case 'c':
-				flags &= ~CANON_EQ;
-				break;
-			case 'x':
-				flags &= ~COMMENTS;
-				break;
-			case 'U':
-				flags &= ~(UNICODE_CHARACTER_CLASS | UNICODE_CASE);
-			default:
-				return;
+				case 'i':
+					flags &= ~CASE_INSENSITIVE;
+					break;
+				case 'm':
+					flags &= ~MULTILINE;
+					break;
+				case 's':
+					flags &= ~DOTALL;
+					break;
+				case 'd':
+					flags &= ~UNIX_LINES;
+					break;
+				case 'u':
+					flags &= ~UNICODE_CASE;
+					break;
+				case 'c':
+					flags &= ~CANON_EQ;
+					break;
+				case 'x':
+					flags &= ~COMMENTS;
+					break;
+				case 'U':
+					flags &= ~(UNICODE_CHARACTER_CLASS | UNICODE_CASE);
+				default:
+					return;
 			}
 			ch = next();
 		}
@@ -3601,77 +3606,77 @@ public final class Pattern implements java.io.Serializable {
 		Node atom;
 		int ch = peek();
 		switch (ch) {
-		case '?':
-			ch = next();
-			if (ch == '?') {
-				next();
-				return new Ques(prev, LAZY);
-			} else if (ch == '+') {
-				next();
-				return new Ques(prev, POSSESSIVE);
-			}
-			return new Ques(prev, GREEDY);
-		case '*':
-			ch = next();
-			if (ch == '?') {
-				next();
-				return new Curly(prev, 0, MAX_REPS, LAZY);
-			} else if (ch == '+') {
-				next();
-				return new Curly(prev, 0, MAX_REPS, POSSESSIVE);
-			}
-			return new Curly(prev, 0, MAX_REPS, GREEDY);
-		case '+':
-			ch = next();
-			if (ch == '?') {
-				next();
-				return new Curly(prev, 1, MAX_REPS, LAZY);
-			} else if (ch == '+') {
-				next();
-				return new Curly(prev, 1, MAX_REPS, POSSESSIVE);
-			}
-			return new Curly(prev, 1, MAX_REPS, GREEDY);
-		case '{':
-			ch = temp[cursor + 1];
-			if (ASCII.isDigit(ch)) {
-				skip();
-				int cmin = 0;
-				do {
-					cmin = cmin * 10 + (ch - '0');
-				} while (ASCII.isDigit(ch = read()));
-				int cmax = cmin;
-				if (ch == ',') {
-					ch = read();
-					cmax = MAX_REPS;
-					if (ch != '}') {
-						cmax = 0;
-						while (ASCII.isDigit(ch)) {
-							cmax = cmax * 10 + (ch - '0');
-							ch = read();
-						}
-					}
-				}
-				if (ch != '}')
-					throw error("Unclosed counted closure");
-				if (((cmin) | (cmax) | (cmax - cmin)) < 0)
-					throw error("Illegal repetition range");
-				Curly curly;
-				ch = peek();
+			case '?':
+				ch = next();
 				if (ch == '?') {
 					next();
-					curly = new Curly(prev, cmin, cmax, LAZY);
+					return new Ques(prev, LAZY);
 				} else if (ch == '+') {
 					next();
-					curly = new Curly(prev, cmin, cmax, POSSESSIVE);
-				} else {
-					curly = new Curly(prev, cmin, cmax, GREEDY);
+					return new Ques(prev, POSSESSIVE);
 				}
-				return curly;
-			} else {
-				throw error("Illegal repetition");
-			}
-		default:
-			return prev;
+				return new Ques(prev, GREEDY);
+			case '*':
+				ch = next();
+				if (ch == '?') {
+					next();
+					return new Curly(prev, 0, MAX_REPS, LAZY);
+				} else if (ch == '+') {
+					next();
+					return new Curly(prev, 0, MAX_REPS, POSSESSIVE);
+				}
+				return new Curly(prev, 0, MAX_REPS, GREEDY);
+			case '+':
+				ch = next();
+				if (ch == '?') {
+					next();
+					return new Curly(prev, 1, MAX_REPS, LAZY);
+				} else if (ch == '+') {
+					next();
+					return new Curly(prev, 1, MAX_REPS, POSSESSIVE);
+				}
+				return new Curly(prev, 1, MAX_REPS, GREEDY);
+			case '{':
+				ch = temp[cursor + 1];
+				if (ASCII.isDigit(ch)) {
+					skip();
+					int cmin = 0;
+					do {
+						cmin = cmin * 10 + (ch - '0');
+					} while (ASCII.isDigit(ch = read()));
+					int cmax = cmin;
+					if (ch == ',') {
+						ch = read();
+						cmax = MAX_REPS;
+						if (ch != '}') {
+							cmax = 0;
+							while (ASCII.isDigit(ch)) {
+								cmax = cmax * 10 + (ch - '0');
+								ch = read();
+							}
+						}
+					}
+					if (ch != '}')
+						throw error("Unclosed counted closure");
+					if (((cmin) | (cmax) | (cmax - cmin)) < 0)
+						throw error("Illegal repetition range");
+					Curly curly;
+					ch = peek();
+					if (ch == '?') {
+						next();
+						curly = new Curly(prev, cmin, cmax, LAZY);
+					} else if (ch == '+') {
+						next();
+						curly = new Curly(prev, cmin, cmax, POSSESSIVE);
+					} else {
+						curly = new Curly(prev, cmin, cmax, GREEDY);
+					}
+					return curly;
+				} else {
+					throw error("Illegal repetition");
+				}
+			default:
+				return prev;
 		}
 	}
 
@@ -3694,7 +3699,8 @@ public final class Pattern implements java.io.Serializable {
 			int m = read();
 			if (((m - '0') | ('7' - m)) >= 0) {
 				int o = read();
-				if ((((o - '0') | ('7' - o)) >= 0) && (((n - '0') | ('3' - n)) >= 0)) {
+				if ((((o - '0') | ('7' - o)) >= 0) && (((n - '0') | ('3'
+						- n)) >= 0)) {
 					return (n - '0') * 64 + (m - '0') * 8 + (o - '0');
 				}
 				unread();
@@ -3771,9 +3777,11 @@ public final class Pattern implements java.io.Serializable {
 	// Utility methods for code point support
 	//
 
-	private static final int countChars(CharSequence seq, int index, int lengthInCodePoints) {
+	private static final int countChars(CharSequence seq, int index,
+			int lengthInCodePoints) {
 		// optimization
-		if (lengthInCodePoints == 1 && !Character.isHighSurrogate(seq.charAt(index))) {
+		if (lengthInCodePoints == 1 && !Character.isHighSurrogate(seq.charAt(
+				index))) {
 			assert (index >= 0 && index < seq.length());
 			return 1;
 		}
@@ -3887,7 +3895,8 @@ public final class Pattern implements java.io.Serializable {
 		if (has(CASE_INSENSITIVE)) {
 			if (has(UNICODE_CASE)) {
 				for (int i = 0; i < count; i++) {
-					tmp[i] = Character.toLowerCase(Character.toUpperCase(buf[i]));
+					tmp[i] = Character.toLowerCase(Character.toUpperCase(
+							buf[i]));
 				}
 				return hasSupplementary ? new SliceUS(tmp) : new SliceU(tmp);
 			}
@@ -4028,7 +4037,8 @@ public final class Pattern implements java.io.Serializable {
 				// Optimization to move to the next character. This is
 				// faster than countChars(seq, i, 1).
 				if (Character.isHighSurrogate(seq.charAt(i++))) {
-					if (i < seq.length() && Character.isLowSurrogate(seq.charAt(i))) {
+					if (i < seq.length() && Character.isLowSurrogate(seq.charAt(
+							i))) {
 						i++;
 					}
 				}
@@ -4063,7 +4073,8 @@ public final class Pattern implements java.io.Serializable {
 	 */
 	static final class End extends Node {
 		boolean match(Matcher matcher, int i, CharSequence seq) {
-			int endIndex = (matcher.anchoringBounds) ? matcher.to : matcher.getTextLength();
+			int endIndex = (matcher.anchoringBounds) ? matcher.to
+					: matcher.getTextLength();
 			if (i == endIndex) {
 				matcher.hitEnd = true;
 				return next.match(matcher, i, seq);
@@ -4091,7 +4102,8 @@ public final class Pattern implements java.io.Serializable {
 			}
 			if (i > startIndex) {
 				char ch = seq.charAt(i - 1);
-				if (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029' && ch != '\u0085') {
+				if (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029'
+						&& ch != '\u0085') {
 					return false;
 				}
 				// Should treat /r/n as one newline
@@ -4161,7 +4173,8 @@ public final class Pattern implements java.io.Serializable {
 		}
 
 		boolean match(Matcher matcher, int i, CharSequence seq) {
-			int endIndex = (matcher.anchoringBounds) ? matcher.to : matcher.getTextLength();
+			int endIndex = (matcher.anchoringBounds) ? matcher.to
+					: matcher.getTextLength();
 			if (!multiline) {
 				if (i < endIndex - 2)
 					return false;
@@ -4190,7 +4203,8 @@ public final class Pattern implements java.io.Serializable {
 						return false;
 					if (multiline)
 						return next.match(matcher, i, seq);
-				} else if (ch == '\r' || ch == '\u0085' || (ch | 1) == '\u2029') {
+				} else if (ch == '\r' || ch == '\u0085' || (ch
+						| 1) == '\u2029') {
 					if (multiline)
 						return next.match(matcher, i, seq);
 				} else { // No line terminator, no match
@@ -4223,7 +4237,8 @@ public final class Pattern implements java.io.Serializable {
 		}
 
 		boolean match(Matcher matcher, int i, CharSequence seq) {
-			int endIndex = (matcher.anchoringBounds) ? matcher.to : matcher.getTextLength();
+			int endIndex = (matcher.anchoringBounds) ? matcher.to
+					: matcher.getTextLength();
 			if (i < endIndex) {
 				char ch = seq.charAt(i);
 				if (ch == '\n') {
@@ -4262,8 +4277,8 @@ public final class Pattern implements java.io.Serializable {
 			// (u+000Du+000A|[u+000Au+000Bu+000Cu+000Du+0085u+2028u+2029])
 			if (i < matcher.to) {
 				int ch = seq.charAt(i);
-				if (ch == 0x0A || ch == 0x0B || ch == 0x0C || ch == 0x85 || ch == 0x2028
-						|| ch == 0x2029)
+				if (ch == 0x0A || ch == 0x0B || ch == 0x0C || ch == 0x85
+						|| ch == 0x2028 || ch == 0x2029)
 					return next.match(matcher, i + 1, seq);
 				if (ch == 0x0D) {
 					i++;
@@ -4302,7 +4317,8 @@ public final class Pattern implements java.io.Serializable {
 		boolean match(Matcher matcher, int i, CharSequence seq) {
 			if (i < matcher.to) {
 				int ch = Character.codePointAt(seq, i);
-				return isSatisfiedBy(ch) && next.match(matcher, i + Character.charCount(ch), seq);
+				return isSatisfiedBy(ch) && next.match(matcher, i + Character
+						.charCount(ch), seq);
 			} else {
 				matcher.hitEnd = true;
 				return false;
@@ -4323,7 +4339,8 @@ public final class Pattern implements java.io.Serializable {
 	private static abstract class BmpCharProperty extends CharProperty {
 		boolean match(Matcher matcher, int i, CharSequence seq) {
 			if (i < matcher.to) {
-				return isSatisfiedBy(seq.charAt(i)) && next.match(matcher, i + 1, seq);
+				return isSatisfiedBy(seq.charAt(i)) && next.match(matcher, i
+						+ 1, seq);
 			} else {
 				matcher.hitEnd = true;
 				return false;
@@ -4389,7 +4406,8 @@ public final class Pattern implements java.io.Serializable {
 		}
 
 		boolean isSatisfiedBy(int ch) {
-			return lower == ch || lower == Character.toLowerCase(Character.toUpperCase(ch));
+			return lower == ch || lower == Character.toLowerCase(Character
+					.toUpperCase(ch));
 		}
 	}
 
@@ -4473,7 +4491,8 @@ public final class Pattern implements java.io.Serializable {
 	 */
 	static final class VertWS extends BmpCharProperty {
 		boolean isSatisfiedBy(int cp) {
-			return (cp >= 0x0A && cp <= 0x0D) || cp == 0x85 || cp == 0x2028 || cp == 0x2029;
+			return (cp >= 0x0A && cp <= 0x0D) || cp == 0x85 || cp == 0x2028
+					|| cp == 0x2029;
 		}
 	}
 
@@ -4482,8 +4501,9 @@ public final class Pattern implements java.io.Serializable {
 	 */
 	static final class HorizWS extends BmpCharProperty {
 		boolean isSatisfiedBy(int cp) {
-			return cp == 0x09 || cp == 0x20 || cp == 0xa0 || cp == 0x1680 || cp == 0x180e
-					|| cp >= 0x2000 && cp <= 0x200a || cp == 0x202f || cp == 0x205f || cp == 0x3000;
+			return cp == 0x09 || cp == 0x20 || cp == 0xa0 || cp == 0x1680
+					|| cp == 0x180e || cp >= 0x2000 && cp <= 0x200a
+					|| cp == 0x202f || cp == 0x205f || cp == 0x3000;
 		}
 	}
 
@@ -4570,7 +4590,8 @@ public final class Pattern implements java.io.Serializable {
 					return false;
 				}
 				int c = seq.charAt(i + j);
-				if (buf[j] != c && buf[j] != Character.toLowerCase(Character.toUpperCase(c)))
+				if (buf[j] != c && buf[j] != Character.toLowerCase(Character
+						.toUpperCase(c)))
 					return false;
 			}
 			return next.match(matcher, i + len, seq);
@@ -4674,22 +4695,23 @@ public final class Pattern implements java.io.Serializable {
 	 * Returns node for matching characters within an explicit value range in a
 	 * case insensitive manner.
 	 */
-	private CharProperty caseInsensitiveRangeFor(final int lower, final int upper) {
+	private CharProperty caseInsensitiveRangeFor(final int lower,
+			final int upper) {
 		if (has(UNICODE_CASE))
 			return new CharProperty() {
 				boolean isSatisfiedBy(int ch) {
 					if (inRange(lower, ch, upper))
 						return true;
 					int up = Character.toUpperCase(ch);
-					return inRange(lower, up, upper)
-							|| inRange(lower, Character.toLowerCase(up), upper);
+					return inRange(lower, up, upper) || inRange(lower, Character
+							.toLowerCase(up), upper);
 				}
 			};
 		return new CharProperty() {
 			boolean isSatisfiedBy(int ch) {
-				return inRange(lower, ch, upper)
-						|| ASCII.isAscii(ch) && (inRange(lower, ASCII.toUpper(ch), upper)
-								|| inRange(lower, ASCII.toLower(ch), upper));
+				return inRange(lower, ch, upper) || ASCII.isAscii(ch)
+						&& (inRange(lower, ASCII.toUpper(ch), upper) || inRange(
+								lower, ASCII.toLower(ch), upper));
 			}
 		};
 	}
@@ -4709,7 +4731,8 @@ public final class Pattern implements java.io.Serializable {
 	 */
 	static final class Dot extends CharProperty {
 		boolean isSatisfiedBy(int ch) {
-			return (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029' && ch != '\u0085');
+			return (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029'
+					&& ch != '\u0085');
 		}
 	}
 
@@ -4737,18 +4760,19 @@ public final class Pattern implements java.io.Serializable {
 
 		boolean match(Matcher matcher, int i, CharSequence seq) {
 			switch (type) {
-			case GREEDY:
-				return (atom.match(matcher, i, seq) && next.match(matcher, matcher.last, seq))
-						|| next.match(matcher, i, seq);
-			case LAZY:
-				return next.match(matcher, i, seq)
-						|| (atom.match(matcher, i, seq) && next.match(matcher, matcher.last, seq));
-			case POSSESSIVE:
-				if (atom.match(matcher, i, seq))
-					i = matcher.last;
-				return next.match(matcher, i, seq);
-			default:
-				return atom.match(matcher, i, seq) && next.match(matcher, matcher.last, seq);
+				case GREEDY:
+					return (atom.match(matcher, i, seq) && next.match(matcher,
+							matcher.last, seq)) || next.match(matcher, i, seq);
+				case LAZY:
+					return next.match(matcher, i, seq) || (atom.match(matcher,
+							i, seq) && next.match(matcher, matcher.last, seq));
+				case POSSESSIVE:
+					if (atom.match(matcher, i, seq))
+						i = matcher.last;
+					return next.match(matcher, i, seq);
+				default:
+					return atom.match(matcher, i, seq) && next.match(matcher,
+							matcher.last, seq);
 			}
 		}
 
@@ -4928,7 +4952,8 @@ public final class Pattern implements java.io.Serializable {
 		int groupIndex;
 		boolean capture;
 
-		GroupCurly(Node node, int cmin, int cmax, int type, int local, int group, boolean capture) {
+		GroupCurly(Node node, int cmin, int cmax, int type, int local,
+				int group, boolean capture) {
 			this.atom = node;
 			this.type = type;
 			this.cmin = cmin;
@@ -5133,8 +5158,7 @@ public final class Pattern implements java.io.Serializable {
 	 * TreeInfo of the "next".
 	 */
 	static final class BranchConn extends Node {
-		BranchConn() {
-		};
+		BranchConn() {};
 
 		boolean match(Matcher matcher, int i, CharSequence seq) {
 			return next.match(matcher, i, seq);
@@ -5257,7 +5281,8 @@ public final class Pattern implements java.io.Serializable {
 		}
 
 		boolean match(Matcher matcher, int i, CharSequence seq) {
-			return head.matchRef(matcher, i, seq) && next.match(matcher, matcher.last, seq);
+			return head.matchRef(matcher, i, seq) && next.match(matcher,
+					matcher.last, seq);
 		}
 
 		boolean study(TreeInfo info) {
@@ -5544,7 +5569,8 @@ public final class Pattern implements java.io.Serializable {
 					if (doUnicodeCase) {
 						int cc1 = Character.toUpperCase(c1);
 						int cc2 = Character.toUpperCase(c2);
-						if (cc1 != cc2 && Character.toLowerCase(cc1) != Character.toLowerCase(cc2))
+						if (cc1 != cc2 && Character.toLowerCase(
+								cc1) != Character.toLowerCase(cc2))
 							return false;
 					} else {
 						if (ASCII.toLower(c1) != ASCII.toLower(c2))
@@ -5578,7 +5604,8 @@ public final class Pattern implements java.io.Serializable {
 
 		boolean match(Matcher matcher, int i, CharSequence seq) {
 			if (atom instanceof BnM) {
-				return atom.match(matcher, i, seq) && next.match(matcher, matcher.last, seq);
+				return atom.match(matcher, i, seq) && next.match(matcher,
+						matcher.last, seq);
 			}
 			for (;;) {
 				if (i > matcher.to) {
@@ -5844,7 +5871,8 @@ public final class Pattern implements java.io.Serializable {
 	/**
 	 * Returns the set union of two CharProperty nodes.
 	 */
-	private static CharProperty union(final CharProperty lhs, final CharProperty rhs) {
+	private static CharProperty union(final CharProperty lhs,
+			final CharProperty rhs) {
 		return new CharProperty() {
 			boolean isSatisfiedBy(int ch) {
 				return lhs.isSatisfiedBy(ch) || rhs.isSatisfiedBy(ch);
@@ -5855,7 +5883,8 @@ public final class Pattern implements java.io.Serializable {
 	/**
 	 * Returns the set intersection of two CharProperty nodes.
 	 */
-	private static CharProperty intersection(final CharProperty lhs, final CharProperty rhs) {
+	private static CharProperty intersection(final CharProperty lhs,
+			final CharProperty rhs) {
 		return new CharProperty() {
 			boolean isSatisfiedBy(int ch) {
 				return lhs.isSatisfiedBy(ch) && rhs.isSatisfiedBy(ch);
@@ -5866,7 +5895,8 @@ public final class Pattern implements java.io.Serializable {
 	/**
 	 * Returns the set difference of two CharProperty nodes.
 	 */
-	private static CharProperty setDifference(final CharProperty lhs, final CharProperty rhs) {
+	private static CharProperty setDifference(final CharProperty lhs,
+			final CharProperty rhs) {
 		return new CharProperty() {
 			boolean isSatisfiedBy(int ch) {
 				return !rhs.isSatisfiedBy(ch) && lhs.isSatisfiedBy(ch);
@@ -5910,14 +5940,16 @@ public final class Pattern implements java.io.Serializable {
 			}
 			if (i > startIndex) {
 				ch = Character.codePointBefore(seq, i);
-				left = (isWord(ch) || ((Character.getType(ch) == Character.NON_SPACING_MARK)
-						&& hasBaseCharacter(matcher, i - 1, seq)));
+				left = (isWord(ch) || ((Character.getType(
+						ch) == Character.NON_SPACING_MARK) && hasBaseCharacter(
+								matcher, i - 1, seq)));
 			}
 			boolean right = false;
 			if (i < endIndex) {
 				ch = Character.codePointAt(seq, i);
-				right = (isWord(ch) || ((Character.getType(ch) == Character.NON_SPACING_MARK)
-						&& hasBaseCharacter(matcher, i, seq)));
+				right = (isWord(ch) || ((Character.getType(
+						ch) == Character.NON_SPACING_MARK) && hasBaseCharacter(
+								matcher, i, seq)));
 			} else {
 				// Tried to access char past the end
 				matcher.hitEnd = true;
@@ -5928,7 +5960,8 @@ public final class Pattern implements java.io.Serializable {
 		}
 
 		boolean match(Matcher matcher, int i, CharSequence seq) {
-			return (check(matcher, i, seq) & type) > 0 && next.match(matcher, i, seq);
+			return (check(matcher, i, seq) & type) > 0 && next.match(matcher, i,
+					seq);
 		}
 	}
 
@@ -5936,7 +5969,8 @@ public final class Pattern implements java.io.Serializable {
 	 * Non spacing marks only count as word characters in bounds calculations if
 	 * they have a base character.
 	 */
-	private static boolean hasBaseCharacter(Matcher matcher, int i, CharSequence seq) {
+	private static boolean hasBaseCharacter(Matcher matcher, int i,
+			CharSequence seq) {
 		int start = (!matcher.transparentBounds) ? matcher.from : 0;
 		for (int x = i; x >= start; x--) {
 			int ch = Character.codePointAt(seq, x);
@@ -6113,13 +6147,15 @@ public final class Pattern implements java.io.Serializable {
 			NEXT: while (i <= last) {
 				// Loop over pattern from right to left
 				int ch;
-				for (int j = countChars(seq, i, patternLength), x = patternLength
-						- 1; j > 0; j -= Character.charCount(ch), x--) {
+				for (int j = countChars(seq, i,
+						patternLength), x = patternLength
+								- 1; j > 0; j -= Character.charCount(ch), x--) {
 					ch = Character.codePointBefore(seq, i + j);
 					if (ch != src[x]) {
 						// Shift search to the right by the maximum of the
 						// bad character shift and the good suffix shift
-						int n = Math.max(x + 1 - lastOcc[ch & 0x7F], optoSft[x]);
+						int n = Math.max(x + 1 - lastOcc[ch & 0x7F],
+								optoSft[x]);
 						i += countChars(seq, i, n);
 						continue NEXT;
 					}
@@ -6169,7 +6205,8 @@ public final class Pattern implements java.io.Serializable {
 			});
 		}
 
-		private static void defRange(String name, final int lower, final int upper) {
+		private static void defRange(String name, final int lower,
+				final int upper) {
 			map.put(name, new CharPropertyFactory() {
 				CharProperty make() {
 					return rangeFor(lower, upper);
@@ -6185,7 +6222,8 @@ public final class Pattern implements java.io.Serializable {
 			});
 		}
 
-		private static abstract class CloneableProperty extends CharProperty implements Cloneable {
+		private static abstract class CloneableProperty extends CharProperty
+				implements Cloneable {
 			public CloneableProperty clone() {
 				try {
 					return (CloneableProperty) super.clone();
@@ -6238,34 +6276,43 @@ public final class Pattern implements java.io.Serializable {
 			defCategory("So", 1 << Character.OTHER_SYMBOL);
 			defCategory("Pi", 1 << Character.INITIAL_QUOTE_PUNCTUATION);
 			defCategory("Pf", 1 << Character.FINAL_QUOTE_PUNCTUATION);
-			defCategory("L",
-					((1 << Character.UPPERCASE_LETTER) | (1 << Character.LOWERCASE_LETTER)
-							| (1 << Character.TITLECASE_LETTER) | (1 << Character.MODIFIER_LETTER)
-							| (1 << Character.OTHER_LETTER)));
-			defCategory("M", ((1 << Character.NON_SPACING_MARK) | (1 << Character.ENCLOSING_MARK)
+			defCategory("L", ((1 << Character.UPPERCASE_LETTER)
+					| (1 << Character.LOWERCASE_LETTER)
+					| (1 << Character.TITLECASE_LETTER)
+					| (1 << Character.MODIFIER_LETTER)
+					| (1 << Character.OTHER_LETTER)));
+			defCategory("M", ((1 << Character.NON_SPACING_MARK)
+					| (1 << Character.ENCLOSING_MARK)
 					| (1 << Character.COMBINING_SPACING_MARK)));
-			defCategory("N", ((1 << Character.DECIMAL_DIGIT_NUMBER) | (1 << Character.LETTER_NUMBER)
+			defCategory("N", ((1 << Character.DECIMAL_DIGIT_NUMBER)
+					| (1 << Character.LETTER_NUMBER)
 					| (1 << Character.OTHER_NUMBER)));
-			defCategory("Z", ((1 << Character.SPACE_SEPARATOR) | (1 << Character.LINE_SEPARATOR)
+			defCategory("Z", ((1 << Character.SPACE_SEPARATOR)
+					| (1 << Character.LINE_SEPARATOR)
 					| (1 << Character.PARAGRAPH_SEPARATOR)));
 			defCategory("C", ((1 << Character.CONTROL) | (1 << Character.FORMAT)
-					| (1 << Character.PRIVATE_USE) | (1 << Character.SURROGATE))); // Other
-			defCategory("P",
-					((1 << Character.DASH_PUNCTUATION) | (1 << Character.START_PUNCTUATION)
-							| (1 << Character.END_PUNCTUATION)
-							| (1 << Character.CONNECTOR_PUNCTUATION)
-							| (1 << Character.OTHER_PUNCTUATION)
-							| (1 << Character.INITIAL_QUOTE_PUNCTUATION)
-							| (1 << Character.FINAL_QUOTE_PUNCTUATION)));
-			defCategory("S", ((1 << Character.MATH_SYMBOL) | (1 << Character.CURRENCY_SYMBOL)
-					| (1 << Character.MODIFIER_SYMBOL) | (1 << Character.OTHER_SYMBOL)));
-			defCategory("LC", ((1 << Character.UPPERCASE_LETTER) | (1 << Character.LOWERCASE_LETTER)
+					| (1 << Character.PRIVATE_USE)
+					| (1 << Character.SURROGATE))); // Other
+			defCategory("P", ((1 << Character.DASH_PUNCTUATION)
+					| (1 << Character.START_PUNCTUATION)
+					| (1 << Character.END_PUNCTUATION)
+					| (1 << Character.CONNECTOR_PUNCTUATION)
+					| (1 << Character.OTHER_PUNCTUATION)
+					| (1 << Character.INITIAL_QUOTE_PUNCTUATION)
+					| (1 << Character.FINAL_QUOTE_PUNCTUATION)));
+			defCategory("S", ((1 << Character.MATH_SYMBOL)
+					| (1 << Character.CURRENCY_SYMBOL)
+					| (1 << Character.MODIFIER_SYMBOL)
+					| (1 << Character.OTHER_SYMBOL)));
+			defCategory("LC", ((1 << Character.UPPERCASE_LETTER)
+					| (1 << Character.LOWERCASE_LETTER)
 					| (1 << Character.TITLECASE_LETTER)));
-			defCategory("LD",
-					((1 << Character.UPPERCASE_LETTER) | (1 << Character.LOWERCASE_LETTER)
-							| (1 << Character.TITLECASE_LETTER) | (1 << Character.MODIFIER_LETTER)
-							| (1 << Character.OTHER_LETTER)
-							| (1 << Character.DECIMAL_DIGIT_NUMBER)));
+			defCategory("LD", ((1 << Character.UPPERCASE_LETTER)
+					| (1 << Character.LOWERCASE_LETTER)
+					| (1 << Character.TITLECASE_LETTER)
+					| (1 << Character.MODIFIER_LETTER)
+					| (1 << Character.OTHER_LETTER)
+					| (1 << Character.DECIMAL_DIGIT_NUMBER)));
 			defRange("L1", 0x00, 0xFF); // Latin-1
 			map.put("all", new CharPropertyFactory() {
 				CharProperty make() {
@@ -6421,7 +6468,7 @@ public final class Pattern implements java.io.Serializable {
 	 * terminal stream operation is undefined.
 	 *
 	 * @param input
-	 *            The character sequence to be split
+	 *              The character sequence to be split
 	 *
 	 * @return The stream of strings computed by splitting the input around
 	 *         matches of this pattern
@@ -6467,7 +6514,8 @@ public final class Pattern implements java.io.Serializable {
 				// Consume the next matching element
 				// Count sequence of matching empty elements
 				while (matcher.find()) {
-					nextElement = input.subSequence(current, matcher.start()).toString();
+					nextElement = input.subSequence(current, matcher.start())
+							.toString();
 					current = matcher.end();
 					if (!nextElement.isEmpty()) {
 						return true;
@@ -6480,7 +6528,8 @@ public final class Pattern implements java.io.Serializable {
 				}
 
 				// Consume last matching element
-				nextElement = input.subSequence(current, input.length()).toString();
+				nextElement = input.subSequence(current, input.length())
+						.toString();
 				current = input.length();
 				if (!nextElement.isEmpty()) {
 					return true;
@@ -6492,7 +6541,8 @@ public final class Pattern implements java.io.Serializable {
 				}
 			}
 		}
-		return StreamSupport.stream(Spliterators.spliteratorUnknownSize(new MatcherIterator(),
-				Spliterator.ORDERED | Spliterator.NONNULL), false);
+		return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
+				new MatcherIterator(), Spliterator.ORDERED
+						| Spliterator.NONNULL), false);
 	}
 }

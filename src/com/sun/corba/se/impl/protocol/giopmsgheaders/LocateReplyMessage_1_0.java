@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -47,7 +27,8 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateReplyMessage_1_0 extends Message_1_0 implements LocateReplyMessage {
+public final class LocateReplyMessage_1_0 extends Message_1_0 implements
+		LocateReplyMessage {
 
 	// Instance variables
 
@@ -62,7 +43,8 @@ public final class LocateReplyMessage_1_0 extends Message_1_0 implements LocateR
 		this.orb = orb;
 	}
 
-	LocateReplyMessage_1_0(ORB orb, int _request_id, int _locate_status, IOR _ior) {
+	LocateReplyMessage_1_0(ORB orb, int _request_id, int _locate_status,
+			IOR _ior) {
 		super(Message.GIOPBigMagic, false, Message.GIOPLocateReply, 0);
 		this.orb = orb;
 		request_id = _request_id;
@@ -119,14 +101,15 @@ public final class LocateReplyMessage_1_0 extends Message_1_0 implements LocateR
 
 	public static void isValidReplyStatus(int replyStatus) {
 		switch (replyStatus) {
-		case UNKNOWN_OBJECT:
-		case OBJECT_HERE:
-		case OBJECT_FORWARD:
-			break;
-		default:
-			ORBUtilSystemException localWrapper = ORBUtilSystemException
-					.get(CORBALogDomains.RPC_PROTOCOL);
-			throw localWrapper.illegalReplyStatus(CompletionStatus.COMPLETED_MAYBE);
+			case UNKNOWN_OBJECT:
+			case OBJECT_HERE:
+			case OBJECT_FORWARD:
+				break;
+			default:
+				ORBUtilSystemException localWrapper = ORBUtilSystemException
+						.get(CORBALogDomains.RPC_PROTOCOL);
+				throw localWrapper.illegalReplyStatus(
+						CompletionStatus.COMPLETED_MAYBE);
 		}
 	}
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,49 +31,37 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 
 	/*
 	 * General notes to translators:
-	 *
 	 * This file contains error and warning messages related to XPath Error
 	 * Handling.
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 8) The context node is the node in the document with respect to which an
 	 * XPath expression is being evaluated.
-	 *
 	 * 9) An iterator is an object that traverses nodes in the tree, one at a
 	 * time.
-	 *
 	 * 10) NCName is an XML term used to describe a name that does not contain a
 	 * colon (a "no-colon name").
-	 *
 	 * 11) QName is an XML term meaning "qualified name".
 	 */
 
@@ -351,7 +336,8 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 			{ ER_UNKNOWN_OPCODE,
 					"\uC624\uB958! \uC54C \uC218 \uC5C6\uB294 \uC791\uC5C5 \uCF54\uB4DC: {0}" },
 
-			{ ER_EXTRA_ILLEGAL_TOKENS, "\uC798\uBABB\uB41C \uCD94\uAC00 \uD1A0\uD070: {0}" },
+			{ ER_EXTRA_ILLEGAL_TOKENS,
+					"\uC798\uBABB\uB41C \uCD94\uAC00 \uD1A0\uD070: {0}" },
 
 			{ ER_EXPECTED_DOUBLE_QUOTE,
 					"\uB9AC\uD130\uB7F4\uC758 \uB530\uC634\uD45C\uAC00 \uC798\uBABB \uC9C0\uC815\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uD070 \uB530\uC634\uD45C\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
@@ -380,7 +366,8 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 			{ ER_PREDICATE_ILLEGAL_SYNTAX,
 					"'..[predicate]' \uB610\uB294 '.[predicate]'\uB294 \uC798\uBABB\uB41C \uAD6C\uBB38\uC785\uB2C8\uB2E4. \uB300\uC2E0 'self::node()[predicate]'\uB97C \uC0AC\uC6A9\uD558\uC2ED\uC2DC\uC624." },
 
-			{ ER_ILLEGAL_AXIS_NAME, "\uC798\uBABB\uB41C \uCD95 \uC774\uB984: {0}" },
+			{ ER_ILLEGAL_AXIS_NAME,
+					"\uC798\uBABB\uB41C \uCD95 \uC774\uB984: {0}" },
 
 			{ ER_UNKNOWN_NODETYPE, "\uC54C \uC218 \uC5C6\uB294 nodetype: {0}" },
 
@@ -399,7 +386,8 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 			{ ER_COULDNOT_FIND_ENDOP_AFTER_OPLOCATIONPATH,
 					"\uC624\uB958! OP_LOCATIONPATH \uB4A4\uC5D0\uC11C ENDOP\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-			{ ER_ERROR_OCCURED, "\uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!" },
+			{ ER_ERROR_OCCURED,
+					"\uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!" },
 
 			{ ER_ILLEGAL_VARIABLE_REFERENCE,
 					"\uBCC0\uC218\uC5D0 \uB300\uD574 \uC81C\uACF5\uB41C VariableReference\uAC00 \uCEE8\uD14D\uC2A4\uD2B8\uC5D0\uC11C \uBC97\uC5B4\uB098\uAC70\uB098 \uC815\uC758\uB97C \uD3EC\uD568\uD558\uC9C0 \uC5C6\uC2B5\uB2C8\uB2E4! \uC774\uB984 = {0}" },
@@ -459,7 +447,8 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 			{ ER_CANNOT_CREATE_URL,
 					"{0}\uC5D0 \uB300\uD55C URL\uC744 \uC0DD\uC131\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-			{ ER_XPATH_READOBJECT, "XPath.readObject\uC5D0 \uC624\uB958 \uBC1C\uC0DD: {0}" },
+			{ ER_XPATH_READOBJECT,
+					"XPath.readObject\uC5D0 \uC624\uB958 \uBC1C\uC0DD: {0}" },
 
 			{ ER_FUNCTION_TOKEN_NOT_FOUND,
 					"\uD568\uC218 \uD1A0\uD070\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
@@ -802,17 +791,22 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 					"\uC9C0\uC6D0\uB418\uC9C0 \uC54A\uB294 \uC778\uCF54\uB529: {0}" },
 
 			// Other miscellaneous text used inside the code...
-			{ "ui_language", "ko" }, { "help_language", "ko" }, { "language", "ko" },
-			{ "BAD_CODE",
-					"createMessage\uC5D0 \uB300\uD55C \uB9E4\uAC1C\uBCC0\uC218\uAC00 \uBC94\uC704\uB97C \uBC97\uC5B4\uB0AC\uC2B5\uB2C8\uB2E4." },
+			{ "ui_language", "ko" }, { "help_language", "ko" }, { "language",
+					"ko" }, { "BAD_CODE",
+							"createMessage\uC5D0 \uB300\uD55C \uB9E4\uAC1C\uBCC0\uC218\uAC00 \uBC94\uC704\uB97C \uBC97\uC5B4\uB0AC\uC2B5\uB2C8\uB2E4." },
 			{ "FORMAT_FAILED",
 					"messageFormat \uD638\uCD9C \uC911 \uC608\uC678\uC0AC\uD56D\uC774 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4." },
-			{ "version", ">>>>>>> Xalan \uBC84\uC804 " }, { "version2", "<<<<<<<" },
-			{ "yes", "\uC608" }, { "line", "\uD589 \uBC88\uD638" },
-			{ "column", "\uC5F4 \uBC88\uD638" }, { "xsldone", "XSLProcessor: \uC644\uB8CC" },
-			{ "xpath_option", "XPath \uC635\uC158: " }, { "optionIN", "   [-in inputXMLURL]" },
-			{ "optionSelect", "   [-select XPath \uD45C\uD604\uC2DD]" },
-			{ "optionMatch",
+			{ "version", ">>>>>>> Xalan \uBC84\uC804 " }, { "version2",
+					"<<<<<<<" }, { "yes", "\uC608" }, { "line",
+							"\uD589 \uBC88\uD638" }, { "column",
+									"\uC5F4 \uBC88\uD638" }, { "xsldone",
+											"XSLProcessor: \uC644\uB8CC" }, {
+													"xpath_option",
+													"XPath \uC635\uC158: " }, {
+															"optionIN",
+															"   [-in inputXMLURL]" },
+			{ "optionSelect", "   [-select XPath \uD45C\uD604\uC2DD]" }, {
+					"optionMatch",
 					"   [-match \uC77C\uCE58 \uD328\uD134(\uC77C\uCE58 \uC9C4\uB2E8\uC758 \uACBD\uC6B0)]" },
 			{ "optionAnyExpr",
 					"\uB610\uB294 XPath \uD45C\uD604\uC2DD\uC774 \uC9C4\uB2E8 \uB364\uD504\uB97C \uC218\uD589\uD569\uB2C8\uB2E4." },
@@ -824,8 +818,10 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 					"\uD074\uB798\uC2A4 \uACBD\uB85C\uB97C \uD655\uC778\uD558\uC2ED\uC2DC\uC624." },
 			{ "noParsermsg4",
 					"IBM\uC758 Java\uC6A9 XML \uAD6C\uBB38 \uBD84\uC11D\uAE30\uAC00 \uC5C6\uC744 \uACBD\uC6B0 \uB2E4\uC74C \uC704\uCE58\uC5D0\uC11C \uB2E4\uC6B4\uB85C\uB4DC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." },
-			{ "noParsermsg5", "IBM AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
+			{ "noParsermsg5",
+					"IBM AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
+			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
+			{ "three", "3" }
 
 	};
 

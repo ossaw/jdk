@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -75,22 +55,24 @@ public interface SnmpTableEntryFactory extends SnmpTableCallbackHandler {
 	 * </p>
 	 *
 	 * @param request
-	 *            The SNMP subrequest containing the sublist of varbinds for the
-	 *            new entry.
+	 *                The SNMP subrequest containing the sublist of varbinds for
+	 *                the
+	 *                new entry.
 	 * @param rowOid
-	 *            The OID indexing the conceptual row (entry) for which the
-	 *            creation was requested.
+	 *                The OID indexing the conceptual row (entry) for which the
+	 *                creation was requested.
 	 * @param depth
-	 *            The depth reached in the OID tree (the position at which the
-	 *            columnar object ids start in the OIDs included in the
-	 *            varbind).
+	 *                The depth reached in the OID tree (the position at which
+	 *                the
+	 *                columnar object ids start in the OIDs included in the
+	 *                varbind).
 	 * @param meta
-	 *            The metadata object impacted by the subrequest
+	 *                The metadata object impacted by the subrequest
 	 *
 	 * @exception SnmpStatusException
-	 *                The new entry cannot be created.
+	 *                                The new entry cannot be created.
 	 *
 	 **/
-	public void createNewEntry(SnmpMibSubRequest request, SnmpOid rowOid, int depth,
-			SnmpMibTable meta) throws SnmpStatusException;
+	public void createNewEntry(SnmpMibSubRequest request, SnmpOid rowOid,
+			int depth, SnmpMibTable meta) throws SnmpStatusException;
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -58,9 +38,9 @@ public class RSAKeyGenParameterSpec implements AlgorithmParameterSpec {
 	 * and public-exponent value.
 	 *
 	 * @param keysize
-	 *            the modulus size (specified in number of bits)
+	 *                       the modulus size (specified in number of bits)
 	 * @param publicExponent
-	 *            the public exponent
+	 *                       the public exponent
 	 */
 	public RSAKeyGenParameterSpec(int keysize, BigInteger publicExponent) {
 		this.keysize = keysize;

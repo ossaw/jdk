@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -51,8 +31,10 @@ import com.sun.corba.se.impl.logging.IORSystemException;
 public abstract class ObjectKeyTemplateBase implements ObjectKeyTemplate {
 	// Fixed constants for Java IDL object key template forms
 	public static final String JIDL_ORB_ID = "";
-	private static final String[] JIDL_OAID_STRINGS = { "TransientObjectAdapter" };
-	public static final ObjectAdapterId JIDL_OAID = new ObjectAdapterIdArray(JIDL_OAID_STRINGS);
+	private static final String[] JIDL_OAID_STRINGS = {
+			"TransientObjectAdapter" };
+	public static final ObjectAdapterId JIDL_OAID = new ObjectAdapterIdArray(
+			JIDL_OAID_STRINGS);
 
 	private ORB orb;
 	protected IORSystemException wrapper;
@@ -88,8 +70,8 @@ public abstract class ObjectKeyTemplateBase implements ObjectKeyTemplate {
 		return buff.toArray();
 	}
 
-	public ObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid, String orbid,
-			ObjectAdapterId oaid) {
+	public ObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid,
+			String orbid, ObjectAdapterId oaid) {
 		this.orb = orb;
 		this.wrapper = IORSystemException.get(orb, CORBALogDomains.OA_IOR);
 		this.magic = magic;
@@ -107,9 +89,10 @@ public abstract class ObjectKeyTemplateBase implements ObjectKeyTemplate {
 
 		ObjectKeyTemplateBase other = (ObjectKeyTemplateBase) obj;
 
-		return (magic == other.magic) && (scid == other.scid) && (serverid == other.serverid)
-				&& (version.equals(other.version) && orbid.equals(other.orbid)
-						&& oaid.equals(other.oaid));
+		return (magic == other.magic) && (scid == other.scid)
+				&& (serverid == other.serverid) && (version.equals(
+						other.version) && orbid.equals(other.orbid) && oaid
+								.equals(other.oaid));
 	}
 
 	public int hashCode() {
@@ -171,7 +154,9 @@ public abstract class ObjectKeyTemplateBase implements ObjectKeyTemplate {
 		return result;
 	}
 
-	public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb, ObjectId id) {
-		return orb.getRequestDispatcherRegistry().getServerRequestDispatcher(scid);
+	public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb,
+			ObjectId id) {
+		return orb.getRequestDispatcherRegistry().getServerRequestDispatcher(
+				scid);
 	}
 }

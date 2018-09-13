@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -75,11 +55,12 @@ public abstract class DateTimeSyntax implements Serializable, Cloneable {
 	 * <code>java.util.Date </code> value.
 	 *
 	 * @param value
-	 *            <code>java.util.Date</code> value.
+	 *              <code>java.util.Date</code> value.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>theValue</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>theValue</CODE> is
+	 *                                 null.
 	 */
 	protected DateTimeSyntax(Date value) {
 		if (value == null) {
@@ -112,14 +93,14 @@ public abstract class DateTimeSyntax implements Serializable, Cloneable {
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this date-time
 	 *         attribute, false otherwise.
 	 */
 	public boolean equals(Object object) {
-		return (object != null && object instanceof DateTimeSyntax
-				&& value.equals(((DateTimeSyntax) object).value));
+		return (object != null && object instanceof DateTimeSyntax && value
+				.equals(((DateTimeSyntax) object).value));
 	}
 
 	/**

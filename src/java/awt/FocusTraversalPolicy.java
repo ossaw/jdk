@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -74,19 +54,24 @@ public abstract class FocusTraversalPolicy {
 	 * policy provider.
 	 *
 	 * @param aContainer
-	 *            a focus cycle root of aComponent or focus traversal policy
-	 *            provider
+	 *                   a focus cycle root of aComponent or focus traversal
+	 *                   policy
+	 *                   provider
 	 * @param aComponent
-	 *            a (possibly indirect) child of aContainer, or aContainer
-	 *            itself
+	 *                   a (possibly indirect) child of aContainer, or
+	 *                   aContainer
+	 *                   itself
 	 * @return the Component that should receive the focus after aComponent, or
 	 *         null if no suitable Component can be found
 	 * @throws IllegalArgumentException
-	 *             if aContainer is not a focus cycle root of aComponent or a
-	 *             focus traversal policy provider, or if either aContainer or
-	 *             aComponent is null
+	 *                                  if aContainer is not a focus cycle root
+	 *                                  of aComponent or a
+	 *                                  focus traversal policy provider, or if
+	 *                                  either aContainer or
+	 *                                  aComponent is null
 	 */
-	public abstract Component getComponentAfter(Container aContainer, Component aComponent);
+	public abstract Component getComponentAfter(Container aContainer,
+			Component aComponent);
 
 	/**
 	 * Returns the Component that should receive the focus before aComponent.
@@ -94,19 +79,24 @@ public abstract class FocusTraversalPolicy {
 	 * policy provider.
 	 *
 	 * @param aContainer
-	 *            a focus cycle root of aComponent or focus traversal policy
-	 *            provider
+	 *                   a focus cycle root of aComponent or focus traversal
+	 *                   policy
+	 *                   provider
 	 * @param aComponent
-	 *            a (possibly indirect) child of aContainer, or aContainer
-	 *            itself
+	 *                   a (possibly indirect) child of aContainer, or
+	 *                   aContainer
+	 *                   itself
 	 * @return the Component that should receive the focus before aComponent, or
 	 *         null if no suitable Component can be found
 	 * @throws IllegalArgumentException
-	 *             if aContainer is not a focus cycle root of aComponent or a
-	 *             focus traversal policy provider, or if either aContainer or
-	 *             aComponent is null
+	 *                                  if aContainer is not a focus cycle root
+	 *                                  of aComponent or a
+	 *                                  focus traversal policy provider, or if
+	 *                                  either aContainer or
+	 *                                  aComponent is null
 	 */
-	public abstract Component getComponentBefore(Container aContainer, Component aComponent);
+	public abstract Component getComponentBefore(Container aContainer,
+			Component aComponent);
 
 	/**
 	 * Returns the first Component in the traversal cycle. This method is used
@@ -114,12 +104,13 @@ public abstract class FocusTraversalPolicy {
 	 * forward direction.
 	 *
 	 * @param aContainer
-	 *            the focus cycle root or focus traversal policy provider whose
-	 *            first Component is to be returned
+	 *                   the focus cycle root or focus traversal policy provider
+	 *                   whose
+	 *                   first Component is to be returned
 	 * @return the first Component in the traversal cycle of aContainer, or null
 	 *         if no suitable Component can be found
 	 * @throws IllegalArgumentException
-	 *             if aContainer is null
+	 *                                  if aContainer is null
 	 */
 	public abstract Component getFirstComponent(Container aContainer);
 
@@ -129,12 +120,13 @@ public abstract class FocusTraversalPolicy {
 	 * direction.
 	 *
 	 * @param aContainer
-	 *            the focus cycle root or focus traversal policy provider whose
-	 *            last Component is to be returned
+	 *                   the focus cycle root or focus traversal policy provider
+	 *                   whose
+	 *                   last Component is to be returned
 	 * @return the last Component in the traversal cycle of aContainer, or null
 	 *         if no suitable Component can be found
 	 * @throws IllegalArgumentException
-	 *             if aContainer is null
+	 *                                  if aContainer is null
 	 */
 	public abstract Component getLastComponent(Container aContainer);
 
@@ -144,12 +136,13 @@ public abstract class FocusTraversalPolicy {
 	 * rooted at aContainer.
 	 *
 	 * @param aContainer
-	 *            the focus cycle root or focus traversal policy provider whose
-	 *            default Component is to be returned
+	 *                   the focus cycle root or focus traversal policy provider
+	 *                   whose
+	 *                   default Component is to be returned
 	 * @return the default Component in the traversal cycle of aContainer, or
 	 *         null if no suitable Component can be found
 	 * @throws IllegalArgumentException
-	 *             if aContainer is null
+	 *                                  if aContainer is null
 	 */
 	public abstract Component getDefaultComponent(Container aContainer);
 
@@ -164,18 +157,19 @@ public abstract class FocusTraversalPolicy {
 	 * of this method returns the default Component.
 	 *
 	 * @param window
-	 *            the Window whose initial Component is to be returned
+	 *               the Window whose initial Component is to be returned
 	 * @return the Component that should receive the focus when window is made
 	 *         visible for the first time, or null if no suitable Component can
 	 *         be found
 	 * @see #getDefaultComponent
 	 * @see Window#getMostRecentFocusOwner
 	 * @throws IllegalArgumentException
-	 *             if window is null
+	 *                                  if window is null
 	 */
 	public Component getInitialComponent(Window window) {
 		if (window == null) {
-			throw new IllegalArgumentException("window cannot be equal to null.");
+			throw new IllegalArgumentException(
+					"window cannot be equal to null.");
 		}
 		Component def = getDefaultComponent(window);
 		if (def == null && window.isFocusableWindow()) {

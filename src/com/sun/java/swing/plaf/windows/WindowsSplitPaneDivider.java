@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -55,8 +35,8 @@ public class WindowsSplitPaneDivider extends BasicSplitPaneDivider {
 	 * Paints the divider.
 	 */
 	public void paint(Graphics g) {
-		Color bgColor = (splitPane.hasFocus()) ? UIManager.getColor("SplitPane.shadow")
-				: getBackground();
+		Color bgColor = (splitPane.hasFocus()) ? UIManager.getColor(
+				"SplitPane.shadow") : getBackground();
 		Dimension size = getSize();
 
 		if (bgColor != null) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -98,18 +78,22 @@ public abstract class Binder<XmlNode> {
 	 * should be mapped to.
 	 *
 	 * @param xmlNode
-	 *            the document/element to unmarshal XML data from.
+	 *                the document/element to unmarshal XML data from.
 	 *
 	 * @return the newly created root object of the JAXB object tree.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Binder</tt> is unable to perform the XML to Java binding.
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Binder</tt> is unable to perform the
+	 *                                  XML to Java binding.
 	 * @throws IllegalArgumentException
-	 *             If the node parameter is null
+	 *                                  If the node parameter is null
 	 */
 	public abstract Object unmarshal(XmlNode xmlNode) throws JAXBException;
 
@@ -132,26 +116,31 @@ public abstract class Binder<XmlNode> {
 	 * descendants is validated during this operation.
 	 *
 	 * @param xmlNode
-	 *            the document/element to unmarshal XML data from.
+	 *                     the document/element to unmarshal XML data from.
 	 * @param declaredType
-	 *            appropriate JAXB mapped class to hold <tt>node</tt>'s XML
-	 *            data.
+	 *                     appropriate JAXB mapped class to hold <tt>node</tt>'s
+	 *                     XML
+	 *                     data.
 	 *
 	 * @return <a href="JAXBElement.html">JAXB Element</a> representation of
 	 *         <tt>node</tt>
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Binder</tt> is unable to perform the XML to Java binding.
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Binder</tt> is unable to perform the
+	 *                                  XML to Java binding.
 	 * @throws IllegalArgumentException
-	 *             If any of the input parameters are null
+	 *                                  If any of the input parameters are null
 	 * @since JAXB2.0
 	 */
-	public abstract <T> JAXBElement<T> unmarshal(XmlNode xmlNode, Class<T> declaredType)
-			throws JAXBException;
+	public abstract <T> JAXBElement<T> unmarshal(XmlNode xmlNode,
+			Class<T> declaredType) throws JAXBException;
 
 	/**
 	 * Marshal a JAXB object tree to a new XML document.
@@ -167,22 +156,28 @@ public abstract class Binder<XmlNode> {
 	 * validated during this operation.
 	 *
 	 * @param jaxbObject
-	 *            The content tree to be marshalled.
+	 *                   The content tree to be marshalled.
 	 * @param xmlNode
-	 *            The parameter must be a Node that accepts children.
+	 *                   The parameter must be a Node that accepts children.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Binder</tt> is unable to marshal <tt>jaxbObject</tt> (or
-	 *             any object reachable from <tt>jaxbObject</tt>).
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Binder</tt> is unable to marshal
+	 *                                  <tt>jaxbObject</tt> (or
+	 *                                  any object reachable from
+	 *                                  <tt>jaxbObject</tt>).
 	 *
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 */
-	public abstract void marshal(Object jaxbObject, XmlNode xmlNode) throws JAXBException;
+	public abstract void marshal(Object jaxbObject, XmlNode xmlNode)
+			throws JAXBException;
 
 	/**
 	 * Gets the XML element associated with the given JAXB object.
@@ -198,14 +193,15 @@ public abstract class Binder<XmlNode> {
 	 * JAXB objects have associated XML elements.
 	 *
 	 * @param jaxbObject
-	 *            An instance that is reachable from a prior call to a bind or
-	 *            update method that returned a JAXB object tree.
+	 *                   An instance that is reachable from a prior call to a
+	 *                   bind or
+	 *                   update method that returned a JAXB object tree.
 	 *
 	 * @return null if the specified JAXB object is not known to this
 	 *         {@link Binder}, or if it is not associated with an XML element.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the jaxbObject parameter is null
+	 *                                  If the jaxbObject parameter is null
 	 */
 	public abstract XmlNode getXMLNode(Object jaxbObject);
 
@@ -226,7 +222,7 @@ public abstract class Binder<XmlNode> {
 	 *         {@link Binder}, or if it is not associated with a JAXB object.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the node parameter is null
+	 *                                  If the node parameter is null
 	 */
 	public abstract Object getJAXBNode(XmlNode xmlNode);
 
@@ -242,10 +238,11 @@ public abstract class Binder<XmlNode> {
 	 * </pre>
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs updating corresponding XML
-	 *             content.
+	 *                                  If any unexpected problem occurs
+	 *                                  updating corresponding XML
+	 *                                  content.
 	 * @throws IllegalArgumentException
-	 *             If the jaxbObject parameter is null
+	 *                                  If the jaxbObject parameter is null
 	 */
 	public abstract XmlNode updateXML(Object jaxbObject) throws JAXBException;
 
@@ -268,21 +265,23 @@ public abstract class Binder<XmlNode> {
 	 * nodes and JAXB objects.
 	 *
 	 * @param jaxbObject
-	 *            root of potentially modified JAXB object tree
+	 *                   root of potentially modified JAXB object tree
 	 * @param xmlNode
-	 *            root of update target XML parse tree
+	 *                   root of update target XML parse tree
 	 *
 	 * @return Returns the updated XML node. Typically, this is the same node
 	 *         you passed in as <i>xmlNode</i>, but it maybe a different object,
 	 *         for example when the tag name of the object has changed.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs updating corresponding XML
-	 *             content.
+	 *                                  If any unexpected problem occurs
+	 *                                  updating corresponding XML
+	 *                                  content.
 	 * @throws IllegalArgumentException
-	 *             If any of the input parameters are null
+	 *                                  If any of the input parameters are null
 	 */
-	public abstract XmlNode updateXML(Object jaxbObject, XmlNode xmlNode) throws JAXBException;
+	public abstract XmlNode updateXML(Object jaxbObject, XmlNode xmlNode)
+			throws JAXBException;
 
 	/**
 	 * Takes an XML node and updates its associated JAXB object and its
@@ -305,10 +304,11 @@ public abstract class Binder<XmlNode> {
 	 *         when the name of the XML element has changed.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs updating corresponding JAXB
-	 *             mapped content.
+	 *                                  If any unexpected problem occurs
+	 *                                  updating corresponding JAXB
+	 *                                  mapped content.
 	 * @throws IllegalArgumentException
-	 *             If node parameter is null
+	 *                                  If node parameter is null
 	 */
 	public abstract Object updateJAXB(XmlNode xmlNode) throws JAXBException;
 
@@ -317,7 +317,7 @@ public abstract class Binder<XmlNode> {
 	 * validation on their XML content.
 	 *
 	 * @param schema
-	 *            set to null to disable validation.
+	 *               set to null to disable validation.
 	 *
 	 * @see Unmarshaller#setSchema(Schema)
 	 */
@@ -343,11 +343,13 @@ public abstract class Binder<XmlNode> {
 	 * back to the default default event handler.
 	 *
 	 * @param handler
-	 *            the validation event handler
+	 *                the validation event handler
 	 * @throws JAXBException
-	 *             if an error was encountered while setting the event handler
+	 *                       if an error was encountered while setting the event
+	 *                       handler
 	 */
-	public abstract void setEventHandler(ValidationEventHandler handler) throws JAXBException;
+	public abstract void setEventHandler(ValidationEventHandler handler)
+			throws JAXBException;
 
 	/**
 	 * Return the current event handler or the default event handler if one
@@ -356,10 +358,12 @@ public abstract class Binder<XmlNode> {
 	 * @return the current ValidationEventHandler or the default event handler
 	 *         if it hasn't been set
 	 * @throws JAXBException
-	 *             if an error was encountered while getting the current event
-	 *             handler
+	 *                       if an error was encountered while getting the
+	 *                       current event
+	 *                       handler
 	 */
-	public abstract ValidationEventHandler getEventHandler() throws JAXBException;
+	public abstract ValidationEventHandler getEventHandler()
+			throws JAXBException;
 
 	/**
 	 *
@@ -373,18 +377,21 @@ public abstract class Binder<XmlNode> {
 	 * Marshal Properties</a>.
 	 *
 	 * @param name
-	 *            the name of the property to be set. This value can either be
-	 *            specified using one of the constant fields or a user supplied
-	 *            string.
+	 *              the name of the property to be set. This value can either be
+	 *              specified using one of the constant fields or a user
+	 *              supplied
+	 *              string.
 	 * @param value
-	 *            the value of the property to be set
+	 *              the value of the property to be set
 	 *
 	 * @throws PropertyException
-	 *             when there is an error processing the given property or value
+	 *                                  when there is an error processing the
+	 *                                  given property or value
 	 * @throws IllegalArgumentException
-	 *             If the name parameter is null
+	 *                                  If the name parameter is null
 	 */
-	abstract public void setProperty(String name, Object value) throws PropertyException;
+	abstract public void setProperty(String name, Object value)
+			throws PropertyException;
 
 	/**
 	 * Get the particular property in the underlying implementation of
@@ -397,14 +404,15 @@ public abstract class Binder<XmlNode> {
 	 * Marshal Properties</a>.
 	 *
 	 * @param name
-	 *            the name of the property to retrieve
+	 *             the name of the property to retrieve
 	 * @return the value of the requested property
 	 *
 	 * @throws PropertyException
-	 *             when there is an error retrieving the given property or value
-	 *             property name
+	 *                                  when there is an error retrieving the
+	 *                                  given property or value
+	 *                                  property name
 	 * @throws IllegalArgumentException
-	 *             If the name parameter is null
+	 *                                  If the name parameter is null
 	 */
 	abstract public Object getProperty(String name) throws PropertyException;
 

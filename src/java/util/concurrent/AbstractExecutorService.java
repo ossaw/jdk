@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -78,11 +53,11 @@ public abstract class AbstractExecutorService implements ExecutorService {
 	 * value.
 	 *
 	 * @param runnable
-	 *            the runnable task being wrapped
+	 *                 the runnable task being wrapped
 	 * @param value
-	 *            the default value for the returned future
-	 * @param <T>
-	 *            the type of the given value
+	 *                 the default value for the returned future
+	 * @param          <T>
+	 *                 the type of the given value
 	 * @return a {@code RunnableFuture} which, when run, will run the underlying
 	 *         runnable and which, as a {@code Future}, will yield the given
 	 *         value as its result and provide for cancellation of the
@@ -97,9 +72,9 @@ public abstract class AbstractExecutorService implements ExecutorService {
 	 * Returns a {@code RunnableFuture} for the given callable task.
 	 *
 	 * @param callable
-	 *            the callable task being wrapped
-	 * @param <T>
-	 *            the type of the callable's result
+	 *                 the callable task being wrapped
+	 * @param          <T>
+	 *                 the type of the callable's result
 	 * @return a {@code RunnableFuture} which, when run, will call the
 	 *         underlying callable and which, as a {@code Future}, will yield
 	 *         the callable's result as its result and provide for cancellation
@@ -112,9 +87,9 @@ public abstract class AbstractExecutorService implements ExecutorService {
 
 	/**
 	 * @throws RejectedExecutionException
-	 *             {@inheritDoc}
+	 *                                    {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                    {@inheritDoc}
 	 */
 	public Future<?> submit(Runnable task) {
 		if (task == null)
@@ -126,9 +101,9 @@ public abstract class AbstractExecutorService implements ExecutorService {
 
 	/**
 	 * @throws RejectedExecutionException
-	 *             {@inheritDoc}
+	 *                                    {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                    {@inheritDoc}
 	 */
 	public <T> Future<T> submit(Runnable task, T result) {
 		if (task == null)
@@ -140,9 +115,9 @@ public abstract class AbstractExecutorService implements ExecutorService {
 
 	/**
 	 * @throws RejectedExecutionException
-	 *             {@inheritDoc}
+	 *                                    {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                    {@inheritDoc}
 	 */
 	public <T> Future<T> submit(Callable<T> task) {
 		if (task == null)
@@ -155,15 +130,17 @@ public abstract class AbstractExecutorService implements ExecutorService {
 	/**
 	 * the main mechanics of invokeAny.
 	 */
-	private <T> T doInvokeAny(Collection<? extends Callable<T>> tasks, boolean timed, long nanos)
-			throws InterruptedException, ExecutionException, TimeoutException {
+	private <T> T doInvokeAny(Collection<? extends Callable<T>> tasks,
+			boolean timed, long nanos) throws InterruptedException,
+			ExecutionException, TimeoutException {
 		if (tasks == null)
 			throw new NullPointerException();
 		int ntasks = tasks.size();
 		if (ntasks == 0)
 			throw new IllegalArgumentException();
 		ArrayList<Future<T>> futures = new ArrayList<Future<T>>(ntasks);
-		ExecutorCompletionService<T> ecs = new ExecutorCompletionService<T>(this);
+		ExecutorCompletionService<T> ecs = new ExecutorCompletionService<T>(
+				this);
 
 		// For efficiency, especially in executors with limited
 		// parallelism, check to see if previously submitted tasks are
@@ -232,12 +209,14 @@ public abstract class AbstractExecutorService implements ExecutorService {
 		}
 	}
 
-	public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
-			throws InterruptedException, ExecutionException, TimeoutException {
+	public <T> T invokeAny(Collection<? extends Callable<T>> tasks,
+			long timeout, TimeUnit unit) throws InterruptedException,
+			ExecutionException, TimeoutException {
 		return doInvokeAny(tasks, true, unit.toNanos(timeout));
 	}
 
-	public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
+	public <T> List<Future<T>> invokeAll(
+			Collection<? extends Callable<T>> tasks)
 			throws InterruptedException {
 		if (tasks == null)
 			throw new NullPointerException();
@@ -268,7 +247,8 @@ public abstract class AbstractExecutorService implements ExecutorService {
 		}
 	}
 
-	public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout,
+	public <T> List<Future<T>> invokeAll(
+			Collection<? extends Callable<T>> tasks, long timeout,
 			TimeUnit unit) throws InterruptedException {
 		if (tasks == null)
 			throw new NullPointerException();

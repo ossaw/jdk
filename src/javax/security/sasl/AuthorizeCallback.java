@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.sasl;
@@ -72,9 +52,9 @@ public class AuthorizeCallback implements Callback, java.io.Serializable {
 	 * Constructs an instance of {@code AuthorizeCallback}.
 	 *
 	 * @param authnID
-	 *            The (authenticated) authentication id.
+	 *                The (authenticated) authentication id.
 	 * @param authzID
-	 *            The authorization id.
+	 *                The authorization id.
 	 */
 	public AuthorizeCallback(String authnID, String authzID) {
 		authenticationID = authnID;
@@ -115,8 +95,8 @@ public class AuthorizeCallback implements Callback, java.io.Serializable {
 	 * Sets whether the authorization is allowed.
 	 * 
 	 * @param ok
-	 *            {@code true} if authorization is allowed; {@code false}
-	 *            otherwise
+	 *           {@code true} if authorization is allowed; {@code false}
+	 *           otherwise
 	 * @see #isAuthorized
 	 * @see #setAuthorizedID(java.lang.String)
 	 */
@@ -145,7 +125,7 @@ public class AuthorizeCallback implements Callback, java.io.Serializable {
 	 * be canonicalized for the environment in which it will be used.
 	 * 
 	 * @param id
-	 *            The id of the authorized user.
+	 *           The id of the authorized user.
 	 * @see #setAuthorized(boolean)
 	 * @see #getAuthorizedID
 	 */

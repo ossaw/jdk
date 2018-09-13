@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -48,8 +28,7 @@ public class AssertionError extends Error {
 	/**
 	 * Constructs an AssertionError with no detail message.
 	 */
-	public AssertionError() {
-	}
+	public AssertionError() {}
 
 	/**
 	 * This internal constructor does no processing on its string argument, even
@@ -69,7 +48,7 @@ public class AssertionError extends Error {
 	 * the <i>cause</i> of the newly constructed assertion error.
 	 *
 	 * @param detailMessage
-	 *            value to be used in constructing detail message
+	 *                      value to be used in constructing detail message
 	 * @see Throwable#getCause()
 	 */
 	public AssertionError(Object detailMessage) {
@@ -85,7 +64,7 @@ public class AssertionError extends Error {
 	 * Specification</cite>.
 	 *
 	 * @param detailMessage
-	 *            value to be used in constructing detail message
+	 *                      value to be used in constructing detail message
 	 */
 	public AssertionError(boolean detailMessage) {
 		this(String.valueOf(detailMessage));
@@ -97,7 +76,7 @@ public class AssertionError extends Error {
 	 * section 15.18.1.1 of <cite>The Java&trade; Language Specification</cite>.
 	 *
 	 * @param detailMessage
-	 *            value to be used in constructing detail message
+	 *                      value to be used in constructing detail message
 	 */
 	public AssertionError(char detailMessage) {
 		this(String.valueOf(detailMessage));
@@ -109,7 +88,7 @@ public class AssertionError extends Error {
 	 * section 15.18.1.1 of <cite>The Java&trade; Language Specification</cite>.
 	 *
 	 * @param detailMessage
-	 *            value to be used in constructing detail message
+	 *                      value to be used in constructing detail message
 	 */
 	public AssertionError(int detailMessage) {
 		this(String.valueOf(detailMessage));
@@ -121,7 +100,7 @@ public class AssertionError extends Error {
 	 * section 15.18.1.1 of <cite>The Java&trade; Language Specification</cite>.
 	 *
 	 * @param detailMessage
-	 *            value to be used in constructing detail message
+	 *                      value to be used in constructing detail message
 	 */
 	public AssertionError(long detailMessage) {
 		this(String.valueOf(detailMessage));
@@ -134,7 +113,7 @@ public class AssertionError extends Error {
 	 * Specification</cite>.
 	 *
 	 * @param detailMessage
-	 *            value to be used in constructing detail message
+	 *                      value to be used in constructing detail message
 	 */
 	public AssertionError(float detailMessage) {
 		this(String.valueOf(detailMessage));
@@ -147,7 +126,7 @@ public class AssertionError extends Error {
 	 * Specification</cite>.
 	 *
 	 * @param detailMessage
-	 *            value to be used in constructing detail message
+	 *                      value to be used in constructing detail message
 	 */
 	public AssertionError(double detailMessage) {
 		this(String.valueOf(detailMessage));
@@ -162,9 +141,9 @@ public class AssertionError extends Error {
 	 * automatically incorporated in this error's detail message.
 	 *
 	 * @param message
-	 *            the detail message, may be {@code null}
+	 *                the detail message, may be {@code null}
 	 * @param cause
-	 *            the cause, may be {@code null}
+	 *                the cause, may be {@code null}
 	 *
 	 * @since 1.7
 	 */

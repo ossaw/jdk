@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -65,14 +62,14 @@ class NameBase extends FunctionCall {
 
 		// Check the argument type (if any)
 		switch (argumentCount()) {
-		case 0:
-			_paramType = Type.Node;
-			break;
-		case 1:
-			_paramType = _param.typeCheck(stable);
-			break;
-		default:
-			throw new TypeCheckError(this);
+			case 0:
+				_paramType = Type.Node;
+				break;
+			case 1:
+				_paramType = _param.typeCheck(stable);
+				break;
+			default:
+				throw new TypeCheckError(this);
 		}
 
 		// The argument has to be a node, a node-set or a node reference
@@ -107,8 +104,9 @@ class NameBase extends FunctionCall {
 			_param.translate(classGen, methodGen);
 		} else if (_paramType == Type.Reference) {
 			_param.translate(classGen, methodGen);
-			il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS, "referenceToNodeSet",
-					"(" + OBJECT_SIG + ")" + NODE_ITERATOR_SIG)));
+			il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS,
+					"referenceToNodeSet", "(" + OBJECT_SIG + ")"
+							+ NODE_ITERATOR_SIG)));
 			il.append(methodGen.nextNode());
 		}
 		// Function was called with node-set parameter

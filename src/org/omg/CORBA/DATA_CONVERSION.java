@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -60,7 +40,7 @@ public final class DATA_CONVERSION extends SystemException {
 	 * detail.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *          the String containing a detail message
 	 */
 	public DATA_CONVERSION(String s) {
 		this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -71,9 +51,9 @@ public final class DATA_CONVERSION extends SystemException {
 	 * minor code and completion status.
 	 * 
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status
+	 *                  the completion status
 	 */
 	public DATA_CONVERSION(int minor, CompletionStatus completed) {
 		this("", minor, completed);
@@ -85,11 +65,11 @@ public final class DATA_CONVERSION extends SystemException {
 	 * String that describes this particular exception.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *                  the String containing a detail message
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status
+	 *                  the completion status
 	 */
 	public DATA_CONVERSION(String s, int minor, CompletionStatus completed) {
 		super(s, minor, completed);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -32,7 +12,7 @@ package java.nio.file.attribute;
  * {@link java.nio.file.Files#createDirectory createDirectory} methods.
  *
  * @param <T>
- *            The type of the file attribute value
+ *        The type of the file attribute value
  *
  * @since 1.7
  * @see PosixFilePermissions#asFileAttribute

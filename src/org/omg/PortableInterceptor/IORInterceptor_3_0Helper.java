@@ -19,7 +19,8 @@ abstract public class IORInterceptor_3_0Helper {
 		a.read_value(out.create_input_stream(), type());
 	}
 
-	public static org.omg.PortableInterceptor.IORInterceptor_3_0 extract(org.omg.CORBA.Any a) {
+	public static org.omg.PortableInterceptor.IORInterceptor_3_0 extract(
+			org.omg.CORBA.Any a) {
 		return read(a.create_input_stream());
 	}
 
@@ -48,7 +49,8 @@ abstract public class IORInterceptor_3_0Helper {
 		throw new org.omg.CORBA.MARSHAL();
 	}
 
-	public static org.omg.PortableInterceptor.IORInterceptor_3_0 narrow(org.omg.CORBA.Object obj) {
+	public static org.omg.PortableInterceptor.IORInterceptor_3_0 narrow(
+			org.omg.CORBA.Object obj) {
 		if (obj == null)
 			return null;
 		else if (obj instanceof org.omg.PortableInterceptor.IORInterceptor_3_0)

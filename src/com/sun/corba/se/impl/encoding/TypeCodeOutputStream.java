@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -77,8 +57,9 @@ public final class TypeCodeOutputStream extends EncapsOutputStream {
 	}
 
 	public org.omg.CORBA.portable.InputStream create_input_stream() {
-		TypeCodeInputStream tcis = EncapsInputStreamFactory.newTypeCodeInputStream((ORB) orb(),
-				getByteBuffer(), getIndex(), isLittleEndian(), getGIOPVersion());
+		TypeCodeInputStream tcis = EncapsInputStreamFactory
+				.newTypeCodeInputStream((ORB) orb(), getByteBuffer(),
+						getIndex(), isLittleEndian(), getGIOPVersion());
 		// if (TypeCodeImpl.debug) {
 		// System.out.println("Created TypeCodeInputStream " + tcis + " with no
 		// parent");
@@ -110,7 +91,8 @@ public final class TypeCodeOutputStream extends EncapsOutputStream {
 
 	public int getTopLevelPosition() {
 		if (enclosure != null && enclosure instanceof TypeCodeOutputStream) {
-			int pos = ((TypeCodeOutputStream) enclosure).getTopLevelPosition() + getPosition();
+			int pos = ((TypeCodeOutputStream) enclosure).getTopLevelPosition()
+					+ getPosition();
 			// Add four bytes for the encaps length, not another 4 for the byte
 			// order
 			// which is included in getPosition().
@@ -151,7 +133,8 @@ public final class TypeCodeOutputStream extends EncapsOutputStream {
 		return ((Integer) typeMap.get(id)).intValue();
 	}
 
-	public void writeRawBuffer(org.omg.CORBA.portable.OutputStream s, int firstLong) {
+	public void writeRawBuffer(org.omg.CORBA.portable.OutputStream s,
+			int firstLong) {
 		// Writes this streams buffer to the given OutputStream
 		// without byte order flag and length as is the case for encapsulations.
 
@@ -217,7 +200,8 @@ public final class TypeCodeOutputStream extends EncapsOutputStream {
 
 	public static TypeCodeOutputStream wrapOutputStream(OutputStream os) {
 		boolean littleEndian = ((os instanceof CDROutputStream)
-				? ((CDROutputStream) os).isLittleEndian() : false);
+				? ((CDROutputStream) os).isLittleEndian()
+				: false);
 		TypeCodeOutputStream tos = sun.corba.OutputStreamFactory
 				.newTypeCodeOutputStream((ORB) os.orb(), littleEndian);
 		tos.setEnclosingOutputStream(os);

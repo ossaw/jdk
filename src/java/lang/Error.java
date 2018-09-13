@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -63,8 +43,8 @@ public class Error extends Throwable {
 	 * {@link #initCause}.
 	 *
 	 * @param message
-	 *            the detail message. The detail message is saved for later
-	 *            retrieval by the {@link #getMessage()} method.
+	 *                the detail message. The detail message is saved for later
+	 *                retrieval by the {@link #getMessage()} method.
 	 */
 	public Error(String message) {
 		super(message);
@@ -77,13 +57,14 @@ public class Error extends Throwable {
 	 * automatically incorporated in this error's detail message.
 	 *
 	 * @param message
-	 *            the detail message (which is saved for later retrieval by the
-	 *            {@link #getMessage()} method).
+	 *                the detail message (which is saved for later retrieval by
+	 *                the
+	 *                {@link #getMessage()} method).
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *                the cause (which is saved for later retrieval by the
+	 *                {@link #getCause()} method). (A {@code null} value is
+	 *                permitted, and indicates that the cause is nonexistent or
+	 *                unknown.)
 	 * @since 1.4
 	 */
 	public Error(String message, Throwable cause) {
@@ -98,10 +79,10 @@ public class Error extends Throwable {
 	 * throwables.
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link #getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link #getCause()} method). (A {@code null} value is
+	 *              permitted, and indicates that the cause is nonexistent or
+	 *              unknown.)
 	 * @since 1.4
 	 */
 	public Error(Throwable cause) {
@@ -114,14 +95,17 @@ public class Error extends Throwable {
 	 * disabled.
 	 *
 	 * @param message
-	 *            the detail message.
+	 *                           the detail message.
 	 * @param cause
-	 *            the cause. (A {@code null} value is permitted, and indicates
-	 *            that the cause is nonexistent or unknown.)
+	 *                           the cause. (A {@code null} value is permitted,
+	 *                           and indicates
+	 *                           that the cause is nonexistent or unknown.)
 	 * @param enableSuppression
-	 *            whether or not suppression is enabled or disabled
+	 *                           whether or not suppression is enabled or
+	 *                           disabled
 	 * @param writableStackTrace
-	 *            whether or not the stack trace should be writable
+	 *                           whether or not the stack trace should be
+	 *                           writable
 	 *
 	 * @since 1.7
 	 */

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.io;
@@ -38,11 +18,11 @@ import java.lang.reflect.Method;
 
 // This file contains some utility methods that
 // originally were in the OSC in the RMI-IIOP
-// code delivered by IBM.  They don't make
+// code delivered by IBM. They don't make
 // sense there, and hence have been put
 // here so that they can be factored out in
 // an attempt to eliminate redundant code from
-// ObjectStreamClass.  Eventually the goal is
+// ObjectStreamClass. Eventually the goal is
 // to move to java.io.ObjectStreamClass, and
 // java.io.ObjectStreamField.
 
@@ -91,8 +71,8 @@ class ObjectStreamClassCorbaExt {
 		int isAny = 0;
 
 		if ((typeString != null) && (typeString.equals("Ljava/lang/Object;")
-				|| typeString.equals("Ljava/io/Serializable;")
-				|| typeString.equals("Ljava/io/Externalizable;")))
+				|| typeString.equals("Ljava/io/Serializable;") || typeString
+						.equals("Ljava/io/Externalizable;")))
 			isAny = 1;
 
 		return (isAny == 1);

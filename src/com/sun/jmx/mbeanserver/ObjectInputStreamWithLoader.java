@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -43,11 +23,13 @@ class ObjectInputStreamWithLoader extends ObjectInputStream {
 
 	/**
 	 * @exception IOException
-	 *                Signals that an I/O exception of some sort has occurred.
+	 *                                     Signals that an I/O exception of some
+	 *                                     sort has occurred.
 	 * @exception StreamCorruptedException
-	 *                The object stream is corrupt.
+	 *                                     The object stream is corrupt.
 	 */
-	public ObjectInputStreamWithLoader(InputStream in, ClassLoader theLoader) throws IOException {
+	public ObjectInputStreamWithLoader(InputStream in, ClassLoader theLoader)
+			throws IOException {
 		super(in);
 		this.loader = theLoader;
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.util;
@@ -95,25 +75,30 @@ public class JAXBSource extends SAXSource {
 	 * object.
 	 *
 	 * @param context
-	 *            JAXBContext that was used to create <code>contentObject</code>
-	 *            . This context is used to create a new instance of marshaller
-	 *            and must not be null.
+	 *                      JAXBContext that was used to create
+	 *                      <code>contentObject</code>
+	 *                      . This context is used to create a new instance of
+	 *                      marshaller
+	 *                      and must not be null.
 	 * @param contentObject
-	 *            An instance of a JAXB-generated class, which will be used as a
-	 *            {@link javax.xml.transform.Source} (by marshalling it into
-	 *            XML). It must not be null.
+	 *                      An instance of a JAXB-generated class, which will be
+	 *                      used as a
+	 *                      {@link javax.xml.transform.Source} (by marshalling
+	 *                      it into
+	 *                      XML). It must not be null.
 	 * @throws JAXBException
-	 *             if an error is encountered while creating the JAXBSource or
-	 *             if either of the parameters are null.
+	 *                       if an error is encountered while creating the
+	 *                       JAXBSource or
+	 *                       if either of the parameters are null.
 	 */
-	public JAXBSource(JAXBContext context, Object contentObject) throws JAXBException {
+	public JAXBSource(JAXBContext context, Object contentObject)
+			throws JAXBException {
 
-		this((context == null) ? assertionFailed(Messages.format(Messages.SOURCE_NULL_CONTEXT))
-				: context.createMarshaller(),
+		this((context == null) ? assertionFailed(Messages.format(
+				Messages.SOURCE_NULL_CONTEXT)) : context.createMarshaller(),
 
-				(contentObject == null)
-						? assertionFailed(Messages.format(Messages.SOURCE_NULL_CONTENT))
-						: contentObject);
+				(contentObject == null) ? assertionFailed(Messages.format(
+						Messages.SOURCE_NULL_CONTENT)) : contentObject);
 	}
 
 	/**
@@ -121,25 +106,32 @@ public class JAXBSource extends SAXSource {
 	 * object.
 	 *
 	 * @param marshaller
-	 *            A marshaller instance that will be used to marshal
-	 *            <code>contentObject</code> into XML. This must be created from
-	 *            a JAXBContext that was used to build
-	 *            <code>contentObject</code> and must not be null.
+	 *                      A marshaller instance that will be used to marshal
+	 *                      <code>contentObject</code> into XML. This must be
+	 *                      created from
+	 *                      a JAXBContext that was used to build
+	 *                      <code>contentObject</code> and must not be null.
 	 * @param contentObject
-	 *            An instance of a JAXB-generated class, which will be used as a
-	 *            {@link javax.xml.transform.Source} (by marshalling it into
-	 *            XML). It must not be null.
+	 *                      An instance of a JAXB-generated class, which will be
+	 *                      used as a
+	 *                      {@link javax.xml.transform.Source} (by marshalling
+	 *                      it into
+	 *                      XML). It must not be null.
 	 * @throws JAXBException
-	 *             if an error is encountered while creating the JAXBSource or
-	 *             if either of the parameters are null.
+	 *                       if an error is encountered while creating the
+	 *                       JAXBSource or
+	 *                       if either of the parameters are null.
 	 */
-	public JAXBSource(Marshaller marshaller, Object contentObject) throws JAXBException {
+	public JAXBSource(Marshaller marshaller, Object contentObject)
+			throws JAXBException {
 
 		if (marshaller == null)
-			throw new JAXBException(Messages.format(Messages.SOURCE_NULL_MARSHALLER));
+			throw new JAXBException(Messages.format(
+					Messages.SOURCE_NULL_MARSHALLER));
 
 		if (contentObject == null)
-			throw new JAXBException(Messages.format(Messages.SOURCE_NULL_CONTENT));
+			throw new JAXBException(Messages.format(
+					Messages.SOURCE_NULL_CONTENT));
 
 		this.marshaller = marshaller;
 		this.contentObject = contentObject;
@@ -156,7 +148,8 @@ public class JAXBSource extends SAXSource {
 	// no matter what parameter is specified to the parse method,
 	// it just parse the contentObject.
 	private final XMLReader pseudoParser = new XMLReader() {
-		public boolean getFeature(String name) throws SAXNotRecognizedException {
+		public boolean getFeature(String name)
+				throws SAXNotRecognizedException {
 			if (name.equals("http://xml.org/sax/features/namespaces"))
 				return true;
 			if (name.equals("http://xml.org/sax/features/namespace-prefixes"))
@@ -164,22 +157,26 @@ public class JAXBSource extends SAXSource {
 			throw new SAXNotRecognizedException(name);
 		}
 
-		public void setFeature(String name, boolean value) throws SAXNotRecognizedException {
+		public void setFeature(String name, boolean value)
+				throws SAXNotRecognizedException {
 			if (name.equals("http://xml.org/sax/features/namespaces") && value)
 				return;
-			if (name.equals("http://xml.org/sax/features/namespace-prefixes") && !value)
+			if (name.equals("http://xml.org/sax/features/namespace-prefixes")
+					&& !value)
 				return;
 			throw new SAXNotRecognizedException(name);
 		}
 
-		public Object getProperty(String name) throws SAXNotRecognizedException {
+		public Object getProperty(String name)
+				throws SAXNotRecognizedException {
 			if ("http://xml.org/sax/properties/lexical-handler".equals(name)) {
 				return lexicalHandler;
 			}
 			throw new SAXNotRecognizedException(name);
 		}
 
-		public void setProperty(String name, Object value) throws SAXNotRecognizedException {
+		public void setProperty(String name, Object value)
+				throws SAXNotRecognizedException {
 			if ("http://xml.org/sax/properties/lexical-handler".equals(name)) {
 				this.lexicalHandler = (LexicalHandler) value;
 				return;
@@ -249,7 +246,8 @@ public class JAXBSource extends SAXSource {
 				marshaller.marshal(contentObject, (XMLFilterImpl) repeater);
 			} catch (JAXBException e) {
 				// wrap it to a SAXException
-				SAXParseException se = new SAXParseException(e.getMessage(), null, null, -1, -1, e);
+				SAXParseException se = new SAXParseException(e.getMessage(),
+						null, null, -1, -1, e);
 
 				// if the consumer sets an error handler, it is our
 				// responsibility
@@ -268,7 +266,8 @@ public class JAXBSource extends SAXSource {
 	 * Hook to throw exception from the middle of a contructor chained call to
 	 * this
 	 */
-	private static Marshaller assertionFailed(String message) throws JAXBException {
+	private static Marshaller assertionFailed(String message)
+			throws JAXBException {
 
 		throw new JAXBException(message);
 	}

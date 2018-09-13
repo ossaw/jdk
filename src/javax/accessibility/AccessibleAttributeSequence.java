@@ -1,33 +1,14 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.accessibility;
 
 import javax.swing.text.AttributeSet;
 
 /**
- * <P>The AccessibleAttributeSequence provides information about
+ * <P>
+ * The AccessibleAttributeSequence provides information about
  * a contiguous sequence of text attributes
  *
  * @see Accessible
@@ -36,7 +17,7 @@ import javax.swing.text.AttributeSet;
  * @see AccessibleContext#getAccessibleText
  * @see AccessibleTextSequence
  *
- * @author       Lynn Monsanto
+ * @author Lynn Monsanto
  */
 
 /**
@@ -63,11 +44,11 @@ public class AccessibleAttributeSequence {
 	 * parameters.
 	 *
 	 * @param start
-	 *            the beginning index of the span of text
+	 *              the beginning index of the span of text
 	 * @param end
-	 *            the ending index of the span of text
+	 *              the ending index of the span of text
 	 * @param attr
-	 *            the <code>AttributeSet</code> shared by this text span
+	 *              the <code>AttributeSet</code> shared by this text span
 	 *
 	 * @since 1.6
 	 */

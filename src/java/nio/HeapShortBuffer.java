@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -43,9 +23,7 @@ class HeapShortBuffer extends ShortBuffer {
 	// For speed these fields are actually declared in X-Buffer;
 	// these declarations are here as documentation
 	/*
-	 * 
 	 * protected final short[] hb; protected final int offset;
-	 * 
 	 */
 
 	HeapShortBuffer(int cap, int lim) { // package-private
@@ -66,7 +44,8 @@ class HeapShortBuffer extends ShortBuffer {
 
 	}
 
-	protected HeapShortBuffer(short[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapShortBuffer(short[] buf, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(mark, pos, lim, cap, buf, off);
 		/*
@@ -76,19 +55,19 @@ class HeapShortBuffer extends ShortBuffer {
 	}
 
 	public ShortBuffer slice() {
-		return new HeapShortBuffer(hb, -1, 0, this.remaining(), this.remaining(),
-				this.position() + offset);
+		return new HeapShortBuffer(hb, -1, 0, this.remaining(), this
+				.remaining(), this.position() + offset);
 	}
 
 	public ShortBuffer duplicate() {
-		return new HeapShortBuffer(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapShortBuffer(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public ShortBuffer asReadOnlyBuffer() {
 
-		return new HeapShortBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapShortBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 
 	}
 
@@ -155,7 +134,8 @@ class HeapShortBuffer extends ShortBuffer {
 			int n = sb.remaining();
 			if (n > remaining())
 				throw new BufferOverflowException();
-			System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()), n);
+			System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()),
+					n);
 			sb.position(sb.position() + n);
 			position(position() + n);
 		} else if (src.isDirect()) {

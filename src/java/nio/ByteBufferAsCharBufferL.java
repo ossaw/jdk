@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -46,7 +26,8 @@ class ByteBufferAsCharBufferL // package-private
 
 	}
 
-	ByteBufferAsCharBufferL(ByteBuffer bb, int mark, int pos, int lim, int cap, int off) {
+	ByteBufferAsCharBufferL(ByteBuffer bb, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(mark, pos, lim, cap);
 		this.bb = bb;
@@ -65,14 +46,14 @@ class ByteBufferAsCharBufferL // package-private
 	}
 
 	public CharBuffer duplicate() {
-		return new ByteBufferAsCharBufferL(bb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new ByteBufferAsCharBufferL(bb, this.markValue(), this
+				.position(), this.limit(), this.capacity(), offset);
 	}
 
 	public CharBuffer asReadOnlyBuffer() {
 
-		return new ByteBufferAsCharBufferRL(bb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new ByteBufferAsCharBufferRL(bb, this.markValue(), this
+				.position(), this.limit(), this.capacity(), offset);
 
 	}
 
@@ -162,7 +143,8 @@ class ByteBufferAsCharBufferL // package-private
 
 		if ((start < 0) || (end > len) || (start > end))
 			throw new IndexOutOfBoundsException();
-		return new ByteBufferAsCharBufferL(bb, -1, pos + start, pos + end, capacity(), offset);
+		return new ByteBufferAsCharBufferL(bb, -1, pos + start, pos + end,
+				capacity(), offset);
 	}
 
 	public ByteOrder order() {

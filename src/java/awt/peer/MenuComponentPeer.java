@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -49,7 +29,7 @@ public interface MenuComponentPeer {
 	 * Sets the font for the menu component.
 	 *
 	 * @param f
-	 *            the font to use for the menu component
+	 *          the font to use for the menu component
 	 *
 	 * @see MenuComponent#setFont(Font)
 	 */

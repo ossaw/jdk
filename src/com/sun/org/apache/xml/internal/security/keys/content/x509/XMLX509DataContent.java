@@ -27,5 +27,4 @@ package com.sun.org.apache.xml.internal.security.keys.content.x509;
  *
  * @author $Author: coheigea $
  */
-public interface XMLX509DataContent {
-}
+public interface XMLX509DataContent {}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -50,7 +30,7 @@ import java.util.function.IntFunction;
  * pipeline operations.
  *
  * @param <P_OUT>
- *            type of output elements from the pipeline
+ *        type of output elements from the pipeline
  * @since 1.8
  */
 abstract class PipelineHelper<P_OUT> {
@@ -85,8 +65,9 @@ abstract class PipelineHelper<P_OUT> {
 	 *          operation flags.
 	 *
 	 * @param spliterator
-	 *            the spliterator describing the relevant portion of the source
-	 *            data
+	 *                    the spliterator describing the relevant portion of the
+	 *                    source
+	 *                    data
 	 * @return the exact size if known, or -1 if infinite or unknown
 	 */
 	abstract <P_IN> long exactOutputSizeIfKnown(Spliterator<P_IN> spliterator);
@@ -105,11 +86,12 @@ abstract class PipelineHelper<P_OUT> {
 	 *           </pre>
 	 *
 	 * @param sink
-	 *            the {@code Sink} to receive the results
+	 *                    the {@code Sink} to receive the results
 	 * @param spliterator
-	 *            the spliterator describing the source input to process
+	 *                    the spliterator describing the source input to process
 	 */
-	abstract <P_IN, S extends Sink<P_OUT>> S wrapAndCopyInto(S sink, Spliterator<P_IN> spliterator);
+	abstract <P_IN, S extends Sink<P_OUT>> S wrapAndCopyInto(S sink,
+			Spliterator<P_IN> spliterator);
 
 	/**
 	 * Pushes elements obtained from the {@code Spliterator} into the provided
@@ -124,11 +106,12 @@ abstract class PipelineHelper<P_OUT> {
 	 *           elements have been pushed.
 	 *
 	 * @param wrappedSink
-	 *            the destination {@code Sink}
+	 *                    the destination {@code Sink}
 	 * @param spliterator
-	 *            the source {@code Spliterator}
+	 *                    the source {@code Spliterator}
 	 */
-	abstract <P_IN> void copyInto(Sink<P_IN> wrappedSink, Spliterator<P_IN> spliterator);
+	abstract <P_IN> void copyInto(Sink<P_IN> wrappedSink,
+			Spliterator<P_IN> spliterator);
 
 	/**
 	 * Pushes elements obtained from the {@code Spliterator} into the provided
@@ -141,11 +124,12 @@ abstract class PipelineHelper<P_OUT> {
 	 *           elements have been pushed or if cancellation is requested.
 	 *
 	 * @param wrappedSink
-	 *            the destination {@code Sink}
+	 *                    the destination {@code Sink}
 	 * @param spliterator
-	 *            the source {@code Spliterator}
+	 *                    the source {@code Spliterator}
 	 */
-	abstract <P_IN> void copyIntoWithCancel(Sink<P_IN> wrappedSink, Spliterator<P_IN> spliterator);
+	abstract <P_IN> void copyIntoWithCancel(Sink<P_IN> wrappedSink,
+			Spliterator<P_IN> spliterator);
 
 	/**
 	 * Takes a {@code Sink} that accepts elements of the output type of the
@@ -155,7 +139,7 @@ abstract class PipelineHelper<P_OUT> {
 	 * provided {@code Sink}.
 	 *
 	 * @param sink
-	 *            the {@code Sink} to receive the results
+	 *             the {@code Sink} to receive the results
 	 * @return a {@code Sink} that implements the pipeline stages and sends
 	 *         results to the provided {@code Sink}
 	 */
@@ -164,23 +148,28 @@ abstract class PipelineHelper<P_OUT> {
 	/**
 	 *
 	 * @param spliterator
-	 * @param <P_IN>
+	 * @param             <P_IN>
 	 * @return
 	 */
-	abstract <P_IN> Spliterator<P_OUT> wrapSpliterator(Spliterator<P_IN> spliterator);
+	abstract <P_IN> Spliterator<P_OUT> wrapSpliterator(
+			Spliterator<P_IN> spliterator);
 
 	/**
 	 * Constructs a @{link Node.Builder} compatible with the output shape of
 	 * this {@code PipelineHelper}.
 	 *
 	 * @param exactSizeIfKnown
-	 *            if >=0 then a builder will be created that has a fixed
-	 *            capacity of exactly sizeIfKnown elements; if < 0 then the
-	 *            builder has variable capacity. A fixed capacity builder will
-	 *            fail if an element is added after the builder has reached
-	 *            capacity.
+	 *                         if >=0 then a builder will be created that has a
+	 *                         fixed
+	 *                         capacity of exactly sizeIfKnown elements; if < 0
+	 *                         then the
+	 *                         builder has variable capacity. A fixed capacity
+	 *                         builder will
+	 *                         fail if an element is added after the builder has
+	 *                         reached
+	 *                         capacity.
 	 * @param generator
-	 *            a factory function for array instances
+	 *                         a factory function for array instances
 	 * @return a {@code Node.Builder} compatible with the output shape of this
 	 *         {@code PipelineHelper}
 	 */
@@ -204,16 +193,19 @@ abstract class PipelineHelper<P_OUT> {
 	 *           </pre>
 	 *
 	 * @param spliterator
-	 *            the source {@code Spliterator}
+	 *                    the source {@code Spliterator}
 	 * @param flatten
-	 *            if true and the pipeline is a parallel pipeline then the
-	 *            {@code Node} returned will contain no children, otherwise the
-	 *            {@code Node} may represent the root in a tree that reflects
-	 *            the shape of the computation tree.
+	 *                    if true and the pipeline is a parallel pipeline then
+	 *                    the
+	 *                    {@code Node} returned will contain no children,
+	 *                    otherwise the
+	 *                    {@code Node} may represent the root in a tree that
+	 *                    reflects
+	 *                    the shape of the computation tree.
 	 * @param generator
-	 *            a factory function for array instances
+	 *                    a factory function for array instances
 	 * @return the {@code Node} containing all output elements
 	 */
-	abstract <P_IN> Node<P_OUT> evaluate(Spliterator<P_IN> spliterator, boolean flatten,
-			IntFunction<P_OUT[]> generator);
+	abstract <P_IN> Node<P_OUT> evaluate(Spliterator<P_IN> spliterator,
+			boolean flatten, IntFunction<P_OUT[]> generator);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.charset.spi;
@@ -78,8 +58,9 @@ public abstract class CharsetProvider {
 	 * Initializes a new charset provider.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}<tt>("charsetProvider")</tt>
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}<tt>("charsetProvider")</tt>
 	 */
 	protected CharsetProvider() {
 		SecurityManager sm = System.getSecurityManager();
@@ -101,8 +82,9 @@ public abstract class CharsetProvider {
 	 * Retrieves a charset for the given charset name.
 	 *
 	 * @param charsetName
-	 *            The name of the requested charset; may be either a canonical
-	 *            name or an alias
+	 *                    The name of the requested charset; may be either a
+	 *                    canonical
+	 *                    name or an alias
 	 *
 	 * @return A charset object for the named charset, or <tt>null</tt> if the
 	 *         named charset is not supported by this provider

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -35,7 +15,8 @@ package org.omg.CORBA;
  * Usage:
  * 
  * <PRE>
- * NVList props = myContext.get_values("_USER", CTX_RESTRICT_SCOPE.value, "id*");
+ * NVList props = myContext.get_values("_USER", CTX_RESTRICT_SCOPE.value,
+ * 		"id*");
  * </PRE>
  *
  * @see org.omg.CORBA.Context#get_values(String, int, String)

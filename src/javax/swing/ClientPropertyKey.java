@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -88,11 +68,12 @@ enum ClientPropertyKey {
 	private final boolean reportValueNotSerializable;
 
 	static {
-		AWTAccessor.setClientPropertyKeyAccessor(new AWTAccessor.ClientPropertyKeyAccessor() {
-			public Object getJComponent_TRANSFER_HANDLER() {
-				return JComponent_TRANSFER_HANDLER;
-			}
-		});
+		AWTAccessor.setClientPropertyKeyAccessor(
+				new AWTAccessor.ClientPropertyKeyAccessor() {
+					public Object getJComponent_TRANSFER_HANDLER() {
+						return JComponent_TRANSFER_HANDLER;
+					}
+				});
 	}
 
 	/**

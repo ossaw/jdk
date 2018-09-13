@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.undo;
@@ -50,7 +30,7 @@ public class UndoableEditSupport {
 	 * Constructs an <code>UndoableEditSupport</code> object.
 	 *
 	 * @param r
-	 *            an <code>Object</code>
+	 *          an <code>Object</code>
 	 */
 	public UndoableEditSupport(Object r) {
 		realSource = r == null ? this : r;
@@ -64,7 +44,7 @@ public class UndoableEditSupport {
 	 * whenever an edit occurs which can be undone.
 	 *
 	 * @param l
-	 *            an <code>UndoableEditListener</code> object
+	 *          an <code>UndoableEditListener</code> object
 	 * @see #removeUndoableEditListener
 	 */
 	public synchronized void addUndoableEditListener(UndoableEditListener l) {
@@ -75,10 +55,11 @@ public class UndoableEditSupport {
 	 * Removes an <code>UndoableEditListener</code>.
 	 *
 	 * @param l
-	 *            the <code>UndoableEditListener</code> object to be removed
+	 *          the <code>UndoableEditListener</code> object to be removed
 	 * @see #addUndoableEditListener
 	 */
-	public synchronized void removeUndoableEditListener(UndoableEditListener l) {
+	public synchronized void removeUndoableEditListener(
+			UndoableEditListener l) {
 		listeners.removeElement(l);
 	}
 
@@ -103,7 +84,8 @@ public class UndoableEditSupport {
 		UndoableEditEvent ev = new UndoableEditEvent(realSource, e);
 		Enumeration cursor = ((Vector) listeners.clone()).elements();
 		while (cursor.hasMoreElements()) {
-			((UndoableEditListener) cursor.nextElement()).undoableEditHappened(ev);
+			((UndoableEditListener) cursor.nextElement()).undoableEditHappened(
+					ev);
 		}
 	}
 
@@ -168,7 +150,7 @@ public class UndoableEditSupport {
 	 * @return a <code>String</code> representation of this object
 	 */
 	public String toString() {
-		return super.toString() + " updateLevel: " + updateLevel + " listeners: " + listeners
-				+ " compoundEdit: " + compoundEdit;
+		return super.toString() + " updateLevel: " + updateLevel
+				+ " listeners: " + listeners + " compoundEdit: " + compoundEdit;
 	}
 }

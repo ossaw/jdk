@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -94,21 +74,26 @@ public class JmxMBeanServerBuilder extends MBeanServerBuilder {
 	 * support {@link com.sun.jmx.interceptor.MBeanServerInterceptor}s.
 	 *
 	 * @param defaultDomain
-	 *            Default domain of the new MBeanServer.
+	 *                      Default domain of the new MBeanServer.
 	 * @param outer
-	 *            A pointer to the MBeanServer object that must be passed to the
-	 *            MBeans when invoking their
-	 *            {@link javax.management.MBeanRegistration} interface.
+	 *                      A pointer to the MBeanServer object that must be
+	 *                      passed to the
+	 *                      MBeans when invoking their
+	 *                      {@link javax.management.MBeanRegistration}
+	 *                      interface.
 	 * @param delegate
-	 *            A pointer to the MBeanServerDelegate associated with the new
-	 *            MBeanServer. The new MBeanServer must register this MBean in
-	 *            its MBean repository.
+	 *                      A pointer to the MBeanServerDelegate associated with
+	 *                      the new
+	 *                      MBeanServer. The new MBeanServer must register this
+	 *                      MBean in
+	 *                      its MBean repository.
 	 *
 	 * @return A new private implementation of an MBeanServer.
 	 **/
 	public MBeanServer newMBeanServer(String defaultDomain, MBeanServer outer,
 			MBeanServerDelegate delegate) {
-		return JmxMBeanServer.newMBeanServer(defaultDomain, outer, delegate, true);
+		return JmxMBeanServer.newMBeanServer(defaultDomain, outer, delegate,
+				true);
 	}
 
 }

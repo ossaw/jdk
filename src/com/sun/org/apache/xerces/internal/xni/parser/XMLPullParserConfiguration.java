@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -54,13 +51,14 @@ public interface XMLPullParserConfiguration extends XMLParserConfiguration {
 	 * Sets the input source for the document to parse.
 	 *
 	 * @param inputSource
-	 *            The document's input source.
+	 *                    The document's input source.
 	 *
 	 * @exception XMLConfigurationException
-	 *                Thrown if there is a configuration error when initializing
-	 *                the parser.
+	 *                                      Thrown if there is a configuration
+	 *                                      error when initializing
+	 *                                      the parser.
 	 * @exception IOException
-	 *                Thrown on I/O error.
+	 *                                      Thrown on I/O error.
 	 *
 	 * @see #parse(boolean)
 	 */
@@ -71,16 +69,20 @@ public interface XMLPullParserConfiguration extends XMLParserConfiguration {
 	 * Parses the document in a pull parsing fashion.
 	 *
 	 * @param complete
-	 *            True if the pull parser should parse the remaining document
-	 *            completely.
+	 *                 True if the pull parser should parse the remaining
+	 *                 document
+	 *                 completely.
 	 *
 	 * @return True if there is more document to parse.
 	 *
 	 * @exception XNIException
-	 *                Any XNI exception, possibly wrapping another exception.
+	 *                         Any XNI exception, possibly wrapping another
+	 *                         exception.
 	 * @exception IOException
-	 *                An IO exception from the parser, possibly from a byte
-	 *                stream or character stream supplied by the parser.
+	 *                         An IO exception from the parser, possibly from a
+	 *                         byte
+	 *                         stream or character stream supplied by the
+	 *                         parser.
 	 *
 	 * @see #setInputSource
 	 */

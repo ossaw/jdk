@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -37,7 +17,9 @@ import java.nio.file.FileTreeWalker.Event;
 /**
  * An {@code Iterator to iterate over the nodes of a file tree.
  *
- * <pre>
+ * 
+
+<pre>
  * {@code
  *     try (FileTreeIterator iterator = new FileTreeIterator(start, maxDepth, options)) {
  *         while (iterator.hasNext()) {
@@ -58,20 +40,25 @@ class FileTreeIterator implements Iterator<Event>, Closeable {
 	 * Creates a new iterator to walk the file tree starting at the given file.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code maxDepth} is negative
+	 *                                  if {@code maxDepth} is negative
 	 * @throws IOException
-	 *             if an I/O errors occurs opening the starting file
+	 *                                  if an I/O errors occurs opening the
+	 *                                  starting file
 	 * @throws SecurityException
-	 *             if the security manager denies access to the starting file
+	 *                                  if the security manager denies access to
+	 *                                  the starting file
 	 * @throws NullPointerException
-	 *             if {@code start} or {@code options} is {@ocde null} or the
-	 *             options array contains a {@code null} element
+	 *                                  if {@code start} or {@code options} is
+	 *                                  {@ocde null} or the
+	 *                                  options array contains a {@code null}
+	 *                                  element
 	 */
-	FileTreeIterator(Path start, int maxDepth, FileVisitOption... options) throws IOException {
+	FileTreeIterator(Path start, int maxDepth, FileVisitOption... options)
+			throws IOException {
 		this.walker = new FileTreeWalker(Arrays.asList(options), maxDepth);
 		this.next = walker.walk(start);
-		assert next.type() == FileTreeWalker.EventType.ENTRY
-				|| next.type() == FileTreeWalker.EventType.START_DIRECTORY;
+		assert next.type() == FileTreeWalker.EventType.ENTRY || next
+				.type() == FileTreeWalker.EventType.START_DIRECTORY;
 
 		// IOException if there a problem accessing the starting file
 		IOException ioe = next.ioeException();

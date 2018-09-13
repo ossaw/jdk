@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -66,7 +63,7 @@ public class CMBuilder {
 	 * Get content model for the a given type
 	 *
 	 * @param typeDecl
-	 *            get content model for which complex type
+	 *                 get content model for which complex type
 	 * @return a content model validator
 	 */
 	public XSCMValidator getContentModel(XSComplexTypeDecl typeDecl) {
@@ -117,7 +114,8 @@ public class CMBuilder {
 		XSModelGroupImpl group = (XSModelGroupImpl) particle.fValue;
 		// create an all content model. the parameter indicates whether
 		// the <all> itself is optional
-		XSAllCM allContent = new XSAllCM(particle.fMinOccurs == 0, group.fParticleCount);
+		XSAllCM allContent = new XSAllCM(particle.fMinOccurs == 0,
+				group.fParticleCount);
 		for (int i = 0; i < group.fParticleCount; i++) {
 			// add the element decl to the all content model
 			allContent.addElement((XSElementDecl) group.fParticles[i].fValue,
@@ -130,8 +128,8 @@ public class CMBuilder {
 		fLeafCount = 0;
 		fParticleCount = 0;
 		// convert particle tree to CM tree
-		CMNode node = useRepeatingLeafNodes(particle) ? buildCompactSyntaxTree(particle)
-				: buildSyntaxTree(particle, true);
+		CMNode node = useRepeatingLeafNodes(particle) ? buildCompactSyntaxTree(
+				particle) : buildSyntaxTree(particle, true);
 		if (node == null)
 			return null;
 		// build DFA content model from the CM tree
@@ -159,10 +157,11 @@ public class CMBuilder {
 			// are two references to the same group, we have two different
 			// leaf particles for the same element or wildcard decl.
 			// This is useful for checking UPA.
-			nodeRet = fNodeFactory.getCMLeafNode(particle.fType, particle.fValue, fParticleCount++,
-					fLeafCount++);
+			nodeRet = fNodeFactory.getCMLeafNode(particle.fType,
+					particle.fValue, fParticleCount++, fLeafCount++);
 			// (task 2) expand occurrence values
-			nodeRet = expandContentModel(nodeRet, minOccurs, maxOccurs, optimize);
+			nodeRet = expandContentModel(nodeRet, minOccurs, maxOccurs,
+					optimize);
 		} else if (type == XSParticleDecl.PARTICLE_MODELGROUP) {
 			// (task 1,3) convert model groups to binary trees
 			XSModelGroupImpl group = (XSModelGroupImpl) particle.fValue;
@@ -180,16 +179,17 @@ public class CMBuilder {
 			boolean twoChildren = false;
 			for (int i = 0; i < group.fParticleCount; i++) {
 				// first convert each child to a CM tree
-				temp = buildSyntaxTree(group.fParticles[i],
-						optimize && minOccurs == 1 && maxOccurs == 1
-								&& (group.fCompositor == XSModelGroupImpl.MODELGROUP_SEQUENCE
-										|| group.fParticleCount == 1));
+				temp = buildSyntaxTree(group.fParticles[i], optimize
+						&& minOccurs == 1 && maxOccurs == 1
+						&& (group.fCompositor == XSModelGroupImpl.MODELGROUP_SEQUENCE
+								|| group.fParticleCount == 1));
 				// then combine them using binary operation
 				if (temp != null) {
 					if (nodeRet == null) {
 						nodeRet = temp;
 					} else {
-						nodeRet = fNodeFactory.getCMBinOpNode(group.fCompositor, nodeRet, temp);
+						nodeRet = fNodeFactory.getCMBinOpNode(group.fCompositor,
+								nodeRet, temp);
 						// record the fact that there are at least 2 children
 						twoChildren = true;
 					}
@@ -201,12 +201,13 @@ public class CMBuilder {
 				// child, and the group had more than one children, we need
 				// to create a zero-or-one (optional) node for the non-empty
 				// particle.
-				if (group.fCompositor == XSModelGroupImpl.MODELGROUP_CHOICE && !twoChildren
-						&& group.fParticleCount > 1) {
-					nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_ONE,
-							nodeRet);
+				if (group.fCompositor == XSModelGroupImpl.MODELGROUP_CHOICE
+						&& !twoChildren && group.fParticleCount > 1) {
+					nodeRet = fNodeFactory.getCMUniOpNode(
+							XSParticleDecl.PARTICLE_ZERO_OR_ONE, nodeRet);
 				}
-				nodeRet = expandContentModel(nodeRet, minOccurs, maxOccurs, false);
+				nodeRet = expandContentModel(nodeRet, minOccurs, maxOccurs,
+						false);
 			}
 		}
 
@@ -216,7 +217,8 @@ public class CMBuilder {
 	// 2. expand all occurrence values: a{n, unbounded} -> a, a, ..., a+
 	// a{n, m} -> a, a, ..., a?, a?, ...
 	// 4. make sure each leaf node (XSCMLeaf) has a distinct position
-	private CMNode expandContentModel(CMNode node, int minOccurs, int maxOccurs, boolean optimize) {
+	private CMNode expandContentModel(CMNode node, int minOccurs, int maxOccurs,
+			boolean optimize) {
 
 		CMNode nodeRet = null;
 
@@ -224,13 +226,18 @@ public class CMBuilder {
 			nodeRet = node;
 		} else if (minOccurs == 0 && maxOccurs == 1) {
 			// zero or one
-			nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_ONE, node);
-		} else if (minOccurs == 0 && maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
+			nodeRet = fNodeFactory.getCMUniOpNode(
+					XSParticleDecl.PARTICLE_ZERO_OR_ONE, node);
+		} else if (minOccurs == 0
+				&& maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
 			// zero or more
-			nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_MORE, node);
-		} else if (minOccurs == 1 && maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
+			nodeRet = fNodeFactory.getCMUniOpNode(
+					XSParticleDecl.PARTICLE_ZERO_OR_MORE, node);
+		} else if (minOccurs == 1
+				&& maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
 			// one or more
-			nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ONE_OR_MORE, node);
+			nodeRet = fNodeFactory.getCMUniOpNode(
+					XSParticleDecl.PARTICLE_ONE_OR_MORE, node);
 		} else if (optimize && node.type() == XSParticleDecl.PARTICLE_ELEMENT
 				|| node.type() == XSParticleDecl.PARTICLE_WILDCARD) {
 			// Only for elements and wildcards, subsume e{n,m} and
@@ -243,21 +250,23 @@ public class CMBuilder {
 
 			// TODO: What is the impact of this optimization on the PSVI?
 			nodeRet = fNodeFactory.getCMUniOpNode(minOccurs == 0
-					? XSParticleDecl.PARTICLE_ZERO_OR_MORE : XSParticleDecl.PARTICLE_ONE_OR_MORE,
-					node);
+					? XSParticleDecl.PARTICLE_ZERO_OR_MORE
+					: XSParticleDecl.PARTICLE_ONE_OR_MORE, node);
 			nodeRet.setUserData(new int[] { minOccurs, maxOccurs });
 		} else if (maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
 			// => a,a,..,a+
 			// create a+ node first, then put minOccurs-1 a's in front of it
 			// for the first time "node" is used, we don't need to make a copy
 			// and for other references to node, we make copies
-			nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ONE_OR_MORE, node);
+			nodeRet = fNodeFactory.getCMUniOpNode(
+					XSParticleDecl.PARTICLE_ONE_OR_MORE, node);
 			// (task 4) we need to call copyNode here, so that we append
 			// an entire new copy of the node (a subtree). this is to ensure
 			// all leaf nodes have distinct position
 			// we know that minOccurs > 1
-			nodeRet = fNodeFactory.getCMBinOpNode(XSModelGroupImpl.MODELGROUP_SEQUENCE,
-					multiNodes(node, minOccurs - 1, true), nodeRet);
+			nodeRet = fNodeFactory.getCMBinOpNode(
+					XSModelGroupImpl.MODELGROUP_SEQUENCE, multiNodes(node,
+							minOccurs - 1, true), nodeRet);
 		} else {
 			// {n,m} => a,a,a,...(a),(a),...
 			// first n a's, then m-n a?'s.
@@ -266,12 +275,14 @@ public class CMBuilder {
 				nodeRet = multiNodes(node, minOccurs, false);
 			}
 			if (maxOccurs > minOccurs) {
-				node = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_ONE, node);
+				node = fNodeFactory.getCMUniOpNode(
+						XSParticleDecl.PARTICLE_ZERO_OR_ONE, node);
 				if (nodeRet == null) {
 					nodeRet = multiNodes(node, maxOccurs - minOccurs, false);
 				} else {
-					nodeRet = fNodeFactory.getCMBinOpNode(XSModelGroupImpl.MODELGROUP_SEQUENCE,
-							nodeRet, multiNodes(node, maxOccurs - minOccurs, true));
+					nodeRet = fNodeFactory.getCMBinOpNode(
+							XSModelGroupImpl.MODELGROUP_SEQUENCE, nodeRet,
+							multiNodes(node, maxOccurs - minOccurs, true));
 				}
 			}
 		}
@@ -288,7 +299,8 @@ public class CMBuilder {
 		}
 		int num1 = num / 2;
 		return fNodeFactory.getCMBinOpNode(XSModelGroupImpl.MODELGROUP_SEQUENCE,
-				multiNodes(node, num1, copyFirst), multiNodes(node, num - num1, true));
+				multiNodes(node, num1, copyFirst), multiNodes(node, num - num1,
+						true));
 	}
 
 	// 4. make sure each leaf node (XSCMLeaf) has a distinct position
@@ -313,8 +325,8 @@ public class CMBuilder {
 		else if (type == XSParticleDecl.PARTICLE_ELEMENT
 				|| type == XSParticleDecl.PARTICLE_WILDCARD) {
 			XSCMLeaf leaf = (XSCMLeaf) node;
-			node = fNodeFactory.getCMLeafNode(leaf.type(), leaf.getLeaf(), leaf.getParticleId(),
-					fLeafCount++);
+			node = fNodeFactory.getCMLeafNode(leaf.type(), leaf.getLeaf(), leaf
+					.getParticleId(), fLeafCount++);
 		}
 
 		return node;
@@ -336,8 +348,10 @@ public class CMBuilder {
 			return buildCompactSyntaxTree2(particle, minOccurs, maxOccurs);
 		} else if (type == XSParticleDecl.PARTICLE_MODELGROUP) {
 			XSModelGroupImpl group = (XSModelGroupImpl) particle.fValue;
-			if (group.fParticleCount == 1 && (minOccurs != 1 || maxOccurs != 1)) {
-				return buildCompactSyntaxTree2(group.fParticles[0], minOccurs, maxOccurs);
+			if (group.fParticleCount == 1 && (minOccurs != 1
+					|| maxOccurs != 1)) {
+				return buildCompactSyntaxTree2(group.fParticles[0], minOccurs,
+						maxOccurs);
 			} else {
 				CMNode temp = null;
 
@@ -363,7 +377,8 @@ public class CMBuilder {
 						if (nodeRet == null) {
 							nodeRet = temp;
 						} else {
-							nodeRet = fNodeFactory.getCMBinOpNode(group.fCompositor, nodeRet, temp);
+							nodeRet = fNodeFactory.getCMBinOpNode(
+									group.fCompositor, nodeRet, temp);
 						}
 					}
 				}
@@ -374,8 +389,8 @@ public class CMBuilder {
 					// non-empty particles.
 					if (group.fCompositor == XSModelGroupImpl.MODELGROUP_CHOICE
 							&& count < group.fParticleCount) {
-						nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_ONE,
-								nodeRet);
+						nodeRet = fNodeFactory.getCMUniOpNode(
+								XSParticleDecl.PARTICLE_ZERO_OR_ONE, nodeRet);
 					}
 				}
 			}
@@ -383,39 +398,47 @@ public class CMBuilder {
 		return nodeRet;
 	}
 
-	private CMNode buildCompactSyntaxTree2(XSParticleDecl particle, int minOccurs, int maxOccurs) {
+	private CMNode buildCompactSyntaxTree2(XSParticleDecl particle,
+			int minOccurs, int maxOccurs) {
 		// Convert element and wildcard particles to leaf nodes. Wrap repeating
 		// particles in a CMUniOpNode.
 		CMNode nodeRet = null;
 		if (minOccurs == 1 && maxOccurs == 1) {
-			nodeRet = fNodeFactory.getCMLeafNode(particle.fType, particle.fValue, fParticleCount++,
-					fLeafCount++);
+			nodeRet = fNodeFactory.getCMLeafNode(particle.fType,
+					particle.fValue, fParticleCount++, fLeafCount++);
 		} else if (minOccurs == 0 && maxOccurs == 1) {
 			// zero or one
-			nodeRet = fNodeFactory.getCMLeafNode(particle.fType, particle.fValue, fParticleCount++,
-					fLeafCount++);
-			nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_ONE, nodeRet);
-		} else if (minOccurs == 0 && maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
+			nodeRet = fNodeFactory.getCMLeafNode(particle.fType,
+					particle.fValue, fParticleCount++, fLeafCount++);
+			nodeRet = fNodeFactory.getCMUniOpNode(
+					XSParticleDecl.PARTICLE_ZERO_OR_ONE, nodeRet);
+		} else if (minOccurs == 0
+				&& maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
 			// zero or more
-			nodeRet = fNodeFactory.getCMLeafNode(particle.fType, particle.fValue, fParticleCount++,
-					fLeafCount++);
-			nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_MORE, nodeRet);
-		} else if (minOccurs == 1 && maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
+			nodeRet = fNodeFactory.getCMLeafNode(particle.fType,
+					particle.fValue, fParticleCount++, fLeafCount++);
+			nodeRet = fNodeFactory.getCMUniOpNode(
+					XSParticleDecl.PARTICLE_ZERO_OR_MORE, nodeRet);
+		} else if (minOccurs == 1
+				&& maxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED) {
 			// one or more
-			nodeRet = fNodeFactory.getCMLeafNode(particle.fType, particle.fValue, fParticleCount++,
-					fLeafCount++);
-			nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ONE_OR_MORE, nodeRet);
+			nodeRet = fNodeFactory.getCMLeafNode(particle.fType,
+					particle.fValue, fParticleCount++, fLeafCount++);
+			nodeRet = fNodeFactory.getCMUniOpNode(
+					XSParticleDecl.PARTICLE_ONE_OR_MORE, nodeRet);
 		} else {
 			// {n,m}: Instead of expanding this out, create a compound leaf node
 			// which carries the
 			// occurence information and wrap it in the appropriate CMUniOpNode.
-			nodeRet = fNodeFactory.getCMRepeatingLeafNode(particle.fType, particle.fValue,
-					minOccurs, maxOccurs, fParticleCount++, fLeafCount++);
+			nodeRet = fNodeFactory.getCMRepeatingLeafNode(particle.fType,
+					particle.fValue, minOccurs, maxOccurs, fParticleCount++,
+					fLeafCount++);
 			if (minOccurs == 0) {
-				nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ZERO_OR_MORE,
-						nodeRet);
+				nodeRet = fNodeFactory.getCMUniOpNode(
+						XSParticleDecl.PARTICLE_ZERO_OR_MORE, nodeRet);
 			} else {
-				nodeRet = fNodeFactory.getCMUniOpNode(XSParticleDecl.PARTICLE_ONE_OR_MORE, nodeRet);
+				nodeRet = fNodeFactory.getCMUniOpNode(
+						XSParticleDecl.PARTICLE_ONE_OR_MORE, nodeRet);
 			}
 		}
 		return nodeRet;
@@ -441,7 +464,8 @@ public class CMBuilder {
 					short type2 = particle2.fType;
 					return ((type2 == XSParticleDecl.PARTICLE_ELEMENT
 							|| type2 == XSParticleDecl.PARTICLE_WILDCARD)
-							&& particle2.fMinOccurs == 1 && particle2.fMaxOccurs == 1);
+							&& particle2.fMinOccurs == 1
+							&& particle2.fMaxOccurs == 1);
 				}
 				return (group.fParticleCount == 0);
 			}

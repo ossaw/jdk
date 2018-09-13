@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.tree;
@@ -128,7 +108,7 @@ public interface TreeSelectionModel {
 	 * has the same effect as invoking <code>clearSelection</code>.
 	 *
 	 * @param path
-	 *            new path to select
+	 *             new path to select
 	 */
 	void setSelectionPath(TreePath path);
 
@@ -138,7 +118,7 @@ public interface TreeSelectionModel {
 	 * has the same effect as invoking <code>clearSelection</code>.
 	 *
 	 * @param paths
-	 *            new selection
+	 *              new selection
 	 */
 	void setSelectionPaths(TreePath[] paths);
 
@@ -148,7 +128,7 @@ public interface TreeSelectionModel {
 	 * <code>path</code> is null.
 	 *
 	 * @param path
-	 *            the new path to add to the current selection
+	 *             the new path to add to the current selection
 	 */
 	void addSelectionPath(TreePath path);
 
@@ -158,7 +138,7 @@ public interface TreeSelectionModel {
 	 * has no effect if <code>paths</code> is null.
 	 *
 	 * @param paths
-	 *            the new paths to add to the current selection
+	 *              the new paths to add to the current selection
 	 */
 	void addSelectionPaths(TreePath[] paths);
 
@@ -168,7 +148,7 @@ public interface TreeSelectionModel {
 	 * <code>path</code> is null.
 	 *
 	 * @param path
-	 *            the path to remove from the selection
+	 *             the path to remove from the selection
 	 */
 	void removeSelectionPath(TreePath path);
 
@@ -178,7 +158,7 @@ public interface TreeSelectionModel {
 	 * notified. This method has no effect if <code>paths</code> is null.
 	 *
 	 * @param paths
-	 *            the path to remove from the selection
+	 *              the path to remove from the selection
 	 */
 	void removeSelectionPaths(TreePath[] paths);
 
@@ -282,7 +262,7 @@ public interface TreeSelectionModel {
 	 * A PropertyChangeEvent will get fired when the selection mode changes.
 	 *
 	 * @param listener
-	 *            the PropertyChangeListener to be added
+	 *                 the PropertyChangeListener to be added
 	 */
 	void addPropertyChangeListener(PropertyChangeListener listener);
 
@@ -291,7 +271,7 @@ public interface TreeSelectionModel {
 	 * PropertyChangeListener that was registered for all properties.
 	 *
 	 * @param listener
-	 *            the PropertyChangeListener to be removed
+	 *                 the PropertyChangeListener to be removed
 	 */
 	void removePropertyChangeListener(PropertyChangeListener listener);
 
@@ -300,7 +280,7 @@ public interface TreeSelectionModel {
 	 * selected TreePaths changes.
 	 *
 	 * @param x
-	 *            the new listener to be added
+	 *          the new listener to be added
 	 */
 	void addTreeSelectionListener(TreeSelectionListener x);
 
@@ -309,7 +289,7 @@ public interface TreeSelectionModel {
 	 * of selected TreePaths changes.
 	 *
 	 * @param x
-	 *            the listener to remove
+	 *          the listener to remove
 	 */
 	void removeTreeSelectionListener(TreeSelectionListener x);
 }

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,7 +61,8 @@ final class CastCall extends FunctionCall {
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
 		// Check that the function was passed exactly two arguments
 		if (argumentCount() != 2) {
-			throw new TypeCheckError(new ErrorMsg(ErrorMsg.ILLEGAL_ARG_ERR, getName(), this));
+			throw new TypeCheckError(new ErrorMsg(ErrorMsg.ILLEGAL_ARG_ERR,
+					getName(), this));
 		}
 
 		// The first argument must be a literal String
@@ -73,15 +71,16 @@ final class CastCall extends FunctionCall {
 			_className = ((LiteralExpr) exp).getValue();
 			_type = Type.newObjectType(_className);
 		} else {
-			throw new TypeCheckError(new ErrorMsg(ErrorMsg.NEED_LITERAL_ERR, getName(), this));
+			throw new TypeCheckError(new ErrorMsg(ErrorMsg.NEED_LITERAL_ERR,
+					getName(), this));
 		}
 
 		// Second argument must be of type reference or object
 		_right = argument(1);
 		Type tright = _right.typeCheck(stable);
 		if (tright != Type.Reference && tright instanceof ObjectType == false) {
-			throw new TypeCheckError(
-					new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, tright, _type, this));
+			throw new TypeCheckError(new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					tright, _type, this));
 		}
 
 		return _type;

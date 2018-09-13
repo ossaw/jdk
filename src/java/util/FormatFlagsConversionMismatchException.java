@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -35,7 +15,8 @@ package java.util;
  *
  * @since 1.5
  */
-public class FormatFlagsConversionMismatchException extends IllegalFormatException {
+public class FormatFlagsConversionMismatchException extends
+		IllegalFormatException {
 	private static final long serialVersionUID = 19120414L;
 
 	private String f;
@@ -47,10 +28,10 @@ public class FormatFlagsConversionMismatchException extends IllegalFormatExcepti
 	 * conversion.
 	 *
 	 * @param f
-	 *            The flag
+	 *          The flag
 	 *
 	 * @param c
-	 *            The conversion
+	 *          The conversion
 	 */
 	public FormatFlagsConversionMismatchException(String f, char c) {
 		if (f == null)

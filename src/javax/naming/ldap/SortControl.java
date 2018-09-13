@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -124,14 +104,18 @@ final public class SortControl extends BasicControl {
 	 * use with the specified attribute.
 	 *
 	 * @param sortBy
-	 *            An attribute ID to sort by.
+	 *                    An attribute ID to sort by.
 	 * @param criticality
-	 *            If true then the server must honor the control and return the
-	 *            search results sorted as requested or refuse to perform the
-	 *            search. If false, then the server need not honor the control.
+	 *                    If true then the server must honor the control and
+	 *                    return the
+	 *                    search results sorted as requested or refuse to
+	 *                    perform the
+	 *                    search. If false, then the server need not honor the
+	 *                    control.
 	 * @exception IOException
-	 *                If an error was encountered while encoding the supplied
-	 *                arguments into a control.
+	 *                        If an error was encountered while encoding the
+	 *                        supplied
+	 *                        arguments into a control.
 	 */
 	public SortControl(String sortBy, boolean criticality) throws IOException {
 
@@ -145,17 +129,23 @@ final public class SortControl extends BasicControl {
 	 * use with each of the specified attributes.
 	 *
 	 * @param sortBy
-	 *            A non-null list of attribute IDs to sort by. The list is in
-	 *            order of highest to lowest sort key precedence.
+	 *                    A non-null list of attribute IDs to sort by. The list
+	 *                    is in
+	 *                    order of highest to lowest sort key precedence.
 	 * @param criticality
-	 *            If true then the server must honor the control and return the
-	 *            search results sorted as requested or refuse to perform the
-	 *            search. If false, then the server need not honor the control.
+	 *                    If true then the server must honor the control and
+	 *                    return the
+	 *                    search results sorted as requested or refuse to
+	 *                    perform the
+	 *                    search. If false, then the server need not honor the
+	 *                    control.
 	 * @exception IOException
-	 *                If an error was encountered while encoding the supplied
-	 *                arguments into a control.
+	 *                        If an error was encountered while encoding the
+	 *                        supplied
+	 *                        arguments into a control.
 	 */
-	public SortControl(String[] sortBy, boolean criticality) throws IOException {
+	public SortControl(String[] sortBy, boolean criticality)
+			throws IOException {
 
 		super(OID, criticality, null);
 		SortKey[] sortKeys = new SortKey[sortBy.length];
@@ -170,17 +160,23 @@ final public class SortControl extends BasicControl {
 	 * specifies the sort order and ordering matching rule to use.
 	 *
 	 * @param sortBy
-	 *            A non-null list of keys to sort by. The list is in order of
-	 *            highest to lowest sort key precedence.
+	 *                    A non-null list of keys to sort by. The list is in
+	 *                    order of
+	 *                    highest to lowest sort key precedence.
 	 * @param criticality
-	 *            If true then the server must honor the control and return the
-	 *            search results sorted as requested or refuse to perform the
-	 *            search. If false, then the server need not honor the control.
+	 *                    If true then the server must honor the control and
+	 *                    return the
+	 *                    search results sorted as requested or refuse to
+	 *                    perform the
+	 *                    search. If false, then the server need not honor the
+	 *                    control.
 	 * @exception IOException
-	 *                If an error was encountered while encoding the supplied
-	 *                arguments into a control.
+	 *                        If an error was encountered while encoding the
+	 *                        supplied
+	 *                        arguments into a control.
 	 */
-	public SortControl(SortKey[] sortBy, boolean criticality) throws IOException {
+	public SortControl(SortKey[] sortBy, boolean criticality)
+			throws IOException {
 
 		super(OID, criticality, null);
 		super.value = setEncodedValue(sortBy);
@@ -190,12 +186,9 @@ final public class SortControl extends BasicControl {
 	 * Encodes the sort control's value using ASN.1 BER. The result includes the
 	 * BER tag and length for the control's value but does not include the
 	 * control's object identifer and criticality setting.
-	 *
 	 * @param sortKeys A non-null list of keys to sort by.
-	 * 
 	 * @return A possibly null byte array representing the ASN.1 BER encoded
 	 * value of the sort control.
-	 * 
 	 * @exception IOException If a BER encoding error occurs.
 	 */
 	private byte[] setEncodedValue(SortKey[] sortKeys) throws IOException {

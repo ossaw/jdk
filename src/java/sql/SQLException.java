@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -51,7 +31,8 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
  * <LI>the causal relationship, if any for this <code>SQLException</code>.
  * </UL>
  */
-public class SQLException extends java.lang.Exception implements Iterable<Throwable> {
+public class SQLException extends java.lang.Exception implements
+		Iterable<Throwable> {
 
 	/**
 	 * Constructs a <code>SQLException</code> object with a given
@@ -63,11 +44,11 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *                   a description of the exception
 	 * @param SQLState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                   an XOPEN or SQL:2003 code identifying the exception
 	 * @param vendorCode
-	 *            a database vendor-specific exception code
+	 *                   a database vendor-specific exception code
 	 */
 	public SQLException(String reason, String SQLState, int vendorCode) {
 		super(reason);
@@ -75,7 +56,8 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 		this.vendorCode = vendorCode;
 		if (!(this instanceof SQLWarning)) {
 			if (DriverManager.getLogWriter() != null) {
-				DriverManager.println("SQLState(" + SQLState + ") vendor code(" + vendorCode + ")");
+				DriverManager.println("SQLState(" + SQLState + ") vendor code("
+						+ vendorCode + ")");
 				printStackTrace(DriverManager.getLogWriter());
 			}
 		}
@@ -92,9 +74,9 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *                 a description of the exception
 	 * @param SQLState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                 an XOPEN or SQL:2003 code identifying the exception
 	 */
 	public SQLException(String reason, String SQLState) {
 		super(reason);
@@ -103,7 +85,8 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 		if (!(this instanceof SQLWarning)) {
 			if (DriverManager.getLogWriter() != null) {
 				printStackTrace(DriverManager.getLogWriter());
-				DriverManager.println("SQLException: SQLState(" + SQLState + ")");
+				DriverManager.println("SQLException: SQLState(" + SQLState
+						+ ")");
 			}
 		}
 	}
@@ -119,7 +102,7 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *               a description of the exception
 	 */
 	public SQLException(String reason) {
 		super(reason);
@@ -163,10 +146,10 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * <p>
 	 * 
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *              the underlying reason for this <code>SQLException</code>
+	 *              (which is saved for later retrieval by the
+	 *              <code>getCause()</code> method); may be null indicating the
+	 *              cause is non-existent or unknown.
 	 * @since 1.6
 	 */
 	public SQLException(Throwable cause) {
@@ -186,12 +169,12 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception.
+	 *               a description of the exception.
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *               the underlying reason for this <code>SQLException</code>
+	 *               (which is saved for later retrieval by the
+	 *               <code>getCause()</code> method); may be null indicating the
+	 *               cause is non-existent or unknown.
 	 * @since 1.6
 	 */
 	public SQLException(String reason, Throwable cause) {
@@ -211,14 +194,15 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception.
+	 *                 a description of the exception.
 	 * @param sqlState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                 an XOPEN or SQL:2003 code identifying the exception
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *                 the underlying reason for this <code>SQLException</code>
+	 *                 (which is saved for later retrieval by the
+	 *                 <code>getCause()</code> method); may be null indicating
+	 *                 the
+	 *                 cause is non-existent or unknown.
 	 * @since 1.6
 	 */
 	public SQLException(String reason, String sqlState, Throwable cause) {
@@ -241,26 +225,30 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *                   a description of the exception
 	 * @param sqlState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                   an XOPEN or SQL:2003 code identifying the exception
 	 * @param vendorCode
-	 *            a database vendor-specific exception code
+	 *                   a database vendor-specific exception code
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *                   the underlying reason for this
+	 *                   <code>SQLException</code>
+	 *                   (which is saved for later retrieval by the
+	 *                   <code>getCause()</code> method); may be null indicating
+	 *                   the
+	 *                   cause is non-existent or unknown.
 	 * @since 1.6
 	 */
-	public SQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
+	public SQLException(String reason, String sqlState, int vendorCode,
+			Throwable cause) {
 		super(reason, cause);
 
 		this.SQLState = sqlState;
 		this.vendorCode = vendorCode;
 		if (!(this instanceof SQLWarning)) {
 			if (DriverManager.getLogWriter() != null) {
-				DriverManager.println("SQLState(" + SQLState + ") vendor code(" + vendorCode + ")");
+				DriverManager.println("SQLState(" + SQLState + ") vendor code("
+						+ vendorCode + ")");
 				printStackTrace(DriverManager.getLogWriter());
 			}
 		}
@@ -301,8 +289,8 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 	 * Adds an <code>SQLException</code> object to the end of the chain.
 	 *
 	 * @param ex
-	 *            the new exception that will be added to the end of the
-	 *            <code>SQLException</code> chain
+	 *           the new exception that will be added to the end of the
+	 *           <code>SQLException</code> chain
 	 * @see #getNextException
 	 */
 	public void setNextException(SQLException ex) {
@@ -340,7 +328,8 @@ public class SQLException extends java.lang.Exception implements Iterable<Throwa
 			Throwable cause = firstException.getCause();
 
 			public boolean hasNext() {
-				if (firstException != null || nextException != null || cause != null)
+				if (firstException != null || nextException != null
+						|| cause != null)
 					return true;
 				return false;
 			}

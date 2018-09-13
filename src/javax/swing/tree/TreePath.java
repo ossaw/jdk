@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.tree;
@@ -92,18 +72,21 @@ public class TreePath extends Object implements Serializable {
 	 * the path to a node.
 	 *
 	 * @param path
-	 *            an array of objects representing the path to a node
+	 *             an array of objects representing the path to a node
 	 * @throws IllegalArgumentException
-	 *             if {@code path} is {@code null}, empty, or contains a
-	 *             {@code null} value
+	 *                                  if {@code path} is {@code null}, empty,
+	 *                                  or contains a
+	 *                                  {@code null} value
 	 */
 	@ConstructorProperties({ "path" })
 	public TreePath(Object[] path) {
 		if (path == null || path.length == 0)
-			throw new IllegalArgumentException("path in TreePath must be non null and not empty.");
+			throw new IllegalArgumentException(
+					"path in TreePath must be non null and not empty.");
 		lastPathComponent = path[path.length - 1];
 		if (lastPathComponent == null) {
-			throw new IllegalArgumentException("Last path component must be non-null");
+			throw new IllegalArgumentException(
+					"Last path component must be non-null");
 		}
 		if (path.length > 1)
 			parentPath = new TreePath(path, path.length - 1);
@@ -114,14 +97,16 @@ public class TreePath extends Object implements Serializable {
 	 * construct a {@code TreePath} identifying the root.
 	 *
 	 * @param lastPathComponent
-	 *            the root
+	 *                          the root
 	 * @see #TreePath(Object[])
 	 * @throws IllegalArgumentException
-	 *             if {@code lastPathComponent} is {@code null}
+	 *                                  if {@code lastPathComponent} is
+	 *                                  {@code null}
 	 */
 	public TreePath(Object lastPathComponent) {
 		if (lastPathComponent == null)
-			throw new IllegalArgumentException("path in TreePath must be non null.");
+			throw new IllegalArgumentException(
+					"path in TreePath must be non null.");
 		this.lastPathComponent = lastPathComponent;
 		parentPath = null;
 	}
@@ -130,15 +115,18 @@ public class TreePath extends Object implements Serializable {
 	 * Creates a {@code TreePath} with the specified parent and element.
 	 *
 	 * @param parent
-	 *            the path to the parent, or {@code null} to indicate the root
+	 *                          the path to the parent, or {@code null} to
+	 *                          indicate the root
 	 * @param lastPathComponent
-	 *            the last path element
+	 *                          the last path element
 	 * @throws IllegalArgumentException
-	 *             if {@code lastPathComponent} is {@code null}
+	 *                                  if {@code lastPathComponent} is
+	 *                                  {@code null}
 	 */
 	protected TreePath(TreePath parent, Object lastPathComponent) {
 		if (lastPathComponent == null)
-			throw new IllegalArgumentException("path in TreePath must be non null.");
+			throw new IllegalArgumentException(
+					"path in TreePath must be non null.");
 		parentPath = parent;
 		this.lastPathComponent = lastPathComponent;
 	}
@@ -152,22 +140,25 @@ public class TreePath extends Object implements Serializable {
 	 * subclasses.
 	 *
 	 * @param path
-	 *            the array to create the {@code TreePath} from
+	 *               the array to create the {@code TreePath} from
 	 * @param length
-	 *            identifies the number of elements in {@code path} to create
-	 *            the {@code TreePath} from
+	 *               identifies the number of elements in {@code path} to create
+	 *               the {@code TreePath} from
 	 * @throws NullPointerException
-	 *             if {@code path} is {@code null}
+	 *                                        if {@code path} is {@code null}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code length - 1} is outside the range of the array
+	 *                                        if {@code length - 1} is outside
+	 *                                        the range of the array
 	 * @throws IllegalArgumentException
-	 *             if any of the elements from {@code 0} to {@code length - 1}
-	 *             are {@code null}
+	 *                                        if any of the elements from
+	 *                                        {@code 0} to {@code length - 1}
+	 *                                        are {@code null}
 	 */
 	protected TreePath(Object[] path, int length) {
 		lastPathComponent = path[length - 1];
 		if (lastPathComponent == null) {
-			throw new IllegalArgumentException("Path elements must be non-null");
+			throw new IllegalArgumentException(
+					"Path elements must be non-null");
 		}
 		if (length > 1)
 			parentPath = new TreePath(path, length - 1);
@@ -179,8 +170,7 @@ public class TreePath extends Object implements Serializable {
 	 * constructor must override {@code getLastPathComponent}, and
 	 * {@code getParentPath}.
 	 */
-	protected TreePath() {
-	}
+	protected TreePath() {}
 
 	/**
 	 * Returns an ordered array of the elements of this {@code TreePath}. The
@@ -224,16 +214,18 @@ public class TreePath extends Object implements Serializable {
 	 * Returns the path element at the specified index.
 	 *
 	 * @param index
-	 *            the index of the element requested
+	 *              the index of the element requested
 	 * @return the element at the specified index
 	 * @throws IllegalArgumentException
-	 *             if the index is outside the range of this path
+	 *                                  if the index is outside the range of
+	 *                                  this path
 	 */
 	public Object getPathComponent(int index) {
 		int pathLength = getPathCount();
 
 		if (index < 0 || index >= pathLength)
-			throw new IllegalArgumentException("Index " + index + " is out of the specified range");
+			throw new IllegalArgumentException("Index " + index
+					+ " is out of the specified range");
 
 		TreePath path = this;
 
@@ -250,7 +242,7 @@ public class TreePath extends Object implements Serializable {
 	 * path).
 	 *
 	 * @param o
-	 *            the object to compare
+	 *          the object to compare
 	 */
 	public boolean equals(Object o) {
 		if (o == this)
@@ -260,8 +252,10 @@ public class TreePath extends Object implements Serializable {
 
 			if (getPathCount() != oTreePath.getPathCount())
 				return false;
-			for (TreePath path = this; path != null; path = path.getParentPath()) {
-				if (!(path.getLastPathComponent().equals(oTreePath.getLastPathComponent()))) {
+			for (TreePath path = this; path != null; path = path
+					.getParentPath()) {
+				if (!(path.getLastPathComponent().equals(oTreePath
+						.getLastPathComponent()))) {
 					return false;
 				}
 				oTreePath = oTreePath.getParentPath();
@@ -294,7 +288,7 @@ public class TreePath extends Object implements Serializable {
 	 * <code>aTreePath.isDescendant(aTreePath)</code> returns {@code true}.
 	 *
 	 * @param aTreePath
-	 *            the {@code TreePath} to check
+	 *                  the {@code TreePath} to check
 	 * @return true if <code>aTreePath</code> is a descendant of this path
 	 */
 	public boolean isDescendant(TreePath aTreePath) {
@@ -321,9 +315,9 @@ public class TreePath extends Object implements Serializable {
 	 * created {@code TreePath}.
 	 *
 	 * @param child
-	 *            the path element to add
+	 *              the path element to add
 	 * @throws NullPointerException
-	 *             if {@code child} is {@code null}
+	 *                              if {@code child} is {@code null}
 	 */
 	public TreePath pathByAddingChild(Object child) {
 		if (child == null)

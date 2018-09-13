@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -47,7 +27,8 @@ package java.io;
  * as FileWriters and OutputStreamWriters. For example,
  *
  * <pre>
- * PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("foo.out")));
+ * PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
+ * 		"foo.out")));
  * </pre>
  *
  * will buffer the PrintWriter's output to the file. Without buffering, each
@@ -100,7 +81,7 @@ public class BufferedWriter extends Writer {
 	 *            Output-buffer size, a positive integer
 	 *
 	 * @exception IllegalArgumentException
-	 *                If {@code sz <= 0}
+	 *                                     If {@code sz <= 0}
 	 */
 	public BufferedWriter(Writer out, int sz) {
 		super(out);
@@ -111,8 +92,8 @@ public class BufferedWriter extends Writer {
 		nChars = sz;
 		nextChar = 0;
 
-		lineSeparator = java.security.AccessController
-				.doPrivileged(new sun.security.action.GetPropertyAction("line.separator"));
+		lineSeparator = java.security.AccessController.doPrivileged(
+				new sun.security.action.GetPropertyAction("line.separator"));
 	}
 
 	/** Checks to make sure that the stream has not been closed */
@@ -140,7 +121,7 @@ public class BufferedWriter extends Writer {
 	 * Writes a single character.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(int c) throws IOException {
 		synchronized (lock) {
@@ -173,20 +154,20 @@ public class BufferedWriter extends Writer {
 	 * not copy data unnecessarily.
 	 *
 	 * @param cbuf
-	 *            A character array
+	 *             A character array
 	 * @param off
-	 *            Offset from which to start reading characters
+	 *             Offset from which to start reading characters
 	 * @param len
-	 *            Number of characters to write
+	 *             Number of characters to write
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(char cbuf[], int off, int len) throws IOException {
 		synchronized (lock) {
 			ensureOpen();
-			if ((off < 0) || (off > cbuf.length) || (len < 0) || ((off + len) > cbuf.length)
-					|| ((off + len) < 0)) {
+			if ((off < 0) || (off > cbuf.length) || (len < 0) || ((off
+					+ len) > cbuf.length) || ((off + len) < 0)) {
 				throw new IndexOutOfBoundsException();
 			} else if (len == 0) {
 				return;
@@ -232,7 +213,7 @@ public class BufferedWriter extends Writer {
 	 *            Number of characters to be written
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(String s, int off, int len) throws IOException {
 		synchronized (lock) {
@@ -256,7 +237,7 @@ public class BufferedWriter extends Writer {
 	 * newline ('\n') character.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void newLine() throws IOException {
 		write(lineSeparator);
@@ -266,7 +247,7 @@ public class BufferedWriter extends Writer {
 	 * Flushes the stream.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void flush() throws IOException {
 		synchronized (lock) {

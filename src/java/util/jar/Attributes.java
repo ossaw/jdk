@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.jar;
@@ -70,7 +50,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * size.
 	 *
 	 * @param size
-	 *            the initial number of attributes
+	 *             the initial number of attributes
 	 */
 	public Attributes(int size) {
 		map = new HashMap<>(size);
@@ -81,7 +61,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * mappings as in the specified Attributes.
 	 *
 	 * @param attr
-	 *            the specified Attributes
+	 *             the specified Attributes
 	 */
 	public Attributes(Attributes attr) {
 		map = new HashMap<>(attr);
@@ -92,7 +72,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * attribute name was not found.
 	 *
 	 * @param name
-	 *            the attribute name
+	 *             the attribute name
 	 * @return the value of the specified attribute name, or null if not found.
 	 */
 	public Object get(Object name) {
@@ -111,11 +91,11 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * </pre>
 	 *
 	 * @param name
-	 *            the attribute name as a string
+	 *             the attribute name as a string
 	 * @return the String value of the specified attribute name, or null if not
 	 *         found.
 	 * @throws IllegalArgumentException
-	 *             if the attribute name is invalid
+	 *                                  if the attribute name is invalid
 	 */
 	public String getValue(String name) {
 		return (String) get(new Attributes.Name(name));
@@ -132,7 +112,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * </pre>
 	 *
 	 * @param name
-	 *            the Attributes.Name object
+	 *             the Attributes.Name object
 	 * @return the String value of the specified Attribute.Name, or null if not
 	 *         found.
 	 */
@@ -146,13 +126,14 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * name, the old value is replaced.
 	 *
 	 * @param name
-	 *            the attribute name
+	 *              the attribute name
 	 * @param value
-	 *            the attribute value
+	 *              the attribute value
 	 * @return the previous value of the attribute, or null if none
 	 * @exception ClassCastException
-	 *                if the name is not a Attributes.Name or the value is not a
-	 *                String
+	 *                               if the name is not a Attributes.Name or the
+	 *                               value is not a
+	 *                               String
 	 */
 	public Object put(Object name, Object value) {
 		return map.put((Attributes.Name) name, (String) value);
@@ -171,12 +152,12 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * </pre>
 	 *
 	 * @param name
-	 *            the attribute name as a string
+	 *              the attribute name as a string
 	 * @param value
-	 *            the attribute value
+	 *              the attribute value
 	 * @return the previous value of the attribute, or null if none
 	 * @exception IllegalArgumentException
-	 *                if the attribute name is invalid
+	 *                                     if the attribute name is invalid
 	 */
 	public String putValue(String name, String value) {
 		return (String) put(new Name(name), value);
@@ -187,7 +168,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * Returns the previous attribute value, or null if none.
 	 *
 	 * @param name
-	 *            attribute name
+	 *             attribute name
 	 * @return the previous value of the attribute, or null if none
 	 */
 	public Object remove(Object name) {
@@ -199,7 +180,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * specified value.
 	 *
 	 * @param value
-	 *            the attribute value
+	 *              the attribute value
 	 * @return true if this Map maps one or more attribute names to the
 	 *         specified value
 	 */
@@ -211,7 +192,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * Returns true if this Map contains the specified attribute name (key).
 	 *
 	 * @param name
-	 *            the attribute name
+	 *             the attribute name
 	 * @return true if this Map contains the specified attribute name
 	 */
 	public boolean containsKey(Object name) {
@@ -223,9 +204,9 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * Attributes to this Map. Duplicate mappings will be replaced.
 	 *
 	 * @param attr
-	 *            the Attributes to be stored in this map
+	 *             the Attributes to be stored in this map
 	 * @exception ClassCastException
-	 *                if attr is not an Attributes
+	 *                               if attr is not an Attributes
 	 */
 	public void putAll(Map<?, ?> attr) {
 		// ## javac bug?
@@ -284,7 +265,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * the two Attributes objects represent the same mappings.
 	 *
 	 * @param o
-	 *            the Object to be compared
+	 *          the Object to be compared
 	 * @return true if the specified Object is equal to this Map
 	 */
 	public boolean equals(Object o) {
@@ -323,7 +304,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		Iterator<Map.Entry<Object, Object>> it = entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<Object, Object> e = it.next();
-			StringBuffer buffer = new StringBuffer(((Name) e.getKey()).toString());
+			StringBuffer buffer = new StringBuffer(((Name) e.getKey())
+					.toString());
 			buffer.append(": ");
 
 			String value = (String) e.getValue();
@@ -344,7 +326,6 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 	 * Writes the current attributes to the specified data output stream, make
 	 * sure to write out the MANIFEST_VERSION or SIGNATURE_VERSION attributes
 	 * first.
-	 *
 	 * XXX Need to handle UTF8 values and break up lines longer than 72 bytes
 	 */
 	void writeMain(DataOutputStream out) throws IOException {
@@ -441,10 +422,11 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 			}
 			try {
 				if ((putValue(name, value) != null) && (!lineContinued)) {
-					PlatformLogger.getLogger("java.util.jar")
-							.warning("Duplicate name in Manifest: " + name + ".\n"
+					PlatformLogger.getLogger("java.util.jar").warning(
+							"Duplicate name in Manifest: " + name + ".\n"
 									+ "Ensure that the manifest does not "
-									+ "have duplicate entries, and\n" + "that blank lines separate "
+									+ "have duplicate entries, and\n"
+									+ "that blank lines separate "
 									+ "individual sections in both your\n"
 									+ "manifest and in the META-INF/MANIFEST.MF "
 									+ "entry in the jar file.");
@@ -473,11 +455,11 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 * Constructs a new attribute name using the given string name.
 		 *
 		 * @param name
-		 *            the attribute string name
+		 *             the attribute string name
 		 * @exception IllegalArgumentException
-		 *                if the attribute name was invalid
+		 *                                     if the attribute name was invalid
 		 * @exception NullPointerException
-		 *                if the attribute name was null
+		 *                                     if the attribute name was null
 		 */
 		public Name(String name) {
 			if (name == null) {
@@ -518,7 +500,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 * Compares this attribute name to another for equality.
 		 * 
 		 * @param o
-		 *            the object to compare
+		 *          the object to compare
 		 * @return true if this attribute name is equal to the specified
 		 *         attribute object
 		 */
@@ -536,7 +518,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 */
 		public int hashCode() {
 			if (hashCode == -1) {
-				hashCode = ASCIICaseInsensitiveComparator.lowerCaseHashCode(name);
+				hashCode = ASCIICaseInsensitiveComparator.lowerCaseHashCode(
+						name);
 			}
 			return hashCode;
 		}
@@ -557,7 +540,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/jar/jar.html#JAR_Manifest">
 		 *      Manifest and Signature Specification</a>
 		 */
-		public static final Name MANIFEST_VERSION = new Name("Manifest-Version");
+		public static final Name MANIFEST_VERSION = new Name(
+				"Manifest-Version");
 
 		/**
 		 * <code>Name</code> object for <code>Signature-Version</code> manifest
@@ -567,7 +551,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/jar/jar.html#JAR_Manifest">
 		 *      Manifest and Signature Specification</a>
 		 */
-		public static final Name SIGNATURE_VERSION = new Name("Signature-Version");
+		public static final Name SIGNATURE_VERSION = new Name(
+				"Signature-Version");
 
 		/**
 		 * <code>Name</code> object for <code>Content-Type</code> manifest
@@ -634,7 +619,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      Installed extension dependency</a>
 		 */
 		@Deprecated
-		public static final Name EXTENSION_INSTALLATION = new Name("Extension-Installation");
+		public static final Name EXTENSION_INSTALLATION = new Name(
+				"Extension-Installation");
 
 		/**
 		 * <code>Name</code> object for <code>Implementation-Title</code>
@@ -644,7 +630,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/versioning/spec/versioning2.html#wp90779">
 		 *      Java Product Versioning Specification</a>
 		 */
-		public static final Name IMPLEMENTATION_TITLE = new Name("Implementation-Title");
+		public static final Name IMPLEMENTATION_TITLE = new Name(
+				"Implementation-Title");
 
 		/**
 		 * <code>Name</code> object for <code>Implementation-Version</code>
@@ -654,7 +641,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/versioning/spec/versioning2.html#wp90779">
 		 *      Java Product Versioning Specification</a>
 		 */
-		public static final Name IMPLEMENTATION_VERSION = new Name("Implementation-Version");
+		public static final Name IMPLEMENTATION_VERSION = new Name(
+				"Implementation-Version");
 
 		/**
 		 * <code>Name</code> object for <code>Implementation-Vendor</code>
@@ -664,7 +652,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/versioning/spec/versioning2.html#wp90779">
 		 *      Java Product Versioning Specification</a>
 		 */
-		public static final Name IMPLEMENTATION_VENDOR = new Name("Implementation-Vendor");
+		public static final Name IMPLEMENTATION_VENDOR = new Name(
+				"Implementation-Vendor");
 
 		/**
 		 * <code>Name</code> object for <code>Implementation-Vendor-Id</code>
@@ -677,7 +666,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      Optional Package Versioning</a>
 		 */
 		@Deprecated
-		public static final Name IMPLEMENTATION_VENDOR_ID = new Name("Implementation-Vendor-Id");
+		public static final Name IMPLEMENTATION_VENDOR_ID = new Name(
+				"Implementation-Vendor-Id");
 
 		/**
 		 * <code>Name</code> object for <code>Implementation-URL</code> manifest
@@ -690,7 +680,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      Optional Package Versioning</a>
 		 */
 		@Deprecated
-		public static final Name IMPLEMENTATION_URL = new Name("Implementation-URL");
+		public static final Name IMPLEMENTATION_URL = new Name(
+				"Implementation-URL");
 
 		/**
 		 * <code>Name</code> object for <code>Specification-Title</code>
@@ -700,7 +691,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/versioning/spec/versioning2.html#wp90779">
 		 *      Java Product Versioning Specification</a>
 		 */
-		public static final Name SPECIFICATION_TITLE = new Name("Specification-Title");
+		public static final Name SPECIFICATION_TITLE = new Name(
+				"Specification-Title");
 
 		/**
 		 * <code>Name</code> object for <code>Specification-Version</code>
@@ -710,7 +702,8 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/versioning/spec/versioning2.html#wp90779">
 		 *      Java Product Versioning Specification</a>
 		 */
-		public static final Name SPECIFICATION_VERSION = new Name("Specification-Version");
+		public static final Name SPECIFICATION_VERSION = new Name(
+				"Specification-Version");
 
 		/**
 		 * <code>Name</code> object for <code>Specification-Vendor</code>
@@ -720,6 +713,7 @@ public class Attributes implements Map<Object, Object>, Cloneable {
 		 *      "../../../../technotes/guides/versioning/spec/versioning2.html#wp90779">
 		 *      Java Product Versioning Specification</a>
 		 */
-		public static final Name SPECIFICATION_VENDOR = new Name("Specification-Vendor");
+		public static final Name SPECIFICATION_VENDOR = new Name(
+				"Specification-Vendor");
 	}
 }

@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management;
@@ -45,12 +24,16 @@ public interface DescriptorAccess extends DescriptorRead {
 	 * Sets Descriptor (full replace).
 	 *
 	 * @param inDescriptor
-	 *            replaces the Descriptor associated with the component
-	 *            implementing this interface. If the inDescriptor is invalid
-	 *            for the type of Info object it is being set for, an exception
-	 *            is thrown. If the inDescriptor is null, then the Descriptor
-	 *            will revert to its default value which should contain, at a
-	 *            minimum, the descriptor name and descriptorType.
+	 *                     replaces the Descriptor associated with the component
+	 *                     implementing this interface. If the inDescriptor is
+	 *                     invalid
+	 *                     for the type of Info object it is being set for, an
+	 *                     exception
+	 *                     is thrown. If the inDescriptor is null, then the
+	 *                     Descriptor
+	 *                     will revert to its default value which should
+	 *                     contain, at a
+	 *                     minimum, the descriptor name and descriptorType.
 	 *
 	 * @see #getDescriptor
 	 */

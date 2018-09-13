@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans.beancontext;
 
@@ -41,8 +21,8 @@ public interface BeanContextServiceRevokedListener extends EventListener {
 	 * will no longer be satisfied.
 	 * 
 	 * @param bcsre
-	 *            the <code>BeanContextServiceRevokedEvent</code> received by
-	 *            this listener.
+	 *              the <code>BeanContextServiceRevokedEvent</code> received by
+	 *              this listener.
 	 */
 	void serviceRevoked(BeanContextServiceRevokedEvent bcsre);
 }

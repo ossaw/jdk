@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model;
@@ -145,7 +125,8 @@ public enum SourceVersion {
 
 	private static SourceVersion getLatestSupported() {
 		try {
-			String specVersion = System.getProperty("java.specification.version");
+			String specVersion = System.getProperty(
+					"java.specification.version");
 
 			if ("1.8".equals(specVersion))
 				return RELEASE_8;
@@ -181,7 +162,7 @@ public enum SourceVersion {
 	 * {@code false} for all other strings.
 	 *
 	 * @param name
-	 *            the string to check
+	 *             the string to check
 	 * @return {@code true} if this string is a syntactically valid identifier
 	 *         or keyword, {@code false} otherwise.
 	 */
@@ -195,7 +176,8 @@ public enum SourceVersion {
 		if (!Character.isJavaIdentifierStart(cp)) {
 			return false;
 		}
-		for (int i = Character.charCount(cp); i < id.length(); i += Character.charCount(cp)) {
+		for (int i = Character.charCount(cp); i < id.length(); i += Character
+				.charCount(cp)) {
 			cp = id.codePointAt(i);
 			if (!Character.isJavaIdentifierPart(cp)) {
 				return false;
@@ -211,7 +193,7 @@ public enum SourceVersion {
 	 * literals.
 	 *
 	 * @param name
-	 *            the string to check
+	 *             the string to check
 	 * @return {@code true} if this string is a syntactically valid name,
 	 *         {@code false} otherwise.
 	 * @jls 6.2 Names and Identifiers
@@ -229,13 +211,15 @@ public enum SourceVersion {
 	private final static Set<String> keywords;
 	static {
 		Set<String> s = new HashSet<String>();
-		String[] kws = { "abstract", "continue", "for", "new", "switch", "assert", "default", "if",
-				"package", "synchronized", "boolean", "do", "goto", "private", "this", "break",
-				"double", "implements", "protected", "throw", "byte", "else", "import", "public",
-				"throws", "case", "enum", "instanceof", "return", "transient", "catch", "extends",
-				"int", "short", "try", "char", "final", "interface", "static", "void", "class",
-				"finally", "long", "strictfp", "volatile", "const", "float", "native", "super",
-				"while",
+		String[] kws = { "abstract", "continue", "for", "new", "switch",
+				"assert", "default", "if", "package", "synchronized", "boolean",
+				"do", "goto", "private", "this", "break", "double",
+				"implements", "protected", "throw", "byte", "else", "import",
+				"public", "throws", "case", "enum", "instanceof", "return",
+				"transient", "catch", "extends", "int", "short", "try", "char",
+				"final", "interface", "static", "void", "class", "finally",
+				"long", "strictfp", "volatile", "const", "float", "native",
+				"super", "while",
 				// literals
 				"null", "true", "false" };
 		for (String kw : kws)
@@ -248,7 +232,7 @@ public enum SourceVersion {
 	 * source version.
 	 *
 	 * @param s
-	 *            the string to check
+	 *          the string to check
 	 * @return {@code true} if {@code s} is a keyword or literal, {@code false}
 	 *         otherwise.
 	 */

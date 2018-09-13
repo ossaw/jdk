@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -97,7 +77,7 @@ public final class RespectBindingFeature extends WebServiceFeature {
 	 * Creates an RespectBindingFeature
 	 *
 	 * @param enabled
-	 *            specifies whether this feature should be enabled or not.
+	 *                specifies whether this feature should be enabled or not.
 	 */
 	public RespectBindingFeature(boolean enabled) {
 		this.enabled = enabled;

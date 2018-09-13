@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -51,17 +31,18 @@ public final class ServiceDetail implements org.omg.CORBA.portable.IDLEntity {
 	 * Constructs a <code>ServiceDetail</code> object with 0 for the type of ORB
 	 * service and an empty description.
 	 */
-	public ServiceDetail() {
-	}
+	public ServiceDetail() {}
 
 	/**
 	 * Constructs a <code>ServiceDetail</code> object with the given ORB service
 	 * type and the given description.
 	 *
 	 * @param service_detail_type
-	 *            an <code>int</code> specifying the type of ORB service
+	 *                            an <code>int</code> specifying the type of ORB
+	 *                            service
 	 * @param service_detail
-	 *            a <code>byte</code> array describing the ORB service
+	 *                            a <code>byte</code> array describing the ORB
+	 *                            service
 	 */
 	public ServiceDetail(int service_detail_type, byte[] service_detail) {
 		this.service_detail_type = service_detail_type;

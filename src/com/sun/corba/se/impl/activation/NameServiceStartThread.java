@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.activation;
@@ -48,7 +28,8 @@ public class NameServiceStartThread extends java.lang.Thread {
 			// start Name Service
 			NameService nameService = new NameService(orb, dbDir);
 			NamingContext rootContext = nameService.initialNamingContext();
-			orb.register_initial_reference(ORBConstants.PERSISTENT_NAME_SERVICE_NAME, rootContext);
+			orb.register_initial_reference(
+					ORBConstants.PERSISTENT_NAME_SERVICE_NAME, rootContext);
 		} catch (Exception e) {
 			System.err.println("NameService did not start successfully");
 			e.printStackTrace();

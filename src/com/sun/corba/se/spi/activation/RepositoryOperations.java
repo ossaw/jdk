@@ -11,26 +11,32 @@ package com.sun.corba.se.spi.activation;
 public interface RepositoryOperations {
 
 	// always uninstalled.
-	int registerServer(com.sun.corba.se.spi.activation.RepositoryPackage.ServerDef serverDef)
+	int registerServer(
+			com.sun.corba.se.spi.activation.RepositoryPackage.ServerDef serverDef)
 			throws com.sun.corba.se.spi.activation.ServerAlreadyRegistered,
 			com.sun.corba.se.spi.activation.BadServerDefinition;
 
 	// unregister server definition
-	void unregisterServer(int serverId) throws com.sun.corba.se.spi.activation.ServerNotRegistered;
+	void unregisterServer(int serverId)
+			throws com.sun.corba.se.spi.activation.ServerNotRegistered;
 
 	// get server definition
-	com.sun.corba.se.spi.activation.RepositoryPackage.ServerDef getServer(int serverId)
+	com.sun.corba.se.spi.activation.RepositoryPackage.ServerDef getServer(
+			int serverId)
 			throws com.sun.corba.se.spi.activation.ServerNotRegistered;
 
 	// Return whether the server has been installed
-	boolean isInstalled(int serverId) throws com.sun.corba.se.spi.activation.ServerNotRegistered;
+	boolean isInstalled(int serverId)
+			throws com.sun.corba.se.spi.activation.ServerNotRegistered;
 
 	// if the server is currently marked as installed.
-	void install(int serverId) throws com.sun.corba.se.spi.activation.ServerNotRegistered,
+	void install(int serverId)
+			throws com.sun.corba.se.spi.activation.ServerNotRegistered,
 			com.sun.corba.se.spi.activation.ServerAlreadyInstalled;
 
 	// if the server is currently marked as uninstalled.
-	void uninstall(int serverId) throws com.sun.corba.se.spi.activation.ServerNotRegistered,
+	void uninstall(int serverId)
+			throws com.sun.corba.se.spi.activation.ServerNotRegistered,
 			com.sun.corba.se.spi.activation.ServerAlreadyUninstalled;
 
 	// list registered servers

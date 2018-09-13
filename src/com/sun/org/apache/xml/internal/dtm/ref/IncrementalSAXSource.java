@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: IncrementalSAXSource.java,v 1.2.4.1 2005/09/15 08:15:06 suresh_emailid Exp $
+ * $Id: IncrementalSAXSource.java,v 1.2.4.1 2005/09/15 08:15:06 suresh_emailid
+ * Exp $
  */
 
 package com.sun.org.apache.xml.internal.dtm.ref;
@@ -70,8 +68,9 @@ public interface IncrementalSAXSource {
 	 * serves to encapsulate the coroutine communication protocol.
 	 *
 	 * @param parsemore
-	 *            If true, tells the incremental SAX stream to deliver another
-	 *            chunk of events. If false, finishes out the stream.
+	 *                  If true, tells the incremental SAX stream to deliver
+	 *                  another
+	 *                  chunk of events. If false, finishes out the stream.
 	 *
 	 * @return Boolean.TRUE if the IncrementalSAXSource believes more data may
 	 *         be available for further parsing. Boolean.FALSE if parsing ran to
@@ -90,8 +89,9 @@ public interface IncrementalSAXSource {
 	 * others, it may do other forms of initialization.
 	 *
 	 * @throws SAXException
-	 *             is parse thread is already in progress or parsing can not be
-	 *             started.
+	 *                      is parse thread is already in progress or parsing
+	 *                      can not be
+	 *                      started.
 	 */
 	public void startParse(InputSource source) throws SAXException;
 

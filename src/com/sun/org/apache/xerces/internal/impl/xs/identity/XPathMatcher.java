@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,10 +50,12 @@ public class XPathMatcher {
 	protected static final boolean DEBUG_METHODS = false || DEBUG_ALL;
 
 	/** Compile to true to debug important method callbacks. */
-	protected static final boolean DEBUG_METHODS2 = false || DEBUG_METHODS || DEBUG_ALL;
+	protected static final boolean DEBUG_METHODS2 = false || DEBUG_METHODS
+			|| DEBUG_ALL;
 
 	/** Compile to true to debug the <em>really</em> important methods. */
-	protected static final boolean DEBUG_METHODS3 = false || DEBUG_METHODS || DEBUG_ALL;
+	protected static final boolean DEBUG_METHODS3 = false || DEBUG_METHODS
+			|| DEBUG_ALL;
 
 	/** Compile to true to debug match. */
 	protected static final boolean DEBUG_MATCH = false || DEBUG_ALL;
@@ -65,8 +64,8 @@ public class XPathMatcher {
 	protected static final boolean DEBUG_STACK = false || DEBUG_ALL;
 
 	/** Don't touch this value unless you add more debug constants. */
-	protected static final boolean DEBUG_ANY = DEBUG_METHODS || DEBUG_METHODS2 || DEBUG_METHODS3
-			|| DEBUG_MATCH || DEBUG_STACK;
+	protected static final boolean DEBUG_ANY = DEBUG_METHODS || DEBUG_METHODS2
+			|| DEBUG_METHODS3 || DEBUG_MATCH || DEBUG_STACK;
 
 	// constants describing whether a match was made,
 	// and if so how.
@@ -115,7 +114,7 @@ public class XPathMatcher {
 	 * Constructs an XPath matcher that implements a document fragment handler.
 	 *
 	 * @param xpath
-	 *            The xpath.
+	 *              The xpath.
 	 */
 	public XPathMatcher(XPath xpath) {
 		fLocationPaths = xpath.getLocationPaths();
@@ -138,10 +137,10 @@ public class XPathMatcher {
 		// xpath has been matched if any one of the members of the union have
 		// matched.
 		for (int i = 0; i < fLocationPaths.length; i++)
-			if (((fMatched[i] & MATCHED) == MATCHED)
-					&& ((fMatched[i] & MATCHED_DESCENDANT_PREVIOUS) != MATCHED_DESCENDANT_PREVIOUS)
-					&& ((fNoMatchDepth[i] == 0)
-							|| ((fMatched[i] & MATCHED_DESCENDANT) == MATCHED_DESCENDANT)))
+			if (((fMatched[i] & MATCHED) == MATCHED) && ((fMatched[i]
+					& MATCHED_DESCENDANT_PREVIOUS) != MATCHED_DESCENDANT_PREVIOUS)
+					&& ((fNoMatchDepth[i] == 0) || ((fMatched[i]
+							& MATCHED_DESCENDANT) == MATCHED_DESCENDANT)))
 				return true;
 
 		return false;
@@ -153,19 +152,19 @@ public class XPathMatcher {
 
 	// a place-holder method; to be overridden by subclasses
 	// that care about matching element content.
-	protected void handleContent(XSTypeDefinition type, boolean nillable, Object value,
-			short valueType, ShortList itemValueType) {
-	}
+	protected void handleContent(XSTypeDefinition type, boolean nillable,
+			Object value, short valueType, ShortList itemValueType) {}
 
 	/**
 	 * This method is called when the XPath handler matches the XPath
 	 * expression. Subclasses can override this method to provide default
 	 * handling upon a match.
 	 */
-	protected void matched(Object actualValue, short valueType, ShortList itemValueType,
-			boolean isNil) {
+	protected void matched(Object actualValue, short valueType,
+			ShortList itemValueType, boolean isNil) {
 		if (DEBUG_METHODS3) {
-			System.out.println(toString() + "#matched(\"" + actualValue + "\")");
+			System.out.println(toString() + "#matched(\"" + actualValue
+					+ "\")");
 		}
 	} // matched(String content, XSSimpleType val)
 
@@ -198,17 +197,17 @@ public class XPathMatcher {
 	 * followed by the endElement method, with no intervening methods.
 	 *
 	 * @param element
-	 *            The name of the element.
+	 *                   The name of the element.
 	 * @param attributes
-	 *            The element attributes.
+	 *                   The element attributes.
 	 *
 	 * @throws SAXException
-	 *             Thrown by handler to signal an error.
+	 *                      Thrown by handler to signal an error.
 	 */
 	public void startElement(QName element, XMLAttributes attributes) {
 		if (DEBUG_METHODS2) {
-			System.out.println(toString() + "#startElement(" + "element={" + element + "},"
-					+ "attributes=..." + attributes + ")");
+			System.out.println(toString() + "#startElement(" + "element={"
+					+ element + "}," + "attributes=..." + attributes + ")");
 		}
 
 		for (int i = 0; i < fLocationPaths.length; i++) {
@@ -217,7 +216,8 @@ public class XPathMatcher {
 			fStepIndexes[i].push(startStep);
 
 			// try next xpath, if not matching
-			if ((fMatched[i] & MATCHED_DESCENDANT) == MATCHED || fNoMatchDepth[i] > 0) {
+			if ((fMatched[i] & MATCHED_DESCENDANT) == MATCHED
+					|| fNoMatchDepth[i] > 0) {
 				fNoMatchDepth[i]++;
 				continue;
 			}
@@ -273,7 +273,8 @@ public class XPathMatcher {
 			}
 
 			// match child::... step, if haven't consumed any self::node()
-			if ((fCurrentStep[i] == startStep || fCurrentStep[i] > descendantStep)
+			if ((fCurrentStep[i] == startStep
+					|| fCurrentStep[i] > descendantStep)
 					&& steps[fCurrentStep[i]].axis.type == XPath.Axis.CHILD) {
 				XPath.Step step = steps[fCurrentStep[i]];
 				XPath.NodeTest nodeTest = step.nodeTest;
@@ -288,7 +289,8 @@ public class XPathMatcher {
 						}
 						fNoMatchDepth[i]++;
 						if (DEBUG_MATCH) {
-							System.out.println(toString() + " [CHILD] after NO MATCH");
+							System.out.println(toString()
+									+ " [CHILD] after NO MATCH");
 						}
 						continue;
 					}
@@ -320,20 +322,25 @@ public class XPathMatcher {
 
 					for (int aIndex = 0; aIndex < attrCount; aIndex++) {
 						attributes.getName(aIndex, fQName);
-						if (nodeTest.type != XPath.NodeTest.QNAME || nodeTest.name.equals(fQName)) {
+						if (nodeTest.type != XPath.NodeTest.QNAME
+								|| nodeTest.name.equals(fQName)) {
 							fCurrentStep[i]++;
 							if (fCurrentStep[i] == steps.length) {
 								fMatched[i] = MATCHED_ATTRIBUTE;
 								int j = 0;
-								for (; j < i && ((fMatched[j] & MATCHED) != MATCHED); j++)
+								for (; j < i && ((fMatched[j]
+										& MATCHED) != MATCHED); j++)
 									;
 								if (j == i) {
 									AttributePSVI attrPSVI = (AttributePSVI) attributes
-											.getAugmentations(aIndex)
-											.getItem(Constants.ATTRIBUTE_PSVI);
-									fMatchedString = attrPSVI.getActualNormalizedValue();
-									matched(fMatchedString, attrPSVI.getActualNormalizedValueType(),
-											attrPSVI.getItemValueTypes(), false);
+											.getAugmentations(aIndex).getItem(
+													Constants.ATTRIBUTE_PSVI);
+									fMatchedString = attrPSVI
+											.getActualNormalizedValue();
+									matched(fMatchedString, attrPSVI
+											.getActualNormalizedValueType(),
+											attrPSVI.getItemValueTypes(),
+											false);
 								}
 							}
 							break;
@@ -352,7 +359,8 @@ public class XPathMatcher {
 					continue;
 				}
 				if (DEBUG_MATCH) {
-					System.out.println(toString() + " [ATTRIBUTE] after MATCHED!");
+					System.out.println(toString()
+							+ " [ATTRIBUTE] after MATCHED!");
 				}
 			}
 		}
@@ -362,23 +370,28 @@ public class XPathMatcher {
 
 	/**
 	 * @param element
-	 *            name of the element.
+	 *                 name of the element.
 	 * @param type
-	 *            content type of this element. IOW, the XML schema type of the
-	 *            <tt>value</tt>. Note that this may not be the type declared in
-	 *            the element declaration, but it is "the actual type". For
-	 *            example, if the XML is &lt;foo
-	 *            xsi:type="xs:string">aaa&lt;/foo>, this parameter will be
-	 *            "xs:string".
+	 *                 content type of this element. IOW, the XML schema type of
+	 *                 the
+	 *                 <tt>value</tt>. Note that this may not be the type
+	 *                 declared in
+	 *                 the element declaration, but it is "the actual type". For
+	 *                 example, if the XML is &lt;foo
+	 *                 xsi:type="xs:string">aaa&lt;/foo>, this parameter will be
+	 *                 "xs:string".
 	 * @param nillable
-	 *            - nillable true if the element declaration is nillable.
+	 *                 - nillable true if the element declaration is nillable.
 	 * @param value
-	 *            - actual value the typed value of the content of this element.
+	 *                 - actual value the typed value of the content of this
+	 *                 element.
 	 */
-	public void endElement(QName element, XSTypeDefinition type, boolean nillable, Object value,
-			short valueType, ShortList itemValueType) {
+	public void endElement(QName element, XSTypeDefinition type,
+			boolean nillable, Object value, short valueType,
+			ShortList itemValueType) {
 		if (DEBUG_METHODS2) {
-			System.out.println(toString() + "#endElement(" + "element={" + element + "}," + ")");
+			System.out.println(toString() + "#endElement(" + "element={"
+					+ element + "}," + ")");
 		}
 		for (int i = 0; i < fLocationPaths.length; i++) {
 			// go back a step
@@ -394,8 +407,8 @@ public class XPathMatcher {
 				int j = 0;
 				for (; j < i && ((fMatched[j] & MATCHED) != MATCHED); j++)
 					;
-				if ((j < i) || (fMatched[j] == 0)
-						|| ((fMatched[j] & MATCHED_ATTRIBUTE) == MATCHED_ATTRIBUTE)) {
+				if ((j < i) || (fMatched[j] == 0) || ((fMatched[j]
+						& MATCHED_ATTRIBUTE) == MATCHED_ATTRIBUTE)) {
 					continue;
 				}
 				// only certain kinds of matchers actually
@@ -461,13 +474,13 @@ public class XPathMatcher {
 		for (int i = 0; i < length; i++) {
 			char c = s.charAt(i);
 			switch (c) {
-			case '\n': {
-				str.append("\\n");
-				break;
-			}
-			default: {
-				str.append(c);
-			}
+				case '\n': {
+					str.append("\\n");
+					break;
+				}
+				default: {
+					str.append(c);
+				}
 			}
 		}
 		return str.toString();

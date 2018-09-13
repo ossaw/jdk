@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -69,7 +61,8 @@ import java.io.*;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  * @see Code
  */
-public final class CodeException implements Cloneable, Constants, Node, Serializable {
+public final class CodeException implements Cloneable, Constants, Node,
+		Serializable {
 	private int start_pc; // Range in the code the exception handler is
 	private int end_pc; // active. start_pc is inclusive, end_pc exclusive
 	private int handler_pc; /*
@@ -93,28 +86,32 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 	 * Construct object from file stream.
 	 * 
 	 * @param file
-	 *            Input stream
+	 *             Input stream
 	 * @throws IOException
 	 */
 	CodeException(DataInputStream file) throws IOException {
-		this(file.readUnsignedShort(), file.readUnsignedShort(), file.readUnsignedShort(),
-				file.readUnsignedShort());
+		this(file.readUnsignedShort(), file.readUnsignedShort(), file
+				.readUnsignedShort(), file.readUnsignedShort());
 	}
 
 	/**
 	 * @param start_pc
-	 *            Range in the code the exception handler is active, start_pc is
-	 *            inclusive while
+	 *                   Range in the code the exception handler is active,
+	 *                   start_pc is
+	 *                   inclusive while
 	 * @param end_pc
-	 *            is exclusive
+	 *                   is exclusive
 	 * @param handler_pc
-	 *            Starting address of exception handler, i.e., an offset from
-	 *            start of code.
+	 *                   Starting address of exception handler, i.e., an offset
+	 *                   from
+	 *                   start of code.
 	 * @param catch_type
-	 *            If zero the handler catches any exception, otherwise it points
-	 *            to the exception class which is to be caught.
+	 *                   If zero the handler catches any exception, otherwise it
+	 *                   points
+	 *                   to the exception class which is to be caught.
 	 */
-	public CodeException(int start_pc, int end_pc, int handler_pc, int catch_type) {
+	public CodeException(int start_pc, int end_pc, int handler_pc,
+			int catch_type) {
 		this.start_pc = start_pc;
 		this.end_pc = end_pc;
 		this.handler_pc = handler_pc;
@@ -127,7 +124,7 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 	 * fields, attributes, etc. spawns a tree of objects.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public void accept(Visitor v) {
 		v.visitCodeException(this);
@@ -137,7 +134,7 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 	 * Dump code exception to file stream in binary format.
 	 *
 	 * @param file
-	 *            Output file stream
+	 *             Output file stream
 	 * @throws IOException
 	 */
 	public final void dump(DataOutputStream file) throws IOException {
@@ -185,7 +182,7 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 
 	/**
 	 * @param end_pc
-	 *            end of handled block
+	 *               end of handled block
 	 */
 	public final void setEndPC(int end_pc) {
 		this.end_pc = end_pc;
@@ -193,7 +190,7 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 
 	/**
 	 * @param handler_pc
-	 *            where the actual code is
+	 *                   where the actual code is
 	 */
 	public final void setHandlerPC(int handler_pc) {
 		this.handler_pc = handler_pc;
@@ -201,7 +198,7 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 
 	/**
 	 * @param start_pc
-	 *            start of handled block
+	 *                 start of handled block
 	 */
 	public final void setStartPC(int start_pc) {
 		this.start_pc = start_pc;
@@ -211,8 +208,9 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 	 * @return String representation.
 	 */
 	public final String toString() {
-		return "CodeException(start_pc = " + start_pc + ", end_pc = " + end_pc + ", handler_pc = "
-				+ handler_pc + ", catch_type = " + catch_type + ")";
+		return "CodeException(start_pc = " + start_pc + ", end_pc = " + end_pc
+				+ ", handler_pc = " + handler_pc + ", catch_type = "
+				+ catch_type + ")";
 	}
 
 	/**
@@ -224,8 +222,9 @@ public final class CodeException implements Cloneable, Constants, Node, Serializ
 		if (catch_type == 0)
 			str = "<Any exception>(0)";
 		else
-			str = Utility.compactClassName(cp.getConstantString(catch_type, CONSTANT_Class), false)
-					+ (verbose ? "(" + catch_type + ")" : "");
+			str = Utility.compactClassName(cp.getConstantString(catch_type,
+					CONSTANT_Class), false) + (verbose ? "(" + catch_type + ")"
+							: "");
 
 		return start_pc + "\t" + end_pc + "\t" + handler_pc + "\t" + str;
 	}

@@ -49,7 +49,8 @@ public class ResolverAnonymous extends ResourceResolverSpi {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public ResolverAnonymous(String filename) throws FileNotFoundException, IOException {
+	public ResolverAnonymous(String filename) throws FileNotFoundException,
+			IOException {
 		inStream = new FileInputStream(filename);
 	}
 

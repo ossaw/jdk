@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -86,7 +66,8 @@ class CSSParser {
 	private static final int PAREN_CLOSE = 7;
 	private static final int END = -1;
 
-	private static final char[] charMapping = { 0, 0, '[', ']', '{', '}', '(', ')', 0 };
+	private static final char[] charMapping = { 0, 0, '[', ']', '{', '}', '(',
+			')', 0 };
 
 	/** Set to true if one character has been read ahead. */
 	private boolean didPushChar;
@@ -139,7 +120,8 @@ class CSSParser {
 		unitBuffer = new StringBuffer();
 	}
 
-	void parse(Reader reader, CSSParserCallback callback, boolean inRule) throws IOException {
+	void parse(Reader reader, CSSParserCallback callback, boolean inRule)
+			throws IOException {
 		this.callback = callback;
 		stackCount = tokenBufferLength = 0;
 		this.reader = reader;
@@ -167,30 +149,30 @@ class CSSParser {
 		int token = nextToken((char) 0);
 
 		switch (token) {
-		case IDENTIFIER:
-			if (tokenBufferLength > 0) {
-				if (tokenBuffer[0] == '@') {
-					parseAtRule();
-				} else {
-					encounteredRuleSet = true;
-					parseRuleSet();
+			case IDENTIFIER:
+				if (tokenBufferLength > 0) {
+					if (tokenBuffer[0] == '@') {
+						parseAtRule();
+					} else {
+						encounteredRuleSet = true;
+						parseRuleSet();
+					}
 				}
-			}
-			return true;
-		case BRACKET_OPEN:
-		case BRACE_OPEN:
-		case PAREN_OPEN:
-			parseTillClosed(token);
-			return true;
+				return true;
+			case BRACKET_OPEN:
+			case BRACE_OPEN:
+			case PAREN_OPEN:
+				parseTillClosed(token);
+				return true;
 
-		case BRACKET_CLOSE:
-		case BRACE_CLOSE:
-		case PAREN_CLOSE:
-			// Shouldn't happen...
-			throw new RuntimeException("Unexpected top level block close");
+			case BRACKET_CLOSE:
+			case BRACE_CLOSE:
+			case PAREN_CLOSE:
+				// Shouldn't happen...
+				throw new RuntimeException("Unexpected top level block close");
 
-		case END:
-			return false;
+			case END:
+				return false;
 		}
 		return true;
 	}
@@ -201,8 +183,9 @@ class CSSParser {
 	private void parseAtRule() throws IOException {
 		// PENDING: make this more effecient.
 		boolean done = false;
-		boolean isImport = (tokenBufferLength == 7 && tokenBuffer[0] == '@' && tokenBuffer[1] == 'i'
-				&& tokenBuffer[2] == 'm' && tokenBuffer[3] == 'p' && tokenBuffer[4] == 'o'
+		boolean isImport = (tokenBufferLength == 7 && tokenBuffer[0] == '@'
+				&& tokenBuffer[1] == 'i' && tokenBuffer[2] == 'm'
+				&& tokenBuffer[3] == 'p' && tokenBuffer[4] == 'o'
 				&& tokenBuffer[5] == 'r' && tokenBuffer[6] == 't');
 
 		unitBuffer.setLength(0);
@@ -210,49 +193,50 @@ class CSSParser {
 			int nextToken = nextToken(';');
 
 			switch (nextToken) {
-			case IDENTIFIER:
-				if (tokenBufferLength > 0 && tokenBuffer[tokenBufferLength - 1] == ';') {
-					--tokenBufferLength;
-					done = true;
-				}
-				if (tokenBufferLength > 0) {
+				case IDENTIFIER:
+					if (tokenBufferLength > 0 && tokenBuffer[tokenBufferLength
+							- 1] == ';') {
+						--tokenBufferLength;
+						done = true;
+					}
+					if (tokenBufferLength > 0) {
+						if (unitBuffer.length() > 0 && readWS) {
+							unitBuffer.append(' ');
+						}
+						unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
+					}
+					break;
+
+				case BRACE_OPEN:
 					if (unitBuffer.length() > 0 && readWS) {
 						unitBuffer.append(' ');
 					}
-					unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
+					unitBuffer.append(charMapping[nextToken]);
+					parseTillClosed(nextToken);
+					done = true;
+				// Skip a tailing ';', not really to spec.
+				{
+					int nextChar = readWS();
+					if (nextChar != -1 && nextChar != ';') {
+						pushChar(nextChar);
+					}
 				}
-				break;
+					break;
 
-			case BRACE_OPEN:
-				if (unitBuffer.length() > 0 && readWS) {
-					unitBuffer.append(' ');
-				}
-				unitBuffer.append(charMapping[nextToken]);
-				parseTillClosed(nextToken);
-				done = true;
-			// Skip a tailing ';', not really to spec.
-			{
-				int nextChar = readWS();
-				if (nextChar != -1 && nextChar != ';') {
-					pushChar(nextChar);
-				}
-			}
-				break;
+				case BRACKET_OPEN:
+				case PAREN_OPEN:
+					unitBuffer.append(charMapping[nextToken]);
+					parseTillClosed(nextToken);
+					break;
 
-			case BRACKET_OPEN:
-			case PAREN_OPEN:
-				unitBuffer.append(charMapping[nextToken]);
-				parseTillClosed(nextToken);
-				break;
+				case BRACKET_CLOSE:
+				case BRACE_CLOSE:
+				case PAREN_CLOSE:
+					throw new RuntimeException("Unexpected close in @ rule");
 
-			case BRACKET_CLOSE:
-			case BRACE_CLOSE:
-			case PAREN_CLOSE:
-				throw new RuntimeException("Unexpected close in @ rule");
-
-			case END:
-				done = true;
-				break;
+				case END:
+					done = true;
+					break;
 			}
 		}
 		if (isImport && !encounteredRuleSet) {
@@ -281,36 +265,39 @@ class CSSParser {
 		int nextToken;
 
 		if (tokenBufferLength > 0) {
-			callback.handleSelector(new String(tokenBuffer, 0, tokenBufferLength));
+			callback.handleSelector(new String(tokenBuffer, 0,
+					tokenBufferLength));
 		}
 
 		unitBuffer.setLength(0);
 		for (;;) {
 			while ((nextToken = nextToken((char) 0)) == IDENTIFIER) {
 				if (tokenBufferLength > 0) {
-					callback.handleSelector(new String(tokenBuffer, 0, tokenBufferLength));
+					callback.handleSelector(new String(tokenBuffer, 0,
+							tokenBufferLength));
 				}
 			}
 			switch (nextToken) {
-			case BRACE_OPEN:
-				return true;
+				case BRACE_OPEN:
+					return true;
 
-			case BRACKET_OPEN:
-			case PAREN_OPEN:
-				parseTillClosed(nextToken);
-				// Not too sure about this, how we handle this isn't very
-				// well spec'd.
-				unitBuffer.setLength(0);
-				break;
+				case BRACKET_OPEN:
+				case PAREN_OPEN:
+					parseTillClosed(nextToken);
+					// Not too sure about this, how we handle this isn't very
+					// well spec'd.
+					unitBuffer.setLength(0);
+					break;
 
-			case BRACKET_CLOSE:
-			case BRACE_CLOSE:
-			case PAREN_CLOSE:
-				throw new RuntimeException("Unexpected block close in selector");
+				case BRACKET_CLOSE:
+				case BRACE_CLOSE:
+				case PAREN_CLOSE:
+					throw new RuntimeException(
+							"Unexpected block close in selector");
 
-			case END:
-				// Prematurely hit end.
-				return false;
+				case END:
+					// Prematurely hit end.
+					return false;
 			}
 		}
 	}
@@ -323,16 +310,17 @@ class CSSParser {
 		for (;;) {
 			int token = parseDeclaration();
 			switch (token) {
-			case END:
-			case BRACE_CLOSE:
-				return;
+				case END:
+				case BRACE_CLOSE:
+					return;
 
-			case BRACKET_CLOSE:
-			case PAREN_CLOSE:
-				// Bail
-				throw new RuntimeException("Unexpected close in declaration block");
-			case IDENTIFIER:
-				break;
+				case BRACKET_CLOSE:
+				case PAREN_CLOSE:
+					// Bail
+					throw new RuntimeException(
+							"Unexpected close in declaration block");
+				case IDENTIFIER:
+					break;
 			}
 		}
 	}
@@ -350,7 +338,8 @@ class CSSParser {
 		}
 		// Make the property name to lowercase
 		for (int counter = unitBuffer.length() - 1; counter >= 0; counter--) {
-			unitBuffer.setCharAt(counter, Character.toLowerCase(unitBuffer.charAt(counter)));
+			unitBuffer.setCharAt(counter, Character.toLowerCase(unitBuffer
+					.charAt(counter)));
 		}
 		callback.handleProperty(unitBuffer.toString());
 
@@ -363,7 +352,8 @@ class CSSParser {
 	 * Parses identifiers until <code>extraChar</code> is encountered, returning
 	 * the ending token, which will be IDENTIFIER if extraChar is found.
 	 */
-	private int parseIdentifiers(char extraChar, boolean wantsBlocks) throws IOException {
+	private int parseIdentifiers(char extraChar, boolean wantsBlocks)
+			throws IOException {
 		int nextToken;
 		int ubl;
 
@@ -372,45 +362,46 @@ class CSSParser {
 			nextToken = nextToken(extraChar);
 
 			switch (nextToken) {
-			case IDENTIFIER:
-				if (tokenBufferLength > 0) {
-					if (tokenBuffer[tokenBufferLength - 1] == extraChar) {
-						if (--tokenBufferLength > 0) {
-							if (readWS && unitBuffer.length() > 0) {
-								unitBuffer.append(' ');
+				case IDENTIFIER:
+					if (tokenBufferLength > 0) {
+						if (tokenBuffer[tokenBufferLength - 1] == extraChar) {
+							if (--tokenBufferLength > 0) {
+								if (readWS && unitBuffer.length() > 0) {
+									unitBuffer.append(' ');
+								}
+								unitBuffer.append(tokenBuffer, 0,
+										tokenBufferLength);
 							}
-							unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
+							return IDENTIFIER;
 						}
-						return IDENTIFIER;
+						if (readWS && unitBuffer.length() > 0) {
+							unitBuffer.append(' ');
+						}
+						unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
 					}
-					if (readWS && unitBuffer.length() > 0) {
-						unitBuffer.append(' ');
+					break;
+
+				case BRACKET_OPEN:
+				case BRACE_OPEN:
+				case PAREN_OPEN:
+					ubl = unitBuffer.length();
+					if (wantsBlocks) {
+						unitBuffer.append(charMapping[nextToken]);
 					}
-					unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
-				}
-				break;
+					parseTillClosed(nextToken);
+					if (!wantsBlocks) {
+						unitBuffer.setLength(ubl);
+					}
+					break;
 
-			case BRACKET_OPEN:
-			case BRACE_OPEN:
-			case PAREN_OPEN:
-				ubl = unitBuffer.length();
-				if (wantsBlocks) {
-					unitBuffer.append(charMapping[nextToken]);
-				}
-				parseTillClosed(nextToken);
-				if (!wantsBlocks) {
-					unitBuffer.setLength(ubl);
-				}
-				break;
-
-			case BRACE_CLOSE:
-				// No need to throw for these two, we return token and
-				// caller can do whatever.
-			case BRACKET_CLOSE:
-			case PAREN_CLOSE:
-			case END:
-				// Hit the end
-				return nextToken;
+				case BRACE_CLOSE:
+					// No need to throw for these two, we return token and
+					// caller can do whatever.
+				case BRACKET_CLOSE:
+				case PAREN_CLOSE:
+				case END:
+					// Hit the end
+					return nextToken;
 			}
 		}
 	}
@@ -427,41 +418,41 @@ class CSSParser {
 		while (!done) {
 			nextToken = nextToken((char) 0);
 			switch (nextToken) {
-			case IDENTIFIER:
-				if (unitBuffer.length() > 0 && readWS) {
-					unitBuffer.append(' ');
-				}
-				if (tokenBufferLength > 0) {
-					unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
-				}
-				break;
+				case IDENTIFIER:
+					if (unitBuffer.length() > 0 && readWS) {
+						unitBuffer.append(' ');
+					}
+					if (tokenBufferLength > 0) {
+						unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
+					}
+					break;
 
-			case BRACKET_OPEN:
-			case BRACE_OPEN:
-			case PAREN_OPEN:
-				if (unitBuffer.length() > 0 && readWS) {
-					unitBuffer.append(' ');
-				}
-				unitBuffer.append(charMapping[nextToken]);
-				startBlock(nextToken);
-				break;
+				case BRACKET_OPEN:
+				case BRACE_OPEN:
+				case PAREN_OPEN:
+					if (unitBuffer.length() > 0 && readWS) {
+						unitBuffer.append(' ');
+					}
+					unitBuffer.append(charMapping[nextToken]);
+					startBlock(nextToken);
+					break;
 
-			case BRACKET_CLOSE:
-			case BRACE_CLOSE:
-			case PAREN_CLOSE:
-				if (unitBuffer.length() > 0 && readWS) {
-					unitBuffer.append(' ');
-				}
-				unitBuffer.append(charMapping[nextToken]);
-				endBlock(nextToken);
-				if (!inBlock()) {
-					done = true;
-				}
-				break;
+				case BRACKET_CLOSE:
+				case BRACE_CLOSE:
+				case PAREN_CLOSE:
+					if (unitBuffer.length() > 0 && readWS) {
+						unitBuffer.append(' ');
+					}
+					unitBuffer.append(charMapping[nextToken]);
+					endBlock(nextToken);
+					if (!inBlock()) {
+						done = true;
+					}
+					break;
 
-			case END:
-				// Prematurely hit end.
-				throw new RuntimeException("Unclosed block");
+				case END:
+					// Prematurely hit end.
+					throw new RuntimeException("Unclosed block");
 			}
 		}
 	}
@@ -475,36 +466,36 @@ class CSSParser {
 		int nextChar = readWS();
 
 		switch (nextChar) {
-		case '\'':
-			readTill('\'');
-			if (tokenBufferLength > 0) {
-				tokenBufferLength--;
-			}
-			return IDENTIFIER;
-		case '"':
-			readTill('"');
-			if (tokenBufferLength > 0) {
-				tokenBufferLength--;
-			}
-			return IDENTIFIER;
-		case '[':
-			return BRACKET_OPEN;
-		case ']':
-			return BRACKET_CLOSE;
-		case '{':
-			return BRACE_OPEN;
-		case '}':
-			return BRACE_CLOSE;
-		case '(':
-			return PAREN_OPEN;
-		case ')':
-			return PAREN_CLOSE;
-		case -1:
-			return END;
-		default:
-			pushChar(nextChar);
-			getIdentifier(idChar);
-			return IDENTIFIER;
+			case '\'':
+				readTill('\'');
+				if (tokenBufferLength > 0) {
+					tokenBufferLength--;
+				}
+				return IDENTIFIER;
+			case '"':
+				readTill('"');
+				if (tokenBufferLength > 0) {
+					tokenBufferLength--;
+				}
+				return IDENTIFIER;
+			case '[':
+				return BRACKET_OPEN;
+			case ']':
+				return BRACKET_CLOSE;
+			case '{':
+				return BRACE_OPEN;
+			case '}':
+				return BRACE_CLOSE;
+			case '(':
+				return PAREN_OPEN;
+			case ')':
+				return PAREN_CLOSE;
+			case -1:
+				return END;
+			default:
+				pushChar(nextChar);
+				getIdentifier(idChar);
+				return IDENTIFIER;
 		}
 	}
 
@@ -531,72 +522,72 @@ class CSSParser {
 		while (!done) {
 			nextChar = readChar();
 			switch (nextChar) {
-			case '\\':
-				type = 1;
-				break;
+				case '\\':
+					type = 1;
+					break;
 
-			case '0':
-			case '1':
-			case '2':
-			case '3':
-			case '4':
-			case '5':
-			case '6':
-			case '7':
-			case '8':
-			case '9':
-				type = 2;
-				escapeOffset = nextChar - '0';
-				break;
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+					type = 2;
+					escapeOffset = nextChar - '0';
+					break;
 
-			case 'a':
-			case 'b':
-			case 'c':
-			case 'd':
-			case 'e':
-			case 'f':
-				type = 2;
-				escapeOffset = nextChar - 'a' + 10;
-				break;
+				case 'a':
+				case 'b':
+				case 'c':
+				case 'd':
+				case 'e':
+				case 'f':
+					type = 2;
+					escapeOffset = nextChar - 'a' + 10;
+					break;
 
-			case 'A':
-			case 'B':
-			case 'C':
-			case 'D':
-			case 'E':
-			case 'F':
-				type = 2;
-				escapeOffset = nextChar - 'A' + 10;
-				break;
+				case 'A':
+				case 'B':
+				case 'C':
+				case 'D':
+				case 'E':
+				case 'F':
+					type = 2;
+					escapeOffset = nextChar - 'A' + 10;
+					break;
 
-			case '\'':
-			case '"':
-			case '[':
-			case ']':
-			case '{':
-			case '}':
-			case '(':
-			case ')':
-			case ' ':
-			case '\n':
-			case '\t':
-			case '\r':
-				type = 3;
-				break;
+				case '\'':
+				case '"':
+				case '[':
+				case ']':
+				case '{':
+				case '}':
+				case '(':
+				case ')':
+				case ' ':
+				case '\n':
+				case '\t':
+				case '\r':
+					type = 3;
+					break;
 
-			case '/':
-				type = 4;
-				break;
+				case '/':
+					type = 4;
+					break;
 
-			case -1:
-				// Reached the end
-				done = true;
-				type = 0;
-				break;
+				case -1:
+					// Reached the end
+					done = true;
+					type = 0;
+					break;
 
-			default:
-				type = 0;
-				break;
+				default:
+					type = 0;
+					break;
 			}
 			if (lastWasEscape) {
 				if (type == 2) {
@@ -669,51 +660,51 @@ class CSSParser {
 		while (!done) {
 			nextChar = readChar();
 			switch (nextChar) {
-			case '\\':
-				type = 1;
-				break;
+				case '\\':
+					type = 1;
+					break;
 
-			case '0':
-			case '1':
-			case '2':
-			case '3':
-			case '4':
-			case '5':
-			case '6':
-			case '7':
-			case '8':
-			case '9':
-				type = 2;
-				escapeOffset = nextChar - '0';
-				break;
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+					type = 2;
+					escapeOffset = nextChar - '0';
+					break;
 
-			case 'a':
-			case 'b':
-			case 'c':
-			case 'd':
-			case 'e':
-			case 'f':
-				type = 2;
-				escapeOffset = nextChar - 'a' + 10;
-				break;
+				case 'a':
+				case 'b':
+				case 'c':
+				case 'd':
+				case 'e':
+				case 'f':
+					type = 2;
+					escapeOffset = nextChar - 'a' + 10;
+					break;
 
-			case 'A':
-			case 'B':
-			case 'C':
-			case 'D':
-			case 'E':
-			case 'F':
-				type = 2;
-				escapeOffset = nextChar - 'A' + 10;
-				break;
+				case 'A':
+				case 'B':
+				case 'C':
+				case 'D':
+				case 'E':
+				case 'F':
+					type = 2;
+					escapeOffset = nextChar - 'A' + 10;
+					break;
 
-			case -1:
-				// Prematurely reached the end!
-				throw new RuntimeException("Unclosed " + stopChar);
+				case -1:
+					// Prematurely reached the end!
+					throw new RuntimeException("Unclosed " + stopChar);
 
-			default:
-				type = 0;
-				break;
+				default:
+					type = 0;
+					break;
 			}
 			if (lastWasEscape) {
 				if (type == 2) {
@@ -772,20 +763,20 @@ class CSSParser {
 		for (;;) {
 			nextChar = readChar();
 			switch (nextChar) {
-			case -1:
-				throw new RuntimeException("Unclosed comment");
-			case '*':
-				nextChar = readChar();
-				if (nextChar == '/') {
-					return;
-				} else if (nextChar == -1) {
+				case -1:
 					throw new RuntimeException("Unclosed comment");
-				} else {
-					pushChar(nextChar);
-				}
-				break;
-			default:
-				break;
+				case '*':
+					nextChar = readChar();
+					if (nextChar == '/') {
+						return;
+					} else if (nextChar == -1) {
+						throw new RuntimeException("Unclosed comment");
+					} else {
+						pushChar(nextChar);
+					}
+					break;
+				default:
+					break;
 			}
 		}
 	}
@@ -810,19 +801,19 @@ class CSSParser {
 		int startToken;
 
 		switch (endToken) {
-		case BRACKET_CLOSE:
-			startToken = BRACKET_OPEN;
-			break;
-		case BRACE_CLOSE:
-			startToken = BRACE_OPEN;
-			break;
-		case PAREN_CLOSE:
-			startToken = PAREN_OPEN;
-			break;
-		default:
-			// Will never happen.
-			startToken = -1;
-			break;
+			case BRACKET_CLOSE:
+				startToken = BRACKET_OPEN;
+				break;
+			case BRACE_CLOSE:
+				startToken = BRACE_OPEN;
+				break;
+			case PAREN_CLOSE:
+				startToken = PAREN_OPEN;
+				break;
+			default:
+				// Will never happen.
+				startToken = -1;
+				break;
 		}
 		if (stackCount > 0 && unitStack[stackCount - 1] == startToken) {
 			stackCount--;
@@ -844,7 +835,8 @@ class CSSParser {
 	 */
 	private int readWS() throws IOException {
 		int nextChar;
-		while ((nextChar = readChar()) != -1 && Character.isWhitespace((char) nextChar)) {
+		while ((nextChar = readChar()) != -1 && Character.isWhitespace(
+				(char) nextChar)) {
 			readWS = true;
 		}
 		return nextChar;
@@ -873,7 +865,8 @@ class CSSParser {
 	private void pushChar(int tempChar) {
 		if (didPushChar) {
 			// Should never happen.
-			throw new RuntimeException("Can not handle look ahead of more than one character");
+			throw new RuntimeException(
+					"Can not handle look ahead of more than one character");
 		}
 		didPushChar = true;
 		pushedChar = tempChar;

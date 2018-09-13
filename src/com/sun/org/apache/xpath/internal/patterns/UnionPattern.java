@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -75,7 +72,7 @@ public class UnionPattern extends Expression {
 	 *
 	 *
 	 * @param patterns
-	 *            the contained step patterns to be tested.
+	 *                 the contained step patterns to be tested.
 	 */
 	public void setPatterns(StepPattern[] patterns) {
 		m_patterns = patterns;
@@ -101,7 +98,7 @@ public class UnionPattern extends Expression {
 	 * Test a node to see if it matches any of the patterns in the union.
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *              XPath runtime context.
 	 *
 	 * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
 	 *         ,
@@ -116,7 +113,8 @@ public class UnionPattern extends Expression {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		XObject bestScore = null;
 		int n = m_patterns.length;

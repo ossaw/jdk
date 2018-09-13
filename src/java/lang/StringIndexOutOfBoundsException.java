@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -53,7 +33,7 @@ public class StringIndexOutOfBoundsException extends IndexOutOfBoundsException {
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public StringIndexOutOfBoundsException(String s) {
 		super(s);
@@ -64,7 +44,7 @@ public class StringIndexOutOfBoundsException extends IndexOutOfBoundsException {
 	 * argument indicating the illegal index.
 	 *
 	 * @param index
-	 *            the illegal index.
+	 *              the illegal index.
 	 */
 	public StringIndexOutOfBoundsException(int index) {
 		super("String index out of range: " + index);

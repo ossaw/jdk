@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset;
@@ -78,7 +58,8 @@ import java.sql.*;
  * 				try {
  * 					value = (Integer) rs.getObject(idx[i]);
  * 				} catch (SQLException ex) {
- * 					Logger.getLogger(Range.class.getName()).log(Level.SEVERE, null, ex);
+ * 					Logger.getLogger(Range.class.getName()).log(Level.SEVERE,
+ * 							null, ex);
  * 					return false;
  * 				}
  *
@@ -116,7 +97,7 @@ public interface Predicate {
 	 * found.
 	 * 
 	 * @param rs
-	 *            The {@code RowSet} to be evaluated
+	 *           The {@code RowSet} to be evaluated
 	 * @return <code>true</code> if there are more rows in the filter;
 	 *         <code>false</code> otherwise
 	 */
@@ -132,18 +113,20 @@ public interface Predicate {
 	 * while inserting new rows to a <code>FilteredRowSet</code> instance.
 	 *
 	 * @param value
-	 *            An <code>Object</code> value which needs to be checked,
-	 *            whether it can be part of this <code>FilterRowSet</code>
-	 *            object.
+	 *               An <code>Object</code> value which needs to be checked,
+	 *               whether it can be part of this <code>FilterRowSet</code>
+	 *               object.
 	 * @param column
-	 *            a <code>int</code> object that must match the SQL index of a
-	 *            column in this <code>RowSet</code> object. This must have been
-	 *            passed to <code>Predicate</code> as one of the columns for
-	 *            filtering while initializing a <code>Predicate</code>
+	 *               a <code>int</code> object that must match the SQL index of
+	 *               a
+	 *               column in this <code>RowSet</code> object. This must have
+	 *               been
+	 *               passed to <code>Predicate</code> as one of the columns for
+	 *               filtering while initializing a <code>Predicate</code>
 	 * @return <code>true</code> if row value lies within the filter;
 	 *         <code>false</code> otherwise
 	 * @throws SQLException
-	 *             if the column is not part of filtering criteria
+	 *                      if the column is not part of filtering criteria
 	 */
 	public boolean evaluate(Object value, int column) throws SQLException;
 
@@ -156,22 +139,27 @@ public interface Predicate {
 	 * while inserting new rows to a <code>FilteredRowSet</code> instance.
 	 *
 	 * @param value
-	 *            An <code>Object</code> value which needs to be checked,
-	 *            whether it can be part of this <code>FilterRowSet</code>.
+	 *                   An <code>Object</code> value which needs to be checked,
+	 *                   whether it can be part of this
+	 *                   <code>FilterRowSet</code>.
 	 *
 	 * @param columnName
-	 *            a <code>String</code> object that must match the SQL name of a
-	 *            column in this <code>RowSet</code>, ignoring case. This must
-	 *            have been passed to <code>Predicate</code> as one of the
-	 *            columns for filtering while initializing a
-	 *            <code>Predicate</code>
+	 *                   a <code>String</code> object that must match the SQL
+	 *                   name of a
+	 *                   column in this <code>RowSet</code>, ignoring case. This
+	 *                   must
+	 *                   have been passed to <code>Predicate</code> as one of
+	 *                   the
+	 *                   columns for filtering while initializing a
+	 *                   <code>Predicate</code>
 	 *
 	 * @return <code>true</code> if value lies within the filter;
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws SQLException
-	 *             if the column is not part of filtering criteria
+	 *                      if the column is not part of filtering criteria
 	 */
-	public boolean evaluate(Object value, String columnName) throws SQLException;
+	public boolean evaluate(Object value, String columnName)
+			throws SQLException;
 
 }

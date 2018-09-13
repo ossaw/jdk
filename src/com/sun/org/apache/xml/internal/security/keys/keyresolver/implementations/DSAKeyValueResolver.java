@@ -47,17 +47,19 @@ public class DSAKeyValueResolver extends KeyResolverSpi {
 	 * @param storage
 	 * @return null if no {@link PublicKey} could be obtained
 	 */
-	public PublicKey engineLookupAndResolvePublicKey(Element element, String BaseURI,
-			StorageResolver storage) {
+	public PublicKey engineLookupAndResolvePublicKey(Element element,
+			String BaseURI, StorageResolver storage) {
 		if (element == null) {
 			return null;
 		}
 		Element dsaKeyElement = null;
-		boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_KEYVALUE);
+		boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element,
+				Constants._TAG_KEYVALUE);
 		if (isKeyValue) {
 			dsaKeyElement = XMLUtils.selectDsNode(element.getFirstChild(),
 					Constants._TAG_DSAKEYVALUE, 0);
-		} else if (XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_DSAKEYVALUE)) {
+		} else if (XMLUtils.elementIsInSignatureSpace(element,
+				Constants._TAG_DSAKEYVALUE)) {
 			// this trick is needed to allow the RetrievalMethodResolver to eat
 			// a
 			// ds:DSAKeyValue directly (without KeyValue)
@@ -84,14 +86,14 @@ public class DSAKeyValueResolver extends KeyResolverSpi {
 	}
 
 	/** @inheritDoc */
-	public X509Certificate engineLookupResolveX509Certificate(Element element, String BaseURI,
-			StorageResolver storage) {
+	public X509Certificate engineLookupResolveX509Certificate(Element element,
+			String BaseURI, StorageResolver storage) {
 		return null;
 	}
 
 	/** @inheritDoc */
-	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String BaseURI,
-			StorageResolver storage) {
+	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
+			Element element, String BaseURI, StorageResolver storage) {
 		return null;
 	}
 }

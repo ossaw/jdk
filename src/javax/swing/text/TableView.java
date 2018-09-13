@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -70,7 +50,7 @@ public abstract class TableView extends BoxView {
 	 * Constructs a TableView for the given element.
 	 *
 	 * @param elem
-	 *            the element that this view is responsible for
+	 *             the element that this view is responsible for
 	 */
 	public TableView(Element elem) {
 		super(elem, View.Y_AXIS);
@@ -82,7 +62,7 @@ public abstract class TableView extends BoxView {
 	 * Creates a new table row.
 	 *
 	 * @param elem
-	 *            an element
+	 *             an element
 	 * @return the row
 	 */
 	protected TableRow createTableRow(Element elem) {
@@ -94,7 +74,7 @@ public abstract class TableView extends BoxView {
 	 *             should be produced by the ViewFactory rather than the table.
 	 *
 	 * @param elem
-	 *            an element
+	 *             an element
 	 * @return the cell
 	 */
 	@Deprecated
@@ -142,11 +122,11 @@ public abstract class TableView extends BoxView {
 		return null;
 	}
 
-			/**
-			 * Determines the number of columns occupied by the table cell
-			 * represented by given element.
-			 */
-			/* protected */ int getColumnsOccupied(View v) {
+	/**
+	 * Determines the number of columns occupied by the table cell
+	 * represented by given element.
+	 */
+	/* protected */ int getColumnsOccupied(View v) {
 		// PENDING(prinz) this code should be in the html
 		// paragraph, but we can't add api to enable it.
 		AttributeSet a = v.getElement().getAttributes();
@@ -162,11 +142,11 @@ public abstract class TableView extends BoxView {
 		return 1;
 	}
 
-			/**
-			 * Determines the number of rows occupied by the table cell
-			 * represented by given element.
-			 */
-			/* protected */ int getRowsOccupied(View v) {
+	/**
+	 * Determines the number of rows occupied by the table cell
+	 * represented by given element.
+	 */
+	/* protected */ int getRowsOccupied(View v) {
 		// PENDING(prinz) this code should be in the html
 		// paragraph, but we can't add api to enable it.
 		AttributeSet a = v.getElement().getAttributes();
@@ -182,19 +162,20 @@ public abstract class TableView extends BoxView {
 		return 1;
 	}
 
-			/* protected */ void invalidateGrid() {
+	/* protected */ void invalidateGrid() {
 		gridValid = false;
 	}
 
-	protected void forwardUpdate(DocumentEvent.ElementChange ec, DocumentEvent e, Shape a,
-			ViewFactory f) {
+	protected void forwardUpdate(DocumentEvent.ElementChange ec,
+			DocumentEvent e, Shape a, ViewFactory f) {
 		super.forwardUpdate(ec, e, a, f);
 		// A change in any of the table cells usually effects the whole table,
 		// so redraw it all!
 		if (a != null) {
 			Component c = getContainer();
 			if (c != null) {
-				Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
+				Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a
+						: a.getBounds();
 				c.repaint(alloc.x, alloc.y, alloc.width, alloc.height);
 			}
 		}
@@ -287,20 +268,25 @@ public abstract class TableView extends BoxView {
 	 * results through {@code offsets} and {@code spans}.
 	 *
 	 * @param targetSpan
-	 *            the given span for total of all the table columns
+	 *                   the given span for total of all the table columns
 	 * @param reqs
-	 *            the requirements desired for each column. This is the column
-	 *            maximum of the cells minimum, preferred, and maximum requested
-	 *            span
+	 *                   the requirements desired for each column. This is the
+	 *                   column
+	 *                   maximum of the cells minimum, preferred, and maximum
+	 *                   requested
+	 *                   span
 	 * @param spans
-	 *            the return value of how much to allocated to each column
+	 *                   the return value of how much to allocated to each
+	 *                   column
 	 * @param offsets
-	 *            the return value of the offset from the origin for each column
+	 *                   the return value of the offset from the origin for each
+	 *                   column
 	 */
 	protected void layoutColumns(int targetSpan, int[] offsets, int[] spans,
 			SizeRequirements[] reqs) {
 		// allocate using the convenience method on SizeRequirements
-		SizeRequirements.calculateTiledPositions(targetSpan, null, reqs, offsets, spans);
+		SizeRequirements.calculateTiledPositions(targetSpan, null, reqs,
+				offsets, spans);
 	}
 
 	/**
@@ -315,19 +301,23 @@ public abstract class TableView extends BoxView {
 	 * layout of the tables rows.
 	 *
 	 * @param targetSpan
-	 *            the total span given to the view, which would be used to
-	 *            layout the children.
+	 *                   the total span given to the view, which would be used
+	 *                   to
+	 *                   layout the children.
 	 * @param axis
-	 *            the axis being layed out.
+	 *                   the axis being layed out.
 	 * @param offsets
-	 *            the offsets from the origin of the view for each of the child
-	 *            views. This is a return value and is filled in by the
-	 *            implementation of this method.
+	 *                   the offsets from the origin of the view for each of the
+	 *                   child
+	 *                   views. This is a return value and is filled in by the
+	 *                   implementation of this method.
 	 * @param spans
-	 *            the span of each child view. This is a return value and is
-	 *            filled in by the implementation of this method.
+	 *                   the span of each child view. This is a return value and
+	 *                   is
+	 *                   filled in by the implementation of this method.
 	 */
-	protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
+	protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets,
+			int[] spans) {
 		// make grid is properly represented
 		updateGrid();
 
@@ -339,7 +329,8 @@ public abstract class TableView extends BoxView {
 		}
 
 		// calculate column spans
-		layoutColumns(targetSpan, columnOffsets, columnSpans, columnRequirements);
+		layoutColumns(targetSpan, columnOffsets, columnSpans,
+				columnRequirements);
 
 		// continue normal layout
 		super.layoutMinorAxis(targetSpan, axis, offsets, spans);
@@ -353,7 +344,8 @@ public abstract class TableView extends BoxView {
 	 * This is implemented to calculate the requirements as the sum of the
 	 * requirements of the columns.
 	 */
-	protected SizeRequirements calculateMinorAxisRequirements(int axis, SizeRequirements r) {
+	protected SizeRequirements calculateMinorAxisRequirements(int axis,
+			SizeRequirements r) {
 		updateGrid();
 
 		// calculate column requirements for each column
@@ -487,7 +479,8 @@ public abstract class TableView extends BoxView {
 			}
 			int[] spans = new int[ncols];
 			int[] offsets = new int[ncols];
-			SizeRequirements.calculateTiledPositions(cmin, null, reqs, offsets, spans);
+			SizeRequirements.calculateTiledPositions(cmin, null, reqs, offsets,
+					spans);
 			// apply the adjustments
 			for (int i = 0; i < ncols; i++) {
 				SizeRequirements req = reqs[i];
@@ -512,7 +505,8 @@ public abstract class TableView extends BoxView {
 			}
 			int[] spans = new int[ncols];
 			int[] offsets = new int[ncols];
-			SizeRequirements.calculateTiledPositions(cpref, null, reqs, offsets, spans);
+			SizeRequirements.calculateTiledPositions(cpref, null, reqs, offsets,
+					spans);
 			// apply the adjustments
 			for (int i = 0; i < ncols; i++) {
 				SizeRequirements req = reqs[i];
@@ -579,7 +573,7 @@ public abstract class TableView extends BoxView {
 		 * Constructs a TableView for the given element.
 		 *
 		 * @param elem
-		 *            the element that this view is responsible for
+		 *             the element that this view is responsible for
 		 * @since 1.4
 		 */
 		public TableRow(Element elem) {
@@ -647,19 +641,24 @@ public abstract class TableView extends BoxView {
 		 * multi-column span.
 		 *
 		 * @param targetSpan
-		 *            the total span given to the view, which would be used to
-		 *            layout the children.
+		 *                   the total span given to the view, which would be
+		 *                   used to
+		 *                   layout the children.
 		 * @param axis
-		 *            the axis being layed out.
+		 *                   the axis being layed out.
 		 * @param offsets
-		 *            the offsets from the origin of the view for each of the
-		 *            child views. This is a return value and is filled in by
-		 *            the implementation of this method.
+		 *                   the offsets from the origin of the view for each of
+		 *                   the
+		 *                   child views. This is a return value and is filled
+		 *                   in by
+		 *                   the implementation of this method.
 		 * @param spans
-		 *            the span of each child view. This is a return value and is
-		 *            filled in by the implementation of this method.
+		 *                   the span of each child view. This is a return value
+		 *                   and is
+		 *                   filled in by the implementation of this method.
 		 */
-		protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
+		protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets,
+				int[] spans) {
 			int col = 0;
 			int ncells = getViewCount();
 			for (int cell = 0; cell < ncells; cell++, col++) {
@@ -696,19 +695,24 @@ public abstract class TableView extends BoxView {
 		 * span for any cell that spans multiple rows.
 		 *
 		 * @param targetSpan
-		 *            the total span given to the view, which would be used to
-		 *            layout the children.
+		 *                   the total span given to the view, which would be
+		 *                   used to
+		 *                   layout the children.
 		 * @param axis
-		 *            the axis being layed out.
+		 *                   the axis being layed out.
 		 * @param offsets
-		 *            the offsets from the origin of the view for each of the
-		 *            child views. This is a return value and is filled in by
-		 *            the implementation of this method.
+		 *                   the offsets from the origin of the view for each of
+		 *                   the
+		 *                   child views. This is a return value and is filled
+		 *                   in by
+		 *                   the implementation of this method.
 		 * @param spans
-		 *            the span of each child view. This is a return value and is
-		 *            filled in by the implementation of this method.
+		 *                   the span of each child view. This is a return value
+		 *                   and is
+		 *                   filled in by the implementation of this method.
 		 */
-		protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
+		protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets,
+				int[] spans) {
 			super.layoutMinorAxis(targetSpan, axis, offsets, spans);
 			int col = 0;
 			int ncells = getViewCount();
@@ -725,7 +729,8 @@ public abstract class TableView extends BoxView {
 						// fully loaded yet.
 						int row = getRow() + j;
 						if (row < TableView.this.getViewCount()) {
-							int span = TableView.this.getSpan(Y_AXIS, getRow() + j);
+							int span = TableView.this.getSpan(Y_AXIS, getRow()
+									+ j);
 							spans[cell] += span;
 						}
 					}
@@ -741,10 +746,10 @@ public abstract class TableView extends BoxView {
 		 * of 0 or less is not resizable.
 		 *
 		 * @param axis
-		 *            may be either View.X_AXIS or View.Y_AXIS
+		 *             may be either View.X_AXIS or View.Y_AXIS
 		 * @return the resize weight
 		 * @exception IllegalArgumentException
-		 *                for an invalid axis
+		 *                                     for an invalid axis
 		 */
 		public int getResizeWeight(int axis) {
 			return 1;
@@ -804,7 +809,7 @@ public abstract class TableView extends BoxView {
 		 * Constructs a TableCell for the given element.
 		 *
 		 * @param elem
-		 *            the element that this view is responsible for
+		 *             the element that this view is responsible for
 		 * @since 1.4
 		 */
 		public TableCell(Element elem) {
@@ -865,7 +870,7 @@ public abstract class TableView extends BoxView {
 	/**
 	 * <em>
 	 * THIS IS NO LONGER USED, AND WILL BE REMOVED IN THE
-	 * NEXT RELEASE.  THE JCK SIGNATURE TEST THINKS THIS INTERFACE
+	 * NEXT RELEASE. THE JCK SIGNATURE TEST THINKS THIS INTERFACE
 	 * SHOULD EXIST
 	 * </em>
 	 */

@@ -24,7 +24,8 @@ package com.sun.org.apache.xml.internal.security.c14n.implementations;
 
 import com.sun.org.apache.xml.internal.security.c14n.Canonicalizer;
 
-public class Canonicalizer20010315ExclOmitComments extends Canonicalizer20010315Excl {
+public class Canonicalizer20010315ExclOmitComments extends
+		Canonicalizer20010315Excl {
 
 	/**
 	 *

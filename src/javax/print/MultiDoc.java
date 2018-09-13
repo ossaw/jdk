@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print;
@@ -115,7 +95,7 @@ public interface MultiDoc {
 	 * @return Current doc object.
 	 *
 	 * @exception IOException
-	 *                Thrown if a error occurred reading the document.
+	 *                        Thrown if a error occurred reading the document.
 	 */
 	public Doc getDoc() throws IOException;
 
@@ -127,7 +107,8 @@ public interface MultiDoc {
 	 *         are no further doc objects.
 	 *
 	 * @exception IOException
-	 *                Thrown if an error occurred locating the next document
+	 *                        Thrown if an error occurred locating the next
+	 *                        document
 	 */
 	public MultiDoc next() throws IOException;
 

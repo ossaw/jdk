@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -101,7 +81,7 @@ public class Inflater {
 	 * in order to support certain optimizations.
 	 *
 	 * @param nowrap
-	 *            if true then support GZIP compatible compression
+	 *               if true then support GZIP compatible compression
 	 */
 	public Inflater(boolean nowrap) {
 		zsRef = new ZStreamRef(init(nowrap));
@@ -145,7 +125,7 @@ public class Inflater {
 	 * returns true indicating that more input data is required.
 	 * 
 	 * @param b
-	 *            the input data bytes
+	 *          the input data bytes
 	 * @see Inflater#needsInput
 	 */
 	public void setInput(byte[] b) {
@@ -188,7 +168,7 @@ public class Inflater {
 	 * to get the Adler-32 value of the dictionary needed.
 	 * 
 	 * @param b
-	 *            the dictionary data bytes
+	 *          the dictionary data bytes
 	 * @see Inflater#needsDictionary
 	 * @see Inflater#getAdler
 	 */
@@ -259,7 +239,7 @@ public class Inflater {
 	 *            the maximum number of uncompressed bytes
 	 * @return the actual number of uncompressed bytes
 	 * @exception DataFormatException
-	 *                if the compressed data format is invalid
+	 *                                if the compressed data format is invalid
 	 * @see Inflater#needsInput
 	 * @see Inflater#needsDictionary
 	 */
@@ -288,10 +268,10 @@ public class Inflater {
 	 * can be used to get the Adler-32 value of the dictionary required.
 	 * 
 	 * @param b
-	 *            the buffer for the uncompressed data
+	 *          the buffer for the uncompressed data
 	 * @return the actual number of uncompressed bytes
 	 * @exception DataFormatException
-	 *                if the compressed data format is invalid
+	 *                                if the compressed data format is invalid
 	 * @see Inflater#needsInput
 	 * @see Inflater#needsDictionary
 	 */
@@ -423,7 +403,8 @@ public class Inflater {
 
 	private native static long init(boolean nowrap);
 
-	private native static void setDictionary(long addr, byte[] b, int off, int len);
+	private native static void setDictionary(long addr, byte[] b, int off,
+			int len);
 
 	private native int inflateBytes(long addr, byte[] b, int off, int len)
 			throws DataFormatException;

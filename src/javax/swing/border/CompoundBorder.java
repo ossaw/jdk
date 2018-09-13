@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.border;
 
@@ -70,9 +50,9 @@ public class CompoundBorder extends AbstractBorder {
 	 * Either border may be null.
 	 * 
 	 * @param outsideBorder
-	 *            the outside border
+	 *                      the outside border
 	 * @param insideBorder
-	 *            the inside border to be nested
+	 *                      the inside border to be nested
 	 */
 	@ConstructorProperties({ "outsideBorder", "insideBorder" })
 	public CompoundBorder(Border outsideBorder, Border insideBorder) {
@@ -98,19 +78,20 @@ public class CompoundBorder extends AbstractBorder {
 	 * specified position and size offset by the insets of the outside border.
 	 * 
 	 * @param c
-	 *            the component for which this border is being painted
+	 *               the component for which this border is being painted
 	 * @param g
-	 *            the paint graphics
+	 *               the paint graphics
 	 * @param x
-	 *            the x position of the painted border
+	 *               the x position of the painted border
 	 * @param y
-	 *            the y position of the painted border
+	 *               the y position of the painted border
 	 * @param width
-	 *            the width of the painted border
+	 *               the width of the painted border
 	 * @param height
-	 *            the height of the painted border
+	 *               the height of the painted border
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height) {
 		Insets nextInsets;
 		int px, py, pw, ph;
 
@@ -137,9 +118,9 @@ public class CompoundBorder extends AbstractBorder {
 	 * Reinitialize the insets parameter with this Border's current Insets.
 	 * 
 	 * @param c
-	 *            the component for which this border insets value applies
+	 *               the component for which this border insets value applies
 	 * @param insets
-	 *            the object to be reinitialized
+	 *               the object to be reinitialized
 	 */
 	public Insets getBorderInsets(Component c, Insets insets) {
 		Insets nextInsets;

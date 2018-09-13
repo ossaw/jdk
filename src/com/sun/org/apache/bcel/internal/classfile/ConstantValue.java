@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -77,36 +69,37 @@ public final class ConstantValue extends Attribute {
 	 * references (shallow copy). Use clone() for a physical copy.
 	 */
 	public ConstantValue(ConstantValue c) {
-		this(c.getNameIndex(), c.getLength(), c.getConstantValueIndex(), c.getConstantPool());
+		this(c.getNameIndex(), c.getLength(), c.getConstantValueIndex(), c
+				.getConstantPool());
 	}
 
 	/**
 	 * Construct object from file stream.
 	 * 
 	 * @param name_index
-	 *            Name index in constant pool
+	 *                      Name index in constant pool
 	 * @param length
-	 *            Content length in bytes
+	 *                      Content length in bytes
 	 * @param file
-	 *            Input stream
+	 *                      Input stream
 	 * @param constant_pool
-	 *            Array of constants
+	 *                      Array of constants
 	 * @throw IOException
 	 */
-	ConstantValue(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
-			throws IOException {
+	ConstantValue(int name_index, int length, DataInputStream file,
+			ConstantPool constant_pool) throws IOException {
 		this(name_index, length, (int) file.readUnsignedShort(), constant_pool);
 	}
 
 	/**
 	 * @param name_index
-	 *            Name index in constant pool
+	 *                            Name index in constant pool
 	 * @param length
-	 *            Content length in bytes
+	 *                            Content length in bytes
 	 * @param constantvalue_index
-	 *            Index in constant pool
+	 *                            Index in constant pool
 	 * @param constant_pool
-	 *            Array of constants
+	 *                            Array of constants
 	 */
 	public ConstantValue(int name_index, int length, int constantvalue_index,
 			ConstantPool constant_pool) {
@@ -120,7 +113,7 @@ public final class ConstantValue extends Attribute {
 	 * fields, attributes, etc. spawns a tree of objects.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public void accept(Visitor v) {
 		v.visitConstantValue(this);
@@ -130,7 +123,7 @@ public final class ConstantValue extends Attribute {
 	 * Dump constant value attribute to file stream on binary format.
 	 *
 	 * @param file
-	 *            Output file stream
+	 *             Output file stream
 	 * @throws IOException
 	 */
 	public final void dump(DataOutputStream file) throws IOException {
@@ -163,26 +156,28 @@ public final class ConstantValue extends Attribute {
 
 		// Print constant to string depending on its type
 		switch (c.getTag()) {
-		case Constants.CONSTANT_Long:
-			buf = "" + ((ConstantLong) c).getBytes();
-			break;
-		case Constants.CONSTANT_Float:
-			buf = "" + ((ConstantFloat) c).getBytes();
-			break;
-		case Constants.CONSTANT_Double:
-			buf = "" + ((ConstantDouble) c).getBytes();
-			break;
-		case Constants.CONSTANT_Integer:
-			buf = "" + ((ConstantInteger) c).getBytes();
-			break;
-		case Constants.CONSTANT_String:
-			i = ((ConstantString) c).getStringIndex();
-			c = constant_pool.getConstant(i, Constants.CONSTANT_Utf8);
-			buf = "\"" + Utility.convertString(((ConstantUtf8) c).getBytes()) + "\"";
-			break;
+			case Constants.CONSTANT_Long:
+				buf = "" + ((ConstantLong) c).getBytes();
+				break;
+			case Constants.CONSTANT_Float:
+				buf = "" + ((ConstantFloat) c).getBytes();
+				break;
+			case Constants.CONSTANT_Double:
+				buf = "" + ((ConstantDouble) c).getBytes();
+				break;
+			case Constants.CONSTANT_Integer:
+				buf = "" + ((ConstantInteger) c).getBytes();
+				break;
+			case Constants.CONSTANT_String:
+				i = ((ConstantString) c).getStringIndex();
+				c = constant_pool.getConstant(i, Constants.CONSTANT_Utf8);
+				buf = "\"" + Utility.convertString(((ConstantUtf8) c)
+						.getBytes()) + "\"";
+				break;
 
-		default:
-			throw new IllegalStateException("Type of ConstValue invalid: " + c);
+			default:
+				throw new IllegalStateException("Type of ConstValue invalid: "
+						+ c);
 		}
 
 		return buf;

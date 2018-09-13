@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.interceptors;
@@ -89,7 +69,8 @@ import com.sun.corba.se.impl.util.RepositoryId;
  * Implementation of the ClientRequestInfo interface as specified in
  * orbos/99-12-02 section 5.4.2.
  */
-public final class ClientRequestInfoImpl extends RequestInfoImpl implements ClientRequestInfo {
+public final class ClientRequestInfoImpl extends RequestInfoImpl implements
+		ClientRequestInfo {
 
 	// The available constants for startingPointCall
 	static final int CALL_SEND_REQUEST = 0;
@@ -192,8 +173,7 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 	}
 
 	/*
-	 **********************************************************************
-	 * Access protection
+	 ********************************************************************** Access protection
 	 **********************************************************************/
 
 	// Method IDs for all methods in ClientRequestInfo. This allows for a
@@ -206,7 +186,8 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 	protected static final int MID_GET_EFFECTIVE_COMPONENT = MID_RI_LAST + 6;
 	protected static final int MID_GET_EFFECTIVE_COMPONENTS = MID_RI_LAST + 7;
 	protected static final int MID_GET_REQUEST_POLICY = MID_RI_LAST + 8;
-	protected static final int MID_ADD_REQUEST_SERVICE_CONTEXT = MID_RI_LAST + 9;
+	protected static final int MID_ADD_REQUEST_SERVICE_CONTEXT = MID_RI_LAST
+			+ 9;
 
 	// ClientRequestInfo validity table (see ptc/00-08-06 table 21-1).
 	// Note: These must be in the same order as specified in contants.
@@ -225,35 +206,48 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 			//
 			// { s_req, s_pol, r_rep, r_exc, r_oth }
 			// RequestInfo methods:
-			/* request_id */ { true, true, true, true, true },
-			/* operation */ { true, true, true, true, true },
-			/* arguments */ { true, false, true, false, false },
-			/* exceptions */ { true, false, true, true, true },
-			/* contexts */ { true, false, true, true, true },
-			/* operation_context */ { true, false, true, true, true },
-			/* result */ { false, false, true, false, false },
-			/* response_expected */ { true, true, true, true, true },
-			/* sync_scope */ { true, false, true, true, true },
-			/* reply_status */ { false, false, true, true, true },
-			/* forward_reference */ { false, false, false, false, true },
-			/* get_slot */ { true, true, true, true, true },
+			/* request_id */ { true, true, true, true, true }, /* operation */ {
+					true, true, true, true, true }, /* arguments */ { true,
+							false, true, false, false }, /* exceptions */ {
+									true, false, true, true, true }, /*
+																		 * contexts
+																		 */ {
+											true, false, true, true, true },
+			/* operation_context */ { true, false, true, true, true }, /*
+																		 * result
+																		 */ {
+					false, false, true, false, false },
+			/* response_expected */ { true, true, true, true, true }, /*
+																		 * sync_scope
+																		 */ {
+					true, false, true, true, true }, /* reply_status */ { false,
+							false, true, true, true }, /* forward_reference */ {
+									false, false, false, false, true }, /*
+																		 * get_slot
+																		 */ {
+											true, true, true, true, true },
 			/* get_request_service_context */ { true, false, true, true, true },
 			/* get_reply_service_context */ { false, false, true, true, true },
 			//
 			// ClientRequestInfo methods::
-			/* target */ { true, true, true, true, true },
-			/* effective_target */ { true, true, true, true, true },
-			/* effective_profile */ { true, true, true, true, true },
-			/* received_exception */ { false, false, false, true, false },
-			/* received_exception_id */ { false, false, false, true, false },
+			/* target */ { true, true, true, true, true }, /*
+															 * effective_target
+															 */ { true, true,
+					true, true, true }, /* effective_profile */ { true, true,
+							true, true, true }, /* received_exception */ {
+									false, false, false, true, false }, /*
+																		 * received_exception_id
+																		 */ {
+											false, false, false, true, false },
 			/* get_effective_component */ { true, false, true, true, true },
 			/* get_effective_components */ { true, false, true, true, true },
-			/* get_request_policy */ { true, false, true, true, true },
-			/* add_request_service_context */ { true, false, false, false, false } };
+			/* get_request_policy */ { true, false, true, true, true }, /*
+																		 * add_request_service_context
+																		 */ {
+					true, false, false, false, false } };
 
 	/*
-	 **********************************************************************
-	 * Public ClientRequestInfo interfaces
+	 ********************************************************************** Public ClientRequestInfo interfaces
 	 **********************************************************************/
 
 	/**
@@ -274,7 +268,8 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 		// access is currently valid for all states:
 		// checkAccess( MID_TARGET );
 		if (cachedTargetObject == null) {
-			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator.getContactInfo();
+			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator
+					.getContactInfo();
 			cachedTargetObject = iorToObject(corbaContactInfo.getTargetIOR());
 		}
 		return cachedTargetObject;
@@ -295,9 +290,11 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 		// ClientRequestDispatcher.createRequest, v1.32
 
 		if (cachedEffectiveTargetObject == null) {
-			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator.getContactInfo();
+			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator
+					.getContactInfo();
 			// REVISIT - get through chain like getLocatedIOR helper below.
-			cachedEffectiveTargetObject = iorToObject(corbaContactInfo.getEffectiveTargetIOR());
+			cachedEffectiveTargetObject = iorToObject(corbaContactInfo
+					.getEffectiveTargetIOR());
 		}
 		return cachedEffectiveTargetObject;
 	}
@@ -312,8 +309,10 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 		// checkAccess( MID_EFFECTIVE_PROFILE );
 
 		if (cachedEffectiveProfile == null) {
-			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator.getContactInfo();
-			cachedEffectiveProfile = corbaContactInfo.getEffectiveProfile().getIOPProfile();
+			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator
+					.getContactInfo();
+			cachedEffectiveProfile = corbaContactInfo.getEffectiveProfile()
+					.getIOPProfile();
 		}
 
 		// Good citizen: In the interest of efficiency, we assume interceptors
@@ -397,16 +396,18 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 			justCreatedCache = true;
 		} else {
 			// Look in cache:
-			result = (TaggedComponent[]) cachedEffectiveComponents.get(integerId);
+			result = (TaggedComponent[]) cachedEffectiveComponents.get(
+					integerId);
 		}
 
 		// null could mean we cached null or not in cache.
-		if ((result == null)
-				&& (justCreatedCache || !cachedEffectiveComponents.containsKey(integerId))) {
+		if ((result == null) && (justCreatedCache || !cachedEffectiveComponents
+				.containsKey(integerId))) {
 			// Not in cache. Get it from the profile:
-			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator.getContactInfo();
-			IIOPProfileTemplate ptemp = (IIOPProfileTemplate) corbaContactInfo.getEffectiveProfile()
-					.getTaggedProfileTemplate();
+			CorbaContactInfo corbaContactInfo = (CorbaContactInfo) messageMediator
+					.getContactInfo();
+			IIOPProfileTemplate ptemp = (IIOPProfileTemplate) corbaContactInfo
+					.getEffectiveProfile().getTaggedProfileTemplate();
 			result = ptemp.getIOPComponents(myORB, id);
 			cachedEffectiveComponents.put(integerId, result);
 		}
@@ -440,15 +441,16 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 	 * There is no declaration of the order of the service contexts. They may or
 	 * may not appear in the order they are added.
 	 */
-	public void add_request_service_context(ServiceContext service_context, boolean replace) {
+	public void add_request_service_context(ServiceContext service_context,
+			boolean replace) {
 		checkAccess(MID_ADD_REQUEST_SERVICE_CONTEXT);
 
 		if (cachedRequestServiceContexts == null) {
 			cachedRequestServiceContexts = new HashMap();
 		}
 
-		addServiceContext(cachedRequestServiceContexts, messageMediator.getRequestServiceContexts(),
-				service_context, replace);
+		addServiceContext(cachedRequestServiceContexts, messageMediator
+				.getRequestServiceContexts(), service_context, replace);
 	}
 
 	// NOTE: When adding a method, be sure to:
@@ -457,9 +459,7 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 	// 3. Define entries in the validCall[][] table for interception points.
 
 	/*
-	 **********************************************************************
-	 * Public RequestInfo interfaces
-	 *
+	 ********************************************************************** Public RequestInfo interfaces
 	 * These are implemented here because they have differing implementations
 	 * depending on whether this is a client or a server request info object.
 	 **********************************************************************/
@@ -705,7 +705,8 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 
 		// REVISIT - this most likely causes reportRedirect to happen twice.
 		// Once here and once inside the request dispatcher.
-		iterator.reportRedirect((CorbaContactInfo) messageMediator.getContactInfo(), ior);
+		iterator.reportRedirect((CorbaContactInfo) messageMediator
+				.getContactInfo(), ior);
 	}
 
 	/**
@@ -718,8 +719,8 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 			cachedRequestServiceContexts = new HashMap();
 		}
 
-		return getServiceContext(cachedRequestServiceContexts,
-				messageMediator.getRequestServiceContexts(), id);
+		return getServiceContext(cachedRequestServiceContexts, messageMediator
+				.getRequestServiceContexts(), id);
 	}
 
 	/**
@@ -749,11 +750,13 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 		// "gracefully" handle these with a BAD_PARAM with minor code 25.
 
 		try {
-			ServiceContexts serviceContexts = messageMediator.getReplyServiceContexts();
+			ServiceContexts serviceContexts = messageMediator
+					.getReplyServiceContexts();
 			if (serviceContexts == null) {
 				throw new NullPointerException();
 			}
-			return getServiceContext(cachedReplyServiceContexts, serviceContexts, id);
+			return getServiceContext(cachedReplyServiceContexts,
+					serviceContexts, id);
 		} catch (NullPointerException e) {
 			// REVISIT how this is programmed - not what it does.
 			// See purge calls test. The waiter is woken up by the
@@ -769,12 +772,12 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 	//
 
 	public com.sun.corba.se.spi.legacy.connection.Connection connection() {
-		return (com.sun.corba.se.spi.legacy.connection.Connection) messageMediator.getConnection();
+		return (com.sun.corba.se.spi.legacy.connection.Connection) messageMediator
+				.getConnection();
 	}
 
 	/*
-	 **********************************************************************
-	 * Package-scope interfaces
+	 ********************************************************************** Package-scope interfaces
 	 **********************************************************************/
 
 	protected void setInfo(MessageMediator messageMediator) {
@@ -826,17 +829,17 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 	protected void setReplyStatus(short replyStatus) {
 		super.setReplyStatus(replyStatus);
 		switch (replyStatus) {
-		case SUCCESSFUL.value:
-			endingPointCall = CALL_RECEIVE_REPLY;
-			break;
-		case SYSTEM_EXCEPTION.value:
-		case USER_EXCEPTION.value:
-			endingPointCall = CALL_RECEIVE_EXCEPTION;
-			break;
-		case LOCATION_FORWARD.value:
-		case TRANSPORT_RETRY.value:
-			endingPointCall = CALL_RECEIVE_OTHER;
-			break;
+			case SUCCESSFUL.value:
+				endingPointCall = CALL_RECEIVE_REPLY;
+				break;
+			case SYSTEM_EXCEPTION.value:
+			case USER_EXCEPTION.value:
+				endingPointCall = CALL_RECEIVE_EXCEPTION;
+				break;
+			case LOCATION_FORWARD.value:
+			case TRANSPORT_RETRY.value:
+				endingPointCall = CALL_RECEIVE_OTHER;
+				break;
 		}
 	}
 
@@ -900,29 +903,29 @@ public final class ClientRequestInfoImpl extends RequestInfoImpl implements Clie
 		// validCall table:
 		int validCallIndex = 0;
 		switch (currentExecutionPoint) {
-		case EXECUTION_POINT_STARTING:
-			switch (startingPointCall) {
-			case CALL_SEND_REQUEST:
-				validCallIndex = 0;
+			case EXECUTION_POINT_STARTING:
+				switch (startingPointCall) {
+					case CALL_SEND_REQUEST:
+						validCallIndex = 0;
+						break;
+					case CALL_SEND_POLL:
+						validCallIndex = 1;
+						break;
+				}
 				break;
-			case CALL_SEND_POLL:
-				validCallIndex = 1;
+			case EXECUTION_POINT_ENDING:
+				switch (endingPointCall) {
+					case CALL_RECEIVE_REPLY:
+						validCallIndex = 2;
+						break;
+					case CALL_RECEIVE_EXCEPTION:
+						validCallIndex = 3;
+						break;
+					case CALL_RECEIVE_OTHER:
+						validCallIndex = 4;
+						break;
+				}
 				break;
-			}
-			break;
-		case EXECUTION_POINT_ENDING:
-			switch (endingPointCall) {
-			case CALL_RECEIVE_REPLY:
-				validCallIndex = 2;
-				break;
-			case CALL_RECEIVE_EXCEPTION:
-				validCallIndex = 3;
-				break;
-			case CALL_RECEIVE_OTHER:
-				validCallIndex = 4;
-				break;
-			}
-			break;
 		}
 
 		// Check the validCall table:

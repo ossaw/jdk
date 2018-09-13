@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -78,30 +58,36 @@ public abstract class RMIClassLoaderSpi {
 	 * given name or throw an exception.
 	 *
 	 * @param codebase
-	 *            the list of URLs (separated by spaces) to load the class from,
-	 *            or <code>null</code>
+	 *                      the list of URLs (separated by spaces) to load the
+	 *                      class from,
+	 *                      or <code>null</code>
 	 *
 	 * @param name
-	 *            the name of the class to load
+	 *                      the name of the class to load
 	 *
 	 * @param defaultLoader
-	 *            additional contextual class loader to use, or
-	 *            <code>null</code>
+	 *                      additional contextual class loader to use, or
+	 *                      <code>null</code>
 	 *
 	 * @return the <code>Class</code> object representing the loaded class
 	 *
 	 * @throws MalformedURLException
-	 *             if <code>codebase</code> is non-<code>null</code> and
-	 *             contains an invalid URL, or if <code>codebase</code> is
-	 *             <code>null</code> and a provider-specific URL used to load
-	 *             classes is invalid
+	 *                                if <code>codebase</code> is
+	 *                                non-<code>null</code> and
+	 *                                contains an invalid URL, or if
+	 *                                <code>codebase</code> is
+	 *                                <code>null</code> and a provider-specific
+	 *                                URL used to load
+	 *                                classes is invalid
 	 *
 	 * @throws ClassNotFoundException
-	 *             if a definition for the class could not be found at the
-	 *             specified location
+	 *                                if a definition for the class could not be
+	 *                                found at the
+	 *                                specified location
 	 */
-	public abstract Class<?> loadClass(String codebase, String name, ClassLoader defaultLoader)
-			throws MalformedURLException, ClassNotFoundException;
+	public abstract Class<?> loadClass(String codebase, String name,
+			ClassLoader defaultLoader) throws MalformedURLException,
+			ClassNotFoundException;
 
 	/**
 	 * Provides the implementation for
@@ -116,34 +102,44 @@ public abstract class RMIClassLoaderSpi {
 	 * implements the named interfaces or throw an exception.
 	 *
 	 * @param codebase
-	 *            the list of URLs (space-separated) to load classes from, or
-	 *            <code>null</code>
+	 *                   the list of URLs (space-separated) to load classes
+	 *                   from, or
+	 *                   <code>null</code>
 	 *
 	 * @param interfaces
-	 *            the names of the interfaces for the proxy class to implement
+	 *                   the names of the interfaces for the proxy class to
+	 *                   implement
 	 *
 	 * @return a dynamic proxy class that implements the named interfaces
 	 *
 	 * @param defaultLoader
-	 *            additional contextual class loader to use, or
-	 *            <code>null</code>
+	 *                      additional contextual class loader to use, or
+	 *                      <code>null</code>
 	 *
 	 * @throws MalformedURLException
-	 *             if <code>codebase</code> is non-<code>null</code> and
-	 *             contains an invalid URL, or if <code>codebase</code> is
-	 *             <code>null</code> and a provider-specific URL used to load
-	 *             classes is invalid
+	 *                                if <code>codebase</code> is
+	 *                                non-<code>null</code> and
+	 *                                contains an invalid URL, or if
+	 *                                <code>codebase</code> is
+	 *                                <code>null</code> and a provider-specific
+	 *                                URL used to load
+	 *                                classes is invalid
 	 *
 	 * @throws ClassNotFoundException
-	 *             if a definition for one of the named interfaces could not be
-	 *             found at the specified location, or if creation of the
-	 *             dynamic proxy class failed (such as if
-	 *             {@link java.lang.reflect.Proxy#getProxyClass(ClassLoader,Class[])}
-	 *             would throw an <code>IllegalArgumentException</code> for the
-	 *             given interface list)
+	 *                                if a definition for one of the named
+	 *                                interfaces could not be
+	 *                                found at the specified location, or if
+	 *                                creation of the
+	 *                                dynamic proxy class failed (such as if
+	 *                                {@link java.lang.reflect.Proxy#getProxyClass(ClassLoader,Class[])}
+	 *                                would throw an
+	 *                                <code>IllegalArgumentException</code> for
+	 *                                the
+	 *                                given interface list)
 	 */
-	public abstract Class<?> loadProxyClass(String codebase, String[] interfaces,
-			ClassLoader defaultLoader) throws MalformedURLException, ClassNotFoundException;
+	public abstract Class<?> loadProxyClass(String codebase,
+			String[] interfaces, ClassLoader defaultLoader)
+			throws MalformedURLException, ClassNotFoundException;
 
 	/**
 	 * Provides the implementation for
@@ -161,25 +157,33 @@ public abstract class RMIClassLoaderSpi {
 	 * URLs in the codebase URL path.
 	 *
 	 * @param codebase
-	 *            the list of URLs (space-separated) from which the returned
-	 *            class loader will load classes from, or <code>null</code>
+	 *                 the list of URLs (space-separated) from which the
+	 *                 returned
+	 *                 class loader will load classes from, or <code>null</code>
 	 *
 	 * @return a class loader that loads classes from the given codebase URL
 	 *         path
 	 *
 	 * @throws MalformedURLException
-	 *             if <code>codebase</code> is non-<code>null</code> and
-	 *             contains an invalid URL, or if <code>codebase</code> is
-	 *             <code>null</code> and a provider-specific URL used to
-	 *             identify the class loader is invalid
+	 *                               if <code>codebase</code> is
+	 *                               non-<code>null</code> and
+	 *                               contains an invalid URL, or if
+	 *                               <code>codebase</code> is
+	 *                               <code>null</code> and a provider-specific
+	 *                               URL used to
+	 *                               identify the class loader is invalid
 	 *
 	 * @throws SecurityException
-	 *             if there is a security manager and the invocation of its
-	 *             <code>checkPermission</code> method fails, or if the caller
-	 *             does not have permission to connect to all of the URLs in the
-	 *             codebase URL path
+	 *                               if there is a security manager and the
+	 *                               invocation of its
+	 *                               <code>checkPermission</code> method fails,
+	 *                               or if the caller
+	 *                               does not have permission to connect to all
+	 *                               of the URLs in the
+	 *                               codebase URL path
 	 */
-	public abstract ClassLoader getClassLoader(String codebase) throws MalformedURLException; // SecurityException
+	public abstract ClassLoader getClassLoader(String codebase)
+			throws MalformedURLException; // SecurityException
 
 	/**
 	 * Provides the implementation for
@@ -190,13 +194,13 @@ public abstract class RMIClassLoaderSpi {
 	 * marshalling objects of the given class.
 	 *
 	 * @param cl
-	 *            the class to obtain the annotation for
+	 *           the class to obtain the annotation for
 	 *
 	 * @return a string to be used to annotate the given class when it gets
 	 *         marshalled, or <code>null</code>
 	 *
 	 * @throws NullPointerException
-	 *             if <code>cl</code> is <code>null</code>
+	 *                              if <code>cl</code> is <code>null</code>
 	 */
 	public abstract String getClassAnnotation(Class<?> cl);
 }

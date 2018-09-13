@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.math;
@@ -188,14 +168,16 @@ class BitSieve {
 	/**
 	 * Test probable primes in the sieve and return successful candidates.
 	 */
-	BigInteger retrieve(BigInteger initValue, int certainty, java.util.Random random) {
+	BigInteger retrieve(BigInteger initValue, int certainty,
+			java.util.Random random) {
 		// Examine the sieve one long at a time to find possible primes
 		int offset = 1;
 		for (int i = 0; i < bits.length; i++) {
 			long nextLong = ~bits[i];
 			for (int j = 0; j < 64; j++) {
 				if ((nextLong & 1) == 1) {
-					BigInteger candidate = initValue.add(BigInteger.valueOf(offset));
+					BigInteger candidate = initValue.add(BigInteger.valueOf(
+							offset));
 					if (candidate.primeToCertainty(certainty, random))
 						return candidate;
 				}

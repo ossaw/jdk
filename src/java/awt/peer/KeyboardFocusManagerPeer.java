@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.peer;
@@ -55,7 +35,7 @@ public interface KeyboardFocusManagerPeer {
 	 * Sets the component that should become the focus owner.
 	 *
 	 * @param comp
-	 *            the component to become the focus owner
+	 *             the component to become the focus owner
 	 *
 	 * @see KeyboardFocusManager#setNativeFocusOwner(Component)
 	 */

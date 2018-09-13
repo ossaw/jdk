@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -153,7 +133,8 @@ public class IORImpl extends IdentifiableContainerBase implements IOR {
 		Iterator templateIterator = iortemp.iterator();
 
 		while (templateIterator.hasNext()) {
-			TaggedProfileTemplate ptemp = (TaggedProfileTemplate) (templateIterator.next());
+			TaggedProfileTemplate ptemp = (TaggedProfileTemplate) (templateIterator
+					.next());
 
 			TaggedProfile profile = ptemp.create(oktemp, id);
 
@@ -165,7 +146,8 @@ public class IORImpl extends IdentifiableContainerBase implements IOR {
 	 * Construct an IOR from an IORTemplate by applying the same object id to
 	 * each TaggedProfileTemplate in the IORTemplate.
 	 */
-	public IORImpl(ORB orb, String typeId, IORTemplateList iortemps, ObjectId id) {
+	public IORImpl(ORB orb, String typeId, IORTemplateList iortemps,
+			ObjectId id) {
 		this(orb, typeId);
 
 		this.iortemps = iortemps;
@@ -182,7 +164,8 @@ public class IORImpl extends IdentifiableContainerBase implements IOR {
 	public IORImpl(InputStream is) {
 		this((ORB) (is.orb()), is.read_string());
 
-		IdentifiableFactoryFinder finder = factory.getTaggedProfileFactoryFinder();
+		IdentifiableFactoryFinder finder = factory
+				.getTaggedProfileFactoryFinder();
 
 		EncapsulationUtility.readIdentifiableSequence(this, finder, is);
 
@@ -201,7 +184,8 @@ public class IORImpl extends IdentifiableContainerBase implements IOR {
 	public String stringify() {
 		StringWriter bs;
 
-		MarshalOutputStream s = sun.corba.OutputStreamFactory.newEncapsOutputStream(factory);
+		MarshalOutputStream s = sun.corba.OutputStreamFactory
+				.newEncapsOutputStream(factory);
 		s.putEndian();
 		write((OutputStream) s);
 		bs = new StringWriter();
@@ -224,7 +208,8 @@ public class IORImpl extends IdentifiableContainerBase implements IOR {
 	}
 
 	public org.omg.IOP.IOR getIOPIOR() {
-		EncapsOutputStream os = sun.corba.OutputStreamFactory.newEncapsOutputStream(factory);
+		EncapsOutputStream os = sun.corba.OutputStreamFactory
+				.newEncapsOutputStream(factory);
 		write(os);
 		InputStream is = (InputStream) (os.create_input_stream());
 		return org.omg.IOP.IORHelper.read(is);
@@ -274,7 +259,8 @@ public class IORImpl extends IdentifiableContainerBase implements IOR {
 				throw wrapper.badOidInIorTemplateList();
 
 			// Find or create the IORTemplate for oktemp.
-			IORTemplate iortemp = (IORTemplate) (oktempToIORTemplate.get(oktemp));
+			IORTemplate iortemp = (IORTemplate) (oktempToIORTemplate.get(
+					oktemp));
 			if (iortemp == null) {
 				iortemp = IORFactories.makeIORTemplate(oktemp);
 				oktempToIORTemplate.put(oktemp, iortemp);

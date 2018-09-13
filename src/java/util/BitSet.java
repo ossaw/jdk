@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -78,12 +58,12 @@ public class BitSet implements Cloneable, java.io.Serializable {
 
 	/**
 	 * @serialField bits
-	 *                  long[]
+	 *              long[]
 	 *
-	 *                  The bits in this BitSet. The ith bit is stored in
-	 *                  bits[i/64] at bit position i % 64 (where bit position 0
-	 *                  refers to the least significant bit and 63 refers to the
-	 *                  most significant bit).
+	 *              The bits in this BitSet. The ith bit is stored in
+	 *              bits[i/64] at bit position i % 64 (where bit position 0
+	 *              refers to the least significant bit and 63 refers to the
+	 *              most significant bit).
 	 */
 	private static final ObjectStreamField[] serialPersistentFields = {
 			new ObjectStreamField("bits", long[].class), };
@@ -152,9 +132,10 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * {@code nbits-1}. All bits are initially {@code false}.
 	 *
 	 * @param nbits
-	 *            the initial size of the bit set
+	 *              the initial size of the bit set
 	 * @throws NegativeArraySizeException
-	 *             if the specified initial size is negative
+	 *                                    if the specified initial size is
+	 *                                    negative
 	 */
 	public BitSet(int nbits) {
 		// nbits can't be negative; size 0 is OK
@@ -193,9 +174,10 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * {@code BitSet.valueOf(LongBuffer.wrap(longs))}.
 	 *
 	 * @param longs
-	 *            a long array containing a little-endian representation of a
-	 *            sequence of bits to be used as the initial bits of the new bit
-	 *            set
+	 *              a long array containing a little-endian representation of a
+	 *              sequence of bits to be used as the initial bits of the new
+	 *              bit
+	 *              set
 	 * @return a {@code BitSet} containing all the bits in the long array
 	 * @since 1.7
 	 */
@@ -221,9 +203,9 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * buffer is retained by the bit set.
 	 *
 	 * @param lb
-	 *            a long buffer containing a little-endian representation of a
-	 *            sequence of bits between its position and limit, to be used as
-	 *            the initial bits of the new bit set
+	 *           a long buffer containing a little-endian representation of a
+	 *           sequence of bits between its position and limit, to be used as
+	 *           the initial bits of the new bit set
 	 * @return a {@code BitSet} containing all the bits in the buffer in the
 	 *         specified range
 	 * @since 1.7
@@ -252,9 +234,10 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * {@code BitSet.valueOf(ByteBuffer.wrap(bytes))}.
 	 *
 	 * @param bytes
-	 *            a byte array containing a little-endian representation of a
-	 *            sequence of bits to be used as the initial bits of the new bit
-	 *            set
+	 *              a byte array containing a little-endian representation of a
+	 *              sequence of bits to be used as the initial bits of the new
+	 *              bit
+	 *              set
 	 * @return a {@code BitSet} containing all the bits in the byte array
 	 * @since 1.7
 	 */
@@ -277,9 +260,9 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * buffer is retained by the bit set.
 	 *
 	 * @param bb
-	 *            a byte buffer containing a little-endian representation of a
-	 *            sequence of bits between its position and limit, to be used as
-	 *            the initial bits of the new bit set
+	 *           a byte buffer containing a little-endian representation of a
+	 *           sequence of bits between its position and limit, to be used as
+	 *           the initial bits of the new bit set
 	 * @return a {@code BitSet} containing all the bits in the buffer in the
 	 *         specified range
 	 * @since 1.7
@@ -351,7 +334,7 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * Ensures that the BitSet can hold enough words.
 	 * 
 	 * @param wordsRequired
-	 *            the minimum acceptable number of words.
+	 *                      the minimum acceptable number of words.
 	 */
 	private void ensureCapacity(int wordsRequired) {
 		if (words.length < wordsRequired) {
@@ -368,7 +351,7 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * returning to the user, possibly using recalculateWordsInUse().
 	 * 
 	 * @param wordIndex
-	 *            the index to be accommodated.
+	 *                  the index to be accommodated.
 	 */
 	private void expandTo(int wordIndex) {
 		int wordsRequired = wordIndex + 1;
@@ -387,8 +370,8 @@ public class BitSet implements Cloneable, java.io.Serializable {
 		if (toIndex < 0)
 			throw new IndexOutOfBoundsException("toIndex < 0: " + toIndex);
 		if (fromIndex > toIndex)
-			throw new IndexOutOfBoundsException(
-					"fromIndex: " + fromIndex + " > toIndex: " + toIndex);
+			throw new IndexOutOfBoundsException("fromIndex: " + fromIndex
+					+ " > toIndex: " + toIndex);
 	}
 
 	/**
@@ -396,9 +379,9 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * value.
 	 *
 	 * @param bitIndex
-	 *            the index of the bit to flip
+	 *                 the index of the bit to flip
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 * @since 1.4
 	 */
 	public void flip(int bitIndex) {
@@ -420,12 +403,14 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * value.
 	 *
 	 * @param fromIndex
-	 *            index of the first bit to flip
+	 *                  index of the first bit to flip
 	 * @param toIndex
-	 *            index after the last bit to flip
+	 *                  index after the last bit to flip
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code fromIndex} is negative, or {@code toIndex} is
-	 *             negative, or {@code fromIndex} is larger than {@code toIndex}
+	 *                                   if {@code fromIndex} is negative, or
+	 *                                   {@code toIndex} is
+	 *                                   negative, or {@code fromIndex} is
+	 *                                   larger than {@code toIndex}
 	 * @since 1.4
 	 */
 	public void flip(int fromIndex, int toIndex) {
@@ -464,9 +449,9 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * Sets the bit at the specified index to {@code true}.
 	 *
 	 * @param bitIndex
-	 *            a bit index
+	 *                 a bit index
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 * @since JDK1.0
 	 */
 	public void set(int bitIndex) {
@@ -485,11 +470,11 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * Sets the bit at the specified index to the specified value.
 	 *
 	 * @param bitIndex
-	 *            a bit index
+	 *                 a bit index
 	 * @param value
-	 *            a boolean value to set
+	 *                 a boolean value to set
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 * @since 1.4
 	 */
 	public void set(int bitIndex, boolean value) {
@@ -504,12 +489,14 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * specified {@code toIndex} (exclusive) to {@code true}.
 	 *
 	 * @param fromIndex
-	 *            index of the first bit to be set
+	 *                  index of the first bit to be set
 	 * @param toIndex
-	 *            index after the last bit to be set
+	 *                  index after the last bit to be set
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code fromIndex} is negative, or {@code toIndex} is
-	 *             negative, or {@code fromIndex} is larger than {@code toIndex}
+	 *                                   if {@code fromIndex} is negative, or
+	 *                                   {@code toIndex} is
+	 *                                   negative, or {@code fromIndex} is
+	 *                                   larger than {@code toIndex}
 	 * @since 1.4
 	 */
 	public void set(int fromIndex, int toIndex) {
@@ -549,14 +536,16 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * specified {@code toIndex} (exclusive) to the specified value.
 	 *
 	 * @param fromIndex
-	 *            index of the first bit to be set
+	 *                  index of the first bit to be set
 	 * @param toIndex
-	 *            index after the last bit to be set
+	 *                  index after the last bit to be set
 	 * @param value
-	 *            value to set the selected bits to
+	 *                  value to set the selected bits to
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code fromIndex} is negative, or {@code toIndex} is
-	 *             negative, or {@code fromIndex} is larger than {@code toIndex}
+	 *                                   if {@code fromIndex} is negative, or
+	 *                                   {@code toIndex} is
+	 *                                   negative, or {@code fromIndex} is
+	 *                                   larger than {@code toIndex}
 	 * @since 1.4
 	 */
 	public void set(int fromIndex, int toIndex, boolean value) {
@@ -570,9 +559,9 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * Sets the bit specified by the index to {@code false}.
 	 *
 	 * @param bitIndex
-	 *            the index of the bit to be cleared
+	 *                 the index of the bit to be cleared
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 * @since JDK1.0
 	 */
 	public void clear(int bitIndex) {
@@ -594,12 +583,14 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * specified {@code toIndex} (exclusive) to {@code false}.
 	 *
 	 * @param fromIndex
-	 *            index of the first bit to be cleared
+	 *                  index of the first bit to be cleared
 	 * @param toIndex
-	 *            index after the last bit to be cleared
+	 *                  index after the last bit to be cleared
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code fromIndex} is negative, or {@code toIndex} is
-	 *             negative, or {@code fromIndex} is larger than {@code toIndex}
+	 *                                   if {@code fromIndex} is negative, or
+	 *                                   {@code toIndex} is
+	 *                                   negative, or {@code fromIndex} is
+	 *                                   larger than {@code toIndex}
 	 * @since 1.4
 	 */
 	public void clear(int fromIndex, int toIndex) {
@@ -656,10 +647,10 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * in this {@code BitSet}; otherwise, the result is {@code false}.
 	 *
 	 * @param bitIndex
-	 *            the bit index
+	 *                 the bit index
 	 * @return the value of the bit with the specified index
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 */
 	public boolean get(int bitIndex) {
 		if (bitIndex < 0)
@@ -668,7 +659,8 @@ public class BitSet implements Cloneable, java.io.Serializable {
 		checkInvariants();
 
 		int wordIndex = wordIndex(bitIndex);
-		return (wordIndex < wordsInUse) && ((words[wordIndex] & (1L << bitIndex)) != 0);
+		return (wordIndex < wordsInUse) && ((words[wordIndex]
+				& (1L << bitIndex)) != 0);
 	}
 
 	/**
@@ -676,13 +668,15 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * from {@code fromIndex} (inclusive) to {@code toIndex} (exclusive).
 	 *
 	 * @param fromIndex
-	 *            index of the first bit to include
+	 *                  index of the first bit to include
 	 * @param toIndex
-	 *            index after the last bit to include
+	 *                  index after the last bit to include
 	 * @return a new {@code BitSet} from a range of this {@code BitSet}
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code fromIndex} is negative, or {@code toIndex} is
-	 *             negative, or {@code fromIndex} is larger than {@code toIndex}
+	 *                                   if {@code fromIndex} is negative, or
+	 *                                   {@code toIndex} is
+	 *                                   negative, or {@code fromIndex} is
+	 *                                   larger than {@code toIndex}
 	 * @since 1.4
 	 */
 	public BitSet get(int fromIndex, int toIndex) {
@@ -708,15 +702,19 @@ public class BitSet implements Cloneable, java.io.Serializable {
 		// Process all words but the last word
 		for (int i = 0; i < targetWords - 1; i++, sourceIndex++)
 			result.words[i] = wordAligned ? words[sourceIndex]
-					: (words[sourceIndex] >>> fromIndex) | (words[sourceIndex + 1] << -fromIndex);
+					: (words[sourceIndex] >>> fromIndex) | (words[sourceIndex
+							+ 1] << -fromIndex);
 
 		// Process the last word
 		long lastWordMask = WORD_MASK >>> -toIndex;
-		result.words[targetWords
-				- 1] = ((toIndex - 1) & BIT_INDEX_MASK) < (fromIndex & BIT_INDEX_MASK)
-						? /* straddles source words */
-						((words[sourceIndex] >>> fromIndex)
-								| (words[sourceIndex + 1] & lastWordMask) << -fromIndex)
+		result.words[targetWords - 1] = ((toIndex - 1)
+				& BIT_INDEX_MASK) < (fromIndex & BIT_INDEX_MASK) ? /*
+																	 * straddles
+																	 * source
+																	 * words
+																	 */
+						((words[sourceIndex] >>> fromIndex) | (words[sourceIndex
+								+ 1] & lastWordMask) << -fromIndex)
 						: ((words[sourceIndex] & lastWordMask) >>> fromIndex);
 
 		// Set wordsInUse correctly
@@ -747,11 +745,11 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param fromIndex
-	 *            the index to start checking from (inclusive)
+	 *                  the index to start checking from (inclusive)
 	 * @return the index of the next set bit, or {@code -1} if there is no such
 	 *         bit
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 * @since 1.4
 	 */
 	public int nextSetBit(int fromIndex) {
@@ -780,10 +778,10 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * occurs on or after the specified starting index.
 	 *
 	 * @param fromIndex
-	 *            the index to start checking from (inclusive)
+	 *                  the index to start checking from (inclusive)
 	 * @return the index of the next clear bit
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 * @since 1.4
 	 */
 	public int nextClearBit(int fromIndex) {
@@ -827,11 +825,12 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param fromIndex
-	 *            the index to start checking from (inclusive)
+	 *                  the index to start checking from (inclusive)
 	 * @return the index of the previous set bit, or {@code -1} if there is no
 	 *         such bit
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is less than {@code -1}
+	 *                                   if the specified index is less than
+	 *                                   {@code -1}
 	 * @since 1.7
 	 */
 	public int previousSetBit(int fromIndex) {
@@ -851,7 +850,8 @@ public class BitSet implements Cloneable, java.io.Serializable {
 
 		while (true) {
 			if (word != 0)
-				return (u + 1) * BITS_PER_WORD - 1 - Long.numberOfLeadingZeros(word);
+				return (u + 1) * BITS_PER_WORD - 1 - Long.numberOfLeadingZeros(
+						word);
 			if (u-- == 0)
 				return -1;
 			word = words[u];
@@ -865,11 +865,12 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * returned.
 	 *
 	 * @param fromIndex
-	 *            the index to start checking from (inclusive)
+	 *                  the index to start checking from (inclusive)
 	 * @return the index of the previous clear bit, or {@code -1} if there is no
 	 *         such bit
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is less than {@code -1}
+	 *                                   if the specified index is less than
+	 *                                   {@code -1}
 	 * @since 1.7
 	 */
 	public int previousClearBit(int fromIndex) {
@@ -889,7 +890,8 @@ public class BitSet implements Cloneable, java.io.Serializable {
 
 		while (true) {
 			if (word != 0)
-				return (u + 1) * BITS_PER_WORD - 1 - Long.numberOfLeadingZeros(word);
+				return (u + 1) * BITS_PER_WORD - 1 - Long.numberOfLeadingZeros(
+						word);
 			if (u-- == 0)
 				return -1;
 			word = ~words[u];
@@ -908,8 +910,8 @@ public class BitSet implements Cloneable, java.io.Serializable {
 		if (wordsInUse == 0)
 			return 0;
 
-		return BITS_PER_WORD * (wordsInUse - 1)
-				+ (BITS_PER_WORD - Long.numberOfLeadingZeros(words[wordsInUse - 1]));
+		return BITS_PER_WORD * (wordsInUse - 1) + (BITS_PER_WORD - Long
+				.numberOfLeadingZeros(words[wordsInUse - 1]));
 	}
 
 	/**
@@ -1198,7 +1200,8 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	 * Reconstitute the {@code BitSet} instance from a stream (i.e., deserialize
 	 * it).
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 
 		ObjectInputStream.GetField fields = s.readFields();
 		words = (long[]) fields.get("bits", null);
@@ -1247,7 +1250,8 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	public String toString() {
 		checkInvariants();
 
-		int numBits = (wordsInUse > 128) ? cardinality() : wordsInUse * BITS_PER_WORD;
+		int numBits = (wordsInUse > 128) ? cardinality()
+				: wordsInUse * BITS_PER_WORD;
 		StringBuilder b = new StringBuilder(6 * numBits + 2);
 		b.append('{');
 
@@ -1305,11 +1309,10 @@ public class BitSet implements Cloneable, java.io.Serializable {
 			}
 		}
 
-		return StreamSupport.intStream(
-				() -> Spliterators.spliterator(new BitSetIterator(), cardinality(),
-						Spliterator.ORDERED | Spliterator.DISTINCT | Spliterator.SORTED),
+		return StreamSupport.intStream(() -> Spliterators.spliterator(
+				new BitSetIterator(), cardinality(), Spliterator.ORDERED
+						| Spliterator.DISTINCT | Spliterator.SORTED),
 				Spliterator.SIZED | Spliterator.SUBSIZED | Spliterator.ORDERED
-						| Spliterator.DISTINCT | Spliterator.SORTED,
-				false);
+						| Spliterator.DISTINCT | Spliterator.SORTED, false);
 	}
 }

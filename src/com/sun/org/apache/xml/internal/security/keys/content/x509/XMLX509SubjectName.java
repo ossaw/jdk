@@ -34,7 +34,8 @@ import org.w3c.dom.Element;
 /**
  * @author $Author: coheigea $
  */
-public class XMLX509SubjectName extends SignatureElementProxy implements XMLX509DataContent {
+public class XMLX509SubjectName extends SignatureElementProxy implements
+		XMLX509DataContent {
 
 	/**
 	 * Constructor X509SubjectName
@@ -43,7 +44,8 @@ public class XMLX509SubjectName extends SignatureElementProxy implements XMLX509
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public XMLX509SubjectName(Element element, String BaseURI) throws XMLSecurityException {
+	public XMLX509SubjectName(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 

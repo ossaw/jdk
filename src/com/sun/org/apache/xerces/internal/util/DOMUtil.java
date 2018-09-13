@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,8 +46,7 @@ public class DOMUtil {
 	//
 
 	/** This class cannot be instantiated. */
-	protected DOMUtil() {
-	}
+	protected DOMUtil() {}
 
 	//
 	// Public static methods
@@ -80,47 +77,49 @@ public class DOMUtil {
 			Node node = null;
 			int type = place.getNodeType();
 			switch (type) {
-			case Node.CDATA_SECTION_NODE: {
-				node = factory.createCDATASection(place.getNodeValue());
-				break;
-			}
-			case Node.COMMENT_NODE: {
-				node = factory.createComment(place.getNodeValue());
-				break;
-			}
-			case Node.ELEMENT_NODE: {
-				Element element = factory.createElement(place.getNodeName());
-				node = element;
-				NamedNodeMap attrs = place.getAttributes();
-				int attrCount = attrs.getLength();
-				for (int i = 0; i < attrCount; i++) {
-					Attr attr = (Attr) attrs.item(i);
-					String attrName = attr.getNodeName();
-					String attrValue = attr.getNodeValue();
-					element.setAttribute(attrName, attrValue);
-					if (domimpl && !attr.getSpecified()) {
-						((AttrImpl) element.getAttributeNode(attrName)).setSpecified(false);
-					}
+				case Node.CDATA_SECTION_NODE: {
+					node = factory.createCDATASection(place.getNodeValue());
+					break;
 				}
-				break;
-			}
-			case Node.ENTITY_REFERENCE_NODE: {
-				node = factory.createEntityReference(place.getNodeName());
-				break;
-			}
-			case Node.PROCESSING_INSTRUCTION_NODE: {
-				node = factory.createProcessingInstruction(place.getNodeName(),
-						place.getNodeValue());
-				break;
-			}
-			case Node.TEXT_NODE: {
-				node = factory.createTextNode(place.getNodeValue());
-				break;
-			}
-			default: {
-				throw new IllegalArgumentException(
-						"can't copy node type, " + type + " (" + place.getNodeName() + ')');
-			}
+				case Node.COMMENT_NODE: {
+					node = factory.createComment(place.getNodeValue());
+					break;
+				}
+				case Node.ELEMENT_NODE: {
+					Element element = factory.createElement(place
+							.getNodeName());
+					node = element;
+					NamedNodeMap attrs = place.getAttributes();
+					int attrCount = attrs.getLength();
+					for (int i = 0; i < attrCount; i++) {
+						Attr attr = (Attr) attrs.item(i);
+						String attrName = attr.getNodeName();
+						String attrValue = attr.getNodeValue();
+						element.setAttribute(attrName, attrValue);
+						if (domimpl && !attr.getSpecified()) {
+							((AttrImpl) element.getAttributeNode(attrName))
+									.setSpecified(false);
+						}
+					}
+					break;
+				}
+				case Node.ENTITY_REFERENCE_NODE: {
+					node = factory.createEntityReference(place.getNodeName());
+					break;
+				}
+				case Node.PROCESSING_INSTRUCTION_NODE: {
+					node = factory.createProcessingInstruction(place
+							.getNodeName(), place.getNodeValue());
+					break;
+				}
+				case Node.TEXT_NODE: {
+					node = factory.createTextNode(place.getNodeValue());
+					break;
+				}
+				default: {
+					throw new IllegalArgumentException("can't copy node type, "
+							+ type + " (" + place.getNodeName() + ')');
+				}
 			}
 			dest.appendChild(node);
 
@@ -180,12 +179,14 @@ public class DOMUtil {
 	} // getFirstChildElement(Node):Element
 
 	/** Finds and returns the first visible child element node. */
-	public static Element getFirstVisibleChildElement(Node parent, Map<Node, String> hiddenNodes) {
+	public static Element getFirstVisibleChildElement(Node parent,
+			Map<Node, String> hiddenNodes) {
 
 		// search for node
 		Node child = parent.getFirstChild();
 		while (child != null) {
-			if (child.getNodeType() == Node.ELEMENT_NODE && !isHidden(child, hiddenNodes)) {
+			if (child.getNodeType() == Node.ELEMENT_NODE && !isHidden(child,
+					hiddenNodes)) {
 				return (Element) child;
 			}
 			child = child.getNextSibling();
@@ -237,12 +238,14 @@ public class DOMUtil {
 	 * Finds and returns the last visible child element node. Overload previous
 	 * method for non-Xerces node impl
 	 */
-	public static Element getLastVisibleChildElement(Node parent, Map<Node, String> hiddenNodes) {
+	public static Element getLastVisibleChildElement(Node parent,
+			Map<Node, String> hiddenNodes) {
 
 		// search for node
 		Node child = parent.getLastChild();
 		while (child != null) {
-			if (child.getNodeType() == Node.ELEMENT_NODE && !isHidden(child, hiddenNodes)) {
+			if (child.getNodeType() == Node.ELEMENT_NODE && !isHidden(child,
+					hiddenNodes)) {
 				return (Element) child;
 			}
 			child = child.getPreviousSibling();
@@ -276,7 +279,8 @@ public class DOMUtil {
 		// search for node
 		Node sibling = node.getNextSibling();
 		while (sibling != null) {
-			if (sibling.getNodeType() == Node.ELEMENT_NODE && !isHidden(sibling)) {
+			if (sibling.getNodeType() == Node.ELEMENT_NODE && !isHidden(
+					sibling)) {
 				return (Element) sibling;
 			}
 			sibling = sibling.getNextSibling();
@@ -289,12 +293,14 @@ public class DOMUtil {
 
 	// get next visible (un-hidden) node, overload previous method for non
 	// Xerces node impl
-	public static Element getNextVisibleSiblingElement(Node node, Map<Node, String> hiddenNodes) {
+	public static Element getNextVisibleSiblingElement(Node node,
+			Map<Node, String> hiddenNodes) {
 
 		// search for node
 		Node sibling = node.getNextSibling();
 		while (sibling != null) {
-			if (sibling.getNodeType() == Node.ELEMENT_NODE && !isHidden(sibling, hiddenNodes)) {
+			if (sibling.getNodeType() == Node.ELEMENT_NODE && !isHidden(sibling,
+					hiddenNodes)) {
 				return (Element) sibling;
 			}
 			sibling = sibling.getNextSibling();
@@ -308,17 +314,18 @@ public class DOMUtil {
 	// set this Node as being hidden
 	public static void setHidden(Node node) {
 		if (node instanceof com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl)
-			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node).setReadOnly(true,
-					false);
+			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node)
+					.setReadOnly(true, false);
 		else if (node instanceof com.sun.org.apache.xerces.internal.dom.NodeImpl)
-			((com.sun.org.apache.xerces.internal.dom.NodeImpl) node).setReadOnly(true, false);
+			((com.sun.org.apache.xerces.internal.dom.NodeImpl) node)
+					.setReadOnly(true, false);
 	} // setHidden(node):void
 
 	// set this Node as being hidden, overloaded method
 	public static void setHidden(Node node, Map<Node, String> hiddenNodes) {
 		if (node instanceof com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) {
-			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node).setReadOnly(true,
-					false);
+			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node)
+					.setReadOnly(true, false);
 		} else {
 			hiddenNodes.put(node, "");
 		}
@@ -327,17 +334,18 @@ public class DOMUtil {
 	// set this Node as being visible
 	public static void setVisible(Node node) {
 		if (node instanceof com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl)
-			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node).setReadOnly(false,
-					false);
+			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node)
+					.setReadOnly(false, false);
 		else if (node instanceof com.sun.org.apache.xerces.internal.dom.NodeImpl)
-			((com.sun.org.apache.xerces.internal.dom.NodeImpl) node).setReadOnly(false, false);
+			((com.sun.org.apache.xerces.internal.dom.NodeImpl) node)
+					.setReadOnly(false, false);
 	} // setVisible(node):void
 
 	// set this Node as being visible, overloaded method
 	public static void setVisible(Node node, Map<Node, String> hiddenNodes) {
 		if (node instanceof com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) {
-			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node).setReadOnly(false,
-					false);
+			((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node)
+					.setReadOnly(false, false);
 		} else {
 			hiddenNodes.remove(node);
 		}
@@ -346,16 +354,19 @@ public class DOMUtil {
 	// is this node hidden?
 	public static boolean isHidden(Node node) {
 		if (node instanceof com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl)
-			return ((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node).getReadOnly();
+			return ((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node)
+					.getReadOnly();
 		else if (node instanceof com.sun.org.apache.xerces.internal.dom.NodeImpl)
-			return ((com.sun.org.apache.xerces.internal.dom.NodeImpl) node).getReadOnly();
+			return ((com.sun.org.apache.xerces.internal.dom.NodeImpl) node)
+					.getReadOnly();
 		return false;
 	} // isHidden(Node):boolean
 
 	// is this node hidden? overloaded method
 	public static boolean isHidden(Node node, Map<Node, String> hiddenNodes) {
 		if (node instanceof com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) {
-			return ((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node).getReadOnly();
+			return ((com.sun.org.apache.xerces.internal.impl.xs.opti.NodeImpl) node)
+					.getReadOnly();
 		} else {
 			return hiddenNodes.containsKey(node);
 		}
@@ -419,15 +430,16 @@ public class DOMUtil {
 	} // getNextSiblingdElement(Node,String):Element
 
 	/** Finds and returns the first child node with the given qualified name. */
-	public static Element getFirstChildElementNS(Node parent, String uri, String localpart) {
+	public static Element getFirstChildElementNS(Node parent, String uri,
+			String localpart) {
 
 		// search for node
 		Node child = parent.getFirstChild();
 		while (child != null) {
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
 				String childURI = child.getNamespaceURI();
-				if (childURI != null && childURI.equals(uri)
-						&& child.getLocalName().equals(localpart)) {
+				if (childURI != null && childURI.equals(uri) && child
+						.getLocalName().equals(localpart)) {
 					return (Element) child;
 				}
 			}
@@ -440,15 +452,16 @@ public class DOMUtil {
 	} // getFirstChildElementNS(Node,String,String):Element
 
 	/** Finds and returns the last child node with the given qualified name. */
-	public static Element getLastChildElementNS(Node parent, String uri, String localpart) {
+	public static Element getLastChildElementNS(Node parent, String uri,
+			String localpart) {
 
 		// search for node
 		Node child = parent.getLastChild();
 		while (child != null) {
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
 				String childURI = child.getNamespaceURI();
-				if (childURI != null && childURI.equals(uri)
-						&& child.getLocalName().equals(localpart)) {
+				if (childURI != null && childURI.equals(uri) && child
+						.getLocalName().equals(localpart)) {
 					return (Element) child;
 				}
 			}
@@ -463,15 +476,16 @@ public class DOMUtil {
 	/**
 	 * Finds and returns the next sibling node with the given qualified name.
 	 */
-	public static Element getNextSiblingElementNS(Node node, String uri, String localpart) {
+	public static Element getNextSiblingElementNS(Node node, String uri,
+			String localpart) {
 
 		// search for node
 		Node sibling = node.getNextSibling();
 		while (sibling != null) {
 			if (sibling.getNodeType() == Node.ELEMENT_NODE) {
 				String siblingURI = sibling.getNamespaceURI();
-				if (siblingURI != null && siblingURI.equals(uri)
-						&& sibling.getLocalName().equals(localpart)) {
+				if (siblingURI != null && siblingURI.equals(uri) && sibling
+						.getLocalName().equals(localpart)) {
 					return (Element) sibling;
 				}
 			}
@@ -484,7 +498,8 @@ public class DOMUtil {
 	} // getNextSiblingdElementNS(Node,String,String):Element
 
 	/** Finds and returns the first child node with the given name. */
-	public static Element getFirstChildElement(Node parent, String elemNames[]) {
+	public static Element getFirstChildElement(Node parent,
+			String elemNames[]) {
 
 		// search for node
 		Node child = parent.getFirstChild();
@@ -547,7 +562,8 @@ public class DOMUtil {
 	} // getNextSiblingdElement(Node,String[]):Element
 
 	/** Finds and returns the first child node with the given qualified name. */
-	public static Element getFirstChildElementNS(Node parent, String[][] elemNames) {
+	public static Element getFirstChildElementNS(Node parent,
+			String[][] elemNames) {
 
 		// search for node
 		Node child = parent.getFirstChild();
@@ -555,8 +571,8 @@ public class DOMUtil {
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
 				for (int i = 0; i < elemNames.length; i++) {
 					String uri = child.getNamespaceURI();
-					if (uri != null && uri.equals(elemNames[i][0])
-							&& child.getLocalName().equals(elemNames[i][1])) {
+					if (uri != null && uri.equals(elemNames[i][0]) && child
+							.getLocalName().equals(elemNames[i][1])) {
 						return (Element) child;
 					}
 				}
@@ -570,7 +586,8 @@ public class DOMUtil {
 	} // getFirstChildElementNS(Node,String[][]):Element
 
 	/** Finds and returns the last child node with the given qualified name. */
-	public static Element getLastChildElementNS(Node parent, String[][] elemNames) {
+	public static Element getLastChildElementNS(Node parent,
+			String[][] elemNames) {
 
 		// search for node
 		Node child = parent.getLastChild();
@@ -578,8 +595,8 @@ public class DOMUtil {
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
 				for (int i = 0; i < elemNames.length; i++) {
 					String uri = child.getNamespaceURI();
-					if (uri != null && uri.equals(elemNames[i][0])
-							&& child.getLocalName().equals(elemNames[i][1])) {
+					if (uri != null && uri.equals(elemNames[i][0]) && child
+							.getLocalName().equals(elemNames[i][1])) {
 						return (Element) child;
 					}
 				}
@@ -595,7 +612,8 @@ public class DOMUtil {
 	/**
 	 * Finds and returns the next sibling node with the given qualified name.
 	 */
-	public static Element getNextSiblingElementNS(Node node, String[][] elemNames) {
+	public static Element getNextSiblingElementNS(Node node,
+			String[][] elemNames) {
 
 		// search for node
 		Node sibling = node.getNextSibling();
@@ -603,8 +621,8 @@ public class DOMUtil {
 			if (sibling.getNodeType() == Node.ELEMENT_NODE) {
 				for (int i = 0; i < elemNames.length; i++) {
 					String uri = sibling.getNamespaceURI();
-					if (uri != null && uri.equals(elemNames[i][0])
-							&& sibling.getLocalName().equals(elemNames[i][1])) {
+					if (uri != null && uri.equals(elemNames[i][0]) && sibling
+							.getLocalName().equals(elemNames[i][1])) {
 						return (Element) sibling;
 					}
 				}
@@ -621,16 +639,16 @@ public class DOMUtil {
 	 * Finds and returns the first child node with the given name and attribute
 	 * name, value pair.
 	 */
-	public static Element getFirstChildElement(Node parent, String elemName, String attrName,
-			String attrValue) {
+	public static Element getFirstChildElement(Node parent, String elemName,
+			String attrName, String attrValue) {
 
 		// search for node
 		Node child = parent.getFirstChild();
 		while (child != null) {
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element) child;
-				if (element.getNodeName().equals(elemName)
-						&& element.getAttribute(attrName).equals(attrValue)) {
+				if (element.getNodeName().equals(elemName) && element
+						.getAttribute(attrName).equals(attrValue)) {
 					return element;
 				}
 			}
@@ -646,16 +664,16 @@ public class DOMUtil {
 	 * Finds and returns the last child node with the given name and attribute
 	 * name, value pair.
 	 */
-	public static Element getLastChildElement(Node parent, String elemName, String attrName,
-			String attrValue) {
+	public static Element getLastChildElement(Node parent, String elemName,
+			String attrName, String attrValue) {
 
 		// search for node
 		Node child = parent.getLastChild();
 		while (child != null) {
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element) child;
-				if (element.getNodeName().equals(elemName)
-						&& element.getAttribute(attrName).equals(attrValue)) {
+				if (element.getNodeName().equals(elemName) && element
+						.getAttribute(attrName).equals(attrValue)) {
 					return element;
 				}
 			}
@@ -672,16 +690,16 @@ public class DOMUtil {
 	 * name, value pair. Since only elements have attributes, the node returned
 	 * will be of type Node.ELEMENT_NODE.
 	 */
-	public static Element getNextSiblingElement(Node node, String elemName, String attrName,
-			String attrValue) {
+	public static Element getNextSiblingElement(Node node, String elemName,
+			String attrName, String attrValue) {
 
 		// search for node
 		Node sibling = node.getNextSibling();
 		while (sibling != null) {
 			if (sibling.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element) sibling;
-				if (element.getNodeName().equals(elemName)
-						&& element.getAttribute(attrName).equals(attrValue)) {
+				if (element.getNodeName().equals(elemName) && element
+						.getAttribute(attrName).equals(attrValue)) {
 					return element;
 				}
 			}
@@ -700,7 +718,7 @@ public class DOMUtil {
 	 * <code>Node.CDATA_SECTION_NODE</code> for the concatenation.
 	 *
 	 * @param node
-	 *            The node to look at.
+	 *             The node to look at.
 	 */
 	public static String getChildText(Node node) {
 
@@ -797,7 +815,8 @@ public class DOMUtil {
 
 	// return the value of the attribute of the given element
 	// with the given name
-	public static String getAttrValueNS(Element elem, String nsUri, String localName) {
+	public static String getAttrValueNS(Element elem, String nsUri,
+			String localName) {
 		return elem.getAttributeNS(nsUri, localName);
 	} // getAttrValueNS(Element, String):Attr
 
@@ -832,10 +851,12 @@ public class DOMUtil {
 	 * will be set.
 	 */
 	public static DOMException createDOMException(short code, Throwable cause) {
-		DOMException de = new DOMException(code, cause != null ? cause.getMessage() : null);
+		DOMException de = new DOMException(code, cause != null ? cause
+				.getMessage() : null);
 		if (cause != null && ThrowableMethods.fgThrowableMethodsAvailable) {
 			try {
-				ThrowableMethods.fgThrowableInitCauseMethod.invoke(de, new Object[] { cause });
+				ThrowableMethods.fgThrowableInitCauseMethod.invoke(de,
+						new Object[] { cause });
 			}
 			// Something went wrong. There's not much we can do about it.
 			catch (Exception e) {
@@ -849,10 +870,12 @@ public class DOMUtil {
 	 * will be set.
 	 */
 	public static LSException createLSException(short code, Throwable cause) {
-		LSException lse = new LSException(code, cause != null ? cause.getMessage() : null);
+		LSException lse = new LSException(code, cause != null ? cause
+				.getMessage() : null);
 		if (cause != null && ThrowableMethods.fgThrowableMethodsAvailable) {
 			try {
-				ThrowableMethods.fgThrowableInitCauseMethod.invoke(lse, new Object[] { cause });
+				ThrowableMethods.fgThrowableInitCauseMethod.invoke(lse,
+						new Object[] { cause });
 			}
 			// Something went wrong. There's not much we can do about it.
 			catch (Exception e) {
@@ -872,15 +895,14 @@ public class DOMUtil {
 		// Flag indicating whether or not Throwable methods available.
 		private static boolean fgThrowableMethodsAvailable = false;
 
-		private ThrowableMethods() {
-		}
+		private ThrowableMethods() {}
 
 		// Attempt to get methods for java.lang.Throwable on class
 		// initialization.
 		static {
 			try {
-				fgThrowableInitCauseMethod = Throwable.class.getMethod("initCause",
-						new Class[] { Throwable.class });
+				fgThrowableInitCauseMethod = Throwable.class.getMethod(
+						"initCause", new Class[] { Throwable.class });
 				fgThrowableMethodsAvailable = true;
 			}
 			// ClassNotFoundException, NoSuchMethodException or

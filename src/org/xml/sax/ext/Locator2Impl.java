@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // Locator2Impl.java - extended LocatorImpl
@@ -57,8 +37,7 @@ public class Locator2Impl extends LocatorImpl implements Locator2 {
 	 * useful, since the main purpose of this class is to make a snapshot of an
 	 * existing Locator.
 	 */
-	public Locator2Impl() {
-	}
+	public Locator2Impl() {}
 
 	/**
 	 * Copy an existing Locator or Locator2 object. If the object implements
@@ -66,7 +45,7 @@ public class Locator2Impl extends LocatorImpl implements Locator2 {
 	 * copied, otherwise they set to <em>null</em>.
 	 *
 	 * @param locator
-	 *            The existing Locator object.
+	 *                The existing Locator object.
 	 */
 	public Locator2Impl(Locator locator) {
 		super(locator);
@@ -108,7 +87,7 @@ public class Locator2Impl extends LocatorImpl implements Locator2 {
 	 * Assigns the current value of the version property.
 	 *
 	 * @param version
-	 *            the new "version" value
+	 *                the new "version" value
 	 * @see #getXMLVersion
 	 */
 	public void setXMLVersion(String version) {
@@ -119,7 +98,7 @@ public class Locator2Impl extends LocatorImpl implements Locator2 {
 	 * Assigns the current value of the encoding property.
 	 *
 	 * @param encoding
-	 *            the new "encoding" value
+	 *                 the new "encoding" value
 	 * @see #getEncoding
 	 */
 	public void setEncoding(String encoding) {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -133,8 +130,9 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 */
 	private static final DatatypeConstants.Field[] FIELDS = new DatatypeConstants.Field[] {
-			DatatypeConstants.YEARS, DatatypeConstants.MONTHS, DatatypeConstants.DAYS,
-			DatatypeConstants.HOURS, DatatypeConstants.MINUTES, DatatypeConstants.SECONDS };
+			DatatypeConstants.YEARS, DatatypeConstants.MONTHS,
+			DatatypeConstants.DAYS, DatatypeConstants.HOURS,
+			DatatypeConstants.MINUTES, DatatypeConstants.SECONDS };
 
 	/**
 	 * <p>
@@ -228,15 +226,16 @@ class DurationImpl extends Duration implements Serializable {
 	 * TODO: Javadoc
 	 * 
 	 * @param isPositive
-	 *            Sign.
+	 *                   Sign.
 	 *
 	 * @return 1 if positive, else -1.
 	 */
 	protected int calcSignum(boolean isPositive) {
-		if ((years == null || years.signum() == 0) && (months == null || months.signum() == 0)
-				&& (days == null || days.signum() == 0) && (hours == null || hours.signum() == 0)
-				&& (minutes == null || minutes.signum() == 0)
-				&& (seconds == null || seconds.signum() == 0)) {
+		if ((years == null || years.signum() == 0) && (months == null || months
+				.signum() == 0) && (days == null || days.signum() == 0)
+				&& (hours == null || hours.signum() == 0) && (minutes == null
+						|| minutes.signum() == 0) && (seconds == null || seconds
+								.signum() == 0)) {
 			return 0;
 		}
 
@@ -259,29 +258,34 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param years
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param months
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param days
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param hours
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param minutes
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param seconds
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If years, months, days, hours, minutes and seconds parameters
-	 *             are all <code>null</code>. Or if any of those parameters are
-	 *             negative.
+	 *                                  If years, months, days, hours, minutes
+	 *                                  and seconds parameters
+	 *                                  are all <code>null</code>. Or if any of
+	 *                                  those parameters are
+	 *                                  negative.
 	 */
-	protected DurationImpl(boolean isPositive, BigInteger years, BigInteger months, BigInteger days,
-			BigInteger hours, BigInteger minutes, BigDecimal seconds) {
+	protected DurationImpl(boolean isPositive, BigInteger years,
+			BigInteger months, BigInteger days, BigInteger hours,
+			BigInteger minutes, BigDecimal seconds) {
 
 		this.years = years;
 		this.months = months;
@@ -293,11 +297,12 @@ class DurationImpl extends Duration implements Serializable {
 		this.signum = calcSignum(isPositive);
 
 		// sanity check
-		if (years == null && months == null && days == null && hours == null && minutes == null
-				&& seconds == null) {
+		if (years == null && months == null && days == null && hours == null
+				&& minutes == null && seconds == null) {
 			throw new IllegalArgumentException(
 					// "all the fields are null"
-					DatatypeMessageFormatter.formatMessage(null, "AllFieldsNull", null));
+					DatatypeMessageFormatter.formatMessage(null,
+							"AllFieldsNull", null));
 		}
 		testNonNegative(years, DatatypeConstants.YEARS);
 		testNonNegative(months, DatatypeConstants.MONTHS);
@@ -314,14 +319,16 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param n
-	 *            Number to test.
+	 *          Number to test.
 	 * @param f
-	 *            Field to test.
+	 *          Field to test.
 	 */
-	protected static void testNonNegative(BigInteger n, DatatypeConstants.Field f) {
+	protected static void testNonNegative(BigInteger n,
+			DatatypeConstants.Field f) {
 		if (n != null && n.signum() < 0) {
-			throw new IllegalArgumentException(DatatypeMessageFormatter.formatMessage(null,
-					"NegativeField", new Object[] { f.toString() }));
+			throw new IllegalArgumentException(DatatypeMessageFormatter
+					.formatMessage(null, "NegativeField", new Object[] { f
+							.toString() }));
 		}
 	}
 
@@ -332,15 +339,17 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param n
-	 *            Number to test.
+	 *          Number to test.
 	 * @param f
-	 *            Field to test.
+	 *          Field to test.
 	 */
-	protected static void testNonNegative(BigDecimal n, DatatypeConstants.Field f) {
+	protected static void testNonNegative(BigDecimal n,
+			DatatypeConstants.Field f) {
 		if (n != null && n.signum() < 0) {
 
-			throw new IllegalArgumentException(DatatypeMessageFormatter.formatMessage(null,
-					"NegativeField", new Object[] { f.toString() }));
+			throw new IllegalArgumentException(DatatypeMessageFormatter
+					.formatMessage(null, "NegativeField", new Object[] { f
+							.toString() }));
 		}
 	}
 
@@ -359,18 +368,20 @@ class DurationImpl extends Duration implements Serializable {
 	 * @see #DurationImpl(boolean, BigInteger, BigInteger, BigInteger,
 	 *      BigInteger, BigInteger, BigDecimal)
 	 */
-	protected DurationImpl(final boolean isPositive, final int years, final int months,
-			final int days, final int hours, final int minutes, final int seconds) {
-		this(isPositive, wrap(years), wrap(months), wrap(days), wrap(hours), wrap(minutes),
-				seconds != DatatypeConstants.FIELD_UNDEFINED
-						? new BigDecimal(String.valueOf(seconds)) : null);
+	protected DurationImpl(final boolean isPositive, final int years,
+			final int months, final int days, final int hours,
+			final int minutes, final int seconds) {
+		this(isPositive, wrap(years), wrap(months), wrap(days), wrap(hours),
+				wrap(minutes), seconds != DatatypeConstants.FIELD_UNDEFINED
+						? new BigDecimal(String.valueOf(seconds))
+						: null);
 	}
 
 	/**
 	 * TODO: Javadoc
 	 *
 	 * @param i
-	 *            int to convert to BigInteger.
+	 *          int to convert to BigInteger.
 	 *
 	 * @return BigInteger representation of int.
 	 */
@@ -392,7 +403,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param durationInMilliSeconds
-	 *            The length of the duration in milliseconds.
+	 *                               The length of the duration in milliseconds.
 	 */
 	protected DurationImpl(final long durationInMilliSeconds) {
 
@@ -470,14 +481,16 @@ class DurationImpl extends Duration implements Serializable {
 	 * by the lexicalRepresentation parameter.
 	 *
 	 * @param lexicalRepresentation
-	 *            Lexical representation of a duration.
+	 *                              Lexical representation of a duration.
 	 * @throws IllegalArgumentException
-	 *             If the given string does not conform to the aforementioned
-	 *             specification.
+	 *                                  If the given string does not conform to
+	 *                                  the aforementioned
+	 *                                  specification.
 	 * @throws NullPointerException
-	 *             If the given string is null.
+	 *                                  If the given string is null.
 	 */
-	protected DurationImpl(String lexicalRepresentation) throws IllegalArgumentException {
+	protected DurationImpl(String lexicalRepresentation)
+			throws IllegalArgumentException {
 		// only if I could use the JDK1.4 regular expression ....
 
 		final String s = lexicalRepresentation;
@@ -524,7 +537,8 @@ class DurationImpl extends Duration implements Serializable {
 		int timeLen = 0;
 		String[] timeParts = new String[3];
 		int[] timePartsIndex = new int[3];
-		while (length != idx[0] && isDigitOrPeriod(s.charAt(idx[0])) && timeLen < 3) {
+		while (length != idx[0] && isDigitOrPeriod(s.charAt(idx[0]))
+				&& timeLen < 3) {
 			timePartsIndex[timeLen] = idx[0];
 			timeParts[timeLen++] = parsePiece(s, idx);
 		}
@@ -559,7 +573,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * TODO: Javadoc
 	 *
 	 * @param ch
-	 *            char to test.
+	 *           char to test.
 	 *
 	 * @return true if ch is a digit, else false.
 	 */
@@ -571,7 +585,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * TODO: Javadoc
 	 *
 	 * @param ch
-	 *            to test.
+	 *           to test.
 	 *
 	 * @return true if ch is a digit or a period, else false.
 	 */
@@ -583,18 +597,20 @@ class DurationImpl extends Duration implements Serializable {
 	 * TODO: Javadoc
 	 *
 	 * @param whole
-	 *            String to parse.
+	 *              String to parse.
 	 * @param idx
-	 *            TODO: ???
+	 *              TODO: ???
 	 *
 	 * @return Result of parsing.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If whole cannot be parsed.
+	 *                                  If whole cannot be parsed.
 	 */
-	private static String parsePiece(String whole, int[] idx) throws IllegalArgumentException {
+	private static String parsePiece(String whole, int[] idx)
+			throws IllegalArgumentException {
 		int start = idx[0];
-		while (idx[0] < whole.length() && isDigitOrPeriod(whole.charAt(idx[0]))) {
+		while (idx[0] < whole.length() && isDigitOrPeriod(whole.charAt(
+				idx[0]))) {
 			idx[0]++;
 		}
 		if (idx[0] == whole.length()) {
@@ -610,25 +626,27 @@ class DurationImpl extends Duration implements Serializable {
 	 * TODO: Javadoc.
 	 *
 	 * @param whole
-	 *            TODO: ???
+	 *                   TODO: ???
 	 * @param parts
-	 *            TODO: ???
+	 *                   TODO: ???
 	 * @param partsIndex
-	 *            TODO: ???
+	 *                   TODO: ???
 	 * @param len
-	 *            TODO: ???
+	 *                   TODO: ???
 	 * @param tokens
-	 *            TODO: ???
+	 *                   TODO: ???
 	 *
 	 * @throws IllegalArgumentException
-	 *             TODO: ???
+	 *                                  TODO: ???
 	 */
-	private static void organizeParts(String whole, String[] parts, int[] partsIndex, int len,
-			String tokens) throws IllegalArgumentException {
+	private static void organizeParts(String whole, String[] parts,
+			int[] partsIndex, int len, String tokens)
+			throws IllegalArgumentException {
 
 		int idx = tokens.length();
 		for (int i = len - 1; i >= 0; i--) {
-			int nidx = tokens.lastIndexOf(parts[i].charAt(parts[i].length() - 1), idx - 1);
+			int nidx = tokens.lastIndexOf(parts[i].charAt(parts[i].length()
+					- 1), idx - 1);
 			if (nidx == -1) {
 				throw new IllegalArgumentException(whole);
 				// ,partsIndex[i]+parts[i].length()-1);
@@ -650,19 +668,19 @@ class DurationImpl extends Duration implements Serializable {
 	 * TODO: Javadoc
 	 *
 	 * @param whole
-	 *            TODO: ???.
+	 *              TODO: ???.
 	 * @param part
-	 *            TODO: ???.
+	 *              TODO: ???.
 	 * @param index
-	 *            TODO: ???.
+	 *              TODO: ???.
 	 *
 	 * @return TODO: ???.
 	 *
 	 * @throws IllegalArgumentException
-	 *             TODO: ???.
+	 *                                  TODO: ???.
 	 */
-	private static BigInteger parseBigInteger(String whole, String part, int index)
-			throws IllegalArgumentException {
+	private static BigInteger parseBigInteger(String whole, String part,
+			int index) throws IllegalArgumentException {
 		if (part == null) {
 			return null;
 		}
@@ -678,19 +696,19 @@ class DurationImpl extends Duration implements Serializable {
 	 * TODO: Javadoc.
 	 *
 	 * @param whole
-	 *            TODO: ???.
+	 *              TODO: ???.
 	 * @param part
-	 *            TODO: ???.
+	 *              TODO: ???.
 	 * @param index
-	 *            TODO: ???.
+	 *              TODO: ???.
 	 *
 	 * @return TODO: ???.
 	 *
 	 * @throws IllegalArgumentException
-	 *             TODO: ???.
+	 *                                  TODO: ???.
 	 */
-	private static BigDecimal parseBigDecimal(String whole, String part, int index)
-			throws IllegalArgumentException {
+	private static BigDecimal parseBigDecimal(String whole, String part,
+			int index) throws IllegalArgumentException {
 		if (part == null) {
 			return null;
 		}
@@ -741,7 +759,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * </ul>
 	 *
 	 * @param duration
-	 *            to compare
+	 *                 to compare
 	 *
 	 * @return the relationship between <code>this</code> <code>Duration</code>
 	 *         and <code>duration</code> parameter as
@@ -750,41 +768,47 @@ class DurationImpl extends Duration implements Serializable {
 	 *         {@link DatatypeConstants#INDETERMINATE}.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the underlying implementation cannot reasonably process
-	 *             the request, e.g. W3C XML Schema allows for arbitrarily
-	 *             large/small/precise values, the request may be beyond the
-	 *             implementations capability.
+	 *                                       If the underlying implementation
+	 *                                       cannot reasonably process
+	 *                                       the request, e.g. W3C XML Schema
+	 *                                       allows for arbitrarily
+	 *                                       large/small/precise values, the
+	 *                                       request may be beyond the
+	 *                                       implementations capability.
 	 * @throws NullPointerException
-	 *             if <code>duration</code> is <code>null</code>.
+	 *                                       if <code>duration</code> is
+	 *                                       <code>null</code>.
 	 *
 	 * @see #isShorterThan(Duration)
 	 * @see #isLongerThan(Duration)
 	 */
 	public int compare(Duration rhs) {
 
-		BigInteger maxintAsBigInteger = BigInteger.valueOf((long) Integer.MAX_VALUE);
-		BigInteger minintAsBigInteger = BigInteger.valueOf((long) Integer.MIN_VALUE);
+		BigInteger maxintAsBigInteger = BigInteger.valueOf(
+				(long) Integer.MAX_VALUE);
+		BigInteger minintAsBigInteger = BigInteger.valueOf(
+				(long) Integer.MIN_VALUE);
 
 		// check for fields that are too large in this Duration
 		if (years != null && years.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.YEARS.toString(),
-									years.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.YEARS.toString(), years
+									.toString() })
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " years too large to be supported by this implementation "
 			// + years.toString()
 			);
 		}
 		if (months != null && months.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.MONTHS.toString(),
-									months.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.MONTHS.toString(), months
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " months too large to be supported by this implementation "
@@ -792,10 +816,12 @@ class DurationImpl extends Duration implements Serializable {
 			);
 		}
 		if (days != null && days.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] { this.getClass().getName() + "#compare(Duration duration)"
-									+ DatatypeConstants.DAYS.toString(), days.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.DAYS.toString(), days
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " days too large to be supported by this implementation "
@@ -803,12 +829,12 @@ class DurationImpl extends Duration implements Serializable {
 			);
 		}
 		if (hours != null && hours.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.HOURS.toString(),
-									hours.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.HOURS.toString(), hours
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " hours too large to be supported by this implementation "
@@ -816,25 +842,26 @@ class DurationImpl extends Duration implements Serializable {
 			);
 		}
 		if (minutes != null && minutes.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.MINUTES.toString(),
-									minutes.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.MINUTES.toString(), minutes
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " minutes too large to be supported by this implementation "
 			// + minutes.toString()
 			);
 		}
-		if (seconds != null && seconds.toBigInteger().compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.SECONDS.toString(),
-									seconds.toString() })
+		if (seconds != null && seconds.toBigInteger().compareTo(
+				maxintAsBigInteger) == 1) {
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.SECONDS.toString(), seconds
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " seconds too large to be supported by this implementation "
@@ -843,28 +870,30 @@ class DurationImpl extends Duration implements Serializable {
 		}
 
 		// check for fields that are too large in rhs Duration
-		BigInteger rhsYears = (BigInteger) rhs.getField(DatatypeConstants.YEARS);
+		BigInteger rhsYears = (BigInteger) rhs.getField(
+				DatatypeConstants.YEARS);
 		if (rhsYears != null && rhsYears.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.YEARS.toString(),
-									rhsYears.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.YEARS.toString(), rhsYears
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " years too large to be supported by this implementation "
 			// + rhsYears.toString()
 			);
 		}
-		BigInteger rhsMonths = (BigInteger) rhs.getField(DatatypeConstants.MONTHS);
+		BigInteger rhsMonths = (BigInteger) rhs.getField(
+				DatatypeConstants.MONTHS);
 		if (rhsMonths != null && rhsMonths.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.MONTHS.toString(),
-									rhsMonths.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.MONTHS.toString(), rhsMonths
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " months too large to be supported by this implementation "
@@ -873,58 +902,63 @@ class DurationImpl extends Duration implements Serializable {
 		}
 		BigInteger rhsDays = (BigInteger) rhs.getField(DatatypeConstants.DAYS);
 		if (rhsDays != null && rhsDays.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.DAYS.toString(),
-									rhsDays.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.DAYS.toString(), rhsDays
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " days too large to be supported by this implementation "
 			// + rhsDays.toString()
 			);
 		}
-		BigInteger rhsHours = (BigInteger) rhs.getField(DatatypeConstants.HOURS);
+		BigInteger rhsHours = (BigInteger) rhs.getField(
+				DatatypeConstants.HOURS);
 		if (rhsHours != null && rhsHours.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.HOURS.toString(),
-									rhsHours.toString() })
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.HOURS.toString(), rhsHours
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " hours too large to be supported by this implementation "
 			// + rhsHours.toString()
 			);
 		}
-		BigInteger rhsMinutes = (BigInteger) rhs.getField(DatatypeConstants.MINUTES);
-		if (rhsMinutes != null && rhsMinutes.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.MINUTES.toString(),
-									rhsMinutes.toString() })
+		BigInteger rhsMinutes = (BigInteger) rhs.getField(
+				DatatypeConstants.MINUTES);
+		if (rhsMinutes != null && rhsMinutes.compareTo(
+				maxintAsBigInteger) == 1) {
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.MINUTES.toString(), rhsMinutes
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " minutes too large to be supported by this implementation "
 			// + rhsMinutes.toString()
 			);
 		}
-		BigDecimal rhsSecondsAsBigDecimal = (BigDecimal) rhs.getField(DatatypeConstants.SECONDS);
+		BigDecimal rhsSecondsAsBigDecimal = (BigDecimal) rhs.getField(
+				DatatypeConstants.SECONDS);
 		BigInteger rhsSeconds = null;
 		if (rhsSecondsAsBigDecimal != null) {
 			rhsSeconds = rhsSecondsAsBigDecimal.toBigInteger();
 		}
-		if (rhsSeconds != null && rhsSeconds.compareTo(maxintAsBigInteger) == 1) {
-			throw new UnsupportedOperationException(
-					DatatypeMessageFormatter.formatMessage(null, "TooLarge",
-							new Object[] {
-									this.getClass().getName() + "#compare(Duration duration)"
-											+ DatatypeConstants.SECONDS.toString(),
-									rhsSeconds.toString() })
+		if (rhsSeconds != null && rhsSeconds.compareTo(
+				maxintAsBigInteger) == 1) {
+			throw new UnsupportedOperationException(DatatypeMessageFormatter
+					.formatMessage(null, "TooLarge", new Object[] { this
+							.getClass().getName()
+							+ "#compare(Duration duration)"
+							+ DatatypeConstants.SECONDS.toString(), rhsSeconds
+									.toString() })
 
 			// this.getClass().getName() + "#compare(Duration duration)"
 			// + " seconds too large to be supported by this implementation "
@@ -933,7 +967,8 @@ class DurationImpl extends Duration implements Serializable {
 		}
 
 		// turn this Duration into a GregorianCalendar
-		GregorianCalendar lhsCalendar = new GregorianCalendar(1970, 1, 1, 0, 0, 0);
+		GregorianCalendar lhsCalendar = new GregorianCalendar(1970, 1, 1, 0, 0,
+				0);
 		lhsCalendar.add(GregorianCalendar.YEAR, getYears() * getSign());
 		lhsCalendar.add(GregorianCalendar.MONTH, getMonths() * getSign());
 		lhsCalendar.add(GregorianCalendar.DAY_OF_YEAR, getDays() * getSign());
@@ -942,13 +977,19 @@ class DurationImpl extends Duration implements Serializable {
 		lhsCalendar.add(GregorianCalendar.SECOND, getSeconds() * getSign());
 
 		// turn compare Duration into a GregorianCalendar
-		GregorianCalendar rhsCalendar = new GregorianCalendar(1970, 1, 1, 0, 0, 0);
+		GregorianCalendar rhsCalendar = new GregorianCalendar(1970, 1, 1, 0, 0,
+				0);
 		rhsCalendar.add(GregorianCalendar.YEAR, rhs.getYears() * rhs.getSign());
-		rhsCalendar.add(GregorianCalendar.MONTH, rhs.getMonths() * rhs.getSign());
-		rhsCalendar.add(GregorianCalendar.DAY_OF_YEAR, rhs.getDays() * rhs.getSign());
-		rhsCalendar.add(GregorianCalendar.HOUR_OF_DAY, rhs.getHours() * rhs.getSign());
-		rhsCalendar.add(GregorianCalendar.MINUTE, rhs.getMinutes() * rhs.getSign());
-		rhsCalendar.add(GregorianCalendar.SECOND, rhs.getSeconds() * rhs.getSign());
+		rhsCalendar.add(GregorianCalendar.MONTH, rhs.getMonths() * rhs
+				.getSign());
+		rhsCalendar.add(GregorianCalendar.DAY_OF_YEAR, rhs.getDays() * rhs
+				.getSign());
+		rhsCalendar.add(GregorianCalendar.HOUR_OF_DAY, rhs.getHours() * rhs
+				.getSign());
+		rhsCalendar.add(GregorianCalendar.MINUTE, rhs.getMinutes() * rhs
+				.getSign());
+		rhsCalendar.add(GregorianCalendar.SECOND, rhs.getSeconds() * rhs
+				.getSign());
 
 		if (lhsCalendar.equals(rhsCalendar)) {
 			return DatatypeConstants.EQUAL;
@@ -962,9 +1003,9 @@ class DurationImpl extends Duration implements Serializable {
 	 * "3.2.6 duration")
 	 *
 	 * @param duration1
-	 *            Unnormalized duration
+	 *                  Unnormalized duration
 	 * @param duration2
-	 *            Unnormalized duration
+	 *                  Unnormalized duration
 	 * @return INDETERMINATE if the order relationship between date1 and date2
 	 *         is indeterminate. EQUAL if the order relation between date1 and
 	 *         date2 is EQUAL. If the strict parameter is true, return LESS_THAN
@@ -978,8 +1019,10 @@ class DurationImpl extends Duration implements Serializable {
 		int resultA = DatatypeConstants.INDETERMINATE;
 		int resultB = DatatypeConstants.INDETERMINATE;
 
-		XMLGregorianCalendar tempA = (XMLGregorianCalendar) TEST_POINTS[0].clone();
-		XMLGregorianCalendar tempB = (XMLGregorianCalendar) TEST_POINTS[0].clone();
+		XMLGregorianCalendar tempA = (XMLGregorianCalendar) TEST_POINTS[0]
+				.clone();
+		XMLGregorianCalendar tempB = (XMLGregorianCalendar) TEST_POINTS[0]
+				.clone();
 
 		// long comparison algorithm is required
 		tempA.add(duration1);
@@ -1105,7 +1148,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param bd
-	 *            <code>BigDecimal</code> to format as a <code>String</code>
+	 *           <code>BigDecimal</code> to format as a <code>String</code>
 	 *
 	 * @return <code>String</code> representation of <code>BigDecimal</code>
 	 */
@@ -1143,12 +1186,12 @@ class DurationImpl extends Duration implements Serializable {
 	 * be used to test if a field is present.
 	 *
 	 * @param field
-	 *            one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
-	 *            MINUTES, or SECONDS.)
+	 *              one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
+	 *              MINUTES, or SECONDS.)
 	 * @return true if the field is present. false if not.
 	 *
 	 * @throws NullPointerException
-	 *             If the field parameter is null.
+	 *                              If the field parameter is null.
 	 */
 	public boolean isSet(DatatypeConstants.Field field) {
 
@@ -1157,8 +1200,8 @@ class DurationImpl extends Duration implements Serializable {
 					+ "#isSet(DatatypeConstants.Field field)";
 			throw new NullPointerException(
 					// "cannot be called with field == null"
-					DatatypeMessageFormatter.formatMessage(null, "FieldCannotBeNull",
-							new Object[] { methodName }));
+					DatatypeMessageFormatter.formatMessage(null,
+							"FieldCannotBeNull", new Object[] { methodName }));
 		}
 
 		if (field == DatatypeConstants.YEARS) {
@@ -1184,10 +1227,12 @@ class DurationImpl extends Duration implements Serializable {
 		if (field == DatatypeConstants.SECONDS) {
 			return seconds != null;
 		}
-		String methodName = "javax.xml.datatype.Duration" + "#isSet(DatatypeConstants.Field field)";
+		String methodName = "javax.xml.datatype.Duration"
+				+ "#isSet(DatatypeConstants.Field field)";
 
-		throw new IllegalArgumentException(DatatypeMessageFormatter.formatMessage(null,
-				"UnknownField", new Object[] { methodName, field.toString() }));
+		throw new IllegalArgumentException(DatatypeMessageFormatter
+				.formatMessage(null, "UnknownField", new Object[] { methodName,
+						field.toString() }));
 
 	}
 
@@ -1202,8 +1247,8 @@ class DurationImpl extends Duration implements Serializable {
 	 * may be a non-negative decimal value.
 	 *
 	 * @param field
-	 *            one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
-	 *            MINUTES, or SECONDS.)
+	 *              one of the six Field constants (YEARS,MONTHS,DAYS,HOURS,
+	 *              MINUTES, or SECONDS.)
 	 * @return If the specified field is present, this method returns a non-null
 	 *         non-negative {@link Number} object that represents its value. If
 	 *         it is not present, return null. For YEARS, MONTHS, DAYS, HOURS,
@@ -1211,7 +1256,7 @@ class DurationImpl extends Duration implements Serializable {
 	 *         SECONDS, this method returns a {@link BigDecimal}.
 	 *
 	 * @throws NullPointerException
-	 *             If the field parameter is null.
+	 *                              If the field parameter is null.
 	 */
 	public Number getField(DatatypeConstants.Field field) {
 
@@ -1219,8 +1264,9 @@ class DurationImpl extends Duration implements Serializable {
 			String methodName = "javax.xml.datatype.Duration"
 					+ "#isSet(DatatypeConstants.Field field) ";
 
-			throw new NullPointerException(DatatypeMessageFormatter.formatMessage(null,
-					"FieldCannotBeNull", new Object[] { methodName }));
+			throw new NullPointerException(DatatypeMessageFormatter
+					.formatMessage(null, "FieldCannotBeNull", new Object[] {
+							methodName }));
 		}
 
 		if (field == DatatypeConstants.YEARS) {
@@ -1248,14 +1294,16 @@ class DurationImpl extends Duration implements Serializable {
 		}
 		/**
 		 * throw new IllegalArgumentException( "javax.xml.datatype.Duration" +
-		 * "#(getSet(DatatypeConstants.Field field) called with an unknown field: "
+		 * "#(getSet(DatatypeConstants.Field field) called with an unknown
+		 * field: "
 		 * + field.toString() );
 		 */
 		String methodName = "javax.xml.datatype.Duration"
 				+ "#(getSet(DatatypeConstants.Field field)";
 
-		throw new IllegalArgumentException(DatatypeMessageFormatter.formatMessage(null,
-				"UnknownField", new Object[] { methodName, field.toString() }));
+		throw new IllegalArgumentException(DatatypeMessageFormatter
+				.formatMessage(null, "UnknownField", new Object[] { methodName,
+						field.toString() }));
 
 	}
 
@@ -1361,7 +1409,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param field
-	 *            To get value for.
+	 *              To get value for.
 	 *
 	 * @return int value of field or 0 if field is not set.
 	 */
@@ -1394,23 +1442,27 @@ class DurationImpl extends Duration implements Serializable {
 	 * its fields. See the {@link #addTo(Calendar)} method for details.
 	 *
 	 * @param startInstant
-	 *            The length of a month/year varies. The
-	 *            <code>startInstant</code> is used to disambiguate this
-	 *            variance. Specifically, this method returns the difference
-	 *            between <code>startInstant</code> and
-	 *            <code>startInstant+duration</code>
+	 *                     The length of a month/year varies. The
+	 *                     <code>startInstant</code> is used to disambiguate
+	 *                     this
+	 *                     variance. Specifically, this method returns the
+	 *                     difference
+	 *                     between <code>startInstant</code> and
+	 *                     <code>startInstant+duration</code>
 	 *
 	 * @return milliseconds between <code>startInstant</code> and
 	 *         <code>startInstant</code> plus this <code>Duration</code>
 	 *
 	 * @throws NullPointerException
-	 *             if <code>startInstant</code> parameter is null.
+	 *                              if <code>startInstant</code> parameter is
+	 *                              null.
 	 *
 	 */
 	public long getTimeInMillis(final Calendar startInstant) {
 		Calendar cal = (Calendar) startInstant.clone();
 		addTo(cal);
-		return getCalendarTimeInMillis(cal) - getCalendarTimeInMillis(startInstant);
+		return getCalendarTimeInMillis(cal) - getCalendarTimeInMillis(
+				startInstant);
 	}
 
 	/**
@@ -1433,14 +1485,16 @@ class DurationImpl extends Duration implements Serializable {
 	 * its fields. See the {@link #addTo(Date)} method for details.
 	 *
 	 * @param startInstant
-	 *            The length of a month/year varies. The
-	 *            <code>startInstant</code> is used to disambiguate this
-	 *            variance. Specifically, this method returns the difference
-	 *            between <code>startInstant</code> and
-	 *            <code>startInstant+duration</code>.
+	 *                     The length of a month/year varies. The
+	 *                     <code>startInstant</code> is used to disambiguate
+	 *                     this
+	 *                     variance. Specifically, this method returns the
+	 *                     difference
+	 *                     between <code>startInstant</code> and
+	 *                     <code>startInstant+duration</code>.
 	 *
 	 * @throws NullPointerException
-	 *             If the startInstant parameter is null.
+	 *                              If the startInstant parameter is null.
 	 *
 	 * @return milliseconds between <code>startInstant</code> and
 	 *         <code>startInstant</code> plus this <code>Duration</code>
@@ -1510,13 +1564,13 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param startTimeInstant
-	 *            <code>Calendar</code> reference point.
+	 *                         <code>Calendar</code> reference point.
 	 *
 	 * @return <code>Duration</code> of years and months of this
 	 *         <code>Duration</code> as days.
 	 *
 	 * @throws NullPointerException
-	 *             If the startTimeInstant parameter is null.
+	 *                              If the startTimeInstant parameter is null.
 	 */
 	public Duration normalizeWith(Calendar startTimeInstant) {
 
@@ -1529,7 +1583,8 @@ class DurationImpl extends Duration implements Serializable {
 		c.add(Calendar.DAY_OF_MONTH, getDays() * signum);
 
 		// obtain the difference in terms of days
-		long diff = getCalendarTimeInMillis(c) - getCalendarTimeInMillis(startTimeInstant);
+		long diff = getCalendarTimeInMillis(c) - getCalendarTimeInMillis(
+				startTimeInstant);
 		int days = (int) (diff / (1000L * 60L * 60L * 24L));
 
 		return new DurationImpl(days >= 0, null, null, wrap(Math.abs(days)),
@@ -1554,7 +1609,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * </pre>
 	 *
 	 * @param factor
-	 *            Factor times longer of new <code>Duration</code> to create.
+	 *               Factor times longer of new <code>Duration</code> to create.
 	 *
 	 * @return New <code>Duration</code> that is <code>factor</code>times longer
 	 *         than this <code>Duration</code>.
@@ -1601,15 +1656,17 @@ class DurationImpl extends Duration implements Serializable {
 	 * fields.
 	 *
 	 * @param factor
-	 *            to multiply by
+	 *               to multiply by
 	 *
 	 * @return returns a non-null valid {@link Duration} object
 	 *
 	 * @throws IllegalStateException
-	 *             if operation produces fraction in the months field.
+	 *                               if operation produces fraction in the
+	 *                               months field.
 	 *
 	 * @throws NullPointerException
-	 *             if the <code>factor</code> parameter is <code>null</code>.
+	 *                               if the <code>factor</code> parameter is
+	 *                               <code>null</code>.
 	 *
 	 */
 	public Duration multiply(BigDecimal factor) {
@@ -1643,9 +1700,10 @@ class DurationImpl extends Duration implements Serializable {
 			buf[5] = carry;
 		}
 
-		return new DurationImpl(this.signum * factorSign >= 0, toBigInteger(buf[0], null == years),
-				toBigInteger(buf[1], null == months), toBigInteger(buf[2], null == days),
-				toBigInteger(buf[3], null == hours), toBigInteger(buf[4], null == minutes),
+		return new DurationImpl(this.signum * factorSign >= 0, toBigInteger(
+				buf[0], null == years), toBigInteger(buf[1], null == months),
+				toBigInteger(buf[2], null == days), toBigInteger(buf[3],
+						null == hours), toBigInteger(buf[4], null == minutes),
 				(buf[5].signum() == 0 && seconds == null) ? null : buf[5]);
 	}
 
@@ -1659,7 +1717,7 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param f
-	 *            Field to get value for.
+	 *          Field to get value for.
 	 *
 	 * @return non-null valid {@link BigDecimal}.
 	 */
@@ -1686,13 +1744,14 @@ class DurationImpl extends Duration implements Serializable {
 	 * </p>
 	 *
 	 * @param value
-	 *            Value to convert.
+	 *                  Value to convert.
 	 * @param canBeNull
-	 *            Can returned value be null?
+	 *                  Can returned value be null?
 	 *
 	 * @return BigInteger value of BigDecimal, possibly null.
 	 */
-	private static BigInteger toBigInteger(BigDecimal value, boolean canBeNull) {
+	private static BigInteger toBigInteger(BigDecimal value,
+			boolean canBeNull) {
 		if (canBeNull && value.signum() == 0) {
 			return null;
 		} else {
@@ -1704,9 +1763,9 @@ class DurationImpl extends Duration implements Serializable {
 	 * 1 unit of FIELDS[i] is equivalent to <code>FACTORS[i]</code> unit of
 	 * FIELDS[i+1].
 	 */
-	private static final BigDecimal[] FACTORS = new BigDecimal[] { BigDecimal.valueOf(12),
-			null/* undefined */, BigDecimal.valueOf(24), BigDecimal.valueOf(60),
-			BigDecimal.valueOf(60) };
+	private static final BigDecimal[] FACTORS = new BigDecimal[] { BigDecimal
+			.valueOf(12), null/* undefined */, BigDecimal.valueOf(24),
+			BigDecimal.valueOf(60), BigDecimal.valueOf(60) };
 
 	/**
 	 * <p>
@@ -1756,10 +1815,12 @@ class DurationImpl extends Duration implements Serializable {
 	 * @return non-null valid Duration object.
 	 *
 	 * @throws NullPointerException
-	 *             If the rhs parameter is null.
+	 *                               If the rhs parameter is null.
 	 * @throws IllegalStateException
-	 *             If two durations cannot be meaningfully added. For example,
-	 *             adding negative one day to one month causes this exception.
+	 *                               If two durations cannot be meaningfully
+	 *                               added. For example,
+	 *                               adding negative one day to one month causes
+	 *                               this exception.
 	 *
 	 *
 	 * @see #subtract(Duration)
@@ -1768,18 +1829,24 @@ class DurationImpl extends Duration implements Serializable {
 		Duration lhs = this;
 		BigDecimal[] buf = new BigDecimal[6];
 
-		buf[0] = sanitize((BigInteger) lhs.getField(DatatypeConstants.YEARS), lhs.getSign())
-				.add(sanitize((BigInteger) rhs.getField(DatatypeConstants.YEARS), rhs.getSign()));
-		buf[1] = sanitize((BigInteger) lhs.getField(DatatypeConstants.MONTHS), lhs.getSign())
-				.add(sanitize((BigInteger) rhs.getField(DatatypeConstants.MONTHS), rhs.getSign()));
-		buf[2] = sanitize((BigInteger) lhs.getField(DatatypeConstants.DAYS), lhs.getSign())
-				.add(sanitize((BigInteger) rhs.getField(DatatypeConstants.DAYS), rhs.getSign()));
-		buf[3] = sanitize((BigInteger) lhs.getField(DatatypeConstants.HOURS), lhs.getSign())
-				.add(sanitize((BigInteger) rhs.getField(DatatypeConstants.HOURS), rhs.getSign()));
-		buf[4] = sanitize((BigInteger) lhs.getField(DatatypeConstants.MINUTES), lhs.getSign())
-				.add(sanitize((BigInteger) rhs.getField(DatatypeConstants.MINUTES), rhs.getSign()));
-		buf[5] = sanitize((BigDecimal) lhs.getField(DatatypeConstants.SECONDS), lhs.getSign())
-				.add(sanitize((BigDecimal) rhs.getField(DatatypeConstants.SECONDS), rhs.getSign()));
+		buf[0] = sanitize((BigInteger) lhs.getField(DatatypeConstants.YEARS),
+				lhs.getSign()).add(sanitize((BigInteger) rhs.getField(
+						DatatypeConstants.YEARS), rhs.getSign()));
+		buf[1] = sanitize((BigInteger) lhs.getField(DatatypeConstants.MONTHS),
+				lhs.getSign()).add(sanitize((BigInteger) rhs.getField(
+						DatatypeConstants.MONTHS), rhs.getSign()));
+		buf[2] = sanitize((BigInteger) lhs.getField(DatatypeConstants.DAYS), lhs
+				.getSign()).add(sanitize((BigInteger) rhs.getField(
+						DatatypeConstants.DAYS), rhs.getSign()));
+		buf[3] = sanitize((BigInteger) lhs.getField(DatatypeConstants.HOURS),
+				lhs.getSign()).add(sanitize((BigInteger) rhs.getField(
+						DatatypeConstants.HOURS), rhs.getSign()));
+		buf[4] = sanitize((BigInteger) lhs.getField(DatatypeConstants.MINUTES),
+				lhs.getSign()).add(sanitize((BigInteger) rhs.getField(
+						DatatypeConstants.MINUTES), rhs.getSign()));
+		buf[5] = sanitize((BigDecimal) lhs.getField(DatatypeConstants.SECONDS),
+				lhs.getSign()).add(sanitize((BigDecimal) rhs.getField(
+						DatatypeConstants.SECONDS), rhs.getSign()));
 
 		// align sign
 		alignSigns(buf, 0, 2); // Y,M
@@ -1796,25 +1863,29 @@ class DurationImpl extends Duration implements Serializable {
 			}
 		}
 
-		return new DurationImpl(s >= 0,
-				toBigInteger(sanitize(buf[0], s),
-						lhs.getField(DatatypeConstants.YEARS) == null
-								&& rhs.getField(DatatypeConstants.YEARS) == null),
-				toBigInteger(sanitize(buf[1], s),
-						lhs.getField(DatatypeConstants.MONTHS) == null
-								&& rhs.getField(DatatypeConstants.MONTHS) == null),
-				toBigInteger(sanitize(buf[2], s),
-						lhs.getField(DatatypeConstants.DAYS) == null
-								&& rhs.getField(DatatypeConstants.DAYS) == null),
-				toBigInteger(sanitize(buf[3], s),
-						lhs.getField(DatatypeConstants.HOURS) == null
-								&& rhs.getField(DatatypeConstants.HOURS) == null),
-				toBigInteger(sanitize(buf[4], s),
-						lhs.getField(DatatypeConstants.MINUTES) == null
-								&& rhs.getField(DatatypeConstants.MINUTES) == null),
-				(buf[5].signum() == 0 && lhs.getField(DatatypeConstants.SECONDS) == null
-						&& rhs.getField(DatatypeConstants.SECONDS) == null) ? null
-								: sanitize(buf[5], s));
+		return new DurationImpl(s >= 0, toBigInteger(sanitize(buf[0], s), lhs
+				.getField(DatatypeConstants.YEARS) == null && rhs.getField(
+						DatatypeConstants.YEARS) == null), toBigInteger(
+								sanitize(buf[1], s), lhs.getField(
+										DatatypeConstants.MONTHS) == null && rhs
+												.getField(
+														DatatypeConstants.MONTHS) == null),
+				toBigInteger(sanitize(buf[2], s), lhs.getField(
+						DatatypeConstants.DAYS) == null && rhs.getField(
+								DatatypeConstants.DAYS) == null), toBigInteger(
+										sanitize(buf[3], s), lhs.getField(
+												DatatypeConstants.HOURS) == null
+												&& rhs.getField(
+														DatatypeConstants.HOURS) == null),
+				toBigInteger(sanitize(buf[4], s), lhs.getField(
+						DatatypeConstants.MINUTES) == null && rhs.getField(
+								DatatypeConstants.MINUTES) == null), (buf[5]
+										.signum() == 0 && lhs.getField(
+												DatatypeConstants.SECONDS) == null
+										&& rhs.getField(
+												DatatypeConstants.SECONDS) == null)
+														? null
+														: sanitize(buf[5], s));
 	}
 
 	private static void alignSigns(BigDecimal[] buf, int start, int end) {
@@ -1831,7 +1902,8 @@ class DurationImpl extends Duration implements Serializable {
 					touched = true;
 
 					// compute the number of unit that needs to be borrowed.
-					BigDecimal borrow = buf[i].abs().divide(FACTORS[i - 1], BigDecimal.ROUND_UP);
+					BigDecimal borrow = buf[i].abs().divide(FACTORS[i - 1],
+							BigDecimal.ROUND_UP);
 					if (buf[i].signum() > 0) {
 						borrow = borrow.negate();
 					}
@@ -1852,10 +1924,11 @@ class DurationImpl extends Duration implements Serializable {
 	 * value==0.
 	 * 
 	 * @param value
-	 *            Value to sanitize.
+	 *               Value to sanitize.
 	 * @param signum
-	 *            0 to sanitize to 0, > 0 to sanitize to <code>value</code>, < 0
-	 *            to sanitize to negative <code>value</code>.
+	 *               0 to sanitize to 0, > 0 to sanitize to <code>value</code>,
+	 *               < 0
+	 *               to sanitize to negative <code>value</code>.
 	 *
 	 * @return non-null {@link BigDecimal}.
 	 */
@@ -1877,10 +1950,11 @@ class DurationImpl extends Duration implements Serializable {
 	 * .
 	 *
 	 * @param value
-	 *            Value to sanitize.
+	 *               Value to sanitize.
 	 * @param signum
-	 *            0 to sanitize to 0, > 0 to sanitize to <code>value</code>, < 0
-	 *            to sanitize to negative <code>value</code>.
+	 *               0 to sanitize to 0, > 0 to sanitize to <code>value</code>,
+	 *               < 0
+	 *               to sanitize to negative <code>value</code>.
 	 *
 	 * @return non-null {@link BigDecimal}.
 	 */
@@ -1949,12 +2023,14 @@ class DurationImpl extends Duration implements Serializable {
 	 *         <code>rhs</code> from this <code>Duration</code>.
 	 *
 	 * @throws IllegalStateException
-	 *             If two durations cannot be meaningfully subtracted. For
-	 *             example, subtracting one day from one month causes this
-	 *             exception.
+	 *                               If two durations cannot be meaningfully
+	 *                               subtracted. For
+	 *                               example, subtracting one day from one month
+	 *                               causes this
+	 *                               exception.
 	 *
 	 * @throws NullPointerException
-	 *             If the rhs parameter is null.
+	 *                               If the rhs parameter is null.
 	 *
 	 * @see #add(Duration)
 	 */
@@ -1973,7 +2049,8 @@ class DurationImpl extends Duration implements Serializable {
 	 * @return always return a non-null valid {@link Duration} object.
 	 */
 	public Duration negate() {
-		return new DurationImpl(signum <= 0, years, months, days, hours, minutes, seconds);
+		return new DurationImpl(signum <= 0, years, months, days, hours,
+				minutes, seconds);
 	}
 
 	/**
@@ -2018,9 +2095,9 @@ class DurationImpl extends Duration implements Serializable {
 	 * operation as this method while avoiding the overflow/underflow issues.
 	 *
 	 * @param calendar
-	 *            A calendar object whose value will be modified.
+	 *                 A calendar object whose value will be modified.
 	 * @throws NullPointerException
-	 *             if the calendar parameter is null.
+	 *                              if the calendar parameter is null.
 	 */
 	public void addTo(Calendar calendar) {
 		calendar.add(Calendar.YEAR, getYears() * signum);
@@ -2031,7 +2108,8 @@ class DurationImpl extends Duration implements Serializable {
 		calendar.add(Calendar.SECOND, getSeconds() * signum);
 
 		if (seconds != null) {
-			BigDecimal fraction = seconds.subtract(seconds.setScale(0, BigDecimal.ROUND_DOWN));
+			BigDecimal fraction = seconds.subtract(seconds.setScale(0,
+					BigDecimal.ROUND_DOWN));
 			int millisec = fraction.movePointRight(3).intValue();
 			calendar.add(Calendar.MILLISECOND, millisec * signum);
 		}
@@ -2054,9 +2132,9 @@ class DurationImpl extends Duration implements Serializable {
 	 * determine the duration of months and years.
 	 *
 	 * @param date
-	 *            A date object whose value will be modified.
+	 *             A date object whose value will be modified.
 	 * @throws NullPointerException
-	 *             if the date parameter is null.
+	 *                              if the date parameter is null.
 	 */
 	public void addTo(Date date) {
 		Calendar cal = new GregorianCalendar();

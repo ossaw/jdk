@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.callback;
@@ -170,46 +150,56 @@ public class ConfirmationCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param messageType
-	 *            the message type ({@code INFORMATION}, {@code WARNING} or
-	 *            {@code ERROR}).
-	 *            <p>
+	 *                      the message type ({@code INFORMATION},
+	 *                      {@code WARNING} or
+	 *                      {@code ERROR}).
+	 *                      <p>
 	 *
 	 * @param optionType
-	 *            the option type ({@code YES_NO_OPTION},
-	 *            {@code YES_NO_CANCEL_OPTION} or {@code OK_CANCEL_OPTION}).
-	 *            <p>
+	 *                      the option type ({@code YES_NO_OPTION},
+	 *                      {@code YES_NO_CANCEL_OPTION} or
+	 *                      {@code OK_CANCEL_OPTION}).
+	 *                      <p>
 	 *
 	 * @param defaultOption
-	 *            the default option from the provided optionType ({@code YES},
-	 *            {@code NO}, {@code CANCEL} or {@code OK}).
+	 *                      the default option from the provided optionType
+	 *                      ({@code YES},
+	 *                      {@code NO}, {@code CANCEL} or {@code OK}).
 	 *
 	 * @exception IllegalArgumentException
-	 *                if messageType is not either {@code INFORMATION},
-	 *                {@code WARNING}, or {@code ERROR}, if optionType is not
-	 *                either {@code YES_NO_OPTION}, {@code YES_NO_CANCEL_OPTION}
-	 *                , or {@code OK_CANCEL_OPTION}, or if {@code defaultOption}
-	 *                does not correspond to one of the options in
-	 *                {@code optionType}.
+	 *                                     if messageType is not either
+	 *                                     {@code INFORMATION},
+	 *                                     {@code WARNING}, or {@code ERROR}, if
+	 *                                     optionType is not
+	 *                                     either {@code YES_NO_OPTION},
+	 *                                     {@code YES_NO_CANCEL_OPTION}
+	 *                                     , or {@code OK_CANCEL_OPTION}, or if
+	 *                                     {@code defaultOption}
+	 *                                     does not correspond to one of the
+	 *                                     options in
+	 *                                     {@code optionType}.
 	 */
-	public ConfirmationCallback(int messageType, int optionType, int defaultOption) {
+	public ConfirmationCallback(int messageType, int optionType,
+			int defaultOption) {
 
-		if (messageType < INFORMATION || messageType > ERROR || optionType < YES_NO_OPTION
-				|| optionType > OK_CANCEL_OPTION)
+		if (messageType < INFORMATION || messageType > ERROR
+				|| optionType < YES_NO_OPTION || optionType > OK_CANCEL_OPTION)
 			throw new IllegalArgumentException();
 
 		switch (optionType) {
-		case YES_NO_OPTION:
-			if (defaultOption != YES && defaultOption != NO)
-				throw new IllegalArgumentException();
-			break;
-		case YES_NO_CANCEL_OPTION:
-			if (defaultOption != YES && defaultOption != NO && defaultOption != CANCEL)
-				throw new IllegalArgumentException();
-			break;
-		case OK_CANCEL_OPTION:
-			if (defaultOption != OK && defaultOption != CANCEL)
-				throw new IllegalArgumentException();
-			break;
+			case YES_NO_OPTION:
+				if (defaultOption != YES && defaultOption != NO)
+					throw new IllegalArgumentException();
+				break;
+			case YES_NO_CANCEL_OPTION:
+				if (defaultOption != YES && defaultOption != NO
+						&& defaultOption != CANCEL)
+					throw new IllegalArgumentException();
+				break;
+			case OK_CANCEL_OPTION:
+				if (defaultOption != OK && defaultOption != CANCEL)
+					throw new IllegalArgumentException();
+				break;
 		}
 
 		this.messageType = messageType;
@@ -232,31 +222,40 @@ public class ConfirmationCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param messageType
-	 *            the message type ({@code INFORMATION}, {@code WARNING} or
-	 *            {@code ERROR}).
-	 *            <p>
+	 *                      the message type ({@code INFORMATION},
+	 *                      {@code WARNING} or
+	 *                      {@code ERROR}).
+	 *                      <p>
 	 *
 	 * @param options
-	 *            the list of confirmation options.
-	 *            <p>
+	 *                      the list of confirmation options.
+	 *                      <p>
 	 *
 	 * @param defaultOption
-	 *            the default option, represented as an index into the
-	 *            {@code options} array.
+	 *                      the default option, represented as an index into the
+	 *                      {@code options} array.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if messageType is not either {@code INFORMATION},
-	 *                {@code WARNING}, or {@code ERROR}, if {@code options} is
-	 *                null, if {@code options} has a length of 0, if any element
-	 *                from {@code options} is null, if any element from
-	 *                {@code options} has a length of 0, or if
-	 *                {@code defaultOption} does not lie within the array
-	 *                boundaries of {@code options}.
+	 *                                     if messageType is not either
+	 *                                     {@code INFORMATION},
+	 *                                     {@code WARNING}, or {@code ERROR}, if
+	 *                                     {@code options} is
+	 *                                     null, if {@code options} has a length
+	 *                                     of 0, if any element
+	 *                                     from {@code options} is null, if any
+	 *                                     element from
+	 *                                     {@code options} has a length of 0, or
+	 *                                     if
+	 *                                     {@code defaultOption} does not lie
+	 *                                     within the array
+	 *                                     boundaries of {@code options}.
 	 */
-	public ConfirmationCallback(int messageType, String[] options, int defaultOption) {
+	public ConfirmationCallback(int messageType, String[] options,
+			int defaultOption) {
 
 		if (messageType < INFORMATION || messageType > ERROR || options == null
-				|| options.length == 0 || defaultOption < 0 || defaultOption >= options.length)
+				|| options.length == 0 || defaultOption < 0
+				|| defaultOption >= options.length)
 			throw new IllegalArgumentException();
 
 		for (int i = 0; i < options.length; i++) {
@@ -280,33 +279,43 @@ public class ConfirmationCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param prompt
-	 *            the prompt used to describe the list of options.
-	 *            <p>
+	 *                      the prompt used to describe the list of options.
+	 *                      <p>
 	 *
 	 * @param messageType
-	 *            the message type ({@code INFORMATION}, {@code WARNING} or
-	 *            {@code ERROR}).
-	 *            <p>
+	 *                      the message type ({@code INFORMATION},
+	 *                      {@code WARNING} or
+	 *                      {@code ERROR}).
+	 *                      <p>
 	 *
 	 * @param optionType
-	 *            the option type ({@code YES_NO_OPTION},
-	 *            {@code YES_NO_CANCEL_OPTION} or {@code OK_CANCEL_OPTION}).
-	 *            <p>
+	 *                      the option type ({@code YES_NO_OPTION},
+	 *                      {@code YES_NO_CANCEL_OPTION} or
+	 *                      {@code OK_CANCEL_OPTION}).
+	 *                      <p>
 	 *
 	 * @param defaultOption
-	 *            the default option from the provided optionType ({@code YES},
-	 *            {@code NO}, {@code CANCEL} or {@code OK}).
+	 *                      the default option from the provided optionType
+	 *                      ({@code YES},
+	 *                      {@code NO}, {@code CANCEL} or {@code OK}).
 	 *
 	 * @exception IllegalArgumentException
-	 *                if {@code prompt} is null, if {@code prompt} has a length
-	 *                of 0, if messageType is not either {@code INFORMATION},
-	 *                {@code WARNING}, or {@code ERROR}, if optionType is not
-	 *                either {@code YES_NO_OPTION}, {@code YES_NO_CANCEL_OPTION}
-	 *                , or {@code OK_CANCEL_OPTION}, or if {@code defaultOption}
-	 *                does not correspond to one of the options in
-	 *                {@code optionType}.
+	 *                                     if {@code prompt} is null, if
+	 *                                     {@code prompt} has a length
+	 *                                     of 0, if messageType is not either
+	 *                                     {@code INFORMATION},
+	 *                                     {@code WARNING}, or {@code ERROR}, if
+	 *                                     optionType is not
+	 *                                     either {@code YES_NO_OPTION},
+	 *                                     {@code YES_NO_CANCEL_OPTION}
+	 *                                     , or {@code OK_CANCEL_OPTION}, or if
+	 *                                     {@code defaultOption}
+	 *                                     does not correspond to one of the
+	 *                                     options in
+	 *                                     {@code optionType}.
 	 */
-	public ConfirmationCallback(String prompt, int messageType, int optionType, int defaultOption) {
+	public ConfirmationCallback(String prompt, int messageType, int optionType,
+			int defaultOption) {
 
 		if (prompt == null || prompt.length() == 0 || messageType < INFORMATION
 				|| messageType > ERROR || optionType < YES_NO_OPTION
@@ -314,18 +323,19 @@ public class ConfirmationCallback implements Callback, java.io.Serializable {
 			throw new IllegalArgumentException();
 
 		switch (optionType) {
-		case YES_NO_OPTION:
-			if (defaultOption != YES && defaultOption != NO)
-				throw new IllegalArgumentException();
-			break;
-		case YES_NO_CANCEL_OPTION:
-			if (defaultOption != YES && defaultOption != NO && defaultOption != CANCEL)
-				throw new IllegalArgumentException();
-			break;
-		case OK_CANCEL_OPTION:
-			if (defaultOption != OK && defaultOption != CANCEL)
-				throw new IllegalArgumentException();
-			break;
+			case YES_NO_OPTION:
+				if (defaultOption != YES && defaultOption != NO)
+					throw new IllegalArgumentException();
+				break;
+			case YES_NO_CANCEL_OPTION:
+				if (defaultOption != YES && defaultOption != NO
+						&& defaultOption != CANCEL)
+					throw new IllegalArgumentException();
+				break;
+			case OK_CANCEL_OPTION:
+				if (defaultOption != OK && defaultOption != CANCEL)
+					throw new IllegalArgumentException();
+				break;
 		}
 
 		this.prompt = prompt;
@@ -349,34 +359,42 @@ public class ConfirmationCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param prompt
-	 *            the prompt used to describe the list of options.
-	 *            <p>
+	 *                      the prompt used to describe the list of options.
+	 *                      <p>
 	 *
 	 * @param messageType
-	 *            the message type ({@code INFORMATION}, {@code WARNING} or
-	 *            {@code ERROR}).
-	 *            <p>
+	 *                      the message type ({@code INFORMATION},
+	 *                      {@code WARNING} or
+	 *                      {@code ERROR}).
+	 *                      <p>
 	 *
 	 * @param options
-	 *            the list of confirmation options.
-	 *            <p>
+	 *                      the list of confirmation options.
+	 *                      <p>
 	 *
 	 * @param defaultOption
-	 *            the default option, represented as an index into the
-	 *            {@code options} array.
+	 *                      the default option, represented as an index into the
+	 *                      {@code options} array.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if {@code prompt} is null, if {@code prompt} has a length
-	 *                of 0, if messageType is not either {@code INFORMATION},
-	 *                {@code WARNING}, or {@code ERROR}, if {@code options} is
-	 *                null, if {@code options} has a length of 0, if any element
-	 *                from {@code options} is null, if any element from
-	 *                {@code options} has a length of 0, or if
-	 *                {@code defaultOption} does not lie within the array
-	 *                boundaries of {@code options}.
+	 *                                     if {@code prompt} is null, if
+	 *                                     {@code prompt} has a length
+	 *                                     of 0, if messageType is not either
+	 *                                     {@code INFORMATION},
+	 *                                     {@code WARNING}, or {@code ERROR}, if
+	 *                                     {@code options} is
+	 *                                     null, if {@code options} has a length
+	 *                                     of 0, if any element
+	 *                                     from {@code options} is null, if any
+	 *                                     element from
+	 *                                     {@code options} has a length of 0, or
+	 *                                     if
+	 *                                     {@code defaultOption} does not lie
+	 *                                     within the array
+	 *                                     boundaries of {@code options}.
 	 */
-	public ConfirmationCallback(String prompt, int messageType, String[] options,
-			int defaultOption) {
+	public ConfirmationCallback(String prompt, int messageType,
+			String[] options, int defaultOption) {
 
 		if (prompt == null || prompt.length() == 0 || messageType < INFORMATION
 				|| messageType > ERROR || options == null || options.length == 0
@@ -475,12 +493,14 @@ public class ConfirmationCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param selection
-	 *            the selection represented as {@code YES}, {@code NO},
-	 *            {@code OK} or {@code CANCEL} if an {@code optionType} was
-	 *            specified to the constructor of this
-	 *            {@code ConfirmationCallback}. Otherwise, the selection
-	 *            represents the index into the {@code options} array specified
-	 *            to the constructor of this {@code ConfirmationCallback}.
+	 *                  the selection represented as {@code YES}, {@code NO},
+	 *                  {@code OK} or {@code CANCEL} if an {@code optionType}
+	 *                  was
+	 *                  specified to the constructor of this
+	 *                  {@code ConfirmationCallback}. Otherwise, the selection
+	 *                  represents the index into the {@code options} array
+	 *                  specified
+	 *                  to the constructor of this {@code ConfirmationCallback}.
 	 *
 	 * @see #getSelectedIndex
 	 */

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -106,7 +86,8 @@ public class MetalScrollButton extends BasicArrowButton {
 			int startX = (w / 2);
 			// System.out.println( "startX :" + startX + " startY :"+startY);
 			for (int line = 0; line < arrowHeight; line++) {
-				g.drawLine(startX - line, startY + line, startX + line + 1, startY + line);
+				g.drawLine(startX - line, startY + line, startX + line + 1,
+						startY + line);
 			}
 			/*
 			 * g.drawLine( 7, 6, 8, 6 ); g.drawLine( 6, 7, 9, 7 ); g.drawLine(
@@ -156,7 +137,8 @@ public class MetalScrollButton extends BasicArrowButton {
 			// System.out.println( "startX2 :" + startX + " startY2 :"+startY);
 
 			for (int line = 0; line < arrowHeight; line++) {
-				g.drawLine(startX - line, startY - line, startX + line + 1, startY - line);
+				g.drawLine(startX - line, startY - line, startX + line + 1,
+						startY - line);
 			}
 
 			/*
@@ -205,7 +187,8 @@ public class MetalScrollButton extends BasicArrowButton {
 			// System.out.println( "startX2 :" + startX + " startY2 :"+startY);
 
 			for (int line = 0; line < arrowHeight; line++) {
-				g.drawLine(startX - line, startY - line, startX - line, startY + line + 1);
+				g.drawLine(startX - line, startY - line, startX - line, startY
+						+ line + 1);
 			}
 
 			/*
@@ -249,7 +232,8 @@ public class MetalScrollButton extends BasicArrowButton {
 			int startY = (h / 2);
 
 			for (int line = 0; line < arrowHeight; line++) {
-				g.drawLine(startX + line, startY - line, startX + line, startY + line + 1);
+				g.drawLine(startX + line, startY - line, startX + line, startY
+						+ line + 1);
 			}
 
 			/*
@@ -287,9 +271,11 @@ public class MetalScrollButton extends BasicArrowButton {
 		if (getDirection() == NORTH) {
 			return new Dimension(buttonWidth, buttonWidth - 2);
 		} else if (getDirection() == SOUTH) {
-			return new Dimension(buttonWidth, buttonWidth - (isFreeStanding ? 1 : 2));
+			return new Dimension(buttonWidth, buttonWidth - (isFreeStanding ? 1
+					: 2));
 		} else if (getDirection() == EAST) {
-			return new Dimension(buttonWidth - (isFreeStanding ? 1 : 2), buttonWidth);
+			return new Dimension(buttonWidth - (isFreeStanding ? 1 : 2),
+					buttonWidth);
 		} else if (getDirection() == WEST) {
 			return new Dimension(buttonWidth - 2, buttonWidth);
 		} else {

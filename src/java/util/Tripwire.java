@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -51,11 +31,11 @@ final class Tripwire {
 	private static final String TRIPWIRE_PROPERTY = "org.openjdk.java.util.stream.tripwire";
 
 	/** Should debugging checks be enabled? */
-	static final boolean ENABLED = AccessController
-			.doPrivileged((PrivilegedAction<Boolean>) () -> Boolean.getBoolean(TRIPWIRE_PROPERTY));
+	static final boolean ENABLED = AccessController.doPrivileged(
+			(PrivilegedAction<Boolean>) () -> Boolean.getBoolean(
+					TRIPWIRE_PROPERTY));
 
-	private Tripwire() {
-	}
+	private Tripwire() {}
 
 	/**
 	 * Produces a log warning, using {@code PlatformLogger.getLogger(className)}
@@ -63,12 +43,13 @@ final class Tripwire {
 	 * will be used as the first parameter to the message.
 	 *
 	 * @param trippingClass
-	 *            Name of the class generating the message
+	 *                      Name of the class generating the message
 	 * @param msg
-	 *            A message format string of the type expected by
-	 *            {@link PlatformLogger}
+	 *                      A message format string of the type expected by
+	 *                      {@link PlatformLogger}
 	 */
 	static void trip(Class<?> trippingClass, String msg) {
-		PlatformLogger.getLogger(trippingClass.getName()).warning(msg, trippingClass.getName());
+		PlatformLogger.getLogger(trippingClass.getName()).warning(msg,
+				trippingClass.getName());
 	}
 }

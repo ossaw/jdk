@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -63,7 +43,8 @@ class HeapByteBufferR extends HeapByteBuffer {
 
 	}
 
-	protected HeapByteBufferR(byte[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapByteBufferR(byte[] buf, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(buf, mark, pos, lim, cap, off);
 		this.isReadOnly = true;
@@ -71,13 +52,13 @@ class HeapByteBufferR extends HeapByteBuffer {
 	}
 
 	public ByteBuffer slice() {
-		return new HeapByteBufferR(hb, -1, 0, this.remaining(), this.remaining(),
-				this.position() + offset);
+		return new HeapByteBufferR(hb, -1, 0, this.remaining(), this
+				.remaining(), this.position() + offset);
 	}
 
 	public ByteBuffer duplicate() {
-		return new HeapByteBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapByteBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public ByteBuffer asReadOnlyBuffer() {
@@ -147,9 +128,10 @@ class HeapByteBufferR extends HeapByteBuffer {
 	public CharBuffer asCharBuffer() {
 		int size = this.remaining() >> 1;
 		int off = offset + position();
-		return (bigEndian
-				? (CharBuffer) (new ByteBufferAsCharBufferRB(this, -1, 0, size, size, off))
-				: (CharBuffer) (new ByteBufferAsCharBufferRL(this, -1, 0, size, size, off)));
+		return (bigEndian ? (CharBuffer) (new ByteBufferAsCharBufferRB(this, -1,
+				0, size, size, off))
+				: (CharBuffer) (new ByteBufferAsCharBufferRL(this, -1, 0, size,
+						size, off)));
 	}
 
 	// short
@@ -169,9 +151,10 @@ class HeapByteBufferR extends HeapByteBuffer {
 	public ShortBuffer asShortBuffer() {
 		int size = this.remaining() >> 1;
 		int off = offset + position();
-		return (bigEndian
-				? (ShortBuffer) (new ByteBufferAsShortBufferRB(this, -1, 0, size, size, off))
-				: (ShortBuffer) (new ByteBufferAsShortBufferRL(this, -1, 0, size, size, off)));
+		return (bigEndian ? (ShortBuffer) (new ByteBufferAsShortBufferRB(this,
+				-1, 0, size, size, off))
+				: (ShortBuffer) (new ByteBufferAsShortBufferRL(this, -1, 0,
+						size, size, off)));
 	}
 
 	// int
@@ -191,8 +174,10 @@ class HeapByteBufferR extends HeapByteBuffer {
 	public IntBuffer asIntBuffer() {
 		int size = this.remaining() >> 2;
 		int off = offset + position();
-		return (bigEndian ? (IntBuffer) (new ByteBufferAsIntBufferRB(this, -1, 0, size, size, off))
-				: (IntBuffer) (new ByteBufferAsIntBufferRL(this, -1, 0, size, size, off)));
+		return (bigEndian ? (IntBuffer) (new ByteBufferAsIntBufferRB(this, -1,
+				0, size, size, off))
+				: (IntBuffer) (new ByteBufferAsIntBufferRL(this, -1, 0, size,
+						size, off)));
 	}
 
 	// long
@@ -212,9 +197,10 @@ class HeapByteBufferR extends HeapByteBuffer {
 	public LongBuffer asLongBuffer() {
 		int size = this.remaining() >> 3;
 		int off = offset + position();
-		return (bigEndian
-				? (LongBuffer) (new ByteBufferAsLongBufferRB(this, -1, 0, size, size, off))
-				: (LongBuffer) (new ByteBufferAsLongBufferRL(this, -1, 0, size, size, off)));
+		return (bigEndian ? (LongBuffer) (new ByteBufferAsLongBufferRB(this, -1,
+				0, size, size, off))
+				: (LongBuffer) (new ByteBufferAsLongBufferRL(this, -1, 0, size,
+						size, off)));
 	}
 
 	// float
@@ -234,9 +220,10 @@ class HeapByteBufferR extends HeapByteBuffer {
 	public FloatBuffer asFloatBuffer() {
 		int size = this.remaining() >> 2;
 		int off = offset + position();
-		return (bigEndian
-				? (FloatBuffer) (new ByteBufferAsFloatBufferRB(this, -1, 0, size, size, off))
-				: (FloatBuffer) (new ByteBufferAsFloatBufferRL(this, -1, 0, size, size, off)));
+		return (bigEndian ? (FloatBuffer) (new ByteBufferAsFloatBufferRB(this,
+				-1, 0, size, size, off))
+				: (FloatBuffer) (new ByteBufferAsFloatBufferRL(this, -1, 0,
+						size, size, off)));
 	}
 
 	// double
@@ -256,9 +243,10 @@ class HeapByteBufferR extends HeapByteBuffer {
 	public DoubleBuffer asDoubleBuffer() {
 		int size = this.remaining() >> 3;
 		int off = offset + position();
-		return (bigEndian
-				? (DoubleBuffer) (new ByteBufferAsDoubleBufferRB(this, -1, 0, size, size, off))
-				: (DoubleBuffer) (new ByteBufferAsDoubleBufferRL(this, -1, 0, size, size, off)));
+		return (bigEndian ? (DoubleBuffer) (new ByteBufferAsDoubleBufferRB(this,
+				-1, 0, size, size, off))
+				: (DoubleBuffer) (new ByteBufferAsDoubleBufferRL(this, -1, 0,
+						size, size, off)));
 	}
 
 }

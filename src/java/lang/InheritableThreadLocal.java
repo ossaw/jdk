@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -57,7 +37,7 @@ public class InheritableThreadLocal<T> extends ThreadLocal<T> {
 	 * if a different behavior is desired.
 	 *
 	 * @param parentValue
-	 *            the parent thread's value
+	 *                    the parent thread's value
 	 * @return the child thread's initial value
 	 */
 	protected T childValue(T parentValue) {
@@ -68,7 +48,7 @@ public class InheritableThreadLocal<T> extends ThreadLocal<T> {
 	 * Get the map associated with a ThreadLocal.
 	 *
 	 * @param t
-	 *            the current thread
+	 *          the current thread
 	 */
 	ThreadLocalMap getMap(Thread t) {
 		return t.inheritableThreadLocals;
@@ -78,9 +58,9 @@ public class InheritableThreadLocal<T> extends ThreadLocal<T> {
 	 * Create the map associated with a ThreadLocal.
 	 *
 	 * @param t
-	 *            the current thread
+	 *                   the current thread
 	 * @param firstValue
-	 *            value for the initial entry of the table.
+	 *                   value for the initial entry of the table.
 	 */
 	void createMap(Thread t, T firstValue) {
 		t.inheritableThreadLocals = new ThreadLocalMap(this, firstValue);

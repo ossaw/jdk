@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.prefs;
@@ -56,9 +36,9 @@ public class NodeChangeEvent extends java.util.EventObject {
 	 * Constructs a new <code>NodeChangeEvent</code> instance.
 	 *
 	 * @param parent
-	 *            The parent of the node that was added or removed.
+	 *               The parent of the node that was added or removed.
 	 * @param child
-	 *            The node that was added or removed.
+	 *               The node that was added or removed.
 	 */
 	public NodeChangeEvent(Preferences parent, Preferences child) {
 		super(parent);
@@ -87,7 +67,8 @@ public class NodeChangeEvent extends java.util.EventObject {
 	 * Throws NotSerializableException, since NodeChangeEvent objects are not
 	 * intended to be serializable.
 	 */
-	private void writeObject(java.io.ObjectOutputStream out) throws NotSerializableException {
+	private void writeObject(java.io.ObjectOutputStream out)
+			throws NotSerializableException {
 		throw new NotSerializableException("Not serializable.");
 	}
 
@@ -95,7 +76,8 @@ public class NodeChangeEvent extends java.util.EventObject {
 	 * Throws NotSerializableException, since NodeChangeEvent objects are not
 	 * intended to be serializable.
 	 */
-	private void readObject(java.io.ObjectInputStream in) throws NotSerializableException {
+	private void readObject(java.io.ObjectInputStream in)
+			throws NotSerializableException {
 		throw new NotSerializableException("Not serializable.");
 	}
 

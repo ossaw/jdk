@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.print;
@@ -122,16 +102,17 @@ public interface Printable {
 	 * {@link PrinterException}.
 	 * 
 	 * @param graphics
-	 *            the context into which the page is drawn
+	 *                   the context into which the page is drawn
 	 * @param pageFormat
-	 *            the size and orientation of the page being drawn
+	 *                   the size and orientation of the page being drawn
 	 * @param pageIndex
-	 *            the zero based index of the page to be drawn
+	 *                   the zero based index of the page to be drawn
 	 * @return PAGE_EXISTS if the page is rendered successfully or NO_SUCH_PAGE
 	 *         if <code>pageIndex</code> specifies a non-existent page.
 	 * @exception java.awt.print.PrinterException
-	 *                thrown when the print job is terminated.
+	 *            thrown when the print job is terminated.
 	 */
-	int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException;
+	int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
+			throws PrinterException;
 
 }

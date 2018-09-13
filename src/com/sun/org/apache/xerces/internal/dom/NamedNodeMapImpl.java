@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -108,27 +105,29 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 * Retrieve an item from the map by 0-based index.
 	 *
 	 * @param index
-	 *            Which item to retrieve. Note that indices are just an
-	 *            enumeration of the current contents; they aren't guaranteed to
-	 *            be stable, nor do they imply any promises about the order of
-	 *            the NamedNodeMap's contents. In other words, DO NOT assume
-	 *            either that index(i) will always refer to the same entry, or
-	 *            that there is any stable ordering of entries... and be
-	 *            prepared for double-reporting or skips as insertion and
-	 *            deletion occur.
+	 *              Which item to retrieve. Note that indices are just an
+	 *              enumeration of the current contents; they aren't guaranteed
+	 *              to
+	 *              be stable, nor do they imply any promises about the order of
+	 *              the NamedNodeMap's contents. In other words, DO NOT assume
+	 *              either that index(i) will always refer to the same entry, or
+	 *              that there is any stable ordering of entries... and be
+	 *              prepared for double-reporting or skips as insertion and
+	 *              deletion occur.
 	 *
 	 * @return the node which currenly has the specified index, or null if index
 	 *         is greater than or equal to getLength().
 	 */
 	public Node item(int index) {
-		return (nodes != null && index < nodes.size()) ? (Node) (nodes.get(index)) : null;
+		return (nodes != null && index < nodes.size()) ? (Node) (nodes.get(
+				index)) : null;
 	}
 
 	/**
 	 * Retrieve a node by name.
 	 *
 	 * @param name
-	 *            Name of a node to look up.
+	 *             Name of a node to look up.
 	 * @return the Node (of unspecified sub-class) stored with that name, or
 	 *         null if no value has been assigned to that name.
 	 */
@@ -145,10 +144,12 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 * Retrieves a node specified by local name and namespace URI.
 	 *
 	 * @param namespaceURI
-	 *            The namespace URI of the node to retrieve. When it is null or
-	 *            an empty string, this method behaves like getNamedItem.
+	 *                     The namespace URI of the node to retrieve. When it is
+	 *                     null or
+	 *                     an empty string, this method behaves like
+	 *                     getNamedItem.
 	 * @param localName
-	 *            The local name of the node to retrieve.
+	 *                     The local name of the node to retrieve.
 	 * @return Node A Node (of any type) with the specified name, or null if the
 	 *         specified name did not identify any node in the map.
 	 */
@@ -176,20 +177,23 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 *            local name is already present in the map, it is replaced by
 	 *            the new one.
 	 * @exception org.w3c.dom.DOMException
-	 *                The exception description.
+	 *            The exception description.
 	 */
 	public Node setNamedItem(Node arg) throws DOMException {
 
 		CoreDocumentImpl ownerDocument = ownerNode.ownerDocument();
 		if (ownerDocument.errorChecking) {
 			if (isReadOnly()) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN,
 						"NO_MODIFICATION_ALLOWED_ERR", null);
-				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+						msg);
 			}
 			if (arg.getOwnerDocument() != ownerDocument) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"WRONG_DOCUMENT_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
+						null);
 				throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
 			}
 		}
@@ -228,14 +232,17 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 		CoreDocumentImpl ownerDocument = ownerNode.ownerDocument();
 		if (ownerDocument.errorChecking) {
 			if (isReadOnly()) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN,
 						"NO_MODIFICATION_ALLOWED_ERR", null);
-				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+						msg);
 			}
 
 			if (arg.getOwnerDocument() != ownerDocument) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"WRONG_DOCUMENT_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
+						null);
 				throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
 			}
 		}
@@ -268,21 +275,23 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 * Removes a node specified by name.
 	 * 
 	 * @param name
-	 *            The name of a node to remove.
+	 *             The name of a node to remove.
 	 * @return The node removed from the map if a node with such a name exists.
 	 */
 	/***/
 	public Node removeNamedItem(String name) throws DOMException {
 
 		if (isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 		int i = findNamePoint(name, 0);
 		if (i < 0) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"NOT_FOUND_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
 			throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
 		}
 
@@ -299,27 +308,32 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 * Removes a node specified by local name and namespace URI.
 	 * 
 	 * @param namespaceURI
-	 *            The namespace URI of the node to remove. When it is null or an
-	 *            empty string, this method behaves like removeNamedItem.
+	 *                     The namespace URI of the node to remove. When it is
+	 *                     null or an
+	 *                     empty string, this method behaves like
+	 *                     removeNamedItem.
 	 * @param name
-	 *            The local name of the node to remove.
+	 *                     The local name of the node to remove.
 	 * @return Node The node removed from the map if a node with such a local
 	 *         name and namespace URI exists.
 	 * @throws NOT_FOUND_ERR:
-	 *             Raised if there is no node named name in the map.
+	 *                        Raised if there is no node named name in the map.
 	 * 
 	 */
-	public Node removeNamedItemNS(String namespaceURI, String name) throws DOMException {
+	public Node removeNamedItemNS(String namespaceURI, String name)
+			throws DOMException {
 
 		if (isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 		int i = findNamePoint(namespaceURI, name);
 		if (i < 0) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"NOT_FOUND_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
 			throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
 		}
 
@@ -375,12 +389,15 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 * this operation will never be
 	 *
 	 * @param readOnly
-	 *            boolean true to make read-only, false to permit editing.
+	 *                 boolean true to make read-only, false to permit editing.
 	 * @param deep
-	 *            boolean true to pass this request along to the contained
-	 *            nodes, false to only toggle the NamedNodeMap itself. I expect
-	 *            that the shallow version of this operation will never be used,
-	 *            but I want to design it in now, while I'm thinking about it.
+	 *                 boolean true to pass this request along to the contained
+	 *                 nodes, false to only toggle the NamedNodeMap itself. I
+	 *                 expect
+	 *                 that the shallow version of this operation will never be
+	 *                 used,
+	 *                 but I want to design it in now, while I'm thinking about
+	 *                 it.
 	 */
 	void setReadOnly(boolean readOnly, boolean deep) {
 		isReadOnly(readOnly);
@@ -449,7 +466,7 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 * be added.
 	 *
 	 * @param name
-	 *            Name of a node to look up.
+	 *             Name of a node to look up.
 	 *
 	 * @return If positive or zero, the index of the found item. If negative,
 	 *         index of the appropriate point at which to insert the item,
@@ -468,7 +485,8 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 
 			while (first <= last) {
 				i = (first + last) / 2;
-				int test = name.compareTo(((Node) (nodes.get(i))).getNodeName());
+				int test = name.compareTo(((Node) (nodes.get(i)))
+						.getNodeName());
 				if (test == 0) {
 					return i; // Name found
 				} else if (test < 0) {
@@ -511,10 +529,12 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 			String aLocalName = a.getLocalName();
 			if (namespaceURI == null) {
 				if (aNamespaceURI == null && (name.equals(aLocalName)
-						|| (aLocalName == null && name.equals(a.getNodeName()))))
+						|| (aLocalName == null && name.equals(a
+								.getNodeName()))))
 					return i;
 			} else {
-				if (namespaceURI.equals(aNamespaceURI) && name.equals(aLocalName))
+				if (namespaceURI.equals(aNamespaceURI) && name.equals(
+						aLocalName))
 					return i;
 			}
 		}
@@ -579,7 +599,7 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 	 * NON-DOM: copy content of this map into the specified ArrayList
 	 *
 	 * @param list
-	 *            ArrayList to copy information into.
+	 *             ArrayList to copy information into.
 	 * @return A copy of this node named map
 	 */
 	protected ArrayList cloneMap(ArrayList list) {
@@ -609,7 +629,8 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 		}
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		in.defaultReadObject();
 		if (nodes != null) {
 			nodes = new ArrayList(nodes);

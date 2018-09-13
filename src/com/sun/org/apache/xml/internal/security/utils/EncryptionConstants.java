@@ -203,19 +203,24 @@ public class EncryptionConstants {
 	public static final String ALGO_ID_ENCODING_BASE64 = "http://www.w3.org/2000/09/xmldsig#base64";
 
 	/** MGF1 with SHA-1 */
-	public static final String MGF1_SHA1 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha1";
+	public static final String MGF1_SHA1 = EncryptionConstants.EncryptionSpec11NS
+			+ "mgf1sha1";
 
 	/** MGF1 with SHA-224 */
-	public static final String MGF1_SHA224 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha224";
+	public static final String MGF1_SHA224 = EncryptionConstants.EncryptionSpec11NS
+			+ "mgf1sha224";
 
 	/** MGF1 with SHA-256 */
-	public static final String MGF1_SHA256 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha256";
+	public static final String MGF1_SHA256 = EncryptionConstants.EncryptionSpec11NS
+			+ "mgf1sha256";
 
 	/** MGF1 with SHA-384 */
-	public static final String MGF1_SHA384 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha384";
+	public static final String MGF1_SHA384 = EncryptionConstants.EncryptionSpec11NS
+			+ "mgf1sha384";
 
 	/** MGF1 with SHA-512 */
-	public static final String MGF1_SHA512 = EncryptionConstants.EncryptionSpec11NS + "mgf1sha512";
+	public static final String MGF1_SHA512 = EncryptionConstants.EncryptionSpec11NS
+			+ "mgf1sha512";
 
 	private EncryptionConstants() {
 		// we don't allow instantiation

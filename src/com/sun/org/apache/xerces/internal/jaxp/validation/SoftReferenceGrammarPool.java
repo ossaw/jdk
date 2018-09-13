@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -92,11 +89,9 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * <p> Retrieve the initial known set of grammars. This method is called by
 	 * a validator before the validation starts. The application can provide an
 	 * initial set of grammars available to the current validation attempt. </p>
-	 *
 	 * @param grammarType The type of the grammar, from the
 	 * <code>com.sun.org.apache.xerces.internal.xni.grammars.
 	 * XMLGrammarDescription</code> interface.
-	 * 
 	 * @return The set of grammars the validator may put in its "bucket"
 	 */
 	public Grammar[] retrieveInitialGrammarSet(String grammarType) {
@@ -117,9 +112,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * implementation, we make our choice based on whether this object is
 	 * "locked"--that is, whether the application has instructed us not to
 	 * accept any new grammars.</p>
-	 *
 	 * @param grammarType The type of the grammars being returned;
-	 * 
 	 * @param grammars An array containing the set of grammars being returned;
 	 * order is not significant.
 	 */
@@ -137,12 +130,9 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * do so it must return null; the parser will then call the EntityResolver.
 	 * </p> <strong>An application must not call its EntityResolver itself from
 	 * this method; this may result in infinite recursions.</strong>
-	 *
 	 * This implementation chooses to use the root element name to identify a
 	 * DTD grammar and the target namespace to identify a Schema grammar.
-	 *
 	 * @param desc The description of the Grammar being requested.
-	 * 
 	 * @return The Grammar corresponding to this description or null if no such
 	 * Grammar is known.
 	 */
@@ -159,7 +149,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * root element name or its target namespace.
 	 *
 	 * @param grammar
-	 *            The Grammar.
+	 *                The Grammar.
 	 */
 	public void putGrammar(Grammar grammar) {
 		if (!fPoolIsLocked) {
@@ -171,15 +161,15 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 				for (Entry entry = fGrammars[index]; entry != null; entry = entry.next) {
 					if (entry.hash == hash && equals(entry.desc, desc)) {
 						if (entry.grammar.get() != grammar) {
-							entry.grammar = new SoftGrammarReference(entry, grammar,
-									fReferenceQueue);
+							entry.grammar = new SoftGrammarReference(entry,
+									grammar, fReferenceQueue);
 						}
 						return;
 					}
 				}
 				// create a new entry
-				Entry entry = new Entry(hash, index, desc, grammar, fGrammars[index],
-						fReferenceQueue);
+				Entry entry = new Entry(hash, index, desc, grammar,
+						fGrammars[index], fReferenceQueue);
 				fGrammars[index] = entry;
 				fGrammarCount++;
 			}
@@ -192,7 +182,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * the target namespace is used as the key for Schema grammars.
 	 *
 	 * @param desc
-	 *            The Grammar Description.
+	 *             The Grammar Description.
 	 */
 	public Grammar getGrammar(XMLGrammarDescription desc) {
 		synchronized (fGrammars) {
@@ -222,7 +212,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * is used as the key for Schema grammars.
 	 *
 	 * @param desc
-	 *            The Grammar Description.
+	 *             The Grammar Description.
 	 * @return The removed grammar.
 	 */
 	public Grammar removeGrammar(XMLGrammarDescription desc) {
@@ -246,7 +236,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * for Schema grammars.
 	 *
 	 * @param desc
-	 *            The Grammar Description.
+	 *             The Grammar Description.
 	 */
 	public boolean containsGrammar(XMLGrammarDescription desc) {
 		synchronized (fGrammars) {
@@ -306,12 +296,13 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * its own logic.
 	 *
 	 * @param desc1
-	 *            The grammar description
+	 *              The grammar description
 	 * @param desc2
-	 *            The grammar description of the grammar to be compared to
+	 *              The grammar description of the grammar to be compared to
 	 * @return True if the grammars are equal, otherwise false
 	 */
-	public boolean equals(XMLGrammarDescription desc1, XMLGrammarDescription desc2) {
+	public boolean equals(XMLGrammarDescription desc1,
+			XMLGrammarDescription desc2) {
 		if (desc1 instanceof XMLSchemaDescription) {
 			if (!(desc2 instanceof XMLSchemaDescription)) {
 				return false;
@@ -348,7 +339,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * Returns the hash code value for the given grammar description.
 	 *
 	 * @param desc
-	 *            The grammar description
+	 *             The grammar description
 	 * @return The hash code value
 	 */
 	public int hashCode(XMLGrammarDescription desc) {
@@ -356,8 +347,10 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 			final XMLSchemaDescription sd = (XMLSchemaDescription) desc;
 			final String targetNamespace = sd.getTargetNamespace();
 			final String expandedSystemId = sd.getExpandedSystemId();
-			int hash = (targetNamespace != null) ? targetNamespace.hashCode() : 0;
-			hash ^= (expandedSystemId != null) ? expandedSystemId.hashCode() : 0;
+			int hash = (targetNamespace != null) ? targetNamespace.hashCode()
+					: 0;
+			hash ^= (expandedSystemId != null) ? expandedSystemId.hashCode()
+					: 0;
 			return hash;
 		}
 		return desc.hashCode();
@@ -367,7 +360,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 	 * Removes the given entry from the pool
 	 *
 	 * @param entry
-	 *            the entry to remove
+	 *              the entry to remove
 	 * @return The grammar attached to this entry
 	 */
 	private Grammar removeEntry(Entry entry) {
@@ -411,8 +404,8 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 		public XMLGrammarDescription desc;
 		public SoftGrammarReference grammar;
 
-		protected Entry(int hash, int bucket, XMLGrammarDescription desc, Grammar grammar,
-				Entry next, ReferenceQueue queue) {
+		protected Entry(int hash, int bucket, XMLGrammarDescription desc,
+				Grammar grammar, Entry next, ReferenceQueue queue) {
 			this.hash = hash;
 			this.bucket = bucket;
 			this.prev = null;
@@ -446,7 +439,8 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
 
 		public Entry entry;
 
-		protected SoftGrammarReference(Entry entry, Grammar grammar, ReferenceQueue queue) {
+		protected SoftGrammarReference(Entry entry, Grammar grammar,
+				ReferenceQueue queue) {
 			super(grammar, queue);
 			this.entry = entry;
 		}

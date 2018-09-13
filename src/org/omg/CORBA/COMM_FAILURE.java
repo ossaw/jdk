@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -60,8 +40,8 @@ public final class COMM_FAILURE extends SystemException {
 	 * COMPLETED_NO.
 	 *
 	 * @param s
-	 *            the <code>String</code> containing a detail message describing
-	 *            this exception
+	 *          the <code>String</code> containing a detail message describing
+	 *          this exception
 	 */
 	public COMM_FAILURE(String s) {
 		this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -72,11 +52,12 @@ public final class COMM_FAILURE extends SystemException {
 	 * code and completion status.
 	 * 
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status, which must be one of
-	 *            <code>COMPLETED_YES</code>, <code>COMPLETED_NO</code>, or
-	 *            <code>COMPLETED_MAYBE</code>.
+	 *                  the completion status, which must be one of
+	 *                  <code>COMPLETED_YES</code>, <code>COMPLETED_NO</code>,
+	 *                  or
+	 *                  <code>COMPLETED_MAYBE</code>.
 	 */
 	public COMM_FAILURE(int minor, CompletionStatus completed) {
 		this("", minor, completed);
@@ -88,13 +69,14 @@ public final class COMM_FAILURE extends SystemException {
 	 * String that describes this particular exception.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *                  the String containing a detail message
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status, which must be one of
-	 *            <code>COMPLETED_YES</code>, <code>COMPLETED_NO</code>, or
-	 *            <code>COMPLETED_MAYBE</code>.
+	 *                  the completion status, which must be one of
+	 *                  <code>COMPLETED_YES</code>, <code>COMPLETED_NO</code>,
+	 *                  or
+	 *                  <code>COMPLETED_MAYBE</code>.
 	 */
 	public COMM_FAILURE(String s, int minor, CompletionStatus completed) {
 		super(s, minor, completed);

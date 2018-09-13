@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -128,7 +108,7 @@ public interface WatchService extends Closeable {
 	 * service is already closed then invoking this method has no effect.
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
 	@Override
 	void close() throws IOException;
@@ -140,7 +120,7 @@ public interface WatchService extends Closeable {
 	 * @return the next watch key, or {@code null}
 	 *
 	 * @throws ClosedWatchServiceException
-	 *             if this watch service is closed
+	 *                                     if this watch service is closed
 	 */
 	WatchKey poll();
 
@@ -149,18 +129,20 @@ public interface WatchService extends Closeable {
 	 * specified wait time if none are yet present.
 	 *
 	 * @param timeout
-	 *            how to wait before giving up, in units of unit
+	 *                how to wait before giving up, in units of unit
 	 * @param unit
-	 *            a {@code TimeUnit} determining how to interpret the timeout
-	 *            parameter
+	 *                a {@code TimeUnit} determining how to interpret the
+	 *                timeout
+	 *                parameter
 	 *
 	 * @return the next watch key, or {@code null}
 	 *
 	 * @throws ClosedWatchServiceException
-	 *             if this watch service is closed, or it is closed while
-	 *             waiting for the next key
+	 *                                     if this watch service is closed, or
+	 *                                     it is closed while
+	 *                                     waiting for the next key
 	 * @throws InterruptedException
-	 *             if interrupted while waiting
+	 *                                     if interrupted while waiting
 	 */
 	WatchKey poll(long timeout, TimeUnit unit) throws InterruptedException;
 
@@ -170,10 +152,11 @@ public interface WatchService extends Closeable {
 	 * @return the next watch key
 	 *
 	 * @throws ClosedWatchServiceException
-	 *             if this watch service is closed, or it is closed while
-	 *             waiting for the next key
+	 *                                     if this watch service is closed, or
+	 *                                     it is closed while
+	 *                                     waiting for the next key
 	 * @throws InterruptedException
-	 *             if interrupted while waiting
+	 *                                     if interrupted while waiting
 	 */
 	WatchKey take() throws InterruptedException;
 }

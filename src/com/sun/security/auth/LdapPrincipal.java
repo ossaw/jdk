@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -68,11 +48,12 @@ public final class LdapPrincipal implements Principal, java.io.Serializable {
 	 * Creates an LDAP principal.
 	 *
 	 * @param name
-	 *            The principal's string distinguished name.
+	 *             The principal's string distinguished name.
 	 * @throws InvalidNameException
-	 *             If a syntax violation is detected.
+	 *                              If a syntax violation is detected.
 	 * @exception NullPointerException
-	 *                If the <code>name</code> is <code>null</code>.
+	 *                                 If the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public LdapPrincipal(String name) throws InvalidNameException {
 		if (name == null) {
@@ -86,7 +67,7 @@ public final class LdapPrincipal implements Principal, java.io.Serializable {
 	 * Compares this principal to the specified object.
 	 *
 	 * @param object
-	 *            The object to compare this principal against.
+	 *               The object to compare this principal against.
 	 * @return true if they are equal; false otherwise.
 	 */
 	public boolean equals(Object object) {
@@ -96,7 +77,8 @@ public final class LdapPrincipal implements Principal, java.io.Serializable {
 		if (object instanceof LdapPrincipal) {
 			try {
 
-				return name.equals(getLdapName(((LdapPrincipal) object).getName()));
+				return name.equals(getLdapName(((LdapPrincipal) object)
+						.getName()));
 
 			} catch (InvalidNameException e) {
 				return false;

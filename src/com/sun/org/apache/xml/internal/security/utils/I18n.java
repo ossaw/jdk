@@ -62,9 +62,9 @@ public class I18n {
 	 *
 	 * @param message
 	 * @param args
-	 *            is an <CODE>Object[]</CODE> array of strings which are
-	 *            inserted into the String which is retrieved from the
-	 *            <CODE>ResouceBundle</CODE>
+	 *                is an <CODE>Object[]</CODE> array of strings which are
+	 *                inserted into the String which is retrieved from the
+	 *                <CODE>ResouceBundle</CODE>
 	 * @return message translated
 	 */
 	public static String translate(String message, Object[] args) {
@@ -96,7 +96,8 @@ public class I18n {
 			return resourceBundle.getString(msgID);
 		} catch (Throwable t) {
 			if (com.sun.org.apache.xml.internal.security.Init.isInitialized()) {
-				return "No message with ID \"" + msgID + "\" found in resource bundle \""
+				return "No message with ID \"" + msgID
+						+ "\" found in resource bundle \""
 						+ Constants.exceptionMessagesResourceBundleBase + "\"";
 			}
 			return I18n.NOT_INITIALIZED_MSG;
@@ -110,16 +111,20 @@ public class I18n {
 	 * @param originalException
 	 * @return message translated
 	 */
-	public static String getExceptionMessage(String msgID, Exception originalException) {
+	public static String getExceptionMessage(String msgID,
+			Exception originalException) {
 		try {
 			Object exArgs[] = { originalException.getMessage() };
-			return MessageFormat.format(resourceBundle.getString(msgID), exArgs);
+			return MessageFormat.format(resourceBundle.getString(msgID),
+					exArgs);
 		} catch (Throwable t) {
 			if (com.sun.org.apache.xml.internal.security.Init.isInitialized()) {
-				return "No message with ID \"" + msgID + "\" found in resource bundle \""
+				return "No message with ID \"" + msgID
+						+ "\" found in resource bundle \""
 						+ Constants.exceptionMessagesResourceBundleBase
-						+ "\". Original Exception was a " + originalException.getClass().getName()
-						+ " and message " + originalException.getMessage();
+						+ "\". Original Exception was a " + originalException
+								.getClass().getName() + " and message "
+						+ originalException.getMessage();
 			}
 			return I18n.NOT_INITIALIZED_MSG;
 		}
@@ -134,10 +139,12 @@ public class I18n {
 	 */
 	public static String getExceptionMessage(String msgID, Object exArgs[]) {
 		try {
-			return MessageFormat.format(resourceBundle.getString(msgID), exArgs);
+			return MessageFormat.format(resourceBundle.getString(msgID),
+					exArgs);
 		} catch (Throwable t) {
 			if (com.sun.org.apache.xml.internal.security.Init.isInitialized()) {
-				return "No message with ID \"" + msgID + "\" found in resource bundle \""
+				return "No message with ID \"" + msgID
+						+ "\" found in resource bundle \""
 						+ Constants.exceptionMessagesResourceBundleBase + "\"";
 			}
 			return I18n.NOT_INITIALIZED_MSG;
@@ -150,14 +157,15 @@ public class I18n {
 	 * @param languageCode
 	 * @param countryCode
 	 */
-	public synchronized static void init(String languageCode, String countryCode) {
+	public synchronized static void init(String languageCode,
+			String countryCode) {
 		if (alreadyInitialized) {
 			return;
 		}
 
 		I18n.resourceBundle = ResourceBundle.getBundle(
-				Constants.exceptionMessagesResourceBundleBase,
-				new Locale(languageCode, countryCode));
+				Constants.exceptionMessagesResourceBundleBase, new Locale(
+						languageCode, countryCode));
 		alreadyInitialized = true;
 	}
 }

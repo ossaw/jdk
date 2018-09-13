@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.wbmp;
@@ -49,8 +29,8 @@ public class WBMPMetadata extends IIOMetadata {
 	public int height;
 
 	public WBMPMetadata() {
-		super(true, nativeMetadataFormatName, "com.sun.imageio.plugins.wbmp.WBMPMetadataFormat",
-				null, null);
+		super(true, nativeMetadataFormatName,
+				"com.sun.imageio.plugins.wbmp.WBMPMetadataFormat", null, null);
 	}
 
 	public boolean isReadOnly() {
@@ -60,7 +40,8 @@ public class WBMPMetadata extends IIOMetadata {
 	public Node getAsTree(String formatName) {
 		if (formatName.equals(nativeMetadataFormatName)) {
 			return getNativeTree();
-		} else if (formatName.equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
+		} else if (formatName.equals(
+				IIOMetadataFormatImpl.standardMetadataFormatName)) {
 			return getStandardTree();
 		} else {
 			throw new IllegalArgumentException(I18N.getString("WBMPMetadata0"));
@@ -89,7 +70,8 @@ public class WBMPMetadata extends IIOMetadata {
 		throw new IllegalStateException(I18N.getString("WBMPMetadata1"));
 	}
 
-	private IIOMetadataNode addChildNode(IIOMetadataNode root, String name, Object object) {
+	private IIOMetadataNode addChildNode(IIOMetadataNode root, String name,
+			Object object) {
 		IIOMetadataNode child = new IIOMetadataNode(name);
 		if (object != null) {
 			child.setUserObject(object);

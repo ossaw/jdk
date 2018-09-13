@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -67,7 +47,8 @@ public abstract class JAXBIntrospector {
 	 * </p>
 	 *
 	 * @param jaxbElement
-	 *            is an object that {@link #isElement(Object)} returned true.
+	 *                    is an object that {@link #isElement(Object)} returned
+	 *                    true.
 	 *
 	 * @return xml element qname associated with jaxbElement; null if
 	 *         <code>jaxbElement</code> is not a JAXB Element.
@@ -86,7 +67,7 @@ public abstract class JAXBIntrospector {
 	 * </p>
 	 *
 	 * @param jaxbElement
-	 *            object that #isElement(Object) returns true.
+	 *                    object that #isElement(Object) returns true.
 	 *
 	 * @return The element value of the <code>jaxbElement</code>.
 	 */

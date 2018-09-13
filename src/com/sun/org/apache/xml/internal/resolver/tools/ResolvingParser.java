@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +65,8 @@ import com.sun.org.apache.xml.internal.resolver.helpers.FileURL;
  *
  * @version 1.0
  */
-public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, EntityResolver {
+public class ResolvingParser implements Parser, DTDHandler, DocumentHandler,
+		EntityResolver {
 	/** Make the parser Namespace aware? */
 	public static boolean namespaceAware = true;
 
@@ -127,7 +125,8 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 	private void initParser() {
 		catalogResolver = new CatalogResolver(catalogManager);
 		SAXParserFactory spf = catalogManager.useServicesMechanism()
-				? SAXParserFactory.newInstance() : new SAXParserFactoryImpl();
+				? SAXParserFactory.newInstance()
+				: new SAXParserFactoryImpl();
 		spf.setNamespaceAware(namespaceAware);
 		spf.setValidating(validating);
 
@@ -230,7 +229,8 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 	}
 
 	/** SAX DocumentHandler API. */
-	public void characters(char[] ch, int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
 		if (documentHandler != null) {
 			documentHandler.characters(ch, start, length);
 		}
@@ -251,14 +251,16 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 	}
 
 	/** SAX DocumentHandler API. */
-	public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
+	public void ignorableWhitespace(char[] ch, int start, int length)
+			throws SAXException {
 		if (documentHandler != null) {
 			documentHandler.ignorableWhitespace(ch, start, length);
 		}
 	}
 
 	/** SAX DocumentHandler API. */
-	public void processingInstruction(String target, String pidata) throws SAXException {
+	public void processingInstruction(String target, String pidata)
+			throws SAXException {
 
 		if (target.equals("oasis-xml-catalog")) {
 			URL catalog = null;
@@ -288,7 +290,8 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 
 			if (allowXMLCatalogPI) {
 				if (catalogManager.getAllowOasisXMLCatalogPI()) {
-					catalogManager.debug.message(4, "oasis-xml-catalog PI", pidata);
+					catalogManager.debug.message(4, "oasis-xml-catalog PI",
+							pidata);
 
 					if (catalog != null) {
 						try {
@@ -300,21 +303,25 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 								piCatalogResolver = new CatalogResolver(true);
 							}
 
-							piCatalogResolver.getCatalog().parseCatalog(catalog.toString());
+							piCatalogResolver.getCatalog().parseCatalog(catalog
+									.toString());
 						} catch (Exception e) {
 							catalogManager.debug.message(3,
-									"Exception parsing oasis-xml-catalog: " + catalog.toString());
+									"Exception parsing oasis-xml-catalog: "
+											+ catalog.toString());
 						}
 					} else {
 						catalogManager.debug.message(3,
 								"PI oasis-xml-catalog unparseable: " + pidata);
 					}
 				} else {
-					catalogManager.debug.message(4, "PI oasis-xml-catalog ignored: " + pidata);
+					catalogManager.debug.message(4,
+							"PI oasis-xml-catalog ignored: " + pidata);
 				}
 			} else {
 				catalogManager.debug.message(3,
-						"PI oasis-xml-catalog occurred in an invalid place: " + pidata);
+						"PI oasis-xml-catalog occurred in an invalid place: "
+								+ pidata);
 			}
 		} else {
 			if (documentHandler != null) {
@@ -338,7 +345,8 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 	}
 
 	/** SAX DocumentHandler API. */
-	public void startElement(String name, AttributeList atts) throws SAXException {
+	public void startElement(String name, AttributeList atts)
+			throws SAXException {
 		allowXMLCatalogPI = false;
 		if (documentHandler != null) {
 			documentHandler.startElement(name, atts);
@@ -346,7 +354,8 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 	}
 
 	/** SAX DTDHandler API. */
-	public void notationDecl(String name, String publicId, String systemId) throws SAXException {
+	public void notationDecl(String name, String publicId, String systemId)
+			throws SAXException {
 		allowXMLCatalogPI = false;
 		if (dtdHandler != null) {
 			dtdHandler.notationDecl(name, publicId, systemId);
@@ -354,11 +363,12 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 	}
 
 	/** SAX DTDHandler API. */
-	public void unparsedEntityDecl(String name, String publicId, String systemId,
-			String notationName) throws SAXException {
+	public void unparsedEntityDecl(String name, String publicId,
+			String systemId, String notationName) throws SAXException {
 		allowXMLCatalogPI = false;
 		if (dtdHandler != null) {
-			dtdHandler.unparsedEntityDecl(name, publicId, systemId, notationName);
+			dtdHandler.unparsedEntityDecl(name, publicId, systemId,
+					notationName);
 		}
 	}
 
@@ -396,7 +406,8 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 
 				return iSource;
 			} catch (Exception e) {
-				catalogManager.debug.message(1, "Failed to create InputSource", resolved);
+				catalogManager.debug.message(1, "Failed to create InputSource",
+						resolved);
 				return null;
 			}
 		} else {
@@ -439,8 +450,10 @@ public class ResolvingParser implements Parser, DTDHandler, DocumentHandler, Ent
 	/** Provide one possible explanation for an InternalError. */
 	private void explain(String systemId) {
 		if (!suppressExplanation) {
-			System.out.println("Parser probably encountered bad URI in " + systemId);
-			System.out.println("For example, replace '/some/uri' with 'file:/some/uri'.");
+			System.out.println("Parser probably encountered bad URI in "
+					+ systemId);
+			System.out.println(
+					"For example, replace '/some/uri' with 'file:/some/uri'.");
 		}
 	}
 }

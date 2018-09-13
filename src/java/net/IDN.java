@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.net;
 
@@ -113,14 +93,15 @@ public final class IDN {
 	 * stop) in output translated string.
 	 *
 	 * @param input
-	 *            the string to be processed
+	 *              the string to be processed
 	 * @param flag
-	 *            process flag; can be 0 or any logical OR of possible flags
+	 *              process flag; can be 0 or any logical OR of possible flags
 	 *
 	 * @return the translated {@code String}
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the input string doesn't conform to RFC 3490 specification
+	 *                                  if the input string doesn't conform to
+	 *                                  RFC 3490 specification
 	 */
 	public static String toASCII(String input, int flag) {
 		int p = 0, q = 0;
@@ -154,12 +135,13 @@ public final class IDN {
 	 * toASCII}(input,&nbsp;0); </blockquote>
 	 *
 	 * @param input
-	 *            the string to be processed
+	 *              the string to be processed
 	 *
 	 * @return the translated {@code String}
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the input string doesn't conform to RFC 3490 specification
+	 *                                  if the input string doesn't conform to
+	 *                                  RFC 3490 specification
 	 */
 	public static String toASCII(String input) {
 		return toASCII(input, 0);
@@ -184,9 +166,9 @@ public final class IDN {
 	 * &#0092;uFF61 (halfwidth ideographic full stop).
 	 *
 	 * @param input
-	 *            the string to be processed
+	 *              the string to be processed
 	 * @param flag
-	 *            process flag; can be 0 or any logical OR of possible flags
+	 *              process flag; can be 0 or any logical OR of possible flags
 	 *
 	 * @return the translated {@code String}
 	 */
@@ -222,7 +204,7 @@ public final class IDN {
 	 * toUnicode}(input,&nbsp;0); </blockquote>
 	 *
 	 * @param input
-	 *            the string to be processed
+	 *              the string to be processed
 	 *
 	 * @return the translated {@code String}
 	 */
@@ -247,11 +229,13 @@ public final class IDN {
 		try {
 			final String IDN_PROFILE = "uidna.spp";
 			if (System.getSecurityManager() != null) {
-				stream = AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
-					public InputStream run() {
-						return StringPrep.class.getResourceAsStream(IDN_PROFILE);
-					}
-				});
+				stream = AccessController.doPrivileged(
+						new PrivilegedAction<InputStream>() {
+							public InputStream run() {
+								return StringPrep.class.getResourceAsStream(
+										IDN_PROFILE);
+							}
+						});
 			} else {
 				stream = StringPrep.class.getResourceAsStream(IDN_PROFILE);
 			}
@@ -269,8 +253,7 @@ public final class IDN {
 	//
 	// to suppress the default zero-argument constructor
 	//
-	private IDN() {
-	}
+	private IDN() {}
 
 	//
 	// toASCII operation; should only apply to a single label
@@ -298,7 +281,8 @@ public final class IDN {
 		// step 8, move forward to check the smallest number of the code points
 		// the length must be inside 1..63
 		if (dest.length() == 0) {
-			throw new IllegalArgumentException("Empty label is not a legal name");
+			throw new IllegalArgumentException(
+					"Empty label is not a legal name");
 		}
 
 		// step 3
@@ -310,13 +294,16 @@ public final class IDN {
 			for (int i = 0; i < dest.length(); i++) {
 				int c = dest.charAt(i);
 				if (isNonLDHAsciiCodePoint(c)) {
-					throw new IllegalArgumentException("Contains non-LDH ASCII characters");
+					throw new IllegalArgumentException(
+							"Contains non-LDH ASCII characters");
 				}
 			}
 
-			if (dest.charAt(0) == '-' || dest.charAt(dest.length() - 1) == '-') {
+			if (dest.charAt(0) == '-' || dest.charAt(dest.length()
+					- 1) == '-') {
 
-				throw new IllegalArgumentException("Has leading or trailing hyphen");
+				throw new IllegalArgumentException(
+						"Has leading or trailing hyphen");
 			}
 		}
 
@@ -342,7 +329,8 @@ public final class IDN {
 					// prepend the ACE prefix
 					dest.insert(0, ACE_PREFIX);
 				} else {
-					throw new IllegalArgumentException("The input starts with the ACE Prefix");
+					throw new IllegalArgumentException(
+							"The input starts with the ACE Prefix");
 				}
 
 			}
@@ -351,7 +339,8 @@ public final class IDN {
 		// step 8
 		// the length must be inside 1..63
 		if (dest.length() > MAX_LABEL_LENGTH) {
-			throw new IllegalArgumentException("The label in the input is too long");
+			throw new IllegalArgumentException(
+					"The label in the input is too long");
 		}
 
 		return dest.toString();
@@ -395,7 +384,8 @@ public final class IDN {
 			try {
 				// step 5
 				// Decode using punycode
-				StringBuffer decodeOut = Punycode.decode(new StringBuffer(temp), null);
+				StringBuffer decodeOut = Punycode.decode(new StringBuffer(temp),
+						null);
 
 				// step 6
 				// Apply toASCII
@@ -428,8 +418,8 @@ public final class IDN {
 	//
 	private static boolean isNonLDHAsciiCodePoint(int ch) {
 		return (0x0000 <= ch && ch <= 0x002C) || (0x002E <= ch && ch <= 0x002F)
-				|| (0x003A <= ch && ch <= 0x0040) || (0x005B <= ch && ch <= 0x0060)
-				|| (0x007B <= ch && ch <= 0x007F);
+				|| (0x003A <= ch && ch <= 0x0040) || (0x005B <= ch
+						&& ch <= 0x0060) || (0x007B <= ch && ch <= 0x007F);
 	}
 
 	//

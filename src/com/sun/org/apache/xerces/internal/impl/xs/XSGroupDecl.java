@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -88,14 +85,16 @@ public class XSGroupDecl implements XSModelGroupDefinition {
 	 * Optional. Annotation.
 	 */
 	public XSAnnotation getAnnotation() {
-		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0) : null;
+		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0)
+				: null;
 	}
 
 	/**
 	 * Optional. Annotations.
 	 */
 	public XSObjectList getAnnotations() {
-		return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
+		return (fAnnotations != null) ? fAnnotations
+				: XSObjectListImpl.EMPTY_LIST;
 	}
 
 	/**

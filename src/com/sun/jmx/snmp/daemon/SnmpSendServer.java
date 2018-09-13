@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -65,8 +64,8 @@ final class SnmpSendServer extends Thread {
 		Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class.getName(), "run",
-					"Thread Started");
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class
+					.getName(), "run", "Thread Started");
 		}
 		while (true) {
 			try {
@@ -76,26 +75,27 @@ final class SnmpSendServer extends Thread {
 				}
 			} catch (Exception anye) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class.getName(), "run",
-							"Exception in send server", anye);
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class
+							.getName(), "run", "Exception in send server",
+							anye);
 				}
 			} catch (ThreadDeath td) {
 				// This is not good but Netscape does kill all threads when
 				// the pagecontext changes.
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class.getName(), "run",
-							"Exiting... Fatal error");
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class
+							.getName(), "run", "Exiting... Fatal error");
 				}
 				throw td;
 			} catch (OutOfMemoryError ome) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class.getName(), "run",
-							"Out of memory");
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class
+							.getName(), "run", "Out of memory");
 				}
 			} catch (Error err) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class.getName(), "run",
-							"Got unexpected error", err);
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class
+							.getName(), "run", "Got unexpected error", err);
 				}
 				throw err;
 			}
@@ -107,24 +107,26 @@ final class SnmpSendServer extends Thread {
 		if (readyPool == null || readyPool.isEmpty()) {
 			// wait to be signaled by the an active request.
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class.getName(),
-						"prepareAndSendRequest", "Blocking for inform requests");
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class
+						.getName(), "prepareAndSendRequest",
+						"Blocking for inform requests");
 			}
 			readyPool = snmpq.getAllOutstandingRequest(intervalRange);
 			if (isBeingDestroyed == true)
 				return;
 		} else {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class.getName(),
-						"prepareAndSendRequest",
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSendServer.class
+						.getName(), "prepareAndSendRequest",
 						"Inform requests from a previous block left unprocessed. Will try again");
 			}
 		}
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class.getName(),
-					"prepareAndSendRequest",
-					"List of inform requests to send : " + reqListToString(readyPool));
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class
+					.getName(), "prepareAndSendRequest",
+					"List of inform requests to send : " + reqListToString(
+							readyPool));
 		}
 
 		synchronized (this) {
@@ -151,8 +153,10 @@ final class SnmpSendServer extends Thread {
 	private void fireRequest(SnmpInformRequest req) {
 		if (req != null && req.inProgress()) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class.getName(), "fireRequest",
-						"Firing inform request directly. -> " + req.getRequestId());
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSendServer.class
+						.getName(), "fireRequest",
+						"Firing inform request directly. -> " + req
+								.getRequestId());
 			}
 			req.action();
 		}

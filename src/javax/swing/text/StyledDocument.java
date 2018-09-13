@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -40,15 +20,18 @@ public interface StyledDocument extends Document {
 	 * an attribute specified in the parent.
 	 *
 	 * @param nm
-	 *            the name of the style (must be unique within the collection of
-	 *            named styles). The name may be null if the style is unnamed,
-	 *            but the caller is responsible for managing the reference
-	 *            returned as an unnamed style can't be fetched by name. An
-	 *            unnamed style may be useful for things like character
-	 *            attribute overrides such as found in a style run.
+	 *               the name of the style (must be unique within the collection
+	 *               of
+	 *               named styles). The name may be null if the style is
+	 *               unnamed,
+	 *               but the caller is responsible for managing the reference
+	 *               returned as an unnamed style can't be fetched by name. An
+	 *               unnamed style may be useful for things like character
+	 *               attribute overrides such as found in a style run.
 	 * @param parent
-	 *            the parent style. This may be null if unspecified attributes
-	 *            need not be resolved in some other style.
+	 *               the parent style. This may be null if unspecified
+	 *               attributes
+	 *               need not be resolved in some other style.
 	 * @return the style
 	 */
 	public Style addStyle(String nm, Style parent);
@@ -57,7 +40,7 @@ public interface StyledDocument extends Document {
 	 * Removes a named style previously added to the document.
 	 *
 	 * @param nm
-	 *            the name of the style to remove
+	 *           the name of the style to remove
 	 */
 	public void removeStyle(String nm);
 
@@ -65,7 +48,7 @@ public interface StyledDocument extends Document {
 	 * Fetches a named style previously added.
 	 *
 	 * @param nm
-	 *            the name of the style
+	 *           the name of the style
 	 * @return the style
 	 */
 	public Style getStyle(String nm);
@@ -79,39 +62,45 @@ public interface StyledDocument extends Document {
 	 * setting replace to true.
 	 *
 	 * @param offset
-	 *            the start of the change &gt;= 0
+	 *                the start of the change &gt;= 0
 	 * @param length
-	 *            the length of the change &gt;= 0
+	 *                the length of the change &gt;= 0
 	 * @param s
-	 *            the non-null attributes to change to. Any attributes defined
-	 *            will be applied to the text for the given range.
+	 *                the non-null attributes to change to. Any attributes
+	 *                defined
+	 *                will be applied to the text for the given range.
 	 * @param replace
-	 *            indicates whether or not the previous attributes should be
-	 *            cleared before the new attributes as set. If true, the
-	 *            operation will replace the previous attributes entirely. If
-	 *            false, the new attributes will be merged with the previous
-	 *            attributes.
+	 *                indicates whether or not the previous attributes should be
+	 *                cleared before the new attributes as set. If true, the
+	 *                operation will replace the previous attributes entirely.
+	 *                If
+	 *                false, the new attributes will be merged with the previous
+	 *                attributes.
 	 */
-	public void setCharacterAttributes(int offset, int length, AttributeSet s, boolean replace);
+	public void setCharacterAttributes(int offset, int length, AttributeSet s,
+			boolean replace);
 
 	/**
 	 * Sets paragraph attributes.
 	 *
 	 * @param offset
-	 *            the start of the change &gt;= 0
+	 *                the start of the change &gt;= 0
 	 * @param length
-	 *            the length of the change &gt;= 0
+	 *                the length of the change &gt;= 0
 	 * @param s
-	 *            the non-null attributes to change to. Any attributes defined
-	 *            will be applied to the text for the given range.
+	 *                the non-null attributes to change to. Any attributes
+	 *                defined
+	 *                will be applied to the text for the given range.
 	 * @param replace
-	 *            indicates whether or not the previous attributes should be
-	 *            cleared before the new attributes are set. If true, the
-	 *            operation will replace the previous attributes entirely. If
-	 *            false, the new attributes will be merged with the previous
-	 *            attributes.
+	 *                indicates whether or not the previous attributes should be
+	 *                cleared before the new attributes are set. If true, the
+	 *                operation will replace the previous attributes entirely.
+	 *                If
+	 *                false, the new attributes will be merged with the previous
+	 *                attributes.
 	 */
-	public void setParagraphAttributes(int offset, int length, AttributeSet s, boolean replace);
+	public void setParagraphAttributes(int offset, int length, AttributeSet s,
+			boolean replace);
 
 	/**
 	 * Sets the logical style to use for the paragraph at the given position. If
@@ -131,7 +120,7 @@ public interface StyledDocument extends Document {
 	 * Gets a logical style for a given position in a paragraph.
 	 *
 	 * @param p
-	 *            the position &gt;= 0
+	 *          the position &gt;= 0
 	 * @return the style
 	 */
 	public Style getLogicalStyle(int p);
@@ -162,7 +151,7 @@ public interface StyledDocument extends Document {
 	 * hue, etc.
 	 *
 	 * @param attr
-	 *            the set of attributes
+	 *             the set of attributes
 	 * @return the color
 	 */
 	public Color getForeground(AttributeSet attr);
@@ -173,7 +162,7 @@ public interface StyledDocument extends Document {
 	 * hue, etc.
 	 *
 	 * @param attr
-	 *            the set of attributes
+	 *             the set of attributes
 	 * @return the color
 	 */
 	public Color getBackground(AttributeSet attr);
@@ -184,7 +173,7 @@ public interface StyledDocument extends Document {
 	 * available on the system the document is currently being used on.
 	 *
 	 * @param attr
-	 *            the set of attributes
+	 *             the set of attributes
 	 * @return the font
 	 */
 	public Font getFont(AttributeSet attr);

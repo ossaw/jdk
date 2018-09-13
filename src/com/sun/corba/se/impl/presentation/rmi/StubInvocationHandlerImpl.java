@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.presentation.rmi;
@@ -68,7 +48,8 @@ import com.sun.corba.se.spi.orbutil.proxy.LinkedInvocationHandler;
 
 import com.sun.corba.se.impl.corba.CORBAObjectImpl;
 
-public final class StubInvocationHandlerImpl implements LinkedInvocationHandler {
+public final class StubInvocationHandlerImpl implements
+		LinkedInvocationHandler {
 	private transient PresentationManager.ClassData classData;
 	private transient PresentationManager pm;
 	private transient org.omg.CORBA.Object stub;
@@ -83,7 +64,8 @@ public final class StubInvocationHandlerImpl implements LinkedInvocationHandler 
 	}
 
 	public StubInvocationHandlerImpl(PresentationManager pm,
-			PresentationManager.ClassData classData, org.omg.CORBA.Object stub) {
+			PresentationManager.ClassData classData,
+			org.omg.CORBA.Object stub) {
 		SecurityManager s = System.getSecurityManager();
 		if (s != null) {
 			s.checkPermission(new DynamicAccessPermission("access"));
@@ -102,7 +84,8 @@ public final class StubInvocationHandlerImpl implements LinkedInvocationHandler 
 			ContactInfoList cil = cdel.getContactInfoList();
 			if (cil instanceof CorbaContactInfoList) {
 				CorbaContactInfoList ccil = (CorbaContactInfoList) cil;
-				LocalClientRequestDispatcher lcrd = ccil.getLocalClientRequestDispatcher();
+				LocalClientRequestDispatcher lcrd = ccil
+						.getLocalClientRequestDispatcher();
 				result = lcrd.useLocalInvocation(null);
 			}
 		}
@@ -115,11 +98,13 @@ public final class StubInvocationHandlerImpl implements LinkedInvocationHandler 
 	 * result in a remote invocation.
 	 * 
 	 * @param proxy
-	 *            The proxy used for this class (null if not using
-	 *            java.lang.reflect.Proxy)
+	 *              The proxy used for this class (null if not using
+	 *              java.lang.reflect.Proxy)
 	 */
-	public Object invoke(Object proxy, final Method method, Object[] args) throws Throwable {
-		String giopMethodName = classData.getIDLNameTranslator().getIDLName(method);
+	public Object invoke(Object proxy, final Method method, Object[] args)
+			throws Throwable {
+		String giopMethodName = classData.getIDLNameTranslator().getIDLName(
+				method);
 		DynamicMethodMarshaller dmm = pm.getDynamicMethodMarshaller(method);
 
 		Delegate delegate = null;
@@ -141,7 +126,8 @@ public final class StubInvocationHandlerImpl implements LinkedInvocationHandler 
 					dmm.writeArguments(out, args);
 
 					// finish invocation
-					in = (org.omg.CORBA_2_3.portable.InputStream) delegate.invoke(stub, out);
+					in = (org.omg.CORBA_2_3.portable.InputStream) delegate
+							.invoke(stub, out);
 
 					// unmarshal result
 					return dmm.readResult(in);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.util;
@@ -42,7 +22,8 @@ public class DocTreePath implements Iterable<DocTree> {
 	 * 
 	 * @return null if the node is not found
 	 */
-	public static DocTreePath getPath(TreePath treePath, DocCommentTree doc, DocTree target) {
+	public static DocTreePath getPath(TreePath treePath, DocCommentTree doc,
+			DocTree target) {
 		return getPath(new DocTreePath(treePath, doc), target);
 	}
 
@@ -90,9 +71,9 @@ public class DocTreePath implements Iterable<DocTree> {
 	 * Creates a DocTreePath for a root node.
 	 *
 	 * @param treePath
-	 *            the TreePath from which the root node was created.
+	 *                 the TreePath from which the root node was created.
 	 * @param t
-	 *            the DocCommentTree to create the path for.
+	 *                 the DocCommentTree to create the path for.
 	 */
 	public DocTreePath(TreePath treePath, DocCommentTree t) {
 		treePath.getClass();

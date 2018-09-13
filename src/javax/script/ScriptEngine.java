@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -105,64 +85,74 @@ public interface ScriptEngine {
 	 * this execution.
 	 *
 	 * @param script
-	 *            The script to be executed by the script engine.
+	 *                The script to be executed by the script engine.
 	 *
 	 * @param context
-	 *            A <code>ScriptContext</code> exposing sets of attributes in
-	 *            different scopes. The meanings of the scopes
-	 *            <code>ScriptContext.GLOBAL_SCOPE</code>, and
-	 *            <code>ScriptContext.ENGINE_SCOPE</code> are defined in the
-	 *            specification. <br>
-	 *            <br>
-	 *            The <code>ENGINE_SCOPE</code> <code>Bindings</code> of the
-	 *            <code>ScriptContext</code> contains the bindings of scripting
-	 *            variables to application objects to be used during this script
-	 *            execution.
+	 *                A <code>ScriptContext</code> exposing sets of attributes
+	 *                in
+	 *                different scopes. The meanings of the scopes
+	 *                <code>ScriptContext.GLOBAL_SCOPE</code>, and
+	 *                <code>ScriptContext.ENGINE_SCOPE</code> are defined in the
+	 *                specification. <br>
+	 *                <br>
+	 *                The <code>ENGINE_SCOPE</code> <code>Bindings</code> of the
+	 *                <code>ScriptContext</code> contains the bindings of
+	 *                scripting
+	 *                variables to application objects to be used during this
+	 *                script
+	 *                execution.
 	 *
 	 *
 	 * @return The value returned from the execution of the script.
 	 *
 	 * @throws ScriptException
-	 *             if an error occurs in script. ScriptEngines should create and
-	 *             throw <code>ScriptException</code> wrappers for checked
-	 *             Exceptions thrown by underlying scripting implementations.
+	 *                              if an error occurs in script. ScriptEngines
+	 *                              should create and
+	 *                              throw <code>ScriptException</code> wrappers
+	 *                              for checked
+	 *                              Exceptions thrown by underlying scripting
+	 *                              implementations.
 	 * @throws NullPointerException
-	 *             if either argument is null.
+	 *                              if either argument is null.
 	 */
-	public Object eval(String script, ScriptContext context) throws ScriptException;
+	public Object eval(String script, ScriptContext context)
+			throws ScriptException;
 
 	/**
 	 * Same as <code>eval(String, ScriptContext)</code> where the source of the
 	 * script is read from a <code>Reader</code>.
 	 *
 	 * @param reader
-	 *            The source of the script to be executed by the script engine.
+	 *                The source of the script to be executed by the script
+	 *                engine.
 	 *
 	 * @param context
-	 *            The <code>ScriptContext</code> passed to the script engine.
+	 *                The <code>ScriptContext</code> passed to the script
+	 *                engine.
 	 *
 	 * @return The value returned from the execution of the script.
 	 *
 	 * @throws ScriptException
-	 *             if an error occurs in script.
+	 *                              if an error occurs in script.
 	 * @throws NullPointerException
-	 *             if either argument is null.
+	 *                              if either argument is null.
 	 */
-	public Object eval(Reader reader, ScriptContext context) throws ScriptException;
+	public Object eval(Reader reader, ScriptContext context)
+			throws ScriptException;
 
 	/**
 	 * Executes the specified script. The default <code>ScriptContext</code> for
 	 * the <code>ScriptEngine</code> is used.
 	 *
 	 * @param script
-	 *            The script language source to be executed.
+	 *               The script language source to be executed.
 	 *
 	 * @return The value returned from the execution of the script.
 	 *
 	 * @throws ScriptException
-	 *             if error occurs in script.
+	 *                              if error occurs in script.
 	 * @throws NullPointerException
-	 *             if the argument is null.
+	 *                              if the argument is null.
 	 */
 	public Object eval(String script) throws ScriptException;
 
@@ -171,14 +161,14 @@ public interface ScriptEngine {
 	 * provided as a <code>Reader</code>
 	 *
 	 * @param reader
-	 *            The source of the script.
+	 *               The source of the script.
 	 *
 	 * @return The value returned by the script.
 	 *
 	 * @throws ScriptException
-	 *             if an error occurs in script.
+	 *                              if an error occurs in script.
 	 * @throws NullPointerException
-	 *             if the argument is null.
+	 *                              if the argument is null.
 	 */
 	public Object eval(Reader reader) throws ScriptException;
 
@@ -193,18 +183,19 @@ public interface ScriptEngine {
 	 * and its mappings are unaltered by the script execution.
 	 *
 	 * @param script
-	 *            The source for the script.
+	 *               The source for the script.
 	 *
 	 * @param n
-	 *            The <code>Bindings</code> of attributes to be used for script
-	 *            execution.
+	 *               The <code>Bindings</code> of attributes to be used for
+	 *               script
+	 *               execution.
 	 *
 	 * @return The value returned by the script.
 	 *
 	 * @throws ScriptException
-	 *             if an error occurs in script.
+	 *                              if an error occurs in script.
 	 * @throws NullPointerException
-	 *             if either argument is null.
+	 *                              if either argument is null.
 	 */
 	public Object eval(String script, Bindings n) throws ScriptException;
 
@@ -213,16 +204,16 @@ public interface ScriptEngine {
 	 * script is provided as a <code>Reader</code>.
 	 *
 	 * @param reader
-	 *            The source of the script.
+	 *               The source of the script.
 	 * @param n
-	 *            The <code>Bindings</code> of attributes.
+	 *               The <code>Bindings</code> of attributes.
 	 *
 	 * @return The value returned by the script.
 	 *
 	 * @throws ScriptException
-	 *             if an error occurs.
+	 *                              if an error occurs.
 	 * @throws NullPointerException
-	 *             if either argument is null.
+	 *                              if either argument is null.
 	 */
 	public Object eval(Reader reader, Bindings n) throws ScriptException;
 
@@ -234,14 +225,14 @@ public interface ScriptEngine {
 	 * <code>getBindings(ScriptContext.ENGINE_SCOPE).put</code>.
 	 *
 	 * @param key
-	 *            The name of named value to add
+	 *              The name of named value to add
 	 * @param value
-	 *            The value of named value to add.
+	 *              The value of named value to add.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null.
+	 *                                  if key is null.
 	 * @throws IllegalArgumentException
-	 *             if key is empty.
+	 *                                  if key is empty.
 	 */
 	public void put(String key, Object value);
 
@@ -257,9 +248,9 @@ public interface ScriptEngine {
 	 * @return the value for the given key
 	 *
 	 * @throws NullPointerException
-	 *             if key is null.
+	 *                                  if key is null.
 	 * @throws IllegalArgumentException
-	 *             if key is empty.
+	 *                                  if key is empty.
 	 */
 	public Object get(String key);
 
@@ -287,19 +278,19 @@ public interface ScriptEngine {
 	 * default <code>ScriptContext</code> of the <code>ScriptEngine</code>.
 	 *
 	 * @param scope
-	 *            Either <code>ScriptContext.ENGINE_SCOPE</code> or
-	 *            <code>ScriptContext.GLOBAL_SCOPE</code> which specifies the
-	 *            <code>Bindings</code> to return. Implementations of
-	 *            <code>ScriptContext</code> may define additional scopes. If
-	 *            the default <code>ScriptContext</code> of the
-	 *            <code>ScriptEngine</code> defines additional scopes, any of
-	 *            them can be passed to get the corresponding
-	 *            <code>Bindings</code>.
+	 *              Either <code>ScriptContext.ENGINE_SCOPE</code> or
+	 *              <code>ScriptContext.GLOBAL_SCOPE</code> which specifies the
+	 *              <code>Bindings</code> to return. Implementations of
+	 *              <code>ScriptContext</code> may define additional scopes. If
+	 *              the default <code>ScriptContext</code> of the
+	 *              <code>ScriptEngine</code> defines additional scopes, any of
+	 *              them can be passed to get the corresponding
+	 *              <code>Bindings</code>.
 	 *
 	 * @return The <code>Bindings</code> with the specified scope.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if specified scope is invalid
+	 *                                  if specified scope is invalid
 	 *
 	 */
 	public Bindings getBindings(int scope);
@@ -326,18 +317,19 @@ public interface ScriptEngine {
 	 * <code>ScriptContext</code> of the <code>ScriptEngine</code>.
 	 *
 	 * @param bindings
-	 *            The <code>Bindings</code> for the specified scope.
+	 *                 The <code>Bindings</code> for the specified scope.
 	 * @param scope
-	 *            The specified scope. Either
-	 *            <code>ScriptContext.ENGINE_SCOPE</code>,
-	 *            <code>ScriptContext.GLOBAL_SCOPE</code>, or any other valid
-	 *            value of scope.
+	 *                 The specified scope. Either
+	 *                 <code>ScriptContext.ENGINE_SCOPE</code>,
+	 *                 <code>ScriptContext.GLOBAL_SCOPE</code>, or any other
+	 *                 valid
+	 *                 value of scope.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the scope is invalid
+	 *                                  if the scope is invalid
 	 * @throws NullPointerException
-	 *             if the bindings is null and the scope is
-	 *             <code>ScriptContext.ENGINE_SCOPE</code>
+	 *                                  if the bindings is null and the scope is
+	 *                                  <code>ScriptContext.ENGINE_SCOPE</code>
 	 */
 	public void setBindings(Bindings bindings, int scope);
 
@@ -365,10 +357,11 @@ public interface ScriptEngine {
 	 * script executions when no <code>ScriptContext</code> is specified.
 	 *
 	 * @param context
-	 *            A <code>ScriptContext</code> that will replace the default
-	 *            <code>ScriptContext</code> in the <code>ScriptEngine</code>.
+	 *                A <code>ScriptContext</code> that will replace the default
+	 *                <code>ScriptContext</code> in the
+	 *                <code>ScriptEngine</code>.
 	 * @throws NullPointerException
-	 *             if context is null.
+	 *                              if context is null.
 	 */
 	public void setContext(ScriptContext context);
 

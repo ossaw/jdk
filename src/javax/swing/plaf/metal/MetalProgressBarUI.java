@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -94,9 +74,11 @@ public class MetalProgressBarUI extends BasicProgressBarUI {
 					g2.setColor(MetalLookAndFeel.getPrimaryControlDarkShadow());
 
 					if (isLeftToRight) {
-						g2.drawLine(startX, startY, startX + amountFull - 1, startY);
+						g2.drawLine(startX, startY, startX + amountFull - 1,
+								startY);
 					} else {
-						g2.drawLine(endX, startY, endX - amountFull + 1, startY);
+						g2.drawLine(endX, startY, endX - amountFull + 1,
+								startY);
 						if (progressBar.getPercentComplete() != 1.f) {
 							g2.setColor(MetalLookAndFeel.getControlShadow());
 						}

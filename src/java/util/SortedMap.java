@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -106,9 +86,9 @@ package java.util;
  * Framework</a>.
  *
  * @param <K>
- *            the type of keys maintained by this map
+ *        the type of keys maintained by this map
  * @param <V>
- *            the type of mapped values
+ *        the type of mapped values
  *
  * @author Josh Bloch
  * @see Map
@@ -145,25 +125,34 @@ public interface SortedMap<K, V> extends Map<K, V> {
 	 * attempt to insert a key outside its range.
 	 *
 	 * @param fromKey
-	 *            low endpoint (inclusive) of the keys in the returned map
+	 *                low endpoint (inclusive) of the keys in the returned map
 	 * @param toKey
-	 *            high endpoint (exclusive) of the keys in the returned map
+	 *                high endpoint (exclusive) of the keys in the returned map
 	 * @return a view of the portion of this map whose keys range from
 	 *         {@code fromKey}, inclusive, to {@code toKey}, exclusive
 	 * @throws ClassCastException
-	 *             if {@code fromKey} and {@code toKey} cannot be compared to
-	 *             one another using this map's comparator (or, if the map has
-	 *             no comparator, using natural ordering). Implementations may,
-	 *             but are not required to, throw this exception if
-	 *             {@code fromKey} or {@code toKey} cannot be compared to keys
-	 *             currently in the map.
+	 *                                  if {@code fromKey} and {@code toKey}
+	 *                                  cannot be compared to
+	 *                                  one another using this map's comparator
+	 *                                  (or, if the map has
+	 *                                  no comparator, using natural ordering).
+	 *                                  Implementations may,
+	 *                                  but are not required to, throw this
+	 *                                  exception if
+	 *                                  {@code fromKey} or {@code toKey} cannot
+	 *                                  be compared to keys
+	 *                                  currently in the map.
 	 * @throws NullPointerException
-	 *             if {@code fromKey} or {@code toKey} is null and this map does
-	 *             not permit null keys
+	 *                                  if {@code fromKey} or {@code toKey} is
+	 *                                  null and this map does
+	 *                                  not permit null keys
 	 * @throws IllegalArgumentException
-	 *             if {@code fromKey} is greater than {@code toKey}; or if this
-	 *             map itself has a restricted range, and {@code fromKey} or
-	 *             {@code toKey} lies outside the bounds of the range
+	 *                                  if {@code fromKey} is greater than
+	 *                                  {@code toKey}; or if this
+	 *                                  map itself has a restricted range, and
+	 *                                  {@code fromKey} or
+	 *                                  {@code toKey} lies outside the bounds of
+	 *                                  the range
 	 */
 	SortedMap<K, V> subMap(K fromKey, K toKey);
 
@@ -178,21 +167,28 @@ public interface SortedMap<K, V> extends Map<K, V> {
 	 * attempt to insert a key outside its range.
 	 *
 	 * @param toKey
-	 *            high endpoint (exclusive) of the keys in the returned map
+	 *              high endpoint (exclusive) of the keys in the returned map
 	 * @return a view of the portion of this map whose keys are strictly less
 	 *         than {@code toKey}
 	 * @throws ClassCastException
-	 *             if {@code toKey} is not compatible with this map's comparator
-	 *             (or, if the map has no comparator, if {@code toKey} does not
-	 *             implement {@link Comparable}). Implementations may, but are
-	 *             not required to, throw this exception if {@code toKey} cannot
-	 *             be compared to keys currently in the map.
+	 *                                  if {@code toKey} is not compatible with
+	 *                                  this map's comparator
+	 *                                  (or, if the map has no comparator, if
+	 *                                  {@code toKey} does not
+	 *                                  implement {@link Comparable}).
+	 *                                  Implementations may, but are
+	 *                                  not required to, throw this exception if
+	 *                                  {@code toKey} cannot
+	 *                                  be compared to keys currently in the
+	 *                                  map.
 	 * @throws NullPointerException
-	 *             if {@code toKey} is null and this map does not permit null
-	 *             keys
+	 *                                  if {@code toKey} is null and this map
+	 *                                  does not permit null
+	 *                                  keys
 	 * @throws IllegalArgumentException
-	 *             if this map itself has a restricted range, and {@code toKey}
-	 *             lies outside the bounds of the range
+	 *                                  if this map itself has a restricted
+	 *                                  range, and {@code toKey}
+	 *                                  lies outside the bounds of the range
 	 */
 	SortedMap<K, V> headMap(K toKey);
 
@@ -208,22 +204,30 @@ public interface SortedMap<K, V> extends Map<K, V> {
 	 * attempt to insert a key outside its range.
 	 *
 	 * @param fromKey
-	 *            low endpoint (inclusive) of the keys in the returned map
+	 *                low endpoint (inclusive) of the keys in the returned map
 	 * @return a view of the portion of this map whose keys are greater than or
 	 *         equal to {@code fromKey}
 	 * @throws ClassCastException
-	 *             if {@code fromKey} is not compatible with this map's
-	 *             comparator (or, if the map has no comparator, if
-	 *             {@code fromKey} does not implement {@link Comparable}).
-	 *             Implementations may, but are not required to, throw this
-	 *             exception if {@code fromKey} cannot be compared to keys
-	 *             currently in the map.
+	 *                                  if {@code fromKey} is not compatible
+	 *                                  with this map's
+	 *                                  comparator (or, if the map has no
+	 *                                  comparator, if
+	 *                                  {@code fromKey} does not implement
+	 *                                  {@link Comparable}).
+	 *                                  Implementations may, but are not
+	 *                                  required to, throw this
+	 *                                  exception if {@code fromKey} cannot be
+	 *                                  compared to keys
+	 *                                  currently in the map.
 	 * @throws NullPointerException
-	 *             if {@code fromKey} is null and this map does not permit null
-	 *             keys
+	 *                                  if {@code fromKey} is null and this map
+	 *                                  does not permit null
+	 *                                  keys
 	 * @throws IllegalArgumentException
-	 *             if this map itself has a restricted range, and
-	 *             {@code fromKey} lies outside the bounds of the range
+	 *                                  if this map itself has a restricted
+	 *                                  range, and
+	 *                                  {@code fromKey} lies outside the bounds
+	 *                                  of the range
 	 */
 	SortedMap<K, V> tailMap(K fromKey);
 
@@ -232,7 +236,7 @@ public interface SortedMap<K, V> extends Map<K, V> {
 	 *
 	 * @return the first (lowest) key currently in this map
 	 * @throws NoSuchElementException
-	 *             if this map is empty
+	 *                                if this map is empty
 	 */
 	K firstKey();
 
@@ -241,7 +245,7 @@ public interface SortedMap<K, V> extends Map<K, V> {
 	 *
 	 * @return the last (highest) key currently in this map
 	 * @throws NoSuchElementException
-	 *             if this map is empty
+	 *                                if this map is empty
 	 */
 	K lastKey();
 

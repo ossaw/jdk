@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -55,7 +35,7 @@ public class SizeLimitExceededException extends LimitExceededException {
 	 * explanation. All other fields default to null.
 	 *
 	 * @param explanation
-	 *            Possibly null detail about this exception.
+	 *                    Possibly null detail about this exception.
 	 */
 	public SizeLimitExceededException(String explanation) {
 		super(explanation);

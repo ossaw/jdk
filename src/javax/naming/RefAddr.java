@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -67,7 +47,7 @@ public abstract class RefAddr implements java.io.Serializable {
 	 * Constructs a new instance of RefAddr using its address type.
 	 *
 	 * @param addrType
-	 *            A non-null string describing the type of the address.
+	 *                 A non-null string describing the type of the address.
 	 */
 	protected RefAddr(String addrType) {
 		this.addrType = addrType;

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -91,8 +88,7 @@ final class SchemaContentHandler implements ContentHandler {
 	 * Constructs an SchemaContentHandler.
 	 * </p>
 	 */
-	public SchemaContentHandler() {
-	}
+	public SchemaContentHandler() {}
 
 	/*
 	 * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)
@@ -114,7 +110,8 @@ final class SchemaContentHandler implements ContentHandler {
 	public void startDocument() throws SAXException {
 		fNeedPushNSContext = true;
 		try {
-			fSchemaDOMParser.startDocument(fSAXLocatorWrapper, null, fNamespaceContext, null);
+			fSchemaDOMParser.startDocument(fSAXLocatorWrapper, null,
+					fNamespaceContext, null);
 		} catch (XMLParseException e) {
 			convertToSAXParseException(e);
 		} catch (XNIException e) {
@@ -140,14 +137,17 @@ final class SchemaContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String,
 	 * java.lang.String)
 	 */
-	public void startPrefixMapping(String prefix, String uri) throws SAXException {
+	public void startPrefixMapping(String prefix, String uri)
+			throws SAXException {
 		if (fNeedPushNSContext) {
 			fNeedPushNSContext = false;
 			fNamespaceContext.pushContext();
 		}
 		if (!fStringsInternalized) {
-			prefix = (prefix != null) ? fSymbolTable.addSymbol(prefix) : XMLSymbols.EMPTY_STRING;
-			uri = (uri != null && uri.length() > 0) ? fSymbolTable.addSymbol(uri) : null;
+			prefix = (prefix != null) ? fSymbolTable.addSymbol(prefix)
+					: XMLSymbols.EMPTY_STRING;
+			uri = (uri != null && uri.length() > 0) ? fSymbolTable.addSymbol(
+					uri) : null;
 		} else {
 			if (prefix == null) {
 				prefix = XMLSymbols.EMPTY_STRING;
@@ -170,8 +170,8 @@ final class SchemaContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String,
 	 * java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
-	public void startElement(String uri, String localName, String qName, Attributes atts)
-			throws SAXException {
+	public void startElement(String uri, String localName, String qName,
+			Attributes atts) throws SAXException {
 		if (fNeedPushNSContext) {
 			fNamespaceContext.pushContext();
 		}
@@ -202,7 +202,8 @@ final class SchemaContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String,
 	 * java.lang.String, java.lang.String)
 	 */
-	public void endElement(String uri, String localName, String qName) throws SAXException {
+	public void endElement(String uri, String localName, String qName)
+			throws SAXException {
 		fillQName(fElementQName, uri, localName, qName);
 		try {
 			fSchemaDOMParser.endElement(fElementQName, null);
@@ -218,7 +219,8 @@ final class SchemaContentHandler implements ContentHandler {
 	/*
 	 * @see org.xml.sax.ContentHandler#characters(char[], int, int)
 	 */
-	public void characters(char[] ch, int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
 		try {
 			fTempString.setValues(ch, start, length);
 			fSchemaDOMParser.characters(fTempString, null);
@@ -232,7 +234,8 @@ final class SchemaContentHandler implements ContentHandler {
 	/*
 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
 	 */
-	public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
+	public void ignorableWhitespace(char[] ch, int start, int length)
+			throws SAXException {
 		try {
 			fTempString.setValues(ch, start, length);
 			fSchemaDOMParser.ignorableWhitespace(fTempString, null);
@@ -247,7 +250,8 @@ final class SchemaContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String,
 	 * java.lang.String)
 	 */
-	public void processingInstruction(String target, String data) throws SAXException {
+	public void processingInstruction(String target, String data)
+			throws SAXException {
 		try {
 			fTempString.setValues(data.toCharArray(), 0, data.length());
 			fSchemaDOMParser.processingInstruction(target, fTempString, null);
@@ -269,12 +273,15 @@ final class SchemaContentHandler implements ContentHandler {
 	 * Other methods
 	 */
 
-	private void fillQName(QName toFill, String uri, String localpart, String rawname) {
+	private void fillQName(QName toFill, String uri, String localpart,
+			String rawname) {
 		if (!fStringsInternalized) {
-			uri = (uri != null && uri.length() > 0) ? fSymbolTable.addSymbol(uri) : null;
+			uri = (uri != null && uri.length() > 0) ? fSymbolTable.addSymbol(
+					uri) : null;
 			localpart = (localpart != null) ? fSymbolTable.addSymbol(localpart)
 					: XMLSymbols.EMPTY_STRING;
-			rawname = (rawname != null) ? fSymbolTable.addSymbol(rawname) : XMLSymbols.EMPTY_STRING;
+			rawname = (rawname != null) ? fSymbolTable.addSymbol(rawname)
+					: XMLSymbols.EMPTY_STRING;
 		} else {
 			if (uri != null && uri.length() == 0) {
 				uri = null;
@@ -293,7 +300,8 @@ final class SchemaContentHandler implements ContentHandler {
 			// local part may be an empty string if this is a namespace
 			// declaration
 			if (localpart == XMLSymbols.EMPTY_STRING) {
-				localpart = fSymbolTable.addSymbol(rawname.substring(prefixIdx + 1));
+				localpart = fSymbolTable.addSymbol(rawname.substring(prefixIdx
+						+ 1));
 			}
 		}
 		// local part may be an empty string if this is a namespace declaration
@@ -307,10 +315,11 @@ final class SchemaContentHandler implements ContentHandler {
 		fAttributes.removeAllAttributes();
 		final int attrCount = atts.getLength();
 		for (int i = 0; i < attrCount; ++i) {
-			fillQName(fAttributeQName, atts.getURI(i), atts.getLocalName(i), atts.getQName(i));
+			fillQName(fAttributeQName, atts.getURI(i), atts.getLocalName(i),
+					atts.getQName(i));
 			String type = atts.getType(i);
-			fAttributes.addAttributeNS(fAttributeQName,
-					(type != null) ? type : XMLSymbols.fCDATASymbol, atts.getValue(i));
+			fAttributes.addAttributeNS(fAttributeQName, (type != null) ? type
+					: XMLSymbols.fCDATASymbol, atts.getValue(i));
 			fAttributes.setSpecified(i, true);
 		}
 	}
@@ -333,8 +342,10 @@ final class SchemaContentHandler implements ContentHandler {
 				localpart = XMLSymbols.PREFIX_XMLNS;
 				rawname = XMLSymbols.PREFIX_XMLNS;
 			}
-			fAttributeQName.setValues(prefix, localpart, rawname, NamespaceContext.XMLNS_URI);
-			fAttributes.addAttribute(fAttributeQName, XMLSymbols.fCDATASymbol, nsURI);
+			fAttributeQName.setValues(prefix, localpart, rawname,
+					NamespaceContext.XMLNS_URI);
+			fAttributes.addAttribute(fAttributeQName, XMLSymbols.fCDATASymbol,
+					nsURI);
 		}
 	}
 
@@ -350,7 +361,8 @@ final class SchemaContentHandler implements ContentHandler {
 	 * Static methods
 	 */
 
-	static void convertToSAXParseException(XMLParseException e) throws SAXException {
+	static void convertToSAXParseException(XMLParseException e)
+			throws SAXException {
 		Exception ex = e.getException();
 		if (ex == null) {
 			// must be a parser exception; mine it for locator info and throw

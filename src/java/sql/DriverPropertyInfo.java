@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -43,9 +23,9 @@ public class DriverPropertyInfo {
 	 * to <code>false</code>.
 	 *
 	 * @param name
-	 *            the name of the property
+	 *              the name of the property
 	 * @param value
-	 *            the current value, which may be null
+	 *              the current value, which may be null
 	 */
 	public DriverPropertyInfo(String name, String value) {
 		this.name = name;

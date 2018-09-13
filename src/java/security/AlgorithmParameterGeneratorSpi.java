@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -61,9 +41,9 @@ public abstract class AlgorithmParameterGeneratorSpi {
 	 * randomness.
 	 *
 	 * @param size
-	 *            the size (number of bits).
+	 *               the size (number of bits).
 	 * @param random
-	 *            the source of randomness.
+	 *               the source of randomness.
 	 */
 	protected abstract void engineInit(int size, SecureRandom random);
 
@@ -72,16 +52,20 @@ public abstract class AlgorithmParameterGeneratorSpi {
 	 * parameter generation values.
 	 *
 	 * @param genParamSpec
-	 *            the set of algorithm-specific parameter generation values.
+	 *                     the set of algorithm-specific parameter generation
+	 *                     values.
 	 * @param random
-	 *            the source of randomness.
+	 *                     the source of randomness.
 	 *
 	 * @exception InvalidAlgorithmParameterException
-	 *                if the given parameter generation values are inappropriate
-	 *                for this parameter generator.
+	 *                                               if the given parameter
+	 *                                               generation values are
+	 *                                               inappropriate
+	 *                                               for this parameter
+	 *                                               generator.
 	 */
-	protected abstract void engineInit(AlgorithmParameterSpec genParamSpec, SecureRandom random)
-			throws InvalidAlgorithmParameterException;
+	protected abstract void engineInit(AlgorithmParameterSpec genParamSpec,
+			SecureRandom random) throws InvalidAlgorithmParameterException;
 
 	/**
 	 * Generates the parameters.

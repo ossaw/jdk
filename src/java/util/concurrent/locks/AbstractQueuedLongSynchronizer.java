@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -56,8 +31,8 @@ import sun.misc.Unsafe;
  * @since 1.6
  * @author Doug Lea
  */
-public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSynchronizer
-		implements java.io.Serializable {
+public abstract class AbstractQueuedLongSynchronizer extends
+		AbstractOwnableSynchronizer implements java.io.Serializable {
 
 	private static final long serialVersionUID = 7373984972572414692L;
 
@@ -71,8 +46,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Creates a new {@code AbstractQueuedLongSynchronizer} instance with
 	 * initial synchronization state of zero.
 	 */
-	protected AbstractQueuedLongSynchronizer() {
-	}
+	protected AbstractQueuedLongSynchronizer() {}
 
 	/**
 	 * Wait queue node class.
@@ -309,7 +283,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * semantics of a {@code volatile} write.
 	 * 
 	 * @param newState
-	 *            the new state value
+	 *                 the new state value
 	 */
 	protected final void setState(long newState) {
 		state = newState;
@@ -321,9 +295,9 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * semantics of a {@code volatile} read and write.
 	 *
 	 * @param expect
-	 *            the expected value
+	 *               the expected value
 	 * @param update
-	 *            the new value
+	 *               the new value
 	 * @return {@code true} if successful. False return indicates that the
 	 *         actual value was not equal to the expected value.
 	 */
@@ -345,7 +319,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Inserts node into queue, initializing if necessary. See picture above.
 	 * 
 	 * @param node
-	 *            the node to insert
+	 *             the node to insert
 	 * @return node's predecessor
 	 */
 	private Node enq(final Node node) {
@@ -368,7 +342,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Creates and enqueues node for current thread and given mode.
 	 *
 	 * @param mode
-	 *            Node.EXCLUSIVE for exclusive, Node.SHARED for shared
+	 *             Node.EXCLUSIVE for exclusive, Node.SHARED for shared
 	 * @return the new node
 	 */
 	private Node addWaiter(Node mode) {
@@ -392,7 +366,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * unnecessary signals and traversals.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 */
 	private void setHead(Node node) {
 		head = node;
@@ -404,7 +378,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Wakes up node's successor, if one exists.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 */
 	private void unparkSuccessor(Node node) {
 		/*
@@ -455,7 +429,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 					if (!compareAndSetWaitStatus(h, Node.SIGNAL, 0))
 						continue; // loop to recheck cases
 					unparkSuccessor(h);
-				} else if (ws == 0 && !compareAndSetWaitStatus(h, 0, Node.PROPAGATE))
+				} else if (ws == 0 && !compareAndSetWaitStatus(h, 0,
+						Node.PROPAGATE))
 					continue; // loop on failed CAS
 			}
 			if (h == head) // loop if head changed
@@ -469,9 +444,9 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * set.
 	 *
 	 * @param node
-	 *            the node
+	 *                  the node
 	 * @param propagate
-	 *            the return value from a tryAcquireShared
+	 *                  the return value from a tryAcquireShared
 	 */
 	private void setHeadAndPropagate(Node node, long propagate) {
 		Node h = head; // Record old head for check below
@@ -483,7 +458,6 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * waitStatus because PROPAGATE status may transition to SIGNAL.) and
 		 * The next node is waiting in shared mode, or we don't know, because it
 		 * appears null
-		 *
 		 * The conservatism in both of these checks may cause unnecessary
 		 * wake-ups, but only when there are multiple racing acquires/releases,
 		 * so most need signals now or soon anyway.
@@ -502,7 +476,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Cancels an ongoing attempt to acquire.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 */
 	private void cancelAcquire(Node node) {
 		// Ignore if node doesn't exist
@@ -533,10 +507,9 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 			// If successor needs signal, try to set pred's next-link
 			// so it will get one. Otherwise wake it up to propagate.
 			int ws;
-			if (pred != head
-					&& ((ws = pred.waitStatus) == Node.SIGNAL
-							|| (ws <= 0 && compareAndSetWaitStatus(pred, ws, Node.SIGNAL)))
-					&& pred.thread != null) {
+			if (pred != head && ((ws = pred.waitStatus) == Node.SIGNAL
+					|| (ws <= 0 && compareAndSetWaitStatus(pred, ws,
+							Node.SIGNAL))) && pred.thread != null) {
 				Node next = node.next;
 				if (next != null && next.waitStatus <= 0)
 					compareAndSetNext(pred, predNext, next);
@@ -554,9 +527,9 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * loops. Requires that pred == node.prev.
 	 *
 	 * @param pred
-	 *            node's predecessor holding status
+	 *             node's predecessor holding status
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @return {@code true} if thread should block
 	 */
 	private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
@@ -617,9 +590,9 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Used by condition wait methods as well as acquire.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @param arg
-	 *            the acquire argument
+	 *             the acquire argument
 	 * @return {@code true} if interrupted while waiting
 	 */
 	final boolean acquireQueued(final Node node, long arg) {
@@ -634,7 +607,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 					failed = false;
 					return interrupted;
 				}
-				if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
+				if (shouldParkAfterFailedAcquire(p, node)
+						&& parkAndCheckInterrupt())
 					interrupted = true;
 			}
 		} finally {
@@ -661,7 +635,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 					failed = false;
 					return;
 				}
-				if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
+				if (shouldParkAfterFailedAcquire(p, node)
+						&& parkAndCheckInterrupt())
 					throw new InterruptedException();
 			}
 		} finally {
@@ -674,12 +649,13 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Acquires in exclusive timed mode.
 	 *
 	 * @param arg
-	 *            the acquire argument
+	 *                     the acquire argument
 	 * @param nanosTimeout
-	 *            max wait time
+	 *                     max wait time
 	 * @return {@code true} if acquired
 	 */
-	private boolean doAcquireNanos(long arg, long nanosTimeout) throws InterruptedException {
+	private boolean doAcquireNanos(long arg, long nanosTimeout)
+			throws InterruptedException {
 		if (nanosTimeout <= 0L)
 			return false;
 		final long deadline = System.nanoTime() + nanosTimeout;
@@ -697,7 +673,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 				nanosTimeout = deadline - System.nanoTime();
 				if (nanosTimeout <= 0L)
 					return false;
-				if (shouldParkAfterFailedAcquire(p, node) && nanosTimeout > spinForTimeoutThreshold)
+				if (shouldParkAfterFailedAcquire(p, node)
+						&& nanosTimeout > spinForTimeoutThreshold)
 					LockSupport.parkNanos(this, nanosTimeout);
 				if (Thread.interrupted())
 					throw new InterruptedException();
@@ -732,7 +709,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 						return;
 					}
 				}
-				if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
+				if (shouldParkAfterFailedAcquire(p, node)
+						&& parkAndCheckInterrupt())
 					interrupted = true;
 			}
 		} finally {
@@ -747,7 +725,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * @param arg
 	 *            the acquire argument
 	 */
-	private void doAcquireSharedInterruptibly(long arg) throws InterruptedException {
+	private void doAcquireSharedInterruptibly(long arg)
+			throws InterruptedException {
 		final Node node = addWaiter(Node.SHARED);
 		boolean failed = true;
 		try {
@@ -762,7 +741,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 						return;
 					}
 				}
-				if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
+				if (shouldParkAfterFailedAcquire(p, node)
+						&& parkAndCheckInterrupt())
 					throw new InterruptedException();
 			}
 		} finally {
@@ -775,12 +755,13 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Acquires in shared timed mode.
 	 *
 	 * @param arg
-	 *            the acquire argument
+	 *                     the acquire argument
 	 * @param nanosTimeout
-	 *            max wait time
+	 *                     max wait time
 	 * @return {@code true} if acquired
 	 */
-	private boolean doAcquireSharedNanos(long arg, long nanosTimeout) throws InterruptedException {
+	private boolean doAcquireSharedNanos(long arg, long nanosTimeout)
+			throws InterruptedException {
 		if (nanosTimeout <= 0L)
 			return false;
 		final long deadline = System.nanoTime() + nanosTimeout;
@@ -801,7 +782,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 				nanosTimeout = deadline - System.nanoTime();
 				if (nanosTimeout <= 0L)
 					return false;
-				if (shouldParkAfterFailedAcquire(p, node) && nanosTimeout > spinForTimeoutThreshold)
+				if (shouldParkAfterFailedAcquire(p, node)
+						&& nanosTimeout > spinForTimeoutThreshold)
 					LockSupport.parkNanos(this, nanosTimeout);
 				if (Thread.interrupted())
 					throw new InterruptedException();
@@ -836,11 +818,14 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * @return {@code true} if successful. Upon success, this object has been
 	 *         acquired.
 	 * @throws IllegalMonitorStateException
-	 *             if acquiring would place this synchronizer in an illegal
-	 *             state. This exception must be thrown in a consistent fashion
-	 *             for synchronization to work correctly.
+	 *                                       if acquiring would place this
+	 *                                       synchronizer in an illegal
+	 *                                       state. This exception must be
+	 *                                       thrown in a consistent fashion
+	 *                                       for synchronization to work
+	 *                                       correctly.
 	 * @throws UnsupportedOperationException
-	 *             if exclusive mode is not supported
+	 *                                       if exclusive mode is not supported
 	 */
 	protected boolean tryAcquire(long arg) {
 		throw new UnsupportedOperationException();
@@ -864,11 +849,14 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 *         that any waiting threads may attempt to acquire; and
 	 *         {@code false} otherwise.
 	 * @throws IllegalMonitorStateException
-	 *             if releasing would place this synchronizer in an illegal
-	 *             state. This exception must be thrown in a consistent fashion
-	 *             for synchronization to work correctly.
+	 *                                       if releasing would place this
+	 *                                       synchronizer in an illegal
+	 *                                       state. This exception must be
+	 *                                       thrown in a consistent fashion
+	 *                                       for synchronization to work
+	 *                                       correctly.
 	 * @throws UnsupportedOperationException
-	 *             if exclusive mode is not supported
+	 *                                       if exclusive mode is not supported
 	 */
 	protected boolean tryRelease(long arg) {
 		throw new UnsupportedOperationException();
@@ -902,11 +890,14 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 *         contexts where acquires only sometimes act exclusively.) Upon
 	 *         success, this object has been acquired.
 	 * @throws IllegalMonitorStateException
-	 *             if acquiring would place this synchronizer in an illegal
-	 *             state. This exception must be thrown in a consistent fashion
-	 *             for synchronization to work correctly.
+	 *                                       if acquiring would place this
+	 *                                       synchronizer in an illegal
+	 *                                       state. This exception must be
+	 *                                       thrown in a consistent fashion
+	 *                                       for synchronization to work
+	 *                                       correctly.
 	 * @throws UnsupportedOperationException
-	 *             if shared mode is not supported
+	 *                                       if shared mode is not supported
 	 */
 	protected long tryAcquireShared(long arg) {
 		throw new UnsupportedOperationException();
@@ -930,11 +921,14 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 *         acquire (shared or exclusive) to succeed; and {@code false}
 	 *         otherwise
 	 * @throws IllegalMonitorStateException
-	 *             if releasing would place this synchronizer in an illegal
-	 *             state. This exception must be thrown in a consistent fashion
-	 *             for synchronization to work correctly.
+	 *                                       if releasing would place this
+	 *                                       synchronizer in an illegal
+	 *                                       state. This exception must be
+	 *                                       thrown in a consistent fashion
+	 *                                       for synchronization to work
+	 *                                       correctly.
 	 * @throws UnsupportedOperationException
-	 *             if shared mode is not supported
+	 *                                       if shared mode is not supported
 	 */
 	protected boolean tryReleaseShared(long arg) {
 		throw new UnsupportedOperationException();
@@ -954,7 +948,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * @return {@code true} if synchronization is held exclusively;
 	 *         {@code false} otherwise
 	 * @throws UnsupportedOperationException
-	 *             if conditions are not supported
+	 *                                       if conditions are not supported
 	 */
 	protected boolean isHeldExclusively() {
 		throw new UnsupportedOperationException();
@@ -990,9 +984,10 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 *            {@link #tryAcquire} but is otherwise uninterpreted and can
 	 *            represent anything you like.
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                              if the current thread is interrupted
 	 */
-	public final void acquireInterruptibly(long arg) throws InterruptedException {
+	public final void acquireInterruptibly(long arg)
+			throws InterruptedException {
 		if (Thread.interrupted())
 			throw new InterruptedException();
 		if (!tryAcquire(arg))
@@ -1009,16 +1004,18 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * can be used to implement method {@link Lock#tryLock(long, TimeUnit)}.
 	 *
 	 * @param arg
-	 *            the acquire argument. This value is conveyed to
-	 *            {@link #tryAcquire} but is otherwise uninterpreted and can
-	 *            represent anything you like.
+	 *                     the acquire argument. This value is conveyed to
+	 *                     {@link #tryAcquire} but is otherwise uninterpreted
+	 *                     and can
+	 *                     represent anything you like.
 	 * @param nanosTimeout
-	 *            the maximum number of nanoseconds to wait
+	 *                     the maximum number of nanoseconds to wait
 	 * @return {@code true} if acquired; {@code false} if timed out
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                              if the current thread is interrupted
 	 */
-	public final boolean tryAcquireNanos(long arg, long nanosTimeout) throws InterruptedException {
+	public final boolean tryAcquireNanos(long arg, long nanosTimeout)
+			throws InterruptedException {
 		if (Thread.interrupted())
 			throw new InterruptedException();
 		return tryAcquire(arg) || doAcquireNanos(arg, nanosTimeout);
@@ -1073,9 +1070,10 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 *            {@link #tryAcquireShared} but is otherwise uninterpreted and
 	 *            can represent anything you like.
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                              if the current thread is interrupted
 	 */
-	public final void acquireSharedInterruptibly(long arg) throws InterruptedException {
+	public final void acquireSharedInterruptibly(long arg)
+			throws InterruptedException {
 		if (Thread.interrupted())
 			throw new InterruptedException();
 		if (tryAcquireShared(arg) < 0)
@@ -1091,20 +1089,22 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * thread is interrupted or the timeout elapses.
 	 *
 	 * @param arg
-	 *            the acquire argument. This value is conveyed to
-	 *            {@link #tryAcquireShared} but is otherwise uninterpreted and
-	 *            can represent anything you like.
+	 *                     the acquire argument. This value is conveyed to
+	 *                     {@link #tryAcquireShared} but is otherwise
+	 *                     uninterpreted and
+	 *                     can represent anything you like.
 	 * @param nanosTimeout
-	 *            the maximum number of nanoseconds to wait
+	 *                     the maximum number of nanoseconds to wait
 	 * @return {@code true} if acquired; {@code false} if timed out
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted
+	 *                              if the current thread is interrupted
 	 */
 	public final boolean tryAcquireSharedNanos(long arg, long nanosTimeout)
 			throws InterruptedException {
 		if (Thread.interrupted())
 			throw new InterruptedException();
-		return tryAcquireShared(arg) >= 0 || doAcquireSharedNanos(arg, nanosTimeout);
+		return tryAcquireShared(arg) >= 0 || doAcquireSharedNanos(arg,
+				nanosTimeout);
 	}
 
 	/**
@@ -1186,8 +1186,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		Node h, s;
 		Thread st;
 		if (((h = head) != null && (s = h.next) != null && s.prev == head
-				&& (st = s.thread) != null)
-				|| ((h = head) != null && (s = h.next) != null && s.prev == head
+				&& (st = s.thread) != null) || ((h = head) != null
+						&& (s = h.next) != null && s.prev == head
 						&& (st = s.thread) != null))
 			return st;
 
@@ -1217,10 +1217,10 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * given thread.
 	 *
 	 * @param thread
-	 *            the thread
+	 *               the thread
 	 * @return {@code true} if the given thread is on the queue
 	 * @throws NullPointerException
-	 *             if the thread is null
+	 *                              if the thread is null
 	 */
 	public final boolean isQueued(Thread thread) {
 		if (thread == null)
@@ -1241,7 +1241,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 */
 	final boolean apparentlyFirstQueuedIsExclusive() {
 		Node h, s;
-		return (h = head) != null && (s = h.next) != null && !s.isShared() && s.thread != null;
+		return (h = head) != null && (s = h.next) != null && !s.isShared()
+				&& s.thread != null;
 	}
 
 	/**
@@ -1301,7 +1302,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		Node t = tail; // Read fields in reverse initialization order
 		Node h = head;
 		Node s;
-		return h != t && ((s = h.next) == null || s.thread != Thread.currentThread());
+		return h != t && ((s = h.next) == null || s.thread != Thread
+				.currentThread());
 	}
 
 	// Instrumentation and monitoring methods
@@ -1405,7 +1407,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * condition queue, is now waiting to reacquire on sync queue.
 	 * 
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @return true if is reacquiring
 	 */
 	final boolean isOnSyncQueue(Node node) {
@@ -1445,7 +1447,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * successful.
 	 * 
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @return true if successfully transferred (else the node was cancelled
 	 *         before signal)
 	 */
@@ -1474,7 +1476,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * Returns true if thread was cancelled before being signalled.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @return true if cancelled before the node was signalled
 	 */
 	final boolean transferAfterCancelledWait(Node node) {
@@ -1497,7 +1499,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * node and throws exception on failure.
 	 * 
 	 * @param node
-	 *            the condition node for this wait
+	 *             the condition node for this wait
 	 * @return previous sync state
 	 */
 	final long fullyRelease(Node node) {
@@ -1523,10 +1525,10 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * lock.
 	 *
 	 * @param condition
-	 *            the condition
+	 *                  the condition
 	 * @return {@code true} if owned
 	 * @throws NullPointerException
-	 *             if the condition is null
+	 *                              if the condition is null
 	 */
 	public final boolean owns(ConditionObject condition) {
 		return condition.isOwnedBy(this);
@@ -1540,15 +1542,17 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * for use in monitoring of the system state.
 	 *
 	 * @param condition
-	 *            the condition
+	 *                  the condition
 	 * @return {@code true} if there are any waiting threads
 	 * @throws IllegalMonitorStateException
-	 *             if exclusive synchronization is not held
+	 *                                      if exclusive synchronization is not
+	 *                                      held
 	 * @throws IllegalArgumentException
-	 *             if the given condition is not associated with this
-	 *             synchronizer
+	 *                                      if the given condition is not
+	 *                                      associated with this
+	 *                                      synchronizer
 	 * @throws NullPointerException
-	 *             if the condition is null
+	 *                                      if the condition is null
 	 */
 	public final boolean hasWaiters(ConditionObject condition) {
 		if (!owns(condition))
@@ -1564,15 +1568,17 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * use in monitoring of the system state, not for synchronization control.
 	 *
 	 * @param condition
-	 *            the condition
+	 *                  the condition
 	 * @return the estimated number of waiting threads
 	 * @throws IllegalMonitorStateException
-	 *             if exclusive synchronization is not held
+	 *                                      if exclusive synchronization is not
+	 *                                      held
 	 * @throws IllegalArgumentException
-	 *             if the given condition is not associated with this
-	 *             synchronizer
+	 *                                      if the given condition is not
+	 *                                      associated with this
+	 *                                      synchronizer
 	 * @throws NullPointerException
-	 *             if the condition is null
+	 *                                      if the condition is null
 	 */
 	public final int getWaitQueueLength(ConditionObject condition) {
 		if (!owns(condition))
@@ -1588,17 +1594,20 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	 * returned collection are in no particular order.
 	 *
 	 * @param condition
-	 *            the condition
+	 *                  the condition
 	 * @return the collection of threads
 	 * @throws IllegalMonitorStateException
-	 *             if exclusive synchronization is not held
+	 *                                      if exclusive synchronization is not
+	 *                                      held
 	 * @throws IllegalArgumentException
-	 *             if the given condition is not associated with this
-	 *             synchronizer
+	 *                                      if the given condition is not
+	 *                                      associated with this
+	 *                                      synchronizer
 	 * @throws NullPointerException
-	 *             if the condition is null
+	 *                                      if the condition is null
 	 */
-	public final Collection<Thread> getWaitingThreads(ConditionObject condition) {
+	public final Collection<Thread> getWaitingThreads(
+			ConditionObject condition) {
 		if (!owns(condition))
 			throw new IllegalArgumentException("Not owner");
 		return condition.getWaitingThreads();
@@ -1631,8 +1640,7 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		/**
 		 * Creates a new {@code ConditionObject} instance.
 		 */
-		public ConditionObject() {
-		}
+		public ConditionObject() {}
 
 		// Internal methods
 
@@ -1663,21 +1671,22 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * case of no waiters.
 		 * 
 		 * @param first
-		 *            (non-null) the first node on condition queue
+		 *              (non-null) the first node on condition queue
 		 */
 		private void doSignal(Node first) {
 			do {
 				if ((firstWaiter = first.nextWaiter) == null)
 					lastWaiter = null;
 				first.nextWaiter = null;
-			} while (!transferForSignal(first) && (first = firstWaiter) != null);
+			} while (!transferForSignal(first)
+					&& (first = firstWaiter) != null);
 		}
 
 		/**
 		 * Removes and transfers all nodes.
 		 * 
 		 * @param first
-		 *            (non-null) the first node on condition queue
+		 *              (non-null) the first node on condition queue
 		 */
 		private void doSignalAll(Node first) {
 			lastWaiter = firstWaiter = null;
@@ -1727,7 +1736,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * for this condition to the wait queue for the owning lock.
 		 *
 		 * @throws IllegalMonitorStateException
-		 *             if {@link #isHeldExclusively} returns {@code false}
+		 *                                      if {@link #isHeldExclusively}
+		 *                                      returns {@code false}
 		 */
 		public final void signal() {
 			if (!isHeldExclusively())
@@ -1742,7 +1752,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * queue for the owning lock.
 		 *
 		 * @throws IllegalMonitorStateException
-		 *             if {@link #isHeldExclusively} returns {@code false}
+		 *                                      if {@link #isHeldExclusively}
+		 *                                      returns {@code false}
 		 */
 		public final void signalAll() {
 			if (!isHeldExclusively())
@@ -1793,15 +1804,17 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * signalled, REINTERRUPT if after signalled, or 0 if not interrupted.
 		 */
 		private int checkInterruptWhileWaiting(Node node) {
-			return Thread.interrupted()
-					? (transferAfterCancelledWait(node) ? THROW_IE : REINTERRUPT) : 0;
+			return Thread.interrupted() ? (transferAfterCancelledWait(node)
+					? THROW_IE
+					: REINTERRUPT) : 0;
 		}
 
 		/**
 		 * Throws InterruptedException, reinterrupts current thread, or does
 		 * nothing, depending on mode.
 		 */
-		private void reportInterruptAfterWait(int interruptMode) throws InterruptedException {
+		private void reportInterruptAfterWait(int interruptMode)
+				throws InterruptedException {
 			if (interruptMode == THROW_IE)
 				throw new InterruptedException();
 			else if (interruptMode == REINTERRUPT)
@@ -1855,7 +1868,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * InterruptedException.
 		 * </ol>
 		 */
-		public final long awaitNanos(long nanosTimeout) throws InterruptedException {
+		public final long awaitNanos(long nanosTimeout)
+				throws InterruptedException {
 			if (Thread.interrupted())
 				throw new InterruptedException();
 			Node node = addConditionWaiter();
@@ -1897,7 +1911,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * <li>If timed out while blocked in step 4, return false, else true.
 		 * </ol>
 		 */
-		public final boolean awaitUntil(Date deadline) throws InterruptedException {
+		public final boolean awaitUntil(Date deadline)
+				throws InterruptedException {
 			long abstime = deadline.getTime();
 			if (Thread.interrupted())
 				throw new InterruptedException();
@@ -1938,7 +1953,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 * <li>If timed out while blocked in step 4, return false, else true.
 		 * </ol>
 		 */
-		public final boolean await(long time, TimeUnit unit) throws InterruptedException {
+		public final boolean await(long time, TimeUnit unit)
+				throws InterruptedException {
 			long nanosTimeout = unit.toNanos(time);
 			if (Thread.interrupted())
 				throw new InterruptedException();
@@ -1985,7 +2001,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 *
 		 * @return {@code true} if there are any waiting threads
 		 * @throws IllegalMonitorStateException
-		 *             if {@link #isHeldExclusively} returns {@code false}
+		 *                                      if {@link #isHeldExclusively}
+		 *                                      returns {@code false}
 		 */
 		protected final boolean hasWaiters() {
 			if (!isHeldExclusively())
@@ -2005,7 +2022,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 *
 		 * @return the estimated number of waiting threads
 		 * @throws IllegalMonitorStateException
-		 *             if {@link #isHeldExclusively} returns {@code false}
+		 *                                      if {@link #isHeldExclusively}
+		 *                                      returns {@code false}
 		 */
 		protected final int getWaitQueueLength() {
 			if (!isHeldExclusively())
@@ -2026,7 +2044,8 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 		 *
 		 * @return the collection of threads
 		 * @throws IllegalMonitorStateException
-		 *             if {@link #isHeldExclusively} returns {@code false}
+		 *                                      if {@link #isHeldExclusively}
+		 *                                      returns {@code false}
 		 */
 		protected final Collection<Thread> getWaitingThreads() {
 			if (!isHeldExclusively())
@@ -2061,13 +2080,18 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	static {
 		try {
 			stateOffset = unsafe.objectFieldOffset(
-					AbstractQueuedLongSynchronizer.class.getDeclaredField("state"));
+					AbstractQueuedLongSynchronizer.class.getDeclaredField(
+							"state"));
 			headOffset = unsafe.objectFieldOffset(
-					AbstractQueuedLongSynchronizer.class.getDeclaredField("head"));
+					AbstractQueuedLongSynchronizer.class.getDeclaredField(
+							"head"));
 			tailOffset = unsafe.objectFieldOffset(
-					AbstractQueuedLongSynchronizer.class.getDeclaredField("tail"));
-			waitStatusOffset = unsafe.objectFieldOffset(Node.class.getDeclaredField("waitStatus"));
-			nextOffset = unsafe.objectFieldOffset(Node.class.getDeclaredField("next"));
+					AbstractQueuedLongSynchronizer.class.getDeclaredField(
+							"tail"));
+			waitStatusOffset = unsafe.objectFieldOffset(Node.class
+					.getDeclaredField("waitStatus"));
+			nextOffset = unsafe.objectFieldOffset(Node.class.getDeclaredField(
+					"next"));
 
 		} catch (Exception ex) {
 			throw new Error(ex);
@@ -2091,14 +2115,16 @@ public abstract class AbstractQueuedLongSynchronizer extends AbstractOwnableSync
 	/**
 	 * CAS waitStatus field of a node.
 	 */
-	private static final boolean compareAndSetWaitStatus(Node node, int expect, int update) {
+	private static final boolean compareAndSetWaitStatus(Node node, int expect,
+			int update) {
 		return unsafe.compareAndSwapInt(node, waitStatusOffset, expect, update);
 	}
 
 	/**
 	 * CAS next field of a node.
 	 */
-	private static final boolean compareAndSetNext(Node node, Node expect, Node update) {
+	private static final boolean compareAndSetNext(Node node, Node expect,
+			Node update) {
 		return unsafe.compareAndSwapObject(node, nextOffset, expect, update);
 	}
 }

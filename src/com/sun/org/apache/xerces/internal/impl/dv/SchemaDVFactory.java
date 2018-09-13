@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,10 +53,12 @@ public abstract class SchemaDVFactory {
 	 *
 	 * @return an instance of SchemaDVFactory implementation
 	 * @exception DVFactoryException
-	 *                cannot create an instance of the specified class name or
-	 *                the default class name
+	 *                               cannot create an instance of the specified
+	 *                               class name or
+	 *                               the default class name
 	 */
-	public static synchronized final SchemaDVFactory getInstance() throws DVFactoryException {
+	public static synchronized final SchemaDVFactory getInstance()
+			throws DVFactoryException {
 		return getInstance(DEFAULT_FACTORY_CLASS);
 	} // getInstance(): SchemaDVFactory
 
@@ -67,18 +66,21 @@ public abstract class SchemaDVFactory {
 	 * Get an instance of SchemaDVFactory implementation.
 	 *
 	 * @param factoryClass
-	 *            name of the schema factory implementation to instantiate.
+	 *                     name of the schema factory implementation to
+	 *                     instantiate.
 	 * @return an instance of SchemaDVFactory implementation
 	 * @exception DVFactoryException
-	 *                cannot create an instance of the specified class name or
-	 *                the default class name
+	 *                               cannot create an instance of the specified
+	 *                               class name or
+	 *                               the default class name
 	 */
-	public static synchronized final SchemaDVFactory getInstance(String factoryClass)
-			throws DVFactoryException {
+	public static synchronized final SchemaDVFactory getInstance(
+			String factoryClass) throws DVFactoryException {
 
 		try {
 			// if the class name is not specified, use the default one
-			return (SchemaDVFactory) (ObjectFactory.newInstance(factoryClass, true));
+			return (SchemaDVFactory) (ObjectFactory.newInstance(factoryClass,
+					true));
 		} catch (ClassCastException e4) {
 			throw new DVFactoryException("Schema factory class " + factoryClass
 					+ " does not extend from SchemaDVFactory.");
@@ -87,8 +89,7 @@ public abstract class SchemaDVFactory {
 	}
 
 	// can't create a new object of this class
-	protected SchemaDVFactory() {
-	}
+	protected SchemaDVFactory() {}
 
 	/**
 	 * Get a built-in simple type of the given name REVISIT: its still not
@@ -98,7 +99,7 @@ public abstract class SchemaDVFactory {
 	 * base of anySimpleType. It needs to be changed as per the decision taken.
 	 *
 	 * @param name
-	 *            the name of the datatype
+	 *             the name of the datatype
 	 * @return the datatype validator of the given name
 	 */
 	public abstract XSSimpleType getBuiltInType(String name);
@@ -116,56 +117,59 @@ public abstract class SchemaDVFactory {
 	 * simple type.
 	 *
 	 * @param name
-	 *            name of the new type, could be null
+	 *                        name of the new type, could be null
 	 * @param targetNamespace
-	 *            target namespace of the new type, could be null
+	 *                        target namespace of the new type, could be null
 	 * @param finalSet
-	 *            value of "final"
+	 *                        value of "final"
 	 * @param base
-	 *            base type of the new type
+	 *                        base type of the new type
 	 * @param annotations
-	 *            set of annotations
+	 *                        set of annotations
 	 * @return the newly created simple type
 	 */
-	public abstract XSSimpleType createTypeRestriction(String name, String targetNamespace,
-			short finalSet, XSSimpleType base, XSObjectList annotations);
+	public abstract XSSimpleType createTypeRestriction(String name,
+			String targetNamespace, short finalSet, XSSimpleType base,
+			XSObjectList annotations);
 
 	/**
 	 * Create a new simple type which is derived by list from another simple
 	 * type.
 	 *
 	 * @param name
-	 *            name of the new type, could be null
+	 *                        name of the new type, could be null
 	 * @param targetNamespace
-	 *            target namespace of the new type, could be null
+	 *                        target namespace of the new type, could be null
 	 * @param finalSet
-	 *            value of "final"
+	 *                        value of "final"
 	 * @param itemType
-	 *            item type of the list type
+	 *                        item type of the list type
 	 * @param annotations
-	 *            set of annotations
+	 *                        set of annotations
 	 * @return the newly created simple type
 	 */
-	public abstract XSSimpleType createTypeList(String name, String targetNamespace, short finalSet,
-			XSSimpleType itemType, XSObjectList annotations);
+	public abstract XSSimpleType createTypeList(String name,
+			String targetNamespace, short finalSet, XSSimpleType itemType,
+			XSObjectList annotations);
 
 	/**
 	 * Create a new simple type which is derived by union from a list of other
 	 * simple types.
 	 *
 	 * @param name
-	 *            name of the new type, could be null
+	 *                        name of the new type, could be null
 	 * @param targetNamespace
-	 *            target namespace of the new type, could be null
+	 *                        target namespace of the new type, could be null
 	 * @param finalSet
-	 *            value of "final"
+	 *                        value of "final"
 	 * @param memberTypes
-	 *            member types of the union type
+	 *                        member types of the union type
 	 * @param annotations
-	 *            set of annotations
+	 *                        set of annotations
 	 * @return the newly created simple type
 	 */
-	public abstract XSSimpleType createTypeUnion(String name, String targetNamespace,
-			short finalSet, XSSimpleType[] memberTypes, XSObjectList annotations);
+	public abstract XSSimpleType createTypeUnion(String name,
+			String targetNamespace, short finalSet, XSSimpleType[] memberTypes,
+			XSObjectList annotations);
 
 }

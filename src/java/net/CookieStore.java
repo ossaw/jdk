@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -58,13 +38,13 @@ public interface CookieStore {
 	 * replaced with the new one.
 	 *
 	 * @param uri
-	 *            the uri this cookie associated with. if {@code null}, this
-	 *            cookie will not be associated with an URI
+	 *               the uri this cookie associated with. if {@code null}, this
+	 *               cookie will not be associated with an URI
 	 * @param cookie
-	 *            the cookie to store
+	 *               the cookie to store
 	 *
 	 * @throws NullPointerException
-	 *             if {@code cookie} is {@code null}
+	 *                              if {@code cookie} is {@code null}
 	 *
 	 * @see #get
 	 *
@@ -83,7 +63,7 @@ public interface CookieStore {
 	 *            the uri associated with the cookies to be returned
 	 *
 	 * @throws NullPointerException
-	 *             if {@code uri} is {@code null}
+	 *                              if {@code uri} is {@code null}
 	 *
 	 * @see #add
 	 *
@@ -110,17 +90,18 @@ public interface CookieStore {
 	 * Remove a cookie from store.
 	 *
 	 * @param uri
-	 *            the uri this cookie associated with. if {@code null}, the
-	 *            cookie to be removed is not associated with an URI when added;
-	 *            if not {@code null}, the cookie to be removed is associated
-	 *            with the given URI when added.
+	 *               the uri this cookie associated with. if {@code null}, the
+	 *               cookie to be removed is not associated with an URI when
+	 *               added;
+	 *               if not {@code null}, the cookie to be removed is associated
+	 *               with the given URI when added.
 	 * @param cookie
-	 *            the cookie to remove
+	 *               the cookie to remove
 	 *
 	 * @return {@code true} if this store contained the specified cookie
 	 *
 	 * @throws NullPointerException
-	 *             if {@code cookie} is {@code null}
+	 *                              if {@code cookie} is {@code null}
 	 */
 	public boolean remove(URI uri, HttpCookie cookie);
 

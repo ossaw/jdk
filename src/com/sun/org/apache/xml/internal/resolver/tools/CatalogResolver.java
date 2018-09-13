@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -121,13 +118,16 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 	 * </p>
 	 *
 	 * @param publicId
-	 *            The public identifier for the entity in question. This may be
-	 *            null.
+	 *                 The public identifier for the entity in question. This
+	 *                 may be
+	 *                 null.
 	 *
 	 * @param systemId
-	 *            The system identifier for the entity in question. XML requires
-	 *            a system identifier on all external entities, so this value is
-	 *            always specified.
+	 *                 The system identifier for the entity in question. XML
+	 *                 requires
+	 *                 a system identifier on all external entities, so this
+	 *                 value is
+	 *                 always specified.
 	 *
 	 * @return The resolved identifier (a URI reference).
 	 */
@@ -144,11 +144,12 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 			try {
 				resolved = catalog.resolveSystem(systemId);
 			} catch (MalformedURLException me) {
-				catalogManager.debug.message(1, "Malformed URL exception trying to resolve",
-						publicId);
+				catalogManager.debug.message(1,
+						"Malformed URL exception trying to resolve", publicId);
 				resolved = null;
 			} catch (IOException ie) {
-				catalogManager.debug.message(1, "I/O exception trying to resolve", publicId);
+				catalogManager.debug.message(1,
+						"I/O exception trying to resolve", publicId);
 				resolved = null;
 			}
 		}
@@ -158,18 +159,22 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 				try {
 					resolved = catalog.resolvePublic(publicId, systemId);
 				} catch (MalformedURLException me) {
-					catalogManager.debug.message(1, "Malformed URL exception trying to resolve",
+					catalogManager.debug.message(1,
+							"Malformed URL exception trying to resolve",
 							publicId);
 				} catch (IOException ie) {
-					catalogManager.debug.message(1, "I/O exception trying to resolve", publicId);
+					catalogManager.debug.message(1,
+							"I/O exception trying to resolve", publicId);
 				}
 			}
 
 			if (resolved != null) {
-				catalogManager.debug.message(2, "Resolved public", publicId, resolved);
+				catalogManager.debug.message(2, "Resolved public", publicId,
+						resolved);
 			}
 		} else {
-			catalogManager.debug.message(2, "Resolved system", systemId, resolved);
+			catalogManager.debug.message(2, "Resolved system", systemId,
+					resolved);
 		}
 
 		return resolved;
@@ -196,13 +201,16 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 	 * </p>
 	 *
 	 * @param publicId
-	 *            The public identifier for the entity in question. This may be
-	 *            null.
+	 *                 The public identifier for the entity in question. This
+	 *                 may be
+	 *                 null.
 	 *
 	 * @param systemId
-	 *            The system identifier for the entity in question. XML requires
-	 *            a system identifier on all external entities, so this value is
-	 *            always specified.
+	 *                 The system identifier for the entity in question. XML
+	 *                 requires
+	 *                 a system identifier on all external entities, so this
+	 *                 value is
+	 *                 always specified.
 	 *
 	 * @return An InputSource for the mapped identifier, or null.
 	 */
@@ -231,7 +239,8 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 
 				return iSource;
 			} catch (Exception e) {
-				catalogManager.debug.message(1, "Failed to create InputSource", resolved);
+				catalogManager.debug.message(1, "Failed to create InputSource",
+						resolved);
 				return null;
 			}
 		}
@@ -240,7 +249,8 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 	}
 
 	/** JAXP URIResolver API */
-	public Source resolve(String href, String base) throws TransformerException {
+	public Source resolve(String href, String base)
+			throws TransformerException {
 
 		String uri = href;
 		String fragment = null;
@@ -267,7 +277,8 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 					result = url.toString();
 				} else {
 					URL baseURL = new URL(base);
-					url = (href.length() == 0 ? baseURL : new URL(baseURL, uri));
+					url = (href.length() == 0 ? baseURL
+							: new URL(baseURL, uri));
 					result = url.toString();
 				}
 			} catch (java.net.MalformedURLException mue) {
@@ -277,8 +288,8 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 					// don't bother if the absBase isn't different!
 					return resolve(href, absBase);
 				} else {
-					throw new TransformerException("Malformed URL " + href + "(base " + base + ")",
-							mue);
+					throw new TransformerException("Malformed URL " + href
+							+ "(base " + base + ")", mue);
 				}
 			}
 		}
@@ -317,11 +328,13 @@ public class CatalogResolver implements EntityResolver, URIResolver {
 	 * </p>
 	 *
 	 */
-	private void setEntityResolver(SAXSource source) throws TransformerException {
+	private void setEntityResolver(SAXSource source)
+			throws TransformerException {
 		XMLReader reader = source.getXMLReader();
 		if (reader == null) {
 			SAXParserFactory spFactory = catalogManager.useServicesMechanism()
-					? SAXParserFactory.newInstance() : new SAXParserFactoryImpl();
+					? SAXParserFactory.newInstance()
+					: new SAXParserFactoryImpl();
 			spFactory.setNamespaceAware(true);
 			try {
 				reader = spFactory.newSAXParser().getXMLReader();

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.toa;
@@ -86,7 +66,8 @@ public class TOAImpl extends ObjectAdapterBase implements TOA {
 		int serverid = ((ORB) getORB()).getTransientServerId();
 		int scid = ORBConstants.TOA_SCID;
 
-		ObjectKeyTemplate oktemp = new JIDLObjectKeyTemplate(orb, scid, serverid);
+		ObjectKeyTemplate oktemp = new JIDLObjectKeyTemplate(orb, scid,
+				serverid);
 
 		// REVISIT - POA specific
 		Policies policies = Policies.defaultPolicies;
@@ -113,7 +94,7 @@ public class TOAImpl extends ObjectAdapterBase implements TOA {
 	 * removeCurrent from the same thread are for the same request.
 	 * 
 	 * @param request
-	 *            is the request containing the rest of the request
+	 *                is the request containing the rest of the request
 	 */
 	public void getInvocationServant(OAInvocationInfo info) {
 		java.lang.Object servant = servants.lookupServant(info.id());
@@ -151,11 +132,9 @@ public class TOAImpl extends ObjectAdapterBase implements TOA {
 		return ACTIVE.value;
 	}
 
-	public void enter() throws OADestroyed {
-	}
+	public void enter() throws OADestroyed {}
 
-	public void exit() {
-	}
+	public void exit() {}
 
 	// Methods unique to the TOA
 
@@ -177,13 +156,15 @@ public class TOAImpl extends ObjectAdapterBase implements TOA {
 		org.omg.CORBA.portable.Delegate delegate = StubAdapter.getDelegate(obj);
 		CorbaContactInfoList ccil = (CorbaContactInfoList) ((ClientDelegate) delegate)
 				.getContactInfoList();
-		LocalClientRequestDispatcher lcs = ccil.getLocalClientRequestDispatcher();
+		LocalClientRequestDispatcher lcs = ccil
+				.getLocalClientRequestDispatcher();
 
 		if (lcs instanceof JIDLLocalCRDImpl) {
 			JIDLLocalCRDImpl jlcs = (JIDLLocalCRDImpl) lcs;
 			jlcs.setServant(objref);
 		} else {
-			throw new RuntimeException("TOAImpl.connect can not be called on " + lcs);
+			throw new RuntimeException("TOAImpl.connect can not be called on "
+					+ lcs);
 		}
 
 		StubAdapter.setDelegate(objref, delegate);
@@ -194,7 +175,8 @@ public class TOAImpl extends ObjectAdapterBase implements TOA {
 		org.omg.CORBA.portable.Delegate del = StubAdapter.getDelegate(objref);
 		CorbaContactInfoList ccil = (CorbaContactInfoList) ((ClientDelegate) del)
 				.getContactInfoList();
-		LocalClientRequestDispatcher lcs = ccil.getLocalClientRequestDispatcher();
+		LocalClientRequestDispatcher lcs = ccil
+				.getLocalClientRequestDispatcher();
 
 		if (lcs instanceof JIDLLocalCRDImpl) {
 			JIDLLocalCRDImpl jlcs = (JIDLLocalCRDImpl) lcs;
@@ -202,7 +184,8 @@ public class TOAImpl extends ObjectAdapterBase implements TOA {
 			servants.deleteServant(oid);
 			jlcs.unexport();
 		} else {
-			throw new RuntimeException("TOAImpl.disconnect can not be called on " + lcs);
+			throw new RuntimeException(
+					"TOAImpl.disconnect can not be called on " + lcs);
 		}
 	}
 }

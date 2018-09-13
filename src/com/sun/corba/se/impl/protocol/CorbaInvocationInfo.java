@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol;
@@ -47,8 +27,7 @@ public class CorbaInvocationInfo implements ClientInvocationInfo {
 	private ClientRequestDispatcher clientRequestDispatcher;
 	private MessageMediator messageMediator;
 
-	private CorbaInvocationInfo() {
-	}
+	private CorbaInvocationInfo() {}
 
 	public CorbaInvocationInfo(ORB orb) {
 		this.orb = orb;
@@ -84,7 +63,8 @@ public class CorbaInvocationInfo implements ClientInvocationInfo {
 		entryCount--;
 	}
 
-	public void setClientRequestDispatcher(ClientRequestDispatcher clientRequestDispatcher) {
+	public void setClientRequestDispatcher(
+			ClientRequestDispatcher clientRequestDispatcher) {
 		this.clientRequestDispatcher = clientRequestDispatcher;
 	}
 

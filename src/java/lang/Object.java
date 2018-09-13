@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -205,10 +185,13 @@ public class Object {
 	 *
 	 * @return a clone of this instance.
 	 * @throws CloneNotSupportedException
-	 *             if the object's class does not support the {@code Cloneable}
-	 *             interface. Subclasses that override the {@code clone} method
-	 *             can also throw this exception to indicate that an instance
-	 *             cannot be cloned.
+	 *                                    if the object's class does not support
+	 *                                    the {@code Cloneable}
+	 *                                    interface. Subclasses that override
+	 *                                    the {@code clone} method
+	 *                                    can also throw this exception to
+	 *                                    indicate that an instance
+	 *                                    cannot be cloned.
 	 * @see java.lang.Cloneable
 	 */
 	protected native Object clone() throws CloneNotSupportedException;
@@ -266,8 +249,9 @@ public class Object {
 	 * Only one thread at a time can own an object's monitor.
 	 *
 	 * @throws IllegalMonitorStateException
-	 *             if the current thread is not the owner of this object's
-	 *             monitor.
+	 *                                      if the current thread is not the
+	 *                                      owner of this object's
+	 *                                      monitor.
 	 * @see java.lang.Object#notifyAll()
 	 * @see java.lang.Object#wait()
 	 */
@@ -289,8 +273,9 @@ public class Object {
 	 * ways in which a thread can become the owner of a monitor.
 	 *
 	 * @throws IllegalMonitorStateException
-	 *             if the current thread is not the owner of this object's
-	 *             monitor.
+	 *                                      if the current thread is not the
+	 *                                      owner of this object's
+	 *                                      monitor.
 	 * @see java.lang.Object#notify()
 	 * @see java.lang.Object#wait()
 	 */
@@ -370,17 +355,21 @@ public class Object {
 	 * ways in which a thread can become the owner of a monitor.
 	 *
 	 * @param timeout
-	 *            the maximum time to wait in milliseconds.
+	 *                the maximum time to wait in milliseconds.
 	 * @throws IllegalArgumentException
-	 *             if the value of timeout is negative.
+	 *                                      if the value of timeout is negative.
 	 * @throws IllegalMonitorStateException
-	 *             if the current thread is not the owner of the object's
-	 *             monitor.
+	 *                                      if the current thread is not the
+	 *                                      owner of the object's
+	 *                                      monitor.
 	 * @throws InterruptedException
-	 *             if any thread interrupted the current thread before or while
-	 *             the current thread was waiting for a notification. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                                      if any thread interrupted the
+	 *                                      current thread before or while
+	 *                                      the current thread was waiting for a
+	 *                                      notification. The
+	 *                                      <i>interrupted status</i> of the
+	 *                                      current thread is cleared
+	 *                                      when this exception is thrown.
 	 * @see java.lang.Object#notify()
 	 * @see java.lang.Object#notifyAll()
 	 */
@@ -438,28 +427,35 @@ public class Object {
 	 * ways in which a thread can become the owner of a monitor.
 	 *
 	 * @param timeout
-	 *            the maximum time to wait in milliseconds.
+	 *                the maximum time to wait in milliseconds.
 	 * @param nanos
-	 *            additional time, in nanoseconds range 0-999999.
+	 *                additional time, in nanoseconds range 0-999999.
 	 * @throws IllegalArgumentException
-	 *             if the value of timeout is negative or the value of nanos is
-	 *             not in the range 0-999999.
+	 *                                      if the value of timeout is negative
+	 *                                      or the value of nanos is
+	 *                                      not in the range 0-999999.
 	 * @throws IllegalMonitorStateException
-	 *             if the current thread is not the owner of this object's
-	 *             monitor.
+	 *                                      if the current thread is not the
+	 *                                      owner of this object's
+	 *                                      monitor.
 	 * @throws InterruptedException
-	 *             if any thread interrupted the current thread before or while
-	 *             the current thread was waiting for a notification. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                                      if any thread interrupted the
+	 *                                      current thread before or while
+	 *                                      the current thread was waiting for a
+	 *                                      notification. The
+	 *                                      <i>interrupted status</i> of the
+	 *                                      current thread is cleared
+	 *                                      when this exception is thrown.
 	 */
-	public final void wait(long timeout, int nanos) throws InterruptedException {
+	public final void wait(long timeout, int nanos)
+			throws InterruptedException {
 		if (timeout < 0) {
 			throw new IllegalArgumentException("timeout value is negative");
 		}
 
 		if (nanos < 0 || nanos > 999999) {
-			throw new IllegalArgumentException("nanosecond timeout value out of range");
+			throw new IllegalArgumentException(
+					"nanosecond timeout value out of range");
 		}
 
 		if (nanos > 0) {
@@ -499,13 +495,17 @@ public class Object {
 	 * ways in which a thread can become the owner of a monitor.
 	 *
 	 * @throws IllegalMonitorStateException
-	 *             if the current thread is not the owner of the object's
-	 *             monitor.
+	 *                                      if the current thread is not the
+	 *                                      owner of the object's
+	 *                                      monitor.
 	 * @throws InterruptedException
-	 *             if any thread interrupted the current thread before or while
-	 *             the current thread was waiting for a notification. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                                      if any thread interrupted the
+	 *                                      current thread before or while
+	 *                                      the current thread was waiting for a
+	 *                                      notification. The
+	 *                                      <i>interrupted status</i> of the
+	 *                                      current thread is cleared
+	 *                                      when this exception is thrown.
 	 * @see java.lang.Object#notify()
 	 * @see java.lang.Object#notifyAll()
 	 */
@@ -557,11 +557,10 @@ public class Object {
 	 * finalization of this object to be halted, but is otherwise ignored.
 	 *
 	 * @throws Throwable
-	 *             the {@code Exception} raised by this method
+	 *                   the {@code Exception} raised by this method
 	 * @see java.lang.ref.WeakReference
 	 * @see java.lang.ref.PhantomReference
 	 * @jls 12.6 Finalization of Class Instances
 	 */
-	protected void finalize() throws Throwable {
-	}
+	protected void finalize() throws Throwable {}
 }

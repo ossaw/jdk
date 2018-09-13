@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute.standard;
@@ -48,7 +28,8 @@ import javax.print.attribute.PrintRequestAttribute;
  * @since 1.7
  *
  */
-public final class DialogTypeSelection extends EnumSyntax implements PrintRequestAttribute {
+public final class DialogTypeSelection extends EnumSyntax implements
+		PrintRequestAttribute {
 
 	private static final long serialVersionUID = 7518682952133256029L;
 
@@ -67,7 +48,7 @@ public final class DialogTypeSelection extends EnumSyntax implements PrintReques
 	 * integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected DialogTypeSelection(int value) {
 		super(value);
@@ -75,7 +56,8 @@ public final class DialogTypeSelection extends EnumSyntax implements PrintReques
 
 	private static final String[] myStringTable = { "native", "common" };
 
-	private static final DialogTypeSelection[] myEnumValueTable = { NATIVE, COMMON };
+	private static final DialogTypeSelection[] myEnumValueTable = { NATIVE,
+			COMMON };
 
 	/**
 	 * Returns the string table for class DialogTypeSelection.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -58,15 +38,16 @@ public abstract class KeyPairGeneratorSpi {
 	 * default parameter set.
 	 *
 	 * @param keysize
-	 *            the keysize. This is an algorithm-specific metric, such as
-	 *            modulus length, specified in number of bits.
+	 *                the keysize. This is an algorithm-specific metric, such as
+	 *                modulus length, specified in number of bits.
 	 *
 	 * @param random
-	 *            the source of randomness for this generator.
+	 *                the source of randomness for this generator.
 	 *
 	 * @exception InvalidParameterException
-	 *                if the {@code keysize} is not supported by this
-	 *                KeyPairGeneratorSpi object.
+	 *                                      if the {@code keysize} is not
+	 *                                      supported by this
+	 *                                      KeyPairGeneratorSpi object.
 	 */
 	public abstract void initialize(int keysize, SecureRandom random);
 
@@ -83,14 +64,15 @@ public abstract class KeyPairGeneratorSpi {
 	 * not overridden, it always throws an UnsupportedOperationException.
 	 *
 	 * @param params
-	 *            the parameter set used to generate the keys.
+	 *               the parameter set used to generate the keys.
 	 *
 	 * @param random
-	 *            the source of randomness for this generator.
+	 *               the source of randomness for this generator.
 	 *
 	 * @exception InvalidAlgorithmParameterException
-	 *                if the given parameters are inappropriate for this key
-	 *                pair generator.
+	 *                                               if the given parameters are
+	 *                                               inappropriate for this key
+	 *                                               pair generator.
 	 *
 	 * @since 1.2
 	 */

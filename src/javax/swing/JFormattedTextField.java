@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -186,7 +166,8 @@ import javax.swing.text.*;
  */
 public class JFormattedTextField extends JTextField {
 	private static final String uiClassID = "FormattedTextFieldUI";
-	private static final Action[] defaultActions = { new CommitAction(), new CancelAction() };
+	private static final Action[] defaultActions = { new CommitAction(),
+			new CancelAction() };
 
 	/**
 	 * Constant identifying that when focus is lost, <code>commitEdit</code>
@@ -285,7 +266,7 @@ public class JFormattedTextField extends JTextField {
 	 * <code>value</code>.
 	 *
 	 * @param value
-	 *            Initial value for the JFormattedTextField
+	 *              Initial value for the JFormattedTextField
 	 */
 	public JFormattedTextField(Object value) {
 		this();
@@ -298,7 +279,7 @@ public class JFormattedTextField extends JTextField {
 	 * wrapped in an <code>AbstractFormatterFactory</code>.
 	 *
 	 * @param format
-	 *            Format used to look up an AbstractFormatter
+	 *               Format used to look up an AbstractFormatter
 	 */
 	public JFormattedTextField(java.text.Format format) {
 		this();
@@ -311,7 +292,7 @@ public class JFormattedTextField extends JTextField {
 	 * placed in an <code>AbstractFormatterFactory</code>.
 	 *
 	 * @param formatter
-	 *            AbstractFormatter to use for formatting.
+	 *                  AbstractFormatter to use for formatting.
 	 */
 	public JFormattedTextField(AbstractFormatter formatter) {
 		this(new DefaultFormatterFactory(formatter));
@@ -322,7 +303,7 @@ public class JFormattedTextField extends JTextField {
 	 * <code>AbstractFormatterFactory</code>.
 	 *
 	 * @param factory
-	 *            AbstractFormatterFactory used for formatting.
+	 *                AbstractFormatterFactory used for formatting.
 	 */
 	public JFormattedTextField(AbstractFormatterFactory factory) {
 		this();
@@ -334,11 +315,13 @@ public class JFormattedTextField extends JTextField {
 	 * <code>AbstractFormatterFactory</code> and initial value.
 	 *
 	 * @param factory
-	 *            <code>AbstractFormatterFactory</code> used for formatting.
+	 *                     <code>AbstractFormatterFactory</code> used for
+	 *                     formatting.
 	 * @param currentValue
-	 *            Initial value to use
+	 *                     Initial value to use
 	 */
-	public JFormattedTextField(AbstractFormatterFactory factory, Object currentValue) {
+	public JFormattedTextField(AbstractFormatterFactory factory,
+			Object currentValue) {
 		this(currentValue);
 		setFormatterFactory(factory);
 	}
@@ -359,17 +342,18 @@ public class JFormattedTextField extends JTextField {
 	 * <code>JFormattedTextField.COMMIT_OR_REVERT</code>.
 	 *
 	 * @param behavior
-	 *            Identifies behavior when focus is lost
+	 *                 Identifies behavior when focus is lost
 	 * @throws IllegalArgumentException
-	 *             if behavior is not one of the known values
+	 *                                  if behavior is not one of the known
+	 *                                  values
 	 * @beaninfo enum: COMMIT JFormattedTextField.COMMIT COMMIT_OR_REVERT
 	 *           JFormattedTextField.COMMIT_OR_REVERT REVERT
 	 *           JFormattedTextField.REVERT PERSIST JFormattedTextField.PERSIST
 	 *           description: Behavior when component loses focus
 	 */
 	public void setFocusLostBehavior(int behavior) {
-		if (behavior != COMMIT && behavior != COMMIT_OR_REVERT && behavior != PERSIST
-				&& behavior != REVERT) {
+		if (behavior != COMMIT && behavior != COMMIT_OR_REVERT
+				&& behavior != PERSIST && behavior != REVERT) {
 			throw new IllegalArgumentException(
 					"setFocusLostBehavior must be one of: JFormattedTextField.COMMIT, JFormattedTextField.COMMIT_OR_REVERT, JFormattedTextField.PERSIST or JFormattedTextField.REVERT");
 		}
@@ -407,8 +391,8 @@ public class JFormattedTextField extends JTextField {
 	 * This is a JavaBeans bound property.
 	 *
 	 * @param tf
-	 *            <code>AbstractFormatterFactory</code> used to lookup instances
-	 *            of <code>AbstractFormatter</code>
+	 *           <code>AbstractFormatterFactory</code> used to lookup instances
+	 *           of <code>AbstractFormatter</code>
 	 * @beaninfo bound: true attribute: visualUpdate true description:
 	 *           AbstractFormatterFactory, responsible for returning an
 	 *           AbstractFormatter that can format the current value.
@@ -447,7 +431,7 @@ public class JFormattedTextField extends JTextField {
 	 *
 	 * @see #setFormatterFactory
 	 * @param format
-	 *            AbstractFormatter to use for formatting
+	 *               AbstractFormatter to use for formatting
 	 * @beaninfo bound: true attribute: visualUpdate true description:
 	 *           TextFormatter, responsible for formatting the current value
 	 */
@@ -488,7 +472,7 @@ public class JFormattedTextField extends JTextField {
 	 * This is a JavaBeans bound property.
 	 *
 	 * @param value
-	 *            Current value to display
+	 *              Current value to display
 	 * @beaninfo bound: true attribute: visualUpdate true description: The value
 	 *           to be formatted.
 	 */
@@ -517,8 +501,9 @@ public class JFormattedTextField extends JTextField {
 	 * effect if there is no current <code>AbstractFormatter</code> installed.
 	 *
 	 * @throws ParseException
-	 *             if the <code>AbstractFormatter</code> is not able to format
-	 *             the current value
+	 *                        if the <code>AbstractFormatter</code> is not able
+	 *                        to format
+	 *                        the current value
 	 */
 	public void commitEdit() throws ParseException {
 		AbstractFormatter format = getFormatter();
@@ -540,14 +525,15 @@ public class JFormattedTextField extends JTextField {
 	 * receiver.
 	 *
 	 * @param isValid
-	 *            boolean indicating if the currently edited value is valid.
+	 *                boolean indicating if the currently edited value is valid.
 	 * @beaninfo bound: true attribute: visualUpdate true description: True
 	 *           indicates the edited value is valid
 	 */
 	private void setEditValid(boolean isValid) {
 		if (isValid != editValid) {
 			editValid = isValid;
-			firePropertyChange("editValid", Boolean.valueOf(!isValid), Boolean.valueOf(isValid));
+			firePropertyChange("editValid", Boolean.valueOf(!isValid), Boolean
+					.valueOf(isValid));
 		}
 	}
 
@@ -567,7 +553,8 @@ public class JFormattedTextField extends JTextField {
 	 * chance to provide feedback. The default implementation beeps.
 	 */
 	protected void invalidEdit() {
-		UIManager.getLookAndFeel().provideErrorFeedback(JFormattedTextField.this);
+		UIManager.getLookAndFeel().provideErrorFeedback(
+				JFormattedTextField.this);
 	}
 
 	/**
@@ -576,7 +563,7 @@ public class JFormattedTextField extends JTextField {
 	 * <code>InputMethodEvent.CARET_POSITION_CHANGED</code>.
 	 *
 	 * @param e
-	 *            the <code>InputMethodEvent</code>
+	 *          the <code>InputMethodEvent</code>
 	 * @see InputMethodEvent
 	 */
 	protected void processInputMethodEvent(InputMethodEvent e) {
@@ -600,7 +587,7 @@ public class JFormattedTextField extends JTextField {
 	 * or <code>FocusEvent.FOCUS_LOST</code>.
 	 *
 	 * @param e
-	 *            the <code>FocusEvent</code>
+	 *          the <code>FocusEvent</code>
 	 * @see FocusEvent
 	 */
 	protected void processFocusEvent(FocusEvent e) {
@@ -636,20 +623,23 @@ public class JFormattedTextField extends JTextField {
 	private class FocusLostHandler implements Runnable, Serializable {
 		public void run() {
 			int fb = JFormattedTextField.this.getFocusLostBehavior();
-			if (fb == JFormattedTextField.COMMIT || fb == JFormattedTextField.COMMIT_OR_REVERT) {
+			if (fb == JFormattedTextField.COMMIT
+					|| fb == JFormattedTextField.COMMIT_OR_REVERT) {
 				try {
 					JFormattedTextField.this.commitEdit();
 					// Give it a chance to reformat.
-					JFormattedTextField.this.setValue(JFormattedTextField.this.getValue(), true,
-							true);
+					JFormattedTextField.this.setValue(JFormattedTextField.this
+							.getValue(), true, true);
 				} catch (ParseException pe) {
 					if (fb == JFormattedTextField.this.COMMIT_OR_REVERT) {
-						JFormattedTextField.this.setValue(JFormattedTextField.this.getValue(), true,
+						JFormattedTextField.this.setValue(
+								JFormattedTextField.this.getValue(), true,
 								true);
 					}
 				}
 			} else if (fb == JFormattedTextField.REVERT) {
-				JFormattedTextField.this.setValue(JFormattedTextField.this.getValue(), true, true);
+				JFormattedTextField.this.setValue(JFormattedTextField.this
+						.getValue(), true, true);
 			}
 		}
 	}
@@ -701,7 +691,6 @@ public class JFormattedTextField extends JTextField {
 	/*
 	 * See readObject and writeObject in JComponent for more information about
 	 * serialization in Swing.
-	 *
 	 * @param s Stream to write to
 	 */
 	private void writeObject(ObjectOutputStream s) throws IOException {
@@ -803,13 +792,16 @@ public class JFormattedTextField extends JTextField {
 	 */
 	private AbstractFormatterFactory getDefaultFormatterFactory(Object type) {
 		if (type instanceof DateFormat) {
-			return new DefaultFormatterFactory(new DateFormatter((DateFormat) type));
+			return new DefaultFormatterFactory(new DateFormatter(
+					(DateFormat) type));
 		}
 		if (type instanceof NumberFormat) {
-			return new DefaultFormatterFactory(new NumberFormatter((NumberFormat) type));
+			return new DefaultFormatterFactory(new NumberFormatter(
+					(NumberFormat) type));
 		}
 		if (type instanceof Format) {
-			return new DefaultFormatterFactory(new InternationalFormatter((Format) type));
+			return new DefaultFormatterFactory(new InternationalFormatter(
+					(Format) type));
 		}
 		if (type instanceof Date) {
 			return new DefaultFormatterFactory(new DateFormatter());
@@ -817,10 +809,12 @@ public class JFormattedTextField extends JTextField {
 		if (type instanceof Number) {
 			AbstractFormatter displayFormatter = new NumberFormatter();
 			((NumberFormatter) displayFormatter).setValueClass(type.getClass());
-			AbstractFormatter editFormatter = new NumberFormatter(new DecimalFormat("#.#"));
+			AbstractFormatter editFormatter = new NumberFormatter(
+					new DecimalFormat("#.#"));
 			((NumberFormatter) editFormatter).setValueClass(type.getClass());
 
-			return new DefaultFormatterFactory(displayFormatter, displayFormatter, editFormatter);
+			return new DefaultFormatterFactory(displayFormatter,
+					displayFormatter, editFormatter);
 		}
 		return new DefaultFormatterFactory(new DefaultFormatter());
 	}
@@ -843,7 +837,7 @@ public class JFormattedTextField extends JTextField {
 		 * of the passed in <code>JFormattedTextField</code>.
 		 *
 		 * @param tf
-		 *            JFormattedTextField requesting AbstractFormatter
+		 *           JFormattedTextField requesting AbstractFormatter
 		 * @return AbstractFormatter to handle formatting duties, a null return
 		 *         value implies the JFormattedTextField should behave like a
 		 *         normal JTextField
@@ -951,9 +945,9 @@ public class JFormattedTextField extends JTextField {
 		 * formatters may return null.
 		 *
 		 * @throws ParseException
-		 *             if there is an error in the conversion
+		 *                        if there is an error in the conversion
 		 * @param text
-		 *            String to convert
+		 *             String to convert
 		 * @return Object representation of text
 		 */
 		public abstract Object stringToValue(String text) throws ParseException;
@@ -962,12 +956,13 @@ public class JFormattedTextField extends JTextField {
 		 * Returns the string value to display for <code>value</code>.
 		 *
 		 * @throws ParseException
-		 *             if there is an error in the conversion
+		 *                        if there is an error in the conversion
 		 * @param value
-		 *            Value to convert
+		 *              Value to convert
 		 * @return String representation of value
 		 */
-		public abstract String valueToString(Object value) throws ParseException;
+		public abstract String valueToString(Object value)
+				throws ParseException;
 
 		/**
 		 * Returns the current <code>JFormattedTextField</code> the
@@ -998,7 +993,7 @@ public class JFormattedTextField extends JTextField {
 		 * you will never need to invoke this.
 		 *
 		 * @param valid
-		 *            Valid state of the JFormattedTextField
+		 *              Valid state of the JFormattedTextField
 		 */
 		protected void setEditValid(boolean valid) {
 			JFormattedTextField ftf = getFormattedTextField();
@@ -1060,7 +1055,7 @@ public class JFormattedTextField extends JTextField {
 		 * current <code>JFormattedTextField</code>.
 		 *
 		 * @param filter
-		 *            DocumentFilter to install on the Document.
+		 *               DocumentFilter to install on the Document.
 		 */
 		private void installDocumentFilter(DocumentFilter filter) {
 			JFormattedTextField ftf = getFormattedTextField();
@@ -1156,7 +1151,6 @@ public class JFormattedTextField extends JTextField {
 			setEdited(true);
 		}
 
-		public void changedUpdate(DocumentEvent e) {
-		}
+		public void changedUpdate(DocumentEvent e) {}
 	}
 }

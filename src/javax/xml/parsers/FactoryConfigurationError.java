@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.parsers;
@@ -70,8 +50,8 @@ public class FactoryConfigurationError extends Error {
 	 * <code>Exception</code> base cause of the error.
 	 *
 	 * @param e
-	 *            The exception to be encapsulated in a
-	 *            FactoryConfigurationError.
+	 *          The exception to be encapsulated in a
+	 *          FactoryConfigurationError.
 	 */
 
 	public FactoryConfigurationError(Exception e) {

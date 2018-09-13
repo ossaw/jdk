@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -103,8 +100,8 @@ final class AncestorPattern extends RelativePathPattern {
 		 * The scope of this local var must be the entire method since a another
 		 * pattern may decide to jump back into the loop
 		 */
-		final LocalVariableGen local = methodGen.addLocalVariable2("app",
-				Util.getJCRefType(NODE_SIG), il.getEnd());
+		final LocalVariableGen local = methodGen.addLocalVariable2("app", Util
+				.getJCRefType(NODE_SIG), il.getEnd());
 
 		final com.sun.org.apache.bcel.internal.generic.Instruction loadLocal = new ILOAD(
 				local.getIndex());
@@ -127,7 +124,8 @@ final class AncestorPattern extends RelativePathPattern {
 		}
 
 		if (_left != null) {
-			final int getParent = cpg.addInterfaceMethodref(DOM_INTF, GET_PARENT, GET_PARENT_SIG);
+			final int getParent = cpg.addInterfaceMethodref(DOM_INTF,
+					GET_PARENT, GET_PARENT_SIG);
 			parent = il.append(new INVOKEINTERFACE(getParent, 2));
 
 			il.append(DUP);
@@ -138,7 +136,8 @@ final class AncestorPattern extends RelativePathPattern {
 			_left.translate(classGen, methodGen);
 
 			final SyntaxTreeNode p = getParent();
-			if (p == null || p instanceof Instruction || p instanceof TopLevelElement) {
+			if (p == null || p instanceof Instruction
+					|| p instanceof TopLevelElement) {
 				// do nothing
 			} else {
 				il.append(loadLocal);

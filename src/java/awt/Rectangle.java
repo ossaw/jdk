@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -117,7 +97,8 @@ import java.beans.Transient;
  * @author Sami Shaio
  * @since 1.0
  */
-public class Rectangle extends Rectangle2D implements Shape, java.io.Serializable {
+public class Rectangle extends Rectangle2D implements Shape,
+		java.io.Serializable {
 
 	/**
 	 * The X coordinate of the upper-left corner of the <code>Rectangle</code>.
@@ -191,8 +172,8 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * of the specified <code>Rectangle</code>.
 	 * 
 	 * @param r
-	 *            the <code>Rectangle</code> from which to copy initial values
-	 *            to a newly constructed <code>Rectangle</code>
+	 *          the <code>Rectangle</code> from which to copy initial values
+	 *          to a newly constructed <code>Rectangle</code>
 	 * @since 1.1
 	 */
 	public Rectangle(Rectangle r) {
@@ -205,13 +186,13 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * the arguments of the same name.
 	 * 
 	 * @param x
-	 *            the specified X coordinate
+	 *               the specified X coordinate
 	 * @param y
-	 *            the specified Y coordinate
+	 *               the specified Y coordinate
 	 * @param width
-	 *            the width of the <code>Rectangle</code>
+	 *               the width of the <code>Rectangle</code>
 	 * @param height
-	 *            the height of the <code>Rectangle</code>
+	 *               the height of the <code>Rectangle</code>
 	 * @since 1.0
 	 */
 	public Rectangle(int x, int y, int width, int height) {
@@ -227,9 +208,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * specified by the arguments of the same name.
 	 * 
 	 * @param width
-	 *            the width of the <code>Rectangle</code>
+	 *               the width of the <code>Rectangle</code>
 	 * @param height
-	 *            the height of the <code>Rectangle</code>
+	 *               the height of the <code>Rectangle</code>
 	 */
 	public Rectangle(int width, int height) {
 		this(0, 0, width, height);
@@ -241,11 +222,11 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * specified by the {@link Dimension} argument.
 	 * 
 	 * @param p
-	 *            a <code>Point</code> that is the upper-left corner of the
-	 *            <code>Rectangle</code>
+	 *          a <code>Point</code> that is the upper-left corner of the
+	 *          <code>Rectangle</code>
 	 * @param d
-	 *            a <code>Dimension</code>, representing the width and height of
-	 *            the <code>Rectangle</code>
+	 *          a <code>Dimension</code>, representing the width and height of
+	 *          the <code>Rectangle</code>
 	 */
 	public Rectangle(Point p, Dimension d) {
 		this(p.x, p.y, d.width, d.height);
@@ -256,8 +237,8 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * specified <code>Point</code>, and whose width and height are both zero.
 	 * 
 	 * @param p
-	 *            a <code>Point</code> that is the top left corner of the
-	 *            <code>Rectangle</code>
+	 *          a <code>Point</code> that is the top left corner of the
+	 *          <code>Rectangle</code>
 	 */
 	public Rectangle(Point p) {
 		this(p.x, p.y, 0, 0);
@@ -269,7 +250,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>Dimension</code> argument.
 	 * 
 	 * @param d
-	 *            a <code>Dimension</code>, specifying width and height
+	 *          a <code>Dimension</code>, specifying width and height
 	 */
 	public Rectangle(Dimension d) {
 		this(0, 0, d.width, d.height);
@@ -350,7 +331,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>setBounds</code> method of <code>Component</code>.
 	 * 
 	 * @param r
-	 *            the specified <code>Rectangle</code>
+	 *          the specified <code>Rectangle</code>
 	 * @see #getBounds
 	 * @see java.awt.Component#setBounds(java.awt.Rectangle)
 	 * @since 1.1
@@ -368,15 +349,15 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>setBounds</code> method of <code>Component</code>.
 	 * 
 	 * @param x
-	 *            the new X coordinate for the upper-left corner of this
-	 *            <code>Rectangle</code>
+	 *               the new X coordinate for the upper-left corner of this
+	 *               <code>Rectangle</code>
 	 * @param y
-	 *            the new Y coordinate for the upper-left corner of this
-	 *            <code>Rectangle</code>
+	 *               the new Y coordinate for the upper-left corner of this
+	 *               <code>Rectangle</code>
 	 * @param width
-	 *            the new width for this <code>Rectangle</code>
+	 *               the new width for this <code>Rectangle</code>
 	 * @param height
-	 *            the new height for this <code>Rectangle</code>
+	 *               the new height for this <code>Rectangle</code>
 	 * @see #getBounds
 	 * @see java.awt.Component#setBounds(int, int, int, int)
 	 * @since 1.1
@@ -394,15 +375,15 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * maximum integer bounds.
 	 * 
 	 * @param x
-	 *            the X coordinate of the upper-left corner of the specified
-	 *            rectangle
+	 *               the X coordinate of the upper-left corner of the specified
+	 *               rectangle
 	 * @param y
-	 *            the Y coordinate of the upper-left corner of the specified
-	 *            rectangle
+	 *               the Y coordinate of the upper-left corner of the specified
+	 *               rectangle
 	 * @param width
-	 *            the width of the specified rectangle
+	 *               the width of the specified rectangle
 	 * @param height
-	 *            the new height of the specified rectangle
+	 *               the new height of the specified rectangle
 	 */
 	public void setRect(double x, double y, double width, double height) {
 		int newx, newy, neww, newh;
@@ -457,15 +438,15 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <p>
 	 * 
 	 * @param x
-	 *            the new X coordinate for the upper-left corner of this
-	 *            <code>Rectangle</code>
+	 *               the new X coordinate for the upper-left corner of this
+	 *               <code>Rectangle</code>
 	 * @param y
-	 *            the new Y coordinate for the upper-left corner of this
-	 *            <code>Rectangle</code>
+	 *               the new Y coordinate for the upper-left corner of this
+	 *               <code>Rectangle</code>
 	 * @param width
-	 *            the new width for this <code>Rectangle</code>
+	 *               the new width for this <code>Rectangle</code>
 	 * @param height
-	 *            the new height for this <code>Rectangle</code>
+	 *               the new height for this <code>Rectangle</code>
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>setBounds(int, int, int, int)</code>.
 	 */
@@ -501,8 +482,8 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>setLocation</code> method of <code>Component</code>.
 	 * 
 	 * @param p
-	 *            the <code>Point</code> specifying the new location for this
-	 *            <code>Rectangle</code>
+	 *          the <code>Point</code> specifying the new location for this
+	 *          <code>Rectangle</code>
 	 * @see java.awt.Component#setLocation(java.awt.Point)
 	 * @see #getLocation
 	 * @since 1.1
@@ -518,9 +499,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>setLocation</code> method of <code>Component</code>.
 	 * 
 	 * @param x
-	 *            the X coordinate of the new location
+	 *          the X coordinate of the new location
 	 * @param y
-	 *            the Y coordinate of the new location
+	 *          the Y coordinate of the new location
 	 * @see #getLocation
 	 * @see java.awt.Component#setLocation(int, int)
 	 * @since 1.1
@@ -534,9 +515,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <p>
 	 * 
 	 * @param x
-	 *            the X coordinate of the new location
+	 *          the X coordinate of the new location
 	 * @param y
-	 *            the Y coordinate of the new location
+	 *          the Y coordinate of the new location
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>setLocation(int, int)</code>.
 	 */
@@ -552,11 +533,11 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * axis.
 	 * 
 	 * @param dx
-	 *            the distance to move this <code>Rectangle</code> along the X
-	 *            axis
+	 *           the distance to move this <code>Rectangle</code> along the X
+	 *           axis
 	 * @param dy
-	 *            the distance to move this <code>Rectangle</code> along the Y
-	 *            axis
+	 *           the distance to move this <code>Rectangle</code> along the Y
+	 *           axis
 	 * @see java.awt.Rectangle#setLocation(int, int)
 	 * @see java.awt.Rectangle#setLocation(java.awt.Point)
 	 */
@@ -655,7 +636,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>setSize</code> method of <code>Component</code>.
 	 * 
 	 * @param d
-	 *            the new size for the <code>Dimension</code> object
+	 *          the new size for the <code>Dimension</code> object
 	 * @see java.awt.Component#setSize(java.awt.Dimension)
 	 * @see #getSize
 	 * @since 1.1
@@ -672,9 +653,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>setSize</code> method of <code>Component</code>.
 	 * 
 	 * @param width
-	 *            the new width for this <code>Rectangle</code>
+	 *               the new width for this <code>Rectangle</code>
 	 * @param height
-	 *            the new height for this <code>Rectangle</code>
+	 *               the new height for this <code>Rectangle</code>
 	 * @see java.awt.Component#setSize(int, int)
 	 * @see #getSize
 	 * @since 1.1
@@ -689,9 +670,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <p>
 	 * 
 	 * @param width
-	 *            the new width for this <code>Rectangle</code>
+	 *               the new width for this <code>Rectangle</code>
 	 * @param height
-	 *            the new height for this <code>Rectangle</code>
+	 *               the new height for this <code>Rectangle</code>
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>setSize(int, int)</code>.
 	 */
@@ -706,7 +687,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * <code>Point</code>.
 	 * 
 	 * @param p
-	 *            the <code>Point</code> to test
+	 *          the <code>Point</code> to test
 	 * @return <code>true</code> if the specified <code>Point</code> is inside
 	 *         this <code>Rectangle</code>; <code>false</code> otherwise.
 	 * @since 1.1
@@ -720,9 +701,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * the specified location {@code (x,y)}.
 	 *
 	 * @param x
-	 *            the specified X coordinate
+	 *          the specified X coordinate
 	 * @param y
-	 *            the specified Y coordinate
+	 *          the specified Y coordinate
 	 * @return <code>true</code> if the point {@code (x,y)} is inside this
 	 *         <code>Rectangle</code>; <code>false</code> otherwise.
 	 * @since 1.1
@@ -736,7 +717,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * specified <code>Rectangle</code>.
 	 *
 	 * @param r
-	 *            the specified <code>Rectangle</code>
+	 *          the specified <code>Rectangle</code>
 	 * @return <code>true</code> if the <code>Rectangle</code> is contained
 	 *         entirely inside this <code>Rectangle</code>; <code>false</code>
 	 *         otherwise
@@ -752,13 +733,13 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * specified dimensions {@code (W,H)}.
 	 * 
 	 * @param X
-	 *            the specified X coordinate
+	 *          the specified X coordinate
 	 * @param Y
-	 *            the specified Y coordinate
+	 *          the specified Y coordinate
 	 * @param W
-	 *            the width of the <code>Rectangle</code>
+	 *          the width of the <code>Rectangle</code>
 	 * @param H
-	 *            the height of the <code>Rectangle</code>
+	 *          the height of the <code>Rectangle</code>
 	 * @return <code>true</code> if the <code>Rectangle</code> specified by
 	 *         {@code (X, Y, W, H)} is entirely enclosed inside this
 	 *         <code>Rectangle</code>; <code>false</code> otherwise.
@@ -810,9 +791,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * the specified location {@code (X,Y)}.
 	 *
 	 * @param X
-	 *            the specified X coordinate
+	 *          the specified X coordinate
 	 * @param Y
-	 *            the specified Y coordinate
+	 *          the specified Y coordinate
 	 * @return <code>true</code> if the point {@code (X,Y)} is inside this
 	 *         <code>Rectangle</code>; <code>false</code> otherwise.
 	 * @deprecated As of JDK version 1.1, replaced by
@@ -844,7 +825,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * intersection is nonempty.
 	 *
 	 * @param r
-	 *            the specified <code>Rectangle</code>
+	 *          the specified <code>Rectangle</code>
 	 * @return <code>true</code> if the specified <code>Rectangle</code> and
 	 *         this <code>Rectangle</code> intersect; <code>false</code>
 	 *         otherwise.
@@ -866,8 +847,8 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 		tw += tx;
 		th += ty;
 		// overflow || intersect
-		return ((rw < rx || rw > tx) && (rh < ry || rh > ty) && (tw < tx || tw > rx)
-				&& (th < ty || th > ry));
+		return ((rw < rx || rw > tx) && (rh < ry || rh > ty) && (tw < tx
+				|| tw > rx) && (th < ty || th > ry));
 	}
 
 	/**
@@ -877,7 +858,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * rectangles do not intersect, the result will be an empty rectangle.
 	 *
 	 * @param r
-	 *            the specified <code>Rectangle</code>
+	 *          the specified <code>Rectangle</code>
 	 * @return the largest <code>Rectangle</code> contained in both the
 	 *         specified <code>Rectangle</code> and in this
 	 *         <code>Rectangle</code>; or if the rectangles do not intersect, an
@@ -932,7 +913,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * {@code Integer.MAX_VALUE} along that dimension.
 	 * 
 	 * @param r
-	 *            the specified <code>Rectangle</code>
+	 *          the specified <code>Rectangle</code>
 	 * @return the smallest <code>Rectangle</code> containing both the specified
 	 *         <code>Rectangle</code> and this <code>Rectangle</code>.
 	 */
@@ -1004,9 +985,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * </pre>
 	 * 
 	 * @param newx
-	 *            the X coordinate of the new point
+	 *             the X coordinate of the new point
 	 * @param newy
-	 *            the Y coordinate of the new point
+	 *             the Y coordinate of the new point
 	 */
 	public void add(int newx, int newy) {
 		if ((width | height) < 0) {
@@ -1062,8 +1043,8 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * </pre>
 	 * 
 	 * @param pt
-	 *            the new <code>Point</code> to add to this
-	 *            <code>Rectangle</code>
+	 *           the new <code>Point</code> to add to this
+	 *           <code>Rectangle</code>
 	 */
 	public void add(Point pt) {
 		add(pt.x, pt.y);
@@ -1090,7 +1071,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * {@code Integer.MAX_VALUE} along that dimension.
 	 * 
 	 * @param r
-	 *            the specified <code>Rectangle</code>
+	 *          the specified <code>Rectangle</code>
 	 */
 	public void add(Rectangle r) {
 		long tx2 = this.width;
@@ -1150,9 +1131,9 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 * non-negative to negative.
 	 * 
 	 * @param h
-	 *            the horizontal expansion
+	 *          the horizontal expansion
 	 * @param v
-	 *            the vertical expansion
+	 *          the vertical expansion
 	 */
 	public void grow(int h, int v) {
 		long x0 = this.x;
@@ -1241,7 +1222,6 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 		 * done in int, then we may get integer overflow. By converting to
 		 * double before the addition we force the addition to be carried out in
 		 * double to avoid overflow in the comparison.
-		 *
 		 * See bug 4320890 for problems that this can cause.
 		 */
 		int out = 0;
@@ -1306,7 +1286,8 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	public boolean equals(Object obj) {
 		if (obj instanceof Rectangle) {
 			Rectangle r = (Rectangle) obj;
-			return ((x == r.x) && (y == r.y) && (width == r.width) && (height == r.height));
+			return ((x == r.x) && (y == r.y) && (width == r.width)
+					&& (height == r.height));
 		}
 		return super.equals(obj);
 	}
@@ -1319,7 +1300,7 @@ public class Rectangle extends Rectangle2D implements Shape, java.io.Serializabl
 	 *         object's coordinate and size values.
 	 */
 	public String toString() {
-		return getClass().getName() + "[x=" + x + ",y=" + y + ",width=" + width + ",height="
-				+ height + "]";
+		return getClass().getName() + "[x=" + x + ",y=" + y + ",width=" + width
+				+ ",height=" + height + "]";
 	}
 }

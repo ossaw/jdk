@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.color;
@@ -36,7 +16,7 @@ public class ProfileDataException extends java.lang.RuntimeException {
 	 * Constructs a ProfileDataException with the specified detail message.
 	 * 
 	 * @param s
-	 *            the specified detail message
+	 *          the specified detail message
 	 */
 	public ProfileDataException(String s) {
 		super(s);

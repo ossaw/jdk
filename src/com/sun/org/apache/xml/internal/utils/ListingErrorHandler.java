@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: ListingErrorHandler.java,v 1.2.4.1 2005/09/15 08:15:46 suresh_emailid Exp $
+ * $Id: ListingErrorHandler.java,v 1.2.4.1 2005/09/15 08:15:46 suresh_emailid
+ * Exp $
  */
 
 package com.sun.org.apache.xml.internal.utils;
@@ -61,7 +59,8 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	public ListingErrorHandler(PrintWriter pw) {
 		if (null == pw)
 			throw new NullPointerException(XMLMessages.createXMLMessage(
-					XMLErrorResources.ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER, null));
+					XMLErrorResources.ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
+					null));
 		// "ListingErrorHandler created with null PrintWriter!");
 
 		m_pw = pw;
@@ -95,10 +94,11 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The warning information encapsulated in a SAX parse exception.
+	 *                  The warning information encapsulated in a SAX parse
+	 *                  exception.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception;
-	 *                only if setThrowOnWarning is true.
+	 *            Any SAX exception, possibly wrapping another exception;
+	 *            only if setThrowOnWarning is true.
 	 * @see org.xml.sax.SAXParseException
 	 */
 	public void warning(SAXParseException exception) throws SAXException {
@@ -135,10 +135,11 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception;
-	 *                only if setThrowOnErroris true.
+	 *            Any SAX exception, possibly wrapping another exception;
+	 *            only if setThrowOnErroris true.
 	 * @see org.xml.sax.SAXParseException
 	 */
 	public void error(SAXParseException exception) throws SAXException {
@@ -168,10 +169,11 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception;
-	 *                only if setThrowOnFatalError is true.
+	 *            Any SAX exception, possibly wrapping another exception;
+	 *            only if setThrowOnFatalError is true.
 	 * @see org.xml.sax.SAXParseException
 	 */
 	public void fatalError(SAXParseException exception) throws SAXException {
@@ -201,15 +203,16 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The warning information encapsulated in a transformer
-	 *            exception.
+	 *                  The warning information encapsulated in a transformer
+	 *                  exception.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             only if setThrowOnWarning is true.
+	 *         only if setThrowOnWarning is true.
 	 *
 	 * @see javax.xml.transform.TransformerException
 	 */
-	public void warning(TransformerException exception) throws TransformerException {
+	public void warning(TransformerException exception)
+			throws TransformerException {
 		logExceptionLocation(m_pw, exception);
 		m_pw.println("warning: " + exception.getMessage());
 		m_pw.flush();
@@ -229,14 +232,16 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a transformer exception.
+	 *                  The error information encapsulated in a transformer
+	 *                  exception.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             only if setThrowOnError is true.
+	 *         only if setThrowOnError is true.
 	 *
 	 * @see javax.xml.transform.TransformerException
 	 */
-	public void error(TransformerException exception) throws TransformerException {
+	public void error(TransformerException exception)
+			throws TransformerException {
 		logExceptionLocation(m_pw, exception);
 		m_pw.println("error: " + exception.getMessage());
 		m_pw.flush();
@@ -257,14 +262,16 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a transformer exception.
+	 *                  The error information encapsulated in a transformer
+	 *                  exception.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             only if setThrowOnError is true.
+	 *         only if setThrowOnError is true.
 	 *
 	 * @see javax.xml.transform.TransformerException
 	 */
-	public void fatalError(TransformerException exception) throws TransformerException {
+	public void fatalError(TransformerException exception)
+			throws TransformerException {
 		logExceptionLocation(m_pw, exception);
 		m_pw.println("error: " + exception.getMessage());
 		m_pw.flush();
@@ -281,12 +288,14 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * Cribbed from DefaultErrorHandler.printLocation()
 	 * 
 	 * @param pw
-	 *            PrintWriter to send output to
+	 *                  PrintWriter to send output to
 	 * @param exception
-	 *            TransformerException or SAXParseException to log information
-	 *            about
+	 *                  TransformerException or SAXParseException to log
+	 *                  information
+	 *                  about
 	 */
-	public static void logExceptionLocation(PrintWriter pw, Throwable exception) {
+	public static void logExceptionLocation(PrintWriter pw,
+			Throwable exception) {
 		if (null == pw)
 			pw = new PrintWriter(System.err, true);
 
@@ -304,7 +313,8 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 				// current one already does
 				locator = new SAXSourceLocator((SAXParseException) cause);
 			} else if (cause instanceof TransformerException) {
-				SourceLocator causeLocator = ((TransformerException) cause).getLocator();
+				SourceLocator causeLocator = ((TransformerException) cause)
+						.getLocator();
 				if (null != causeLocator) {
 					locator = causeLocator;
 				}
@@ -325,18 +335,22 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 		// path\filename:123: message-here
 		// systemId:L=1;C=2: message-here
 		if (null != locator) {
-			String id = (locator.getPublicId() != locator.getPublicId()) ? locator.getPublicId()
-					: (null != locator.getSystemId()) ? locator.getSystemId() : "SystemId-Unknown";
+			String id = (locator.getPublicId() != locator.getPublicId())
+					? locator.getPublicId()
+					: (null != locator.getSystemId()) ? locator.getSystemId()
+							: "SystemId-Unknown";
 
 			pw.print(id + ":Line=" + locator.getLineNumber() + ";Column="
 					+ locator.getColumnNumber() + ": ");
 			pw.println("exception:" + exception.getMessage());
-			pw.println("root-cause:" + ((null != cause) ? cause.getMessage() : "null"));
+			pw.println("root-cause:" + ((null != cause) ? cause.getMessage()
+					: "null"));
 			logSourceLine(pw, locator);
 		} else {
 			pw.print("SystemId-Unknown:locator-unavailable: ");
 			pw.println("exception:" + exception.getMessage());
-			pw.println("root-cause:" + ((null != cause) ? cause.getMessage() : "null"));
+			pw.println("root-cause:" + ((null != cause) ? cause.getMessage()
+					: "null"));
 		}
 	}
 
@@ -345,10 +359,10 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * to load it.
 	 *
 	 * @param pw
-	 *            PrintWriter to send output to
+	 *                PrintWriter to send output to
 	 * @param locator
-	 *            Xalan wrapper for either a JAXP or a SAX source location
-	 *            object
+	 *                Xalan wrapper for either a JAXP or a SAX source location
+	 *                object
 	 */
 	public static void logSourceLine(PrintWriter pw, SourceLocator locator) {
 		if (null == locator)
@@ -380,7 +394,8 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 			buf.append('^');
 			pw.println(buf.toString());
 		} catch (Exception e) {
-			pw.println("line: logSourceLine unavailable due to: " + e.getMessage());
+			pw.println("line: logSourceLine unavailable due to: " + e
+					.getMessage());
 			pw.println();
 		}
 	}
@@ -391,7 +406,8 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 *
 	 * @author shane_curcuru@us.ibm.com
 	 */
-	protected static String getSourceLine(String sourceUrl, int lineNum) throws Exception {
+	protected static String getSourceLine(String sourceUrl, int lineNum)
+			throws Exception {
 		URL url = null;
 		// Get a URL from the sourceUrl
 		try {
@@ -401,7 +417,8 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 			int indexOfColon = sourceUrl.indexOf(':');
 			int indexOfSlash = sourceUrl.indexOf('/');
 
-			if ((indexOfColon != -1) && (indexOfSlash != -1) && (indexOfColon < indexOfSlash)) {
+			if ((indexOfColon != -1) && (indexOfSlash != -1)
+					&& (indexOfColon < indexOfSlash)) {
 				// The url is already absolute, but we could not get
 				// the system to form it, so bail
 				throw mue;
@@ -451,7 +468,7 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param b
-	 *            if we should throw an exception on warnings
+	 *          if we should throw an exception on warnings
 	 */
 	public void setThrowOnWarning(boolean b) {
 		throwOnWarning = b;
@@ -484,7 +501,7 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param b
-	 *            if we should throw an exception on errors
+	 *          if we should throw an exception on errors
 	 */
 	public void setThrowOnError(boolean b) {
 		throwOnError = b;
@@ -518,7 +535,7 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param b
-	 *            if we should throw an exception on fatalErrors
+	 *          if we should throw an exception on fatalErrors
 	 */
 	public void setThrowOnFatalError(boolean b) {
 		throwOnFatalError = b;

@@ -46,7 +46,7 @@ public interface NodeFilter {
 	 * 
 	 * @param n
 	 * @param level
-	 *            the relative level in the tree
+	 *              the relative level in the tree
 	 * @return 1 if the node should be output. 0 if node must not be output, -1
 	 *         if the node and all it's child must not be output.
 	 */

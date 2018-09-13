@@ -1,39 +1,17 @@
 /*
  * Copyright (c) 1996, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996, 1997 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998 - All Rights Reserved
- *
- *   The original version of this source code and documentation is copyrighted
+ * The original version of this source code and documentation is copyrighted
  * and owned by Taligent, Inc., a wholly-owned subsidiary of IBM. These
  * materials are provided under terms of a License Agreement between Taligent
  * and Sun. This technology is protected by multiple US and International
  * patents. This notice and attribution to Taligent may not be removed.
- *   Taligent is a registered trademark of Taligent, Inc.
- *
+ * Taligent is a registered trademark of Taligent, Inc.
  */
 
 package java.text;
@@ -204,7 +182,8 @@ final class DigitList implements Cloneable {
 		if (decimalAt == count) {
 			return new BigDecimal(digits, 0, count);
 		} else {
-			return new BigDecimal(digits, 0, count).scaleByPowerOfTen(decimalAt - count);
+			return new BigDecimal(digits, 0, count).scaleByPowerOfTen(decimalAt
+					- count);
 		}
 	}
 
@@ -212,10 +191,12 @@ final class DigitList implements Cloneable {
 	 * Return true if the number represented by this object can fit into a long.
 	 * 
 	 * @param isPositive
-	 *            true if this number should be regarded as positive
+	 *                           true if this number should be regarded as
+	 *                           positive
 	 * @param ignoreNegativeZero
-	 *            true if -0 should be regarded as identical to +0; otherwise
-	 *            they are considered distinct
+	 *                           true if -0 should be regarded as identical to
+	 *                           +0; otherwise
+	 *                           they are considered distinct
 	 * @return true if this number fits into a Java long
 	 */
 	boolean fitsIntoLong(boolean isPositive, boolean ignoreNegativeZero) {
@@ -270,14 +251,18 @@ final class DigitList implements Cloneable {
 	 * method supports fixed-point notation.
 	 * 
 	 * @param isNegative
-	 *            Boolean value indicating whether the number is negative.
+	 *                              Boolean value indicating whether the number
+	 *                              is negative.
 	 * @param source
-	 *            Value to be converted; must not be Inf, -Inf, Nan, or a value
-	 *            <= 0.
+	 *                              Value to be converted; must not be Inf,
+	 *                              -Inf, Nan, or a value
+	 *                              <= 0.
 	 * @param maximumFractionDigits
-	 *            The most fractional digits which should be converted.
+	 *                              The most fractional digits which should be
+	 *                              converted.
 	 */
-	final void set(boolean isNegative, double source, int maximumFractionDigits) {
+	final void set(boolean isNegative, double source,
+			int maximumFractionDigits) {
 		set(isNegative, source, maximumFractionDigits, true);
 	}
 
@@ -286,17 +271,22 @@ final class DigitList implements Cloneable {
 	 * method supports both fixed-point and exponential notation.
 	 * 
 	 * @param isNegative
-	 *            Boolean value indicating whether the number is negative.
+	 *                      Boolean value indicating whether the number is
+	 *                      negative.
 	 * @param source
-	 *            Value to be converted; must not be Inf, -Inf, Nan, or a value
-	 *            <= 0.
+	 *                      Value to be converted; must not be Inf, -Inf, Nan,
+	 *                      or a value
+	 *                      <= 0.
 	 * @param maximumDigits
-	 *            The most fractional or total digits which should be converted.
+	 *                      The most fractional or total digits which should be
+	 *                      converted.
 	 * @param fixedPoint
-	 *            If true, then maximumDigits is the maximum fractional digits
-	 *            to be converted. If false, total digits.
+	 *                      If true, then maximumDigits is the maximum
+	 *                      fractional digits
+	 *                      to be converted. If false, total digits.
 	 */
-	final void set(boolean isNegative, double source, int maximumDigits, boolean fixedPoint) {
+	final void set(boolean isNegative, double source, int maximumDigits,
+			boolean fixedPoint) {
 
 		FloatingDecimal.BinaryToASCIIConverter fdConverter = FloatingDecimal
 				.getBinaryToASCIIConverter(source);
@@ -305,8 +295,8 @@ final class DigitList implements Cloneable {
 		assert !fdConverter.isExceptional();
 		String digitsString = fdConverter.toJavaFormatString();
 
-		set(isNegative, digitsString, hasBeenRoundedUp, valueExactAsDecimal, maximumDigits,
-				fixedPoint);
+		set(isNegative, digitsString, hasBeenRoundedUp, valueExactAsDecimal,
+				maximumDigits, fixedPoint);
 	}
 
 	/**
@@ -314,13 +304,16 @@ final class DigitList implements Cloneable {
 	 * DDDDDE+/-DDDDD.
 	 * 
 	 * @param roundedUp
-	 *            whether or not rounding up has already happened.
+	 *                            whether or not rounding up has already
+	 *                            happened.
 	 * @param valueExactAsDecimal
-	 *            whether or not collected digits provide an exact decimal
-	 *            representation of the value.
+	 *                            whether or not collected digits provide an
+	 *                            exact decimal
+	 *                            representation of the value.
 	 */
-	private void set(boolean isNegative, String s, boolean roundedUp, boolean valueExactAsDecimal,
-			int maximumDigits, boolean fixedPoint) {
+	private void set(boolean isNegative, String s, boolean roundedUp,
+			boolean valueExactAsDecimal, int maximumDigits,
+			boolean fixedPoint) {
 
 		this.isNegative = isNegative;
 		int len = s.length();
@@ -394,8 +387,8 @@ final class DigitList implements Cloneable {
 
 		// Eliminate digits beyond maximum digits to be displayed.
 		// Round up if appropriate.
-		round(fixedPoint ? (maximumDigits + decimalAt) : maximumDigits, roundedUp,
-				valueExactAsDecimal);
+		round(fixedPoint ? (maximumDigits + decimalAt) : maximumDigits,
+				roundedUp, valueExactAsDecimal);
 
 	}
 
@@ -403,22 +396,26 @@ final class DigitList implements Cloneable {
 	 * Round the representation to the given number of digits.
 	 * 
 	 * @param maximumDigits
-	 *            The maximum number of digits to be shown.
+	 *                            The maximum number of digits to be shown.
 	 * @param alreadyRounded
-	 *            whether or not rounding up has already happened.
+	 *                            whether or not rounding up has already
+	 *                            happened.
 	 * @param valueExactAsDecimal
-	 *            whether or not collected digits provide an exact decimal
-	 *            representation of the value.
+	 *                            whether or not collected digits provide an
+	 *                            exact decimal
+	 *                            representation of the value.
 	 *
-	 *            Upon return, count will be less than or equal to
-	 *            maximumDigits.
+	 *                            Upon return, count will be less than or equal
+	 *                            to
+	 *                            maximumDigits.
 	 */
 	private final void round(int maximumDigits, boolean alreadyRounded,
 			boolean valueExactAsDecimal) {
 		// Eliminate digits beyond maximum digits to be displayed.
 		// Round up if appropriate.
 		if (maximumDigits >= 0 && maximumDigits < count) {
-			if (shouldRoundUp(maximumDigits, alreadyRounded, valueExactAsDecimal)) {
+			if (shouldRoundUp(maximumDigits, alreadyRounded,
+					valueExactAsDecimal)) {
 				// Rounding up involved incrementing digits from LSD to MSD.
 				// In most cases this is simple, but in a worst case situation
 				// (9999..99) we have to adjust the decimalAt value.
@@ -457,18 +454,24 @@ final class DigitList implements Cloneable {
 	 * class. [bnf]
 	 * 
 	 * @param maximumDigits
-	 *            the number of digits to keep, from 0 to <code>count-1</code>.
-	 *            If 0, then all digits are rounded away, and this method
-	 *            returns true if a one should be generated (e.g., formatting
-	 *            0.09 with "#.#").
+	 *                            the number of digits to keep, from 0 to
+	 *                            <code>count-1</code>.
+	 *                            If 0, then all digits are rounded away, and
+	 *                            this method
+	 *                            returns true if a one should be generated
+	 *                            (e.g., formatting
+	 *                            0.09 with "#.#").
 	 * @param alreadyRounded
-	 *            whether or not rounding up has already happened.
+	 *                            whether or not rounding up has already
+	 *                            happened.
 	 * @param valueExactAsDecimal
-	 *            whether or not collected digits provide an exact decimal
-	 *            representation of the value.
+	 *                            whether or not collected digits provide an
+	 *                            exact decimal
+	 *                            representation of the value.
 	 * @exception ArithmeticException
-	 *                if rounding is needed with rounding mode being set to
-	 *                RoundingMode.UNNECESSARY
+	 *                                if rounding is needed with rounding mode
+	 *                                being set to
+	 *                                RoundingMode.UNNECESSARY
 	 * @return true if digit <code>maximumDigits-1</code> should be incremented
 	 */
 	private boolean shouldRoundUp(int maximumDigits, boolean alreadyRounded,
@@ -479,12 +482,10 @@ final class DigitList implements Cloneable {
 			 * a binary double value to text, information about the exactness of
 			 * the conversion result in FloatingDecimal, as well as any rounding
 			 * done, is needed in this class.
-			 *
 			 * - For the HALF_DOWN, HALF_EVEN, HALF_UP rounding rules below: In
 			 * the case of formating float or double, We must take into account
 			 * what FloatingDecimal has done in the binary to decimal
 			 * conversion.
-			 *
 			 * Considering the tie cases, FloatingDecimal may round up the value
 			 * (returning decimal digits equal to tie when it is below), or
 			 * "truncate" the value to the tie while value is above it, or
@@ -492,26 +493,19 @@ final class DigitList implements Cloneable {
 			 * converted exactly to its decimal representation given formating
 			 * rules of FloatingDecimal ( we have thus an exact decimal
 			 * representation of the binary value).
-			 *
 			 * - If the double binary value was converted exactly as a decimal
 			 * value, then DigitList code must apply the expected rounding rule.
-			 *
 			 * - If FloatingDecimal already rounded up the decimal value,
 			 * DigitList should neither round up the value again in any of the
 			 * three rounding modes above.
-			 *
 			 * - If FloatingDecimal has truncated the decimal value to an ending
 			 * '5' digit, DigitList should round up the value in all of the
 			 * three rounding modes above.
-			 *
-			 *
 			 * This has to be considered only if digit at maximumDigits index is
 			 * exactly the last one in the set of digits, otherwise there are
 			 * remaining digits after that position and we don't have to
 			 * consider what FloatingDecimal did.
-			 *
 			 * - Other rounding modes are not impacted by these tie cases.
-			 *
 			 * - For other numbers that are always converted to exact digits
 			 * (like BigInteger, Long, ...), the passed alreadyRounded boolean
 			 * have to be set to false, and valueExactAsDecimal has to be set to
@@ -520,101 +514,103 @@ final class DigitList implements Cloneable {
 			 */
 
 			switch (roundingMode) {
-			case UP:
-				for (int i = maximumDigits; i < count; ++i) {
-					if (digits[i] != '0') {
-						return true;
-					}
-				}
-				break;
-			case DOWN:
-				break;
-			case CEILING:
-				for (int i = maximumDigits; i < count; ++i) {
-					if (digits[i] != '0') {
-						return !isNegative;
-					}
-				}
-				break;
-			case FLOOR:
-				for (int i = maximumDigits; i < count; ++i) {
-					if (digits[i] != '0') {
-						return isNegative;
-					}
-				}
-				break;
-			case HALF_UP:
-			case HALF_DOWN:
-				if (digits[maximumDigits] > '5') {
-					// Value is above tie ==> must round up
-					return true;
-				} else if (digits[maximumDigits] == '5') {
-					// Digit at rounding position is a '5'. Tie cases.
-					if (maximumDigits != (count - 1)) {
-						// There are remaining digits. Above tie => must round
-						// up
-						return true;
-					} else {
-						// Digit at rounding position is the last one !
-						if (valueExactAsDecimal) {
-							// Exact binary representation. On the tie.
-							// Apply rounding given by roundingMode.
-							return roundingMode == RoundingMode.HALF_UP;
-						} else {
-							// Not an exact binary representation.
-							// Digit sequence either rounded up or truncated.
-							// Round up only if it was truncated.
-							return !alreadyRounded;
-						}
-					}
-				}
-				// Digit at rounding position is < '5' ==> no round up.
-				// Just let do the default, which is no round up (thus break).
-				break;
-			case HALF_EVEN:
-				// Implement IEEE half-even rounding
-				if (digits[maximumDigits] > '5') {
-					return true;
-				} else if (digits[maximumDigits] == '5') {
-					if (maximumDigits == (count - 1)) {
-						// the rounding position is exactly the last index :
-						if (alreadyRounded)
-							// If FloatingDecimal rounded up (value was below
-							// tie),
-							// then we should not round up again.
-							return false;
-
-						if (!valueExactAsDecimal)
-							// Otherwise if the digits don't represent exact
-							// value,
-							// value was above tie and FloatingDecimal truncated
-							// digits to tie. We must round up.
+				case UP:
+					for (int i = maximumDigits; i < count; ++i) {
+						if (digits[i] != '0') {
 							return true;
-						else {
-							// This is an exact tie value, and FloatingDecimal
-							// provided all of the exact digits. We thus apply
-							// HALF_EVEN rounding rule.
-							return ((maximumDigits > 0) && (digits[maximumDigits - 1] % 2 != 0));
 						}
-					} else {
-						// Rounds up if it gives a non null digit after '5'
-						for (int i = maximumDigits + 1; i < count; ++i) {
-							if (digits[i] != '0')
+					}
+					break;
+				case DOWN:
+					break;
+				case CEILING:
+					for (int i = maximumDigits; i < count; ++i) {
+						if (digits[i] != '0') {
+							return !isNegative;
+						}
+					}
+					break;
+				case FLOOR:
+					for (int i = maximumDigits; i < count; ++i) {
+						if (digits[i] != '0') {
+							return isNegative;
+						}
+					}
+					break;
+				case HALF_UP:
+				case HALF_DOWN:
+					if (digits[maximumDigits] > '5') {
+						// Value is above tie ==> must round up
+						return true;
+					} else if (digits[maximumDigits] == '5') {
+						// Digit at rounding position is a '5'. Tie cases.
+						if (maximumDigits != (count - 1)) {
+							// There are remaining digits. Above tie => must round
+							// up
+							return true;
+						} else {
+							// Digit at rounding position is the last one !
+							if (valueExactAsDecimal) {
+								// Exact binary representation. On the tie.
+								// Apply rounding given by roundingMode.
+								return roundingMode == RoundingMode.HALF_UP;
+							} else {
+								// Not an exact binary representation.
+								// Digit sequence either rounded up or truncated.
+								// Round up only if it was truncated.
+								return !alreadyRounded;
+							}
+						}
+					}
+					// Digit at rounding position is < '5' ==> no round up.
+					// Just let do the default, which is no round up (thus break).
+					break;
+				case HALF_EVEN:
+					// Implement IEEE half-even rounding
+					if (digits[maximumDigits] > '5') {
+						return true;
+					} else if (digits[maximumDigits] == '5') {
+						if (maximumDigits == (count - 1)) {
+							// the rounding position is exactly the last index :
+							if (alreadyRounded)
+								// If FloatingDecimal rounded up (value was below
+								// tie),
+								// then we should not round up again.
+								return false;
+
+							if (!valueExactAsDecimal)
+								// Otherwise if the digits don't represent exact
+								// value,
+								// value was above tie and FloatingDecimal truncated
+								// digits to tie. We must round up.
 								return true;
+							else {
+								// This is an exact tie value, and FloatingDecimal
+								// provided all of the exact digits. We thus apply
+								// HALF_EVEN rounding rule.
+								return ((maximumDigits > 0)
+										&& (digits[maximumDigits - 1]
+												% 2 != 0));
+							}
+						} else {
+							// Rounds up if it gives a non null digit after '5'
+							for (int i = maximumDigits + 1; i < count; ++i) {
+								if (digits[i] != '0')
+									return true;
+							}
 						}
 					}
-				}
-				break;
-			case UNNECESSARY:
-				for (int i = maximumDigits; i < count; ++i) {
-					if (digits[i] != '0') {
-						throw new ArithmeticException(
-								"Rounding needed with the rounding mode being set to RoundingMode.UNNECESSARY");
+					break;
+				case UNNECESSARY:
+					for (int i = maximumDigits; i < count; ++i) {
+						if (digits[i] != '0') {
+							throw new ArithmeticException(
+									"Rounding needed with the rounding mode being set to RoundingMode.UNNECESSARY");
+						}
 					}
-				}
-				break;
-			default:
-				assert false;
+					break;
+				default:
+					assert false;
 			}
 		}
 		return false;
@@ -631,13 +627,17 @@ final class DigitList implements Cloneable {
 	 * Set the digit list to a representation of the given long value.
 	 * 
 	 * @param isNegative
-	 *            Boolean value indicating whether the number is negative.
+	 *                      Boolean value indicating whether the number is
+	 *                      negative.
 	 * @param source
-	 *            Value to be converted; must be >= 0 or == Long.MIN_VALUE.
+	 *                      Value to be converted; must be >= 0 or ==
+	 *                      Long.MIN_VALUE.
 	 * @param maximumDigits
-	 *            The most digits which should be converted. If maximumDigits is
-	 *            lower than the number of significant digits in source, the
-	 *            representation will be rounded. Ignored if <= 0.
+	 *                      The most digits which should be converted. If
+	 *                      maximumDigits is
+	 *                      lower than the number of significant digits in
+	 *                      source, the
+	 *                      representation will be rounded. Ignored if <= 0.
 	 */
 	final void set(boolean isNegative, long source, int maximumDigits) {
 		this.isNegative = isNegative;
@@ -681,16 +681,20 @@ final class DigitList implements Cloneable {
 	 * This method supports both fixed-point and exponential notation.
 	 * 
 	 * @param isNegative
-	 *            Boolean value indicating whether the number is negative.
+	 *                      Boolean value indicating whether the number is
+	 *                      negative.
 	 * @param source
-	 *            Value to be converted; must not be a value <= 0.
+	 *                      Value to be converted; must not be a value <= 0.
 	 * @param maximumDigits
-	 *            The most fractional or total digits which should be converted.
+	 *                      The most fractional or total digits which should be
+	 *                      converted.
 	 * @param fixedPoint
-	 *            If true, then maximumDigits is the maximum fractional digits
-	 *            to be converted. If false, total digits.
+	 *                      If true, then maximumDigits is the maximum
+	 *                      fractional digits
+	 *                      to be converted. If false, total digits.
 	 */
-	final void set(boolean isNegative, BigDecimal source, int maximumDigits, boolean fixedPoint) {
+	final void set(boolean isNegative, BigDecimal source, int maximumDigits,
+			boolean fixedPoint) {
 		String s = source.toString();
 		extendDigits(s.length());
 
@@ -701,13 +705,16 @@ final class DigitList implements Cloneable {
 	 * Set the digit list to a representation of the given BigInteger value.
 	 * 
 	 * @param isNegative
-	 *            Boolean value indicating whether the number is negative.
+	 *                      Boolean value indicating whether the number is
+	 *                      negative.
 	 * @param source
-	 *            Value to be converted; must be >= 0.
+	 *                      Value to be converted; must be >= 0.
 	 * @param maximumDigits
-	 *            The most digits which should be converted. If maximumDigits is
-	 *            lower than the number of significant digits in source, the
-	 *            representation will be rounded. Ignored if <= 0.
+	 *                      The most digits which should be converted. If
+	 *                      maximumDigits is
+	 *                      lower than the number of significant digits in
+	 *                      source, the
+	 *                      representation will be rounded. Ignored if <= 0.
 	 */
 	final void set(boolean isNegative, BigInteger source, int maximumDigits) {
 		this.isNegative = isNegative;
@@ -815,7 +822,8 @@ final class DigitList implements Cloneable {
 	}
 
 	// The digit part of -9223372036854775808L
-	private static final char[] LONG_MIN_REP = "9223372036854775808".toCharArray();
+	private static final char[] LONG_MIN_REP = "9223372036854775808"
+			.toCharArray();
 
 	public String toString() {
 		if (isZero()) {

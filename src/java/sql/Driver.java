@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -86,18 +66,19 @@ public interface Driver {
 	 * maximum portability, an application should only specify a property once.
 	 *
 	 * @param url
-	 *            the URL of the database to which to connect
+	 *             the URL of the database to which to connect
 	 * @param info
-	 *            a list of arbitrary string tag/value pairs as connection
-	 *            arguments. Normally at least a "user" and "password" property
-	 *            should be included.
+	 *             a list of arbitrary string tag/value pairs as connection
+	 *             arguments. Normally at least a "user" and "password" property
+	 *             should be included.
 	 * @return a <code>Connection</code> object that represents a connection to
 	 *         the URL
 	 * @exception SQLException
-	 *                if a database access error occurs or the url is
-	 *                {@code null}
+	 *                         if a database access error occurs or the url is
+	 *                         {@code null}
 	 */
-	Connection connect(String url, java.util.Properties info) throws SQLException;
+	Connection connect(String url, java.util.Properties info)
+			throws SQLException;
 
 	/**
 	 * Retrieves whether the driver thinks that it can open a connection to the
@@ -110,8 +91,8 @@ public interface Driver {
 	 * @return <code>true</code> if this driver understands the given URL;
 	 *         <code>false</code> otherwise
 	 * @exception SQLException
-	 *                if a database access error occurs or the url is
-	 *                {@code null}
+	 *                         if a database access error occurs or the url is
+	 *                         {@code null}
 	 */
 	boolean acceptsURL(String url) throws SQLException;
 
@@ -126,17 +107,18 @@ public interface Driver {
 	 * calls to the <code>getPropertyInfo</code> method.
 	 *
 	 * @param url
-	 *            the URL of the database to which to connect
+	 *             the URL of the database to which to connect
 	 * @param info
-	 *            a proposed list of tag/value pairs that will be sent on
-	 *            connect open
+	 *             a proposed list of tag/value pairs that will be sent on
+	 *             connect open
 	 * @return an array of <code>DriverPropertyInfo</code> objects describing
 	 *         possible properties. This array may be an empty array if no
 	 *         properties are required.
 	 * @exception SQLException
-	 *                if a database access error occurs
+	 *                         if a database access error occurs
 	 */
-	DriverPropertyInfo[] getPropertyInfo(String url, java.util.Properties info) throws SQLException;
+	DriverPropertyInfo[] getPropertyInfo(String url, java.util.Properties info)
+			throws SQLException;
 
 	/**
 	 * Retrieves the driver's major version number. Initially this should be 1.
@@ -184,7 +166,8 @@ public interface Driver {
 	 *
 	 * @return the parent Logger for this driver
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the driver does not use {@code java.util.logging}.
+	 *                                         if the driver does not use
+	 *                                         {@code java.util.logging}.
 	 * @since 1.7
 	 */
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException;

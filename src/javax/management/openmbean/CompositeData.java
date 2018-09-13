@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -59,11 +39,13 @@ public interface CompositeData {
 	 * @return the value associated with this key.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <tt>key</tt> is a null or empty String.
+	 *                                  if <tt>key</tt> is a null or empty
+	 *                                  String.
 	 *
 	 * @throws InvalidKeyException
-	 *             if <tt>key</tt> is not an existing item name for this
-	 *             <tt>CompositeData</tt> instance.
+	 *                                  if <tt>key</tt> is not an existing item
+	 *                                  name for this
+	 *                                  <tt>CompositeData</tt> instance.
 	 */
 	public Object get(String key);
 
@@ -72,16 +54,19 @@ public interface CompositeData {
 	 * <tt>keys</tt>, in the same order as <tt>keys</tt>.
 	 *
 	 * @param keys
-	 *            the names of the items.
+	 *             the names of the items.
 	 *
 	 * @return the values corresponding to the keys.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if an element in <tt>keys</tt> is a null or empty String.
+	 *                                  if an element in <tt>keys</tt> is a null
+	 *                                  or empty String.
 	 *
 	 * @throws InvalidKeyException
-	 *             if an element in <tt>keys</tt> is not an existing item name
-	 *             for this <tt>CompositeData</tt> instance.
+	 *                                  if an element in <tt>keys</tt> is not an
+	 *                                  existing item name
+	 *                                  for this <tt>CompositeData</tt>
+	 *                                  instance.
 	 */
 	public Object[] getAll(String[] keys);
 
@@ -102,7 +87,7 @@ public interface CompositeData {
 	 * contains an item whose value is <tt>value</tt>.
 	 *
 	 * @param value
-	 *            the value to be tested.
+	 *              the value to be tested.
 	 *
 	 * @return true if this <tt>CompositeData</tt> contains the value.
 	 */

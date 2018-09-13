@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,18 +60,17 @@ public class XMLString {
 	//
 
 	/** Default constructor. */
-	public XMLString() {
-	} // <init>()
+	public XMLString() {} // <init>()
 
 	/**
 	 * Constructs an XMLString structure preset with the specified values.
 	 *
 	 * @param ch
-	 *            The character array.
+	 *               The character array.
 	 * @param offset
-	 *            The offset into the character array.
+	 *               The offset into the character array.
 	 * @param length
-	 *            The length of characters from the offset.
+	 *               The length of characters from the offset.
 	 */
 	public XMLString(char[] ch, int offset, int length) {
 		setValues(ch, offset, length);
@@ -88,7 +84,7 @@ public class XMLString {
 	 * reference to the array is copied.
 	 *
 	 * @param string
-	 *            The XMLString to copy.
+	 *               The XMLString to copy.
 	 */
 	public XMLString(XMLString string) {
 		setValues(string);
@@ -103,11 +99,11 @@ public class XMLString {
 	 * values.
 	 *
 	 * @param ch
-	 *            The character array.
+	 *               The character array.
 	 * @param offset
-	 *            The offset into the character array.
+	 *               The offset into the character array.
 	 * @param length
-	 *            The length of characters from the offset.
+	 *               The length of characters from the offset.
 	 */
 	public void setValues(char[] ch, int offset, int length) {
 		this.ch = ch;
@@ -140,11 +136,11 @@ public class XMLString {
 	 * specified array are equal.
 	 *
 	 * @param ch
-	 *            The character array.
+	 *               The character array.
 	 * @param offset
-	 *            The offset into the character array.
+	 *               The offset into the character array.
 	 * @param length
-	 *            The length of characters from the offset.
+	 *               The length of characters from the offset.
 	 */
 	public boolean equals(char[] ch, int offset, int length) {
 		if (ch == null) {
@@ -167,7 +163,7 @@ public class XMLString {
 	 * specified string are equal.
 	 *
 	 * @param s
-	 *            The string to compare.
+	 *          The string to compare.
 	 */
 	public boolean equals(String s) {
 		if (s == null) {

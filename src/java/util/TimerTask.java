@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -83,8 +63,7 @@ public abstract class TimerTask implements Runnable {
 	/**
 	 * Creates a new timer task.
 	 */
-	protected TimerTask() {
-	}
+	protected TimerTask() {}
 
 	/**
 	 * The action to be performed by this timer task.
@@ -158,7 +137,8 @@ public abstract class TimerTask implements Runnable {
 	 */
 	public long scheduledExecutionTime() {
 		synchronized (lock) {
-			return (period < 0 ? nextExecutionTime + period : nextExecutionTime - period);
+			return (period < 0 ? nextExecutionTime + period
+					: nextExecutionTime - period);
 		}
 	}
 }

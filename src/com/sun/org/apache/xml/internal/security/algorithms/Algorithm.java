@@ -37,7 +37,7 @@ public abstract class Algorithm extends SignatureElementProxy {
 	 *
 	 * @param doc
 	 * @param algorithmURI
-	 *            is the URI of the algorithm as String
+	 *                     is the URI of the algorithm as String
 	 */
 	public Algorithm(Document doc, String algorithmURI) {
 		super(doc);
@@ -52,7 +52,8 @@ public abstract class Algorithm extends SignatureElementProxy {
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public Algorithm(Element element, String BaseURI) throws XMLSecurityException {
+	public Algorithm(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 
@@ -62,18 +63,20 @@ public abstract class Algorithm extends SignatureElementProxy {
 	 * @return The URI of the algorithm
 	 */
 	public String getAlgorithmURI() {
-		return this.constructionElement.getAttributeNS(null, Constants._ATT_ALGORITHM);
+		return this.constructionElement.getAttributeNS(null,
+				Constants._ATT_ALGORITHM);
 	}
 
 	/**
 	 * Sets the algorithm's URI as used in the signature.
 	 *
 	 * @param algorithmURI
-	 *            is the URI of the algorithm as String
+	 *                     is the URI of the algorithm as String
 	 */
 	protected void setAlgorithmURI(String algorithmURI) {
 		if (algorithmURI != null) {
-			this.constructionElement.setAttributeNS(null, Constants._ATT_ALGORITHM, algorithmURI);
+			this.constructionElement.setAttributeNS(null,
+					Constants._ATT_ALGORITHM, algorithmURI);
 		}
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -78,7 +58,8 @@ abstract class DynAnyImpl extends org.omg.CORBA.LocalObject implements DynAny {
 
 	protected DynAnyImpl(ORB orb, Any any, boolean copyValue) {
 		this.orb = orb;
-		wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PRESENTATION);
+		wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PRESENTATION);
 		if (copyValue)
 			this.any = DynAnyUtil.copy(any, orb);
 		else
@@ -89,14 +70,15 @@ abstract class DynAnyImpl extends org.omg.CORBA.LocalObject implements DynAny {
 
 	protected DynAnyImpl(ORB orb, TypeCode typeCode) {
 		this.orb = orb;
-		wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PRESENTATION);
+		wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PRESENTATION);
 		this.any = DynAnyUtil.createDefaultAnyOfType(typeCode, orb);
 	}
 
 	protected DynAnyFactory factory() {
 		try {
-			return (DynAnyFactory) orb
-					.resolve_initial_references(ORBConstants.DYN_ANY_FACTORY_NAME);
+			return (DynAnyFactory) orb.resolve_initial_references(
+					ORBConstants.DYN_ANY_FACTORY_NAME);
 		} catch (InvalidName in) {
 			throw new RuntimeException("Unable to find DynAnyFactory");
 		}

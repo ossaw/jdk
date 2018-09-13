@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -51,22 +31,27 @@ public interface PrintServiceAttributeSet extends AttributeSet {
 	 * category as the specified attribute value (optional operation).
 	 *
 	 * @param attribute
-	 *            Attribute value to be added to this attribute set.
+	 *                  Attribute value to be added to this attribute set.
 	 *
 	 * @return <tt>true</tt> if this attribute set changed as a result of the
 	 *         call, i.e., the given attribute value was not already a member of
 	 *         this attribute set.
 	 *
 	 * @throws UnmodifiableSetException
-	 *             (unchecked exception) Thrown if this attribute set does not
-	 *             support the <CODE>add()</CODE> operation.
+	 *                                  (unchecked exception) Thrown if this
+	 *                                  attribute set does not
+	 *                                  support the <CODE>add()</CODE>
+	 *                                  operation.
 	 * @throws ClassCastException
-	 *             (unchecked exception) Thrown if the <CODE>attribute</CODE> is
-	 *             not an instance of interface {@link PrintServiceAttribute
-	 *             PrintServiceAttribute}.
+	 *                                  (unchecked exception) Thrown if the
+	 *                                  <CODE>attribute</CODE> is
+	 *                                  not an instance of interface
+	 *                                  {@link PrintServiceAttribute
+	 *                                  PrintServiceAttribute}.
 	 * @throws NullPointerException
-	 *             (unchecked exception) Thrown if the <CODE>attribute</CODE> is
-	 *             null.
+	 *                                  (unchecked exception) Thrown if the
+	 *                                  <CODE>attribute</CODE> is
+	 *                                  null.
 	 */
 	public boolean add(Attribute attribute);
 
@@ -88,20 +73,24 @@ public interface PrintServiceAttributeSet extends AttributeSet {
 	 * added to this attribute set.
 	 *
 	 * @param attributes
-	 *            whose elements are to be added to this attribute set.
+	 *                   whose elements are to be added to this attribute set.
 	 *
 	 * @return <tt>true</tt> if this attribute set changed as a result of the
 	 *         call.
 	 *
 	 * @throws UnmodifiableSetException
-	 *             (Unchecked exception) Thrown if this attribute set does not
-	 *             support the <tt>addAll()</tt> method.
+	 *                                  (Unchecked exception) Thrown if this
+	 *                                  attribute set does not
+	 *                                  support the <tt>addAll()</tt> method.
 	 * @throws ClassCastException
-	 *             (Unchecked exception) Thrown if some element in the specified
-	 *             set is not an instance of interface
-	 *             {@link PrintServiceAttribute PrintServiceAttribute}.
+	 *                                  (Unchecked exception) Thrown if some
+	 *                                  element in the specified
+	 *                                  set is not an instance of interface
+	 *                                  {@link PrintServiceAttribute
+	 *                                  PrintServiceAttribute}.
 	 * @throws NullPointerException
-	 *             (Unchecked exception) Thrown if the specified set is null.
+	 *                                  (Unchecked exception) Thrown if the
+	 *                                  specified set is null.
 	 *
 	 * @see #add(Attribute)
 	 */

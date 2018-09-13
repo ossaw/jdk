@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -32,14 +12,14 @@ import java.io.Serializable;
  * The default model for combo boxes.
  *
  * @param <E>
- *            the type of the elements of this model
+ *        the type of the elements of this model
  *
  * @author Arnaud Weber
  * @author Tom Santos
  */
 
-public class DefaultComboBoxModel<E> extends AbstractListModel<E>
-		implements MutableComboBoxModel<E>, Serializable {
+public class DefaultComboBoxModel<E> extends AbstractListModel<E> implements
+		MutableComboBoxModel<E>, Serializable {
 	Vector<E> objects;
 	Object selectedObject;
 
@@ -55,7 +35,7 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E>
 	 * objects.
 	 *
 	 * @param items
-	 *            an array of Object objects
+	 *              an array of Object objects
 	 */
 	public DefaultComboBoxModel(final E items[]) {
 		objects = new Vector<E>(items.length);
@@ -73,7 +53,7 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E>
 	 * Constructs a DefaultComboBoxModel object initialized with a vector.
 	 *
 	 * @param v
-	 *            a Vector object ...
+	 *          a Vector object ...
 	 */
 	public DefaultComboBoxModel(Vector<E> v) {
 		objects = v;
@@ -88,7 +68,7 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E>
 	 * Set the value of the selected item. The selected item may be null.
 	 *
 	 * @param anObject
-	 *            The combo box value or null for no selection.
+	 *                 The combo box value or null for no selection.
 	 */
 	public void setSelectedItem(Object anObject) {
 		if ((selectedObject != null && !selectedObject.equals(anObject))
@@ -146,7 +126,8 @@ public class DefaultComboBoxModel<E> extends AbstractListModel<E>
 	public void removeElementAt(int index) {
 		if (getElementAt(index) == selectedObject) {
 			if (index == 0) {
-				setSelectedItem(getSize() == 1 ? null : getElementAt(index + 1));
+				setSelectedItem(getSize() == 1 ? null
+						: getElementAt(index + 1));
 			} else {
 				setSelectedItem(getElementAt(index - 1));
 			}

@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -75,14 +50,13 @@ public class LongAdder extends Striped64 implements Serializable {
 	/**
 	 * Creates a new adder with initial sum of zero.
 	 */
-	public LongAdder() {
-	}
+	public LongAdder() {}
 
 	/**
 	 * Adds the given value.
 	 *
 	 * @param x
-	 *            the value to add
+	 *          the value to add
 	 */
 	public void add(long x) {
 		Cell[] as;
@@ -91,8 +65,8 @@ public class LongAdder extends Striped64 implements Serializable {
 		Cell a;
 		if ((as = cells) != null || !casBase(b = base, b + x)) {
 			boolean uncontended = true;
-			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe() & m]) == null
-					|| !(uncontended = a.cas(v = a.value, v + x)))
+			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe()
+					& m]) == null || !(uncontended = a.cas(v = a.value, v + x)))
 				longAccumulate(x, null, uncontended);
 		}
 	}
@@ -266,11 +240,12 @@ public class LongAdder extends Striped64 implements Serializable {
 
 	/**
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws java.io.InvalidObjectException
-	 *             always
+	 *         always
 	 */
-	private void readObject(java.io.ObjectInputStream s) throws java.io.InvalidObjectException {
+	private void readObject(java.io.ObjectInputStream s)
+			throws java.io.InvalidObjectException {
 		throw new java.io.InvalidObjectException("Proxy required");
 	}
 

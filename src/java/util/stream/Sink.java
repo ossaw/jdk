@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -125,7 +105,7 @@ import java.util.function.LongConsumer;
  *          passes the resulting value to the downstream {@code Sink}.
  *
  * @param <T>
- *            type of elements for value streams
+ *        type of elements for value streams
  * @since 1.8
  */
 interface Sink<T> extends Consumer<T> {
@@ -135,15 +115,15 @@ interface Sink<T> extends Consumer<T> {
 	 * may call this method to reset the sink for another calculation.
 	 * 
 	 * @param size
-	 *            The exact size of the data to be pushed downstream, if known
-	 *            or {@code -1} if unknown or infinite.
+	 *             The exact size of the data to be pushed downstream, if known
+	 *             or {@code -1} if unknown or infinite.
 	 *
-	 *            <p>
-	 *            Prior to this call, the sink must be in the initial state, and
-	 *            after this call it is in the active state.
+	 *             <p>
+	 *             Prior to this call, the sink must be in the initial state,
+	 *             and
+	 *             after this call it is in the active state.
 	 */
-	default void begin(long size) {
-	}
+	default void begin(long size) {}
 
 	/**
 	 * Indicates that all elements have been pushed. If the {@code Sink} is
@@ -154,8 +134,7 @@ interface Sink<T> extends Consumer<T> {
 	 * Prior to this call, the sink must be in the active state, and after this
 	 * call it is returned to the initial state.
 	 */
-	default void end() {
-	}
+	default void end() {}
 
 	/**
 	 * Indicates that this {@code Sink} does not wish to receive any more data.
@@ -174,7 +153,7 @@ interface Sink<T> extends Consumer<T> {
 	 * @implSpec The default implementation throws IllegalStateException.
 	 *
 	 * @throws IllegalStateException
-	 *             if this sink does not accept int values
+	 *                               if this sink does not accept int values
 	 */
 	default void accept(int value) {
 		throw new IllegalStateException("called wrong accept method");
@@ -186,7 +165,7 @@ interface Sink<T> extends Consumer<T> {
 	 * @implSpec The default implementation throws IllegalStateException.
 	 *
 	 * @throws IllegalStateException
-	 *             if this sink does not accept long values
+	 *                               if this sink does not accept long values
 	 */
 	default void accept(long value) {
 		throw new IllegalStateException("called wrong accept method");
@@ -198,7 +177,7 @@ interface Sink<T> extends Consumer<T> {
 	 * @implSpec The default implementation throws IllegalStateException.
 	 *
 	 * @throws IllegalStateException
-	 *             if this sink does not accept double values
+	 *                               if this sink does not accept double values
 	 */
 	default void accept(double value) {
 		throw new IllegalStateException("called wrong accept method");
@@ -216,7 +195,8 @@ interface Sink<T> extends Consumer<T> {
 		@Override
 		default void accept(Integer i) {
 			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(), "{0} calling Sink.OfInt.accept(Integer)");
+				Tripwire.trip(getClass(),
+						"{0} calling Sink.OfInt.accept(Integer)");
 			accept(i.intValue());
 		}
 	}
@@ -233,7 +213,8 @@ interface Sink<T> extends Consumer<T> {
 		@Override
 		default void accept(Long i) {
 			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(), "{0} calling Sink.OfLong.accept(Long)");
+				Tripwire.trip(getClass(),
+						"{0} calling Sink.OfLong.accept(Long)");
 			accept(i.longValue());
 		}
 	}
@@ -250,7 +231,8 @@ interface Sink<T> extends Consumer<T> {
 		@Override
 		default void accept(Double i) {
 			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(), "{0} calling Sink.OfDouble.accept(Double)");
+				Tripwire.trip(getClass(),
+						"{0} calling Sink.OfDouble.accept(Double)");
 			accept(i.doubleValue());
 		}
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -41,7 +21,7 @@ public interface CheckboxMenuItemPeer extends MenuItemPeer {
 	 * {@code false}.
 	 *
 	 * @param state
-	 *            the state to set on the checkbox
+	 *              the state to set on the checkbox
 	 *
 	 * @see CheckboxMenuItem#setState(boolean)
 	 */

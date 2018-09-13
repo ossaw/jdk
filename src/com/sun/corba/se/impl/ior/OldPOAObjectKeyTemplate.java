@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -44,7 +24,8 @@ public final class OldPOAObjectKeyTemplate extends OldObjectKeyTemplateBase {
 	/**
 	 * This constructor reads the template ONLY from the stream
 	 */
-	public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is) {
+	public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid,
+			InputStream is) {
 		this(orb, magic, scid, is.read_long(), is.read_long(), is.read_long());
 	}
 
@@ -58,8 +39,8 @@ public final class OldPOAObjectKeyTemplate extends OldObjectKeyTemplateBase {
 		osh.value = readObjectKey(is);
 	}
 
-	public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, int serverid, int orbid,
-			int poaid) {
+	public OldPOAObjectKeyTemplate(ORB orb, int magic, int scid, int serverid,
+			int orbid, int poaid) {
 		super(orb, magic, scid, serverid, Integer.toString(orbid),
 				new ObjectAdapterIdNumber(poaid));
 	}

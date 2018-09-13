@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -45,9 +25,9 @@ public class HttpRetryException extends IOException {
 	 * code and exception detail message
 	 *
 	 * @param detail
-	 *            the detail message.
+	 *               the detail message.
 	 * @param code
-	 *            the HTTP response code from server.
+	 *               the HTTP response code from server.
 	 */
 	public HttpRetryException(String detail, int code) {
 		super(detail);
@@ -59,11 +39,11 @@ public class HttpRetryException extends IOException {
 	 * responseCode and the contents of the Location response header field.
 	 *
 	 * @param detail
-	 *            the detail message.
+	 *                 the detail message.
 	 * @param code
-	 *            the HTTP response code from server.
+	 *                 the HTTP response code from server.
 	 * @param location
-	 *            the URL to be redirected to
+	 *                 the URL to be redirected to
 	 */
 	public HttpRetryException(String detail, int code, String location) {
 		super(detail);

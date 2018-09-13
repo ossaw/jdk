@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -79,10 +54,10 @@ import java.util.Spliterator;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
-public class ArrayBlockingQueue<E> extends AbstractQueue<E>
-		implements BlockingQueue<E>, java.io.Serializable {
+public class ArrayBlockingQueue<E> extends AbstractQueue<E> implements
+		BlockingQueue<E>, java.io.Serializable {
 
 	/**
 	 * Serialization ID. This class relies on default serialization even for the
@@ -144,7 +119,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * Throws NullPointerException if argument is null.
 	 *
 	 * @param v
-	 *            the element
+	 *          the element
 	 */
 	private static void checkNotNull(Object v) {
 		if (v == null)
@@ -233,9 +208,9 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * default access policy.
 	 *
 	 * @param capacity
-	 *            the capacity of this queue
+	 *                 the capacity of this queue
 	 * @throws IllegalArgumentException
-	 *             if {@code capacity < 1}
+	 *                                  if {@code capacity < 1}
 	 */
 	public ArrayBlockingQueue(int capacity) {
 		this(capacity, false);
@@ -246,13 +221,14 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * the specified access policy.
 	 *
 	 * @param capacity
-	 *            the capacity of this queue
+	 *                 the capacity of this queue
 	 * @param fair
-	 *            if {@code true} then queue accesses for threads blocked on
-	 *            insertion or removal, are processed in FIFO order; if
-	 *            {@code false} the access order is unspecified.
+	 *                 if {@code true} then queue accesses for threads blocked
+	 *                 on
+	 *                 insertion or removal, are processed in FIFO order; if
+	 *                 {@code false} the access order is unspecified.
 	 * @throws IllegalArgumentException
-	 *             if {@code capacity < 1}
+	 *                                  if {@code capacity < 1}
 	 */
 	public ArrayBlockingQueue(int capacity, boolean fair) {
 		if (capacity <= 0)
@@ -269,20 +245,24 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * given collection, added in traversal order of the collection's iterator.
 	 *
 	 * @param capacity
-	 *            the capacity of this queue
+	 *                 the capacity of this queue
 	 * @param fair
-	 *            if {@code true} then queue accesses for threads blocked on
-	 *            insertion or removal, are processed in FIFO order; if
-	 *            {@code false} the access order is unspecified.
+	 *                 if {@code true} then queue accesses for threads blocked
+	 *                 on
+	 *                 insertion or removal, are processed in FIFO order; if
+	 *                 {@code false} the access order is unspecified.
 	 * @param c
-	 *            the collection of elements to initially contain
+	 *                 the collection of elements to initially contain
 	 * @throws IllegalArgumentException
-	 *             if {@code capacity} is less than {@code c.size()}, or less
-	 *             than 1.
+	 *                                  if {@code capacity} is less than
+	 *                                  {@code c.size()}, or less
+	 *                                  than 1.
 	 * @throws NullPointerException
-	 *             if the specified collection or any of its elements are null
+	 *                                  if the specified collection or any of
+	 *                                  its elements are null
 	 */
-	public ArrayBlockingQueue(int capacity, boolean fair, Collection<? extends E> c) {
+	public ArrayBlockingQueue(int capacity, boolean fair,
+			Collection<? extends E> c) {
 		this(capacity, fair);
 
 		final ReentrantLock lock = this.lock;
@@ -311,12 +291,12 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * if this queue is full.
 	 *
 	 * @param e
-	 *            the element to add
+	 *          the element to add
 	 * @return {@code true} (as specified by {@link Collection#add})
 	 * @throws IllegalStateException
-	 *             if this queue is full
+	 *                               if this queue is full
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                               if the specified element is null
 	 */
 	public boolean add(E e) {
 		return super.add(e);
@@ -330,7 +310,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * insert an element only by throwing an exception.
 	 *
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean offer(E e) {
 		checkNotNull(e);
@@ -353,9 +333,9 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * space to become available if the queue is full.
 	 *
 	 * @throws InterruptedException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public void put(E e) throws InterruptedException {
 		checkNotNull(e);
@@ -376,11 +356,12 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * full.
 	 *
 	 * @throws InterruptedException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
-	public boolean offer(E e, long timeout, TimeUnit unit) throws InterruptedException {
+	public boolean offer(E e, long timeout, TimeUnit unit)
+			throws InterruptedException {
 
 		checkNotNull(e);
 		long nanos = unit.toNanos(timeout);
@@ -502,7 +483,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * be accessible by other threads.
 	 *
 	 * @param o
-	 *            element to be removed from this queue, if present
+	 *          element to be removed from this queue, if present
 	 * @return {@code true} if this queue changed as a result of the call
 	 */
 	public boolean remove(Object o) {
@@ -536,7 +517,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * least one element {@code e} such that {@code o.equals(e)}.
 	 *
 	 * @param o
-	 *            object to be checked for containment in this queue
+	 *          object to be checked for containment in this queue
 	 * @return {@code true} if this queue contains the specified element
 	 */
 	public boolean contains(Object o) {
@@ -630,15 +611,17 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * {@code toArray()}.
 	 *
 	 * @param a
-	 *            the array into which the elements of the queue are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose
+	 *          the array into which the elements of the queue are to be
+	 *          stored, if it is big enough; otherwise, a new array of the
+	 *          same runtime type is allocated for this purpose
 	 * @return an array containing all of the elements in this queue
 	 * @throws ArrayStoreException
-	 *             if the runtime type of the specified array is not a supertype
-	 *             of the runtime type of every element in this queue
+	 *                              if the runtime type of the specified array
+	 *                              is not a supertype
+	 *                              of the runtime type of every element in this
+	 *                              queue
 	 * @throws NullPointerException
-	 *             if the specified array is null
+	 *                              if the specified array is null
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T[] toArray(T[] a) {
@@ -649,8 +632,8 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 			final int count = this.count;
 			final int len = a.length;
 			if (len < count)
-				a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(),
-						count);
+				a = (T[]) java.lang.reflect.Array.newInstance(a.getClass()
+						.getComponentType(), count);
 			int n = items.length - takeIndex;
 			if (count <= n)
 				System.arraycopy(items, takeIndex, a, 0, count);
@@ -723,13 +706,13 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c) {
 		return drainTo(c, Integer.MAX_VALUE);
@@ -737,13 +720,13 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c, int maxElements) {
 		checkNotNull(c);
@@ -885,8 +868,9 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 		 * thread.
 		 *
 		 * @param tryHarder
-		 *            whether to start in try-harder mode, because there is
-		 *            known to be at least one iterator to collect
+		 *                  whether to start in try-harder mode, because there
+		 *                  is
+		 *                  known to be at least one iterator to collect
 		 */
 		void doSomeSweeping(boolean tryHarder) {
 			// assert lock.getHoldCount() == 1;
@@ -1137,7 +1121,8 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 		 * Returns true if index is invalidated by the given number of dequeues,
 		 * starting from prevTakeIndex.
 		 */
-		private boolean invalidated(int index, int prevTakeIndex, long dequeues, int length) {
+		private boolean invalidated(int index, int prevTakeIndex, long dequeues,
+				int length) {
 			if (index < 0)
 				return false;
 			int distance = index - prevTakeIndex;
@@ -1165,7 +1150,8 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 				final int len = items.length;
 				// how far takeIndex has advanced since the previous
 				// operation of this iterator
-				long dequeues = (cycles - prevCycles) * len + (takeIndex - prevTakeIndex);
+				long dequeues = (cycles - prevCycles) * len + (takeIndex
+						- prevTakeIndex);
 
 				// Check indices for invalidation
 				if (invalidated(lastRet, prevTakeIndex, dequeues, len))
@@ -1351,7 +1337,8 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 			int cycleDiff = cycles - prevCycles;
 			if (removedIndex < takeIndex)
 				cycleDiff++;
-			final int removedDistance = (cycleDiff * len) + (removedIndex - prevTakeIndex);
+			final int removedDistance = (cycleDiff * len) + (removedIndex
+					- prevTakeIndex);
 			// assert removedDistance >= 0;
 			int cursor = this.cursor;
 			if (cursor >= 0) {
@@ -1436,8 +1423,8 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
 	 * @since 1.8
 	 */
 	public Spliterator<E> spliterator() {
-		return Spliterators.spliterator(this,
-				Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.CONCURRENT);
+		return Spliterators.spliterator(this, Spliterator.ORDERED
+				| Spliterator.NONNULL | Spliterator.CONCURRENT);
 	}
 
 }

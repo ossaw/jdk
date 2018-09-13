@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -82,10 +74,11 @@ public final class StackMapEntry implements Cloneable {
 	 * Construct object from file stream.
 	 * 
 	 * @param file
-	 *            Input stream
+	 *             Input stream
 	 * @throws IOException
 	 */
-	StackMapEntry(DataInputStream file, ConstantPool constant_pool) throws IOException {
+	StackMapEntry(DataInputStream file, ConstantPool constant_pool)
+			throws IOException {
 		this(file.readShort(), file.readShort(), null, -1, null, constant_pool);
 
 		types_of_locals = new StackMapType[number_of_locals];
@@ -98,9 +91,9 @@ public final class StackMapEntry implements Cloneable {
 			types_of_stack_items[i] = new StackMapType(file, constant_pool);
 	}
 
-	public StackMapEntry(int byte_code_offset, int number_of_locals, StackMapType[] types_of_locals,
-			int number_of_stack_items, StackMapType[] types_of_stack_items,
-			ConstantPool constant_pool) {
+	public StackMapEntry(int byte_code_offset, int number_of_locals,
+			StackMapType[] types_of_locals, int number_of_stack_items,
+			StackMapType[] types_of_stack_items, ConstantPool constant_pool) {
 		this.byte_code_offset = byte_code_offset;
 		this.number_of_locals = number_of_locals;
 		this.types_of_locals = types_of_locals;
@@ -113,7 +106,7 @@ public final class StackMapEntry implements Cloneable {
 	 * Dump stack map entry
 	 *
 	 * @param file
-	 *            Output file stream
+	 *             Output file stream
 	 * @throws IOException
 	 */
 	public final void dump(DataOutputStream file) throws IOException {
@@ -221,7 +214,7 @@ public final class StackMapEntry implements Cloneable {
 	 * fields, attributes, etc. spawns a tree of objects.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public void accept(Visitor v) {
 		v.visitStackMapEntry(this);
@@ -236,7 +229,7 @@ public final class StackMapEntry implements Cloneable {
 
 	/**
 	 * @param constant_pool
-	 *            Constant pool to be used for this object.
+	 *                      Constant pool to be used for this object.
 	 */
 	public final void setConstantPool(ConstantPool constant_pool) {
 		this.constant_pool = constant_pool;

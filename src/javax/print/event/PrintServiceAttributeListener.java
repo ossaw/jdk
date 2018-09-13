@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.event;
@@ -43,7 +23,7 @@ public interface PrintServiceAttributeListener {
 	 * notifications may be blocked.
 	 * 
 	 * @param psae
-	 *            the event being notified
+	 *             the event being notified
 	 */
 	public void attributeUpdate(PrintServiceAttributeEvent psae);
 

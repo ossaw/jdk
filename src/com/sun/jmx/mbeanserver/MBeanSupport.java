@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -45,8 +25,8 @@ import sun.reflect.misc.ReflectUtil;
  * instance so we can handle very large numbers of MBeans comfortably.
  *
  * @param <M>
- *            either Method or ConvertingMethod, for Standard MBeans and MXBeans
- *            respectively.
+ *        either Method or ConvertingMethod, for Standard MBeans and MXBeans
+ *        respectively.
  *
  * @since 1.6
  */
@@ -54,12 +34,10 @@ import sun.reflect.misc.ReflectUtil;
  * We maintain a couple of caches to increase sharing between different MBeans
  * of the same type and also to reduce creation time for the second and
  * subsequent instances of the same type.
- *
  * The first cache maps from an MBean interface to a PerInterface object
  * containing information parsed out of the interface. The interface is either a
  * Standard MBean interface or an MXBean interface, and there is one cache for
  * each case.
- *
  * The PerInterface includes an MBeanInfo. This contains the attributes and
  * operations parsed out of the interface's methods, plus a basic Descriptor for
  * the interface containing at least the interfaceClassName field and any fields
@@ -68,14 +46,11 @@ import sun.reflect.misc.ReflectUtil;
  * name of a concrete class and we don't know what the class will be.
  * Furthermore a real MBeanInfo may need to add constructors and/or
  * notifications to the MBeanInfo.
- *
  * The PerInterface also contains an MBeanDispatcher which is able to route
  * getAttribute, setAttribute, and invoke to the appropriate method of the
  * interface, including doing any necessary translation of parameters and return
  * values for MXBeans.
- *
  * The PerInterface also contains the original Class for the interface.
- *
  * We need to be careful about references. When there are no MBeans with a given
  * interface, there must not be any strong references to the interface Class.
  * Otherwise it could never be garbage collected, and neither could its
@@ -83,13 +58,11 @@ import sun.reflect.misc.ReflectUtil;
  * cache must wrap the PerInterface in a WeakReference. Each instance of
  * MBeanSupport has a strong reference to its PerInterface, which prevents
  * PerInterface instances from being garbage-collected prematurely.
- *
  * The second cache maps from a concrete class and an MBean interface that that
  * class implements to the MBeanInfo for that class and interface. (The ability
  * to specify an interface separately comes from the class StandardMBean. MBeans
  * registered directly in the MBean Server will always have the same interface
  * here.)
- *
  * The MBeanInfo in this second cache will be the MBeanInfo from the
  * PerInterface cache for the given itnerface, but with the getClassName()
  * having the concrete class's name, and the public constructors based on the
@@ -101,7 +74,6 @@ import sun.reflect.misc.ReflectUtil;
  * concrete class do not necessarily have the same MBeanNotificationInfo[].
  * Currently we do not try to detect when they do, although it would probably be
  * worthwhile doing that since it is a very common case.
- *
  * Standard MBeans additionally have the property that getNotificationInfo()
  * must in principle be called every time getMBeanInfo() is called for the
  * MBean, since the returned array is allowed to change over time. We attempt to
@@ -110,11 +82,12 @@ import sun.reflect.misc.ReflectUtil;
  * getNotificationInfo(), meaning that the MBeanNotificationInfo[] is the one
  * that was supplied to the constructor. MXBeans do not have this problem
  * because their getNotificationInfo() method is called only once.
- *
  */
-public abstract class MBeanSupport<M> implements DynamicMBean2, MBeanRegistration {
+public abstract class MBeanSupport<M> implements DynamicMBean2,
+		MBeanRegistration {
 
-	<T> MBeanSupport(T resource, Class<T> mbeanInterfaceType) throws NotCompliantMBeanException {
+	<T> MBeanSupport(T resource, Class<T> mbeanInterfaceType)
+			throws NotCompliantMBeanException {
 		if (mbeanInterfaceType == null)
 			throw new NotCompliantMBeanException("Null MBean interface");
 		if (!mbeanInterfaceType.isInstance(resource)) {
@@ -147,17 +120,20 @@ public abstract class MBeanSupport<M> implements DynamicMBean2, MBeanRegistratio
 	// Methods that javax.management.StandardMBean should call from its
 	// preRegister and postRegister, given that it is not supposed to
 	// call the contained object's preRegister etc methods even if it has them
-	public abstract void register(MBeanServer mbs, ObjectName name) throws Exception;
+	public abstract void register(MBeanServer mbs, ObjectName name)
+			throws Exception;
 
 	public abstract void unregister();
 
-	public final ObjectName preRegister(MBeanServer server, ObjectName name) throws Exception {
+	public final ObjectName preRegister(MBeanServer server, ObjectName name)
+			throws Exception {
 		if (resource instanceof MBeanRegistration)
 			name = ((MBeanRegistration) resource).preRegister(server, name);
 		return name;
 	}
 
-	public final void preRegister2(MBeanServer server, ObjectName name) throws Exception {
+	public final void preRegister2(MBeanServer server, ObjectName name)
+			throws Exception {
 		register(server, name);
 	}
 
@@ -188,7 +164,8 @@ public abstract class MBeanSupport<M> implements DynamicMBean2, MBeanRegistratio
 	}
 
 	public final Object getAttribute(String attribute)
-			throws AttributeNotFoundException, MBeanException, ReflectionException {
+			throws AttributeNotFoundException, MBeanException,
+			ReflectionException {
 		return perInterface.getAttribute(resource, attribute, getCookie());
 	}
 
@@ -206,8 +183,9 @@ public abstract class MBeanSupport<M> implements DynamicMBean2, MBeanRegistratio
 		return result;
 	}
 
-	public final void setAttribute(Attribute attribute) throws AttributeNotFoundException,
-			InvalidAttributeValueException, MBeanException, ReflectionException {
+	public final void setAttribute(Attribute attribute)
+			throws AttributeNotFoundException, InvalidAttributeValueException,
+			MBeanException, ReflectionException {
 		final String name = attribute.getName();
 		final Object value = attribute.getValue();
 		perInterface.setAttribute(resource, name, value, getCookie());
@@ -229,9 +207,10 @@ public abstract class MBeanSupport<M> implements DynamicMBean2, MBeanRegistratio
 		return result;
 	}
 
-	public final Object invoke(String operation, Object[] params, String[] signature)
-			throws MBeanException, ReflectionException {
-		return perInterface.invoke(resource, operation, params, signature, getCookie());
+	public final Object invoke(String operation, Object[] params,
+			String[] signature) throws MBeanException, ReflectionException {
+		return perInterface.invoke(resource, operation, params, signature,
+				getCookie());
 	}
 
 	// Overridden by StandardMBeanSupport

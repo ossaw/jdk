@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -73,15 +53,17 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 	}
 
 	protected void installDefaults() {
-		scrollBarWidth = ((Integer) (UIManager.get("ScrollBar.width"))).intValue();
+		scrollBarWidth = ((Integer) (UIManager.get("ScrollBar.width")))
+				.intValue();
 		super.installDefaults();
-		bumps = new MetalBumps(10, 10, thumbHighlightColor, thumbShadow, thumbColor);
+		bumps = new MetalBumps(10, 10, thumbHighlightColor, thumbShadow,
+				thumbColor);
 	}
 
 	protected void installListeners() {
 		super.installListeners();
-		((ScrollBarListener) propertyChangeListener)
-				.handlePropertyChange(scrollbar.getClientProperty(FREE_STANDING_PROP));
+		((ScrollBarListener) propertyChangeListener).handlePropertyChange(
+				scrollbar.getClientProperty(FREE_STANDING_PROP));
 	}
 
 	protected PropertyChangeListener createPropertyChangeListener() {
@@ -113,13 +95,15 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 	 * Returns the view that represents the decrease view.
 	 */
 	protected JButton createDecreaseButton(int orientation) {
-		decreaseButton = new MetalScrollButton(orientation, scrollBarWidth, isFreeStanding);
+		decreaseButton = new MetalScrollButton(orientation, scrollBarWidth,
+				isFreeStanding);
 		return decreaseButton;
 	}
 
 	/** Returns the view that represents the increase view. */
 	protected JButton createIncreaseButton(int orientation) {
-		increaseButton = new MetalScrollButton(orientation, scrollBarWidth, isFreeStanding);
+		increaseButton = new MetalScrollButton(orientation, scrollBarWidth,
+				isFreeStanding);
 		return increaseButton;
 	}
 
@@ -155,7 +139,8 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 				g.setColor(highlightColor);
 				drawVLine(g, trackBounds.width - 1, 0, trackBounds.height - 1);
 			} else {
-				MetalUtils.drawDisabledBorder(g, 0, 0, trackBounds.width, trackBounds.height);
+				MetalUtils.drawDisabledBorder(g, 0, 0, trackBounds.width,
+						trackBounds.height);
 			}
 
 			if (!isFreeStanding) {
@@ -188,7 +173,8 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 					drawVLine(g, x, 1, trackBounds.height - 1);
 				}
 			} else {
-				MetalUtils.drawDisabledBorder(g, 0, 0, trackBounds.width, trackBounds.height);
+				MetalUtils.drawDisabledBorder(g, 0, 0, trackBounds.width,
+						trackBounds.height);
 			}
 
 			if (!isFreeStanding) {
@@ -267,7 +253,8 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 		g.translate(-thumbBounds.x, -thumbBounds.y);
 	}
 
-	private void oceanPaintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+	private void oceanPaintThumb(Graphics g, JComponent c,
+			Rectangle thumbBounds) {
 		boolean leftToRight = MetalUtils.isLeftToRight(c);
 
 		g.translate(thumbBounds.x, thumbBounds.y);
@@ -292,8 +279,8 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 			drawHLine(g, 1, thumbBounds.width - 3, 1);
 			drawVLine(g, 1, 1, thumbBounds.height - 2);
 
-			MetalUtils.drawGradient(c, g, "ScrollBar.gradient", 2, 2, thumbBounds.width - 4,
-					thumbBounds.height - 3, false);
+			MetalUtils.drawGradient(c, g, "ScrollBar.gradient", 2, 2,
+					thumbBounds.width - 4, thumbBounds.height - 3, false);
 
 			int gripSize = thumbBounds.width - 8;
 			if (gripSize > 2 && thumbBounds.height >= 10) {
@@ -332,8 +319,8 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 			drawHLine(g, 1, thumbBounds.width - 2, 1);
 			drawVLine(g, 1, 1, thumbBounds.height - 3);
 
-			MetalUtils.drawGradient(c, g, "ScrollBar.gradient", 2, 2, thumbBounds.width - 3,
-					thumbBounds.height - 4, true);
+			MetalUtils.drawGradient(c, g, "ScrollBar.gradient", 2, 2,
+					thumbBounds.width - 3, thumbBounds.height - 4, true);
 
 			int gripSize = thumbBounds.height - 8;
 			if (gripSize > 2 && thumbBounds.width >= 10) {
@@ -370,8 +357,8 @@ public class MetalScrollBarUI extends BasicScrollBarUI {
 		/*
 		 * If the thumbs bounds haven't changed, we're done.
 		 */
-		if ((thumbRect.x == x) && (thumbRect.y == y) && (thumbRect.width == width)
-				&& (thumbRect.height == height)) {
+		if ((thumbRect.x == x) && (thumbRect.y == y)
+				&& (thumbRect.width == width) && (thumbRect.height == height)) {
 			return;
 		}
 

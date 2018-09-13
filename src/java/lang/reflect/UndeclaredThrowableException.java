@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -68,7 +48,8 @@ public class UndeclaredThrowableException extends RuntimeException {
 	 * {@code Throwable}.
 	 *
 	 * @param undeclaredThrowable
-	 *            the undeclared checked exception that was thrown
+	 *                            the undeclared checked exception that was
+	 *                            thrown
 	 */
 	public UndeclaredThrowableException(Throwable undeclaredThrowable) {
 		super((Throwable) null); // Disallow initCause
@@ -80,11 +61,13 @@ public class UndeclaredThrowableException extends RuntimeException {
 	 * {@code Throwable} and a detail message.
 	 *
 	 * @param undeclaredThrowable
-	 *            the undeclared checked exception that was thrown
+	 *                            the undeclared checked exception that was
+	 *                            thrown
 	 * @param s
-	 *            the detail message
+	 *                            the detail message
 	 */
-	public UndeclaredThrowableException(Throwable undeclaredThrowable, String s) {
+	public UndeclaredThrowableException(Throwable undeclaredThrowable,
+			String s) {
 		super(s, null); // Disallow initCause
 		this.undeclaredThrowable = undeclaredThrowable;
 	}

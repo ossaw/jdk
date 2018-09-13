@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -134,7 +114,8 @@ public class MetalInternalFrameUI extends BasicInternalFrameUI {
 
 	private void setFrameType(String frameType) {
 		if (frameType.equals(OPTION_DIALOG)) {
-			LookAndFeel.installBorder(frame, "InternalFrame.optionDialogBorder");
+			LookAndFeel.installBorder(frame,
+					"InternalFrame.optionDialogBorder");
 			((MetalInternalFrameTitlePane) titlePane).setPalette(false);
 		} else if (frameType.equals(PALETTE_FRAME)) {
 			LookAndFeel.installBorder(frame, "InternalFrame.paletteBorder");
@@ -156,7 +137,8 @@ public class MetalInternalFrameUI extends BasicInternalFrameUI {
 
 	}
 
-	private static class MetalPropertyChangeHandler implements PropertyChangeListener {
+	private static class MetalPropertyChangeHandler implements
+			PropertyChangeListener {
 		public void propertyChange(PropertyChangeEvent e) {
 			String name = e.getPropertyName();
 			JInternalFrame jif = (JInternalFrame) e.getSource();
@@ -183,7 +165,8 @@ public class MetalInternalFrameUI extends BasicInternalFrameUI {
 		}
 	} // end class MetalPropertyChangeHandler
 
-	private class BorderListener1 extends BorderListener implements SwingConstants {
+	private class BorderListener1 extends BorderListener implements
+			SwingConstants {
 
 		Rectangle getIconBounds() {
 			boolean leftToRight = MetalUtils.isLeftToRight(frame);
@@ -195,15 +178,17 @@ public class MetalInternalFrameUI extends BasicInternalFrameUI {
 				if (!leftToRight) {
 					xOffset -= icon.getIconWidth();
 				}
-				int iconY = ((titlePane.getHeight() / 2) - (icon.getIconHeight() / 2));
-				rect = new Rectangle(xOffset, iconY, icon.getIconWidth(), icon.getIconHeight());
+				int iconY = ((titlePane.getHeight() / 2) - (icon.getIconHeight()
+						/ 2));
+				rect = new Rectangle(xOffset, iconY, icon.getIconWidth(), icon
+						.getIconHeight());
 			}
 			return rect;
 		}
 
 		public void mouseClicked(MouseEvent e) {
-			if (e.getClickCount() == 2 && e.getSource() == getNorthPane() && frame.isClosable()
-					&& !frame.isIcon()) {
+			if (e.getClickCount() == 2 && e.getSource() == getNorthPane()
+					&& frame.isClosable() && !frame.isIcon()) {
 				Rectangle rect = getIconBounds();
 				if ((rect != null) && rect.contains(e.getX(), e.getY())) {
 					frame.doDefaultCloseAction();
@@ -221,7 +206,7 @@ public class MetalInternalFrameUI extends BasicInternalFrameUI {
 	 * TitlePane.
 	 *
 	 * @param w
-	 *            the <code>JInternalFrame</code>
+	 *          the <code>JInternalFrame</code>
 	 * @return the <code>MouseInputAdapter</code> that will be installed on the
 	 *         TitlePane.
 	 * @since 1.6

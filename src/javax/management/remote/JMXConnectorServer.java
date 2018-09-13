@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -101,9 +81,11 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 * </p>
 	 *
 	 * @param mbeanServer
-	 *            the MBean server that this connector server is attached to.
-	 *            Null if this connector server will be attached to an MBean
-	 *            server by being registered in it.
+	 *                    the MBean server that this connector server is
+	 *                    attached to.
+	 *                    Null if this connector server will be attached to an
+	 *                    MBean
+	 *                    server by being registered in it.
 	 */
 	public JMXConnectorServer(MBeanServer mbeanServer) {
 		this.mbeanServer = mbeanServer;
@@ -121,7 +103,8 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 		return mbeanServer;
 	}
 
-	public synchronized void setMBeanServerForwarder(MBeanServerForwarder mbsf) {
+	public synchronized void setMBeanServerForwarder(
+			MBeanServerForwarder mbsf) {
 		if (mbsf == null)
 			throw new IllegalArgumentException("Invalid null argument: mbsf");
 
@@ -177,16 +160,19 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 *         connector server.
 	 *
 	 * @exception UnsupportedOperationException
-	 *                if this connector server does not support the generation
-	 *                of client stubs.
+	 *                                          if this connector server does
+	 *                                          not support the generation
+	 *                                          of client stubs.
 	 *
 	 * @exception IllegalStateException
-	 *                if the JMXConnectorServer is not started (see
-	 *                {@link JMXConnectorServerMBean#isActive()}).
+	 *                                          if the JMXConnectorServer is not
+	 *                                          started (see
+	 *                                          {@link JMXConnectorServerMBean#isActive()}).
 	 *
 	 * @exception IOException
-	 *                if a communications problem means that a stub cannot be
-	 *                created.
+	 *                                          if a communications problem
+	 *                                          means that a stub cannot be
+	 *                                          created.
 	 **/
 	public JMXConnector toJMXConnector(Map<String, ?> env) throws IOException {
 		if (!isActive())
@@ -209,12 +195,13 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 */
 	@Override
 	public MBeanNotificationInfo[] getNotificationInfo() {
-		final String[] types = { JMXConnectionNotification.OPENED, JMXConnectionNotification.CLOSED,
+		final String[] types = { JMXConnectionNotification.OPENED,
+				JMXConnectionNotification.CLOSED,
 				JMXConnectionNotification.FAILED, };
 		final String className = JMXConnectionNotification.class.getName();
 		final String description = "A client connection has been opened or closed";
-		return new MBeanNotificationInfo[] {
-				new MBeanNotificationInfo(types, className, description), };
+		return new MBeanNotificationInfo[] { new MBeanNotificationInfo(types,
+				className, description), };
 	}
 
 	/**
@@ -227,23 +214,27 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 * </p>
 	 *
 	 * @param connectionId
-	 *            the ID of the new connection. This must be different from the
-	 *            ID of any connection previously opened by this connector
-	 *            server.
+	 *                     the ID of the new connection. This must be different
+	 *                     from the
+	 *                     ID of any connection previously opened by this
+	 *                     connector
+	 *                     server.
 	 *
 	 * @param message
-	 *            the message for the emitted {@link JMXConnectionNotification}.
-	 *            Can be null. See {@link Notification#getMessage()}.
+	 *                     the message for the emitted
+	 *                     {@link JMXConnectionNotification}.
+	 *                     Can be null. See {@link Notification#getMessage()}.
 	 *
 	 * @param userData
-	 *            the <code>userData</code> for the emitted
-	 *            {@link JMXConnectionNotification}. Can be null. See
-	 *            {@link Notification#getUserData()}.
+	 *                     the <code>userData</code> for the emitted
+	 *                     {@link JMXConnectionNotification}. Can be null. See
+	 *                     {@link Notification#getUserData()}.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>connectionId</code> is null.
+	 *                                 if <code>connectionId</code> is null.
 	 */
-	protected void connectionOpened(String connectionId, String message, Object userData) {
+	protected void connectionOpened(String connectionId, String message,
+			Object userData) {
 
 		if (connectionId == null)
 			throw new NullPointerException("Illegal null argument");
@@ -252,7 +243,8 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 			connectionIds.add(connectionId);
 		}
 
-		sendNotification(JMXConnectionNotification.OPENED, connectionId, message, userData);
+		sendNotification(JMXConnectionNotification.OPENED, connectionId,
+				message, userData);
 	}
 
 	/**
@@ -265,21 +257,23 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 * </p>
 	 *
 	 * @param connectionId
-	 *            the ID of the closed connection.
+	 *                     the ID of the closed connection.
 	 *
 	 * @param message
-	 *            the message for the emitted {@link JMXConnectionNotification}.
-	 *            Can be null. See {@link Notification#getMessage()}.
+	 *                     the message for the emitted
+	 *                     {@link JMXConnectionNotification}.
+	 *                     Can be null. See {@link Notification#getMessage()}.
 	 *
 	 * @param userData
-	 *            the <code>userData</code> for the emitted
-	 *            {@link JMXConnectionNotification}. Can be null. See
-	 *            {@link Notification#getUserData()}.
+	 *                     the <code>userData</code> for the emitted
+	 *                     {@link JMXConnectionNotification}. Can be null. See
+	 *                     {@link Notification#getUserData()}.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>connectionId</code> is null.
+	 *                                 if <code>connectionId</code> is null.
 	 */
-	protected void connectionClosed(String connectionId, String message, Object userData) {
+	protected void connectionClosed(String connectionId, String message,
+			Object userData) {
 
 		if (connectionId == null)
 			throw new NullPointerException("Illegal null argument");
@@ -288,7 +282,8 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 			connectionIds.remove(connectionId);
 		}
 
-		sendNotification(JMXConnectionNotification.CLOSED, connectionId, message, userData);
+		sendNotification(JMXConnectionNotification.CLOSED, connectionId,
+				message, userData);
 	}
 
 	/**
@@ -301,21 +296,23 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 * </p>
 	 *
 	 * @param connectionId
-	 *            the ID of the failed connection.
+	 *                     the ID of the failed connection.
 	 *
 	 * @param message
-	 *            the message for the emitted {@link JMXConnectionNotification}.
-	 *            Can be null. See {@link Notification#getMessage()}.
+	 *                     the message for the emitted
+	 *                     {@link JMXConnectionNotification}.
+	 *                     Can be null. See {@link Notification#getMessage()}.
 	 *
 	 * @param userData
-	 *            the <code>userData</code> for the emitted
-	 *            {@link JMXConnectionNotification}. Can be null. See
-	 *            {@link Notification#getUserData()}.
+	 *                     the <code>userData</code> for the emitted
+	 *                     {@link JMXConnectionNotification}. Can be null. See
+	 *                     {@link Notification#getUserData()}.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>connectionId</code> is null.
+	 *                                 if <code>connectionId</code> is null.
 	 */
-	protected void connectionFailed(String connectionId, String message, Object userData) {
+	protected void connectionFailed(String connectionId, String message,
+			Object userData) {
 
 		if (connectionId == null)
 			throw new NullPointerException("Illegal null argument");
@@ -324,13 +321,15 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 			connectionIds.remove(connectionId);
 		}
 
-		sendNotification(JMXConnectionNotification.FAILED, connectionId, message, userData);
+		sendNotification(JMXConnectionNotification.FAILED, connectionId,
+				message, userData);
 	}
 
-	private void sendNotification(String type, String connectionId, String message,
-			Object userData) {
-		Notification notif = new JMXConnectionNotification(type, getNotificationSource(),
-				connectionId, nextSequenceNumber(), message, userData);
+	private void sendNotification(String type, String connectionId,
+			String message, Object userData) {
+		Notification notif = new JMXConnectionNotification(type,
+				getNotificationSource(), connectionId, nextSequenceNumber(),
+				message, userData);
 		sendNotification(notif);
 	}
 
@@ -363,18 +362,20 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 * </p>
 	 *
 	 * @param mbs
-	 *            the MBean server in which this connection server is being
-	 *            registered.
+	 *             the MBean server in which this connection server is being
+	 *             registered.
 	 *
 	 * @param name
-	 *            The object name of the MBean.
+	 *             The object name of the MBean.
 	 *
 	 * @return The name under which the MBean is to be registered.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>mbs</code> or <code>name</code> is null.
+	 *                                 if <code>mbs</code> or <code>name</code>
+	 *                                 is null.
 	 */
-	public synchronized ObjectName preRegister(MBeanServer mbs, ObjectName name) {
+	public synchronized ObjectName preRegister(MBeanServer mbs,
+			ObjectName name) {
 		if (mbs == null || name == null)
 			throw new NullPointerException("Null MBeanServer or ObjectName");
 		if (mbeanServer == null) {
@@ -400,7 +401,7 @@ public abstract class JMXConnectorServer extends NotificationBroadcasterSupport
 	 * </p>
 	 *
 	 * @exception IOException
-	 *                if thrown by the {@link #stop stop} method.
+	 *                        if thrown by the {@link #stop stop} method.
 	 */
 	public synchronized void preDeregister() throws Exception {
 		if (myName != null && isActive()) {

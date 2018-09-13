@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.soap;
@@ -60,7 +40,7 @@ public class SOAPFaultException extends javax.xml.ws.ProtocolException {
 	 * Constructor for SOAPFaultException
 	 * 
 	 * @param fault
-	 *            <code>SOAPFault</code> representing the fault
+	 *              <code>SOAPFault</code> representing the fault
 	 *
 	 * @see javax.xml.soap.SOAPFactory#createFault
 	 **/

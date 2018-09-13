@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.metadata;
@@ -287,14 +267,13 @@ public class IIOMetadataNode implements Element, NodeList {
 	/**
 	 * Constructs an empty <code>IIOMetadataNode</code>.
 	 */
-	public IIOMetadataNode() {
-	}
+	public IIOMetadataNode() {}
 
 	/**
 	 * Constructs an <code>IIOMetadataNode</code> with a given node name.
 	 *
 	 * @param nodeName
-	 *            the name of the node, as a <code>String</code>.
+	 *                 the name of the node, as a <code>String</code>.
 	 */
 	public IIOMetadataNode(String nodeName) {
 		this.nodeName = nodeName;
@@ -445,14 +424,15 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * insert <code>newChild</code> at the end of the list of children.
 	 *
 	 * @param newChild
-	 *            the <code>Node</code> to insert.
+	 *                 the <code>Node</code> to insert.
 	 * @param refChild
-	 *            the reference <code>Node</code>.
+	 *                 the reference <code>Node</code>.
 	 *
 	 * @return the node being inserted.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>newChild</code> is <code>null</code>.
+	 *                                     if <code>newChild</code> is
+	 *                                     <code>null</code>.
 	 */
 	public Node insertBefore(Node newChild, Node refChild) {
 		if (newChild == null) {
@@ -503,14 +483,15 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * in the list of children, and returns the <code>oldChild</code> node.
 	 *
 	 * @param newChild
-	 *            the <code>Node</code> to insert.
+	 *                 the <code>Node</code> to insert.
 	 * @param oldChild
-	 *            the <code>Node</code> to be replaced.
+	 *                 the <code>Node</code> to be replaced.
 	 *
 	 * @return the node replaced.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>newChild</code> is <code>null</code>.
+	 *                                     if <code>newChild</code> is
+	 *                                     <code>null</code>.
 	 */
 	public Node replaceChild(Node newChild, Node oldChild) {
 		if (newChild == null) {
@@ -556,12 +537,13 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * of children, and returns it.
 	 *
 	 * @param oldChild
-	 *            the <code>Node</code> to be removed.
+	 *                 the <code>Node</code> to be removed.
 	 *
 	 * @return the node removed.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>oldChild</code> is <code>null</code>.
+	 *                                     if <code>oldChild</code> is
+	 *                                     <code>null</code>.
 	 */
 	public Node removeChild(Node oldChild) {
 		if (oldChild == null) {
@@ -601,12 +583,13 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * this node.
 	 *
 	 * @param newChild
-	 *            the <code>Node</code> to insert.
+	 *                 the <code>Node</code> to insert.
 	 *
 	 * @return the node added.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>newChild</code> is <code>null</code>.
+	 *                                     if <code>newChild</code> is
+	 *                                     <code>null</code>.
 	 */
 	public Node appendChild(Node newChild) {
 		if (newChild == null) {
@@ -635,9 +618,9 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * performed, the new node will form the root of a complete cloned subtree.
 	 *
 	 * @param deep
-	 *            if <code>true</code>, recursively clone the subtree under the
-	 *            specified node; if <code>false</code>, clone only the node
-	 *            itself.
+	 *             if <code>true</code>, recursively clone the subtree under the
+	 *             specified node; if <code>false</code>, clone only the node
+	 *             itself.
 	 *
 	 * @return the duplicate node.
 	 */
@@ -659,8 +642,7 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * Does nothing, since <code>IIOMetadataNode</code>s do not contain
 	 * <code>Text</code> children.
 	 */
-	public void normalize() {
-	}
+	public void normalize() {}
 
 	/**
 	 * Returns <code>false</code> since DOM features are not supported.
@@ -668,9 +650,9 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * @return <code>false</code>.
 	 *
 	 * @param feature
-	 *            a <code>String</code>, which is ignored.
+	 *                a <code>String</code>, which is ignored.
 	 * @param version
-	 *            a <code>String</code>, which is ignored.
+	 *                a <code>String</code>, which is ignored.
 	 */
 	public boolean isSupported(String feature, String version) {
 		return false;
@@ -698,12 +680,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * Does nothing, since namespaces are not supported.
 	 *
 	 * @param prefix
-	 *            a <code>String</code>, which is ignored.
+	 *               a <code>String</code>, which is ignored.
 	 *
 	 * @see #getPrefix
 	 */
-	public void setPrefix(String prefix) {
-	}
+	public void setPrefix(String prefix) {}
 
 	/**
 	 * Equivalent to <code>getNodeName</code>.
@@ -729,7 +710,7 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * Retrieves an attribute value by name.
 	 * 
 	 * @param name
-	 *            The name of the attribute to retrieve.
+	 *             The name of the attribute to retrieve.
 	 * @return The <code>Attr</code> value as a string, or the empty string if
 	 *         that attribute does not have a specified or default value.
 	 */
@@ -773,7 +754,8 @@ public class IIOMetadataNode implements Element, NodeList {
 	 *
 	 * @see #getAttributeNS
 	 */
-	public void setAttributeNS(String namespaceURI, String qualifiedName, String value) {
+	public void setAttributeNS(String namespaceURI, String qualifiedName,
+			String value) {
 		setAttribute(qualifiedName, value);
 	}
 
@@ -794,7 +776,8 @@ public class IIOMetadataNode implements Element, NodeList {
 
 		// If we get here, the attribute doesn't exist
 		if (checkPresent) {
-			throw new IIODOMException(DOMException.NOT_FOUND_ERR, "No such attribute!");
+			throw new IIODOMException(DOMException.NOT_FOUND_ERR,
+					"No such attribute!");
 		}
 	}
 
@@ -883,7 +866,8 @@ public class IIOMetadataNode implements Element, NodeList {
 	/**
 	 * Equivalent to <code>getElementsByTagName(localName)</code>.
 	 */
-	public NodeList getElementsByTagNameNS(String namespaceURI, String localName) {
+	public NodeList getElementsByTagNameNS(String namespaceURI,
+			String localName) {
 		return getElementsByTagName(localName);
 	}
 
@@ -935,7 +919,7 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * Sets the value associated with this node.
 	 *
 	 * @param userObject
-	 *            the user <code>Object</code>.
+	 *                   the user <code>Object</code>.
 	 *
 	 * @see #getUserObject
 	 */
@@ -950,10 +934,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public void setIdAttribute(String name, boolean isId) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -961,11 +946,25 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
-	public void setIdAttributeNS(String namespaceURI, String localName, boolean isId)
+	public void setIdAttributeNS(String namespaceURI, String localName,
+			boolean isId) throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
+	}
+
+	/**
+	 * This DOM Level 3 method is not supported for {@code IIOMetadataNode} and
+	 * will throw a {@code DOMException}.
+	 * 
+	 * @throws DOMException
+	 *                      - always.
+	 */
+	public void setIdAttributeNode(Attr idAttr, boolean isId)
 			throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -973,21 +972,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
-	 */
-	public void setIdAttributeNode(Attr idAttr, boolean isId) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
-	}
-
-	/**
-	 * This DOM Level 3 method is not supported for {@code IIOMetadataNode} and
-	 * will throw a {@code DOMException}.
-	 * 
-	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public TypeInfo getSchemaTypeInfo() throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -995,11 +984,12 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public Object setUserData(String key, Object data, UserDataHandler handler)
 			throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1007,10 +997,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public Object getUserData(String key) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1018,10 +1009,12 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
-	public Object getFeature(String feature, String version) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public Object getFeature(String feature, String version)
+			throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1029,10 +1022,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public boolean isSameNode(Node node) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1040,10 +1034,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public boolean isEqualNode(Node node) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1051,10 +1046,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public String lookupNamespaceURI(String prefix) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1062,10 +1058,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public boolean isDefaultNamespace(String namespaceURI) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1073,10 +1070,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public String lookupPrefix(String namespaceURI) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1084,10 +1082,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public String getTextContent() throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1095,10 +1094,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public void setTextContent(String textContent) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1106,10 +1106,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public short compareDocumentPosition(Node other) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -1117,10 +1118,11 @@ public class IIOMetadataNode implements Element, NodeList {
 	 * will throw a {@code DOMException}.
 	 * 
 	 * @throws DOMException
-	 *             - always.
+	 *                      - always.
 	 */
 	public String getBaseURI() throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 	// End of dummy methods for DOM L3.
 

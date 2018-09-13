@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -39,5 +19,4 @@ package javax.print.attribute;
  *
  * @author Alan Kaminsky
  */
-public interface SupportedValuesAttribute extends Attribute {
-}
+public interface SupportedValuesAttribute extends Attribute {}

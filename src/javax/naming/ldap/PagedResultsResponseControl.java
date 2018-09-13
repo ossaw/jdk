@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -86,18 +66,21 @@ final public class PagedResultsResponseControl extends BasicControl {
 	 * Constructs a paged-results response control.
 	 *
 	 * @param id
-	 *            The control's object identifier string.
+	 *                    The control's object identifier string.
 	 * @param criticality
-	 *            The control's criticality.
+	 *                    The control's criticality.
 	 * @param value
-	 *            The control's ASN.1 BER encoded value. It is not cloned - any
-	 *            changes to value will affect the contents of the control.
+	 *                    The control's ASN.1 BER encoded value. It is not
+	 *                    cloned - any
+	 *                    changes to value will affect the contents of the
+	 *                    control.
 	 * @exception IOException
-	 *                If an error was encountered while decoding the control's
-	 *                value.
+	 *                        If an error was encountered while decoding the
+	 *                        control's
+	 *                        value.
 	 */
-	public PagedResultsResponseControl(String id, boolean criticality, byte[] value)
-			throws IOException {
+	public PagedResultsResponseControl(String id, boolean criticality,
+			byte[] value) throws IOException {
 
 		super(id, criticality, value);
 

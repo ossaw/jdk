@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.security.spec;
 
@@ -48,9 +28,9 @@ public class ECFieldF2m implements ECField {
 	 * {@code m} elements with normal basis.
 	 * 
 	 * @param m
-	 *            with 2^{@code m} being the number of elements.
+	 *          with 2^{@code m} being the number of elements.
 	 * @exception IllegalArgumentException
-	 *                if {@code m} is not positive.
+	 *                                     if {@code m} is not positive.
 	 */
 	public ECFieldF2m(int m) {
 		if (m <= 0) {
@@ -73,15 +53,17 @@ public class ECFieldF2m implements ECField {
 	 * {@code m} &gt; {@code k3} &gt; {@code k2} &gt; {@code k1} &gt;= 1).
 	 * 
 	 * @param m
-	 *            with 2^{@code m} being the number of elements.
+	 *           with 2^{@code m} being the number of elements.
 	 * @param rp
-	 *            the BigInteger whose i-th bit corresponds to the i-th
-	 *            coefficient of the reduction polynomial.
+	 *           the BigInteger whose i-th bit corresponds to the i-th
+	 *           coefficient of the reduction polynomial.
 	 * @exception NullPointerException
-	 *                if {@code rp} is null.
+	 *                                     if {@code rp} is null.
 	 * @exception IllegalArgumentException
-	 *                if {@code m} is not positive, or {@code rp} does not
-	 *                represent a valid reduction polynomial.
+	 *                                     if {@code m} is not positive, or
+	 *                                     {@code rp} does not
+	 *                                     represent a valid reduction
+	 *                                     polynomial.
 	 */
 	public ECFieldF2m(int m, BigInteger rp) {
 		// check m and rp
@@ -91,7 +73,8 @@ public class ECFieldF2m implements ECField {
 			throw new IllegalArgumentException("m is not positive");
 		}
 		int bitCount = this.rp.bitCount();
-		if (!this.rp.testBit(0) || !this.rp.testBit(m) || ((bitCount != 3) && (bitCount != 5))) {
+		if (!this.rp.testBit(0) || !this.rp.testBit(m) || ((bitCount != 3)
+				&& (bitCount != 5))) {
 			throw new IllegalArgumentException(
 					"rp does not represent a valid reduction polynomial");
 		}
@@ -117,18 +100,21 @@ public class ECFieldF2m implements ECField {
 	 * have length 1 or 3.
 	 * 
 	 * @param m
-	 *            with 2^{@code m} being the number of elements.
+	 *           with 2^{@code m} being the number of elements.
 	 * @param ks
-	 *            the order of the middle term(s) of the reduction polynomial.
-	 *            Contents of this array are copied to protect against
-	 *            subsequent modification.
+	 *           the order of the middle term(s) of the reduction polynomial.
+	 *           Contents of this array are copied to protect against
+	 *           subsequent modification.
 	 * @exception NullPointerException
-	 *                if {@code ks} is null.
+	 *                                     if {@code ks} is null.
 	 * @exception IllegalArgumentException
-	 *                if{@code m} is not positive, or the length of {@code ks}
-	 *                is neither 1 nor 3, or values in {@code ks} are not
-	 *                between {@code m}-1 and 1 (inclusive) and in descending
-	 *                order.
+	 *                                     if{@code m} is not positive, or the
+	 *                                     length of {@code ks}
+	 *                                     is neither 1 nor 3, or values in
+	 *                                     {@code ks} are not
+	 *                                     between {@code m}-1 and 1 (inclusive)
+	 *                                     and in descending
+	 *                                     order.
 	 */
 	public ECFieldF2m(int m, int[] ks) {
 		// check m and ks
@@ -138,14 +124,17 @@ public class ECFieldF2m implements ECField {
 			throw new IllegalArgumentException("m is not positive");
 		}
 		if ((this.ks.length != 1) && (this.ks.length != 3)) {
-			throw new IllegalArgumentException("length of ks is neither 1 nor 3");
+			throw new IllegalArgumentException(
+					"length of ks is neither 1 nor 3");
 		}
 		for (int i = 0; i < this.ks.length; i++) {
 			if ((this.ks[i] < 1) || (this.ks[i] > m - 1)) {
-				throw new IllegalArgumentException("ks[" + i + "] is out of range");
+				throw new IllegalArgumentException("ks[" + i
+						+ "] is out of range");
 			}
 			if ((i != 0) && (this.ks[i] >= this.ks[i - 1])) {
-				throw new IllegalArgumentException("values in ks are not in descending order");
+				throw new IllegalArgumentException(
+						"values in ks are not in descending order");
 			}
 		}
 		// convert ks into rp
@@ -220,7 +209,8 @@ public class ECFieldF2m implements ECField {
 		if (obj instanceof ECFieldF2m) {
 			// no need to compare rp here since ks and rp
 			// should be equivalent
-			return ((m == ((ECFieldF2m) obj).m) && (Arrays.equals(ks, ((ECFieldF2m) obj).ks)));
+			return ((m == ((ECFieldF2m) obj).m) && (Arrays.equals(ks,
+					((ECFieldF2m) obj).ks)));
 		}
 		return false;
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.interceptors;
@@ -65,92 +45,71 @@ import com.sun.corba.se.impl.protocol.giopmsgheaders.ReplyMessage;
  * ORB.postInit( ) call.
  */
 public class PINoOpHandlerImpl implements PIHandler {
-	public PINoOpHandlerImpl() {
-	}
+	public PINoOpHandlerImpl() {}
 
-	public void close() {
-	}
+	public void close() {}
 
-	public void initialize() {
-	}
+	public void initialize() {}
 
-	public void destroyInterceptors() {
-	}
+	public void destroyInterceptors() {}
 
-	public void objectAdapterCreated(ObjectAdapter oa) {
-	}
+	public void objectAdapterCreated(ObjectAdapter oa) {}
 
-	public void adapterManagerStateChanged(int managerId, short newState) {
-	}
+	public void adapterManagerStateChanged(int managerId, short newState) {}
 
-	public void adapterStateChanged(ObjectReferenceTemplate[] templates, short newState) {
-	}
+	public void adapterStateChanged(ObjectReferenceTemplate[] templates,
+			short newState) {}
 
-	public void disableInterceptorsThisThread() {
-	}
+	public void disableInterceptorsThisThread() {}
 
-	public void enableInterceptorsThisThread() {
-	}
+	public void enableInterceptorsThisThread() {}
 
-	public void invokeClientPIStartingPoint() throws RemarshalException {
-	}
+	public void invokeClientPIStartingPoint() throws RemarshalException {}
 
-	public Exception invokeClientPIEndingPoint(int replyStatus, Exception exception) {
+	public Exception invokeClientPIEndingPoint(int replyStatus,
+			Exception exception) {
 		return null;
 	}
 
-	public Exception makeCompletedClientRequest(int replyStatus, Exception exception) {
+	public Exception makeCompletedClientRequest(int replyStatus,
+			Exception exception) {
 		return null;
 	}
 
-	public void initiateClientPIRequest(boolean diiRequest) {
-	}
+	public void initiateClientPIRequest(boolean diiRequest) {}
 
-	public void cleanupClientPIRequest() {
-	}
+	public void cleanupClientPIRequest() {}
 
-	public void setClientPIInfo(CorbaMessageMediator messageMediator) {
-	}
+	public void setClientPIInfo(CorbaMessageMediator messageMediator) {}
 
-	public void setClientPIInfo(RequestImpl requestImpl) {
-	}
+	public void setClientPIInfo(RequestImpl requestImpl) {}
 
-	final public void sendCancelRequestIfFinalFragmentNotSent() {
-	}
+	final public void sendCancelRequestIfFinalFragmentNotSent() {}
 
-	public void invokeServerPIStartingPoint() {
-	}
+	public void invokeServerPIStartingPoint() {}
 
-	public void invokeServerPIIntermediatePoint() {
-	}
+	public void invokeServerPIIntermediatePoint() {}
 
-	public void invokeServerPIEndingPoint(ReplyMessage replyMessage) {
-	}
+	public void invokeServerPIEndingPoint(ReplyMessage replyMessage) {}
 
-	public void setServerPIInfo(Exception exception) {
-	}
+	public void setServerPIInfo(Exception exception) {}
 
-	public void setServerPIInfo(NVList arguments) {
-	}
+	public void setServerPIInfo(NVList arguments) {}
 
-	public void setServerPIExceptionInfo(Any exception) {
-	}
+	public void setServerPIExceptionInfo(Any exception) {}
 
-	public void setServerPIInfo(Any result) {
-	}
+	public void setServerPIInfo(Any result) {}
 
-	public void initializeServerPIInfo(CorbaMessageMediator request, ObjectAdapter oa,
-			byte[] objectId, ObjectKeyTemplate oktemp) {
-	}
+	public void initializeServerPIInfo(CorbaMessageMediator request,
+			ObjectAdapter oa, byte[] objectId, ObjectKeyTemplate oktemp) {}
 
-	public void setServerPIInfo(java.lang.Object servant, String targetMostDerivedInterface) {
-	}
+	public void setServerPIInfo(java.lang.Object servant,
+			String targetMostDerivedInterface) {}
 
-	public void cleanupServerPIRequest() {
-	}
+	public void cleanupServerPIRequest() {}
 
-	public void register_interceptor(Interceptor interceptor, int type) throws DuplicateName {
-	}
+	public void register_interceptor(Interceptor interceptor, int type)
+			throws DuplicateName {}
 
 	public Current getPICurrent() {
 		return null;
@@ -161,8 +120,7 @@ public class PINoOpHandlerImpl implements PIHandler {
 		return null;
 	}
 
-	public void registerPolicyFactory(int type, PolicyFactory factory) {
-	}
+	public void registerPolicyFactory(int type, PolicyFactory factory) {}
 
 	public int allocateServerRequestId() {
 		return 0;

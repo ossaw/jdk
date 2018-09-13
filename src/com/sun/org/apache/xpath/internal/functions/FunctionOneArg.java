@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,14 +54,16 @@ public class FunctionOneArg extends Function implements ExpressionOwner {
 	 * XPath compiler.
 	 *
 	 * @param arg
-	 *            non-null expression that represents the argument.
+	 *               non-null expression that represents the argument.
 	 * @param argNum
-	 *            The argument number index.
+	 *               The argument number index.
 	 *
 	 * @throws WrongNumberArgsException
-	 *             If the argNum parameter is greater than 0.
+	 *                                  If the argNum parameter is greater than
+	 *                                  0.
 	 */
-	public void setArg(Expression arg, int argNum) throws WrongNumberArgsException {
+	public void setArg(Expression arg, int argNum)
+			throws WrongNumberArgsException {
 
 		if (0 == argNum) {
 			m_arg0 = arg;
@@ -78,7 +77,8 @@ public class FunctionOneArg extends Function implements ExpressionOwner {
 	 *
 	 *
 	 * @param argNum
-	 *            The number of arguments that is being passed to the function.
+	 *               The number of arguments that is being passed to the
+	 *               function.
 	 *
 	 * @throws WrongNumberArgsException
 	 */
@@ -94,7 +94,8 @@ public class FunctionOneArg extends Function implements ExpressionOwner {
 	 * @throws WrongNumberArgsException
 	 */
 	protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-		throw new WrongNumberArgsException(XSLMessages.createXPATHMessage("one", null));
+		throw new WrongNumberArgsException(XSLMessages.createXPATHMessage("one",
+				null));
 	}
 
 	/**
@@ -112,13 +113,13 @@ public class FunctionOneArg extends Function implements ExpressionOwner {
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		if (null != m_arg0)

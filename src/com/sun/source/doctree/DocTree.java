@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.doctree;
@@ -238,9 +218,9 @@ public interface DocTree {
 	 * is used to implement operations on trees.
 	 *
 	 * @param <R>
-	 *            result type of this operation.
+	 *        result type of this operation.
 	 * @param <D>
-	 *            type of additional data.
+	 *        type of additional data.
 	 */
 	<R, D> R accept(DocTreeVisitor<R, D> visitor, D data);
 }

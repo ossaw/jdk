@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.datatransfer;
@@ -49,10 +29,11 @@ public interface FlavorTable extends FlavorMap {
 	 * the <code>List</code> without affecting this object.
 	 *
 	 * @param flav
-	 *            the <code>DataFlavor</code> whose corresponding natives should
-	 *            be returned. If <code>null</code> is specified, all natives
-	 *            currently known to this <code>FlavorTable</code> are returned
-	 *            in a non-deterministic order.
+	 *             the <code>DataFlavor</code> whose corresponding natives
+	 *             should
+	 *             be returned. If <code>null</code> is specified, all natives
+	 *             currently known to this <code>FlavorTable</code> are returned
+	 *             in a non-deterministic order.
 	 * @return a <code>java.util.List</code> of <code>java.lang.String</code>
 	 *         objects which are platform-specific representations of platform-
 	 *         specific data formats

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform;
@@ -56,8 +36,8 @@ public class TransformerConfigurationException extends TransformerException {
 	 * <code>Exception</code> base cause of the error.
 	 *
 	 * @param e
-	 *            The exception to be encapsulated in a
-	 *            TransformerConfigurationException.
+	 *          The exception to be encapsulated in a
+	 *          TransformerConfigurationException.
 	 */
 	public TransformerConfigurationException(Throwable e) {
 		super(e);
@@ -87,11 +67,12 @@ public class TransformerConfigurationException extends TransformerException {
 	 * </p>
 	 *
 	 * @param message
-	 *            The error or warning message.
+	 *                The error or warning message.
 	 * @param locator
-	 *            The locator object for the error or warning.
+	 *                The locator object for the error or warning.
 	 */
-	public TransformerConfigurationException(String message, SourceLocator locator) {
+	public TransformerConfigurationException(String message,
+			SourceLocator locator) {
 		super(message, locator);
 	}
 
@@ -99,14 +80,16 @@ public class TransformerConfigurationException extends TransformerException {
 	 * Wrap an existing exception in a TransformerConfigurationException.
 	 *
 	 * @param message
-	 *            The error or warning message, or null to use the message from
-	 *            the embedded exception.
+	 *                The error or warning message, or null to use the message
+	 *                from
+	 *                the embedded exception.
 	 * @param locator
-	 *            The locator object for the error or warning.
+	 *                The locator object for the error or warning.
 	 * @param e
-	 *            Any exception.
+	 *                Any exception.
 	 */
-	public TransformerConfigurationException(String message, SourceLocator locator, Throwable e) {
+	public TransformerConfigurationException(String message,
+			SourceLocator locator, Throwable e) {
 		super(message, locator, e);
 	}
 }

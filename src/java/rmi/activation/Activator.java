@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -97,21 +77,23 @@ public interface Activator extends Remote {
 	 * <p>
 	 *
 	 * @param id
-	 *            the activation identifier for the object being activated
+	 *              the activation identifier for the object being activated
 	 * @param force
-	 *            if true, the activator contacts the group to obtain the remote
-	 *            object's reference; if false, returning the cached value is
-	 *            allowed.
+	 *              if true, the activator contacts the group to obtain the
+	 *              remote
+	 *              object's reference; if false, returning the cached value is
+	 *              allowed.
 	 * @return the remote object (a stub) in a marshalled form
 	 * @exception ActivationException
-	 *                if object activation fails
+	 *                                   if object activation fails
 	 * @exception UnknownObjectException
-	 *                if object is unknown (not registered)
+	 *                                   if object is unknown (not registered)
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                   if remote call fails
 	 * @since 1.2
 	 */
-	public MarshalledObject<? extends Remote> activate(ActivationID id, boolean force)
-			throws ActivationException, UnknownObjectException, RemoteException;
+	public MarshalledObject<? extends Remote> activate(ActivationID id,
+			boolean force) throws ActivationException, UnknownObjectException,
+			RemoteException;
 
 }

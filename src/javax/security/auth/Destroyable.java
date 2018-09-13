@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth;
@@ -45,12 +25,13 @@ public interface Destroyable {
 	 * The default implementation throws {@code DestroyFailedException}.
 	 *
 	 * @exception DestroyFailedException
-	 *                if the destroy operation fails.
-	 *                <p>
+	 *                                   if the destroy operation fails.
+	 *                                   <p>
 	 *
 	 * @exception SecurityException
-	 *                if the caller does not have permission to destroy this
-	 *                {@code Object}.
+	 *                                   if the caller does not have permission
+	 *                                   to destroy this
+	 *                                   {@code Object}.
 	 */
 	public default void destroy() throws DestroyFailedException {
 		throw new DestroyFailedException();

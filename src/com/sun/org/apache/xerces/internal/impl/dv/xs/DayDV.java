@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,13 +56,14 @@ public class DayDV extends AbstractDateTimeDV {
 	 *            ---(\\d\\d)(Z|(([-+])(\\d\\d)(:(\\d\\d))?
 	 * @return normalized date representation
 	 * @exception SchemaDateTimeException
-	 *                Invalid lexical representation
+	 *                                    Invalid lexical representation
 	 */
 	protected DateTimeData parse(String str) throws SchemaDateTimeException {
 		DateTimeData date = new DateTimeData(str, this);
 		int len = str.length();
 
-		if (str.charAt(0) != '-' || str.charAt(1) != '-' || str.charAt(2) != '-') {
+		if (str.charAt(0) != '-' || str.charAt(1) != '-' || str.charAt(
+				2) != '-') {
 			throw new SchemaDateTimeException("Error in day parsing");
 		}
 
@@ -100,7 +98,7 @@ public class DayDV extends AbstractDateTimeDV {
 	 * Converts gDay object representation to String
 	 *
 	 * @param date
-	 *            gDay object
+	 *             gDay object
 	 * @return lexical representation of gDay: ---DD with an optional time zone
 	 *         sign
 	 */
@@ -115,11 +113,14 @@ public class DayDV extends AbstractDateTimeDV {
 	}
 
 	protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-		return datatypeFactory.newXMLGregorianCalendar(DatatypeConstants.FIELD_UNDEFINED,
+		return datatypeFactory.newXMLGregorianCalendar(
+				DatatypeConstants.FIELD_UNDEFINED,
 				DatatypeConstants.FIELD_UNDEFINED, date.unNormDay,
-				DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
-				DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
-				date.hasTimeZone() ? date.timezoneHr * 60 + date.timezoneMin
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
+						? date.timezoneHr * 60 + date.timezoneMin
 						: DatatypeConstants.FIELD_UNDEFINED);
 	}
 

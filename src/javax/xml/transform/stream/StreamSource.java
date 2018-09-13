@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.stream;
@@ -68,8 +48,7 @@ public class StreamSource implements Source {
 	 * @see javax.xml.transform.Transformer#transform(Source xmlSource, Result
 	 *      outputTarget)
 	 */
-	public StreamSource() {
-	}
+	public StreamSource() {}
 
 	/**
 	 * Construct a StreamSource from a byte stream. Normally, a stream should be
@@ -82,7 +61,7 @@ public class StreamSource implements Source {
 	 * </p>
 	 *
 	 * @param inputStream
-	 *            A valid InputStream reference to an XML stream.
+	 *                    A valid InputStream reference to an XML stream.
 	 */
 	public StreamSource(InputStream inputStream) {
 		setInputStream(inputStream);
@@ -99,9 +78,9 @@ public class StreamSource implements Source {
 	 * </p>
 	 *
 	 * @param inputStream
-	 *            A valid InputStream reference to an XML stream.
+	 *                    A valid InputStream reference to an XML stream.
 	 * @param systemId
-	 *            Must be a String that conforms to the URI syntax.
+	 *                    Must be a String that conforms to the URI syntax.
 	 */
 	public StreamSource(InputStream inputStream, String systemId) {
 		setInputStream(inputStream);
@@ -116,7 +95,7 @@ public class StreamSource implements Source {
 	 * case of reading XML from a StringReader.
 	 *
 	 * @param reader
-	 *            A valid Reader reference to an XML character stream.
+	 *               A valid Reader reference to an XML character stream.
 	 */
 	public StreamSource(Reader reader) {
 		setReader(reader);
@@ -130,9 +109,9 @@ public class StreamSource implements Source {
 	 * case of reading XML from a StringReader.
 	 *
 	 * @param reader
-	 *            A valid Reader reference to an XML character stream.
+	 *                 A valid Reader reference to an XML character stream.
 	 * @param systemId
-	 *            Must be a String that conforms to the URI syntax.
+	 *                 Must be a String that conforms to the URI syntax.
 	 */
 	public StreamSource(Reader reader, String systemId) {
 		setReader(reader);
@@ -143,7 +122,7 @@ public class StreamSource implements Source {
 	 * Construct a StreamSource from a URL.
 	 *
 	 * @param systemId
-	 *            Must be a String that conforms to the URI syntax.
+	 *                 Must be a String that conforms to the URI syntax.
 	 */
 	public StreamSource(String systemId) {
 		this.systemId = systemId;
@@ -153,7 +132,7 @@ public class StreamSource implements Source {
 	 * Construct a StreamSource from a File.
 	 *
 	 * @param f
-	 *            Must a non-null File reference.
+	 *          Must a non-null File reference.
 	 */
 	public StreamSource(File f) {
 		// convert file to appropriate URI, f.toURI().toASCIIString()
@@ -174,7 +153,7 @@ public class StreamSource implements Source {
 	 * </p>
 	 *
 	 * @param inputStream
-	 *            A valid InputStream reference to an XML stream.
+	 *                    A valid InputStream reference to an XML stream.
 	 */
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
@@ -198,7 +177,7 @@ public class StreamSource implements Source {
 	 * reading XML from a StringReader.
 	 *
 	 * @param reader
-	 *            A valid Reader reference to an XML CharacterStream.
+	 *               A valid Reader reference to an XML CharacterStream.
 	 */
 	public void setReader(Reader reader) {
 		this.reader = reader;
@@ -223,7 +202,7 @@ public class StreamSource implements Source {
 	 * </p>
 	 *
 	 * @param publicId
-	 *            The public identifier as a string.
+	 *                 The public identifier as a string.
 	 */
 	public void setPublicId(String publicId) {
 		this.publicId = publicId;
@@ -252,7 +231,7 @@ public class StreamSource implements Source {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system identifier as a URL string.
+	 *                 The system identifier as a URL string.
 	 */
 	public void setSystemId(String systemId) {
 		this.systemId = systemId;
@@ -272,7 +251,7 @@ public class StreamSource implements Source {
 	 * Set the system ID from a File reference.
 	 *
 	 * @param f
-	 *            Must a non-null File reference.
+	 *          Must a non-null File reference.
 	 */
 	public void setSystemId(File f) {
 		// convert file to appropriate URI, f.toURI().toASCIIString()

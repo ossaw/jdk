@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.common;
@@ -29,8 +9,7 @@ import java.util.ListResourceBundle;
 
 public class StandardMetadataFormatResources extends ListResourceBundle {
 
-	public StandardMetadataFormatResources() {
-	}
+	public StandardMetadataFormatResources() {}
 
 	protected Object[][] getContents() {
 		return new Object[][] {
@@ -42,57 +21,75 @@ public class StandardMetadataFormatResources extends ListResourceBundle {
 
 				{ "ColorSpaceType", "The raw color space of the image" },
 
-				{ "NumChannels", "The number of channels in the raw image, including alpha" },
+				{ "NumChannels",
+						"The number of channels in the raw image, including alpha" },
 
 				{ "Gamma", "The image gamma" },
 
-				{ "BlackIsZero", "True if smaller values represent darker shades" },
+				{ "BlackIsZero",
+						"True if smaller values represent darker shades" },
 
 				{ "Palette", "Palette-color information" },
 
-				{ "PaletteEntry", "A palette entry" },
-				{ "PaletteEntry/index", "The index of the palette entry" },
-				{ "PaletteEntry/red", "The red value for the palette entry" },
-				{ "PaletteEntry/green", "The green value for the palette entry" },
+				{ "PaletteEntry", "A palette entry" }, { "PaletteEntry/index",
+						"The index of the palette entry" }, {
+								"PaletteEntry/red",
+								"The red value for the palette entry" }, {
+										"PaletteEntry/green",
+										"The green value for the palette entry" },
 				{ "PaletteEntry/blue", "The blue value for the palette entry" },
-				{ "PaletteEntry/alpha", "The alpha value for the palette entry" },
+				{ "PaletteEntry/alpha",
+						"The alpha value for the palette entry" },
 
-				{ "BackgroundIndex", "A palette index to be used as a background" },
+				{ "BackgroundIndex",
+						"A palette index to be used as a background" },
 
-				{ "BackgroundColor", "An RGB triple to be used as a background" },
-				{ "BackgroundColor/red", "The red background value" },
-				{ "BackgroundColor/green", "The green background value" },
-				{ "BackgroundColor/blue", "The blue background value" },
+				{ "BackgroundColor",
+						"An RGB triple to be used as a background" }, {
+								"BackgroundColor/red",
+								"The red background value" }, {
+										"BackgroundColor/green",
+										"The green background value" }, {
+												"BackgroundColor/blue",
+												"The blue background value" },
 
 				{ "Compression", "Compression information" },
 
-				{ "CompressionTypeName", "The name of the compression scheme in use" },
+				{ "CompressionTypeName",
+						"The name of the compression scheme in use" },
 
 				{ "Lossless", "True if the compression scheme is lossless" },
 
-				{ "BitRate", "The estimated bit rate of the compression scheme" },
+				{ "BitRate",
+						"The estimated bit rate of the compression scheme" },
 
 				{ "NumProgressiveScans",
 						"The number of progressive scans used in the image encoding" },
 
 				{ "Data", "Information on the image layout" },
 
-				{ "PlanarConfiguration", "The organization of image samples in the stream" },
+				{ "PlanarConfiguration",
+						"The organization of image samples in the stream" },
 
 				{ "SampleFormat", "The numeric format of image samples" },
 
-				{ "BitsPerSample", "The number of bits per sample" },
-				{ "BitsPerSample/value", "A list of integers, one per channel" },
+				{ "BitsPerSample", "The number of bits per sample" }, {
+						"BitsPerSample/value",
+						"A list of integers, one per channel" },
 
-				{ "SignificantBitsPerSample", "The number of significant bits per sample" },
-				{ "SignificantBitsPerSample/value", "A list of integers, one per channel" },
+				{ "SignificantBitsPerSample",
+						"The number of significant bits per sample" }, {
+								"SignificantBitsPerSample/value",
+								"A list of integers, one per channel" },
 
-				{ "SampleMSB", "The position of the most significant bit of each sample" },
+				{ "SampleMSB",
+						"The position of the most significant bit of each sample" },
 				{ "SampleMSB/value", "A list of integers, one per channel" },
 
 				{ "Dimension", "Dimension information" },
 
-				{ "PixelAspectRatio", "The width of a pixel divided by its height" },
+				{ "PixelAspectRatio",
+						"The width of a pixel divided by its height" },
 
 				{ "ImageOrientation",
 						"The desired orientation of the image in terms of flips and counter-clockwise rotations" },
@@ -129,57 +126,83 @@ public class StandardMetadataFormatResources extends ListResourceBundle {
 
 				{ "Document", "Document information" },
 
-				{ "FormatVersion", "The version of the format used by the stream" },
+				{ "FormatVersion",
+						"The version of the format used by the stream" },
 
 				{ "SubimageInterpretation",
 						"The interpretation of this image in relation to the other images stored in the same stream" },
 
-				{ "ImageCreationTime", "The time of image creation" },
-				{ "ImageCreationTime/year", "The full year (e.g., 1967, not 67)" },
-				{ "ImageCreationTime/month", "The month, with January = 1" },
-				{ "ImageCreationTime/day", "The day of the month" },
-				{ "ImageCreationTime/hour", "The hour from 0 to 23" },
-				{ "ImageCreationTime/minute", "The minute from 0 to 59" },
-				{ "ImageCreationTime/second", "The second from 0 to 60 (60 = leap second)" },
+				{ "ImageCreationTime", "The time of image creation" }, {
+						"ImageCreationTime/year",
+						"The full year (e.g., 1967, not 67)" }, {
+								"ImageCreationTime/month",
+								"The month, with January = 1" }, {
+										"ImageCreationTime/day",
+										"The day of the month" }, {
+												"ImageCreationTime/hour",
+												"The hour from 0 to 23" }, {
+														"ImageCreationTime/minute",
+														"The minute from 0 to 59" },
+				{ "ImageCreationTime/second",
+						"The second from 0 to 60 (60 = leap second)" },
 
-				{ "ImageModificationTime", "The time of the last image modification" },
-				{ "ImageModificationTime/year", "The full year (e.g., 1967, not 67)" },
-				{ "ImageModificationTime/month", "The month, with January = 1" },
-				{ "ImageModificationTime/day", "The day of the month" },
-				{ "ImageModificationTime/hour", "The hour from 0 to 23" },
-				{ "ImageModificationTime/minute", "The minute from 0 to 59" },
-				{ "ImageModificationTime/second", "The second from 0 to 60 (60 = leap second)" },
+				{ "ImageModificationTime",
+						"The time of the last image modification" }, {
+								"ImageModificationTime/year",
+								"The full year (e.g., 1967, not 67)" }, {
+										"ImageModificationTime/month",
+										"The month, with January = 1" }, {
+												"ImageModificationTime/day",
+												"The day of the month" }, {
+														"ImageModificationTime/hour",
+														"The hour from 0 to 23" },
+				{ "ImageModificationTime/minute", "The minute from 0 to 59" }, {
+						"ImageModificationTime/second",
+						"The second from 0 to 60 (60 = leap second)" },
 
 				{ "Text", "Text information" },
 
-				{ "TextEntry", "A text entry" },
-				{ "TextEntry/keyword", "A keyword associated with the text entry" },
-				{ "TextEntry/value", "the text entry" },
-				{ "TextEntry/language", "The language of the text" },
-				{ "TextEntry/encoding", "The encoding of the text" },
-				{ "TextEntry/compression", "The method used to compress the text" },
+				{ "TextEntry", "A text entry" }, { "TextEntry/keyword",
+						"A keyword associated with the text entry" }, {
+								"TextEntry/value", "the text entry" }, {
+										"TextEntry/language",
+										"The language of the text" }, {
+												"TextEntry/encoding",
+												"The encoding of the text" }, {
+														"TextEntry/compression",
+														"The method used to compress the text" },
 
 				{ "Transparency", "Transparency information" },
 
-				{ "Alpha", "The type of alpha information contained in the image" },
+				{ "Alpha",
+						"The type of alpha information contained in the image" },
 
-				{ "TransparentIndex", "A palette index to be treated as transparent" },
+				{ "TransparentIndex",
+						"A palette index to be treated as transparent" },
 
-				{ "TransparentColor", "An RGB color to be treated as transparent" },
-				{ "TransparentColor/red", "The red channel of the transparent color" },
-				{ "TransparentColor/green", "The green channel of the transparent color" },
-				{ "TransparentColor/blue", "The blue channel of the transparent color" },
+				{ "TransparentColor",
+						"An RGB color to be treated as transparent" }, {
+								"TransparentColor/red",
+								"The red channel of the transparent color" }, {
+										"TransparentColor/green",
+										"The green channel of the transparent color" },
+				{ "TransparentColor/blue",
+						"The blue channel of the transparent color" },
 
-				{ "TileTransparencies", "A list of completely transparent tiles" },
+				{ "TileTransparencies",
+						"A list of completely transparent tiles" },
 
-				{ "TransparentTile", "The index of a completely transparent tile" },
-				{ "TransparentTile/x", "The tile's X index" },
-				{ "TransparentTile/y", "The tile's Y index" },
+				{ "TransparentTile",
+						"The index of a completely transparent tile" }, {
+								"TransparentTile/x", "The tile's X index" }, {
+										"TransparentTile/y",
+										"The tile's Y index" },
 
 				{ "TileOpacities", "A list of completely opaque tiles" },
 
-				{ "OpaqueTile", "The index of a completely opaque tile" },
-				{ "OpaqueTile/x", "The tile's X index" }, { "OpaqueTile/y", "The tile's Y index" },
+				{ "OpaqueTile", "The index of a completely opaque tile" }, {
+						"OpaqueTile/x", "The tile's X index" }, {
+								"OpaqueTile/y", "The tile's Y index" },
 
 		};
 	}

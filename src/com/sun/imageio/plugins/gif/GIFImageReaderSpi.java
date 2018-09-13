@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.gif;
@@ -55,9 +35,10 @@ public class GIFImageReaderSpi extends ImageReaderSpi {
 		super(vendorName, version, names, suffixes, MIMETypes, readerClassName,
 				new Class[] { ImageInputStream.class }, writerSpiNames, true,
 				GIFStreamMetadata.nativeMetadataFormatName,
-				"com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null, null, true,
-				GIFImageMetadata.nativeMetadataFormatName,
-				"com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null, null);
+				"com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null,
+				null, true, GIFImageMetadata.nativeMetadataFormatName,
+				"com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null,
+				null);
 	}
 
 	public String getDescription(Locale locale) {

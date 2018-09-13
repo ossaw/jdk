@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orbutil.fsm;
@@ -45,9 +25,9 @@ public interface Action {
 	 * propagated to doIt.
 	 * 
 	 * @param FSM
-	 *            fsm is the state machine causing this action.
+	 *              fsm is the state machine causing this action.
 	 * @param Input
-	 *            in is the input that caused the transition.
+	 *              in is the input that caused the transition.
 	 */
 	public void doIt(FSM fsm, Input in);
 }

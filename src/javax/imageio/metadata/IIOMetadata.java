@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.metadata;
@@ -129,8 +109,7 @@ public abstract class IIOMetadata {
 	 * satisfy their contracts. For example,
 	 * <code>extraMetadataFormatNames</code> should not have length 0.
 	 */
-	protected IIOMetadata() {
-	}
+	protected IIOMetadata() {}
 
 	/**
 	 * Constructs an <code>IIOMetadata</code> object with the given format names
@@ -143,40 +122,60 @@ public abstract class IIOMetadata {
 	 * <code>getMetadataFormat</code>.
 	 *
 	 * @param standardMetadataFormatSupported
-	 *            <code>true</code> if this object can return or accept a DOM
-	 *            tree using the standard metadata format.
+	 *                                        <code>true</code> if this object
+	 *                                        can return or accept a DOM
+	 *                                        tree using the standard metadata
+	 *                                        format.
 	 * @param nativeMetadataFormatName
-	 *            the name of the native metadata format, as a
-	 *            <code>String</code>, or <code>null</code> if there is no
-	 *            native format.
+	 *                                        the name of the native metadata
+	 *                                        format, as a
+	 *                                        <code>String</code>, or
+	 *                                        <code>null</code> if there is no
+	 *                                        native format.
 	 * @param nativeMetadataFormatClassName
-	 *            the name of the class of the native metadata format, or
-	 *            <code>null</code> if there is no native format.
+	 *                                        the name of the class of the
+	 *                                        native metadata format, or
+	 *                                        <code>null</code> if there is no
+	 *                                        native format.
 	 * @param extraMetadataFormatNames
-	 *            an array of <code>String</code>s indicating additional formats
-	 *            supported by this object, or <code>null</code> if there are
-	 *            none.
+	 *                                        an array of <code>String</code>s
+	 *                                        indicating additional formats
+	 *                                        supported by this object, or
+	 *                                        <code>null</code> if there are
+	 *                                        none.
 	 * @param extraMetadataFormatClassNames
-	 *            an array of <code>String</code>s indicating the class names of
-	 *            any additional formats supported by this object, or
-	 *            <code>null</code> if there are none.
+	 *                                        an array of <code>String</code>s
+	 *                                        indicating the class names of
+	 *                                        any additional formats supported
+	 *                                        by this object, or
+	 *                                        <code>null</code> if there are
+	 *                                        none.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>extraMetadataFormatNames</code> has length 0.
+	 *                                     if
+	 *                                     <code>extraMetadataFormatNames</code>
+	 *                                     has length 0.
 	 * @exception IllegalArgumentException
-	 *                if <code>extraMetadataFormatNames</code> and
-	 *                <code>extraMetadataFormatClassNames</code> are neither
-	 *                both <code>null</code>, nor of the same length.
+	 *                                     if
+	 *                                     <code>extraMetadataFormatNames</code>
+	 *                                     and
+	 *                                     <code>extraMetadataFormatClassNames</code>
+	 *                                     are neither
+	 *                                     both <code>null</code>, nor of the
+	 *                                     same length.
 	 */
-	protected IIOMetadata(boolean standardMetadataFormatSupported, String nativeMetadataFormatName,
-			String nativeMetadataFormatClassName, String[] extraMetadataFormatNames,
+	protected IIOMetadata(boolean standardMetadataFormatSupported,
+			String nativeMetadataFormatName,
+			String nativeMetadataFormatClassName,
+			String[] extraMetadataFormatNames,
 			String[] extraMetadataFormatClassNames) {
 		this.standardFormatSupported = standardMetadataFormatSupported;
 		this.nativeMetadataFormatName = nativeMetadataFormatName;
 		this.nativeMetadataFormatClassName = nativeMetadataFormatClassName;
 		if (extraMetadataFormatNames != null) {
 			if (extraMetadataFormatNames.length == 0) {
-				throw new IllegalArgumentException("extraMetadataFormatNames.length == 0!");
+				throw new IllegalArgumentException(
+						"extraMetadataFormatNames.length == 0!");
 			}
 			if (extraMetadataFormatClassNames == null) {
 				throw new IllegalArgumentException(
@@ -186,8 +185,10 @@ public abstract class IIOMetadata {
 				throw new IllegalArgumentException(
 						"extraMetadataFormatClassNames.length != extraMetadataFormatNames.length!");
 			}
-			this.extraMetadataFormatNames = (String[]) extraMetadataFormatNames.clone();
-			this.extraMetadataFormatClassNames = (String[]) extraMetadataFormatClassNames.clone();
+			this.extraMetadataFormatNames = (String[]) extraMetadataFormatNames
+					.clone();
+			this.extraMetadataFormatClassNames = (String[]) extraMetadataFormatClassNames
+					.clone();
 		} else {
 			if (extraMetadataFormatClassNames != null) {
 				throw new IllegalArgumentException(
@@ -301,7 +302,8 @@ public abstract class IIOMetadata {
 	public String[] getMetadataFormatNames() {
 		String nativeName = getNativeMetadataFormatName();
 		String standardName = isStandardMetadataFormatSupported()
-				? IIOMetadataFormatImpl.standardMetadataFormatName : null;
+				? IIOMetadataFormatImpl.standardMetadataFormatName
+				: null;
 		String[] extraNames = getExtraMetadataFormatNames();
 
 		int numFormats = 0;
@@ -354,23 +356,26 @@ public abstract class IIOMetadata {
 	 * an instance of that class using its <code>getInstance</code> method.
 	 *
 	 * @param formatName
-	 *            the desired metadata format.
+	 *                   the desired metadata format.
 	 *
 	 * @return an <code>IIOMetadataFormat</code> object.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>formatName</code> is <code>null</code> or is not
-	 *                one of the names recognized by the plug-in.
+	 *                                     if <code>formatName</code> is
+	 *                                     <code>null</code> or is not
+	 *                                     one of the names recognized by the
+	 *                                     plug-in.
 	 * @exception IllegalStateException
-	 *                if the class corresponding to the format name cannot be
-	 *                loaded.
+	 *                                     if the class corresponding to the
+	 *                                     format name cannot be
+	 *                                     loaded.
 	 */
 	public IIOMetadataFormat getMetadataFormat(String formatName) {
 		if (formatName == null) {
 			throw new IllegalArgumentException("formatName == null!");
 		}
-		if (standardFormatSupported
-				&& formatName.equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
+		if (standardFormatSupported && formatName.equals(
+				IIOMetadataFormatImpl.standardMetadataFormatName)) {
 			return IIOMetadataFormatImpl.getStandardFormatInstance();
 		}
 		String formatClassName = null;
@@ -409,7 +414,8 @@ public abstract class IIOMetadata {
 				loader = (ClassLoader) java.security.AccessController
 						.doPrivileged(new java.security.PrivilegedAction() {
 							public Object run() {
-								return Thread.currentThread().getContextClassLoader();
+								return Thread.currentThread()
+										.getContextClassLoader();
 							}
 						});
 				try {
@@ -418,14 +424,16 @@ public abstract class IIOMetadata {
 					// finally we try to use system classloader in case
 					// if we failed to load IIOMetadataFormat implementation
 					// class above.
-					cls = Class.forName(formatClassName, true, ClassLoader.getSystemClassLoader());
+					cls = Class.forName(formatClassName, true, ClassLoader
+							.getSystemClassLoader());
 				}
 			}
 
 			Method meth = cls.getMethod("getInstance");
 			return (IIOMetadataFormat) meth.invoke(null);
 		} catch (Exception e) {
-			RuntimeException ex = new IllegalStateException("Can't obtain format");
+			RuntimeException ex = new IllegalStateException(
+					"Can't obtain format");
 			ex.initCause(e);
 			throw ex;
 		}
@@ -442,14 +450,15 @@ public abstract class IIOMetadata {
 	 * <code>getMetadataFormatNames</code> method.
 	 *
 	 * @param formatName
-	 *            the desired metadata format.
+	 *                   the desired metadata format.
 	 *
 	 * @return an XML DOM <code>Node</code> object forming the root of a tree.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>formatName</code> is <code>null</code> or is not
-	 *                one of the names returned by
-	 *                <code>getMetadataFormatNames</code>.
+	 *                                     if <code>formatName</code> is
+	 *                                     <code>null</code> or is not
+	 *                                     one of the names returned by
+	 *                                     <code>getMetadataFormatNames</code>.
 	 *
 	 * @see #getMetadataFormatNames
 	 * @see #setFromTree
@@ -472,28 +481,33 @@ public abstract class IIOMetadata {
 	 * replacing all existing state with the contents of the given tree.
 	 *
 	 * @param formatName
-	 *            the desired metadata format.
+	 *                   the desired metadata format.
 	 * @param root
-	 *            an XML DOM <code>Node</code> object forming the root of a
-	 *            tree.
+	 *                   an XML DOM <code>Node</code> object forming the root of
+	 *                   a
+	 *                   tree.
 	 *
 	 * @exception IllegalStateException
-	 *                if this object is read-only.
+	 *                                     if this object is read-only.
 	 * @exception IllegalArgumentException
-	 *                if <code>formatName</code> is <code>null</code> or is not
-	 *                one of the names returned by
-	 *                <code>getMetadataFormatNames</code>.
+	 *                                     if <code>formatName</code> is
+	 *                                     <code>null</code> or is not
+	 *                                     one of the names returned by
+	 *                                     <code>getMetadataFormatNames</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>root</code> is <code>null</code>.
+	 *                                     if <code>root</code> is
+	 *                                     <code>null</code>.
 	 * @exception IIOInvalidTreeException
-	 *                if the tree cannot be parsed successfully using the rules
-	 *                of the given format.
+	 *                                     if the tree cannot be parsed
+	 *                                     successfully using the rules
+	 *                                     of the given format.
 	 *
 	 * @see #getMetadataFormatNames
 	 * @see #getAsTree
 	 * @see #setFromTree
 	 */
-	public abstract void mergeTree(String formatName, Node root) throws IIOInvalidTreeException;
+	public abstract void mergeTree(String formatName, Node root)
+			throws IIOInvalidTreeException;
 
 	/**
 	 * Returns an <code>IIOMetadataNode</code> representing the chroma
@@ -730,28 +744,33 @@ public abstract class IIOMetadata {
 	 * <code>mergeTree(formatName, root)</code>.
 	 *
 	 * @param formatName
-	 *            the desired metadata format.
+	 *                   the desired metadata format.
 	 * @param root
-	 *            an XML DOM <code>Node</code> object forming the root of a
-	 *            tree.
+	 *                   an XML DOM <code>Node</code> object forming the root of
+	 *                   a
+	 *                   tree.
 	 *
 	 * @exception IllegalStateException
-	 *                if this object is read-only.
+	 *                                     if this object is read-only.
 	 * @exception IllegalArgumentException
-	 *                if <code>formatName</code> is <code>null</code> or is not
-	 *                one of the names returned by
-	 *                <code>getMetadataFormatNames</code>.
+	 *                                     if <code>formatName</code> is
+	 *                                     <code>null</code> or is not
+	 *                                     one of the names returned by
+	 *                                     <code>getMetadataFormatNames</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>root</code> is <code>null</code>.
+	 *                                     if <code>root</code> is
+	 *                                     <code>null</code>.
 	 * @exception IIOInvalidTreeException
-	 *                if the tree cannot be parsed successfully using the rules
-	 *                of the given format.
+	 *                                     if the tree cannot be parsed
+	 *                                     successfully using the rules
+	 *                                     of the given format.
 	 *
 	 * @see #getMetadataFormatNames
 	 * @see #getAsTree
 	 * @see #mergeTree
 	 */
-	public void setFromTree(String formatName, Node root) throws IIOInvalidTreeException {
+	public void setFromTree(String formatName, Node root)
+			throws IIOInvalidTreeException {
 		reset();
 		mergeTree(formatName, root);
 	}
@@ -763,7 +782,7 @@ public abstract class IIOMetadata {
 	 * default values, depending on how the object was created.
 	 *
 	 * @exception IllegalStateException
-	 *                if this object is read-only.
+	 *                                  if this object is read-only.
 	 *
 	 * @see javax.imageio.ImageReader#getStreamMetadata
 	 * @see javax.imageio.ImageReader#getImageMetadata
@@ -785,8 +804,8 @@ public abstract class IIOMetadata {
 	 * variable to the supplied value.
 	 *
 	 * @param controller
-	 *            An appropriate <code>IIOMetadataController</code>, or
-	 *            <code>null</code>.
+	 *                   An appropriate <code>IIOMetadataController</code>, or
+	 *                   <code>null</code>.
 	 *
 	 * @see IIOMetadataController
 	 * @see #getController
@@ -883,7 +902,8 @@ public abstract class IIOMetadata {
 	 * @return <code>true</code> if the controller completed normally.
 	 *
 	 * @exception IllegalStateException
-	 *                if there is no controller currently installed.
+	 *                                  if there is no controller currently
+	 *                                  installed.
 	 *
 	 * @see IIOMetadataController
 	 * @see #setController(IIOMetadataController)

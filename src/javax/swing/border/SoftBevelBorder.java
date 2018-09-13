@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.border;
 
@@ -52,7 +32,7 @@ public class SoftBevelBorder extends BevelBorder {
 	 * paintBorder method.
 	 * 
 	 * @param bevelType
-	 *            the type of bevel for the border
+	 *                  the type of bevel for the border
 	 */
 	public SoftBevelBorder(int bevelType) {
 		super(bevelType);
@@ -63,11 +43,11 @@ public class SoftBevelBorder extends BevelBorder {
 	 * colors.
 	 * 
 	 * @param bevelType
-	 *            the type of bevel for the border
+	 *                  the type of bevel for the border
 	 * @param highlight
-	 *            the color to use for the bevel highlight
+	 *                  the color to use for the bevel highlight
 	 * @param shadow
-	 *            the color to use for the bevel shadow
+	 *                  the color to use for the bevel shadow
 	 */
 	public SoftBevelBorder(int bevelType, Color highlight, Color shadow) {
 		super(bevelType, highlight, shadow);
@@ -77,22 +57,23 @@ public class SoftBevelBorder extends BevelBorder {
 	 * Creates a bevel border with the specified type, highlight shadow colors.
 	 * 
 	 * @param bevelType
-	 *            the type of bevel for the border
+	 *                            the type of bevel for the border
 	 * @param highlightOuterColor
-	 *            the color to use for the bevel outer highlight
+	 *                            the color to use for the bevel outer highlight
 	 * @param highlightInnerColor
-	 *            the color to use for the bevel inner highlight
+	 *                            the color to use for the bevel inner highlight
 	 * @param shadowOuterColor
-	 *            the color to use for the bevel outer shadow
+	 *                            the color to use for the bevel outer shadow
 	 * @param shadowInnerColor
-	 *            the color to use for the bevel inner shadow
+	 *                            the color to use for the bevel inner shadow
 	 */
-	@ConstructorProperties({ "bevelType", "highlightOuterColor", "highlightInnerColor",
-			"shadowOuterColor", "shadowInnerColor" })
-	public SoftBevelBorder(int bevelType, Color highlightOuterColor, Color highlightInnerColor,
-			Color shadowOuterColor, Color shadowInnerColor) {
-		super(bevelType, highlightOuterColor, highlightInnerColor, shadowOuterColor,
-				shadowInnerColor);
+	@ConstructorProperties({ "bevelType", "highlightOuterColor",
+			"highlightInnerColor", "shadowOuterColor", "shadowInnerColor" })
+	public SoftBevelBorder(int bevelType, Color highlightOuterColor,
+			Color highlightInnerColor, Color shadowOuterColor,
+			Color shadowInnerColor) {
+		super(bevelType, highlightOuterColor, highlightInnerColor,
+				shadowOuterColor, shadowInnerColor);
 	}
 
 	/**
@@ -100,19 +81,20 @@ public class SoftBevelBorder extends BevelBorder {
 	 * and size.
 	 * 
 	 * @param c
-	 *            the component for which this border is being painted
+	 *               the component for which this border is being painted
 	 * @param g
-	 *            the paint graphics
+	 *               the paint graphics
 	 * @param x
-	 *            the x position of the painted border
+	 *               the x position of the painted border
 	 * @param y
-	 *            the y position of the painted border
+	 *               the y position of the painted border
 	 * @param width
-	 *            the width of the painted border
+	 *               the width of the painted border
 	 * @param height
-	 *            the height of the painted border
+	 *               the height of the painted border
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height) {
 		Color oldColor = g.getColor();
 		g.translate(x, y);
 
@@ -164,9 +146,9 @@ public class SoftBevelBorder extends BevelBorder {
 	 * Reinitialize the insets parameter with this Border's current Insets.
 	 * 
 	 * @param c
-	 *            the component for which this border insets value applies
+	 *               the component for which this border insets value applies
 	 * @param insets
-	 *            the object to be reinitialized
+	 *               the object to be reinitialized
 	 */
 	public Insets getBorderInsets(Component c, Insets insets) {
 		insets.set(3, 3, 3, 3);

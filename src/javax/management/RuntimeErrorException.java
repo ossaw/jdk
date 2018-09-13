@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -45,7 +25,7 @@ public class RuntimeErrorException extends JMRuntimeException {
 	 * Default constructor.
 	 *
 	 * @param e
-	 *            the wrapped error.
+	 *          the wrapped error.
 	 */
 	public RuntimeErrorException(java.lang.Error e) {
 		super();
@@ -56,9 +36,9 @@ public class RuntimeErrorException extends JMRuntimeException {
 	 * Constructor that allows a specific error message to be specified.
 	 *
 	 * @param e
-	 *            the wrapped error.
+	 *                the wrapped error.
 	 * @param message
-	 *            the detail message.
+	 *                the detail message.
 	 */
 	public RuntimeErrorException(java.lang.Error e, String message) {
 		super(message);

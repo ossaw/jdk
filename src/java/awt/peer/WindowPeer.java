@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.peer;
@@ -71,9 +51,10 @@ public interface WindowPeer extends ContainerPeer {
 	 * Sets if this window is blocked by a modal dialog or not.
 	 *
 	 * @param blocker
-	 *            the blocking modal dialog
+	 *                the blocking modal dialog
 	 * @param blocked
-	 *            {@code true} to block the window, {@code false} to unblock it
+	 *                {@code true} to block the window, {@code false} to unblock
+	 *                it
 	 */
 	void setModalBlocked(Dialog blocker, boolean blocked);
 

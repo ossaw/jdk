@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -39,7 +19,7 @@ public class NotActiveException extends ObjectStreamException {
 	 * Constructor to create a new NotActiveException with the reason given.
 	 *
 	 * @param reason
-	 *            a String describing the reason for the exception.
+	 *               a String describing the reason for the exception.
 	 */
 	public NotActiveException(String reason) {
 		super(reason);

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -54,7 +51,7 @@ public class ObjectPool implements java.io.Serializable {
 	 * Constructor ObjectPool
 	 *
 	 * @param type
-	 *            Type of objects for this pool
+	 *             Type of objects for this pool
 	 */
 	public ObjectPool(Class type) {
 		objectType = type;
@@ -65,7 +62,8 @@ public class ObjectPool implements java.io.Serializable {
 	 * Constructor ObjectPool
 	 *
 	 * @param className
-	 *            Fully qualified name of the type of objects for this pool.
+	 *                  Fully qualified name of the type of objects for this
+	 *                  pool.
 	 */
 	public ObjectPool(String className) {
 		try {
@@ -81,9 +79,9 @@ public class ObjectPool implements java.io.Serializable {
 	 *
 	 *
 	 * @param type
-	 *            Type of objects for this pool
+	 *             Type of objects for this pool
 	 * @param size
-	 *            Size of vector to allocate
+	 *             Size of vector to allocate
 	 */
 	public ObjectPool(Class type, int size) {
 		objectType = type;
@@ -137,13 +135,13 @@ public class ObjectPool implements java.io.Serializable {
 			}
 
 			// Throw unchecked exception for error in pool configuration.
-			throw new RuntimeException(XMLMessages
-					.createXMLMessage(XMLErrorResources.ER_EXCEPTION_CREATING_POOL, null)); // "exception
-																							// creating
-																							// new
-																							// instance
-																							// for
-																							// pool");
+			throw new RuntimeException(XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_EXCEPTION_CREATING_POOL, null)); // "exception
+																																	// creating
+																																	// new
+																																	// instance
+																																	// for
+																																	// pool");
 		} else {
 
 			// Remove object from end of free pool.

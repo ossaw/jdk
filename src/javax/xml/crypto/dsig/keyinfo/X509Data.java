@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: X509Data.java,v 1.4 2005/05/10 16:35:35 mullan Exp $
@@ -69,7 +49,8 @@ import java.util.List;
  * 
  * <pre>
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
- * X509Data x509Data = factory.newX509Data(Collections.singletonList("cn=Alice"));
+ * X509Data x509Data = factory.newX509Data(Collections.singletonList(
+ * 		"cn=Alice"));
  * </pre>
  *
  * @author Sean Mullan

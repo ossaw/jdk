@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.interceptors;
@@ -88,7 +68,8 @@ public class PICurrent extends org.omg.CORBA.LocalObject implements Current {
 	 * ThreadLocalStack.
 	 */
 	SlotTable getSlotTable() {
-		SlotTable table = (SlotTable) ((SlotTableStack) threadLocalSlotTable.get()).peekSlotTable();
+		SlotTable table = (SlotTable) ((SlotTableStack) threadLocalSlotTable
+				.get()).peekSlotTable();
 		return table;
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -84,30 +64,30 @@ final class ColorModelHSV extends ColorModel {
 			int integer = (int) hue;
 			float f = hue - (float) integer;
 			switch (integer) {
-			case 0:
-				rgb[1] *= 1.0f - saturation * (1.0f - f);
-				rgb[2] *= 1.0f - saturation;
-				break;
-			case 1:
-				rgb[0] *= 1.0f - saturation * f;
-				rgb[2] *= 1.0f - saturation;
-				break;
-			case 2:
-				rgb[0] *= 1.0f - saturation;
-				rgb[2] *= 1.0f - saturation * (1.0f - f);
-				break;
-			case 3:
-				rgb[0] *= 1.0f - saturation;
-				rgb[1] *= 1.0f - saturation * f;
-				break;
-			case 4:
-				rgb[0] *= 1.0f - saturation * (1.0f - f);
-				rgb[1] *= 1.0f - saturation;
-				break;
-			case 5:
-				rgb[1] *= 1.0f - saturation;
-				rgb[2] *= 1.0f - saturation * f;
-				break;
+				case 0:
+					rgb[1] *= 1.0f - saturation * (1.0f - f);
+					rgb[2] *= 1.0f - saturation;
+					break;
+				case 1:
+					rgb[0] *= 1.0f - saturation * f;
+					rgb[2] *= 1.0f - saturation;
+					break;
+				case 2:
+					rgb[0] *= 1.0f - saturation;
+					rgb[2] *= 1.0f - saturation * (1.0f - f);
+					break;
+				case 3:
+					rgb[0] *= 1.0f - saturation;
+					rgb[1] *= 1.0f - saturation * f;
+					break;
+				case 4:
+					rgb[0] *= 1.0f - saturation * (1.0f - f);
+					rgb[1] *= 1.0f - saturation;
+					break;
+				case 5:
+					rgb[1] *= 1.0f - saturation;
+					rgb[2] *= 1.0f - saturation * f;
+					break;
 			}
 		}
 		return rgb;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.stax;
@@ -88,11 +68,12 @@ public class StAXResult implements Result {
 	 * </p>
 	 *
 	 * @param xmlEventWriter
-	 *            <code>XMLEventWriter</code> used to create this
-	 *            <code>StAXResult</code>.
+	 *                       <code>XMLEventWriter</code> used to create this
+	 *                       <code>StAXResult</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>xmlEventWriter</code> == <code>null</code>.
+	 *                                  If <code>xmlEventWriter</code> ==
+	 *                                  <code>null</code>.
 	 */
 	public StAXResult(final XMLEventWriter xmlEventWriter) {
 
@@ -115,11 +96,12 @@ public class StAXResult implements Result {
 	 * </p>
 	 *
 	 * @param xmlStreamWriter
-	 *            <code>XMLStreamWriter</code> used to create this
-	 *            <code>StAXResult</code>.
+	 *                        <code>XMLStreamWriter</code> used to create this
+	 *                        <code>StAXResult</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>xmlStreamWriter</code> == <code>null</code>.
+	 *                                  If <code>xmlStreamWriter</code> ==
+	 *                                  <code>null</code>.
 	 */
 	public StAXResult(final XMLStreamWriter xmlStreamWriter) {
 
@@ -182,15 +164,17 @@ public class StAXResult implements Result {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            Ignored.
+	 *                 Ignored.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             Is <strong>always</strong> thrown by this method.
+	 *                                       Is <strong>always</strong> thrown
+	 *                                       by this method.
 	 */
 	public void setSystemId(final String systemId) {
 
-		throw new UnsupportedOperationException("StAXResult#setSystemId(systemId) cannot set the "
-				+ "system identifier for a StAXResult");
+		throw new UnsupportedOperationException(
+				"StAXResult#setSystemId(systemId) cannot set the "
+						+ "system identifier for a StAXResult");
 	}
 
 	/**

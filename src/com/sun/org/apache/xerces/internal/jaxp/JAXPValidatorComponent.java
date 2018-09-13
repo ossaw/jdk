@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -84,7 +81,8 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)
  */
-final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements XMLComponent {
+final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements
+		XMLComponent {
 
 	/** Property identifier: entity manager. */
 	private static final String ENTITY_MANAGER = Constants.XERCES_PROPERTY_PREFIX
@@ -128,7 +126,7 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 
 	/**
 	 * @param validatorHandler
-	 *            may not be null.
+	 *                         may not be null.
 	 */
 	public JAXPValidatorComponent(ValidatorHandler validatorHandler) {
 		this.validator = validatorHandler;
@@ -148,17 +146,19 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 				XMLErrorHandler handler = fErrorReporter.getErrorHandler();
 				if (handler != null)
 					return handler;
-				return new ErrorHandlerWrapper(DraconianErrorHandler.getInstance());
+				return new ErrorHandlerWrapper(DraconianErrorHandler
+						.getInstance());
 			}
 		});
 		validator.setResourceResolver(new LSResourceResolver() {
-			public LSInput resolveResource(String type, String ns, String publicId, String systemId,
-					String baseUri) {
+			public LSInput resolveResource(String type, String ns,
+					String publicId, String systemId, String baseUri) {
 				if (fEntityResolver == null)
 					return null;
 				try {
 					XMLInputSource is = fEntityResolver.resolveEntity(
-							new XMLResourceIdentifierImpl(publicId, systemId, baseUri, null));
+							new XMLResourceIdentifierImpl(publicId, systemId,
+									baseUri, null));
 					if (is == null)
 						return null;
 
@@ -180,45 +180,51 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 		});
 	}
 
-	public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
-			throws XNIException {
+	public void startElement(QName element, XMLAttributes attributes,
+			Augmentations augs) throws XNIException {
 		fCurrentAttributes = attributes;
 		fCurrentAug = augs;
 		xni2sax.startElement(element, attributes, null);
 		fCurrentAttributes = null; // mostly to make it easy to find any bug.
 	}
 
-	public void endElement(QName element, Augmentations augs) throws XNIException {
+	public void endElement(QName element, Augmentations augs)
+			throws XNIException {
 		fCurrentAug = augs;
 		xni2sax.endElement(element, null);
 	}
 
-	public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
-			throws XNIException {
+	public void emptyElement(QName element, XMLAttributes attributes,
+			Augmentations augs) throws XNIException {
 		startElement(element, attributes, augs);
 		endElement(element, augs);
 	}
 
-	public void characters(XMLString text, Augmentations augs) throws XNIException {
+	public void characters(XMLString text, Augmentations augs)
+			throws XNIException {
 		// since a validator may change the contents,
 		// let this one go through a validator
 		fCurrentAug = augs;
 		xni2sax.characters(text, null);
 	}
 
-	public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
+	public void ignorableWhitespace(XMLString text, Augmentations augs)
+			throws XNIException {
 		// since a validator may change the contents,
 		// let this one go through a validator
 		fCurrentAug = augs;
 		xni2sax.ignorableWhitespace(text, null);
 	}
 
-	public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
+	public void reset(XMLComponentManager componentManager)
+			throws XMLConfigurationException {
 		// obtain references from the manager
 		fSymbolTable = (SymbolTable) componentManager.getProperty(SYMBOL_TABLE);
-		fErrorReporter = (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
+		fErrorReporter = (XMLErrorReporter) componentManager.getProperty(
+				ERROR_REPORTER);
 		try {
-			fEntityResolver = (XMLEntityResolver) componentManager.getProperty(ENTITY_MANAGER);
+			fEntityResolver = (XMLEntityResolver) componentManager.getProperty(
+					ENTITY_MANAGER);
 		} catch (XMLConfigurationException e) {
 			fEntityResolver = null;
 		}
@@ -247,7 +253,8 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 		 */
 		private final QName fQName = new QName();
 
-		public void characters(char[] ch, int start, int len) throws SAXException {
+		public void characters(char[] ch, int start, int len)
+				throws SAXException {
 			try {
 				handler().characters(new XMLString(ch, start, len), aug());
 			} catch (XNIException e) {
@@ -255,26 +262,29 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 			}
 		}
 
-		public void ignorableWhitespace(char[] ch, int start, int len) throws SAXException {
-			try {
-				handler().ignorableWhitespace(new XMLString(ch, start, len), aug());
-			} catch (XNIException e) {
-				throw toSAXException(e);
-			}
-		}
-
-		public void startElement(String uri, String localName, String qname, Attributes atts)
+		public void ignorableWhitespace(char[] ch, int start, int len)
 				throws SAXException {
 			try {
-				updateAttributes(atts);
-				handler().startElement(toQName(uri, localName, qname), fCurrentAttributes,
-						elementAug());
+				handler().ignorableWhitespace(new XMLString(ch, start, len),
+						aug());
 			} catch (XNIException e) {
 				throw toSAXException(e);
 			}
 		}
 
-		public void endElement(String uri, String localName, String qname) throws SAXException {
+		public void startElement(String uri, String localName, String qname,
+				Attributes atts) throws SAXException {
+			try {
+				updateAttributes(atts);
+				handler().startElement(toQName(uri, localName, qname),
+						fCurrentAttributes, elementAug());
+			} catch (XNIException e) {
+				throw toSAXException(e);
+			}
+		}
+
+		public void endElement(String uri, String localName, String qname)
+				throws SAXException {
 			try {
 				handler().endElement(toQName(uri, localName, qname), aug());
 			} catch (XNIException e) {
@@ -368,7 +378,8 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 		/**
 		 * For efficiency, we reuse one instance.
 		 */
-		private final AttributesProxy fAttributesProxy = new AttributesProxy(null);
+		private final AttributesProxy fAttributesProxy = new AttributesProxy(
+				null);
 
 		public void setContentHandler(ContentHandler handler) {
 			this.fContentHandler = handler;
@@ -378,13 +389,14 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 			return fContentHandler;
 		}
 
-		public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
-				throws XNIException {
+		public void xmlDecl(String version, String encoding, String standalone,
+				Augmentations augs) throws XNIException {
 			this.fVersion = version;
 		}
 
 		public void startDocument(XMLLocator locator, String encoding,
-				NamespaceContext namespaceContext, Augmentations augs) throws XNIException {
+				NamespaceContext namespaceContext, Augmentations augs)
+				throws XNIException {
 			fNamespaceContext = namespaceContext;
 			fContentHandler.setDocumentLocator(new LocatorProxy(locator));
 			try {
@@ -402,8 +414,8 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 			}
 		}
 
-		public void processingInstruction(String target, XMLString data, Augmentations augs)
-				throws XNIException {
+		public void processingInstruction(String target, XMLString data,
+				Augmentations augs) throws XNIException {
 			try {
 				fContentHandler.processingInstruction(target, data.toString());
 			} catch (SAXException e) {
@@ -411,8 +423,8 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 			}
 		}
 
-		public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
-				throws XNIException {
+		public void startElement(QName element, XMLAttributes attributes,
+				Augmentations augs) throws XNIException {
 			try {
 				// start namespace prefix mappings
 				int count = fNamespaceContext.getDeclaredPrefixCount();
@@ -422,20 +434,24 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 					for (int i = 0; i < count; i++) {
 						prefix = fNamespaceContext.getDeclaredPrefixAt(i);
 						uri = fNamespaceContext.getURI(prefix);
-						fContentHandler.startPrefixMapping(prefix, (uri == null) ? "" : uri);
+						fContentHandler.startPrefixMapping(prefix, (uri == null)
+								? ""
+								: uri);
 					}
 				}
 
 				String uri = element.uri != null ? element.uri : "";
 				String localpart = element.localpart;
 				fAttributesProxy.setAttributes(attributes);
-				fContentHandler.startElement(uri, localpart, element.rawname, fAttributesProxy);
+				fContentHandler.startElement(uri, localpart, element.rawname,
+						fAttributesProxy);
 			} catch (SAXException e) {
 				throw new XNIException(e);
 			}
 		}
 
-		public void endElement(QName element, Augmentations augs) throws XNIException {
+		public void endElement(QName element, Augmentations augs)
+				throws XNIException {
 			try {
 				String uri = element.uri != null ? element.uri : "";
 				String localpart = element.localpart;
@@ -445,7 +461,8 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 				int count = fNamespaceContext.getDeclaredPrefixCount();
 				if (count > 0) {
 					for (int i = 0; i < count; i++) {
-						fContentHandler.endPrefixMapping(fNamespaceContext.getDeclaredPrefixAt(i));
+						fContentHandler.endPrefixMapping(fNamespaceContext
+								.getDeclaredPrefixAt(i));
 					}
 				}
 			} catch (SAXException e) {
@@ -453,13 +470,14 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 			}
 		}
 
-		public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
-				throws XNIException {
+		public void emptyElement(QName element, XMLAttributes attributes,
+				Augmentations augs) throws XNIException {
 			startElement(element, attributes, augs);
 			endElement(element, augs);
 		}
 
-		public void characters(XMLString text, Augmentations augs) throws XNIException {
+		public void characters(XMLString text, Augmentations augs)
+				throws XNIException {
 			try {
 				fContentHandler.characters(text.ch, text.offset, text.length);
 			} catch (SAXException e) {
@@ -467,9 +485,11 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 			}
 		}
 
-		public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
+		public void ignorableWhitespace(XMLString text, Augmentations augs)
+				throws XNIException {
 			try {
-				fContentHandler.ignorableWhitespace(text.ch, text.offset, text.length);
+				fContentHandler.ignorableWhitespace(text.ch, text.offset,
+						text.length);
 			} catch (SAXException e) {
 				throw new XNIException(e);
 			}
@@ -483,8 +503,7 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 		 */
 		private static final DraconianErrorHandler ERROR_HANDLER_INSTANCE = new DraconianErrorHandler();
 
-		private DraconianErrorHandler() {
-		}
+		private DraconianErrorHandler() {}
 
 		/** Returns the one and only instance of this error handler. */
 		public static DraconianErrorHandler getInstance() {
@@ -529,9 +548,9 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 					prefix = symbolize(aqn.substring(0, idx));
 				}
 
-				j = fCurrentAttributes.addAttribute(new QName(prefix,
-						symbolize(atts.getLocalName(i)), symbolize(aqn), symbolize(atts.getURI(i))),
-						atts.getType(i), av);
+				j = fCurrentAttributes.addAttribute(new QName(prefix, symbolize(
+						atts.getLocalName(i)), symbolize(aqn), symbolize(atts
+								.getURI(i))), atts.getType(i), av);
 			} else {
 				// the attribute is present.
 				if (!av.equals(fCurrentAttributes.getValue(j))) {
@@ -570,7 +589,8 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 			return null;
 		}
 
-		public TypeInfo getAttributeTypeInfo(String attributeUri, String attributeLocalName) {
+		public TypeInfo getAttributeTypeInfo(String attributeUri,
+				String attributeLocalName) {
 			return null;
 		}
 
@@ -594,15 +614,15 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
 		return null;
 	}
 
-	public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
-	}
+	public void setFeature(String featureId, boolean state)
+			throws XMLConfigurationException {}
 
 	public String[] getRecognizedProperties() {
 		return new String[] { ENTITY_MANAGER, ERROR_REPORTER, SYMBOL_TABLE };
 	}
 
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
-	}
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException {}
 
 	public Boolean getFeatureDefault(String featureId) {
 		return null;

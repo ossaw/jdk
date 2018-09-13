@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -7,9 +6,9 @@
 /**********************************************************************
  **********************************************************************
  **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company.                 ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
+ *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************
  **********************************************************************
  **********************************************************************/
@@ -42,10 +41,11 @@ public class JPEGQTable {
 	 */
 	public static final JPEGQTable StdLuminance = new JPEGQTable();
 	static {
-		int[] lumVals = { 16, 11, 12, 14, 12, 10, 16, 14, 13, 14, 18, 17, 16, 19, 24, 40, 26, 24,
-				22, 22, 24, 49, 35, 37, 29, 40, 58, 51, 61, 60, 57, 51, 56, 55, 64, 72, 92, 78, 64,
-				68, 87, 69, 55, 56, 80, 109, 81, 87, 95, 98, 103, 104, 103, 62, 77, 113, 121, 112,
-				100, 120, 92, 101, 103, 99 };
+		int[] lumVals = { 16, 11, 12, 14, 12, 10, 16, 14, 13, 14, 18, 17, 16,
+				19, 24, 40, 26, 24, 22, 22, 24, 49, 35, 37, 29, 40, 58, 51, 61,
+				60, 57, 51, 56, 55, 64, 72, 92, 78, 64, 68, 87, 69, 55, 56, 80,
+				109, 81, 87, 95, 98, 103, 104, 103, 62, 77, 113, 121, 112, 100,
+				120, 92, 101, 103, 99 };
 
 		StdLuminance.quantval = lumVals;
 	}
@@ -57,10 +57,11 @@ public class JPEGQTable {
 	 */
 	public static final JPEGQTable StdChrominance = new JPEGQTable();
 	static {
-		int[] chromVals = { 17, 18, 18, 24, 21, 24, 47, 26, 26, 47, 99, 66, 56, 66, 99, 99, 99, 99,
-				99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
-				99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
-				99, 99, 99, 99 };
+		int[] chromVals = { 17, 18, 18, 24, 21, 24, 47, 26, 26, 47, 99, 66, 56,
+				66, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+				99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+				99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+				99, 99, 99 };
 		StdChrominance.quantval = chromVals;
 	}
 
@@ -77,11 +78,12 @@ public class JPEGQTable {
 	 * coefficents must be in zig-zag order. The array must be of length 64.
 	 * 
 	 * @param table
-	 *            the quantization table (this is copied).
+	 *              the quantization table (this is copied).
 	 */
 	public JPEGQTable(int table[]) {
 		if (table.length != QTABLESIZE) {
-			throw new IllegalArgumentException("Quantization table is the wrong size.");
+			throw new IllegalArgumentException(
+					"Quantization table is the wrong size.");
 		} else {
 			quantval = new int[QTABLESIZE];
 			System.arraycopy(table, 0, quantval, 0, QTABLESIZE);
@@ -110,12 +112,14 @@ public class JPEGQTable {
 	 * values greater than one degrade the quality level of the table.
 	 * 
 	 * @param scaleFactor
-	 *            the multiplication factor for the table
+	 *                      the multiplication factor for the table
 	 * @param forceBaseline
-	 *            if true the values will be clamped to the range [1 .. 255]
+	 *                      if true the values will be clamped to the range [1
+	 *                      .. 255]
 	 * @return A new Q-Table that is a linear multiple of this Q-Table
 	 */
-	public JPEGQTable getScaledInstance(float scaleFactor, boolean forceBaseline) {
+	public JPEGQTable getScaledInstance(float scaleFactor,
+			boolean forceBaseline) {
 		long max = (forceBaseline) ? 255L : 32767L;
 		int[] ret = new int[QTABLESIZE];
 

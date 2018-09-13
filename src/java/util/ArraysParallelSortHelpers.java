@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -85,8 +65,7 @@ import java.util.concurrent.CountedCompleter;
 			super(p);
 		}
 
-		public final void compute() {
-		}
+		public final void compute() {}
 	}
 
 	/**
@@ -101,8 +80,7 @@ import java.util.concurrent.CountedCompleter;
 			this.task = task;
 		}
 
-		public final void compute() {
-		}
+		public final void compute() {}
 
 		public final void onCompletion(CountedCompleter<?> t) {
 			task.compute();
@@ -117,8 +95,8 @@ import java.util.concurrent.CountedCompleter;
 			final int base, size, wbase, gran;
 			Comparator<? super T> comparator;
 
-			Sorter(CountedCompleter<?> par, T[] a, T[] w, int base, int size, int wbase, int gran,
-					Comparator<? super T> comparator) {
+			Sorter(CountedCompleter<?> par, T[] a, T[] w, int base, int size,
+					int wbase, int gran, Comparator<? super T> comparator) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -133,16 +111,19 @@ import java.util.concurrent.CountedCompleter;
 				CountedCompleter<?> s = this;
 				Comparator<? super T> c = this.comparator;
 				T[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger<T>(s, w, a, wb, h, wb + h, n - h, b, g, c));
-					Relay rc = new Relay(
-							new Merger<T>(fc, a, w, b + h, q, b + u, n - u, wb + h, g, c));
+					Relay fc = new Relay(new Merger<T>(s, w, a, wb, h, wb + h, n
+							- h, b, g, c));
+					Relay rc = new Relay(new Merger<T>(fc, a, w, b + h, q, b
+							+ u, n - u, wb + h, g, c));
 					new Sorter<T>(rc, a, w, b + u, n - u, wb + u, g, c).fork();
 					new Sorter<T>(rc, a, w, b + h, q, wb + h, g, c).fork();
 					;
-					Relay bc = new Relay(new Merger<T>(fc, a, w, b, q, b + q, h - q, wb, g, c));
+					Relay bc = new Relay(new Merger<T>(fc, a, w, b, q, b + q, h
+							- q, wb, g, c));
 					new Sorter<T>(bc, a, w, b + q, h - q, wb + q, g, c).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -158,8 +139,9 @@ import java.util.concurrent.CountedCompleter;
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 			Comparator<? super T> comparator;
 
-			Merger(CountedCompleter<?> par, T[] a, T[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran, Comparator<? super T> comparator) {
+			Merger(CountedCompleter<?> par, T[] a, T[] w, int lbase, int lsize,
+					int rbase, int rsize, int wbase, int gran,
+					Comparator<? super T> comparator) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -175,9 +157,10 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				Comparator<? super T> c = this.comparator;
 				T[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
-				if (a == null || w == null || lb < 0 || rb < 0 || k < 0 || c == null)
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
+				if (a == null || w == null || lb < 0 || rb < 0 || k < 0
+						|| c == null)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
 					if (ln >= rn) {
@@ -205,8 +188,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger<T> m = new Merger<T>(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g, c);
+					Merger<T> m = new Merger<T>(this, a, w, lb + lh, ln - lh, rb
+							+ rh, rn - rh, k + lh + rh, g, c);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);
@@ -243,8 +226,8 @@ import java.util.concurrent.CountedCompleter;
 			final byte[] a, w;
 			final int base, size, wbase, gran;
 
-			Sorter(CountedCompleter<?> par, byte[] a, byte[] w, int base, int size, int wbase,
-					int gran) {
+			Sorter(CountedCompleter<?> par, byte[] a, byte[] w, int base,
+					int size, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -257,15 +240,19 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				CountedCompleter<?> s = this;
 				byte[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n - h, b, g));
-					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n - u, wb + h, g));
+					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n
+							- h, b, g));
+					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n
+							- u, wb + h, g));
 					new Sorter(rc, a, w, b + u, n - u, wb + u, g).fork();
 					new Sorter(rc, a, w, b + h, q, wb + h, g).fork();
 					;
-					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h - q, wb, g));
+					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h
+							- q, wb, g));
 					new Sorter(bc, a, w, b + q, h - q, wb + q, g).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -280,8 +267,8 @@ import java.util.concurrent.CountedCompleter;
 			final byte[] a, w; // main and workspace arrays
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 
-			Merger(CountedCompleter<?> par, byte[] a, byte[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran) {
+			Merger(CountedCompleter<?> par, byte[] a, byte[] w, int lbase,
+					int lsize, int rbase, int rsize, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -295,8 +282,8 @@ import java.util.concurrent.CountedCompleter;
 
 			public final void compute() {
 				byte[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
 				if (a == null || w == null || lb < 0 || rb < 0 || k < 0)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
@@ -325,8 +312,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g);
+					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh,
+							rn - rh, k + lh + rh, g);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);
@@ -361,8 +348,8 @@ import java.util.concurrent.CountedCompleter;
 			final char[] a, w;
 			final int base, size, wbase, gran;
 
-			Sorter(CountedCompleter<?> par, char[] a, char[] w, int base, int size, int wbase,
-					int gran) {
+			Sorter(CountedCompleter<?> par, char[] a, char[] w, int base,
+					int size, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -375,15 +362,19 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				CountedCompleter<?> s = this;
 				char[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n - h, b, g));
-					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n - u, wb + h, g));
+					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n
+							- h, b, g));
+					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n
+							- u, wb + h, g));
 					new Sorter(rc, a, w, b + u, n - u, wb + u, g).fork();
 					new Sorter(rc, a, w, b + h, q, wb + h, g).fork();
 					;
-					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h - q, wb, g));
+					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h
+							- q, wb, g));
 					new Sorter(bc, a, w, b + q, h - q, wb + q, g).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -398,8 +389,8 @@ import java.util.concurrent.CountedCompleter;
 			final char[] a, w; // main and workspace arrays
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 
-			Merger(CountedCompleter<?> par, char[] a, char[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran) {
+			Merger(CountedCompleter<?> par, char[] a, char[] w, int lbase,
+					int lsize, int rbase, int rsize, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -413,8 +404,8 @@ import java.util.concurrent.CountedCompleter;
 
 			public final void compute() {
 				char[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
 				if (a == null || w == null || lb < 0 || rb < 0 || k < 0)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
@@ -443,8 +434,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g);
+					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh,
+							rn - rh, k + lh + rh, g);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);
@@ -479,8 +470,8 @@ import java.util.concurrent.CountedCompleter;
 			final short[] a, w;
 			final int base, size, wbase, gran;
 
-			Sorter(CountedCompleter<?> par, short[] a, short[] w, int base, int size, int wbase,
-					int gran) {
+			Sorter(CountedCompleter<?> par, short[] a, short[] w, int base,
+					int size, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -493,15 +484,19 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				CountedCompleter<?> s = this;
 				short[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n - h, b, g));
-					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n - u, wb + h, g));
+					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n
+							- h, b, g));
+					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n
+							- u, wb + h, g));
 					new Sorter(rc, a, w, b + u, n - u, wb + u, g).fork();
 					new Sorter(rc, a, w, b + h, q, wb + h, g).fork();
 					;
-					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h - q, wb, g));
+					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h
+							- q, wb, g));
 					new Sorter(bc, a, w, b + q, h - q, wb + q, g).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -516,8 +511,8 @@ import java.util.concurrent.CountedCompleter;
 			final short[] a, w; // main and workspace arrays
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 
-			Merger(CountedCompleter<?> par, short[] a, short[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran) {
+			Merger(CountedCompleter<?> par, short[] a, short[] w, int lbase,
+					int lsize, int rbase, int rsize, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -531,8 +526,8 @@ import java.util.concurrent.CountedCompleter;
 
 			public final void compute() {
 				short[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
 				if (a == null || w == null || lb < 0 || rb < 0 || k < 0)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
@@ -561,8 +556,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g);
+					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh,
+							rn - rh, k + lh + rh, g);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);
@@ -597,8 +592,8 @@ import java.util.concurrent.CountedCompleter;
 			final int[] a, w;
 			final int base, size, wbase, gran;
 
-			Sorter(CountedCompleter<?> par, int[] a, int[] w, int base, int size, int wbase,
-					int gran) {
+			Sorter(CountedCompleter<?> par, int[] a, int[] w, int base,
+					int size, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -611,15 +606,19 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				CountedCompleter<?> s = this;
 				int[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n - h, b, g));
-					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n - u, wb + h, g));
+					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n
+							- h, b, g));
+					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n
+							- u, wb + h, g));
 					new Sorter(rc, a, w, b + u, n - u, wb + u, g).fork();
 					new Sorter(rc, a, w, b + h, q, wb + h, g).fork();
 					;
-					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h - q, wb, g));
+					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h
+							- q, wb, g));
 					new Sorter(bc, a, w, b + q, h - q, wb + q, g).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -634,8 +633,8 @@ import java.util.concurrent.CountedCompleter;
 			final int[] a, w; // main and workspace arrays
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 
-			Merger(CountedCompleter<?> par, int[] a, int[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran) {
+			Merger(CountedCompleter<?> par, int[] a, int[] w, int lbase,
+					int lsize, int rbase, int rsize, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -649,8 +648,8 @@ import java.util.concurrent.CountedCompleter;
 
 			public final void compute() {
 				int[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
 				if (a == null || w == null || lb < 0 || rb < 0 || k < 0)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
@@ -679,8 +678,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g);
+					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh,
+							rn - rh, k + lh + rh, g);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);
@@ -715,8 +714,8 @@ import java.util.concurrent.CountedCompleter;
 			final long[] a, w;
 			final int base, size, wbase, gran;
 
-			Sorter(CountedCompleter<?> par, long[] a, long[] w, int base, int size, int wbase,
-					int gran) {
+			Sorter(CountedCompleter<?> par, long[] a, long[] w, int base,
+					int size, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -729,15 +728,19 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				CountedCompleter<?> s = this;
 				long[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n - h, b, g));
-					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n - u, wb + h, g));
+					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n
+							- h, b, g));
+					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n
+							- u, wb + h, g));
 					new Sorter(rc, a, w, b + u, n - u, wb + u, g).fork();
 					new Sorter(rc, a, w, b + h, q, wb + h, g).fork();
 					;
-					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h - q, wb, g));
+					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h
+							- q, wb, g));
 					new Sorter(bc, a, w, b + q, h - q, wb + q, g).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -752,8 +755,8 @@ import java.util.concurrent.CountedCompleter;
 			final long[] a, w; // main and workspace arrays
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 
-			Merger(CountedCompleter<?> par, long[] a, long[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran) {
+			Merger(CountedCompleter<?> par, long[] a, long[] w, int lbase,
+					int lsize, int rbase, int rsize, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -767,8 +770,8 @@ import java.util.concurrent.CountedCompleter;
 
 			public final void compute() {
 				long[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
 				if (a == null || w == null || lb < 0 || rb < 0 || k < 0)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
@@ -797,8 +800,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g);
+					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh,
+							rn - rh, k + lh + rh, g);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);
@@ -833,8 +836,8 @@ import java.util.concurrent.CountedCompleter;
 			final float[] a, w;
 			final int base, size, wbase, gran;
 
-			Sorter(CountedCompleter<?> par, float[] a, float[] w, int base, int size, int wbase,
-					int gran) {
+			Sorter(CountedCompleter<?> par, float[] a, float[] w, int base,
+					int size, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -847,15 +850,19 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				CountedCompleter<?> s = this;
 				float[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n - h, b, g));
-					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n - u, wb + h, g));
+					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n
+							- h, b, g));
+					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n
+							- u, wb + h, g));
 					new Sorter(rc, a, w, b + u, n - u, wb + u, g).fork();
 					new Sorter(rc, a, w, b + h, q, wb + h, g).fork();
 					;
-					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h - q, wb, g));
+					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h
+							- q, wb, g));
 					new Sorter(bc, a, w, b + q, h - q, wb + q, g).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -870,8 +877,8 @@ import java.util.concurrent.CountedCompleter;
 			final float[] a, w; // main and workspace arrays
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 
-			Merger(CountedCompleter<?> par, float[] a, float[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran) {
+			Merger(CountedCompleter<?> par, float[] a, float[] w, int lbase,
+					int lsize, int rbase, int rsize, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -885,8 +892,8 @@ import java.util.concurrent.CountedCompleter;
 
 			public final void compute() {
 				float[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
 				if (a == null || w == null || lb < 0 || rb < 0 || k < 0)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
@@ -915,8 +922,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g);
+					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh,
+							rn - rh, k + lh + rh, g);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);
@@ -951,8 +958,8 @@ import java.util.concurrent.CountedCompleter;
 			final double[] a, w;
 			final int base, size, wbase, gran;
 
-			Sorter(CountedCompleter<?> par, double[] a, double[] w, int base, int size, int wbase,
-					int gran) {
+			Sorter(CountedCompleter<?> par, double[] a, double[] w, int base,
+					int size, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -965,15 +972,19 @@ import java.util.concurrent.CountedCompleter;
 			public final void compute() {
 				CountedCompleter<?> s = this;
 				double[] a = this.a, w = this.w; // localize all params
-				int b = this.base, n = this.size, wb = this.wbase, g = this.gran;
+				int b = this.base, n = this.size, wb = this.wbase,
+						g = this.gran;
 				while (n > g) {
 					int h = n >>> 1, q = h >>> 1, u = h + q; // quartiles
-					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n - h, b, g));
-					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n - u, wb + h, g));
+					Relay fc = new Relay(new Merger(s, w, a, wb, h, wb + h, n
+							- h, b, g));
+					Relay rc = new Relay(new Merger(fc, a, w, b + h, q, b + u, n
+							- u, wb + h, g));
 					new Sorter(rc, a, w, b + u, n - u, wb + u, g).fork();
 					new Sorter(rc, a, w, b + h, q, wb + h, g).fork();
 					;
-					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h - q, wb, g));
+					Relay bc = new Relay(new Merger(fc, a, w, b, q, b + q, h
+							- q, wb, g));
 					new Sorter(bc, a, w, b + q, h - q, wb + q, g).fork();
 					s = new EmptyCompleter(bc);
 					n = q;
@@ -988,8 +999,8 @@ import java.util.concurrent.CountedCompleter;
 			final double[] a, w; // main and workspace arrays
 			final int lbase, lsize, rbase, rsize, wbase, gran;
 
-			Merger(CountedCompleter<?> par, double[] a, double[] w, int lbase, int lsize, int rbase,
-					int rsize, int wbase, int gran) {
+			Merger(CountedCompleter<?> par, double[] a, double[] w, int lbase,
+					int lsize, int rbase, int rsize, int wbase, int gran) {
 				super(par);
 				this.a = a;
 				this.w = w;
@@ -1003,8 +1014,8 @@ import java.util.concurrent.CountedCompleter;
 
 			public final void compute() {
 				double[] a = this.a, w = this.w; // localize all params
-				int lb = this.lbase, ln = this.lsize, rb = this.rbase, rn = this.rsize,
-						k = this.wbase, g = this.gran;
+				int lb = this.lbase, ln = this.lsize, rb = this.rbase,
+						rn = this.rsize, k = this.wbase, g = this.gran;
 				if (a == null || w == null || lb < 0 || rb < 0 || k < 0)
 					throw new IllegalStateException(); // hoist checks
 				for (int lh, rh;;) { // split larger, find point in smaller
@@ -1033,8 +1044,8 @@ import java.util.concurrent.CountedCompleter;
 								lo = lm + 1;
 						}
 					}
-					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh, rn - rh,
-							k + lh + rh, g);
+					Merger m = new Merger(this, a, w, lb + lh, ln - lh, rb + rh,
+							rn - rh, k + lh + rh, g);
 					rn = rh;
 					ln = lh;
 					addToPendingCount(1);

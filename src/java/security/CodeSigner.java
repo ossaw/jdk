@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -48,7 +28,6 @@ public final class CodeSigner implements Serializable {
 
 	/*
 	 * The signature timestamp.
-	 *
 	 * @serial
 	 */
 	private Timestamp timestamp;
@@ -62,12 +41,14 @@ public final class CodeSigner implements Serializable {
 	 * Constructs a CodeSigner object.
 	 *
 	 * @param signerCertPath
-	 *            The signer's certificate path. It must not be {@code null}.
+	 *                       The signer's certificate path. It must not be
+	 *                       {@code null}.
 	 * @param timestamp
-	 *            A signature timestamp. If {@code null} then no timestamp was
-	 *            generated for the signature.
+	 *                       A signature timestamp. If {@code null} then no
+	 *                       timestamp was
+	 *                       generated for the signature.
 	 * @throws NullPointerException
-	 *             if {@code signerCertPath} is {@code null}.
+	 *                              if {@code signerCertPath} is {@code null}.
 	 */
 	public CodeSigner(CertPath signerCertPath, Timestamp timestamp) {
 		if (signerCertPath == null) {
@@ -163,7 +144,8 @@ public final class CodeSigner implements Serializable {
 	}
 
 	// Explicitly reset hash code value to -1
-	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		ois.defaultReadObject();
 		myhash = -1;
 	}

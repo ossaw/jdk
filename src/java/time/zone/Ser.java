@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2011-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -101,16 +70,15 @@ final class Ser implements Externalizable {
 	/**
 	 * Constructor for deserialization.
 	 */
-	public Ser() {
-	}
+	public Ser() {}
 
 	/**
 	 * Creates an instance for serialization.
 	 *
 	 * @param type
-	 *            the type
+	 *               the type
 	 * @param object
-	 *            the object
+	 *               the object
 	 */
 	Ser(byte type, Object object) {
 		this.type = type;
@@ -150,20 +118,21 @@ final class Ser implements Externalizable {
 		writeInternal(ZRULES, object, out);
 	}
 
-	private static void writeInternal(byte type, Object object, DataOutput out) throws IOException {
+	private static void writeInternal(byte type, Object object, DataOutput out)
+			throws IOException {
 		out.writeByte(type);
 		switch (type) {
-		case ZRULES:
-			((ZoneRules) object).writeExternal(out);
-			break;
-		case ZOT:
-			((ZoneOffsetTransition) object).writeExternal(out);
-			break;
-		case ZOTRULE:
-			((ZoneOffsetTransitionRule) object).writeExternal(out);
-			break;
-		default:
-			throw new InvalidClassException("Unknown serialized type");
+			case ZRULES:
+				((ZoneRules) object).writeExternal(out);
+				break;
+			case ZOT:
+				((ZoneOffsetTransition) object).writeExternal(out);
+				break;
+			case ZOTRULE:
+				((ZoneOffsetTransitionRule) object).writeExternal(out);
+				break;
+			default:
+				throw new InvalidClassException("Unknown serialized type");
 		}
 	}
 
@@ -192,15 +161,17 @@ final class Ser implements Externalizable {
 	 *             {@code ZoneOffsetTransitionRule.of(month, dom, dow, time, timeEndOfDay, timeDefinition, standardOffset, offsetBefore, offsetAfter);}
 	 *             </ul>
 	 * @param in
-	 *            the data to read, not null
+	 *           the data to read, not null
 	 */
 	@Override
-	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+	public void readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
 		type = in.readByte();
 		object = readInternal(type, in);
 	}
 
-	static Object read(DataInput in) throws IOException, ClassNotFoundException {
+	static Object read(DataInput in) throws IOException,
+			ClassNotFoundException {
 		byte type = in.readByte();
 		return readInternal(type, in);
 	}
@@ -208,14 +179,14 @@ final class Ser implements Externalizable {
 	private static Object readInternal(byte type, DataInput in)
 			throws IOException, ClassNotFoundException {
 		switch (type) {
-		case ZRULES:
-			return ZoneRules.readExternal(in);
-		case ZOT:
-			return ZoneOffsetTransition.readExternal(in);
-		case ZOTRULE:
-			return ZoneOffsetTransitionRule.readExternal(in);
-		default:
-			throw new StreamCorruptedException("Unknown serialized type");
+			case ZRULES:
+				return ZoneRules.readExternal(in);
+			case ZOT:
+				return ZoneOffsetTransition.readExternal(in);
+			case ZOTRULE:
+				return ZoneOffsetTransitionRule.readExternal(in);
+			default:
+				throw new StreamCorruptedException("Unknown serialized type");
 		}
 	}
 
@@ -233,13 +204,14 @@ final class Ser implements Externalizable {
 	 * Writes the state to the stream.
 	 *
 	 * @param offset
-	 *            the offset, not null
+	 *               the offset, not null
 	 * @param out
-	 *            the output stream, not null
+	 *               the output stream, not null
 	 * @throws IOException
-	 *             if an error occurs
+	 *                     if an error occurs
 	 */
-	static void writeOffset(ZoneOffset offset, DataOutput out) throws IOException {
+	static void writeOffset(ZoneOffset offset, DataOutput out)
+			throws IOException {
 		final int offsetSecs = offset.getTotalSeconds();
 		int offsetByte = offsetSecs % 900 == 0 ? offsetSecs / 900 : 127; // compress
 																			// to
@@ -256,10 +228,10 @@ final class Ser implements Externalizable {
 	 * Reads the state from the stream.
 	 *
 	 * @param in
-	 *            the input stream, not null
+	 *           the input stream, not null
 	 * @return the created object, not null
 	 * @throws IOException
-	 *             if an error occurs
+	 *                     if an error occurs
 	 */
 	static ZoneOffset readOffset(DataInput in) throws IOException {
 		int offsetByte = in.readByte();
@@ -272,19 +244,21 @@ final class Ser implements Externalizable {
 	 * Writes the state to the stream.
 	 *
 	 * @param epochSec
-	 *            the epoch seconds, not null
+	 *                 the epoch seconds, not null
 	 * @param out
-	 *            the output stream, not null
+	 *                 the output stream, not null
 	 * @throws IOException
-	 *             if an error occurs
+	 *                     if an error occurs
 	 */
-	static void writeEpochSec(long epochSec, DataOutput out) throws IOException {
-		if (epochSec >= -4575744000L && epochSec < 10413792000L && epochSec % 900 == 0) { // quarter
-																							// hours
-																							// between
-																							// 1825
-																							// and
-																							// 2300
+	static void writeEpochSec(long epochSec, DataOutput out)
+			throws IOException {
+		if (epochSec >= -4575744000L && epochSec < 10413792000L && epochSec
+				% 900 == 0) { // quarter
+																									// hours
+																									// between
+																									// 1825
+																									// and
+																									// 2300
 			int store = (int) ((epochSec + 4575744000L) / 900);
 			out.writeByte((store >>> 16) & 255);
 			out.writeByte((store >>> 8) & 255);
@@ -299,10 +273,10 @@ final class Ser implements Externalizable {
 	 * Reads the state from the stream.
 	 *
 	 * @param in
-	 *            the input stream, not null
+	 *           the input stream, not null
 	 * @return the epoch seconds, not null
 	 * @throws IOException
-	 *             if an error occurs
+	 *                     if an error occurs
 	 */
 	static long readEpochSec(DataInput in) throws IOException {
 		int hiByte = in.readByte() & 255;

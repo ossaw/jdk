@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -101,8 +99,9 @@ public final class DocumentCache implements DOMCache {
 
 			try {
 				final long stamp = System.currentTimeMillis();
-				_dom = (DOMEnhancedForDTM) _dtmManager.getDTM(
-						new SAXSource(_reader, new InputSource(uri)), false, null, true, false);
+				_dom = (DOMEnhancedForDTM) _dtmManager.getDTM(new SAXSource(
+						_reader, new InputSource(uri)), false, null, true,
+						false);
 				_dom.setDocumentURI(uri);
 
 				// The build time can be used for statistics for a better
@@ -181,7 +180,8 @@ public final class DocumentCache implements DOMCache {
 	/**
 	 * DocumentCache constructor
 	 */
-	public DocumentCache(int size, XSLTCDTMManager dtmManager) throws SAXException {
+	public DocumentCache(int size, XSLTCDTMManager dtmManager)
+			throws SAXException {
 		_dtmManager = dtmManager;
 		_count = 0;
 		_current = 0;
@@ -333,19 +333,22 @@ public final class DocumentCache implements DOMCache {
 	 */
 	public void getStatistics(PrintWriter out) {
 		out.println("<h2>DOM cache statistics</h2><center><table border=\"2\">"
-				+ "<tr><td><b>Document URI</b></td>" + "<td><center><b>Build time</b></center></td>"
+				+ "<tr><td><b>Document URI</b></td>"
+				+ "<td><center><b>Build time</b></center></td>"
 				+ "<td><center><b>Access count</b></center></td>"
 				+ "<td><center><b>Last accessed</b></center></td>"
 				+ "<td><center><b>Last modified</b></center></td></tr>");
 
 		for (int i = 0; i < _count; i++) {
 			CachedDocument doc = _references.get(_URIs[i]);
-			out.print("<tr><td><a href=\"" + _URIs[i] + "\">" + "<font size=-1>" + _URIs[i]
-					+ "</font></a></td>");
+			out.print("<tr><td><a href=\"" + _URIs[i] + "\">" + "<font size=-1>"
+					+ _URIs[i] + "</font></a></td>");
 			out.print("<td><center>" + doc.getLatency() + "ms</center></td>");
 			out.print("<td><center>" + doc.getAccessCount() + "</center></td>");
-			out.print("<td><center>" + (new Date(doc.getLastReferenced())) + "</center></td>");
-			out.print("<td><center>" + (new Date(doc.getLastModified())) + "</center></td>");
+			out.print("<td><center>" + (new Date(doc.getLastReferenced()))
+					+ "</center></td>");
+			out.print("<td><center>" + (new Date(doc.getLastModified()))
+					+ "</center></td>");
 			out.println("</tr>");
 		}
 

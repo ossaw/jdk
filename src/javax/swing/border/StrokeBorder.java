@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.border;
 
@@ -57,10 +37,11 @@ public class StrokeBorder extends AbstractBorder {
 	 * foreground color will be used to render the border.
 	 *
 	 * @param stroke
-	 *            the {@link BasicStroke} object used to stroke a shape
+	 *               the {@link BasicStroke} object used to stroke a shape
 	 *
 	 * @throws NullPointerException
-	 *             if the specified {@code stroke} is {@code null}
+	 *                              if the specified {@code stroke} is
+	 *                              {@code null}
 	 */
 	public StrokeBorder(BasicStroke stroke) {
 		this(stroke, null);
@@ -72,12 +53,13 @@ public class StrokeBorder extends AbstractBorder {
 	 * color will be used to render the border.
 	 *
 	 * @param stroke
-	 *            the {@link BasicStroke} object used to stroke a shape
+	 *               the {@link BasicStroke} object used to stroke a shape
 	 * @param paint
-	 *            the {@link Paint} object used to generate a color
+	 *               the {@link Paint} object used to generate a color
 	 *
 	 * @throws NullPointerException
-	 *             if the specified {@code stroke} is {@code null}
+	 *                              if the specified {@code stroke} is
+	 *                              {@code null}
 	 */
 	@ConstructorProperties({ "stroke", "paint" })
 	public StrokeBorder(BasicStroke stroke, Paint paint) {
@@ -96,35 +78,36 @@ public class StrokeBorder extends AbstractBorder {
 	 * the {@link Graphics} object will be used.
 	 *
 	 * @param c
-	 *            the component for which this border is being painted
+	 *               the component for which this border is being painted
 	 * @param g
-	 *            the paint graphics
+	 *               the paint graphics
 	 * @param x
-	 *            the x position of the painted border
+	 *               the x position of the painted border
 	 * @param y
-	 *            the y position of the painted border
+	 *               the y position of the painted border
 	 * @param width
-	 *            the width of the painted border
+	 *               the width of the painted border
 	 * @param height
-	 *            the height of the painted border
+	 *               the height of the painted border
 	 *
 	 * @throws NullPointerException
-	 *             if the specified {@code g} is {@code null}
+	 *                              if the specified {@code g} is {@code null}
 	 */
 	@Override
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height) {
 		float size = this.stroke.getLineWidth();
 		if (size > 0.0f) {
 			g = g.create();
 			if (g instanceof Graphics2D) {
 				Graphics2D g2d = (Graphics2D) g;
 				g2d.setStroke(this.stroke);
-				g2d.setPaint(
-						this.paint != null ? this.paint : c == null ? null : c.getForeground());
+				g2d.setPaint(this.paint != null ? this.paint
+						: c == null ? null : c.getForeground());
 				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 						RenderingHints.VALUE_ANTIALIAS_ON);
-				g2d.draw(new Rectangle2D.Float(x + size / 2, y + size / 2, width - size,
-						height - size));
+				g2d.draw(new Rectangle2D.Float(x + size / 2, y + size / 2, width
+						- size, height - size));
 			}
 			g.dispose();
 		}
@@ -137,13 +120,14 @@ public class StrokeBorder extends AbstractBorder {
 	 * stroke that is used to paint the border.
 	 *
 	 * @param c
-	 *            the component for which this border insets value applies
+	 *               the component for which this border insets value applies
 	 * @param insets
-	 *            the {@code Insets} object to be reinitialized
+	 *               the {@code Insets} object to be reinitialized
 	 * @return the reinitialized {@code insets} parameter
 	 *
 	 * @throws NullPointerException
-	 *             if the specified {@code insets} is {@code null}
+	 *                              if the specified {@code insets} is
+	 *                              {@code null}
 	 *
 	 * @see Math#ceil
 	 */

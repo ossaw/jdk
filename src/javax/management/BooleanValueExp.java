@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -78,7 +58,7 @@ class BooleanValueExp extends QueryEval implements ValueExp {
 	 * Applies the ValueExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the ValueExp will be applied.
+	 *             The name of the MBean on which the ValueExp will be applied.
 	 *
 	 * @return The <CODE>ValueExp</CODE>.
 	 *
@@ -87,9 +67,9 @@ class BooleanValueExp extends QueryEval implements ValueExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public ValueExp apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public ValueExp apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		return this;
 	}
 

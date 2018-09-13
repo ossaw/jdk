@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -65,8 +45,7 @@ public class ActionMap implements Serializable {
 	/**
 	 * Creates an <code>ActionMap</code> with no parent and no mappings.
 	 */
-	public ActionMap() {
-	}
+	public ActionMap() {}
 
 	/**
 	 * Sets this <code>ActionMap</code>'s parent.
@@ -115,7 +94,8 @@ public class ActionMap implements Serializable {
 	 * <code>ActionMap</code> if the binding is not locally defined.
 	 */
 	public Action get(Object key) {
-		Action value = (arrayTable == null) ? null : (Action) arrayTable.get(key);
+		Action value = (arrayTable == null) ? null
+				: (Action) arrayTable.get(key);
 
 		if (value == null) {
 			ActionMap parent = getParent();
@@ -217,7 +197,8 @@ public class ActionMap implements Serializable {
 		ArrayTable.writeArrayTable(s, arrayTable);
 	}
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 		for (int counter = s.readInt() - 1; counter >= 0; counter--) {
 			put(s.readObject(), (Action) s.readObject());

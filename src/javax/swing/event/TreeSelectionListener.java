@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.event;
@@ -44,7 +24,7 @@ public interface TreeSelectionListener extends EventListener {
 	 * Called whenever the value of the selection changes.
 	 * 
 	 * @param e
-	 *            the event that characterizes the change.
+	 *          the event that characterizes the change.
 	 */
 	void valueChanged(TreeSelectionEvent e);
 }

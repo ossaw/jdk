@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -88,13 +68,16 @@ public interface UserDefinedFileAttributeView extends FileAttributeView {
 	 *         user-defined
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                           If an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, and it denies {@link RuntimePermission}
-	 *             <tt>("accessUserDefinedAttributes")</tt> or its
-	 *             {@link SecurityManager#checkRead(String) checkRead} method
-	 *             denies read access to the file.
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, and it denies
+	 *                           {@link RuntimePermission}
+	 *                           <tt>("accessUserDefinedAttributes")</tt> or its
+	 *                           {@link SecurityManager#checkRead(String)
+	 *                           checkRead} method
+	 *                           denies read access to the file.
 	 */
 	List<String> list() throws IOException;
 
@@ -102,21 +85,25 @@ public interface UserDefinedFileAttributeView extends FileAttributeView {
 	 * Returns the size of the value of a user-defined attribute.
 	 *
 	 * @param name
-	 *            The attribute name
+	 *             The attribute name
 	 *
 	 * @return The size of the attribute value, in bytes.
 	 *
 	 * @throws ArithmeticException
-	 *             If the size of the attribute is larger than
-	 *             {@link Integer#MAX_VALUE}
+	 *                             If the size of the attribute is larger than
+	 *                             {@link Integer#MAX_VALUE}
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                             If an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, and it denies {@link RuntimePermission}
-	 *             <tt>("accessUserDefinedAttributes")</tt> or its
-	 *             {@link SecurityManager#checkRead(String) checkRead} method
-	 *             denies read access to the file.
+	 *                             In the case of the default provider, a
+	 *                             security manager is
+	 *                             installed, and it denies
+	 *                             {@link RuntimePermission}
+	 *                             <tt>("accessUserDefinedAttributes")</tt> or
+	 *                             its
+	 *                             {@link SecurityManager#checkRead(String)
+	 *                             checkRead} method
+	 *                             denies read access to the file.
 	 */
 	int size(String name) throws IOException;
 
@@ -148,23 +135,29 @@ public interface UserDefinedFileAttributeView extends FileAttributeView {
 	 * </pre>
 	 *
 	 * @param name
-	 *            The attribute name
+	 *             The attribute name
 	 * @param dst
-	 *            The destination buffer
+	 *             The destination buffer
 	 *
 	 * @return The number of bytes read, possibly zero
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the destination buffer is read-only
+	 *                                  If the destination buffer is read-only
 	 * @throws IOException
-	 *             If an I/O error occurs or there is insufficient space in the
-	 *             destination buffer for the attribute value
+	 *                                  If an I/O error occurs or there is
+	 *                                  insufficient space in the
+	 *                                  destination buffer for the attribute
+	 *                                  value
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, and it denies {@link RuntimePermission}
-	 *             <tt>("accessUserDefinedAttributes")</tt> or its
-	 *             {@link SecurityManager#checkRead(String) checkRead} method
-	 *             denies read access to the file.
+	 *                                  In the case of the default provider, a
+	 *                                  security manager is
+	 *                                  installed, and it denies
+	 *                                  {@link RuntimePermission}
+	 *                                  <tt>("accessUserDefinedAttributes")</tt>
+	 *                                  or its
+	 *                                  {@link SecurityManager#checkRead(String)
+	 *                                  checkRead} method
+	 *                                  denies read access to the file.
 	 *
 	 * @see #size
 	 */
@@ -202,24 +195,28 @@ public interface UserDefinedFileAttributeView extends FileAttributeView {
 	 * <pre>
 	 * UserDefinedFileAttributeView view = FIles.getFileAttributeView(path,
 	 * 		UserDefinedFileAttributeView.class);
-	 * view.write("user.mimetype", Charset.defaultCharset().encode("text/html"));
+	 * view.write("user.mimetype", Charset.defaultCharset().encode(
+	 * 		"text/html"));
 	 * </pre>
 	 *
 	 * @param name
-	 *            The attribute name
+	 *             The attribute name
 	 * @param src
-	 *            The buffer containing the attribute value
+	 *             The buffer containing the attribute value
 	 *
 	 * @return The number of bytes written, possibly zero
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                           If an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, and it denies {@link RuntimePermission}
-	 *             <tt>("accessUserDefinedAttributes")</tt> or its
-	 *             {@link SecurityManager#checkWrite(String) checkWrite} method
-	 *             denies write access to the file.
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, and it denies
+	 *                           {@link RuntimePermission}
+	 *                           <tt>("accessUserDefinedAttributes")</tt> or its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method
+	 *                           denies write access to the file.
 	 */
 	int write(String name, ByteBuffer src) throws IOException;
 
@@ -227,16 +224,20 @@ public interface UserDefinedFileAttributeView extends FileAttributeView {
 	 * Deletes a user-defined attribute.
 	 *
 	 * @param name
-	 *            The attribute name
+	 *             The attribute name
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs or the attribute does not exist
+	 *                           If an I/O error occurs or the attribute does
+	 *                           not exist
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, and it denies {@link RuntimePermission}
-	 *             <tt>("accessUserDefinedAttributes")</tt> or its
-	 *             {@link SecurityManager#checkWrite(String) checkWrite} method
-	 *             denies write access to the file.
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, and it denies
+	 *                           {@link RuntimePermission}
+	 *                           <tt>("accessUserDefinedAttributes")</tt> or its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method
+	 *                           denies write access to the file.
 	 */
 	void delete(String name) throws IOException;
 }

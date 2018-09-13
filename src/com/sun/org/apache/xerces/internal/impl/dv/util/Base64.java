@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -83,7 +80,8 @@ public final class Base64 {
 	}
 
 	protected static boolean isWhiteSpace(char octect) {
-		return (octect == 0x20 || octect == 0xd || octect == 0xa || octect == 0x9);
+		return (octect == 0x20 || octect == 0xd || octect == 0xa
+				|| octect == 0x9);
 	}
 
 	protected static boolean isPad(char octect) {
@@ -102,7 +100,7 @@ public final class Base64 {
 	 * Encodes hex octects into Base64
 	 *
 	 * @param binaryData
-	 *            Array containing binaryData
+	 *                   Array containing binaryData
 	 * @return Encoded Base64 array
 	 */
 	public static String encode(byte[] binaryData) {
@@ -117,7 +115,8 @@ public final class Base64 {
 
 		int fewerThan24bits = lengthDataBits % TWENTYFOURBITGROUP;
 		int numberTriplets = lengthDataBits / TWENTYFOURBITGROUP;
-		int numberQuartet = fewerThan24bits != 0 ? numberTriplets + 1 : numberTriplets;
+		int numberQuartet = fewerThan24bits != 0 ? numberTriplets + 1
+				: numberTriplets;
 		char encodedData[] = null;
 
 		encodedData = new char[numberQuartet * 4];
@@ -142,10 +141,13 @@ public final class Base64 {
 			l = (byte) (b2 & 0x0f);
 			k = (byte) (b1 & 0x03);
 
-			byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
+			byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2)
+					: (byte) ((b1) >> 2 ^ 0xc0);
 
-			byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4) : (byte) ((b2) >> 4 ^ 0xf0);
-			byte val3 = ((b3 & SIGN) == 0) ? (byte) (b3 >> 6) : (byte) ((b3) >> 6 ^ 0xfc);
+			byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4)
+					: (byte) ((b2) >> 4 ^ 0xf0);
+			byte val3 = ((b3 & SIGN) == 0) ? (byte) (b3 >> 6)
+					: (byte) ((b3) >> 6 ^ 0xfc);
 
 			if (fDebug) {
 				System.out.println("val2 = " + val2);
@@ -167,7 +169,8 @@ public final class Base64 {
 				System.out.println("b1=" + b1);
 				System.out.println("b1<<2 = " + (b1 >> 2));
 			}
-			byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
+			byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2)
+					: (byte) ((b1) >> 2 ^ 0xc0);
 			encodedData[encodedIndex++] = lookUpBase64Alphabet[val1];
 			encodedData[encodedIndex++] = lookUpBase64Alphabet[k << 4];
 			encodedData[encodedIndex++] = PAD;
@@ -178,8 +181,10 @@ public final class Base64 {
 			l = (byte) (b2 & 0x0f);
 			k = (byte) (b1 & 0x03);
 
-			byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2) : (byte) ((b1) >> 2 ^ 0xc0);
-			byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4) : (byte) ((b2) >> 4 ^ 0xf0);
+			byte val1 = ((b1 & SIGN) == 0) ? (byte) (b1 >> 2)
+					: (byte) ((b1) >> 2 ^ 0xc0);
+			byte val2 = ((b2 & SIGN) == 0) ? (byte) (b2 >> 4)
+					: (byte) ((b2) >> 4 ^ 0xf0);
 
 			encodedData[encodedIndex++] = lookUpBase64Alphabet[val1];
 			encodedData[encodedIndex++] = lookUpBase64Alphabet[val2 | (k << 4)];
@@ -194,7 +199,7 @@ public final class Base64 {
 	 * Decodes Base64 data into octects
 	 *
 	 * @param encoded
-	 *            string containing Base64 data
+	 *                string containing Base64 data
 	 * @return Array containind decoded data.
 	 */
 	public static byte[] decode(String encoded) {
@@ -226,9 +231,10 @@ public final class Base64 {
 
 		for (; i < numberQuadruple - 1; i++) {
 
-			if (!isData((d1 = base64Data[dataIndex++])) || !isData((d2 = base64Data[dataIndex++]))
-					|| !isData((d3 = base64Data[dataIndex++]))
-					|| !isData((d4 = base64Data[dataIndex++])))
+			if (!isData((d1 = base64Data[dataIndex++])) || !isData(
+					(d2 = base64Data[dataIndex++])) || !isData(
+							(d3 = base64Data[dataIndex++])) || !isData(
+									(d4 = base64Data[dataIndex++])))
 				return null;// if found "no data" just return null
 
 			b1 = base64Alphabet[d1];
@@ -237,11 +243,13 @@ public final class Base64 {
 			b4 = base64Alphabet[d4];
 
 			decodedData[encodedIndex++] = (byte) (b1 << 2 | b2 >> 4);
-			decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
+			decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2)
+					& 0xf));
 			decodedData[encodedIndex++] = (byte) (b3 << 6 | b4);
 		}
 
-		if (!isData((d1 = base64Data[dataIndex++])) || !isData((d2 = base64Data[dataIndex++]))) {
+		if (!isData((d1 = base64Data[dataIndex++])) || !isData(
+				(d2 = base64Data[dataIndex++]))) {
 			return null;// if found "no data" just return null
 		}
 
@@ -265,7 +273,8 @@ public final class Base64 {
 				byte[] tmp = new byte[i * 3 + 2];
 				System.arraycopy(decodedData, 0, tmp, 0, i * 3);
 				tmp[encodedIndex++] = (byte) (b1 << 2 | b2 >> 4);
-				tmp[encodedIndex] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
+				tmp[encodedIndex] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2)
+						& 0xf));
 				return tmp;
 			} else {
 				return null;// an error like "3c[Pad]r", "3cdX", "3cXd", "3cXX"
@@ -275,7 +284,8 @@ public final class Base64 {
 			b3 = base64Alphabet[d3];
 			b4 = base64Alphabet[d4];
 			decodedData[encodedIndex++] = (byte) (b1 << 2 | b2 >> 4);
-			decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
+			decodedData[encodedIndex++] = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2)
+					& 0xf));
 			decodedData[encodedIndex++] = (byte) (b3 << 6 | b4);
 
 		}
@@ -287,7 +297,7 @@ public final class Base64 {
 	 * remove WhiteSpace from MIME containing encoded Base64 data.
 	 *
 	 * @param data
-	 *            the byte array of base64 data (with WS)
+	 *             the byte array of base64 data (with WS)
 	 * @return the new length
 	 */
 	protected static int removeWhiteSpace(char[] data) {

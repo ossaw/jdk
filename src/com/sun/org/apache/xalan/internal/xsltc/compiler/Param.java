@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -120,7 +117,8 @@ final class Param extends VariableBase {
 				// It is an error if the two have the same import precedence
 				if (us == them) {
 					final String name = _name.toString();
-					reportError(this, parser, ErrorMsg.VARIABLE_REDEF_ERR, name);
+					reportError(this, parser, ErrorMsg.VARIABLE_REDEF_ERR,
+							name);
 				}
 				// Ignore this if previous definition has higher precedence
 				else if (them > us) {
@@ -153,7 +151,8 @@ final class Param extends VariableBase {
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
 		if (_select != null) {
 			_type = _select.typeCheck(stable);
-			if (_type instanceof ReferenceType == false && !(_type instanceof ObjectType)) {
+			if (_type instanceof ReferenceType == false
+					&& !(_type instanceof ObjectType)) {
 				_select = new CastExpr(_select, Type.Reference);
 			}
 		} else if (hasContents()) {
@@ -204,8 +203,8 @@ final class Param extends VariableBase {
 			il.append(new PUSH(cpg, true));
 
 			// Call addParameter() from this class
-			il.append(new INVOKEVIRTUAL(
-					cpg.addMethodref(TRANSLET_CLASS, ADD_PARAMETER, ADD_PARAMETER_SIG)));
+			il.append(new INVOKEVIRTUAL(cpg.addMethodref(TRANSLET_CLASS,
+					ADD_PARAMETER, ADD_PARAMETER_SIG)));
 			if (className != EMPTYSTRING) {
 				il.append(new CHECKCAST(cpg.addClass(className)));
 			}
@@ -216,14 +215,15 @@ final class Param extends VariableBase {
 				il.append(_type.POP());
 				_local = null;
 			} else { // normal case
-				_local = methodGen.addLocalVariable2(name, _type.toJCType(), il.getEnd());
+				_local = methodGen.addLocalVariable2(name, _type.toJCType(), il
+						.getEnd());
 				// Cache the result of addParameter() in a local variable
 				il.append(_type.STORE(_local.getIndex()));
 			}
 		} else {
 			if (classGen.containsField(name) == null) {
-				classGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(name), cpg.addUtf8(signature),
-						null, cpg.getConstantPool()));
+				classGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(name), cpg
+						.addUtf8(signature), null, cpg.getConstantPool()));
 				il.append(classGen.loadTranslet());
 				il.append(DUP);
 				il.append(new PUSH(cpg, name));
@@ -231,8 +231,8 @@ final class Param extends VariableBase {
 				il.append(new PUSH(cpg, true));
 
 				// Call addParameter() from this class
-				il.append(new INVOKEVIRTUAL(
-						cpg.addMethodref(TRANSLET_CLASS, ADD_PARAMETER, ADD_PARAMETER_SIG)));
+				il.append(new INVOKEVIRTUAL(cpg.addMethodref(TRANSLET_CLASS,
+						ADD_PARAMETER, ADD_PARAMETER_SIG)));
 
 				_type.translateUnBox(classGen, methodGen);
 
@@ -240,7 +240,8 @@ final class Param extends VariableBase {
 				if (className != EMPTYSTRING) {
 					il.append(new CHECKCAST(cpg.addClass(className)));
 				}
-				il.append(new PUTFIELD(cpg.addFieldref(classGen.getClassName(), name, signature)));
+				il.append(new PUTFIELD(cpg.addFieldref(classGen.getClassName(),
+						name, signature)));
 			}
 		}
 	}

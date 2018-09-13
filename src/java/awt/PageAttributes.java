@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -168,18 +148,22 @@ public final class PageAttributes implements Cloneable {
 		private static final int I_MONARCH_ENVELOPE = 73;
 		private static final int I_PERSONAL_ENVELOPE = 74;
 
-		private static final String NAMES[] = { "iso-4a0", "iso-2a0", "iso-a0", "iso-a1", "iso-a2",
-				"iso-a3", "iso-a4", "iso-a5", "iso-a6", "iso-a7", "iso-a8", "iso-a9", "iso-a10",
-				"iso-b0", "iso-b1", "iso-b2", "iso-b3", "iso-b4", "iso-b5", "iso-b6", "iso-b7",
-				"iso-b8", "iso-b9", "iso-b10", "jis-b0", "jis-b1", "jis-b2", "jis-b3", "jis-b4",
-				"jis-b5", "jis-b6", "jis-b7", "jis-b8", "jis-b9", "jis-b10", "iso-c0", "iso-c1",
-				"iso-c2", "iso-c3", "iso-c4", "iso-c5", "iso-c6", "iso-c7", "iso-c8", "iso-c9",
-				"iso-c10", "iso-designated-long", "executive", "folio", "invoice", "ledger",
-				"na-letter", "na-legal", "quarto", "a", "b", "c", "d", "e", "na-10x15-envelope",
-				"na-10x14-envelope", "na-10x13-envelope", "na-9x12-envelope", "na-9x11-envelope",
+		private static final String NAMES[] = { "iso-4a0", "iso-2a0", "iso-a0",
+				"iso-a1", "iso-a2", "iso-a3", "iso-a4", "iso-a5", "iso-a6",
+				"iso-a7", "iso-a8", "iso-a9", "iso-a10", "iso-b0", "iso-b1",
+				"iso-b2", "iso-b3", "iso-b4", "iso-b5", "iso-b6", "iso-b7",
+				"iso-b8", "iso-b9", "iso-b10", "jis-b0", "jis-b1", "jis-b2",
+				"jis-b3", "jis-b4", "jis-b5", "jis-b6", "jis-b7", "jis-b8",
+				"jis-b9", "jis-b10", "iso-c0", "iso-c1", "iso-c2", "iso-c3",
+				"iso-c4", "iso-c5", "iso-c6", "iso-c7", "iso-c8", "iso-c9",
+				"iso-c10", "iso-designated-long", "executive", "folio",
+				"invoice", "ledger", "na-letter", "na-legal", "quarto", "a",
+				"b", "c", "d", "e", "na-10x15-envelope", "na-10x14-envelope",
+				"na-10x13-envelope", "na-9x12-envelope", "na-9x11-envelope",
 				"na-7x9-envelope", "na-6x9-envelope", "na-number-9-envelope",
-				"na-number-10-envelope", "na-number-11-envelope", "na-number-12-envelope",
-				"na-number-14-envelope", "invite-envelope", "italy-envelope", "monarch-envelope",
+				"na-number-10-envelope", "na-number-11-envelope",
+				"na-number-12-envelope", "na-number-14-envelope",
+				"invite-envelope", "italy-envelope", "monarch-envelope",
 				"personal-envelope" };
 
 		/**
@@ -369,7 +353,8 @@ public final class PageAttributes implements Cloneable {
 		/**
 		 * The MediaType instance for ISO Designated Long, 110 x 220 mm.
 		 */
-		public static final MediaType ISO_DESIGNATED_LONG = new MediaType(I_ISO_DESIGNATED_LONG);
+		public static final MediaType ISO_DESIGNATED_LONG = new MediaType(
+				I_ISO_DESIGNATED_LONG);
 		/**
 		 * The MediaType instance for Executive, 7 1/4 x 10 1/2 in.
 		 */
@@ -421,36 +406,44 @@ public final class PageAttributes implements Cloneable {
 		/**
 		 * The MediaType instance for North American 10 x 15 in.
 		 */
-		public static final MediaType NA_10X15_ENVELOPE = new MediaType(I_NA_10X15_ENVELOPE);
+		public static final MediaType NA_10X15_ENVELOPE = new MediaType(
+				I_NA_10X15_ENVELOPE);
 		/**
 		 * The MediaType instance for North American 10 x 14 in.
 		 */
-		public static final MediaType NA_10X14_ENVELOPE = new MediaType(I_NA_10X14_ENVELOPE);
+		public static final MediaType NA_10X14_ENVELOPE = new MediaType(
+				I_NA_10X14_ENVELOPE);
 		/**
 		 * The MediaType instance for North American 10 x 13 in.
 		 */
-		public static final MediaType NA_10X13_ENVELOPE = new MediaType(I_NA_10X13_ENVELOPE);
+		public static final MediaType NA_10X13_ENVELOPE = new MediaType(
+				I_NA_10X13_ENVELOPE);
 		/**
 		 * The MediaType instance for North American 9 x 12 in.
 		 */
-		public static final MediaType NA_9X12_ENVELOPE = new MediaType(I_NA_9X12_ENVELOPE);
+		public static final MediaType NA_9X12_ENVELOPE = new MediaType(
+				I_NA_9X12_ENVELOPE);
 		/**
 		 * The MediaType instance for North American 9 x 11 in.
 		 */
-		public static final MediaType NA_9X11_ENVELOPE = new MediaType(I_NA_9X11_ENVELOPE);
+		public static final MediaType NA_9X11_ENVELOPE = new MediaType(
+				I_NA_9X11_ENVELOPE);
 		/**
 		 * The MediaType instance for North American 7 x 9 in.
 		 */
-		public static final MediaType NA_7X9_ENVELOPE = new MediaType(I_NA_7X9_ENVELOPE);
+		public static final MediaType NA_7X9_ENVELOPE = new MediaType(
+				I_NA_7X9_ENVELOPE);
 		/**
 		 * The MediaType instance for North American 6 x 9 in.
 		 */
-		public static final MediaType NA_6X9_ENVELOPE = new MediaType(I_NA_6X9_ENVELOPE);
+		public static final MediaType NA_6X9_ENVELOPE = new MediaType(
+				I_NA_6X9_ENVELOPE);
 		/**
 		 * The MediaType instance for North American #9 Business Envelope, 3 7/8
 		 * x 8 7/8 in.
 		 */
-		public static final MediaType NA_NUMBER_9_ENVELOPE = new MediaType(I_NA_NUMBER_9_ENVELOPE);
+		public static final MediaType NA_NUMBER_9_ENVELOPE = new MediaType(
+				I_NA_NUMBER_9_ENVELOPE);
 		/**
 		 * The MediaType instance for North American #10 Business Envelope, 4
 		 * 1/8 x 9 1/2 in.
@@ -478,19 +471,23 @@ public final class PageAttributes implements Cloneable {
 		/**
 		 * The MediaType instance for Invitation Envelope, 220 x 220 mm.
 		 */
-		public static final MediaType INVITE_ENVELOPE = new MediaType(I_INVITE_ENVELOPE);
+		public static final MediaType INVITE_ENVELOPE = new MediaType(
+				I_INVITE_ENVELOPE);
 		/**
 		 * The MediaType instance for Italy Envelope, 110 x 230 mm.
 		 */
-		public static final MediaType ITALY_ENVELOPE = new MediaType(I_ITALY_ENVELOPE);
+		public static final MediaType ITALY_ENVELOPE = new MediaType(
+				I_ITALY_ENVELOPE);
 		/**
 		 * The MediaType instance for Monarch Envelope, 3 7/8 x 7 1/2 in.
 		 */
-		public static final MediaType MONARCH_ENVELOPE = new MediaType(I_MONARCH_ENVELOPE);
+		public static final MediaType MONARCH_ENVELOPE = new MediaType(
+				I_MONARCH_ENVELOPE);
 		/**
 		 * The MediaType instance for 6 3/4 envelope, 3 5/8 x 6 1/2 in.
 		 */
-		public static final MediaType PERSONAL_ENVELOPE = new MediaType(I_PERSONAL_ENVELOPE);
+		public static final MediaType PERSONAL_ENVELOPE = new MediaType(
+				I_PERSONAL_ENVELOPE);
 		/**
 		 * An alias for ISO_A0.
 		 */
@@ -857,17 +854,20 @@ public final class PageAttributes implements Cloneable {
 		 * The PrintQualityType instance to use for specifying a high print
 		 * quality.
 		 */
-		public static final PrintQualityType HIGH = new PrintQualityType(I_HIGH);
+		public static final PrintQualityType HIGH = new PrintQualityType(
+				I_HIGH);
 		/**
 		 * The PrintQualityType instance to use for specifying a normal print
 		 * quality.
 		 */
-		public static final PrintQualityType NORMAL = new PrintQualityType(I_NORMAL);
+		public static final PrintQualityType NORMAL = new PrintQualityType(
+				I_NORMAL);
 		/**
 		 * The PrintQualityType instance to use for specifying a draft print
 		 * quality.
 		 */
-		public static final PrintQualityType DRAFT = new PrintQualityType(I_DRAFT);
+		public static final PrintQualityType DRAFT = new PrintQualityType(
+				I_DRAFT);
 
 		private PrintQualityType(int type) {
 			super(type, NAMES);
@@ -910,24 +910,30 @@ public final class PageAttributes implements Cloneable {
 	 * attribute.
 	 *
 	 * @param color
-	 *            ColorType.COLOR or ColorType.MONOCHROME.
+	 *                             ColorType.COLOR or ColorType.MONOCHROME.
 	 * @param media
-	 *            one of the constant fields of the MediaType class.
+	 *                             one of the constant fields of the MediaType
+	 *                             class.
 	 * @param orientationRequested
-	 *            OrientationRequestedType.PORTRAIT or
-	 *            OrientationRequestedType.LANDSCAPE.
+	 *                             OrientationRequestedType.PORTRAIT or
+	 *                             OrientationRequestedType.LANDSCAPE.
 	 * @param origin
-	 *            OriginType.PHYSICAL or OriginType.PRINTABLE
+	 *                             OriginType.PHYSICAL or OriginType.PRINTABLE
 	 * @param printQuality
-	 *            PrintQualityType.DRAFT, PrintQualityType.NORMAL, or
-	 *            PrintQualityType.HIGH
+	 *                             PrintQualityType.DRAFT,
+	 *                             PrintQualityType.NORMAL, or
+	 *                             PrintQualityType.HIGH
 	 * @param printerResolution
-	 *            an integer array of 3 elements. The first element must be
-	 *            greater than 0. The second element must be must be greater
-	 *            than 0. The third element must be either <code>3</code> or
-	 *            <code>4</code>.
+	 *                             an integer array of 3 elements. The first
+	 *                             element must be
+	 *                             greater than 0. The second element must be
+	 *                             must be greater
+	 *                             than 0. The third element must be either
+	 *                             <code>3</code> or
+	 *                             <code>4</code>.
 	 * @throws IllegalArgumentException
-	 *             if one or more of the above conditions is violated.
+	 *                                  if one or more of the above conditions
+	 *                                  is violated.
 	 */
 	public PageAttributes(ColorType color, MediaType media,
 			OrientationRequestedType orientationRequested, OriginType origin,
@@ -988,13 +994,14 @@ public final class PageAttributes implements Cloneable {
 	 * ColorType.MONOCHROME.
 	 *
 	 * @param color
-	 *            ColorType.COLOR or ColorType.MONOCHROME.
+	 *              ColorType.COLOR or ColorType.MONOCHROME.
 	 * @throws IllegalArgumentException
-	 *             if color is null.
+	 *                                  if color is null.
 	 */
 	public void setColor(ColorType color) {
 		if (color == null) {
-			throw new IllegalArgumentException("Invalid value for attribute " + "color");
+			throw new IllegalArgumentException("Invalid value for attribute "
+					+ "color");
 		}
 		this.color = color;
 	}
@@ -1019,13 +1026,14 @@ public final class PageAttributes implements Cloneable {
 	 * default size for all other locales is MediaType.ISO_A4.
 	 *
 	 * @param media
-	 *            one of the constant fields of the MediaType class.
+	 *              one of the constant fields of the MediaType class.
 	 * @throws IllegalArgumentException
-	 *             if media is null.
+	 *                                  if media is null.
 	 */
 	public void setMedia(MediaType media) {
 		if (media == null) {
-			throw new IllegalArgumentException("Invalid value for attribute " + "media");
+			throw new IllegalArgumentException("Invalid value for attribute "
+					+ "media");
 		}
 		this.media = media;
 	}
@@ -1038,8 +1046,9 @@ public final class PageAttributes implements Cloneable {
 	 */
 	public void setMediaToDefault() {
 		String defaultCountry = Locale.getDefault().getCountry();
-		if (defaultCountry != null && (defaultCountry.equals(Locale.US.getCountry())
-				|| defaultCountry.equals(Locale.CANADA.getCountry()))) {
+		if (defaultCountry != null && (defaultCountry.equals(Locale.US
+				.getCountry()) || defaultCountry.equals(Locale.CANADA
+						.getCountry()))) {
 			setMedia(MediaType.NA_LETTER);
 		} else {
 			setMedia(MediaType.ISO_A4);
@@ -1063,15 +1072,16 @@ public final class PageAttributes implements Cloneable {
 	 * OrientationRequestedType.PORTRAIT.
 	 *
 	 * @param orientationRequested
-	 *            OrientationRequestedType.PORTRAIT or
-	 *            OrientationRequestedType.LANDSCAPE.
+	 *                             OrientationRequestedType.PORTRAIT or
+	 *                             OrientationRequestedType.LANDSCAPE.
 	 * @throws IllegalArgumentException
-	 *             if orientationRequested is null.
+	 *                                  if orientationRequested is null.
 	 */
-	public void setOrientationRequested(OrientationRequestedType orientationRequested) {
+	public void setOrientationRequested(
+			OrientationRequestedType orientationRequested) {
 		if (orientationRequested == null) {
-			throw new IllegalArgumentException(
-					"Invalid value for attribute " + "orientationRequested");
+			throw new IllegalArgumentException("Invalid value for attribute "
+					+ "orientationRequested");
 		}
 		this.orientationRequested = orientationRequested;
 	}
@@ -1084,23 +1094,24 @@ public final class PageAttributes implements Cloneable {
 	 * calling setOrientationRequested(OrientationRequestedType.PORTRAIT).
 	 *
 	 * @param orientationRequested
-	 *            <code>3</code> or <code>4</code>
+	 *                             <code>3</code> or <code>4</code>
 	 * @throws IllegalArgumentException
-	 *             if orientationRequested is not <code>3</code> or
-	 *             <code>4</code>
+	 *                                  if orientationRequested is not
+	 *                                  <code>3</code> or
+	 *                                  <code>4</code>
 	 */
 	public void setOrientationRequested(int orientationRequested) {
 		switch (orientationRequested) {
-		case 3:
-			setOrientationRequested(OrientationRequestedType.PORTRAIT);
-			break;
-		case 4:
-			setOrientationRequested(OrientationRequestedType.LANDSCAPE);
-			break;
-		default:
-			// This will throw an IllegalArgumentException
-			setOrientationRequested(null);
-			break;
+			case 3:
+				setOrientationRequested(OrientationRequestedType.PORTRAIT);
+				break;
+			case 4:
+				setOrientationRequested(OrientationRequestedType.LANDSCAPE);
+				break;
+			default:
+				// This will throw an IllegalArgumentException
+				setOrientationRequested(null);
+				break;
 		}
 	}
 
@@ -1133,13 +1144,14 @@ public final class PageAttributes implements Cloneable {
 	 * OriginType.PHYSICAL.
 	 *
 	 * @param origin
-	 *            OriginType.PHYSICAL or OriginType.PRINTABLE
+	 *               OriginType.PHYSICAL or OriginType.PRINTABLE
 	 * @throws IllegalArgumentException
-	 *             if origin is null.
+	 *                                  if origin is null.
 	 */
 	public void setOrigin(OriginType origin) {
 		if (origin == null) {
-			throw new IllegalArgumentException("Invalid value for attribute " + "origin");
+			throw new IllegalArgumentException("Invalid value for attribute "
+					+ "origin");
 		}
 		this.origin = origin;
 	}
@@ -1161,14 +1173,15 @@ public final class PageAttributes implements Cloneable {
 	 * PrintQualityType.NORMAL.
 	 *
 	 * @param printQuality
-	 *            PrintQualityType.DRAFT, PrintQualityType.NORMAL, or
-	 *            PrintQualityType.HIGH
+	 *                     PrintQualityType.DRAFT, PrintQualityType.NORMAL, or
+	 *                     PrintQualityType.HIGH
 	 * @throws IllegalArgumentException
-	 *             if printQuality is null.
+	 *                                  if printQuality is null.
 	 */
 	public void setPrintQuality(PrintQualityType printQuality) {
 		if (printQuality == null) {
-			throw new IllegalArgumentException("Invalid value for attribute " + "printQuality");
+			throw new IllegalArgumentException("Invalid value for attribute "
+					+ "printQuality");
 		}
 		this.printQuality = printQuality;
 	}
@@ -1181,26 +1194,26 @@ public final class PageAttributes implements Cloneable {
 	 * equivalent to calling setPrintQuality(PrintQualityType.NORMAL).
 	 *
 	 * @param printQuality
-	 *            <code>3</code>, <code>4</code>, or <code>5</code>
+	 *                     <code>3</code>, <code>4</code>, or <code>5</code>
 	 * @throws IllegalArgumentException
-	 *             if printQuality is not <code>3
-	 *          </code>, <code>4</code>, or <code>5</code>
+	 *                                  if printQuality is not <code>3
+	 *          </code>              , <code>4</code>, or <code>5</code>
 	 */
 	public void setPrintQuality(int printQuality) {
 		switch (printQuality) {
-		case 3:
-			setPrintQuality(PrintQualityType.DRAFT);
-			break;
-		case 4:
-			setPrintQuality(PrintQualityType.NORMAL);
-			break;
-		case 5:
-			setPrintQuality(PrintQualityType.HIGH);
-			break;
-		default:
-			// This will throw an IllegalArgumentException
-			setPrintQuality(null);
-			break;
+			case 3:
+				setPrintQuality(PrintQualityType.DRAFT);
+				break;
+			case 4:
+				setPrintQuality(PrintQualityType.NORMAL);
+				break;
+			case 5:
+				setPrintQuality(PrintQualityType.HIGH);
+				break;
+			default:
+				// This will throw an IllegalArgumentException
+				setPrintQuality(null);
+				break;
 		}
 	}
 
@@ -1250,19 +1263,23 @@ public final class PageAttributes implements Cloneable {
 	 * property is equivalent to calling setPrinterResolution(72).
 	 *
 	 * @param printerResolution
-	 *            an integer array of 3 elements. The first element must be
-	 *            greater than 0. The second element must be must be greater
-	 *            than 0. The third element must be either <code>3</code> or
-	 *            <code>4</code>.
+	 *                          an integer array of 3 elements. The first
+	 *                          element must be
+	 *                          greater than 0. The second element must be must
+	 *                          be greater
+	 *                          than 0. The third element must be either
+	 *                          <code>3</code> or
+	 *                          <code>4</code>.
 	 * @throws IllegalArgumentException
-	 *             if one or more of the above conditions is violated.
+	 *                                  if one or more of the above conditions
+	 *                                  is violated.
 	 */
 	public void setPrinterResolution(int[] printerResolution) {
-		if (printerResolution == null || printerResolution.length != 3 || printerResolution[0] <= 0
-				|| printerResolution[1] <= 0
+		if (printerResolution == null || printerResolution.length != 3
+				|| printerResolution[0] <= 0 || printerResolution[1] <= 0
 				|| (printerResolution[2] != 3 && printerResolution[2] != 4)) {
-			throw new IllegalArgumentException(
-					"Invalid value for attribute " + "printerResolution");
+			throw new IllegalArgumentException("Invalid value for attribute "
+					+ "printerResolution");
 		}
 		// Store a copy because otherwise client code could circumvent the
 		// the checks made above by holding a reference to the array and
@@ -1282,12 +1299,14 @@ public final class PageAttributes implements Cloneable {
 	 * is equivalent to specifying <code>72</code>.
 	 *
 	 * @param printerResolution
-	 *            an integer greater than 0.
+	 *                          an integer greater than 0.
 	 * @throws IllegalArgumentException
-	 *             if printerResolution is less than or equal to 0.
+	 *                                  if printerResolution is less than or
+	 *                                  equal to 0.
 	 */
 	public void setPrinterResolution(int printerResolution) {
-		setPrinterResolution(new int[] { printerResolution, printerResolution, 3 });
+		setPrinterResolution(new int[] { printerResolution, printerResolution,
+				3 });
 	}
 
 	/**
@@ -1322,8 +1341,8 @@ public final class PageAttributes implements Cloneable {
 		PageAttributes rhs = (PageAttributes) obj;
 
 		return (color == rhs.color && media == rhs.media
-				&& orientationRequested == rhs.orientationRequested && origin == rhs.origin
-				&& printQuality == rhs.printQuality
+				&& orientationRequested == rhs.orientationRequested
+				&& origin == rhs.origin && printQuality == rhs.printQuality
 				&& printerResolution[0] == rhs.printerResolution[0]
 				&& printerResolution[1] == rhs.printerResolution[1]
 				&& printerResolution[2] == rhs.printerResolution[2]);
@@ -1336,9 +1355,10 @@ public final class PageAttributes implements Cloneable {
 	 */
 	public int hashCode() {
 		return (color.hashCode() << 31 ^ media.hashCode() << 24
-				^ orientationRequested.hashCode() << 23 ^ origin.hashCode() << 22
-				^ printQuality.hashCode() << 20 ^ printerResolution[2] >> 2 << 19
-				^ printerResolution[1] << 10 ^ printerResolution[0]);
+				^ orientationRequested.hashCode() << 23 ^ origin
+						.hashCode() << 22 ^ printQuality.hashCode() << 20
+				^ printerResolution[2] >> 2 << 19 ^ printerResolution[1] << 10
+				^ printerResolution[0]);
 	}
 
 	/**
@@ -1348,9 +1368,11 @@ public final class PageAttributes implements Cloneable {
 	 */
 	public String toString() {
 		// int[] printerResolution = getPrinterResolution();
-		return "color=" + getColor() + ",media=" + getMedia() + ",orientation-requested="
-				+ getOrientationRequested() + ",origin=" + getOrigin() + ",print-quality="
-				+ getPrintQuality() + ",printer-resolution=[" + printerResolution[0] + ","
-				+ printerResolution[1] + "," + printerResolution[2] + "]";
+		return "color=" + getColor() + ",media=" + getMedia()
+				+ ",orientation-requested=" + getOrientationRequested()
+				+ ",origin=" + getOrigin() + ",print-quality="
+				+ getPrintQuality() + ",printer-resolution=["
+				+ printerResolution[0] + "," + printerResolution[1] + ","
+				+ printerResolution[2] + "]";
 	}
 }

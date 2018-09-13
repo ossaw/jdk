@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -45,7 +25,8 @@ import java.io.Serializable;
  * @author Hans Muller
  * @since 1.4
  */
-public abstract class AbstractSpinnerModel implements SpinnerModel, Serializable {
+public abstract class AbstractSpinnerModel implements SpinnerModel,
+		Serializable {
 
 	/**
 	 * Only one ChangeEvent is needed per model instance since the event's only
@@ -65,7 +46,7 @@ public abstract class AbstractSpinnerModel implements SpinnerModel, Serializable
 	 * must be notified when the models value changes.
 	 *
 	 * @param l
-	 *            the ChangeListener to add
+	 *          the ChangeListener to add
 	 * @see #removeChangeListener
 	 * @see SpinnerModel#addChangeListener
 	 */
@@ -77,7 +58,7 @@ public abstract class AbstractSpinnerModel implements SpinnerModel, Serializable
 	 * Removes a ChangeListener from the model's listener list.
 	 *
 	 * @param l
-	 *            the ChangeListener to remove
+	 *          the ChangeListener to remove
 	 * @see #addChangeListener
 	 * @see SpinnerModel#removeChangeListener
 	 */
@@ -125,7 +106,8 @@ public abstract class AbstractSpinnerModel implements SpinnerModel, Serializable
 	 * </pre>
 	 *
 	 * @param listenerType
-	 *            the type of listeners to return, e.g. ChangeListener.class
+	 *                     the type of listeners to return, e.g.
+	 *                     ChangeListener.class
 	 * @return all of the objects receiving <em>listenerType</em> notifications
 	 *         from this model
 	 */

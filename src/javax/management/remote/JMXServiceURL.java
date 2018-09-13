@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -144,18 +124,23 @@ public class JMXServiceURL implements Serializable {
 	 * </p>
 	 *
 	 * @param serviceURL
-	 *            the URL string to be parsed.
+	 *                   the URL string to be parsed.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>serviceURL</code> is null.
+	 *                                  if <code>serviceURL</code> is null.
 	 *
 	 * @exception MalformedURLException
-	 *                if <code>serviceURL</code> does not conform to the syntax
-	 *                for an Abstract Service URL or if it is not a valid name
-	 *                for a JMX Remote API service. A <code>JMXServiceURL</code>
-	 *                must begin with the string <code>"service:jmx:"</code>
-	 *                (case-insensitive). It must not contain any characters
-	 *                that are not printable ASCII characters.
+	 *                                  if <code>serviceURL</code> does not
+	 *                                  conform to the syntax
+	 *                                  for an Abstract Service URL or if it is
+	 *                                  not a valid name
+	 *                                  for a JMX Remote API service. A
+	 *                                  <code>JMXServiceURL</code>
+	 *                                  must begin with the string
+	 *                                  <code>"service:jmx:"</code>
+	 *                                  (case-insensitive). It must not contain
+	 *                                  any characters
+	 *                                  that are not printable ASCII characters.
 	 */
 	public JMXServiceURL(String serviceURL) throws MalformedURLException {
 		final int serviceURLLength = serviceURL.length();
@@ -167,8 +152,8 @@ public class JMXServiceURL implements Serializable {
 		for (int i = 0; i < serviceURLLength; i++) {
 			char c = serviceURL.charAt(i);
 			if (c < 32 || c >= 127) {
-				throw new MalformedURLException("Service URL contains " + "non-ASCII character 0x"
-						+ Integer.toHexString(c));
+				throw new MalformedURLException("Service URL contains "
+						+ "non-ASCII character 0x" + Integer.toHexString(c));
 			}
 		}
 
@@ -179,32 +164,37 @@ public class JMXServiceURL implements Serializable {
 				0, // serviceURL offset
 				requiredPrefix, 0, // requiredPrefix offset
 				requiredPrefixLength)) {
-			throw new MalformedURLException("Service URL must start with " + requiredPrefix);
+			throw new MalformedURLException("Service URL must start with "
+					+ requiredPrefix);
 		}
 
 		// Parse the protocol name
 		final int protoStart = requiredPrefixLength;
 		final int protoEnd = indexOf(serviceURL, ':', protoStart);
-		this.protocol = serviceURL.substring(protoStart, protoEnd).toLowerCase();
+		this.protocol = serviceURL.substring(protoStart, protoEnd)
+				.toLowerCase();
 
 		if (!serviceURL.regionMatches(protoEnd, "://", 0, 3)) {
-			throw new MalformedURLException("Missing \"://\" after " + "protocol name");
+			throw new MalformedURLException("Missing \"://\" after "
+					+ "protocol name");
 		}
 
 		// Parse the host name
 		final int hostStart = protoEnd + 3;
 		final int hostEnd;
-		if (hostStart < serviceURLLength && serviceURL.charAt(hostStart) == '[') {
+		if (hostStart < serviceURLLength && serviceURL.charAt(
+				hostStart) == '[') {
 			hostEnd = serviceURL.indexOf(']', hostStart) + 1;
 			if (hostEnd == 0)
 				throw new MalformedURLException("Bad host name: [ without ]");
 			this.host = serviceURL.substring(hostStart + 1, hostEnd - 1);
 			if (!isNumericIPv6Address(this.host)) {
-				throw new MalformedURLException(
-						"Address inside [...] must " + "be numeric IPv6 address");
+				throw new MalformedURLException("Address inside [...] must "
+						+ "be numeric IPv6 address");
 			}
 		} else {
-			hostEnd = indexOfFirstNotInSet(serviceURL, hostNameBitSet, hostStart);
+			hostEnd = indexOfFirstNotInSet(serviceURL, hostNameBitSet,
+					hostStart);
 			this.host = serviceURL.substring(hostStart, hostEnd);
 		}
 
@@ -212,15 +202,18 @@ public class JMXServiceURL implements Serializable {
 		final int portEnd;
 		if (hostEnd < serviceURLLength && serviceURL.charAt(hostEnd) == ':') {
 			if (this.host.length() == 0) {
-				throw new MalformedURLException("Cannot give port number " + "without host name");
+				throw new MalformedURLException("Cannot give port number "
+						+ "without host name");
 			}
 			final int portStart = hostEnd + 1;
-			portEnd = indexOfFirstNotInSet(serviceURL, numericBitSet, portStart);
+			portEnd = indexOfFirstNotInSet(serviceURL, numericBitSet,
+					portStart);
 			final String portString = serviceURL.substring(portStart, portEnd);
 			try {
 				this.port = Integer.parseInt(portString);
 			} catch (NumberFormatException e) {
-				throw new MalformedURLException("Bad port number: \"" + portString + "\": " + e);
+				throw new MalformedURLException("Bad port number: \""
+						+ portString + "\": " + e);
 			}
 		} else {
 			portEnd = hostEnd;
@@ -246,25 +239,32 @@ public class JMXServiceURL implements Serializable {
 	 * </p>
 	 *
 	 * @param protocol
-	 *            the protocol part of the URL. If null, defaults to
-	 *            <code>jmxmp</code>.
+	 *                 the protocol part of the URL. If null, defaults to
+	 *                 <code>jmxmp</code>.
 	 *
 	 * @param host
-	 *            the host part of the URL. If null, defaults to the local host
-	 *            name, as determined by
-	 *            <code>InetAddress.getLocalHost().getHostName()</code>. If it
-	 *            is a numeric IPv6 address, it can optionally be enclosed in
-	 *            square brackets <code>[]</code>.
+	 *                 the host part of the URL. If null, defaults to the local
+	 *                 host
+	 *                 name, as determined by
+	 *                 <code>InetAddress.getLocalHost().getHostName()</code>. If
+	 *                 it
+	 *                 is a numeric IPv6 address, it can optionally be enclosed
+	 *                 in
+	 *                 square brackets <code>[]</code>.
 	 *
 	 * @param port
-	 *            the port part of the URL.
+	 *                 the port part of the URL.
 	 *
 	 * @exception MalformedURLException
-	 *                if one of the parts is syntactically incorrect, or if
-	 *                <code>host</code> is null and it is not possible to find
-	 *                the local host name, or if <code>port</code> is negative.
+	 *                                  if one of the parts is syntactically
+	 *                                  incorrect, or if
+	 *                                  <code>host</code> is null and it is not
+	 *                                  possible to find
+	 *                                  the local host name, or if
+	 *                                  <code>port</code> is negative.
 	 */
-	public JMXServiceURL(String protocol, String host, int port) throws MalformedURLException {
+	public JMXServiceURL(String protocol, String host, int port)
+			throws MalformedURLException {
 		this(protocol, host, port, null);
 	}
 
@@ -273,27 +273,34 @@ public class JMXServiceURL implements Serializable {
 	 * Constructs a <code>JMXServiceURL</code> with the given parts.
 	 *
 	 * @param protocol
-	 *            the protocol part of the URL. If null, defaults to
-	 *            <code>jmxmp</code>.
+	 *                 the protocol part of the URL. If null, defaults to
+	 *                 <code>jmxmp</code>.
 	 *
 	 * @param host
-	 *            the host part of the URL. If null, defaults to the local host
-	 *            name, as determined by
-	 *            <code>InetAddress.getLocalHost().getHostName()</code>. If it
-	 *            is a numeric IPv6 address, it can optionally be enclosed in
-	 *            square brackets <code>[]</code>.
+	 *                 the host part of the URL. If null, defaults to the local
+	 *                 host
+	 *                 name, as determined by
+	 *                 <code>InetAddress.getLocalHost().getHostName()</code>. If
+	 *                 it
+	 *                 is a numeric IPv6 address, it can optionally be enclosed
+	 *                 in
+	 *                 square brackets <code>[]</code>.
 	 *
 	 * @param port
-	 *            the port part of the URL.
+	 *                 the port part of the URL.
 	 *
 	 * @param urlPath
-	 *            the URL path part of the URL. If null, defaults to the empty
-	 *            string.
+	 *                 the URL path part of the URL. If null, defaults to the
+	 *                 empty
+	 *                 string.
 	 *
 	 * @exception MalformedURLException
-	 *                if one of the parts is syntactically incorrect, or if
-	 *                <code>host</code> is null and it is not possible to find
-	 *                the local host name, or if <code>port</code> is negative.
+	 *                                  if one of the parts is syntactically
+	 *                                  incorrect, or if
+	 *                                  <code>host</code> is null and it is not
+	 *                                  possible to find
+	 *                                  the local host name, or if
+	 *                                  <code>port</code> is negative.
 	 */
 	public JMXServiceURL(String protocol, String host, int port, String urlPath)
 			throws MalformedURLException {
@@ -305,7 +312,8 @@ public class JMXServiceURL implements Serializable {
 			try {
 				local = InetAddress.getLocalHost();
 			} catch (UnknownHostException e) {
-				throw new MalformedURLException("Local host name unknown: " + e);
+				throw new MalformedURLException("Local host name unknown: "
+						+ e);
 			}
 
 			host = local.getHostName();
@@ -322,8 +330,10 @@ public class JMXServiceURL implements Serializable {
 				validateHost(host, port);
 			} catch (MalformedURLException e) {
 				if (logger.fineOn()) {
-					logger.fine("JMXServiceURL", "Replacing illegal local host name " + host
-							+ " with numeric IP address " + "(see RFC 1034)", e);
+					logger.fine("JMXServiceURL",
+							"Replacing illegal local host name " + host
+									+ " with numeric IP address "
+									+ "(see RFC 1034)", e);
 				}
 				host = local.getHostAddress();
 				/*
@@ -335,12 +345,13 @@ public class JMXServiceURL implements Serializable {
 
 		if (host.startsWith("[")) {
 			if (!host.endsWith("]")) {
-				throw new MalformedURLException("Host starts with [ but " + "does not end with ]");
+				throw new MalformedURLException("Host starts with [ but "
+						+ "does not end with ]");
 			}
 			host = host.substring(1, host.length() - 1);
 			if (!isNumericIPv6Address(host)) {
-				throw new MalformedURLException(
-						"Address inside [...] must " + "be numeric IPv6 address");
+				throw new MalformedURLException("Address inside [...] must "
+						+ "be numeric IPv6 address");
 			}
 			if (host.startsWith("["))
 				throw new MalformedURLException("More than one [[...]]");
@@ -359,8 +370,8 @@ public class JMXServiceURL implements Serializable {
 
 	private static final String INVALID_INSTANCE_MSG = "Trying to deserialize an invalid instance of JMXServiceURL";
 
-	private void readObject(ObjectInputStream inputStream)
-			throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream inputStream) throws IOException,
+			ClassNotFoundException {
 		ObjectInputStream.GetField gf = inputStream.readFields();
 		String h = (String) gf.get("host", null);
 		int p = (int) gf.get("port", -1);
@@ -368,7 +379,8 @@ public class JMXServiceURL implements Serializable {
 		String url = (String) gf.get("urlPath", null);
 
 		if (proto == null || url == null || h == null) {
-			StringBuilder sb = new StringBuilder(INVALID_INSTANCE_MSG).append('[');
+			StringBuilder sb = new StringBuilder(INVALID_INSTANCE_MSG).append(
+					'[');
 			boolean empty = true;
 			if (proto == null) {
 				sb.append("protocol=null");
@@ -396,17 +408,20 @@ public class JMXServiceURL implements Serializable {
 			this.port = p;
 			this.urlPath = url;
 		} catch (MalformedURLException e) {
-			throw new InvalidObjectException(INVALID_INSTANCE_MSG + ": " + e.getMessage());
+			throw new InvalidObjectException(INVALID_INSTANCE_MSG + ": " + e
+					.getMessage());
 		}
 
 	}
 
-	private void validate(String proto, String h, int p, String url) throws MalformedURLException {
+	private void validate(String proto, String h, int p, String url)
+			throws MalformedURLException {
 		// Check protocol
 		final int protoEnd = indexOfFirstNotInSet(proto, protocolBitSet, 0);
-		if (protoEnd == 0 || protoEnd < proto.length() || !alphaBitSet.get(proto.charAt(0))) {
-			throw new MalformedURLException(
-					"Missing or invalid protocol " + "name: \"" + proto + "\"");
+		if (protoEnd == 0 || protoEnd < proto.length() || !alphaBitSet.get(proto
+				.charAt(0))) {
+			throw new MalformedURLException("Missing or invalid protocol "
+					+ "name: \"" + proto + "\"");
 		}
 
 		// Check host
@@ -427,11 +442,13 @@ public class JMXServiceURL implements Serializable {
 		validate(this.protocol, this.host, this.port, this.urlPath);
 	}
 
-	private static void validateHost(String h, int port) throws MalformedURLException {
+	private static void validateHost(String h, int port)
+			throws MalformedURLException {
 
 		if (h.length() == 0) {
 			if (port != 0) {
-				throw new MalformedURLException("Cannot give port number " + "without host name");
+				throw new MalformedURLException("Cannot give port number "
+						+ "without host name");
 			}
 			return;
 		}
@@ -451,7 +468,8 @@ public class JMXServiceURL implements Serializable {
 				 * in JDK 1.4 causes it to throw ArrayIndexOutOfBoundsException,
 				 * e.g. if the string is ":".
 				 */
-				MalformedURLException bad = new MalformedURLException("Bad IPv6 address: " + h);
+				MalformedURLException bad = new MalformedURLException(
+						"Bad IPv6 address: " + h);
 				EnvHelp.initCause(bad, e);
 				throw bad;
 			}
@@ -463,11 +481,9 @@ public class JMXServiceURL implements Serializable {
 			 * consists of letters, numbers, or hyphens. A label cannot begin or
 			 * end with a hyphen. Empty hostnames are not allowed. Note that
 			 * numeric IPv4 addresses are a special case of this grammar.
-			 * 
 			 * The state is entirely captured by the last character seen, with a
 			 * virtual `.' preceding the name. We represent any alphanumeric
 			 * character by `a'.
-			 * 
 			 * We need a special hack to check, as required by the RFC 2609
 			 * (SLP) grammar, that the last component of the hostname begins
 			 * with a letter. Respecting the intent of the RFC, we only do this
@@ -652,9 +668,9 @@ public class JMXServiceURL implements Serializable {
 		if (!(obj instanceof JMXServiceURL))
 			return false;
 		JMXServiceURL u = (JMXServiceURL) obj;
-		return (u.getProtocol().equalsIgnoreCase(getProtocol())
-				&& u.getHost().equalsIgnoreCase(getHost()) && u.getPort() == getPort()
-				&& u.getURLPath().equals(getURLPath()));
+		return (u.getProtocol().equalsIgnoreCase(getProtocol()) && u.getHost()
+				.equalsIgnoreCase(getHost()) && u.getPort() == getPort() && u
+						.getURLPath().equals(getURLPath()));
 	}
 
 	public int hashCode() {
@@ -679,7 +695,8 @@ public class JMXServiceURL implements Serializable {
 			return index;
 	}
 
-	private static int indexOfFirstNotInSet(String s, BitSet set, int fromIndex) {
+	private static int indexOfFirstNotInSet(String s, BitSet set,
+			int fromIndex) {
 		final int slen = s.length();
 		int i = fromIndex;
 		while (true) {
@@ -752,6 +769,6 @@ public class JMXServiceURL implements Serializable {
 	 */
 	private transient String toString;
 
-	private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
-			"JMXServiceURL");
+	private static final ClassLogger logger = new ClassLogger(
+			"javax.management.remote.misc", "JMXServiceURL");
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.timer;
@@ -44,7 +24,7 @@ class TimerAlarmClockNotification extends javax.management.Notification {
 	 * Constructor.
 	 *
 	 * @param source
-	 *            the source.
+	 *               the source.
 	 */
 	public TimerAlarmClockNotification(TimerAlarmClock source) {
 		super("", source, 0);

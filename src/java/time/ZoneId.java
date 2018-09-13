@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2007-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -266,9 +235,10 @@ public abstract class ZoneId implements Serializable {
 	 *
 	 * @return the zone ID, not null
 	 * @throws DateTimeException
-	 *             if the converted zone ID has an invalid format
+	 *                            if the converted zone ID has an invalid format
 	 * @throws ZoneRulesException
-	 *             if the converted zone region ID cannot be found
+	 *                            if the converted zone region ID cannot be
+	 *                            found
 	 */
 	public static ZoneId systemDefault() {
 		return TimeZone.getDefault().toZoneId();
@@ -303,15 +273,17 @@ public abstract class ZoneId implements Serializable {
 	 * application.
 	 *
 	 * @param zoneId
-	 *            the time-zone ID, not null
+	 *                 the time-zone ID, not null
 	 * @param aliasMap
-	 *            a map of alias zone IDs (typically abbreviations) to real zone
-	 *            IDs, not null
+	 *                 a map of alias zone IDs (typically abbreviations) to real
+	 *                 zone
+	 *                 IDs, not null
 	 * @return the zone ID, not null
 	 * @throws DateTimeException
-	 *             if the zone ID has an invalid format
+	 *                            if the zone ID has an invalid format
 	 * @throws ZoneRulesException
-	 *             if the zone ID is a region ID that cannot be found
+	 *                            if the zone ID is a region ID that cannot be
+	 *                            found
 	 */
 	public static ZoneId of(String zoneId, Map<String, String> aliasMap) {
 		Objects.requireNonNull(zoneId, "zoneId");
@@ -360,12 +332,13 @@ public abstract class ZoneId implements Serializable {
 	 * </ul>
 	 *
 	 * @param zoneId
-	 *            the time-zone ID, not null
+	 *               the time-zone ID, not null
 	 * @return the zone ID, not null
 	 * @throws DateTimeException
-	 *             if the zone ID has an invalid format
+	 *                            if the zone ID has an invalid format
 	 * @throws ZoneRulesException
-	 *             if the zone ID is a region ID that cannot be found
+	 *                            if the zone ID is a region ID that cannot be
+	 *                            found
 	 */
 	public static ZoneId of(String zoneId) {
 		return of(zoneId, true);
@@ -379,12 +352,13 @@ public abstract class ZoneId implements Serializable {
 	 * the {@code ZoneOffset} is returned.
 	 *
 	 * @param prefix
-	 *            the time-zone ID, not null
+	 *               the time-zone ID, not null
 	 * @param offset
-	 *            the offset, not null
+	 *               the offset, not null
 	 * @return the zone ID, not null
 	 * @throws IllegalArgumentException
-	 *             if the prefix is not one of "GMT", "UTC", or "UT", or ""
+	 *                                  if the prefix is not one of "GMT",
+	 *                                  "UTC", or "UT", or ""
 	 */
 	public static ZoneId ofOffset(String prefix, ZoneOffset offset) {
 		Objects.requireNonNull(prefix, "prefix");
@@ -393,8 +367,10 @@ public abstract class ZoneId implements Serializable {
 			return offset;
 		}
 
-		if (!prefix.equals("GMT") && !prefix.equals("UTC") && !prefix.equals("UT")) {
-			throw new IllegalArgumentException("prefix should be GMT, UTC or UT, is: " + prefix);
+		if (!prefix.equals("GMT") && !prefix.equals("UTC") && !prefix.equals(
+				"UT")) {
+			throw new IllegalArgumentException(
+					"prefix should be GMT, UTC or UT, is: " + prefix);
 		}
 
 		if (offset.getTotalSeconds() != 0) {
@@ -409,18 +385,20 @@ public abstract class ZoneId implements Serializable {
 	 * deserialization.
 	 *
 	 * @param zoneId
-	 *            the time-zone ID, not null
+	 *                       the time-zone ID, not null
 	 * @param checkAvailable
-	 *            whether to check if the zone ID is available
+	 *                       whether to check if the zone ID is available
 	 * @return the zone ID, not null
 	 * @throws DateTimeException
-	 *             if the ID format is invalid
+	 *                            if the ID format is invalid
 	 * @throws ZoneRulesException
-	 *             if checking availability and the ID cannot be found
+	 *                            if checking availability and the ID cannot be
+	 *                            found
 	 */
 	static ZoneId of(String zoneId, boolean checkAvailable) {
 		Objects.requireNonNull(zoneId, "zoneId");
-		if (zoneId.length() <= 1 || zoneId.startsWith("+") || zoneId.startsWith("-")) {
+		if (zoneId.length() <= 1 || zoneId.startsWith("+") || zoneId.startsWith(
+				"-")) {
 			return ZoneOffset.of(zoneId);
 		} else if (zoneId.startsWith("UTC") || zoneId.startsWith("GMT")) {
 			return ofWithPrefix(zoneId, 3, checkAvailable);
@@ -434,19 +412,21 @@ public abstract class ZoneId implements Serializable {
 	 * Parse once a prefix is established.
 	 *
 	 * @param zoneId
-	 *            the time-zone ID, not null
+	 *                     the time-zone ID, not null
 	 * @param prefixLength
-	 *            the length of the prefix, 2 or 3
+	 *                     the length of the prefix, 2 or 3
 	 * @return the zone ID, not null
 	 * @throws DateTimeException
-	 *             if the zone ID has an invalid format
+	 *                           if the zone ID has an invalid format
 	 */
-	private static ZoneId ofWithPrefix(String zoneId, int prefixLength, boolean checkAvailable) {
+	private static ZoneId ofWithPrefix(String zoneId, int prefixLength,
+			boolean checkAvailable) {
 		String prefix = zoneId.substring(0, prefixLength);
 		if (zoneId.length() == prefixLength) {
 			return ofOffset(prefix, ZoneOffset.UTC);
 		}
-		if (zoneId.charAt(prefixLength) != '+' && zoneId.charAt(prefixLength) != '-') {
+		if (zoneId.charAt(prefixLength) != '+' && zoneId.charAt(
+				prefixLength) != '-') {
 			return ZoneRegion.ofId(zoneId, checkAvailable); // drop through to
 															// ZoneRulesProvider
 		}
@@ -457,7 +437,8 @@ public abstract class ZoneId implements Serializable {
 			}
 			return ofOffset(prefix, offset);
 		} catch (DateTimeException ex) {
-			throw new DateTimeException("Invalid ID for offset-based ZoneId: " + zoneId, ex);
+			throw new DateTimeException("Invalid ID for offset-based ZoneId: "
+					+ zoneId, ex);
 		}
 	}
 
@@ -483,16 +464,17 @@ public abstract class ZoneId implements Serializable {
 	 * reference, {@code ZoneId::from}.
 	 *
 	 * @param temporal
-	 *            the temporal object to convert, not null
+	 *                 the temporal object to convert, not null
 	 * @return the zone ID, not null
 	 * @throws DateTimeException
-	 *             if unable to convert to a {@code ZoneId}
+	 *                           if unable to convert to a {@code ZoneId}
 	 */
 	public static ZoneId from(TemporalAccessor temporal) {
 		ZoneId obj = temporal.query(TemporalQueries.zone());
 		if (obj == null) {
-			throw new DateTimeException("Unable to obtain ZoneId from TemporalAccessor: " + temporal
-					+ " of type " + temporal.getClass().getName());
+			throw new DateTimeException(
+					"Unable to obtain ZoneId from TemporalAccessor: " + temporal
+							+ " of type " + temporal.getClass().getName());
 		}
 		return obj;
 	}
@@ -531,14 +513,14 @@ public abstract class ZoneId implements Serializable {
 	 * returned.
 	 *
 	 * @param style
-	 *            the length of the text required, not null
+	 *               the length of the text required, not null
 	 * @param locale
-	 *            the locale to use, not null
+	 *               the locale to use, not null
 	 * @return the text value of the zone, not null
 	 */
 	public String getDisplayName(TextStyle style, Locale locale) {
-		return new DateTimeFormatterBuilder().appendZoneText(style).toFormatter(locale)
-				.format(toTemporal());
+		return new DateTimeFormatterBuilder().appendZoneText(style).toFormatter(
+				locale).format(toTemporal());
 	}
 
 	/**
@@ -562,7 +544,8 @@ public abstract class ZoneId implements Serializable {
 
 			@Override
 			public long getLong(TemporalField field) {
-				throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+				throw new UnsupportedTemporalTypeException("Unsupported field: "
+						+ field);
 			}
 
 			@SuppressWarnings("unchecked")
@@ -599,7 +582,7 @@ public abstract class ZoneId implements Serializable {
 	 *
 	 * @return the rules, not null
 	 * @throws ZoneRulesException
-	 *             if no rules are available for this ID
+	 *                            if no rules are available for this ID
 	 */
 	public abstract ZoneRules getRules();
 
@@ -667,12 +650,13 @@ public abstract class ZoneId implements Serializable {
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	/**

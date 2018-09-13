@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -55,8 +35,10 @@ public class WindowsToolBarSeparatorUI extends BasicToolBarSeparatorUI {
 			size = new Dimension(6, 6);
 			XPStyle xp = XPStyle.getXP();
 			if (xp != null) {
-				boolean vertical = ((JSeparator) c).getOrientation() == SwingConstants.VERTICAL;
-				Part part = vertical ? Part.TP_SEPARATOR : Part.TP_SEPARATORVERT;
+				boolean vertical = ((JSeparator) c)
+						.getOrientation() == SwingConstants.VERTICAL;
+				Part part = vertical ? Part.TP_SEPARATOR
+						: Part.TP_SEPARATORVERT;
 				Skin skin = xp.getSkin(c, part);
 				size.width = skin.getWidth();
 				size.height = skin.getHeight();
@@ -81,7 +63,8 @@ public class WindowsToolBarSeparatorUI extends BasicToolBarSeparatorUI {
 	}
 
 	public void paint(Graphics g, JComponent c) {
-		boolean vertical = ((JSeparator) c).getOrientation() == SwingConstants.VERTICAL;
+		boolean vertical = ((JSeparator) c)
+				.getOrientation() == SwingConstants.VERTICAL;
 		Dimension size = c.getSize();
 
 		XPStyle xp = XPStyle.getXP();

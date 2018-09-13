@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.util;
@@ -43,9 +23,10 @@ public abstract class DocTrees extends Trees {
 	 * Gets a DocTrees object for a given CompilationTask.
 	 * 
 	 * @param task
-	 *            the compilation task for which to get the Trees object
+	 *             the compilation task for which to get the Trees object
 	 * @throws IllegalArgumentException
-	 *             if the task does not support the Trees API.
+	 *                                  if the task does not support the Trees
+	 *                                  API.
 	 */
 	public static DocTrees instance(CompilationTask task) {
 		return (DocTrees) Trees.instance(task);
@@ -57,11 +38,12 @@ public abstract class DocTrees extends Trees {
 	 * @param env
 	 *            the processing environment for which to get the Trees object
 	 * @throws IllegalArgumentException
-	 *             if the env does not support the Trees API.
+	 *                                  if the env does not support the Trees
+	 *                                  API.
 	 */
 	public static DocTrees instance(ProcessingEnvironment env) {
-		if (!env.getClass().getName()
-				.equals("com.sun.tools.javac.processing.JavacProcessingEnvironment"))
+		if (!env.getClass().getName().equals(
+				"com.sun.tools.javac.processing.JavacProcessingEnvironment"))
 			throw new IllegalArgumentException();
 		return (DocTrees) getJavacTrees(ProcessingEnvironment.class, env);
 	}
@@ -85,15 +67,16 @@ public abstract class DocTrees extends Trees {
 	 * the provided compilation unit
 	 *
 	 * @param kind
-	 *            the kind of message
+	 *             the kind of message
 	 * @param msg
-	 *            the message, or an empty string if none
+	 *             the message, or an empty string if none
 	 * @param t
-	 *            the tree to use as a position hint
+	 *             the tree to use as a position hint
 	 * @param root
-	 *            the compilation unit that contains tree
+	 *             the compilation unit that contains tree
 	 */
 	public abstract void printMessage(Diagnostic.Kind kind, CharSequence msg,
-			com.sun.source.doctree.DocTree t, com.sun.source.doctree.DocCommentTree c,
+			com.sun.source.doctree.DocTree t,
+			com.sun.source.doctree.DocCommentTree c,
 			com.sun.source.tree.CompilationUnitTree root);
 }

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -158,7 +155,7 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
 	 * type.
 	 * 
 	 * @param facetName
-	 *            The name of the facet.
+	 *                  The name of the facet.
 	 * @return True if the facet is defined, false otherwise.
 	 */
 	public boolean isDefinedFacet(short facetName);
@@ -173,7 +170,7 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
 	 * on this type.
 	 * 
 	 * @param facetName
-	 *            The name of the facet.
+	 *                  The name of the facet.
 	 * @return True if the facet is fixed, false otherwise.
 	 */
 	public boolean isFixedFacet(short facetName);
@@ -184,10 +181,11 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
 	 * values for <code>enumeration</code> and <code>pattern</code> facets.
 	 * 
 	 * @param facetName
-	 *            The name of the facet, i.e.
-	 *            <code>FACET_LENGTH, FACET_TOTALDIGITS</code>. To retrieve the
-	 *            value for a pattern or an enumeration, see
-	 *            <code>enumeration</code> and <code>pattern</code>.
+	 *                  The name of the facet, i.e.
+	 *                  <code>FACET_LENGTH, FACET_TOTALDIGITS</code>. To
+	 *                  retrieve the
+	 *                  value for a pattern or an enumeration, see
+	 *                  <code>enumeration</code> and <code>pattern</code>.
 	 * @return A value of the facet specified in <code>facetName</code> for this
 	 *         simple type definition or <code>null</code>.
 	 */

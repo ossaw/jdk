@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,13 +40,13 @@ public class FunctionDef1Arg extends FunctionOneArg {
 	 * nodeset. If the argument is null, then return the current context node.
 	 *
 	 * @param xctxt
-	 *            Runtime XPath context.
+	 *              Runtime XPath context.
 	 *
 	 * @return The first node of the executed nodeset, or the current context
 	 *         node if the first argument is null.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             if an error occurs while executing the argument expression.
+	 *         if an error occurs while executing the argument expression.
 	 */
 	protected int getArg0AsNode(XPathContext xctxt)
 			throws javax.xml.transform.TransformerException {
@@ -72,13 +69,13 @@ public class FunctionDef1Arg extends FunctionOneArg {
 	 * current context node.
 	 *
 	 * @param xctxt
-	 *            Runtime XPath context.
+	 *              Runtime XPath context.
 	 *
 	 * @return The string value of the first argument, or the string value of
 	 *         the current context node if the first argument is null.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             if an error occurs while executing the argument expression.
+	 *         if an error occurs while executing the argument expression.
 	 */
 	protected XMLString getArg0AsString(XPathContext xctxt)
 			throws javax.xml.transform.TransformerException {
@@ -101,13 +98,13 @@ public class FunctionDef1Arg extends FunctionOneArg {
 	 * current context node.
 	 *
 	 * @param xctxt
-	 *            Runtime XPath context.
+	 *              Runtime XPath context.
 	 *
 	 * @return The number value of the first argument, or the number value of
 	 *         the current context node if the first argument is null.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             if an error occurs while executing the argument expression.
+	 *         if an error occurs while executing the argument expression.
 	 */
 	protected double getArg0AsNumber(XPathContext xctxt)
 			throws javax.xml.transform.TransformerException {
@@ -130,10 +127,12 @@ public class FunctionDef1Arg extends FunctionOneArg {
 	 * Check that the number of arguments passed to this function is correct.
 	 *
 	 * @param argNum
-	 *            The number of arguments that is being passed to the function.
+	 *               The number of arguments that is being passed to the
+	 *               function.
 	 *
 	 * @throws WrongNumberArgsException
-	 *             if the number of arguments is not 0 or 1.
+	 *                                  if the number of arguments is not 0 or
+	 *                                  1.
 	 */
 	public void checkNumberArgs(int argNum) throws WrongNumberArgsException {
 		if (argNum > 1)
@@ -147,10 +146,10 @@ public class FunctionDef1Arg extends FunctionOneArg {
 	 * @throws WrongNumberArgsException
 	 */
 	protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-		throw new WrongNumberArgsException(
-				XSLMessages.createXPATHMessage(XPATHErrorResources.ER_ZERO_OR_ONE, null)); // "0
-																							// or
-																							// 1");
+		throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(
+				XPATHErrorResources.ER_ZERO_OR_ONE, null)); // "0
+																																// or
+																																// 1");
 	}
 
 	/**

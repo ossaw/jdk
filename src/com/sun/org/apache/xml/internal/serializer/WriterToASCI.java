@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +43,7 @@ class WriterToASCI extends Writer implements WriterChain {
 	 *
 	 *
 	 * @param os
-	 *            The byte stream to write to.
+	 *           The byte stream to write to.
 	 */
 	public WriterToASCI(OutputStream os) {
 		m_os = os;
@@ -56,18 +53,19 @@ class WriterToASCI extends Writer implements WriterChain {
 	 * Write a portion of an array of characters.
 	 *
 	 * @param chars
-	 *            Array of characters
+	 *               Array of characters
 	 * @param start
-	 *            Offset from which to start writing characters
+	 *               Offset from which to start writing characters
 	 * @param length
-	 *            Number of characters to write
+	 *               Number of characters to write
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 *
 	 * @throws java.io.IOException
 	 */
-	public void write(char chars[], int start, int length) throws java.io.IOException {
+	public void write(char chars[], int start, int length)
+			throws java.io.IOException {
 
 		int n = length + start;
 
@@ -86,9 +84,9 @@ class WriterToASCI extends Writer implements WriterChain {
 	 * should override this method.
 	 *
 	 * @param c
-	 *            int specifying a character to be written.
+	 *          int specifying a character to be written.
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(int c) throws IOException {
 		m_os.write(c);
@@ -98,10 +96,10 @@ class WriterToASCI extends Writer implements WriterChain {
 	 * Write a string.
 	 *
 	 * @param s
-	 *            String to be written
+	 *          String to be written
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(String s) throws IOException {
 		int n = s.length();
@@ -118,7 +116,7 @@ class WriterToASCI extends Writer implements WriterChain {
 	 * in a chain of Writers and OutputStreams.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void flush() throws java.io.IOException {
 		m_os.flush();
@@ -130,7 +128,7 @@ class WriterToASCI extends Writer implements WriterChain {
 	 * thrown. Closing a previously-closed stream, however, has no effect.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void close() throws java.io.IOException {
 		m_os.close();

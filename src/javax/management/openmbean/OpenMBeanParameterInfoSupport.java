@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -46,8 +26,8 @@ import static javax.management.openmbean.OpenMBeanAttributeInfoSupport.*;
  *
  * @since 1.5
  */
-public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo
-		implements OpenMBeanParameterInfo {
+public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo implements
+		OpenMBeanParameterInfo {
 
 	/* Serial version */
 	static final long serialVersionUID = -7235016873758443122L;
@@ -92,19 +72,21 @@ public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo
 	 * and {@code description}.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                    cannot be null.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 */
-	public OpenMBeanParameterInfoSupport(String name, String description, OpenType<?> openType) {
+	public OpenMBeanParameterInfoSupport(String name, String description,
+			OpenType<?> openType) {
 		this(name, description, openType, (Descriptor) null);
 	}
 
@@ -120,34 +102,38 @@ public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo
 	 * <a href="package-summary.html#constraints"> package description</a>.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                    cannot be null.
 	 *
 	 * @param descriptor
-	 *            The descriptor for the parameter. This may be null which is
-	 *            equivalent to an empty descriptor.
+	 *                    The descriptor for the parameter. This may be null
+	 *                    which is
+	 *                    equivalent to an empty descriptor.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null, or
-	 *             the descriptor entries are invalid as described in the
-	 *             <a href="package-summary.html#constraints">package
-	 *             description</a>.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null, or
+	 *                                  the descriptor entries are invalid as
+	 *                                  described in the
+	 *                                  <a href=
+	 *                                  "package-summary.html#constraints">package
+	 *                                  description</a>.
 	 *
 	 * @since 1.6
 	 */
-	public OpenMBeanParameterInfoSupport(String name, String description, OpenType<?> openType,
-			Descriptor descriptor) {
+	public OpenMBeanParameterInfoSupport(String name, String description,
+			OpenType<?> openType, Descriptor descriptor) {
 
 		// Construct parent's state
 		//
-		super(name, (openType == null) ? null : openType.getClassName(), description,
-				ImmutableDescriptor.union(descriptor,
+		super(name, (openType == null) ? null : openType.getClassName(),
+				description, ImmutableDescriptor.union(descriptor,
 						(openType == null) ? null : openType.getDescriptor()));
 
 		// Initialize this instance's specific state
@@ -175,37 +161,43 @@ public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo
 	 * defaultValue}.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                     cannot be null.
 	 *
 	 * @param defaultValue
-	 *            must be a valid value for the {@code
-	 * openType} specified for this parameter; default value not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null, in
-	 *            which case it means that no default value is set.
+	 *                     must be a valid value for the {@code
+	 * openType}        specified for this parameter; default value not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null, in
+	 *                     which case it means that no default value is set.
 	 *
-	 * @param <T>
-	 *            allows the compiler to check that the {@code defaultValue}, if
-	 *            non-null, has the correct Java type for the given
-	 *            {@code openType}.
+	 * @param              <T>
+	 *                     allows the compiler to check that the
+	 *                     {@code defaultValue}, if
+	 *                     non-null, has the correct Java type for the given
+	 *                     {@code openType}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 *
 	 * @throws OpenDataException
-	 *             if {@code defaultValue} is not a valid value for the
-	 *             specified {@code openType}, or {@code
-	 * defaultValue} is non null and {@code openType} is an {@code
-	 * ArrayType} or a {@code TabularType}.
+	 *                                  if {@code defaultValue} is not a valid
+	 *                                  value for the
+	 *                                  specified {@code openType}, or {@code
+	 * defaultValue}                 is non null and {@code openType} is an
+	 *                                  {@code
+	 * ArrayType}                    or a {@code TabularType}.
 	 */
-	public <T> OpenMBeanParameterInfoSupport(String name, String description, OpenType<T> openType,
-			T defaultValue) throws OpenDataException {
+	public <T> OpenMBeanParameterInfoSupport(String name, String description,
+			OpenType<T> openType, T defaultValue) throws OpenDataException {
 		this(name, description, openType, defaultValue, (T[]) null);
 	}
 
@@ -225,49 +217,66 @@ public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo
 	 * </p>
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                     cannot be null.
 	 *
 	 * @param defaultValue
-	 *            must be a valid value for the {@code
-	 * openType} specified for this parameter; default value not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null, in
-	 *            which case it means that no default value is set.
+	 *                     must be a valid value for the {@code
+	 * openType}        specified for this parameter; default value not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null, in
+	 *                     which case it means that no default value is set.
 	 *
 	 * @param legalValues
-	 *            each contained value must be valid for the {@code openType}
-	 *            specified for this parameter; legal values not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null or
-	 *            empty.
+	 *                     each contained value must be valid for the
+	 *                     {@code openType}
+	 *                     specified for this parameter; legal values not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null or
+	 *                     empty.
 	 *
-	 * @param <T>
-	 *            allows the compiler to check that the {@code
-	 * defaultValue} and {@code legalValues}, if non-null, have the correct Java
-	 *            type for the given {@code openType}.
+	 * @param              <T>
+	 *                     allows the compiler to check that the {@code
+	 * defaultValue}    and {@code legalValues}, if non-null, have the
+	 *                     correct Java
+	 *                     type for the given {@code openType}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 *
 	 * @throws OpenDataException
-	 *             if {@code defaultValue} is not a valid value for the
-	 *             specified {@code openType}, or one value in
-	 *             {@code legalValues} is not valid for the specified {@code
-	 * openType}, or {@code defaultValue} is non null and {@code
-	 * openType} is an {@code ArrayType} or a {@code TabularType}, or
-	 *             {@code legalValues} is non null and non empty and {@code
-	 * openType} is an {@code ArrayType} or a {@code TabularType}, or
-	 *             {@code legalValues} is non null and non empty and {@code
-	 * defaultValue} is not contained in {@code legalValues}.
+	 *                                  if {@code defaultValue} is not a valid
+	 *                                  value for the
+	 *                                  specified {@code openType}, or one value
+	 *                                  in
+	 *                                  {@code legalValues} is not valid for the
+	 *                                  specified {@code
+	 * openType}                     , or {@code defaultValue} is non null
+	 *                                  and {@code
+	 * openType}                     is an {@code ArrayType} or a
+	 *                                  {@code TabularType}, or
+	 *                                  {@code legalValues} is non null and non
+	 *                                  empty and {@code
+	 * openType}                     is an {@code ArrayType} or a
+	 *                                  {@code TabularType}, or
+	 *                                  {@code legalValues} is non null and non
+	 *                                  empty and {@code
+	 * defaultValue}                 is not contained in {@code legalValues}.
 	 */
-	public <T> OpenMBeanParameterInfoSupport(String name, String description, OpenType<T> openType,
-			T defaultValue, T[] legalValues) throws OpenDataException {
-		this(name, description, openType, defaultValue, legalValues, null, null);
+	public <T> OpenMBeanParameterInfoSupport(String name, String description,
+			OpenType<T> openType, T defaultValue, T[] legalValues)
+			throws OpenDataException {
+		this(name, description, openType, defaultValue, legalValues, null,
+				null);
 	}
 
 	/**
@@ -281,64 +290,86 @@ public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo
 	 * type whose values are {@code Comparable}.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                     cannot be null.
 	 *
 	 * @param defaultValue
-	 *            must be a valid value for the {@code
-	 * openType} specified for this parameter; default value not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null, in
-	 *            which case it means that no default value is set.
+	 *                     must be a valid value for the {@code
+	 * openType}        specified for this parameter; default value not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null, in
+	 *                     which case it means that no default value is set.
 	 *
 	 * @param minValue
-	 *            must be valid for the {@code openType} specified for this
-	 *            parameter; can be null, in which case it means that no minimal
-	 *            value is set.
+	 *                     must be valid for the {@code openType} specified for
+	 *                     this
+	 *                     parameter; can be null, in which case it means that
+	 *                     no minimal
+	 *                     value is set.
 	 *
 	 * @param maxValue
-	 *            must be valid for the {@code openType} specified for this
-	 *            parameter; can be null, in which case it means that no maximal
-	 *            value is set.
+	 *                     must be valid for the {@code openType} specified for
+	 *                     this
+	 *                     parameter; can be null, in which case it means that
+	 *                     no maximal
+	 *                     value is set.
 	 *
-	 * @param <T>
-	 *            allows the compiler to check that the {@code
-	 * defaultValue}, {@code minValue}, and {@code maxValue}, if non-null, have
-	 *            the correct Java type for the given {@code
-	 * openType}.
+	 * @param              <T>
+	 *                     allows the compiler to check that the {@code
+	 * defaultValue}    , {@code minValue}, and {@code maxValue}, if
+	 *                     non-null, have
+	 *                     the correct Java type for the given {@code
+	 * openType}        .
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 *
 	 * @throws OpenDataException
-	 *             if {@code defaultValue}, {@code
-	 * minValue} or {@code maxValue} is not a valid value for the specified
-	 *             {@code openType}, or {@code defaultValue} is non null and
-	 *             {@code openType} is an {@code ArrayType} or a {@code
-	 * TabularType}, or both {@code minValue} and {@code maxValue} are non-null
-	 *             and {@code minValue.compareTo(maxValue) > 0} is {@code
-	 * true}, or both {@code defaultValue} and {@code minValue} are non-null and
-	 *             {@code minValue.compareTo(defaultValue) > 0} is {@code true},
-	 *             or both {@code defaultValue} and {@code maxValue} are
-	 *             non-null and {@code defaultValue.compareTo(maxValue) > 0} is
-	 *             {@code true}.
+	 *                                  if {@code defaultValue}, {@code
+	 * minValue}                     or {@code maxValue} is not a valid value
+	 *                                  for the specified
+	 *                                  {@code openType}, or
+	 *                                  {@code defaultValue} is non null and
+	 *                                  {@code openType} is an {@code ArrayType}
+	 *                                  or a {@code
+	 * TabularType}                  , or both {@code minValue} and
+	 *                                  {@code maxValue} are non-null
+	 *                                  and
+	 *                                  {@code minValue.compareTo(maxValue) > 0}
+	 *                                  is {@code
+	 * true}                         , or both {@code defaultValue} and
+	 *                                  {@code minValue} are non-null and
+	 *                                  {@code minValue.compareTo(defaultValue) > 0}
+	 *                                  is {@code true},
+	 *                                  or both {@code defaultValue} and
+	 *                                  {@code maxValue} are
+	 *                                  non-null and
+	 *                                  {@code defaultValue.compareTo(maxValue) > 0}
+	 *                                  is
+	 *                                  {@code true}.
 	 */
-	public <T> OpenMBeanParameterInfoSupport(String name, String description, OpenType<T> openType,
-			T defaultValue, Comparable<T> minValue, Comparable<T> maxValue)
-			throws OpenDataException {
-		this(name, description, openType, defaultValue, null, minValue, maxValue);
+	public <T> OpenMBeanParameterInfoSupport(String name, String description,
+			OpenType<T> openType, T defaultValue, Comparable<T> minValue,
+			Comparable<T> maxValue) throws OpenDataException {
+		this(name, description, openType, defaultValue, null, minValue,
+				maxValue);
 	}
 
-	private <T> OpenMBeanParameterInfoSupport(String name, String description, OpenType<T> openType,
-			T defaultValue, T[] legalValues, Comparable<T> minValue, Comparable<T> maxValue)
+	private <T> OpenMBeanParameterInfoSupport(String name, String description,
+			OpenType<T> openType, T defaultValue, T[] legalValues,
+			Comparable<T> minValue, Comparable<T> maxValue)
 			throws OpenDataException {
-		super(name, (openType == null) ? null : openType.getClassName(), description,
-				makeDescriptor(openType, defaultValue, legalValues, minValue, maxValue));
+		super(name, (openType == null) ? null : openType.getClassName(),
+				description, makeDescriptor(openType, defaultValue, legalValues,
+						minValue, maxValue));
 
 		this.openType = openType;
 
@@ -368,8 +399,9 @@ public class OpenMBeanParameterInfoSupport extends MBeanParameterInfo
 			Set<Object> xlegalValues = cast(legalValues);
 			Comparable<Object> xminValue = cast(minValue);
 			Comparable<Object> xmaxValue = cast(maxValue);
-			return new OpenMBeanParameterInfoSupport(name, description, openType,
-					makeDescriptor(xopenType, defaultValue, xlegalValues, xminValue, xmaxValue));
+			return new OpenMBeanParameterInfoSupport(name, description,
+					openType, makeDescriptor(xopenType, defaultValue,
+							xlegalValues, xminValue, xmaxValue));
 		} else
 			return this;
 	}

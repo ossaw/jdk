@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -118,7 +98,8 @@ public final class Currency implements Serializable {
 
 	// class data: instance map
 
-	private static ConcurrentMap<String, Currency> instances = new ConcurrentHashMap<>(7);
+	private static ConcurrentMap<String, Currency> instances = new ConcurrentHashMap<>(
+			7);
 	private static HashSet<Currency> available;
 
 	// Class data: currency data obtained from currency.data file.
@@ -218,16 +199,19 @@ public final class Currency implements Serializable {
 			public Void run() {
 				String homeDir = System.getProperty("java.home");
 				try {
-					String dataFile = homeDir + File.separator + "lib" + File.separator
-							+ "currency.data";
+					String dataFile = homeDir + File.separator + "lib"
+							+ File.separator + "currency.data";
 					try (DataInputStream dis = new DataInputStream(
-							new BufferedInputStream(new FileInputStream(dataFile)))) {
+							new BufferedInputStream(new FileInputStream(
+									dataFile)))) {
 						if (dis.readInt() != MAGIC_NUMBER) {
-							throw new InternalError("Currency data is possibly corrupted");
+							throw new InternalError(
+									"Currency data is possibly corrupted");
 						}
 						formatVersion = dis.readInt();
 						if (formatVersion != VALID_FORMAT_VERSION) {
-							throw new InternalError("Currency data format is incorrect");
+							throw new InternalError(
+									"Currency data format is incorrect");
 						}
 						dataVersion = dis.readInt();
 						mainTable = readIntArray(dis, A_TO_Z * A_TO_Z);
@@ -249,10 +233,11 @@ public final class Currency implements Serializable {
 				}
 
 				// look for the properties file for overrides
-				String propsFile = System.getProperty("java.util.currency.data");
+				String propsFile = System.getProperty(
+						"java.util.currency.data");
 				if (propsFile == null) {
-					propsFile = homeDir + File.separator + "lib" + File.separator
-							+ "currency.properties";
+					propsFile = homeDir + File.separator + "lib"
+							+ File.separator + "currency.properties";
 				}
 				try {
 					File propFile = new File(propsFile);
@@ -262,17 +247,20 @@ public final class Currency implements Serializable {
 							props.load(fr);
 						}
 						Set<String> keys = props.stringPropertyNames();
-						Pattern propertiesPattern = Pattern
-								.compile("([A-Z]{3})\\s*,\\s*(\\d{3})\\s*,\\s*"
+						Pattern propertiesPattern = Pattern.compile(
+								"([A-Z]{3})\\s*,\\s*(\\d{3})\\s*,\\s*"
 										+ "(\\d+)\\s*,?\\s*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:"
 										+ "\\d{2}:\\d{2})?");
 						for (String key : keys) {
-							replaceCurrencyData(propertiesPattern, key.toUpperCase(Locale.ROOT),
-									props.getProperty(key).toUpperCase(Locale.ROOT));
+							replaceCurrencyData(propertiesPattern, key
+									.toUpperCase(Locale.ROOT), props
+											.getProperty(key).toUpperCase(
+													Locale.ROOT));
 						}
 					}
 				} catch (IOException e) {
-					info("currency.properties is ignored because of an IOException", e);
+					info("currency.properties is ignored because of an IOException",
+							e);
 				}
 				return null;
 			}
@@ -290,7 +278,8 @@ public final class Currency implements Serializable {
 	 * so that we can insure that there's never more than one instance for a
 	 * given currency.
 	 */
-	private Currency(String currencyCode, int defaultFractionDigits, int numericCode) {
+	private Currency(String currencyCode, int defaultFractionDigits,
+			int numericCode) {
 		this.currencyCode = currencyCode;
 		this.defaultFractionDigits = defaultFractionDigits;
 		this.numericCode = numericCode;
@@ -300,20 +289,21 @@ public final class Currency implements Serializable {
 	 * Returns the <code>Currency</code> instance for the given currency code.
 	 *
 	 * @param currencyCode
-	 *            the ISO 4217 code of the currency
+	 *                     the ISO 4217 code of the currency
 	 * @return the <code>Currency</code> instance for the given currency code
 	 * @exception NullPointerException
-	 *                if <code>currencyCode</code> is null
+	 *                                     if <code>currencyCode</code> is null
 	 * @exception IllegalArgumentException
-	 *                if <code>currencyCode</code> is not a supported ISO 4217
-	 *                code.
+	 *                                     if <code>currencyCode</code> is not a
+	 *                                     supported ISO 4217
+	 *                                     code.
 	 */
 	public static Currency getInstance(String currencyCode) {
 		return getInstance(currencyCode, Integer.MIN_VALUE, 0);
 	}
 
-	private static Currency getInstance(String currencyCode, int defaultFractionDigits,
-			int numericCode) {
+	private static Currency getInstance(String currencyCode,
+			int defaultFractionDigits, int numericCode) {
 		// Try to look up the currency code in the instances table.
 		// This does the null pointer check as a side effect.
 		// Also, if there already is an entry, the currencyCode must be valid.
@@ -334,11 +324,13 @@ public final class Currency implements Serializable {
 			char char2 = currencyCode.charAt(1);
 			int tableEntry = getMainTableEntry(char1, char2);
 			if ((tableEntry & COUNTRY_TYPE_MASK) == SIMPLE_CASE_COUNTRY_MASK
-					&& tableEntry != INVALID_COUNTRY_ENTRY && currencyCode.charAt(2)
-							- 'A' == (tableEntry & SIMPLE_CASE_COUNTRY_FINAL_CHAR_MASK)) {
+					&& tableEntry != INVALID_COUNTRY_ENTRY && currencyCode
+							.charAt(2) - 'A' == (tableEntry
+									& SIMPLE_CASE_COUNTRY_FINAL_CHAR_MASK)) {
 				defaultFractionDigits = (tableEntry
 						& SIMPLE_CASE_COUNTRY_DEFAULT_DIGITS_MASK) >> SIMPLE_CASE_COUNTRY_DEFAULT_DIGITS_SHIFT;
-				numericCode = (tableEntry & NUMERIC_CODE_MASK) >> NUMERIC_CODE_SHIFT;
+				numericCode = (tableEntry
+						& NUMERIC_CODE_MASK) >> NUMERIC_CODE_SHIFT;
 			} else {
 				// Check for '-' separately so we don't get false hits in the
 				// table.
@@ -354,7 +346,8 @@ public final class Currency implements Serializable {
 			}
 		}
 
-		Currency currencyVal = new Currency(currencyCode, defaultFractionDigits, numericCode);
+		Currency currencyVal = new Currency(currencyCode, defaultFractionDigits,
+				numericCode);
 		instance = instances.putIfAbsent(currencyCode, currencyVal);
 		return (instance != null ? instance : currencyVal);
 	}
@@ -372,15 +365,18 @@ public final class Currency implements Serializable {
 	 * currency, such as Antarctica.
 	 *
 	 * @param locale
-	 *            the locale for whose country a <code>Currency</code> instance
-	 *            is needed
+	 *               the locale for whose country a <code>Currency</code>
+	 *               instance
+	 *               is needed
 	 * @return the <code>Currency</code> instance for the country of the given
 	 *         locale, or {@code null}
 	 * @exception NullPointerException
-	 *                if <code>locale</code> or its country code is {@code null}
+	 *                                     if <code>locale</code> or its country
+	 *                                     code is {@code null}
 	 * @exception IllegalArgumentException
-	 *                if the country of the given {@code locale} is not a
-	 *                supported ISO 3166 country code.
+	 *                                     if the country of the given
+	 *                                     {@code locale} is not a
+	 *                                     supported ISO 3166 country code.
 	 */
 	public static Currency getInstance(Locale locale) {
 		String country = locale.getCountry();
@@ -397,13 +393,16 @@ public final class Currency implements Serializable {
 		int tableEntry = getMainTableEntry(char1, char2);
 		if ((tableEntry & COUNTRY_TYPE_MASK) == SIMPLE_CASE_COUNTRY_MASK
 				&& tableEntry != INVALID_COUNTRY_ENTRY) {
-			char finalChar = (char) ((tableEntry & SIMPLE_CASE_COUNTRY_FINAL_CHAR_MASK) + 'A');
+			char finalChar = (char) ((tableEntry
+					& SIMPLE_CASE_COUNTRY_FINAL_CHAR_MASK) + 'A');
 			int defaultFractionDigits = (tableEntry
 					& SIMPLE_CASE_COUNTRY_DEFAULT_DIGITS_MASK) >> SIMPLE_CASE_COUNTRY_DEFAULT_DIGITS_SHIFT;
-			int numericCode = (tableEntry & NUMERIC_CODE_MASK) >> NUMERIC_CODE_SHIFT;
+			int numericCode = (tableEntry
+					& NUMERIC_CODE_MASK) >> NUMERIC_CODE_SHIFT;
 			StringBuilder sb = new StringBuilder(country);
 			sb.append(finalChar);
-			return getInstance(sb.toString(), defaultFractionDigits, numericCode);
+			return getInstance(sb.toString(), defaultFractionDigits,
+					numericCode);
 		} else {
 			// special cases
 			if (tableEntry == INVALID_COUNTRY_ENTRY) {
@@ -414,12 +413,14 @@ public final class Currency implements Serializable {
 			} else {
 				int index = (tableEntry & SPECIAL_CASE_COUNTRY_INDEX_MASK)
 						- SPECIAL_CASE_COUNTRY_INDEX_DELTA;
-				if (scCutOverTimes[index] == Long.MAX_VALUE
-						|| System.currentTimeMillis() < scCutOverTimes[index]) {
-					return getInstance(scOldCurrencies[index], scOldCurrenciesDFD[index],
+				if (scCutOverTimes[index] == Long.MAX_VALUE || System
+						.currentTimeMillis() < scCutOverTimes[index]) {
+					return getInstance(scOldCurrencies[index],
+							scOldCurrenciesDFD[index],
 							scOldCurrenciesNumericCode[index]);
 				} else {
-					return getInstance(scNewCurrencies[index], scNewCurrenciesDFD[index],
+					return getInstance(scNewCurrencies[index],
+							scNewCurrenciesDFD[index],
 							scNewCurrenciesNumericCode[index]);
 				}
 			}
@@ -445,10 +446,12 @@ public final class Currency implements Serializable {
 				for (char c1 = 'A'; c1 <= 'Z'; c1++) {
 					for (char c2 = 'A'; c2 <= 'Z'; c2++) {
 						int tableEntry = getMainTableEntry(c1, c2);
-						if ((tableEntry & COUNTRY_TYPE_MASK) == SIMPLE_CASE_COUNTRY_MASK
+						if ((tableEntry
+								& COUNTRY_TYPE_MASK) == SIMPLE_CASE_COUNTRY_MASK
 								&& tableEntry != INVALID_COUNTRY_ENTRY) {
 							char finalChar = (char) ((tableEntry
-									& SIMPLE_CASE_COUNTRY_FINAL_CHAR_MASK) + 'A');
+									& SIMPLE_CASE_COUNTRY_FINAL_CHAR_MASK)
+									+ 'A');
 							int defaultFractionDigits = (tableEntry
 									& SIMPLE_CASE_COUNTRY_DEFAULT_DIGITS_MASK) >> SIMPLE_CASE_COUNTRY_DEFAULT_DIGITS_SHIFT;
 							int numericCode = (tableEntry
@@ -457,8 +460,8 @@ public final class Currency implements Serializable {
 							sb.append(c1);
 							sb.append(c2);
 							sb.append(finalChar);
-							available.add(
-									getInstance(sb.toString(), defaultFractionDigits, numericCode));
+							available.add(getInstance(sb.toString(),
+									defaultFractionDigits, numericCode));
 						}
 					}
 				}
@@ -509,17 +512,17 @@ public final class Currency implements Serializable {
 	 * the ISO 4217 currency code is returned.
 	 *
 	 * @param locale
-	 *            the locale for which a display name for this currency is
-	 *            needed
+	 *               the locale for which a display name for this currency is
+	 *               needed
 	 * @return the symbol of this currency for the specified locale
 	 * @exception NullPointerException
-	 *                if <code>locale</code> is null
+	 *                                 if <code>locale</code> is null
 	 */
 	public String getSymbol(Locale locale) {
-		LocaleServiceProviderPool pool = LocaleServiceProviderPool
-				.getPool(CurrencyNameProvider.class);
-		String symbol = pool.getLocalizedObject(CurrencyNameGetter.INSTANCE, locale, currencyCode,
-				SYMBOL);
+		LocaleServiceProviderPool pool = LocaleServiceProviderPool.getPool(
+				CurrencyNameProvider.class);
+		String symbol = pool.getLocalizedObject(CurrencyNameGetter.INSTANCE,
+				locale, currencyCode, SYMBOL);
 		if (symbol != null) {
 			return symbol;
 		}
@@ -573,18 +576,18 @@ public final class Currency implements Serializable {
 	 * specified locale, the ISO 4217 currency code is returned.
 	 *
 	 * @param locale
-	 *            the locale for which a display name for this currency is
-	 *            needed
+	 *               the locale for which a display name for this currency is
+	 *               needed
 	 * @return the display name of this currency for the specified locale
 	 * @exception NullPointerException
-	 *                if <code>locale</code> is null
+	 *                                 if <code>locale</code> is null
 	 * @since 1.7
 	 */
 	public String getDisplayName(Locale locale) {
-		LocaleServiceProviderPool pool = LocaleServiceProviderPool
-				.getPool(CurrencyNameProvider.class);
-		String result = pool.getLocalizedObject(CurrencyNameGetter.INSTANCE, locale, currencyCode,
-				DISPLAYNAME);
+		LocaleServiceProviderPool pool = LocaleServiceProviderPool.getPool(
+				CurrencyNameProvider.class);
+		String result = pool.getLocalizedObject(CurrencyNameGetter.INSTANCE,
+				locale, currencyCode, DISPLAYNAME);
 		if (result != null) {
 			return result;
 		}
@@ -641,25 +644,26 @@ public final class Currency implements Serializable {
 		private static final CurrencyNameGetter INSTANCE = new CurrencyNameGetter();
 
 		@Override
-		public String getObject(CurrencyNameProvider currencyNameProvider, Locale locale,
-				String key, Object... params) {
+		public String getObject(CurrencyNameProvider currencyNameProvider,
+				Locale locale, String key, Object... params) {
 			assert params.length == 1;
 			int type = (Integer) params[0];
 
 			switch (type) {
-			case SYMBOL:
-				return currencyNameProvider.getSymbol(key, locale);
-			case DISPLAYNAME:
-				return currencyNameProvider.getDisplayName(key, locale);
-			default:
-				assert false; // shouldn't happen
+				case SYMBOL:
+					return currencyNameProvider.getSymbol(key, locale);
+				case DISPLAYNAME:
+					return currencyNameProvider.getDisplayName(key, locale);
+				default:
+					assert false; // shouldn't happen
 			}
 
 			return null;
 		}
 	}
 
-	private static int[] readIntArray(DataInputStream dis, int count) throws IOException {
+	private static int[] readIntArray(DataInputStream dis, int count)
+			throws IOException {
 		int[] ret = new int[count];
 		for (int i = 0; i < count; i++) {
 			ret[i] = dis.readInt();
@@ -668,7 +672,8 @@ public final class Currency implements Serializable {
 		return ret;
 	}
 
-	private static long[] readLongArray(DataInputStream dis, int count) throws IOException {
+	private static long[] readLongArray(DataInputStream dis, int count)
+			throws IOException {
 		long[] ret = new long[count];
 		for (int i = 0; i < count; i++) {
 			ret[i] = dis.readLong();
@@ -677,7 +682,8 @@ public final class Currency implements Serializable {
 		return ret;
 	}
 
-	private static String[] readStringArray(DataInputStream dis, int count) throws IOException {
+	private static String[] readStringArray(DataInputStream dis, int count)
+			throws IOException {
 		String[] ret = new String[count];
 		for (int i = 0; i < count; i++) {
 			ret[i] = dis.readUTF();
@@ -690,20 +696,24 @@ public final class Currency implements Serializable {
 	 * Replaces currency data found in the currencydata.properties file
 	 *
 	 * @param pattern
-	 *            regex pattern for the properties
+	 *                regex pattern for the properties
 	 * @param ctry
-	 *            country code
+	 *                country code
 	 * @param curdata
-	 *            currency data. This is a comma separated string that consists
-	 *            of "three-letter alphabet code", "three-digit numeric code",
-	 *            and "one-digit (0-9) default fraction digit". For example,
-	 *            "JPZ,392,0". An optional UTC date can be appended to the
-	 *            string (comma separated) to allow a currency change take
-	 *            effect after date specified. For example,
-	 *            "JP=JPZ,999,0,2014-01-01T00:00:00" has no effect unless UTC
-	 *            time is past 1st January 2014 00:00:00 GMT.
+	 *                currency data. This is a comma separated string that
+	 *                consists
+	 *                of "three-letter alphabet code", "three-digit numeric
+	 *                code",
+	 *                and "one-digit (0-9) default fraction digit". For example,
+	 *                "JPZ,392,0". An optional UTC date can be appended to the
+	 *                string (comma separated) to allow a currency change take
+	 *                effect after date specified. For example,
+	 *                "JP=JPZ,999,0,2014-01-01T00:00:00" has no effect unless
+	 *                UTC
+	 *                time is past 1st January 2014 00:00:00 GMT.
 	 */
-	private static void replaceCurrencyData(Pattern pattern, String ctry, String curdata) {
+	private static void replaceCurrencyData(Pattern pattern, String ctry,
+			String curdata) {
 
 		if (ctry.length() != 2) {
 			// ignore invalid country code
@@ -713,24 +723,28 @@ public final class Currency implements Serializable {
 		}
 
 		Matcher m = pattern.matcher(curdata);
-		if (!m.find() || (m.group(4) == null && countOccurrences(curdata, ',') >= 3)) {
+		if (!m.find() || (m.group(4) == null && countOccurrences(curdata,
+				',') >= 3)) {
 			// format is not recognized. ignore the data
 			// if group(4) date string is null and we've 4 values, bad date
 			// value
 			info("currency.properties entry for " + ctry
-					+ " ignored because the value format is not recognized.", null);
+					+ " ignored because the value format is not recognized.",
+					null);
 			return;
 		}
 
 		try {
 			if (m.group(4) != null && !isPastCutoverDate(m.group(4))) {
 				info("currency.properties entry for " + ctry
-						+ " ignored since cutover date has not passed :" + curdata, null);
+						+ " ignored since cutover date has not passed :"
+						+ curdata, null);
 				return;
 			}
 		} catch (ParseException ex) {
-			info("currency.properties entry for " + ctry + " ignored since exception encountered :"
-					+ ex.getMessage(), null);
+			info("currency.properties entry for " + ctry
+					+ " ignored since exception encountered :" + ex
+							.getMessage(), null);
 			return;
 		}
 
@@ -741,7 +755,8 @@ public final class Currency implements Serializable {
 		if (fraction > SIMPLE_CASE_COUNTRY_MAX_DEFAULT_DIGITS) {
 			info("currency.properties entry for " + ctry
 					+ " ignored since the fraction is more than "
-					+ SIMPLE_CASE_COUNTRY_MAX_DEFAULT_DIGITS + ":" + curdata, null);
+					+ SIMPLE_CASE_COUNTRY_MAX_DEFAULT_DIGITS + ":" + curdata,
+					null);
 			return;
 		}
 
@@ -758,13 +773,15 @@ public final class Currency implements Serializable {
 					| (code.charAt(2) - 'A');
 		} else {
 			// special case
-			entry |= SPECIAL_CASE_COUNTRY_MASK | (index + SPECIAL_CASE_COUNTRY_INDEX_DELTA);
+			entry |= SPECIAL_CASE_COUNTRY_MASK | (index
+					+ SPECIAL_CASE_COUNTRY_INDEX_DELTA);
 		}
 		setMainTableEntry(ctry.charAt(0), ctry.charAt(1), entry);
 	}
 
 	private static boolean isPastCutoverDate(String s) throws ParseException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ROOT);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",
+				Locale.ROOT);
 		format.setTimeZone(TimeZone.getTimeZone("UTC"));
 		format.setLenient(false);
 		long time = format.parse(s.trim()).getTime();

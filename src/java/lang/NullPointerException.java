@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -62,7 +42,7 @@ public class NullPointerException extends RuntimeException {
 	 * message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public NullPointerException(String s) {
 		super(s);

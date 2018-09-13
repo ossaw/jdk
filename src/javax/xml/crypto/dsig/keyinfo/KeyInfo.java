@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: KeyInfo.java,v 1.7 2005/05/10 16:35:34 mullan Exp $
@@ -65,8 +45,8 @@ import javax.xml.crypto.XMLStructure;
  * 
  * <pre>
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
- * KeyInfo keyInfo = factory
- * 		.newKeyInfo(Collections.singletonList(factory.newKeyName("Alice"), "keyinfo-1"));
+ * KeyInfo keyInfo = factory.newKeyInfo(Collections.singletonList(factory
+ * 		.newKeyName("Alice"), "keyinfo-1"));
  * </pre>
  *
  * <p>
@@ -113,18 +93,21 @@ public interface KeyInfo extends XMLStructure {
 	 * Marshals the key info to XML.
 	 *
 	 * @param parent
-	 *            a mechanism-specific structure containing the parent node that
-	 *            the marshalled key info will be appended to
+	 *                a mechanism-specific structure containing the parent node
+	 *                that
+	 *                the marshalled key info will be appended to
 	 * @param context
-	 *            the <code>XMLCryptoContext</code> containing additional
-	 *            context (may be null if not applicable)
+	 *                the <code>XMLCryptoContext</code> containing additional
+	 *                context (may be null if not applicable)
 	 * @throws ClassCastException
-	 *             if the type of <code>parent</code> or <code>context</code> is
-	 *             not compatible with this key info
+	 *                              if the type of <code>parent</code> or
+	 *                              <code>context</code> is
+	 *                              not compatible with this key info
 	 * @throws MarshalException
-	 *             if the key info cannot be marshalled
+	 *                              if the key info cannot be marshalled
 	 * @throws NullPointerException
-	 *             if <code>parent</code> is <code>null</code>
+	 *                              if <code>parent</code> is <code>null</code>
 	 */
-	void marshal(XMLStructure parent, XMLCryptoContext context) throws MarshalException;
+	void marshal(XMLStructure parent, XMLCryptoContext context)
+			throws MarshalException;
 }

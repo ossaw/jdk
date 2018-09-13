@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth.module;
@@ -86,21 +66,24 @@ public class SolarisLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @param subject
-	 *            the <code>Subject</code> to be authenticated.
-	 *            <p>
+	 *                        the <code>Subject</code> to be authenticated.
+	 *                        <p>
 	 *
 	 * @param callbackHandler
-	 *            a <code>CallbackHandler</code> for communicating with the end
-	 *            user (prompting for usernames and passwords, for example).
-	 *            <p>
+	 *                        a <code>CallbackHandler</code> for communicating
+	 *                        with the end
+	 *                        user (prompting for usernames and passwords, for
+	 *                        example).
+	 *                        <p>
 	 *
 	 * @param sharedState
-	 *            shared <code>LoginModule</code> state.
-	 *            <p>
+	 *                        shared <code>LoginModule</code> state.
+	 *                        <p>
 	 *
 	 * @param options
-	 *            options specified in the login <code>Configuration</code> for
-	 *            this particular <code>LoginModule</code>.
+	 *                        options specified in the login
+	 *                        <code>Configuration</code> for
+	 *                        this particular <code>LoginModule</code>.
 	 */
 	public void initialize(Subject subject, CallbackHandler callbackHandler,
 			Map<String, ?> sharedState, Map<String, ?> options) {
@@ -124,8 +107,9 @@ public class SolarisLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @exception FailedLoginException
-	 *                if attempts to retrieve the underlying system information
-	 *                fail.
+	 *                                 if attempts to retrieve the underlying
+	 *                                 system information
+	 *                                 fail.
 	 *
 	 * @return true in all cases (this <code>LoginModule</code> should not be
 	 *         ignored).
@@ -138,8 +122,8 @@ public class SolarisLoginModule implements LoginModule {
 
 		if (ss == null) {
 			succeeded = false;
-			throw new FailedLoginException(
-					"Failed in attempt to import " + "the underlying system identity information");
+			throw new FailedLoginException("Failed in attempt to import "
+					+ "the underlying system identity information");
 		} else {
 			userPrincipal = new SolarisPrincipal(ss.getUsername());
 			UIDPrincipal = new SolarisNumericUserPrincipal(ss.getUid());
@@ -153,7 +137,8 @@ public class SolarisLoginModule implements LoginModule {
 					supplementaryGroups.add(ngp);
 			}
 			if (debug) {
-				System.out.println("\t\t[SolarisLoginModule]: " + "succeeded importing info: ");
+				System.out.println("\t\t[SolarisLoginModule]: "
+						+ "succeeded importing info: ");
 				System.out.println("\t\t\tuid = " + ss.getUid());
 				System.out.println("\t\t\tgid = " + ss.getGid());
 				solarisGroups = ss.getGroups();
@@ -185,7 +170,7 @@ public class SolarisLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the commit fails
+	 *                           if the commit fails
 	 *
 	 * @return true if this LoginModule's own login and commit attempts
 	 *         succeeded, or false otherwise.
@@ -193,9 +178,9 @@ public class SolarisLoginModule implements LoginModule {
 	public boolean commit() throws LoginException {
 		if (succeeded == false) {
 			if (debug) {
-				System.out.println(
-						"\t\t[SolarisLoginModule]: " + "did not add any Principals to Subject "
-								+ "because own authentication failed.");
+				System.out.println("\t\t[SolarisLoginModule]: "
+						+ "did not add any Principals to Subject "
+						+ "because own authentication failed.");
 			}
 			return false;
 		}
@@ -214,7 +199,8 @@ public class SolarisLoginModule implements LoginModule {
 		}
 
 		if (debug) {
-			System.out.println("\t\t[SolarisLoginModule]: " + "added SolarisPrincipal,");
+			System.out.println("\t\t[SolarisLoginModule]: "
+					+ "added SolarisPrincipal,");
 			System.out.println("\t\t\t\tSolarisNumericUserPrincipal,");
 			System.out.println("\t\t\t\tSolarisNumericGroupPrincipal(s),");
 			System.out.println("\t\t\t to Subject");
@@ -240,14 +226,15 @@ public class SolarisLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the abort fails
+	 *                           if the abort fails
 	 *
 	 * @return false if this LoginModule's own login and/or commit attempts
 	 *         failed, and true otherwise.
 	 */
 	public boolean abort() throws LoginException {
 		if (debug) {
-			System.out.println("\t\t[SolarisLoginModule]: " + "aborted authentication attempt");
+			System.out.println("\t\t[SolarisLoginModule]: "
+					+ "aborted authentication attempt");
 		}
 
 		if (succeeded == false) {
@@ -279,14 +266,15 @@ public class SolarisLoginModule implements LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the logout fails
+	 *                           if the logout fails
 	 *
 	 * @return true in all cases (this <code>LoginModule</code> should not be
 	 *         ignored).
 	 */
 	public boolean logout() throws LoginException {
 		if (debug) {
-			System.out.println("\t\t[SolarisLoginModule]: " + "Entering logout");
+			System.out.println("\t\t[SolarisLoginModule]: "
+					+ "Entering logout");
 		}
 		if (subject.isReadOnly()) {
 			throw new LoginException("Subject is Readonly");
@@ -309,7 +297,8 @@ public class SolarisLoginModule implements LoginModule {
 		supplementaryGroups = new LinkedList<SolarisNumericGroupPrincipal>();
 
 		if (debug) {
-			System.out.println("\t\t[SolarisLoginModule]: " + "logged out Subject");
+			System.out.println("\t\t[SolarisLoginModule]: "
+					+ "logged out Subject");
 		}
 		return true;
 	}

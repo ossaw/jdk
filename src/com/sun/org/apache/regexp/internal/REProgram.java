@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,7 +42,7 @@ public class REProgram implements Serializable {
 	 * Constructs a program object from a character array
 	 * 
 	 * @param instruction
-	 *            Character array with RE opcode instructions in it
+	 *                    Character array with RE opcode instructions in it
 	 */
 	public REProgram(char[] instruction) {
 		this(instruction, instruction.length);
@@ -55,9 +52,9 @@ public class REProgram implements Serializable {
 	 * Constructs a program object from a character array
 	 * 
 	 * @param parens
-	 *            Count of parens in the program
+	 *                    Count of parens in the program
 	 * @param instruction
-	 *            Character array with RE opcode instructions in it
+	 *                    Character array with RE opcode instructions in it
 	 */
 	public REProgram(int parens, char[] instruction) {
 		this(instruction, instruction.length);
@@ -68,9 +65,9 @@ public class REProgram implements Serializable {
 	 * Constructs a program object from a character array
 	 * 
 	 * @param instruction
-	 *            Character array with RE opcode instructions in it
+	 *                       Character array with RE opcode instructions in it
 	 * @param lenInstruction
-	 *            Amount of instruction array in use
+	 *                       Amount of instruction array in use
 	 */
 	public REProgram(char[] instruction, int lenInstruction) {
 		setInstructions(instruction, lenInstruction);
@@ -103,9 +100,9 @@ public class REProgram implements Serializable {
 	 * be skipped without running the actual program.
 	 * 
 	 * @param instruction
-	 *            Program instruction buffer
+	 *                       Program instruction buffer
 	 * @param lenInstruction
-	 *            Length of instruction buffer in use
+	 *                       Length of instruction buffer in use
 	 */
 	public void setInstructions(char[] instruction, int lenInstruction) {
 		// Save reference to instruction array
@@ -119,18 +116,22 @@ public class REProgram implements Serializable {
 		// Try various compile-time optimizations if there's a program
 		if (instruction != null && lenInstruction != 0) {
 			// If the first node is a branch
-			if (lenInstruction >= RE.nodeSize && instruction[0 + RE.offsetOpcode] == RE.OP_BRANCH) {
+			if (lenInstruction >= RE.nodeSize && instruction[0
+					+ RE.offsetOpcode] == RE.OP_BRANCH) {
 				// to the end node
 				int next = instruction[0 + RE.offsetNext];
 				if (instruction[next + RE.offsetOpcode] == RE.OP_END) {
 					// and the branch starts with an atom
 					if (lenInstruction >= (RE.nodeSize * 2)
-							&& instruction[RE.nodeSize + RE.offsetOpcode] == RE.OP_ATOM) {
+							&& instruction[RE.nodeSize
+									+ RE.offsetOpcode] == RE.OP_ATOM) {
 						// then get that atom as an prefix because there's no
 						// other choice
-						int lenAtom = instruction[RE.nodeSize + RE.offsetOpdata];
+						int lenAtom = instruction[RE.nodeSize
+								+ RE.offsetOpdata];
 						prefix = new char[lenAtom];
-						System.arraycopy(instruction, RE.nodeSize * 2, prefix, 0, lenAtom);
+						System.arraycopy(instruction, RE.nodeSize * 2, prefix,
+								0, lenAtom);
 					}
 				}
 			}
@@ -140,17 +141,17 @@ public class REProgram implements Serializable {
 			// Check for backreferences
 			for (int i = 0; i < lenInstruction; i += RE.nodeSize) {
 				switch (instruction[i + RE.offsetOpcode]) {
-				case RE.OP_ANYOF:
-					i += (instruction[i + RE.offsetOpdata] * 2);
-					break;
+					case RE.OP_ANYOF:
+						i += (instruction[i + RE.offsetOpdata] * 2);
+						break;
 
-				case RE.OP_ATOM:
-					i += instruction[i + RE.offsetOpdata];
-					break;
+					case RE.OP_ATOM:
+						i += instruction[i + RE.offsetOpdata];
+						break;
 
-				case RE.OP_BACKREF:
-					flags |= OPT_HASBACKREFS;
-					break BackrefScanLoop;
+					case RE.OP_BACKREF:
+						flags |= OPT_HASBACKREFS;
+						break BackrefScanLoop;
 				}
 			}
 		}

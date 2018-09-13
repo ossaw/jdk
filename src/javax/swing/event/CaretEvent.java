@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.event;
 
@@ -45,7 +25,7 @@ public abstract class CaretEvent extends EventObject {
 	 * Creates a new CaretEvent object.
 	 *
 	 * @param source
-	 *            the object responsible for the event
+	 *               the object responsible for the event
 	 */
 	public CaretEvent(Object source) {
 		super(source);

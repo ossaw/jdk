@@ -126,7 +126,7 @@ public class XMLSignatureInput {
 	 * </p>
 	 * 
 	 * @param inputOctets
-	 *            an octet array which including XML document or node
+	 *                    an octet array which including XML document or node
 	 */
 	public XMLSignatureInput(byte[] inputOctets) {
 		// NO defensive copy
@@ -175,7 +175,7 @@ public class XMLSignatureInput {
 	 * Set if the structure needs to be expanded.
 	 * 
 	 * @param needsToBeExpanded
-	 *            true if so.
+	 *                          true if so.
 	 */
 	public void setNeedsToBeExpanded(boolean needsToBeExpanded) {
 		this.needsToBeExpanded = needsToBeExpanded;
@@ -191,8 +191,8 @@ public class XMLSignatureInput {
 	 * @throws ParserConfigurationException
 	 * @throws CanonicalizationException
 	 */
-	public Set<Node> getNodeSet() throws CanonicalizationException, ParserConfigurationException,
-			IOException, SAXException {
+	public Set<Node> getNodeSet() throws CanonicalizationException,
+			ParserConfigurationException, IOException, SAXException {
 		return getNodeSet(false);
 	}
 
@@ -217,8 +217,9 @@ public class XMLSignatureInput {
 	 * @throws ParserConfigurationException
 	 * @throws CanonicalizationException
 	 */
-	public Set<Node> getNodeSet(boolean circumvent) throws ParserConfigurationException,
-			IOException, SAXException, CanonicalizationException {
+	public Set<Node> getNodeSet(boolean circumvent)
+			throws ParserConfigurationException, IOException, SAXException,
+			CanonicalizationException {
 		if (inputNodeSet != null) {
 			return inputNodeSet;
 		}
@@ -227,7 +228,8 @@ public class XMLSignatureInput {
 				XMLUtils.circumventBug2650(XMLUtils.getOwnerDocument(subNode));
 			}
 			inputNodeSet = new LinkedHashSet<Node>();
-			XMLUtils.getSet(subNode, inputNodeSet, excludeNode, excludeComments);
+			XMLUtils.getSet(subNode, inputNodeSet, excludeNode,
+					excludeComments);
 			return inputNodeSet;
 		} else if (isOctetStream()) {
 			convertToNodes();
@@ -236,7 +238,8 @@ public class XMLSignatureInput {
 			return result;
 		}
 
-		throw new RuntimeException("getNodeSet() called but no input data present");
+		throw new RuntimeException(
+				"getNodeSet() called but no input data present");
 	}
 
 	/**
@@ -293,7 +296,8 @@ public class XMLSignatureInput {
 	 * @return true if the object has been set up with a Node set
 	 */
 	public boolean isNodeSet() {
-		return ((inputOctetStreamProxy == null && inputNodeSet != null) || isNodeSet);
+		return ((inputOctetStreamProxy == null && inputNodeSet != null)
+				|| isNodeSet);
 	}
 
 	/**
@@ -302,8 +306,8 @@ public class XMLSignatureInput {
 	 * @return true if the object has been set up with an Element
 	 */
 	public boolean isElement() {
-		return (inputOctetStreamProxy == null && subNode != null && inputNodeSet == null
-				&& !isNodeSet);
+		return (inputOctetStreamProxy == null && subNode != null
+				&& inputNodeSet == null && !isNodeSet);
 	}
 
 	/**
@@ -333,7 +337,8 @@ public class XMLSignatureInput {
 	 * @return true is the object has been set up with an octet stream
 	 */
 	public boolean isByteArray() {
-		return (bytes != null && (this.inputNodeSet == null && subNode == null));
+		return (bytes != null && (this.inputNodeSet == null
+				&& subNode == null));
 	}
 
 	/**
@@ -388,15 +393,17 @@ public class XMLSignatureInput {
 	 */
 	public String toString() {
 		if (isNodeSet()) {
-			return "XMLSignatureInput/NodeSet/" + inputNodeSet.size() + " nodes/" + getSourceURI();
+			return "XMLSignatureInput/NodeSet/" + inputNodeSet.size()
+					+ " nodes/" + getSourceURI();
 		}
 		if (isElement()) {
-			return "XMLSignatureInput/Element/" + subNode + " exclude " + excludeNode + " comments:"
-					+ excludeComments + "/" + getSourceURI();
+			return "XMLSignatureInput/Element/" + subNode + " exclude "
+					+ excludeNode + " comments:" + excludeComments + "/"
+					+ getSourceURI();
 		}
 		try {
-			return "XMLSignatureInput/OctetStream/" + getBytes().length + " octets/"
-					+ getSourceURI();
+			return "XMLSignatureInput/OctetStream/" + getBytes().length
+					+ " octets/" + getSourceURI();
 		} catch (IOException iex) {
 			return "XMLSignatureInput/OctetStream//" + getSourceURI();
 		} catch (CanonicalizationException cex) {
@@ -424,7 +431,8 @@ public class XMLSignatureInput {
 	 */
 	public String getHTMLRepresentation(Set<String> inclusiveNamespaces)
 			throws XMLSignatureException {
-		XMLSignatureInputDebugger db = new XMLSignatureInputDebugger(this, inclusiveNamespaces);
+		XMLSignatureInputDebugger db = new XMLSignatureInputDebugger(this,
+				inclusiveNamespaces);
 		return db.getHTMLRepresentation();
 	}
 
@@ -441,7 +449,7 @@ public class XMLSignatureInput {
 	 * Sets the exclude node of this XMLSignatureInput
 	 * 
 	 * @param excludeNode
-	 *            The excludeNode to set.
+	 *                    The excludeNode to set.
 	 */
 	public void setExcludeNode(Node excludeNode) {
 		this.excludeNode = excludeNode;
@@ -465,7 +473,7 @@ public class XMLSignatureInput {
 
 	/**
 	 * @param excludeComments
-	 *            The excludeComments to set.
+	 *                        The excludeComments to set.
 	 */
 	public void setExcludeComments(boolean excludeComments) {
 		this.excludeComments = excludeComments;
@@ -562,11 +570,12 @@ public class XMLSignatureInput {
 		isNodeSet = b;
 	}
 
-	void convertToNodes() throws CanonicalizationException, ParserConfigurationException,
-			IOException, SAXException {
+	void convertToNodes() throws CanonicalizationException,
+			ParserConfigurationException, IOException, SAXException {
 		if (dfactory == null) {
 			dfactory = DocumentBuilderFactory.newInstance();
-			dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
+			dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
+					Boolean.TRUE);
 			dfactory.setValidating(false);
 			dfactory.setNamespaceAware(true);
 		}
@@ -588,7 +597,8 @@ public class XMLSignatureInput {
 
 			byte result[] = baos.toByteArray();
 			Document document = db.parse(new ByteArrayInputStream(result));
-			this.subNode = document.getDocumentElement().getFirstChild().getFirstChild();
+			this.subNode = document.getDocumentElement().getFirstChild()
+					.getFirstChild();
 		} finally {
 			if (this.inputOctetStreamProxy != null) {
 				this.inputOctetStreamProxy.close();

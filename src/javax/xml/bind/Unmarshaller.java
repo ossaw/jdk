@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -425,19 +405,24 @@ public interface Unmarshaller {
 	 * Implements <a href="#unmarshalGlobal">Unmarshal Global Root Element</a>.
 	 *
 	 * @param f
-	 *            the file to unmarshal XML data from
+	 *          the file to unmarshal XML data from
 	 * @return the newly created root object of the java content tree
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the file parameter is null
+	 *                                  If the file parameter is null
 	 */
 	public Object unmarshal(java.io.File f) throws JAXBException;
 
@@ -450,19 +435,24 @@ public interface Unmarshaller {
 	 * Implements <a href="#unmarshalGlobal">Unmarshal Global Root Element</a>.
 	 *
 	 * @param is
-	 *            the InputStream to unmarshal XML data from
+	 *           the InputStream to unmarshal XML data from
 	 * @return the newly created root object of the java content tree
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the InputStream parameter is null
+	 *                                  If the InputStream parameter is null
 	 */
 	public Object unmarshal(java.io.InputStream is) throws JAXBException;
 
@@ -476,19 +466,24 @@ public interface Unmarshaller {
 	 * Implements <a href="#unmarshalGlobal">Unmarshal Global Root Element</a>.
 	 *
 	 * @param reader
-	 *            the Reader to unmarshal XML data from
+	 *               the Reader to unmarshal XML data from
 	 * @return the newly created root object of the java content tree
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the InputStream parameter is null
+	 *                                  If the InputStream parameter is null
 	 * @since JAXB2.0
 	 */
 	public Object unmarshal(Reader reader) throws JAXBException;
@@ -505,15 +500,20 @@ public interface Unmarshaller {
 	 * @return the newly created root object of the java content tree
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the URL parameter is null
+	 *                                  If the URL parameter is null
 	 */
 	public Object unmarshal(java.net.URL url) throws JAXBException;
 
@@ -525,21 +525,27 @@ public interface Unmarshaller {
 	 * Implements <a href="#unmarshalGlobal">Unmarshal Global Root Element</a>.
 	 *
 	 * @param source
-	 *            the input source to unmarshal XML data from
+	 *               the input source to unmarshal XML data from
 	 * @return the newly created root object of the java content tree
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the InputSource parameter is null
+	 *                                  If the InputSource parameter is null
 	 */
-	public Object unmarshal(org.xml.sax.InputSource source) throws JAXBException;
+	public Object unmarshal(org.xml.sax.InputSource source)
+			throws JAXBException;
 
 	/**
 	 * Unmarshal global XML data from the specified DOM tree and return the
@@ -549,20 +555,25 @@ public interface Unmarshaller {
 	 * Implements <a href="#unmarshalGlobal">Unmarshal Global Root Element</a>.
 	 *
 	 * @param node
-	 *            the document/element to unmarshal XML data from. The caller
-	 *            must support at least Document and Element.
+	 *             the document/element to unmarshal XML data from. The caller
+	 *             must support at least Document and Element.
 	 * @return the newly created root object of the java content tree
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the Node parameter is null
+	 *                                  If the Node parameter is null
 	 * @see #unmarshal(org.w3c.dom.Node, Class)
 	 */
 	public Object unmarshal(org.w3c.dom.Node node) throws JAXBException;
@@ -576,29 +587,36 @@ public interface Unmarshaller {
 	 * Type</a>
 	 *
 	 * @param node
-	 *            the document/element to unmarshal XML data from. The caller
-	 *            must support at least Document and Element.
+	 *                     the document/element to unmarshal XML data from. The
+	 *                     caller
+	 *                     must support at least Document and Element.
 	 * @param declaredType
-	 *            appropriate JAXB mapped class to hold <tt>node</tt>'s XML
-	 *            data.
+	 *                     appropriate JAXB mapped class to hold <tt>node</tt>'s
+	 *                     XML
+	 *                     data.
 	 *
 	 * @return <a href="#unmarshalDeclaredTypeReturn">JAXB Element</a>
 	 *         representation of <tt>node</tt>
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If any parameter is null
+	 *                                  If any parameter is null
 	 * @since JAXB2.0
 	 */
-	public <T> JAXBElement<T> unmarshal(org.w3c.dom.Node node, Class<T> declaredType)
-			throws JAXBException;
+	public <T> JAXBElement<T> unmarshal(org.w3c.dom.Node node,
+			Class<T> declaredType) throws JAXBException;
 
 	/**
 	 * Unmarshal XML data from the specified XML Source and return the resulting
@@ -642,23 +660,30 @@ public interface Unmarshaller {
 	 * and validator mechanisms.
 	 *
 	 * @param source
-	 *            the XML Source to unmarshal XML data from (providers are only
-	 *            required to support SAXSource, DOMSource, and StreamSource)
+	 *               the XML Source to unmarshal XML data from (providers are
+	 *               only
+	 *               required to support SAXSource, DOMSource, and StreamSource)
 	 * @return the newly created root object of the java content tree
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the Source parameter is null
+	 *                                  If the Source parameter is null
 	 * @see #unmarshal(javax.xml.transform.Source, Class)
 	 */
-	public Object unmarshal(javax.xml.transform.Source source) throws JAXBException;
+	public Object unmarshal(javax.xml.transform.Source source)
+			throws JAXBException;
 
 	/**
 	 * Unmarshal XML data from the specified XML Source by <tt>declaredType</tt>
@@ -672,28 +697,36 @@ public interface Unmarshaller {
 	 * See <a href="#saxParserPlugable">SAX 2.0 Parser Pluggability</a>
 	 *
 	 * @param source
-	 *            the XML Source to unmarshal XML data from (providers are only
-	 *            required to support SAXSource, DOMSource, and StreamSource)
+	 *                     the XML Source to unmarshal XML data from (providers
+	 *                     are only
+	 *                     required to support SAXSource, DOMSource, and
+	 *                     StreamSource)
 	 * @param declaredType
-	 *            appropriate JAXB mapped class to hold <tt>source</tt>'s xml
-	 *            root element
+	 *                     appropriate JAXB mapped class to hold
+	 *                     <tt>source</tt>'s xml
+	 *                     root element
 	 * @return Java content rooted by
 	 *         <a href="#unmarshalDeclaredTypeReturn">JAXB Element</a>
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If any parameter is null
+	 *                                  If any parameter is null
 	 * @since JAXB2.0
 	 */
-	public <T> JAXBElement<T> unmarshal(javax.xml.transform.Source source, Class<T> declaredType)
-			throws JAXBException;
+	public <T> JAXBElement<T> unmarshal(javax.xml.transform.Source source,
+			Class<T> declaredType) throws JAXBException;
 
 	/**
 	 * Unmarshal XML data from the specified pull parser and return the
@@ -709,26 +742,33 @@ public interface Unmarshaller {
 	 * <tt>reader</tt> will be pointing at the token right after the end event.
 	 *
 	 * @param reader
-	 *            The parser to be read.
+	 *               The parser to be read.
 	 * @return the newly created root object of the java content tree.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the <tt>reader</tt> parameter is null
+	 *                                  If the <tt>reader</tt> parameter is null
 	 * @throws IllegalStateException
-	 *             If <tt>reader</tt> is not pointing to a START_DOCUMENT or
-	 *             START_ELEMENT event.
+	 *                                  If <tt>reader</tt> is not pointing to a
+	 *                                  START_DOCUMENT or
+	 *                                  START_ELEMENT event.
 	 * @since JAXB2.0
 	 * @see #unmarshal(javax.xml.stream.XMLStreamReader, Class)
 	 */
-	public Object unmarshal(javax.xml.stream.XMLStreamReader reader) throws JAXBException;
+	public Object unmarshal(javax.xml.stream.XMLStreamReader reader)
+			throws JAXBException;
 
 	/**
 	 * Unmarshal root element to JAXB mapped <tt>declaredType</tt> and return
@@ -744,25 +784,31 @@ public interface Unmarshaller {
 	 * <tt>reader</tt> will be pointing at the token right after the end event.
 	 *
 	 * @param reader
-	 *            The parser to be read.
+	 *                     The parser to be read.
 	 * @param declaredType
-	 *            appropriate JAXB mapped class to hold <tt>reader</tt>'s
-	 *            START_ELEMENT XML data.
+	 *                     appropriate JAXB mapped class to hold
+	 *                     <tt>reader</tt>'s
+	 *                     START_ELEMENT XML data.
 	 *
 	 * @return content tree rooted by
 	 *         <a href="#unmarshalDeclaredTypeReturn">JAXB Element
 	 *         representation</a>
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If any parameter is null
+	 *                                  If any parameter is null
 	 * @since JAXB2.0
 	 */
 	public <T> JAXBElement<T> unmarshal(javax.xml.stream.XMLStreamReader reader,
@@ -783,26 +829,33 @@ public interface Unmarshaller {
 	 * <tt>reader</tt> will be pointing at the token right after the end event.
 	 *
 	 * @param reader
-	 *            The parser to be read.
+	 *               The parser to be read.
 	 * @return the newly created root object of the java content tree.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If the <tt>reader</tt> parameter is null
+	 *                                  If the <tt>reader</tt> parameter is null
 	 * @throws IllegalStateException
-	 *             If <tt>reader</tt> is not pointing to a START_DOCUMENT or
-	 *             START_ELEMENT event.
+	 *                                  If <tt>reader</tt> is not pointing to a
+	 *                                  START_DOCUMENT or
+	 *                                  START_ELEMENT event.
 	 * @since JAXB2.0
 	 * @see #unmarshal(javax.xml.stream.XMLEventReader, Class)
 	 */
-	public Object unmarshal(javax.xml.stream.XMLEventReader reader) throws JAXBException;
+	public Object unmarshal(javax.xml.stream.XMLEventReader reader)
+			throws JAXBException;
 
 	/**
 	 * Unmarshal root element to JAXB mapped <tt>declaredType</tt> and return
@@ -819,25 +872,31 @@ public interface Unmarshaller {
 	 * <tt>reader</tt> will be pointing at the token right after the end event.
 	 *
 	 * @param reader
-	 *            The parser to be read.
+	 *                     The parser to be read.
 	 * @param declaredType
-	 *            appropriate JAXB mapped class to hold <tt>reader</tt>'s
-	 *            START_ELEMENT XML data.
+	 *                     appropriate JAXB mapped class to hold
+	 *                     <tt>reader</tt>'s
+	 *                     START_ELEMENT XML data.
 	 *
 	 * @return content tree rooted by
 	 *         <a href="#unmarshalDeclaredTypeReturn">JAXB Element
 	 *         representation</a>
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected errors occur while unmarshalling
+	 *                                  If any unexpected errors occur while
+	 *                                  unmarshalling
 	 * @throws UnmarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Unmarshaller</tt> is unable to perform the XML to Java
-	 *             binding. See <a href="#unmarshalEx">Unmarshalling XML
-	 *             Data</a>
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Unmarshaller</tt> is unable to
+	 *                                  perform the XML to Java
+	 *                                  binding. See
+	 *                                  <a href="#unmarshalEx">Unmarshalling XML
+	 *                                  Data</a>
 	 * @throws IllegalArgumentException
-	 *             If any parameter is null
+	 *                                  If any parameter is null
 	 * @since JAXB2.0
 	 */
 	public <T> JAXBElement<T> unmarshal(javax.xml.stream.XMLEventReader reader,
@@ -878,15 +937,19 @@ public interface Unmarshaller {
 	 * {@link #setSchema(javax.xml.validation.Schema)} API.
 	 *
 	 * @param validating
-	 *            true if the Unmarshaller should validate during unmarshal,
-	 *            false otherwise
+	 *                   true if the Unmarshaller should validate during
+	 *                   unmarshal,
+	 *                   false otherwise
 	 * @throws JAXBException
-	 *             if an error occurred while enabling or disabling validation
-	 *             at unmarshal time
+	 *                                       if an error occurred while enabling
+	 *                                       or disabling validation
+	 *                                       at unmarshal time
 	 * @throws UnsupportedOperationException
-	 *             could be thrown if this method is invoked on an Unmarshaller
-	 *             created from a JAXBContext referencing JAXB 2.0 mapped
-	 *             classes
+	 *                                       could be thrown if this method is
+	 *                                       invoked on an Unmarshaller
+	 *                                       created from a JAXBContext
+	 *                                       referencing JAXB 2.0 mapped
+	 *                                       classes
 	 * @deprecated since JAXB2.0, please see
 	 *             {@link #setSchema(javax.xml.validation.Schema)}
 	 */
@@ -905,11 +968,14 @@ public interface Unmarshaller {
 	 * @return true if the Unmarshaller is configured to validate during
 	 *         unmarshal operations, false otherwise
 	 * @throws JAXBException
-	 *             if an error occurs while retrieving the validating flag
+	 *                                       if an error occurs while retrieving
+	 *                                       the validating flag
 	 * @throws UnsupportedOperationException
-	 *             could be thrown if this method is invoked on an Unmarshaller
-	 *             created from a JAXBContext referencing JAXB 2.0 mapped
-	 *             classes
+	 *                                       could be thrown if this method is
+	 *                                       invoked on an Unmarshaller
+	 *                                       created from a JAXBContext
+	 *                                       referencing JAXB 2.0 mapped
+	 *                                       classes
 	 * @deprecated since JAXB2.0, please see {@link #getSchema()}
 	 */
 	public boolean isValidating() throws JAXBException;
@@ -929,11 +995,13 @@ public interface Unmarshaller {
 	 * revert back to the default event handler.
 	 *
 	 * @param handler
-	 *            the validation event handler
+	 *                the validation event handler
 	 * @throws JAXBException
-	 *             if an error was encountered while setting the event handler
+	 *                       if an error was encountered while setting the event
+	 *                       handler
 	 */
-	public void setEventHandler(ValidationEventHandler handler) throws JAXBException;
+	public void setEventHandler(ValidationEventHandler handler)
+			throws JAXBException;
 
 	/**
 	 * Return the current event handler or the default event handler if one
@@ -942,8 +1010,9 @@ public interface Unmarshaller {
 	 * @return the current ValidationEventHandler or the default event handler
 	 *         if it hasn't been set
 	 * @throws JAXBException
-	 *             if an error was encountered while getting the current event
-	 *             handler
+	 *                       if an error was encountered while getting the
+	 *                       current event
+	 *                       handler
 	 */
 	public ValidationEventHandler getEventHandler() throws JAXBException;
 
@@ -956,16 +1025,18 @@ public interface Unmarshaller {
 	 * Properties</a>.
 	 *
 	 * @param name
-	 *            the name of the property to be set. This value can either be
-	 *            specified using one of the constant fields or a user supplied
-	 *            string.
+	 *              the name of the property to be set. This value can either be
+	 *              specified using one of the constant fields or a user
+	 *              supplied
+	 *              string.
 	 * @param value
-	 *            the value of the property to be set
+	 *              the value of the property to be set
 	 *
 	 * @throws PropertyException
-	 *             when there is an error processing the given property or value
+	 *                                  when there is an error processing the
+	 *                                  given property or value
 	 * @throws IllegalArgumentException
-	 *             If the name parameter is null
+	 *                                  If the name parameter is null
 	 */
 	public void setProperty(String name, Object value) throws PropertyException;
 
@@ -978,14 +1049,15 @@ public interface Unmarshaller {
 	 * Properties</a>.
 	 *
 	 * @param name
-	 *            the name of the property to retrieve
+	 *             the name of the property to retrieve
 	 * @return the value of the requested property
 	 *
 	 * @throws PropertyException
-	 *             when there is an error retrieving the given property or value
-	 *             property name
+	 *                                  when there is an error retrieving the
+	 *                                  given property or value
+	 *                                  property name
 	 * @throws IllegalArgumentException
-	 *             If the name parameter is null
+	 *                                  If the name parameter is null
 	 */
 	public Object getProperty(String name) throws PropertyException;
 
@@ -1001,12 +1073,15 @@ public interface Unmarshaller {
 	 * Initially this property is set to <tt>null</tt>.
 	 *
 	 * @param schema
-	 *            Schema object to validate unmarshal operations against or null
-	 *            to disable validation
+	 *               Schema object to validate unmarshal operations against or
+	 *               null
+	 *               to disable validation
 	 * @throws UnsupportedOperationException
-	 *             could be thrown if this method is invoked on an Unmarshaller
-	 *             created from a JAXBContext referencing JAXB 1.0 mapped
-	 *             classes
+	 *                                       could be thrown if this method is
+	 *                                       invoked on an Unmarshaller
+	 *                                       created from a JAXBContext
+	 *                                       referencing JAXB 1.0 mapped
+	 *                                       classes
 	 * @since JAXB2.0
 	 */
 	public void setSchema(javax.xml.validation.Schema schema);
@@ -1029,9 +1104,11 @@ public interface Unmarshaller {
 	 * @return the Schema object being used to perform unmarshal-time validation
 	 *         or null if not present
 	 * @throws UnsupportedOperationException
-	 *             could be thrown if this method is invoked on an Unmarshaller
-	 *             created from a JAXBContext referencing JAXB 1.0 mapped
-	 *             classes
+	 *                                       could be thrown if this method is
+	 *                                       invoked on an Unmarshaller
+	 *                                       created from a JAXBContext
+	 *                                       referencing JAXB 1.0 mapped
+	 *                                       classes
 	 * @since JAXB2.0
 	 */
 	public javax.xml.validation.Schema getSchema();
@@ -1046,9 +1123,10 @@ public interface Unmarshaller {
 	 *
 	 * @see #setAdapter(Class,XmlAdapter)
 	 * @throws IllegalArgumentException
-	 *             if the adapter parameter is null.
+	 *                                       if the adapter parameter is null.
 	 * @throws UnsupportedOperationException
-	 *             if invoked agains a JAXB 1.0 implementation.
+	 *                                       if invoked agains a JAXB 1.0
+	 *                                       implementation.
 	 * @since JAXB2.0
 	 */
 	public void setAdapter(XmlAdapter adapter);
@@ -1069,17 +1147,19 @@ public interface Unmarshaller {
 	 * unmarshaller will create one by invoking its default constructor.
 	 *
 	 * @param type
-	 *            The type of the adapter. The specified instance will be used
-	 *            when
-	 *            {@link javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter#value()}
-	 *            refers to this type.
+	 *                The type of the adapter. The specified instance will be
+	 *                used
+	 *                when
+	 *                {@link javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter#value()}
+	 *                refers to this type.
 	 * @param adapter
-	 *            The instance of the adapter to be used. If null, it will
-	 *            un-register the current adapter set for this type.
+	 *                The instance of the adapter to be used. If null, it will
+	 *                un-register the current adapter set for this type.
 	 * @throws IllegalArgumentException
-	 *             if the type parameter is null.
+	 *                                       if the type parameter is null.
 	 * @throws UnsupportedOperationException
-	 *             if invoked agains a JAXB 1.0 implementation.
+	 *                                       if invoked agains a JAXB 1.0
+	 *                                       implementation.
 	 * @since JAXB2.0
 	 */
 	public <A extends XmlAdapter> void setAdapter(Class<A> type, A adapter);
@@ -1090,9 +1170,10 @@ public interface Unmarshaller {
 	 * This is the reverse operation of the {@link #setAdapter} method.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the type parameter is null.
+	 *                                       if the type parameter is null.
 	 * @throws UnsupportedOperationException
-	 *             if invoked agains a JAXB 1.0 implementation.
+	 *                                       if invoked agains a JAXB 1.0
+	 *                                       implementation.
 	 * @since JAXB2.0
 	 */
 	public <A extends XmlAdapter> A getAdapter(Class<A> type);
@@ -1109,8 +1190,9 @@ public interface Unmarshaller {
 	 * </p>
 	 *
 	 * @throws IllegalStateException
-	 *             if attempt to concurrently call this method during a
-	 *             unmarshal operation.
+	 *                               if attempt to concurrently call this method
+	 *                               during a
+	 *                               unmarshal operation.
 	 */
 	void setAttachmentUnmarshaller(AttachmentUnmarshaller au);
 
@@ -1152,15 +1234,14 @@ public interface Unmarshaller {
 		 * method is invoked.
 		 *
 		 * @param target
-		 *            non-null instance of JAXB mapped class prior to
-		 *            unmarshalling into it.
+		 *               non-null instance of JAXB mapped class prior to
+		 *               unmarshalling into it.
 		 * @param parent
-		 *            instance of JAXB mapped class that will eventually
-		 *            reference <tt>target</tt>. <tt>null</tt> when
-		 *            <tt>target</tt> is root element.
+		 *               instance of JAXB mapped class that will eventually
+		 *               reference <tt>target</tt>. <tt>null</tt> when
+		 *               <tt>target</tt> is root element.
 		 */
-		public void beforeUnmarshal(Object target, Object parent) {
-		}
+		public void beforeUnmarshal(Object target, Object parent) {}
 
 		/**
 		 * <p/>
@@ -1176,15 +1257,14 @@ public interface Unmarshaller {
 		 * invoked.
 		 *
 		 * @param target
-		 *            non-null instance of JAXB mapped class prior to
-		 *            unmarshalling into it.
+		 *               non-null instance of JAXB mapped class prior to
+		 *               unmarshalling into it.
 		 * @param parent
-		 *            instance of JAXB mapped class that will reference
-		 *            <tt>target</tt>. <tt>null</tt> when <tt>target</tt> is
-		 *            root element.
+		 *               instance of JAXB mapped class that will reference
+		 *               <tt>target</tt>. <tt>null</tt> when <tt>target</tt> is
+		 *               root element.
 		 */
-		public void afterUnmarshal(Object target, Object parent) {
-		}
+		public void afterUnmarshal(Object target, Object parent) {}
 	}
 
 	/**
@@ -1198,8 +1278,8 @@ public interface Unmarshaller {
 	 * listener to <tt>null</tt>.
 	 *
 	 * @param listener
-	 *            provides unmarshal event callbacks for this
-	 *            {@link Unmarshaller}
+	 *                 provides unmarshal event callbacks for this
+	 *                 {@link Unmarshaller}
 	 * @since JAXB2.0
 	 */
 	public void setListener(Listener listener);

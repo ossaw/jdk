@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package org.omg.CORBA;
@@ -51,7 +30,8 @@ package org.omg.CORBA;
  * </ul>
  */
 
-public class StringValueHelper implements org.omg.CORBA.portable.BoxedValueHelper {
+public class StringValueHelper implements
+		org.omg.CORBA.portable.BoxedValueHelper {
 	private static String _id = "IDL:omg.org/CORBA/StringValue:1.0";
 
 	private static StringValueHelper _instance = new StringValueHelper();
@@ -75,12 +55,13 @@ public class StringValueHelper implements org.omg.CORBA.portable.BoxedValueHelpe
 			synchronized (org.omg.CORBA.TypeCode.class) {
 				if (__typeCode == null) {
 					if (__active) {
-						return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
+						return org.omg.CORBA.ORB.init().create_recursive_tc(
+								_id);
 					}
 					__active = true;
 					__typeCode = org.omg.CORBA.ORB.init().create_string_tc(0);
-					__typeCode = org.omg.CORBA.ORB.init().create_value_box_tc(_id, "StringValue",
-							__typeCode);
+					__typeCode = org.omg.CORBA.ORB.init().create_value_box_tc(
+							_id, "StringValue", __typeCode);
 					__active = false;
 				}
 			}
@@ -96,20 +77,24 @@ public class StringValueHelper implements org.omg.CORBA.portable.BoxedValueHelpe
 		if (!(istream instanceof org.omg.CORBA_2_3.portable.InputStream)) {
 			throw new org.omg.CORBA.BAD_PARAM();
 		}
-		return (String) ((org.omg.CORBA_2_3.portable.InputStream) istream).read_value(_instance);
+		return (String) ((org.omg.CORBA_2_3.portable.InputStream) istream)
+				.read_value(_instance);
 	}
 
-	public java.io.Serializable read_value(org.omg.CORBA.portable.InputStream istream) {
+	public java.io.Serializable read_value(
+			org.omg.CORBA.portable.InputStream istream) {
 		String tmp;
 		tmp = istream.read_string();
 		return (java.io.Serializable) tmp;
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, String value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			String value) {
 		if (!(ostream instanceof org.omg.CORBA_2_3.portable.OutputStream)) {
 			throw new org.omg.CORBA.BAD_PARAM();
 		}
-		((org.omg.CORBA_2_3.portable.OutputStream) ostream).write_value(value, _instance);
+		((org.omg.CORBA_2_3.portable.OutputStream) ostream).write_value(value,
+				_instance);
 	}
 
 	public void write_value(org.omg.CORBA.portable.OutputStream ostream,

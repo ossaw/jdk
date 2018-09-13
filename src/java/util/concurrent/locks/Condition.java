@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -236,8 +211,9 @@ public interface Condition {
 	 * is one.
 	 *
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted (and interruption of
-	 *             thread suspension is supported)
+	 *                              if the current thread is interrupted (and
+	 *                              interruption of
+	 *                              thread suspension is supported)
 	 */
 	void await() throws InterruptedException;
 
@@ -368,15 +344,16 @@ public interface Condition {
 	 * that the signal is redirected to another waiting thread, if there is one.
 	 *
 	 * @param nanosTimeout
-	 *            the maximum time to wait, in nanoseconds
+	 *                     the maximum time to wait, in nanoseconds
 	 * @return an estimate of the {@code nanosTimeout} value minus the time
 	 *         spent waiting upon return from this method. A positive value may
 	 *         be used as the argument to a subsequent call to this method to
 	 *         finish waiting out the desired time. A value less than or equal
 	 *         to zero indicates that no time remains.
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted (and interruption of
-	 *             thread suspension is supported)
+	 *                              if the current thread is interrupted (and
+	 *                              interruption of
+	 *                              thread suspension is supported)
 	 */
 	long awaitNanos(long nanosTimeout) throws InterruptedException;
 
@@ -390,14 +367,15 @@ public interface Condition {
 	 * </pre>
 	 *
 	 * @param time
-	 *            the maximum time to wait
+	 *             the maximum time to wait
 	 * @param unit
-	 *            the time unit of the {@code time} argument
+	 *             the time unit of the {@code time} argument
 	 * @return {@code false} if the waiting time detectably elapsed before
 	 *         return from the method, else {@code true}
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted (and interruption of
-	 *             thread suspension is supported)
+	 *                              if the current thread is interrupted (and
+	 *                              interruption of
+	 *                              thread suspension is supported)
 	 */
 	boolean await(long time, TimeUnit unit) throws InterruptedException;
 
@@ -480,12 +458,13 @@ public interface Condition {
 	 * the signal is redirected to another waiting thread, if there is one.
 	 *
 	 * @param deadline
-	 *            the absolute time to wait until
+	 *                 the absolute time to wait until
 	 * @return {@code false} if the deadline has elapsed upon return, else
 	 *         {@code true}
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted (and interruption of
-	 *             thread suspension is supported)
+	 *                              if the current thread is interrupted (and
+	 *                              interruption of
+	 *                              thread suspension is supported)
 	 */
 	boolean awaitUntil(Date deadline) throws InterruptedException;
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -42,7 +22,7 @@ public interface Customizer {
 	 * before the Customizer has been added to any parent AWT container.
 	 * 
 	 * @param bean
-	 *            The object to be customized.
+	 *             The object to be customized.
 	 */
 	void setObject(Object bean);
 
@@ -52,7 +32,8 @@ public interface Customizer {
 	 * that might require the displayed properties to be refreshed.
 	 *
 	 * @param listener
-	 *            An object to be invoked when a PropertyChange event is fired.
+	 *                 An object to be invoked when a PropertyChange event is
+	 *                 fired.
 	 */
 	void addPropertyChangeListener(PropertyChangeListener listener);
 
@@ -60,7 +41,7 @@ public interface Customizer {
 	 * Remove a listener for the PropertyChange event.
 	 *
 	 * @param listener
-	 *            The PropertyChange listener to be removed.
+	 *                 The PropertyChange listener to be removed.
 	 */
 	void removePropertyChangeListener(PropertyChangeListener listener);
 

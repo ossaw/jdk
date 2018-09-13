@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -59,7 +39,7 @@ public class SnmpTooBigException extends Exception {
 	 * set to the specified value.
 	 * 
 	 * @param n
-	 *            The <CODE>varBindCount</CODE> value.
+	 *          The <CODE>varBindCount</CODE> value.
 	 */
 	public SnmpTooBigException(int n) {
 		varBindCount = n;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -46,7 +26,8 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterInfo extends TextSyntax implements PrintServiceAttribute {
+public final class PrinterInfo extends TextSyntax implements
+		PrintServiceAttribute {
 
 	private static final long serialVersionUID = 7765280618777599727L;
 
@@ -55,14 +36,15 @@ public final class PrinterInfo extends TextSyntax implements PrintServiceAttribu
 	 * and locale.
 	 *
 	 * @param info
-	 *            Printer information string.
+	 *               Printer information string.
 	 * @param locale
-	 *            Natural language of the text string. null is interpreted to
-	 *            mean the default locale as returned by
-	 *            <code>Locale.getDefault()</code>
+	 *               Natural language of the text string. null is interpreted to
+	 *               mean the default locale as returned by
+	 *               <code>Locale.getDefault()</code>
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>info</CODE> is null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>info</CODE> is null.
 	 */
 	public PrinterInfo(String info, Locale locale) {
 		super(info, locale);
@@ -82,7 +64,7 @@ public final class PrinterInfo extends TextSyntax implements PrintServiceAttribu
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this printer info
 	 *         attribute, false otherwise.

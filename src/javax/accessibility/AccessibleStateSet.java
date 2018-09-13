@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -66,7 +46,7 @@ public class AccessibleStateSet {
 	 * of states passed in. Duplicate entries are ignored.
 	 *
 	 * @param states
-	 *            an array of AccessibleState describing the state set.
+	 *               an array of AccessibleState describing the state set.
 	 */
 	public AccessibleStateSet(AccessibleState[] states) {
 		if (states.length != 0) {
@@ -86,7 +66,7 @@ public class AccessibleStateSet {
 	 * and the return value is true.
 	 * 
 	 * @param state
-	 *            the state to add to the state set
+	 *              the state to add to the state set
 	 * @return true if state is added to the state set; false if the state set
 	 *         is unchanged
 	 */
@@ -111,7 +91,7 @@ public class AccessibleStateSet {
 	 * ignored.
 	 * 
 	 * @param states
-	 *            AccessibleState array describing the state set.
+	 *               AccessibleState array describing the state set.
 	 */
 	public void addAll(AccessibleState[] states) {
 		if (states.length != 0) {
@@ -133,7 +113,7 @@ public class AccessibleStateSet {
 	 * return value will be true.
 	 *
 	 * @param state
-	 *            the state to remove from the state set
+	 *              the state to remove from the state set
 	 * @return true if the state is in the state set; false if the state set
 	 *         will be unchanged
 	 */
@@ -158,7 +138,7 @@ public class AccessibleStateSet {
 	 * Checks if the current state is in the state set.
 	 * 
 	 * @param state
-	 *            the state
+	 *              the state
 	 * @return true if the state is in the state set; otherwise false
 	 */
 	public boolean contains(AccessibleState state) {
@@ -198,7 +178,8 @@ public class AccessibleStateSet {
 		if ((states != null) && (states.size() > 0)) {
 			ret = ((AccessibleState) (states.elementAt(0))).toDisplayString();
 			for (int i = 1; i < states.size(); i++) {
-				ret = ret + "," + ((AccessibleState) (states.elementAt(i))).toDisplayString();
+				ret = ret + "," + ((AccessibleState) (states.elementAt(i)))
+						.toDisplayString();
 			}
 		}
 		return ret;

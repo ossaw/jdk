@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2007-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -96,11 +65,11 @@ import java.util.Objects;
  * @implSpec This class is immutable and thread-safe.
  * @serial
  * @param <D>
- *            the concrete type for the date of this date-time
+ *        the concrete type for the date of this date-time
  * @since 1.8
  */
-final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
-		implements ChronoLocalDateTime<D>, Temporal, TemporalAdjuster, Serializable {
+final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate> implements
+		ChronoLocalDateTime<D>, Temporal, TemporalAdjuster, Serializable {
 
 	/**
 	 * Serialization version.
@@ -169,12 +138,13 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 	 * Obtains an instance of {@code ChronoLocalDateTime} from a date and time.
 	 *
 	 * @param date
-	 *            the local date, not null
+	 *             the local date, not null
 	 * @param time
-	 *            the local time, not null
+	 *             the local time, not null
 	 * @return the local date-time, not null
 	 */
-	static <R extends ChronoLocalDate> ChronoLocalDateTimeImpl<R> of(R date, LocalTime time) {
+	static <R extends ChronoLocalDate> ChronoLocalDateTimeImpl<R> of(R date,
+			LocalTime time) {
 		return new ChronoLocalDateTimeImpl<>(date, time);
 	}
 
@@ -183,22 +153,24 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 	 * the specified chronology.
 	 *
 	 * @param chrono
-	 *            the chronology to check for, not null
+	 *                 the chronology to check for, not null
 	 * @param temporal
-	 *            a date-time to cast, not null
+	 *                 a date-time to cast, not null
 	 * @return the date-time checked and cast to {@code ChronoLocalDateTime},
 	 *         not null
 	 * @throws ClassCastException
-	 *             if the date-time cannot be cast to ChronoLocalDateTimeImpl or
-	 *             the chronology is not equal this Chronology
+	 *                            if the date-time cannot be cast to
+	 *                            ChronoLocalDateTimeImpl or
+	 *                            the chronology is not equal this Chronology
 	 */
-	static <R extends ChronoLocalDate> ChronoLocalDateTimeImpl<R> ensureValid(Chronology chrono,
-			Temporal temporal) {
+	static <R extends ChronoLocalDate> ChronoLocalDateTimeImpl<R> ensureValid(
+			Chronology chrono, Temporal temporal) {
 		@SuppressWarnings("unchecked")
 		ChronoLocalDateTimeImpl<R> other = (ChronoLocalDateTimeImpl<R>) temporal;
 		if (chrono.equals(other.getChronology()) == false) {
-			throw new ClassCastException("Chronology mismatch, required: " + chrono.getId()
-					+ ", actual: " + other.getChronology().getId());
+			throw new ClassCastException("Chronology mismatch, required: "
+					+ chrono.getId() + ", actual: " + other.getChronology()
+							.getId());
 		}
 		return other;
 	}
@@ -207,9 +179,9 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 	 * Constructor.
 	 *
 	 * @param date
-	 *            the date part of the date-time, not null
+	 *             the date part of the date-time, not null
 	 * @param time
-	 *            the time part of the date-time, not null
+	 *             the time part of the date-time, not null
 	 */
 	private ChronoLocalDateTimeImpl(D date, LocalTime time) {
 		Objects.requireNonNull(date, "date");
@@ -223,12 +195,13 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 	 * see if a new object is in fact required.
 	 *
 	 * @param newDate
-	 *            the date of the new date-time, not null
+	 *                the date of the new date-time, not null
 	 * @param newTime
-	 *            the time of the new date-time, not null
+	 *                the time of the new date-time, not null
 	 * @return the date-time, not null
 	 */
-	private ChronoLocalDateTimeImpl<D> with(Temporal newDate, LocalTime newTime) {
+	private ChronoLocalDateTimeImpl<D> with(Temporal newDate,
+			LocalTime newTime) {
 		if (date == newDate && time == newTime) {
 			return this;
 		}
@@ -281,7 +254,8 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 	public long getLong(TemporalField field) {
 		if (field instanceof ChronoField) {
 			ChronoField f = (ChronoField) field;
-			return (f.isTimeBased() ? time.getLong(field) : date.getLong(field));
+			return (f.isTimeBased() ? time.getLong(field)
+					: date.getLong(field));
 		}
 		return field.getFrom(this);
 	}
@@ -313,43 +287,45 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 				return with(date.with(field, newValue), time);
 			}
 		}
-		return ChronoLocalDateTimeImpl.ensureValid(date.getChronology(),
-				field.adjustInto(this, newValue));
+		return ChronoLocalDateTimeImpl.ensureValid(date.getChronology(), field
+				.adjustInto(this, newValue));
 	}
 
 	// -----------------------------------------------------------------------
 	@Override
-	public ChronoLocalDateTimeImpl<D> plus(long amountToAdd, TemporalUnit unit) {
+	public ChronoLocalDateTimeImpl<D> plus(long amountToAdd,
+			TemporalUnit unit) {
 		if (unit instanceof ChronoUnit) {
 			ChronoUnit f = (ChronoUnit) unit;
 			switch (f) {
-			case NANOS:
-				return plusNanos(amountToAdd);
-			case MICROS:
-				return plusDays(amountToAdd / MICROS_PER_DAY)
-						.plusNanos((amountToAdd % MICROS_PER_DAY) * 1000);
-			case MILLIS:
-				return plusDays(amountToAdd / MILLIS_PER_DAY)
-						.plusNanos((amountToAdd % MILLIS_PER_DAY) * 1000000);
-			case SECONDS:
-				return plusSeconds(amountToAdd);
-			case MINUTES:
-				return plusMinutes(amountToAdd);
-			case HOURS:
-				return plusHours(amountToAdd);
-			case HALF_DAYS:
-				return plusDays(amountToAdd / 256).plusHours((amountToAdd % 256) * 12); // no
-																						// overflow
-																						// (256
-																						// is
-																						// multiple
-																						// of
-																						// 2)
+				case NANOS:
+					return plusNanos(amountToAdd);
+				case MICROS:
+					return plusDays(amountToAdd / MICROS_PER_DAY).plusNanos(
+							(amountToAdd % MICROS_PER_DAY) * 1000);
+				case MILLIS:
+					return plusDays(amountToAdd / MILLIS_PER_DAY).plusNanos(
+							(amountToAdd % MILLIS_PER_DAY) * 1000000);
+				case SECONDS:
+					return plusSeconds(amountToAdd);
+				case MINUTES:
+					return plusMinutes(amountToAdd);
+				case HOURS:
+					return plusHours(amountToAdd);
+				case HALF_DAYS:
+					return plusDays(amountToAdd / 256).plusHours((amountToAdd
+							% 256) * 12); // no
+																									// overflow
+																									// (256
+																									// is
+																									// multiple
+																									// of
+																									// 2)
 			}
 			return with(date.plus(amountToAdd, unit), time);
 		}
-		return ChronoLocalDateTimeImpl.ensureValid(date.getChronology(),
-				unit.addTo(this, amountToAdd));
+		return ChronoLocalDateTimeImpl.ensureValid(date.getChronology(), unit
+				.addTo(this, amountToAdd));
 	}
 
 	private ChronoLocalDateTimeImpl<D> plusDays(long days) {
@@ -373,8 +349,8 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 	}
 
 	// -----------------------------------------------------------------------
-	private ChronoLocalDateTimeImpl<D> plusWithOverflow(D newDate, long hours, long minutes,
-			long seconds, long nanos) {
+	private ChronoLocalDateTimeImpl<D> plusWithOverflow(D newDate, long hours,
+			long minutes, long seconds, long nanos) {
 		// 9223372036854775808 long, 2147483648 int
 		if ((hours | minutes | seconds | nanos) == 0) {
 			return with(newDate, time);
@@ -393,7 +369,8 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 		totNanos = totNanos + curNoD; // total 432000000000000
 		totDays += Math.floorDiv(totNanos, NANOS_PER_DAY);
 		long newNoD = Math.floorMod(totNanos, NANOS_PER_DAY);
-		LocalTime newTime = (newNoD == curNoD ? time : LocalTime.ofNanoOfDay(newNoD));
+		LocalTime newTime = (newNoD == curNoD ? time
+				: LocalTime.ofNanoOfDay(newNoD));
 		return with(newDate.plus(totDays, ChronoUnit.DAYS), newTime);
 	}
 
@@ -414,29 +391,30 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 			if (unit.isTimeBased()) {
 				long amount = end.getLong(EPOCH_DAY) - date.getLong(EPOCH_DAY);
 				switch ((ChronoUnit) unit) {
-				case NANOS:
-					amount = Math.multiplyExact(amount, NANOS_PER_DAY);
-					break;
-				case MICROS:
-					amount = Math.multiplyExact(amount, MICROS_PER_DAY);
-					break;
-				case MILLIS:
-					amount = Math.multiplyExact(amount, MILLIS_PER_DAY);
-					break;
-				case SECONDS:
-					amount = Math.multiplyExact(amount, SECONDS_PER_DAY);
-					break;
-				case MINUTES:
-					amount = Math.multiplyExact(amount, MINUTES_PER_DAY);
-					break;
-				case HOURS:
-					amount = Math.multiplyExact(amount, HOURS_PER_DAY);
-					break;
-				case HALF_DAYS:
-					amount = Math.multiplyExact(amount, 2);
-					break;
+					case NANOS:
+						amount = Math.multiplyExact(amount, NANOS_PER_DAY);
+						break;
+					case MICROS:
+						amount = Math.multiplyExact(amount, MICROS_PER_DAY);
+						break;
+					case MILLIS:
+						amount = Math.multiplyExact(amount, MILLIS_PER_DAY);
+						break;
+					case SECONDS:
+						amount = Math.multiplyExact(amount, SECONDS_PER_DAY);
+						break;
+					case MINUTES:
+						amount = Math.multiplyExact(amount, MINUTES_PER_DAY);
+						break;
+					case HOURS:
+						amount = Math.multiplyExact(amount, HOURS_PER_DAY);
+						break;
+					case HALF_DAYS:
+						amount = Math.multiplyExact(amount, 2);
+						break;
 				}
-				return Math.addExact(amount, time.until(end.toLocalTime(), unit));
+				return Math.addExact(amount, time.until(end.toLocalTime(),
+						unit));
 			}
 			ChronoLocalDate endDate = end.toLocalDate();
 			if (end.toLocalTime().isBefore(time)) {
@@ -472,12 +450,13 @@ final class ChronoLocalDateTimeImpl<D extends ChronoLocalDate>
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	void writeExternal(ObjectOutput out) throws IOException {

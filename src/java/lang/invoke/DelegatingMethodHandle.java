@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -94,36 +74,36 @@ abstract class DelegatingMethodHandle extends MethodHandle {
 	private static LambdaForm chooseDelegatingForm(MethodHandle target) {
 		if (target instanceof SimpleMethodHandle)
 			return target.internalForm(); // no need for an indirection
-		return makeReinvokerForm(target, MethodTypeForm.LF_DELEGATE, DelegatingMethodHandle.class,
-				NF_getTarget);
+		return makeReinvokerForm(target, MethodTypeForm.LF_DELEGATE,
+				DelegatingMethodHandle.class, NF_getTarget);
 	}
 
-	static LambdaForm makeReinvokerForm(MethodHandle target, int whichCache, Object constraint,
-			NamedFunction getTargetFn) {
+	static LambdaForm makeReinvokerForm(MethodHandle target, int whichCache,
+			Object constraint, NamedFunction getTargetFn) {
 		String debugString;
 		switch (whichCache) {
-		case MethodTypeForm.LF_REBIND:
-			debugString = "BMH.reinvoke";
-			break;
-		case MethodTypeForm.LF_DELEGATE:
-			debugString = "MH.delegate";
-			break;
-		default:
-			debugString = "MH.reinvoke";
-			break;
+			case MethodTypeForm.LF_REBIND:
+				debugString = "BMH.reinvoke";
+				break;
+			case MethodTypeForm.LF_DELEGATE:
+				debugString = "MH.delegate";
+				break;
+			default:
+				debugString = "MH.reinvoke";
+				break;
 		}
 		// No pre-action needed.
-		return makeReinvokerForm(target, whichCache, constraint, debugString, true, getTargetFn,
-				null);
+		return makeReinvokerForm(target, whichCache, constraint, debugString,
+				true, getTargetFn, null);
 	}
 
 	/** Create a LF which simply reinvokes a target of the given basic type. */
-	static LambdaForm makeReinvokerForm(MethodHandle target, int whichCache, Object constraint,
-			String debugString, boolean forceInline, NamedFunction getTargetFn,
-			NamedFunction preActionFn) {
+	static LambdaForm makeReinvokerForm(MethodHandle target, int whichCache,
+			Object constraint, String debugString, boolean forceInline,
+			NamedFunction getTargetFn, NamedFunction preActionFn) {
 		MethodType mtype = target.type().basicType();
-		boolean customized = (whichCache < 0
-				|| mtype.parameterSlotCount() > MethodType.MAX_MH_INVOKER_ARITY);
+		boolean customized = (whichCache < 0 || mtype
+				.parameterSlotCount() > MethodType.MAX_MH_INVOKER_ARITY);
 		boolean hasPreAction = (preActionFn != null);
 		LambdaForm form;
 		if (!customized) {
@@ -138,15 +118,18 @@ abstract class DelegatingMethodHandle extends MethodHandle {
 		final int PRE_ACTION = hasPreAction ? nameCursor++ : -1;
 		final int NEXT_MH = customized ? -1 : nameCursor++;
 		final int REINVOKE = nameCursor++;
-		LambdaForm.Name[] names = LambdaForm.arguments(nameCursor - ARG_LIMIT, mtype.invokerType());
+		LambdaForm.Name[] names = LambdaForm.arguments(nameCursor - ARG_LIMIT,
+				mtype.invokerType());
 		assert (names.length == nameCursor);
 		names[THIS_DMH] = names[THIS_DMH].withConstraint(constraint);
 		Object[] targetArgs;
 		if (hasPreAction) {
-			names[PRE_ACTION] = new LambdaForm.Name(preActionFn, names[THIS_DMH]);
+			names[PRE_ACTION] = new LambdaForm.Name(preActionFn,
+					names[THIS_DMH]);
 		}
 		if (customized) {
-			targetArgs = Arrays.copyOfRange(names, ARG_BASE, ARG_LIMIT, Object[].class);
+			targetArgs = Arrays.copyOfRange(names, ARG_BASE, ARG_LIMIT,
+					Object[].class);
 			names[REINVOKE] = new LambdaForm.Name(target, targetArgs); // the
 																		// invoker
 																		// is
@@ -155,7 +138,8 @@ abstract class DelegatingMethodHandle extends MethodHandle {
 																		// itself
 		} else {
 			names[NEXT_MH] = new LambdaForm.Name(getTargetFn, names[THIS_DMH]);
-			targetArgs = Arrays.copyOfRange(names, THIS_DMH, ARG_LIMIT, Object[].class);
+			targetArgs = Arrays.copyOfRange(names, THIS_DMH, ARG_LIMIT,
+					Object[].class);
 			targetArgs[0] = names[NEXT_MH]; // overwrite this MH with next MH
 			names[REINVOKE] = new LambdaForm.Name(mtype, targetArgs);
 		}
@@ -169,8 +153,8 @@ abstract class DelegatingMethodHandle extends MethodHandle {
 	static final NamedFunction NF_getTarget;
 	static {
 		try {
-			NF_getTarget = new NamedFunction(
-					DelegatingMethodHandle.class.getDeclaredMethod("getTarget"));
+			NF_getTarget = new NamedFunction(DelegatingMethodHandle.class
+					.getDeclaredMethod("getTarget"));
 		} catch (ReflectiveOperationException ex) {
 			throw newInternalError(ex);
 		}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -125,20 +105,23 @@ final public class DatatypeConverter {
 	 * the one that will be used from then on.
 	 *
 	 * @param converter
-	 *            an instance of a class that implements the
-	 *            DatatypeConverterInterface class - this parameter must not be
-	 *            null.
+	 *                  an instance of a class that implements the
+	 *                  DatatypeConverterInterface class - this parameter must
+	 *                  not be
+	 *                  null.
 	 * @throws IllegalArgumentException
-	 *             if the parameter is null
+	 *                                  if the parameter is null
 	 * @throws SecurityException
-	 *             If the {@link SecurityManager} in charge denies the access to
-	 *             set the datatype converter.
+	 *                                  If the {@link SecurityManager} in charge
+	 *                                  denies the access to
+	 *                                  set the datatype converter.
 	 * @see JAXBPermission
 	 */
-	public static void setDatatypeConverter(DatatypeConverterInterface converter) {
+	public static void setDatatypeConverter(
+			DatatypeConverterInterface converter) {
 		if (converter == null) {
-			throw new IllegalArgumentException(
-					Messages.format(Messages.CONVERTER_MUST_NOT_BE_NULL));
+			throw new IllegalArgumentException(Messages.format(
+					Messages.CONVERTER_MUST_NOT_BE_NULL));
 		} else if (theConverter == null) {
 			SecurityManager sm = System.getSecurityManager();
 			if (sm != null)
@@ -156,7 +139,8 @@ final public class DatatypeConverter {
 	 * Convert the lexical XSD string argument into a String value.
 	 * 
 	 * @param lexicalXSDString
-	 *            A string containing a lexical representation of xsd:string.
+	 *                         A string containing a lexical representation of
+	 *                         xsd:string.
 	 * @return A String value represented by the string argument.
 	 */
 	public static String parseString(String lexicalXSDString) {
@@ -170,11 +154,14 @@ final public class DatatypeConverter {
 	 * Convert the string argument into a BigInteger value.
 	 * 
 	 * @param lexicalXSDInteger
-	 *            A string containing a lexical representation of xsd:integer.
+	 *                          A string containing a lexical representation of
+	 *                          xsd:integer.
 	 * @return A BigInteger value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             <code>lexicalXSDInteger</code> is not a valid string
-	 *             representation of a {@link java.math.BigInteger} value.
+	 *                               <code>lexicalXSDInteger</code> is not a
+	 *                               valid string
+	 *                               representation of a
+	 *                               {@link java.math.BigInteger} value.
 	 */
 	public static java.math.BigInteger parseInteger(String lexicalXSDInteger) {
 		if (theConverter == null)
@@ -187,11 +174,14 @@ final public class DatatypeConverter {
 	 * Convert the string argument into an int value.
 	 * 
 	 * @param lexicalXSDInt
-	 *            A string containing a lexical representation of xsd:int.
+	 *                      A string containing a lexical representation of
+	 *                      xsd:int.
 	 * @return A int value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             <code>lexicalXSDInt</code> is not a valid string
-	 *             representation of an <code>int</code> value.
+	 *                               <code>lexicalXSDInt</code> is not a valid
+	 *                               string
+	 *                               representation of an <code>int</code>
+	 *                               value.
 	 */
 	public static int parseInt(String lexicalXSDInt) {
 		if (theConverter == null)
@@ -204,11 +194,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a long value.
 	 * 
 	 * @param lexicalXSDLong
-	 *            A string containing lexical representation of xsd:long.
+	 *                       A string containing lexical representation of
+	 *                       xsd:long.
 	 * @return A long value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             <code>lexicalXSDLong</code> is not a valid string
-	 *             representation of a <code>long</code> value.
+	 *                               <code>lexicalXSDLong</code> is not a valid
+	 *                               string
+	 *                               representation of a <code>long</code>
+	 *                               value.
 	 */
 	public static long parseLong(String lexicalXSDLong) {
 		if (theConverter == null)
@@ -221,11 +214,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a short value.
 	 * 
 	 * @param lexicalXSDShort
-	 *            A string containing lexical representation of xsd:short.
+	 *                        A string containing lexical representation of
+	 *                        xsd:short.
 	 * @return A short value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             <code>lexicalXSDShort</code> is not a valid string
-	 *             representation of a <code>short</code> value.
+	 *                               <code>lexicalXSDShort</code> is not a valid
+	 *                               string
+	 *                               representation of a <code>short</code>
+	 *                               value.
 	 */
 	public static short parseShort(String lexicalXSDShort) {
 		if (theConverter == null)
@@ -238,11 +234,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a BigDecimal value.
 	 * 
 	 * @param lexicalXSDDecimal
-	 *            A string containing lexical representation of xsd:decimal.
+	 *                          A string containing lexical representation of
+	 *                          xsd:decimal.
 	 * @return A BigDecimal value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             <code>lexicalXSDDecimal</code> is not a valid string
-	 *             representation of {@link java.math.BigDecimal}.
+	 *                               <code>lexicalXSDDecimal</code> is not a
+	 *                               valid string
+	 *                               representation of
+	 *                               {@link java.math.BigDecimal}.
 	 */
 	public static java.math.BigDecimal parseDecimal(String lexicalXSDDecimal) {
 		if (theConverter == null)
@@ -255,11 +254,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a float value.
 	 * 
 	 * @param lexicalXSDFloat
-	 *            A string containing lexical representation of xsd:float.
+	 *                        A string containing lexical representation of
+	 *                        xsd:float.
 	 * @return A float value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             <code>lexicalXSDFloat</code> is not a valid string
-	 *             representation of a <code>float</code> value.
+	 *                               <code>lexicalXSDFloat</code> is not a valid
+	 *                               string
+	 *                               representation of a <code>float</code>
+	 *                               value.
 	 */
 	public static float parseFloat(String lexicalXSDFloat) {
 		if (theConverter == null)
@@ -272,11 +274,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a double value.
 	 * 
 	 * @param lexicalXSDDouble
-	 *            A string containing lexical representation of xsd:double.
+	 *                         A string containing lexical representation of
+	 *                         xsd:double.
 	 * @return A double value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             <code>lexicalXSDDouble</code> is not a valid string
-	 *             representation of a <code>double</code> value.
+	 *                               <code>lexicalXSDDouble</code> is not a
+	 *                               valid string
+	 *                               representation of a <code>double</code>
+	 *                               value.
 	 */
 	public static double parseDouble(String lexicalXSDDouble) {
 		if (theConverter == null)
@@ -289,11 +294,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a boolean value.
 	 * 
 	 * @param lexicalXSDBoolean
-	 *            A string containing lexical representation of xsd:boolean.
+	 *                          A string containing lexical representation of
+	 *                          xsd:boolean.
 	 * @return A boolean value represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to lexical value space
-	 *             defined in XML Schema Part 2: Datatypes for xsd:boolean.
+	 *                                  if string parameter does not conform to
+	 *                                  lexical value space
+	 *                                  defined in XML Schema Part 2: Datatypes
+	 *                                  for xsd:boolean.
 	 */
 	public static boolean parseBoolean(String lexicalXSDBoolean) {
 		if (theConverter == null)
@@ -306,11 +314,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a byte value.
 	 * 
 	 * @param lexicalXSDByte
-	 *            A string containing lexical representation of xsd:byte.
+	 *                       A string containing lexical representation of
+	 *                       xsd:byte.
 	 * @return A byte value represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to lexical value space
-	 *             defined in XML Schema Part 2: Datatypes for xsd:byte.
+	 *                                  if string parameter does not conform to
+	 *                                  lexical value space
+	 *                                  defined in XML Schema Part 2: Datatypes
+	 *                                  for xsd:byte.
 	 */
 	public static byte parseByte(String lexicalXSDByte) {
 		if (theConverter == null)
@@ -328,15 +339,19 @@ final public class DatatypeConverter {
 	 * Schema Part 2:Datatypes specification:QNames</a>
 	 *
 	 * @param lexicalXSDQName
-	 *            A string containing lexical representation of xsd:QName.
+	 *                        A string containing lexical representation of
+	 *                        xsd:QName.
 	 * @param nsc
-	 *            A namespace context for interpreting a prefix within a QName.
+	 *                        A namespace context for interpreting a prefix
+	 *                        within a QName.
 	 * @return A QName value represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to XML Schema Part 2
-	 *             specification or if namespace prefix of
-	 *             <tt>lexicalXSDQname</tt> is not bound to a URI in
-	 *             NamespaceContext <tt>nsc</tt>.
+	 *                                  if string parameter does not conform to
+	 *                                  XML Schema Part 2
+	 *                                  specification or if namespace prefix of
+	 *                                  <tt>lexicalXSDQname</tt> is not bound to
+	 *                                  a URI in
+	 *                                  NamespaceContext <tt>nsc</tt>.
 	 */
 	public static javax.xml.namespace.QName parseQName(String lexicalXSDQName,
 			NamespaceContext nsc) {
@@ -350,11 +365,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a Calendar value.
 	 * 
 	 * @param lexicalXSDDateTime
-	 *            A string containing lexical representation of xsd:datetime.
+	 *                           A string containing lexical representation of
+	 *                           xsd:datetime.
 	 * @return A Calendar object represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to lexical value space
-	 *             defined in XML Schema Part 2: Datatypes for xsd:dateTime.
+	 *                                  if string parameter does not conform to
+	 *                                  lexical value space
+	 *                                  defined in XML Schema Part 2: Datatypes
+	 *                                  for xsd:dateTime.
 	 */
 	public static java.util.Calendar parseDateTime(String lexicalXSDDateTime) {
 		if (theConverter == null)
@@ -367,12 +385,15 @@ final public class DatatypeConverter {
 	 * Converts the string argument into an array of bytes.
 	 * 
 	 * @param lexicalXSDBase64Binary
-	 *            A string containing lexical representation of
-	 *            xsd:base64Binary.
+	 *                               A string containing lexical representation
+	 *                               of
+	 *                               xsd:base64Binary.
 	 * @return An array of bytes represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to lexical value space
-	 *             defined in XML Schema Part 2: Datatypes for xsd:base64Binary
+	 *                                  if string parameter does not conform to
+	 *                                  lexical value space
+	 *                                  defined in XML Schema Part 2: Datatypes
+	 *                                  for xsd:base64Binary
 	 */
 	public static byte[] parseBase64Binary(String lexicalXSDBase64Binary) {
 		if (theConverter == null)
@@ -385,11 +406,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into an array of bytes.
 	 * 
 	 * @param lexicalXSDHexBinary
-	 *            A string containing lexical representation of xsd:hexBinary.
+	 *                            A string containing lexical representation of
+	 *                            xsd:hexBinary.
 	 * @return An array of bytes represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to lexical value space
-	 *             defined in XML Schema Part 2: Datatypes for xsd:hexBinary.
+	 *                                  if string parameter does not conform to
+	 *                                  lexical value space
+	 *                                  defined in XML Schema Part 2: Datatypes
+	 *                                  for xsd:hexBinary.
 	 */
 	public static byte[] parseHexBinary(String lexicalXSDHexBinary) {
 		if (theConverter == null)
@@ -402,11 +426,13 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a long value.
 	 * 
 	 * @param lexicalXSDUnsignedInt
-	 *            A string containing lexical representation of xsd:unsignedInt.
+	 *                              A string containing lexical representation
+	 *                              of xsd:unsignedInt.
 	 * @return A long value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             if string parameter can not be parsed into a <tt>long</tt>
-	 *             value.
+	 *                               if string parameter can not be parsed into
+	 *                               a <tt>long</tt>
+	 *                               value.
 	 */
 	public static long parseUnsignedInt(String lexicalXSDUnsignedInt) {
 		if (theConverter == null)
@@ -419,12 +445,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into an int value.
 	 * 
 	 * @param lexicalXSDUnsignedShort
-	 *            A string containing lexical representation of
-	 *            xsd:unsignedShort.
+	 *                                A string containing lexical representation
+	 *                                of
+	 *                                xsd:unsignedShort.
 	 * @return An int value represented by the string argument.
 	 * @throws NumberFormatException
-	 *             if string parameter can not be parsed into an <tt>int</tt>
-	 *             value.
+	 *                               if string parameter can not be parsed into
+	 *                               an <tt>int</tt>
+	 *                               value.
 	 */
 	public static int parseUnsignedShort(String lexicalXSDUnsignedShort) {
 		if (theConverter == null)
@@ -437,11 +465,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a Calendar value.
 	 * 
 	 * @param lexicalXSDTime
-	 *            A string containing lexical representation of xsd:time.
+	 *                       A string containing lexical representation of
+	 *                       xsd:time.
 	 * @return A Calendar value represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to lexical value space
-	 *             defined in XML Schema Part 2: Datatypes for xsd:Time.
+	 *                                  if string parameter does not conform to
+	 *                                  lexical value space
+	 *                                  defined in XML Schema Part 2: Datatypes
+	 *                                  for xsd:Time.
 	 */
 	public static java.util.Calendar parseTime(String lexicalXSDTime) {
 		if (theConverter == null)
@@ -454,11 +485,14 @@ final public class DatatypeConverter {
 	 * Converts the string argument into a Calendar value.
 	 * 
 	 * @param lexicalXSDDate
-	 *            A string containing lexical representation of xsd:Date.
+	 *                       A string containing lexical representation of
+	 *                       xsd:Date.
 	 * @return A Calendar value represented by the string argument.
 	 * @throws IllegalArgumentException
-	 *             if string parameter does not conform to lexical value space
-	 *             defined in XML Schema Part 2: Datatypes for xsd:Date.
+	 *                                  if string parameter does not conform to
+	 *                                  lexical value space
+	 *                                  defined in XML Schema Part 2: Datatypes
+	 *                                  for xsd:Date.
 	 */
 	public static java.util.Calendar parseDate(String lexicalXSDDate) {
 		if (theConverter == null)
@@ -471,7 +505,8 @@ final public class DatatypeConverter {
 	 * Return a string containing the lexical representation of the simple type.
 	 * 
 	 * @param lexicalXSDAnySimpleType
-	 *            A string containing lexical representation of the simple type.
+	 *                                A string containing lexical representation
+	 *                                of the simple type.
 	 * @return A string containing the lexical representation of the simple
 	 *         type.
 	 */
@@ -506,7 +541,7 @@ final public class DatatypeConverter {
 	 *            A BigInteger value
 	 * @return A string containing a lexical representation of xsd:integer
 	 * @throws IllegalArgumentException
-	 *             <tt>val</tt> is null.
+	 *                                  <tt>val</tt> is null.
 	 */
 	public static String printInteger(java.math.BigInteger val) {
 		if (theConverter == null)
@@ -564,7 +599,7 @@ final public class DatatypeConverter {
 	 *            A BigDecimal value
 	 * @return A string containing a lexical representation of xsd:decimal
 	 * @throws IllegalArgumentException
-	 *             <tt>val</tt> is null.
+	 *                                  <tt>val</tt> is null.
 	 */
 	public static String printDecimal(java.math.BigDecimal val) {
 		if (theConverter == null)
@@ -638,10 +673,13 @@ final public class DatatypeConverter {
 	 *            A namespace context for interpreting a prefix within a QName.
 	 * @return A string containing a lexical representation of QName
 	 * @throws IllegalArgumentException
-	 *             if <tt>val</tt> is null or if <tt>nsc</tt> is non-null or
-	 *             <tt>nsc.getPrefix(nsprefixFromVal)</tt> is null.
+	 *                                  if <tt>val</tt> is null or if
+	 *                                  <tt>nsc</tt> is non-null or
+	 *                                  <tt>nsc.getPrefix(nsprefixFromVal)</tt>
+	 *                                  is null.
 	 */
-	public static String printQName(javax.xml.namespace.QName val, NamespaceContext nsc) {
+	public static String printQName(javax.xml.namespace.QName val,
+			NamespaceContext nsc) {
 		if (theConverter == null)
 			initConverter();
 		return theConverter.printQName(val, nsc);
@@ -655,7 +693,7 @@ final public class DatatypeConverter {
 	 *            A Calendar value
 	 * @return A string containing a lexical representation of xsd:dateTime
 	 * @throws IllegalArgumentException
-	 *             if <tt>val</tt> is null.
+	 *                                  if <tt>val</tt> is null.
 	 */
 	public static String printDateTime(java.util.Calendar val) {
 		if (theConverter == null)
@@ -671,7 +709,7 @@ final public class DatatypeConverter {
 	 *            An array of bytes
 	 * @return A string containing a lexical representation of xsd:base64Binary
 	 * @throws IllegalArgumentException
-	 *             if <tt>val</tt> is null.
+	 *                                  if <tt>val</tt> is null.
 	 */
 	public static String printBase64Binary(byte[] val) {
 		if (theConverter == null)
@@ -687,7 +725,7 @@ final public class DatatypeConverter {
 	 *            An array of bytes
 	 * @return A string containing a lexical representation of xsd:hexBinary
 	 * @throws IllegalArgumentException
-	 *             if <tt>val</tt> is null.
+	 *                                  if <tt>val</tt> is null.
 	 */
 	public static String printHexBinary(byte[] val) {
 		if (theConverter == null)
@@ -731,7 +769,7 @@ final public class DatatypeConverter {
 	 *            A Calendar value
 	 * @return A string containing a lexical representation of xsd:time
 	 * @throws IllegalArgumentException
-	 *             if <tt>val</tt> is null.
+	 *                                  if <tt>val</tt> is null.
 	 */
 	public static String printTime(java.util.Calendar val) {
 		if (theConverter == null)
@@ -747,7 +785,7 @@ final public class DatatypeConverter {
 	 *            A Calendar value
 	 * @return A string containing a lexical representation of xsd:date
 	 * @throws IllegalArgumentException
-	 *             if <tt>val</tt> is null.
+	 *                                  if <tt>val</tt> is null.
 	 */
 	public static String printDate(java.util.Calendar val) {
 		if (theConverter == null)

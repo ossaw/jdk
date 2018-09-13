@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform;
@@ -42,8 +22,7 @@ public class OutputKeys {
 	 * Default constructor is private on purpose. This class is only for static
 	 * variable access, and should never be constructed.
 	 */
-	private OutputKeys() {
-	}
+	private OutputKeys() {}
 
 	/**
 	 * method = "xml" | "html" | "text" | <var>expanded name</var>.

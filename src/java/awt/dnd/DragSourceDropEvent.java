@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -54,20 +34,22 @@ public class DragSourceDropEvent extends DragSourceEvent {
 	 * constructor does not throw any exception for invalid <code>action</code>.
 	 *
 	 * @param dsc
-	 *            the <code>DragSourceContext</code> associated with this
-	 *            <code>DragSourceDropEvent</code>
+	 *                the <code>DragSourceContext</code> associated with this
+	 *                <code>DragSourceDropEvent</code>
 	 * @param action
-	 *            the drop action
+	 *                the drop action
 	 * @param success
-	 *            a boolean indicating if the drop was successful
+	 *                a boolean indicating if the drop was successful
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>dsc</code> is <code>null</code>.
+	 *                                  if <code>dsc</code> is
+	 *                                  <code>null</code>.
 	 *
 	 * @see DragSourceEvent#getLocation
 	 */
 
-	public DragSourceDropEvent(DragSourceContext dsc, int action, boolean success) {
+	public DragSourceDropEvent(DragSourceContext dsc, int action,
+			boolean success) {
 		super(dsc);
 
 		dropSuccess = success;
@@ -84,23 +66,25 @@ public class DragSourceDropEvent extends DragSourceEvent {
 	 * constructor does not throw any exception for invalid <code>action</code>.
 	 *
 	 * @param dsc
-	 *            the <code>DragSourceContext</code> associated with this
-	 *            <code>DragSourceDropEvent</code>
+	 *                the <code>DragSourceContext</code> associated with this
+	 *                <code>DragSourceDropEvent</code>
 	 * @param action
-	 *            the drop action
+	 *                the drop action
 	 * @param success
-	 *            a boolean indicating if the drop was successful
+	 *                a boolean indicating if the drop was successful
 	 * @param x
-	 *            the horizontal coordinate for the cursor location
+	 *                the horizontal coordinate for the cursor location
 	 * @param y
-	 *            the vertical coordinate for the cursor location
+	 *                the vertical coordinate for the cursor location
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>dsc</code> is <code>null</code>.
+	 *                                  if <code>dsc</code> is
+	 *                                  <code>null</code>.
 	 *
 	 * @since 1.4
 	 */
-	public DragSourceDropEvent(DragSourceContext dsc, int action, boolean success, int x, int y) {
+	public DragSourceDropEvent(DragSourceContext dsc, int action,
+			boolean success, int x, int y) {
 		super(dsc, x, y);
 
 		dropSuccess = success;
@@ -117,7 +101,8 @@ public class DragSourceDropEvent extends DragSourceEvent {
 	 *            the <code>DragSourceContext</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>dsc</code> is <code>null</code>.
+	 *                                  if <code>dsc</code> is
+	 *                                  <code>null</code>.
 	 *
 	 * @see DragSourceEvent#getLocation
 	 */

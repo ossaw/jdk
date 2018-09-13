@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.rtf;
 
@@ -47,9 +27,12 @@ class RTFAttributes {
 		a.addElement(new BooleanAttribute(CHR, StyleConstants.Italic, "i"));
 		a.addElement(new BooleanAttribute(CHR, StyleConstants.Bold, "b"));
 		a.addElement(new BooleanAttribute(CHR, StyleConstants.Underline, "ul"));
-		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.LeftIndent, "li", 0f, 0));
-		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.RightIndent, "ri", 0f, 0));
-		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.FirstLineIndent, "fi", 0f, 0));
+		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.LeftIndent,
+				"li", 0f, 0));
+		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.RightIndent,
+				"ri", 0f, 0));
+		a.addElement(NumericAttribute.NewTwips(PGF,
+				StyleConstants.FirstLineIndent, "fi", 0f, 0));
 
 		a.addElement(new AssertiveAttribute(PGF, StyleConstants.Alignment, "ql",
 				StyleConstants.ALIGN_LEFT));
@@ -59,26 +42,28 @@ class RTFAttributes {
 				StyleConstants.ALIGN_CENTER));
 		a.addElement(new AssertiveAttribute(PGF, StyleConstants.Alignment, "qj",
 				StyleConstants.ALIGN_JUSTIFIED));
-		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.SpaceAbove, "sa", 0));
-		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.SpaceBelow, "sb", 0));
+		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.SpaceAbove,
+				"sa", 0));
+		a.addElement(NumericAttribute.NewTwips(PGF, StyleConstants.SpaceBelow,
+				"sb", 0));
 
-		a.addElement(
-				new AssertiveAttribute(PST, RTFReader.TabAlignmentKey, "tqr", TabStop.ALIGN_RIGHT));
-		a.addElement(new AssertiveAttribute(PST, RTFReader.TabAlignmentKey, "tqc",
-				TabStop.ALIGN_CENTER));
-		a.addElement(new AssertiveAttribute(PST, RTFReader.TabAlignmentKey, "tqdec",
-				TabStop.ALIGN_DECIMAL));
+		a.addElement(new AssertiveAttribute(PST, RTFReader.TabAlignmentKey,
+				"tqr", TabStop.ALIGN_RIGHT));
+		a.addElement(new AssertiveAttribute(PST, RTFReader.TabAlignmentKey,
+				"tqc", TabStop.ALIGN_CENTER));
+		a.addElement(new AssertiveAttribute(PST, RTFReader.TabAlignmentKey,
+				"tqdec", TabStop.ALIGN_DECIMAL));
 
-		a.addElement(
-				new AssertiveAttribute(PST, RTFReader.TabLeaderKey, "tldot", TabStop.LEAD_DOTS));
-		a.addElement(new AssertiveAttribute(PST, RTFReader.TabLeaderKey, "tlhyph",
-				TabStop.LEAD_HYPHENS));
+		a.addElement(new AssertiveAttribute(PST, RTFReader.TabLeaderKey,
+				"tldot", TabStop.LEAD_DOTS));
+		a.addElement(new AssertiveAttribute(PST, RTFReader.TabLeaderKey,
+				"tlhyph", TabStop.LEAD_HYPHENS));
 		a.addElement(new AssertiveAttribute(PST, RTFReader.TabLeaderKey, "tlul",
 				TabStop.LEAD_UNDERLINE));
 		a.addElement(new AssertiveAttribute(PST, RTFReader.TabLeaderKey, "tlth",
 				TabStop.LEAD_THICKLINE));
-		a.addElement(
-				new AssertiveAttribute(PST, RTFReader.TabLeaderKey, "tleq", TabStop.LEAD_EQUALS));
+		a.addElement(new AssertiveAttribute(PST, RTFReader.TabLeaderKey, "tleq",
+				TabStop.LEAD_EQUALS));
 
 		/* The following aren't actually recognized by Swing */
 		a.addElement(new BooleanAttribute(CHR, Constants.Caps, "caps"));
@@ -86,23 +71,35 @@ class RTFAttributes {
 		a.addElement(new BooleanAttribute(CHR, Constants.SmallCaps, "scaps"));
 		a.addElement(new BooleanAttribute(CHR, Constants.Shadow, "shad"));
 		a.addElement(new BooleanAttribute(CHR, Constants.Hidden, "v"));
-		a.addElement(new BooleanAttribute(CHR, Constants.Strikethrough, "strike"));
+		a.addElement(new BooleanAttribute(CHR, Constants.Strikethrough,
+				"strike"));
 		a.addElement(new BooleanAttribute(CHR, Constants.Deleted, "deleted"));
 
-		a.addElement(new AssertiveAttribute(DOC, "saveformat", "defformat", "RTF"));
+		a.addElement(new AssertiveAttribute(DOC, "saveformat", "defformat",
+				"RTF"));
 		a.addElement(new AssertiveAttribute(DOC, "landscape", "landscape"));
 
-		a.addElement(NumericAttribute.NewTwips(DOC, Constants.PaperWidth, "paperw", 12240));
-		a.addElement(NumericAttribute.NewTwips(DOC, Constants.PaperHeight, "paperh", 15840));
-		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginLeft, "margl", 1800));
-		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginRight, "margr", 1800));
-		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginTop, "margt", 1440));
-		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginBottom, "margb", 1440));
-		a.addElement(NumericAttribute.NewTwips(DOC, Constants.GutterWidth, "gutter", 0));
+		a.addElement(NumericAttribute.NewTwips(DOC, Constants.PaperWidth,
+				"paperw", 12240));
+		a.addElement(NumericAttribute.NewTwips(DOC, Constants.PaperHeight,
+				"paperh", 15840));
+		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginLeft,
+				"margl", 1800));
+		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginRight,
+				"margr", 1800));
+		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginTop,
+				"margt", 1440));
+		a.addElement(NumericAttribute.NewTwips(DOC, Constants.MarginBottom,
+				"margb", 1440));
+		a.addElement(NumericAttribute.NewTwips(DOC, Constants.GutterWidth,
+				"gutter", 0));
 
-		a.addElement(new AssertiveAttribute(PGF, Constants.WidowControl, "nowidctlpar", False));
-		a.addElement(new AssertiveAttribute(PGF, Constants.WidowControl, "widctlpar", True));
-		a.addElement(new AssertiveAttribute(DOC, Constants.WidowControl, "widowctrl", True));
+		a.addElement(new AssertiveAttribute(PGF, Constants.WidowControl,
+				"nowidctlpar", False));
+		a.addElement(new AssertiveAttribute(PGF, Constants.WidowControl,
+				"widctlpar", True));
+		a.addElement(new AssertiveAttribute(DOC, Constants.WidowControl,
+				"widowctrl", True));
 
 		RTFAttribute[] attrs = new RTFAttribute[a.size()];
 		a.copyInto(attrs);
@@ -110,7 +107,8 @@ class RTFAttributes {
 	}
 
 	static Dictionary<String, RTFAttribute> attributesByKeyword() {
-		Dictionary<String, RTFAttribute> d = new Hashtable<String, RTFAttribute>(attributes.length);
+		Dictionary<String, RTFAttribute> d = new Hashtable<String, RTFAttribute>(
+				attributes.length);
 
 		for (RTFAttribute attribute : attributes) {
 			d.put(attribute.rtfName(), attribute);
@@ -151,25 +149,27 @@ class RTFAttributes {
 
 		abstract boolean setDefault(MutableAttributeSet target);
 
-		public boolean write(AttributeSet source, RTFGenerator target, boolean force)
-				throws IOException {
+		public boolean write(AttributeSet source, RTFGenerator target,
+				boolean force) throws IOException {
 			return writeValue(source.getAttribute(swingName), target, force);
 		}
 
-		public boolean writeValue(Object value, RTFGenerator target, boolean force)
-				throws IOException {
+		public boolean writeValue(Object value, RTFGenerator target,
+				boolean force) throws IOException {
 			return false;
 		}
 	}
 
-	static class BooleanAttribute extends GenericAttribute implements RTFAttribute {
+	static class BooleanAttribute extends GenericAttribute implements
+			RTFAttribute {
 		boolean rtfDefault;
 		boolean swingDefault;
 
 		protected static final Boolean True = Boolean.valueOf(true);
 		protected static final Boolean False = Boolean.valueOf(false);
 
-		public BooleanAttribute(int d, Object s, String r, boolean ds, boolean dr) {
+		public BooleanAttribute(int d, Object s, String r, boolean ds,
+				boolean dr) {
 			super(d, s, r);
 			swingDefault = ds;
 			rtfDefault = dr;
@@ -202,13 +202,14 @@ class RTFAttributes {
 		}
 
 		public boolean setDefault(MutableAttributeSet target) {
-			if (swingDefault != rtfDefault || (target.getAttribute(swingName) != null))
+			if (swingDefault != rtfDefault || (target.getAttribute(
+					swingName) != null))
 				target.addAttribute(swingName, Boolean.valueOf(rtfDefault));
 			return true;
 		}
 
-		public boolean writeValue(Object o_value, RTFGenerator target, boolean force)
-				throws IOException {
+		public boolean writeValue(Object o_value, RTFGenerator target,
+				boolean force) throws IOException {
 			Boolean val;
 
 			if (o_value == null)
@@ -227,7 +228,8 @@ class RTFAttributes {
 		}
 	}
 
-	static class AssertiveAttribute extends GenericAttribute implements RTFAttribute {
+	static class AssertiveAttribute extends GenericAttribute implements
+			RTFAttribute {
 		Object swingValue;
 
 		public AssertiveAttribute(int d, Object s, String r) {
@@ -263,8 +265,8 @@ class RTFAttributes {
 			return true;
 		}
 
-		public boolean writeValue(Object value, RTFGenerator target, boolean force)
-				throws IOException {
+		public boolean writeValue(Object value, RTFGenerator target,
+				boolean force) throws IOException {
 			if (value == null) {
 				return !force;
 			}
@@ -278,7 +280,8 @@ class RTFAttributes {
 		}
 	}
 
-	static class NumericAttribute extends GenericAttribute implements RTFAttribute {
+	static class NumericAttribute extends GenericAttribute implements
+			RTFAttribute {
 		int rtfDefault;
 		Number swingDefault;
 		float scale;
@@ -294,18 +297,21 @@ class RTFAttributes {
 			this(d, s, r, Integer.valueOf(ds), dr, 1f);
 		}
 
-		public NumericAttribute(int d, Object s, String r, Number ds, int dr, float sc) {
+		public NumericAttribute(int d, Object s, String r, Number ds, int dr,
+				float sc) {
 			super(d, s, r);
 			swingDefault = ds;
 			rtfDefault = dr;
 			scale = sc;
 		}
 
-		public static NumericAttribute NewTwips(int d, Object s, String r, float ds, int dr) {
+		public static NumericAttribute NewTwips(int d, Object s, String r,
+				float ds, int dr) {
 			return new NumericAttribute(d, s, r, new Float(ds), dr, 20f);
 		}
 
-		public static NumericAttribute NewTwips(int d, Object s, String r, int dr) {
+		public static NumericAttribute NewTwips(int d, Object s, String r,
+				int dr) {
 			return new NumericAttribute(d, s, r, null, dr, 20f);
 		}
 
@@ -335,8 +341,8 @@ class RTFAttributes {
 			return true;
 		}
 
-		public boolean writeValue(Object o_value, RTFGenerator target, boolean force)
-				throws IOException {
+		public boolean writeValue(Object o_value, RTFGenerator target,
+				boolean force) throws IOException {
 			Number value = (Number) o_value;
 			if (value == null)
 				value = swingDefault;

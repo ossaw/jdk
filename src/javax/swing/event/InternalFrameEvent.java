@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.event;
 
@@ -106,7 +86,8 @@ public class InternalFrameEvent extends AWTEvent {
 	 *
 	 * @see JInternalFrame#setIcon
 	 */
-	public static final int INTERNAL_FRAME_DEICONIFIED = 4 + INTERNAL_FRAME_FIRST;
+	public static final int INTERNAL_FRAME_DEICONIFIED = 4
+			+ INTERNAL_FRAME_FIRST;
 
 	/**
 	 * The "window activated" event type. This event indicates that keystrokes
@@ -123,16 +104,17 @@ public class InternalFrameEvent extends AWTEvent {
 	 *
 	 * @see JInternalFrame#setSelected
 	 */
-	public static final int INTERNAL_FRAME_DEACTIVATED = 6 + INTERNAL_FRAME_FIRST;
+	public static final int INTERNAL_FRAME_DEACTIVATED = 6
+			+ INTERNAL_FRAME_FIRST;
 
 	/**
 	 * Constructs an <code>InternalFrameEvent</code> object.
 	 * 
 	 * @param source
-	 *            the <code>JInternalFrame</code> object that originated the
-	 *            event
+	 *               the <code>JInternalFrame</code> object that originated the
+	 *               event
 	 * @param id
-	 *            an integer indicating the type of event
+	 *               an integer indicating the type of event
 	 */
 	public InternalFrameEvent(JInternalFrame source, int id) {
 		super(source, id);
@@ -147,29 +129,29 @@ public class InternalFrameEvent extends AWTEvent {
 	public String paramString() {
 		String typeStr;
 		switch (id) {
-		case INTERNAL_FRAME_OPENED:
-			typeStr = "INTERNAL_FRAME_OPENED";
-			break;
-		case INTERNAL_FRAME_CLOSING:
-			typeStr = "INTERNAL_FRAME_CLOSING";
-			break;
-		case INTERNAL_FRAME_CLOSED:
-			typeStr = "INTERNAL_FRAME_CLOSED";
-			break;
-		case INTERNAL_FRAME_ICONIFIED:
-			typeStr = "INTERNAL_FRAME_ICONIFIED";
-			break;
-		case INTERNAL_FRAME_DEICONIFIED:
-			typeStr = "INTERNAL_FRAME_DEICONIFIED";
-			break;
-		case INTERNAL_FRAME_ACTIVATED:
-			typeStr = "INTERNAL_FRAME_ACTIVATED";
-			break;
-		case INTERNAL_FRAME_DEACTIVATED:
-			typeStr = "INTERNAL_FRAME_DEACTIVATED";
-			break;
-		default:
-			typeStr = "unknown type";
+			case INTERNAL_FRAME_OPENED:
+				typeStr = "INTERNAL_FRAME_OPENED";
+				break;
+			case INTERNAL_FRAME_CLOSING:
+				typeStr = "INTERNAL_FRAME_CLOSING";
+				break;
+			case INTERNAL_FRAME_CLOSED:
+				typeStr = "INTERNAL_FRAME_CLOSED";
+				break;
+			case INTERNAL_FRAME_ICONIFIED:
+				typeStr = "INTERNAL_FRAME_ICONIFIED";
+				break;
+			case INTERNAL_FRAME_DEICONIFIED:
+				typeStr = "INTERNAL_FRAME_DEICONIFIED";
+				break;
+			case INTERNAL_FRAME_ACTIVATED:
+				typeStr = "INTERNAL_FRAME_ACTIVATED";
+				break;
+			case INTERNAL_FRAME_DEACTIVATED:
+				typeStr = "INTERNAL_FRAME_DEACTIVATED";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
 		return typeStr;
 	}
@@ -182,7 +164,8 @@ public class InternalFrameEvent extends AWTEvent {
 	 */
 
 	public JInternalFrame getInternalFrame() {
-		return (source instanceof JInternalFrame) ? (JInternalFrame) source : null;
+		return (source instanceof JInternalFrame) ? (JInternalFrame) source
+				: null;
 	}
 
 }

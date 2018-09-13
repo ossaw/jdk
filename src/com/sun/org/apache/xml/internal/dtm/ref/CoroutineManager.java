@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -188,8 +185,10 @@ public class CoroutineManager {
 	 * </p>
 	 *
 	 * @param coroutineID
-	 *            If >=0, requests that we reserve this number. If <0, requests
-	 *            that we find, reserve, and return an available ID number.
+	 *                    If >=0, requests that we reserve this number. If <0,
+	 *                    requests
+	 *                    that we find, reserve, and return an available ID
+	 *                    number.
 	 *
 	 * @return If >=0, the ID number to be used by this coroutine. If <0, an
 	 *         error occurred -- the ID requested was already in use, or we
@@ -229,11 +228,12 @@ public class CoroutineManager {
 	 * %TBD% whether this makes any sense...
 	 *
 	 * @param thisCoroutine
-	 *            the identifier of this coroutine, so we can recognize when we
-	 *            are being resumed.
+	 *                      the identifier of this coroutine, so we can
+	 *                      recognize when we
+	 *                      are being resumed.
 	 * @exception java.lang.NoSuchMethodException
-	 *                if thisCoroutine isn't a registered member of this group.
-	 *                %REVIEW% whether this is the best choice.
+	 *            if thisCoroutine isn't a registered member of this group.
+	 *            %REVIEW% whether this is the best choice.
 	 */
 	public synchronized Object co_entry_pause(int thisCoroutine)
 			throws java.lang.NoSuchMethodException {
@@ -260,25 +260,27 @@ public class CoroutineManager {
 	 * %TBD% What should we do if toCoroutine isn't registered? Exception?
 	 *
 	 * @param arg_object
-	 *            A value to be passed to the other coroutine.
+	 *                      A value to be passed to the other coroutine.
 	 * @param thisCoroutine
-	 *            Integer identifier for this coroutine. This is the ID we watch
-	 *            for to see if we're the ones being resumed.
+	 *                      Integer identifier for this coroutine. This is the
+	 *                      ID we watch
+	 *                      for to see if we're the ones being resumed.
 	 * @param toCoroutine
-	 *            Integer identifier for the coroutine we wish to invoke.
+	 *                      Integer identifier for the coroutine we wish to
+	 *                      invoke.
 	 * @exception java.lang.NoSuchMethodException
-	 *                if toCoroutine isn't a registered member of this group.
-	 *                %REVIEW% whether this is the best choice.
+	 *            if toCoroutine isn't a registered member of this group.
+	 *            %REVIEW% whether this is the best choice.
 	 */
-	public synchronized Object co_resume(Object arg_object, int thisCoroutine, int toCoroutine)
-			throws java.lang.NoSuchMethodException {
+	public synchronized Object co_resume(Object arg_object, int thisCoroutine,
+			int toCoroutine) throws java.lang.NoSuchMethodException {
 		if (!m_activeIDs.get(toCoroutine))
-			throw new java.lang.NoSuchMethodException(
-					XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL,
+			throw new java.lang.NoSuchMethodException(XMLMessages
+					.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL,
 							new Object[] { Integer.toString(toCoroutine) })); // "Coroutine
-																				// not
-																				// available,
-																				// id="+toCoroutine);
+																																																// not
+																																																// available,
+																																																// id="+toCoroutine);
 
 		// We expect these values to be overwritten during the notify()/wait()
 		// periods, as other coroutines in this set get their opportunity to
@@ -303,11 +305,12 @@ public class CoroutineManager {
 			co_exit(thisCoroutine);
 			// And inform this coroutine that its partners are Going Away
 			// %REVIEW% Should this throw/return something more useful?
-			throw new java.lang.NoSuchMethodException(
-					XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_CO_EXIT, null)); // "CoroutineManager
-																									// recieved
-																									// co_exit()
-																									// request");
+			throw new java.lang.NoSuchMethodException(XMLMessages
+					.createXMLMessage(XMLErrorResources.ER_COROUTINE_CO_EXIT,
+							null)); // "CoroutineManager
+																																					// recieved
+																																					// co_exit()
+																																					// request");
 		}
 
 		return m_yield;
@@ -325,7 +328,8 @@ public class CoroutineManager {
 	 * %TBD% Should this just be co_exit_to(,,CoroutineManager.PANIC)?
 	 *
 	 * @param thisCoroutine
-	 *            Integer identifier for the coroutine requesting exit.
+	 *                      Integer identifier for the coroutine requesting
+	 *                      exit.
 	 */
 	public synchronized void co_exit(int thisCoroutine) {
 		m_activeIDs.clear(thisCoroutine);
@@ -340,24 +344,26 @@ public class CoroutineManager {
 	 * thread can proceed with other shutdown activities.
 	 *
 	 * @param arg_object
-	 *            A value to be passed to the other coroutine.
+	 *                      A value to be passed to the other coroutine.
 	 * @param thisCoroutine
-	 *            Integer identifier for the coroutine leaving the set.
+	 *                      Integer identifier for the coroutine leaving the
+	 *                      set.
 	 * @param toCoroutine
-	 *            Integer identifier for the coroutine we wish to invoke.
+	 *                      Integer identifier for the coroutine we wish to
+	 *                      invoke.
 	 * @exception java.lang.NoSuchMethodException
-	 *                if toCoroutine isn't a registered member of this group.
-	 *                %REVIEW% whether this is the best choice.
+	 *            if toCoroutine isn't a registered member of this group.
+	 *            %REVIEW% whether this is the best choice.
 	 */
-	public synchronized void co_exit_to(Object arg_object, int thisCoroutine, int toCoroutine)
-			throws java.lang.NoSuchMethodException {
+	public synchronized void co_exit_to(Object arg_object, int thisCoroutine,
+			int toCoroutine) throws java.lang.NoSuchMethodException {
 		if (!m_activeIDs.get(toCoroutine))
-			throw new java.lang.NoSuchMethodException(
-					XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL,
+			throw new java.lang.NoSuchMethodException(XMLMessages
+					.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL,
 							new Object[] { Integer.toString(toCoroutine) })); // "Coroutine
-																				// not
-																				// available,
-																				// id="+toCoroutine);
+																																																// not
+																																																// available,
+																																																// id="+toCoroutine);
 
 		// We expect these values to be overwritten during the notify()/wait()
 		// periods, as other coroutines in this set get their opportunity to

@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,9 +43,9 @@ public class AugmentationsImpl implements Augmentations {
 	 * structure.
 	 *
 	 * @param key
-	 *            Identifier, can't be <code>null</code>
+	 *             Identifier, can't be <code>null</code>
 	 * @param item
-	 *            Additional information
+	 *             Additional information
 	 *
 	 * @return the previous value of the specified key in the Augmentations
 	 *         strucutre, or <code>null</code> if it did not have one.
@@ -195,7 +193,8 @@ public class AugmentationsImpl implements Augmentations {
 			LargeContainer expandedContainer = new LargeContainer();
 
 			for (int i = 0; i < fNumEntries * 2; i = i + 2) {
-				expandedContainer.putItem(fAugmentations[i], fAugmentations[i + 1]);
+				expandedContainer.putItem(fAugmentations[i], fAugmentations[i
+						+ 1]);
 			}
 
 			return expandedContainer;
@@ -206,9 +205,10 @@ public class AugmentationsImpl implements Augmentations {
 			buff.append("SmallContainer - fNumEntries == ").append(fNumEntries);
 
 			for (int i = 0; i < SIZE_LIMIT * 2; i = i + 2) {
-				buff.append("\nfAugmentations[").append(i).append("] == ").append(fAugmentations[i])
-						.append("; fAugmentations[").append(i + 1).append("] == ")
-						.append(fAugmentations[i + 1]);
+				buff.append("\nfAugmentations[").append(i).append("] == ")
+						.append(fAugmentations[i]).append("; fAugmentations[")
+						.append(i + 1).append("] == ").append(fAugmentations[i
+								+ 1]);
 			}
 
 			return buff.toString();

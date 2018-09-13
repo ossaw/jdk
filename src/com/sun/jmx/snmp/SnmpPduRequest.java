@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -39,7 +19,8 @@ package com.sun.jmx.snmp;
  * </p>
  */
 
-public class SnmpPduRequest extends SnmpPduPacket implements SnmpPduRequestType {
+public class SnmpPduRequest extends SnmpPduPacket implements
+		SnmpPduRequestType {
 	private static final long serialVersionUID = 2218754017025258979L;
 
 	/**

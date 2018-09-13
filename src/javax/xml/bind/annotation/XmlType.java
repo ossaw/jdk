@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.annotation;
@@ -379,8 +359,7 @@ import java.lang.annotation.Target;
  * 	private String street;
  * 	private int zip;
  *
- * 	private USAddress() {
- * 	}
+ * 	private USAddress() {}
  *
  * 	public static USAddress getNewInstance() {
  * 		return new USAddress();
@@ -461,8 +440,7 @@ public @interface XmlType {
 	 * mehod is not used or that it's in the class with this {@link XmlType}
 	 * itself.
 	 */
-	static final class DEFAULT {
-	}
+	static final class DEFAULT {}
 
 	/**
 	 * Name of a no-arg factory method in the class specified in

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels.spi;
@@ -78,8 +58,9 @@ public abstract class SelectorProvider {
 	 * Initializes a new instance of this class.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}<tt>("selectorProvider")</tt>
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}<tt>("selectorProvider")</tt>
 	 */
 	protected SelectorProvider() {
 		SecurityManager sm = System.getSecurityManager();
@@ -88,11 +69,13 @@ public abstract class SelectorProvider {
 	}
 
 	private static boolean loadProviderFromProperty() {
-		String cn = System.getProperty("java.nio.channels.spi.SelectorProvider");
+		String cn = System.getProperty(
+				"java.nio.channels.spi.SelectorProvider");
 		if (cn == null)
 			return false;
 		try {
-			Class<?> c = Class.forName(cn, true, ClassLoader.getSystemClassLoader());
+			Class<?> c = Class.forName(cn, true, ClassLoader
+					.getSystemClassLoader());
 			provider = (SelectorProvider) c.newInstance();
 			return true;
 		} catch (ClassNotFoundException x) {
@@ -108,8 +91,8 @@ public abstract class SelectorProvider {
 
 	private static boolean loadProviderAsService() {
 
-		ServiceLoader<SelectorProvider> sl = ServiceLoader.load(SelectorProvider.class,
-				ClassLoader.getSystemClassLoader());
+		ServiceLoader<SelectorProvider> sl = ServiceLoader.load(
+				SelectorProvider.class, ClassLoader.getSystemClassLoader());
 		Iterator<SelectorProvider> i = sl.iterator();
 		for (;;) {
 			try {
@@ -180,16 +163,18 @@ public abstract class SelectorProvider {
 		synchronized (lock) {
 			if (provider != null)
 				return provider;
-			return AccessController.doPrivileged(new PrivilegedAction<SelectorProvider>() {
-				public SelectorProvider run() {
-					if (loadProviderFromProperty())
-						return provider;
-					if (loadProviderAsService())
-						return provider;
-					provider = sun.nio.ch.DefaultSelectorProvider.create();
-					return provider;
-				}
-			});
+			return AccessController.doPrivileged(
+					new PrivilegedAction<SelectorProvider>() {
+						public SelectorProvider run() {
+							if (loadProviderFromProperty())
+								return provider;
+							if (loadProviderAsService())
+								return provider;
+							provider = sun.nio.ch.DefaultSelectorProvider
+									.create();
+							return provider;
+						}
+					});
 		}
 	}
 
@@ -199,7 +184,7 @@ public abstract class SelectorProvider {
 	 * @return The new channel
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public abstract DatagramChannel openDatagramChannel() throws IOException;
 
@@ -207,18 +192,20 @@ public abstract class SelectorProvider {
 	 * Opens a datagram channel.
 	 *
 	 * @param family
-	 *            The protocol family
+	 *               The protocol family
 	 *
 	 * @return A new datagram channel
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the specified protocol family is not supported
+	 *                                       If the specified protocol family is
+	 *                                       not supported
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 *
 	 * @since 1.7
 	 */
-	public abstract DatagramChannel openDatagramChannel(ProtocolFamily family) throws IOException;
+	public abstract DatagramChannel openDatagramChannel(ProtocolFamily family)
+			throws IOException;
 
 	/**
 	 * Opens a pipe.
@@ -226,7 +213,7 @@ public abstract class SelectorProvider {
 	 * @return The new pipe
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public abstract Pipe openPipe() throws IOException;
 
@@ -236,7 +223,7 @@ public abstract class SelectorProvider {
 	 * @return The new selector
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public abstract AbstractSelector openSelector() throws IOException;
 
@@ -246,9 +233,10 @@ public abstract class SelectorProvider {
 	 * @return The new channel
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
-	public abstract ServerSocketChannel openServerSocketChannel() throws IOException;
+	public abstract ServerSocketChannel openServerSocketChannel()
+			throws IOException;
 
 	/**
 	 * Opens a socket channel.
@@ -256,7 +244,7 @@ public abstract class SelectorProvider {
 	 * @return The new channel
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public abstract SocketChannel openSocketChannel() throws IOException;
 
@@ -323,11 +311,12 @@ public abstract class SelectorProvider {
 	 * @return The inherited channel, if any, otherwise <tt>null</tt>.
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                           If an I/O error occurs
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}<tt>("inheritedChannel")</tt>
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}<tt>("inheritedChannel")</tt>
 	 *
 	 * @since 1.5
 	 */

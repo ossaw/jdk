@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql;
@@ -49,14 +29,19 @@ public interface XADataSource extends CommonDataSource {
 	 *         connection to a data source, that can be used in a distributed
 	 *         transaction
 	 * @exception SQLException
-	 *                if a database access error occurs
+	 *                                            if a database access error
+	 *                                            occurs
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @throws SQLTimeoutException
-	 *             when the driver has determined that the timeout value
-	 *             specified by the {@code setLoginTimeout} method has been
-	 *             exceeded and has at least tried to cancel the current
-	 *             database connection attempt
+	 *                             when the driver has determined that the
+	 *                             timeout value
+	 *                             specified by the {@code setLoginTimeout}
+	 *                             method has been
+	 *                             exceeded and has at least tried to cancel the
+	 *                             current
+	 *                             database connection attempt
 	 * @since 1.4
 	 */
 	XAConnection getXAConnection() throws SQLException;
@@ -67,22 +52,29 @@ public interface XADataSource extends CommonDataSource {
 	 * be used in a distributed transaction.
 	 *
 	 * @param user
-	 *            the database user on whose behalf the connection is being made
+	 *                 the database user on whose behalf the connection is being
+	 *                 made
 	 * @param password
-	 *            the user's password
+	 *                 the user's password
 	 * @return an {@code XAConnection} object, which represents a physical
 	 *         connection to a data source, that can be used in a distributed
 	 *         transaction
 	 * @exception SQLException
-	 *                if a database access error occurs
+	 *                                            if a database access error
+	 *                                            occurs
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @throws SQLTimeoutException
-	 *             when the driver has determined that the timeout value
-	 *             specified by the {@code setLoginTimeout} method has been
-	 *             exceeded and has at least tried to cancel the current
-	 *             database connection attempt
+	 *                             when the driver has determined that the
+	 *                             timeout value
+	 *                             specified by the {@code setLoginTimeout}
+	 *                             method has been
+	 *                             exceeded and has at least tried to cancel the
+	 *                             current
+	 *                             database connection attempt
 	 * @since 1.4
 	 */
-	XAConnection getXAConnection(String user, String password) throws SQLException;
+	XAConnection getXAConnection(String user, String password)
+			throws SQLException;
 }

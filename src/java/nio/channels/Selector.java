@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -263,8 +243,7 @@ public abstract class Selector implements Closeable {
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected Selector() {
-	}
+	protected Selector() {}
 
 	/**
 	 * Opens a selector.
@@ -279,7 +258,7 @@ public abstract class Selector implements Closeable {
 	 * @return A new selector
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public static Selector open() throws IOException {
 		return SelectorProvider.provider().openSelector();
@@ -315,7 +294,7 @@ public abstract class Selector implements Closeable {
 	 * @return This selector's key set
 	 *
 	 * @throws ClosedSelectorException
-	 *             If this selector is closed
+	 *                                 If this selector is closed
 	 */
 	public abstract Set<SelectionKey> keys();
 
@@ -334,7 +313,7 @@ public abstract class Selector implements Closeable {
 	 * @return This selector's selected-key set
 	 *
 	 * @throws ClosedSelectorException
-	 *             If this selector is closed
+	 *                                 If this selector is closed
 	 */
 	public abstract Set<SelectionKey> selectedKeys();
 
@@ -356,10 +335,10 @@ public abstract class Selector implements Closeable {
 	 *         were updated by the selection operation
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                 If an I/O error occurs
 	 *
 	 * @throws ClosedSelectorException
-	 *             If this selector is closed
+	 *                                 If this selector is closed
 	 */
 	public abstract int selectNow() throws IOException;
 
@@ -379,21 +358,24 @@ public abstract class Selector implements Closeable {
 	 * </p>
 	 *
 	 * @param timeout
-	 *            If positive, block for up to <tt>timeout</tt> milliseconds,
-	 *            more or less, while waiting for a channel to become ready; if
-	 *            zero, block indefinitely; must not be negative
+	 *                If positive, block for up to <tt>timeout</tt>
+	 *                milliseconds,
+	 *                more or less, while waiting for a channel to become ready;
+	 *                if
+	 *                zero, block indefinitely; must not be negative
 	 *
 	 * @return The number of keys, possibly zero, whose ready-operation sets
 	 *         were updated
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                  If an I/O error occurs
 	 *
 	 * @throws ClosedSelectorException
-	 *             If this selector is closed
+	 *                                  If this selector is closed
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the value of the timeout argument is negative
+	 *                                  If the value of the timeout argument is
+	 *                                  negative
 	 */
 	public abstract int select(long timeout) throws IOException;
 
@@ -412,10 +394,10 @@ public abstract class Selector implements Closeable {
 	 *         were updated
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                 If an I/O error occurs
 	 *
 	 * @throws ClosedSelectorException
-	 *             If this selector is closed
+	 *                                 If this selector is closed
 	 */
 	public abstract int select() throws IOException;
 
@@ -467,7 +449,7 @@ public abstract class Selector implements Closeable {
 	 * </p>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public abstract void close() throws IOException;
 

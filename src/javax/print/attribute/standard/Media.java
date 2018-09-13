@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -55,8 +35,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Phil Race
  */
-public abstract class Media extends EnumSyntax
-		implements DocAttribute, PrintRequestAttribute, PrintJobAttribute {
+public abstract class Media extends EnumSyntax implements DocAttribute,
+		PrintRequestAttribute, PrintJobAttribute {
 
 	private static final long serialVersionUID = -2823970704630722439L;
 
@@ -64,7 +44,7 @@ public abstract class Media extends EnumSyntax
 	 * Constructs a new media attribute specified by name.
 	 *
 	 * @param value
-	 *            a value
+	 *              a value
 	 */
 	protected Media(int value) {
 		super(value);
@@ -80,14 +60,15 @@ public abstract class Media extends EnumSyntax
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this media
 	 *         attribute, false otherwise.
 	 */
 	public boolean equals(Object object) {
-		return (object != null && object instanceof Media && object.getClass() == this.getClass()
-				&& ((Media) object).getValue() == this.getValue());
+		return (object != null && object instanceof Media && object
+				.getClass() == this.getClass() && ((Media) object)
+						.getValue() == this.getValue());
 	}
 
 	/**

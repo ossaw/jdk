@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -57,7 +37,7 @@ public class SnmpNull extends SnmpValue {
 	 * Constructs a new <CODE>SnmpNull</CODE> from the specified tag value.
 	 * 
 	 * @param t
-	 *            The initialization value.
+	 *          The initialization value.
 	 */
 	public SnmpNull(int t) {
 		tag = t;
@@ -88,17 +68,17 @@ public class SnmpNull extends SnmpValue {
 		}
 		result += "NULL";
 		switch (tag) {
-		case errNoSuchObjectTag:
-			result += " (noSuchObject)";
-			break;
+			case errNoSuchObjectTag:
+				result += " (noSuchObject)";
+				break;
 
-		case errNoSuchInstanceTag:
-			result += " (noSuchInstance)";
-			break;
+			case errNoSuchInstanceTag:
+				result += " (noSuchInstance)";
+				break;
 
-		case errEndOfMibViewTag:
-			result += " (endOfMibView)";
-			break;
+			case errEndOfMibViewTag:
+				result += " (endOfMibView)";
+				break;
 		}
 		return result;
 	}

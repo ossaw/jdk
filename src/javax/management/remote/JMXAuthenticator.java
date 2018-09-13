@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -63,17 +43,20 @@ public interface JMXAuthenticator {
 	 * </p>
 	 *
 	 * @param credentials
-	 *            the user-defined credentials to be passed into the server in
-	 *            order to authenticate the user before creating the
-	 *            <code>MBeanServerConnection</code>. The actual type of this
-	 *            parameter, and whether it can be null, depends on the
-	 *            connector.
+	 *                    the user-defined credentials to be passed into the
+	 *                    server in
+	 *                    order to authenticate the user before creating the
+	 *                    <code>MBeanServerConnection</code>. The actual type of
+	 *                    this
+	 *                    parameter, and whether it can be null, depends on the
+	 *                    connector.
 	 *
 	 * @return the authenticated subject containing its associated principals.
 	 *
 	 * @exception SecurityException
-	 *                if the server cannot authenticate the user with the
-	 *                provided credentials.
+	 *                              if the server cannot authenticate the user
+	 *                              with the
+	 *                              provided credentials.
 	 */
 	public Subject authenticate(Object credentials);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.ietf.jgss;
@@ -61,10 +41,11 @@ public class Oid {
 	 * components.
 	 *
 	 * @param strOid
-	 *            the dot separated string representation of the oid. For
-	 *            instance, "1.2.840.113554.1.2.2".
+	 *               the dot separated string representation of the oid. For
+	 *               instance, "1.2.840.113554.1.2.2".
 	 * @exception GSSException
-	 *                may be thrown when the string is incorrectly formatted
+	 *                         may be thrown when the string is incorrectly
+	 *                         formatted
 	 */
 	public Oid(String strOid) throws GSSException {
 
@@ -73,7 +54,8 @@ public class Oid {
 			derEncoding = null;
 		} catch (Exception e) {
 			throw new GSSException(GSSException.FAILURE,
-					"Improperly formatted Object Identifier String - " + strOid);
+					"Improperly formatted Object Identifier String - "
+							+ strOid);
 		}
 	}
 
@@ -84,10 +66,11 @@ public class Oid {
 	 * in functionality to its byte array counterpart.
 	 *
 	 * @param derOid
-	 *            stream containing the DER encoded oid
+	 *               stream containing the DER encoded oid
 	 * @exception GSSException
-	 *                may be thrown when the DER encoding does not follow the
-	 *                prescribed format.
+	 *                         may be thrown when the DER encoding does not
+	 *                         follow the
+	 *                         prescribed format.
 	 */
 	public Oid(InputStream derOid) throws GSSException {
 		try {
@@ -107,10 +90,11 @@ public class Oid {
 	 * in functionality to its InputStream conterpart.
 	 *
 	 * @param data
-	 *            byte array containing the DER encoded oid
+	 *             byte array containing the DER encoded oid
 	 * @exception GSSException
-	 *                may be thrown when the DER encoding does not follow the
-	 *                prescribed format.
+	 *                         may be thrown when the DER encoding does not
+	 *                         follow the
+	 *                         prescribed format.
 	 */
 	public Oid(byte[] data) throws GSSException {
 		try {
@@ -154,7 +138,7 @@ public class Oid {
 	 * @return <code>true</code> if the two Oid objects represent the same
 	 *         value, <code>false</code> otherwise.
 	 * @param other
-	 *            the Oid object that has to be compared to this one
+	 *              the Oid object that has to be compared to this one
 	 */
 	public boolean equals(Object other) {
 
@@ -176,7 +160,7 @@ public class Oid {
 	 *
 	 * @return byte array containing the DER encoding of this oid object.
 	 * @exception GSSException
-	 *                may be thrown when the oid can't be encoded
+	 *                         may be thrown when the oid can't be encoded
 	 */
 	public byte[] getDER() throws GSSException {
 
@@ -198,7 +182,7 @@ public class Oid {
 	 * supplied Oid array.
 	 *
 	 * @param oids
-	 *            the array of Oid's to search
+	 *             the array of Oid's to search
 	 * @return true if the array contains this Oid value, false otherwise
 	 */
 	public boolean containedIn(Oid[] oids) {

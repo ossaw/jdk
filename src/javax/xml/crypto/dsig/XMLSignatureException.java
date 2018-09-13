@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: XMLSignatureException.java,v 1.5 2005/05/10 16:03:48 mullan Exp $
@@ -66,7 +46,7 @@ public class XMLSignatureException extends Exception {
 	 * detail message.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 */
 	public XMLSignatureException(String message) {
 		super(message);
@@ -80,10 +60,11 @@ public class XMLSignatureException extends Exception {
 	 * <i>not</i> automatically incorporated in this exception's detail message.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 * @param cause
-	 *            the cause (A <tt>null</tt> value is permitted, and indicates
-	 *            that the cause is nonexistent or unknown.)
+	 *                the cause (A <tt>null</tt> value is permitted, and
+	 *                indicates
+	 *                that the cause is nonexistent or unknown.)
 	 */
 	public XMLSignatureException(String message, Throwable cause) {
 		super(message);
@@ -97,8 +78,8 @@ public class XMLSignatureException extends Exception {
 	 * contains the class and detail message of <code>cause</code>).
 	 *
 	 * @param cause
-	 *            the cause (A <tt>null</tt> value is permitted, and indicates
-	 *            that the cause is nonexistent or unknown.)
+	 *              the cause (A <tt>null</tt> value is permitted, and indicates
+	 *              that the cause is nonexistent or unknown.)
 	 */
 	public XMLSignatureException(Throwable cause) {
 		super(cause == null ? null : cause.toString());
@@ -134,7 +115,7 @@ public class XMLSignatureException extends Exception {
 	 * cause's backtrace to the specified print stream.
 	 *
 	 * @param s
-	 *            <code>PrintStream</code> to use for output
+	 *          <code>PrintStream</code> to use for output
 	 */
 	public void printStackTrace(PrintStream s) {
 		super.printStackTrace(s);
@@ -148,7 +129,7 @@ public class XMLSignatureException extends Exception {
 	 * cause's backtrace to the specified print writer.
 	 *
 	 * @param s
-	 *            <code>PrintWriter</code> to use for output
+	 *          <code>PrintWriter</code> to use for output
 	 */
 	public void printStackTrace(PrintWriter s) {
 		super.printStackTrace(s);

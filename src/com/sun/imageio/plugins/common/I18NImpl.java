@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.common;
@@ -46,10 +26,12 @@ public class I18NImpl {
 	 * Returns the message string with the specified key from the "properties"
 	 * file in the package containing the class with the specified name.
 	 */
-	protected static final String getString(String className, String resource_name, String key) {
+	protected static final String getString(String className,
+			String resource_name, String key) {
 		PropertyResourceBundle bundle = null;
 		try {
-			InputStream stream = Class.forName(className).getResourceAsStream(resource_name);
+			InputStream stream = Class.forName(className).getResourceAsStream(
+					resource_name);
 			bundle = new PropertyResourceBundle(stream);
 		} catch (Throwable e) {
 			throw new RuntimeException(e); // Chain the exception.

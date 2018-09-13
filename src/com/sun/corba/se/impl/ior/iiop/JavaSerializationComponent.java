@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.ior.iiop;
 
@@ -51,7 +31,8 @@ public class JavaSerializationComponent extends TaggedComponentBase {
 	public static JavaSerializationComponent singleton() {
 		if (singleton == null) {
 			synchronized (JavaSerializationComponent.class) {
-				singleton = new JavaSerializationComponent(Message.JAVA_ENC_VERSION);
+				singleton = new JavaSerializationComponent(
+						Message.JAVA_ENC_VERSION);
 			}
 		}
 		return singleton;

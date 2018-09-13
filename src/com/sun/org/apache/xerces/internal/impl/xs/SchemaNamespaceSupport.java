@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +44,8 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
 		fCurrentContext = nSupport.fCurrentContext;
 		if (fContext.length <= fCurrentContext)
 			fContext = new int[fCurrentContext + 1];
-		System.arraycopy(nSupport.fContext, 0, fContext, 0, fCurrentContext + 1);
+		System.arraycopy(nSupport.fContext, 0, fContext, 0, fCurrentContext
+				+ 1);
 	} // end constructor
 
 	/**
@@ -71,7 +69,8 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
 			System.arraycopy(fNamespace, 0, tempNSArray, 0, fNamespace.length);
 			fNamespace = tempNSArray;
 		}
-		System.arraycopy(namespaceDecls, 0, fNamespace, fNamespaceSize, namespaceDecls.length);
+		System.arraycopy(namespaceDecls, 0, fNamespace, fNamespaceSize,
+				namespaceDecls.length);
 		fNamespaceSize = newSize;
 	} // setEffectiveContext(String):void
 
@@ -92,7 +91,8 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
 			int copyCount = fNamespaceSize - bottomLocalContext;
 			if (copyCount > 0) {
 				returnVal = new String[copyCount];
-				System.arraycopy(fNamespace, bottomLocalContext, returnVal, 0, copyCount);
+				System.arraycopy(fNamespace, bottomLocalContext, returnVal, 0,
+						copyCount);
 			}
 		}
 		return returnVal;

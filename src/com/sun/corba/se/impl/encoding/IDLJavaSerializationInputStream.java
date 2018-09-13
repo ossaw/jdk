@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.encoding;
 
@@ -115,18 +95,20 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 
 		ORB orb;
 
-		MarshalObjectInputStream(java.io.InputStream out, ORB orb) throws IOException {
+		MarshalObjectInputStream(java.io.InputStream out, ORB orb)
+				throws IOException {
 
 			super(out);
 			this.orb = orb;
 
-			java.security.AccessController.doPrivileged(new java.security.PrivilegedAction() {
-				public Object run() {
-					// needs SerializablePermission("enableSubstitution")
-					enableResolveObject(true);
-					return null;
-				}
-			});
+			java.security.AccessController.doPrivileged(
+					new java.security.PrivilegedAction() {
+						public Object run() {
+							// needs SerializablePermission("enableSubstitution")
+							enableResolveObject(true);
+							return null;
+						}
+					});
 		}
 
 		/**
@@ -157,7 +139,8 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 		this.bufSize = bufSize;
 		this.bufferManager = bufferManager;
 		buffer = byteBuffer;
-		wrapper = ORBUtilSystemException.get((ORB) orb, CORBALogDomains.RPC_ENCODING);
+		wrapper = ORBUtilSystemException.get((ORB) orb,
+				CORBALogDomains.RPC_ENCODING);
 
 		byte[] buf;
 		if (buffer.hasArray()) {
@@ -608,7 +591,8 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 			return null;
 		}
 
-		PresentationManager.StubFactoryFactory sff = ORB.getStubFactoryFactory();
+		PresentationManager.StubFactoryFactory sff = ORB
+				.getStubFactoryFactory();
 		String codeBase = ior.getProfile().getCodebase();
 		PresentationManager.StubFactory stubFactory = null;
 
@@ -621,8 +605,9 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 				stubFactory = null;
 			} else {
 				try {
-					stubFactory = sff.createStubFactory(className, isIDLInterface, codeBase,
-							(Class) null, (ClassLoader) null);
+					stubFactory = sff.createStubFactory(className,
+							isIDLInterface, codeBase, (Class) null,
+							(ClassLoader) null);
 				} catch (Exception exc) {
 					// Could not create stubFactory, so use null.
 					// XXX stubFactory handling is still too complex:
@@ -637,8 +622,8 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 			// clz is an interface class
 			boolean isIDL = IDLEntity.class.isAssignableFrom(clz);
 
-			stubFactory = sff.createStubFactory(clz.getName(), isIDL, codeBase, clz,
-					clz.getClassLoader());
+			stubFactory = sff.createStubFactory(clz.getName(), isIDL, codeBase,
+					clz, clz.getClassLoader());
 		}
 
 		return CDRInputStream_1_0.internalIORToObject(ior, stubFactory, orb);
@@ -672,7 +657,8 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 		return read_value();
 	}
 
-	public java.io.Serializable read_value(org.omg.CORBA.portable.BoxedValueHelper factory) {
+	public java.io.Serializable read_value(
+			org.omg.CORBA.portable.BoxedValueHelper factory) {
 		return read_value();
 	}
 
@@ -719,61 +705,75 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 		return read_value();
 	}
 
-	public void read_any_array(org.omg.CORBA.AnySeqHolder seq, int offset, int length) {
+	public void read_any_array(org.omg.CORBA.AnySeqHolder seq, int offset,
+			int length) {
 		read_any_array(seq.value, offset, length);
 	}
 
-	private final void read_any_array(org.omg.CORBA.Any[] value, int offset, int length) {
+	private final void read_any_array(org.omg.CORBA.Any[] value, int offset,
+			int length) {
 		for (int i = 0; i < length; i++) {
 			value[i + offset] = read_any();
 		}
 	}
 
-	public void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq, int offset, int length) {
+	public void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq,
+			int offset, int length) {
 		read_boolean_array(seq.value, offset, length);
 	}
 
-	public void read_char_array(org.omg.CORBA.CharSeqHolder seq, int offset, int length) {
+	public void read_char_array(org.omg.CORBA.CharSeqHolder seq, int offset,
+			int length) {
 		read_char_array(seq.value, offset, length);
 	}
 
-	public void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq, int offset, int length) {
+	public void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq, int offset,
+			int length) {
 		read_wchar_array(seq.value, offset, length);
 	}
 
-	public void read_octet_array(org.omg.CORBA.OctetSeqHolder seq, int offset, int length) {
+	public void read_octet_array(org.omg.CORBA.OctetSeqHolder seq, int offset,
+			int length) {
 		read_octet_array(seq.value, offset, length);
 	}
 
-	public void read_short_array(org.omg.CORBA.ShortSeqHolder seq, int offset, int length) {
+	public void read_short_array(org.omg.CORBA.ShortSeqHolder seq, int offset,
+			int length) {
 		read_short_array(seq.value, offset, length);
 	}
 
-	public void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq, int offset, int length) {
+	public void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq, int offset,
+			int length) {
 		read_ushort_array(seq.value, offset, length);
 	}
 
-	public void read_long_array(org.omg.CORBA.LongSeqHolder seq, int offset, int length) {
+	public void read_long_array(org.omg.CORBA.LongSeqHolder seq, int offset,
+			int length) {
 		read_long_array(seq.value, offset, length);
 	}
 
-	public void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq, int offset, int length) {
+	public void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq, int offset,
+			int length) {
 		read_ulong_array(seq.value, offset, length);
 	}
 
-	public void read_ulonglong_array(org.omg.CORBA.ULongLongSeqHolder seq, int offset, int length) {
+	public void read_ulonglong_array(org.omg.CORBA.ULongLongSeqHolder seq,
+			int offset, int length) {
 		read_ulonglong_array(seq.value, offset, length);
 	}
 
-	public void read_longlong_array(org.omg.CORBA.LongLongSeqHolder seq, int offset, int length) {
+	public void read_longlong_array(org.omg.CORBA.LongLongSeqHolder seq,
+			int offset, int length) {
 		read_longlong_array(seq.value, offset, length);
 	}
 
-	public void read_float_array(org.omg.CORBA.FloatSeqHolder seq, int offset, int length) {
+	public void read_float_array(org.omg.CORBA.FloatSeqHolder seq, int offset,
+			int length) {
 		read_float_array(seq.value, offset, length);
 	}
 
-	public void read_double_array(org.omg.CORBA.DoubleSeqHolder seq, int offset, int length) {
+	public void read_double_array(org.omg.CORBA.DoubleSeqHolder seq, int offset,
+			int length) {
 		read_double_array(seq.value, offset, length);
 	}
 
@@ -855,8 +855,8 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 		((IDLJavaSerializationInputStream) result).skipBytes(getPosition());
 
 		// Set mark related data.
-		((IDLJavaSerializationInputStream) result).setMarkData(markOn, peekIndex, peekCount,
-				(LinkedList) markedItemQ.clone());
+		((IDLJavaSerializationInputStream) result).setMarkData(markOn,
+				peekIndex, peekCount, (LinkedList) markedItemQ.clone());
 
 		return result;
 	}
@@ -871,7 +871,8 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 	}
 
 	// Used exclusively by the dup() method.
-	void setMarkData(boolean markOn, int peekIndex, int peekCount, LinkedList markedItemQ) {
+	void setMarkData(boolean markOn, int peekIndex, int peekCount,
+			LinkedList markedItemQ) {
 		this.markOn = markOn;
 		this.peekIndex = peekIndex;
 		this.peekCount = peekCount;
@@ -883,7 +884,8 @@ public class IDLJavaSerializationInputStream extends CDRInputStreamBase {
 		// digits isn't really needed here
 		StringBuffer buffer = read_fixed_buffer();
 		if (digits != buffer.length())
-			throw wrapper.badFixed(new Integer(digits), new Integer(buffer.length()));
+			throw wrapper.badFixed(new Integer(digits), new Integer(buffer
+					.length()));
 		buffer.insert(digits - scale, '.');
 		return new BigDecimal(buffer.toString());
 	}

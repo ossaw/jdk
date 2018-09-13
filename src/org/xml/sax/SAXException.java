@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX exception class.
@@ -76,7 +56,7 @@ public class SAXException extends Exception {
 	 * Create a new SAXException.
 	 *
 	 * @param message
-	 *            The error or warning message.
+	 *                The error or warning message.
 	 */
 	public SAXException(String message) {
 		super(message);
@@ -92,7 +72,7 @@ public class SAXException extends Exception {
 	 * </p>
 	 *
 	 * @param e
-	 *            The exception to be wrapped in a SAXException.
+	 *          The exception to be wrapped in a SAXException.
 	 */
 	public SAXException(Exception e) {
 		super();
@@ -108,9 +88,9 @@ public class SAXException extends Exception {
 	 * </p>
 	 *
 	 * @param message
-	 *            The detail message.
+	 *                The detail message.
 	 * @param e
-	 *            The exception to be wrapped in a SAXException.
+	 *                The exception to be wrapped in a SAXException.
 	 */
 	public SAXException(String message, Exception e) {
 		super(message);

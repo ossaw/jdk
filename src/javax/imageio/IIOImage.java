@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio;
@@ -95,18 +75,20 @@ public class IIOImage {
 	 * contain only <code>BufferedImage</code> objects.
 	 *
 	 * @param image
-	 *            a <code>RenderedImage</code>.
+	 *                   a <code>RenderedImage</code>.
 	 * @param thumbnails
-	 *            a <code>List</code> of <code>BufferedImage</code>s, or
-	 *            <code>null</code>.
+	 *                   a <code>List</code> of <code>BufferedImage</code>s, or
+	 *                   <code>null</code>.
 	 * @param metadata
-	 *            an <code>IIOMetadata</code> object, or <code>null</code>.
+	 *                   an <code>IIOMetadata</code> object, or
+	 *                   <code>null</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>image</code> is <code>null</code>.
+	 *                                     if <code>image</code> is
+	 *                                     <code>null</code>.
 	 */
-	public IIOImage(RenderedImage image, List<? extends BufferedImage> thumbnails,
-			IIOMetadata metadata) {
+	public IIOImage(RenderedImage image,
+			List<? extends BufferedImage> thumbnails, IIOMetadata metadata) {
 		if (image == null) {
 			throw new IllegalArgumentException("image == null!");
 		}
@@ -124,17 +106,20 @@ public class IIOImage {
 	 * All parameters are stored by reference.
 	 *
 	 * @param raster
-	 *            a <code>Raster</code>.
+	 *                   a <code>Raster</code>.
 	 * @param thumbnails
-	 *            a <code>List</code> of <code>BufferedImage</code>s, or
-	 *            <code>null</code>.
+	 *                   a <code>List</code> of <code>BufferedImage</code>s, or
+	 *                   <code>null</code>.
 	 * @param metadata
-	 *            an <code>IIOMetadata</code> object, or <code>null</code>.
+	 *                   an <code>IIOMetadata</code> object, or
+	 *                   <code>null</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>raster</code> is <code>null</code>.
+	 *                                     if <code>raster</code> is
+	 *                                     <code>null</code>.
 	 */
-	public IIOImage(Raster raster, List<? extends BufferedImage> thumbnails, IIOMetadata metadata) {
+	public IIOImage(Raster raster, List<? extends BufferedImage> thumbnails,
+			IIOMetadata metadata) {
 		if (raster == null) {
 			throw new IllegalArgumentException("raster == null!");
 		}
@@ -163,10 +148,11 @@ public class IIOImage {
 	 * reference. Any existing <code>Raster</code> is discarded.
 	 *
 	 * @param image
-	 *            a <code>RenderedImage</code>.
+	 *              a <code>RenderedImage</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>image</code> is <code>null</code>.
+	 *                                     if <code>image</code> is
+	 *                                     <code>null</code>.
 	 *
 	 * @see #getRenderedImage
 	 */
@@ -211,10 +197,11 @@ public class IIOImage {
 	 * Any existing <code>RenderedImage</code> is discarded.
 	 *
 	 * @param raster
-	 *            a <code>Raster</code>.
+	 *               a <code>Raster</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>raster</code> is <code>null</code>.
+	 *                                     if <code>raster</code> is
+	 *                                     <code>null</code>.
 	 *
 	 * @see #getRaster
 	 */
@@ -241,16 +228,19 @@ public class IIOImage {
 	 * Returns a thumbnail associated with the main image.
 	 *
 	 * @param index
-	 *            the index of the desired thumbnail image.
+	 *              the index of the desired thumbnail image.
 	 *
 	 * @return a thumbnail image, as a <code>BufferedImage</code>.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if the supplied index is negative or larger than the
-	 *                largest valid index.
+	 *                                      if the supplied index is negative or
+	 *                                      larger than the
+	 *                                      largest valid index.
 	 * @exception ClassCastException
-	 *                if a non-<code>BufferedImage</code> object is encountered
-	 *                in the list of thumbnails at the given index.
+	 *                                      if a non-<code>BufferedImage</code>
+	 *                                      object is encountered
+	 *                                      in the list of thumbnails at the
+	 *                                      given index.
 	 *
 	 * @see #getThumbnails
 	 * @see #setThumbnails
@@ -287,8 +277,9 @@ public class IIOImage {
 	 * contain only <code>BufferedImage</code> objects.
 	 *
 	 * @param thumbnails
-	 *            a <code>List</code> of <code>BufferedImage</code> thumbnails,
-	 *            or <code>null</code>.
+	 *                   a <code>List</code> of <code>BufferedImage</code>
+	 *                   thumbnails,
+	 *                   or <code>null</code>.
 	 *
 	 * @see #getThumbnail(int)
 	 * @see #getThumbnails
@@ -313,7 +304,7 @@ public class IIOImage {
 	 * Sets the <code>IIOMetadata</code> to a new object, or <code>null</code>.
 	 *
 	 * @param metadata
-	 *            an <code>IIOMetadata</code> object, or <code>null</code>.
+	 *                 an <code>IIOMetadata</code> object, or <code>null</code>.
 	 *
 	 * @see #getMetadata
 	 */

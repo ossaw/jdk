@@ -11,10 +11,10 @@ package org.omg.CosNaming.NamingContextPackage;
 public final class NotFoundHolder implements org.omg.CORBA.portable.Streamable {
 	public org.omg.CosNaming.NamingContextPackage.NotFound value = null;
 
-	public NotFoundHolder() {
-	}
+	public NotFoundHolder() {}
 
-	public NotFoundHolder(org.omg.CosNaming.NamingContextPackage.NotFound initialValue) {
+	public NotFoundHolder(
+			org.omg.CosNaming.NamingContextPackage.NotFound initialValue) {
 		value = initialValue;
 	}
 

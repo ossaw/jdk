@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.element;
@@ -86,7 +66,7 @@ public interface Name extends CharSequence {
 	 *         otherwise
 	 *
 	 * @param cs
-	 *            The sequence to compare this name against
+	 *           The sequence to compare this name against
 	 * @see String#contentEquals(CharSequence)
 	 */
 	boolean contentEquals(CharSequence cs);

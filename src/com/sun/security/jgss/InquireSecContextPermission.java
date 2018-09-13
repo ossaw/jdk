@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.jgss;
@@ -45,13 +25,14 @@ public final class InquireSecContextPermission extends BasicPermission {
 	 * allowed.
 	 *
 	 * @param name
-	 *            the {@link InquireType} allowed by this permission. "*" means
-	 *            all {@link InquireType}s are allowed.
+	 *             the {@link InquireType} allowed by this permission. "*" means
+	 *             all {@link InquireType}s are allowed.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty.
+	 *                                  if <code>name</code> is empty.
 	 */
 	public InquireSecContextPermission(String name) {
 		super(name);

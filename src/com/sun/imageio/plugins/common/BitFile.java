@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.common;
@@ -44,7 +24,6 @@ public class BitFile {
 
 	/*
 	 * @param output destination for output data
-	 * 
 	 * @param blocks GIF LZW requires block counts for output data
 	 */
 	public BitFile(ImageOutputStream output, boolean blocks) {
@@ -88,12 +67,14 @@ public class BitFile {
 			if (numbits <= bitsLeft) { // bits contents fit in current index
 										// byte
 				if (blocks) { // GIF
-					buffer[index] |= (bits & ((1 << numbits) - 1)) << (8 - bitsLeft);
+					buffer[index] |= (bits & ((1 << numbits) - 1)) << (8
+							- bitsLeft);
 					bitsWritten += numbits;
 					bitsLeft -= numbits;
 					numbits = 0;
 				} else {
-					buffer[index] |= (bits & ((1 << numbits) - 1)) << (bitsLeft - numbits);
+					buffer[index] |= (bits & ((1 << numbits) - 1)) << (bitsLeft
+							- numbits);
 					bitsWritten += numbits;
 					bitsLeft -= numbits;
 					numbits = 0;
@@ -104,7 +85,8 @@ public class BitFile {
 					// order bits
 					// of code are taken and put in current byte and rest put in
 					// next.
-					buffer[index] |= (bits & ((1 << bitsLeft) - 1)) << (8 - bitsLeft);
+					buffer[index] |= (bits & ((1 << bitsLeft) - 1)) << (8
+							- bitsLeft);
 					bitsWritten += bitsLeft;
 					bits >>= bitsLeft;
 					numbits -= bitsLeft;
@@ -116,7 +98,8 @@ public class BitFile {
 					// of code are taken and put in current byte and rest put in
 					// next.
 					// at highest order bit location !!
-					int topbits = (bits >>> (numbits - bitsLeft)) & ((1 << bitsLeft) - 1);
+					int topbits = (bits >>> (numbits - bitsLeft))
+							& ((1 << bitsLeft) - 1);
 					buffer[index] |= topbits;
 					numbits -= bitsLeft; // ok this many bits gone off the top
 					bitsWritten += bitsLeft;

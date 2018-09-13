@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.event;
@@ -178,17 +158,19 @@ public interface EventContext extends Context {
 	 * information on threading issues.
 	 *
 	 * @param target
-	 *            A nonnull name to be resolved relative to this context.
+	 *               A nonnull name to be resolved relative to this context.
 	 * @param scope
-	 *            One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
-	 *            <tt>SUBTREE_SCOPE</tt>.
+	 *               One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
+	 *               <tt>SUBTREE_SCOPE</tt>.
 	 * @param l
-	 *            The nonnull listener.
+	 *               The nonnull listener.
 	 * @exception NamingException
-	 *                If a problem was encountered while adding the listener.
+	 *                            If a problem was encountered while adding the
+	 *                            listener.
 	 * @see #removeNamingListener
 	 */
-	void addNamingListener(Name target, int scope, NamingListener l) throws NamingException;
+	void addNamingListener(Name target, int scope, NamingListener l)
+			throws NamingException;
 
 	/**
 	 * Adds a listener for receiving naming events fired when the object named
@@ -197,18 +179,20 @@ public interface EventContext extends Context {
 	 * See the overload that accepts a <tt>Name</tt> for details.
 	 *
 	 * @param target
-	 *            The nonnull string name of the object resolved relative to
-	 *            this context.
+	 *               The nonnull string name of the object resolved relative to
+	 *               this context.
 	 * @param scope
-	 *            One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
-	 *            <tt>SUBTREE_SCOPE</tt>.
+	 *               One of <tt>OBJECT_SCOPE</tt>, <tt>ONELEVEL_SCOPE</tt>, or
+	 *               <tt>SUBTREE_SCOPE</tt>.
 	 * @param l
-	 *            The nonnull listener.
+	 *               The nonnull listener.
 	 * @exception NamingException
-	 *                If a problem was encountered while adding the listener.
+	 *                            If a problem was encountered while adding the
+	 *                            listener.
 	 * @see #removeNamingListener
 	 */
-	void addNamingListener(String target, int scope, NamingListener l) throws NamingException;
+	void addNamingListener(String target, int scope, NamingListener l)
+			throws NamingException;
 
 	/**
 	 * Removes a listener from receiving naming events fired by this
@@ -221,9 +205,10 @@ public interface EventContext extends Context {
 	 * this <tt>EventContext</tt> instance, this method does not do anything.
 	 *
 	 * @param l
-	 *            The nonnull listener.
+	 *          The nonnull listener.
 	 * @exception NamingException
-	 *                If a problem was encountered while removing the listener.
+	 *                            If a problem was encountered while removing
+	 *                            the listener.
 	 * @see #addNamingListener
 	 */
 	void removeNamingListener(NamingListener l) throws NamingException;
@@ -235,8 +220,9 @@ public interface EventContext extends Context {
 	 * @return true if the target must exist; false if the target need not
 	 *         exist.
 	 * @exception NamingException
-	 *                If the context's behavior in this regard cannot be
-	 *                determined.
+	 *                            If the context's behavior in this regard
+	 *                            cannot be
+	 *                            determined.
 	 */
 	boolean targetMustExist() throws NamingException;
 }

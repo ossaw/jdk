@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.loading;
@@ -48,36 +28,37 @@ class MLetObjectInputStream extends ObjectInputStream {
 
 		super(in);
 		if (loader == null) {
-			throw new IllegalArgumentException("Illegal null argument to MLetObjectInputStream");
+			throw new IllegalArgumentException(
+					"Illegal null argument to MLetObjectInputStream");
 		}
 		this.loader = loader;
 	}
 
 	private Class<?> primitiveType(char c) {
 		switch (c) {
-		case 'B':
-			return Byte.TYPE;
+			case 'B':
+				return Byte.TYPE;
 
-		case 'C':
-			return Character.TYPE;
+			case 'C':
+				return Character.TYPE;
 
-		case 'D':
-			return Double.TYPE;
+			case 'D':
+				return Double.TYPE;
 
-		case 'F':
-			return Float.TYPE;
+			case 'F':
+				return Float.TYPE;
 
-		case 'I':
-			return Integer.TYPE;
+			case 'I':
+				return Integer.TYPE;
 
-		case 'J':
-			return Long.TYPE;
+			case 'J':
+				return Long.TYPE;
 
-		case 'S':
-			return Short.TYPE;
+			case 'S':
+				return Short.TYPE;
 
-		case 'Z':
-			return Boolean.TYPE;
+			case 'Z':
+				return Boolean.TYPE;
 		}
 		return null;
 	}

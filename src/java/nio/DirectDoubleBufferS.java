@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -43,7 +23,8 @@ class DirectDoubleBufferS
 	protected static final Unsafe unsafe = Bits.unsafe();
 
 	// Cached array base offset
-	private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(double[].class);
+	private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(
+			double[].class);
 
 	// Cached unaligned-access capability
 	protected static final boolean unaligned = Bits.unaligned();
@@ -88,14 +69,14 @@ class DirectDoubleBufferS
 	}
 
 	public DoubleBuffer duplicate() {
-		return new DirectDoubleBufferS(this, this.markValue(), this.position(), this.limit(),
-				this.capacity(), 0);
+		return new DirectDoubleBufferS(this, this.markValue(), this.position(),
+				this.limit(), this.capacity(), 0);
 	}
 
 	public DoubleBuffer asReadOnlyBuffer() {
 
-		return new DirectDoubleBufferRS(this, this.markValue(), this.position(), this.limit(),
-				this.capacity(), 0);
+		return new DirectDoubleBufferRS(this, this.markValue(), this.position(),
+				this.limit(), this.capacity(), 0);
 
 	}
 
@@ -108,11 +89,13 @@ class DirectDoubleBufferS
 	}
 
 	public double get() {
-		return Double.longBitsToDouble(Bits.swap(unsafe.getLong(ix(nextGetIndex()))));
+		return Double.longBitsToDouble(Bits.swap(unsafe.getLong(ix(
+				nextGetIndex()))));
 	}
 
 	public double get(int i) {
-		return Double.longBitsToDouble(Bits.swap(unsafe.getLong(ix(checkIndex(i)))));
+		return Double.longBitsToDouble(Bits.swap(unsafe.getLong(ix(checkIndex(
+				i)))));
 	}
 
 	public DoubleBuffer get(double[] dst, int offset, int length) {
@@ -127,11 +110,12 @@ class DirectDoubleBufferS
 				throw new BufferUnderflowException();
 
 			if (order() != ByteOrder.nativeOrder())
-				Bits.copyToLongArray(ix(pos), dst, (long) offset << 3, (long) length << 3);
+				Bits.copyToLongArray(ix(pos), dst, (long) offset << 3,
+						(long) length << 3);
 			else
 
-				Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 3,
-						(long) length << 3);
+				Bits.copyToArray(ix(pos), dst, arrayBaseOffset,
+						(long) offset << 3, (long) length << 3);
 			position(pos + length);
 		} else {
 			super.get(dst, offset, length);
@@ -142,14 +126,16 @@ class DirectDoubleBufferS
 
 	public DoubleBuffer put(double x) {
 
-		unsafe.putLong(ix(nextPutIndex()), Bits.swap(Double.doubleToRawLongBits(x)));
+		unsafe.putLong(ix(nextPutIndex()), Bits.swap(Double.doubleToRawLongBits(
+				x)));
 		return this;
 
 	}
 
 	public DoubleBuffer put(int i, double x) {
 
-		unsafe.putLong(ix(checkIndex(i)), Bits.swap(Double.doubleToRawLongBits(x)));
+		unsafe.putLong(ix(checkIndex(i)), Bits.swap(Double.doubleToRawLongBits(
+				x)));
 		return this;
 
 	}
@@ -205,11 +191,12 @@ class DirectDoubleBufferS
 				throw new BufferOverflowException();
 
 			if (order() != ByteOrder.nativeOrder())
-				Bits.copyFromLongArray(src, (long) offset << 3, ix(pos), (long) length << 3);
+				Bits.copyFromLongArray(src, (long) offset << 3, ix(pos),
+						(long) length << 3);
 			else
 
-				Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 3, ix(pos),
-						(long) length << 3);
+				Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 3, ix(
+						pos), (long) length << 3);
 			position(pos + length);
 		} else {
 			super.put(src, offset, length);
@@ -243,7 +230,8 @@ class DirectDoubleBufferS
 
 	public ByteOrder order() {
 
-		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
+		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
+				? ByteOrder.LITTLE_ENDIAN
 				: ByteOrder.BIG_ENDIAN);
 
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -65,14 +45,15 @@ public interface ActivationMonitor extends Remote {
 	 * <p>
 	 *
 	 * @param id
-	 *            the object's activation identifier
+	 *           the object's activation identifier
 	 * @exception UnknownObjectException
-	 *                if object is unknown
+	 *                                   if object is unknown
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                   if remote call fails
 	 * @since 1.2
 	 */
-	public void inactiveObject(ActivationID id) throws UnknownObjectException, RemoteException;
+	public void inactiveObject(ActivationID id) throws UnknownObjectException,
+			RemoteException;
 
 	/**
 	 * Informs that an object is now active. An <code>ActivationGroup</code>
@@ -85,12 +66,13 @@ public interface ActivationMonitor extends Remote {
 	 * @param obj
 	 *            the marshalled form of the object's stub
 	 * @exception UnknownObjectException
-	 *                if object is unknown
+	 *                                   if object is unknown
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                   if remote call fails
 	 * @since 1.2
 	 */
-	public void activeObject(ActivationID id, MarshalledObject<? extends Remote> obj)
+	public void activeObject(ActivationID id,
+			MarshalledObject<? extends Remote> obj)
 			throws UnknownObjectException, RemoteException;
 
 	/**
@@ -100,13 +82,13 @@ public interface ActivationMonitor extends Remote {
 	 * inactive.
 	 *
 	 * @param id
-	 *            the group's id
+	 *                    the group's id
 	 * @param incarnation
-	 *            the group's incarnation number
+	 *                    the group's incarnation number
 	 * @exception UnknownGroupException
-	 *                if group is unknown
+	 *                                  if group is unknown
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                  if remote call fails
 	 * @since 1.2
 	 */
 	public void inactiveGroup(ActivationGroupID id, long incarnation)

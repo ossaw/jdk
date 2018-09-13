@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -234,8 +214,9 @@ public class PolicyFile extends javax.security.auth.Policy {
 	 * <p>
 	 *
 	 * @exception SecurityException
-	 *                if the caller doesn't have permission to refresh the
-	 *                <code>Policy</code>.
+	 *                              if the caller doesn't have permission to
+	 *                              refresh the
+	 *                              <code>Policy</code>.
 	 */
 	@Override
 	public void refresh() {
@@ -286,19 +267,24 @@ public class PolicyFile extends javax.security.auth.Policy {
 	 * <p>
 	 *
 	 * @param subject
-	 *            the Permissions granted to this <code>Subject</code> and the
-	 *            additionally provided <code>CodeSource</code> are returned.
-	 *            <p>
+	 *                   the Permissions granted to this <code>Subject</code>
+	 *                   and the
+	 *                   additionally provided <code>CodeSource</code> are
+	 *                   returned.
+	 *                   <p>
 	 *
 	 * @param codesource
-	 *            the Permissions granted to this <code>CodeSource</code> and
-	 *            the additionally provided <code>Subject</code> are returned.
+	 *                   the Permissions granted to this <code>CodeSource</code>
+	 *                   and
+	 *                   the additionally provided <code>Subject</code> are
+	 *                   returned.
 	 *
 	 * @return the Permissions granted to the provided <code>Subject</code>
 	 *         <code>CodeSource</code>.
 	 */
 	@Override
-	public PermissionCollection getPermissions(final Subject subject, final CodeSource codesource) {
+	public PermissionCollection getPermissions(final Subject subject,
+			final CodeSource codesource) {
 		return apf.getPermissions(subject, codesource);
 	}
 }

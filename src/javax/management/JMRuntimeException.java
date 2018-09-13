@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -46,7 +26,7 @@ public class JMRuntimeException extends RuntimeException {
 	 * Constructor that allows a specific error message to be specified.
 	 *
 	 * @param message
-	 *            the detail message.
+	 *                the detail message.
 	 */
 	public JMRuntimeException(String message) {
 		super(message);

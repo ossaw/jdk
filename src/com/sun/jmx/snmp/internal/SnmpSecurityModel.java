@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -49,40 +29,44 @@ public interface SnmpSecurityModel extends SnmpModel {
 	 * {@link com.sun.jmx.snmp.SnmpV3Message} class).
 	 * 
 	 * @param cache
-	 *            The cache that has been created by calling
-	 *            <CODE>createSecurityCache</CODE> on this model.
+	 *                         The cache that has been created by calling
+	 *                         <CODE>createSecurityCache</CODE> on this model.
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                         The SNMP protocol version.
 	 * @param msgID
-	 *            The current request id.
+	 *                         The current request id.
 	 * @param msgMaxSize
-	 *            The message max size.
+	 *                         The message max size.
 	 * @param msgFlags
-	 *            The message flags (reportable, Auth and Priv).
+	 *                         The message flags (reportable, Auth and Priv).
 	 * @param msgSecurityModel
-	 *            This current security model.
+	 *                         This current security model.
 	 * @param params
-	 *            The security parameters that contain the model dependant
-	 *            parameters.
+	 *                         The security parameters that contain the model
+	 *                         dependant
+	 *                         parameters.
 	 * @param contextEngineID
-	 *            The context engine ID.
+	 *                         The context engine ID.
 	 * @param contextName
-	 *            The context name.
+	 *                         The context name.
 	 * @param data
-	 *            The marshalled varbind list.
+	 *                         The marshalled varbind list.
 	 * @param dataLength
-	 *            The marshalled varbind list length.
+	 *                         The marshalled varbind list length.
 	 * @param outputBytes
-	 *            The buffer to fill with securized request. This is a
-	 *            representation independant marshalled format. This buffer will
-	 *            be sent to the network.
+	 *                         The buffer to fill with securized request. This
+	 *                         is a
+	 *                         representation independant marshalled format.
+	 *                         This buffer will
+	 *                         be sent to the network.
 	 * @return The marshalled byte number.
 	 */
-	public int generateRequestMsg(SnmpSecurityCache cache, int version, int msgID, int msgMaxSize,
-			byte msgFlags, int msgSecurityModel, SnmpSecurityParameters params,
-			byte[] contextEngineID, byte[] contextName, byte[] data, int dataLength,
-			byte[] outputBytes)
-			throws SnmpTooBigException, SnmpStatusException, SnmpSecurityException;
+	public int generateRequestMsg(SnmpSecurityCache cache, int version,
+			int msgID, int msgMaxSize, byte msgFlags, int msgSecurityModel,
+			SnmpSecurityParameters params, byte[] contextEngineID,
+			byte[] contextName, byte[] data, int dataLength, byte[] outputBytes)
+			throws SnmpTooBigException, SnmpStatusException,
+			SnmpSecurityException;
 
 	/**
 	 * Called when a response is to be sent to the network. It must be
@@ -91,40 +75,44 @@ public interface SnmpSecurityModel extends SnmpModel {
 	 * {@link com.sun.jmx.snmp.SnmpV3Message} class).
 	 * 
 	 * @param cache
-	 *            The cache that has been created by calling
-	 *            <CODE>createSecurityCache</CODE> on this model.
+	 *                         The cache that has been created by calling
+	 *                         <CODE>createSecurityCache</CODE> on this model.
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                         The SNMP protocol version.
 	 * @param msgID
-	 *            The current request id.
+	 *                         The current request id.
 	 * @param msgMaxSize
-	 *            The message max size.
+	 *                         The message max size.
 	 * @param msgFlags
-	 *            The message flags (reportable, Auth and Priv)
+	 *                         The message flags (reportable, Auth and Priv)
 	 * @param msgSecurityModel
-	 *            This current security model.
+	 *                         This current security model.
 	 * @param params
-	 *            The security parameters that contain the model dependant
-	 *            parameters.
+	 *                         The security parameters that contain the model
+	 *                         dependant
+	 *                         parameters.
 	 * @param contextEngineID
-	 *            The context engine ID.
+	 *                         The context engine ID.
 	 * @param contextName
-	 *            The context name.
+	 *                         The context name.
 	 * @param data
-	 *            The marshalled varbind list.
+	 *                         The marshalled varbind list.
 	 * @param dataLength
-	 *            The marshalled varbind list length.
+	 *                         The marshalled varbind list length.
 	 * @param outputBytes
-	 *            The buffer to fill with securized request. This is a
-	 *            representation independant marshalled format. This buffer will
-	 *            be sent to the network.
+	 *                         The buffer to fill with securized request. This
+	 *                         is a
+	 *                         representation independant marshalled format.
+	 *                         This buffer will
+	 *                         be sent to the network.
 	 * @return The marshalled byte number.
 	 */
-	public int generateResponseMsg(SnmpSecurityCache cache, int version, int msgID, int msgMaxSize,
-			byte msgFlags, int msgSecurityModel, SnmpSecurityParameters params,
-			byte[] contextEngineID, byte[] contextName, byte[] data, int dataLength,
-			byte[] outputBytes)
-			throws SnmpTooBigException, SnmpStatusException, SnmpSecurityException;
+	public int generateResponseMsg(SnmpSecurityCache cache, int version,
+			int msgID, int msgMaxSize, byte msgFlags, int msgSecurityModel,
+			SnmpSecurityParameters params, byte[] contextEngineID,
+			byte[] contextName, byte[] data, int dataLength, byte[] outputBytes)
+			throws SnmpTooBigException, SnmpStatusException,
+			SnmpSecurityException;
 
 	/**
 	 * Called when a request is received from the network. It handles
@@ -133,40 +121,46 @@ public interface SnmpSecurityModel extends SnmpModel {
 	 * {@link com.sun.jmx.snmp.SnmpV3Message} class).
 	 * 
 	 * @param cache
-	 *            The cache that has been created by calling
-	 *            <CODE>createSecurityCache</CODE> on this model.
+	 *                         The cache that has been created by calling
+	 *                         <CODE>createSecurityCache</CODE> on this model.
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                         The SNMP protocol version.
 	 * @param msgID
-	 *            The current request id.
+	 *                         The current request id.
 	 * @param msgMaxSize
-	 *            The message max size.
+	 *                         The message max size.
 	 * @param msgFlags
-	 *            The message flags (reportable, Auth and Priv)
+	 *                         The message flags (reportable, Auth and Priv)
 	 * @param msgSecurityModel
-	 *            This current security model.
+	 *                         This current security model.
 	 * @param params
-	 *            The security parameters in a marshalled format. The
-	 *            informations contained in this array are model dependant.
+	 *                         The security parameters in a marshalled format.
+	 *                         The
+	 *                         informations contained in this array are model
+	 *                         dependant.
 	 * @param contextEngineID
-	 *            The context engine ID or null if encrypted.
+	 *                         The context engine ID or null if encrypted.
 	 * @param contextName
-	 *            The context name or null if encrypted.
+	 *                         The context name or null if encrypted.
 	 * @param data
-	 *            The marshalled varbind list or null if encrypted
+	 *                         The marshalled varbind list or null if encrypted
 	 * @param encryptedPdu
-	 *            The encrypted pdu or null if not encrypted.
+	 *                         The encrypted pdu or null if not encrypted.
 	 * @param decryptedPdu
-	 *            The decrypted pdu. If no decryption is to be done, the passed
-	 *            context engine ID, context name and data could be used to fill
-	 *            this object.
+	 *                         The decrypted pdu. If no decryption is to be
+	 *                         done, the passed
+	 *                         context engine ID, context name and data could be
+	 *                         used to fill
+	 *                         this object.
 	 * @return The decoded security parameters.
 	 * 
 	 */
-	public SnmpSecurityParameters processIncomingRequest(SnmpSecurityCache cache, int version,
-			int msgID, int msgMaxSize, byte msgFlags, int msgSecurityModel, byte[] params,
-			byte[] contextEngineID, byte[] contextName, byte[] data, byte[] encryptedPdu,
-			SnmpDecryptedPdu decryptedPdu) throws SnmpStatusException, SnmpSecurityException;
+	public SnmpSecurityParameters processIncomingRequest(
+			SnmpSecurityCache cache, int version, int msgID, int msgMaxSize,
+			byte msgFlags, int msgSecurityModel, byte[] params,
+			byte[] contextEngineID, byte[] contextName, byte[] data,
+			byte[] encryptedPdu, SnmpDecryptedPdu decryptedPdu)
+			throws SnmpStatusException, SnmpSecurityException;
 
 	/**
 	 * Called when a response is received from the network. It handles
@@ -175,40 +169,46 @@ public interface SnmpSecurityModel extends SnmpModel {
 	 * {@link com.sun.jmx.snmp.SnmpV3Message} class).
 	 * 
 	 * @param cache
-	 *            The cache that has been created by calling
-	 *            <CODE>createSecurityCache</CODE> on this model.
+	 *                         The cache that has been created by calling
+	 *                         <CODE>createSecurityCache</CODE> on this model.
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                         The SNMP protocol version.
 	 * @param msgID
-	 *            The current request id.
+	 *                         The current request id.
 	 * @param msgMaxSize
-	 *            The message max size.
+	 *                         The message max size.
 	 * @param msgFlags
-	 *            The message flags (reportable, Auth and Priv)
+	 *                         The message flags (reportable, Auth and Priv)
 	 * @param msgSecurityModel
-	 *            This current security model.
+	 *                         This current security model.
 	 * @param params
-	 *            The security parameters in a marshalled format. The
-	 *            informations cointained in this array are model dependant.
+	 *                         The security parameters in a marshalled format.
+	 *                         The
+	 *                         informations cointained in this array are model
+	 *                         dependant.
 	 * @param contextEngineID
-	 *            The context engine ID or null if encrypted.
+	 *                         The context engine ID or null if encrypted.
 	 * @param contextName
-	 *            The context name or null if encrypted.
+	 *                         The context name or null if encrypted.
 	 * @param data
-	 *            The marshalled varbind list or null if encrypted
+	 *                         The marshalled varbind list or null if encrypted
 	 * @param encryptedPdu
-	 *            The encrypted pdu or null if not encrypted.
+	 *                         The encrypted pdu or null if not encrypted.
 	 * @param decryptedPdu
-	 *            The decrypted pdu. If no decryption is to be done, the passed
-	 *            context engine ID, context name and data could be used to fill
-	 *            this object.
+	 *                         The decrypted pdu. If no decryption is to be
+	 *                         done, the passed
+	 *                         context engine ID, context name and data could be
+	 *                         used to fill
+	 *                         this object.
 	 * @return The security parameters.
 	 * 
 	 */
-	public SnmpSecurityParameters processIncomingResponse(SnmpSecurityCache cache, int version,
-			int msgID, int msgMaxSize, byte msgFlags, int msgSecurityModel, byte[] params,
-			byte[] contextEngineID, byte[] contextName, byte[] data, byte[] encryptedPdu,
-			SnmpDecryptedPdu decryptedPdu) throws SnmpStatusException, SnmpSecurityException;
+	public SnmpSecurityParameters processIncomingResponse(
+			SnmpSecurityCache cache, int version, int msgID, int msgMaxSize,
+			byte msgFlags, int msgSecurityModel, byte[] params,
+			byte[] contextEngineID, byte[] contextName, byte[] data,
+			byte[] encryptedPdu, SnmpDecryptedPdu decryptedPdu)
+			throws SnmpStatusException, SnmpSecurityException;
 
 	/**
 	 * Instantiate an <CODE>SnmpSecurityCache</CODE> that is dependant to the
@@ -222,7 +222,7 @@ public interface SnmpSecurityModel extends SnmpModel {
 	 * Release the previously created cache.
 	 * 
 	 * @param cache
-	 *            The security cache to release.
+	 *              The security cache to release.
 	 */
 	public void releaseSecurityCache(SnmpSecurityCache cache);
 }

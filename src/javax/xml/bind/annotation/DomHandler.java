@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.annotation;
@@ -63,14 +43,17 @@ public interface DomHandler<ElementT, ResultT extends Result> {
 	 * rooted at an element.
 	 *
 	 * @param errorHandler
-	 *            if any error happens between the invocation of this method and
-	 *            the invocation of {@link #getElement(Result)}, they must be
-	 *            reported to this handler.
+	 *                     if any error happens between the invocation of this
+	 *                     method and
+	 *                     the invocation of {@link #getElement(Result)}, they
+	 *                     must be
+	 *                     reported to this handler.
 	 *
-	 *            The caller must provide a non-null error handler.
+	 *                     The caller must provide a non-null error handler.
 	 *
-	 *            The {@link Result} object created from this method may hold a
-	 *            reference to this error handler.
+	 *                     The {@link Result} object created from this method
+	 *                     may hold a
+	 *                     reference to this error handler.
 	 *
 	 * @return null if the operation fails. The error must have been reported to
 	 *         the error handler.
@@ -87,8 +70,8 @@ public interface DomHandler<ElementT, ResultT extends Result> {
 	 * {@link Result} object.
 	 *
 	 * @param rt
-	 *            The {@link Result} object created by
-	 *            {@link #createUnmarshaller(ValidationEventHandler)}.
+	 *           The {@link Result} object created by
+	 *           {@link #createUnmarshaller(ValidationEventHandler)}.
 	 *
 	 * @return null if the operation fails. The error must have been reported to
 	 *         the error handler.
@@ -105,10 +88,11 @@ public interface DomHandler<ElementT, ResultT extends Result> {
 	 * that the JAXB provider is marshalling.
 	 *
 	 * @param errorHandler
-	 *            Receives any errors happened during the process of converting
-	 *            an element into a {@link Source}.
+	 *                     Receives any errors happened during the process of
+	 *                     converting
+	 *                     an element into a {@link Source}.
 	 *
-	 *            The caller must provide a non-null error handler.
+	 *                     The caller must provide a non-null error handler.
 	 *
 	 * @return null if there was an error. The error should have been reported
 	 *         to the handler.

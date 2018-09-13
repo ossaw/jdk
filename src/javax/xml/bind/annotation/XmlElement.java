@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.annotation;
@@ -210,6 +190,5 @@ public @interface XmlElement {
 	 * Used in {@link XmlElement#type()} to signal that the type be inferred
 	 * from the signature of the property.
 	 */
-	static final class DEFAULT {
-	}
+	static final class DEFAULT {}
 }

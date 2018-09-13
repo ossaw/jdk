@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -84,10 +64,11 @@ public interface Sequencer extends MidiDevice {
 	 * This method can be called even if the <code>Sequencer</code> is closed.
 	 *
 	 * @param sequence
-	 *            the sequence to be loaded.
+	 *                 the sequence to be loaded.
 	 * @throws InvalidMidiDataException
-	 *             if the sequence contains invalid MIDI data, or is not
-	 *             supported.
+	 *                                  if the sequence contains invalid MIDI
+	 *                                  data, or is not
+	 *                                  supported.
 	 */
 	public void setSequence(Sequence sequence) throws InvalidMidiDataException;
 
@@ -99,14 +80,17 @@ public interface Sequencer extends MidiDevice {
 	 * This method can be called even if the <code>Sequencer</code> is closed.
 	 *
 	 * @param stream
-	 *            stream containing MIDI file data.
+	 *               stream containing MIDI file data.
 	 * @throws IOException
-	 *             if an I/O exception occurs during reading of the stream.
+	 *                                  if an I/O exception occurs during
+	 *                                  reading of the stream.
 	 * @throws InvalidMidiDataException
-	 *             if invalid data is encountered in the stream, or the stream
-	 *             is not supported.
+	 *                                  if invalid data is encountered in the
+	 *                                  stream, or the stream
+	 *                                  is not supported.
 	 */
-	public void setSequence(InputStream stream) throws IOException, InvalidMidiDataException;
+	public void setSequence(InputStream stream) throws IOException,
+			InvalidMidiDataException;
 
 	/**
 	 * Obtains the sequence on which the Sequencer is currently operating.
@@ -134,7 +118,7 @@ public interface Sequencer extends MidiDevice {
 	 * appropriate controllers, pitch bend, and program change events.
 	 *
 	 * @throws IllegalStateException
-	 *             if the <code>Sequencer</code> is closed.
+	 *                               if the <code>Sequencer</code> is closed.
 	 *
 	 * @see #setLoopStartPoint
 	 * @see #setLoopEndPoint
@@ -148,7 +132,7 @@ public interface Sequencer extends MidiDevice {
 	 * sequence, if any.
 	 *
 	 * @throws IllegalStateException
-	 *             if the <code>Sequencer</code> is closed.
+	 *                               if the <code>Sequencer</code> is closed.
 	 *
 	 * @see #start
 	 * @see #isRunning
@@ -181,7 +165,7 @@ public interface Sequencer extends MidiDevice {
 	 * recording.
 	 *
 	 * @throws IllegalStateException
-	 *             if the <code>Sequencer</code> is closed.
+	 *                               if the <code>Sequencer</code> is closed.
 	 *
 	 * @see #startRecording
 	 * @see #recordEnable
@@ -193,7 +177,7 @@ public interface Sequencer extends MidiDevice {
 	 * Stops recording, if active. Playback of the current sequence continues.
 	 *
 	 * @throws IllegalStateException
-	 *             if the <code>Sequencer</code> is closed.
+	 *                               if the <code>Sequencer</code> is closed.
 	 *
 	 * @see #startRecording
 	 * @see #isRecording
@@ -218,13 +202,15 @@ public interface Sequencer extends MidiDevice {
 	 * recording is active.
 	 * 
 	 * @param track
-	 *            the track to which events will be recorded
+	 *                the track to which events will be recorded
 	 * @param channel
-	 *            the channel on which events will be received. If -1 is
-	 *            specified for the channel value, the track will receive data
-	 *            from all channels.
+	 *                the channel on which events will be received. If -1 is
+	 *                specified for the channel value, the track will receive
+	 *                data
+	 *                from all channels.
 	 * @throws IllegalArgumentException
-	 *             thrown if the track is not part of the current sequence.
+	 *                                  thrown if the track is not part of the
+	 *                                  current sequence.
 	 */
 	public void recordEnable(Track track, int channel);
 
@@ -233,8 +219,8 @@ public interface Sequencer extends MidiDevice {
 	 * recorded into this track.
 	 * 
 	 * @param track
-	 *            the track to disable for recording, or <code>null</code> to
-	 *            disable recording for all tracks.
+	 *              the track to disable for recording, or <code>null</code> to
+	 *              disable recording for all tracks.
 	 */
 	public void recordDisable(Track track);
 
@@ -301,7 +287,7 @@ public interface Sequencer extends MidiDevice {
 	 * always sets the tempo factor to 1.0.
 	 *
 	 * @param factor
-	 *            the requested tempo scalar
+	 *               the requested tempo scalar
 	 * @see #getTempoFactor
 	 */
 	public void setTempoFactor(float factor);
@@ -336,7 +322,7 @@ public interface Sequencer extends MidiDevice {
 	 * Sets the current sequencer position in MIDI ticks
 	 * 
 	 * @param tick
-	 *            the desired tick position
+	 *             the desired tick position
 	 * @see #getTickPosition
 	 */
 	public void setTickPosition(long tick);
@@ -361,7 +347,7 @@ public interface Sequencer extends MidiDevice {
 	 * Sets the current position in the sequence, expressed in microseconds
 	 * 
 	 * @param microseconds
-	 *            desired position in microseconds
+	 *                     desired position in microseconds
 	 * @see #getMicrosecondPosition
 	 */
 	public void setMicrosecondPosition(long microseconds);
@@ -374,7 +360,7 @@ public interface Sequencer extends MidiDevice {
 	 * returned by <code>{@link #getMasterSyncModes}</code>.
 	 *
 	 * @param sync
-	 *            the desired master synchronization mode
+	 *             the desired master synchronization mode
 	 *
 	 * @see SyncMode#INTERNAL_CLOCK
 	 * @see SyncMode#MIDI_SYNC
@@ -414,7 +400,7 @@ public interface Sequencer extends MidiDevice {
 	 * returned by <code>{@link #getSlaveSyncModes}</code>.
 	 *
 	 * @param sync
-	 *            the desired slave synchronization mode
+	 *             the desired slave synchronization mode
 	 *
 	 * @see SyncMode#MIDI_SYNC
 	 * @see SyncMode#MIDI_TIME_CODE
@@ -453,12 +439,13 @@ public interface Sequencer extends MidiDevice {
 	 * follow this call with a call to <code>{@link #getTrackMute}</code>.
 	 *
 	 * @param track
-	 *            the track number. Tracks in the current sequence are numbered
-	 *            from 0 to the number of tracks in the sequence minus 1.
+	 *              the track number. Tracks in the current sequence are
+	 *              numbered
+	 *              from 0 to the number of tracks in the sequence minus 1.
 	 * @param mute
-	 *            the new mute state for the track. <code>true</code> implies
-	 *            the track should be muted, <code>false</code> implies the
-	 *            track should be unmuted.
+	 *              the new mute state for the track. <code>true</code> implies
+	 *              the track should be muted, <code>false</code> implies the
+	 *              track should be unmuted.
 	 * @see #getSequence
 	 */
 	public void setTrackMute(int track, boolean mute);
@@ -471,8 +458,9 @@ public interface Sequencer extends MidiDevice {
 	 * specified track index is not valid.
 	 *
 	 * @param track
-	 *            the track number. Tracks in the current sequence are numbered
-	 *            from 0 to the number of tracks in the sequence minus 1.
+	 *              the track number. Tracks in the current sequence are
+	 *              numbered
+	 *              from 0 to the number of tracks in the sequence minus 1.
 	 * @return <code>true</code> if muted, <code>false</code> if not.
 	 */
 	public boolean getTrackMute(int track);
@@ -491,12 +479,13 @@ public interface Sequencer extends MidiDevice {
 	 * call to <code>{@link #getTrackSolo}</code>.
 	 *
 	 * @param track
-	 *            the track number. Tracks in the current sequence are numbered
-	 *            from 0 to the number of tracks in the sequence minus 1.
+	 *              the track number. Tracks in the current sequence are
+	 *              numbered
+	 *              from 0 to the number of tracks in the sequence minus 1.
 	 * @param solo
-	 *            the new solo state for the track. <code>true</code> implies
-	 *            the track should be solo'd, <code>false</code> implies the
-	 *            track should not be solo'd.
+	 *              the new solo state for the track. <code>true</code> implies
+	 *              the track should be solo'd, <code>false</code> implies the
+	 *              track should not be solo'd.
 	 * @see #getSequence
 	 */
 	public void setTrackSolo(int track, boolean solo);
@@ -509,8 +498,9 @@ public interface Sequencer extends MidiDevice {
 	 * the specified track index is not valid.
 	 *
 	 * @param track
-	 *            the track number. Tracks in the current sequence are numbered
-	 *            from 0 to the number of tracks in the sequence minus 1.
+	 *              the track number. Tracks in the current sequence are
+	 *              numbered
+	 *              from 0 to the number of tracks in the sequence minus 1.
 	 * @return <code>true</code> if solo'd, <code>false</code> if not.
 	 */
 	public boolean getTrackSolo(int track);
@@ -522,7 +512,7 @@ public interface Sequencer extends MidiDevice {
 	 * support meta-event notification.
 	 *
 	 * @param listener
-	 *            listener to add
+	 *                 listener to add
 	 * @return <code>true</code> if the listener was successfully added,
 	 *         otherwise <code>false</code>
 	 *
@@ -537,7 +527,7 @@ public interface Sequencer extends MidiDevice {
 	 * registered listeners, if in fact the listener is registered.
 	 *
 	 * @param listener
-	 *            the meta-event listener to remove
+	 *                 the meta-event listener to remove
 	 * @see #addMetaEventListener
 	 */
 	public void removeMetaEventListener(MetaEventListener listener);
@@ -559,18 +549,21 @@ public interface Sequencer extends MidiDevice {
 	 * not only the controllers requested in that particular invocation.
 	 *
 	 * @param listener
-	 *            the controller event listener to add to the list of registered
-	 *            listeners
+	 *                    the controller event listener to add to the list of
+	 *                    registered
+	 *                    listeners
 	 * @param controllers
-	 *            the MIDI controller numbers for which change notification is
-	 *            requested
+	 *                    the MIDI controller numbers for which change
+	 *                    notification is
+	 *                    requested
 	 * @return the numbers of all the MIDI controllers whose changes will now be
 	 *         reported to the specified listener
 	 *
 	 * @see #removeControllerEventListener
 	 * @see ControllerEventListener
 	 */
-	public int[] addControllerEventListener(ControllerEventListener listener, int[] controllers);
+	public int[] addControllerEventListener(ControllerEventListener listener,
+			int[] controllers);
 
 	/**
 	 * Removes a controller event listener's interest in one or more types of
@@ -584,17 +577,20 @@ public interface Sequencer extends MidiDevice {
 	 * notifications for any controllers.
 	 *
 	 * @param listener
-	 *            old listener
+	 *                    old listener
 	 * @param controllers
-	 *            the MIDI controller numbers for which change notification
-	 *            should be cancelled, or <code>null</code> to cancel for all
-	 *            controllers
+	 *                    the MIDI controller numbers for which change
+	 *                    notification
+	 *                    should be cancelled, or <code>null</code> to cancel
+	 *                    for all
+	 *                    controllers
 	 * @return the numbers of all the MIDI controllers whose changes will now be
 	 *         reported to the specified listener
 	 *
 	 * @see #addControllerEventListener
 	 */
-	public int[] removeControllerEventListener(ControllerEventListener listener, int[] controllers);
+	public int[] removeControllerEventListener(ControllerEventListener listener,
+			int[] controllers);
 
 	/**
 	 * Sets the first MIDI tick that will be played in the loop. If the loop
@@ -610,11 +606,13 @@ public interface Sequencer extends MidiDevice {
 	 * A sequencer's loop start point defaults to start of the sequence.
 	 *
 	 * @param tick
-	 *            the loop's starting position, in MIDI ticks (zero-based)
+	 *             the loop's starting position, in MIDI ticks (zero-based)
 	 * @throws IllegalArgumentException
-	 *             if the requested loop start point cannot be set, usually
-	 *             because it falls outside the sequence's duration or because
-	 *             the start point is after the end point
+	 *                                  if the requested loop start point cannot
+	 *                                  be set, usually
+	 *                                  because it falls outside the sequence's
+	 *                                  duration or because
+	 *                                  the start point is after the end point
 	 *
 	 * @see #setLoopEndPoint
 	 * @see #setLoopCount
@@ -649,12 +647,14 @@ public interface Sequencer extends MidiDevice {
 	 * sequence.
 	 *
 	 * @param tick
-	 *            the loop's ending position, in MIDI ticks (zero-based), or -1
-	 *            to indicate the final tick
+	 *             the loop's ending position, in MIDI ticks (zero-based), or -1
+	 *             to indicate the final tick
 	 * @throws IllegalArgumentException
-	 *             if the requested loop point cannot be set, usually because it
-	 *             falls outside the sequence's duration or because the ending
-	 *             point is before the starting point
+	 *                                  if the requested loop point cannot be
+	 *                                  set, usually because it
+	 *                                  falls outside the sequence's duration or
+	 *                                  because the ending
+	 *                                  point is before the starting point
 	 *
 	 * @see #setLoopStartPoint
 	 * @see #setLoopCount
@@ -694,14 +694,16 @@ public interface Sequencer extends MidiDevice {
 	 * loop operation.
 	 *
 	 * @param count
-	 *            the number of times playback should loop back from the loop's
-	 *            end position to the loop's start position, or <code>
+	 *              the number of times playback should loop back from the
+	 *              loop's
+	 *              end position to the loop's start position, or <code>
 	 *            {@link #LOOP_CONTINUOUSLY}</code> to indicate that looping
-	 *            should continue until interrupted
+	 *              should continue until interrupted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>count</code> is negative and not equal to
-	 *             {@link #LOOP_CONTINUOUSLY}
+	 *                                  if <code>count</code> is negative and
+	 *                                  not equal to
+	 *                                  {@link #LOOP_CONTINUOUSLY}
 	 *
 	 * @see #setLoopStartPoint
 	 * @see #setLoopEndPoint
@@ -756,7 +758,7 @@ public interface Sequencer extends MidiDevice {
 		 * Constructs a synchronization mode.
 		 * 
 		 * @param name
-		 *            name of the synchronization mode
+		 *             name of the synchronization mode
 		 */
 		protected SyncMode(String name) {
 
@@ -801,7 +803,8 @@ public interface Sequencer extends MidiDevice {
 		 * information from its internal clock. This is not a legal slave sync
 		 * mode.
 		 */
-		public static final SyncMode INTERNAL_CLOCK = new SyncMode("Internal Clock");
+		public static final SyncMode INTERNAL_CLOCK = new SyncMode(
+				"Internal Clock");
 
 		/**
 		 * A master or slave synchronization mode that specifies the use of MIDI
@@ -824,7 +827,8 @@ public interface Sequencer extends MidiDevice {
 		 * sequencer sends MIDI Time Code messages to its receiver. (See the
 		 * MIDI 1.0 Detailed Specification for a description of MIDI Time Code.)
 		 */
-		public static final SyncMode MIDI_TIME_CODE = new SyncMode("MIDI Time Code");
+		public static final SyncMode MIDI_TIME_CODE = new SyncMode(
+				"MIDI Time Code");
 
 		/**
 		 * A slave synchronization mode indicating that no timing information

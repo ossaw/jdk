@@ -39,7 +39,8 @@ import org.w3c.dom.Element;
  *
  * @author Brent Putman (putmanb@georgetown.edu)
  */
-public class XMLX509Digest extends Signature11ElementProxy implements XMLX509DataContent {
+public class XMLX509Digest extends Signature11ElementProxy implements
+		XMLX509DataContent {
 
 	/**
 	 * Constructor XMLX509Digest
@@ -48,7 +49,8 @@ public class XMLX509Digest extends Signature11ElementProxy implements XMLX509Dat
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public XMLX509Digest(Element element, String BaseURI) throws XMLSecurityException {
+	public XMLX509Digest(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 
@@ -59,10 +61,12 @@ public class XMLX509Digest extends Signature11ElementProxy implements XMLX509Dat
 	 * @param digestBytes
 	 * @param algorithmURI
 	 */
-	public XMLX509Digest(Document doc, byte[] digestBytes, String algorithmURI) {
+	public XMLX509Digest(Document doc, byte[] digestBytes,
+			String algorithmURI) {
 		super(doc);
 		this.addBase64Text(digestBytes);
-		this.constructionElement.setAttributeNS(null, Constants._ATT_ALGORITHM, algorithmURI);
+		this.constructionElement.setAttributeNS(null, Constants._ATT_ALGORITHM,
+				algorithmURI);
 	}
 
 	/**
@@ -73,11 +77,13 @@ public class XMLX509Digest extends Signature11ElementProxy implements XMLX509Dat
 	 * @param algorithmURI
 	 * @throws XMLSecurityException
 	 */
-	public XMLX509Digest(Document doc, X509Certificate x509certificate, String algorithmURI)
-			throws XMLSecurityException {
+	public XMLX509Digest(Document doc, X509Certificate x509certificate,
+			String algorithmURI) throws XMLSecurityException {
 		super(doc);
-		this.addBase64Text(getDigestBytesFromCert(x509certificate, algorithmURI));
-		this.constructionElement.setAttributeNS(null, Constants._ATT_ALGORITHM, algorithmURI);
+		this.addBase64Text(getDigestBytesFromCert(x509certificate,
+				algorithmURI));
+		this.constructionElement.setAttributeNS(null, Constants._ATT_ALGORITHM,
+				algorithmURI);
 	}
 
 	/**
@@ -86,7 +92,8 @@ public class XMLX509Digest extends Signature11ElementProxy implements XMLX509Dat
 	 * @return the Algorithm attribute
 	 */
 	public Attr getAlgorithmAttr() {
-		return this.constructionElement.getAttributeNodeNS(null, Constants._ATT_ALGORITHM);
+		return this.constructionElement.getAttributeNodeNS(null,
+				Constants._ATT_ALGORITHM);
 	}
 
 	/**
@@ -117,12 +124,13 @@ public class XMLX509Digest extends Signature11ElementProxy implements XMLX509Dat
 	 *
 	 * @throws XMLSecurityException
 	 */
-	public static byte[] getDigestBytesFromCert(X509Certificate cert, String algorithmURI)
-			throws XMLSecurityException {
+	public static byte[] getDigestBytesFromCert(X509Certificate cert,
+			String algorithmURI) throws XMLSecurityException {
 		String jcaDigestAlgorithm = JCEMapper.translateURItoJCEID(algorithmURI);
 		if (jcaDigestAlgorithm == null) {
 			Object exArgs[] = { algorithmURI };
-			throw new XMLSecurityException("XMLX509Digest.UnknownDigestAlgorithm", exArgs);
+			throw new XMLSecurityException(
+					"XMLX509Digest.UnknownDigestAlgorithm", exArgs);
 		}
 
 		try {
@@ -130,7 +138,8 @@ public class XMLX509Digest extends Signature11ElementProxy implements XMLX509Dat
 			return md.digest(cert.getEncoded());
 		} catch (Exception e) {
 			Object exArgs[] = { jcaDigestAlgorithm };
-			throw new XMLSecurityException("XMLX509Digest.FailedDigest", exArgs);
+			throw new XMLSecurityException("XMLX509Digest.FailedDigest",
+					exArgs);
 		}
 
 	}

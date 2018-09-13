@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,12 +33,14 @@ public interface XSNamespaceItem {
 	 * declarations, attribute declarations, etc.
 	 * 
 	 * @param objectType
-	 *            The type of the declaration, i.e.
-	 *            <code>ELEMENT_DECLARATION</code>. Note that
-	 *            <code>XSTypeDefinition.SIMPLE_TYPE</code> and
-	 *            <code>XSTypeDefinition.COMPLEX_TYPE</code> can also be used as
-	 *            the <code>objectType</code> to retrieve only complex types or
-	 *            simple types, instead of all types.
+	 *                   The type of the declaration, i.e.
+	 *                   <code>ELEMENT_DECLARATION</code>. Note that
+	 *                   <code>XSTypeDefinition.SIMPLE_TYPE</code> and
+	 *                   <code>XSTypeDefinition.COMPLEX_TYPE</code> can also be
+	 *                   used as
+	 *                   the <code>objectType</code> to retrieve only complex
+	 *                   types or
+	 *                   simple types, instead of all types.
 	 * @return A list of top-level definition of the specified type in
 	 *         <code>objectType</code> or an empty <code>XSNamedMap</code> if no
 	 *         such definitions exist.
@@ -58,7 +57,7 @@ public interface XSNamespaceItem {
 	 * Convenience method. Returns a top-level element declaration.
 	 * 
 	 * @param name
-	 *            The name of the declaration.
+	 *             The name of the declaration.
 	 * @return A top-level element declaration or <code>null</code> if such a
 	 *         declaration does not exist.
 	 */
@@ -68,7 +67,7 @@ public interface XSNamespaceItem {
 	 * Convenience method. Returns a top-level attribute declaration.
 	 * 
 	 * @param name
-	 *            The name of the declaration.
+	 *             The name of the declaration.
 	 * @return A top-level attribute declaration or <code>null</code> if such a
 	 *         declaration does not exist.
 	 */
@@ -79,7 +78,7 @@ public interface XSNamespaceItem {
 	 * definition.
 	 * 
 	 * @param name
-	 *            The name of the definition.
+	 *             The name of the definition.
 	 * @return An <code>XSTypeDefinition</code> or <code>null</code> if such a
 	 *         definition does not exist.
 	 */
@@ -89,7 +88,7 @@ public interface XSNamespaceItem {
 	 * Convenience method. Returns a top-level attribute group definition.
 	 * 
 	 * @param name
-	 *            The name of the definition.
+	 *             The name of the definition.
 	 * @return A top-level attribute group definition or <code>null</code> if
 	 *         such a definition does not exist.
 	 */
@@ -99,7 +98,7 @@ public interface XSNamespaceItem {
 	 * Convenience method. Returns a top-level model group definition.
 	 * 
 	 * @param name
-	 *            The name of the definition.
+	 *             The name of the definition.
 	 * @return A top-level model group definition definition or
 	 *         <code>null</code> if such a definition does not exist.
 	 */
@@ -109,7 +108,7 @@ public interface XSNamespaceItem {
 	 * Convenience method. Returns a top-level notation declaration.
 	 * 
 	 * @param name
-	 *            The name of the declaration.
+	 *             The name of the declaration.
 	 * @return A top-level notation declaration or <code>null</code> if such a
 	 *         declaration does not exist.
 	 */

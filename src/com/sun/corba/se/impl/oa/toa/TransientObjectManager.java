@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1996, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.oa.toa;
@@ -73,9 +52,11 @@ public final class TransientObjectManager {
 		int counter = ORBUtility.bytesToInt(transientKey, 4);
 
 		if (orb.transientObjectManagerDebugFlag)
-			dprint("lookupServant called with index=" + index + ", counter=" + counter);
+			dprint("lookupServant called with index=" + index + ", counter="
+					+ counter);
 
-		if (elementArray[index].counter == counter && elementArray[index].valid) {
+		if (elementArray[index].counter == counter
+				&& elementArray[index].valid) {
 			if (orb.transientObjectManagerDebugFlag)
 				dprint("\tcounter is valid");
 			return elementArray[index].servant;
@@ -87,14 +68,17 @@ public final class TransientObjectManager {
 		return null;
 	}
 
-	public synchronized java.lang.Object lookupServantData(byte transientKey[]) {
+	public synchronized java.lang.Object lookupServantData(
+			byte transientKey[]) {
 		int index = ORBUtility.bytesToInt(transientKey, 0);
 		int counter = ORBUtility.bytesToInt(transientKey, 4);
 
 		if (orb.transientObjectManagerDebugFlag)
-			dprint("lookupServantData called with index=" + index + ", counter=" + counter);
+			dprint("lookupServantData called with index=" + index + ", counter="
+					+ counter);
 
-		if (elementArray[index].counter == counter && elementArray[index].valid) {
+		if (elementArray[index].counter == counter
+				&& elementArray[index].valid) {
 			if (orb.transientObjectManagerDebugFlag)
 				dprint("\tcounter is valid");
 			return elementArray[index].servantData;

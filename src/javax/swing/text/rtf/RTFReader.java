@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.rtf;
 
@@ -150,7 +130,7 @@ class RTFReader extends RTFParser {
 	 * TextAcceptor.
 	 *
 	 * @param destination
-	 *            The TextAcceptor which is to receive the text.
+	 *                    The TextAcceptor which is to receive the text.
 	 */
 	public RTFReader(StyledDocument destination) {
 		int i;
@@ -253,7 +233,8 @@ class RTFReader extends RTFParser {
 
 		Dictionary<Object, Object> restoredState = (Dictionary<Object, Object>) parserState
 				.get("_savedState");
-		Destination restoredDestination = (Destination) restoredState.get("dst");
+		Destination restoredDestination = (Destination) restoredState.get(
+				"dst");
 		if (restoredDestination != rtfDestination) {
 			rtfDestination.close(); /* allow the destination to clean up */
 			rtfDestination = restoredDestination;
@@ -290,7 +271,8 @@ class RTFReader extends RTFParser {
 		Enumeration docProps = documentAttributes.getAttributeNames();
 		while (docProps.hasMoreElements()) {
 			Object propName = docProps.nextElement();
-			target.putProperty(propName, documentAttributes.getAttribute(propName));
+			target.putProperty(propName, documentAttributes.getAttribute(
+					propName));
 		}
 
 		/* RTFParser should have ensured that all our groups are closed */
@@ -385,27 +367,31 @@ class RTFReader extends RTFParser {
 		/* this point is reached only if the keyword is unrecognized */
 
 		/* other destinations we don't understand and therefore ignore */
-		if (keyword.equals("aftncn") || keyword.equals("aftnsep") || keyword.equals("aftnsepc")
-				|| keyword.equals("annotation") || keyword.equals("atnauthor")
-				|| keyword.equals("atnicn") || keyword.equals("atnid") || keyword.equals("atnref")
+		if (keyword.equals("aftncn") || keyword.equals("aftnsep") || keyword
+				.equals("aftnsepc") || keyword.equals("annotation") || keyword
+						.equals("atnauthor") || keyword.equals("atnicn")
+				|| keyword.equals("atnid") || keyword.equals("atnref")
 				|| keyword.equals("atntime") || keyword.equals("atrfend")
 				|| keyword.equals("atrfstart") || keyword.equals("bkmkend")
 				|| keyword.equals("bkmkstart") || keyword.equals("datafield")
-				|| keyword.equals("do") || keyword.equals("dptxbxtext") || keyword.equals("falt")
-				|| keyword.equals("field") || keyword.equals("file") || keyword.equals("filetbl")
-				|| keyword.equals("fname") || keyword.equals("fontemb")
+				|| keyword.equals("do") || keyword.equals("dptxbxtext")
+				|| keyword.equals("falt") || keyword.equals("field") || keyword
+						.equals("file") || keyword.equals("filetbl") || keyword
+								.equals("fname") || keyword.equals("fontemb")
 				|| keyword.equals("fontfile") || keyword.equals("footer")
 				|| keyword.equals("footerf") || keyword.equals("footerl")
 				|| keyword.equals("footerr") || keyword.equals("footnote")
-				|| keyword.equals("ftncn") || keyword.equals("ftnsep") || keyword.equals("ftnsepc")
-				|| keyword.equals("header") || keyword.equals("headerf")
-				|| keyword.equals("headerl") || keyword.equals("headerr")
-				|| keyword.equals("keycode") || keyword.equals("nextfile")
-				|| keyword.equals("object") || keyword.equals("pict") || keyword.equals("pn")
-				|| keyword.equals("pnseclvl") || keyword.equals("pntxtb")
-				|| keyword.equals("pntxta") || keyword.equals("revtbl") || keyword.equals("rxe")
-				|| keyword.equals("tc") || keyword.equals("template") || keyword.equals("txe")
-				|| keyword.equals("xe")) {
+				|| keyword.equals("ftncn") || keyword.equals("ftnsep")
+				|| keyword.equals("ftnsepc") || keyword.equals("header")
+				|| keyword.equals("headerf") || keyword.equals("headerl")
+				|| keyword.equals("headerr") || keyword.equals("keycode")
+				|| keyword.equals("nextfile") || keyword.equals("object")
+				|| keyword.equals("pict") || keyword.equals("pn") || keyword
+						.equals("pnseclvl") || keyword.equals("pntxtb")
+				|| keyword.equals("pntxta") || keyword.equals("revtbl")
+				|| keyword.equals("rxe") || keyword.equals("tc") || keyword
+						.equals("template") || keyword.equals("txe") || keyword
+								.equals("xe")) {
 			ignoreGroupIfUnknownKeywordSave = true;
 		}
 
@@ -493,7 +479,8 @@ class RTFReader extends RTFParser {
 		try {
 			set = getCharacterSet(name);
 		} catch (Exception e) {
-			warning("Exception loading RTF character set \"" + name + "\": " + e);
+			warning("Exception loading RTF character set \"" + name + "\": "
+					+ e);
 			set = null;
 		}
 
@@ -506,7 +493,8 @@ class RTFReader extends RTFParser {
 					translationTable = (char[]) getCharacterSet("ansi");
 				} catch (IOException e) {
 					throw new InternalError(
-							"RTFReader: Unable to find character set resources (" + e + ")", e);
+							"RTFReader: Unable to find character set resources ("
+									+ e + ")", e);
 				}
 			}
 		}
@@ -519,7 +507,8 @@ class RTFReader extends RTFParser {
 	 */
 	public static void defineCharacterSet(String name, char[] table) {
 		if (table.length < 256)
-			throw new IllegalArgumentException("Translation table must have 256 entries.");
+			throw new IllegalArgumentException(
+					"Translation table must have 256 entries.");
 		characterSets.put(name, table);
 	}
 
@@ -533,10 +522,11 @@ class RTFReader extends RTFParser {
 	public static Object getCharacterSet(final String name) throws IOException {
 		char[] set = characterSets.get(name);
 		if (set == null) {
-			InputStream charsetStream = AccessController
-					.doPrivileged(new PrivilegedAction<InputStream>() {
+			InputStream charsetStream = AccessController.doPrivileged(
+					new PrivilegedAction<InputStream>() {
 						public InputStream run() {
-							return RTFReader.class.getResourceAsStream("charsets/" + name + ".txt");
+							return RTFReader.class.getResourceAsStream(
+									"charsets/" + name + ".txt");
 						}
 					});
 			set = readCharset(charsetStream);
@@ -555,8 +545,8 @@ class RTFReader extends RTFParser {
 	static char[] readCharset(InputStream strm) throws IOException {
 		char[] values = new char[256];
 		int i;
-		StreamTokenizer in = new StreamTokenizer(
-				new BufferedReader(new InputStreamReader(strm, "ISO-8859-1")));
+		StreamTokenizer in = new StreamTokenizer(new BufferedReader(
+				new InputStreamReader(strm, "ISO-8859-1")));
 
 		in.eolIsSignificant(false);
 		in.commentChar('#');
@@ -569,7 +559,8 @@ class RTFReader extends RTFParser {
 			try {
 				ttype = in.nextToken();
 			} catch (Exception e) {
-				throw new IOException("Unable to read from character set file (" + e + ")");
+				throw new IOException("Unable to read from character set file ("
+						+ e + ")");
 			}
 			if (ttype != in.TT_NUMBER) {
 				// System.out.println("Bad token: type=" + ttype + " tok=" +
@@ -705,11 +696,9 @@ class RTFReader extends RTFParser {
 		}
 
 		/* Groups are irrelevant. */
-		public void begingroup() {
-		}
+		public void begingroup() {}
 
-		public void endgroup(Dictionary oldState) {
-		}
+		public void endgroup(Dictionary oldState) {}
 
 		/*
 		 * currently, the only thing we do when the font table ends is dump its
@@ -778,22 +767,20 @@ class RTFReader extends RTFParser {
 		}
 
 		/* Groups are irrelevant. */
-		public void begingroup() {
-		}
+		public void begingroup() {}
 
-		public void endgroup(Dictionary oldState) {
-		}
+		public void endgroup(Dictionary oldState) {}
 
 		/* Shouldn't see any binary blobs ... */
-		public void handleBinaryBlob(byte[] data) {
-		}
+		public void handleBinaryBlob(byte[] data) {}
 	}
 
 	/**
 	 * Handles the stylesheet keyword. Styles are read and sorted into the three
 	 * style arrays in the RTFReader.
 	 */
-	class StylesheetDestination extends DiscardingDestination implements Destination {
+	class StylesheetDestination extends DiscardingDestination implements
+			Destination {
 		Dictionary<Integer, StyleDefiningDestination> definedStyles;
 
 		public StylesheetDestination() {
@@ -808,14 +795,17 @@ class RTFReader extends RTFParser {
 			Vector<Style> chrStyles = new Vector<Style>();
 			Vector<Style> pgfStyles = new Vector<Style>();
 			Vector<Style> secStyles = new Vector<Style>();
-			Enumeration<StyleDefiningDestination> styles = definedStyles.elements();
+			Enumeration<StyleDefiningDestination> styles = definedStyles
+					.elements();
 			while (styles.hasMoreElements()) {
 				StyleDefiningDestination style;
 				Style defined;
 				style = styles.nextElement();
 				defined = style.realize();
-				warning("Style " + style.number + " (" + style.styleName + "): " + defined);
-				String stype = (String) defined.getAttribute(Constants.StyleType);
+				warning("Style " + style.number + " (" + style.styleName + "): "
+						+ defined);
+				String stype = (String) defined.getAttribute(
+						Constants.StyleType);
 				Vector<Style> toSet;
 				if (stype.equals(Constants.STSection)) {
 					toSet = secStyles;
@@ -859,7 +849,8 @@ class RTFReader extends RTFParser {
 		}
 
 		/** This subclass handles an individual style */
-		class StyleDefiningDestination extends AttributeTrackingDestination implements Destination {
+		class StyleDefiningDestination extends AttributeTrackingDestination
+				implements Destination {
 			final int STYLENUMBER_NONE = 222;
 			boolean additive;
 			boolean characterStyle;
@@ -891,7 +882,8 @@ class RTFReader extends RTFParser {
 			}
 
 			public void close() {
-				int semicolon = (styleName == null) ? 0 : styleName.indexOf(';');
+				int semicolon = (styleName == null) ? 0
+						: styleName.indexOf(';');
 				if (semicolon > 0)
 					styleName = styleName.substring(0, semicolon);
 				definedStyles.put(Integer.valueOf(number), this);
@@ -956,13 +948,16 @@ class RTFReader extends RTFParser {
 
 				if (characterStyle) {
 					realizedStyle.addAttributes(currentTextAttributes());
-					realizedStyle.addAttribute(Constants.StyleType, Constants.STCharacter);
+					realizedStyle.addAttribute(Constants.StyleType,
+							Constants.STCharacter);
 				} else if (sectionStyle) {
 					realizedStyle.addAttributes(currentSectionAttributes());
-					realizedStyle.addAttribute(Constants.StyleType, Constants.STSection);
+					realizedStyle.addAttribute(Constants.StyleType,
+							Constants.STSection);
 				} else { /* must be a paragraph style */
 					realizedStyle.addAttributes(currentParagraphAttributes());
-					realizedStyle.addAttribute(Constants.StyleType, Constants.STParagraph);
+					realizedStyle.addAttribute(Constants.StyleType,
+							Constants.STParagraph);
 				}
 
 				if (nextStyle != STYLENUMBER_NONE) {
@@ -975,8 +970,10 @@ class RTFReader extends RTFParser {
 
 				if (next != null)
 					realizedStyle.addAttribute(Constants.StyleNext, next);
-				realizedStyle.addAttribute(Constants.StyleAdditive, Boolean.valueOf(additive));
-				realizedStyle.addAttribute(Constants.StyleHidden, Boolean.valueOf(hidden));
+				realizedStyle.addAttribute(Constants.StyleAdditive, Boolean
+						.valueOf(additive));
+				realizedStyle.addAttribute(Constants.StyleHidden, Boolean
+						.valueOf(hidden));
 
 				return realizedStyle;
 			}
@@ -987,8 +984,8 @@ class RTFReader extends RTFParser {
 	 * Handles the info group. Currently no info keywords are recognized so this
 	 * is a subclass of DiscardingDestination.
 	 */
-	class InfoDestination extends DiscardingDestination implements Destination {
-	}
+	class InfoDestination extends DiscardingDestination implements
+			Destination {}
 
 	/**
 	 * RTFReader.TextHandlingDestination is an abstract RTF destination which
@@ -1065,8 +1062,7 @@ class RTFReader extends RTFParser {
 			sectionAttributes = (MutableAttributeSet) parserState.get("sec");
 		}
 
-		public void close() {
-		}
+		public void close() {}
 
 		public boolean handleKeyword(String keyword) {
 			if (keyword.equals("ulnone")) {
@@ -1079,27 +1075,27 @@ class RTFReader extends RTFParser {
 					boolean ok;
 
 					switch (attr.domain()) {
-					case RTFAttribute.D_CHARACTER:
-						ok = attr.set(characterAttributes);
-						break;
-					case RTFAttribute.D_PARAGRAPH:
-						ok = attr.set(paragraphAttributes);
-						break;
-					case RTFAttribute.D_SECTION:
-						ok = attr.set(sectionAttributes);
-						break;
-					case RTFAttribute.D_META:
-						mockery.backing = parserState;
-						ok = attr.set(mockery);
-						mockery.backing = null;
-						break;
-					case RTFAttribute.D_DOCUMENT:
-						ok = attr.set(documentAttributes);
-						break;
-					default:
-						/* should never happen */
-						ok = false;
-						break;
+						case RTFAttribute.D_CHARACTER:
+							ok = attr.set(characterAttributes);
+							break;
+						case RTFAttribute.D_PARAGRAPH:
+							ok = attr.set(paragraphAttributes);
+							break;
+						case RTFAttribute.D_SECTION:
+							ok = attr.set(sectionAttributes);
+							break;
+						case RTFAttribute.D_META:
+							mockery.backing = parserState;
+							ok = attr.set(mockery);
+							mockery.backing = null;
+							break;
+						case RTFAttribute.D_DOCUMENT:
+							ok = attr.set(documentAttributes);
+							break;
+						default:
+							/* should never happen */
+							ok = false;
+							break;
 					}
 					if (ok)
 						return true;
@@ -1145,27 +1141,27 @@ class RTFReader extends RTFParser {
 					boolean ok;
 
 					switch (attr.domain()) {
-					case RTFAttribute.D_CHARACTER:
-						ok = attr.set(characterAttributes, parameter);
-						break;
-					case RTFAttribute.D_PARAGRAPH:
-						ok = attr.set(paragraphAttributes, parameter);
-						break;
-					case RTFAttribute.D_SECTION:
-						ok = attr.set(sectionAttributes, parameter);
-						break;
-					case RTFAttribute.D_META:
-						mockery.backing = parserState;
-						ok = attr.set(mockery, parameter);
-						mockery.backing = null;
-						break;
-					case RTFAttribute.D_DOCUMENT:
-						ok = attr.set(documentAttributes, parameter);
-						break;
-					default:
-						/* should never happen */
-						ok = false;
-						break;
+						case RTFAttribute.D_CHARACTER:
+							ok = attr.set(characterAttributes, parameter);
+							break;
+						case RTFAttribute.D_PARAGRAPH:
+							ok = attr.set(paragraphAttributes, parameter);
+							break;
+						case RTFAttribute.D_SECTION:
+							ok = attr.set(sectionAttributes, parameter);
+							break;
+						case RTFAttribute.D_META:
+							mockery.backing = parserState;
+							ok = attr.set(mockery, parameter);
+							mockery.backing = null;
+							break;
+						case RTFAttribute.D_DOCUMENT:
+							ok = attr.set(documentAttributes, parameter);
+							break;
+						default:
+							/* should never happen */
+							ok = false;
+							break;
 					}
 					if (ok)
 						return true;
@@ -1173,7 +1169,8 @@ class RTFReader extends RTFParser {
 			}
 
 			if (keyword.equals("fs")) {
-				StyleConstants.setFontSize(characterAttributes, (parameter / 2));
+				StyleConstants.setFontSize(characterAttributes, (parameter
+						/ 2));
 				return true;
 			}
 
@@ -1181,7 +1178,8 @@ class RTFReader extends RTFParser {
 
 			if (keyword.equals("sl")) {
 				if (parameter == 1000) { /* magic value! */
-					characterAttributes.removeAttribute(StyleConstants.LineSpacing);
+					characterAttributes.removeAttribute(
+							StyleConstants.LineSpacing);
 				} else {
 					/*
 					 * TODO: The RTF sl attribute has special meaning if it's
@@ -1189,7 +1187,8 @@ class RTFReader extends RTFParser {
 					 * meaning, or find a way to imitate that. When SwingText
 					 * handles this, also recognize the slmult keyword.
 					 */
-					StyleConstants.setLineSpacing(characterAttributes, parameter / 20f);
+					StyleConstants.setLineSpacing(characterAttributes, parameter
+							/ 20f);
 				}
 				return true;
 			}
@@ -1215,7 +1214,8 @@ class RTFReader extends RTFParser {
 				parserState.remove("tab_alignment");
 				parserState.remove("tab_leader");
 
-				TabStop newStop = new TabStop(tabPosition, tabAlignment, tabLeader);
+				TabStop newStop = new TabStop(tabPosition, tabAlignment,
+						tabLeader);
 				Dictionary<Object, Object> tabs;
 				Integer stopCount;
 
@@ -1304,7 +1304,8 @@ class RTFReader extends RTFParser {
 		 * @returns a new MutableAttributeSet containing the text attributes.
 		 */
 		MutableAttributeSet currentTextAttributes() {
-			MutableAttributeSet attributes = new SimpleAttributeSet(characterAttributes);
+			MutableAttributeSet attributes = new SimpleAttributeSet(
+					characterAttributes);
 			Integer fontnum;
 			Integer stateItem;
 
@@ -1366,7 +1367,8 @@ class RTFReader extends RTFParser {
 		 */
 		MutableAttributeSet currentParagraphAttributes() {
 			/* NB if there were a mutableCopy() method we should use it */
-			MutableAttributeSet bld = new SimpleAttributeSet(paragraphAttributes);
+			MutableAttributeSet bld = new SimpleAttributeSet(
+					paragraphAttributes);
 
 			Integer stateItem;
 
@@ -1377,10 +1379,12 @@ class RTFReader extends RTFParser {
 			if (tabs == null) {
 				Dictionary workingTabs = (Dictionary) parserState.get("_tabs");
 				if (workingTabs != null) {
-					int count = ((Integer) workingTabs.get("stop count")).intValue();
+					int count = ((Integer) workingTabs.get("stop count"))
+							.intValue();
 					tabs = new TabStop[count];
 					for (int ix = 1; ix <= count; ix++)
-						tabs[ix - 1] = (TabStop) workingTabs.get(Integer.valueOf(ix));
+						tabs[ix - 1] = (TabStop) workingTabs.get(Integer
+								.valueOf(ix));
 					parserState.put("_tabs_immutable", tabs);
 				}
 			}
@@ -1401,7 +1405,8 @@ class RTFReader extends RTFParser {
 		 * @returns a newly created MutableAttributeSet.
 		 */
 		public AttributeSet currentSectionAttributes() {
-			MutableAttributeSet attributes = new SimpleAttributeSet(sectionAttributes);
+			MutableAttributeSet attributes = new SimpleAttributeSet(
+					sectionAttributes);
 
 			Style sectionStyle = (Style) parserState.get("sectionStyle");
 			if (sectionStyle != null)
@@ -1421,7 +1426,8 @@ class RTFReader extends RTFParser {
 
 			handleKeyword("fs", 24); /* 12 pt. */
 
-			Enumeration<RTFAttribute> attributes = straightforwardAttributes.elements();
+			Enumeration<RTFAttribute> attributes = straightforwardAttributes
+					.elements();
 			while (attributes.hasMoreElements()) {
 				RTFAttribute attr = attributes.nextElement();
 				if (attr.domain() == RTFAttribute.D_CHARACTER)
@@ -1443,9 +1449,11 @@ class RTFReader extends RTFParser {
 			parserState.remove("_tabs_immutable");
 			parserState.remove("paragraphStyle");
 
-			StyleConstants.setAlignment(paragraphAttributes, StyleConstants.ALIGN_LEFT);
+			StyleConstants.setAlignment(paragraphAttributes,
+					StyleConstants.ALIGN_LEFT);
 
-			Enumeration<RTFAttribute> attributes = straightforwardAttributes.elements();
+			Enumeration<RTFAttribute> attributes = straightforwardAttributes
+					.elements();
 			while (attributes.hasMoreElements()) {
 				RTFAttribute attr = attributes.nextElement();
 				if (attr.domain() == RTFAttribute.D_PARAGRAPH)
@@ -1459,7 +1467,8 @@ class RTFReader extends RTFParser {
 		 * keyword.
 		 */
 		protected void resetSectionAttributes() {
-			Enumeration<RTFAttribute> attributes = straightforwardAttributes.elements();
+			Enumeration<RTFAttribute> attributes = straightforwardAttributes
+					.elements();
 			while (attributes.hasMoreElements()) {
 				RTFAttribute attr = attributes.nextElement();
 				if (attr.domain() == RTFAttribute.D_SECTION)
@@ -1502,7 +1511,8 @@ class RTFReader extends RTFParser {
 			deliverText(text, currentTextAttributes());
 		}
 
-		abstract void deliverText(String text, AttributeSet characterAttributes);
+		abstract void deliverText(String text,
+				AttributeSet characterAttributes);
 
 		public void close() {
 			if (inParagraph)
@@ -1552,10 +1562,12 @@ class RTFReader extends RTFParser {
 	 * TextHandlingDestination which appends the text to the StyledDocument
 	 * given by the <code>target</code> ivar of the containing RTFReader.
 	 */
-	class DocumentDestination extends TextHandlingDestination implements Destination {
+	class DocumentDestination extends TextHandlingDestination implements
+			Destination {
 		public void deliverText(String text, AttributeSet characterAttributes) {
 			try {
-				target.insertString(target.getLength(), text, currentTextAttributes());
+				target.insertString(target.getLength(), text,
+						currentTextAttributes());
 			} catch (BadLocationException ble) {
 				/* This shouldn't be able to happen, of course */
 				/* TODO is InternalError the correct error to throw? */
@@ -1563,11 +1575,13 @@ class RTFReader extends RTFParser {
 			}
 		}
 
-		public void finishParagraph(AttributeSet pgfAttributes, AttributeSet chrAttributes) {
+		public void finishParagraph(AttributeSet pgfAttributes,
+				AttributeSet chrAttributes) {
 			int pgfEndPosition = target.getLength();
 			try {
 				target.insertString(pgfEndPosition, "\n", chrAttributes);
-				target.setParagraphAttributes(pgfEndPosition, 1, pgfAttributes, true);
+				target.setParagraphAttributes(pgfEndPosition, 1, pgfAttributes,
+						true);
 			} catch (BadLocationException ble) {
 				/* This shouldn't be able to happen, of course */
 				/* TODO is InternalError the correct error to throw? */

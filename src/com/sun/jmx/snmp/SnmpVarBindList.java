@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -54,7 +53,8 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * Prepares an empty list.
 	 * 
 	 * @param initialCapacity
-	 *            The initial capacity of the <CODE>SnmpVarBindList</CODE>.
+	 *                        The initial capacity of the
+	 *                        <CODE>SnmpVarBindList</CODE>.
 	 */
 	public SnmpVarBindList(int initialCapacity) {
 		super(initialCapacity);
@@ -65,7 +65,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * debugging.
 	 * 
 	 * @param name
-	 *            The name of the newly created <CODE>SnmpVarBindList</CODE>.
+	 *             The name of the newly created <CODE>SnmpVarBindList</CODE>.
 	 */
 	public SnmpVarBindList(String name) {
 		super(5, 5);
@@ -77,7 +77,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * Individual elements are not cloned.
 	 * 
 	 * @param list
-	 *            The <CODE>SnmpVarBindList</CODE> to copy.
+	 *             The <CODE>SnmpVarBindList</CODE> to copy.
 	 */
 	public SnmpVarBindList(SnmpVarBindList list) {
 		super(list.size(), 5);
@@ -91,11 +91,12 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBind</CODE> objects or derivatives.
 	 * 
 	 * @param list
-	 *            The vector of <CODE>SnmpVarBind</CODE> objects to copy.
+	 *             The vector of <CODE>SnmpVarBind</CODE> objects to copy.
 	 */
 	public SnmpVarBindList(Vector<SnmpVarBind> list) {
 		super(list.size(), 5);
-		for (Enumeration<SnmpVarBind> e = list.elements(); e.hasMoreElements();) {
+		for (Enumeration<SnmpVarBind> e = list.elements(); e
+				.hasMoreElements();) {
 			final SnmpVarBind varBind = e.nextElement();
 			addElement(varBind.clone());
 		}
@@ -107,9 +108,9 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBind</CODE> objects or derivatives.
 	 * 
 	 * @param name
-	 *            The name of the newly created <CODE>SnmpVarBindList</CODE>.
+	 *             The name of the newly created <CODE>SnmpVarBindList</CODE>.
 	 * @param list
-	 *            The vector of <CODE>SnmpVarBind</CODE> objects to copy.
+	 *             The vector of <CODE>SnmpVarBind</CODE> objects to copy.
 	 */
 	public SnmpVarBindList(String name, Vector<SnmpVarBind> list) {
 		this(list);
@@ -135,8 +136,8 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * explicitly.
 	 * 
 	 * @param tstamp
-	 *            The <CODE>SnmpTimestamp</CODE> of the device for which the
-	 *            values hold <CODE>true</CODE>.
+	 *               The <CODE>SnmpTimestamp</CODE> of the device for which the
+	 *               values hold <CODE>true</CODE>.
 	 */
 	public void setTimestamp(Timestamp tstamp) {
 		timestamp = tstamp;
@@ -149,7 +150,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 *            The position in the list.
 	 * @return The <CODE>SnmpVarBind</CODE> object at the specified position.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                If the specified <CODE>pos</CODE> is beyond range.
+	 *            If the specified <CODE>pos</CODE> is beyond range.
 	 */
 	public final synchronized SnmpVarBind getVarBindAt(int pos) {
 		return elementAt(pos);
@@ -182,7 +183,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBind</CODE> objects contained in the list.
 	 * 
 	 * @param list
-	 *            A vector of <CODE>SnmpVarBind</CODE> objects.
+	 *             A vector of <CODE>SnmpVarBind</CODE> objects.
 	 */
 	public final synchronized void setVarBindList(Vector<SnmpVarBind> list) {
 		setVarBindList(list, false);
@@ -195,12 +196,13 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBind</CODE> object contained in the list.
 	 * 
 	 * @param list
-	 *            A vector of <CODE>SnmpVarBind</CODE> objects.
+	 *             A vector of <CODE>SnmpVarBind</CODE> objects.
 	 * @param copy
-	 *            The flag indicating whether each object in the list should be
-	 *            cloned.
+	 *             The flag indicating whether each object in the list should be
+	 *             cloned.
 	 */
-	public final synchronized void setVarBindList(Vector<SnmpVarBind> list, boolean copy) {
+	public final synchronized void setVarBindList(Vector<SnmpVarBind> list,
+			boolean copy) {
 		synchronized (list) {
 			final int max = list.size();
 			setSize(max);
@@ -222,7 +224,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBindList</CODE> object.
 	 * 
 	 * @param list
-	 *            The <CODE>SnmpVarBindList</CODE> to append.
+	 *             The <CODE>SnmpVarBindList</CODE> to append.
 	 */
 	public synchronized void addVarBindList(SnmpVarBindList list) {
 		ensureCapacity(list.size() + size());
@@ -237,7 +239,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBindList</CODE>.
 	 * 
 	 * @param list
-	 *            The <CODE>SnmpVarBindList</CODE> to be removed.
+	 *             The <CODE>SnmpVarBindList</CODE> to be removed.
 	 * @return <CODE>true</CODE> if all the <CODE>SnmpVarBind</CODE> objects
 	 *         were components of this <CODE>SnmpVarBindList</CODE>,
 	 *         <CODE>false</CODE> otherwise.
@@ -258,7 +260,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * @param pos
 	 *            The location in the <CODE>SnmpVarBindList</CODE>.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                If the specified <CODE>pos</CODE> is beyond range.
+	 *            If the specified <CODE>pos</CODE> is beyond range.
 	 */
 	public final synchronized void replaceVarBind(SnmpVarBind var, int pos) {
 		setElementAt(var, pos);
@@ -269,12 +271,14 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * MIB variables and instances.
 	 * 
 	 * @param list
-	 *            An array of <CODE>String</CODE> containing MIB variable names.
+	 *             An array of <CODE>String</CODE> containing MIB variable
+	 *             names.
 	 * @param inst
-	 *            A common instance for each of the MIB variables in
-	 *            <CODE>vlist</CODE>.
+	 *             A common instance for each of the MIB variables in
+	 *             <CODE>vlist</CODE>.
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing a MIB node.
+	 *                                An error occurred while accessing a MIB
+	 *                                node.
 	 */
 	public final synchronized void addVarBind(String list[], String inst)
 			throws SnmpStatusException {
@@ -290,15 +294,17 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBindList</CODE>.
 	 * 
 	 * @param list
-	 *            An array of <CODE>String</CODE> containing MIB variable names.
+	 *             An array of <CODE>String</CODE> containing MIB variable
+	 *             names.
 	 * @param inst
-	 *            A common instance for each of the MIB variables in
-	 *            <CODE>vlist</CODE>.
+	 *             A common instance for each of the MIB variables in
+	 *             <CODE>vlist</CODE>.
 	 * @return <CODE>true</CODE> if all the SNMP MIB variables were components
 	 *         of this <CODE>SnmpVarBindList</CODE>, <CODE>false</CODE>
 	 *         otherwise.
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing a MIB node.
+	 *                                An error occurred while accessing a MIB
+	 *                                node.
 	 */
 	public synchronized boolean removeVarBind(String list[], String inst)
 			throws SnmpStatusException {
@@ -327,11 +333,13 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * </CODE>
 	 * 
 	 * @param list
-	 *            The array of MIB variable names.
+	 *             The array of MIB variable names.
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing a MIB node.
+	 *                                An error occurred while accessing a MIB
+	 *                                node.
 	 */
-	public synchronized void addVarBind(String list[]) throws SnmpStatusException {
+	public synchronized void addVarBind(String list[])
+			throws SnmpStatusException {
 		addVarBind(list, null);
 	}
 
@@ -340,14 +348,16 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * <CODE>SnmpVarBindList</CODE>.
 	 * 
 	 * @param list
-	 *            Array of strings containing MIB variable names.
+	 *             Array of strings containing MIB variable names.
 	 * @return <CODE>true</CODE> if all the SNMP MIB variables were components
 	 *         of this <CODE>SnmpVarBindList</CODE>, <CODE>false</CODE>
 	 *         otherwise.
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing a MIB node.
+	 *                                An error occurred while accessing a MIB
+	 *                                node.
 	 */
-	public synchronized boolean removeVarBind(String list[]) throws SnmpStatusException {
+	public synchronized boolean removeVarBind(String list[])
+			throws SnmpStatusException {
 		return removeVarBind(list, null);
 	}
 
@@ -357,11 +367,13 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * new <CODE>SnmpVarBindList</CODE> if one did not exist.
 	 * 
 	 * @param name
-	 *            A MIB variable name.
+	 *             A MIB variable name.
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing a MIB node.
+	 *                                An error occurred while accessing a MIB
+	 *                                node.
 	 */
-	public synchronized void addVarBind(String name) throws SnmpStatusException {
+	public synchronized void addVarBind(String name)
+			throws SnmpStatusException {
 		SnmpVarBind avar;
 		avar = new SnmpVarBind(name);
 		addVarBind(avar);
@@ -372,13 +384,15 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * MIB variable from the existing <CODE>SnmpVarBindList</CODE>.
 	 * 
 	 * @param name
-	 *            A MIB variable name.
+	 *             A MIB variable name.
 	 * @return <CODE>true</CODE> if the SNMP MIB variable was a component of
 	 *         this <CODE>SnmpVarBindList</CODE>, <CODE>false</CODE> otherwise.
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing a MIB node.
+	 *                                An error occurred while accessing a MIB
+	 *                                node.
 	 */
-	public synchronized boolean removeVarBind(String name) throws SnmpStatusException {
+	public synchronized boolean removeVarBind(String name)
+			throws SnmpStatusException {
 		SnmpVarBind avar;
 		int indexOid;
 		avar = new SnmpVarBind(name);
@@ -422,11 +436,13 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * should be used with caution because it affects all OIDs in the list.
 	 * 
 	 * @param inst
-	 *            The <CODE>String</CODE> to add as an instance part.
+	 *             The <CODE>String</CODE> to add as an instance part.
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing a MIB node.
+	 *                                An error occurred while accessing a MIB
+	 *                                node.
 	 */
-	public synchronized void addInstance(String inst) throws SnmpStatusException {
+	public synchronized void addInstance(String inst)
+			throws SnmpStatusException {
 		int max = size();
 		for (int i = 0; i < max; i++) {
 			((SnmpVarBind) elementData[i]).addInstance(inst);
@@ -438,11 +454,12 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * The elements are not cloned.
 	 * 
 	 * @param list
-	 *            A vector of <CODE>SnmpVarBind</CODE>.
+	 *             A vector of <CODE>SnmpVarBind</CODE>.
 	 */
 	final public synchronized void concat(Vector<SnmpVarBind> list) {
 		ensureCapacity(size() + list.size());
-		for (Enumeration<SnmpVarBind> e = list.elements(); e.hasMoreElements();) {
+		for (Enumeration<SnmpVarBind> e = list.elements(); e
+				.hasMoreElements();) {
 			addElement(e.nextElement());
 		}
 	}
@@ -606,8 +623,8 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
 	 * cloned.
 	 * 
 	 * @param copy
-	 *            The flag indicating whether each object in the list should be
-	 *            cloned.
+	 *             The flag indicating whether each object in the list should be
+	 *             cloned.
 	 * @return A new vector of <CODE>SnmpVarBind</CODE> objects.
 	 */
 	public synchronized Vector<SnmpVarBind> toVector(boolean copy) {

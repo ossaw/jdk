@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +16,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SerializerFactory.java,v 1.2.4.1 2005/09/15 08:15:24 suresh_emailid Exp $
+ * $Id: SerializerFactory.java,v 1.2.4.1 2005/09/15 08:15:24 suresh_emailid Exp
+ * $
  */
 package com.sun.org.apache.xml.internal.serializer;
 
@@ -77,16 +76,19 @@ public final class SerializerFactory {
 	 * "method" key values see {@link Method}.
 	 *
 	 * @param format
-	 *            The output format, minimally the "method" property must be
-	 *            set.
+	 *               The output format, minimally the "method" property must be
+	 *               set.
 	 * @return A suitable serializer.
 	 * @throws IllegalArgumentException
-	 *             if method is null or an appropriate serializer can't be found
+	 *                                  if method is null or an appropriate
+	 *                                  serializer can't be found
 	 * @throws Exception
-	 *             if the class for the serializer is found but does not
-	 *             implement ContentHandler.
+	 *                                  if the class for the serializer is found
+	 *                                  but does not
+	 *                                  implement ContentHandler.
 	 * @throws WrappedRuntimeException
-	 *             if an exception is thrown while trying to find serializer
+	 *                                  if an exception is thrown while trying
+	 *                                  to find serializer
 	 */
 	public static Serializer getSerializer(Properties format) {
 		Serializer ser;
@@ -95,23 +97,26 @@ public final class SerializerFactory {
 			String method = format.getProperty(OutputKeys.METHOD);
 
 			if (method == null) {
-				String msg = Utils.messages.createMessage(MsgKey.ER_FACTORY_PROPERTY_MISSING,
-						new Object[] { OutputKeys.METHOD });
+				String msg = Utils.messages.createMessage(
+						MsgKey.ER_FACTORY_PROPERTY_MISSING, new Object[] {
+								OutputKeys.METHOD });
 				throw new IllegalArgumentException(msg);
 			}
 
-			String className = format.getProperty(OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
+			String className = format.getProperty(
+					OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
 
 			if (null == className) {
 				// Missing Content Handler property, load default using
 				// OutputPropertiesFactory
 				Properties methodDefaults = OutputPropertiesFactory
 						.getDefaultMethodProperties(method);
-				className = methodDefaults
-						.getProperty(OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
+				className = methodDefaults.getProperty(
+						OutputPropertiesFactory.S_KEY_CONTENT_HANDLER);
 				if (null == className) {
-					String msg = Utils.messages.createMessage(MsgKey.ER_FACTORY_PROPERTY_MISSING,
-							new Object[] { OutputPropertiesFactory.S_KEY_CONTENT_HANDLER });
+					String msg = Utils.messages.createMessage(
+							MsgKey.ER_FACTORY_PROPERTY_MISSING, new Object[] {
+									OutputPropertiesFactory.S_KEY_CONTENT_HANDLER });
 					throw new IllegalArgumentException(msg);
 				}
 
@@ -142,7 +147,8 @@ public final class SerializerFactory {
 					 */
 					className = SerializerConstants.DEFAULT_SAX_SERIALIZER;
 					cls = ObjectFactory.findProviderClass(className, true);
-					SerializationHandler sh = (SerializationHandler) cls.newInstance();
+					SerializationHandler sh = (SerializationHandler) cls
+							.newInstance();
 					sh.setContentHandler((ContentHandler) obj);
 					sh.setOutputFormat(format);
 
@@ -151,12 +157,14 @@ public final class SerializerFactory {
 					// user defined serializer does not implement
 					// ContentHandler, ... very bad
 					throw new Exception(Utils.messages.createMessage(
-							MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER, new Object[] { className }));
+							MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
+							new Object[] { className }));
 				}
 
 			}
 		} catch (Exception e) {
-			throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(e);
+			throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(
+					e);
 		}
 
 		// If we make it to here ser is not null.

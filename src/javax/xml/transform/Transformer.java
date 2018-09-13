@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform;
@@ -56,8 +36,7 @@ public abstract class Transformer {
 	/**
 	 * Default constructor is protected on purpose.
 	 */
-	protected Transformer() {
-	}
+	protected Transformer() {}
 
 	/**
 	 * <p>
@@ -82,17 +61,21 @@ public abstract class Transformer {
 	 * </p>
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method.
+	 *                                       When implementation does not
+	 *                                       override this method.
 	 *
 	 * @since 1.5
 	 */
 	public void reset() {
 
 		// implementors should override this method
-		throw new UnsupportedOperationException("This Transformer, \"" + this.getClass().getName()
-				+ "\", does not support the reset functionality." + "  Specification \""
-				+ this.getClass().getPackage().getSpecificationTitle() + "\"" + " version \""
-				+ this.getClass().getPackage().getSpecificationVersion() + "\"");
+		throw new UnsupportedOperationException("This Transformer, \"" + this
+				.getClass().getName()
+				+ "\", does not support the reset functionality."
+				+ "  Specification \"" + this.getClass().getPackage()
+						.getSpecificationTitle() + "\"" + " version \"" + this
+								.getClass().getPackage()
+								.getSpecificationVersion() + "\"");
 	}
 
 	/**
@@ -112,14 +95,15 @@ public abstract class Transformer {
 	 * </p>
 	 *
 	 * @param xmlSource
-	 *            The XML input to transform.
+	 *                     The XML input to transform.
 	 * @param outputTarget
-	 *            The <code>Result</code> of transforming the
-	 *            <code>xmlSource</code>.
+	 *                     The <code>Result</code> of transforming the
+	 *                     <code>xmlSource</code>.
 	 *
 	 * @throws TransformerException
-	 *             If an unrecoverable error occurs during the course of the
-	 *             transformation.
+	 *                              If an unrecoverable error occurs during the
+	 *                              course of the
+	 *                              transformation.
 	 */
 	public abstract void transform(Source xmlSource, Result outputTarget)
 			throws TransformerException;
@@ -143,15 +127,16 @@ public abstract class Transformer {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of the parameter, which may begin with a namespace
-	 *            URI in curly braces ({}).
+	 *              The name of the parameter, which may begin with a namespace
+	 *              URI in curly braces ({}).
 	 * @param value
-	 *            The value object. This can be any valid Java object. It is up
-	 *            to the processor to provide the proper object coersion or to
-	 *            simply pass the object on for use in an extension.
+	 *              The value object. This can be any valid Java object. It is
+	 *              up
+	 *              to the processor to provide the proper object coersion or to
+	 *              simply pass the object on for use in an extension.
 	 *
 	 * @throws NullPointerException
-	 *             If value is null.
+	 *                              If value is null.
 	 */
 	public abstract void setParameter(String name, Object value);
 
@@ -164,7 +149,7 @@ public abstract class Transformer {
 	 * process.
 	 *
 	 * @param name
-	 *            of <code>Object</code> to get
+	 *             of <code>Object</code> to get
 	 *
 	 * @return A parameter that has been set with setParameter.
 	 */
@@ -195,10 +180,11 @@ public abstract class Transformer {
 	 * </p>
 	 *
 	 * @param params
-	 *            Parameters to set.
+	 *               Parameters to set.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If any parameter names do not conform to the naming rules.
+	 *                                  If any parameter names do not conform to
+	 *                                  the naming rules.
 	 */
 
 	/**
@@ -215,7 +201,8 @@ public abstract class Transformer {
 	 * </p>
 	 *
 	 * @param resolver
-	 *            An object that implements the URIResolver interface, or null.
+	 *                 An object that implements the URIResolver interface, or
+	 *                 null.
 	 */
 	public abstract void setURIResolver(URIResolver resolver);
 
@@ -254,11 +241,13 @@ public abstract class Transformer {
 	 * keys are not recognized and are not namespace qualified.
 	 *
 	 * @param oformat
-	 *            A set of output properties that will be used to override any
-	 *            of the same properties in affect for the transformation.
+	 *                A set of output properties that will be used to override
+	 *                any
+	 *                of the same properties in affect for the transformation.
 	 *
 	 * @throws IllegalArgumentException
-	 *             When keys are not recognized and are not namespace qualified.
+	 *                                  When keys are not recognized and are not
+	 *                                  namespace qualified.
 	 *
 	 * @see javax.xml.transform.OutputKeys
 	 * @see java.util.Properties
@@ -334,14 +323,15 @@ public abstract class Transformer {
 	 * </p>
 	 *
 	 * @param name
-	 *            A non-null String that specifies an output property name,
-	 *            which may be namespace qualified.
+	 *              A non-null String that specifies an output property name,
+	 *              which may be namespace qualified.
 	 * @param value
-	 *            The non-null string value of the output property.
+	 *              The non-null string value of the output property.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the property is not supported, and is not qualified with a
-	 *             namespace.
+	 *                                  If the property is not supported, and is
+	 *                                  not qualified with a
+	 *                                  namespace.
 	 *
 	 * @see javax.xml.transform.OutputKeys
 	 */
@@ -363,29 +353,31 @@ public abstract class Transformer {
 	 * </p>
 	 *
 	 * @param name
-	 *            A non-null String that specifies an output property name,
-	 *            which may be namespace qualified.
+	 *             A non-null String that specifies an output property name,
+	 *             which may be namespace qualified.
 	 *
 	 * @return The string value of the output property, or null if no property
 	 *         was found.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the property is not supported.
+	 *                                  If the property is not supported.
 	 *
 	 * @see javax.xml.transform.OutputKeys
 	 */
-	public abstract String getOutputProperty(String name) throws IllegalArgumentException;
+	public abstract String getOutputProperty(String name)
+			throws IllegalArgumentException;
 
 	/**
 	 * Set the error event listener in effect for the transformation.
 	 *
 	 * @param listener
-	 *            The new error listener.
+	 *                 The new error listener.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if listener is null.
+	 *                                  if listener is null.
 	 */
-	public abstract void setErrorListener(ErrorListener listener) throws IllegalArgumentException;
+	public abstract void setErrorListener(ErrorListener listener)
+			throws IllegalArgumentException;
 
 	/**
 	 * Get the error event handler in effect for the transformation.

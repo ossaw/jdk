@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -53,7 +33,8 @@ public class ByteBufferWithInfo {
 	public int needed; // How many more bytes are needed on overflow.
 	public boolean fragmented; // Did the overflow operation fragment?
 
-	public ByteBufferWithInfo(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer, int index) {
+	public ByteBufferWithInfo(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer,
+			int index) {
 		this.orb = (com.sun.corba.se.spi.orb.ORB) orb;
 		debug = this.orb.transportDebugFlag;
 		this.byteBuffer = byteBuffer;
@@ -69,7 +50,8 @@ public class ByteBufferWithInfo {
 		this(orb, byteBuffer, 0);
 	}
 
-	public ByteBufferWithInfo(org.omg.CORBA.ORB orb, BufferManagerWrite bufferManager) {
+	public ByteBufferWithInfo(org.omg.CORBA.ORB orb,
+			BufferManagerWrite bufferManager) {
 		this(orb, bufferManager, true);
 	}
 
@@ -78,8 +60,8 @@ public class ByteBufferWithInfo {
 	// byte buffers. Hence, the reason for the boolean 'usePooledByteBuffers'.
 	// See EncapsOutputStream for additional information.
 
-	public ByteBufferWithInfo(org.omg.CORBA.ORB orb, BufferManagerWrite bufferManager,
-			boolean usePooledByteBuffers) {
+	public ByteBufferWithInfo(org.omg.CORBA.ORB orb,
+			BufferManagerWrite bufferManager, boolean usePooledByteBuffers) {
 		this.orb = (com.sun.corba.se.spi.orb.ORB) orb;
 		debug = this.orb.transportDebugFlag;
 
@@ -93,8 +75,9 @@ public class ByteBufferWithInfo {
 				// print address of ByteBuffer gotten from pool
 				int bbAddress = System.identityHashCode(byteBuffer);
 				StringBuffer sb = new StringBuffer(80);
-				sb.append("constructor (ORB, BufferManagerWrite) - got ").append("ByteBuffer id (")
-						.append(bbAddress).append(") from ByteBufferPool.");
+				sb.append("constructor (ORB, BufferManagerWrite) - got ")
+						.append("ByteBuffer id (").append(bbAddress).append(
+								") from ByteBufferPool.");
 				String msgStr = sb.toString();
 				dprint(msgStr);
 			}
@@ -217,7 +200,8 @@ public class ByteBufferWithInfo {
 		str.append(" index = " + index);
 		str.append(" position = " + position());
 		str.append(" needed = " + needed);
-		str.append(" byteBuffer = " + (byteBuffer == null ? "null" : "not null"));
+		str.append(" byteBuffer = " + (byteBuffer == null ? "null"
+				: "not null"));
 		str.append(" fragmented = " + fragmented);
 
 		return str.toString();

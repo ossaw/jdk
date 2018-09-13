@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -45,8 +25,7 @@ public class MBeanServerBuilder {
 	/**
 	 * Public default constructor.
 	 **/
-	public MBeanServerBuilder() {
-	}
+	public MBeanServerBuilder() {}
 
 	/**
 	 * This method creates a new MBeanServerDelegate for a new MBeanServer. When
@@ -94,15 +73,19 @@ public class MBeanServerBuilder {
 	 * returning a pointer to a wrapping object.
 	 *
 	 * @param defaultDomain
-	 *            Default domain of the new MBeanServer.
+	 *                      Default domain of the new MBeanServer.
 	 * @param outer
-	 *            A pointer to the MBeanServer object that must be passed to the
-	 *            MBeans when invoking their
-	 *            {@link javax.management.MBeanRegistration} interface.
+	 *                      A pointer to the MBeanServer object that must be
+	 *                      passed to the
+	 *                      MBeans when invoking their
+	 *                      {@link javax.management.MBeanRegistration}
+	 *                      interface.
 	 * @param delegate
-	 *            A pointer to the MBeanServerDelegate associated with the new
-	 *            MBeanServer. The new MBeanServer must register this MBean in
-	 *            its MBean repository.
+	 *                      A pointer to the MBeanServerDelegate associated with
+	 *                      the new
+	 *                      MBeanServer. The new MBeanServer must register this
+	 *                      MBean in
+	 *                      its MBean repository.
 	 *
 	 * @return A new private implementation of an MBeanServer.
 	 **/
@@ -111,6 +94,7 @@ public class MBeanServerBuilder {
 		// By default, MBeanServerInterceptors are disabled.
 		// Use com.sun.jmx.mbeanserver.MBeanServerBuilder to obtain
 		// MBeanServers on which MBeanServerInterceptors are enabled.
-		return JmxMBeanServer.newMBeanServer(defaultDomain, outer, delegate, false);
+		return JmxMBeanServer.newMBeanServer(defaultDomain, outer, delegate,
+				false);
 	}
 }

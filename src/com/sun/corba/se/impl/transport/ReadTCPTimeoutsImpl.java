@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -37,8 +17,8 @@ public class ReadTCPTimeoutsImpl implements ReadTimeouts {
 	private double backoff_factor;
 
 	// constructor
-	public ReadTCPTimeoutsImpl(int initial_time, int max_time, int max_giop_header_time,
-			int backoff_percent) {
+	public ReadTCPTimeoutsImpl(int initial_time, int max_time,
+			int max_giop_header_time, int backoff_percent) {
 		this.initial_time_to_wait = initial_time;
 		this.max_time_to_wait = max_time;
 		this.max_giop_header_time_to_wait = max_giop_header_time;

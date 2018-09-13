@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -40,7 +20,7 @@ public interface PathMatcher {
 	 * Tells if given path matches this matcher's pattern.
 	 *
 	 * @param path
-	 *            the path to match
+	 *             the path to match
 	 *
 	 * @return {@code true} if, and only if, the path matches this matcher's
 	 *         pattern

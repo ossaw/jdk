@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +50,8 @@ public class XSGrammarPool extends XMLGrammarPoolImpl {
 		ArrayList list = new ArrayList();
 		for (int i = 0; i < fGrammars.length; i++) {
 			for (Entry entry = fGrammars[i]; entry != null; entry = entry.next) {
-				if (entry.desc.getGrammarType().equals(XMLGrammarDescription.XML_SCHEMA)) {
+				if (entry.desc.getGrammarType().equals(
+						XMLGrammarDescription.XML_SCHEMA)) {
 					list.add(entry.grammar);
 				}
 			}
@@ -62,7 +60,8 @@ public class XSGrammarPool extends XMLGrammarPoolImpl {
 		if (size == 0) {
 			return toXSModel(new SchemaGrammar[0], schemaVersion);
 		}
-		SchemaGrammar[] gs = (SchemaGrammar[]) list.toArray(new SchemaGrammar[size]);
+		SchemaGrammar[] gs = (SchemaGrammar[]) list.toArray(
+				new SchemaGrammar[size]);
 		return toXSModel(gs, schemaVersion);
 	}
 

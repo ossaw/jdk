@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -68,7 +60,8 @@ import java.io.*;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  * @see LocalVariableTable
  */
-public final class LocalVariable implements Constants, Cloneable, Node, Serializable {
+public final class LocalVariable implements Constants, Cloneable, Node,
+		Serializable {
 	private int start_pc; // Range in which the variable is valid
 	private int length;
 	private int name_index; // Index in constant pool of variable name
@@ -85,38 +78,41 @@ public final class LocalVariable implements Constants, Cloneable, Node, Serializ
 	 * references (shallow copy). Use copy() for a physical copy.
 	 */
 	public LocalVariable(LocalVariable c) {
-		this(c.getStartPC(), c.getLength(), c.getNameIndex(), c.getSignatureIndex(), c.getIndex(),
-				c.getConstantPool());
+		this(c.getStartPC(), c.getLength(), c.getNameIndex(), c
+				.getSignatureIndex(), c.getIndex(), c.getConstantPool());
 	}
 
 	/**
 	 * Construct object from file stream.
 	 * 
 	 * @param file
-	 *            Input stream
+	 *             Input stream
 	 * @throws IOException
 	 */
-	LocalVariable(DataInputStream file, ConstantPool constant_pool) throws IOException {
-		this(file.readUnsignedShort(), file.readUnsignedShort(), file.readUnsignedShort(),
-				file.readUnsignedShort(), file.readUnsignedShort(), constant_pool);
+	LocalVariable(DataInputStream file, ConstantPool constant_pool)
+			throws IOException {
+		this(file.readUnsignedShort(), file.readUnsignedShort(), file
+				.readUnsignedShort(), file.readUnsignedShort(), file
+						.readUnsignedShort(), constant_pool);
 	}
 
 	/**
 	 * @param start_pc
-	 *            Range in which the variable
+	 *                        Range in which the variable
 	 * @param length
-	 *            ... is valid
+	 *                        ... is valid
 	 * @param name_index
-	 *            Index in constant pool of variable name
+	 *                        Index in constant pool of variable name
 	 * @param signature_index
-	 *            Index of variable's signature
+	 *                        Index of variable's signature
 	 * @param index
-	 *            Variable is `index'th local variable on the method's frame
+	 *                        Variable is `index'th local variable on the
+	 *                        method's frame
 	 * @param constant_pool
-	 *            Array of constants
+	 *                        Array of constants
 	 */
-	public LocalVariable(int start_pc, int length, int name_index, int signature_index, int index,
-			ConstantPool constant_pool) {
+	public LocalVariable(int start_pc, int length, int name_index,
+			int signature_index, int index, ConstantPool constant_pool) {
 		this.start_pc = start_pc;
 		this.length = length;
 		this.name_index = name_index;
@@ -131,7 +127,7 @@ public final class LocalVariable implements Constants, Cloneable, Node, Serializ
 	 * fields, attributes, etc. spawns a tree of objects.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public void accept(Visitor v) {
 		v.visitLocalVariable(this);
@@ -141,7 +137,7 @@ public final class LocalVariable implements Constants, Cloneable, Node, Serializ
 	 * Dump local variable to file stream in binary format.
 	 *
 	 * @param file
-	 *            Output file stream
+	 *             Output file stream
 	 * @throws IOException
 	 */
 	public final void dump(DataOutputStream file) throws IOException {
@@ -188,7 +184,8 @@ public final class LocalVariable implements Constants, Cloneable, Node, Serializ
 	 */
 	public final String getSignature() {
 		ConstantUtf8 c;
-		c = (ConstantUtf8) constant_pool.getConstant(signature_index, CONSTANT_Utf8);
+		c = (ConstantUtf8) constant_pool.getConstant(signature_index,
+				CONSTANT_Utf8);
 		return c.getBytes();
 	}
 
@@ -215,7 +212,7 @@ public final class LocalVariable implements Constants, Cloneable, Node, Serializ
 
 	/**
 	 * @param constant_pool
-	 *            Constant pool to be used for this object.
+	 *                      Constant pool to be used for this object.
 	 */
 	public final void setConstantPool(ConstantPool constant_pool) {
 		this.constant_pool = constant_pool;
@@ -251,7 +248,7 @@ public final class LocalVariable implements Constants, Cloneable, Node, Serializ
 
 	/**
 	 * @param start_pc
-	 *            Specify range where the local variable is valid.
+	 *                 Specify range where the local variable is valid.
 	 */
 	public final void setStartPC(int start_pc) {
 		this.start_pc = start_pc;
@@ -261,10 +258,11 @@ public final class LocalVariable implements Constants, Cloneable, Node, Serializ
 	 * @return string representation.
 	 */
 	public final String toString() {
-		String name = getName(), signature = Utility.signatureToString(getSignature());
+		String name = getName(), signature = Utility.signatureToString(
+				getSignature());
 
-		return "LocalVariable(start_pc = " + start_pc + ", length = " + length + ", index = "
-				+ index + ":" + signature + " " + name + ")";
+		return "LocalVariable(start_pc = " + start_pc + ", length = " + length
+				+ ", index = " + index + ":" + signature + " " + name + ")";
 	}
 
 	/**

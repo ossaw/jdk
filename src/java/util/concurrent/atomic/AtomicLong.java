@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -74,7 +49,8 @@ public class AtomicLong extends Number implements java.io.Serializable {
 
 	static {
 		try {
-			valueOffset = unsafe.objectFieldOffset(AtomicLong.class.getDeclaredField("value"));
+			valueOffset = unsafe.objectFieldOffset(AtomicLong.class
+					.getDeclaredField("value"));
 		} catch (Exception ex) {
 			throw new Error(ex);
 		}
@@ -86,7 +62,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * Creates a new AtomicLong with the given initial value.
 	 *
 	 * @param initialValue
-	 *            the initial value
+	 *                     the initial value
 	 */
 	public AtomicLong(long initialValue) {
 		value = initialValue;
@@ -95,8 +71,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	/**
 	 * Creates a new AtomicLong with initial value {@code 0}.
 	 */
-	public AtomicLong() {
-	}
+	public AtomicLong() {}
 
 	/**
 	 * Gets the current value.
@@ -111,7 +86,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * Sets to the given value.
 	 *
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 */
 	public final void set(long newValue) {
 		value = newValue;
@@ -121,7 +96,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * Eventually sets to the given value.
 	 *
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 * @since 1.6
 	 */
 	public final void lazySet(long newValue) {
@@ -132,7 +107,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * Atomically sets to the given value and returns the old value.
 	 *
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 * @return the previous value
 	 */
 	public final long getAndSet(long newValue) {
@@ -144,9 +119,9 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * {@code ==} the expected value.
 	 *
 	 * @param expect
-	 *            the expected value
+	 *               the expected value
 	 * @param update
-	 *            the new value
+	 *               the new value
 	 * @return {@code true} if successful. False return indicates that the
 	 *         actual value was not equal to the expected value.
 	 */
@@ -164,9 +139,9 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * appropriate alternative to {@code compareAndSet}.
 	 *
 	 * @param expect
-	 *            the expected value
+	 *               the expected value
 	 * @param update
-	 *            the new value
+	 *               the new value
 	 * @return {@code true} if successful
 	 */
 	public final boolean weakCompareAndSet(long expect, long update) {
@@ -195,7 +170,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * Atomically adds the given value to the current value.
 	 *
 	 * @param delta
-	 *            the value to add
+	 *              the value to add
 	 * @return the previous value
 	 */
 	public final long getAndAdd(long delta) {
@@ -224,7 +199,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * Atomically adds the given value to the current value.
 	 *
 	 * @param delta
-	 *            the value to add
+	 *              the value to add
 	 * @return the updated value
 	 */
 	public final long addAndGet(long delta) {
@@ -238,7 +213,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * due to contention among threads.
 	 *
 	 * @param updateFunction
-	 *            a side-effect-free function
+	 *                       a side-effect-free function
 	 * @return the previous value
 	 * @since 1.8
 	 */
@@ -258,7 +233,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * due to contention among threads.
 	 *
 	 * @param updateFunction
-	 *            a side-effect-free function
+	 *                       a side-effect-free function
 	 * @return the updated value
 	 * @since 1.8
 	 */
@@ -280,13 +255,14 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * the given update as the second argument.
 	 *
 	 * @param x
-	 *            the update value
+	 *                            the update value
 	 * @param accumulatorFunction
-	 *            a side-effect-free function of two arguments
+	 *                            a side-effect-free function of two arguments
 	 * @return the previous value
 	 * @since 1.8
 	 */
-	public final long getAndAccumulate(long x, LongBinaryOperator accumulatorFunction) {
+	public final long getAndAccumulate(long x,
+			LongBinaryOperator accumulatorFunction) {
 		long prev, next;
 		do {
 			prev = get();
@@ -304,13 +280,14 @@ public class AtomicLong extends Number implements java.io.Serializable {
 	 * the given update as the second argument.
 	 *
 	 * @param x
-	 *            the update value
+	 *                            the update value
 	 * @param accumulatorFunction
-	 *            a side-effect-free function of two arguments
+	 *                            a side-effect-free function of two arguments
 	 * @return the updated value
 	 * @since 1.8
 	 */
-	public final long accumulateAndGet(long x, LongBinaryOperator accumulatorFunction) {
+	public final long accumulateAndGet(long x,
+			LongBinaryOperator accumulatorFunction) {
 		long prev, next;
 		do {
 			prev = get();

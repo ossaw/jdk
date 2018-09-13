@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -70,9 +50,11 @@ public interface SQLData {
 	 * @return the type name that was passed to the method <code>readSQL</code>
 	 *         when this object was constructed and populated
 	 * @exception SQLException
-	 *                if there is a database access error
+	 *                                            if there is a database access
+	 *                                            error
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	String getSQLTypeName() throws SQLException;
@@ -97,14 +79,17 @@ public interface SQLData {
 	 * <code>SQLInput</code> reader method on the stream.
 	 *
 	 * @param stream
-	 *            the <code>SQLInput</code> object from which to read the data
-	 *            for the value that is being custom mapped
+	 *                 the <code>SQLInput</code> object from which to read the
+	 *                 data
+	 *                 for the value that is being custom mapped
 	 * @param typeName
-	 *            the SQL type name of the value on the data stream
+	 *                 the SQL type name of the value on the data stream
 	 * @exception SQLException
-	 *                if there is a database access error
+	 *                                            if there is a database access
+	 *                                            error
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see SQLInput
 	 * @since 1.2
 	 */
@@ -124,12 +109,15 @@ public interface SQLData {
 	 * SQL type.
 	 *
 	 * @param stream
-	 *            the <code>SQLOutput</code> object to which to write the data
-	 *            for the value that was custom mapped
+	 *               the <code>SQLOutput</code> object to which to write the
+	 *               data
+	 *               for the value that was custom mapped
 	 * @exception SQLException
-	 *                if there is a database access error
+	 *                                            if there is a database access
+	 *                                            error
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see SQLOutput
 	 * @since 1.2
 	 */

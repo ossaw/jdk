@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -35,14 +15,14 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
 /*
  * This implements the GIOP 1.0 Message header.
- *
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public class Message_1_0 extends com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase {
+public class Message_1_0 extends
+		com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase {
 
-	private static ORBUtilSystemException wrapper = ORBUtilSystemException
-			.get(CORBALogDomains.RPC_PROTOCOL);
+	private static ORBUtilSystemException wrapper = ORBUtilSystemException.get(
+			CORBALogDomains.RPC_PROTOCOL);
 
 	// Instance variables
 	int magic = (int) 0;
@@ -53,10 +33,10 @@ public class Message_1_0 extends com.sun.corba.se.impl.protocol.giopmsgheaders.M
 
 	// Constructor
 
-	Message_1_0() {
-	}
+	Message_1_0() {}
 
-	Message_1_0(int _magic, boolean _byte_order, byte _message_type, int _message_size) {
+	Message_1_0(int _magic, boolean _byte_order, byte _message_type,
+			int _message_size) {
 		magic = _magic;
 		GIOP_version = GIOPVersion.V1_0;
 		byte_order = _byte_order;

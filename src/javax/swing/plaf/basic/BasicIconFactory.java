@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -116,8 +96,7 @@ public class BasicIconFactory implements Serializable {
 		int height = 16;
 		int width = 14;
 
-		public void paintIcon(Component c, Graphics g, int x, int y) {
-		}
+		public void paintIcon(Component c, Graphics g, int x, int y) {}
 
 		public int getIconWidth() {
 			return width;
@@ -131,8 +110,7 @@ public class BasicIconFactory implements Serializable {
 	private static class CheckBoxIcon implements Icon, Serializable {
 		final static int csize = 13;
 
-		public void paintIcon(Component c, Graphics g, int x, int y) {
-		}
+		public void paintIcon(Component c, Graphics g, int x, int y) {}
 
 		public int getIconWidth() {
 			return csize;
@@ -143,9 +121,9 @@ public class BasicIconFactory implements Serializable {
 		}
 	}
 
-	private static class RadioButtonIcon implements Icon, UIResource, Serializable {
-		public void paintIcon(Component c, Graphics g, int x, int y) {
-		}
+	private static class RadioButtonIcon implements Icon, UIResource,
+			Serializable {
+		public void paintIcon(Component c, Graphics g, int x, int y) {}
 
 		public int getIconWidth() {
 			return 13;
@@ -156,7 +134,8 @@ public class BasicIconFactory implements Serializable {
 		}
 	} // end class RadioButtonIcon
 
-	private static class CheckBoxMenuItemIcon implements Icon, UIResource, Serializable {
+	private static class CheckBoxMenuItemIcon implements Icon, UIResource,
+			Serializable {
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 			AbstractButton b = (AbstractButton) c;
 			ButtonModel model = b.getModel();
@@ -182,7 +161,8 @@ public class BasicIconFactory implements Serializable {
 
 	} // End class CheckBoxMenuItemIcon
 
-	private static class RadioButtonMenuItemIcon implements Icon, UIResource, Serializable {
+	private static class RadioButtonMenuItemIcon implements Icon, UIResource,
+			Serializable {
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 			AbstractButton b = (AbstractButton) c;
 			ButtonModel model = b.getModel();
@@ -201,9 +181,9 @@ public class BasicIconFactory implements Serializable {
 
 	} // End class RadioButtonMenuItemIcon
 
-	private static class MenuItemCheckIcon implements Icon, UIResource, Serializable {
-		public void paintIcon(Component c, Graphics g, int x, int y) {
-		}
+	private static class MenuItemCheckIcon implements Icon, UIResource,
+			Serializable {
+		public void paintIcon(Component c, Graphics g, int x, int y) {}
 
 		public int getIconWidth() {
 			return 9;
@@ -215,9 +195,9 @@ public class BasicIconFactory implements Serializable {
 
 	} // End class MenuItemCheckIcon
 
-	private static class MenuItemArrowIcon implements Icon, UIResource, Serializable {
-		public void paintIcon(Component c, Graphics g, int x, int y) {
-		}
+	private static class MenuItemArrowIcon implements Icon, UIResource,
+			Serializable {
+		public void paintIcon(Component c, Graphics g, int x, int y) {}
 
 		public int getIconWidth() {
 			return 4;
@@ -229,7 +209,8 @@ public class BasicIconFactory implements Serializable {
 
 	} // End class MenuItemArrowIcon
 
-	private static class MenuArrowIcon implements Icon, UIResource, Serializable {
+	private static class MenuArrowIcon implements Icon, UIResource,
+			Serializable {
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 			Polygon p = new Polygon();
 			p.addPoint(x, y);

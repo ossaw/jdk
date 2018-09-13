@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -48,16 +28,19 @@ import java.security.Principal;
  */
 @jdk.Exported(false)
 @Deprecated
-public class SolarisNumericUserPrincipal implements Principal, java.io.Serializable {
+public class SolarisNumericUserPrincipal implements Principal,
+		java.io.Serializable {
 
 	private static final long serialVersionUID = -3178578484679887104L;
 
 	private static final java.util.ResourceBundle rb = java.security.AccessController
-			.doPrivileged(new java.security.PrivilegedAction<java.util.ResourceBundle>() {
-				public java.util.ResourceBundle run() {
-					return (java.util.ResourceBundle.getBundle("sun.security.util.AuthResources"));
-				}
-			});
+			.doPrivileged(
+					new java.security.PrivilegedAction<java.util.ResourceBundle>() {
+						public java.util.ResourceBundle run() {
+							return (java.util.ResourceBundle.getBundle(
+									"sun.security.util.AuthResources"));
+						}
+					});
 
 	/**
 	 * @serial
@@ -72,10 +55,11 @@ public class SolarisNumericUserPrincipal implements Principal, java.io.Serializa
 	 * <p>
 	 *
 	 * @param name
-	 *            the user identification number (UID) for this user.
+	 *             the user identification number (UID) for this user.
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>name</code> is <code>null</code>.
+	 *                                 if the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public SolarisNumericUserPrincipal(String name) {
 		if (name == null)
@@ -91,8 +75,9 @@ public class SolarisNumericUserPrincipal implements Principal, java.io.Serializa
 	 * <p>
 	 *
 	 * @param name
-	 *            the user identification number (UID) for this user represented
-	 *            as a long.
+	 *             the user identification number (UID) for this user
+	 *             represented
+	 *             as a long.
 	 */
 	public SolarisNumericUserPrincipal(long name) {
 		this.name = (new Long(name)).toString();
@@ -147,8 +132,8 @@ public class SolarisNumericUserPrincipal implements Principal, java.io.Serializa
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>SolarisNumericUserPrincipal</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>SolarisNumericUserPrincipal</code>.
 	 *
 	 * @return true if the specified Object is equal equal to this
 	 *         <code>SolarisNumericUserPrincipal</code>.

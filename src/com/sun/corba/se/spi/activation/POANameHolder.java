@@ -11,8 +11,7 @@ package com.sun.corba.se.spi.activation;
 public final class POANameHolder implements org.omg.CORBA.portable.Streamable {
 	public String value[] = null;
 
-	public POANameHolder() {
-	}
+	public POANameHolder() {}
 
 	public POANameHolder(String[] initialValue) {
 		value = initialValue;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -41,8 +21,7 @@ import static java.lang.invoke.MethodHandleStatics.*;
  */
 public class MethodHandleProxies {
 
-	private MethodHandleProxies() {
-	} // do not instantiate
+	private MethodHandleProxies() {} // do not instantiate
 
 	/**
 	 * Produces an instance of the given single-method interface which redirects
@@ -113,20 +92,22 @@ public class MethodHandleProxies {
 	 * wrapper, the original creator of the wrapper (the caller) will be visible
 	 * to context checks requested by the security manager.
 	 *
-	 * @param <T>
-	 *            the desired type of the wrapper, a single-method interface
+	 * @param        <T>
+	 *               the desired type of the wrapper, a single-method interface
 	 * @param intfc
-	 *            a class object representing {@code T}
+	 *               a class object representing {@code T}
 	 * @param target
-	 *            the method handle to invoke from the wrapper
+	 *               the method handle to invoke from the wrapper
 	 * @return a correctly-typed wrapper for the given target
 	 * @throws NullPointerException
-	 *             if either argument is null
+	 *                                  if either argument is null
 	 * @throws IllegalArgumentException
-	 *             if the {@code intfc} is not a valid argument to this method
+	 *                                  if the {@code intfc} is not a valid
+	 *                                  argument to this method
 	 * @throws WrongMethodTypeException
-	 *             if the target cannot be converted to the type required by the
-	 *             requested interface
+	 *                                  if the target cannot be converted to the
+	 *                                  type required by the
+	 *                                  requested interface
 	 */
 	// Other notes to implementors:
 	// <p>
@@ -150,13 +131,16 @@ public class MethodHandleProxies {
 	// generated adapter classes.
 	//
 	@CallerSensitive
-	public static <T> T asInterfaceInstance(final Class<T> intfc, final MethodHandle target) {
+	public static <T> T asInterfaceInstance(final Class<T> intfc,
+			final MethodHandle target) {
 		if (!intfc.isInterface() || !Modifier.isPublic(intfc.getModifiers()))
-			throw newIllegalArgumentException("not a public interface", intfc.getName());
+			throw newIllegalArgumentException("not a public interface", intfc
+					.getName());
 		final MethodHandle mh;
 		if (System.getSecurityManager() != null) {
 			final Class<?> caller = Reflection.getCallerClass();
-			final ClassLoader ccl = caller != null ? caller.getClassLoader() : null;
+			final ClassLoader ccl = caller != null ? caller.getClassLoader()
+					: null;
 			ReflectUtil.checkProxyPackageAccess(ccl, intfc);
 			mh = ccl != null ? bindCaller(target, caller) : target;
 		} else {
@@ -172,14 +156,18 @@ public class MethodHandleProxies {
 		}
 		final Method[] methods = getSingleNameMethods(intfc);
 		if (methods == null)
-			throw newIllegalArgumentException("not a single-method interface", intfc.getName());
+			throw newIllegalArgumentException("not a single-method interface",
+					intfc.getName());
 		final MethodHandle[] vaTargets = new MethodHandle[methods.length];
 		for (int i = 0; i < methods.length; i++) {
 			Method sm = methods[i];
-			MethodType smMT = MethodType.methodType(sm.getReturnType(), sm.getParameterTypes());
+			MethodType smMT = MethodType.methodType(sm.getReturnType(), sm
+					.getParameterTypes());
 			MethodHandle checkTarget = mh.asType(smMT); // make throw WMT
-			checkTarget = checkTarget.asType(checkTarget.type().changeReturnType(Object.class));
-			vaTargets[i] = checkTarget.asSpreader(Object[].class, smMT.parameterCount());
+			checkTarget = checkTarget.asType(checkTarget.type()
+					.changeReturnType(Object.class));
+			vaTargets[i] = checkTarget.asSpreader(Object[].class, smMT
+					.parameterCount());
 		}
 		final InvocationHandler ih = new InvocationHandler() {
 			private Object getArg(String name) {
@@ -190,7 +178,8 @@ public class MethodHandleProxies {
 				throw new AssertionError();
 			}
 
-			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+			public Object invoke(Object proxy, Method method, Object[] args)
+					throws Throwable {
 				for (int i = 0; i < methods.length; i++) {
 					if (method.equals(methods[i]))
 						return vaTargets[i].invokeExact(args);
@@ -209,20 +198,23 @@ public class MethodHandleProxies {
 			// accessible
 			// by any non-null class loader.
 			final ClassLoader loader = proxyLoader;
-			proxy = AccessController.doPrivileged(new PrivilegedAction<Object>() {
-				public Object run() {
-					return Proxy.newProxyInstance(loader,
-							new Class<?>[] { intfc, WrapperInstance.class }, ih);
-				}
-			});
+			proxy = AccessController.doPrivileged(
+					new PrivilegedAction<Object>() {
+						public Object run() {
+							return Proxy.newProxyInstance(loader,
+									new Class<?>[] { intfc,
+											WrapperInstance.class }, ih);
+						}
+					});
 		} else {
-			proxy = Proxy.newProxyInstance(proxyLoader,
-					new Class<?>[] { intfc, WrapperInstance.class }, ih);
+			proxy = Proxy.newProxyInstance(proxyLoader, new Class<?>[] { intfc,
+					WrapperInstance.class }, ih);
 		}
 		return intfc.cast(proxy);
 	}
 
-	private static MethodHandle bindCaller(MethodHandle target, Class<?> hostClass) {
+	private static MethodHandle bindCaller(MethodHandle target,
+			Class<?> hostClass) {
 		MethodHandle cbmh = MethodHandleImpl.bindCaller(target, hostClass);
 		if (target.isVarargsCollector()) {
 			MethodType type = cbmh.type();
@@ -237,7 +229,7 @@ public class MethodHandleProxies {
 	 * {@link #asInterfaceInstance asInterfaceInstance}.
 	 * 
 	 * @param x
-	 *            any reference
+	 *          any reference
 	 * @return true if the reference is not null and points to an object
 	 *         produced by {@code asInterfaceInstance}
 	 */
@@ -262,10 +254,11 @@ public class MethodHandleProxies {
 	 * tested via {@link #isWrapperInstance isWrapperInstance}.
 	 * 
 	 * @param x
-	 *            any reference
+	 *          any reference
 	 * @return a method handle implementing the unique method
 	 * @throws IllegalArgumentException
-	 *             if the reference x is not to a wrapper instance
+	 *                                  if the reference x is not to a wrapper
+	 *                                  instance
 	 */
 	public static MethodHandle wrapperInstanceTarget(Object x) {
 		return asWrapperInstance(x).getWrapperInstanceTarget();
@@ -279,11 +272,12 @@ public class MethodHandleProxies {
 	 * isWrapperInstance}.
 	 * 
 	 * @param x
-	 *            any reference
+	 *          any reference
 	 * @return the single-method interface type for which the wrapper was
 	 *         created
 	 * @throws IllegalArgumentException
-	 *             if the reference x is not to a wrapper instance
+	 *                                  if the reference x is not to a wrapper
+	 *                                  instance
 	 */
 	public static Class<?> wrapperInstanceType(Object x) {
 		return asWrapperInstance(x).getWrapperInstanceType();
@@ -291,26 +285,31 @@ public class MethodHandleProxies {
 
 	private static boolean isObjectMethod(Method m) {
 		switch (m.getName()) {
-		case "toString":
-			return (m.getReturnType() == String.class && m.getParameterTypes().length == 0);
-		case "hashCode":
-			return (m.getReturnType() == int.class && m.getParameterTypes().length == 0);
-		case "equals":
-			return (m.getReturnType() == boolean.class && m.getParameterTypes().length == 1
-					&& m.getParameterTypes()[0] == Object.class);
+			case "toString":
+				return (m.getReturnType() == String.class && m
+						.getParameterTypes().length == 0);
+			case "hashCode":
+				return (m.getReturnType() == int.class && m
+						.getParameterTypes().length == 0);
+			case "equals":
+				return (m.getReturnType() == boolean.class && m
+						.getParameterTypes().length == 1 && m
+								.getParameterTypes()[0] == Object.class);
 		}
 		return false;
 	}
 
-	private static Object callObjectMethod(Object self, Method m, Object[] args) {
+	private static Object callObjectMethod(Object self, Method m,
+			Object[] args) {
 		assert (isObjectMethod(m)) : m;
 		switch (m.getName()) {
-		case "toString":
-			return self.getClass().getName() + "@" + Integer.toHexString(self.hashCode());
-		case "hashCode":
-			return System.identityHashCode(self);
-		case "equals":
-			return (self == args[0]);
+			case "toString":
+				return self.getClass().getName() + "@" + Integer.toHexString(
+						self.hashCode());
+			case "hashCode":
+				return System.identityHashCode(self);
+			case "equals":
+				return (self == args[0]);
 		}
 		return null;
 	}

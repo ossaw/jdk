@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -55,7 +35,7 @@ public class SynthTextFieldUI extends BasicTextFieldUI implements SynthUI {
 	 * Creates a UI for a JTextField.
 	 *
 	 * @param c
-	 *            the text field
+	 *          the text field
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -79,12 +59,14 @@ public class SynthTextFieldUI extends BasicTextFieldUI implements SynthUI {
 		context.dispose();
 	}
 
-	static void updateStyle(JTextComponent comp, SynthContext context, String prefix) {
+	static void updateStyle(JTextComponent comp, SynthContext context,
+			String prefix) {
 		SynthStyle style = context.getStyle();
 
 		Color color = comp.getCaretColor();
 		if (color == null || color instanceof UIResource) {
-			comp.setCaretColor((Color) style.get(context, prefix + ".caretForeground"));
+			comp.setCaretColor((Color) style.get(context, prefix
+					+ ".caretForeground"));
 		}
 
 		Color fg = comp.getForeground();
@@ -104,19 +86,22 @@ public class SynthTextFieldUI extends BasicTextFieldUI implements SynthUI {
 
 		Color s = comp.getSelectionColor();
 		if (s == null || s instanceof UIResource) {
-			comp.setSelectionColor(style.getColor(context, ColorType.TEXT_BACKGROUND));
+			comp.setSelectionColor(style.getColor(context,
+					ColorType.TEXT_BACKGROUND));
 		}
 
 		Color sfg = comp.getSelectedTextColor();
 		if (sfg == null || sfg instanceof UIResource) {
-			comp.setSelectedTextColor(style.getColor(context, ColorType.TEXT_FOREGROUND));
+			comp.setSelectedTextColor(style.getColor(context,
+					ColorType.TEXT_FOREGROUND));
 		}
 
 		context.setComponentState(DISABLED);
 
 		Color dfg = comp.getDisabledTextColor();
 		if (dfg == null || dfg instanceof UIResource) {
-			comp.setDisabledTextColor(style.getColor(context, ColorType.TEXT_FOREGROUND));
+			comp.setDisabledTextColor(style.getColor(context,
+					ColorType.TEXT_FOREGROUND));
 		}
 
 		Insets margin = comp.getMargin();
@@ -162,9 +147,9 @@ public class SynthTextFieldUI extends BasicTextFieldUI implements SynthUI {
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -187,9 +172,9 @@ public class SynthTextFieldUI extends BasicTextFieldUI implements SynthUI {
 	 * updated asynchronously.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
 	protected void paint(SynthContext context, Graphics g) {
@@ -197,15 +182,16 @@ public class SynthTextFieldUI extends BasicTextFieldUI implements SynthUI {
 	}
 
 	void paintBackground(SynthContext context, Graphics g, JComponent c) {
-		context.getPainter().paintTextFieldBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight());
+		context.getPainter().paintTextFieldBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintTextFieldBorder(context, g, x, y, w, h);
 	}
 

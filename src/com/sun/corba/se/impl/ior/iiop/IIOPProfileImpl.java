@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior.iiop;
@@ -160,8 +140,8 @@ public class IIOPProfileImpl extends IdentifiableBase implements IIOPProfile {
 			throw wrapper.invalidTaggedProfile();
 		}
 
-		EncapsInputStream istr = EncapsInputStreamFactory.newEncapsInputStream((ORB) orb,
-				profile.profile_data, profile.profile_data.length);
+		EncapsInputStream istr = EncapsInputStreamFactory.newEncapsInputStream(
+				(ORB) orb, profile.profile_data, profile.profile_data.length);
 		istr.consumeEndian();
 		init(istr);
 	}
@@ -181,8 +161,8 @@ public class IIOPProfileImpl extends IdentifiableBase implements IIOPProfile {
 
 		// Handle any tagged components (if applicable)
 		if (version.getMinor() > 0)
-			EncapsulationUtility.readIdentifiableSequence(proftemp,
-					orb.getTaggedComponentFactoryFinder(), istr);
+			EncapsulationUtility.readIdentifiableSequence(proftemp, orb
+					.getTaggedComponentFactoryFinder(), istr);
 
 		// If there is no codebase in this IOR and there IS a
 		// java.rmi.server.codebase property set, we need to
@@ -219,9 +199,9 @@ public class IIOPProfileImpl extends IdentifiableBase implements IIOPProfile {
 
 		IIOPProfile other = (IIOPProfile) prof;
 
-		return oid.equals(other.getObjectId())
-				&& proftemp.isEquivalent(other.getTaggedProfileTemplate())
-				&& oktemp.equals(other.getObjectKeyTemplate());
+		return oid.equals(other.getObjectId()) && proftemp.isEquivalent(other
+				.getTaggedProfileTemplate()) && oktemp.equals(other
+						.getObjectKeyTemplate());
 	}
 
 	public ObjectKey getObjectKey() {
@@ -230,7 +210,8 @@ public class IIOPProfileImpl extends IdentifiableBase implements IIOPProfile {
 	}
 
 	public org.omg.IOP.TaggedProfile getIOPProfile() {
-		EncapsOutputStream os = sun.corba.OutputStreamFactory.newEncapsOutputStream(orb);
+		EncapsOutputStream os = sun.corba.OutputStreamFactory
+				.newEncapsOutputStream(orb);
 		os.write_long(getId());
 		write(os);
 		InputStream is = (InputStream) (os.create_input_stream());
@@ -269,10 +250,11 @@ public class IIOPProfileImpl extends IdentifiableBase implements IIOPProfile {
 			checkedIsLocal = true;
 			String host = proftemp.getPrimaryAddress().getHost();
 
-			cachedIsLocal = orb.isLocalHost(host)
-					&& orb.isLocalServerId(oktemp.getSubcontractId(), oktemp.getServerId())
-					&& orb.getLegacyServerSocketManager()
-							.legacyIsLocalServerPort(proftemp.getPrimaryAddress().getPort());
+			cachedIsLocal = orb.isLocalHost(host) && orb.isLocalServerId(oktemp
+					.getSubcontractId(), oktemp.getServerId()) && orb
+							.getLegacyServerSocketManager()
+							.legacyIsLocalServerPort(proftemp
+									.getPrimaryAddress().getPort());
 		}
 
 		return cachedIsLocal;
@@ -289,7 +271,8 @@ public class IIOPProfileImpl extends IdentifiableBase implements IIOPProfile {
 			return null;
 
 		RequestDispatcherRegistry scr = orb.getRequestDispatcherRegistry();
-		ObjectAdapterFactory oaf = scr.getObjectAdapterFactory(oktemp.getSubcontractId());
+		ObjectAdapterFactory oaf = scr.getObjectAdapterFactory(oktemp
+				.getSubcontractId());
 
 		ObjectAdapterId oaid = oktemp.getObjectAdapterId();
 		ObjectAdapter oa = null;

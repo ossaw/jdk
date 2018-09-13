@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,7 +52,8 @@ public class SAXParser extends AbstractSAXParser {
 			+ Constants.SUN_REPORT_IGNORED_ELEMENT_CONTENT_WHITESPACE;
 
 	/** Recognized features. */
-	private static final String[] RECOGNIZED_FEATURES = { NOTIFY_BUILTIN_REFS, REPORT_WHITESPACE };
+	private static final String[] RECOGNIZED_FEATURES = { NOTIFY_BUILTIN_REFS,
+			REPORT_WHITESPACE };
 
 	// properties
 
@@ -68,7 +66,8 @@ public class SAXParser extends AbstractSAXParser {
 			+ Constants.XMLGRAMMAR_POOL_PROPERTY;
 
 	/** Recognized properties. */
-	private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE, XMLGRAMMAR_POOL, };
+	private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE,
+			XMLGRAMMAR_POOL, };
 
 	//
 	// Constructors
@@ -129,7 +128,8 @@ public class SAXParser extends AbstractSAXParser {
 		 * XMLSecurityManager
 		 */
 		if (name.equals(Constants.SECURITY_MANAGER)) {
-			securityManager = XMLSecurityManager.convert(value, securityManager);
+			securityManager = XMLSecurityManager.convert(value,
+					securityManager);
 			super.setProperty(Constants.SECURITY_MANAGER, securityManager);
 			return;
 		}
@@ -139,7 +139,8 @@ public class SAXParser extends AbstractSAXParser {
 			} else {
 				securityPropertyManager = (XMLSecurityPropertyManager) value;
 			}
-			super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER, securityPropertyManager);
+			super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
+					securityPropertyManager);
 			return;
 		}
 
@@ -150,7 +151,8 @@ public class SAXParser extends AbstractSAXParser {
 
 		if (securityPropertyManager == null) {
 			securityPropertyManager = new XMLSecurityPropertyManager();
-			super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER, securityPropertyManager);
+			super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
+					securityPropertyManager);
 		}
 
 		int index = securityPropertyManager.getIndex(name);
@@ -160,11 +162,13 @@ public class SAXParser extends AbstractSAXParser {
 			 * internally the support of this property is done through
 			 * XMLSecurityPropertyManager
 			 */
-			securityPropertyManager.setValue(index, XMLSecurityPropertyManager.State.APIPROPERTY,
+			securityPropertyManager.setValue(index,
+					XMLSecurityPropertyManager.State.APIPROPERTY,
 					(String) value);
 		} else {
 			// check if the property is managed by security manager
-			if (!securityManager.setLimit(name, XMLSecurityManager.State.APIPROPERTY, value)) {
+			if (!securityManager.setLimit(name,
+					XMLSecurityManager.State.APIPROPERTY, value)) {
 				// fall back to the default configuration to handle the property
 				super.setProperty(name, value);
 			}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.validation;
@@ -53,19 +33,20 @@ public abstract class SchemaFactoryLoader {
 	/**
 	 * A do-nothing constructor.
 	 */
-	protected SchemaFactoryLoader() {
-	}
+	protected SchemaFactoryLoader() {}
 
 	/**
 	 * Creates a new {@link SchemaFactory} object for the specified schema
 	 * language.
 	 *
 	 * @param schemaLanguage
-	 *            See <a href="SchemaFactory.html#schemaLanguage"> the list of
-	 *            available schema languages</a>.
+	 *                       See <a href="SchemaFactory.html#schemaLanguage">
+	 *                       the list of
+	 *                       available schema languages</a>.
 	 *
 	 * @throws NullPointerException
-	 *             If the <tt>schemaLanguage</tt> parameter is null.
+	 *                              If the <tt>schemaLanguage</tt> parameter is
+	 *                              null.
 	 *
 	 * @return <code>null</code> if the callee fails to create one.
 	 */

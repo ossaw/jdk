@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,7 +55,7 @@ public interface XSCMValidator {
 	 *
 	 * @param elementName
 	 * @param state
-	 *            Current state
+	 *                    Current state
 	 * @return element decl or wildcard decl that corresponds to the element
 	 *         from the Schema grammar
 	 */
@@ -69,7 +66,7 @@ public interface XSCMValidator {
 	 * The method indicates the end of list of children
 	 *
 	 * @param state
-	 *            Current state of the content model
+	 *              Current state of the content model
 	 * @return true if the last state was a valid final state
 	 */
 	public boolean endContentModel(int[] state);
@@ -78,11 +75,11 @@ public interface XSCMValidator {
 	 * check whether this content violates UPA constraint.
 	 *
 	 * @param subGroupHandler
-	 *            the substitution group handler
+	 *                        the substitution group handler
 	 * @return true if this content model contains other or list wildcard
 	 */
-	public boolean checkUniqueParticleAttribution(SubstitutionGroupHandler subGroupHandler)
-			throws XMLSchemaException;
+	public boolean checkUniqueParticleAttribution(
+			SubstitutionGroupHandler subGroupHandler) throws XMLSchemaException;
 
 	/**
 	 * Check which elements are valid to appear at this point. This method also
@@ -90,7 +87,7 @@ public interface XSCMValidator {
 	 * been seen.
 	 *
 	 * @param state
-	 *            the current state
+	 *              the current state
 	 * @return a Vector whose entries are instances of either XSWildcardDecl or
 	 *         XSElementDecl.
 	 */

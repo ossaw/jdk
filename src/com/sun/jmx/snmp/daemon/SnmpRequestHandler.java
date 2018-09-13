@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.daemon;
@@ -62,7 +42,7 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_ADAPTOR_LOGGER;
 //
 import com.sun.jmx.snmp.agent.SnmpMibAgent;
 import com.sun.jmx.snmp.agent.SnmpUserDataFactory;
-//import com.sun.jmx.snmp.IPAcl.IPAcl;
+// import com.sun.jmx.snmp.IPAcl.IPAcl;
 import com.sun.jmx.snmp.InetAddressAcl;
 
 class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
@@ -89,8 +69,9 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	/**
 	 * Full constructor
 	 */
-	public SnmpRequestHandler(SnmpAdaptorServer server, int id, DatagramSocket s, DatagramPacket p,
-			SnmpMibTree tree, Vector<SnmpMibAgent> m, InetAddressAcl a, SnmpPduFactory factory,
+	public SnmpRequestHandler(SnmpAdaptorServer server, int id,
+			DatagramSocket s, DatagramPacket p, SnmpMibTree tree,
+			Vector<SnmpMibAgent> m, InetAddressAcl a, SnmpPduFactory factory,
 			SnmpUserDataFactory dataFactory, MBeanServer f, ObjectName n) {
 		super(server, id, f, n);
 
@@ -119,8 +100,9 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		// Trace the input packet
 		//
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doRun", "Packet received:\n"
-					+ SnmpMessage.dumpHexBuffer(packet.getData(), 0, packet.getLength()));
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doRun",
+					"Packet received:\n" + SnmpMessage.dumpHexBuffer(packet
+							.getData(), 0, packet.getLength()));
 		}
 
 		// Let's build the response packet
@@ -129,9 +111,11 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 
 		// Trace the output packet
 		//
-		if ((SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) && (respPacket != null)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doRun", "Packet to be sent:\n"
-					+ SnmpMessage.dumpHexBuffer(respPacket.getData(), 0, respPacket.getLength()));
+		if ((SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER))
+				&& (respPacket != null)) {
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doRun",
+					"Packet to be sent:\n" + SnmpMessage.dumpHexBuffer(
+							respPacket.getData(), 0, respPacket.getLength()));
 		}
 
 		// Send the response packet if any
@@ -142,14 +126,17 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 			} catch (SocketException e) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
 					if (e.getMessage().equals(InterruptSysCallMsg)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "doRun", "interrupted");
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "doRun",
+								"interrupted");
 					} else {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "doRun", "I/O exception", e);
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "doRun",
+								"I/O exception", e);
 					}
 				}
 			} catch (InterruptedIOException e) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "doRun", "interrupted");
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "doRun",
+							"interrupted");
 				}
 			} catch (Exception e) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
@@ -176,8 +163,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 			reqMsg.port = reqPacket.getPort();
 		} catch (SnmpStatusException x) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponsePacket",
-						"packet decoding failed", x);
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"makeResponsePacket", "packet decoding failed", x);
 			}
 			reqMsg = null;
 			((SnmpAdaptorServer) adaptorServer).incSnmpInASNParseErrs(1);
@@ -199,16 +186,19 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 				respPacket = reqPacket;
 			} catch (SnmpTooBigException x) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponsePacket",
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"makeResponsePacket",
 							"response message is too big");
 				}
 				try {
 					respMsg = newTooBigMessage(reqMsg);
-					reqPacket.setLength(respMsg.encodeMessage(reqPacket.getData()));
+					reqPacket.setLength(respMsg.encodeMessage(reqPacket
+							.getData()));
 					respPacket = reqPacket;
 				} catch (SnmpTooBigException xx) {
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponsePacket",
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+								"makeResponsePacket",
 								"'too big' is 'too big' !!!");
 					}
 					adaptor.incSnmpSilentDrops(1);
@@ -241,8 +231,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 			if (x.getStatus() == SnmpDefinitions.snmpWrongSnmpVersion)
 				snmpServer.incSnmpInBadVersions(1);
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
-						"message decoding failed", x);
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"makeResponseMessage", "message decoding failed", x);
 			}
 		}
 
@@ -263,16 +253,19 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		//
 		if (respPdu != null) {
 			try {
-				respMsg = (SnmpMessage) pduFactory.encodeSnmpPdu(respPdu, packet.getData().length);
+				respMsg = (SnmpMessage) pduFactory.encodeSnmpPdu(respPdu, packet
+						.getData().length);
 			} catch (SnmpStatusException x) {
 				respMsg = null;
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"makeResponseMessage",
 							"failure when encoding the response message", x);
 				}
 			} catch (SnmpTooBigException x) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"makeResponseMessage",
 							"response message is too big");
 				}
 
@@ -284,26 +277,28 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 						throw x;
 					int pos = x.getVarBindCount();
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
-								"fail on element" + pos);
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+								"makeResponseMessage", "fail on element" + pos);
 					}
 					int old;
 					while (true) {
 						try {
 							respPdu = reduceResponsePdu(reqPdu, respPdu, pos);
-							respMsg = (SnmpMessage) pduFactory.encodeSnmpPdu(respPdu,
-									packet.getData().length - 32);
+							respMsg = (SnmpMessage) pduFactory.encodeSnmpPdu(
+									respPdu, packet.getData().length - 32);
 							break;
 						} catch (SnmpTooBigException xx) {
 							if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
 								SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
-										"makeResponseMessage", "response message is still too big");
+										"makeResponseMessage",
+										"response message is still too big");
 							}
 							old = pos;
 							pos = xx.getVarBindCount();
 							if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
 								SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
-										"makeResponseMessage", "fail on element" + pos);
+										"makeResponseMessage", "fail on element"
+												+ pos);
 							}
 							if (pos == old) {
 								// we can not go any further in trying to
@@ -316,31 +311,36 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 				} catch (SnmpStatusException xx) {
 					respMsg = null;
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
-								"failure when encoding the response message", xx);
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+								"makeResponseMessage",
+								"failure when encoding the response message",
+								xx);
 					}
 				} catch (SnmpTooBigException xx) {
 					try {
 						respPdu = newTooBigPdu(reqPdu);
-						respMsg = (SnmpMessage) pduFactory.encodeSnmpPdu(respPdu,
-								packet.getData().length);
+						respMsg = (SnmpMessage) pduFactory.encodeSnmpPdu(
+								respPdu, packet.getData().length);
 					} catch (SnmpTooBigException xxx) {
 						respMsg = null;
 						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+									"makeResponseMessage",
 									"'too big' is 'too big' !!!");
 						}
 						adaptor.incSnmpSilentDrops(1);
 					} catch (Exception xxx) {
 						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+									"makeResponseMessage",
 									"Got unexpected exception", xxx);
 						}
 						respMsg = null;
 					}
 				} catch (Exception xx) {
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponseMessage",
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+								"makeResponseMessage",
 								"Got unexpected exception", xx);
 					}
 					respMsg = null;
@@ -354,35 +354,40 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	 * Here we make a response pdu from a request pdu. We return null if there
 	 * is no pdu to reply.
 	 */
-	private SnmpPduPacket makeResponsePdu(SnmpPduPacket reqPdu, Object userData) {
+	private SnmpPduPacket makeResponsePdu(SnmpPduPacket reqPdu,
+			Object userData) {
 
 		SnmpAdaptorServer snmpServer = (SnmpAdaptorServer) adaptorServer;
 		SnmpPduPacket respPdu = null;
 
 		snmpServer.updateRequestCounters(reqPdu.type);
 		if (reqPdu.varBindList != null)
-			snmpServer.updateVarCounters(reqPdu.type, reqPdu.varBindList.length);
+			snmpServer.updateVarCounters(reqPdu.type,
+					reqPdu.varBindList.length);
 
 		if (checkPduType(reqPdu)) {
 			respPdu = checkAcl(reqPdu);
 			if (respPdu == null) { // reqPdu is accepted by ACLs
 				if (mibs.size() < 1) {
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "makeResponsePdu",
-								"Request " + reqPdu.requestId + " received but no MIB registered.");
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+								"makeResponsePdu", "Request " + reqPdu.requestId
+										+ " received but no MIB registered.");
 					}
 					return makeNoMibErrorPdu((SnmpPduRequest) reqPdu, userData);
 				}
 				switch (reqPdu.type) {
-				case SnmpPduPacket.pduGetRequestPdu:
-				case SnmpPduPacket.pduGetNextRequestPdu:
-				case SnmpPduPacket.pduSetRequestPdu:
-					respPdu = makeGetSetResponsePdu((SnmpPduRequest) reqPdu, userData);
-					break;
+					case SnmpPduPacket.pduGetRequestPdu:
+					case SnmpPduPacket.pduGetNextRequestPdu:
+					case SnmpPduPacket.pduSetRequestPdu:
+						respPdu = makeGetSetResponsePdu((SnmpPduRequest) reqPdu,
+								userData);
+						break;
 
-				case SnmpPduPacket.pduGetBulkRequestPdu:
-					respPdu = makeGetBulkResponsePdu((SnmpPduBulk) reqPdu, userData);
-					break;
+					case SnmpPduPacket.pduGetBulkRequestPdu:
+						respPdu = makeGetBulkResponsePdu((SnmpPduBulk) reqPdu,
+								userData);
+						break;
 				}
 			} else { // reqPdu is rejected by ACLs
 						// respPdu contains the error response to be sent.
@@ -393,12 +398,15 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 				}
 				if (snmpServer.getAuthTrapEnabled()) { // A trap must be sent
 					try {
-						snmpServer.snmpV1Trap(SnmpPduTrap.trapAuthenticationFailure, 0,
+						snmpServer.snmpV1Trap(
+								SnmpPduTrap.trapAuthenticationFailure, 0,
 								new SnmpVarBindList());
 					} catch (Exception x) {
 						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "makeResponsePdu",
-									"Failure when sending authentication trap", x);
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+									"makeResponsePdu",
+									"Failure when sending authentication trap",
+									x);
 						}
 					}
 				}
@@ -423,20 +431,20 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		final int length = vblist.length;
 
 		switch (statusTag) {
-		case SnmpDataTypeEnums.errEndOfMibViewTag:
-			for (int i = 0; i < length; i++)
-				vblist[i].value = SnmpVarBind.endOfMibView;
-			break;
-		case SnmpDataTypeEnums.errNoSuchObjectTag:
-			for (int i = 0; i < length; i++)
-				vblist[i].value = SnmpVarBind.noSuchObject;
-			break;
-		case SnmpDataTypeEnums.errNoSuchInstanceTag:
-			for (int i = 0; i < length; i++)
-				vblist[i].value = SnmpVarBind.noSuchInstance;
-			break;
-		default:
-			return newErrorResponsePdu(req, snmpRspGenErr, 1);
+			case SnmpDataTypeEnums.errEndOfMibViewTag:
+				for (int i = 0; i < length; i++)
+					vblist[i].value = SnmpVarBind.endOfMibView;
+				break;
+			case SnmpDataTypeEnums.errNoSuchObjectTag:
+				for (int i = 0; i < length; i++)
+					vblist[i].value = SnmpVarBind.noSuchObject;
+				break;
+			case SnmpDataTypeEnums.errNoSuchInstanceTag:
+				for (int i = 0; i < length; i++)
+					vblist[i].value = SnmpVarBind.noSuchInstance;
+				break;
+			default:
+				return newErrorResponsePdu(req, snmpRspGenErr, 1);
 		}
 		return newValidResponsePdu(req, vblist);
 	}
@@ -465,18 +473,20 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		} else if (req.version == SnmpDefinitions.snmpVersionTwo) {
 			// Version 2: => depends on PDU type
 			switch (req.type) {
-			case pduSetRequestPdu:
-			case pduWalkRequest:
-				// SET request => NoAccess
-				return newErrorResponsePdu(req, snmpRspNoAccess, 1);
-			case pduGetRequestPdu:
-				// GET request => NoSuchObject
-				return makeErrorVarbindPdu(req, SnmpDataTypeEnums.errNoSuchObjectTag);
-			case pduGetNextRequestPdu:
-			case pduGetBulkRequestPdu:
-				// GET-NEXT or GET-BULK => EndOfMibView
-				return makeErrorVarbindPdu(req, SnmpDataTypeEnums.errEndOfMibViewTag);
-			default:
+				case pduSetRequestPdu:
+				case pduWalkRequest:
+					// SET request => NoAccess
+					return newErrorResponsePdu(req, snmpRspNoAccess, 1);
+				case pduGetRequestPdu:
+					// GET request => NoSuchObject
+					return makeErrorVarbindPdu(req,
+							SnmpDataTypeEnums.errNoSuchObjectTag);
+				case pduGetNextRequestPdu:
+				case pduGetBulkRequestPdu:
+					// GET-NEXT or GET-BULK => EndOfMibView
+					return makeErrorVarbindPdu(req,
+							SnmpDataTypeEnums.errEndOfMibViewTag);
+				default:
 			}
 		}
 		// Something wrong here: => snmpRspGenErr
@@ -487,7 +497,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	 * Here we make the response pdu from a get/set request pdu. At this level,
 	 * the result is never null.
 	 */
-	private SnmpPduPacket makeGetSetResponsePdu(SnmpPduRequest req, Object userData) {
+	private SnmpPduPacket makeGetSetResponsePdu(SnmpPduRequest req,
+			Object userData) {
 
 		// Create the trhead group specific for handling sub-requests
 		// associated to the current request. Use the invoke id
@@ -526,7 +537,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		// So far so good. So we need to concatenate all the answers.
 		//
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "makeGetSetResponsePdu",
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+					"makeGetSetResponsePdu",
 					"Build the unified response for request " + req.requestId);
 		}
 		return mergeResponses(req);
@@ -536,7 +548,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	 * The method runs all the sub-requests associated to the current instance
 	 * of SnmpRequestHandler.
 	 */
-	private SnmpPduPacket executeSubRequest(SnmpPduPacket req, Object userData) {
+	private SnmpPduPacket executeSubRequest(SnmpPduPacket req,
+			Object userData) {
 
 		int errorStatus = SnmpDefinitions.snmpRspNoError;
 
@@ -546,7 +559,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		if (req.type == pduSetRequestPdu) {
 
 			i = 0;
-			for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e.hasMoreElements(); i++) {
+			for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e
+					.hasMoreElements(); i++) {
 				// Indicate to the sub request that a check must be invoked ...
 				// OK we should have defined out own tag for that !
 				//
@@ -562,11 +576,12 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 					// No point to go any further.
 					//
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "executeSubRequest",
-								"an error occurs");
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+								"executeSubRequest", "an error occurs");
 					}
 
-					return newErrorResponsePdu(req, errorStatus, sub.getErrorIndex() + 1);
+					return newErrorResponsePdu(req, errorStatus, sub
+							.getErrorIndex() + 1);
 				}
 			}
 		} // end processing check operation for a set PDU.
@@ -574,7 +589,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		// Let's start the sub-requests.
 		//
 		i = 0;
-		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e.hasMoreElements(); i++) {
+		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e
+				.hasMoreElements(); i++) {
 			SnmpSubRequestHandler sub = e.nextElement();
 			/* NPCTE fix for bugId 4492741, esc 0, 16-August 2001 */
 			sub.setUserData(userData);
@@ -586,11 +602,12 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 				// No point to go any further.
 				//
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "executeSubRequest",
-							"an error occurs");
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"executeSubRequest", "an error occurs");
 				}
 
-				return newErrorResponsePdu(req, errorStatus, sub.getErrorIndex() + 1);
+				return newErrorResponsePdu(req, errorStatus, sub.getErrorIndex()
+						+ 1);
 			}
 		}
 
@@ -602,7 +619,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	/**
 	 * Optimize when there is only one sub request
 	 */
-	private SnmpPduPacket turboProcessingGetSet(SnmpPduRequest req, Object userData) {
+	private SnmpPduPacket turboProcessingGetSet(SnmpPduRequest req,
+			Object userData) {
 
 		int errorStatus;
 		SnmpSubRequestHandler sub = subs.elements().nextElement();
@@ -622,7 +640,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 			if (errorStatus != SnmpDefinitions.snmpRspNoError) {
 				// No point to go any further.
 				//
-				return newErrorResponsePdu(req, errorStatus, sub.getErrorIndex() + 1);
+				return newErrorResponsePdu(req, errorStatus, sub.getErrorIndex()
+						+ 1);
 			}
 		}
 
@@ -635,8 +654,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 			// No point to go any further.
 			//
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "turboProcessingGetSet",
-						"an error occurs");
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"turboProcessingGetSet", "an error occurs");
 			}
 			int realIndex = sub.getErrorIndex() + 1;
 			return newErrorResponsePdu(req, errorStatus, realIndex);
@@ -646,7 +665,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		//
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "turboProcessingGetSet",
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+					"turboProcessingGetSet",
 					"build the unified response for request " + req.requestId);
 		}
 		return mergeResponses(req);
@@ -656,7 +676,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	 * Here we make the response pdu for a bulk request. At this level, the
 	 * result is never null.
 	 */
-	private SnmpPduPacket makeGetBulkResponsePdu(SnmpPduBulk req, Object userData) {
+	private SnmpPduPacket makeGetBulkResponsePdu(SnmpPduBulk req,
+			Object userData) {
 
 		SnmpVarBind[] respVarBindList;
 
@@ -685,7 +706,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		//
 		int m2; // respVarBindList[m2] item and next are going to be removed
 		int t = respVarBindList.length;
-		while ((t > N) && (respVarBindList[t - 1].value.equals(SnmpVarBind.endOfMibView))) {
+		while ((t > N) && (respVarBindList[t - 1].value.equals(
+				SnmpVarBind.endOfMibView))) {
 			t--;
 		}
 		if (t == N)
@@ -714,20 +736,21 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 
 		switch (pdu.type) {
 
-		case SnmpDefinitions.pduGetRequestPdu:
-		case SnmpDefinitions.pduGetNextRequestPdu:
-		case SnmpDefinitions.pduSetRequestPdu:
-		case SnmpDefinitions.pduGetBulkRequestPdu:
-			result = true;
-			break;
+			case SnmpDefinitions.pduGetRequestPdu:
+			case SnmpDefinitions.pduGetNextRequestPdu:
+			case SnmpDefinitions.pduSetRequestPdu:
+			case SnmpDefinitions.pduGetBulkRequestPdu:
+				result = true;
+				break;
 
-		default:
-			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "checkPduType",
-						"cannot respond to this kind of PDU");
-			}
-			result = false;
-			break;
+			default:
+				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"checkPduType",
+							"cannot respond to this kind of PDU");
+				}
+				result = false;
+				break;
 		}
 
 		return result;
@@ -748,36 +771,43 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 			if (pdu.type == SnmpDefinitions.pduSetRequestPdu) {
 				if (!ipacl.checkWritePermission(pdu.address, community)) {
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "checkAcl",
-								"sender is " + pdu.address + " with " + community
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+								"checkAcl", "sender is " + pdu.address
+										+ " with " + community
 										+ ". Sender has no write permission");
 					}
 					int err = SnmpSubRequestHandler.mapErrorStatus(
-							SnmpDefinitions.snmpRspAuthorizationError, pdu.version, pdu.type);
+							SnmpDefinitions.snmpRspAuthorizationError,
+							pdu.version, pdu.type);
 					response = newErrorResponsePdu(pdu, err, 0);
 				} else {
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "checkAcl",
-								"sender is " + pdu.address + " with " + community
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+								"checkAcl", "sender is " + pdu.address
+										+ " with " + community
 										+ ". Sender has write permission");
 					}
 				}
 			} else {
 				if (!ipacl.checkReadPermission(pdu.address, community)) {
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "checkAcl",
-								"sender is " + pdu.address + " with " + community
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+								"checkAcl", "sender is " + pdu.address
+										+ " with " + community
 										+ ". Sender has no read permission");
 					}
 					int err = SnmpSubRequestHandler.mapErrorStatus(
-							SnmpDefinitions.snmpRspAuthorizationError, pdu.version, pdu.type);
+							SnmpDefinitions.snmpRspAuthorizationError,
+							pdu.version, pdu.type);
 					response = newErrorResponsePdu(pdu, err, 0);
 					SnmpAdaptorServer snmpServer = (SnmpAdaptorServer) adaptorServer;
-					snmpServer.updateErrorCounters(SnmpDefinitions.snmpRspNoSuchName);
+					snmpServer.updateErrorCounters(
+							SnmpDefinitions.snmpRspNoSuchName);
 				} else {
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "checkAcl",
-								"sender is " + pdu.address + " with " + community
+						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+								"checkAcl", "sender is " + pdu.address
+										+ " with " + community
 										+ ". Sender has read permission");
 					}
 				}
@@ -801,7 +831,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	 * Make a response pdu with the specified error status and index. NOTE: the
 	 * response pdu share its varBindList with the request pdu.
 	 */
-	private SnmpPduRequest newValidResponsePdu(SnmpPduPacket reqPdu, SnmpVarBind[] varBindList) {
+	private SnmpPduRequest newValidResponsePdu(SnmpPduPacket reqPdu,
+			SnmpVarBind[] varBindList) {
 		SnmpPduRequest result = new SnmpPduRequest();
 
 		result.address = reqPdu.address;
@@ -814,7 +845,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		result.errorIndex = 0;
 		result.varBindList = varBindList;
 
-		((SnmpAdaptorServer) adaptorServer).updateErrorCounters(result.errorStatus);
+		((SnmpAdaptorServer) adaptorServer).updateErrorCounters(
+				result.errorStatus);
 
 		return result;
 	}
@@ -823,18 +855,21 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	 * Make a response pdu with the specified error status and index. NOTE: the
 	 * response pdu share its varBindList with the request pdu.
 	 */
-	private SnmpPduRequest newErrorResponsePdu(SnmpPduPacket req, int s, int i) {
+	private SnmpPduRequest newErrorResponsePdu(SnmpPduPacket req, int s,
+			int i) {
 		SnmpPduRequest result = newValidResponsePdu(req, null);
 		result.errorStatus = s;
 		result.errorIndex = i;
 		result.varBindList = req.varBindList;
 
-		((SnmpAdaptorServer) adaptorServer).updateErrorCounters(result.errorStatus);
+		((SnmpAdaptorServer) adaptorServer).updateErrorCounters(
+				result.errorStatus);
 
 		return result;
 	}
 
-	private SnmpMessage newTooBigMessage(SnmpMessage reqMsg) throws SnmpTooBigException {
+	private SnmpMessage newTooBigMessage(SnmpMessage reqMsg)
+			throws SnmpTooBigException {
 		SnmpMessage result = null;
 		SnmpPduPacket reqPdu;
 
@@ -842,14 +877,15 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 			reqPdu = (SnmpPduPacket) pduFactory.decodeSnmpPdu(reqMsg);
 			if (reqPdu != null) {
 				SnmpPduPacket respPdu = newTooBigPdu(reqPdu);
-				result = (SnmpMessage) pduFactory.encodeSnmpPdu(respPdu, packet.getData().length);
+				result = (SnmpMessage) pduFactory.encodeSnmpPdu(respPdu, packet
+						.getData().length);
 			}
 		} catch (SnmpStatusException x) {
 			// This should not occur because decodeIncomingRequest has normally
 			// been successfully called before.
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "newTooBigMessage", "Internal error",
-						x);
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"newTooBigMessage", "Internal error", x);
 			}
 			throw new InternalError(x);
 		}
@@ -858,20 +894,22 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	}
 
 	private SnmpPduPacket newTooBigPdu(SnmpPduPacket req) {
-		SnmpPduRequest result = newErrorResponsePdu(req, SnmpDefinitions.snmpRspTooBig, 0);
+		SnmpPduRequest result = newErrorResponsePdu(req,
+				SnmpDefinitions.snmpRspTooBig, 0);
 		result.varBindList = null;
 		return result;
 	}
 
-	private SnmpPduPacket reduceResponsePdu(SnmpPduPacket req, SnmpPduPacket resp,
-			int acceptedVbCount) throws SnmpTooBigException {
+	private SnmpPduPacket reduceResponsePdu(SnmpPduPacket req,
+			SnmpPduPacket resp, int acceptedVbCount)
+			throws SnmpTooBigException {
 
 		// Reduction can be attempted only on bulk response
 		//
 		if (req.type != SnmpPduPacket.pduGetBulkRequestPdu) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "reduceResponsePdu",
-						"cannot remove anything");
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"reduceResponsePdu", "cannot remove anything");
 			}
 			throw new SnmpTooBigException(acceptedVbCount);
 		}
@@ -898,8 +936,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 
 		if (vbCount < 1) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "reduceResponsePdu",
-						"cannot remove anything");
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"reduceResponsePdu", "cannot remove anything");
 			}
 			throw new SnmpTooBigException(acceptedVbCount);
 		} else {
@@ -908,8 +946,10 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 				newVbList[i] = resp.varBindList[i];
 			}
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "reduceResponsePdu",
-						(resp.varBindList.length - newVbList.length) + " items have been removed");
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"reduceResponsePdu", (resp.varBindList.length
+								- newVbList.length)
+								+ " items have been removed");
 			}
 			resp.varBindList = newVbList;
 		}
@@ -935,7 +975,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		// to all agents
 		//
 		if (req.type == pduGetNextRequestPdu) {
-			for (Enumeration<SnmpMibAgent> e = mibs.elements(); e.hasMoreElements();) {
+			for (Enumeration<SnmpMibAgent> e = mibs.elements(); e
+					.hasMoreElements();) {
 				final SnmpMibAgent ag = e.nextElement();
 				subs.put(ag, new SnmpSubNextRequestHandler(adaptor, ag, req));
 			}
@@ -966,20 +1007,23 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 	 * The method takes the incoming get bulk requests and split it into
 	 * subrequests.
 	 */
-	private void splitBulkRequest(SnmpPduBulk req, int nonRepeaters, int maxRepetitions, int R) {
+	private void splitBulkRequest(SnmpPduBulk req, int nonRepeaters,
+			int maxRepetitions, int R) {
 		// Send the getBulk to all agents
 		//
-		for (Enumeration<SnmpMibAgent> e = mibs.elements(); e.hasMoreElements();) {
+		for (Enumeration<SnmpMibAgent> e = mibs.elements(); e
+				.hasMoreElements();) {
 			final SnmpMibAgent agent = e.nextElement();
 
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "splitBulkRequest",
-						"Create a sub with : " + agent + " " + nonRepeaters + " " + maxRepetitions
-								+ " " + R);
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+						"splitBulkRequest", "Create a sub with : " + agent + " "
+								+ nonRepeaters + " " + maxRepetitions + " "
+								+ R);
 			}
 
-			subs.put(agent, new SnmpSubBulkRequestHandler(adaptor, agent, req, nonRepeaters,
-					maxRepetitions, R));
+			subs.put(agent, new SnmpSubBulkRequestHandler(adaptor, agent, req,
+					nonRepeaters, maxRepetitions, R));
 		}
 	}
 
@@ -994,7 +1038,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		// Go through the list of subrequests and concatenate.
 		// Hopefully, by now all the sub-requests should be finished
 		//
-		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e.hasMoreElements();) {
+		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e
+				.hasMoreElements();) {
 			SnmpSubRequestHandler sub = e.nextElement();
 			sub.updateResult(result);
 		}
@@ -1008,7 +1053,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		// Go through the list of subrequests and concatenate.
 		// Hopefully, by now all the sub-requests should be finished
 		//
-		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e.hasMoreElements();) {
+		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e
+				.hasMoreElements();) {
 			SnmpSubRequestHandler sub = e.nextElement();
 			sub.updateResult(result);
 		}
@@ -1022,7 +1068,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		for (int i = 0; i < max; i++) {
 			SnmpValue val = result[i].value;
 			if (val == SnmpVarBind.endOfMibView)
-				return newErrorResponsePdu(req, SnmpDefinitions.snmpRspNoSuchName, i + 1);
+				return newErrorResponsePdu(req,
+						SnmpDefinitions.snmpRspNoSuchName, i + 1);
 		}
 
 		// So far so good ...
@@ -1042,7 +1089,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 		// Go through the list of subrequests and concatenate.
 		// Hopefully, by now all the sub-requests should be finished
 		//
-		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e.hasMoreElements();) {
+		for (Enumeration<SnmpSubRequestHandler> e = subs.elements(); e
+				.hasMoreElements();) {
 			SnmpSubRequestHandler sub = e.nextElement();
 			sub.updateResult(result);
 		}
@@ -1052,8 +1100,8 @@ class SnmpRequestHandler extends ClientHandler implements SnmpDefinitions {
 
 	@Override
 	protected String makeDebugTag() {
-		return "SnmpRequestHandler[" + adaptorServer.getProtocol() + ":" + adaptorServer.getPort()
-				+ "]";
+		return "SnmpRequestHandler[" + adaptorServer.getProtocol() + ":"
+				+ adaptorServer.getPort() + "]";
 	}
 
 	@Override

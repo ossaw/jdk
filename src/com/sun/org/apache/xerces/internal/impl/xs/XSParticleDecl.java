@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -104,7 +101,8 @@ public class XSParticleDecl implements XSParticle {
 			return 0;
 		}
 		if (fType == PARTICLE_MODELGROUP) {
-			return ((XSModelGroupImpl) fValue).minEffectiveTotalRange() * fMinOccurs;
+			return ((XSModelGroupImpl) fValue).minEffectiveTotalRange()
+					* fMinOccurs;
 		}
 		return fMinOccurs;
 	}
@@ -133,7 +131,8 @@ public class XSParticleDecl implements XSParticle {
 		if (fDescription == null) {
 			StringBuffer buffer = new StringBuffer();
 			appendParticle(buffer);
-			if (!(fMinOccurs == 0 && fMaxOccurs == 0 || fMinOccurs == 1 && fMaxOccurs == 1)) {
+			if (!(fMinOccurs == 0 && fMaxOccurs == 0 || fMinOccurs == 1
+					&& fMaxOccurs == 1)) {
 				buffer.append('{').append(fMinOccurs);
 				if (fMaxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED)
 					buffer.append("-UNBOUNDED");
@@ -152,20 +151,20 @@ public class XSParticleDecl implements XSParticle {
 	 */
 	void appendParticle(StringBuffer buffer) {
 		switch (fType) {
-		case PARTICLE_EMPTY:
-			buffer.append("EMPTY");
-			break;
-		case PARTICLE_ELEMENT:
-			buffer.append(fValue.toString());
-			break;
-		case PARTICLE_WILDCARD:
-			buffer.append('(');
-			buffer.append(fValue.toString());
-			buffer.append(')');
-			break;
-		case PARTICLE_MODELGROUP:
-			buffer.append(fValue.toString());
-			break;
+			case PARTICLE_EMPTY:
+				buffer.append("EMPTY");
+				break;
+			case PARTICLE_ELEMENT:
+				buffer.append(fValue.toString());
+				break;
+			case PARTICLE_WILDCARD:
+				buffer.append('(');
+				buffer.append(fValue.toString());
+				buffer.append(')');
+				break;
+			case PARTICLE_MODELGROUP:
+				buffer.append(fValue.toString());
+				break;
 		}
 	}
 
@@ -241,7 +240,8 @@ public class XSParticleDecl implements XSParticle {
 	 * Optional. Annotations.
 	 */
 	public XSObjectList getAnnotations() {
-		return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
+		return (fAnnotations != null) ? fAnnotations
+				: XSObjectListImpl.EMPTY_LIST;
 	}
 
 } // class XSParticleDecl

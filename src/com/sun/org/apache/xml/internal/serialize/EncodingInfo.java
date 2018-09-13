@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -78,9 +75,11 @@ public class EncodingInfo {
 	 *
 	 * @return A suitable writer
 	 * @exception UnsupportedEncodingException
-	 *                There is no convertor to support this encoding
+	 *                                         There is no convertor to support
+	 *                                         this encoding
 	 */
-	public Writer getWriter(OutputStream output) throws UnsupportedEncodingException {
+	public Writer getWriter(OutputStream output)
+			throws UnsupportedEncodingException {
 		// this should always be true!
 		if (javaName != null)
 			return new OutputStreamWriter(output, javaName);
@@ -96,7 +95,7 @@ public class EncodingInfo {
 	 * encoding.
 	 *
 	 * @param ch
-	 *            a code point (0-0x10ffff)
+	 *           a code point (0-0x10ffff)
 	 */
 	public boolean isPrintable(char ch) {
 		if (ch <= this.lastPrintable) {
@@ -111,7 +110,7 @@ public class EncodingInfo {
 	 * If NIO isn't available it will attempt use a sun.io.CharToByteConverter.
 	 *
 	 * @param ch
-	 *            a code point (0-0x10ffff)
+	 *           a code point (0-0x10ffff)
 	 */
 	private boolean isPrintable0(char ch) {
 
@@ -124,11 +123,12 @@ public class EncodingInfo {
 			// try and create the CharsetEncoder
 			try {
 				fArgsForMethod[0] = javaName;
-				Object charset = CharsetMethods.fgCharsetForNameMethod.invoke(null, fArgsForMethod);
-				if (((Boolean) CharsetMethods.fgCharsetCanEncodeMethod.invoke(charset,
-						(Object[]) null)).booleanValue()) {
-					fCharsetEncoder = CharsetMethods.fgCharsetNewEncoderMethod.invoke(charset,
-							(Object[]) null);
+				Object charset = CharsetMethods.fgCharsetForNameMethod.invoke(
+						null, fArgsForMethod);
+				if (((Boolean) CharsetMethods.fgCharsetCanEncodeMethod.invoke(
+						charset, (Object[]) null)).booleanValue()) {
+					fCharsetEncoder = CharsetMethods.fgCharsetNewEncoderMethod
+							.invoke(charset, (Object[]) null);
 				}
 				// This charset cannot be used for encoding, don't try it
 				// again...
@@ -146,7 +146,8 @@ public class EncodingInfo {
 			try {
 				fArgsForMethod[0] = new Character(ch);
 				return ((Boolean) CharsetMethods.fgCharsetEncoderCanEncodeMethod
-						.invoke(fCharsetEncoder, fArgsForMethod)).booleanValue();
+						.invoke(fCharsetEncoder, fArgsForMethod))
+								.booleanValue();
 			} catch (Exception e) {
 				// obviously can't use this charset encoder; possibly a JDK bug
 				fCharsetEncoder = null;
@@ -158,7 +159,8 @@ public class EncodingInfo {
 		// determine whether this character is printable. We will always
 		// reach here on JDK 1.3 or below.
 		if (fCharToByteConverter == null) {
-			if (fHaveTriedCToB || !CharToByteConverterMethods.fgConvertersAvailable) {
+			if (fHaveTriedCToB
+					|| !CharToByteConverterMethods.fgConvertersAvailable) {
 				// forget it; nothing we can do...
 				return false;
 			}
@@ -168,8 +170,8 @@ public class EncodingInfo {
 			// try and create the CharToByteConverter
 			try {
 				fArgsForMethod[0] = javaName;
-				fCharToByteConverter = CharToByteConverterMethods.fgGetConverterMethod.invoke(null,
-						fArgsForMethod);
+				fCharToByteConverter = CharToByteConverterMethods.fgGetConverterMethod
+						.invoke(null, fArgsForMethod);
 			} catch (Exception e) {
 				// don't try it again...
 				fHaveTriedCToB = true;
@@ -179,7 +181,8 @@ public class EncodingInfo {
 		try {
 			fArgsForMethod[0] = new Character(ch);
 			return ((Boolean) CharToByteConverterMethods.fgCanConvertMethod
-					.invoke(fCharToByteConverter, fArgsForMethod)).booleanValue();
+					.invoke(fCharToByteConverter, fArgsForMethod))
+							.booleanValue();
 		} catch (Exception e) {
 			// obviously can't use this converter; probably some kind of
 			// security restriction
@@ -191,8 +194,10 @@ public class EncodingInfo {
 
 	// is this an encoding name recognized by this JDK?
 	// if not, will throw UnsupportedEncodingException
-	public static void testJavaEncodingName(String name) throws UnsupportedEncodingException {
-		final byte[] bTest = { (byte) 'v', (byte) 'a', (byte) 'l', (byte) 'i', (byte) 'd' };
+	public static void testJavaEncodingName(String name)
+			throws UnsupportedEncodingException {
+		final byte[] bTest = { (byte) 'v', (byte) 'a', (byte) 'l', (byte) 'i',
+				(byte) 'd' };
 		String s = new String(bTest, name);
 	}
 
@@ -217,21 +222,23 @@ public class EncodingInfo {
 		// Flag indicating whether or not java.nio.charset.* is available.
 		private static boolean fgNIOCharsetAvailable = false;
 
-		private CharsetMethods() {
-		}
+		private CharsetMethods() {}
 
 		// Attempt to get methods for Charset and CharsetEncoder on class
 		// initialization.
 		static {
 			try {
 				Class charsetClass = Class.forName("java.nio.charset.Charset");
-				Class charsetEncoderClass = Class.forName("java.nio.charset.CharsetEncoder");
+				Class charsetEncoderClass = Class.forName(
+						"java.nio.charset.CharsetEncoder");
 				fgCharsetForNameMethod = charsetClass.getMethod("forName",
 						new Class[] { String.class });
-				fgCharsetCanEncodeMethod = charsetClass.getMethod("canEncode", new Class[] {});
-				fgCharsetNewEncoderMethod = charsetClass.getMethod("newEncoder", new Class[] {});
-				fgCharsetEncoderCanEncodeMethod = charsetEncoderClass.getMethod("canEncode",
-						new Class[] { Character.TYPE });
+				fgCharsetCanEncodeMethod = charsetClass.getMethod("canEncode",
+						new Class[] {});
+				fgCharsetNewEncoderMethod = charsetClass.getMethod("newEncoder",
+						new Class[] {});
+				fgCharsetEncoderCanEncodeMethod = charsetEncoderClass.getMethod(
+						"canEncode", new Class[] { Character.TYPE });
 				fgNIOCharsetAvailable = true;
 			}
 			// ClassNotFoundException, NoSuchMethodException or
@@ -262,8 +269,7 @@ public class EncodingInfo {
 		// available.
 		private static boolean fgConvertersAvailable = false;
 
-		private CharToByteConverterMethods() {
-		}
+		private CharToByteConverterMethods() {}
 
 		// Attempt to get methods for char to byte converter on class
 		// initialization.
@@ -272,7 +278,8 @@ public class EncodingInfo {
 				Class clazz = Class.forName("sun.io.CharToByteConverter");
 				fgGetConverterMethod = clazz.getMethod("getConverter",
 						new Class[] { String.class });
-				fgCanConvertMethod = clazz.getMethod("canConvert", new Class[] { Character.TYPE });
+				fgCanConvertMethod = clazz.getMethod("canConvert", new Class[] {
+						Character.TYPE });
 				fgConvertersAvailable = true;
 			}
 			// ClassNotFoundException, NoSuchMethodException or

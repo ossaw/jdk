@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,7 +55,8 @@ public class XIncludeNamespaceSupport extends MultipleScopeNamespaceSupport {
 		super.pushContext();
 		if (fCurrentContext + 1 == fValidContext.length) {
 			boolean[] contextarray = new boolean[fValidContext.length * 2];
-			System.arraycopy(fValidContext, 0, contextarray, 0, fValidContext.length);
+			System.arraycopy(fValidContext, 0, contextarray, 0,
+					fValidContext.length);
 			fValidContext = contextarray;
 		}
 
@@ -83,7 +81,7 @@ public class XIncludeNamespaceSupport extends MultipleScopeNamespaceSupport {
 	 * which was not set to an invalid context using setContextInvalid()
 	 *
 	 * @param prefix
-	 *            the prefix of the desired URI
+	 *               the prefix of the desired URI
 	 * @return the URI corresponding to the prefix in the context of the include
 	 *         parent
 	 */

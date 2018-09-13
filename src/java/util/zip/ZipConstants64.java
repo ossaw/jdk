@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -101,6 +81,5 @@ class ZipConstants64 {
 	static final int EXTT_FLAG_LAT = 0x2; // LastAccessTime
 	static final int EXTT_FLAT_CT = 0x4; // CreationTime
 
-	private ZipConstants64() {
-	}
+	private ZipConstants64() {}
 }

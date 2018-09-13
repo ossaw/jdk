@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -45,7 +25,7 @@ public interface CustomMarshal {
 	 * This is the method invoked for Marshalling.
 	 *
 	 * @param os
-	 *            a DataOutputStream
+	 *           a DataOutputStream
 	 */
 	void marshal(DataOutputStream os);
 
@@ -54,7 +34,7 @@ public interface CustomMarshal {
 	 * This is the method invoked for Unmarshalling.
 	 *
 	 * @param is
-	 *            a DataInputStream
+	 *           a DataInputStream
 	 */
 	void unmarshal(DataInputStream is);
 }

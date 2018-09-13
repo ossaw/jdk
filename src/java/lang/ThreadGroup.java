@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -85,10 +65,11 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * with no arguments; this may result in a security exception.
 	 *
 	 * @param name
-	 *            the name of the new thread group.
+	 *             the name of the new thread group.
 	 * @exception SecurityException
-	 *                if the current thread cannot create a thread in the
-	 *                specified thread group.
+	 *                              if the current thread cannot create a thread
+	 *                              in the
+	 *                              specified thread group.
 	 * @see java.lang.ThreadGroup#checkAccess()
 	 * @since JDK1.0
 	 */
@@ -104,14 +85,16 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * with no arguments; this may result in a security exception.
 	 *
 	 * @param parent
-	 *            the parent thread group.
+	 *               the parent thread group.
 	 * @param name
-	 *            the name of the new thread group.
+	 *               the name of the new thread group.
 	 * @exception NullPointerException
-	 *                if the thread group argument is <code>null</code>.
+	 *                                 if the thread group argument is
+	 *                                 <code>null</code>.
 	 * @exception SecurityException
-	 *                if the current thread cannot create a thread in the
-	 *                specified thread group.
+	 *                                 if the current thread cannot create a
+	 *                                 thread in the
+	 *                                 specified thread group.
 	 * @see java.lang.SecurityException
 	 * @see java.lang.ThreadGroup#checkAccess()
 	 * @since JDK1.0
@@ -131,7 +114,6 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 
 	/*
 	 * @throws NullPointerException if the parent argument is {@code null}
-	 * 
 	 * @throws SecurityException if the current thread cannot create a thread in
 	 * the specified thread group.
 	 */
@@ -160,7 +142,8 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * @return the parent of this thread group. The top-level thread group is
 	 *         the only thread group whose parent is <code>null</code>.
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread group.
+	 *                              if the current thread cannot modify this
+	 *                              thread group.
 	 * @see java.lang.ThreadGroup#checkAccess()
 	 * @see java.lang.SecurityException
 	 * @see java.lang.RuntimePermission
@@ -217,10 +200,11 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * stopped or its last thread group is destroyed.
 	 *
 	 * @param daemon
-	 *            if <code>true</code>, marks this thread group as a daemon
-	 *            thread group; otherwise, marks this thread group as normal.
+	 *               if <code>true</code>, marks this thread group as a daemon
+	 *               thread group; otherwise, marks this thread group as normal.
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread group.
+	 *                              if the current thread cannot modify this
+	 *                              thread group.
 	 * @see java.lang.SecurityException
 	 * @see java.lang.ThreadGroup#checkAccess()
 	 * @since JDK1.0
@@ -252,7 +236,8 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * @param pri
 	 *            the new priority of the thread group.
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread group.
+	 *                              if the current thread cannot modify this
+	 *                              thread group.
 	 * @see #getMaxPriority
 	 * @see java.lang.SecurityException
 	 * @see java.lang.ThreadGroup#checkAccess()
@@ -266,7 +251,8 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 			if (pri < Thread.MIN_PRIORITY || pri > Thread.MAX_PRIORITY) {
 				return;
 			}
-			maxPriority = (parent != null) ? Math.min(pri, parent.maxPriority) : pri;
+			maxPriority = (parent != null) ? Math.min(pri, parent.maxPriority)
+					: pri;
 			ngroupsSnapshot = ngroups;
 			if (groups != null) {
 				groupsSnapshot = Arrays.copyOf(groups, ngroupsSnapshot);
@@ -284,7 +270,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * its ancestor thread groups.
 	 *
 	 * @param g
-	 *            a thread group.
+	 *          a thread group.
 	 * @return <code>true</code> if this thread group is the thread group
 	 *         argument or one of its ancestor thread groups; <code>false</code>
 	 *         otherwise.
@@ -308,8 +294,9 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * throwing a <code>SecurityException</code>.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread is not allowed to access this thread
-	 *                group.
+	 *                              if the current thread is not allowed to
+	 *                              access this thread
+	 *                              group.
 	 * @see java.lang.SecurityManager#checkAccess(java.lang.ThreadGroup)
 	 * @since JDK1.0
 	 */
@@ -373,13 +360,14 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * {@code (list, true)} </blockquote>
 	 *
 	 * @param list
-	 *            an array into which to put the list of threads
+	 *             an array into which to put the list of threads
 	 *
 	 * @return the number of threads put into the array
 	 *
 	 * @throws SecurityException
-	 *             if {@linkplain #checkAccess checkAccess} determines that the
-	 *             current thread cannot access this thread group
+	 *                           if {@linkplain #checkAccess checkAccess}
+	 *                           determines that the
+	 *                           current thread cannot access this thread group
 	 *
 	 * @since JDK1.0
 	 */
@@ -408,17 +396,19 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * the method only be used for debugging and monitoring purposes.
 	 *
 	 * @param list
-	 *            an array into which to put the list of threads
+	 *                an array into which to put the list of threads
 	 *
 	 * @param recurse
-	 *            if {@code true}, recursively enumerate all subgroups of this
-	 *            thread group
+	 *                if {@code true}, recursively enumerate all subgroups of
+	 *                this
+	 *                thread group
 	 *
 	 * @return the number of threads put into the array
 	 *
 	 * @throws SecurityException
-	 *             if {@linkplain #checkAccess checkAccess} determines that the
-	 *             current thread cannot access this thread group
+	 *                           if {@linkplain #checkAccess checkAccess}
+	 *                           determines that the
+	 *                           current thread cannot access this thread group
 	 *
 	 * @since JDK1.0
 	 */
@@ -509,13 +499,14 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * {@code (list, true)} </blockquote>
 	 *
 	 * @param list
-	 *            an array into which to put the list of thread groups
+	 *             an array into which to put the list of thread groups
 	 *
 	 * @return the number of thread groups put into the array
 	 *
 	 * @throws SecurityException
-	 *             if {@linkplain #checkAccess checkAccess} determines that the
-	 *             current thread cannot access this thread group
+	 *                           if {@linkplain #checkAccess checkAccess}
+	 *                           determines that the
+	 *                           current thread cannot access this thread group
 	 *
 	 * @since JDK1.0
 	 */
@@ -544,16 +535,17 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * the method only be used for debugging and monitoring purposes.
 	 *
 	 * @param list
-	 *            an array into which to put the list of thread groups
+	 *                an array into which to put the list of thread groups
 	 *
 	 * @param recurse
-	 *            if {@code true}, recursively enumerate all subgroups
+	 *                if {@code true}, recursively enumerate all subgroups
 	 *
 	 * @return the number of thread groups put into the array
 	 *
 	 * @throws SecurityException
-	 *             if {@linkplain #checkAccess checkAccess} determines that the
-	 *             current thread cannot access this thread group
+	 *                           if {@linkplain #checkAccess checkAccess}
+	 *                           determines that the
+	 *                           current thread cannot access this thread group
 	 *
 	 * @since JDK1.0
 	 */
@@ -604,8 +596,10 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * this thread group and in all of its subgroups.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread is not allowed to access this thread
-	 *                group or any of the threads in the thread group.
+	 *                              if the current thread is not allowed to
+	 *                              access this thread
+	 *                              group or any of the threads in the thread
+	 *                              group.
 	 * @see java.lang.SecurityException
 	 * @see java.lang.Thread#stop()
 	 * @see java.lang.ThreadGroup#checkAccess()
@@ -629,8 +623,10 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * threads in this thread group and in all of its subgroups.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread is not allowed to access this thread
-	 *                group or any of the threads in the thread group.
+	 *                              if the current thread is not allowed to
+	 *                              access this thread
+	 *                              group or any of the threads in the thread
+	 *                              group.
 	 * @see java.lang.Thread#interrupt()
 	 * @see java.lang.SecurityException
 	 * @see java.lang.ThreadGroup#checkAccess()
@@ -666,8 +662,10 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * in this thread group and in all of its subgroups.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread is not allowed to access this thread
-	 *                group or any of the threads in the thread group.
+	 *                              if the current thread is not allowed to
+	 *                              access this thread
+	 *                              group or any of the threads in the thread
+	 *                              group.
 	 * @see java.lang.Thread#suspend()
 	 * @see java.lang.SecurityException
 	 * @see java.lang.ThreadGroup#checkAccess()
@@ -727,8 +725,10 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * in this thread group and in all of its sub groups.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread is not allowed to access this thread
-	 *                group or any of the threads in the thread group.
+	 *                              if the current thread is not allowed to
+	 *                              access this thread
+	 *                              group or any of the threads in the thread
+	 *                              group.
 	 * @see java.lang.SecurityException
 	 * @see java.lang.Thread#resume()
 	 * @see java.lang.ThreadGroup#checkAccess()
@@ -769,10 +769,12 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * with no arguments; this may result in a security exception.
 	 *
 	 * @exception IllegalThreadStateException
-	 *                if the thread group is not empty or if the thread group
-	 *                has already been destroyed.
+	 *                                        if the thread group is not empty
+	 *                                        or if the thread group
+	 *                                        has already been destroyed.
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread group.
+	 *                                        if the current thread cannot
+	 *                                        modify this thread group.
 	 * @see java.lang.ThreadGroup#checkAccess()
 	 * @since JDK1.0
 	 */
@@ -810,9 +812,10 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * Adds the specified Thread group to this group.
 	 * 
 	 * @param g
-	 *            the specified Thread group to be added
+	 *          the specified Thread group to be added
 	 * @exception IllegalThreadStateException
-	 *                If the Thread group has been destroyed.
+	 *                                        If the Thread group has been
+	 *                                        destroyed.
 	 */
 	private final void add(ThreadGroup g) {
 		synchronized (this) {
@@ -836,7 +839,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * Removes the specified Thread group from this group.
 	 * 
 	 * @param g
-	 *            the Thread group to be removed
+	 *          the Thread group to be removed
 	 * @return if this Thread has already been destroyed.
 	 */
 	private void remove(ThreadGroup g) {
@@ -857,7 +860,8 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 			if (nthreads == 0) {
 				notifyAll();
 			}
-			if (daemon && (nthreads == 0) && (nUnstartedThreads == 0) && (ngroups == 0)) {
+			if (daemon && (nthreads == 0) && (nUnstartedThreads == 0)
+					&& (ngroups == 0)) {
 				destroy();
 			}
 		}
@@ -887,10 +891,11 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * thread group.
 	 *
 	 * @param t
-	 *            the Thread to be added
+	 *          the Thread to be added
 	 *
 	 * @throws IllegalThreadStateException
-	 *             if the Thread group has been destroyed
+	 *                                     if the Thread group has been
+	 *                                     destroyed
 	 */
 	void add(Thread t) {
 		synchronized (this) {
@@ -927,7 +932,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * the thread is permitted.
 	 *
 	 * @param t
-	 *            the Thread whose start method was invoked
+	 *          the Thread whose start method was invoked
 	 */
 	void threadStartFailed(Thread t) {
 		synchronized (this) {
@@ -945,7 +950,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * group; there are no subgroups in this thread group.
 	 *
 	 * @param t
-	 *            the Thread that has terminated
+	 *          the Thread that has terminated
 	 */
 	void threadTerminated(Thread t) {
 		synchronized (this) {
@@ -954,7 +959,8 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 			if (nthreads == 0) {
 				notifyAll();
 			}
-			if (daemon && (nthreads == 0) && (nUnstartedThreads == 0) && (ngroups == 0)) {
+			if (daemon && (nthreads == 0) && (nUnstartedThreads == 0)
+					&& (ngroups == 0)) {
 				destroy();
 			}
 		}
@@ -965,7 +971,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * thread group that has been destroyed has no effect.
 	 *
 	 * @param t
-	 *            the Thread to be removed
+	 *          the Thread to be removed
 	 */
 	private void remove(Thread t) {
 		synchronized (this) {
@@ -974,7 +980,8 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 			}
 			for (int i = 0; i < nthreads; i++) {
 				if (threads[i] == t) {
-					System.arraycopy(threads, i + 1, threads, i, --nthreads - i);
+					System.arraycopy(threads, i + 1, threads, i, --nthreads
+							- i);
 					// Zap dangling reference to the dead thread so that
 					// the garbage collector will collect it.
 					threads[nthreads] = null;
@@ -1051,20 +1058,22 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * exceptions.
 	 *
 	 * @param t
-	 *            the thread that is about to exit.
+	 *          the thread that is about to exit.
 	 * @param e
-	 *            the uncaught exception.
+	 *          the uncaught exception.
 	 * @since JDK1.0
 	 */
 	public void uncaughtException(Thread t, Throwable e) {
 		if (parent != null) {
 			parent.uncaughtException(t, e);
 		} else {
-			Thread.UncaughtExceptionHandler ueh = Thread.getDefaultUncaughtExceptionHandler();
+			Thread.UncaughtExceptionHandler ueh = Thread
+					.getDefaultUncaughtExceptionHandler();
 			if (ueh != null) {
 				ueh.uncaughtException(t, e);
 			} else if (!(e instanceof ThreadDeath)) {
-				System.err.print("Exception in thread \"" + t.getName() + "\" ");
+				System.err.print("Exception in thread \"" + t.getName()
+						+ "\" ");
 				e.printStackTrace(System.err);
 			}
 		}
@@ -1074,7 +1083,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * Used by VM to control lowmem implicit suspension.
 	 *
 	 * @param b
-	 *            boolean to allow or disallow suspension
+	 *          boolean to allow or disallow suspension
 	 * @return true on success
 	 * @since JDK1.1
 	 * @deprecated The definition of this call depends on {@link #suspend},
@@ -1097,6 +1106,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 	 * @since JDK1.0
 	 */
 	public String toString() {
-		return getClass().getName() + "[name=" + getName() + ",maxpri=" + maxPriority + "]";
+		return getClass().getName() + "[name=" + getName() + ",maxpri="
+				+ maxPriority + "]";
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -90,7 +70,7 @@ public class SnmpPduFactoryBER implements SnmpPduFactory, Serializable {
 	 *            The SNMP message to be decoded.
 	 * @return The resulting SNMP PDU packet.
 	 * @exception SnmpStatusException
-	 *                If the encoding is invalid.
+	 *                                If the encoding is invalid.
 	 *
 	 * @since 1.5
 	 */
@@ -105,35 +85,37 @@ public class SnmpPduFactoryBER implements SnmpPduFactory, Serializable {
 	 * aborted.
 	 *
 	 * @param p
-	 *            The <CODE>SnmpPdu</CODE> to be encoded.
+	 *                      The <CODE>SnmpPdu</CODE> to be encoded.
 	 * @param maxDataLength
-	 *            The size limit of the resulting encoding.
+	 *                      The size limit of the resulting encoding.
 	 * @return Null or a fully encoded <CODE>SnmpMsg</CODE>.
 	 * @exception SnmpStatusException
-	 *                If <CODE>pdu</CODE> contains illegal values and cannot be
-	 *                encoded.
+	 *                                If <CODE>pdu</CODE> contains illegal
+	 *                                values and cannot be
+	 *                                encoded.
 	 * @exception SnmpTooBigException
-	 *                If the resulting encoding does not fit into
-	 *                <CODE>maxPktSize</CODE> bytes.
+	 *                                If the resulting encoding does not fit
+	 *                                into
+	 *                                <CODE>maxPktSize</CODE> bytes.
 	 *
 	 * @since 1.5
 	 */
 	public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength)
 			throws SnmpStatusException, SnmpTooBigException {
 		switch (p.version) {
-		case SnmpDefinitions.snmpVersionOne:
-		case SnmpDefinitions.snmpVersionTwo: {
-			SnmpMessage result = new SnmpMessage();
-			result.encodeSnmpPdu((SnmpPduPacket) p, maxDataLength);
-			return result;
-		}
-		case SnmpDefinitions.snmpVersionThree: {
-			SnmpV3Message result = new SnmpV3Message();
-			result.encodeSnmpPdu(p, maxDataLength);
-			return result;
-		}
-		default:
-			return null;
+			case SnmpDefinitions.snmpVersionOne:
+			case SnmpDefinitions.snmpVersionTwo: {
+				SnmpMessage result = new SnmpMessage();
+				result.encodeSnmpPdu((SnmpPduPacket) p, maxDataLength);
+				return result;
+			}
+			case SnmpDefinitions.snmpVersionThree: {
+				SnmpV3Message result = new SnmpV3Message();
+				result.encodeSnmpPdu(p, maxDataLength);
+				return result;
+			}
+			default:
+				return null;
 		}
 	}
 }

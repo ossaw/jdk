@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: FilteredAbsoluteLocationPath.java,v 1.2.4.1 2005/09/12 10:26:50 pvedula Exp $
+ * $Id: FilteredAbsoluteLocationPath.java,v 1.2.4.1 2005/09/12 10:26:50 pvedula
+ * Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.compiler;
@@ -67,7 +65,8 @@ final class FilteredAbsoluteLocationPath extends Expression {
 	}
 
 	public String toString() {
-		return "FilteredAbsoluteLocationPath(" + (_path != null ? _path.toString() : "null") + ')';
+		return "FilteredAbsoluteLocationPath(" + (_path != null ? _path
+				.toString() : "null") + ')';
 	}
 
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
@@ -84,8 +83,8 @@ final class FilteredAbsoluteLocationPath extends Expression {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 		if (_path != null) {
-			final int initDFI = cpg.addMethodref(DUP_FILTERED_ITERATOR, "<init>",
-					"(" + NODE_ITERATOR_SIG + ")V");
+			final int initDFI = cpg.addMethodref(DUP_FILTERED_ITERATOR,
+					"<init>", "(" + NODE_ITERATOR_SIG + ")V");
 
 			// Backwards branches are prohibited if an uninitialized object is
 			// on the stack by section 4.9.4 of the JVM Specification, 2nd Ed.
@@ -98,8 +97,8 @@ final class FilteredAbsoluteLocationPath extends Expression {
 
 			// Compile relative path iterator(s)
 			LocalVariableGen pathTemp = methodGen.addLocalVariable(
-					"filtered_absolute_location_path_tmp", Util.getJCRefType(NODE_ITERATOR_SIG),
-					null, null);
+					"filtered_absolute_location_path_tmp", Util.getJCRefType(
+							NODE_ITERATOR_SIG), null, null);
 			_path.translate(classGen, methodGen);
 			pathTemp.setStart(il.append(new ASTORE(pathTemp.getIndex())));
 

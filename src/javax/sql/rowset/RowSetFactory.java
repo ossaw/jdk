@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset;
@@ -44,7 +24,7 @@ public interface RowSetFactory {
 	 * @return A new instance of a CachedRowSet.
 	 *
 	 * @throws SQLException
-	 *             if a CachedRowSet cannot be created.
+	 *                      if a CachedRowSet cannot be created.
 	 *
 	 * @since 1.7
 	 */
@@ -58,7 +38,7 @@ public interface RowSetFactory {
 	 * @return A new instance of a FilteredRowSet.
 	 *
 	 * @throws SQLException
-	 *             if a FilteredRowSet cannot be created.
+	 *                      if a FilteredRowSet cannot be created.
 	 *
 	 * @since 1.7
 	 */
@@ -72,7 +52,7 @@ public interface RowSetFactory {
 	 * @return A new instance of a JdbcRowSet.
 	 *
 	 * @throws SQLException
-	 *             if a JdbcRowSet cannot be created.
+	 *                      if a JdbcRowSet cannot be created.
 	 *
 	 * @since 1.7
 	 */
@@ -86,7 +66,7 @@ public interface RowSetFactory {
 	 * @return A new instance of a JoinRowSet.
 	 *
 	 * @throws SQLException
-	 *             if a JoinRowSet cannot be created.
+	 *                      if a JoinRowSet cannot be created.
 	 *
 	 * @since 1.7
 	 */
@@ -100,7 +80,7 @@ public interface RowSetFactory {
 	 * @return A new instance of a WebRowSet.
 	 *
 	 * @throws SQLException
-	 *             if a WebRowSet cannot be created.
+	 *                      if a WebRowSet cannot be created.
 	 *
 	 * @since 1.7
 	 */

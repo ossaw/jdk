@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -50,9 +30,9 @@ public class RSAPrivateKeySpec implements KeySpec {
 	 * Creates a new RSAPrivateKeySpec.
 	 *
 	 * @param modulus
-	 *            the modulus
+	 *                        the modulus
 	 * @param privateExponent
-	 *            the private exponent
+	 *                        the private exponent
 	 */
 	public RSAPrivateKeySpec(BigInteger modulus, BigInteger privateExponent) {
 		this.modulus = modulus;

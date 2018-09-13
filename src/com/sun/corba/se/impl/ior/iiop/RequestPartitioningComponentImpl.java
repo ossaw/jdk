@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /**
@@ -38,8 +18,8 @@ import com.sun.corba.se.impl.orbutil.ORBConstants;
 
 public class RequestPartitioningComponentImpl extends TaggedComponentBase
 		implements RequestPartitioningComponent {
-	private static ORBUtilSystemException wrapper = ORBUtilSystemException
-			.get(CORBALogDomains.OA_IOR);
+	private static ORBUtilSystemException wrapper = ORBUtilSystemException.get(
+			CORBALogDomains.OA_IOR);
 
 	private int partitionToUse;
 
@@ -57,7 +37,8 @@ public class RequestPartitioningComponentImpl extends TaggedComponentBase
 	}
 
 	public String toString() {
-		return "RequestPartitioningComponentImpl[partitionToUse=" + partitionToUse + "]";
+		return "RequestPartitioningComponentImpl[partitionToUse="
+				+ partitionToUse + "]";
 	}
 
 	public RequestPartitioningComponentImpl() {
@@ -67,9 +48,11 @@ public class RequestPartitioningComponentImpl extends TaggedComponentBase
 	public RequestPartitioningComponentImpl(int thePartitionToUse) {
 		if (thePartitionToUse < ORBConstants.REQUEST_PARTITIONING_MIN_THREAD_POOL_ID
 				|| thePartitionToUse > ORBConstants.REQUEST_PARTITIONING_MAX_THREAD_POOL_ID) {
-			throw wrapper.invalidRequestPartitioningComponentValue(new Integer(thePartitionToUse),
-					new Integer(ORBConstants.REQUEST_PARTITIONING_MIN_THREAD_POOL_ID),
-					new Integer(ORBConstants.REQUEST_PARTITIONING_MAX_THREAD_POOL_ID));
+			throw wrapper.invalidRequestPartitioningComponentValue(new Integer(
+					thePartitionToUse), new Integer(
+							ORBConstants.REQUEST_PARTITIONING_MIN_THREAD_POOL_ID),
+					new Integer(
+							ORBConstants.REQUEST_PARTITIONING_MAX_THREAD_POOL_ID));
 		}
 		partitionToUse = thePartitionToUse;
 	}

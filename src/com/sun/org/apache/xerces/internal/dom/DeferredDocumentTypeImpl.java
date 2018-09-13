@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,7 +39,8 @@ import org.w3c.dom.Node;
  *
  * @since PR-DOM-Level-1-19980818.
  */
-public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements DeferredNode {
+public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements
+		DeferredNode {
 
 	//
 	// Constants
@@ -66,7 +64,8 @@ public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements Deferr
 	 * This is the deferred constructor. Only the fNodeIndex is given here. All
 	 * other data, can be requested from the ownerDocument via the index.
 	 */
-	DeferredDocumentTypeImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
+	DeferredDocumentTypeImpl(DeferredDocumentImpl ownerDocument,
+			int nodeIndex) {
 		super(ownerDocument, null);
 
 		fNodeIndex = nodeIndex;
@@ -124,46 +123,48 @@ public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements Deferr
 
 		// fill node maps
 		DeferredNode last = null;
-		for (int index = ownerDocument.getLastChild(fNodeIndex); index != -1; index = ownerDocument
-				.getPrevSibling(index)) {
+		for (int index = ownerDocument.getLastChild(
+				fNodeIndex); index != -1; index = ownerDocument.getPrevSibling(
+						index)) {
 
 			DeferredNode node = ownerDocument.getNodeObject(index);
 			int type = node.getNodeType();
 			switch (type) {
 
-			// internal, external, and unparsed entities
-			case Node.ENTITY_NODE: {
-				entities.setNamedItem(node);
-				break;
-			}
-
-			// notations
-			case Node.NOTATION_NODE: {
-				notations.setNamedItem(node);
-				break;
-			}
-
-			// element definitions
-			case NodeImpl.ELEMENT_DEFINITION_NODE: {
-				elements.setNamedItem(node);
-				break;
-			}
-
-			// elements
-			case Node.ELEMENT_NODE: {
-				if (((DocumentImpl) getOwnerDocument()).allowGrammarAccess) {
-					insertBefore(node, last);
-					last = node;
+				// internal, external, and unparsed entities
+				case Node.ENTITY_NODE: {
+					entities.setNamedItem(node);
 					break;
 				}
-			}
 
-			// NOTE: Should never get here! -Ac
-			default: {
-				System.out.println(
-						"DeferredDocumentTypeImpl" + "#synchronizeInfo: " + "node.getNodeType() = "
-								+ node.getNodeType() + ", class = " + node.getClass().getName());
-			}
+				// notations
+				case Node.NOTATION_NODE: {
+					notations.setNamedItem(node);
+					break;
+				}
+
+				// element definitions
+				case NodeImpl.ELEMENT_DEFINITION_NODE: {
+					elements.setNamedItem(node);
+					break;
+				}
+
+				// elements
+				case Node.ELEMENT_NODE: {
+					if (((DocumentImpl) getOwnerDocument()).allowGrammarAccess) {
+						insertBefore(node, last);
+						last = node;
+						break;
+					}
+				}
+
+				// NOTE: Should never get here! -Ac
+				default: {
+					System.out.println("DeferredDocumentTypeImpl"
+							+ "#synchronizeInfo: " + "node.getNodeType() = "
+							+ node.getNodeType() + ", class = " + node
+									.getClass().getName());
+				}
 			}
 		}
 

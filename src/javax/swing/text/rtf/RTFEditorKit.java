@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.rtf;
 
@@ -69,12 +49,13 @@ public class RTFEditorKit extends StyledEditorKit {
 	 * @param pos
 	 *            The location in the document to place the content.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
-	public void read(InputStream in, Document doc, int pos)
-			throws IOException, BadLocationException {
+	public void read(InputStream in, Document doc, int pos) throws IOException,
+			BadLocationException {
 
 		if (doc instanceof StyledDocument) {
 			// PENDING(prinz) this needs to be fixed to
@@ -101,9 +82,10 @@ public class RTFEditorKit extends StyledEditorKit {
 	 * @param len
 	 *            The amount to write out.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
 	public void write(OutputStream out, Document doc, int pos, int len)
 			throws IOException, BadLocationException {
@@ -124,11 +106,13 @@ public class RTFEditorKit extends StyledEditorKit {
 	 * @param pos
 	 *            The location in the document to place the content.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
-	public void read(Reader in, Document doc, int pos) throws IOException, BadLocationException {
+	public void read(Reader in, Document doc, int pos) throws IOException,
+			BadLocationException {
 
 		if (doc instanceof StyledDocument) {
 			RTFReader rdr = new RTFReader((StyledDocument) doc);
@@ -152,9 +136,10 @@ public class RTFEditorKit extends StyledEditorKit {
 	 * @param len
 	 *            The amount to write out.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
 	public void write(Writer out, Document doc, int pos, int len)
 			throws IOException, BadLocationException {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.ietf.jgss;
@@ -70,7 +50,7 @@ public class MessageProp {
 	 * 0.
 	 *
 	 * @param privState
-	 *            the privacy (i.e. confidentiality) state
+	 *                  the privacy (i.e. confidentiality) state
 	 */
 	public MessageProp(boolean privState) {
 		this(0, privState);
@@ -80,9 +60,9 @@ public class MessageProp {
 	 * Constructor which sets the values for the qop and privacy state.
 	 *
 	 * @param qop
-	 *            the QOP value
+	 *                  the QOP value
 	 * @param privState
-	 *            the privacy (i.e. confidentiality) state
+	 *                  the privacy (i.e. confidentiality) state
 	 */
 	public MessageProp(int qop, boolean privState) {
 		this.qop = qop;
@@ -127,8 +107,9 @@ public class MessageProp {
 	 * Sets the privacy state.
 	 *
 	 * @param privState
-	 *            true is the privacy (i.e., confidentiality) state is true,
-	 *            false otherwise.
+	 *                  true is the privacy (i.e., confidentiality) state is
+	 *                  true,
+	 *                  false otherwise.
 	 * @see #getPrivacy
 	 */
 	public void setPrivacy(boolean privState) {
@@ -204,24 +185,28 @@ public class MessageProp {
 	 * per-message context method.
 	 *
 	 * @param duplicate
-	 *            true if the token was a duplicate of an earlier token, false
-	 *            otherwise
+	 *                    true if the token was a duplicate of an earlier token,
+	 *                    false
+	 *                    otherwise
 	 * @param old
-	 *            true if the token's validity period has expired, false
-	 *            otherwise
+	 *                    true if the token's validity period has expired, false
+	 *                    otherwise
 	 * @param unseq
-	 *            true if a later token has already been processed, false
-	 *            otherwise
+	 *                    true if a later token has already been processed,
+	 *                    false
+	 *                    otherwise
 	 * @param gap
-	 *            true if one or more predecessor tokens have not yet been
-	 *            successfully processed, false otherwise
+	 *                    true if one or more predecessor tokens have not yet
+	 *                    been
+	 *                    successfully processed, false otherwise
 	 * @param minorStatus
-	 *            the int minor status code for the per-message operation
+	 *                    the int minor status code for the per-message
+	 *                    operation
 	 * @param minorString
-	 *            the textual representation of the minorStatus value
+	 *                    the textual representation of the minorStatus value
 	 */
-	public void setSupplementaryStates(boolean duplicate, boolean old, boolean unseq, boolean gap,
-			int minorStatus, String minorString) {
+	public void setSupplementaryStates(boolean duplicate, boolean old,
+			boolean unseq, boolean gap, int minorStatus, String minorString) {
 		this.dupToken = duplicate;
 		this.oldToken = old;
 		this.unseqToken = unseq;

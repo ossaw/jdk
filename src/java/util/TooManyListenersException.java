@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -64,7 +44,7 @@ public class TooManyListenersException extends Exception {
 	 * A detail message is a String that describes this particular exception.
 	 * 
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 */
 
 	public TooManyListenersException(String s) {

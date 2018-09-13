@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -45,7 +25,8 @@ final class PopupMenuSeparatorPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -53,8 +34,8 @@ final class PopupMenuSeparatorPainter extends AbstractRegionPainter {
 	// by a particular instance of PopupMenuSeparatorPainter would be created.
 	// For the moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBlueGrey", -0.008547008f, -0.03830409f, -0.039215684f,
-			0);
+	private Color color1 = decodeColor("nimbusBlueGrey", -0.008547008f,
+			-0.03830409f, -0.039215684f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
@@ -74,9 +55,9 @@ final class PopupMenuSeparatorPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_ENABLED:
-			paintBackgroundEnabled(g);
-			break;
+			case BACKGROUND_ENABLED:
+				paintBackgroundEnabled(g);
+				break;
 
 		}
 	}

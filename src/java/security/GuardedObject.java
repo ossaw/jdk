@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -57,10 +37,10 @@ public class GuardedObject implements java.io.Serializable {
 	 * access the object.
 	 *
 	 * @param object
-	 *            the object to be guarded.
+	 *               the object to be guarded.
 	 *
 	 * @param guard
-	 *            the Guard object that guards access to the object.
+	 *               the Guard object that guards access to the object.
 	 */
 
 	public GuardedObject(Object object, Guard guard) {
@@ -75,7 +55,7 @@ public class GuardedObject implements java.io.Serializable {
 	 * @return the guarded object.
 	 *
 	 * @exception SecurityException
-	 *                if access to the guarded object is denied.
+	 *                              if access to the guarded object is denied.
 	 */
 	public Object getObject() throws SecurityException {
 		if (guard != null)
@@ -88,7 +68,8 @@ public class GuardedObject implements java.io.Serializable {
 	 * Writes this object out to a stream (i.e., serializes it). We check the
 	 * guard if there is one.
 	 */
-	private void writeObject(java.io.ObjectOutputStream oos) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream oos)
+			throws java.io.IOException {
 		if (guard != null)
 			guard.checkGuard(object);
 

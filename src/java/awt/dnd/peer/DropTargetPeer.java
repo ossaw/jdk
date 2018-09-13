@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd.peer;
@@ -45,7 +25,7 @@ public interface DropTargetPeer {
 	 * Add the DropTarget to the System
 	 *
 	 * @param dt
-	 *            The DropTarget effected
+	 *           The DropTarget effected
 	 */
 
 	void addDropTarget(DropTarget dt);
@@ -54,7 +34,7 @@ public interface DropTargetPeer {
 	 * Remove the DropTarget from the system
 	 *
 	 * @param dt
-	 *            The DropTarget effected
+	 *           The DropTarget effected
 	 */
 
 	void removeDropTarget(DropTarget dt);

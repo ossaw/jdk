@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -54,7 +34,8 @@ final class ServantRetentionPolicyImpl extends org.omg.CORBA.LocalObject
 	private ServantRetentionPolicyValue value;
 
 	public String toString() {
-		return "ServantRetentionPolicy[" + ((value.value() == ServantRetentionPolicyValue._RETAIN)
-				? "RETAIN" : "NON_RETAIN" + "]");
+		return "ServantRetentionPolicy[" + ((value
+				.value() == ServantRetentionPolicyValue._RETAIN) ? "RETAIN"
+						: "NON_RETAIN" + "]");
 	}
 }

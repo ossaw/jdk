@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,8 +44,10 @@ public class AnyURIDV extends TypeValidator {
 
 	public short getAllowedFacets() {
 		return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH
-				| XSSimpleTypeDecl.FACET_MAXLENGTH | XSSimpleTypeDecl.FACET_PATTERN
-				| XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_WHITESPACE);
+				| XSSimpleTypeDecl.FACET_MAXLENGTH
+				| XSSimpleTypeDecl.FACET_PATTERN
+				| XSSimpleTypeDecl.FACET_ENUMERATION
+				| XSSimpleTypeDecl.FACET_WHITESPACE);
 	}
 
 	// before we return string we have to make sure it is correct URI as per
@@ -81,8 +80,8 @@ public class AnyURIDV extends TypeValidator {
 	private static char gAfterEscaping1[] = new char[128];
 	// the second hex character if a character needs to be escaped
 	private static char gAfterEscaping2[] = new char[128];
-	private static char[] gHexChs = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
-			'C', 'D', 'E', 'F' };
+	private static char[] gHexChs = { '0', '1', '2', '3', '4', '5', '6', '7',
+			'8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 	// initialize the above 3 arrays
 	static {
 		for (int i = 0; i <= 0x1f; i++) {
@@ -93,7 +92,8 @@ public class AnyURIDV extends TypeValidator {
 		gNeedEscaping[0x7f] = true;
 		gAfterEscaping1[0x7f] = '7';
 		gAfterEscaping2[0x7f] = 'F';
-		char[] escChs = { ' ', '<', '>', '"', '{', '}', '|', '\\', '^', '~', '`' };
+		char[] escChs = { ' ', '<', '>', '"', '{', '}', '|', '\\', '^', '~',
+				'`' };
 		int len = escChs.length;
 		char ch;
 		for (int i = 0; i < len; i++) {

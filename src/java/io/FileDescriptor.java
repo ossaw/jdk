@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -65,8 +45,8 @@ public final class FileDescriptor {
 
 	// Set up JavaIOFileDescriptorAccess in SharedSecrets
 	static {
-		sun.misc.SharedSecrets
-				.setJavaIOFileDescriptorAccess(new sun.misc.JavaIOFileDescriptorAccess() {
+		sun.misc.SharedSecrets.setJavaIOFileDescriptorAccess(
+				new sun.misc.JavaIOFileDescriptorAccess() {
 					public void set(FileDescriptor obj, int fd) {
 						obj.fd = fd;
 					}
@@ -144,9 +124,11 @@ public final class FileDescriptor {
 	 * data will be affected by sync.
 	 *
 	 * @exception SyncFailedException
-	 *                Thrown when the buffers cannot be flushed, or because the
-	 *                system cannot guarantee that all the buffers have been
-	 *                synchronized with physical media.
+	 *                                Thrown when the buffers cannot be flushed,
+	 *                                or because the
+	 *                                system cannot guarantee that all the
+	 *                                buffers have been
+	 *                                synchronized with physical media.
 	 * @since JDK1.1
 	 */
 	public native void sync() throws SyncFailedException;

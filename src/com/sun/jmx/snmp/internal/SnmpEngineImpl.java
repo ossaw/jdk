@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -206,18 +186,20 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 	 * Don't call it directly.
 	 * 
 	 * @param fact
-	 *            The factory used to instantiate this engine.
+	 *                 The factory used to instantiate this engine.
 	 * @param lcd
-	 *            The local configuration datastore.
+	 *                 The local configuration datastore.
 	 * @param engineid
-	 *            The engine ID to use. If null is provided, an SnmpEngineId is
-	 *            computed using the current time.
+	 *                 The engine ID to use. If null is provided, an
+	 *                 SnmpEngineId is
+	 *                 computed using the current time.
 	 * @throws UnknownHostException
-	 *             Exception thrown, if the host name located in the property
-	 *             "localEngineID" is invalid.
+	 *                              Exception thrown, if the host name located
+	 *                              in the property
+	 *                              "localEngineID" is invalid.
 	 */
-	public SnmpEngineImpl(SnmpEngineFactory fact, SnmpLcd lcd, SnmpEngineId engineid)
-			throws UnknownHostException {
+	public SnmpEngineImpl(SnmpEngineFactory fact, SnmpLcd lcd,
+			SnmpEngineId engineid) throws UnknownHostException {
 
 		init(lcd, fact);
 		initEngineID();
@@ -249,19 +231,20 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 	 * Don't call it directly.
 	 * 
 	 * @param fact
-	 *            The factory used to instantiate this engine.
+	 *                The factory used to instantiate this engine.
 	 * @param lcd
-	 *            The local configuration datastore.
+	 *                The local configuration datastore.
 	 * @param port
-	 *            UDP port to use in order to calculate the engine ID.
+	 *                UDP port to use in order to calculate the engine ID.
 	 * @param address
-	 *            An IP address used to calculate the engine ID.
+	 *                An IP address used to calculate the engine ID.
 	 * @throws UnknownHostException
-	 *             Exception thrown, if the host name located in the property
-	 *             "localEngineID" is invalid.
+	 *                              Exception thrown, if the host name located
+	 *                              in the property
+	 *                              "localEngineID" is invalid.
 	 */
-	public SnmpEngineImpl(SnmpEngineFactory fact, SnmpLcd lcd, InetAddress address, int port)
-			throws UnknownHostException {
+	public SnmpEngineImpl(SnmpEngineFactory fact, SnmpLcd lcd,
+			InetAddress address, int port) throws UnknownHostException {
 		init(lcd, fact);
 		initEngineID();
 		if (engineid == null)
@@ -272,8 +255,9 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 		if (SNMP_LOGGER.isLoggable(Level.FINER)) {
 			SNMP_LOGGER.logp(Level.FINER, SnmpEngineImpl.class.getName(),
 					"SnmpEngineImpl(SnmpEngineFactory,SnmpLcd,InetAddress,int)",
-					"LOCAL ENGINE ID: " + engineid + " / " + "LOCAL ENGINE NB BOOTS: " + boot
-							+ " / " + "LOCAL ENGINE START TIME: " + getEngineTime());
+					"LOCAL ENGINE ID: " + engineid + " / "
+							+ "LOCAL ENGINE NB BOOTS: " + boot + " / "
+							+ "LOCAL ENGINE START TIME: " + getEngineTime());
 		}
 	}
 
@@ -291,14 +275,15 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 	 * Don't call it directly.
 	 * 
 	 * @param fact
-	 *            The factory used to instantiate this engine.
+	 *             The factory used to instantiate this engine.
 	 * @param lcd
-	 *            The local configuration datastore
+	 *             The local configuration datastore
 	 * @param port
-	 *            UDP port to use in order to calculate the engine ID.
+	 *             UDP port to use in order to calculate the engine ID.
 	 * @throws UnknownHostException
-	 *             Exception thrown, if the host name located in the property
-	 *             "localEngineID" is invalid.
+	 *                              Exception thrown, if the host name located
+	 *                              in the property
+	 *                              "localEngineID" is invalid.
 	 */
 	public SnmpEngineImpl(SnmpEngineFactory fact, SnmpLcd lcd, int port)
 			throws UnknownHostException {
@@ -312,8 +297,9 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 		if (SNMP_LOGGER.isLoggable(Level.FINER)) {
 			SNMP_LOGGER.logp(Level.FINER, SnmpEngineImpl.class.getName(),
 					"SnmpEngineImpl(SnmpEngineFactory,SnmpLcd,int)",
-					"LOCAL ENGINE ID: " + engineid + " / " + "LOCAL ENGINE NB BOOTS: " + boot
-							+ " / " + "LOCAL ENGINE START TIME: " + getEngineTime());
+					"LOCAL ENGINE ID: " + engineid + " / "
+							+ "LOCAL ENGINE NB BOOTS: " + boot + " / "
+							+ "LOCAL ENGINE START TIME: " + getEngineTime());
 		}
 	}
 
@@ -332,11 +318,12 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 	 * called by an <CODE>SnmpEngineFactory</CODE>. Don't call it directly.
 	 * 
 	 * @param fact
-	 *            The factory used to instantiate this engine.
+	 *             The factory used to instantiate this engine.
 	 * @param lcd
-	 *            The local configuration datastore.
+	 *             The local configuration datastore.
 	 */
-	public SnmpEngineImpl(SnmpEngineFactory fact, SnmpLcd lcd) throws UnknownHostException {
+	public SnmpEngineImpl(SnmpEngineFactory fact, SnmpLcd lcd)
+			throws UnknownHostException {
 		init(lcd, fact);
 		initEngineID();
 		if (engineid == null)
@@ -347,8 +334,9 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 		if (SNMP_LOGGER.isLoggable(Level.FINER)) {
 			SNMP_LOGGER.logp(Level.FINER, SnmpEngineImpl.class.getName(),
 					"SnmpEngineImpl(SnmpEngineFactory,SnmpLcd)",
-					"LOCAL ENGINE ID: " + engineid + " / " + "LOCAL ENGINE NB BOOTS: " + boot
-							+ " / " + "LOCAL ENGINE START TIME: " + getEngineTime());
+					"LOCAL ENGINE ID: " + engineid + " / "
+							+ "LOCAL ENGINE NB BOOTS: " + boot + " / "
+							+ "LOCAL ENGINE START TIME: " + getEngineTime());
 		}
 	}
 
@@ -470,13 +458,15 @@ public class SnmpEngineImpl implements SnmpEngine, Serializable {
 	 * Checks the passed msg flags according to the rules specified in RFC 2572.
 	 * 
 	 * @param msgFlags
-	 *            The msg flags.
+	 *                 The msg flags.
 	 */
-	public static void checkSecurityLevel(byte msgFlags) throws SnmpBadSecurityLevelException {
+	public static void checkSecurityLevel(byte msgFlags)
+			throws SnmpBadSecurityLevelException {
 		int secLevel = msgFlags & SnmpDefinitions.authPriv;
 		if ((secLevel & SnmpDefinitions.privMask) != 0)
 			if ((secLevel & SnmpDefinitions.authMask) == 0) {
-				throw new SnmpBadSecurityLevelException("Security level:" + " noAuthPriv!!!");
+				throw new SnmpBadSecurityLevelException("Security level:"
+						+ " noAuthPriv!!!");
 			}
 	}
 

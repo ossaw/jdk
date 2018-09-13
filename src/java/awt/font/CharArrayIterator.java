@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.font;
@@ -133,9 +113,10 @@ class CharArrayIterator implements CharacterIterator {
 	 * character.
 	 * 
 	 * @param position
-	 *            the position within the text. Valid values range from
-	 *            getBeginIndex() to getEndIndex(). An IllegalArgumentException
-	 *            is thrown if an invalid value is supplied.
+	 *                 the position within the text. Valid values range from
+	 *                 getBeginIndex() to getEndIndex(). An
+	 *                 IllegalArgumentException
+	 *                 is thrown if an invalid value is supplied.
 	 * @return the character at the specified position or DONE if the specified
 	 *         position is equal to getEndIndex()
 	 */

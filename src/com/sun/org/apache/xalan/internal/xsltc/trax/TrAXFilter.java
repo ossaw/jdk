@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,7 +54,8 @@ public class TrAXFilter extends XMLFilterImpl {
 	private TransformerHandlerImpl _transformerHandler;
 	private boolean _useServicesMechanism = true;
 
-	public TrAXFilter(Templates templates) throws TransformerConfigurationException {
+	public TrAXFilter(Templates templates)
+			throws TransformerConfigurationException {
 		_templates = templates;
 		_transformer = (TransformerImpl) templates.newTransformer();
 		_transformerHandler = new TransformerHandlerImpl(_transformer);
@@ -76,7 +74,8 @@ public class TrAXFilter extends XMLFilterImpl {
 
 			if (_transformer.isSecureProcessing()) {
 				try {
-					pfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+					pfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
+							true);
 				} catch (SAXException e) {
 				}
 			}
@@ -103,8 +102,8 @@ public class TrAXFilter extends XMLFilterImpl {
 		try {
 			if (getParent() == null) {
 				try {
-					managedReader = XMLReaderManager.getInstance(_useServicesMechanism)
-							.getXMLReader();
+					managedReader = XMLReaderManager.getInstance(
+							_useServicesMechanism).getXMLReader();
 					setParent(managedReader);
 				} catch (SAXException e) {
 					throw new SAXException(e.toString());
@@ -115,7 +114,8 @@ public class TrAXFilter extends XMLFilterImpl {
 			getParent().parse(input);
 		} finally {
 			if (managedReader != null) {
-				XMLReaderManager.getInstance(_useServicesMechanism).releaseXMLReader(managedReader);
+				XMLReaderManager.getInstance(_useServicesMechanism)
+						.releaseXMLReader(managedReader);
 			}
 		}
 	}
@@ -136,6 +136,5 @@ public class TrAXFilter extends XMLFilterImpl {
 		getParent().setContentHandler(_transformerHandler);
 	}
 
-	public void setErrorListener(ErrorListener handler) {
-	}
+	public void setErrorListener(ErrorListener handler) {}
 }

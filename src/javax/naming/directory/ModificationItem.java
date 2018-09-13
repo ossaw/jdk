@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -62,30 +42,32 @@ public class ModificationItem implements java.io.Serializable {
 	 * Creates a new instance of ModificationItem.
 	 * 
 	 * @param mod_op
-	 *            Modification to apply. It must be one of:
-	 *            DirContext.ADD_ATTRIBUTE DirContext.REPLACE_ATTRIBUTE
-	 *            DirContext.REMOVE_ATTRIBUTE
+	 *               Modification to apply. It must be one of:
+	 *               DirContext.ADD_ATTRIBUTE DirContext.REPLACE_ATTRIBUTE
+	 *               DirContext.REMOVE_ATTRIBUTE
 	 * @param attr
-	 *            The non-null attribute to use for modification.
+	 *               The non-null attribute to use for modification.
 	 * @exception IllegalArgumentException
-	 *                If attr is null, or if mod_op is not one of the ones
-	 *                specified above.
+	 *                                     If attr is null, or if mod_op is not
+	 *                                     one of the ones
+	 *                                     specified above.
 	 */
 	public ModificationItem(int mod_op, Attribute attr) {
 		switch (mod_op) {
-		case DirContext.ADD_ATTRIBUTE:
-		case DirContext.REPLACE_ATTRIBUTE:
-		case DirContext.REMOVE_ATTRIBUTE:
-			if (attr == null)
-				throw new IllegalArgumentException(
-						"Must specify non-null attribute for modification");
+			case DirContext.ADD_ATTRIBUTE:
+			case DirContext.REPLACE_ATTRIBUTE:
+			case DirContext.REMOVE_ATTRIBUTE:
+				if (attr == null)
+					throw new IllegalArgumentException(
+							"Must specify non-null attribute for modification");
 
-			this.mod_op = mod_op;
-			this.attr = attr;
-			break;
+				this.mod_op = mod_op;
+				this.attr = attr;
+				break;
 
-		default:
-			throw new IllegalArgumentException("Invalid modification code " + mod_op);
+			default:
+				throw new IllegalArgumentException("Invalid modification code "
+						+ mod_op);
 		}
 	}
 
@@ -118,14 +100,14 @@ public class ModificationItem implements java.io.Serializable {
 	 */
 	public String toString() {
 		switch (mod_op) {
-		case DirContext.ADD_ATTRIBUTE:
-			return ("Add attribute: " + attr.toString());
+			case DirContext.ADD_ATTRIBUTE:
+				return ("Add attribute: " + attr.toString());
 
-		case DirContext.REPLACE_ATTRIBUTE:
-			return ("Replace attribute: " + attr.toString());
+			case DirContext.REPLACE_ATTRIBUTE:
+				return ("Replace attribute: " + attr.toString());
 
-		case DirContext.REMOVE_ATTRIBUTE:
-			return ("Remove attribute: " + attr.toString());
+			case DirContext.REMOVE_ATTRIBUTE:
+				return ("Remove attribute: " + attr.toString());
 		}
 		return ""; // should never happen
 	}

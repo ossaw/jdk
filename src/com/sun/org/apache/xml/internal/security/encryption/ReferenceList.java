@@ -50,10 +50,12 @@ public interface ReferenceList {
 	 * Adds a reference to this reference list.
 	 *
 	 * @param reference
-	 *            the reference to add.
+	 *                  the reference to add.
 	 * @throws IllegalAccessException
-	 *             if the <code>Reference</code> is not an instance of
-	 *             <code>DataReference</code> or <code>KeyReference</code>.
+	 *                                if the <code>Reference</code> is not an
+	 *                                instance of
+	 *                                <code>DataReference</code> or
+	 *                                <code>KeyReference</code>.
 	 */
 	void add(Reference reference);
 
@@ -61,7 +63,7 @@ public interface ReferenceList {
 	 * Removes a reference from the <code>ReferenceList</code>.
 	 *
 	 * @param reference
-	 *            the reference to remove.
+	 *                  the reference to remove.
 	 */
 	void remove(Reference reference);
 

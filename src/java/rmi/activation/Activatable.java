@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -80,33 +60,43 @@ public abstract class Activatable extends RemoteServer {
 	 * <code>exportObject</code>.
 	 *
 	 * @param location
-	 *            the location for classes for this object
+	 *                 the location for classes for this object
 	 * @param data
-	 *            the object's initialization data
+	 *                 the object's initialization data
 	 * @param port
-	 *            the port on which the object is exported (an anonymous port is
-	 *            used if port=0)
+	 *                 the port on which the object is exported (an anonymous
+	 *                 port is
+	 *                 used if port=0)
 	 * @param restart
-	 *            if true, the object is restarted (reactivated) when either the
-	 *            activator is restarted or the object's activation group is
-	 *            restarted after an unexpected crash; if false, the object is
-	 *            only activated on demand. Specifying <code>restart</code> to
-	 *            be <code>true</code> does not force an initial immediate
-	 *            activation of a newly registered object; initial activation is
-	 *            lazy.
+	 *                 if true, the object is restarted (reactivated) when
+	 *                 either the
+	 *                 activator is restarted or the object's activation group
+	 *                 is
+	 *                 restarted after an unexpected crash; if false, the object
+	 *                 is
+	 *                 only activated on demand. Specifying <code>restart</code>
+	 *                 to
+	 *                 be <code>true</code> does not force an initial immediate
+	 *                 activation of a newly registered object; initial
+	 *                 activation is
+	 *                 lazy.
 	 * @exception ActivationException
-	 *                if object registration fails.
+	 *                                          if object registration fails.
 	 * @exception RemoteException
-	 *                if either of the following fails: a) registering the
-	 *                object with the activation system or b) exporting the
-	 *                object to the RMI runtime.
+	 *                                          if either of the following
+	 *                                          fails: a) registering the
+	 *                                          object with the activation
+	 *                                          system or b) exporting the
+	 *                                          object to the RMI runtime.
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation.
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation.
 	 * @since 1.2
 	 **/
-	protected Activatable(String location, MarshalledObject<?> data, boolean restart, int port)
-			throws ActivationException, RemoteException {
+	protected Activatable(String location, MarshalledObject<?> data,
+			boolean restart, int port) throws ActivationException,
+			RemoteException {
 		super();
 		id = exportObject(this, location, data, restart, port);
 	}
@@ -134,39 +124,50 @@ public abstract class Activatable extends RemoteServer {
 	 * from the call to <code>exportObject</code>.
 	 *
 	 * @param location
-	 *            the location for classes for this object
+	 *                 the location for classes for this object
 	 * @param data
-	 *            the object's initialization data
+	 *                 the object's initialization data
 	 * @param restart
-	 *            if true, the object is restarted (reactivated) when either the
-	 *            activator is restarted or the object's activation group is
-	 *            restarted after an unexpected crash; if false, the object is
-	 *            only activated on demand. Specifying <code>restart</code> to
-	 *            be <code>true</code> does not force an initial immediate
-	 *            activation of a newly registered object; initial activation is
-	 *            lazy.
+	 *                 if true, the object is restarted (reactivated) when
+	 *                 either the
+	 *                 activator is restarted or the object's activation group
+	 *                 is
+	 *                 restarted after an unexpected crash; if false, the object
+	 *                 is
+	 *                 only activated on demand. Specifying <code>restart</code>
+	 *                 to
+	 *                 be <code>true</code> does not force an initial immediate
+	 *                 activation of a newly registered object; initial
+	 *                 activation is
+	 *                 lazy.
 	 * @param port
-	 *            the port on which the object is exported (an anonymous port is
-	 *            used if port=0)
+	 *                 the port on which the object is exported (an anonymous
+	 *                 port is
+	 *                 used if port=0)
 	 * @param csf
-	 *            the client-side socket factory for making calls to the remote
-	 *            object
+	 *                 the client-side socket factory for making calls to the
+	 *                 remote
+	 *                 object
 	 * @param ssf
-	 *            the server-side socket factory for receiving remote calls
+	 *                 the server-side socket factory for receiving remote calls
 	 * @exception ActivationException
-	 *                if object registration fails.
+	 *                                          if object registration fails.
 	 * @exception RemoteException
-	 *                if either of the following fails: a) registering the
-	 *                object with the activation system or b) exporting the
-	 *                object to the RMI runtime.
+	 *                                          if either of the following
+	 *                                          fails: a) registering the
+	 *                                          object with the activation
+	 *                                          system or b) exporting the
+	 *                                          object to the RMI runtime.
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation.
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation.
 	 * @since 1.2
 	 **/
-	protected Activatable(String location, MarshalledObject<?> data, boolean restart, int port,
-			RMIClientSocketFactory csf, RMIServerSocketFactory ssf)
-			throws ActivationException, RemoteException {
+	protected Activatable(String location, MarshalledObject<?> data,
+			boolean restart, int port, RMIClientSocketFactory csf,
+			RMIServerSocketFactory ssf) throws ActivationException,
+			RemoteException {
 		super();
 		id = exportObject(this, location, data, restart, port, csf, ssf);
 	}
@@ -188,14 +189,16 @@ public abstract class Activatable extends RemoteServer {
 	 * incoming calls from clients.
 	 *
 	 * @param id
-	 *            activation identifier for the object
+	 *             activation identifier for the object
 	 * @param port
-	 *            the port number on which the object is exported
+	 *             the port number on which the object is exported
 	 * @exception RemoteException
-	 *                if exporting the object to the RMI runtime fails
+	 *                                          if exporting the object to the
+	 *                                          RMI runtime fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
 	protected Activatable(ActivationID id, int port) throws RemoteException {
@@ -221,19 +224,21 @@ public abstract class Activatable extends RemoteServer {
 	 * incoming calls from clients.
 	 *
 	 * @param id
-	 *            activation identifier for the object
+	 *             activation identifier for the object
 	 * @param port
-	 *            the port number on which the object is exported
+	 *             the port number on which the object is exported
 	 * @param csf
-	 *            the client-side socket factory for making calls to the remote
-	 *            object
+	 *             the client-side socket factory for making calls to the remote
+	 *             object
 	 * @param ssf
-	 *            the server-side socket factory for receiving remote calls
+	 *             the server-side socket factory for receiving remote calls
 	 * @exception RemoteException
-	 *                if exporting the object to the RMI runtime fails
+	 *                                          if exporting the object to the
+	 *                                          RMI runtime fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
 	protected Activatable(ActivationID id, int port, RMIClientSocketFactory csf,
@@ -259,18 +264,21 @@ public abstract class Activatable extends RemoteServer {
 	 * can be activated on demand.
 	 *
 	 * @param desc
-	 *            the object's descriptor
+	 *             the object's descriptor
 	 * @return the stub for the activatable remote object
 	 * @exception UnknownGroupException
-	 *                if group id in <code>desc</code> is not registered with
-	 *                the activation system
+	 *                                          if group id in <code>desc</code>
+	 *                                          is not registered with
+	 *                                          the activation system
 	 * @exception ActivationException
-	 *                if activation system is not running
+	 *                                          if activation system is not
+	 *                                          running
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                          if remote call fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
 	public static Remote register(ActivationDesc desc)
@@ -293,25 +301,28 @@ public abstract class Activatable extends RemoteServer {
 	 * itself.
 	 *
 	 * @param id
-	 *            the object's activation identifier
+	 *           the object's activation identifier
 	 * @return true if the operation succeeds (the operation will succeed if the
 	 *         object in currently known to be active and is either already
 	 *         unexported or is currently exported and has no pending/executing
 	 *         calls); false is returned if the object has pending/executing
 	 *         calls in which case it cannot be deactivated
 	 * @exception UnknownObjectException
-	 *                if object is not known (it may already be inactive)
+	 *                                          if object is not known (it may
+	 *                                          already be inactive)
 	 * @exception ActivationException
-	 *                if group is not active
+	 *                                          if group is not active
 	 * @exception RemoteException
-	 *                if call informing monitor fails
+	 *                                          if call informing monitor fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
 	public static boolean inactive(ActivationID id)
-			throws UnknownObjectException, ActivationException, RemoteException {
+			throws UnknownObjectException, ActivationException,
+			RemoteException {
 		return ActivationGroup.currentGroup().inactiveObject(id);
 	}
 
@@ -321,20 +332,25 @@ public abstract class Activatable extends RemoteServer {
 	 * <code>id</code>.
 	 *
 	 * @param id
-	 *            the object's activation identifier
+	 *           the object's activation identifier
 	 * @exception UnknownObjectException
-	 *                if object (<code>id</code>) is unknown
+	 *                                          if object (<code>id</code>) is
+	 *                                          unknown
 	 * @exception ActivationException
-	 *                if activation system is not running
+	 *                                          if activation system is not
+	 *                                          running
 	 * @exception RemoteException
-	 *                if remote call to activation system fails
+	 *                                          if remote call to activation
+	 *                                          system fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
 	public static void unregister(ActivationID id)
-			throws UnknownObjectException, ActivationException, RemoteException {
+			throws UnknownObjectException, ActivationException,
+			RemoteException {
 		ActivationGroup.getSystem().unregisterObject(id);
 	}
 
@@ -360,36 +376,46 @@ public abstract class Activatable extends RemoteServer {
 	 * factories, and then returns the resulting activation identifier.
 	 *
 	 * @param obj
-	 *            the object being exported
+	 *                 the object being exported
 	 * @param location
-	 *            the object's code location
+	 *                 the object's code location
 	 * @param data
-	 *            the object's bootstrapping data
+	 *                 the object's bootstrapping data
 	 * @param restart
-	 *            if true, the object is restarted (reactivated) when either the
-	 *            activator is restarted or the object's activation group is
-	 *            restarted after an unexpected crash; if false, the object is
-	 *            only activated on demand. Specifying <code>restart</code> to
-	 *            be <code>true</code> does not force an initial immediate
-	 *            activation of a newly registered object; initial activation is
-	 *            lazy.
+	 *                 if true, the object is restarted (reactivated) when
+	 *                 either the
+	 *                 activator is restarted or the object's activation group
+	 *                 is
+	 *                 restarted after an unexpected crash; if false, the object
+	 *                 is
+	 *                 only activated on demand. Specifying <code>restart</code>
+	 *                 to
+	 *                 be <code>true</code> does not force an initial immediate
+	 *                 activation of a newly registered object; initial
+	 *                 activation is
+	 *                 lazy.
 	 * @param port
-	 *            the port on which the object is exported (an anonymous port is
-	 *            used if port=0)
+	 *                 the port on which the object is exported (an anonymous
+	 *                 port is
+	 *                 used if port=0)
 	 * @return the activation identifier obtained from registering the
 	 *         descriptor, <code>desc</code>, with the activation system the
 	 *         wrong group
 	 * @exception ActivationException
-	 *                if activation group is not active
+	 *                                          if activation group is not
+	 *                                          active
 	 * @exception RemoteException
-	 *                if object registration or export fails
+	 *                                          if object registration or export
+	 *                                          fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 **/
-	public static ActivationID exportObject(Remote obj, String location, MarshalledObject<?> data,
-			boolean restart, int port) throws ActivationException, RemoteException {
+	public static ActivationID exportObject(Remote obj, String location,
+			MarshalledObject<?> data, boolean restart, int port)
+			throws ActivationException, RemoteException {
 		return exportObject(obj, location, data, restart, port, null, null);
 	}
 
@@ -439,42 +465,54 @@ public abstract class Activatable extends RemoteServer {
 	 * activation identifier to the caller.
 	 *
 	 * @param obj
-	 *            the object being exported
+	 *                 the object being exported
 	 * @param location
-	 *            the object's code location
+	 *                 the object's code location
 	 * @param data
-	 *            the object's bootstrapping data
+	 *                 the object's bootstrapping data
 	 * @param restart
-	 *            if true, the object is restarted (reactivated) when either the
-	 *            activator is restarted or the object's activation group is
-	 *            restarted after an unexpected crash; if false, the object is
-	 *            only activated on demand. Specifying <code>restart</code> to
-	 *            be <code>true</code> does not force an initial immediate
-	 *            activation of a newly registered object; initial activation is
-	 *            lazy.
+	 *                 if true, the object is restarted (reactivated) when
+	 *                 either the
+	 *                 activator is restarted or the object's activation group
+	 *                 is
+	 *                 restarted after an unexpected crash; if false, the object
+	 *                 is
+	 *                 only activated on demand. Specifying <code>restart</code>
+	 *                 to
+	 *                 be <code>true</code> does not force an initial immediate
+	 *                 activation of a newly registered object; initial
+	 *                 activation is
+	 *                 lazy.
 	 * @param port
-	 *            the port on which the object is exported (an anonymous port is
-	 *            used if port=0)
+	 *                 the port on which the object is exported (an anonymous
+	 *                 port is
+	 *                 used if port=0)
 	 * @param csf
-	 *            the client-side socket factory for making calls to the remote
-	 *            object
+	 *                 the client-side socket factory for making calls to the
+	 *                 remote
+	 *                 object
 	 * @param ssf
-	 *            the server-side socket factory for receiving remote calls
+	 *                 the server-side socket factory for receiving remote calls
 	 * @return the activation identifier obtained from registering the
 	 *         descriptor with the activation system
 	 * @exception ActivationException
-	 *                if activation group is not active
+	 *                                          if activation group is not
+	 *                                          active
 	 * @exception RemoteException
-	 *                if object registration or export fails
+	 *                                          if object registration or export
+	 *                                          fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 **/
-	public static ActivationID exportObject(Remote obj, String location, MarshalledObject<?> data,
-			boolean restart, int port, RMIClientSocketFactory csf, RMIServerSocketFactory ssf)
+	public static ActivationID exportObject(Remote obj, String location,
+			MarshalledObject<?> data, boolean restart, int port,
+			RMIClientSocketFactory csf, RMIServerSocketFactory ssf)
 			throws ActivationException, RemoteException {
-		ActivationDesc desc = new ActivationDesc(obj.getClass().getName(), location, data, restart);
+		ActivationDesc desc = new ActivationDesc(obj.getClass().getName(),
+				location, data, restart);
 		/*
 		 * Register descriptor.
 		 */
@@ -525,17 +563,19 @@ public abstract class Activatable extends RemoteServer {
 	 *
 	 * @return the stub for the activatable remote object
 	 * @param obj
-	 *            the remote object implementation
+	 *             the remote object implementation
 	 * @param id
-	 *            the object's activation identifier
+	 *             the object's activation identifier
 	 * @param port
-	 *            the port on which the object is exported (an anonymous port is
-	 *            used if port=0)
+	 *             the port on which the object is exported (an anonymous port
+	 *             is
+	 *             used if port=0)
 	 * @exception RemoteException
-	 *                if object export fails
+	 *                                          if object export fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
 	public static Remote exportObject(Remote obj, ActivationID id, int port)
@@ -557,26 +597,29 @@ public abstract class Activatable extends RemoteServer {
 	 *
 	 * @return the stub for the activatable remote object
 	 * @param obj
-	 *            the remote object implementation
+	 *             the remote object implementation
 	 * @param id
-	 *            the object's activation identifier
+	 *             the object's activation identifier
 	 * @param port
-	 *            the port on which the object is exported (an anonymous port is
-	 *            used if port=0)
+	 *             the port on which the object is exported (an anonymous port
+	 *             is
+	 *             used if port=0)
 	 * @param csf
-	 *            the client-side socket factory for making calls to the remote
-	 *            object
+	 *             the client-side socket factory for making calls to the remote
+	 *             object
 	 * @param ssf
-	 *            the server-side socket factory for receiving remote calls
+	 *             the server-side socket factory for receiving remote calls
 	 * @exception RemoteException
-	 *                if object export fails
+	 *                                          if object export fails
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
 	public static Remote exportObject(Remote obj, ActivationID id, int port,
-			RMIClientSocketFactory csf, RMIServerSocketFactory ssf) throws RemoteException {
+			RMIClientSocketFactory csf, RMIServerSocketFactory ssf)
+			throws RemoteException {
 		return exportObject(obj, new ActivatableServerRef(id, port, csf, ssf));
 	}
 
@@ -589,20 +632,23 @@ public abstract class Activatable extends RemoteServer {
 	 * no pending or in progress calls to the object.
 	 *
 	 * @param obj
-	 *            the remote object to be unexported
+	 *              the remote object to be unexported
 	 * @param force
-	 *            if true, unexports the object even if there are pending or
-	 *            in-progress calls; if false, only unexports the object if
-	 *            there are no pending or in-progress calls
+	 *              if true, unexports the object even if there are pending or
+	 *              in-progress calls; if false, only unexports the object if
+	 *              there are no pending or in-progress calls
 	 * @return true if operation is successful, false otherwise
 	 * @exception NoSuchObjectException
-	 *                if the remote object is not currently exported
+	 *                                          if the remote object is not
+	 *                                          currently exported
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @since 1.2
 	 */
-	public static boolean unexportObject(Remote obj, boolean force) throws NoSuchObjectException {
+	public static boolean unexportObject(Remote obj, boolean force)
+			throws NoSuchObjectException {
 		return sun.rmi.transport.ObjectTable.unexportObject(obj, force);
 	}
 

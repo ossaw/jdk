@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -35,5 +15,4 @@ package com.sun.jmx.snmp.internal;
  * 
  * @since 1.5
  */
-public interface SnmpSecurityCache {
-}
+public interface SnmpSecurityCache {}

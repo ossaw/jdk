@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -155,7 +135,7 @@ public class BufferedInputStream extends FilterInputStream {
 	 * created and stored in <code>buf</code>.
 	 *
 	 * @param in
-	 *            the underlying input stream.
+	 *           the underlying input stream.
 	 */
 	public BufferedInputStream(InputStream in) {
 		this(in, DEFAULT_BUFFER_SIZE);
@@ -168,11 +148,11 @@ public class BufferedInputStream extends FilterInputStream {
 	 * stored in <code>buf</code>.
 	 *
 	 * @param in
-	 *            the underlying input stream.
+	 *             the underlying input stream.
 	 * @param size
-	 *            the buffer size.
+	 *             the buffer size.
 	 * @exception IllegalArgumentException
-	 *                if {@code size <= 0}.
+	 *                                     if {@code size <= 0}.
 	 */
 	public BufferedInputStream(InputStream in, int size) {
 		super(in);
@@ -204,7 +184,8 @@ public class BufferedInputStream extends FilterInputStream {
 			} else if (buffer.length >= MAX_BUFFER_SIZE) {
 				throw new OutOfMemoryError("Required array size too large");
 			} else { /* grow buffer */
-				int nsz = (pos <= MAX_BUFFER_SIZE - pos) ? pos * 2 : MAX_BUFFER_SIZE;
+				int nsz = (pos <= MAX_BUFFER_SIZE - pos) ? pos * 2
+						: MAX_BUFFER_SIZE;
 				if (nsz > marklimit)
 					nsz = marklimit;
 				byte nbuf[] = new byte[nsz];
@@ -232,8 +213,9 @@ public class BufferedInputStream extends FilterInputStream {
 	 * @return the next byte of data, or <code>-1</code> if the end of the
 	 *         stream is reached.
 	 * @exception IOException
-	 *                if this input stream has been closed by invoking its
-	 *                {@link #close()} method, or an I/O error occurs.
+	 *                        if this input stream has been closed by invoking
+	 *                        its
+	 *                        {@link #close()} method, or an I/O error occurs.
 	 * @see java.io.FilterInputStream#in
 	 */
 	public synchronized int read() throws IOException {
@@ -313,10 +295,12 @@ public class BufferedInputStream extends FilterInputStream {
 	 * @return the number of bytes read, or <code>-1</code> if the end of the
 	 *         stream has been reached.
 	 * @exception IOException
-	 *                if this input stream has been closed by invoking its
-	 *                {@link #close()} method, or an I/O error occurs.
+	 *                        if this input stream has been closed by invoking
+	 *                        its
+	 *                        {@link #close()} method, or an I/O error occurs.
 	 */
-	public synchronized int read(byte b[], int off, int len) throws IOException {
+	public synchronized int read(byte b[], int off, int len)
+			throws IOException {
 		getBufIfOpen(); // Check for closed stream
 		if ((off | len | (off + len) | (b.length - (off + len))) < 0) {
 			throw new IndexOutOfBoundsException();
@@ -344,9 +328,11 @@ public class BufferedInputStream extends FilterInputStream {
 	 * <code>InputStream</code>.
 	 *
 	 * @exception IOException
-	 *                if the stream does not support seek, or if this input
-	 *                stream has been closed by invoking its {@link #close()}
-	 *                method, or an I/O error occurs.
+	 *                        if the stream does not support seek, or if this
+	 *                        input
+	 *                        stream has been closed by invoking its
+	 *                        {@link #close()}
+	 *                        method, or an I/O error occurs.
 	 */
 	public synchronized long skip(long n) throws IOException {
 		getBufIfOpen(); // Check for closed stream
@@ -386,8 +372,9 @@ public class BufferedInputStream extends FilterInputStream {
 	 * @return an estimate of the number of bytes that can be read (or skipped
 	 *         over) from this input stream without blocking.
 	 * @exception IOException
-	 *                if this input stream has been closed by invoking its
-	 *                {@link #close()} method, or an I/O error occurs.
+	 *                        if this input stream has been closed by invoking
+	 *                        its
+	 *                        {@link #close()} method, or an I/O error occurs.
 	 */
 	public synchronized int available() throws IOException {
 		int n = count - pos;
@@ -400,8 +387,9 @@ public class BufferedInputStream extends FilterInputStream {
 	 * <code>InputStream</code>.
 	 *
 	 * @param readlimit
-	 *            the maximum limit of bytes that can be read before the mark
-	 *            position becomes invalid.
+	 *                  the maximum limit of bytes that can be read before the
+	 *                  mark
+	 *                  position becomes invalid.
 	 * @see java.io.BufferedInputStream#reset()
 	 */
 	public synchronized void mark(int readlimit) {
@@ -418,10 +406,12 @@ public class BufferedInputStream extends FilterInputStream {
 	 * Otherwise, <code>pos</code> is set equal to <code>markpos</code>.
 	 *
 	 * @exception IOException
-	 *                if this stream has not been marked or, if the mark has
-	 *                been invalidated, or the stream has been closed by
-	 *                invoking its {@link #close()} method, or an I/O error
-	 *                occurs.
+	 *                        if this stream has not been marked or, if the mark
+	 *                        has
+	 *                        been invalidated, or the stream has been closed by
+	 *                        invoking its {@link #close()} method, or an I/O
+	 *                        error
+	 *                        occurs.
 	 * @see java.io.BufferedInputStream#mark(int)
 	 */
 	public synchronized void reset() throws IOException {
@@ -452,7 +442,7 @@ public class BufferedInputStream extends FilterInputStream {
 	 * Closing a previously closed stream has no effect.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public void close() throws IOException {
 		byte[] buffer;

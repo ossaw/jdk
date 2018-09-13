@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -160,8 +140,8 @@ import java.util.function.Supplier;
  * <pre>
  * {
  * 	&#64;code
- * 	Collector<Widget, ?, TreeSet<Widget>> intoSet = Collector.of(TreeSet::new, TreeSet::add,
- * 			(left, right) -> {
+ * 	Collector<Widget, ?, TreeSet<Widget>> intoSet = Collector.of(
+ * 			TreeSet::new, TreeSet::add, (left, right) -> {
  * 				left.addAll(right);
  * 				return left;
  * 			});
@@ -219,12 +199,12 @@ import java.util.function.Supplier;
  * @see Collectors
  *
  * @param <T>
- *            the type of input elements to the reduction operation
+ *        the type of input elements to the reduction operation
  * @param <A>
- *            the mutable accumulation type of the reduction operation (often
- *            hidden as an implementation detail)
+ *        the mutable accumulation type of the reduction operation (often
+ *        hidden as an implementation detail)
  * @param <R>
- *            the result type of the reduction operation
+ *        the result type of the reduction operation
  * @since 1.8
  */
 public interface Collector<T, A, R> {
@@ -281,32 +261,38 @@ public interface Collector<T, A, R> {
 	 * {@code Collector.Characteristics.IDENTITY_FINISH} characteristic.
 	 *
 	 * @param supplier
-	 *            The supplier function for the new collector
+	 *                        The supplier function for the new collector
 	 * @param accumulator
-	 *            The accumulator function for the new collector
+	 *                        The accumulator function for the new collector
 	 * @param combiner
-	 *            The combiner function for the new collector
+	 *                        The combiner function for the new collector
 	 * @param characteristics
-	 *            The collector characteristics for the new collector
-	 * @param <T>
-	 *            The type of input elements for the new collector
-	 * @param <R>
-	 *            The type of intermediate accumulation result, and final
-	 *            result, for the new collector
+	 *                        The collector characteristics for the new
+	 *                        collector
+	 * @param                 <T>
+	 *                        The type of input elements for the new collector
+	 * @param                 <R>
+	 *                        The type of intermediate accumulation result, and
+	 *                        final
+	 *                        result, for the new collector
 	 * @throws NullPointerException
-	 *             if any argument is null
+	 *                              if any argument is null
 	 * @return the new {@code Collector}
 	 */
-	public static <T, R> Collector<T, R, R> of(Supplier<R> supplier, BiConsumer<R, T> accumulator,
-			BinaryOperator<R> combiner, Characteristics... characteristics) {
+	public static <T, R> Collector<T, R, R> of(Supplier<R> supplier,
+			BiConsumer<R, T> accumulator, BinaryOperator<R> combiner,
+			Characteristics... characteristics) {
 		Objects.requireNonNull(supplier);
 		Objects.requireNonNull(accumulator);
 		Objects.requireNonNull(combiner);
 		Objects.requireNonNull(characteristics);
-		Set<Characteristics> cs = (characteristics.length == 0) ? Collectors.CH_ID
-				: Collections.unmodifiableSet(
-						EnumSet.of(Collector.Characteristics.IDENTITY_FINISH, characteristics));
-		return new Collectors.CollectorImpl<>(supplier, accumulator, combiner, cs);
+		Set<Characteristics> cs = (characteristics.length == 0)
+				? Collectors.CH_ID
+				: Collections.unmodifiableSet(EnumSet.of(
+						Collector.Characteristics.IDENTITY_FINISH,
+						characteristics));
+		return new Collectors.CollectorImpl<>(supplier, accumulator, combiner,
+				cs);
 	}
 
 	/**
@@ -314,28 +300,30 @@ public interface Collector<T, A, R> {
 	 * {@code accumulator}, {@code combiner}, and {@code finisher} functions.
 	 *
 	 * @param supplier
-	 *            The supplier function for the new collector
+	 *                        The supplier function for the new collector
 	 * @param accumulator
-	 *            The accumulator function for the new collector
+	 *                        The accumulator function for the new collector
 	 * @param combiner
-	 *            The combiner function for the new collector
+	 *                        The combiner function for the new collector
 	 * @param finisher
-	 *            The finisher function for the new collector
+	 *                        The finisher function for the new collector
 	 * @param characteristics
-	 *            The collector characteristics for the new collector
-	 * @param <T>
-	 *            The type of input elements for the new collector
-	 * @param <A>
-	 *            The intermediate accumulation type of the new collector
-	 * @param <R>
-	 *            The final result type of the new collector
+	 *                        The collector characteristics for the new
+	 *                        collector
+	 * @param                 <T>
+	 *                        The type of input elements for the new collector
+	 * @param                 <A>
+	 *                        The intermediate accumulation type of the new
+	 *                        collector
+	 * @param                 <R>
+	 *                        The final result type of the new collector
 	 * @throws NullPointerException
-	 *             if any argument is null
+	 *                              if any argument is null
 	 * @return the new {@code Collector}
 	 */
 	public static <T, A, R> Collector<T, A, R> of(Supplier<A> supplier,
-			BiConsumer<A, T> accumulator, BinaryOperator<A> combiner, Function<A, R> finisher,
-			Characteristics... characteristics) {
+			BiConsumer<A, T> accumulator, BinaryOperator<A> combiner,
+			Function<A, R> finisher, Characteristics... characteristics) {
 		Objects.requireNonNull(supplier);
 		Objects.requireNonNull(accumulator);
 		Objects.requireNonNull(combiner);
@@ -347,7 +335,8 @@ public interface Collector<T, A, R> {
 			Collections.addAll(cs, characteristics);
 			cs = Collections.unmodifiableSet(cs);
 		}
-		return new Collectors.CollectorImpl<>(supplier, accumulator, combiner, finisher, cs);
+		return new Collectors.CollectorImpl<>(supplier, accumulator, combiner,
+				finisher, cs);
 	}
 
 	/**

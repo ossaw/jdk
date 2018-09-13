@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -77,26 +52,26 @@ public class DoubleAdder extends Striped64 implements Serializable {
 	/**
 	 * Creates a new adder with initial sum of zero.
 	 */
-	public DoubleAdder() {
-	}
+	public DoubleAdder() {}
 
 	/**
 	 * Adds the given value.
 	 *
 	 * @param x
-	 *            the value to add
+	 *          the value to add
 	 */
 	public void add(double x) {
 		Cell[] as;
 		long b, v;
 		int m;
 		Cell a;
-		if ((as = cells) != null
-				|| !casBase(b = base, Double.doubleToRawLongBits(Double.longBitsToDouble(b) + x))) {
+		if ((as = cells) != null || !casBase(b = base, Double
+				.doubleToRawLongBits(Double.longBitsToDouble(b) + x))) {
 			boolean uncontended = true;
-			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe() & m]) == null
-					|| !(uncontended = a.cas(v = a.value,
-							Double.doubleToRawLongBits(Double.longBitsToDouble(v) + x))))
+			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe()
+					& m]) == null || !(uncontended = a.cas(v = a.value, Double
+							.doubleToRawLongBits(Double.longBitsToDouble(v)
+									+ x))))
 				doubleAccumulate(x, null, uncontended);
 		}
 	}
@@ -260,11 +235,12 @@ public class DoubleAdder extends Striped64 implements Serializable {
 
 	/**
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws java.io.InvalidObjectException
-	 *             always
+	 *         always
 	 */
-	private void readObject(java.io.ObjectInputStream s) throws java.io.InvalidObjectException {
+	private void readObject(java.io.ObjectInputStream s)
+			throws java.io.InvalidObjectException {
 		throw new java.io.InvalidObjectException("Proxy required");
 	}
 

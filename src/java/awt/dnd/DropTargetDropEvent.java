@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -86,38 +66,42 @@ public class DropTargetDropEvent extends DropTargetEvent {
 	 * <P>
 	 * 
 	 * @param dtc
-	 *            The <code>DropTargetContext</code> for this operation
+	 *                   The <code>DropTargetContext</code> for this operation
 	 * @param cursorLocn
-	 *            The location of the "Drag" Cursor's hotspot in
-	 *            <code>Component</code> coordinates
+	 *                   The location of the "Drag" Cursor's hotspot in
+	 *                   <code>Component</code> coordinates
 	 * @param dropAction
-	 *            the user drop action.
+	 *                   the user drop action.
 	 * @param srcActions
-	 *            the source drop actions.
+	 *                   the source drop actions.
 	 *
 	 * @throws NullPointerException
-	 *             if cursorLocn is <code>null</code>
+	 *                                  if cursorLocn is <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if dropAction is not one of <code>DnDConstants</code>.
+	 *                                  if dropAction is not one of
+	 *                                  <code>DnDConstants</code>.
 	 * @throws IllegalArgumentException
-	 *             if srcActions is not a bitwise mask of
-	 *             <code>DnDConstants</code>.
+	 *                                  if srcActions is not a bitwise mask of
+	 *                                  <code>DnDConstants</code>.
 	 * @throws IllegalArgumentException
-	 *             if dtc is <code>null</code>.
+	 *                                  if dtc is <code>null</code>.
 	 */
 
-	public DropTargetDropEvent(DropTargetContext dtc, Point cursorLocn, int dropAction,
-			int srcActions) {
+	public DropTargetDropEvent(DropTargetContext dtc, Point cursorLocn,
+			int dropAction, int srcActions) {
 		super(dtc);
 
 		if (cursorLocn == null)
 			throw new NullPointerException("cursorLocn");
 
-		if (dropAction != DnDConstants.ACTION_NONE && dropAction != DnDConstants.ACTION_COPY
-				&& dropAction != DnDConstants.ACTION_MOVE && dropAction != DnDConstants.ACTION_LINK)
+		if (dropAction != DnDConstants.ACTION_NONE
+				&& dropAction != DnDConstants.ACTION_COPY
+				&& dropAction != DnDConstants.ACTION_MOVE
+				&& dropAction != DnDConstants.ACTION_LINK)
 			throw new IllegalArgumentException("dropAction = " + dropAction);
 
-		if ((srcActions & ~(DnDConstants.ACTION_COPY_OR_MOVE | DnDConstants.ACTION_LINK)) != 0)
+		if ((srcActions & ~(DnDConstants.ACTION_COPY_OR_MOVE
+				| DnDConstants.ACTION_LINK)) != 0)
 			throw new IllegalArgumentException("srcActions");
 
 		location = cursorLocn;
@@ -135,30 +119,32 @@ public class DropTargetDropEvent extends DropTargetEvent {
 	 * <P>
 	 * 
 	 * @param dtc
-	 *            The DropTargetContext for this operation
+	 *                   The DropTargetContext for this operation
 	 * @param cursorLocn
-	 *            The location of the "Drag" Cursor's hotspot in Component's
-	 *            coordinates
+	 *                   The location of the "Drag" Cursor's hotspot in
+	 *                   Component's
+	 *                   coordinates
 	 * @param dropAction
-	 *            the user drop action.
+	 *                   the user drop action.
 	 * @param srcActions
-	 *            the source drop actions.
+	 *                   the source drop actions.
 	 * @param isLocal
-	 *            True if the source is in the same JVM as the target
+	 *                   True if the source is in the same JVM as the target
 	 *
 	 * @throws NullPointerException
-	 *             if cursorLocn is <code>null</code>
+	 *                                  if cursorLocn is <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if dropAction is not one of <code>DnDConstants</code>.
+	 *                                  if dropAction is not one of
+	 *                                  <code>DnDConstants</code>.
 	 * @throws IllegalArgumentException
-	 *             if srcActions is not a bitwise mask of
-	 *             <code>DnDConstants</code>.
+	 *                                  if srcActions is not a bitwise mask of
+	 *                                  <code>DnDConstants</code>.
 	 * @throws IllegalArgumentException
-	 *             if dtc is <code>null</code>.
+	 *                                  if dtc is <code>null</code>.
 	 */
 
-	public DropTargetDropEvent(DropTargetContext dtc, Point cursorLocn, int dropAction,
-			int srcActions, boolean isLocal) {
+	public DropTargetDropEvent(DropTargetContext dtc, Point cursorLocn,
+			int dropAction, int srcActions, boolean isLocal) {
 		this(dtc, cursorLocn, dropAction, srcActions);
 
 		isLocalTx = isLocal;
@@ -206,8 +192,8 @@ public class DropTargetDropEvent extends DropTargetEvent {
 	 * <P>
 	 * 
 	 * @param df
-	 *            the <code>DataFlavor</code> to test
-	 *            <P>
+	 *           the <code>DataFlavor</code> to test
+	 *           <P>
 	 * @return if the DataFlavor specified is available from the source
 	 */
 
@@ -250,7 +236,7 @@ public class DropTargetDropEvent extends DropTargetEvent {
 	 * <P>
 	 * 
 	 * @param dropAction
-	 *            the specified action
+	 *                   the specified action
 	 */
 
 	public void acceptDrop(int dropAction) {
@@ -271,8 +257,9 @@ public class DropTargetDropEvent extends DropTargetEvent {
 	 * <P>
 	 * 
 	 * @param success
-	 *            a <code>boolean</code> indicating that the drop transfer(s)
-	 *            are completed.
+	 *                a <code>boolean</code> indicating that the drop
+	 *                transfer(s)
+	 *                are completed.
 	 */
 
 	public void dropComplete(boolean success) {

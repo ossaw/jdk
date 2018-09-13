@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -142,11 +117,12 @@ public interface Executor {
 	 * the discretion of the {@code Executor} implementation.
 	 *
 	 * @param command
-	 *            the runnable task
+	 *                the runnable task
 	 * @throws RejectedExecutionException
-	 *             if this task cannot be accepted for execution
+	 *                                    if this task cannot be accepted for
+	 *                                    execution
 	 * @throws NullPointerException
-	 *             if command is null
+	 *                                    if command is null
 	 */
 	void execute(Runnable command);
 }

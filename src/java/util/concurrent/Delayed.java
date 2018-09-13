@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -53,7 +28,7 @@ public interface Delayed extends Comparable<Delayed> {
 	 * time unit.
 	 *
 	 * @param unit
-	 *            the time unit
+	 *             the time unit
 	 * @return the remaining delay; zero or negative values indicate that the
 	 *         delay has already elapsed
 	 */

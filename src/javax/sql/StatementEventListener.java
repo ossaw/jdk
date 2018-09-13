@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -65,8 +45,8 @@ public interface StatementEventListener extends java.util.EventListener {
 	 * <code>PreparedStatement</code> is closed.
 	 *
 	 * @param event
-	 *            an event object describing the source of the event and that
-	 *            the <code>PreparedStatement</code> was closed.
+	 *              an event object describing the source of the event and that
+	 *              the <code>PreparedStatement</code> was closed.
 	 * @since 1.6
 	 */
 	void statementClosed(StatementEvent event);
@@ -80,12 +60,12 @@ public interface StatementEventListener extends java.util.EventListener {
 	 * <p>
 	 * 
 	 * @param event
-	 *            an event object describing the source of the event, the
-	 *            statement that is invalid and the exception the driver is
-	 *            about to throw. The source of the event is the
-	 *            <code>PooledConnection</code> which the invalid
-	 *            <code>PreparedStatement</code> is associated with.
-	 *            <p>
+	 *              an event object describing the source of the event, the
+	 *              statement that is invalid and the exception the driver is
+	 *              about to throw. The source of the event is the
+	 *              <code>PooledConnection</code> which the invalid
+	 *              <code>PreparedStatement</code> is associated with.
+	 *              <p>
 	 * @since 1.6
 	 */
 	void statementErrorOccurred(StatementEvent event);

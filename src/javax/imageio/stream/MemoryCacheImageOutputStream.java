@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -49,10 +29,11 @@ public class MemoryCacheImageOutputStream extends ImageOutputStreamImpl {
 	 * a given <code>OutputStream</code>.
 	 *
 	 * @param stream
-	 *            an <code>OutputStream</code> to write to.
+	 *               an <code>OutputStream</code> to write to.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>stream</code> is <code>null</code>.
+	 *                                     if <code>stream</code> is
+	 *                                     <code>null</code>.
 	 */
 	public MemoryCacheImageOutputStream(OutputStream stream) {
 		if (stream == null) {

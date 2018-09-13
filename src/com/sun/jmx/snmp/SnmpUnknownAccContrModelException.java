@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp;
 
@@ -37,7 +17,8 @@ import com.sun.jmx.snmp.SnmpUnknownModelException;
  * 
  * @since 1.5
  */
-public class SnmpUnknownAccContrModelException extends SnmpUnknownModelException {
+public class SnmpUnknownAccContrModelException extends
+		SnmpUnknownModelException {
 	private static final long serialVersionUID = -8831186713954487538L;
 
 	/**

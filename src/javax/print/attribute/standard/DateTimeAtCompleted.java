@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -51,7 +31,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class DateTimeAtCompleted extends DateTimeSyntax implements PrintJobAttribute {
+public final class DateTimeAtCompleted extends DateTimeSyntax implements
+		PrintJobAttribute {
 
 	private static final long serialVersionUID = 6497399708058490000L;
 
@@ -60,11 +41,12 @@ public final class DateTimeAtCompleted extends DateTimeSyntax implements PrintJo
 	 * {@link java.util.Date Date} value.
 	 *
 	 * @param dateTime
-	 *            {@link java.util.Date Date} value.
+	 *                 {@link java.util.Date Date} value.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>dateTime</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>dateTime</CODE> is
+	 *                                 null.
 	 */
 	public DateTimeAtCompleted(Date dateTime) {
 		super(dateTime);
@@ -83,7 +65,7 @@ public final class DateTimeAtCompleted extends DateTimeSyntax implements PrintJo
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this date-time at
 	 *         completed attribute, false otherwise.

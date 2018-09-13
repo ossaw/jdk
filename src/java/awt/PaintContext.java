@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -64,15 +44,15 @@ public interface PaintContext {
 	 * graphics operation.
 	 * 
 	 * @param x
-	 *            the x coordinate of the area in device space for which colors
-	 *            are generated.
+	 *          the x coordinate of the area in device space for which colors
+	 *          are generated.
 	 * @param y
-	 *            the y coordinate of the area in device space for which colors
-	 *            are generated.
+	 *          the y coordinate of the area in device space for which colors
+	 *          are generated.
 	 * @param w
-	 *            the width of the area in device space
+	 *          the width of the area in device space
 	 * @param h
-	 *            the height of the area in device space
+	 *          the height of the area in device space
 	 * @return a <code>Raster</code> representing the specified rectangular area
 	 *         and containing the colors generated for the graphics operation.
 	 */

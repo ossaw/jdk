@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2007-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -121,8 +90,8 @@ import java.util.Objects;
  *
  * @since 1.8
  */
-public final class LocalTime
-		implements Temporal, TemporalAdjuster, Comparable<LocalTime>, Serializable {
+public final class LocalTime implements Temporal, TemporalAdjuster,
+		Comparable<LocalTime>, Serializable {
 
 	/**
 	 * The minimum supported {@code LocalTime}, '00:00'. This is the time of
@@ -256,7 +225,7 @@ public final class LocalTime
 	 * testing because the clock is hard-coded.
 	 *
 	 * @param zone
-	 *            the zone ID to use, not null
+	 *             the zone ID to use, not null
 	 * @return the current time using the system clock, not null
 	 */
 	public static LocalTime now(ZoneId zone) {
@@ -272,7 +241,7 @@ public final class LocalTime
 	 * injection}.
 	 *
 	 * @param clock
-	 *            the clock to use, not null
+	 *              the clock to use, not null
 	 * @return the current time, not null
 	 */
 	public static LocalTime now(Clock clock) {
@@ -296,12 +265,12 @@ public final class LocalTime
 	 * second and nanosecond fields will be set to zero.
 	 *
 	 * @param hour
-	 *            the hour-of-day to represent, from 0 to 23
+	 *               the hour-of-day to represent, from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to represent, from 0 to 59
+	 *               the minute-of-hour to represent, from 0 to 59
 	 * @return the local time, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
 	public static LocalTime of(int hour, int minute) {
 		HOUR_OF_DAY.checkValidValue(hour);
@@ -319,14 +288,14 @@ public final class LocalTime
 	 * second. The nanosecond field will be set to zero.
 	 *
 	 * @param hour
-	 *            the hour-of-day to represent, from 0 to 23
+	 *               the hour-of-day to represent, from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to represent, from 0 to 59
+	 *               the minute-of-hour to represent, from 0 to 59
 	 * @param second
-	 *            the second-of-minute to represent, from 0 to 59
+	 *               the second-of-minute to represent, from 0 to 59
 	 * @return the local time, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
 	public static LocalTime of(int hour, int minute, int second) {
 		HOUR_OF_DAY.checkValidValue(hour);
@@ -346,18 +315,20 @@ public final class LocalTime
 	 * and nanosecond.
 	 *
 	 * @param hour
-	 *            the hour-of-day to represent, from 0 to 23
+	 *                     the hour-of-day to represent, from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to represent, from 0 to 59
+	 *                     the minute-of-hour to represent, from 0 to 59
 	 * @param second
-	 *            the second-of-minute to represent, from 0 to 59
+	 *                     the second-of-minute to represent, from 0 to 59
 	 * @param nanoOfSecond
-	 *            the nano-of-second to represent, from 0 to 999,999,999
+	 *                     the nano-of-second to represent, from 0 to
+	 *                     999,999,999
 	 * @return the local time, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
-	public static LocalTime of(int hour, int minute, int second, int nanoOfSecond) {
+	public static LocalTime of(int hour, int minute, int second,
+			int nanoOfSecond) {
 		HOUR_OF_DAY.checkValidValue(hour);
 		MINUTE_OF_HOUR.checkValidValue(minute);
 		SECOND_OF_MINUTE.checkValidValue(second);
@@ -373,10 +344,11 @@ public final class LocalTime
 	 * nanosecond field will be set to zero.
 	 *
 	 * @param secondOfDay
-	 *            the second-of-day, from {@code 0} to {@code 24 * 60 * 60 - 1}
+	 *                    the second-of-day, from {@code 0} to
+	 *                    {@code 24 * 60 * 60 - 1}
 	 * @return the local time, not null
 	 * @throws DateTimeException
-	 *             if the second-of-day value is invalid
+	 *                           if the second-of-day value is invalid
 	 */
 	public static LocalTime ofSecondOfDay(long secondOfDay) {
 		SECOND_OF_DAY.checkValidValue(secondOfDay);
@@ -393,11 +365,11 @@ public final class LocalTime
 	 * This returns a {@code LocalTime} with the specified nanosecond-of-day.
 	 *
 	 * @param nanoOfDay
-	 *            the nano of day, from {@code 0} to
-	 *            {@code 24 * 60 * 60 * 1,000,000,000 - 1}
+	 *                  the nano of day, from {@code 0} to
+	 *                  {@code 24 * 60 * 60 * 1,000,000,000 - 1}
 	 * @return the local time, not null
 	 * @throws DateTimeException
-	 *             if the nanos of day value is invalid
+	 *                           if the nanos of day value is invalid
 	 */
 	public static LocalTime ofNanoOfDay(long nanoOfDay) {
 		NANO_OF_DAY.checkValidValue(nanoOfDay);
@@ -428,17 +400,19 @@ public final class LocalTime
 	 * reference, {@code LocalTime::from}.
 	 *
 	 * @param temporal
-	 *            the temporal object to convert, not null
+	 *                 the temporal object to convert, not null
 	 * @return the local time, not null
 	 * @throws DateTimeException
-	 *             if unable to convert to a {@code LocalTime}
+	 *                           if unable to convert to a {@code LocalTime}
 	 */
 	public static LocalTime from(TemporalAccessor temporal) {
 		Objects.requireNonNull(temporal, "temporal");
 		LocalTime time = temporal.query(TemporalQueries.localTime());
 		if (time == null) {
-			throw new DateTimeException("Unable to obtain LocalTime from TemporalAccessor: "
-					+ temporal + " of type " + temporal.getClass().getName());
+			throw new DateTimeException(
+					"Unable to obtain LocalTime from TemporalAccessor: "
+							+ temporal + " of type " + temporal.getClass()
+									.getName());
 		}
 		return time;
 	}
@@ -452,10 +426,10 @@ public final class LocalTime
 	 * {@link java.time.format.DateTimeFormatter#ISO_LOCAL_TIME}.
 	 *
 	 * @param text
-	 *            the text to parse such as "10:15:30", not null
+	 *             the text to parse such as "10:15:30", not null
 	 * @return the parsed local time, not null
 	 * @throws DateTimeParseException
-	 *             if the text cannot be parsed
+	 *                                if the text cannot be parsed
 	 */
 	public static LocalTime parse(CharSequence text) {
 		return parse(text, DateTimeFormatter.ISO_LOCAL_TIME);
@@ -468,14 +442,15 @@ public final class LocalTime
 	 * The text is parsed using the formatter, returning a time.
 	 *
 	 * @param text
-	 *            the text to parse, not null
+	 *                  the text to parse, not null
 	 * @param formatter
-	 *            the formatter to use, not null
+	 *                  the formatter to use, not null
 	 * @return the parsed local time, not null
 	 * @throws DateTimeParseException
-	 *             if the text cannot be parsed
+	 *                                if the text cannot be parsed
 	 */
-	public static LocalTime parse(CharSequence text, DateTimeFormatter formatter) {
+	public static LocalTime parse(CharSequence text,
+			DateTimeFormatter formatter) {
 		Objects.requireNonNull(formatter, "formatter");
 		return formatter.parse(text, LocalTime::from);
 	}
@@ -488,17 +463,20 @@ public final class LocalTime
 	 * this.
 	 *
 	 * @param hour
-	 *            the hour-of-day to represent, validated from 0 to 23
+	 *                     the hour-of-day to represent, validated from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to represent, validated from 0 to 59
+	 *                     the minute-of-hour to represent, validated from 0 to
+	 *                     59
 	 * @param second
-	 *            the second-of-minute to represent, validated from 0 to 59
+	 *                     the second-of-minute to represent, validated from 0
+	 *                     to 59
 	 * @param nanoOfSecond
-	 *            the nano-of-second to represent, validated from 0 to
-	 *            999,999,999
+	 *                     the nano-of-second to represent, validated from 0 to
+	 *                     999,999,999
 	 * @return the local time, not null
 	 */
-	private static LocalTime create(int hour, int minute, int second, int nanoOfSecond) {
+	private static LocalTime create(int hour, int minute, int second,
+			int nanoOfSecond) {
 		if ((minute | second | nanoOfSecond) == 0) {
 			return HOURS[hour];
 		}
@@ -509,14 +487,16 @@ public final class LocalTime
 	 * Constructor, previously validated.
 	 *
 	 * @param hour
-	 *            the hour-of-day to represent, validated from 0 to 23
+	 *                     the hour-of-day to represent, validated from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to represent, validated from 0 to 59
+	 *                     the minute-of-hour to represent, validated from 0 to
+	 *                     59
 	 * @param second
-	 *            the second-of-minute to represent, validated from 0 to 59
+	 *                     the second-of-minute to represent, validated from 0
+	 *                     to 59
 	 * @param nanoOfSecond
-	 *            the nano-of-second to represent, validated from 0 to
-	 *            999,999,999
+	 *                     the nano-of-second to represent, validated from 0 to
+	 *                     999,999,999
 	 */
 	private LocalTime(int hour, int minute, int second, int nanoOfSecond) {
 		this.hour = (byte) hour;
@@ -562,7 +542,7 @@ public final class LocalTime
 	 * determined by the field.
 	 *
 	 * @param field
-	 *            the field to check, null returns false
+	 *              the field to check, null returns false
 	 * @return true if the field is supported on this time, false if not
 	 */
 	@Override
@@ -600,7 +580,7 @@ public final class LocalTime
 	 * determined by the unit.
 	 *
 	 * @param unit
-	 *            the unit to check, null returns false
+	 *             the unit to check, null returns false
 	 * @return true if the unit can be added/subtracted, false if not
 	 */
 	@Override // override for Javadoc
@@ -632,12 +612,13 @@ public final class LocalTime
 	 * determined by the field.
 	 *
 	 * @param field
-	 *            the field to query the range for, not null
+	 *              the field to query the range for, not null
 	 * @return the range of valid values for the field, not null
 	 * @throws DateTimeException
-	 *             if the range for the field cannot be obtained
+	 *                                          if the range for the field
+	 *                                          cannot be obtained
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 */
 	@Override // override for Javadoc
 	public ValueRange range(TemporalField field) {
@@ -665,16 +646,19 @@ public final class LocalTime
 	 * and what the value represents, is determined by the field.
 	 *
 	 * @param field
-	 *            the field to get, not null
+	 *              the field to get, not null
 	 * @return the value for the field
 	 * @throws DateTimeException
-	 *             if a value for the field cannot be obtained or the value is
-	 *             outside the range of valid values for the field
+	 *                                          if a value for the field cannot
+	 *                                          be obtained or the value is
+	 *                                          outside the range of valid
+	 *                                          values for the field
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported or the range of values exceeds
-	 *             an {@code int}
+	 *                                          if the field is not supported or
+	 *                                          the range of values exceeds
+	 *                                          an {@code int}
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override // override for Javadoc and performance
 	public int get(TemporalField field) {
@@ -702,14 +686,15 @@ public final class LocalTime
 	 * and what the value represents, is determined by the field.
 	 *
 	 * @param field
-	 *            the field to get, not null
+	 *              the field to get, not null
 	 * @return the value for the field
 	 * @throws DateTimeException
-	 *             if a value for the field cannot be obtained
+	 *                                          if a value for the field cannot
+	 *                                          be obtained
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public long getLong(TemporalField field) {
@@ -727,41 +712,42 @@ public final class LocalTime
 
 	private int get0(TemporalField field) {
 		switch ((ChronoField) field) {
-		case NANO_OF_SECOND:
-			return nano;
-		case NANO_OF_DAY:
-			throw new UnsupportedTemporalTypeException(
-					"Invalid field 'NanoOfDay' for get() method, use getLong() instead");
-		case MICRO_OF_SECOND:
-			return nano / 1000;
-		case MICRO_OF_DAY:
-			throw new UnsupportedTemporalTypeException(
-					"Invalid field 'MicroOfDay' for get() method, use getLong() instead");
-		case MILLI_OF_SECOND:
-			return nano / 1000_000;
-		case MILLI_OF_DAY:
-			return (int) (toNanoOfDay() / 1000_000);
-		case SECOND_OF_MINUTE:
-			return second;
-		case SECOND_OF_DAY:
-			return toSecondOfDay();
-		case MINUTE_OF_HOUR:
-			return minute;
-		case MINUTE_OF_DAY:
-			return hour * 60 + minute;
-		case HOUR_OF_AMPM:
-			return hour % 12;
-		case CLOCK_HOUR_OF_AMPM:
-			int ham = hour % 12;
-			return (ham % 12 == 0 ? 12 : ham);
-		case HOUR_OF_DAY:
-			return hour;
-		case CLOCK_HOUR_OF_DAY:
-			return (hour == 0 ? 24 : hour);
-		case AMPM_OF_DAY:
-			return hour / 12;
+			case NANO_OF_SECOND:
+				return nano;
+			case NANO_OF_DAY:
+				throw new UnsupportedTemporalTypeException(
+						"Invalid field 'NanoOfDay' for get() method, use getLong() instead");
+			case MICRO_OF_SECOND:
+				return nano / 1000;
+			case MICRO_OF_DAY:
+				throw new UnsupportedTemporalTypeException(
+						"Invalid field 'MicroOfDay' for get() method, use getLong() instead");
+			case MILLI_OF_SECOND:
+				return nano / 1000_000;
+			case MILLI_OF_DAY:
+				return (int) (toNanoOfDay() / 1000_000);
+			case SECOND_OF_MINUTE:
+				return second;
+			case SECOND_OF_DAY:
+				return toSecondOfDay();
+			case MINUTE_OF_HOUR:
+				return minute;
+			case MINUTE_OF_DAY:
+				return hour * 60 + minute;
+			case HOUR_OF_AMPM:
+				return hour % 12;
+			case CLOCK_HOUR_OF_AMPM:
+				int ham = hour % 12;
+				return (ham % 12 == 0 ? 12 : ham);
+			case HOUR_OF_DAY:
+				return hour;
+			case CLOCK_HOUR_OF_DAY:
+				return (hour == 0 ? 24 : hour);
+			case AMPM_OF_DAY:
+				return hour / 12;
 		}
-		throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+		throw new UnsupportedTemporalTypeException("Unsupported field: "
+				+ field);
 	}
 
 	// -----------------------------------------------------------------------
@@ -821,13 +807,13 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param adjuster
-	 *            the adjuster to use, not null
+	 *                 the adjuster to use, not null
 	 * @return a {@code LocalTime} based on {@code this} with the adjustment
 	 *         made, not null
 	 * @throws DateTimeException
-	 *             if the adjustment cannot be made
+	 *                             if the adjustment cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public LocalTime with(TemporalAdjuster adjuster) {
@@ -911,17 +897,17 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param field
-	 *            the field to set in the result, not null
+	 *                 the field to set in the result, not null
 	 * @param newValue
-	 *            the new value of the field in the result
+	 *                 the new value of the field in the result
 	 * @return a {@code LocalTime} based on {@code this} with the specified
 	 *         field set, not null
 	 * @throws DateTimeException
-	 *             if the field cannot be set
+	 *                                          if the field cannot be set
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public LocalTime with(TemporalField field, long newValue) {
@@ -929,38 +915,40 @@ public final class LocalTime
 			ChronoField f = (ChronoField) field;
 			f.checkValidValue(newValue);
 			switch (f) {
-			case NANO_OF_SECOND:
-				return withNano((int) newValue);
-			case NANO_OF_DAY:
-				return LocalTime.ofNanoOfDay(newValue);
-			case MICRO_OF_SECOND:
-				return withNano((int) newValue * 1000);
-			case MICRO_OF_DAY:
-				return LocalTime.ofNanoOfDay(newValue * 1000);
-			case MILLI_OF_SECOND:
-				return withNano((int) newValue * 1000_000);
-			case MILLI_OF_DAY:
-				return LocalTime.ofNanoOfDay(newValue * 1000_000);
-			case SECOND_OF_MINUTE:
-				return withSecond((int) newValue);
-			case SECOND_OF_DAY:
-				return plusSeconds(newValue - toSecondOfDay());
-			case MINUTE_OF_HOUR:
-				return withMinute((int) newValue);
-			case MINUTE_OF_DAY:
-				return plusMinutes(newValue - (hour * 60 + minute));
-			case HOUR_OF_AMPM:
-				return plusHours(newValue - (hour % 12));
-			case CLOCK_HOUR_OF_AMPM:
-				return plusHours((newValue == 12 ? 0 : newValue) - (hour % 12));
-			case HOUR_OF_DAY:
-				return withHour((int) newValue);
-			case CLOCK_HOUR_OF_DAY:
-				return withHour((int) (newValue == 24 ? 0 : newValue));
-			case AMPM_OF_DAY:
-				return plusHours((newValue - (hour / 12)) * 12);
+				case NANO_OF_SECOND:
+					return withNano((int) newValue);
+				case NANO_OF_DAY:
+					return LocalTime.ofNanoOfDay(newValue);
+				case MICRO_OF_SECOND:
+					return withNano((int) newValue * 1000);
+				case MICRO_OF_DAY:
+					return LocalTime.ofNanoOfDay(newValue * 1000);
+				case MILLI_OF_SECOND:
+					return withNano((int) newValue * 1000_000);
+				case MILLI_OF_DAY:
+					return LocalTime.ofNanoOfDay(newValue * 1000_000);
+				case SECOND_OF_MINUTE:
+					return withSecond((int) newValue);
+				case SECOND_OF_DAY:
+					return plusSeconds(newValue - toSecondOfDay());
+				case MINUTE_OF_HOUR:
+					return withMinute((int) newValue);
+				case MINUTE_OF_DAY:
+					return plusMinutes(newValue - (hour * 60 + minute));
+				case HOUR_OF_AMPM:
+					return plusHours(newValue - (hour % 12));
+				case CLOCK_HOUR_OF_AMPM:
+					return plusHours((newValue == 12 ? 0 : newValue) - (hour
+							% 12));
+				case HOUR_OF_DAY:
+					return withHour((int) newValue);
+				case CLOCK_HOUR_OF_DAY:
+					return withHour((int) (newValue == 24 ? 0 : newValue));
+				case AMPM_OF_DAY:
+					return plusHours((newValue - (hour / 12)) * 12);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+			throw new UnsupportedTemporalTypeException("Unsupported field: "
+					+ field);
 		}
 		return field.adjustInto(this, newValue);
 	}
@@ -972,11 +960,11 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param hour
-	 *            the hour-of-day to set in the result, from 0 to 23
+	 *             the hour-of-day to set in the result, from 0 to 23
 	 * @return a {@code LocalTime} based on this time with the requested hour,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the hour value is invalid
+	 *                           if the hour value is invalid
 	 */
 	public LocalTime withHour(int hour) {
 		if (this.hour == hour) {
@@ -992,11 +980,11 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param minute
-	 *            the minute-of-hour to set in the result, from 0 to 59
+	 *               the minute-of-hour to set in the result, from 0 to 59
 	 * @return a {@code LocalTime} based on this time with the requested minute,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the minute value is invalid
+	 *                           if the minute value is invalid
 	 */
 	public LocalTime withMinute(int minute) {
 		if (this.minute == minute) {
@@ -1013,11 +1001,11 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param second
-	 *            the second-of-minute to set in the result, from 0 to 59
+	 *               the second-of-minute to set in the result, from 0 to 59
 	 * @return a {@code LocalTime} based on this time with the requested second,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the second value is invalid
+	 *                           if the second value is invalid
 	 */
 	public LocalTime withSecond(int second) {
 		if (this.second == second) {
@@ -1033,11 +1021,12 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param nanoOfSecond
-	 *            the nano-of-second to set in the result, from 0 to 999,999,999
+	 *                     the nano-of-second to set in the result, from 0 to
+	 *                     999,999,999
 	 * @return a {@code LocalTime} based on this time with the requested
 	 *         nanosecond, not null
 	 * @throws DateTimeException
-	 *             if the nanos value is invalid
+	 *                           if the nanos value is invalid
 	 */
 	public LocalTime withNano(int nanoOfSecond) {
 		if (this.nano == nanoOfSecond) {
@@ -1064,13 +1053,13 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param unit
-	 *            the unit to truncate to, not null
+	 *             the unit to truncate to, not null
 	 * @return a {@code LocalTime} based on this time with the time truncated,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if unable to truncate
+	 *                                          if unable to truncate
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 */
 	public LocalTime truncatedTo(TemporalUnit unit) {
 		if (unit == ChronoUnit.NANOS) {
@@ -1108,13 +1097,13 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToAdd
-	 *            the amount to add, not null
+	 *                    the amount to add, not null
 	 * @return a {@code LocalTime} based on this time with the addition made,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the addition cannot be made
+	 *                             if the addition cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public LocalTime plus(TemporalAmount amountToAdd) {
@@ -1164,38 +1153,40 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToAdd
-	 *            the amount of the unit to add to the result, may be negative
+	 *                    the amount of the unit to add to the result, may be
+	 *                    negative
 	 * @param unit
-	 *            the unit of the amount to add, not null
+	 *                    the unit of the amount to add, not null
 	 * @return a {@code LocalTime} based on this time with the specified amount
 	 *         added, not null
 	 * @throws DateTimeException
-	 *             if the addition cannot be made
+	 *                                          if the addition cannot be made
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public LocalTime plus(long amountToAdd, TemporalUnit unit) {
 		if (unit instanceof ChronoUnit) {
 			switch ((ChronoUnit) unit) {
-			case NANOS:
-				return plusNanos(amountToAdd);
-			case MICROS:
-				return plusNanos((amountToAdd % MICROS_PER_DAY) * 1000);
-			case MILLIS:
-				return plusNanos((amountToAdd % MILLIS_PER_DAY) * 1000_000);
-			case SECONDS:
-				return plusSeconds(amountToAdd);
-			case MINUTES:
-				return plusMinutes(amountToAdd);
-			case HOURS:
-				return plusHours(amountToAdd);
-			case HALF_DAYS:
-				return plusHours((amountToAdd % 2) * 12);
+				case NANOS:
+					return plusNanos(amountToAdd);
+				case MICROS:
+					return plusNanos((amountToAdd % MICROS_PER_DAY) * 1000);
+				case MILLIS:
+					return plusNanos((amountToAdd % MILLIS_PER_DAY) * 1000_000);
+				case SECONDS:
+					return plusSeconds(amountToAdd);
+				case MINUTES:
+					return plusMinutes(amountToAdd);
+				case HOURS:
+					return plusHours(amountToAdd);
+				case HALF_DAYS:
+					return plusHours((amountToAdd % 2) * 12);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
+			throw new UnsupportedTemporalTypeException("Unsupported unit: "
+					+ unit);
 		}
 		return unit.addTo(this, amountToAdd);
 	}
@@ -1211,7 +1202,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param hoursToAdd
-	 *            the hours to add, may be negative
+	 *                   the hours to add, may be negative
 	 * @return a {@code LocalTime} based on this time with the hours added, not
 	 *         null
 	 */
@@ -1219,7 +1210,8 @@ public final class LocalTime
 		if (hoursToAdd == 0) {
 			return this;
 		}
-		int newHour = ((int) (hoursToAdd % HOURS_PER_DAY) + hour + HOURS_PER_DAY) % HOURS_PER_DAY;
+		int newHour = ((int) (hoursToAdd % HOURS_PER_DAY) + hour
+				+ HOURS_PER_DAY) % HOURS_PER_DAY;
 		return create(newHour, minute, second, nano);
 	}
 
@@ -1233,7 +1225,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param minutesToAdd
-	 *            the minutes to add, may be negative
+	 *                     the minutes to add, may be negative
 	 * @return a {@code LocalTime} based on this time with the minutes added,
 	 *         not null
 	 */
@@ -1242,8 +1234,8 @@ public final class LocalTime
 			return this;
 		}
 		int mofd = hour * MINUTES_PER_HOUR + minute;
-		int newMofd = ((int) (minutesToAdd % MINUTES_PER_DAY) + mofd + MINUTES_PER_DAY)
-				% MINUTES_PER_DAY;
+		int newMofd = ((int) (minutesToAdd % MINUTES_PER_DAY) + mofd
+				+ MINUTES_PER_DAY) % MINUTES_PER_DAY;
 		if (mofd == newMofd) {
 			return this;
 		}
@@ -1262,7 +1254,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param secondstoAdd
-	 *            the seconds to add, may be negative
+	 *                     the seconds to add, may be negative
 	 * @return a {@code LocalTime} based on this time with the seconds added,
 	 *         not null
 	 */
@@ -1270,9 +1262,10 @@ public final class LocalTime
 		if (secondstoAdd == 0) {
 			return this;
 		}
-		int sofd = hour * SECONDS_PER_HOUR + minute * SECONDS_PER_MINUTE + second;
-		int newSofd = ((int) (secondstoAdd % SECONDS_PER_DAY) + sofd + SECONDS_PER_DAY)
-				% SECONDS_PER_DAY;
+		int sofd = hour * SECONDS_PER_HOUR + minute * SECONDS_PER_MINUTE
+				+ second;
+		int newSofd = ((int) (secondstoAdd % SECONDS_PER_DAY) + sofd
+				+ SECONDS_PER_DAY) % SECONDS_PER_DAY;
 		if (sofd == newSofd) {
 			return this;
 		}
@@ -1292,7 +1285,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param nanosToAdd
-	 *            the nanos to add, may be negative
+	 *                   the nanos to add, may be negative
 	 * @return a {@code LocalTime} based on this time with the nanoseconds
 	 *         added, not null
 	 */
@@ -1301,13 +1294,15 @@ public final class LocalTime
 			return this;
 		}
 		long nofd = toNanoOfDay();
-		long newNofd = ((nanosToAdd % NANOS_PER_DAY) + nofd + NANOS_PER_DAY) % NANOS_PER_DAY;
+		long newNofd = ((nanosToAdd % NANOS_PER_DAY) + nofd + NANOS_PER_DAY)
+				% NANOS_PER_DAY;
 		if (nofd == newNofd) {
 			return this;
 		}
 		int newHour = (int) (newNofd / NANOS_PER_HOUR);
 		int newMinute = (int) ((newNofd / NANOS_PER_MINUTE) % MINUTES_PER_HOUR);
-		int newSecond = (int) ((newNofd / NANOS_PER_SECOND) % SECONDS_PER_MINUTE);
+		int newSecond = (int) ((newNofd / NANOS_PER_SECOND)
+				% SECONDS_PER_MINUTE);
 		int newNano = (int) (newNofd % NANOS_PER_SECOND);
 		return create(newHour, newMinute, newSecond, newNano);
 	}
@@ -1330,13 +1325,13 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToSubtract
-	 *            the amount to subtract, not null
+	 *                         the amount to subtract, not null
 	 * @return a {@code LocalTime} based on this time with the subtraction made,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the subtraction cannot be made
+	 *                             if the subtraction cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public LocalTime minus(TemporalAmount amountToSubtract) {
@@ -1358,23 +1353,25 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToSubtract
-	 *            the amount of the unit to subtract from the result, may be
-	 *            negative
+	 *                         the amount of the unit to subtract from the
+	 *                         result, may be
+	 *                         negative
 	 * @param unit
-	 *            the unit of the amount to subtract, not null
+	 *                         the unit of the amount to subtract, not null
 	 * @return a {@code LocalTime} based on this time with the specified amount
 	 *         subtracted, not null
 	 * @throws DateTimeException
-	 *             if the subtraction cannot be made
+	 *                                          if the subtraction cannot be
+	 *                                          made
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public LocalTime minus(long amountToSubtract, TemporalUnit unit) {
-		return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
-				: plus(-amountToSubtract, unit));
+		return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
+				.plus(1, unit) : plus(-amountToSubtract, unit));
 	}
 
 	// -----------------------------------------------------------------------
@@ -1388,7 +1385,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param hoursToSubtract
-	 *            the hours to subtract, may be negative
+	 *                        the hours to subtract, may be negative
 	 * @return a {@code LocalTime} based on this time with the hours subtracted,
 	 *         not null
 	 */
@@ -1406,7 +1403,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param minutesToSubtract
-	 *            the minutes to subtract, may be negative
+	 *                          the minutes to subtract, may be negative
 	 * @return a {@code LocalTime} based on this time with the minutes
 	 *         subtracted, not null
 	 */
@@ -1424,7 +1421,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param secondsToSubtract
-	 *            the seconds to subtract, may be negative
+	 *                          the seconds to subtract, may be negative
 	 * @return a {@code LocalTime} based on this time with the seconds
 	 *         subtracted, not null
 	 */
@@ -1442,7 +1439,7 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param nanosToSubtract
-	 *            the nanos to subtract, may be negative
+	 *                        the nanos to subtract, may be negative
 	 * @return a {@code LocalTime} based on this time with the nanoseconds
 	 *         subtracted, not null
 	 */
@@ -1463,21 +1460,23 @@ public final class LocalTime
 	 * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
 	 * query passing {@code this} as the argument.
 	 *
-	 * @param <R>
-	 *            the type of the result
+	 * @param       <R>
+	 *              the type of the result
 	 * @param query
-	 *            the query to invoke, not null
+	 *              the query to invoke, not null
 	 * @return the query result, null may be returned (defined by the query)
 	 * @throws DateTimeException
-	 *             if unable to query (defined by the query)
+	 *                             if unable to query (defined by the query)
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs (defined by the query)
+	 *                             if numeric overflow occurs (defined by the
+	 *                             query)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public <R> R query(TemporalQuery<R> query) {
-		if (query == TemporalQueries.chronology() || query == TemporalQueries.zoneId()
-				|| query == TemporalQueries.zone() || query == TemporalQueries.offset()) {
+		if (query == TemporalQueries.chronology() || query == TemporalQueries
+				.zoneId() || query == TemporalQueries.zone()
+				|| query == TemporalQueries.offset()) {
 			return null;
 		} else if (query == TemporalQueries.localTime()) {
 			return (R) this;
@@ -1514,12 +1513,12 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param temporal
-	 *            the target object to be adjusted, not null
+	 *                 the target object to be adjusted, not null
 	 * @return the adjusted object, not null
 	 * @throws DateTimeException
-	 *             if unable to make the adjustment
+	 *                             if unable to make the adjustment
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public Temporal adjustInto(Temporal temporal) {
@@ -1568,18 +1567,20 @@ public final class LocalTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param endExclusive
-	 *            the end time, exclusive, which is converted to a
-	 *            {@code LocalTime}, not null
+	 *                     the end time, exclusive, which is converted to a
+	 *                     {@code LocalTime}, not null
 	 * @param unit
-	 *            the unit to measure the amount in, not null
+	 *                     the unit to measure the amount in, not null
 	 * @return the amount of time between this time and the end time
 	 * @throws DateTimeException
-	 *             if the amount cannot be calculated, or the end temporal
-	 *             cannot be converted to a {@code LocalTime}
+	 *                                          if the amount cannot be
+	 *                                          calculated, or the end temporal
+	 *                                          cannot be converted to a
+	 *                                          {@code LocalTime}
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public long until(Temporal endExclusive, TemporalUnit unit) {
@@ -1587,22 +1588,23 @@ public final class LocalTime
 		if (unit instanceof ChronoUnit) {
 			long nanosUntil = end.toNanoOfDay() - toNanoOfDay(); // no overflow
 			switch ((ChronoUnit) unit) {
-			case NANOS:
-				return nanosUntil;
-			case MICROS:
-				return nanosUntil / 1000;
-			case MILLIS:
-				return nanosUntil / 1000_000;
-			case SECONDS:
-				return nanosUntil / NANOS_PER_SECOND;
-			case MINUTES:
-				return nanosUntil / NANOS_PER_MINUTE;
-			case HOURS:
-				return nanosUntil / NANOS_PER_HOUR;
-			case HALF_DAYS:
-				return nanosUntil / (12 * NANOS_PER_HOUR);
+				case NANOS:
+					return nanosUntil;
+				case MICROS:
+					return nanosUntil / 1000;
+				case MILLIS:
+					return nanosUntil / 1000_000;
+				case SECONDS:
+					return nanosUntil / NANOS_PER_SECOND;
+				case MINUTES:
+					return nanosUntil / NANOS_PER_MINUTE;
+				case HOURS:
+					return nanosUntil / NANOS_PER_HOUR;
+				case HALF_DAYS:
+					return nanosUntil / (12 * NANOS_PER_HOUR);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
+			throw new UnsupportedTemporalTypeException("Unsupported unit: "
+					+ unit);
 		}
 		return unit.between(this, end);
 	}
@@ -1613,10 +1615,10 @@ public final class LocalTime
 	 * This time will be passed to the formatter to produce a string.
 	 *
 	 * @param formatter
-	 *            the formatter to use, not null
+	 *                  the formatter to use, not null
 	 * @return the formatted time string, not null
 	 * @throws DateTimeException
-	 *             if an error occurs during printing
+	 *                           if an error occurs during printing
 	 */
 	public String format(DateTimeFormatter formatter) {
 		Objects.requireNonNull(formatter, "formatter");
@@ -1631,7 +1633,7 @@ public final class LocalTime
 	 * specified date. All possible combinations of date and time are valid.
 	 *
 	 * @param date
-	 *            the date to combine with, not null
+	 *             the date to combine with, not null
 	 * @return the local date-time formed from this time and the specified date,
 	 *         not null
 	 */
@@ -1646,7 +1648,7 @@ public final class LocalTime
 	 * offset. All possible combinations of time and offset are valid.
 	 *
 	 * @param offset
-	 *            the offset to combine with, not null
+	 *               the offset to combine with, not null
 	 * @return the offset time formed from this time and the specified offset,
 	 *         not null
 	 */
@@ -1691,10 +1693,10 @@ public final class LocalTime
 	 * {@link Comparable}.
 	 *
 	 * @param other
-	 *            the other time to compare to, not null
+	 *              the other time to compare to, not null
 	 * @return the comparator value, negative if less, positive if greater
 	 * @throws NullPointerException
-	 *             if {@code other} is null
+	 *                              if {@code other} is null
 	 */
 	@Override
 	public int compareTo(LocalTime other) {
@@ -1718,10 +1720,10 @@ public final class LocalTime
 	 * day.
 	 *
 	 * @param other
-	 *            the other time to compare to, not null
+	 *              the other time to compare to, not null
 	 * @return true if this is after the specified time
 	 * @throws NullPointerException
-	 *             if {@code other} is null
+	 *                              if {@code other} is null
 	 */
 	public boolean isAfter(LocalTime other) {
 		return compareTo(other) > 0;
@@ -1734,10 +1736,10 @@ public final class LocalTime
 	 * day.
 	 *
 	 * @param other
-	 *            the other time to compare to, not null
+	 *              the other time to compare to, not null
 	 * @return true if this point is before the specified time
 	 * @throws NullPointerException
-	 *             if {@code other} is null
+	 *                              if {@code other} is null
 	 */
 	public boolean isBefore(LocalTime other) {
 		return compareTo(other) < 0;
@@ -1765,8 +1767,8 @@ public final class LocalTime
 		}
 		if (obj instanceof LocalTime) {
 			LocalTime other = (LocalTime) obj;
-			return hour == other.hour && minute == other.minute && second == other.second
-					&& nano == other.nano;
+			return hour == other.hour && minute == other.minute
+					&& second == other.second && nano == other.nano;
 		}
 		return false;
 	}
@@ -1806,18 +1808,21 @@ public final class LocalTime
 		int minuteValue = minute;
 		int secondValue = second;
 		int nanoValue = nano;
-		buf.append(hourValue < 10 ? "0" : "").append(hourValue)
-				.append(minuteValue < 10 ? ":0" : ":").append(minuteValue);
+		buf.append(hourValue < 10 ? "0" : "").append(hourValue).append(
+				minuteValue < 10 ? ":0" : ":").append(minuteValue);
 		if (secondValue > 0 || nanoValue > 0) {
 			buf.append(secondValue < 10 ? ":0" : ":").append(secondValue);
 			if (nanoValue > 0) {
 				buf.append('.');
 				if (nanoValue % 1000_000 == 0) {
-					buf.append(Integer.toString((nanoValue / 1000_000) + 1000).substring(1));
+					buf.append(Integer.toString((nanoValue / 1000_000) + 1000)
+							.substring(1));
 				} else if (nanoValue % 1000 == 0) {
-					buf.append(Integer.toString((nanoValue / 1000) + 1000_000).substring(1));
+					buf.append(Integer.toString((nanoValue / 1000) + 1000_000)
+							.substring(1));
 				} else {
-					buf.append(Integer.toString((nanoValue) + 1000_000_000).substring(1));
+					buf.append(Integer.toString((nanoValue) + 1000_000_000)
+							.substring(1));
 				}
 			}
 		}
@@ -1866,12 +1871,13 @@ public final class LocalTime
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	void writeExternal(DataOutput out) throws IOException {

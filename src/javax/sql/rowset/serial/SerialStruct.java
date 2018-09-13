@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.serial;
@@ -93,10 +73,11 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 *            for the <code>SQLData</code> implementation that defines how
 	 *            the UDT is to be mapped
 	 * @throws SerialException
-	 *             if an error occurs
+	 *                         if an error occurs
 	 * @see java.sql.Struct
 	 */
-	public SerialStruct(Struct in, Map<String, Class<?>> map) throws SerialException {
+	public SerialStruct(Struct in, Map<String, Class<?>> map)
+			throws SerialException {
 
 		try {
 
@@ -136,9 +117,10 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 *            for the <code>SQLData</code> implementation that defines how
 	 *            the UDT is to be mapped
 	 * @throws SerialException
-	 *             if an error occurs
+	 *                         if an error occurs
 	 */
-	public SerialStruct(SQLData in, Map<String, Class<?>> map) throws SerialException {
+	public SerialStruct(SQLData in, Map<String, Class<?>> map)
+			throws SerialException {
 
 		try {
 
@@ -162,7 +144,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 *         the SQL structured type that this <code>SerialStruct</code>
 	 *         object represents
 	 * @throws SerialException
-	 *             if an error occurs
+	 *                         if an error occurs
 	 */
 	public String getSQLTypeName() throws SerialException {
 		return SQLTypeName;
@@ -177,7 +159,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 *         an attribute of the SQL structured type that this
 	 *         <code>SerialStruct</code> object represents
 	 * @throws SerialException
-	 *             if an error occurs
+	 *                         if an error occurs
 	 */
 	public Object[] getAttributes() throws SerialException {
 		Object[] val = this.attribs;
@@ -199,9 +181,10 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 *         an attribute of the SQL structured type that this
 	 *         <code>SerialStruct</code> object represents
 	 * @throws SerialException
-	 *             if an error occurs
+	 *                         if an error occurs
 	 */
-	public Object[] getAttributes(Map<String, Class<?>> map) throws SerialException {
+	public Object[] getAttributes(Map<String, Class<?>> map)
+			throws SerialException {
 		Object[] val = this.attribs;
 		return (val == null) ? null : Arrays.copyOf(val, val.length);
 	}
@@ -224,7 +207,7 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 *            for the <code>SQLData</code> implementation that defines how
 	 *            the UDT is to be mapped
 	 * @throws SerialException
-	 *             if an error occurs
+	 *                         if an error occurs
 	 */
 	private void mapToSerial(Map<String, Class<?>> map) throws SerialException {
 
@@ -242,7 +225,8 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 				} else if (attribs[i] instanceof Ref) {
 					attribs[i] = new SerialRef((Ref) attribs[i]);
 				} else if (attribs[i] instanceof java.sql.Array) {
-					attribs[i] = new SerialArray((java.sql.Array) attribs[i], map);
+					attribs[i] = new SerialArray((java.sql.Array) attribs[i],
+							map);
 				}
 			}
 
@@ -272,7 +256,8 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 		}
 		if (obj instanceof SerialStruct) {
 			SerialStruct ss = (SerialStruct) obj;
-			return SQLTypeName.equals(ss.SQLTypeName) && Arrays.equals(attribs, ss.attribs);
+			return SQLTypeName.equals(ss.SQLTypeName) && Arrays.equals(attribs,
+					ss.attribs);
 		}
 		return false;
 	}
@@ -285,7 +270,8 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 * @return a hash code value for this object.
 	 */
 	public int hashCode() {
-		return ((31 + Arrays.hashCode(attribs)) * 31) * 31 + SQLTypeName.hashCode();
+		return ((31 + Arrays.hashCode(attribs)) * 31) * 31 + SQLTypeName
+				.hashCode();
 	}
 
 	/**
@@ -312,7 +298,8 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 * readObject is called to restore the state of the {@code SerialStruct}
 	 * from a stream.
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 
 		ObjectInputStream.GetField fields = s.readFields();
 		Object[] tmp = (Object[]) fields.get("attribs", null);
@@ -324,7 +311,8 @@ public class SerialStruct implements Struct, Serializable, Cloneable {
 	 * writeObject is called to save the state of the {@code SerialStruct} to a
 	 * stream.
 	 */
-	private void writeObject(ObjectOutputStream s) throws IOException, ClassNotFoundException {
+	private void writeObject(ObjectOutputStream s) throws IOException,
+			ClassNotFoundException {
 
 		ObjectOutputStream.PutField fields = s.putFields();
 		fields.put("attribs", attribs);

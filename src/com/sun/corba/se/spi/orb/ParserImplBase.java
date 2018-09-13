@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.spi.orb;
 
@@ -45,7 +25,7 @@ import com.sun.corba.se.impl.orbutil.ObjectUtility;
 
 // XXX This could probably be further extended by using more reflection and
 // a dynamic proxy that satisfies the interfaces that are inherited by the
-// more derived class.  Do we want to go that far?
+// more derived class. Do we want to go that far?
 public abstract class ParserImplBase {
 	private ORBUtilSystemException wrapper;
 
@@ -56,8 +36,7 @@ public abstract class ParserImplBase {
 	 * place after argument parsing. It is always called at the end of
 	 * setFields.
 	 */
-	protected void complete() {
-	}
+	protected void complete() {}
 
 	public ParserImplBase() {
 		// Do nothing in this case: no parsing takes place
@@ -105,7 +84,8 @@ public abstract class ParserImplBase {
 
 			try {
 				AccessController.doPrivileged(new PrivilegedExceptionAction() {
-					public Object run() throws IllegalAccessException, IllegalArgumentException {
+					public Object run() throws IllegalAccessException,
+							IllegalArgumentException {
 						Field field = getAnyField(name);
 						field.setAccessible(true);
 						field.set(ParserImplBase.this, value);
@@ -115,7 +95,8 @@ public abstract class ParserImplBase {
 			} catch (PrivilegedActionException exc) {
 				// Since exc wraps the actual exception, use exc.getCause()
 				// instead of exc.
-				throw wrapper.errorSettingField(exc.getCause(), name, value.toString());
+				throw wrapper.errorSettingField(exc.getCause(), name, value
+						.toString());
 			}
 		}
 

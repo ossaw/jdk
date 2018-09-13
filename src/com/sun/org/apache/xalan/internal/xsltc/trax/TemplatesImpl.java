@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -134,23 +132,23 @@ public final class TemplatesImpl implements Templates, Serializable {
 
 	/**
 	 * @serialField _name
-	 *                  String The Name of the main class
+	 *              String The Name of the main class
 	 * @serialField _bytecodes
-	 *                  byte[][] Class definition
+	 *              byte[][] Class definition
 	 * @serialField _class
-	 *                  Class[] The translet class definition(s).
+	 *              Class[] The translet class definition(s).
 	 * @serialField _transletIndex
-	 *                  int The index of the main translet class
+	 *              int The index of the main translet class
 	 * @serialField _outputProperties
-	 *                  Properties Output properties of this translet.
+	 *              Properties Output properties of this translet.
 	 * @serialField _indentNumber
-	 *                  int Number of spaces to add for output indentation.
+	 *              int Number of spaces to add for output indentation.
 	 */
 	private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[] {
-			new ObjectStreamField("_name", String.class),
-			new ObjectStreamField("_bytecodes", byte[][].class),
-			new ObjectStreamField("_class", Class[].class),
-			new ObjectStreamField("_transletIndex", int.class),
+			new ObjectStreamField("_name", String.class), new ObjectStreamField(
+					"_bytecodes", byte[][].class), new ObjectStreamField(
+							"_class", Class[].class), new ObjectStreamField(
+									"_transletIndex", int.class),
 			new ObjectStreamField("_outputProperties", Properties.class),
 			new ObjectStreamField("_indentNumber", int.class), };
 
@@ -193,8 +191,9 @@ public final class TemplatesImpl implements Templates, Serializable {
 	 * translet and auxiliary classes, plus the name of the main translet class,
 	 * must be supplied.
 	 */
-	protected TemplatesImpl(byte[][] bytecodes, String transletName, Properties outputProperties,
-			int indentNumber, TransformerFactoryImpl tfactory) {
+	protected TemplatesImpl(byte[][] bytecodes, String transletName,
+			Properties outputProperties, int indentNumber,
+			TransformerFactoryImpl tfactory) {
 		_bytecodes = bytecodes;
 		init(transletName, outputProperties, indentNumber, tfactory);
 	}
@@ -203,28 +202,28 @@ public final class TemplatesImpl implements Templates, Serializable {
 	 * Create an XSLTC template object from the translet class definition(s).
 	 */
 	protected TemplatesImpl(Class[] transletClasses, String transletName,
-			Properties outputProperties, int indentNumber, TransformerFactoryImpl tfactory) {
+			Properties outputProperties, int indentNumber,
+			TransformerFactoryImpl tfactory) {
 		_class = transletClasses;
 		_transletIndex = 0;
 		init(transletName, outputProperties, indentNumber, tfactory);
 	}
 
-	private void init(String transletName, Properties outputProperties, int indentNumber,
-			TransformerFactoryImpl tfactory) {
+	private void init(String transletName, Properties outputProperties,
+			int indentNumber, TransformerFactoryImpl tfactory) {
 		_name = transletName;
 		_outputProperties = outputProperties;
 		_indentNumber = indentNumber;
 		_tfactory = tfactory;
 		_useServicesMechanism = tfactory.useServicesMechnism();
-		_accessExternalStylesheet = (String) tfactory
-				.getAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET);
+		_accessExternalStylesheet = (String) tfactory.getAttribute(
+				XMLConstants.ACCESS_EXTERNAL_STYLESHEET);
 	}
 
 	/**
 	 * Need for de-serialization, see readObject().
 	 */
-	public TemplatesImpl() {
-	}
+	public TemplatesImpl() {}
 
 	/**
 	 * Overrides the default readObject implementation since we decided it would
@@ -234,11 +233,14 @@ public final class TemplatesImpl implements Templates, Serializable {
 	 * URIResolver Fix for bugzilla bug 22438
 	 */
 	@SuppressWarnings("unchecked")
-	private void readObject(ObjectInputStream is) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream is) throws IOException,
+			ClassNotFoundException {
 		SecurityManager security = System.getSecurityManager();
 		if (security != null) {
-			String temp = SecuritySupport.getSystemProperty(DESERIALIZE_TRANSLET);
-			if (temp == null || !(temp.length() == 0 || temp.equalsIgnoreCase("true"))) {
+			String temp = SecuritySupport.getSystemProperty(
+					DESERIALIZE_TRANSLET);
+			if (temp == null || !(temp.length() == 0 || temp.equalsIgnoreCase(
+					"true"))) {
 				ErrorMsg err = new ErrorMsg(ErrorMsg.DESERIALIZE_TRANSLET_ERR);
 				throw new UnsupportedOperationException(err.toString());
 			}
@@ -265,7 +267,8 @@ public final class TemplatesImpl implements Templates, Serializable {
 	 * This is to fix bugzilla bug 22438 If the user defined class implements
 	 * URIResolver and Serializable then we want it to get serialized
 	 */
-	private void writeObject(ObjectOutputStream os) throws IOException, ClassNotFoundException {
+	private void writeObject(ObjectOutputStream os) throws IOException,
+			ClassNotFoundException {
 		if (_auxClasses != null) {
 			// throw with the same message as when Hashtable was used for
 			// compatibility.
@@ -376,7 +379,8 @@ public final class TemplatesImpl implements Templates, Serializable {
 	 * Defines the translet class and auxiliary classes. Returns a reference to
 	 * the Class object that defines the main class
 	 */
-	private void defineTransletClasses() throws TransformerConfigurationException {
+	private void defineTransletClasses()
+			throws TransformerConfigurationException {
 
 		if (_bytecodes == null) {
 			ErrorMsg err = new ErrorMsg(ErrorMsg.NO_TRANSLET_CLASS_ERR);
@@ -386,8 +390,9 @@ public final class TemplatesImpl implements Templates, Serializable {
 		TransletClassLoader loader = (TransletClassLoader) AccessController
 				.doPrivileged(new PrivilegedAction() {
 					public Object run() {
-						return new TransletClassLoader(ObjectFactory.findClassLoader(),
-								_tfactory.getExternalExtensionsMap());
+						return new TransletClassLoader(ObjectFactory
+								.findClassLoader(), _tfactory
+										.getExternalExtensionsMap());
 					}
 				});
 
@@ -412,7 +417,8 @@ public final class TemplatesImpl implements Templates, Serializable {
 			}
 
 			if (_transletIndex < 0) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.NO_MAIN_TRANSLET_ERR, _name);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.NO_MAIN_TRANSLET_ERR,
+						_name);
 				throw new TransformerConfigurationException(err.toString());
 			}
 		} catch (ClassFormatError e) {
@@ -429,7 +435,8 @@ public final class TemplatesImpl implements Templates, Serializable {
 	 * inside this Template. The translet instance will later be wrapped inside
 	 * a Transformer object.
 	 */
-	private Translet getTransletInstance() throws TransformerConfigurationException {
+	private Translet getTransletInstance()
+			throws TransformerConfigurationException {
 		try {
 			if (_name == null)
 				return null;
@@ -439,7 +446,8 @@ public final class TemplatesImpl implements Templates, Serializable {
 
 			// The translet needs to keep a reference to all its auxiliary
 			// class to prevent the GC from collecting them
-			AbstractTranslet translet = (AbstractTranslet) _class[_transletIndex].newInstance();
+			AbstractTranslet translet = (AbstractTranslet) _class[_transletIndex]
+					.newInstance();
 			translet.postInitialization();
 			translet.setTemplates(this);
 			translet.setServicesMechnism(_useServicesMechanism);
@@ -463,11 +471,12 @@ public final class TemplatesImpl implements Templates, Serializable {
 	 *
 	 * @throws TransformerConfigurationException
 	 */
-	public synchronized Transformer newTransformer() throws TransformerConfigurationException {
+	public synchronized Transformer newTransformer()
+			throws TransformerConfigurationException {
 		TransformerImpl transformer;
 
-		transformer = new TransformerImpl(getTransletInstance(), _outputProperties, _indentNumber,
-				_tfactory);
+		transformer = new TransformerImpl(getTransletInstance(),
+				_outputProperties, _indentNumber, _tfactory);
 
 		if (_uriResolver != null) {
 			transformer.setURIResolver(_uriResolver);

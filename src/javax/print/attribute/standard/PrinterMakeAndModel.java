@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -40,7 +20,8 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterMakeAndModel extends TextSyntax implements PrintServiceAttribute {
+public final class PrinterMakeAndModel extends TextSyntax implements
+		PrintServiceAttribute {
 
 	private static final long serialVersionUID = 4580461489499351411L;
 
@@ -49,15 +30,17 @@ public final class PrinterMakeAndModel extends TextSyntax implements PrintServic
 	 * model string and locale.
 	 *
 	 * @param makeAndModel
-	 *            Printer make and model string.
+	 *                     Printer make and model string.
 	 * @param locale
-	 *            Natural language of the text string. null is interpreted to
-	 *            mean the default locale as returned by
-	 *            <code>Locale.getDefault()</code>
+	 *                     Natural language of the text string. null is
+	 *                     interpreted to
+	 *                     mean the default locale as returned by
+	 *                     <code>Locale.getDefault()</code>
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>makeAndModel</CODE>
-	 *                is null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>makeAndModel</CODE>
+	 *                                 is null.
 	 */
 	public PrinterMakeAndModel(String makeAndModel, Locale locale) {
 		super(makeAndModel, locale);
@@ -77,7 +60,7 @@ public final class PrinterMakeAndModel extends TextSyntax implements PrintServic
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this printer make
 	 *         and model attribute, false otherwise.

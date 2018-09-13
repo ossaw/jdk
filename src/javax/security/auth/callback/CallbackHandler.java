@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.callback;
@@ -140,18 +120,24 @@ public interface CallbackHandler {
 	 * </pre>
 	 *
 	 * @param callbacks
-	 *            an array of {@code Callback} objects provided by an underlying
-	 *            security service which contains the information requested to
-	 *            be retrieved or displayed.
+	 *                  an array of {@code Callback} objects provided by an
+	 *                  underlying
+	 *                  security service which contains the information
+	 *                  requested to
+	 *                  be retrieved or displayed.
 	 *
-	 * @exception java.io.IOException
-	 *                if an input or output error occurs.
-	 *                <p>
+	 * @exception                              java.io.IOException
+	 *                                         if an input or output error
+	 *                                         occurs.
+	 *                                         <p>
 	 *
 	 * @exception UnsupportedCallbackException
-	 *                if the implementation of this method does not support one
-	 *                or more of the Callbacks specified in the
-	 *                {@code callbacks} parameter.
+	 *                                         if the implementation of this
+	 *                                         method does not support one
+	 *                                         or more of the Callbacks
+	 *                                         specified in the
+	 *                                         {@code callbacks} parameter.
 	 */
-	void handle(Callback[] callbacks) throws java.io.IOException, UnsupportedCallbackException;
+	void handle(Callback[] callbacks) throws java.io.IOException,
+			UnsupportedCallbackException;
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -51,9 +31,9 @@ public class AWTEventListenerProxy extends EventListenerProxy<AWTEventListener>
 	 * mask.
 	 *
 	 * @param eventMask
-	 *            the bitmap of event types to receive
+	 *                  the bitmap of event types to receive
 	 * @param listener
-	 *            the listener object
+	 *                  the listener object
 	 */
 	public AWTEventListenerProxy(long eventMask, AWTEventListener listener) {
 		super(listener);
@@ -64,7 +44,7 @@ public class AWTEventListenerProxy extends EventListenerProxy<AWTEventListener>
 	 * Forwards the AWT event to the listener delegate.
 	 *
 	 * @param event
-	 *            the AWT event
+	 *              the AWT event
 	 */
 	public void eventDispatched(AWTEvent event) {
 		getListener().eventDispatched(event);

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -65,18 +62,21 @@ class XPointerErrorHandler implements XMLErrorHandler {
 	//
 
 	/** Warning. */
-	public void warning(String domain, String key, XMLParseException ex) throws XNIException {
+	public void warning(String domain, String key, XMLParseException ex)
+			throws XNIException {
 		printError("Warning", ex);
 	} // warning(XMLParseException)
 
 	/** Error. */
-	public void error(String domain, String key, XMLParseException ex) throws XNIException {
+	public void error(String domain, String key, XMLParseException ex)
+			throws XNIException {
 		printError("Error", ex);
 		// throw ex;
 	} // error(XMLParseException)
 
 	/** Fatal error. */
-	public void fatalError(String domain, String key, XMLParseException ex) throws XNIException {
+	public void fatalError(String domain, String key, XMLParseException ex)
+			throws XNIException {
 		printError("Fatal Error", ex);
 		throw ex;
 	} // fatalError(XMLParseException)

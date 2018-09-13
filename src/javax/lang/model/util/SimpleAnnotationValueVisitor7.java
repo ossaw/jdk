@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -68,16 +48,17 @@ import static javax.lang.model.SourceVersion.*;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods
+ *        the return type of this visitor's methods
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
+ *        the type of the additional parameter to this visitor's methods.
  *
  * @see SimpleAnnotationValueVisitor6
  * @see SimpleAnnotationValueVisitor8
  * @since 1.7
  */
 @SupportedSourceVersion(RELEASE_7)
-public class SimpleAnnotationValueVisitor7<R, P> extends SimpleAnnotationValueVisitor6<R, P> {
+public class SimpleAnnotationValueVisitor7<R, P> extends
+		SimpleAnnotationValueVisitor6<R, P> {
 	/**
 	 * Constructor for concrete subclasses; uses {@code null} for the default
 	 * value.
@@ -91,7 +72,7 @@ public class SimpleAnnotationValueVisitor7<R, P> extends SimpleAnnotationValueVi
 	 * value.
 	 *
 	 * @param defaultValue
-	 *            the value to assign to {@link #DEFAULT_VALUE}
+	 *                     the value to assign to {@link #DEFAULT_VALUE}
 	 */
 	protected SimpleAnnotationValueVisitor7(R defaultValue) {
 		super(defaultValue);

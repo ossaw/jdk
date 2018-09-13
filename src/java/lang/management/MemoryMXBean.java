@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -271,12 +251,12 @@ public interface MemoryMXBean extends PlatformManagedObject {
 	 * globally.
 	 *
 	 * @param value
-	 *            <tt>true</tt> to enable verbose output; <tt>false</tt> to
-	 *            disable.
+	 *              <tt>true</tt> to enable verbose output; <tt>false</tt> to
+	 *              disable.
 	 *
 	 * @exception java.lang.SecurityException
-	 *                if a security manager exists and the caller does not have
-	 *                ManagementPermission("control").
+	 *            if a security manager exists and the caller does not have
+	 *            ManagementPermission("control").
 	 */
 	public void setVerbose(boolean value);
 

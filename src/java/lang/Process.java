@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -153,9 +133,12 @@ public abstract class Process {
 	 *         {@code Process} object. By convention, the value {@code 0}
 	 *         indicates normal termination.
 	 * @throws InterruptedException
-	 *             if the current thread is {@linkplain Thread#interrupt()
-	 *             interrupted} by another thread while it is waiting, then the
-	 *             wait is ended and an {@link InterruptedException} is thrown.
+	 *                              if the current thread is
+	 *                              {@linkplain Thread#interrupt()
+	 *                              interrupted} by another thread while it is
+	 *                              waiting, then the
+	 *                              wait is ended and an
+	 *                              {@link InterruptedException} is thrown.
 	 */
 	public abstract int waitFor() throws InterruptedException;
 
@@ -177,18 +160,20 @@ public abstract class Process {
 	 * efficient implementation.
 	 *
 	 * @param timeout
-	 *            the maximum time to wait
+	 *                the maximum time to wait
 	 * @param unit
-	 *            the time unit of the {@code timeout} argument
+	 *                the time unit of the {@code timeout} argument
 	 * @return {@code true} if the subprocess has exited and {@code false} if
 	 *         the waiting time elapsed before the subprocess has exited.
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted while waiting.
+	 *                              if the current thread is interrupted while
+	 *                              waiting.
 	 * @throws NullPointerException
-	 *             if unit is null
+	 *                              if unit is null
 	 * @since 1.8
 	 */
-	public boolean waitFor(long timeout, TimeUnit unit) throws InterruptedException {
+	public boolean waitFor(long timeout, TimeUnit unit)
+			throws InterruptedException {
 		long startTime = System.nanoTime();
 		long rem = unit.toNanos(timeout);
 
@@ -198,7 +183,8 @@ public abstract class Process {
 				return true;
 			} catch (IllegalThreadStateException ex) {
 				if (rem > 0)
-					Thread.sleep(Math.min(TimeUnit.NANOSECONDS.toMillis(rem) + 1, 100));
+					Thread.sleep(Math.min(TimeUnit.NANOSECONDS.toMillis(rem)
+							+ 1, 100));
 			}
 			rem = unit.toNanos(timeout) - (System.nanoTime() - startTime);
 		} while (rem > 0);
@@ -212,8 +198,9 @@ public abstract class Process {
 	 *         {@code Process} object. By convention, the value {@code 0}
 	 *         indicates normal termination.
 	 * @throws IllegalThreadStateException
-	 *             if the subprocess represented by this {@code Process} object
-	 *             has not yet terminated
+	 *                                     if the subprocess represented by this
+	 *                                     {@code Process} object
+	 *                                     has not yet terminated
 	 */
 	public abstract int exitValue();
 

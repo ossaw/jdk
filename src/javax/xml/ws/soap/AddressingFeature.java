@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.soap;
@@ -197,8 +177,9 @@ public final class AddressingFeature extends WebServiceFeature {
 	 * also configures to accept all the response types.
 	 *
 	 * @param enabled
-	 *            true enables ws-addressing i.e.ws-addressing is supported but
-	 *            doesn't require its use
+	 *                true enables ws-addressing i.e.ws-addressing is supported
+	 *                but
+	 *                doesn't require its use
 	 */
 	public AddressingFeature(boolean enabled) {
 		this(enabled, false, Responses.ALL);
@@ -211,10 +192,11 @@ public final class AddressingFeature extends WebServiceFeature {
 	 * use. It also configures to accept all the response types.
 	 *
 	 * @param enabled
-	 *            true enables ws-addressing i.e.ws-addressing is supported but
-	 *            doesn't require its use
+	 *                 true enables ws-addressing i.e.ws-addressing is supported
+	 *                 but
+	 *                 doesn't require its use
 	 * @param required
-	 *            true means requires the use of ws-addressing .
+	 *                 true means requires the use of ws-addressing .
 	 */
 	public AddressingFeature(boolean enabled, boolean required) {
 		this(enabled, required, Responses.ALL);
@@ -228,16 +210,18 @@ public final class AddressingFeature extends WebServiceFeature {
 	 * <code>responses</code> parameter.
 	 *
 	 * @param enabled
-	 *            true enables ws-addressing i.e.ws-addressing is supported but
-	 *            doesn't require its use
+	 *                  true enables ws-addressing i.e.ws-addressing is
+	 *                  supported but
+	 *                  doesn't require its use
 	 * @param required
-	 *            true means requires the use of ws-addressing .
+	 *                  true means requires the use of ws-addressing .
 	 * @param responses
-	 *            specifies what type of responses are required
+	 *                  specifies what type of responses are required
 	 *
 	 * @since JAX-WS 2.2
 	 */
-	public AddressingFeature(boolean enabled, boolean required, Responses responses) {
+	public AddressingFeature(boolean enabled, boolean required,
+			Responses responses) {
 		this.enabled = enabled;
 		this.required = required;
 		this.responses = responses;

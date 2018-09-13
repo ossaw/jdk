@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,7 +61,7 @@ public class PSVIDocumentImpl extends DocumentImpl {
 	 *
 	 * @return org.w3c.dom.Node
 	 * @param deep
-	 *            boolean, iff true replicate children
+	 *             boolean, iff true replicate children
 	 */
 	public Node cloneNode(boolean deep) {
 
@@ -94,30 +91,33 @@ public class PSVIDocumentImpl extends DocumentImpl {
 	/**
 	 * Create an element with PSVI information
 	 */
-	public Element createElementNS(String namespaceURI, String qualifiedName) throws DOMException {
+	public Element createElementNS(String namespaceURI, String qualifiedName)
+			throws DOMException {
 		return new PSVIElementNSImpl(this, namespaceURI, qualifiedName);
 	}
 
 	/**
 	 * Create an element with PSVI information
 	 */
-	public Element createElementNS(String namespaceURI, String qualifiedName, String localpart)
-			throws DOMException {
-		return new PSVIElementNSImpl(this, namespaceURI, qualifiedName, localpart);
+	public Element createElementNS(String namespaceURI, String qualifiedName,
+			String localpart) throws DOMException {
+		return new PSVIElementNSImpl(this, namespaceURI, qualifiedName,
+				localpart);
 	}
 
 	/**
 	 * Create an attribute with PSVI information
 	 */
-	public Attr createAttributeNS(String namespaceURI, String qualifiedName) throws DOMException {
+	public Attr createAttributeNS(String namespaceURI, String qualifiedName)
+			throws DOMException {
 		return new PSVIAttrNSImpl(this, namespaceURI, qualifiedName);
 	}
 
 	/**
 	 * Create an attribute with PSVI information
 	 */
-	public Attr createAttributeNS(String namespaceURI, String qualifiedName, String localName)
-			throws DOMException {
+	public Attr createAttributeNS(String namespaceURI, String qualifiedName,
+			String localName) throws DOMException {
 		return new PSVIAttrNSImpl(this, namespaceURI, qualifiedName, localName);
 	}
 
@@ -140,7 +140,8 @@ public class PSVIDocumentImpl extends DocumentImpl {
 		throw new NotSerializableException(getClass().getName());
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		throw new NotSerializableException(getClass().getName());
 	}
 

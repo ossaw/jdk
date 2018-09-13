@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -67,8 +59,8 @@ import com.sun.org.apache.bcel.internal.Constants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class LocalVariableInstruction extends Instruction
-		implements TypedInstruction, IndexedInstruction {
+public abstract class LocalVariableInstruction extends Instruction implements
+		TypedInstruction, IndexedInstruction {
 	protected int n = -1; // index of referenced variable
 	private short c_tag = -1; // compact version, such as ILOAD_0
 	private short canon_tag = -1; // canonical tag such as ILOAD
@@ -92,16 +84,15 @@ public abstract class LocalVariableInstruction extends Instruction
 	 * Empty constructor needed for the Class.newInstance() statement in
 	 * Instruction.readInstruction(). Also used by IINC()!
 	 */
-	LocalVariableInstruction() {
-	}
+	LocalVariableInstruction() {}
 
 	/**
 	 * @param opcode
-	 *            Instruction opcode
+	 *               Instruction opcode
 	 * @param c_tag
-	 *            Instruction number for compact version, ALOAD_0, e.g.
+	 *               Instruction number for compact version, ALOAD_0, e.g.
 	 * @param n
-	 *            local variable index (unsigned short)
+	 *               local variable index (unsigned short)
 	 */
 	protected LocalVariableInstruction(short opcode, short c_tag, int n) {
 		super(opcode, (short) 2);
@@ -139,12 +130,13 @@ public abstract class LocalVariableInstruction extends Instruction
 	 * instruction&gt;")" "&lt;"&lt; local variable index&gt;"&gt;"
 	 *
 	 * @param verbose
-	 *            long/short format switch
+	 *                long/short format switch
 	 * @return mnemonic for instruction
 	 */
 	public String toString(boolean verbose) {
 		if (((opcode >= Constants.ILOAD_0) && (opcode <= Constants.ALOAD_3))
-				|| ((opcode >= Constants.ISTORE_0) && (opcode <= Constants.ASTORE_3)))
+				|| ((opcode >= Constants.ISTORE_0)
+						&& (opcode <= Constants.ASTORE_3)))
 			return super.toString(verbose);
 		else
 			return super.toString(verbose) + " " + n;
@@ -154,12 +146,14 @@ public abstract class LocalVariableInstruction extends Instruction
 	 * Read needed data (e.g. index) from file. PRE: (ILOAD <= tag <= ALOAD_3)
 	 * || (ISTORE <= tag <= ASTORE_3)
 	 */
-	protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
+	protected void initFromFile(ByteSequence bytes, boolean wide)
+			throws IOException {
 		if (wide) {
 			n = bytes.readUnsignedShort();
 			length = 4;
 		} else if (((opcode >= Constants.ILOAD) && (opcode <= Constants.ALOAD))
-				|| ((opcode >= Constants.ISTORE) && (opcode <= Constants.ASTORE))) {
+				|| ((opcode >= Constants.ISTORE)
+						&& (opcode <= Constants.ASTORE))) {
 			n = bytes.readUnsignedByte();
 			length = 2;
 		} else if (opcode <= Constants.ALOAD_3) { // compact load instruction
@@ -218,24 +212,25 @@ public abstract class LocalVariableInstruction extends Instruction
 	 */
 	public Type getType(ConstantPoolGen cp) {
 		switch (canon_tag) {
-		case Constants.ILOAD:
-		case Constants.ISTORE:
-			return Type.INT;
-		case Constants.LLOAD:
-		case Constants.LSTORE:
-			return Type.LONG;
-		case Constants.DLOAD:
-		case Constants.DSTORE:
-			return Type.DOUBLE;
-		case Constants.FLOAD:
-		case Constants.FSTORE:
-			return Type.FLOAT;
-		case Constants.ALOAD:
-		case Constants.ASTORE:
-			return Type.OBJECT;
+			case Constants.ILOAD:
+			case Constants.ISTORE:
+				return Type.INT;
+			case Constants.LLOAD:
+			case Constants.LSTORE:
+				return Type.LONG;
+			case Constants.DLOAD:
+			case Constants.DSTORE:
+				return Type.DOUBLE;
+			case Constants.FLOAD:
+			case Constants.FSTORE:
+				return Type.FLOAT;
+			case Constants.ALOAD:
+			case Constants.ASTORE:
+				return Type.OBJECT;
 
-		default:
-			throw new ClassGenException("Oops: unknown case in switch" + canon_tag);
+			default:
+				throw new ClassGenException("Oops: unknown case in switch"
+						+ canon_tag);
 		}
 	}
 }

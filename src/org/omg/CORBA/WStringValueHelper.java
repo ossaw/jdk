@@ -1,39 +1,19 @@
 /*
  * Copyright (c) 1998, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /**
-* The Helper for <tt>WStringValue</tt>.  For more information on
-* Helper files, see <a href="doc-files/generatedfiles.html#helper">
-* "Generated Files: Helper Files"</a>.<P>
-*/
+ * The Helper for <tt>WStringValue</tt>. For more information on
+ * Helper files, see <a href="doc-files/generatedfiles.html#helper">
+ * "Generated Files: Helper Files"</a>.
+ * <P>
+ */
 
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package org.omg.CORBA;
@@ -54,7 +34,8 @@ package org.omg.CORBA;
  * </ul>
  */
 
-public class WStringValueHelper implements org.omg.CORBA.portable.BoxedValueHelper {
+public class WStringValueHelper implements
+		org.omg.CORBA.portable.BoxedValueHelper {
 	private static String _id = "IDL:omg.org/CORBA/WStringValue:1.0";
 
 	private static WStringValueHelper _instance = new WStringValueHelper();
@@ -78,12 +59,13 @@ public class WStringValueHelper implements org.omg.CORBA.portable.BoxedValueHelp
 			synchronized (org.omg.CORBA.TypeCode.class) {
 				if (__typeCode == null) {
 					if (__active) {
-						return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
+						return org.omg.CORBA.ORB.init().create_recursive_tc(
+								_id);
 					}
 					__active = true;
 					__typeCode = org.omg.CORBA.ORB.init().create_wstring_tc(0);
-					__typeCode = org.omg.CORBA.ORB.init().create_value_box_tc(_id, "WStringValue",
-							__typeCode);
+					__typeCode = org.omg.CORBA.ORB.init().create_value_box_tc(
+							_id, "WStringValue", __typeCode);
 					__active = false;
 				}
 			}
@@ -99,20 +81,24 @@ public class WStringValueHelper implements org.omg.CORBA.portable.BoxedValueHelp
 		if (!(istream instanceof org.omg.CORBA_2_3.portable.InputStream)) {
 			throw new org.omg.CORBA.BAD_PARAM();
 		}
-		return (String) ((org.omg.CORBA_2_3.portable.InputStream) istream).read_value(_instance);
+		return (String) ((org.omg.CORBA_2_3.portable.InputStream) istream)
+				.read_value(_instance);
 	}
 
-	public java.io.Serializable read_value(org.omg.CORBA.portable.InputStream istream) {
+	public java.io.Serializable read_value(
+			org.omg.CORBA.portable.InputStream istream) {
 		String tmp;
 		tmp = istream.read_wstring();
 		return (java.io.Serializable) tmp;
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, String value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			String value) {
 		if (!(ostream instanceof org.omg.CORBA_2_3.portable.OutputStream)) {
 			throw new org.omg.CORBA.BAD_PARAM();
 		}
-		((org.omg.CORBA_2_3.portable.OutputStream) ostream).write_value(value, _instance);
+		((org.omg.CORBA_2_3.portable.OutputStream) ostream).write_value(value,
+				_instance);
 	}
 
 	public void write_value(org.omg.CORBA.portable.OutputStream ostream,

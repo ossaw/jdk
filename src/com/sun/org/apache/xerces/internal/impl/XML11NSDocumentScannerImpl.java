@@ -4,14 +4,12 @@
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -105,7 +103,7 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 	 * if it is not needed.
 	 *
 	 * @param validator
-	 *            the DTD validator from the pipeline
+	 *                  the DTD validator from the pipeline
 	 */
 	public void setDTDValidator(XMLDTDValidatorFilter validator) {
 		fDTDValidator = validator;
@@ -148,7 +146,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 							XMLErrorReporter.SEVERITY_ERROR);
 
 					if (fDoctypeName == null || !fDoctypeName.equals(rawname)) {
-						fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XML_DOMAIN,
 								"RootElementTypeMustMatchDoctypedecl",
 								new Object[] { fDoctypeName, rawname },
 								XMLErrorReporter.SEVERITY_ERROR);
@@ -175,7 +174,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 			} else if (c == '/') {
 				fEntityScanner.scanChar(null);
 				if (!fEntityScanner.skipChar('>', null)) {
-					reportFatalError("ElementUnterminated", new Object[] { rawname });
+					reportFatalError("ElementUnterminated", new Object[] {
+							rawname });
 				}
 				empty = true;
 				break;
@@ -183,16 +183,19 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				// Second chance. Check if this character is a high
 				// surrogate of a valid name start character.
 				if (!isValidNameStartHighSurrogate(c) || !sawSpace) {
-					reportFatalError("ElementUnterminated", new Object[] { rawname });
+					reportFatalError("ElementUnterminated", new Object[] {
+							rawname });
 				}
 			}
 
 			// attributes
 			scanAttribute(fAttributes);
-			if (fSecurityManager != null && (!fSecurityManager.isNoLimit(fElementAttributeLimit))
-					&& fAttributes.getLength() > fElementAttributeLimit) {
-				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "ElementAttributeLimit",
-						new Object[] { rawname, new Integer(fElementAttributeLimit) },
+			if (fSecurityManager != null && (!fSecurityManager.isNoLimit(
+					fElementAttributeLimit)) && fAttributes
+							.getLength() > fElementAttributeLimit) {
+				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+						"ElementAttributeLimit", new Object[] { rawname,
+								new Integer(fElementAttributeLimit) },
 						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			}
 
@@ -201,8 +204,9 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 		if (fBindNamespaces) {
 			// REVISIT: is it required? forbit xmlns prefix for element
 			if (fElementQName.prefix == XMLSymbols.PREFIX_XMLNS) {
-				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementXMLNSPrefix",
-						new Object[] { fElementQName.rawname },
+				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
+						"ElementXMLNSPrefix", new Object[] {
+								fElementQName.rawname },
 						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			}
 
@@ -221,8 +225,9 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				fCurrentElement.prefix = XMLSymbols.EMPTY_STRING;
 			}
 			if (fElementQName.prefix != null && fElementQName.uri == null) {
-				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementPrefixUnbound",
-						new Object[] { fElementQName.prefix, fElementQName.rawname },
+				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
+						"ElementPrefixUnbound", new Object[] {
+								fElementQName.prefix, fElementQName.rawname },
 						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			}
 
@@ -231,7 +236,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 			for (int i = 0; i < length; i++) {
 				fAttributes.getName(i, fAttributeQName);
 
-				String aprefix = fAttributeQName.prefix != null ? fAttributeQName.prefix
+				String aprefix = fAttributeQName.prefix != null
+						? fAttributeQName.prefix
 						: XMLSymbols.EMPTY_STRING;
 				String uri = fNamespaceContext.getURI(aprefix);
 				// REVISIT: try removing the first "if" and see if it is faster.
@@ -242,8 +248,10 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				if (aprefix != XMLSymbols.EMPTY_STRING) {
 					fAttributeQName.uri = uri;
 					if (uri == null) {
-						fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-								"AttributePrefixUnbound", new Object[] { fElementQName.rawname,
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN,
+								"AttributePrefixUnbound", new Object[] {
+										fElementQName.rawname,
 										fAttributeQName.rawname, aprefix },
 								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					}
@@ -255,15 +263,17 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				QName name = fAttributes.checkDuplicatesNS();
 				if (name != null) {
 					if (name.uri != null) {
-						fErrorReporter
-								.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-										"AttributeNSNotUnique", new Object[] {
-												fElementQName.rawname, name.localpart, name.uri },
-										XMLErrorReporter.SEVERITY_FATAL_ERROR);
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN,
+								"AttributeNSNotUnique", new Object[] {
+										fElementQName.rawname, name.localpart,
+										name.uri },
+								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					} else {
-						fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-								"AttributeNotUnique",
-								new Object[] { fElementQName.rawname, name.rawname },
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN,
+								"AttributeNotUnique", new Object[] {
+										fElementQName.rawname, name.rawname },
 								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					}
 				}
@@ -277,7 +287,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 
 			// check that this element was opened in the same entity
 			if (fMarkupDepth < fEntityStack[fEntityDepth - 1]) {
-				reportFatalError("ElementEntityMismatch", new Object[] { fCurrentElement.rawname });
+				reportFatalError("ElementEntityMismatch", new Object[] {
+						fCurrentElement.rawname });
 			}
 
 			if (fDocumentHandler != null) {
@@ -326,7 +337,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 	 * @see #scanStartElement
 	 * @return True if element is empty.
 	 */
-	protected boolean scanStartElementAfterName() throws IOException, XNIException {
+	protected boolean scanStartElementAfterName() throws IOException,
+			XNIException {
 
 		// REVISIT - [Q] Why do we need this local variable? -- mrglavas
 		String rawname = fElementQName.rawname;
@@ -339,7 +351,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 							XMLErrorReporter.SEVERITY_ERROR);
 
 					if (fDoctypeName == null || !fDoctypeName.equals(rawname)) {
-						fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XML_DOMAIN,
 								"RootElementTypeMustMatchDoctypedecl",
 								new Object[] { fDoctypeName, rawname },
 								XMLErrorReporter.SEVERITY_ERROR);
@@ -364,7 +377,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 			} else if (c == '/') {
 				fEntityScanner.scanChar(null);
 				if (!fEntityScanner.skipChar('>', null)) {
-					reportFatalError("ElementUnterminated", new Object[] { rawname });
+					reportFatalError("ElementUnterminated", new Object[] {
+							rawname });
 				}
 				empty = true;
 				break;
@@ -372,7 +386,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				// Second chance. Check if this character is a high
 				// surrogate of a valid name start character.
 				if (!isValidNameStartHighSurrogate(c) || !fSawSpace) {
-					reportFatalError("ElementUnterminated", new Object[] { rawname });
+					reportFatalError("ElementUnterminated", new Object[] {
+							rawname });
 				}
 			}
 
@@ -387,8 +402,9 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 		if (fBindNamespaces) {
 			// REVISIT: is it required? forbit xmlns prefix for element
 			if (fElementQName.prefix == XMLSymbols.PREFIX_XMLNS) {
-				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementXMLNSPrefix",
-						new Object[] { fElementQName.rawname },
+				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
+						"ElementXMLNSPrefix", new Object[] {
+								fElementQName.rawname },
 						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			}
 
@@ -407,8 +423,9 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				fCurrentElement.prefix = XMLSymbols.EMPTY_STRING;
 			}
 			if (fElementQName.prefix != null && fElementQName.uri == null) {
-				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementPrefixUnbound",
-						new Object[] { fElementQName.prefix, fElementQName.rawname },
+				fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
+						"ElementPrefixUnbound", new Object[] {
+								fElementQName.prefix, fElementQName.rawname },
 						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			}
 
@@ -417,7 +434,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 			for (int i = 0; i < length; i++) {
 				fAttributes.getName(i, fAttributeQName);
 
-				String aprefix = fAttributeQName.prefix != null ? fAttributeQName.prefix
+				String aprefix = fAttributeQName.prefix != null
+						? fAttributeQName.prefix
 						: XMLSymbols.EMPTY_STRING;
 				String uri = fNamespaceContext.getURI(aprefix);
 				// REVISIT: try removing the first "if" and see if it is faster.
@@ -428,8 +446,10 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				if (aprefix != XMLSymbols.EMPTY_STRING) {
 					fAttributeQName.uri = uri;
 					if (uri == null) {
-						fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-								"AttributePrefixUnbound", new Object[] { fElementQName.rawname,
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN,
+								"AttributePrefixUnbound", new Object[] {
+										fElementQName.rawname,
 										fAttributeQName.rawname, aprefix },
 								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					}
@@ -441,15 +461,17 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				QName name = fAttributes.checkDuplicatesNS();
 				if (name != null) {
 					if (name.uri != null) {
-						fErrorReporter
-								.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-										"AttributeNSNotUnique", new Object[] {
-												fElementQName.rawname, name.localpart, name.uri },
-										XMLErrorReporter.SEVERITY_FATAL_ERROR);
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN,
+								"AttributeNSNotUnique", new Object[] {
+										fElementQName.rawname, name.localpart,
+										name.uri },
+								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					} else {
-						fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-								"AttributeNotUnique",
-								new Object[] { fElementQName.rawname, name.rawname },
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN,
+								"AttributeNotUnique", new Object[] {
+										fElementQName.rawname, name.rawname },
 								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					}
 				}
@@ -465,8 +487,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 
 				// check that this element was opened in the same entity
 				if (fMarkupDepth < fEntityStack[fEntityDepth - 1]) {
-					reportFatalError("ElementEntityMismatch",
-							new Object[] { fCurrentElement.rawname });
+					reportFatalError("ElementEntityMismatch", new Object[] {
+							fCurrentElement.rawname });
 				}
 
 				fDocumentHandler.emptyElement(fElementQName, fAttributes, null);
@@ -502,9 +524,10 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 	 * variables. The contents of these variables will be destroyed.
 	 *
 	 * @param attributes
-	 *            The attributes list for the scanned attribute.
+	 *                   The attributes list for the scanned attribute.
 	 */
-	protected void scanAttribute(XMLAttributesImpl attributes) throws IOException, XNIException {
+	protected void scanAttribute(XMLAttributesImpl attributes)
+			throws IOException, XNIException {
 		if (DEBUG_START_END_ELEMENT)
 			System.out.println(">>> scanAttribute()");
 
@@ -514,8 +537,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 		// equals
 		fEntityScanner.skipSpaces();
 		if (!fEntityScanner.skipChar('=', NameType.ATTRIBUTE)) {
-			reportFatalError("EqRequiredInAttribute",
-					new Object[] { fCurrentElement.rawname, fAttributeQName.rawname });
+			reportFatalError("EqRequiredInAttribute", new Object[] {
+					fCurrentElement.rawname, fAttributeQName.rawname });
 		}
 		fEntityScanner.skipSpaces();
 
@@ -524,15 +547,17 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 
 		if (fBindNamespaces) {
 			attrIndex = attributes.getLength();
-			attributes.addAttributeNS(fAttributeQName, XMLSymbols.fCDATASymbol, null);
+			attributes.addAttributeNS(fAttributeQName, XMLSymbols.fCDATASymbol,
+					null);
 		} else {
 			int oldLen = attributes.getLength();
-			attrIndex = attributes.addAttribute(fAttributeQName, XMLSymbols.fCDATASymbol, null);
+			attrIndex = attributes.addAttribute(fAttributeQName,
+					XMLSymbols.fCDATASymbol, null);
 
 			// WFC: Unique Att Spec
 			if (oldLen == attributes.getLength()) {
-				reportFatalError("AttributeNotUnique",
-						new Object[] { fCurrentElement.rawname, fAttributeQName.rawname });
+				reportFatalError("AttributeNotUnique", new Object[] {
+						fCurrentElement.rawname, fAttributeQName.rawname });
 			}
 		}
 
@@ -550,10 +575,12 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 		String prefix = fAttributeQName.prefix != null ? fAttributeQName.prefix
 				: XMLSymbols.EMPTY_STRING;
 		boolean isNSDecl = fBindNamespaces & (prefix == XMLSymbols.PREFIX_XMLNS
-				|| prefix == XMLSymbols.EMPTY_STRING && localpart == XMLSymbols.PREFIX_XMLNS);
+				|| prefix == XMLSymbols.EMPTY_STRING
+						&& localpart == XMLSymbols.PREFIX_XMLNS);
 
-		scanAttributeValue(this.fTempString, fTempString2, fAttributeQName.rawname, isVC,
-				fCurrentElement.rawname, isNSDecl);
+		scanAttributeValue(this.fTempString, fTempString2,
+				fAttributeQName.rawname, isVC, fCurrentElement.rawname,
+				isNSDecl);
 		String value = fTempString.toString();
 		attributes.setValue(attrIndex, value);
 		attributes.setNonNormalizedValue(attrIndex, fTempString2.toString());
@@ -563,33 +590,36 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 		if (fBindNamespaces) {
 			if (isNSDecl) {
 				if (value.length() > fXMLNameLimit) {
-					fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "MaxXMLNameLimit",
-							new Object[] { value, value.length(), fXMLNameLimit,
-									fSecurityManager.getStateLiteral(
-											XMLSecurityManager.Limit.MAX_NAME_LIMIT) },
+					fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+							"MaxXMLNameLimit", new Object[] { value, value
+									.length(), fXMLNameLimit, fSecurityManager
+											.getStateLiteral(
+													XMLSecurityManager.Limit.MAX_NAME_LIMIT) },
 							XMLErrorReporter.SEVERITY_FATAL_ERROR);
 				}
 				// get the internalized value of this attribute
 				String uri = fSymbolTable.addSymbol(value);
 
 				// 1. "xmlns" can't be bound to any namespace
-				if (prefix == XMLSymbols.PREFIX_XMLNS && localpart == XMLSymbols.PREFIX_XMLNS) {
-					fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
-							new Object[] { fAttributeQName },
+				if (prefix == XMLSymbols.PREFIX_XMLNS
+						&& localpart == XMLSymbols.PREFIX_XMLNS) {
+					fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
+							"CantBindXMLNS", new Object[] { fAttributeQName },
 							XMLErrorReporter.SEVERITY_FATAL_ERROR);
 				}
 
 				// 2. the namespace for "xmlns" can't be bound to any prefix
 				if (uri == NamespaceContext.XMLNS_URI) {
-					fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
-							new Object[] { fAttributeQName },
+					fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
+							"CantBindXMLNS", new Object[] { fAttributeQName },
 							XMLErrorReporter.SEVERITY_FATAL_ERROR);
 				}
 
 				// 3. "xml" can't be bound to any other namespace than it's own
 				if (localpart == XMLSymbols.PREFIX_XML) {
 					if (uri != NamespaceContext.XML_URI) {
-						fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
 								new Object[] { fAttributeQName },
 								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					}
@@ -597,27 +627,32 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 				// 4. the namespace for "xml" can't be bound to any other prefix
 				else {
 					if (uri == NamespaceContext.XML_URI) {
-						fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+						fErrorReporter.reportError(
+								XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
 								new Object[] { fAttributeQName },
 								XMLErrorReporter.SEVERITY_FATAL_ERROR);
 					}
 				}
 
-				prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart : XMLSymbols.EMPTY_STRING;
+				prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart
+						: XMLSymbols.EMPTY_STRING;
 
 				// Declare prefix in context. Removing the association between a
 				// prefix and a
 				// namespace name is permitted in XML 1.1, so if the uri value
 				// is the empty string,
 				// the prefix is being unbound. -- mrglavas
-				fNamespaceContext.declarePrefix(prefix, uri.length() != 0 ? uri : null);
+				fNamespaceContext.declarePrefix(prefix, uri.length() != 0 ? uri
+						: null);
 				// bind namespace attribute to a namespace
-				attributes.setURI(attrIndex, fNamespaceContext.getURI(XMLSymbols.PREFIX_XMLNS));
+				attributes.setURI(attrIndex, fNamespaceContext.getURI(
+						XMLSymbols.PREFIX_XMLNS));
 
 			} else {
 				// attempt to bind attribute
 				if (fAttributeQName.prefix != null) {
-					attributes.setURI(attrIndex, fNamespaceContext.getURI(fAttributeQName.prefix));
+					attributes.setURI(attrIndex, fNamespaceContext.getURI(
+							fAttributeQName.prefix));
 				}
 			}
 		}
@@ -662,13 +697,15 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 		// -- document is not well formed.
 
 		if (!fEntityScanner.skipString(endElementName.rawname)) {
-			reportFatalError("ETagRequired", new Object[] { endElementName.rawname });
+			reportFatalError("ETagRequired", new Object[] {
+					endElementName.rawname });
 		}
 
 		// end
 		fEntityScanner.skipSpaces();
 		if (!fEntityScanner.skipChar('>', NameType.ELEMENTEND)) {
-			reportFatalError("ETagUnterminated", new Object[] { endElementName.rawname });
+			reportFatalError("ETagUnterminated", new Object[] {
+					endElementName.rawname });
 		}
 		fMarkupDepth--;
 
@@ -677,7 +714,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 
 		// check that this element was opened in the same entity
 		if (fMarkupDepth < fEntityStack[fEntityDepth - 1]) {
-			reportFatalError("ElementEntityMismatch", new Object[] { endElementName.rawname });
+			reportFatalError("ElementEntityMismatch", new Object[] {
+					endElementName.rawname });
 		}
 
 		// call handler
@@ -697,7 +735,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 
 	} // scanEndElement():int
 
-	public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
+	public void reset(XMLComponentManager componentManager)
+			throws XMLConfigurationException {
 
 		super.reset(componentManager);
 		fPerformValidation = false;
@@ -746,10 +785,11 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 		 *         value of false indicates that the content Driver should
 		 *         continue as normal.
 		 */
-		protected boolean scanRootElementHook() throws IOException, XNIException {
+		protected boolean scanRootElementHook() throws IOException,
+				XNIException {
 
-			if (fExternalSubsetResolver != null && !fSeenDoctypeDecl && !fDisallowDoctype
-					&& (fValidation || fLoadExternalDTD)) {
+			if (fExternalSubsetResolver != null && !fSeenDoctypeDecl
+					&& !fDisallowDoctype && (fValidation || fLoadExternalDTD)) {
 				scanStartElementName();
 				resolveExternalSubsetAndRead();
 				reconfigurePipeline();

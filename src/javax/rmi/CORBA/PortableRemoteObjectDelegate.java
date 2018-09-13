@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package javax.rmi.CORBA;
@@ -68,8 +47,8 @@ public interface PortableRemoteObjectDelegate {
 	/**
 	 * Delegation call for {@link javax.rmi.PortableRemoteObject#narrow}.
 	 */
-	java.lang.Object narrow(java.lang.Object narrowFrom, java.lang.Class narrowTo)
-			throws ClassCastException;
+	java.lang.Object narrow(java.lang.Object narrowFrom,
+			java.lang.Class narrowTo) throws ClassCastException;
 
 	/**
 	 * Delegation call for {@link javax.rmi.PortableRemoteObject#connect}.

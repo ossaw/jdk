@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -67,10 +47,12 @@ public class JPanel extends JComponent implements Accessible {
 	 * strategy.
 	 *
 	 * @param layout
-	 *            the LayoutManager to use
+	 *                         the LayoutManager to use
 	 * @param isDoubleBuffered
-	 *            a boolean, true for double-buffering, which uses additional
-	 *            memory space to achieve fast, flicker-free updates
+	 *                         a boolean, true for double-buffering, which uses
+	 *                         additional
+	 *                         memory space to achieve fast, flicker-free
+	 *                         updates
 	 */
 	public JPanel(LayoutManager layout, boolean isDoubleBuffered) {
 		setLayout(layout);
@@ -83,7 +65,7 @@ public class JPanel extends JComponent implements Accessible {
 	 * Create a new buffered JPanel with the specified layout manager
 	 *
 	 * @param layout
-	 *            the LayoutManager to use
+	 *               the LayoutManager to use
 	 */
 	public JPanel(LayoutManager layout) {
 		this(layout, true);
@@ -95,8 +77,10 @@ public class JPanel extends JComponent implements Accessible {
 	 * the <code>JPanel</code> will use a double buffer.
 	 *
 	 * @param isDoubleBuffered
-	 *            a boolean, true for double-buffering, which uses additional
-	 *            memory space to achieve fast, flicker-free updates
+	 *                         a boolean, true for double-buffering, which uses
+	 *                         additional
+	 *                         memory space to achieve fast, flicker-free
+	 *                         updates
 	 */
 	public JPanel(boolean isDoubleBuffered) {
 		this(new FlowLayout(), isDoubleBuffered);
@@ -133,7 +117,7 @@ public class JPanel extends JComponent implements Accessible {
 	 * Sets the look and feel (L&amp;F) object that renders this component.
 	 *
 	 * @param ui
-	 *            the PanelUI L&amp;F object
+	 *           the PanelUI L&amp;F object
 	 * @see UIDefaults#getUI
 	 * @since 1.4
 	 * @beaninfo bound: true hidden: true attribute: visualUpdate true

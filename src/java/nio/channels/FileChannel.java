@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -178,12 +158,12 @@ import java.util.Collections;
  */
 
 public abstract class FileChannel extends AbstractInterruptibleChannel
-		implements SeekableByteChannel, GatheringByteChannel, ScatteringByteChannel {
+		implements SeekableByteChannel, GatheringByteChannel,
+		ScatteringByteChannel {
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected FileChannel() {
-	}
+	protected FileChannel() {}
 
 	/**
 	 * Opens or creates a file, returning a file channel to access the file.
@@ -283,32 +263,43 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * provider that created the {@code Path}.
 	 *
 	 * @param path
-	 *            The path of the file to open or create
+	 *                The path of the file to open or create
 	 * @param options
-	 *            Options specifying how the file is opened
+	 *                Options specifying how the file is opened
 	 * @param attrs
-	 *            An optional list of file attributes to set atomically when
-	 *            creating the file
+	 *                An optional list of file attributes to set atomically when
+	 *                creating the file
 	 *
 	 * @return A new file channel
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the set contains an invalid combination of options
+	 *                                       If the set contains an invalid
+	 *                                       combination of options
 	 * @throws UnsupportedOperationException
-	 *             If the {@code path} is associated with a provider that does
-	 *             not support creating file channels, or an unsupported open
-	 *             option is specified, or the array contains an attribute that
-	 *             cannot be set atomically when creating the file
+	 *                                       If the {@code path} is associated
+	 *                                       with a provider that does
+	 *                                       not support creating file channels,
+	 *                                       or an unsupported open
+	 *                                       option is specified, or the array
+	 *                                       contains an attribute that
+	 *                                       cannot be set atomically when
+	 *                                       creating the file
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 * @throws SecurityException
-	 *             If a security manager is installed and it denies an
-	 *             unspecified permission required by the implementation. In the
-	 *             case of the default provider, the
-	 *             {@link SecurityManager#checkRead(String)} method is invoked
-	 *             to check read access if the file is opened for reading. The
-	 *             {@link SecurityManager#checkWrite(String)} method is invoked
-	 *             to check write access if the file is opened for writing
+	 *                                       If a security manager is installed
+	 *                                       and it denies an
+	 *                                       unspecified permission required by
+	 *                                       the implementation. In the
+	 *                                       case of the default provider, the
+	 *                                       {@link SecurityManager#checkRead(String)}
+	 *                                       method is invoked
+	 *                                       to check read access if the file is
+	 *                                       opened for reading. The
+	 *                                       {@link SecurityManager#checkWrite(String)}
+	 *                                       method is invoked
+	 *                                       to check write access if the file
+	 *                                       is opened for writing
 	 *
 	 * @since 1.7
 	 */
@@ -336,32 +327,42 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * options} array.
 	 *
 	 * @param path
-	 *            The path of the file to open or create
+	 *                The path of the file to open or create
 	 * @param options
-	 *            Options specifying how the file is opened
+	 *                Options specifying how the file is opened
 	 *
 	 * @return A new file channel
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the set contains an invalid combination of options
+	 *                                       If the set contains an invalid
+	 *                                       combination of options
 	 * @throws UnsupportedOperationException
-	 *             If the {@code path} is associated with a provider that does
-	 *             not support creating file channels, or an unsupported open
-	 *             option is specified
+	 *                                       If the {@code path} is associated
+	 *                                       with a provider that does
+	 *                                       not support creating file channels,
+	 *                                       or an unsupported open
+	 *                                       option is specified
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 * @throws SecurityException
-	 *             If a security manager is installed and it denies an
-	 *             unspecified permission required by the implementation. In the
-	 *             case of the default provider, the
-	 *             {@link SecurityManager#checkRead(String)} method is invoked
-	 *             to check read access if the file is opened for reading. The
-	 *             {@link SecurityManager#checkWrite(String)} method is invoked
-	 *             to check write access if the file is opened for writing
+	 *                                       If a security manager is installed
+	 *                                       and it denies an
+	 *                                       unspecified permission required by
+	 *                                       the implementation. In the
+	 *                                       case of the default provider, the
+	 *                                       {@link SecurityManager#checkRead(String)}
+	 *                                       method is invoked
+	 *                                       to check read access if the file is
+	 *                                       opened for reading. The
+	 *                                       {@link SecurityManager#checkWrite(String)}
+	 *                                       method is invoked
+	 *                                       to check write access if the file
+	 *                                       is opened for writing
 	 *
 	 * @since 1.7
 	 */
-	public static FileChannel open(Path path, OpenOption... options) throws IOException {
+	public static FileChannel open(Path path, OpenOption... options)
+			throws IOException {
 		Set<OpenOption> set = new HashSet<OpenOption>(options.length);
 		Collections.addAll(set, options);
 		return open(path, set, NO_ATTRIBUTES);
@@ -392,7 +393,8 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * {@link ScatteringByteChannel} interface.
 	 * </p>
 	 */
-	public abstract long read(ByteBuffer[] dsts, int offset, int length) throws IOException;
+	public abstract long read(ByteBuffer[] dsts, int offset, int length)
+			throws IOException;
 
 	/**
 	 * Reads a sequence of bytes from this channel into the given buffers.
@@ -435,7 +437,8 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * exactly as specified in the {@link GatheringByteChannel} interface.
 	 * </p>
 	 */
-	public abstract long write(ByteBuffer[] srcs, int offset, int length) throws IOException;
+	public abstract long write(ByteBuffer[] srcs, int offset, int length)
+			throws IOException;
 
 	/**
 	 * Writes a sequence of bytes to this channel from the given buffers.
@@ -463,10 +466,10 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 *         position
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                If this channel is closed
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                If some other I/O error occurs
 	 */
 	public abstract long position() throws IOException;
 
@@ -484,19 +487,20 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param newPosition
-	 *            The new position, a non-negative integer counting the number
-	 *            of bytes from the beginning of the file
+	 *                    The new position, a non-negative integer counting the
+	 *                    number
+	 *                    of bytes from the beginning of the file
 	 *
 	 * @return This file channel
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                  If this channel is closed
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the new position is negative
+	 *                                  If the new position is negative
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                  If some other I/O error occurs
 	 */
 	public abstract FileChannel position(long newPosition) throws IOException;
 
@@ -506,10 +510,10 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * @return The current size of this channel's file, measured in bytes
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                If this channel is closed
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                If some other I/O error occurs
 	 */
 	public abstract long size() throws IOException;
 
@@ -525,21 +529,22 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param size
-	 *            The new size, a non-negative byte count
+	 *             The new size, a non-negative byte count
 	 *
 	 * @return This file channel
 	 *
 	 * @throws NonWritableChannelException
-	 *             If this channel was not opened for writing
+	 *                                     If this channel was not opened for
+	 *                                     writing
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                     If this channel is closed
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the new size is negative
+	 *                                     If the new size is negative
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
 	public abstract FileChannel truncate(long size) throws IOException;
 
@@ -586,16 +591,18 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param metaData
-	 *            If <tt>true</tt> then this method is required to force changes
-	 *            to both the file's content and metadata to be written to
-	 *            storage; otherwise, it need only force content changes to be
-	 *            written
+	 *                 If <tt>true</tt> then this method is required to force
+	 *                 changes
+	 *                 to both the file's content and metadata to be written to
+	 *                 storage; otherwise, it need only force content changes to
+	 *                 be
+	 *                 written
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                If this channel is closed
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                If some other I/O error occurs
 	 */
 	public abstract void force(boolean metaData) throws IOException;
 
@@ -629,45 +636,53 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param position
-	 *            The position within the file at which the transfer is to
-	 *            begin; must be non-negative
+	 *                 The position within the file at which the transfer is to
+	 *                 begin; must be non-negative
 	 *
 	 * @param count
-	 *            The maximum number of bytes to be transferred; must be
-	 *            non-negative
+	 *                 The maximum number of bytes to be transferred; must be
+	 *                 non-negative
 	 *
 	 * @param target
-	 *            The target channel
+	 *                 The target channel
 	 *
 	 * @return The number of bytes, possibly zero, that were actually
 	 *         transferred
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameters do not hold
+	 *                                     If the preconditions on the
+	 *                                     parameters do not hold
 	 *
 	 * @throws NonReadableChannelException
-	 *             If this channel was not opened for reading
+	 *                                     If this channel was not opened for
+	 *                                     reading
 	 *
 	 * @throws NonWritableChannelException
-	 *             If the target channel was not opened for writing
+	 *                                     If the target channel was not opened
+	 *                                     for writing
 	 *
 	 * @throws ClosedChannelException
-	 *             If either this channel or the target channel is closed
+	 *                                     If either this channel or the target
+	 *                                     channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes either channel while the transfer is
-	 *             in progress
+	 *                                     If another thread closes either
+	 *                                     channel while the transfer is
+	 *                                     in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             transfer is in progress, thereby closing both channels and
-	 *             setting the current thread's interrupt status
+	 *                                     If another thread interrupts the
+	 *                                     current thread while the
+	 *                                     transfer is in progress, thereby
+	 *                                     closing both channels and
+	 *                                     setting the current thread's
+	 *                                     interrupt status
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
-	public abstract long transferTo(long position, long count, WritableByteChannel target)
-			throws IOException;
+	public abstract long transferTo(long position, long count,
+			WritableByteChannel target) throws IOException;
 
 	/**
 	 * Transfers bytes into this channel's file from the given readable byte
@@ -699,45 +714,53 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param src
-	 *            The source channel
+	 *                 The source channel
 	 *
 	 * @param position
-	 *            The position within the file at which the transfer is to
-	 *            begin; must be non-negative
+	 *                 The position within the file at which the transfer is to
+	 *                 begin; must be non-negative
 	 *
 	 * @param count
-	 *            The maximum number of bytes to be transferred; must be
-	 *            non-negative
+	 *                 The maximum number of bytes to be transferred; must be
+	 *                 non-negative
 	 *
 	 * @return The number of bytes, possibly zero, that were actually
 	 *         transferred
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameters do not hold
+	 *                                     If the preconditions on the
+	 *                                     parameters do not hold
 	 *
 	 * @throws NonReadableChannelException
-	 *             If the source channel was not opened for reading
+	 *                                     If the source channel was not opened
+	 *                                     for reading
 	 *
 	 * @throws NonWritableChannelException
-	 *             If this channel was not opened for writing
+	 *                                     If this channel was not opened for
+	 *                                     writing
 	 *
 	 * @throws ClosedChannelException
-	 *             If either this channel or the source channel is closed
+	 *                                     If either this channel or the source
+	 *                                     channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes either channel while the transfer is
-	 *             in progress
+	 *                                     If another thread closes either
+	 *                                     channel while the transfer is
+	 *                                     in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             transfer is in progress, thereby closing both channels and
-	 *             setting the current thread's interrupt status
+	 *                                     If another thread interrupts the
+	 *                                     current thread while the
+	 *                                     transfer is in progress, thereby
+	 *                                     closing both channels and
+	 *                                     setting the current thread's
+	 *                                     interrupt status
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
-	public abstract long transferFrom(ReadableByteChannel src, long position, long count)
-			throws IOException;
+	public abstract long transferFrom(ReadableByteChannel src, long position,
+			long count) throws IOException;
 
 	/**
 	 * Reads a sequence of bytes from this channel into the given buffer,
@@ -752,36 +775,42 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param dst
-	 *            The buffer into which bytes are to be transferred
+	 *                 The buffer into which bytes are to be transferred
 	 *
 	 * @param position
-	 *            The file position at which the transfer is to begin; must be
-	 *            non-negative
+	 *                 The file position at which the transfer is to begin; must
+	 *                 be
+	 *                 non-negative
 	 *
 	 * @return The number of bytes read, possibly zero, or <tt>-1</tt> if the
 	 *         given position is greater than or equal to the file's current
 	 *         size
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the position is negative
+	 *                                     If the position is negative
 	 *
 	 * @throws NonReadableChannelException
-	 *             If this channel was not opened for reading
+	 *                                     If this channel was not opened for
+	 *                                     reading
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                     If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the read
-	 *             operation is in progress
+	 *                                     If another thread closes this channel
+	 *                                     while the read
+	 *                                     operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             read operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                     If another thread interrupts the
+	 *                                     current thread while the
+	 *                                     read operation is in progress,
+	 *                                     thereby closing the channel
+	 *                                     and setting the current thread's
+	 *                                     interrupt status
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
 	public abstract int read(ByteBuffer dst, long position) throws IOException;
 
@@ -800,34 +829,40 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param src
-	 *            The buffer from which bytes are to be transferred
+	 *                 The buffer from which bytes are to be transferred
 	 *
 	 * @param position
-	 *            The file position at which the transfer is to begin; must be
-	 *            non-negative
+	 *                 The file position at which the transfer is to begin; must
+	 *                 be
+	 *                 non-negative
 	 *
 	 * @return The number of bytes written, possibly zero
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the position is negative
+	 *                                     If the position is negative
 	 *
 	 * @throws NonWritableChannelException
-	 *             If this channel was not opened for writing
+	 *                                     If this channel was not opened for
+	 *                                     writing
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                     If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the write
-	 *             operation is in progress
+	 *                                     If another thread closes this channel
+	 *                                     while the write
+	 *                                     operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             write operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                     If another thread interrupts the
+	 *                                     current thread while the
+	 *                                     write operation is in progress,
+	 *                                     thereby closing the channel
+	 *                                     and setting the current thread's
+	 *                                     interrupt status
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
 	public abstract int write(ByteBuffer src, long position) throws IOException;
 
@@ -947,42 +982,51 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param mode
-	 *            One of the constants {@link MapMode#READ_ONLY READ_ONLY},
-	 *            {@link MapMode#READ_WRITE READ_WRITE}, or
-	 *            {@link MapMode#PRIVATE PRIVATE} defined in the {@link MapMode}
-	 *            class, according to whether the file is to be mapped
-	 *            read-only, read/write, or privately (copy-on-write),
-	 *            respectively
+	 *                 One of the constants {@link MapMode#READ_ONLY READ_ONLY},
+	 *                 {@link MapMode#READ_WRITE READ_WRITE}, or
+	 *                 {@link MapMode#PRIVATE PRIVATE} defined in the
+	 *                 {@link MapMode}
+	 *                 class, according to whether the file is to be mapped
+	 *                 read-only, read/write, or privately (copy-on-write),
+	 *                 respectively
 	 *
 	 * @param position
-	 *            The position within the file at which the mapped region is to
-	 *            start; must be non-negative
+	 *                 The position within the file at which the mapped region
+	 *                 is to
+	 *                 start; must be non-negative
 	 *
 	 * @param size
-	 *            The size of the region to be mapped; must be non-negative and
-	 *            no greater than {@link java.lang.Integer#MAX_VALUE}
+	 *                 The size of the region to be mapped; must be non-negative
+	 *                 and
+	 *                 no greater than {@link java.lang.Integer#MAX_VALUE}
 	 *
 	 * @return The mapped byte buffer
 	 *
 	 * @throws NonReadableChannelException
-	 *             If the <tt>mode</tt> is {@link MapMode#READ_ONLY READ_ONLY}
-	 *             but this channel was not opened for reading
+	 *                                     If the <tt>mode</tt> is
+	 *                                     {@link MapMode#READ_ONLY READ_ONLY}
+	 *                                     but this channel was not opened for
+	 *                                     reading
 	 *
 	 * @throws NonWritableChannelException
-	 *             If the <tt>mode</tt> is {@link MapMode#READ_WRITE READ_WRITE}
-	 *             or {@link MapMode#PRIVATE PRIVATE} but this channel was not
-	 *             opened for both reading and writing
+	 *                                     If the <tt>mode</tt> is
+	 *                                     {@link MapMode#READ_WRITE READ_WRITE}
+	 *                                     or {@link MapMode#PRIVATE PRIVATE}
+	 *                                     but this channel was not
+	 *                                     opened for both reading and writing
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameters do not hold
+	 *                                     If the preconditions on the
+	 *                                     parameters do not hold
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 *
 	 * @see java.nio.channels.FileChannel.MapMode
 	 * @see java.nio.MappedByteBuffer
 	 */
-	public abstract MappedByteBuffer map(MapMode mode, long position, long size) throws IOException;
+	public abstract MappedByteBuffer map(MapMode mode, long position, long size)
+			throws IOException;
 
 	// -- Locks --
 
@@ -1032,58 +1076,73 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param position
-	 *            The position at which the locked region is to start; must be
-	 *            non-negative
+	 *                 The position at which the locked region is to start; must
+	 *                 be
+	 *                 non-negative
 	 *
 	 * @param size
-	 *            The size of the locked region; must be non-negative, and the
-	 *            sum <tt>position</tt>&nbsp;+&nbsp;<tt>size</tt> must be
-	 *            non-negative
+	 *                 The size of the locked region; must be non-negative, and
+	 *                 the
+	 *                 sum <tt>position</tt>&nbsp;+&nbsp;<tt>size</tt> must be
+	 *                 non-negative
 	 *
 	 * @param shared
-	 *            <tt>true</tt> to request a shared lock, in which case this
-	 *            channel must be open for reading (and possibly writing);
-	 *            <tt>false</tt> to request an exclusive lock, in which case
-	 *            this channel must be open for writing (and possibly reading)
+	 *                 <tt>true</tt> to request a shared lock, in which case
+	 *                 this
+	 *                 channel must be open for reading (and possibly writing);
+	 *                 <tt>false</tt> to request an exclusive lock, in which
+	 *                 case
+	 *                 this channel must be open for writing (and possibly
+	 *                 reading)
 	 *
 	 * @return A lock object representing the newly-acquired lock
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameters do not hold
+	 *                                       If the preconditions on the
+	 *                                       parameters do not hold
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                       If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the invoking
-	 *             thread is blocked in this method
+	 *                                       If another thread closes this
+	 *                                       channel while the invoking
+	 *                                       thread is blocked in this method
 	 *
 	 * @throws FileLockInterruptionException
-	 *             If the invoking thread is interrupted while blocked in this
-	 *             method
+	 *                                       If the invoking thread is
+	 *                                       interrupted while blocked in this
+	 *                                       method
 	 *
 	 * @throws OverlappingFileLockException
-	 *             If a lock that overlaps the requested region is already held
-	 *             by this Java virtual machine, or if another thread is already
-	 *             blocked in this method and is attempting to lock an
-	 *             overlapping region
+	 *                                       If a lock that overlaps the
+	 *                                       requested region is already held
+	 *                                       by this Java virtual machine, or if
+	 *                                       another thread is already
+	 *                                       blocked in this method and is
+	 *                                       attempting to lock an
+	 *                                       overlapping region
 	 *
 	 * @throws NonReadableChannelException
-	 *             If <tt>shared</tt> is <tt>true</tt> this channel was not
-	 *             opened for reading
+	 *                                       If <tt>shared</tt> is <tt>true</tt>
+	 *                                       this channel was not
+	 *                                       opened for reading
 	 *
 	 * @throws NonWritableChannelException
-	 *             If <tt>shared</tt> is <tt>false</tt> but this channel was not
-	 *             opened for writing
+	 *                                       If <tt>shared</tt> is
+	 *                                       <tt>false</tt> but this channel was
+	 *                                       not
+	 *                                       opened for writing
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                       If some other I/O error occurs
 	 *
 	 * @see #lock()
 	 * @see #tryLock()
 	 * @see #tryLock(long,long,boolean)
 	 */
-	public abstract FileLock lock(long position, long size, boolean shared) throws IOException;
+	public abstract FileLock lock(long position, long size, boolean shared)
+			throws IOException;
 
 	/**
 	 * Acquires an exclusive lock on this channel's file.
@@ -1099,27 +1158,33 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * @return A lock object representing the newly-acquired lock
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                       If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the invoking
-	 *             thread is blocked in this method
+	 *                                       If another thread closes this
+	 *                                       channel while the invoking
+	 *                                       thread is blocked in this method
 	 *
 	 * @throws FileLockInterruptionException
-	 *             If the invoking thread is interrupted while blocked in this
-	 *             method
+	 *                                       If the invoking thread is
+	 *                                       interrupted while blocked in this
+	 *                                       method
 	 *
 	 * @throws OverlappingFileLockException
-	 *             If a lock that overlaps the requested region is already held
-	 *             by this Java virtual machine, or if another thread is already
-	 *             blocked in this method and is attempting to lock an
-	 *             overlapping region of the same file
+	 *                                       If a lock that overlaps the
+	 *                                       requested region is already held
+	 *                                       by this Java virtual machine, or if
+	 *                                       another thread is already
+	 *                                       blocked in this method and is
+	 *                                       attempting to lock an
+	 *                                       overlapping region of the same file
 	 *
 	 * @throws NonWritableChannelException
-	 *             If this channel was not opened for writing
+	 *                                       If this channel was not opened for
+	 *                                       writing
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                       If some other I/O error occurs
 	 *
 	 * @see #lock(long,long,boolean)
 	 * @see #tryLock()
@@ -1165,42 +1230,49 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 * </p>
 	 *
 	 * @param position
-	 *            The position at which the locked region is to start; must be
-	 *            non-negative
+	 *                 The position at which the locked region is to start; must
+	 *                 be
+	 *                 non-negative
 	 *
 	 * @param size
-	 *            The size of the locked region; must be non-negative, and the
-	 *            sum <tt>position</tt>&nbsp;+&nbsp;<tt>size</tt> must be
-	 *            non-negative
+	 *                 The size of the locked region; must be non-negative, and
+	 *                 the
+	 *                 sum <tt>position</tt>&nbsp;+&nbsp;<tt>size</tt> must be
+	 *                 non-negative
 	 *
 	 * @param shared
-	 *            <tt>true</tt> to request a shared lock, <tt>false</tt> to
-	 *            request an exclusive lock
+	 *                 <tt>true</tt> to request a shared lock, <tt>false</tt> to
+	 *                 request an exclusive lock
 	 *
 	 * @return A lock object representing the newly-acquired lock, or
 	 *         <tt>null</tt> if the lock could not be acquired because another
 	 *         program holds an overlapping lock
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameters do not hold
+	 *                                      If the preconditions on the
+	 *                                      parameters do not hold
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                      If this channel is closed
 	 *
 	 * @throws OverlappingFileLockException
-	 *             If a lock that overlaps the requested region is already held
-	 *             by this Java virtual machine, or if another thread is already
-	 *             blocked in this method and is attempting to lock an
-	 *             overlapping region of the same file
+	 *                                      If a lock that overlaps the
+	 *                                      requested region is already held
+	 *                                      by this Java virtual machine, or if
+	 *                                      another thread is already
+	 *                                      blocked in this method and is
+	 *                                      attempting to lock an
+	 *                                      overlapping region of the same file
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                      If some other I/O error occurs
 	 *
 	 * @see #lock()
 	 * @see #lock(long,long,boolean)
 	 * @see #tryLock()
 	 */
-	public abstract FileLock tryLock(long position, long size, boolean shared) throws IOException;
+	public abstract FileLock tryLock(long position, long size, boolean shared)
+			throws IOException;
 
 	/**
 	 * Attempts to acquire an exclusive lock on this channel's file.
@@ -1218,16 +1290,19 @@ public abstract class FileChannel extends AbstractInterruptibleChannel
 	 *         program holds an overlapping lock
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                      If this channel is closed
 	 *
 	 * @throws OverlappingFileLockException
-	 *             If a lock that overlaps the requested region is already held
-	 *             by this Java virtual machine, or if another thread is already
-	 *             blocked in this method and is attempting to lock an
-	 *             overlapping region
+	 *                                      If a lock that overlaps the
+	 *                                      requested region is already held
+	 *                                      by this Java virtual machine, or if
+	 *                                      another thread is already
+	 *                                      blocked in this method and is
+	 *                                      attempting to lock an
+	 *                                      overlapping region
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                      If some other I/O error occurs
 	 *
 	 * @see #lock()
 	 * @see #lock(long,long,boolean)

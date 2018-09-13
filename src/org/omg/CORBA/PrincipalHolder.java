@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -62,8 +42,7 @@ public final class PrincipalHolder implements Streamable {
 	 * Constructs a new <code>PrincipalHolder</code> object with its
 	 * <code>value</code> field initialized to <code>null</code>.
 	 */
-	public PrincipalHolder() {
-	}
+	public PrincipalHolder() {}
 
 	/**
 	 * Constructs a new <code>PrincipalHolder</code> object with its
@@ -71,9 +50,9 @@ public final class PrincipalHolder implements Streamable {
 	 * object.
 	 * 
 	 * @param initial
-	 *            the <code>Principal</code> with which to initialize the
-	 *            <code>value</code> field of the newly-created
-	 *            <code>PrincipalHolder</code> object
+	 *                the <code>Principal</code> with which to initialize the
+	 *                <code>value</code> field of the newly-created
+	 *                <code>PrincipalHolder</code> object
 	 */
 	public PrincipalHolder(Principal initial) {
 		value = initial;

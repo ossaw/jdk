@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -95,12 +75,14 @@ class MultiUIDefaults extends UIDefaults {
 
 	@Override
 	public Enumeration<Object> keys() {
-		return new MultiUIDefaultsEnumerator(MultiUIDefaultsEnumerator.Type.KEYS, entrySet());
+		return new MultiUIDefaultsEnumerator(
+				MultiUIDefaultsEnumerator.Type.KEYS, entrySet());
 	}
 
 	@Override
 	public Enumeration<Object> elements() {
-		return new MultiUIDefaultsEnumerator(MultiUIDefaultsEnumerator.Type.ELEMENTS, entrySet());
+		return new MultiUIDefaultsEnumerator(
+				MultiUIDefaultsEnumerator.Type.ELEMENTS, entrySet());
 	}
 
 	@Override
@@ -124,7 +106,8 @@ class MultiUIDefaults extends UIDefaults {
 		}
 	}
 
-	private static class MultiUIDefaultsEnumerator implements Enumeration<Object> {
+	private static class MultiUIDefaultsEnumerator implements
+			Enumeration<Object> {
 		public static enum Type {
 			KEYS, ELEMENTS
 		};
@@ -132,7 +115,8 @@ class MultiUIDefaults extends UIDefaults {
 		private Iterator<Entry<Object, Object>> iterator;
 		private Type type;
 
-		MultiUIDefaultsEnumerator(Type type, Set<Entry<Object, Object>> entries) {
+		MultiUIDefaultsEnumerator(Type type,
+				Set<Entry<Object, Object>> entries) {
 			this.type = type;
 			this.iterator = entries.iterator();
 		}
@@ -143,12 +127,12 @@ class MultiUIDefaults extends UIDefaults {
 
 		public Object nextElement() {
 			switch (type) {
-			case KEYS:
-				return iterator.next().getKey();
-			case ELEMENTS:
-				return iterator.next().getValue();
-			default:
-				return null;
+				case KEYS:
+					return iterator.next().getKey();
+				case ELEMENTS:
+					return iterator.next().getValue();
+				default:
+					return null;
 			}
 		}
 	}

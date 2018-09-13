@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -50,7 +30,7 @@ public class SnmpStringFixed extends SnmpString {
 	 * array.
 	 * 
 	 * @param v
-	 *            The bytes composing the fixed-string value.
+	 *          The bytes composing the fixed-string value.
 	 */
 	public SnmpStringFixed(byte[] v) {
 		super(v);
@@ -61,7 +41,7 @@ public class SnmpStringFixed extends SnmpString {
 	 * <CODE>Bytes</CODE> array.
 	 * 
 	 * @param v
-	 *            The <CODE>Bytes</CODE> composing the fixed-string value.
+	 *          The <CODE>Bytes</CODE> composing the fixed-string value.
 	 */
 	public SnmpStringFixed(Byte[] v) {
 		super(v);
@@ -72,7 +52,7 @@ public class SnmpStringFixed extends SnmpString {
 	 * <CODE>String</CODE> value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 */
 	public SnmpStringFixed(String v) {
 		super(v);
@@ -83,12 +63,13 @@ public class SnmpStringFixed extends SnmpString {
 	 * <CODE>bytes</CODE> array with the specified length.
 	 * 
 	 * @param l
-	 *            The length of the fixed-string.
+	 *          The length of the fixed-string.
 	 * @param v
-	 *            The <CODE>bytes</CODE> composing the fixed-string value.
+	 *          The <CODE>bytes</CODE> composing the fixed-string value.
 	 * @exception IllegalArgumentException
-	 *                Either the length or the <CODE>byte</CODE> array is not
-	 *                valid.
+	 *                                     Either the length or the
+	 *                                     <CODE>byte</CODE> array is not
+	 *                                     valid.
 	 */
 	public SnmpStringFixed(int l, byte[] v) throws IllegalArgumentException {
 		if ((l <= 0) || (v == null)) {
@@ -109,12 +90,13 @@ public class SnmpStringFixed extends SnmpString {
 	 * <CODE>Bytes</CODE> array with the specified length.
 	 * 
 	 * @param l
-	 *            The length of the fixed-string.
+	 *          The length of the fixed-string.
 	 * @param v
-	 *            The <CODE>Bytes</CODE> composing the fixed-string value.
+	 *          The <CODE>Bytes</CODE> composing the fixed-string value.
 	 * @exception IllegalArgumentException
-	 *                Either the length or the <CODE>Byte</CODE> array is not
-	 *                valid.
+	 *                                     Either the length or the
+	 *                                     <CODE>Byte</CODE> array is not
+	 *                                     valid.
 	 */
 	public SnmpStringFixed(int l, Byte[] v) throws IllegalArgumentException {
 		if ((l <= 0) || (v == null)) {
@@ -135,11 +117,12 @@ public class SnmpStringFixed extends SnmpString {
 	 * <CODE>String</CODE> with the specified length.
 	 * 
 	 * @param l
-	 *            The length of the fixed-string.
+	 *          The length of the fixed-string.
 	 * @param s
-	 *            The <CODE>String</CODE> composing the fixed-string value.
+	 *          The <CODE>String</CODE> composing the fixed-string value.
 	 * @exception IllegalArgumentException
-	 *                Either the length or the <CODE>String</CODE> is not valid.
+	 *                                     Either the length or the
+	 *                                     <CODE>String</CODE> is not valid.
 	 */
 	public SnmpStringFixed(int l, String s) throws IllegalArgumentException {
 		if ((l <= 0) || (s == null)) {
@@ -163,18 +146,20 @@ public class SnmpStringFixed extends SnmpString {
 	 * converted as an <CODE>SnmpOid</CODE>.
 	 * 
 	 * @param l
-	 *            The number of successive array elements to be retreived in
-	 *            order to construct the OID. These elements are retreived
-	 *            starting at the <CODE>start</CODE> position.
+	 *              The number of successive array elements to be retreived in
+	 *              order to construct the OID. These elements are retreived
+	 *              starting at the <CODE>start</CODE> position.
 	 * @param index
-	 *            The index array.
+	 *              The index array.
 	 * @param start
-	 *            The position in the index array.
+	 *              The position in the index array.
 	 * @return The OID representing the fixed-string value.
 	 * @exception SnmpStatusException
-	 *                There is no string value available at the start position.
+	 *                                There is no string value available at the
+	 *                                start position.
 	 */
-	public static SnmpOid toOid(int l, long[] index, int start) throws SnmpStatusException {
+	public static SnmpOid toOid(int l, long[] index, int start)
+			throws SnmpStatusException {
 		try {
 			long[] ids = new long[l];
 			for (int i = 0; i < l; i++) {
@@ -191,18 +176,21 @@ public class SnmpStringFixed extends SnmpString {
 	 * next value.
 	 * 
 	 * @param l
-	 *            The number of successive array elements to be passed in order
-	 *            to get the position of the next value. These elements are
-	 *            passed starting at the <CODE>start</CODE> position.
+	 *              The number of successive array elements to be passed in
+	 *              order
+	 *              to get the position of the next value. These elements are
+	 *              passed starting at the <CODE>start</CODE> position.
 	 * @param index
-	 *            The index array.
+	 *              The index array.
 	 * @param start
-	 *            The position in the index array.
+	 *              The position in the index array.
 	 * @return The position of the next value.
 	 * @exception SnmpStatusException
-	 *                There is no string value available at the start position.
+	 *                                There is no string value available at the
+	 *                                start position.
 	 */
-	public static int nextOid(int l, long[] index, int start) throws SnmpStatusException {
+	public static int nextOid(int l, long[] index, int start)
+			throws SnmpStatusException {
 		int result = start + l;
 		if (result > index.length) {
 			throw new SnmpStatusException(SnmpStatusException.noSuchName);
@@ -215,11 +203,11 @@ public class SnmpStringFixed extends SnmpString {
 	 * <CODE>SnmpStringFixed</CODE> to another OID.
 	 * 
 	 * @param l
-	 *            Unused.
+	 *               Unused.
 	 * @param source
-	 *            An OID representing an <CODE>SnmpStringFixed</CODE> value.
+	 *               An OID representing an <CODE>SnmpStringFixed</CODE> value.
 	 * @param dest
-	 *            Where source should be appended.
+	 *               Where source should be appended.
 	 */
 	public static void appendToOid(int l, SnmpOid source, SnmpOid dest) {
 		dest.append(source);

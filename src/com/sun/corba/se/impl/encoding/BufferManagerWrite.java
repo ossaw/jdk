@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -45,7 +25,8 @@ public abstract class BufferManagerWrite {
 
 	BufferManagerWrite(ORB orb) {
 		this.orb = orb;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_ENCODING);
 	}
 
 	/**
@@ -68,23 +49,16 @@ public abstract class BufferManagerWrite {
 
 	/*
 	 * Called from CDROutputStream.grow.
-	 *
 	 * bbwi.buf contains a byte array which needs to grow by bbwi.needed bytes.
-	 *
 	 * This can be handled in several ways:
-	 *
 	 * 1. Resize the bbwi.buf like the current implementation of
 	 * CDROutputStream.grow.
-	 *
 	 * 2. Collect the buffer for a later send: this.bufQ.put(bbwi); return new
 	 * ByteBufferWithInfo(bbwi.length);
-	 *
 	 * 3. Send buffer as fragment: Backpatch fragment size field in bbwi.buf.
 	 * Set more fragments bit in bbwi.buf. this.connection.send(bbwi); return
 	 * reinitialized bbwi.buf with fragment header
-	 *
 	 * All cases should adjust the returned bbwi.* appropriately.
-	 *
 	 * Should set the bbwi.fragmented flag to true only in cases 2 and 3.
 	 */
 

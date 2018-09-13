@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.text;
@@ -60,7 +40,7 @@ public class Annotation {
 	 * Constructs an annotation record with the given value, which may be null.
 	 *
 	 * @param value
-	 *            the value of the attribute
+	 *              the value of the attribute
 	 */
 	public Annotation(Object value) {
 		this.value = value;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -88,7 +68,8 @@ public abstract class ActiveObjectMap {
 		this.poa = poa;
 	}
 
-	public static ActiveObjectMap create(POAImpl poa, boolean multipleIDsAllowed) {
+	public static ActiveObjectMap create(POAImpl poa,
+			boolean multipleIDsAllowed) {
 		if (multipleIDsAllowed)
 			return new MultipleObjectMap(poa);
 		else

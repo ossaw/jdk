@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -40,15 +20,14 @@ public class IllegalPathStateException extends RuntimeException {
 	 *
 	 * @since 1.2
 	 */
-	public IllegalPathStateException() {
-	}
+	public IllegalPathStateException() {}
 
 	/**
 	 * Constructs an <code>IllegalPathStateException</code> with the specified
 	 * detail message.
 	 * 
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 * @since 1.2
 	 */
 	public IllegalPathStateException(String s) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -41,9 +21,9 @@ public interface TextAreaPeer extends TextComponentPeer {
 	 * Inserts the specified text at the specified position in the document.
 	 *
 	 * @param text
-	 *            the text to insert
+	 *             the text to insert
 	 * @param pos
-	 *            the position to insert
+	 *             the position to insert
 	 *
 	 * @see TextArea#insert(String, int)
 	 */
@@ -53,11 +33,11 @@ public interface TextAreaPeer extends TextComponentPeer {
 	 * Replaces a range of text by the specified string.
 	 *
 	 * @param text
-	 *            the replacement string
+	 *              the replacement string
 	 * @param start
-	 *            the begin of the range to replace
+	 *              the begin of the range to replace
 	 * @param end
-	 *            the end of the range to replace
+	 *              the end of the range to replace
 	 *
 	 * @see TextArea#replaceRange(String, int, int)
 	 */
@@ -68,9 +48,9 @@ public interface TextAreaPeer extends TextComponentPeer {
 	 * columns and rows.
 	 *
 	 * @param rows
-	 *            the number of rows
+	 *                the number of rows
 	 * @param columns
-	 *            the number of columns
+	 *                the number of columns
 	 *
 	 * @return the preferred size of a textarea
 	 *
@@ -83,9 +63,9 @@ public interface TextAreaPeer extends TextComponentPeer {
 	 * columns and rows.
 	 *
 	 * @param rows
-	 *            the number of rows
+	 *                the number of rows
 	 * @param columns
-	 *            the number of columns
+	 *                the number of columns
 	 *
 	 * @return the minimum size of a textarea
 	 *

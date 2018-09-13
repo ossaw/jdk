@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -54,7 +34,8 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
  * methods are activate(), hold_requests(), discard_requests() and deactivate().
  */
 
-public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAManager {
+public class POAManagerImpl extends org.omg.CORBA.LocalObject implements
+		POAManager {
 	private final POAFactory factory; // factory which contains global state
 										// for all POAManagers
 	private PIHandler pihandler; // for adapterManagerStateChanged
@@ -72,22 +53,23 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 
 	private String stateToString(State state) {
 		switch (state.value()) {
-		case State._HOLDING:
-			return "State[HOLDING]";
-		case State._ACTIVE:
-			return "State[ACTIVE]";
-		case State._DISCARDING:
-			return "State[DISCARDING]";
-		case State._INACTIVE:
-			return "State[INACTIVE]";
+			case State._HOLDING:
+				return "State[HOLDING]";
+			case State._ACTIVE:
+				return "State[ACTIVE]";
+			case State._DISCARDING:
+				return "State[DISCARDING]";
+			case State._INACTIVE:
+				return "State[INACTIVE]";
 		}
 
 		return "State[UNKNOWN]";
 	}
 
 	public String toString() {
-		return "POAManagerImpl[myId=" + myId + " state=" + stateToString(state) + " nInvocations="
-				+ nInvocations + " nWaiters=" + nWaiters + "]";
+		return "POAManagerImpl[myId=" + myId + " state=" + stateToString(state)
+				+ " nInvocations=" + nInvocations + " nWaiters=" + nWaiters
+				+ "]";
 	}
 
 	POAFactory getFactory() {
@@ -101,8 +83,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 	private void countedWait() {
 		try {
 			if (debug) {
-				ORBUtility.dprint(this,
-						"Calling countedWait on POAManager " + this + " nWaiters=" + nWaiters);
+				ORBUtility.dprint(this, "Calling countedWait on POAManager "
+						+ this + " nWaiters=" + nWaiters);
 			}
 
 			nWaiters++;
@@ -113,16 +95,16 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 			nWaiters--;
 
 			if (debug) {
-				ORBUtility.dprint(this,
-						"Exiting countedWait on POAManager " + this + " nWaiters=" + nWaiters);
+				ORBUtility.dprint(this, "Exiting countedWait on POAManager "
+						+ this + " nWaiters=" + nWaiters);
 			}
 		}
 	}
 
 	private void notifyWaiters() {
 		if (debug) {
-			ORBUtility.dprint(this,
-					"Calling notifyWaiters on POAManager " + this + " nWaiters=" + nWaiters);
+			ORBUtility.dprint(this, "Calling notifyWaiters on POAManager "
+					+ this + " nWaiters=" + nWaiters);
 		}
 
 		if (nWaiters > 0)
@@ -166,16 +148,16 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 
 	public short getORTState() {
 		switch (state.value()) {
-		case State._HOLDING:
-			return HOLDING.value;
-		case State._ACTIVE:
-			return ACTIVE.value;
-		case State._INACTIVE:
-			return INACTIVE.value;
-		case State._DISCARDING:
-			return DISCARDING.value;
-		default:
-			return NON_EXISTENT.value;
+			case State._HOLDING:
+				return HOLDING.value;
+			case State._ACTIVE:
+				return ACTIVE.value;
+			case State._INACTIVE:
+				return INACTIVE.value;
+			case State._DISCARDING:
+				return DISCARDING.value;
+			default:
+				return NON_EXISTENT.value;
 		}
 	}
 
@@ -225,7 +207,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 			notifyWaiters();
 		} finally {
 			if (debug) {
-				ORBUtility.dprint(this, "Exiting activate on POAManager " + this);
+				ORBUtility.dprint(this, "Exiting activate on POAManager "
+						+ this);
 			}
 		}
 	}
@@ -238,7 +221,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 		explicitStateChange = true;
 
 		if (debug) {
-			ORBUtility.dprint(this, "Calling hold_requests on POAManager " + this);
+			ORBUtility.dprint(this, "Calling hold_requests on POAManager "
+					+ this);
 		}
 
 		try {
@@ -261,7 +245,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 			}
 		} finally {
 			if (debug) {
-				ORBUtility.dprint(this, "Exiting hold_requests on POAManager " + this);
+				ORBUtility.dprint(this, "Exiting hold_requests on POAManager "
+						+ this);
 			}
 		}
 	}
@@ -274,7 +259,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 		explicitStateChange = true;
 
 		if (debug) {
-			ORBUtility.dprint(this, "Calling hold_requests on POAManager " + this);
+			ORBUtility.dprint(this, "Calling hold_requests on POAManager "
+					+ this);
 		}
 
 		try {
@@ -300,7 +286,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 			}
 		} finally {
 			if (debug) {
-				ORBUtility.dprint(this, "Exiting hold_requests on POAManager " + this);
+				ORBUtility.dprint(this, "Exiting hold_requests on POAManager "
+						+ this);
 			}
 		}
 	}
@@ -310,14 +297,16 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 	 * is a permanent state.
 	 */
 
-	public void deactivate(boolean etherealize_objects, boolean wait_for_completion)
+	public void deactivate(boolean etherealize_objects,
+			boolean wait_for_completion)
 			throws org.omg.PortableServer.POAManagerPackage.AdapterInactive {
 		explicitStateChange = true;
 
 		try {
 			synchronized (this) {
 				if (debug) {
-					ORBUtility.dprint(this, "Calling deactivate on POAManager " + this);
+					ORBUtility.dprint(this, "Calling deactivate on POAManager "
+							+ this);
 				}
 
 				if (state.value() == State._INACTIVE)
@@ -336,8 +325,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 				notifyWaiters();
 			}
 
-			POAManagerDeactivator deactivator = new POAManagerDeactivator(this, etherealize_objects,
-					debug);
+			POAManagerDeactivator deactivator = new POAManagerDeactivator(this,
+					etherealize_objects, debug);
 
 			if (wait_for_completion)
 				deactivator.run();
@@ -348,7 +337,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 		} finally {
 			synchronized (this) {
 				if (debug) {
-					ORBUtility.dprint(this, "Exiting deactivate on POAManager " + this);
+					ORBUtility.dprint(this, "Exiting deactivate on POAManager "
+							+ this);
 				}
 			}
 		}
@@ -359,7 +349,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 		private POAManagerImpl pmi;
 		private boolean debug;
 
-		POAManagerDeactivator(POAManagerImpl pmi, boolean etherealize_objects, boolean debug) {
+		POAManagerDeactivator(POAManagerImpl pmi, boolean etherealize_objects,
+				boolean debug) {
 			this.etherealize_objects = etherealize_objects;
 			this.pmi = pmi;
 			this.debug = debug;
@@ -369,8 +360,9 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 			try {
 				synchronized (pmi) {
 					if (debug) {
-						ORBUtility.dprint(this, "Calling run with etherealize_objects="
-								+ etherealize_objects + " pmi=" + pmi);
+						ORBUtility.dprint(this,
+								"Calling run with etherealize_objects="
+										+ etherealize_objects + " pmi=" + pmi);
 					}
 
 					while (pmi.nInvocations > 0) {
@@ -385,7 +377,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 					synchronized (pmi) {
 						if (debug) {
 							ORBUtility.dprint(this,
-									"run: Preparing to etherealize with pmi=" + pmi);
+									"run: Preparing to etherealize with pmi="
+											+ pmi);
 						}
 
 						iterator = (new HashSet(pmi.poas)).iterator();
@@ -399,8 +392,9 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 
 					synchronized (pmi) {
 						if (debug) {
-							ORBUtility.dprint(this, "run: removing POAManager and clearing poas "
-									+ "with pmi=" + pmi);
+							ORBUtility.dprint(this,
+									"run: removing POAManager and clearing poas "
+											+ "with pmi=" + pmi);
 						}
 
 						factory.removePoaManager(pmi);
@@ -435,13 +429,15 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 	synchronized void checkIfActive() {
 		try {
 			if (debug) {
-				ORBUtility.dprint(this, "Calling checkIfActive for POAManagerImpl " + this);
+				ORBUtility.dprint(this,
+						"Calling checkIfActive for POAManagerImpl " + this);
 			}
 
 			checkState();
 		} finally {
 			if (debug) {
-				ORBUtility.dprint(this, "Exiting checkIfActive for POAManagerImpl " + this);
+				ORBUtility.dprint(this,
+						"Exiting checkIfActive for POAManagerImpl " + this);
 			}
 		}
 	}
@@ -449,17 +445,17 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 	private void checkState() {
 		while (state.value() != State._ACTIVE) {
 			switch (state.value()) {
-			case State._HOLDING:
-				while (state.value() == State._HOLDING) {
-					countedWait();
-				}
-				break;
+				case State._HOLDING:
+					while (state.value() == State._HOLDING) {
+						countedWait();
+					}
+					break;
 
-			case State._DISCARDING:
-				throw factory.getWrapper().poaDiscarding();
+				case State._DISCARDING:
+					throw factory.getWrapper().poaDiscarding();
 
-			case State._INACTIVE:
-				throw factory.getWrapper().poaInactive();
+				case State._INACTIVE:
+					throw factory.getWrapper().poaInactive();
 			}
 		}
 	}
@@ -467,14 +463,16 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 	synchronized void enter() {
 		try {
 			if (debug) {
-				ORBUtility.dprint(this, "Calling enter for POAManagerImpl " + this);
+				ORBUtility.dprint(this, "Calling enter for POAManagerImpl "
+						+ this);
 			}
 
 			checkState();
 			nInvocations++;
 		} finally {
 			if (debug) {
-				ORBUtility.dprint(this, "Exiting enter for POAManagerImpl " + this);
+				ORBUtility.dprint(this, "Exiting enter for POAManagerImpl "
+						+ this);
 			}
 		}
 	}
@@ -482,7 +480,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 	synchronized void exit() {
 		try {
 			if (debug) {
-				ORBUtility.dprint(this, "Calling exit for POAManagerImpl " + this);
+				ORBUtility.dprint(this, "Calling exit for POAManagerImpl "
+						+ this);
 			}
 
 			nInvocations--;
@@ -494,7 +493,8 @@ public class POAManagerImpl extends org.omg.CORBA.LocalObject implements POAMana
 			}
 		} finally {
 			if (debug) {
-				ORBUtility.dprint(this, "Exiting exit for POAManagerImpl " + this);
+				ORBUtility.dprint(this, "Exiting exit for POAManagerImpl "
+						+ this);
 			}
 		}
 	}

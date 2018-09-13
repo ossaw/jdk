@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -96,8 +76,8 @@ import sun.swing.SwingUtilities2;
  * @author Timothy Prinzing
  * @see Caret
  */
-public class DefaultCaret extends Rectangle
-		implements Caret, FocusListener, MouseListener, MouseMotionListener {
+public class DefaultCaret extends Rectangle implements Caret, FocusListener,
+		MouseListener, MouseMotionListener {
 
 	/**
 	 * Indicates that the caret position is to be updated only when document
@@ -135,8 +115,7 @@ public class DefaultCaret extends Rectangle
 	/**
 	 * Constructs a default caret.
 	 */
-	public DefaultCaret() {
-	}
+	public DefaultCaret() {}
 
 	/**
 	 * Sets the caret movement policy on the document updates. Normally the
@@ -175,10 +154,11 @@ public class DefaultCaret extends Rectangle
 	 * The default property value is <code>UPDATE_WHEN_ON_EDT</code>.
 	 *
 	 * @param policy
-	 *            one of the following values : <code>UPDATE_WHEN_ON_EDT</code>,
-	 *            <code>NEVER_UPDATE</code>, <code>ALWAYS_UPDATE</code>
+	 *               one of the following values :
+	 *               <code>UPDATE_WHEN_ON_EDT</code>,
+	 *               <code>NEVER_UPDATE</code>, <code>ALWAYS_UPDATE</code>
 	 * @throws IllegalArgumentException
-	 *             if invalid value is passed
+	 *                                  if invalid value is passed
 	 *
 	 * @see #getUpdatePolicy
 	 * @see #adjustVisibility
@@ -240,7 +220,7 @@ public class DefaultCaret extends Rectangle
 	 * and height).
 	 *
 	 * @param r
-	 *            the current location of the caret
+	 *          the current location of the caret
 	 * @see #paint
 	 */
 	protected synchronized void damage(Rectangle r) {
@@ -261,7 +241,7 @@ public class DefaultCaret extends Rectangle
 	 * method is called on the associated component.
 	 *
 	 * @param nloc
-	 *            the new position to scroll to
+	 *             the new position to scroll to
 	 */
 	protected void adjustVisibility(Rectangle nloc) {
 		if (component == null) {
@@ -288,7 +268,7 @@ public class DefaultCaret extends Rectangle
 	 * event, using viewToModel().
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 */
 	protected void positionCaret(MouseEvent e) {
 		Point pt = new Point(e.getX(), e.getY());
@@ -307,7 +287,7 @@ public class DefaultCaret extends Rectangle
 	 * mark are different.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 */
 	protected void moveCaret(MouseEvent e) {
 		Point pt = new Point(e.getX(), e.getY());
@@ -327,7 +307,7 @@ public class DefaultCaret extends Rectangle
 	 * implemented to set the caret to visible if the component is editable.
 	 *
 	 * @param e
-	 *            the focus event
+	 *          the focus event
 	 * @see FocusListener#focusGained
 	 */
 	public void focusGained(FocusEvent e) {
@@ -344,7 +324,7 @@ public class DefaultCaret extends Rectangle
 	 * implemented to set the caret to visibility to false.
 	 *
 	 * @param e
-	 *            the focus event
+	 *          the focus event
 	 * @see FocusListener#focusLost
 	 */
 	public void focusLost(FocusEvent e) {
@@ -372,8 +352,9 @@ public class DefaultCaret extends Rectangle
 			}
 			a = selectWord;
 		}
-		a.actionPerformed(new ActionEvent(getComponent(), ActionEvent.ACTION_PERFORMED, null,
-				e.getWhen(), e.getModifiers()));
+		a.actionPerformed(new ActionEvent(getComponent(),
+				ActionEvent.ACTION_PERFORMED, null, e.getWhen(), e
+						.getModifiers()));
 		selectedWordEvent = e;
 	}
 
@@ -385,7 +366,7 @@ public class DefaultCaret extends Rectangle
 	 * line.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see MouseListener#mouseClicked
 	 */
 	public void mouseClicked(MouseEvent e) {
@@ -400,10 +381,12 @@ public class DefaultCaret extends Rectangle
 				// mouse 1 behavior
 				if (nclicks == 1) {
 					selectedWordEvent = null;
-				} else if (nclicks == 2 && SwingUtilities2.canEventAccessSystemClipboard(e)) {
+				} else if (nclicks == 2 && SwingUtilities2
+						.canEventAccessSystemClipboard(e)) {
 					selectWord(e);
 					selectedWordEvent = null;
-				} else if (nclicks == 3 && SwingUtilities2.canEventAccessSystemClipboard(e)) {
+				} else if (nclicks == 3 && SwingUtilities2
+						.canEventAccessSystemClipboard(e)) {
 					Action a = null;
 					ActionMap map = getComponent().getActionMap();
 					if (map != null) {
@@ -415,13 +398,15 @@ public class DefaultCaret extends Rectangle
 						}
 						a = selectLine;
 					}
-					a.actionPerformed(new ActionEvent(getComponent(), ActionEvent.ACTION_PERFORMED,
-							null, e.getWhen(), e.getModifiers()));
+					a.actionPerformed(new ActionEvent(getComponent(),
+							ActionEvent.ACTION_PERFORMED, null, e.getWhen(), e
+									.getModifiers()));
 				}
 			} else if (SwingUtilities.isMiddleMouseButton(e)) {
 				// mouse 2 behavior
-				if (nclicks == 1 && component.isEditable() && component.isEnabled()
-						&& SwingUtilities2.canEventAccessSystemClipboard(e)) {
+				if (nclicks == 1 && component.isEditable() && component
+						.isEnabled() && SwingUtilities2
+								.canEventAccessSystemClipboard(e)) {
 					// paste system selection, if it exists
 					JTextComponent c = (JTextComponent) e.getSource();
 					if (c != null) {
@@ -440,7 +425,8 @@ public class DefaultCaret extends Rectangle
 										trans = buffer.getContents(null);
 									} catch (IllegalStateException ise) {
 										// clipboard was unavailable
-										UIManager.getLookAndFeel().provideErrorFeedback(c);
+										UIManager.getLookAndFeel()
+												.provideErrorFeedback(c);
 									}
 
 									if (trans != null) {
@@ -466,7 +452,7 @@ public class DefaultCaret extends Rectangle
 	 * If the component is not enabled, there will be no request for focus.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see MouseListener#mousePressed
 	 */
 	public void mousePressed(MouseEvent e) {
@@ -478,7 +464,8 @@ public class DefaultCaret extends Rectangle
 			} else {
 				shouldHandleRelease = false;
 				adjustCaretAndFocus(e);
-				if (nclicks == 2 && SwingUtilities2.canEventAccessSystemClipboard(e)) {
+				if (nclicks == 2 && SwingUtilities2
+						.canEventAccessSystemClipboard(e)) {
 					selectWord(e);
 				}
 			}
@@ -494,7 +481,8 @@ public class DefaultCaret extends Rectangle
 	 * Adjusts the caret location based on the MouseEvent.
 	 */
 	private void adjustCaret(MouseEvent e) {
-		if ((e.getModifiers() & ActionEvent.SHIFT_MASK) != 0 && getDot() != -1) {
+		if ((e.getModifiers() & ActionEvent.SHIFT_MASK) != 0
+				&& getDot() != -1) {
 			moveCaret(e);
 		} else if (!e.isPopupTrigger()) {
 			positionCaret(e);
@@ -505,10 +493,11 @@ public class DefaultCaret extends Rectangle
 	 * Adjusts the focus, if necessary.
 	 *
 	 * @param inWindow
-	 *            if true indicates requestFocusInWindow should be used
+	 *                 if true indicates requestFocusInWindow should be used
 	 */
 	private void adjustFocus(boolean inWindow) {
-		if ((component != null) && component.isEnabled() && component.isRequestFocusEnabled()) {
+		if ((component != null) && component.isEnabled() && component
+				.isRequestFocusEnabled()) {
 			if (inWindow) {
 				component.requestFocusInWindow();
 			} else {
@@ -521,11 +510,12 @@ public class DefaultCaret extends Rectangle
 	 * Called when the mouse is released.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see MouseListener#mouseReleased
 	 */
 	public void mouseReleased(MouseEvent e) {
-		if (!e.isConsumed() && shouldHandleRelease && SwingUtilities.isLeftMouseButton(e)) {
+		if (!e.isConsumed() && shouldHandleRelease && SwingUtilities
+				.isLeftMouseButton(e)) {
 
 			adjustCaretAndFocus(e);
 		}
@@ -535,21 +525,19 @@ public class DefaultCaret extends Rectangle
 	 * Called when the mouse enters a region.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see MouseListener#mouseEntered
 	 */
-	public void mouseEntered(MouseEvent e) {
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	/**
 	 * Called when the mouse exits a region.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see MouseListener#mouseExited
 	 */
-	public void mouseExited(MouseEvent e) {
-	}
+	public void mouseExited(MouseEvent e) {}
 
 	// --- MouseMotionListener methods -------------------------
 
@@ -559,7 +547,7 @@ public class DefaultCaret extends Rectangle
 	 * only done for mouse button 1.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see MouseMotionListener#mouseDragged
 	 */
 	public void mouseDragged(MouseEvent e) {
@@ -572,11 +560,10 @@ public class DefaultCaret extends Rectangle
 	 * Called when the mouse is moved.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see MouseMotionListener#mouseMoved
 	 */
-	public void mouseMoved(MouseEvent e) {
-	}
+	public void mouseMoved(MouseEvent e) {}
 
 	// ---- Caret methods ---------------------------------
 
@@ -593,7 +580,7 @@ public class DefaultCaret extends Rectangle
 	 * text has multiple directions associated with it).
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 * @see #damage
 	 */
 	public void paint(Graphics g) {
@@ -605,7 +592,8 @@ public class DefaultCaret extends Rectangle
 				if ((r == null) || ((r.width == 0) && (r.height == 0))) {
 					return;
 				}
-				if (width > 0 && height > 0 && !this._contains(r.x, r.y, r.width, r.height)) {
+				if (width > 0 && height > 0 && !this._contains(r.x, r.y,
+						r.width, r.height)) {
 					// We seem to have gotten out of sync and no longer
 					// contain the right location, adjust accordingly.
 					Rectangle clip = g.getClipBounds();
@@ -632,7 +620,8 @@ public class DefaultCaret extends Rectangle
 				// will show bidi information.
 				Document doc = component.getDocument();
 				if (doc instanceof AbstractDocument) {
-					Element bidi = ((AbstractDocument) doc).getBidiRootElement();
+					Element bidi = ((AbstractDocument) doc)
+							.getBidiRootElement();
 					if ((bidi != null) && (bidi.getElementCount() > 1)) {
 						// there are multiple directions present.
 						flagXPoints[0] = r.x + ((dotLTR) ? paintWidth : 0);
@@ -659,7 +648,7 @@ public class DefaultCaret extends Rectangle
 	 * mouse motion listeners.
 	 *
 	 * @param c
-	 *            the component
+	 *          the component
 	 * @see Caret#install
 	 */
 	public void install(JTextComponent c) {
@@ -703,7 +692,7 @@ public class DefaultCaret extends Rectangle
 	 * attached.
 	 *
 	 * @param c
-	 *            the component
+	 *          the component
 	 * @see Caret#deinstall
 	 */
 	public void deinstall(JTextComponent c) {
@@ -728,7 +717,7 @@ public class DefaultCaret extends Rectangle
 	 * Adds a listener to track whenever the caret position has been changed.
 	 *
 	 * @param l
-	 *            the listener
+	 *          the listener
 	 * @see Caret#addChangeListener
 	 */
 	public void addChangeListener(ChangeListener l) {
@@ -739,7 +728,7 @@ public class DefaultCaret extends Rectangle
 	 * Removes a listener that was tracking caret position changes.
 	 *
 	 * @param l
-	 *            the listener
+	 *          the listener
 	 * @see Caret#removeChangeListener
 	 */
 	public void removeChangeListener(ChangeListener l) {
@@ -798,22 +787,25 @@ public class DefaultCaret extends Rectangle
 	 * listeners with the following code:
 	 *
 	 * <pre>
-	 * ChangeListener[] cls = (ChangeListener[]) (c.getListeners(ChangeListener.class));
+	 * ChangeListener[] cls = (ChangeListener[]) (c.getListeners(
+	 * 		ChangeListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this component, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getChangeListeners
 	 *
@@ -931,7 +923,7 @@ public class DefaultCaret extends Rectangle
 	 * </ul>
 	 *
 	 * @param e
-	 *            the visibility specifier
+	 *          the visibility specifier
 	 * @see #isActive
 	 * @see Caret#setVisible
 	 */
@@ -966,7 +958,7 @@ public class DefaultCaret extends Rectangle
 	 * Sets the caret blink rate.
 	 *
 	 * @param rate
-	 *            the rate in milliseconds, 0 to stop blinking
+	 *             the rate in milliseconds, 0 to stop blinking
 	 * @see Caret#setBlinkRate
 	 */
 	public void setBlinkRate(int rate) {
@@ -1048,11 +1040,11 @@ public class DefaultCaret extends Rectangle
 	 * bias.
 	 *
 	 * @param dot
-	 *            the position &gt;= 0
+	 *                the position &gt;= 0
 	 * @param dotBias
-	 *            the bias for this position, not <code>null</code>
+	 *                the bias for this position, not <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if the bias is <code>null</code>
+	 *                                  if the bias is <code>null</code>
 	 * @see Caret#moveDot
 	 * @since 1.6
 	 */
@@ -1115,11 +1107,11 @@ public class DefaultCaret extends Rectangle
 	 * specified bias. This implicitly sets the selection range to zero.
 	 *
 	 * @param dot
-	 *            the position &gt;= 0
+	 *                the position &gt;= 0
 	 * @param dotBias
-	 *            the bias for this position, not <code>null</code>
+	 *                the bias for this position, not <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if the bias is <code>null</code>
+	 *                                  if the bias is <code>null</code>
 	 * @see Caret#setDot
 	 * @since 1.6
 	 */
@@ -1198,7 +1190,8 @@ public class DefaultCaret extends Rectangle
 		return AbstractDocument.isLeftToRight(doc, position, position);
 	}
 
-	Position.Bias guessBiasForOffset(int offset, Position.Bias lastBias, boolean lastLTR) {
+	Position.Bias guessBiasForOffset(int offset, Position.Bias lastBias,
+			boolean lastLTR) {
 		// There is an abiguous case here. That if your model looks like:
 		// abAB with the cursor at abB]A (visual representation of
 		// 3 forward) deleting could either become abB] or
@@ -1282,7 +1275,8 @@ public class DefaultCaret extends Rectangle
 				// not visible.
 				Rectangle newLoc;
 				try {
-					newLoc = mapper.modelToView(component, this.dot, this.dotBias);
+					newLoc = mapper.modelToView(component, this.dot,
+							this.dotBias);
 				} catch (BadLocationException e) {
 					newLoc = null;
 				}
@@ -1304,12 +1298,14 @@ public class DefaultCaret extends Rectangle
 		if (!SwingUtilities2.canCurrentEventAccessSystemClipboard()) {
 			return;
 		}
-		if (this.dot != this.mark && component != null && component.hasFocus()) {
+		if (this.dot != this.mark && component != null && component
+				.hasFocus()) {
 			Clipboard clip = getSystemSelection();
 			if (clip != null) {
 				String selectedText;
 				if (component instanceof JPasswordField && component
-						.getClientProperty("JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
+						.getClientProperty(
+								"JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
 					// fix for 4793761
 					StringBuilder txt = null;
 					char echoChar = ((JPasswordField) component).getEchoChar();
@@ -1326,7 +1322,8 @@ public class DefaultCaret extends Rectangle
 					selectedText = component.getSelectedText();
 				}
 				try {
-					clip.setContents(new StringSelection(selectedText), getClipboardOwner());
+					clip.setContents(new StringSelection(selectedText),
+							getClipboardOwner());
 
 					ownsSelection = true;
 				} catch (IllegalStateException ise) {
@@ -1374,7 +1371,7 @@ public class DefaultCaret extends Rectangle
 	 * occur, moving between lines that have uneven end positions.
 	 *
 	 * @param p
-	 *            the position
+	 *          the position
 	 * @see #getMagicCaretPosition
 	 */
 	public void setMagicCaretPosition(Point p) {
@@ -1487,7 +1484,8 @@ public class DefaultCaret extends Rectangle
 
 	// --- serialization ---------------------------------------------
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 		handler = new Handler();
 		if (!s.readBoolean()) {
@@ -1592,8 +1590,8 @@ public class DefaultCaret extends Rectangle
 		Rectangle r;
 	}
 
-	class Handler
-			implements PropertyChangeListener, DocumentListener, ActionListener, ClipboardOwner {
+	class Handler implements PropertyChangeListener, DocumentListener,
+			ActionListener, ClipboardOwner {
 
 		// --- ActionListener methods ----------------------------------
 
@@ -1603,7 +1601,7 @@ public class DefaultCaret extends Rectangle
 		 * last bounded the caret.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			if (width == 0 || height == 0) {
@@ -1612,7 +1610,8 @@ public class DefaultCaret extends Rectangle
 				if (component != null) {
 					TextUI mapper = component.getUI();
 					try {
-						Rectangle r = mapper.modelToView(component, dot, dotBias);
+						Rectangle r = mapper.modelToView(component, dot,
+								dotBias);
 						if (r != null && r.width != 0 && r.height != 0) {
 							damage(r);
 						}
@@ -1630,14 +1629,16 @@ public class DefaultCaret extends Rectangle
 		 * Updates the dot and mark if they were changed by the insertion.
 		 *
 		 * @param e
-		 *            the document event
+		 *          the document event
 		 * @see DocumentListener#insertUpdate
 		 */
 		public void insertUpdate(DocumentEvent e) {
-			if (getUpdatePolicy() == NEVER_UPDATE || (getUpdatePolicy() == UPDATE_WHEN_ON_EDT
-					&& !SwingUtilities.isEventDispatchThread())) {
+			if (getUpdatePolicy() == NEVER_UPDATE
+					|| (getUpdatePolicy() == UPDATE_WHEN_ON_EDT
+							&& !SwingUtilities.isEventDispatchThread())) {
 
-				if ((e.getOffset() <= dot || e.getOffset() <= mark) && selectionTag != null) {
+				if ((e.getOffset() <= dot || e.getOffset() <= mark)
+						&& selectionTag != null) {
 					try {
 						component.getHighlighter().changeHighlight(selectionTag,
 								Math.min(dot, mark), Math.max(dot, mark));
@@ -1704,17 +1705,19 @@ public class DefaultCaret extends Rectangle
 		 * Updates the dot and mark if they were changed by the removal.
 		 *
 		 * @param e
-		 *            the document event
+		 *          the document event
 		 * @see DocumentListener#removeUpdate
 		 */
 		public void removeUpdate(DocumentEvent e) {
-			if (getUpdatePolicy() == NEVER_UPDATE || (getUpdatePolicy() == UPDATE_WHEN_ON_EDT
-					&& !SwingUtilities.isEventDispatchThread())) {
+			if (getUpdatePolicy() == NEVER_UPDATE
+					|| (getUpdatePolicy() == UPDATE_WHEN_ON_EDT
+							&& !SwingUtilities.isEventDispatchThread())) {
 
 				int length = component.getDocument().getLength();
 				dot = Math.min(dot, length);
 				mark = Math.min(mark, length);
-				if ((e.getOffset() < dot || e.getOffset() < mark) && selectionTag != null) {
+				if ((e.getOffset() < dot || e.getOffset() < mark)
+						&& selectionTag != null) {
 					try {
 						component.getHighlighter().changeHighlight(selectionTag,
 								Math.min(dot, mark), Math.max(dot, mark));
@@ -1784,12 +1787,13 @@ public class DefaultCaret extends Rectangle
 		 * Gives notification that an attribute or set of attributes changed.
 		 *
 		 * @param e
-		 *            the document event
+		 *          the document event
 		 * @see DocumentListener#changedUpdate
 		 */
 		public void changedUpdate(DocumentEvent e) {
-			if (getUpdatePolicy() == NEVER_UPDATE || (getUpdatePolicy() == UPDATE_WHEN_ON_EDT
-					&& !SwingUtilities.isEventDispatchThread())) {
+			if (getUpdatePolicy() == NEVER_UPDATE
+					|| (getUpdatePolicy() == UPDATE_WHEN_ON_EDT
+							&& !SwingUtilities.isEventDispatchThread())) {
 				return;
 			}
 			if (e instanceof AbstractDocument.UndoRedoDocumentEvent) {
@@ -1806,7 +1810,8 @@ public class DefaultCaret extends Rectangle
 		public void propertyChange(PropertyChangeEvent evt) {
 			Object oldValue = evt.getOldValue();
 			Object newValue = evt.getNewValue();
-			if ((oldValue instanceof Document) || (newValue instanceof Document)) {
+			if ((oldValue instanceof Document)
+					|| (newValue instanceof Document)) {
 				setDot(0);
 				if (oldValue != null) {
 					((Document) oldValue).removeDocumentListener(this);

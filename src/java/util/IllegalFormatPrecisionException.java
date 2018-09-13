@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -42,7 +22,7 @@ public class IllegalFormatPrecisionException extends IllegalFormatException {
 	 * Constructs an instance of this class with the specified precision.
 	 *
 	 * @param p
-	 *            The precision
+	 *          The precision
 	 */
 	public IllegalFormatPrecisionException(int p) {
 		this.p = p;

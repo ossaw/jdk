@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SerializerMessages_cs.java,v 1.1.4.1 2005/09/08 11:03:12 suresh_emailid Exp $
+ * $Id: SerializerMessages_cs.java,v 1.1.4.1 2005/09/08 11:03:12 suresh_emailid
+ * Exp $
  */
 
 package com.sun.org.apache.xml.internal.serializer.utils;
@@ -33,7 +31,8 @@ public class SerializerMessages_cs extends ListResourceBundle {
 				{ MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
 						"T\u0159\u00edda serializace ''{0}'' neimplementuje org.xml.sax.ContentHandler." },
 
-				{ MsgKey.ER_RESOURCE_COULD_NOT_FIND, "Nelze naj\u00edt zdroj [ {0} ].\n {1}" },
+				{ MsgKey.ER_RESOURCE_COULD_NOT_FIND,
+						"Nelze naj\u00edt zdroj [ {0} ].\n {1}" },
 
 				{ MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
 						"Nelze zav\u00e9st zdroj [ {0} ]: {1} \n {2} \n {3}" },
@@ -63,7 +62,8 @@ public class SerializerMessages_cs extends ListResourceBundle {
 				{ MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY,
 						"Nelze na\u010d\u00edst soubor vlastnost\u00ed ''{0}'' pro v\u00fdstupn\u00ed metodu ''{1}'' (zkontrolujte prom\u011bnnou CLASSPATH)." },
 
-				{ MsgKey.ER_INVALID_PORT, "Neplatn\u00e9 \u010d\u00edslo portu." },
+				{ MsgKey.ER_INVALID_PORT,
+						"Neplatn\u00e9 \u010d\u00edslo portu." },
 
 				{ MsgKey.ER_PORT_WHEN_HOST_NULL,
 						"M\u00e1-li hostitel hodnotu null, nelze nastavit port." },
@@ -79,9 +79,11 @@ public class SerializerMessages_cs extends ListResourceBundle {
 				{ MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
 						"Cesta obsahuje neplatnou escape sekvenci" },
 
-				{ MsgKey.ER_PATH_INVALID_CHAR, "Cesta obsahuje neplatn\u00fd znak: {0}" },
+				{ MsgKey.ER_PATH_INVALID_CHAR,
+						"Cesta obsahuje neplatn\u00fd znak: {0}" },
 
-				{ MsgKey.ER_FRAG_INVALID_CHAR, "Fragment obsahuje neplatn\u00fd znak." },
+				{ MsgKey.ER_FRAG_INVALID_CHAR,
+						"Fragment obsahuje neplatn\u00fd znak." },
 
 				{ MsgKey.ER_FRAG_WHEN_PATH_NULL,
 						"M\u00e1-li cesta hodnotu null, nelze nastavit fragment." },
@@ -107,7 +109,8 @@ public class SerializerMessages_cs extends ListResourceBundle {
 				{ MsgKey.ER_NO_USERINFO_IF_NO_HOST,
 						"Nen\u00ed-li ur\u010den hostitel, nelze zadat \u00fadaje o u\u017eivateli." },
 
-				{ MsgKey.ER_SCHEME_REQUIRED, "Je vy\u017eadov\u00e1no sch\u00e9ma!" }
+				{ MsgKey.ER_SCHEME_REQUIRED,
+						"Je vy\u017eadov\u00e1no sch\u00e9ma!" }
 
 		};
 		return contents;

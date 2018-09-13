@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.source.util;
 
@@ -63,9 +43,9 @@ public interface Plugin {
 	 * Initialize the plug-in for a given compilation task.
 	 * 
 	 * @param task
-	 *            The compilation task that has just been started
+	 *             The compilation task that has just been started
 	 * @param args
-	 *            Arguments, if any, for the plug-in
+	 *             Arguments, if any, for the plug-in
 	 */
 	void init(JavacTask task, String... args);
 }

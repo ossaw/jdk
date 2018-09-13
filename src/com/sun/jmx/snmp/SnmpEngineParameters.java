@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -69,7 +49,7 @@ public class SnmpEngineParameters implements Serializable {
 	 * <CODE>com.sun.jmx.snmp.usm.UserAcl.UserAcl</CODE> is instantiated.
 	 * 
 	 * @param uacl
-	 *            The user ACL to use.
+	 *             The user ACL to use.
 	 */
 	public void setUserAcl(UserAcl uacl) {
 		this.uacl = uacl;
@@ -118,7 +98,7 @@ public class SnmpEngineParameters implements Serializable {
 	 * Set the engine Id.
 	 * 
 	 * @param engineId
-	 *            The engine Id to use.
+	 *                 The engine Id to use.
 	 */
 	public void setEngineId(SnmpEngineId engineId) {
 		this.engineId = engineId;

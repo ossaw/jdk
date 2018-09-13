@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -84,10 +59,12 @@ public interface CSSStyleDeclaration {
 	 * declaration block including the removal or addition of properties.
 	 * 
 	 * @exception DOMException
-	 *                SYNTAX_ERR: Raised if the specified CSS string value has a
-	 *                syntax error and is unparsable. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this declaration is
-	 *                readonly or a property is readonly.
+	 *                         SYNTAX_ERR: Raised if the specified CSS string
+	 *                         value has a
+	 *                         syntax error and is unparsable. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
+	 *                         declaration is
+	 *                         readonly or a property is readonly.
 	 */
 	public void setCssText(String cssText) throws DOMException;
 
@@ -96,7 +73,8 @@ public interface CSSStyleDeclaration {
 	 * set within this declaration block.
 	 * 
 	 * @param propertyName
-	 *            The name of the CSS property. See the CSS property index.
+	 *                     The name of the CSS property. See the CSS property
+	 *                     index.
 	 * @return Returns the value of the property if it has been explicitly set
 	 *         for this declaration block. Returns the empty string if the
 	 *         property has not been set.
@@ -112,7 +90,8 @@ public interface CSSStyleDeclaration {
 	 * methods.
 	 * 
 	 * @param propertyName
-	 *            The name of the CSS property. See the CSS property index.
+	 *                     The name of the CSS property. See the CSS property
+	 *                     index.
 	 * @return Returns the value of the property if it has been explicitly set
 	 *         for this declaration block. Returns <code>null</code> if the
 	 *         property has not been set.
@@ -124,14 +103,16 @@ public interface CSSStyleDeclaration {
 	 * declaration block.
 	 * 
 	 * @param propertyName
-	 *            The name of the CSS property. See the CSS property index.
+	 *                     The name of the CSS property. See the CSS property
+	 *                     index.
 	 * @return Returns the value of the property if it has been explicitly set
 	 *         for this declaration block. Returns the empty string if the
 	 *         property has not been set or the property name does not
 	 *         correspond to a known CSS property.
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this declaration is
-	 *                readonly or the property is readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
+	 *                         declaration is
+	 *                         readonly or the property is readonly.
 	 */
 	public String removeProperty(String propertyName) throws DOMException;
 
@@ -141,7 +122,8 @@ public interface CSSStyleDeclaration {
 	 * set in this declaration block.
 	 * 
 	 * @param propertyName
-	 *            The name of the CSS property. See the CSS property index.
+	 *                     The name of the CSS property. See the CSS property
+	 *                     index.
 	 * @return A string representing the priority (e.g. <code>"important"</code>
 	 *         ) if the property has been explicitly set in this declaration
 	 *         block and has a priority specified. The empty string otherwise.
@@ -155,19 +137,24 @@ public interface CSSStyleDeclaration {
 	 * properties in the <code>item</code> method.
 	 * 
 	 * @param propertyName
-	 *            The name of the CSS property. See the CSS property index.
+	 *                     The name of the CSS property. See the CSS property
+	 *                     index.
 	 * @param value
-	 *            The new value of the property.
+	 *                     The new value of the property.
 	 * @param priority
-	 *            The new priority of the property (e.g.
-	 *            <code>"important"</code>) or the empty string if none.
+	 *                     The new priority of the property (e.g.
+	 *                     <code>"important"</code>) or the empty string if
+	 *                     none.
 	 * @exception DOMException
-	 *                SYNTAX_ERR: Raised if the specified value has a syntax
-	 *                error and is unparsable. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this declaration is
-	 *                readonly or the property is readonly.
+	 *                         SYNTAX_ERR: Raised if the specified value has a
+	 *                         syntax
+	 *                         error and is unparsable. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
+	 *                         declaration is
+	 *                         readonly or the property is readonly.
 	 */
-	public void setProperty(String propertyName, String value, String priority) throws DOMException;
+	public void setProperty(String propertyName, String value, String priority)
+			throws DOMException;
 
 	/**
 	 * The number of properties that have been explicitly set in this
@@ -182,7 +169,7 @@ public interface CSSStyleDeclaration {
 	 * can be used to iterate over all properties in this declaration block.
 	 * 
 	 * @param index
-	 *            Index of the property name to retrieve.
+	 *              Index of the property name to retrieve.
 	 * @return The name of the property at this ordinal position. The empty
 	 *         string if no property exists at this position.
 	 */

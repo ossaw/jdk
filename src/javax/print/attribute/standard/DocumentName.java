@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -55,15 +35,17 @@ public final class DocumentName extends TextSyntax implements DocAttribute {
 	 * locale.
 	 *
 	 * @param documentName
-	 *            Document name.
+	 *                     Document name.
 	 * @param locale
-	 *            Natural language of the text string. null is interpreted to
-	 *            mean the default locale as returned by
-	 *            <code>Locale.getDefault()</code>
+	 *                     Natural language of the text string. null is
+	 *                     interpreted to
+	 *                     mean the default locale as returned by
+	 *                     <code>Locale.getDefault()</code>
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>documentName</CODE>
-	 *                is null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>documentName</CODE>
+	 *                                 is null.
 	 */
 	public DocumentName(String documentName, Locale locale) {
 		super(documentName, locale);
@@ -83,7 +65,7 @@ public final class DocumentName extends TextSyntax implements DocAttribute {
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this document name
 	 *         attribute, false otherwise.

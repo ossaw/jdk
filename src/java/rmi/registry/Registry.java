@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi.registry;
 
@@ -83,82 +63,99 @@ public interface Registry extends Remote {
 	 * this registry.
 	 *
 	 * @param name
-	 *            the name for the remote reference to look up
+	 *             the name for the remote reference to look up
 	 *
 	 * @return a reference to a remote object
 	 *
 	 * @throws NotBoundException
-	 *             if <code>name</code> is not currently bound
+	 *                              if <code>name</code> is not currently bound
 	 *
 	 * @throws RemoteException
-	 *             if remote communication with the registry failed; if
-	 *             exception is a <code>ServerException</code> containing an
-	 *             <code>AccessException</code>, then the registry denies the
-	 *             caller access to perform this operation
+	 *                              if remote communication with the registry
+	 *                              failed; if
+	 *                              exception is a <code>ServerException</code>
+	 *                              containing an
+	 *                              <code>AccessException</code>, then the
+	 *                              registry denies the
+	 *                              caller access to perform this operation
 	 *
 	 * @throws AccessException
-	 *             if this registry is local and it denies the caller access to
-	 *             perform this operation
+	 *                              if this registry is local and it denies the
+	 *                              caller access to
+	 *                              perform this operation
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>
+	 *                              if <code>name</code> is <code>null</code>
 	 */
-	public Remote lookup(String name) throws RemoteException, NotBoundException, AccessException;
+	public Remote lookup(String name) throws RemoteException, NotBoundException,
+			AccessException;
 
 	/**
 	 * Binds a remote reference to the specified <code>name</code> in this
 	 * registry.
 	 *
 	 * @param name
-	 *            the name to associate with the remote reference
+	 *             the name to associate with the remote reference
 	 * @param obj
-	 *            a reference to a remote object (usually a stub)
+	 *             a reference to a remote object (usually a stub)
 	 *
 	 * @throws AlreadyBoundException
-	 *             if <code>name</code> is already bound
+	 *                               if <code>name</code> is already bound
 	 *
 	 * @throws RemoteException
-	 *             if remote communication with the registry failed; if
-	 *             exception is a <code>ServerException</code> containing an
-	 *             <code>AccessException</code>, then the registry denies the
-	 *             caller access to perform this operation (if originating from
-	 *             a non-local host, for example)
+	 *                               if remote communication with the registry
+	 *                               failed; if
+	 *                               exception is a <code>ServerException</code>
+	 *                               containing an
+	 *                               <code>AccessException</code>, then the
+	 *                               registry denies the
+	 *                               caller access to perform this operation (if
+	 *                               originating from
+	 *                               a non-local host, for example)
 	 *
 	 * @throws AccessException
-	 *             if this registry is local and it denies the caller access to
-	 *             perform this operation
+	 *                               if this registry is local and it denies the
+	 *                               caller access to
+	 *                               perform this operation
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>, or if
-	 *             <code>obj</code> is <code>null</code>
+	 *                               if <code>name</code> is <code>null</code>,
+	 *                               or if
+	 *                               <code>obj</code> is <code>null</code>
 	 */
-	public void bind(String name, Remote obj)
-			throws RemoteException, AlreadyBoundException, AccessException;
+	public void bind(String name, Remote obj) throws RemoteException,
+			AlreadyBoundException, AccessException;
 
 	/**
 	 * Removes the binding for the specified <code>name</code> in this registry.
 	 *
 	 * @param name
-	 *            the name of the binding to remove
+	 *             the name of the binding to remove
 	 *
 	 * @throws NotBoundException
-	 *             if <code>name</code> is not currently bound
+	 *                              if <code>name</code> is not currently bound
 	 *
 	 * @throws RemoteException
-	 *             if remote communication with the registry failed; if
-	 *             exception is a <code>ServerException</code> containing an
-	 *             <code>AccessException</code>, then the registry denies the
-	 *             caller access to perform this operation (if originating from
-	 *             a non-local host, for example)
+	 *                              if remote communication with the registry
+	 *                              failed; if
+	 *                              exception is a <code>ServerException</code>
+	 *                              containing an
+	 *                              <code>AccessException</code>, then the
+	 *                              registry denies the
+	 *                              caller access to perform this operation (if
+	 *                              originating from
+	 *                              a non-local host, for example)
 	 *
 	 * @throws AccessException
-	 *             if this registry is local and it denies the caller access to
-	 *             perform this operation
+	 *                              if this registry is local and it denies the
+	 *                              caller access to
+	 *                              perform this operation
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>
+	 *                              if <code>name</code> is <code>null</code>
 	 */
-	public void unbind(String name) throws RemoteException, NotBoundException, AccessException;
+	public void unbind(String name) throws RemoteException, NotBoundException,
+			AccessException;
 
 	/**
 	 * Replaces the binding for the specified <code>name</code> in this registry
@@ -166,26 +163,33 @@ public interface Registry extends Remote {
 	 * the specified <code>name</code>, it is discarded.
 	 *
 	 * @param name
-	 *            the name to associate with the remote reference
+	 *             the name to associate with the remote reference
 	 * @param obj
-	 *            a reference to a remote object (usually a stub)
+	 *             a reference to a remote object (usually a stub)
 	 *
 	 * @throws RemoteException
-	 *             if remote communication with the registry failed; if
-	 *             exception is a <code>ServerException</code> containing an
-	 *             <code>AccessException</code>, then the registry denies the
-	 *             caller access to perform this operation (if originating from
-	 *             a non-local host, for example)
+	 *                              if remote communication with the registry
+	 *                              failed; if
+	 *                              exception is a <code>ServerException</code>
+	 *                              containing an
+	 *                              <code>AccessException</code>, then the
+	 *                              registry denies the
+	 *                              caller access to perform this operation (if
+	 *                              originating from
+	 *                              a non-local host, for example)
 	 *
 	 * @throws AccessException
-	 *             if this registry is local and it denies the caller access to
-	 *             perform this operation
+	 *                              if this registry is local and it denies the
+	 *                              caller access to
+	 *                              perform this operation
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>, or if
-	 *             <code>obj</code> is <code>null</code>
+	 *                              if <code>name</code> is <code>null</code>,
+	 *                              or if
+	 *                              <code>obj</code> is <code>null</code>
 	 */
-	public void rebind(String name, Remote obj) throws RemoteException, AccessException;
+	public void rebind(String name, Remote obj) throws RemoteException,
+			AccessException;
 
 	/**
 	 * Returns an array of the names bound in this registry. The array will
@@ -195,14 +199,18 @@ public interface Registry extends Remote {
 	 * @return an array of the names bound in this registry
 	 *
 	 * @throws RemoteException
-	 *             if remote communication with the registry failed; if
-	 *             exception is a <code>ServerException</code> containing an
-	 *             <code>AccessException</code>, then the registry denies the
-	 *             caller access to perform this operation
+	 *                         if remote communication with the registry failed;
+	 *                         if
+	 *                         exception is a <code>ServerException</code>
+	 *                         containing an
+	 *                         <code>AccessException</code>, then the registry
+	 *                         denies the
+	 *                         caller access to perform this operation
 	 *
 	 * @throws AccessException
-	 *             if this registry is local and it denies the caller access to
-	 *             perform this operation
+	 *                         if this registry is local and it denies the
+	 *                         caller access to
+	 *                         perform this operation
 	 */
 	public String[] list() throws RemoteException, AccessException;
 }

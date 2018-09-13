@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,8 +56,7 @@ public class DTMNodeList extends DTMNodeListBase {
 
 	// ================================================================
 	// Methods unique to this class
-	private DTMNodeList() {
-	}
+	private DTMNodeList() {}
 
 	/**
 	 * Public constructor: Wrap a DTMNodeList around an existing and
@@ -102,7 +98,7 @@ public class DTMNodeList extends DTMNodeListBase {
 	 * list, this returns <code>null</code>.
 	 * 
 	 * @param index
-	 *            Index into the collection.
+	 *              Index into the collection.
 	 * @return The node at the <code>index</code>th position in the
 	 *         <code>NodeList</code>, or <code>null</code> if that is not a
 	 *         valid index.

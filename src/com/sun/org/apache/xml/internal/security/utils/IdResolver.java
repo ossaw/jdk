@@ -44,9 +44,9 @@ public class IdResolver {
 	 * Method registerElementById
 	 *
 	 * @param element
-	 *            the element to register
+	 *                the element to register
 	 * @param id
-	 *            the ID attribute
+	 *                the ID attribute
 	 */
 	public static void registerElementById(Element element, Attr id) {
 		element.setIdAttributeNode(id, true);

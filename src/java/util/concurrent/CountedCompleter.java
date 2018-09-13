@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -361,8 +336,8 @@ package java.util.concurrent;
  * 		MapReducer<E> forks, next; // record subtask forks in list
  * 		E result;
  * 
- * 		MapReducer(CountedCompleter<?> p, E[] array, MyMapper<E> mapper, MyReducer<E> reducer,
- * 				int lo, int hi, MapReducer<E> next) {
+ * 		MapReducer(CountedCompleter<?> p, E[] array, MyMapper<E> mapper,
+ * 				MyReducer<E> reducer, int lo, int hi, MapReducer<E> next) {
  * 			super(p);
  * 			this.array = array;
  * 			this.mapper = mapper;
@@ -377,14 +352,16 @@ package java.util.concurrent;
  * 			while (h - l >= 2) {
  * 				int mid = (l + h) >>> 1;
  * 				addToPendingCount(1);
- * 				(forks = new MapReducer(this, array, mapper, reducer, mid, h, forks)).fork();
+ * 				(forks = new MapReducer(this, array, mapper, reducer, mid, h,
+ * 						forks)).fork();
  * 				h = mid;
  * 			}
  * 			if (h > l)
  * 				result = mapper.apply(array[l]);
  * 			// process completions by reducing along and advancing subtask
  * 			// links
- * 			for (CountedCompleter<?> c = firstComplete(); c != null; c = c.nextComplete()) {
+ * 			for (CountedCompleter<?> c = firstComplete(); c != null; c = c
+ * 					.nextComplete()) {
  * 				for (MapReducer t = (MapReducer) c, s = t.forks; s != null; s = t.forks = s.next)
  * 					t.result = reducer.apply(t.result, s.result);
  * 			}
@@ -394,9 +371,10 @@ package java.util.concurrent;
  * 			return result;
  * 		}
  *
- * 		public static <E> E mapReduce(E[] array, MyMapper<E> mapper, MyReducer<E> reducer) {
- * 			return new MapReducer<E>(null, array, mapper, reducer, 0, array.length, null)
- * 					.invoke();
+ * 		public static <E> E mapReduce(E[] array, MyMapper<E> mapper,
+ * 				MyReducer<E> reducer) {
+ * 			return new MapReducer<E>(null, array, mapper, reducer, 0,
+ * 					array.length, null).invoke();
  * 		}
  * 	}
  * }
@@ -440,11 +418,12 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * pending count.
 	 *
 	 * @param completer
-	 *            this task's completer, or {@code null} if none
+	 *                            this task's completer, or {@code null} if none
 	 * @param initialPendingCount
-	 *            the initial pending count
+	 *                            the initial pending count
 	 */
-	protected CountedCompleter(CountedCompleter<?> completer, int initialPendingCount) {
+	protected CountedCompleter(CountedCompleter<?> completer,
+			int initialPendingCount) {
 		this.completer = completer;
 		this.pending = initialPendingCount;
 	}
@@ -454,7 +433,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * pending count of zero.
 	 *
 	 * @param completer
-	 *            this task's completer, or {@code null} if none
+	 *                  this task's completer, or {@code null} if none
 	 */
 	protected CountedCompleter(CountedCompleter<?> completer) {
 		this.completer = completer;
@@ -483,10 +462,10 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * links to other results) to combine.
 	 *
 	 * @param caller
-	 *            the task invoking this method (which may be this task itself)
+	 *               the task invoking this method (which may be this task
+	 *               itself)
 	 */
-	public void onCompletion(CountedCompleter<?> caller) {
-	}
+	public void onCompletion(CountedCompleter<?> caller) {}
 
 	/**
 	 * Performs an action when method {@link #completeExceptionally(Throwable)}
@@ -500,13 +479,15 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * {@code true}.
 	 *
 	 * @param ex
-	 *            the exception
+	 *               the exception
 	 * @param caller
-	 *            the task invoking this method (which may be this task itself)
+	 *               the task invoking this method (which may be this task
+	 *               itself)
 	 * @return {@code true} if this exception should be propagated to this
 	 *         task's completer, if one exists
 	 */
-	public boolean onExceptionalCompletion(Throwable ex, CountedCompleter<?> caller) {
+	public boolean onExceptionalCompletion(Throwable ex,
+			CountedCompleter<?> caller) {
 		return true;
 	}
 
@@ -533,7 +514,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * Sets the pending count to the given value.
 	 *
 	 * @param count
-	 *            the count
+	 *              the count
 	 */
 	public final void setPendingCount(int count) {
 		pending = count;
@@ -543,7 +524,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * Adds (atomically) the given value to the pending count.
 	 *
 	 * @param delta
-	 *            the value to add
+	 *              the value to add
 	 */
 	public final void addToPendingCount(int delta) {
 		U.getAndAddInt(this, PENDING, delta);
@@ -554,9 +535,9 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * currently holds the given expected value.
 	 *
 	 * @param expected
-	 *            the expected value
+	 *                 the expected value
 	 * @param count
-	 *            the new value
+	 *                 the new value
 	 * @return {@code true} if successful
 	 */
 	public final boolean compareAndSetPendingCount(int expected, int count) {
@@ -572,7 +553,8 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	public final int decrementPendingCountUnlessZero() {
 		int c;
 		do {
-		} while ((c = pending) != 0 && !U.compareAndSwapInt(this, PENDING, c, c - 1));
+		} while ((c = pending) != 0 && !U.compareAndSwapInt(this, PENDING, c, c
+				- 1));
 		return c;
 	}
 
@@ -649,7 +631,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * using {@code quietlyCompleteRoot();}.
 	 *
 	 * @param rawResult
-	 *            the raw result
+	 *                  the raw result
 	 */
 	public void complete(T rawResult) {
 		CountedCompleter<?> p;
@@ -725,15 +707,17 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * completion path, if any are known to exist.
 	 *
 	 * @param maxTasks
-	 *            the maximum number of tasks to process. If less than or equal
-	 *            to zero, then no tasks are processed.
+	 *                 the maximum number of tasks to process. If less than or
+	 *                 equal
+	 *                 to zero, then no tasks are processed.
 	 */
 	public final void helpComplete(int maxTasks) {
 		Thread t;
 		ForkJoinWorkerThread wt;
 		if (maxTasks > 0 && status >= 0) {
 			if ((t = Thread.currentThread()) instanceof ForkJoinWorkerThread)
-				(wt = (ForkJoinWorkerThread) t).pool.helpComplete(wt.workQueue, this, maxTasks);
+				(wt = (ForkJoinWorkerThread) t).pool.helpComplete(wt.workQueue,
+						this, maxTasks);
 			else
 				ForkJoinPool.common.externalHelpComplete(this, maxTasks);
 		}
@@ -744,8 +728,9 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 */
 	void internalPropagateException(Throwable ex) {
 		CountedCompleter<?> a = this, s = a;
-		while (a.onExceptionalCompletion(ex, s) && (a = (s = a).completer) != null && a.status >= 0
-				&& a.recordExceptionalCompletion(ex) == EXCEPTIONAL)
+		while (a.onExceptionalCompletion(ex, s)
+				&& (a = (s = a).completer) != null && a.status >= 0 && a
+						.recordExceptionalCompletion(ex) == EXCEPTIONAL)
 			;
 	}
 
@@ -775,8 +760,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	 * recommended. However, if this method is overridden to update existing
 	 * objects or fields, then it must in general be defined to be thread-safe.
 	 */
-	protected void setRawResult(T t) {
-	}
+	protected void setRawResult(T t) {}
 
 	// Unsafe mechanics
 	private static final sun.misc.Unsafe U;
@@ -784,7 +768,8 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
 	static {
 		try {
 			U = sun.misc.Unsafe.getUnsafe();
-			PENDING = U.objectFieldOffset(CountedCompleter.class.getDeclaredField("pending"));
+			PENDING = U.objectFieldOffset(CountedCompleter.class
+					.getDeclaredField("pending"));
 		} catch (Exception e) {
 			throw new Error(e);
 		}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -48,8 +28,7 @@ public class JMXProviderException extends IOException {
 	 * message.
 	 * </p>
 	 */
-	public JMXProviderException() {
-	}
+	public JMXProviderException() {}
 
 	/**
 	 * <p>
@@ -58,7 +37,7 @@ public class JMXProviderException extends IOException {
 	 * </p>
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 */
 	public JMXProviderException(String message) {
 		super(message);
@@ -71,9 +50,9 @@ public class JMXProviderException extends IOException {
 	 * </p>
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 * @param cause
-	 *            the nested exception
+	 *                the nested exception
 	 */
 	public JMXProviderException(String message, Throwable cause) {
 		super(message);

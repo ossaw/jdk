@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.ietf.jgss;
@@ -103,16 +83,18 @@ import java.security.Provider;
  *
  * // Identify the name of the server. This uses a Kerberos specific
  * // name format.
- * GSSName serverName = manager.createName("nfs/foo.sun.com", krb5PrincipalNameType);
+ * GSSName serverName = manager.createName("nfs/foo.sun.com",
+ * 		krb5PrincipalNameType);
  *
  * // Acquire credentials for the user
- * GSSCredential userCreds = manager.createCredential(userName, GSSCredential.DEFAULT_LIFETIME,
- * 		krb5Mechanism, GSSCredential.INITIATE_ONLY);
+ * GSSCredential userCreds = manager.createCredential(userName,
+ * 		GSSCredential.DEFAULT_LIFETIME, krb5Mechanism,
+ * 		GSSCredential.INITIATE_ONLY);
  *
  * // Instantiate and initialize a security context that will be
  * // established with the server
- * GSSContext context = manager.createContext(serverName, krb5Mechanism, userCreds,
- * 		GSSContext.DEFAULT_LIFETIME);
+ * GSSContext context = manager.createContext(serverName, krb5Mechanism,
+ * 		userCreds, GSSContext.DEFAULT_LIFETIME);
  * </pre>
  * <p>
  *
@@ -121,8 +103,9 @@ import java.security.Provider;
  *
  * <pre>
  * // Acquire credentials for the server
- * GSSCredential serverCreds = manager.createCredential(serverName, GSSCredential.DEFAULT_LIFETIME,
- * 		krb5Mechanism, GSSCredential.ACCEPT_ONLY);
+ * GSSCredential serverCreds = manager.createCredential(serverName,
+ * 		GSSCredential.DEFAULT_LIFETIME, krb5Mechanism,
+ * 		GSSCredential.ACCEPT_ONLY);
  *
  * // Instantiate and initialize a security context that will
  * // wait for an establishment request token from the client
@@ -176,14 +159,14 @@ public abstract class GSSManager {
 	 * @return an array of Oid objects corresponding to the name types that the
 	 *         mechanism supports.
 	 * @param mech
-	 *            the Oid of the mechanism to query
+	 *             the Oid of the mechanism to query
 	 *
 	 * @see #getMechsForName(Oid)
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH}
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH}
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
 	public abstract Oid[] getNamesForMech(Oid mech) throws GSSException;
 
@@ -201,7 +184,7 @@ public abstract class GSSManager {
 	 *         support the specified name type. <code>null</code> is returned
 	 *         when no mechanisms are found to support the specified name type.
 	 * @param nameType
-	 *            the Oid of the name type to look for
+	 *                 the Oid of the name type to look for
 	 *
 	 * @see #getNamesForMech(Oid)
 	 */
@@ -221,27 +204,31 @@ public abstract class GSSManager {
 	 * method {@link #createName(byte[], Oid) createName}.
 	 *
 	 * @param nameStr
-	 *            the string representing a printable form of the name to
-	 *            create.
+	 *                 the string representing a printable form of the name to
+	 *                 create.
 	 * @param nameType
-	 *            the Oid specifying the namespace of the printable name
-	 *            supplied. <code>null</code> can be used to specify that a
-	 *            mechanism specific default printable syntax should be assumed
-	 *            by each mechanism that examines nameStr. It is not advisable
-	 *            to use the nametype NT_EXPORT_NAME with this method.
+	 *                 the Oid specifying the namespace of the printable name
+	 *                 supplied. <code>null</code> can be used to specify that a
+	 *                 mechanism specific default printable syntax should be
+	 *                 assumed
+	 *                 by each mechanism that examines nameStr. It is not
+	 *                 advisable
+	 *                 to use the nametype NT_EXPORT_NAME with this method.
 	 * @return a GSSName representing the indicated principal
 	 *
 	 * @see GSSName
 	 * @see GSSName#NT_EXPORT_NAME
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSName createName(String nameStr, Oid nameType) throws GSSException;
+	public abstract GSSName createName(String nameStr, Oid nameType)
+			throws GSSException;
 
 	/**
 	 * Factory method to convert a byte array containing a name from the
@@ -254,25 +241,30 @@ public abstract class GSSManager {
 	 * according to some encoding scheme of its choice for the given nametype.
 	 *
 	 * @param name
-	 *            the byte array containing the name to create
+	 *                 the byte array containing the name to create
 	 * @param nameType
-	 *            the Oid specifying the namespace of the name supplied in the
-	 *            byte array. <code>null</code> can be used to specify that a
-	 *            mechanism specific default syntax should be assumed by each
-	 *            mechanism that examines the byte array.
+	 *                 the Oid specifying the namespace of the name supplied in
+	 *                 the
+	 *                 byte array. <code>null</code> can be used to specify that
+	 *                 a
+	 *                 mechanism specific default syntax should be assumed by
+	 *                 each
+	 *                 mechanism that examines the byte array.
 	 * @return a GSSName representing the indicated principal
 	 *
 	 * @see GSSName
 	 * @see GSSName#NT_EXPORT_NAME
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSName createName(byte name[], Oid nameType) throws GSSException;
+	public abstract GSSName createName(byte name[], Oid nameType)
+			throws GSSException;
 
 	/**
 	 * Factory method to convert a string name from the specified namespace to a
@@ -282,30 +274,34 @@ public abstract class GSSManager {
 	 * {@link GSSName#canonicalize(Oid) GSSName.canonicalize}.
 	 *
 	 * @param nameStr
-	 *            the string representing a printable form of the name to
-	 *            create.
+	 *                 the string representing a printable form of the name to
+	 *                 create.
 	 * @param nameType
-	 *            the Oid specifying the namespace of the printable name
-	 *            supplied. <code>null</code> can be used to specify that a
-	 *            mechanism specific default printable syntax should be assumed
-	 *            by each mechanism that examines nameStr. It is not advisable
-	 *            to use the nametype NT_EXPORT_NAME with this method.
+	 *                 the Oid specifying the namespace of the printable name
+	 *                 supplied. <code>null</code> can be used to specify that a
+	 *                 mechanism specific default printable syntax should be
+	 *                 assumed
+	 *                 by each mechanism that examines nameStr. It is not
+	 *                 advisable
+	 *                 to use the nametype NT_EXPORT_NAME with this method.
 	 * @param mech
-	 *            Oid specifying the mechanism for which the name should be
-	 *            canonicalized
+	 *                 Oid specifying the mechanism for which the name should be
+	 *                 canonicalized
 	 * @return a GSSName representing the indicated principal
 	 *
 	 * @see GSSName#canonicalize(Oid)
 	 * @see GSSName#NT_EXPORT_NAME
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSName createName(String nameStr, Oid nameType, Oid mech) throws GSSException;
+	public abstract GSSName createName(String nameStr, Oid nameType, Oid mech)
+			throws GSSException;
 
 	/**
 	 * Factory method to convert a byte array containing a name from the
@@ -316,28 +312,33 @@ public abstract class GSSManager {
 	 * GSSName.canonicalize}.
 	 *
 	 * @param name
-	 *            the byte array containing the name to create
+	 *                 the byte array containing the name to create
 	 * @param nameType
-	 *            the Oid specifying the namespace of the name supplied in the
-	 *            byte array. <code>null</code> can be used to specify that a
-	 *            mechanism specific default syntax should be assumed by each
-	 *            mechanism that examines the byte array.
+	 *                 the Oid specifying the namespace of the name supplied in
+	 *                 the
+	 *                 byte array. <code>null</code> can be used to specify that
+	 *                 a
+	 *                 mechanism specific default syntax should be assumed by
+	 *                 each
+	 *                 mechanism that examines the byte array.
 	 * @param mech
-	 *            Oid specifying the mechanism for which the name should be
-	 *            canonicalized
+	 *                 Oid specifying the mechanism for which the name should be
+	 *                 canonicalized
 	 * @return a GSSName representing the indicated principal
 	 *
 	 * @see GSSName#canonicalize(Oid)
 	 * @see GSSName#NT_EXPORT_NAME
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSName createName(byte name[], Oid nameType, Oid mech) throws GSSException;
+	public abstract GSSName createName(byte name[], Oid nameType, Oid mech)
+			throws GSSException;
 
 	/**
 	 * Factory method for acquiring default credentials. This will cause the
@@ -353,28 +354,30 @@ public abstract class GSSManager {
 	 * SecurityException} to be thrown from this method.
 	 *
 	 * @param usage
-	 *            The intended usage for this credential object. The value of
-	 *            this parameter must be one of:
-	 *            {@link GSSCredential#INITIATE_AND_ACCEPT
-	 *            GSSCredential.INITIATE_AND_ACCEPT},
-	 *            {@link GSSCredential#ACCEPT_ONLY GSSCredential.ACCEPT_ONLY},
-	 *            and {@link GSSCredential#INITIATE_ONLY
-	 *            GSSCredential.INITIATE_ONLY}.
+	 *              The intended usage for this credential object. The value of
+	 *              this parameter must be one of:
+	 *              {@link GSSCredential#INITIATE_AND_ACCEPT
+	 *              GSSCredential.INITIATE_AND_ACCEPT},
+	 *              {@link GSSCredential#ACCEPT_ONLY GSSCredential.ACCEPT_ONLY},
+	 *              and {@link GSSCredential#INITIATE_ONLY
+	 *              GSSCredential.INITIATE_ONLY}.
 	 * @return a GSSCredential of the requested type.
 	 *
 	 * @see GSSCredential
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#CREDENTIALS_EXPIRED
-	 *             GSSException.CREDENTIALS_EXPIRED},
-	 *             {@link GSSException#NO_CRED GSSException.NO_CRED},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#CREDENTIALS_EXPIRED
+	 *                      GSSException.CREDENTIALS_EXPIRED},
+	 *                      {@link GSSException#NO_CRED GSSException.NO_CRED},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSCredential createCredential(int usage) throws GSSException;
+	public abstract GSSCredential createCredential(int usage)
+			throws GSSException;
 
 	/**
 	 * Factory method for acquiring a single mechanism credential.
@@ -395,44 +398,50 @@ public abstract class GSSManager {
 	 * <p>
 	 *
 	 * @param name
-	 *            the name of the principal for whom this credential is to be
-	 *            acquired. Use <code>null</code> to specify the default
-	 *            principal.
+	 *                 the name of the principal for whom this credential is to
+	 *                 be
+	 *                 acquired. Use <code>null</code> to specify the default
+	 *                 principal.
 	 * @param lifetime
-	 *            The number of seconds that credentials should remain valid.
-	 *            Use {@link GSSCredential#INDEFINITE_LIFETIME
-	 *            GSSCredential.INDEFINITE_LIFETIME} to request that the
-	 *            credentials have the maximum permitted lifetime. Use
-	 *            {@link GSSCredential#DEFAULT_LIFETIME
-	 *            GSSCredential.DEFAULT_LIFETIME} to request default credential
-	 *            lifetime.
+	 *                 The number of seconds that credentials should remain
+	 *                 valid.
+	 *                 Use {@link GSSCredential#INDEFINITE_LIFETIME
+	 *                 GSSCredential.INDEFINITE_LIFETIME} to request that the
+	 *                 credentials have the maximum permitted lifetime. Use
+	 *                 {@link GSSCredential#DEFAULT_LIFETIME
+	 *                 GSSCredential.DEFAULT_LIFETIME} to request default
+	 *                 credential
+	 *                 lifetime.
 	 * @param mech
-	 *            the Oid of the desired mechanism. Use <code>(Oid) null
-	 * </code> to request the default mechanism.
+	 *                 the Oid of the desired mechanism. Use <code>(Oid) null
+	 * </code>      to request the default mechanism.
 	 * @param usage
-	 *            The intended usage for this credential object. The value of
-	 *            this parameter must be one of:
-	 *            {@link GSSCredential#INITIATE_AND_ACCEPT
-	 *            GSSCredential.INITIATE_AND_ACCEPT},
-	 *            {@link GSSCredential#ACCEPT_ONLY GSSCredential.ACCEPT_ONLY},
-	 *            and {@link GSSCredential#INITIATE_ONLY
-	 *            GSSCredential.INITIATE_ONLY}.
+	 *                 The intended usage for this credential object. The value
+	 *                 of
+	 *                 this parameter must be one of:
+	 *                 {@link GSSCredential#INITIATE_AND_ACCEPT
+	 *                 GSSCredential.INITIATE_AND_ACCEPT},
+	 *                 {@link GSSCredential#ACCEPT_ONLY
+	 *                 GSSCredential.ACCEPT_ONLY},
+	 *                 and {@link GSSCredential#INITIATE_ONLY
+	 *                 GSSCredential.INITIATE_ONLY}.
 	 * @return a GSSCredential of the requested type.
 	 *
 	 * @see GSSCredential
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#CREDENTIALS_EXPIRED
-	 *             GSSException.CREDENTIALS_EXPIRED},
-	 *             {@link GSSException#NO_CRED GSSException.NO_CRED},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#CREDENTIALS_EXPIRED
+	 *                      GSSException.CREDENTIALS_EXPIRED},
+	 *                      {@link GSSException#NO_CRED GSSException.NO_CRED},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSCredential createCredential(GSSName name, int lifetime, Oid mech, int usage)
-			throws GSSException;
+	public abstract GSSCredential createCredential(GSSName name, int lifetime,
+			Oid mech, int usage) throws GSSException;
 
 	/**
 	 * Factory method for acquiring credentials over a set of mechanisms. This
@@ -457,45 +466,54 @@ public abstract class GSSManager {
 	 * <p>
 	 *
 	 * @param name
-	 *            the name of the principal for whom this credential is to be
-	 *            acquired. Use <code>null</code> to specify the default
-	 *            principal.
+	 *                 the name of the principal for whom this credential is to
+	 *                 be
+	 *                 acquired. Use <code>null</code> to specify the default
+	 *                 principal.
 	 * @param lifetime
-	 *            The number of seconds that credentials should remain valid.
-	 *            Use {@link GSSCredential#INDEFINITE_LIFETIME
-	 *            GSSCredential.INDEFINITE_LIFETIME} to request that the
-	 *            credentials have the maximum permitted lifetime. Use
-	 *            {@link GSSCredential#DEFAULT_LIFETIME
-	 *            GSSCredential.DEFAULT_LIFETIME} to request default credential
-	 *            lifetime.
+	 *                 The number of seconds that credentials should remain
+	 *                 valid.
+	 *                 Use {@link GSSCredential#INDEFINITE_LIFETIME
+	 *                 GSSCredential.INDEFINITE_LIFETIME} to request that the
+	 *                 credentials have the maximum permitted lifetime. Use
+	 *                 {@link GSSCredential#DEFAULT_LIFETIME
+	 *                 GSSCredential.DEFAULT_LIFETIME} to request default
+	 *                 credential
+	 *                 lifetime.
 	 * @param mechs
-	 *            an array of Oid's indicating the mechanisms over which the
-	 *            credential is to be acquired. Use <code>(Oid[]) null</code>
-	 *            for requesting a system specific default set of mechanisms.
+	 *                 an array of Oid's indicating the mechanisms over which
+	 *                 the
+	 *                 credential is to be acquired. Use
+	 *                 <code>(Oid[]) null</code>
+	 *                 for requesting a system specific default set of
+	 *                 mechanisms.
 	 * @param usage
-	 *            The intended usage for this credential object. The value of
-	 *            this parameter must be one of:
-	 *            {@link GSSCredential#INITIATE_AND_ACCEPT
-	 *            GSSCredential.INITIATE_AND_ACCEPT},
-	 *            {@link GSSCredential#ACCEPT_ONLY GSSCredential.ACCEPT_ONLY},
-	 *            and {@link GSSCredential#INITIATE_ONLY
-	 *            GSSCredential.INITIATE_ONLY}.
+	 *                 The intended usage for this credential object. The value
+	 *                 of
+	 *                 this parameter must be one of:
+	 *                 {@link GSSCredential#INITIATE_AND_ACCEPT
+	 *                 GSSCredential.INITIATE_AND_ACCEPT},
+	 *                 {@link GSSCredential#ACCEPT_ONLY
+	 *                 GSSCredential.ACCEPT_ONLY},
+	 *                 and {@link GSSCredential#INITIATE_ONLY
+	 *                 GSSCredential.INITIATE_ONLY}.
 	 * @return a GSSCredential of the requested type.
 	 *
 	 * @see GSSCredential
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH},
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE},
-	 *             {@link GSSException#BAD_NAME GSSException.BAD_NAME},
-	 *             {@link GSSException#CREDENTIALS_EXPIRED
-	 *             GSSException.CREDENTIALS_EXPIRED},
-	 *             {@link GSSException#NO_CRED GSSException.NO_CRED},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH},
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE},
+	 *                      {@link GSSException#BAD_NAME GSSException.BAD_NAME},
+	 *                      {@link GSSException#CREDENTIALS_EXPIRED
+	 *                      GSSException.CREDENTIALS_EXPIRED},
+	 *                      {@link GSSException#NO_CRED GSSException.NO_CRED},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSCredential createCredential(GSSName name, int lifetime, Oid mechs[],
-			int usage) throws GSSException;
+	public abstract GSSCredential createCredential(GSSName name, int lifetime,
+			Oid mechs[], int usage) throws GSSException;
 
 	/**
 	 * Factory method for creating a context on the initiator's side.
@@ -512,36 +530,41 @@ public abstract class GSSManager {
 	 * <p>
 	 *
 	 * @param peer
-	 *            the name of the target peer.
+	 *                 the name of the target peer.
 	 * @param mech
-	 *            the Oid of the desired mechanism. Use <code>null</code> to
-	 *            request the default mechanism.
+	 *                 the Oid of the desired mechanism. Use <code>null</code>
+	 *                 to
+	 *                 request the default mechanism.
 	 * @param myCred
-	 *            the credentials of the initiator. Use <code>null</code> to act
-	 *            as the default initiator principal.
+	 *                 the credentials of the initiator. Use <code>null</code>
+	 *                 to act
+	 *                 as the default initiator principal.
 	 * @param lifetime
-	 *            the lifetime, in seconds, requested for the context. Use
-	 *            {@link GSSContext#INDEFINITE_LIFETIME
-	 *            GSSContext.INDEFINITE_LIFETIME} to request that the context
-	 *            have the maximum permitted lifetime. Use
-	 *            {@link GSSContext#DEFAULT_LIFETIME
-	 *            GSSContext.DEFAULT_LIFETIME} to request a default lifetime for
-	 *            the context.
+	 *                 the lifetime, in seconds, requested for the context. Use
+	 *                 {@link GSSContext#INDEFINITE_LIFETIME
+	 *                 GSSContext.INDEFINITE_LIFETIME} to request that the
+	 *                 context
+	 *                 have the maximum permitted lifetime. Use
+	 *                 {@link GSSContext#DEFAULT_LIFETIME
+	 *                 GSSContext.DEFAULT_LIFETIME} to request a default
+	 *                 lifetime for
+	 *                 the context.
 	 * @return an unestablished GSSContext
 	 *
 	 * @see GSSContext
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#NO_CRED GSSException.NO_CRED}
-	 *             {@link GSSException#CREDENTIALS_EXPIRED
-	 *             GSSException.CREDENTIALS_EXPIRED}
-	 *             {@link GSSException#BAD_NAMETYPE GSSException.BAD_NAMETYPE}
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH}
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#NO_CRED GSSException.NO_CRED}
+	 *                      {@link GSSException#CREDENTIALS_EXPIRED
+	 *                      GSSException.CREDENTIALS_EXPIRED}
+	 *                      {@link GSSException#BAD_NAMETYPE
+	 *                      GSSException.BAD_NAMETYPE}
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH}
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSContext createContext(GSSName peer, Oid mech, GSSCredential myCred,
-			int lifetime) throws GSSException;
+	public abstract GSSContext createContext(GSSName peer, Oid mech,
+			GSSCredential myCred, int lifetime) throws GSSException;
 
 	/**
 	 * Factory method for creating a context on the acceptor' side. The
@@ -554,21 +577,23 @@ public abstract class GSSManager {
 	 * thrown from this method.
 	 *
 	 * @param myCred
-	 *            the credentials for the acceptor. Use <code>null</code> to act
-	 *            as a default acceptor principal.
+	 *               the credentials for the acceptor. Use <code>null</code> to
+	 *               act
+	 *               as a default acceptor principal.
 	 * @return an unestablished GSSContext
 	 *
 	 * @see GSSContext
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#NO_CRED GSSException.NO_CRED}
-	 *             {@link GSSException#CREDENTIALS_EXPIRED
-	 *             GSSException.CREDENTIALS_EXPIRED}
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH}
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#NO_CRED GSSException.NO_CRED}
+	 *                      {@link GSSException#CREDENTIALS_EXPIRED
+	 *                      GSSException.CREDENTIALS_EXPIRED}
+	 *                      {@link GSSException#BAD_MECH GSSException.BAD_MECH}
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSContext createContext(GSSCredential myCred) throws GSSException;
+	public abstract GSSContext createContext(GSSCredential myCred)
+			throws GSSException;
 
 	/**
 	 * Factory method for creating a previously exported context. The context
@@ -590,21 +615,26 @@ public abstract class GSSManager {
 	 * to be thrown from this method.
 	 *
 	 * @param interProcessToken
-	 *            the token previously emitted from the export method.
+	 *                          the token previously emitted from the export
+	 *                          method.
 	 * @return the previously established GSSContext
 	 *
 	 * @see GSSContext
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#NO_CONTEXT GSSException.NO_CONTEXT},
-	 *             {@link GSSException#DEFECTIVE_TOKEN
-	 *             GSSException.DEFECTIVE_TOKEN},
-	 *             {@link GSSException#UNAVAILABLE GSSException.UNAVAILABLE},
-	 *             {@link GSSException#UNAUTHORIZED GSSException.UNAUTHORIZED},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#NO_CONTEXT
+	 *                      GSSException.NO_CONTEXT},
+	 *                      {@link GSSException#DEFECTIVE_TOKEN
+	 *                      GSSException.DEFECTIVE_TOKEN},
+	 *                      {@link GSSException#UNAVAILABLE
+	 *                      GSSException.UNAVAILABLE},
+	 *                      {@link GSSException#UNAUTHORIZED
+	 *                      GSSException.UNAUTHORIZED},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract GSSContext createContext(byte[] interProcessToken) throws GSSException;
+	public abstract GSSContext createContext(byte[] interProcessToken)
+			throws GSSException;
 
 	/**
 	 * This method is used to indicate to the GSSManager that the application
@@ -684,17 +714,19 @@ public abstract class GSSManager {
 	 * effectively become {(A, m3), (B, null), (A, null), ...}
 	 *
 	 * @param p
-	 *            the provider instance that should be used whenever support is
-	 *            needed for mech.
+	 *             the provider instance that should be used whenever support is
+	 *             needed for mech.
 	 * @param mech
-	 *            the mechanism for which the provider is being set
+	 *             the mechanism for which the provider is being set
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#UNAVAILABLE GSSException.UNAVAILABLE},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#UNAVAILABLE
+	 *                      GSSException.UNAVAILABLE},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract void addProviderAtFront(Provider p, Oid mech) throws GSSException;
+	public abstract void addProviderAtFront(Provider p, Oid mech)
+			throws GSSException;
 
 	/**
 	 * This method is used to indicate to the GSSManager that the application
@@ -767,15 +799,17 @@ public abstract class GSSManager {
 	 * effectively become {..., (A, m1), (B, null), (A, null)}
 	 *
 	 * @param p
-	 *            the provider instance that should be used whenever support is
-	 *            needed for mech.
+	 *             the provider instance that should be used whenever support is
+	 *             needed for mech.
 	 * @param mech
-	 *            the mechanism for which the provider is being set
+	 *             the mechanism for which the provider is being set
 	 *
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#UNAVAILABLE GSSException.UNAVAILABLE},
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#UNAVAILABLE
+	 *                      GSSException.UNAVAILABLE},
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
-	public abstract void addProviderAtEnd(Provider p, Oid mech) throws GSSException;
+	public abstract void addProviderAtEnd(Provider p, Oid mech)
+			throws GSSException;
 }

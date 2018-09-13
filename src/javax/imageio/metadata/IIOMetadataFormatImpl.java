@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.metadata;
@@ -155,16 +135,19 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * using the various <code>add</code> methods.
 	 *
 	 * @param rootName
-	 *            the name of the root element.
+	 *                    the name of the root element.
 	 * @param childPolicy
-	 *            one of the <code>CHILD_POLICY_*</code> constants, other than
-	 *            <code>CHILD_POLICY_REPEAT</code>.
+	 *                    one of the <code>CHILD_POLICY_*</code> constants,
+	 *                    other than
+	 *                    <code>CHILD_POLICY_REPEAT</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>rootName</code> is <code>null</code>.
+	 *                                     if <code>rootName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>childPolicy</code> is not one of the predefined
-	 *                constants.
+	 *                                     if <code>childPolicy</code> is not
+	 *                                     one of the predefined
+	 *                                     constants.
 	 */
 	public IIOMetadataFormatImpl(String rootName, int childPolicy) {
 		if (rootName == null) {
@@ -172,7 +155,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		}
 		if (childPolicy < CHILD_POLICY_EMPTY || childPolicy > CHILD_POLICY_MAX
 				|| childPolicy == CHILD_POLICY_REPEAT) {
-			throw new IllegalArgumentException("Invalid value for childPolicy!");
+			throw new IllegalArgumentException(
+					"Invalid value for childPolicy!");
 		}
 
 		this.rootName = rootName;
@@ -192,19 +176,22 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * using the various <code>add</code> methods.
 	 *
 	 * @param rootName
-	 *            the name of the root element.
+	 *                    the name of the root element.
 	 * @param minChildren
-	 *            the minimum number of children of the node.
+	 *                    the minimum number of children of the node.
 	 * @param maxChildren
-	 *            the maximum number of children of the node.
+	 *                    the maximum number of children of the node.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>rootName</code> is <code>null</code>.
+	 *                                     if <code>rootName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>minChildren</code> is negative or larger than
-	 *                <code>maxChildren</code>.
+	 *                                     if <code>minChildren</code> is
+	 *                                     negative or larger than
+	 *                                     <code>maxChildren</code>.
 	 */
-	public IIOMetadataFormatImpl(String rootName, int minChildren, int maxChildren) {
+	public IIOMetadataFormatImpl(String rootName, int minChildren,
+			int maxChildren) {
 		if (rootName == null) {
 			throw new IllegalArgumentException("rootName == null!");
 		}
@@ -235,10 +222,12 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * "Resources"</code>.
 	 *
 	 * @param resourceBaseName
-	 *            a <code>String</code> containing the new base name.
+	 *                         a <code>String</code> containing the new base
+	 *                         name.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>resourceBaseName</code> is <code>null</code>.
+	 *                                     if <code>resourceBaseName</code> is
+	 *                                     <code>null</code>.
 	 *
 	 * @see #getResourceBaseName
 	 */
@@ -265,9 +254,10 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * Utility method for locating an element.
 	 *
 	 * @param mustAppear
-	 *            if <code>true</code>, throw an
-	 *            <code>IllegalArgumentException</code> if no such node exists;
-	 *            if <code>false</code>, just return null.
+	 *                   if <code>true</code>, throw an
+	 *                   <code>IllegalArgumentException</code> if no such node
+	 *                   exists;
+	 *                   if <code>false</code>, just return null.
 	 */
 	private Element getElement(String elementName, boolean mustAppear) {
 		if (mustAppear && (elementName == null)) {
@@ -275,7 +265,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		}
 		Element element = (Element) elementMap.get(elementName);
 		if (mustAppear && (element == null)) {
-			throw new IllegalArgumentException("No such element: " + elementName);
+			throw new IllegalArgumentException("No such element: "
+					+ elementName);
 		}
 		return element;
 	}
@@ -289,7 +280,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		Element element = getElement(elementName);
 		Attribute attr = (Attribute) element.attrMap.get(attrName);
 		if (attr == null) {
-			throw new IllegalArgumentException("No such attribute \"" + attrName + "\"!");
+			throw new IllegalArgumentException("No such attribute \"" + attrName
+					+ "\"!");
 		}
 		return attr;
 	}
@@ -301,27 +293,34 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * policy other than <code>CHILD_POLICY_REPEAT</code>.
 	 *
 	 * @param elementName
-	 *            the name of the new element.
+	 *                    the name of the new element.
 	 * @param parentName
-	 *            the name of the element that will be the parent of the new
-	 *            element.
+	 *                    the name of the element that will be the parent of the
+	 *                    new
+	 *                    element.
 	 * @param childPolicy
-	 *            one of the <code>CHILD_POLICY_*</code> constants, other than
-	 *            <code>CHILD_POLICY_REPEAT</code>, indicating the child policy
-	 *            of the new element.
+	 *                    one of the <code>CHILD_POLICY_*</code> constants,
+	 *                    other than
+	 *                    <code>CHILD_POLICY_REPEAT</code>, indicating the child
+	 *                    policy
+	 *                    of the new element.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>parentName</code> is <code>null</code>, or is not
-	 *                a legal element name for this format.
+	 *                                     if <code>parentName</code> is
+	 *                                     <code>null</code>, or is not
+	 *                                     a legal element name for this format.
 	 * @exception IllegalArgumentException
-	 *                if <code>childPolicy</code> is not one of the predefined
-	 *                constants.
+	 *                                     if <code>childPolicy</code> is not
+	 *                                     one of the predefined
+	 *                                     constants.
 	 */
-	protected void addElement(String elementName, String parentName, int childPolicy) {
+	protected void addElement(String elementName, String parentName,
+			int childPolicy) {
 		Element parent = getElement(parentName);
 		if (childPolicy < CHILD_POLICY_EMPTY || childPolicy > CHILD_POLICY_MAX
 				|| childPolicy == CHILD_POLICY_REPEAT) {
-			throw new IllegalArgumentException("Invalid value for childPolicy!");
+			throw new IllegalArgumentException(
+					"Invalid value for childPolicy!");
 		}
 
 		Element element = new Element();
@@ -339,24 +338,27 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * policy of <code>CHILD_POLICY_REPEAT</code>.
 	 *
 	 * @param elementName
-	 *            the name of the new element.
+	 *                    the name of the new element.
 	 * @param parentName
-	 *            the name of the element that will be the parent of the new
-	 *            element.
+	 *                    the name of the element that will be the parent of the
+	 *                    new
+	 *                    element.
 	 * @param minChildren
-	 *            the minimum number of children of the node.
+	 *                    the minimum number of children of the node.
 	 * @param maxChildren
-	 *            the maximum number of children of the node.
+	 *                    the maximum number of children of the node.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>parentName</code> is <code>null</code>, or is not
-	 *                a legal element name for this format.
+	 *                                     if <code>parentName</code> is
+	 *                                     <code>null</code>, or is not
+	 *                                     a legal element name for this format.
 	 * @exception IllegalArgumentException
-	 *                if <code>minChildren</code> is negative or larger than
-	 *                <code>maxChildren</code>.
+	 *                                     if <code>minChildren</code> is
+	 *                                     negative or larger than
+	 *                                     <code>maxChildren</code>.
 	 */
-	protected void addElement(String elementName, String parentName, int minChildren,
-			int maxChildren) {
+	protected void addElement(String elementName, String parentName,
+			int minChildren, int maxChildren) {
 		Element parent = getElement(parentName);
 		if (minChildren < 0) {
 			throw new IllegalArgumentException("minChildren < 0!");
@@ -382,17 +384,21 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * node type.
 	 *
 	 * @param parentName
-	 *            the name of the element that will be the new parent of the
-	 *            element.
+	 *                    the name of the element that will be the new parent of
+	 *                    the
+	 *                    element.
 	 * @param elementName
-	 *            the name of the element to be added as a child.
+	 *                    the name of the element to be added as a child.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>parentName</code> is <code>null</code>, or is not
-	 *                a legal element name for this format.
+	 *                                     if <code>parentName</code> is
+	 *                                     <code>null</code>, or is not
+	 *                                     a legal element name for this format.
 	 */
 	protected void addChildElement(String elementName, String parentName) {
 		Element parent = getElement(parentName);
@@ -406,7 +412,7 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * present, nothing happens and no exception is thrown.
 	 *
 	 * @param elementName
-	 *            the name of the element to be removed.
+	 *                    the name of the element to be removed.
 	 */
 	protected void removeElement(String elementName) {
 		Element element = getElement(elementName, false);
@@ -428,28 +434,34 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * an arbitrary value.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                     the name of the element.
 	 * @param attrName
-	 *            the name of the attribute being added.
+	 *                     the name of the attribute being added.
 	 * @param dataType
-	 *            the data type (string format) of the attribute, one of the
-	 *            <code>DATATYPE_*</code> constants.
+	 *                     the data type (string format) of the attribute, one
+	 *                     of the
+	 *                     <code>DATATYPE_*</code> constants.
 	 * @param required
-	 *            <code>true</code> if the attribute must be present.
+	 *                     <code>true</code> if the attribute must be present.
 	 * @param defaultValue
-	 *            the default value for the attribute, or <code>null</code>.
+	 *                     the default value for the attribute, or
+	 *                     <code>null</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>attrName</code> is <code>null</code>.
+	 *                                     if <code>attrName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>dataType</code> is not one of the predefined
-	 *                constants.
+	 *                                     if <code>dataType</code> is not one
+	 *                                     of the predefined
+	 *                                     constants.
 	 */
-	protected void addAttribute(String elementName, String attrName, int dataType, boolean required,
-			String defaultValue) {
+	protected void addAttribute(String elementName, String attrName,
+			int dataType, boolean required, String defaultValue) {
 		Element element = getElement(elementName);
 		if (attrName == null) {
 			throw new IllegalArgumentException("attrName == null!");
@@ -474,39 +486,52 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * by a set of enumerated values.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                         the name of the element.
 	 * @param attrName
-	 *            the name of the attribute being added.
+	 *                         the name of the attribute being added.
 	 * @param dataType
-	 *            the data type (string format) of the attribute, one of the
-	 *            <code>DATATYPE_*</code> constants.
+	 *                         the data type (string format) of the attribute,
+	 *                         one of the
+	 *                         <code>DATATYPE_*</code> constants.
 	 * @param required
-	 *            <code>true</code> if the attribute must be present.
+	 *                         <code>true</code> if the attribute must be
+	 *                         present.
 	 * @param defaultValue
-	 *            the default value for the attribute, or <code>null</code>.
+	 *                         the default value for the attribute, or
+	 *                         <code>null</code>.
 	 * @param enumeratedValues
-	 *            a <code>List</code> of <code>String</code>s containing the
-	 *            legal values for the attribute.
+	 *                         a <code>List</code> of <code>String</code>s
+	 *                         containing the
+	 *                         legal values for the attribute.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>attrName</code> is <code>null</code>.
+	 *                                     if <code>attrName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>dataType</code> is not one of the predefined
-	 *                constants.
+	 *                                     if <code>dataType</code> is not one
+	 *                                     of the predefined
+	 *                                     constants.
 	 * @exception IllegalArgumentException
-	 *                if <code>enumeratedValues</code> is <code>null</code>.
+	 *                                     if <code>enumeratedValues</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>enumeratedValues</code> does not contain at least
-	 *                one entry.
+	 *                                     if <code>enumeratedValues</code> does
+	 *                                     not contain at least
+	 *                                     one entry.
 	 * @exception IllegalArgumentException
-	 *                if <code>enumeratedValues</code> contains an element that
-	 *                is not a <code>String</code> or is <code>null</code>.
+	 *                                     if <code>enumeratedValues</code>
+	 *                                     contains an element that
+	 *                                     is not a <code>String</code> or is
+	 *                                     <code>null</code>.
 	 */
-	protected void addAttribute(String elementName, String attrName, int dataType, boolean required,
-			String defaultValue, List<String> enumeratedValues) {
+	protected void addAttribute(String elementName, String attrName,
+			int dataType, boolean required, String defaultValue,
+			List<String> enumeratedValues) {
 		Element element = getElement(elementName);
 		if (attrName == null) {
 			throw new IllegalArgumentException("attrName == null!");
@@ -524,10 +549,12 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		while (iter.hasNext()) {
 			Object o = iter.next();
 			if (o == null) {
-				throw new IllegalArgumentException("enumeratedValues contains a null!");
+				throw new IllegalArgumentException(
+						"enumeratedValues contains a null!");
 			}
 			if (!(o instanceof String)) {
-				throw new IllegalArgumentException("enumeratedValues contains a non-String value!");
+				throw new IllegalArgumentException(
+						"enumeratedValues contains a non-String value!");
 			}
 		}
 
@@ -548,40 +575,53 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * by a range of values.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                     the name of the element.
 	 * @param attrName
-	 *            the name of the attribute being added.
+	 *                     the name of the attribute being added.
 	 * @param dataType
-	 *            the data type (string format) of the attribute, one of the
-	 *            <code>DATATYPE_*</code> constants.
+	 *                     the data type (string format) of the attribute, one
+	 *                     of the
+	 *                     <code>DATATYPE_*</code> constants.
 	 * @param required
-	 *            <code>true</code> if the attribute must be present.
+	 *                     <code>true</code> if the attribute must be present.
 	 * @param defaultValue
-	 *            the default value for the attribute, or <code>null</code>.
+	 *                     the default value for the attribute, or
+	 *                     <code>null</code>.
 	 * @param minValue
-	 *            the smallest (inclusive or exclusive depending on the value of
-	 *            <code>minInclusive</code>) legal value for the attribute, as a
-	 *            <code>String</code>.
+	 *                     the smallest (inclusive or exclusive depending on the
+	 *                     value of
+	 *                     <code>minInclusive</code>) legal value for the
+	 *                     attribute, as a
+	 *                     <code>String</code>.
 	 * @param maxValue
-	 *            the largest (inclusive or exclusive depending on the value of
-	 *            <code>minInclusive</code>) legal value for the attribute, as a
-	 *            <code>String</code>.
+	 *                     the largest (inclusive or exclusive depending on the
+	 *                     value of
+	 *                     <code>minInclusive</code>) legal value for the
+	 *                     attribute, as a
+	 *                     <code>String</code>.
 	 * @param minInclusive
-	 *            <code>true</code> if <code>minValue</code> is inclusive.
+	 *                     <code>true</code> if <code>minValue</code> is
+	 *                     inclusive.
 	 * @param maxInclusive
-	 *            <code>true</code> if <code>maxValue</code> is inclusive.
+	 *                     <code>true</code> if <code>maxValue</code> is
+	 *                     inclusive.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>attrName</code> is <code>null</code>.
+	 *                                     if <code>attrName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>dataType</code> is not one of the predefined
-	 *                constants.
+	 *                                     if <code>dataType</code> is not one
+	 *                                     of the predefined
+	 *                                     constants.
 	 */
-	protected void addAttribute(String elementName, String attrName, int dataType, boolean required,
-			String defaultValue, String minValue, String maxValue, boolean minInclusive,
+	protected void addAttribute(String elementName, String attrName,
+			int dataType, boolean required, String defaultValue,
+			String minValue, String maxValue, boolean minInclusive,
 			boolean maxInclusive) {
 		Element element = getElement(elementName);
 		if (attrName == null) {
@@ -615,33 +655,40 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * by a list of values.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                      the name of the element.
 	 * @param attrName
-	 *            the name of the attribute being added.
+	 *                      the name of the attribute being added.
 	 * @param dataType
-	 *            the data type (string format) of the attribute, one of the
-	 *            <code>DATATYPE_*</code> constants.
+	 *                      the data type (string format) of the attribute, one
+	 *                      of the
+	 *                      <code>DATATYPE_*</code> constants.
 	 * @param required
-	 *            <code>true</code> if the attribute must be present.
+	 *                      <code>true</code> if the attribute must be present.
 	 * @param listMinLength
-	 *            the smallest legal number of list items.
+	 *                      the smallest legal number of list items.
 	 * @param listMaxLength
-	 *            the largest legal number of list items.
+	 *                      the largest legal number of list items.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>attrName</code> is <code>null</code>.
+	 *                                     if <code>attrName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>dataType</code> is not one of the predefined
-	 *                constants.
+	 *                                     if <code>dataType</code> is not one
+	 *                                     of the predefined
+	 *                                     constants.
 	 * @exception IllegalArgumentException
-	 *                if <code>listMinLength</code> is negative or larger than
-	 *                <code>listMaxLength</code>.
+	 *                                     if <code>listMinLength</code> is
+	 *                                     negative or larger than
+	 *                                     <code>listMaxLength</code>.
 	 */
-	protected void addAttribute(String elementName, String attrName, int dataType, boolean required,
-			int listMinLength, int listMaxLength) {
+	protected void addAttribute(String elementName, String attrName,
+			int dataType, boolean required, int listMinLength,
+			int listMaxLength) {
 		Element element = getElement(elementName);
 		if (attrName == null) {
 			throw new IllegalArgumentException("attrName == null!");
@@ -671,23 +718,29 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * datatype of <code>DATATYPE_BOOLEAN</code>.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                        the name of the element.
 	 * @param attrName
-	 *            the name of the attribute being added.
+	 *                        the name of the attribute being added.
 	 * @param hasDefaultValue
-	 *            <code>true</code> if a default value should be present.
+	 *                        <code>true</code> if a default value should be
+	 *                        present.
 	 * @param defaultValue
-	 *            the default value for the attribute as a <code>boolean</code>,
-	 *            ignored if <code>hasDefaultValue</code> is <code>false</code>.
+	 *                        the default value for the attribute as a
+	 *                        <code>boolean</code>,
+	 *                        ignored if <code>hasDefaultValue</code> is
+	 *                        <code>false</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>attrName</code> is <code>null</code>.
+	 *                                     if <code>attrName</code> is
+	 *                                     <code>null</code>.
 	 */
-	protected void addBooleanAttribute(String elementName, String attrName, boolean hasDefaultValue,
-			boolean defaultValue) {
+	protected void addBooleanAttribute(String elementName, String attrName,
+			boolean hasDefaultValue, boolean defaultValue) {
 		List values = new ArrayList();
 		values.add("TRUE");
 		values.add("FALSE");
@@ -696,7 +749,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		if (hasDefaultValue) {
 			dval = defaultValue ? "TRUE" : "FALSE";
 		}
-		addAttribute(elementName, attrName, DATATYPE_BOOLEAN, true, dval, values);
+		addAttribute(elementName, attrName, DATATYPE_BOOLEAN, true, dval,
+				values);
 	}
 
 	/**
@@ -705,13 +759,15 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * no exception is thrown.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                    the name of the element.
 	 * @param attrName
-	 *            the name of the attribute being removed.
+	 *                    the name of the attribute being removed.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 */
 	protected void removeAttribute(String elementName, String attrName) {
 		Element element = getElement(elementName);
@@ -729,24 +785,28 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * settings are overwritten.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                     the name of the element.
 	 * @param classType
-	 *            a <code>Class</code> variable indicating the legal class type
-	 *            for the object value.
+	 *                     a <code>Class</code> variable indicating the legal
+	 *                     class type
+	 *                     for the object value.
 	 * @param required
-	 *            <code>true</code> if an object value must be present.
+	 *                     <code>true</code> if an object value must be present.
 	 * @param defaultValue
-	 *            the default value for the <code>Object</code> reference, or
-	 *            <code>null</code>.
-	 * @param <T>
-	 *            the type of the object.
+	 *                     the default value for the <code>Object</code>
+	 *                     reference, or
+	 *                     <code>null</code>.
+	 * @param              <T>
+	 *                     the type of the object.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 */
-	protected <T> void addObjectValue(String elementName, Class<T> classType, boolean required,
-			T defaultValue) {
+	protected <T> void addObjectValue(String elementName, Class<T> classType,
+			boolean required, T defaultValue) {
 		Element element = getElement(elementName);
 		ObjectValue obj = new ObjectValue();
 		obj.valueType = VALUE_ARBITRARY;
@@ -767,36 +827,48 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * settings are overwritten.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                         the name of the element.
 	 * @param classType
-	 *            a <code>Class</code> variable indicating the legal class type
-	 *            for the object value.
+	 *                         a <code>Class</code> variable indicating the
+	 *                         legal class type
+	 *                         for the object value.
 	 * @param required
-	 *            <code>true</code> if an object value must be present.
+	 *                         <code>true</code> if an object value must be
+	 *                         present.
 	 * @param defaultValue
-	 *            the default value for the <code>Object</code> reference, or
-	 *            <code>null</code>.
+	 *                         the default value for the <code>Object</code>
+	 *                         reference, or
+	 *                         <code>null</code>.
 	 * @param enumeratedValues
-	 *            a <code>List</code> of <code>Object</code>s containing the
-	 *            legal values for the object reference.
-	 * @param <T>
-	 *            the type of the object.
+	 *                         a <code>List</code> of <code>Object</code>s
+	 *                         containing the
+	 *                         legal values for the object reference.
+	 * @param                  <T>
+	 *                         the type of the object.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>enumeratedValues</code> is <code>null</code>.
+	 *                                     if <code>enumeratedValues</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>enumeratedValues</code> does not contain at least
-	 *                one entry.
+	 *                                     if <code>enumeratedValues</code> does
+	 *                                     not contain at least
+	 *                                     one entry.
 	 * @exception IllegalArgumentException
-	 *                if <code>enumeratedValues</code> contains an element that
-	 *                is not an instance of the class type denoted by
-	 *                <code>classType</code> or is <code>null</code>.
+	 *                                     if <code>enumeratedValues</code>
+	 *                                     contains an element that
+	 *                                     is not an instance of the class type
+	 *                                     denoted by
+	 *                                     <code>classType</code> or is
+	 *                                     <code>null</code>.
 	 */
-	protected <T> void addObjectValue(String elementName, Class<T> classType, boolean required,
-			T defaultValue, List<? extends T> enumeratedValues) {
+	protected <T> void addObjectValue(String elementName, Class<T> classType,
+			boolean required, T defaultValue,
+			List<? extends T> enumeratedValues) {
 		Element element = getElement(elementName);
 		if (enumeratedValues == null) {
 			throw new IllegalArgumentException("enumeratedValues == null!");
@@ -808,7 +880,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		while (iter.hasNext()) {
 			Object o = iter.next();
 			if (o == null) {
-				throw new IllegalArgumentException("enumeratedValues contains a null!");
+				throw new IllegalArgumentException(
+						"enumeratedValues contains a null!");
 			}
 			if (!classType.isInstance(o)) {
 				throw new IllegalArgumentException(
@@ -837,34 +910,44 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * settings are overwritten.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                     the name of the element.
 	 * @param classType
-	 *            a <code>Class</code> variable indicating the legal class type
-	 *            for the object value.
+	 *                     a <code>Class</code> variable indicating the legal
+	 *                     class type
+	 *                     for the object value.
 	 * @param defaultValue
-	 *            the default value for the
+	 *                     the default value for the
 	 * @param minValue
-	 *            the smallest (inclusive or exclusive depending on the value of
-	 *            <code>minInclusive</code>) legal value for the object value,
-	 *            as a <code>String</code>.
+	 *                     the smallest (inclusive or exclusive depending on the
+	 *                     value of
+	 *                     <code>minInclusive</code>) legal value for the object
+	 *                     value,
+	 *                     as a <code>String</code>.
 	 * @param maxValue
-	 *            the largest (inclusive or exclusive depending on the value of
-	 *            <code>minInclusive</code>) legal value for the object value,
-	 *            as a <code>String</code>.
+	 *                     the largest (inclusive or exclusive depending on the
+	 *                     value of
+	 *                     <code>minInclusive</code>) legal value for the object
+	 *                     value,
+	 *                     as a <code>String</code>.
 	 * @param minInclusive
-	 *            <code>true</code> if <code>minValue</code> is inclusive.
+	 *                     <code>true</code> if <code>minValue</code> is
+	 *                     inclusive.
 	 * @param maxInclusive
-	 *            <code>true</code> if <code>maxValue</code> is inclusive.
-	 * @param <T>
-	 *            the type of the object.
+	 *                     <code>true</code> if <code>maxValue</code> is
+	 *                     inclusive.
+	 * @param              <T>
+	 *                     the type of the object.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 */
-	protected <T extends Object & Comparable<? super T>> void addObjectValue(String elementName,
-			Class<T> classType, T defaultValue, Comparable<? super T> minValue,
-			Comparable<? super T> maxValue, boolean minInclusive, boolean maxInclusive) {
+	protected <T extends Object & Comparable<? super T>> void addObjectValue(
+			String elementName, Class<T> classType, T defaultValue,
+			Comparable<? super T> minValue, Comparable<? super T> maxValue,
+			boolean minInclusive, boolean maxInclusive) {
 		Element element = getElement(elementName);
 		ObjectValue obj = new ObjectValue();
 		obj.valueType = VALUE_RANGE;
@@ -894,21 +977,23 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * settings are overwritten.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                       the name of the element.
 	 * @param classType
-	 *            a <code>Class</code> variable indicating the legal class type
-	 *            for the object value.
+	 *                       a <code>Class</code> variable indicating the legal
+	 *                       class type
+	 *                       for the object value.
 	 * @param arrayMinLength
-	 *            the smallest legal length for the array.
+	 *                       the smallest legal length for the array.
 	 * @param arrayMaxLength
-	 *            the largest legal length for the array.
+	 *                       the largest legal length for the array.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is not a legal element name
-	 *                for this format.
+	 *                                     if <code>elementName</code> is not a
+	 *                                     legal element name
+	 *                                     for this format.
 	 */
-	protected void addObjectValue(String elementName, Class<?> classType, int arrayMinLength,
-			int arrayMaxLength) {
+	protected void addObjectValue(String elementName, Class<?> classType,
+			int arrayMinLength, int arrayMaxLength) {
 		Element element = getElement(elementName);
 		ObjectValue obj = new ObjectValue();
 		obj.valueType = VALUE_LIST;
@@ -924,11 +1009,12 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * implementing the named element.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                    the name of the element.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is not a legal element name
-	 *                for this format.
+	 *                                     if <code>elementName</code> is not a
+	 *                                     legal element name
+	 *                                     for this format.
 	 */
 	protected void removeObjectValue(String elementName) {
 		Element element = getElement(elementName);
@@ -947,12 +1033,14 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 
 	// Multiplicity
 
-	public abstract boolean canNodeAppear(String elementName, ImageTypeSpecifier imageType);
+	public abstract boolean canNodeAppear(String elementName,
+			ImageTypeSpecifier imageType);
 
 	public int getElementMinChildren(String elementName) {
 		Element element = getElement(elementName);
 		if (element.childPolicy != CHILD_POLICY_REPEAT) {
-			throw new IllegalArgumentException("Child policy not CHILD_POLICY_REPEAT!");
+			throw new IllegalArgumentException(
+					"Child policy not CHILD_POLICY_REPEAT!");
 		}
 		return element.minChildren;
 	}
@@ -960,7 +1048,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	public int getElementMaxChildren(String elementName) {
 		Element element = getElement(elementName);
 		if (element.childPolicy != CHILD_POLICY_REPEAT) {
-			throw new IllegalArgumentException("Child policy not CHILD_POLICY_REPEAT!");
+			throw new IllegalArgumentException(
+					"Child policy not CHILD_POLICY_REPEAT!");
 		}
 		return element.maxChildren;
 	}
@@ -1024,16 +1113,18 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * used.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                    the name of the element.
 	 * @param locale
-	 *            the <code>Locale</code> for which localization will be
-	 *            attempted.
+	 *                    the <code>Locale</code> for which localization will be
+	 *                    attempted.
 	 *
 	 * @return the element description.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 *
 	 * @see #setResourceBaseName
 	 */
@@ -1082,12 +1173,14 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		return attr.required;
 	}
 
-	public String getAttributeDefaultValue(String elementName, String attrName) {
+	public String getAttributeDefaultValue(String elementName,
+			String attrName) {
 		Attribute attr = getAttribute(elementName, attrName);
 		return attr.defaultValue;
 	}
 
-	public String[] getAttributeEnumerations(String elementName, String attrName) {
+	public String[] getAttributeEnumerations(String elementName,
+			String attrName) {
 		Attribute attr = getAttribute(elementName, attrName);
 		if (attr.valueType != VALUE_ENUMERATION) {
 			throw new IllegalArgumentException("Attribute not an enumeration!");
@@ -1101,7 +1194,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 
 	public String getAttributeMinValue(String elementName, String attrName) {
 		Attribute attr = getAttribute(elementName, attrName);
-		if (attr.valueType != VALUE_RANGE && attr.valueType != VALUE_RANGE_MIN_INCLUSIVE
+		if (attr.valueType != VALUE_RANGE
+				&& attr.valueType != VALUE_RANGE_MIN_INCLUSIVE
 				&& attr.valueType != VALUE_RANGE_MAX_INCLUSIVE
 				&& attr.valueType != VALUE_RANGE_MIN_MAX_INCLUSIVE) {
 			throw new IllegalArgumentException("Attribute not a range!");
@@ -1112,7 +1206,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 
 	public String getAttributeMaxValue(String elementName, String attrName) {
 		Attribute attr = getAttribute(elementName, attrName);
-		if (attr.valueType != VALUE_RANGE && attr.valueType != VALUE_RANGE_MIN_INCLUSIVE
+		if (attr.valueType != VALUE_RANGE
+				&& attr.valueType != VALUE_RANGE_MIN_INCLUSIVE
 				&& attr.valueType != VALUE_RANGE_MAX_INCLUSIVE
 				&& attr.valueType != VALUE_RANGE_MIN_MAX_INCLUSIVE) {
 			throw new IllegalArgumentException("Attribute not a range!");
@@ -1162,25 +1257,30 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 	 * used.
 	 *
 	 * @param elementName
-	 *            the name of the element.
+	 *                    the name of the element.
 	 * @param attrName
-	 *            the name of the attribute.
+	 *                    the name of the attribute.
 	 * @param locale
-	 *            the <code>Locale</code> for which localization will be
-	 *            attempted, or <code>null</code>.
+	 *                    the <code>Locale</code> for which localization will be
+	 *                    attempted, or <code>null</code>.
 	 *
 	 * @return the attribute description.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>elementName</code> is <code>null</code>, or is
-	 *                not a legal element name for this format.
+	 *                                     if <code>elementName</code> is
+	 *                                     <code>null</code>, or is
+	 *                                     not a legal element name for this
+	 *                                     format.
 	 * @exception IllegalArgumentException
-	 *                if <code>attrName</code> is <code>null</code> or is not a
-	 *                legal attribute name for this element.
+	 *                                     if <code>attrName</code> is
+	 *                                     <code>null</code> or is not a
+	 *                                     legal attribute name for this
+	 *                                     element.
 	 *
 	 * @see #setResourceBaseName
 	 */
-	public String getAttributeDescription(String elementName, String attrName, Locale locale) {
+	public String getAttributeDescription(String elementName, String attrName,
+			Locale locale) {
 		Element element = getElement(elementName);
 		if (attrName == null) {
 			throw new IllegalArgumentException("attrName == null!");
@@ -1198,7 +1298,8 @@ public abstract class IIOMetadataFormatImpl implements IIOMetadataFormat {
 		Element element = getElement(elementName);
 		ObjectValue objv = (ObjectValue) element.objectValue;
 		if (objv == null) {
-			throw new IllegalArgumentException("No object within element " + elementName + "!");
+			throw new IllegalArgumentException("No object within element "
+					+ elementName + "!");
 		}
 		return objv;
 	}

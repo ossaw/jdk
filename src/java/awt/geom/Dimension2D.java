@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -47,8 +27,7 @@ public abstract class Dimension2D implements Cloneable {
 	 * @see java.awt.Dimension
 	 * @since 1.2
 	 */
-	protected Dimension2D() {
-	}
+	protected Dimension2D() {}
 
 	/**
 	 * Returns the width of this <code>Dimension</code> in double precision.
@@ -73,9 +52,9 @@ public abstract class Dimension2D implements Cloneable {
 	 * {@link java.awt.Component}.
 	 * 
 	 * @param width
-	 *            the new width for the <code>Dimension</code> object
+	 *               the new width for the <code>Dimension</code> object
 	 * @param height
-	 *            the new height for the <code>Dimension</code> object
+	 *               the new height for the <code>Dimension</code> object
 	 * @since 1.2
 	 */
 	public abstract void setSize(double width, double height);
@@ -86,7 +65,7 @@ public abstract class Dimension2D implements Cloneable {
 	 * <code>getSize</code> method of <code>Component</code>.
 	 * 
 	 * @param d
-	 *            the new size for the <code>Dimension2D</code> object
+	 *          the new size for the <code>Dimension2D</code> object
 	 * @since 1.2
 	 */
 	public void setSize(Dimension2D d) {
@@ -98,7 +77,7 @@ public abstract class Dimension2D implements Cloneable {
 	 *
 	 * @return a clone of this instance.
 	 * @exception OutOfMemoryError
-	 *                if there is not enough memory.
+	 *                             if there is not enough memory.
 	 * @see java.lang.Cloneable
 	 * @since 1.2
 	 */

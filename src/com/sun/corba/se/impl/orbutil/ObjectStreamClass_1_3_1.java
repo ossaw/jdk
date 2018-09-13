@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 2001, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.orbutil;
@@ -141,8 +120,9 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 			 */
 			boolean externalizable = false;
 			if (serializable) {
-				externalizable = ((superdesc != null) && superdesc.isExternalizable())
-						|| Externalizable.class.isAssignableFrom(cl);
+				externalizable = ((superdesc != null) && superdesc
+						.isExternalizable()) || Externalizable.class
+								.isAssignableFrom(cl);
 				if (externalizable) {
 					serializable = false;
 				}
@@ -152,7 +132,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 			 * Create a new version descriptor, it put itself in the known
 			 * table.
 			 */
-			desc = new ObjectStreamClass_1_3_1(cl, superdesc, serializable, externalizable);
+			desc = new ObjectStreamClass_1_3_1(cl, superdesc, serializable,
+					externalizable);
 		}
 		desc.init();
 		return desc;
@@ -204,7 +185,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 	/**
 	 * Return the actual (computed) serialVersionUID for this class.
 	 */
-	public static final long getActualSerialVersionUID(java.lang.Class<?> clazz) {
+	public static final long getActualSerialVersionUID(
+			java.lang.Class<?> clazz) {
 		ObjectStreamClass_1_3_1 theosc = ObjectStreamClass_1_3_1.lookup(clazz);
 		if (theosc != null) {
 			return theosc.getActualSerialVersionUID();
@@ -260,7 +242,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 			try {
 				if (fields[i].getName().equals(field.name)) {
 
-					if (fields[i].getSignature().equals(ValueUtility.getSignature(field)))
+					if (fields[i].getSignature().equals(ValueUtility
+							.getSignature(field)))
 						return true;
 				}
 			} catch (Throwable t) {
@@ -295,7 +278,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 	public Serializable writeReplace(Serializable value) {
 		if (writeReplaceObjectMethod != null) {
 			try {
-				return (Serializable) writeReplaceObjectMethod.invoke(value, noArgsList);
+				return (Serializable) writeReplaceObjectMethod.invoke(value,
+						noArgsList);
 			} catch (Throwable t) {
 				throw new RuntimeException(t.getMessage());
 			}
@@ -331,8 +315,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 	 * Create a new ObjectStreamClass_1_3_1 from a loaded class. Don't call this
 	 * directly, call lookup instead.
 	 */
-	private ObjectStreamClass_1_3_1(java.lang.Class<?> cl, ObjectStreamClass_1_3_1 superdesc,
-			boolean serial, boolean extern) {
+	private ObjectStreamClass_1_3_1(java.lang.Class<?> cl,
+			ObjectStreamClass_1_3_1 superdesc, boolean serial, boolean extern) {
 		ofClass = cl; /* created from this class */
 
 		if (Proxy.isProxyClass(cl)) {
@@ -377,8 +361,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 			if (fields != null) // already initialized
 				return;
 
-			if (!serializable || externalizable || forProxyClass
-					|| name.equals("java.lang.String")) {
+			if (!serializable || externalizable || forProxyClass || name.equals(
+					"java.lang.String")) {
 				fields = NO_FIELDS;
 			} else if (serializable) {
 
@@ -393,7 +377,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 						 * Otherwise, extract the fields from the class itself.
 						 */
 						try {
-							Field pf = cl.getDeclaredField("serialPersistentFields");
+							Field pf = cl.getDeclaredField(
+									"serialPersistentFields");
 							// serial bug 7; the serialPersistentFields were not
 							// being read and stored as Accessible bit was not
 							// set
@@ -404,8 +389,9 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 							java.io.ObjectStreamField[] f = (java.io.ObjectStreamField[]) pf
 									.get(cl);
 							int mods = pf.getModifiers();
-							if ((Modifier.isPrivate(mods)) && (Modifier.isStatic(mods))
-									&& (Modifier.isFinal(mods))) {
+							if ((Modifier.isPrivate(mods)) && (Modifier
+									.isStatic(mods)) && (Modifier.isFinal(
+											mods))) {
 								fields = (ObjectStreamField[]) translateFields(
 										(Object[]) pf.get(cl));
 							}
@@ -439,14 +425,15 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 							ObjectStreamField[] tempFields = new ObjectStreamField[actualfields.length];
 							for (int i = 0; i < actualfields.length; i++) {
 								int modifiers = actualfields[i].getModifiers();
-								if (!Modifier.isStatic(modifiers)
-										&& !Modifier.isTransient(modifiers)) {
+								if (!Modifier.isStatic(modifiers) && !Modifier
+										.isTransient(modifiers)) {
 									tempFields[numFields++] = new ObjectStreamField(
 											actualfields[i]);
 								}
 							}
 							fields = new ObjectStreamField[numFields];
-							System.arraycopy(tempFields, 0, fields, 0, numFields);
+							System.arraycopy(tempFields, 0, fields, 0,
+									numFields);
 
 						} else {
 							// For each declared persistent field, look for an
@@ -457,8 +444,10 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 							// for that field.
 							for (int j = fields.length - 1; j >= 0; j--) {
 								try {
-									Field reflField = cl.getDeclaredField(fields[j].getName());
-									if (fields[j].getType() == reflField.getType()) {
+									Field reflField = cl.getDeclaredField(
+											fields[j].getName());
+									if (fields[j].getType() == reflField
+											.getType()) {
 										// reflField.setAccessible(true);
 										fields[j].setField(reflField);
 									}
@@ -482,7 +471,6 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 			 * Get the serialVersionUID from the class. It uses the access
 			 * override mechanism so make sure the field objects is only used
 			 * here.
-			 *
 			 * NonSerializable classes have a serialVerisonUID of 0L.
 			 */
 			if (isNonSerializable()) {
@@ -496,10 +484,12 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 							suid = 0L;
 						} else {
 							try {
-								final Field f = cl.getDeclaredField("serialVersionUID");
+								final Field f = cl.getDeclaredField(
+										"serialVersionUID");
 								int mods = f.getModifiers();
 								// SerialBug 5: static final SUID should be read
-								if (Modifier.isStatic(mods) && Modifier.isFinal(mods)) {
+								if (Modifier.isStatic(mods) && Modifier.isFinal(
+										mods)) {
 									f.setAccessible(true);
 									suid = f.getLong(cl);
 									// get rid of native code
@@ -508,25 +498,29 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 									// writeObject
 									// actualSuid = computeStructuralUID(cl);
 								} else {
-									suid = ObjectStreamClass.getSerialVersionUID(cl);
+									suid = ObjectStreamClass
+											.getSerialVersionUID(cl);
 									// SerialBug 2: should be computed after
 									// writeObject
 									// actualSuid = computeStructuralUID(cl);
 								}
 							} catch (NoSuchFieldException ex) {
-								suid = ObjectStreamClass.getSerialVersionUID(cl);
+								suid = ObjectStreamClass.getSerialVersionUID(
+										cl);
 								// SerialBug 2: should be computed after
 								// writeObject
 								// actualSuid = computeStructuralUID(cl);
 							} catch (IllegalAccessException ex) {
-								suid = ObjectStreamClass.getSerialVersionUID(cl);
+								suid = ObjectStreamClass.getSerialVersionUID(
+										cl);
 							}
 						}
 
 						try {
-							writeReplaceObjectMethod = cl.getDeclaredMethod("writeReplace",
-									noTypesList);
-							if (Modifier.isStatic(writeReplaceObjectMethod.getModifiers())) {
+							writeReplaceObjectMethod = cl.getDeclaredMethod(
+									"writeReplace", noTypesList);
+							if (Modifier.isStatic(writeReplaceObjectMethod
+									.getModifiers())) {
 								writeReplaceObjectMethod = null;
 							} else {
 								writeReplaceObjectMethod.setAccessible(true);
@@ -537,9 +531,10 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 						}
 
 						try {
-							readResolveObjectMethod = cl.getDeclaredMethod("readResolve",
-									noTypesList);
-							if (Modifier.isStatic(readResolveObjectMethod.getModifiers())) {
+							readResolveObjectMethod = cl.getDeclaredMethod(
+									"readResolve", noTypesList);
+							if (Modifier.isStatic(readResolveObjectMethod
+									.getModifiers())) {
 								readResolveObjectMethod = null;
 							} else {
 								readResolveObjectMethod.setAccessible(true);
@@ -563,13 +558,16 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 							 * will call it as necessary.
 							 */
 							try {
-								Class<?>[] args = { java.io.ObjectOutputStream.class };
-								writeObjectMethod = cl.getDeclaredMethod("writeObject", args);
+								Class<?>[] args = {
+										java.io.ObjectOutputStream.class };
+								writeObjectMethod = cl.getDeclaredMethod(
+										"writeObject", args);
 								hasWriteObjectMethod = true;
 								int mods = writeObjectMethod.getModifiers();
 
 								// Method must be private and non-static
-								if (!Modifier.isPrivate(mods) || Modifier.isStatic(mods)) {
+								if (!Modifier.isPrivate(mods) || Modifier
+										.isStatic(mods)) {
 									writeObjectMethod = null;
 									hasWriteObjectMethod = false;
 								}
@@ -584,12 +582,15 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 							 * directly.
 							 */
 							try {
-								Class<?>[] args = { java.io.ObjectInputStream.class };
-								readObjectMethod = cl.getDeclaredMethod("readObject", args);
+								Class<?>[] args = {
+										java.io.ObjectInputStream.class };
+								readObjectMethod = cl.getDeclaredMethod(
+										"readObject", args);
 								int mods = readObjectMethod.getModifiers();
 
 								// Method must be private and non-static
-								if (!Modifier.isPrivate(mods) || Modifier.isStatic(mods)) {
+								if (!Modifier.isPrivate(mods) || Modifier
+										.isStatic(mods)) {
 									readObjectMethod = null;
 								}
 							} catch (NoSuchMethodException e) {
@@ -621,7 +622,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 		superclass = null;
 	}
 
-	private static Object[] translateFields(Object objs[]) throws NoSuchFieldException {
+	private static Object[] translateFields(Object objs[])
+			throws NoSuchFieldException {
 		try {
 			java.io.ObjectStreamField fields[] = (java.io.ObjectStreamField[]) objs;
 			Object translation[] = null;
@@ -636,10 +638,12 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 			else {
 				Class<?> osfClass = com.sun.corba.se.impl.orbutil.ObjectStreamField.class;
 
-				translation = (Object[]) java.lang.reflect.Array.newInstance(osfClass, objs.length);
+				translation = (Object[]) java.lang.reflect.Array.newInstance(
+						osfClass, objs.length);
 				Object arg[] = new Object[2];
 				Class<?> types[] = { String.class, Class.class };
-				Constructor constructor = osfClass.getDeclaredConstructor(types);
+				Constructor constructor = osfClass.getDeclaredConstructor(
+						types);
 				for (int i = fields.length - 1; i >= 0; i--) {
 					arg[0] = fields[i].getName();
 					arg[1] = fields[i].getType();
@@ -658,18 +662,14 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 
 	/*
 	 * Compare the base class names of streamName and localName.
-	 *
 	 * @return Return true iff the base class name compare.
-	 * 
 	 * @parameter streamName Fully qualified class name.
-	 * 
 	 * @parameter localName Fully qualified class name.
-	 * 
 	 * @parameter pkgSeparator class names use either '.' or '/'.
-	 *
 	 * Only compare base class name to allow package renaming.
 	 */
-	static boolean compareClassNames(String streamName, String localName, char pkgSeparator) {
+	static boolean compareClassNames(String streamName, String localName,
+			char pkgSeparator) {
 		/* compare the class names, stripping off package names. */
 		int streamNameIndex = streamName.lastIndexOf(pkgSeparator);
 		if (streamNameIndex < 0)
@@ -679,8 +679,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 		if (localNameIndex < 0)
 			localNameIndex = 0;
 
-		return streamName.regionMatches(false, streamNameIndex, localName, localNameIndex,
-				streamName.length() - streamNameIndex);
+		return streamName.regionMatches(false, streamNameIndex, localName,
+				localNameIndex, streamName.length() - streamNameIndex);
 	}
 
 	/*
@@ -719,26 +719,20 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 	/*
 	 * Return true if all instances of 'this' Externalizable class are written
 	 * in block-data mode from the stream that 'this' was read from. <p>
-	 *
 	 * In JDK 1.1, all Externalizable instances are not written in block-data
 	 * mode. In JDK 1.2, all Externalizable instances, by default, are written
 	 * in block-data mode and the Externalizable instance is terminated with tag
 	 * TC_ENDBLOCKDATA. Change enabled the ability to skip Externalizable
 	 * instances.
-	 *
 	 * IMPLEMENTATION NOTE: This should have been a mode maintained per stream;
 	 * however, for compatibility reasons, it was only possible to record this
 	 * change per class. All Externalizable classes within a given stream should
 	 * either have this mode enabled or disabled. This is enforced by not
 	 * allowing the PROTOCOL_VERSION of a stream to he changed after any objects
 	 * have been written.
-	 *
 	 * @see ObjectOutputStream#useProtocolVersion
-	 * 
 	 * @see ObjectStreamConstants#PROTOCOL_VERSION_1
-	 * 
 	 * @see ObjectStreamConstants#PROTOCOL_VERSION_2
-	 *
 	 * @since JDK 1.2
 	 */
 	boolean hasExternalizableBlockDataMode() {
@@ -781,39 +775,41 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 
 		for (int i = 0; i < fields.length; i++) {
 			switch (fields[i].getTypeCode()) {
-			case 'B':
-			case 'Z':
-				primBytes += 1;
-				break;
-			case 'C':
-			case 'S':
-				primBytes += 2;
-				break;
+				case 'B':
+				case 'Z':
+					primBytes += 1;
+					break;
+				case 'C':
+				case 'S':
+					primBytes += 2;
+					break;
 
-			case 'I':
-			case 'F':
-				primBytes += 4;
-				break;
-			case 'J':
-			case 'D':
-				primBytes += 8;
-				break;
+				case 'I':
+				case 'F':
+					primBytes += 4;
+					break;
+				case 'J':
+				case 'D':
+					primBytes += 8;
+					break;
 
-			case 'L':
-			case '[':
-				objFields += 1;
-				break;
+				case 'L':
+				case '[':
+					objFields += 1;
+					break;
 			}
 		}
 	}
 
-	private static long computeStructuralUID(ObjectStreamClass_1_3_1 osc, Class<?> cl) {
+	private static long computeStructuralUID(ObjectStreamClass_1_3_1 osc,
+			Class<?> cl) {
 		ByteArrayOutputStream devnull = new ByteArrayOutputStream(512);
 
 		long h = 0;
 		try {
 
-			if ((!java.io.Serializable.class.isAssignableFrom(cl)) || (cl.isInterface())) {
+			if ((!java.io.Serializable.class.isAssignableFrom(cl)) || (cl
+					.isInterface())) {
 				return 0;
 			}
 
@@ -1116,7 +1112,6 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 	 * In JDK 1.1, external data was not written in block mode. As of JDK 1.2,
 	 * external data is written in block data mode. This flag enables JDK 1.2 to
 	 * be able to read JDK 1.1 written external data.
-	 *
 	 * @since JDK 1.2
 	 */
 	private boolean hasExternalizableBlockData;
@@ -1263,7 +1258,8 @@ public class ObjectStreamClass_1_3_1 implements java.io.Serializable {
 		private MethodSignature(Member m) {
 			member = m;
 			if (isConstructor()) {
-				signature = ObjectStreamClass_1_3_1.getSignature((Constructor) m);
+				signature = ObjectStreamClass_1_3_1.getSignature(
+						(Constructor) m);
 			} else {
 				signature = ObjectStreamClass_1_3_1.getSignature((Method) m);
 			}

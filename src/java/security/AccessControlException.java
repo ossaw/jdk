@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -53,7 +33,7 @@ public class AccessControlException extends SecurityException {
 	 * message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public AccessControlException(String s) {
 		super(s);
@@ -64,9 +44,9 @@ public class AccessControlException extends SecurityException {
 	 * message, and the requested permission that caused the exception.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 * @param p
-	 *            the permission that caused the exception.
+	 *          the permission that caused the exception.
 	 */
 	public AccessControlException(String s, Permission p) {
 		super(s);

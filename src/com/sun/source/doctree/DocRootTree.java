@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.doctree;
@@ -34,5 +14,4 @@ package com.sun.source.doctree;
  * @since 1.8
  */
 @jdk.Exported
-public interface DocRootTree extends InlineTagTree {
-}
+public interface DocRootTree extends InlineTagTree {}

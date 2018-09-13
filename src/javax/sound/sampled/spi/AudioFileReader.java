@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled.spi;
@@ -54,15 +34,17 @@ public abstract class AudioFileReader {
 	 * not support this, this method may fail with an <code>IOException</code>.
 	 * 
 	 * @param stream
-	 *            the input stream from which file format information should be
-	 *            extracted
+	 *               the input stream from which file format information should
+	 *               be
+	 *               extracted
 	 * @return an <code>AudioFileFormat</code> object describing the audio file
 	 *         format
 	 * @throws UnsupportedAudioFileException
-	 *             if the stream does not point to valid audio file data
-	 *             recognized by the system
+	 *                                       if the stream does not point to
+	 *                                       valid audio file data
+	 *                                       recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                       if an I/O exception occurs
 	 * @see InputStream#markSupported
 	 * @see InputStream#mark
 	 */
@@ -78,10 +60,11 @@ public abstract class AudioFileReader {
 	 * @return an <code>AudioFileFormat</code> object describing the audio file
 	 *         format
 	 * @throws UnsupportedAudioFileException
-	 *             if the URL does not point to valid audio file data recognized
-	 *             by the system
+	 *                                       if the URL does not point to valid
+	 *                                       audio file data recognized
+	 *                                       by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                       if an I/O exception occurs
 	 */
 	public abstract AudioFileFormat getAudioFileFormat(URL url)
 			throws UnsupportedAudioFileException, IOException;
@@ -91,15 +74,16 @@ public abstract class AudioFileReader {
 	 * <code>File</code> must point to valid audio file data.
 	 * 
 	 * @param file
-	 *            the <code>File</code> from which file format information
-	 *            should be extracted
+	 *             the <code>File</code> from which file format information
+	 *             should be extracted
 	 * @return an <code>AudioFileFormat</code> object describing the audio file
 	 *         format
 	 * @throws UnsupportedAudioFileException
-	 *             if the <code>File</code> does not point to valid audio file
-	 *             data recognized by the system
+	 *                                       if the <code>File</code> does not
+	 *                                       point to valid audio file
+	 *                                       data recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                       if an I/O exception occurs
 	 */
 	public abstract AudioFileFormat getAudioFileFormat(File file)
 			throws UnsupportedAudioFileException, IOException;
@@ -114,15 +98,17 @@ public abstract class AudioFileReader {
 	 * not support this, this method may fail with an <code>IOException</code>.
 	 * 
 	 * @param stream
-	 *            the input stream from which the <code>AudioInputStream</code>
-	 *            should be constructed
+	 *               the input stream from which the
+	 *               <code>AudioInputStream</code>
+	 *               should be constructed
 	 * @return an <code>AudioInputStream</code> object based on the audio file
 	 *         data contained in the input stream.
 	 * @throws UnsupportedAudioFileException
-	 *             if the stream does not point to valid audio file data
-	 *             recognized by the system
+	 *                                       if the stream does not point to
+	 *                                       valid audio file data
+	 *                                       recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                       if an I/O exception occurs
 	 * @see InputStream#markSupported
 	 * @see InputStream#mark
 	 */
@@ -139,10 +125,11 @@ public abstract class AudioFileReader {
 	 * @return an <code>AudioInputStream</code> object based on the audio file
 	 *         data pointed to by the URL
 	 * @throws UnsupportedAudioFileException
-	 *             if the URL does not point to valid audio file data recognized
-	 *             by the system
+	 *                                       if the URL does not point to valid
+	 *                                       audio file data recognized
+	 *                                       by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                       if an I/O exception occurs
 	 */
 	public abstract AudioInputStream getAudioInputStream(URL url)
 			throws UnsupportedAudioFileException, IOException;
@@ -152,15 +139,16 @@ public abstract class AudioFileReader {
 	 * <code>File</code> must point to valid audio file data.
 	 * 
 	 * @param file
-	 *            the <code>File</code> for which the
-	 *            <code>AudioInputStream</code> should be constructed
+	 *             the <code>File</code> for which the
+	 *             <code>AudioInputStream</code> should be constructed
 	 * @return an <code>AudioInputStream</code> object based on the audio file
 	 *         data pointed to by the File
 	 * @throws UnsupportedAudioFileException
-	 *             if the <code>File</code> does not point to valid audio file
-	 *             data recognized by the system
+	 *                                       if the <code>File</code> does not
+	 *                                       point to valid audio file
+	 *                                       data recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                       if an I/O exception occurs
 	 */
 	public abstract AudioInputStream getAudioInputStream(File file)
 			throws UnsupportedAudioFileException, IOException;

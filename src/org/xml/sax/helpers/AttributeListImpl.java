@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX default implementation for AttributeList.
@@ -101,8 +81,7 @@ public class AttributeListImpl implements AttributeList {
 	 * @see #addAttribute
 	 * @see #clear
 	 */
-	public AttributeListImpl() {
-	}
+	public AttributeListImpl() {}
 
 	/**
 	 * Construct a persistent copy of an existing attribute list.
@@ -113,7 +92,7 @@ public class AttributeListImpl implements AttributeList {
 	 * </p>
 	 *
 	 * @param atts
-	 *            The attribute list to copy
+	 *             The attribute list to copy
 	 * @see org.xml.sax.DocumentHandler#startElement
 	 */
 	public AttributeListImpl(AttributeList atts) {
@@ -133,7 +112,7 @@ public class AttributeListImpl implements AttributeList {
 	 * </p>
 	 *
 	 * @param atts
-	 *            The attribute list to copy.
+	 *             The attribute list to copy.
 	 */
 	public void setAttributeList(AttributeList atts) {
 		int count = atts.getLength();
@@ -154,11 +133,11 @@ public class AttributeListImpl implements AttributeList {
 	 * </p>
 	 *
 	 * @param name
-	 *            The attribute name.
+	 *              The attribute name.
 	 * @param type
-	 *            The attribute type ("NMTOKEN" for an enumeration).
+	 *              The attribute type ("NMTOKEN" for an enumeration).
 	 * @param value
-	 *            The attribute value (must not be null).
+	 *              The attribute value (must not be null).
 	 * @see #removeAttribute
 	 * @see org.xml.sax.DocumentHandler#startElement
 	 */
@@ -182,7 +161,7 @@ public class AttributeListImpl implements AttributeList {
 	 * </p>
 	 *
 	 * @param name
-	 *            The attribute name.
+	 *             The attribute name.
 	 * @see #addAttribute
 	 */
 	public void removeAttribute(String name) {
@@ -231,7 +210,7 @@ public class AttributeListImpl implements AttributeList {
 	 * Get the name of an attribute (by position).
 	 *
 	 * @param i
-	 *            The position of the attribute in the list.
+	 *          The position of the attribute in the list.
 	 * @return The attribute name as a string, or null if there is no attribute
 	 *         at that position.
 	 * @see org.xml.sax.AttributeList#getName(int)
@@ -251,7 +230,7 @@ public class AttributeListImpl implements AttributeList {
 	 * Get the type of an attribute (by position).
 	 *
 	 * @param i
-	 *            The position of the attribute in the list.
+	 *          The position of the attribute in the list.
 	 * @return The attribute type as a string ("NMTOKEN" for an enumeration, and
 	 *         "CDATA" if no declaration was read), or null if there is no
 	 *         attribute at that position.
@@ -272,7 +251,7 @@ public class AttributeListImpl implements AttributeList {
 	 * Get the value of an attribute (by position).
 	 *
 	 * @param i
-	 *            The position of the attribute in the list.
+	 *          The position of the attribute in the list.
 	 * @return The attribute value as a string, or null if there is no attribute
 	 *         at that position.
 	 * @see org.xml.sax.AttributeList#getValue(int)
@@ -292,7 +271,7 @@ public class AttributeListImpl implements AttributeList {
 	 * Get the type of an attribute (by name).
 	 *
 	 * @param name
-	 *            The attribute name.
+	 *             The attribute name.
 	 * @return The attribute type as a string ("NMTOKEN" for an enumeration, and
 	 *         "CDATA" if no declaration was read).
 	 * @see org.xml.sax.AttributeList#getType(java.lang.String)
@@ -305,7 +284,7 @@ public class AttributeListImpl implements AttributeList {
 	 * Get the value of an attribute (by name).
 	 *
 	 * @param name
-	 *            The attribute name.
+	 *             The attribute name.
 	 * @see org.xml.sax.AttributeList#getValue(java.lang.String)
 	 */
 	public String getValue(String name) {

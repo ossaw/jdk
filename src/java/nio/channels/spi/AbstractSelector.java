@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels.spi;
@@ -84,7 +64,7 @@ public abstract class AbstractSelector extends Selector {
 	 * Initializes a new instance of this class.
 	 *
 	 * @param provider
-	 *            The provider that created this selector
+	 *                 The provider that created this selector
 	 */
 	protected AbstractSelector(SelectorProvider provider) {
 		this.provider = provider;
@@ -109,7 +89,7 @@ public abstract class AbstractSelector extends Selector {
 	 * </p>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public final void close() throws IOException {
 		boolean open = selectorOpen.getAndSet(false);
@@ -135,7 +115,7 @@ public abstract class AbstractSelector extends Selector {
 	 * </p>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs while closing the selector
+	 *                     If an I/O error occurs while closing the selector
 	 */
 	protected abstract void implCloseSelector() throws IOException;
 
@@ -186,7 +166,8 @@ public abstract class AbstractSelector extends Selector {
 	 * @return A new key representing the registration of the given channel with
 	 *         this selector
 	 */
-	protected abstract SelectionKey register(AbstractSelectableChannel ch, int ops, Object att);
+	protected abstract SelectionKey register(AbstractSelectableChannel ch,
+			int ops, Object att);
 
 	/**
 	 * Removes the given key from its channel's key set.

@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.io;
@@ -53,7 +32,8 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 import com.sun.corba.se.impl.logging.OMGSystemException;
 import com.sun.corba.se.impl.logging.UtilSystemException;
 
-public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMultiFormat {
+public final class ValueHandlerImpl implements
+		javax.rmi.CORBA.ValueHandlerMultiFormat {
 
 	// Property to override our maximum stream format version
 	public static final String FORMAT_VERSION_PROPERTY = "com.sun.CORBA.MaxStreamFormatVersion";
@@ -77,11 +57,13 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 
 		try {
 
-			String propValue = (String) AccessController.doPrivileged(new PrivilegedAction() {
-				public java.lang.Object run() {
-					return System.getProperty(ValueHandlerImpl.FORMAT_VERSION_PROPERTY);
-				}
-			});
+			String propValue = (String) AccessController.doPrivileged(
+					new PrivilegedAction() {
+						public java.lang.Object run() {
+							return System.getProperty(
+									ValueHandlerImpl.FORMAT_VERSION_PROPERTY);
+						}
+					});
 
 			// The property wasn't set
 			if (propValue == null)
@@ -93,8 +75,10 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 			// or really let the system shutdown with this Error?
 			if (result < 1 || result > MAX_SUPPORTED_FORMAT_VERSION)
 				// XXX I18N, logging needed.
-				throw new ExceptionInInitializerError("Invalid stream format version: " + result
-						+ ".  Valid range is 1 through " + MAX_SUPPORTED_FORMAT_VERSION);
+				throw new ExceptionInInitializerError(
+						"Invalid stream format version: " + result
+								+ ".  Valid range is 1 through "
+								+ MAX_SUPPORTED_FORMAT_VERSION);
 
 			return result;
 
@@ -119,8 +103,10 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	private boolean isInputStream = true;
 	private IIOPOutputStream outputStreamBridge = null;
 	private IIOPInputStream inputStreamBridge = null;
-	private OMGSystemException omgWrapper = OMGSystemException.get(CORBALogDomains.RPC_ENCODING);
-	private UtilSystemException utilWrapper = UtilSystemException.get(CORBALogDomains.RPC_ENCODING);
+	private OMGSystemException omgWrapper = OMGSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
+	private UtilSystemException utilWrapper = UtilSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
 
 	// See javax.rmi.CORBA.ValueHandlerMultiFormat
 	public byte getMaximumStreamFormatVersion() {
@@ -128,22 +114,22 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	}
 
 	// See javax.rmi.CORBA.ValueHandlerMultiFormat
-	public void writeValue(org.omg.CORBA.portable.OutputStream out, java.io.Serializable value,
-			byte streamFormatVersion) {
+	public void writeValue(org.omg.CORBA.portable.OutputStream out,
+			java.io.Serializable value, byte streamFormatVersion) {
 
 		if (streamFormatVersion == 2) {
 			if (!(out instanceof org.omg.CORBA.portable.ValueOutputStream)) {
 				throw omgWrapper.notAValueoutputstream();
 			}
 		} else if (streamFormatVersion != 1) {
-			throw omgWrapper.invalidStreamFormatVersion(new Integer(streamFormatVersion));
+			throw omgWrapper.invalidStreamFormatVersion(new Integer(
+					streamFormatVersion));
 		}
 
 		writeValueWithVersion(out, value, streamFormatVersion);
 	}
 
-	private ValueHandlerImpl() {
-	}
+	private ValueHandlerImpl() {}
 
 	private ValueHandlerImpl(boolean isInputStream) {
 		this();
@@ -163,11 +149,12 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	 * Writes the value to the stream using java semantics.
 	 * 
 	 * @param out
-	 *            The stream to write the value to
+	 *              The stream to write the value to
 	 * @param value
-	 *            The value to be written to the stream
+	 *              The value to be written to the stream
 	 **/
-	public void writeValue(org.omg.CORBA.portable.OutputStream _out, java.io.Serializable value) {
+	public void writeValue(org.omg.CORBA.portable.OutputStream _out,
+			java.io.Serializable value) {
 		writeValueWithVersion(_out, value, STREAM_FORMAT_VERSION_1);
 	}
 
@@ -184,7 +171,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 
 			try {
 				outputStreamBridge.increaseRecursionDepth();
-				writeValueInternal(outputStreamBridge, out, value, streamFormatVersion);
+				writeValueInternal(outputStreamBridge, out, value,
+						streamFormatVersion);
 			} finally {
 				outputStreamBridge.decreaseRecursionDepth();
 			}
@@ -197,7 +185,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 		if (outputStreamPairs == null)
 			outputStreamPairs = new Hashtable();
 
-		jdkToOrbOutputStreamBridge = (IIOPOutputStream) outputStreamPairs.get(_out);
+		jdkToOrbOutputStreamBridge = (IIOPOutputStream) outputStreamPairs.get(
+				_out);
 
 		if (jdkToOrbOutputStreamBridge == null) {
 			jdkToOrbOutputStreamBridge = createOutputStream();
@@ -208,7 +197,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 		try {
 
 			jdkToOrbOutputStreamBridge.increaseRecursionDepth();
-			writeValueInternal(jdkToOrbOutputStreamBridge, out, value, streamFormatVersion);
+			writeValueInternal(jdkToOrbOutputStreamBridge, out, value,
+					streamFormatVersion);
 		} finally {
 			if (jdkToOrbOutputStreamBridge.decreaseRecursionDepth() == 0) {
 				outputStreamPairs.remove(_out);
@@ -217,8 +207,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	}
 
 	private void writeValueInternal(IIOPOutputStream bridge,
-			org.omg.CORBA_2_3.portable.OutputStream out, java.io.Serializable value,
-			byte streamFormatVersion) {
+			org.omg.CORBA_2_3.portable.OutputStream out,
+			java.io.Serializable value, byte streamFormatVersion) {
 		Class clazz = value.getClass();
 
 		if (clazz.isArray())
@@ -231,14 +221,16 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	 * Reads a value from the stream using java semantics.
 	 * 
 	 * @param in
-	 *            The stream to read the value from
+	 *               The stream to read the value from
 	 * @param clazz
-	 *            The type of the value to be read in
+	 *               The type of the value to be read in
 	 * @param sender
-	 *            The sending context runtime
+	 *               The sending context runtime
 	 **/
-	public java.io.Serializable readValue(org.omg.CORBA.portable.InputStream _in, int offset,
-			java.lang.Class clazz, String repositoryID, org.omg.SendingContext.RunTime _sender) {
+	public java.io.Serializable readValue(
+			org.omg.CORBA.portable.InputStream _in, int offset,
+			java.lang.Class clazz, String repositoryID,
+			org.omg.SendingContext.RunTime _sender) {
 		// Must use narrow rather than a direct cast to a com.sun
 		// class. Fix for bug 4379539.
 		CodeBase sender = CodeBaseHelper.narrow(_sender);
@@ -259,8 +251,9 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 			try {
 
 				inputStreamBridge.increaseRecursionDepth();
-				result = (java.io.Serializable) readValueInternal(inputStreamBridge, in, offset,
-						clazz, repositoryID, sender);
+				result = (java.io.Serializable) readValueInternal(
+						inputStreamBridge, in, offset, clazz, repositoryID,
+						sender);
 
 			} finally {
 
@@ -295,8 +288,9 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 		try {
 
 			jdkToOrbInputStreamBridge.increaseRecursionDepth();
-			result = (java.io.Serializable) readValueInternal(jdkToOrbInputStreamBridge, in, offset,
-					clazz, repositoryID, sender);
+			result = (java.io.Serializable) readValueInternal(
+					jdkToOrbInputStreamBridge, in, offset, clazz, repositoryID,
+					sender);
 
 		} finally {
 
@@ -309,8 +303,9 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	}
 
 	private java.io.Serializable readValueInternal(IIOPInputStream bridge,
-			org.omg.CORBA_2_3.portable.InputStream in, int offset, java.lang.Class clazz,
-			String repositoryID, com.sun.org.omg.SendingContext.CodeBase sender) {
+			org.omg.CORBA_2_3.portable.InputStream in, int offset,
+			java.lang.Class clazz, String repositoryID,
+			com.sun.org.omg.SendingContext.CodeBase sender) {
 		java.io.Serializable result = null;
 
 		if (clazz == null) {
@@ -324,10 +319,11 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 		}
 
 		if (clazz.isArray()) {
-			result = (java.io.Serializable) read_Array(bridge, in, clazz, sender, offset);
+			result = (java.io.Serializable) read_Array(bridge, in, clazz,
+					sender, offset);
 		} else {
-			result = (java.io.Serializable) bridge.simpleReadObject(clazz, repositoryID, sender,
-					offset);
+			result = (java.io.Serializable) bridge.simpleReadObject(clazz,
+					repositoryID, sender, offset);
 		}
 
 		return result;
@@ -387,7 +383,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	 * FullValueDescriptor. used for backward compatability
 	 */
 
-	public boolean useFullValueDescription(Class clazz, String repositoryID) throws IOException {
+	public boolean useFullValueDescription(Class clazz, String repositoryID)
+			throws IOException {
 		return RepositoryId.useFullValueDescription(clazz, repositoryID);
 	}
 
@@ -444,13 +441,13 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 		return ObjectStreamClass.lookup(value.getClass()).writeReplace(value);
 	}
 
-	private void writeCharArray(org.omg.CORBA_2_3.portable.OutputStream out, char[] array,
-			int offset, int length) {
+	private void writeCharArray(org.omg.CORBA_2_3.portable.OutputStream out,
+			char[] array, int offset, int length) {
 		out.write_wchar_array(array, offset, length);
 	}
 
-	private void write_Array(org.omg.CORBA_2_3.portable.OutputStream out, java.io.Serializable obj,
-			Class type) {
+	private void write_Array(org.omg.CORBA_2_3.portable.OutputStream out,
+			java.io.Serializable obj, Class type) {
 
 		int i, length;
 
@@ -497,7 +494,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 				out.write_boolean_array(array, 0, length);
 			} else {
 				// XXX I18N, logging needed.
-				throw new Error("Invalid primitive type : " + obj.getClass().getName());
+				throw new Error("Invalid primitive type : " + obj.getClass()
+						.getName());
 			}
 		} else if (type == java.lang.Object.class) {
 			Object[] array = (Object[]) ((Object) obj);
@@ -524,37 +522,39 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 				} else if (RepositoryId.isAbstractBase(type)) {
 					// IDL Abstract Object reference...
 					callType = kAbstractType;
-				} else if (ObjectStreamClassCorbaExt.isAbstractInterface(type)) {
+				} else if (ObjectStreamClassCorbaExt.isAbstractInterface(
+						type)) {
 					callType = kAbstractType;
 				}
 			}
 
 			for (i = 0; i < length; i++) {
 				switch (callType) {
-				case kRemoteType:
-					Util.writeRemoteObject(out, array[i]);
-					break;
-				case kAbstractType:
-					Util.writeAbstractObject(out, array[i]);
-					break;
-				case kValueType:
-					try {
-						out.write_value((java.io.Serializable) array[i]);
-					} catch (ClassCastException cce) {
-						if (array[i] instanceof java.io.Serializable)
-							throw cce;
-						else {
-							Utility.throwNotSerializableForCorba(array[i].getClass().getName());
+					case kRemoteType:
+						Util.writeRemoteObject(out, array[i]);
+						break;
+					case kAbstractType:
+						Util.writeAbstractObject(out, array[i]);
+						break;
+					case kValueType:
+						try {
+							out.write_value((java.io.Serializable) array[i]);
+						} catch (ClassCastException cce) {
+							if (array[i] instanceof java.io.Serializable)
+								throw cce;
+							else {
+								Utility.throwNotSerializableForCorba(array[i]
+										.getClass().getName());
+							}
 						}
-					}
-					break;
+						break;
 				}
 			}
 		}
 	}
 
-	private void readCharArray(org.omg.CORBA_2_3.portable.InputStream in, char[] array, int offset,
-			int length) {
+	private void readCharArray(org.omg.CORBA_2_3.portable.InputStream in,
+			char[] array, int offset, int length) {
 		in.read_wchar_array(array, offset, length);
 	}
 
@@ -611,11 +611,12 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 					return ((java.io.Serializable) ((Object) array));
 				} else {
 					// XXX I18N, logging needed.
-					throw new Error("Invalid primitive componentType : " + sequence.getName());
+					throw new Error("Invalid primitive componentType : "
+							+ sequence.getName());
 				}
 			} else if (componentType == java.lang.Object.class) {
-				Object[] array = (Object[]) java.lang.reflect.Array.newInstance(componentType,
-						length);
+				Object[] array = (Object[]) java.lang.reflect.Array.newInstance(
+						componentType, length);
 
 				// Store this object and its beginning position
 				// since there might be indirections to it while
@@ -632,12 +633,14 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 							// before, so check the recursion manager (it will
 							// throw an IOException if it doesn't have a
 							// reference, either).
-							objectValue = bridge.activeRecursionMgr.getObject(cdrie.offset);
+							objectValue = bridge.activeRecursionMgr.getObject(
+									cdrie.offset);
 						} catch (IOException ie) {
 							// Translate to a MARSHAL exception since
 							// ValueHandlers aren't allowed to throw
 							// IOExceptions
-							throw utilWrapper.invalidIndirection(ie, new Integer(cdrie.offset));
+							throw utilWrapper.invalidIndirection(ie,
+									new Integer(cdrie.offset));
 						}
 					}
 
@@ -645,8 +648,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 				}
 				return ((java.io.Serializable) ((Object) array));
 			} else {
-				Object[] array = (Object[]) java.lang.reflect.Array.newInstance(componentType,
-						length);
+				Object[] array = (Object[]) java.lang.reflect.Array.newInstance(
+						componentType, length);
 				// Store this object and its beginning position
 				// since there might be indirections to it while
 				// it's been unmarshalled.
@@ -671,7 +674,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 						// for better performance, load the stub class once
 						// instead of for each element of the array
 						loadStubClass = true;
-					} else if (org.omg.CORBA.Object.class.isAssignableFrom(componentType)) {
+					} else if (org.omg.CORBA.Object.class.isAssignableFrom(
+							componentType)) {
 						// IDL Object reference...
 						callType = kRemoteType;
 						loadStubClass = true;
@@ -679,7 +683,8 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 						// IDL Abstract Object reference...
 						callType = kAbstractType;
 						loadStubClass = true;
-					} else if (ObjectStreamClassCorbaExt.isAbstractInterface(componentType)) {
+					} else if (ObjectStreamClassCorbaExt.isAbstractInterface(
+							componentType)) {
 
 						// RMI Abstract Object reference...
 
@@ -690,8 +695,10 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 					if (loadStubClass) {
 						try {
 							String codebase = Util.getCodebase(componentType);
-							String repID = RepositoryId.createForAnyType(componentType);
-							Class stubType = Utility.loadStubClass(repID, codebase, componentType);
+							String repID = RepositoryId.createForAnyType(
+									componentType);
+							Class stubType = Utility.loadStubClass(repID,
+									codebase, componentType);
 							actualType = stubType;
 						} catch (ClassNotFoundException e) {
 							narrow = true;
@@ -705,24 +712,29 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 
 					try {
 						switch (callType) {
-						case kRemoteType:
-							if (!narrow)
-								array[i] = (Object) in.read_Object(actualType);
-							else {
-								array[i] = Utility.readObjectAndNarrow(in, actualType);
+							case kRemoteType:
+								if (!narrow)
+									array[i] = (Object) in.read_Object(
+											actualType);
+								else {
+									array[i] = Utility.readObjectAndNarrow(in,
+											actualType);
 
-							}
-							break;
-						case kAbstractType:
-							if (!narrow)
-								array[i] = (Object) in.read_abstract_interface(actualType);
-							else {
-								array[i] = Utility.readAbstractAndNarrow(in, actualType);
-							}
-							break;
-						case kValueType:
-							array[i] = (Object) in.read_value(actualType);
-							break;
+								}
+								break;
+							case kAbstractType:
+								if (!narrow)
+									array[i] = (Object) in
+											.read_abstract_interface(
+													actualType);
+								else {
+									array[i] = Utility.readAbstractAndNarrow(in,
+											actualType);
+								}
+								break;
+							case kValueType:
+								array[i] = (Object) in.read_value(actualType);
+								break;
 						}
 					} catch (IndirectionException cdrie) {
 						// The CDR stream had never seen the given offset
@@ -730,12 +742,14 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 						// so check the recursion manager (it will throw an
 						// IOException if it doesn't have a reference, either).
 						try {
-							array[i] = bridge.activeRecursionMgr.getObject(cdrie.offset);
+							array[i] = bridge.activeRecursionMgr.getObject(
+									cdrie.offset);
 						} catch (IOException ioe) {
 							// Translate to a MARSHAL exception since
 							// ValueHandlers aren't allowed to throw
 							// IOExceptions
-							throw utilWrapper.invalidIndirection(ioe, new Integer(cdrie.offset));
+							throw utilWrapper.invalidIndirection(ioe,
+									new Integer(cdrie.offset));
 						}
 					}
 
@@ -780,13 +794,15 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	 * Construct a built in implementation with priveleges. Returning null
 	 * indicates a non-built is specified.
 	 */
-	private IIOPOutputStream createOutputStreamBuiltIn(final String name) throws Throwable {
+	private IIOPOutputStream createOutputStreamBuiltIn(final String name)
+			throws Throwable {
 		try {
-			return AccessController.doPrivileged(new PrivilegedExceptionAction<IIOPOutputStream>() {
-				public IIOPOutputStream run() throws IOException {
-					return createOutputStreamBuiltInNoPriv(name);
-				}
-			});
+			return AccessController.doPrivileged(
+					new PrivilegedExceptionAction<IIOPOutputStream>() {
+						public IIOPOutputStream run() throws IOException {
+							return createOutputStreamBuiltInNoPriv(name);
+						}
+					});
 		} catch (java.security.PrivilegedActionException exc) {
 			throw exc.getCause();
 		}
@@ -795,8 +811,11 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	/**
 	 * Returning null indicates a non-built is specified.
 	 */
-	private IIOPOutputStream createOutputStreamBuiltInNoPriv(final String name) throws IOException {
-		return name.equals(IIOPOutputStream.class.getName()) ? new IIOPOutputStream() : null;
+	private IIOPOutputStream createOutputStreamBuiltInNoPriv(final String name)
+			throws IOException {
+		return name.equals(IIOPOutputStream.class.getName())
+				? new IIOPOutputStream()
+				: null;
 	}
 
 	private String getInputStreamClassName() {
@@ -823,13 +842,15 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	 * Construct a built in implementation with priveleges. Returning null
 	 * indicates a non-built is specified.
 	 */
-	private IIOPInputStream createInputStreamBuiltIn(final String name) throws Throwable {
+	private IIOPInputStream createInputStreamBuiltIn(final String name)
+			throws Throwable {
 		try {
-			return AccessController.doPrivileged(new PrivilegedExceptionAction<IIOPInputStream>() {
-				public IIOPInputStream run() throws IOException {
-					return createInputStreamBuiltInNoPriv(name);
-				}
-			});
+			return AccessController.doPrivileged(
+					new PrivilegedExceptionAction<IIOPInputStream>() {
+						public IIOPInputStream run() throws IOException {
+							return createInputStreamBuiltInNoPriv(name);
+						}
+					});
 		} catch (java.security.PrivilegedActionException exc) {
 			throw exc.getCause();
 		}
@@ -838,14 +859,18 @@ public final class ValueHandlerImpl implements javax.rmi.CORBA.ValueHandlerMulti
 	/**
 	 * Returning null indicates a non-built is specified.
 	 */
-	private IIOPInputStream createInputStreamBuiltInNoPriv(final String name) throws IOException {
-		return name.equals(IIOPInputStream.class.getName()) ? new IIOPInputStream() : null;
+	private IIOPInputStream createInputStreamBuiltInNoPriv(final String name)
+			throws IOException {
+		return name.equals(IIOPInputStream.class.getName())
+				? new IIOPInputStream()
+				: null;
 	}
 
 	/**
 	 * Create a custom implementation without privileges.
 	 */
-	private <T> T createCustom(final Class<T> type, final String className) throws Throwable {
+	private <T> T createCustom(final Class<T> type, final String className)
+			throws Throwable {
 		// Note: We use the thread context or system ClassLoader here
 		// since we want to load classes outside of the
 		// core JDK when running J2EE Pure ORB and

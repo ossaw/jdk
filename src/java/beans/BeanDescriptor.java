@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -44,8 +24,9 @@ public class BeanDescriptor extends FeatureDescriptor {
 	 * Create a BeanDescriptor for a bean that doesn't have a customizer.
 	 *
 	 * @param beanClass
-	 *            The Class object of the Java class that implements the bean.
-	 *            For example sun.beans.OurButton.class.
+	 *                  The Class object of the Java class that implements the
+	 *                  bean.
+	 *                  For example sun.beans.OurButton.class.
 	 */
 	public BeanDescriptor(Class<?> beanClass) {
 		this(beanClass, null);
@@ -55,11 +36,14 @@ public class BeanDescriptor extends FeatureDescriptor {
 	 * Create a BeanDescriptor for a bean that has a customizer.
 	 *
 	 * @param beanClass
-	 *            The Class object of the Java class that implements the bean.
-	 *            For example sun.beans.OurButton.class.
+	 *                        The Class object of the Java class that implements
+	 *                        the bean.
+	 *                        For example sun.beans.OurButton.class.
 	 * @param customizerClass
-	 *            The Class object of the Java class that implements the bean's
-	 *            Customizer. For example sun.beans.OurButtonCustomizer.class.
+	 *                        The Class object of the Java class that implements
+	 *                        the bean's
+	 *                        Customizer. For example
+	 *                        sun.beans.OurButtonCustomizer.class.
 	 */
 	public BeanDescriptor(Class<?> beanClass, Class<?> customizerClass) {
 		this.beanClassRef = getWeakReference(beanClass);
@@ -88,7 +72,8 @@ public class BeanDescriptor extends FeatureDescriptor {
 	 *         the bean doesn't have a customizer.
 	 */
 	public Class<?> getCustomizerClass() {
-		return (this.customizerClassRef != null) ? this.customizerClassRef.get() : null;
+		return (this.customizerClassRef != null) ? this.customizerClassRef.get()
+				: null;
 	}
 
 	/*

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -96,9 +76,9 @@ public interface Extension {
 	 * @param out
 	 *            the output stream
 	 * @exception IOException
-	 *                on encoding or output error.
+	 *                                 on encoding or output error.
 	 * @exception NullPointerException
-	 *                if {@code out} is {@code null}.
+	 *                                 if {@code out} is {@code null}.
 	 */
 	void encode(OutputStream out) throws IOException;
 }

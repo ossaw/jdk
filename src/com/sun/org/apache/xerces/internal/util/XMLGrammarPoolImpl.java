@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -87,11 +84,9 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * <p> Retrieve the initial known set of grammars. This method is called by
 	 * a validator before the validation starts. The application can provide an
 	 * initial set of grammars available to the current validation attempt. </p>
-	 *
 	 * @param grammarType The type of the grammar, from the
 	 * <code>com.sun.org.apache.xerces.internal.xni.grammars.
 	 * XMLGrammarDescription</code> interface.
-	 * 
 	 * @return The set of grammars the validator may put in its "bucket"
 	 */
 	public Grammar[] retrieveInitialGrammarSet(String grammarType) {
@@ -119,9 +114,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * implementation, we make our choice based on whether this object is
 	 * "locked"--that is, whether the application has instructed us not to
 	 * accept any new grammars.</p>
-	 *
 	 * @param grammarType The type of the grammars being returned;
-	 * 
 	 * @param grammars An array containing the set of grammars being returned;
 	 * order is not significant.
 	 */
@@ -144,12 +137,9 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * do so it must return null; the parser will then call the EntityResolver.
 	 * </p> <strong>An application must not call its EntityResolver itself from
 	 * this method; this may result in infinite recursions.</strong>
-	 *
 	 * This implementation chooses to use the root element name to identify a
 	 * DTD grammar and the target namespace to identify a Schema grammar.
-	 *
 	 * @param desc The description of the Grammar being requested.
-	 * 
 	 * @return The Grammar corresponding to this description or null if no such
 	 * Grammar is known.
 	 */
@@ -171,7 +161,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * root element name or its target namespace.
 	 *
 	 * @param grammar
-	 *            The Grammar.
+	 *                The Grammar.
 	 */
 	public void putGrammar(Grammar grammar) {
 		if (!fPoolIsLocked) {
@@ -199,7 +189,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * the target namespace is used as the key for Schema grammars.
 	 *
 	 * @param desc
-	 *            The Grammar Description.
+	 *             The Grammar Description.
 	 */
 	public Grammar getGrammar(XMLGrammarDescription desc) {
 		synchronized (fGrammars) {
@@ -221,7 +211,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * is used as the key for Schema grammars.
 	 *
 	 * @param desc
-	 *            The Grammar Description.
+	 *             The Grammar Description.
 	 * @return The removed grammar.
 	 */
 	public Grammar removeGrammar(XMLGrammarDescription desc) {
@@ -252,7 +242,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * for Schema grammars.
 	 *
 	 * @param desc
-	 *            The Grammar Description.
+	 *             The Grammar Description.
 	 */
 	public boolean containsGrammar(XMLGrammarDescription desc) {
 		synchronized (fGrammars) {
@@ -304,12 +294,13 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * its own logic.
 	 *
 	 * @param desc1
-	 *            The grammar description
+	 *              The grammar description
 	 * @param desc2
-	 *            The grammar description of the grammar to be compared to
+	 *              The grammar description of the grammar to be compared to
 	 * @return True if the grammars are equal, otherwise false
 	 */
-	public boolean equals(XMLGrammarDescription desc1, XMLGrammarDescription desc2) {
+	public boolean equals(XMLGrammarDescription desc1,
+			XMLGrammarDescription desc2) {
 		return desc1.equals(desc2);
 	}
 
@@ -317,7 +308,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	 * Returns the hash code value for the given grammar description.
 	 *
 	 * @param desc
-	 *            The grammar description
+	 *             The grammar description
 	 * @return The hash code value
 	 */
 	public int hashCode(XMLGrammarDescription desc) {
@@ -334,7 +325,8 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 		public Grammar grammar;
 		public Entry next;
 
-		protected Entry(int hash, XMLGrammarDescription desc, Grammar grammar, Entry next) {
+		protected Entry(int hash, XMLGrammarDescription desc, Grammar grammar,
+				Entry next) {
 			this.hash = hash;
 			this.desc = desc;
 			this.grammar = grammar;
@@ -360,23 +352,18 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 	/*
 	 * public void print(XMLGrammarDescription description){
 	 * if(description.getGrammarType().equals(XMLGrammarDescription.XML_DTD)){
-	 * 
 	 * } else
 	 * if(description.getGrammarType().equals(XMLGrammarDescription.XML_SCHEMA))
 	 * { XSDDescription schema = (XSDDescription)description ;
 	 * System.out.println("Context = " + schema.getContextType());
 	 * System.out.println("TargetNamespace = " + schema.getTargetNamespace());
 	 * String [] temp = schema.getLocationHints();
-	 * 
 	 * for (int i = 0 ; (temp != null && i < temp.length) ; i++){
 	 * System.out.println("LocationHint " + i + " = "+ temp[i]); }
-	 * 
 	 * System.out.println("Triggering Component = " +
 	 * schema.getTriggeringComponent()); System.out.println(
 	 * "EnclosingElementName =" + schema.getEnclosingElementName());
-	 * 
 	 * }
-	 * 
 	 * }//print
 	 */
 

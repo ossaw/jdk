@@ -4,14 +4,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,15 +54,16 @@ public class ExtendedSchemaDVFactoryImpl extends BaseSchemaDVFactory {
 		fBuiltInTypes.put(ANYATOMICTYPE, XSSimpleTypeDecl.fAnyAtomicType);
 
 		// add 2 duration types
-		XSSimpleTypeDecl durationDV = (XSSimpleTypeDecl) fBuiltInTypes.get(DURATION);
-		fBuiltInTypes.put(YEARMONTHDURATION,
-				new XSSimpleTypeDecl(durationDV, YEARMONTHDURATION,
-						XSSimpleTypeDecl.DV_YEARMONTHDURATION, XSSimpleType.ORDERED_PARTIAL, false,
-						false, false, true, XSSimpleTypeDecl.YEARMONTHDURATION_DT));
-		fBuiltInTypes.put(DAYTIMEDURATION,
-				new XSSimpleTypeDecl(durationDV, DAYTIMEDURATION,
-						XSSimpleTypeDecl.DV_DAYTIMEDURATION, XSSimpleType.ORDERED_PARTIAL, false,
-						false, false, true, XSSimpleTypeDecl.DAYTIMEDURATION_DT));
+		XSSimpleTypeDecl durationDV = (XSSimpleTypeDecl) fBuiltInTypes.get(
+				DURATION);
+		fBuiltInTypes.put(YEARMONTHDURATION, new XSSimpleTypeDecl(durationDV,
+				YEARMONTHDURATION, XSSimpleTypeDecl.DV_YEARMONTHDURATION,
+				XSSimpleType.ORDERED_PARTIAL, false, false, false, true,
+				XSSimpleTypeDecl.YEARMONTHDURATION_DT));
+		fBuiltInTypes.put(DAYTIMEDURATION, new XSSimpleTypeDecl(durationDV,
+				DAYTIMEDURATION, XSSimpleTypeDecl.DV_DAYTIMEDURATION,
+				XSSimpleType.ORDERED_PARTIAL, false, false, false, true,
+				XSSimpleTypeDecl.DAYTIMEDURATION_DT));
 	} // createBuiltInTypes()
 
 	/**
@@ -75,7 +74,7 @@ public class ExtendedSchemaDVFactoryImpl extends BaseSchemaDVFactory {
 	 * base of anySimpleType. It needs to be changed as per the decision taken.
 	 *
 	 * @param name
-	 *            the name of the datatype
+	 *             the name of the datatype
 	 * @return the datatype validator of the given name
 	 */
 	public XSSimpleType getBuiltInType(String name) {

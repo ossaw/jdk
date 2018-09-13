@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -81,7 +78,7 @@ public class URI implements Serializable {
 		 * detail message.
 		 *
 		 * @param p_msg
-		 *            the detail message.
+		 *              the detail message.
 		 ******************************************************************/
 		public MalformedURIException(String p_msg) {
 			super(p_msg);
@@ -129,22 +126,28 @@ public class URI implements Serializable {
 	private static final int PATH_CHARACTERS = 0x80;
 
 	/** Mask for alpha-numeric characters */
-	private static final int MASK_ALPHA_NUMERIC = ASCII_ALPHA_CHARACTERS | ASCII_DIGIT_CHARACTERS;
+	private static final int MASK_ALPHA_NUMERIC = ASCII_ALPHA_CHARACTERS
+			| ASCII_DIGIT_CHARACTERS;
 
 	/** Mask for unreserved characters */
-	private static final int MASK_UNRESERVED_MASK = MASK_ALPHA_NUMERIC | MARK_CHARACTERS;
+	private static final int MASK_UNRESERVED_MASK = MASK_ALPHA_NUMERIC
+			| MARK_CHARACTERS;
 
 	/** Mask for URI allowable characters except for % */
-	private static final int MASK_URI_CHARACTER = MASK_UNRESERVED_MASK | RESERVED_CHARACTERS;
+	private static final int MASK_URI_CHARACTER = MASK_UNRESERVED_MASK
+			| RESERVED_CHARACTERS;
 
 	/** Mask for scheme characters */
-	private static final int MASK_SCHEME_CHARACTER = MASK_ALPHA_NUMERIC | SCHEME_CHARACTERS;
+	private static final int MASK_SCHEME_CHARACTER = MASK_ALPHA_NUMERIC
+			| SCHEME_CHARACTERS;
 
 	/** Mask for userinfo characters */
-	private static final int MASK_USERINFO_CHARACTER = MASK_UNRESERVED_MASK | USERINFO_CHARACTERS;
+	private static final int MASK_USERINFO_CHARACTER = MASK_UNRESERVED_MASK
+			| USERINFO_CHARACTERS;
 
 	/** Mask for path characters */
-	private static final int MASK_PATH_CHARACTER = MASK_UNRESERVED_MASK | PATH_CHARACTERS;
+	private static final int MASK_PATH_CHARACTER = MASK_UNRESERVED_MASK
+			| PATH_CHARACTERS;
 
 	static {
 		// Add ASCII Digits and ASCII Hex Numbers
@@ -155,7 +158,8 @@ public class URI implements Serializable {
 		// Add ASCII Letters and ASCII Hex Numbers
 		for (int i = 'A'; i <= 'F'; ++i) {
 			fgLookupTable[i] |= ASCII_ALPHA_CHARACTERS | ASCII_HEX_CHARACTERS;
-			fgLookupTable[i + 0x00000020] |= ASCII_ALPHA_CHARACTERS | ASCII_HEX_CHARACTERS;
+			fgLookupTable[i + 0x00000020] |= ASCII_ALPHA_CHARACTERS
+					| ASCII_HEX_CHARACTERS;
 		}
 
 		// Add ASCII Letters
@@ -249,15 +253,14 @@ public class URI implements Serializable {
 	/**
 	 * Construct a new and uninitialized URI.
 	 */
-	public URI() {
-	}
+	public URI() {}
 
 	/**
 	 * Construct a new URI from another URI. All fields for this URI are set
 	 * equal to the fields of the URI passed in.
 	 *
 	 * @param p_other
-	 *            the URI to copy (cannot be null)
+	 *                the URI to copy (cannot be null)
 	 */
 	public URI(URI p_other) {
 		initialize(p_other);
@@ -273,10 +276,10 @@ public class URI implements Serializable {
 	 * (stored as the path) only.
 	 *
 	 * @param p_uriSpec
-	 *            the URI specification string (cannot be null or empty)
+	 *                  the URI specification string (cannot be null or empty)
 	 *
 	 * @exception MalformedURIException
-	 *                if p_uriSpec violates any syntax rules
+	 *                                  if p_uriSpec violates any syntax rules
 	 */
 	public URI(String p_uriSpec) throws MalformedURIException {
 		this((URI) null, p_uriSpec);
@@ -294,14 +297,17 @@ public class URI implements Serializable {
 	 * throwing an exception.
 	 *
 	 * @param p_uriSpec
-	 *            the URI specification string (cannot be null or empty)
+	 *                            the URI specification string (cannot be null
+	 *                            or empty)
 	 * @param allowNonAbsoluteURI
-	 *            true to permit non-absolute URIs, false otherwise.
+	 *                            true to permit non-absolute URIs, false
+	 *                            otherwise.
 	 *
 	 * @exception MalformedURIException
-	 *                if p_uriSpec violates any syntax rules
+	 *                                  if p_uriSpec violates any syntax rules
 	 */
-	public URI(String p_uriSpec, boolean allowNonAbsoluteURI) throws MalformedURIException {
+	public URI(String p_uriSpec, boolean allowNonAbsoluteURI)
+			throws MalformedURIException {
 		this((URI) null, p_uriSpec, allowNonAbsoluteURI);
 	}
 
@@ -310,13 +316,14 @@ public class URI implements Serializable {
 	 * URI specification string may be a relative URI.
 	 *
 	 * @param p_base
-	 *            the base URI (cannot be null if p_uriSpec is null or empty)
+	 *                  the base URI (cannot be null if p_uriSpec is null or
+	 *                  empty)
 	 * @param p_uriSpec
-	 *            the URI specification string (cannot be null or empty if
-	 *            p_base is null)
+	 *                  the URI specification string (cannot be null or empty if
+	 *                  p_base is null)
 	 *
 	 * @exception MalformedURIException
-	 *                if p_uriSpec violates any syntax rules
+	 *                                  if p_uriSpec violates any syntax rules
 	 */
 	public URI(URI p_base, String p_uriSpec) throws MalformedURIException {
 		initialize(p_base, p_uriSpec);
@@ -329,15 +336,18 @@ public class URI implements Serializable {
 	 * and p_base is null instead of throwing an exception.
 	 *
 	 * @param p_base
-	 *            the base URI (cannot be null if p_uriSpec is null or empty)
+	 *                            the base URI (cannot be null if p_uriSpec is
+	 *                            null or empty)
 	 * @param p_uriSpec
-	 *            the URI specification string (cannot be null or empty if
-	 *            p_base is null)
+	 *                            the URI specification string (cannot be null
+	 *                            or empty if
+	 *                            p_base is null)
 	 * @param allowNonAbsoluteURI
-	 *            true to permit non-absolute URIs, false otherwise.
+	 *                            true to permit non-absolute URIs, false
+	 *                            otherwise.
 	 *
 	 * @exception MalformedURIException
-	 *                if p_uriSpec violates any syntax rules
+	 *                                  if p_uriSpec violates any syntax rules
 	 */
 	public URI(URI p_base, String p_uriSpec, boolean allowNonAbsoluteURI)
 			throws MalformedURIException {
@@ -349,18 +359,22 @@ public class URI implements Serializable {
 	 * scheme and scheme-specific part (stored as the path) are initialized.
 	 *
 	 * @param p_scheme
-	 *            the URI scheme (cannot be null or empty)
+	 *                             the URI scheme (cannot be null or empty)
 	 * @param p_schemeSpecificPart
-	 *            the scheme-specific part (cannot be null or empty)
+	 *                             the scheme-specific part (cannot be null or
+	 *                             empty)
 	 *
 	 * @exception MalformedURIException
-	 *                if p_scheme violates any syntax rules
+	 *                                  if p_scheme violates any syntax rules
 	 */
-	public URI(String p_scheme, String p_schemeSpecificPart) throws MalformedURIException {
+	public URI(String p_scheme, String p_schemeSpecificPart)
+			throws MalformedURIException {
 		if (p_scheme == null || p_scheme.trim().length() == 0) {
-			throw new MalformedURIException("Cannot construct URI with null/empty scheme!");
+			throw new MalformedURIException(
+					"Cannot construct URI with null/empty scheme!");
 		}
-		if (p_schemeSpecificPart == null || p_schemeSpecificPart.trim().length() == 0) {
+		if (p_schemeSpecificPart == null || p_schemeSpecificPart.trim()
+				.length() == 0) {
 			throw new MalformedURIException(
 					"Cannot construct URI with null/empty scheme-specific part!");
 		}
@@ -375,25 +389,33 @@ public class URI implements Serializable {
 	 * for specifics.
 	 *
 	 * @param p_scheme
-	 *            the URI scheme (cannot be null or empty)
+	 *                      the URI scheme (cannot be null or empty)
 	 * @param p_host
-	 *            the hostname, IPv4 address or IPv6 reference for the URI
+	 *                      the hostname, IPv4 address or IPv6 reference for the
+	 *                      URI
 	 * @param p_path
-	 *            the URI path - if the path contains '?' or '#', then the query
-	 *            string and/or fragment will be set from the path; however, if
-	 *            the query and fragment are specified both in the path and as
-	 *            separate parameters, an exception is thrown
+	 *                      the URI path - if the path contains '?' or '#', then
+	 *                      the query
+	 *                      string and/or fragment will be set from the path;
+	 *                      however, if
+	 *                      the query and fragment are specified both in the
+	 *                      path and as
+	 *                      separate parameters, an exception is thrown
 	 * @param p_queryString
-	 *            the URI query string (cannot be specified if path is null)
+	 *                      the URI query string (cannot be specified if path is
+	 *                      null)
 	 * @param p_fragment
-	 *            the URI fragment (cannot be specified if path is null)
+	 *                      the URI fragment (cannot be specified if path is
+	 *                      null)
 	 *
 	 * @exception MalformedURIException
-	 *                if any of the parameters violates syntax rules or semantic
-	 *                rules
+	 *                                  if any of the parameters violates syntax
+	 *                                  rules or semantic
+	 *                                  rules
 	 */
-	public URI(String p_scheme, String p_host, String p_path, String p_queryString,
-			String p_fragment) throws MalformedURIException {
+	public URI(String p_scheme, String p_host, String p_path,
+			String p_queryString, String p_fragment)
+			throws MalformedURIException {
 		this(p_scheme, null, p_host, -1, p_path, p_queryString, p_fragment);
 	}
 
@@ -404,30 +426,40 @@ public class URI implements Serializable {
 	 * for specifics.
 	 *
 	 * @param p_scheme
-	 *            the URI scheme (cannot be null or empty)
+	 *                      the URI scheme (cannot be null or empty)
 	 * @param p_userinfo
-	 *            the URI userinfo (cannot be specified if host is null)
+	 *                      the URI userinfo (cannot be specified if host is
+	 *                      null)
 	 * @param p_host
-	 *            the hostname, IPv4 address or IPv6 reference for the URI
+	 *                      the hostname, IPv4 address or IPv6 reference for the
+	 *                      URI
 	 * @param p_port
-	 *            the URI port (may be -1 for "unspecified"; cannot be specified
-	 *            if host is null)
+	 *                      the URI port (may be -1 for "unspecified"; cannot be
+	 *                      specified
+	 *                      if host is null)
 	 * @param p_path
-	 *            the URI path - if the path contains '?' or '#', then the query
-	 *            string and/or fragment will be set from the path; however, if
-	 *            the query and fragment are specified both in the path and as
-	 *            separate parameters, an exception is thrown
+	 *                      the URI path - if the path contains '?' or '#', then
+	 *                      the query
+	 *                      string and/or fragment will be set from the path;
+	 *                      however, if
+	 *                      the query and fragment are specified both in the
+	 *                      path and as
+	 *                      separate parameters, an exception is thrown
 	 * @param p_queryString
-	 *            the URI query string (cannot be specified if path is null)
+	 *                      the URI query string (cannot be specified if path is
+	 *                      null)
 	 * @param p_fragment
-	 *            the URI fragment (cannot be specified if path is null)
+	 *                      the URI fragment (cannot be specified if path is
+	 *                      null)
 	 *
 	 * @exception MalformedURIException
-	 *                if any of the parameters violates syntax rules or semantic
-	 *                rules
+	 *                                  if any of the parameters violates syntax
+	 *                                  rules or semantic
+	 *                                  rules
 	 */
-	public URI(String p_scheme, String p_userinfo, String p_host, int p_port, String p_path,
-			String p_queryString, String p_fragment) throws MalformedURIException {
+	public URI(String p_scheme, String p_userinfo, String p_host, int p_port,
+			String p_path, String p_queryString, String p_fragment)
+			throws MalformedURIException {
 		if (p_scheme == null || p_scheme.trim().length() == 0) {
 			throw new MalformedURIException("Scheme is required!");
 		}
@@ -468,7 +500,7 @@ public class URI implements Serializable {
 	 * Initialize all fields of this URI from another URI.
 	 *
 	 * @param p_other
-	 *            the URI to copy (cannot be null)
+	 *                the URI to copy (cannot be null)
 	 */
 	private void initialize(URI p_other) {
 		m_scheme = p_other.getScheme();
@@ -488,20 +520,24 @@ public class URI implements Serializable {
 	 * paths.
 	 *
 	 * @param p_base
-	 *            the base URI (may be null if p_uriSpec is an absolute URI)
+	 *                            the base URI (may be null if p_uriSpec is an
+	 *                            absolute URI)
 	 * @param p_uriSpec
-	 *            the URI spec string which may be an absolute or relative URI
-	 *            (can only be null/empty if p_base is not null)
+	 *                            the URI spec string which may be an absolute
+	 *                            or relative URI
+	 *                            (can only be null/empty if p_base is not null)
 	 * @param allowNonAbsoluteURI
-	 *            true to permit non-absolute URIs, in case of relative URI,
-	 *            false otherwise.
+	 *                            true to permit non-absolute URIs, in case of
+	 *                            relative URI,
+	 *                            false otherwise.
 	 *
 	 * @exception MalformedURIException
-	 *                if p_base is null and p_uriSpec is not an absolute URI or
-	 *                if p_uriSpec violates syntax rules
+	 *                                  if p_base is null and p_uriSpec is not
+	 *                                  an absolute URI or
+	 *                                  if p_uriSpec violates syntax rules
 	 */
-	private void initialize(URI p_base, String p_uriSpec, boolean allowNonAbsoluteURI)
-			throws MalformedURIException {
+	private void initialize(URI p_base, String p_uriSpec,
+			boolean allowNonAbsoluteURI) throws MalformedURIException {
 
 		String uriSpec = p_uriSpec;
 		int uriSpecLen = (uriSpec != null) ? uriSpec.length() : 0;
@@ -511,7 +547,8 @@ public class URI implements Serializable {
 				m_path = "";
 				return;
 			}
-			throw new MalformedURIException("Cannot initialize URI with empty parameters.");
+			throw new MalformedURIException(
+					"Cannot initialize URI with empty parameters.");
 		}
 
 		// just make a copy of the base if spec is empty
@@ -531,9 +568,11 @@ public class URI implements Serializable {
 			int queryIdx = uriSpec.lastIndexOf('?', searchFrom);
 			int fragmentIdx = uriSpec.lastIndexOf('#', searchFrom);
 
-			if (colonIdx == 0 || slashIdx != -1 || queryIdx != -1 || fragmentIdx != -1) {
+			if (colonIdx == 0 || slashIdx != -1 || queryIdx != -1
+					|| fragmentIdx != -1) {
 				// A standalone base is a valid URI according to spec
-				if (colonIdx == 0 || (p_base == null && fragmentIdx != 0 && !allowNonAbsoluteURI)) {
+				if (colonIdx == 0 || (p_base == null && fragmentIdx != 0
+						&& !allowNonAbsoluteURI)) {
 					throw new MalformedURIException("No scheme found in URI.");
 				}
 			} else {
@@ -541,11 +580,14 @@ public class URI implements Serializable {
 				index = m_scheme.length() + 1;
 
 				// Neither 'scheme:' or 'scheme:#fragment' are valid URIs.
-				if (colonIdx == uriSpecLen - 1 || uriSpec.charAt(colonIdx + 1) == '#') {
-					throw new MalformedURIException("Scheme specific part cannot be empty.");
+				if (colonIdx == uriSpecLen - 1 || uriSpec.charAt(colonIdx
+						+ 1) == '#') {
+					throw new MalformedURIException(
+							"Scheme specific part cannot be empty.");
 				}
 			}
-		} else if (p_base == null && uriSpec.indexOf('#') != 0 && !allowNonAbsoluteURI) {
+		} else if (p_base == null && uriSpec.indexOf('#') != 0
+				&& !allowNonAbsoluteURI) {
 			throw new MalformedURIException("No scheme found in URI.");
 		}
 
@@ -563,8 +605,8 @@ public class URI implements Serializable {
 		//
 		// net_path = "//" authority [ abs_path ]
 		// abs_path = "/" path_segments
-		if (((index + 1) < uriSpecLen)
-				&& (uriSpec.charAt(index) == '/' && uriSpec.charAt(index + 1) == '/')) {
+		if (((index + 1) < uriSpecLen) && (uriSpec.charAt(index) == '/'
+				&& uriSpec.charAt(index + 1) == '/')) {
 			index += 2;
 			int startPos = index;
 
@@ -611,22 +653,27 @@ public class URI implements Serializable {
 	 * paths.
 	 *
 	 * @param p_base
-	 *            the base URI (may be null if p_uriSpec is an absolute URI)
+	 *                  the base URI (may be null if p_uriSpec is an absolute
+	 *                  URI)
 	 * @param p_uriSpec
-	 *            the URI spec string which may be an absolute or relative URI
-	 *            (can only be null/empty if p_base is not null)
+	 *                  the URI spec string which may be an absolute or relative
+	 *                  URI
+	 *                  (can only be null/empty if p_base is not null)
 	 *
 	 * @exception MalformedURIException
-	 *                if p_base is null and p_uriSpec is not an absolute URI or
-	 *                if p_uriSpec violates syntax rules
+	 *                                  if p_base is null and p_uriSpec is not
+	 *                                  an absolute URI or
+	 *                                  if p_uriSpec violates syntax rules
 	 */
-	private void initialize(URI p_base, String p_uriSpec) throws MalformedURIException {
+	private void initialize(URI p_base, String p_uriSpec)
+			throws MalformedURIException {
 
 		String uriSpec = p_uriSpec;
 		int uriSpecLen = (uriSpec != null) ? uriSpec.length() : 0;
 
 		if (p_base == null && uriSpecLen == 0) {
-			throw new MalformedURIException("Cannot initialize URI with empty parameters.");
+			throw new MalformedURIException(
+					"Cannot initialize URI with empty parameters.");
 		}
 
 		// just make a copy of the base if spec is empty
@@ -646,7 +693,8 @@ public class URI implements Serializable {
 			int queryIdx = uriSpec.lastIndexOf('?', searchFrom);
 			int fragmentIdx = uriSpec.lastIndexOf('#', searchFrom);
 
-			if (colonIdx == 0 || slashIdx != -1 || queryIdx != -1 || fragmentIdx != -1) {
+			if (colonIdx == 0 || slashIdx != -1 || queryIdx != -1
+					|| fragmentIdx != -1) {
 				// A standalone base is a valid URI according to spec
 				if (colonIdx == 0 || (p_base == null && fragmentIdx != 0)) {
 					throw new MalformedURIException("No scheme found in URI.");
@@ -656,8 +704,10 @@ public class URI implements Serializable {
 				index = m_scheme.length() + 1;
 
 				// Neither 'scheme:' or 'scheme:#fragment' are valid URIs.
-				if (colonIdx == uriSpecLen - 1 || uriSpec.charAt(colonIdx + 1) == '#') {
-					throw new MalformedURIException("Scheme specific part cannot be empty.");
+				if (colonIdx == uriSpecLen - 1 || uriSpec.charAt(colonIdx
+						+ 1) == '#') {
+					throw new MalformedURIException(
+							"Scheme specific part cannot be empty.");
 				}
 			}
 		} else if (p_base == null && uriSpec.indexOf('#') != 0) {
@@ -678,8 +728,8 @@ public class URI implements Serializable {
 		//
 		// net_path = "//" authority [ abs_path ]
 		// abs_path = "/" path_segments
-		if (((index + 1) < uriSpecLen)
-				&& (uriSpec.charAt(index) == '/' && uriSpec.charAt(index + 1) == '/')) {
+		if (((index + 1) < uriSpecLen) && (uriSpec.charAt(index) == '/'
+				&& uriSpec.charAt(index + 1) == '/')) {
 			index += 2;
 			int startPos = index;
 
@@ -728,7 +778,7 @@ public class URI implements Serializable {
 	 * Absolutize URI with given base URI.
 	 *
 	 * @param p_base
-	 *            base URI for absolutization
+	 *               base URI for absolutization
 	 */
 	public void absolutize(URI p_base) {
 
@@ -739,7 +789,8 @@ public class URI implements Serializable {
 		// string or a fragment (e.g. "?y" or "#s") -
 		// see <http://www.ics.uci.edu/~fielding/url/test1.html> which
 		// identified this as a bug in the RFC
-		if (m_path.length() == 0 && m_scheme == null && m_host == null && m_regAuthority == null) {
+		if (m_path.length() == 0 && m_scheme == null && m_host == null
+				&& m_regAuthority == null) {
 			m_scheme = p_base.getScheme();
 			m_userinfo = p_base.getUserinfo();
 			m_host = p_base.getHost();
@@ -802,7 +853,8 @@ public class URI implements Serializable {
 		// 6c - remove all "./" where "." is a complete path segment
 		int index = -1;
 		while ((index = path.indexOf("/./")) != -1) {
-			path = path.substring(0, index + 1).concat(path.substring(index + 3));
+			path = path.substring(0, index + 1).concat(path.substring(index
+					+ 3));
 		}
 
 		// 6d - remove "." if path ends with "." as a complete path segment
@@ -821,7 +873,8 @@ public class URI implements Serializable {
 			segIndex = tempString.lastIndexOf('/');
 			if (segIndex != -1) {
 				if (!tempString.substring(segIndex).equals("..")) {
-					path = path.substring(0, segIndex + 1).concat(path.substring(index + 4));
+					path = path.substring(0, segIndex + 1).concat(path
+							.substring(index + 4));
 					index = segIndex;
 				} else {
 					index += 4;
@@ -847,12 +900,13 @@ public class URI implements Serializable {
 	 * Initialize the scheme for this URI from a URI string spec.
 	 *
 	 * @param p_uriSpec
-	 *            the URI specification (cannot be null)
+	 *                  the URI specification (cannot be null)
 	 *
 	 * @exception MalformedURIException
-	 *                if URI does not have a conformant scheme
+	 *                                  if URI does not have a conformant scheme
 	 */
-	private void initializeScheme(String p_uriSpec) throws MalformedURIException {
+	private void initializeScheme(String p_uriSpec)
+			throws MalformedURIException {
 		int uriSpecLen = p_uriSpec.length();
 		int index = 0;
 		String scheme = null;
@@ -860,7 +914,8 @@ public class URI implements Serializable {
 
 		while (index < uriSpecLen) {
 			testChar = p_uriSpec.charAt(index);
-			if (testChar == ':' || testChar == '/' || testChar == '?' || testChar == '#') {
+			if (testChar == ':' || testChar == '/' || testChar == '?'
+					|| testChar == '#') {
 				break;
 			}
 			index++;
@@ -879,7 +934,7 @@ public class URI implements Serializable {
 	 * from a URI string spec.
 	 *
 	 * @param p_uriSpec
-	 *            the URI specification (cannot be null)
+	 *                  the URI specification (cannot be null)
 	 *
 	 * @return true if the given string matched server or registry based
 	 *         authority
@@ -981,16 +1036,17 @@ public class URI implements Serializable {
 	 * a server authority.
 	 *
 	 * @param host
-	 *            the host component of authority
+	 *                 the host component of authority
 	 * @param port
-	 *            the port number component of authority
+	 *                 the port number component of authority
 	 * @param userinfo
-	 *            the user info component of authority
+	 *                 the user info component of authority
 	 *
 	 * @return true if the given host, port, and userinfo compose a valid server
 	 *         authority
 	 */
-	private boolean isValidServerBasedAuthority(String host, int port, String userinfo) {
+	private boolean isValidServerBasedAuthority(String host, int port,
+			String userinfo) {
 
 		// Check if the host is well formed.
 		if (!isWellFormedAddress(host)) {
@@ -1033,7 +1089,7 @@ public class URI implements Serializable {
 	 * Determines whether the given string is a registry based authority.
 	 *
 	 * @param authority
-	 *            the authority component of a URI
+	 *                  the authority component of a URI
 	 *
 	 * @return true if the given string is a registry based authority
 	 */
@@ -1067,16 +1123,18 @@ public class URI implements Serializable {
 	 * Initialize the path for this URI from a URI string spec.
 	 *
 	 * @param p_uriSpec
-	 *            the URI specification (cannot be null)
+	 *                      the URI specification (cannot be null)
 	 * @param p_nStartIndex
-	 *            the index to begin scanning from
+	 *                      the index to begin scanning from
 	 *
 	 * @exception MalformedURIException
-	 *                if p_uriSpec violates syntax rules
+	 *                                  if p_uriSpec violates syntax rules
 	 */
-	private void initializePath(String p_uriSpec, int p_nStartIndex) throws MalformedURIException {
+	private void initializePath(String p_uriSpec, int p_nStartIndex)
+			throws MalformedURIException {
 		if (p_uriSpec == null) {
-			throw new MalformedURIException("Cannot initialize path from null string!");
+			throw new MalformedURIException(
+					"Cannot initialize path from null string!");
 		}
 
 		int index = p_nStartIndex;
@@ -1097,8 +1155,8 @@ public class URI implements Serializable {
 
 					// check for valid escape sequence
 					if (testChar == '%') {
-						if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1))
-								|| !isHex(p_uriSpec.charAt(index + 2))) {
+						if (index + 2 >= end || !isHex(p_uriSpec.charAt(index
+								+ 1)) || !isHex(p_uriSpec.charAt(index + 2))) {
 							throw new MalformedURIException(
 									"Path contains invalid escape sequence!");
 						}
@@ -1128,8 +1186,8 @@ public class URI implements Serializable {
 
 					// check for valid escape sequence
 					if (testChar == '%') {
-						if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1))
-								|| !isHex(p_uriSpec.charAt(index + 2))) {
+						if (index + 2 >= end || !isHex(p_uriSpec.charAt(index
+								+ 1)) || !isHex(p_uriSpec.charAt(index + 2))) {
 							throw new MalformedURIException(
 									"Opaque part contains invalid escape sequence!");
 						}
@@ -1142,7 +1200,8 @@ public class URI implements Serializable {
 					// contains '[' and ']'. - mrglavas
 					else if (!isURICharacter(testChar)) {
 						throw new MalformedURIException(
-								"Opaque part contains invalid character: " + testChar);
+								"Opaque part contains invalid character: "
+										+ testChar);
 					}
 					++index;
 				}
@@ -1168,7 +1227,8 @@ public class URI implements Serializable {
 					index += 2;
 				} else if (!isURICharacter(testChar)) {
 					throw new MalformedURIException(
-							"Query string contains invalid character: " + testChar);
+							"Query string contains invalid character: "
+									+ testChar);
 				}
 				index++;
 			}
@@ -1332,16 +1392,19 @@ public class URI implements Serializable {
 	 * fragment).
 	 *
 	 * @param p_includeQueryString
-	 *            if true (and query string is not null), then a "?" followed by
-	 *            the query string will be appended
+	 *                             if true (and query string is not null), then
+	 *                             a "?" followed by
+	 *                             the query string will be appended
 	 * @param p_includeFragment
-	 *            if true (and fragment is not null), then a "#" followed by the
-	 *            fragment will be appended
+	 *                             if true (and fragment is not null), then a
+	 *                             "#" followed by the
+	 *                             fragment will be appended
 	 *
 	 * @return the path for this URI possibly including the query string and
 	 *         fragment
 	 */
-	public String getPath(boolean p_includeQueryString, boolean p_includeFragment) {
+	public String getPath(boolean p_includeQueryString,
+			boolean p_includeFragment) {
 		final StringBuilder pathString = new StringBuilder(m_path);
 
 		if (p_includeQueryString && m_queryString != null) {
@@ -1393,14 +1456,16 @@ public class URI implements Serializable {
 	 * it is set.
 	 *
 	 * @param p_scheme
-	 *            the scheme for this URI (cannot be null)
+	 *                 the scheme for this URI (cannot be null)
 	 *
 	 * @exception MalformedURIException
-	 *                if p_scheme is not a conformant scheme name
+	 *                                  if p_scheme is not a conformant scheme
+	 *                                  name
 	 */
 	public void setScheme(String p_scheme) throws MalformedURIException {
 		if (p_scheme == null) {
-			throw new MalformedURIException("Cannot set scheme from null string!");
+			throw new MalformedURIException(
+					"Cannot set scheme from null string!");
 		}
 		if (!isConformantSchemeName(p_scheme)) {
 			throw new MalformedURIException("The scheme is not conformant.");
@@ -1414,10 +1479,11 @@ public class URI implements Serializable {
 	 * host value is null, then an exception is thrown.
 	 *
 	 * @param p_userinfo
-	 *            the userinfo for this URI
+	 *                   the userinfo for this URI
 	 *
 	 * @exception MalformedURIException
-	 *                if p_userinfo contains invalid characters
+	 *                                  if p_userinfo contains invalid
+	 *                                  characters
 	 */
 	public void setUserinfo(String p_userinfo) throws MalformedURIException {
 		if (p_userinfo == null) {
@@ -1425,7 +1491,8 @@ public class URI implements Serializable {
 			return;
 		} else {
 			if (m_host == null) {
-				throw new MalformedURIException("Userinfo cannot be set when host is null!");
+				throw new MalformedURIException(
+						"Userinfo cannot be set when host is null!");
 			}
 
 			// userinfo can contain alphanumerics, mark characters, escaped
@@ -1463,10 +1530,11 @@ public class URI implements Serializable {
 	 * </p>
 	 *
 	 * @param p_host
-	 *            the host for this URI
+	 *               the host for this URI
 	 *
 	 * @exception MalformedURIException
-	 *                if p_host is not a valid IP address or DNS hostname.
+	 *                                  if p_host is not a valid IP address or
+	 *                                  DNS hostname.
 	 */
 	public void setHost(String p_host) throws MalformedURIException {
 		if (p_host == null || p_host.length() == 0) {
@@ -1478,7 +1546,8 @@ public class URI implements Serializable {
 			m_port = -1;
 			return;
 		} else if (!isWellFormedAddress(p_host)) {
-			throw new MalformedURIException("Host is not a well formed address!");
+			throw new MalformedURIException(
+					"Host is not a well formed address!");
 		}
 		m_host = p_host;
 		m_regAuthority = null;
@@ -1491,15 +1560,17 @@ public class URI implements Serializable {
 	 * is thrown.
 	 *
 	 * @param p_port
-	 *            the port number for this URI
+	 *               the port number for this URI
 	 *
 	 * @exception MalformedURIException
-	 *                if p_port is not -1 and not a valid port number
+	 *                                  if p_port is not -1 and not a valid port
+	 *                                  number
 	 */
 	public void setPort(int p_port) throws MalformedURIException {
 		if (p_port >= 0 && p_port <= 65535) {
 			if (m_host == null) {
-				throw new MalformedURIException("Port cannot be set when host is null!");
+				throw new MalformedURIException(
+						"Port cannot be set when host is null!");
 			}
 		} else if (p_port != -1) {
 			throw new MalformedURIException("Invalid port number!");
@@ -1518,12 +1589,14 @@ public class URI implements Serializable {
 	 * </p>
 	 *
 	 * @param authority
-	 *            the registry based authority for this URI
+	 *                  the registry based authority for this URI
 	 *
 	 * @exception MalformedURIException
-	 *                it authority is not a well formed registry based authority
+	 *                                  it authority is not a well formed
+	 *                                  registry based authority
 	 */
-	public void setRegBasedAuthority(String authority) throws MalformedURIException {
+	public void setRegBasedAuthority(String authority)
+			throws MalformedURIException {
 
 		if (authority == null) {
 			m_regAuthority = null;
@@ -1531,9 +1604,10 @@ public class URI implements Serializable {
 		}
 		// reg_name = 1*( unreserved | escaped | "$" | "," |
 		// ";" | ":" | "@" | "&" | "=" | "+" )
-		else if (authority.length() < 1 || !isValidRegistryBasedAuthority(authority)
-				|| authority.indexOf('/') != -1) {
-			throw new MalformedURIException("Registry based authority is not well formed.");
+		else if (authority.length() < 1 || !isValidRegistryBasedAuthority(
+				authority) || authority.indexOf('/') != -1) {
+			throw new MalformedURIException(
+					"Registry based authority is not well formed.");
 		}
 		m_regAuthority = authority;
 		m_host = null;
@@ -1550,10 +1624,10 @@ public class URI implements Serializable {
 	 * generic URI syntax, this method sets the scheme-specific part.
 	 *
 	 * @param p_path
-	 *            the path for this URI (may be null)
+	 *               the path for this URI (may be null)
 	 *
 	 * @exception MalformedURIException
-	 *                if p_path contains invalid characters
+	 *                                  if p_path contains invalid characters
 	 */
 	public void setPath(String p_path) throws MalformedURIException {
 		if (p_path == null) {
@@ -1574,10 +1648,10 @@ public class URI implements Serializable {
 	 * segment is appended.
 	 *
 	 * @param p_addToPath
-	 *            the new segment to be added to the current path
+	 *                    the new segment to be added to the current path
 	 *
 	 * @exception MalformedURIException
-	 *                if p_addToPath contains syntax errors
+	 *                                  if p_addToPath contains syntax errors
 	 */
 	public void appendPath(String p_addToPath) throws MalformedURIException {
 		if (p_addToPath == null || p_addToPath.trim().length() == 0) {
@@ -1615,21 +1689,27 @@ public class URI implements Serializable {
 	 * null.
 	 *
 	 * @param p_queryString
-	 *            the query string for this URI
+	 *                      the query string for this URI
 	 *
 	 * @exception MalformedURIException
-	 *                if p_queryString is not null and this URI does not conform
-	 *                to the generic URI syntax or if the path is null
+	 *                                  if p_queryString is not null and this
+	 *                                  URI does not conform
+	 *                                  to the generic URI syntax or if the path
+	 *                                  is null
 	 */
-	public void setQueryString(String p_queryString) throws MalformedURIException {
+	public void setQueryString(String p_queryString)
+			throws MalformedURIException {
 		if (p_queryString == null) {
 			m_queryString = null;
 		} else if (!isGenericURI()) {
-			throw new MalformedURIException("Query string can only be set for a generic URI!");
+			throw new MalformedURIException(
+					"Query string can only be set for a generic URI!");
 		} else if (getPath() == null) {
-			throw new MalformedURIException("Query string cannot be set when path is null!");
+			throw new MalformedURIException(
+					"Query string cannot be set when path is null!");
 		} else if (!isURIString(p_queryString)) {
-			throw new MalformedURIException("Query string contains invalid character!");
+			throw new MalformedURIException(
+					"Query string contains invalid character!");
 		} else {
 			m_queryString = p_queryString;
 		}
@@ -1641,21 +1721,26 @@ public class URI implements Serializable {
 	 * null.
 	 *
 	 * @param p_fragment
-	 *            the fragment for this URI
+	 *                   the fragment for this URI
 	 *
 	 * @exception MalformedURIException
-	 *                if p_fragment is not null and this URI does not conform to
-	 *                the generic URI syntax or if the path is null
+	 *                                  if p_fragment is not null and this URI
+	 *                                  does not conform to
+	 *                                  the generic URI syntax or if the path is
+	 *                                  null
 	 */
 	public void setFragment(String p_fragment) throws MalformedURIException {
 		if (p_fragment == null) {
 			m_fragment = null;
 		} else if (!isGenericURI()) {
-			throw new MalformedURIException("Fragment can only be set for a generic URI!");
+			throw new MalformedURIException(
+					"Fragment can only be set for a generic URI!");
 		} else if (getPath() == null) {
-			throw new MalformedURIException("Fragment cannot be set when path is null!");
+			throw new MalformedURIException(
+					"Fragment cannot be set when path is null!");
 		} else if (!isURIString(p_fragment)) {
-			throw new MalformedURIException("Fragment contains invalid character!");
+			throw new MalformedURIException(
+					"Fragment contains invalid character!");
 		} else {
 			m_fragment = p_fragment;
 		}
@@ -1665,7 +1750,7 @@ public class URI implements Serializable {
 	 * Determines if the passed-in Object is equivalent to this URI.
 	 *
 	 * @param p_test
-	 *            the Object to test for equality.
+	 *               the Object to test for equality.
 	 *
 	 * @return true if p_test is a URI with all values equal to this URI, false
 	 *         otherwise
@@ -1674,21 +1759,30 @@ public class URI implements Serializable {
 	public boolean equals(Object p_test) {
 		if (p_test instanceof URI) {
 			URI testURI = (URI) p_test;
-			if (((m_scheme == null && testURI.m_scheme == null) || (m_scheme != null
-					&& testURI.m_scheme != null && m_scheme.equals(testURI.m_scheme)))
-					&& ((m_userinfo == null && testURI.m_userinfo == null) || (m_userinfo != null
-							&& testURI.m_userinfo != null && m_userinfo.equals(testURI.m_userinfo)))
-					&& ((m_host == null && testURI.m_host == null) || (m_host != null
-							&& testURI.m_host != null && m_host.equals(testURI.m_host)))
-					&& m_port == testURI.m_port
-					&& ((m_path == null && testURI.m_path == null) || (m_path != null
-							&& testURI.m_path != null && m_path.equals(testURI.m_path)))
+			if (((m_scheme == null && testURI.m_scheme == null)
+					|| (m_scheme != null && testURI.m_scheme != null && m_scheme
+							.equals(testURI.m_scheme))) && ((m_userinfo == null
+									&& testURI.m_userinfo == null)
+									|| (m_userinfo != null
+											&& testURI.m_userinfo != null
+											&& m_userinfo.equals(
+													testURI.m_userinfo)))
+					&& ((m_host == null && testURI.m_host == null)
+							|| (m_host != null && testURI.m_host != null
+									&& m_host.equals(testURI.m_host)))
+					&& m_port == testURI.m_port && ((m_path == null
+							&& testURI.m_path == null) || (m_path != null
+									&& testURI.m_path != null && m_path.equals(
+											testURI.m_path)))
 					&& ((m_queryString == null && testURI.m_queryString == null)
-							|| (m_queryString != null && testURI.m_queryString != null
-									&& m_queryString.equals(testURI.m_queryString)))
+							|| (m_queryString != null
+									&& testURI.m_queryString != null
+									&& m_queryString.equals(
+											testURI.m_queryString)))
 					&& ((m_fragment == null && testURI.m_fragment == null)
 							|| (m_fragment != null && testURI.m_fragment != null
-									&& m_fragment.equals(testURI.m_fragment)))) {
+									&& m_fragment.equals(
+											testURI.m_fragment)))) {
 				return true;
 			}
 		}
@@ -1803,7 +1897,8 @@ public class URI implements Serializable {
 		}
 
 		// Cannot start with a '.', '-', or end with a '-'.
-		if (address.startsWith(".") || address.startsWith("-") || address.endsWith("-")) {
+		if (address.startsWith(".") || address.startsWith("-") || address
+				.endsWith("-")) {
 			return false;
 		}
 
@@ -1840,7 +1935,8 @@ public class URI implements Serializable {
 					if (!isAlphanum(address.charAt(i - 1))) {
 						return false;
 					}
-					if (i + 1 < addrLength && !isAlphanum(address.charAt(i + 1))) {
+					if (i + 1 < addrLength && !isAlphanum(address.charAt(i
+							+ 1))) {
 						return false;
 					}
 					labelCharCount = 0;
@@ -1891,8 +1987,8 @@ public class URI implements Serializable {
 		for (int i = 0; i < addrLength; i++) {
 			testChar = address.charAt(i);
 			if (testChar == '.') {
-				if ((i > 0 && !isDigit(address.charAt(i - 1)))
-						|| (i + 1 < addrLength && !isDigit(address.charAt(i + 1)))) {
+				if ((i > 0 && !isDigit(address.charAt(i - 1))) || (i
+						+ 1 < addrLength && !isDigit(address.charAt(i + 1)))) {
 					return false;
 				}
 				numDigits = 0;
@@ -1911,8 +2007,8 @@ public class URI implements Serializable {
 			else if (numDigits == 3) {
 				char first = address.charAt(i - 2);
 				char second = address.charAt(i - 1);
-				if (!(first < '2' || (first == '2'
-						&& (second < '5' || (second == '5' && testChar <= '5'))))) {
+				if (!(first < '2' || (first == '2' && (second < '5'
+						|| (second == '5' && testChar <= '5'))))) {
 					return false;
 				}
 			}
@@ -1947,7 +2043,8 @@ public class URI implements Serializable {
 		int end = addrLength - 1;
 
 		// Check if string is a potential match for IPv6reference.
-		if (!(addrLength > 2 && address.charAt(0) == '[' && address.charAt(end) == ']')) {
+		if (!(addrLength > 2 && address.charAt(0) == '[' && address.charAt(
+				end) == ']')) {
 			return false;
 		}
 
@@ -1980,8 +2077,8 @@ public class URI implements Serializable {
 			// the remainder of the string must match IPv4Address,
 			// and we must have read exactly 6 16-bit groups.
 			else {
-				return (counter[0] == 6)
-						&& isWellFormedIPv4Address(address.substring(index + 1, end));
+				return (counter[0] == 6) && isWellFormedIPv4Address(address
+						.substring(index + 1, end));
 			}
 		} else {
 			return false;
@@ -1994,8 +2091,8 @@ public class URI implements Serializable {
 		// We've either reached the end of the string, the address ends in
 		// an IPv4 address, or it is invalid. scanHexSequence has already
 		// made sure that we have the right number of bits.
-		return (index == end) || (index != -1 && isWellFormedIPv4Address(
-				address.substring((counter[0] > prevCount) ? index + 1 : index, end)));
+		return (index == end) || (index != -1 && isWellFormedIPv4Address(address
+				.substring((counter[0] > prevCount) ? index + 1 : index, end)));
 	}
 
 	/**
@@ -2004,19 +2101,20 @@ public class URI implements Serializable {
 	 * the address, or -1 if the string cannot match a valid IPv6 address.
 	 *
 	 * @param address
-	 *            the string to be scanned
+	 *                the string to be scanned
 	 * @param index
-	 *            the beginning index (inclusive)
+	 *                the beginning index (inclusive)
 	 * @param end
-	 *            the ending index (exclusive)
+	 *                the ending index (exclusive)
 	 * @param counter
-	 *            a counter for the number of 16-bit sections read in the
-	 *            address
+	 *                a counter for the number of 16-bit sections read in the
+	 *                address
 	 *
 	 * @return the index of the next character to scan, or -1 if the string
 	 *         cannot match a valid IPv6 address
 	 */
-	private static int scanHexSequence(String address, int index, int end, int[] counter) {
+	private static int scanHexSequence(String address, int index, int end,
+			int[] counter) {
 
 		char testChar;
 		int numDigits = 0;
@@ -2034,7 +2132,8 @@ public class URI implements Serializable {
 					return -1;
 				}
 				// This could be '::'.
-				if (numDigits == 0 || ((index + 1 < end) && address.charAt(index + 1) == ':')) {
+				if (numDigits == 0 || ((index + 1 < end) && address.charAt(index
+						+ 1) == ':')) {
 					return index;
 				}
 				numDigits = 0;
@@ -2044,7 +2143,8 @@ public class URI implements Serializable {
 			// backup to just after the last valid character that matches
 			// hexseq.
 			else if (!isHex(testChar)) {
-				if (testChar == '.' && numDigits < 4 && numDigits > 0 && counter[0] <= 6) {
+				if (testChar == '.' && numDigits < 4 && numDigits > 0
+						&& counter[0] <= 6) {
 					int back = index - numDigits - 1;
 					return (back >= start) ? back : (back + 1);
 				}
@@ -2074,7 +2174,8 @@ public class URI implements Serializable {
 	 *         'F', false otherwise
 	 */
 	private static boolean isHex(char p_char) {
-		return (p_char <= 'f' && (fgLookupTable[p_char] & ASCII_HEX_CHARACTERS) != 0);
+		return (p_char <= 'f' && (fgLookupTable[p_char]
+				& ASCII_HEX_CHARACTERS) != 0);
 	}
 
 	/**
@@ -2083,7 +2184,8 @@ public class URI implements Serializable {
 	 * @return true if the char is alphabetic, false otherwise
 	 */
 	private static boolean isAlpha(char p_char) {
-		return ((p_char >= 'a' && p_char <= 'z') || (p_char >= 'A' && p_char <= 'Z'));
+		return ((p_char >= 'a' && p_char <= 'z') || (p_char >= 'A'
+				&& p_char <= 'Z'));
 	}
 
 	/**
@@ -2092,7 +2194,8 @@ public class URI implements Serializable {
 	 * @return true if the char is alphanumeric, false otherwise
 	 */
 	private static boolean isAlphanum(char p_char) {
-		return (p_char <= 'z' && (fgLookupTable[p_char] & MASK_ALPHA_NUMERIC) != 0);
+		return (p_char <= 'z' && (fgLookupTable[p_char]
+				& MASK_ALPHA_NUMERIC) != 0);
 	}
 
 	/**
@@ -2102,7 +2205,8 @@ public class URI implements Serializable {
 	 * @return true if the string contains any reserved characters
 	 */
 	private static boolean isReservedCharacter(char p_char) {
-		return (p_char <= ']' && (fgLookupTable[p_char] & RESERVED_CHARACTERS) != 0);
+		return (p_char <= ']' && (fgLookupTable[p_char]
+				& RESERVED_CHARACTERS) != 0);
 	}
 
 	/**
@@ -2111,7 +2215,8 @@ public class URI implements Serializable {
 	 * @return true if the char is unreserved, false otherwise
 	 */
 	private static boolean isUnreservedCharacter(char p_char) {
-		return (p_char <= '~' && (fgLookupTable[p_char] & MASK_UNRESERVED_MASK) != 0);
+		return (p_char <= '~' && (fgLookupTable[p_char]
+				& MASK_UNRESERVED_MASK) != 0);
 	}
 
 	/**
@@ -2121,7 +2226,8 @@ public class URI implements Serializable {
 	 * @return true if the char is a URI character, false otherwise
 	 */
 	private static boolean isURICharacter(char p_char) {
-		return (p_char <= '~' && (fgLookupTable[p_char] & MASK_URI_CHARACTER) != 0);
+		return (p_char <= '~' && (fgLookupTable[p_char]
+				& MASK_URI_CHARACTER) != 0);
 	}
 
 	/**
@@ -2130,7 +2236,8 @@ public class URI implements Serializable {
 	 * @return true if the char is a scheme character, false otherwise
 	 */
 	private static boolean isSchemeCharacter(char p_char) {
-		return (p_char <= 'z' && (fgLookupTable[p_char] & MASK_SCHEME_CHARACTER) != 0);
+		return (p_char <= 'z' && (fgLookupTable[p_char]
+				& MASK_SCHEME_CHARACTER) != 0);
 	}
 
 	/**
@@ -2139,7 +2246,8 @@ public class URI implements Serializable {
 	 * @return true if the char is a userinfo character, false otherwise
 	 */
 	private static boolean isUserinfoCharacter(char p_char) {
-		return (p_char <= 'z' && (fgLookupTable[p_char] & MASK_USERINFO_CHARACTER) != 0);
+		return (p_char <= 'z' && (fgLookupTable[p_char]
+				& MASK_USERINFO_CHARACTER) != 0);
 	}
 
 	/**
@@ -2148,7 +2256,8 @@ public class URI implements Serializable {
 	 * @return true if the char is a path character, false otherwise
 	 */
 	private static boolean isPathCharacter(char p_char) {
-		return (p_char <= '~' && (fgLookupTable[p_char] & MASK_PATH_CHARACTER) != 0);
+		return (p_char <= '~' && (fgLookupTable[p_char]
+				& MASK_PATH_CHARACTER) != 0);
 	}
 
 	/**
@@ -2167,7 +2276,8 @@ public class URI implements Serializable {
 		for (int i = 0; i < end; i++) {
 			testChar = p_uric.charAt(i);
 			if (testChar == '%') {
-				if (i + 2 >= end || !isHex(p_uric.charAt(i + 1)) || !isHex(p_uric.charAt(i + 2))) {
+				if (i + 2 >= end || !isHex(p_uric.charAt(i + 1)) || !isHex(
+						p_uric.charAt(i + 2))) {
 					return false;
 				} else {
 					i += 2;

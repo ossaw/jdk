@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,20 +41,20 @@ import com.sun.org.apache.xerces.internal.util.XMLChar;
 public class IDREFDatatypeValidator implements DatatypeValidator {
 
 	// construct an IDREF datatype validator
-	public IDREFDatatypeValidator() {
-	}
+	public IDREFDatatypeValidator() {}
 
 	/**
 	 * Checks that "content" string is valid IDREF value. If invalid a Datatype
 	 * validation exception is thrown.
 	 *
 	 * @param content
-	 *            the string value that needs to be validated
+	 *                the string value that needs to be validated
 	 * @param context
-	 *            the validation context
+	 *                the validation context
 	 * @throws InvalidDatatypeException
-	 *             if the content is invalid according to the rules for the
-	 *             validators
+	 *                                  if the content is invalid according to
+	 *                                  the rules for the
+	 *                                  validators
 	 * @see InvalidDatatypeValueException
 	 */
 	public void validate(String content, ValidationContext context)
@@ -67,12 +64,13 @@ public class IDREFDatatypeValidator implements DatatypeValidator {
 		// '-')*
 		if (context.useNamespaces()) {
 			if (!XMLChar.isValidNCName(content)) {
-				throw new InvalidDatatypeValueException("IDREFInvalidWithNamespaces",
-						new Object[] { content });
+				throw new InvalidDatatypeValueException(
+						"IDREFInvalidWithNamespaces", new Object[] { content });
 			}
 		} else {
 			if (!XMLChar.isValidName(content)) {
-				throw new InvalidDatatypeValueException("IDREFInvalid", new Object[] { content });
+				throw new InvalidDatatypeValueException("IDREFInvalid",
+						new Object[] { content });
 			}
 		}
 

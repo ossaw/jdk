@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.legacy.connection;
@@ -42,7 +22,8 @@ import com.sun.corba.se.impl.transport.SocketOrChannelAcceptorImpl;
  * @author Harold Carr
  */
 public class SocketFactoryAcceptorImpl extends SocketOrChannelAcceptorImpl {
-	public SocketFactoryAcceptorImpl(ORB orb, int port, String name, String type) {
+	public SocketFactoryAcceptorImpl(ORB orb, int port, String name,
+			String type) {
 		super(orb, port, name, type);
 	}
 
@@ -59,7 +40,8 @@ public class SocketFactoryAcceptorImpl extends SocketOrChannelAcceptorImpl {
 			dprint("initialize: " + this);
 		}
 		try {
-			serverSocket = orb.getORBData().getLegacySocketFactory().createServerSocket(type, port);
+			serverSocket = orb.getORBData().getLegacySocketFactory()
+					.createServerSocket(type, port);
 			internalInitialize();
 		} catch (Throwable t) {
 			throw wrapper.createListenerFailed(t, Integer.toString(port));

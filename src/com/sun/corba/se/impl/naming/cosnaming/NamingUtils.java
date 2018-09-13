@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.cosnaming;
@@ -30,8 +10,7 @@ import org.omg.CosNaming.NameComponent;
 
 public class NamingUtils {
 	// Do not instantiate this class
-	private NamingUtils() {
-	};
+	private NamingUtils() {};
 
 	/**
 	 * Debug flag which must be true for debug streams to be created and dprint
@@ -67,7 +46,7 @@ public class NamingUtils {
 	 * Prints the stacktrace of the supplied exception to the error stream.
 	 * 
 	 * @param e
-	 *            any Java exception.
+	 *          any Java exception.
 	 */
 	public static void printException(java.lang.Exception e) {
 		if (errStream != null)
@@ -80,14 +59,16 @@ public class NamingUtils {
 	 * Create a debug print stream to the supplied log file.
 	 * 
 	 * @param logFile
-	 *            the file to which debug output will go.
+	 *                the file to which debug output will go.
 	 * @exception IOException
-	 *                thrown if the file cannot be opened for output.
+	 *                        thrown if the file cannot be opened for output.
 	 */
-	public static void makeDebugStream(File logFile) throws java.io.IOException {
+	public static void makeDebugStream(File logFile)
+			throws java.io.IOException {
 		// Create an outputstream for debugging
 		java.io.OutputStream logOStream = new java.io.FileOutputStream(logFile);
-		java.io.DataOutputStream logDStream = new java.io.DataOutputStream(logOStream);
+		java.io.DataOutputStream logDStream = new java.io.DataOutputStream(
+				logOStream);
 		debugStream = new java.io.PrintStream(logDStream);
 
 		// Emit first message
@@ -98,15 +79,17 @@ public class NamingUtils {
 	 * Create a error print stream to the supplied file.
 	 * 
 	 * @param logFile
-	 *            the file to which error messages will go.
+	 *                the file to which error messages will go.
 	 * @exception IOException
-	 *                thrown if the file cannot be opened for output.
+	 *                        thrown if the file cannot be opened for output.
 	 */
 	public static void makeErrStream(File errFile) throws java.io.IOException {
 		if (debug) {
 			// Create an outputstream for errors
-			java.io.OutputStream errOStream = new java.io.FileOutputStream(errFile);
-			java.io.DataOutputStream errDStream = new java.io.DataOutputStream(errOStream);
+			java.io.OutputStream errOStream = new java.io.FileOutputStream(
+					errFile);
+			java.io.DataOutputStream errDStream = new java.io.DataOutputStream(
+					errOStream);
 			errStream = new java.io.PrintStream(errDStream);
 			dprint("Error stream setup completed.");
 		}

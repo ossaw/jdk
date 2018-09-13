@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -45,7 +25,7 @@ public class MissingFormatWidthException extends IllegalFormatException {
 	 * Constructs an instance of this class with the specified format specifier.
 	 *
 	 * @param s
-	 *            The format specifier which does not have a width
+	 *          The format specifier which does not have a width
 	 */
 	public MissingFormatWidthException(String s) {
 		if (s == null)

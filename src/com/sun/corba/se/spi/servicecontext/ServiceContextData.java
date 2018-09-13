@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.servicecontext;
@@ -68,7 +48,8 @@ public class ServiceContextData {
 			try {
 				scConstructor = cls.getConstructor(args);
 			} catch (NoSuchMethodException nsme) {
-				throwBadParam("Class does not have an InputStream constructor", nsme);
+				throwBadParam("Class does not have an InputStream constructor",
+						nsme);
 			}
 
 			if (ORB.ORBInitDebug)
@@ -79,17 +60,22 @@ public class ServiceContextData {
 			try {
 				fld = cls.getField("SERVICE_CONTEXT_ID");
 			} catch (NoSuchFieldException nsfe) {
-				throwBadParam("Class does not have a SERVICE_CONTEXT_ID member", nsfe);
+				throwBadParam("Class does not have a SERVICE_CONTEXT_ID member",
+						nsfe);
 			} catch (SecurityException se) {
 				throwBadParam("Could not access SERVICE_CONTEXT_ID member", se);
 			}
 
 			if (ORB.ORBInitDebug)
-				dprint("Checking modifiers of SERVICE_CONTEXT_ID field in " + cls);
+				dprint("Checking modifiers of SERVICE_CONTEXT_ID field in "
+						+ cls);
 
 			int mod = fld.getModifiers();
-			if (!Modifier.isPublic(mod) || !Modifier.isStatic(mod) || !Modifier.isFinal(mod))
-				throwBadParam("SERVICE_CONTEXT_ID field is not public static final", null);
+			if (!Modifier.isPublic(mod) || !Modifier.isStatic(mod) || !Modifier
+					.isFinal(mod))
+				throwBadParam(
+						"SERVICE_CONTEXT_ID field is not public static final",
+						null);
 
 			if (ORB.ORBInitDebug)
 				dprint("Getting value of SERVICE_CONTEXT_ID in " + cls);
@@ -99,7 +85,8 @@ public class ServiceContextData {
 			} catch (IllegalArgumentException iae) {
 				throwBadParam("SERVICE_CONTEXT_ID not convertible to int", iae);
 			} catch (IllegalAccessException iae2) {
-				throwBadParam("Could not access value of SERVICE_CONTEXT_ID", iae2);
+				throwBadParam("Could not access value of SERVICE_CONTEXT_ID",
+						iae2);
 			}
 		} catch (BAD_PARAM nssc) {
 			if (ORB.ORBInitDebug)
@@ -107,7 +94,8 @@ public class ServiceContextData {
 			throw nssc;
 		} catch (Throwable thr) {
 			if (ORB.ORBInitDebug)
-				dprint("Unexpected Exception in ServiceContextData constructor: " + thr);
+				dprint("Unexpected Exception in ServiceContextData constructor: "
+						+ thr);
 		}
 
 		if (ORB.ORBInitDebug)
@@ -131,10 +119,11 @@ public class ServiceContextData {
 		} catch (IllegalAccessException iae2) {
 			throwBadParam("InputStream constructor argument error", iae2);
 		} catch (InstantiationException ie) {
-			throwBadParam("InputStream constructor called for abstract class", ie);
+			throwBadParam("InputStream constructor called for abstract class",
+					ie);
 		} catch (InvocationTargetException ite) {
-			throwBadParam("InputStream constructor threw exception " + ite.getTargetException(),
-					ite);
+			throwBadParam("InputStream constructor threw exception " + ite
+					.getTargetException(), ite);
 		}
 
 		return sc;
@@ -145,8 +134,8 @@ public class ServiceContextData {
 	}
 
 	public String toString() {
-		return "ServiceContextData[ scClass=" + scClass + " scConstructor=" + scConstructor
-				+ " scId=" + scId + " ]";
+		return "ServiceContextData[ scClass=" + scClass + " scConstructor="
+				+ scConstructor + " scId=" + scId + " ]";
 	}
 
 	private Class scClass;

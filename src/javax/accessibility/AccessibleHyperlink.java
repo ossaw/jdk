@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -67,7 +47,7 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
 	 * Performs the specified Action on the object
 	 *
 	 * @param i
-	 *            zero-based index of actions
+	 *          zero-based index of actions
 	 * @return true if the action was performed; otherwise false.
 	 * @see #getAccessibleActionCount
 	 */
@@ -84,7 +64,7 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
 	 * alt="top hat"&gt;&lt;/a&gt; this method would return "top hat"
 	 *
 	 * @param i
-	 *            zero-based index of the actions
+	 *          zero-based index of the actions
 	 * @return a String description of the action
 	 * @see #getAccessibleActionCount
 	 */
@@ -97,7 +77,7 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
 	 * would return a java.net.URL("http://www.sun.com/access.html");
 	 *
 	 * @param i
-	 *            zero-based index of the actions
+	 *          zero-based index of the actions
 	 * @return an Object representing the hypertext link itself
 	 * @see #getAccessibleActionCount
 	 */
@@ -114,7 +94,7 @@ public abstract class AccessibleHyperlink implements AccessibleAction {
 	 * ImageIcon("top-hat.gif", "top hat");
 	 *
 	 * @param i
-	 *            zero-based index of the actions
+	 *          zero-based index of the actions
 	 * @return an Object representing the hypertext anchor
 	 * @see #getAccessibleActionCount
 	 */

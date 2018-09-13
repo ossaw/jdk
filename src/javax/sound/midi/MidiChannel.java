@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -71,9 +51,9 @@ public interface MidiChannel {
 	 * the note.
 	 *
 	 * @param noteNumber
-	 *            the MIDI note number, from 0 to 127 (60 = Middle C)
+	 *                   the MIDI note number, from 0 to 127 (60 = Middle C)
 	 * @param velocity
-	 *            the speed with which the key was depressed
+	 *                   the speed with which the key was depressed
 	 *
 	 * @see #noteOff(int, int)
 	 */
@@ -89,9 +69,9 @@ public interface MidiChannel {
 	 *
 	 *
 	 * @param noteNumber
-	 *            the MIDI note number, from 0 to 127 (60 = Middle C)
+	 *                   the MIDI note number, from 0 to 127 (60 = Middle C)
 	 * @param velocity
-	 *            the speed with which the key was released
+	 *                   the speed with which the key was released
 	 *
 	 * @see #noteOff(int)
 	 * @see #noteOn
@@ -104,7 +84,7 @@ public interface MidiChannel {
 	 * Turns the specified note off.
 	 *
 	 * @param noteNumber
-	 *            the MIDI note number, from 0 to 127 (60 = Middle C)
+	 *                   the MIDI note number, from 0 to 127 (60 = Middle C)
 	 *
 	 * @see #noteOff(int, int)
 	 */
@@ -122,10 +102,11 @@ public interface MidiChannel {
 	 * successful, use <code>getPolyPressure</code>.
 	 *
 	 * @param noteNumber
-	 *            the MIDI note number, from 0 to 127 (60 = Middle C)
+	 *                   the MIDI note number, from 0 to 127 (60 = Middle C)
 	 * @param pressure
-	 *            value for the specified key, from 0 to 127 (127 = maximum
-	 *            pressure)
+	 *                   value for the specified key, from 0 to 127 (127 =
+	 *                   maximum
+	 *                   pressure)
 	 *
 	 * @see #getPolyPressure(int)
 	 */
@@ -135,11 +116,13 @@ public interface MidiChannel {
 	 * Obtains the pressure with which the specified key is being depressed.
 	 *
 	 * @param noteNumber
-	 *            the MIDI note number, from 0 to 127 (60 = Middle C)
+	 *                   the MIDI note number, from 0 to 127 (60 = Middle C)
 	 *
-	 *            If the device does not support setting poly pressure, this
-	 *            method always returns 0. Calling <code>setPolyPressure</code>
-	 *            will have no effect then.
+	 *                   If the device does not support setting poly pressure,
+	 *                   this
+	 *                   method always returns 0. Calling
+	 *                   <code>setPolyPressure</code>
+	 *                   will have no effect then.
 	 *
 	 * @return the amount of pressure for that note, from 0 to 127 (127 =
 	 *         maximum pressure)
@@ -162,8 +145,9 @@ public interface MidiChannel {
 	 * successful, use <code>getChannelPressure</code>.
 	 *
 	 * @param pressure
-	 *            the pressure with which the keyboard is being depressed, from
-	 *            0 to 127 (127 = maximum pressure)
+	 *                 the pressure with which the keyboard is being depressed,
+	 *                 from
+	 *                 0 to 127 (127 = maximum pressure)
 	 * @see #setPolyPressure(int, int)
 	 * @see #getChannelPressure
 	 */
@@ -218,11 +202,12 @@ public interface MidiChannel {
 	 * .
 	 *
 	 * @param controller
-	 *            the controller number (0 to 127; see the MIDI 1.0
-	 *            Specification for the interpretation)
+	 *                   the controller number (0 to 127; see the MIDI 1.0
+	 *                   Specification for the interpretation)
 	 * @param value
-	 *            the value to which the specified controller is changed (0 to
-	 *            127)
+	 *                   the value to which the specified controller is changed
+	 *                   (0 to
+	 *                   127)
 	 *
 	 * @see #getController(int)
 	 */
@@ -241,9 +226,11 @@ public interface MidiChannel {
 	 * have no effect then.
 	 *
 	 * @param controller
-	 *            the number of the controller whose value is desired. The
-	 *            allowed range is 0-127; see the MIDI 1.0 Specification for the
-	 *            interpretation.
+	 *                   the number of the controller whose value is desired.
+	 *                   The
+	 *                   allowed range is 0-127; see the MIDI 1.0 Specification
+	 *                   for the
+	 *                   interpretation.
 	 *
 	 * @return the current value of the specified controller (0 to 127)
 	 *
@@ -268,7 +255,7 @@ public interface MidiChannel {
 	 * <code>programChange</code> was successful, use <code>getProgram</code>.
 	 *
 	 * @param program
-	 *            the program number to switch to (0 to 127)
+	 *                the program number to switch to (0 to 127)
 	 *
 	 * @see #programChange(int, int)
 	 * @see #getProgram()
@@ -289,9 +276,10 @@ public interface MidiChannel {
 	 * </pre>
 	 *
 	 * @param bank
-	 *            the bank number to switch to (0 to 16383)
+	 *                the bank number to switch to (0 to 16383)
 	 * @param program
-	 *            the program (patch) to use in the specified bank (0 to 127)
+	 *                the program (patch) to use in the specified bank (0 to
+	 *                127)
 	 * @see #programChange(int)
 	 * @see #getProgram()
 	 */
@@ -324,8 +312,8 @@ public interface MidiChannel {
 	 * successful, use <code>getPitchBend</code>.
 	 *
 	 * @param bend
-	 *            the amount of pitch change, as a nonnegative 14-bit value
-	 *            (8192 = no bend)
+	 *             the amount of pitch change, as a nonnegative 14-bit value
+	 *             (8192 = no bend)
 	 *
 	 * @see #getPitchBend
 	 */
@@ -384,8 +372,8 @@ public interface MidiChannel {
 	 * successful, check the return value.
 	 *
 	 * @param on
-	 *            <code>true</code> to turn local control on, <code>false</code>
-	 *            to turn local control off
+	 *           <code>true</code> to turn local control on, <code>false</code>
+	 *           to turn local control off
 	 * @return the new local-control value, or false if local control is not
 	 *         supported
 	 *
@@ -408,8 +396,8 @@ public interface MidiChannel {
 	 * successful, use <code>getMono</code>.
 	 *
 	 * @param on
-	 *            <code>true</code> to turn mono mode on, <code>false</code> to
-	 *            turn it off (which means turning poly mode on).
+	 *           <code>true</code> to turn mono mode on, <code>false</code> to
+	 *           turn it off (which means turning poly mode on).
 	 *
 	 * @see #getMono
 	 * @see VoiceStatus
@@ -438,8 +426,8 @@ public interface MidiChannel {
 	 * <code>getOmni</code>.
 	 *
 	 * @param on
-	 *            <code>true</code> to turn omni mode on, <code>false</code> to
-	 *            turn it off.
+	 *           <code>true</code> to turn omni mode on, <code>false</code> to
+	 *           turn it off.
 	 *
 	 * @see #getOmni
 	 * @see VoiceStatus
@@ -472,7 +460,7 @@ public interface MidiChannel {
 	 * successful, use <code>getMute</code>.
 	 *
 	 * @param mute
-	 *            the new mute state
+	 *             the new mute state
 	 *
 	 * @see #getMute
 	 * @see #setSolo(boolean)
@@ -503,7 +491,7 @@ public interface MidiChannel {
 	 * successful, use <code>getSolo</code>.
 	 *
 	 * @param soloState
-	 *            new solo state for the channel
+	 *                  new solo state for the channel
 	 * @see #getSolo()
 	 */
 	public void setSolo(boolean soloState);

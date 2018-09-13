@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -44,7 +24,8 @@ final class DesktopIconPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -52,13 +33,16 @@ final class DesktopIconPainter extends AbstractRegionPainter {
 	// by a particular instance of DesktopIconPainter would be created. For the
 	// moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBase", 0.02551502f, -0.47885156f, -0.34901965f, 0);
-	private Color color2 = decodeColor("nimbusBlueGrey", -0.027777791f, -0.102261856f, 0.20392156f,
-			0);
-	private Color color3 = decodeColor("nimbusBlueGrey", 0.0f, -0.0682728f, 0.09019607f, 0);
-	private Color color4 = decodeColor("nimbusBlueGrey", -0.01111114f, -0.088974595f, 0.16470587f,
-			0);
-	private Color color5 = decodeColor("nimbusBlueGrey", 0.0f, -0.029445238f, -0.019607842f, 0);
+	private Color color1 = decodeColor("nimbusBase", 0.02551502f, -0.47885156f,
+			-0.34901965f, 0);
+	private Color color2 = decodeColor("nimbusBlueGrey", -0.027777791f,
+			-0.102261856f, 0.20392156f, 0);
+	private Color color3 = decodeColor("nimbusBlueGrey", 0.0f, -0.0682728f,
+			0.09019607f, 0);
+	private Color color4 = decodeColor("nimbusBlueGrey", -0.01111114f,
+			-0.088974595f, 0.16470587f, 0);
+	private Color color5 = decodeColor("nimbusBlueGrey", 0.0f, -0.029445238f,
+			-0.019607842f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
@@ -78,9 +62,9 @@ final class DesktopIconPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_ENABLED:
-			paintBackgroundEnabled(g);
-			break;
+			case BACKGROUND_ENABLED:
+				paintBackgroundEnabled(g);
+				break;
 
 		}
 	}
@@ -135,9 +119,9 @@ final class DesktopIconPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color2, decodeColor(color2, color3, 0.5f), color3 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color2, decodeColor(color2, color3, 0.5f), color3 });
 	}
 
 	private Paint decodeGradient2(Shape s) {
@@ -146,9 +130,9 @@ final class DesktopIconPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.24f, 1.0f },
-				new Color[] { color4, decodeColor(color4, color5, 0.5f), color5 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.24f, 1.0f }, new Color[] {
+						color4, decodeColor(color4, color5, 0.5f), color5 });
 	}
 
 }

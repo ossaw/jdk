@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -86,7 +83,7 @@ public interface DTMIterator {
 	 * the DTM using just the iterator.
 	 *
 	 * @param nodeHandle
-	 *            the nodeHandle.
+	 *                   the nodeHandle.
 	 *
 	 * @return a non-null DTM reference.
 	 */
@@ -116,26 +113,31 @@ public interface DTMIterator {
 	 * the document tree, but the context node from where the iteration begins.
 	 *
 	 * @param nodeHandle
-	 *            int Handle of the context node.
+	 *                    int Handle of the context node.
 	 * @param environment
-	 *            The environment object. The environment in which this iterator
-	 *            operates, which should provide:
-	 *            <ul>
-	 *            <li>a node (the context node... same value as "root" defined
-	 *            below)</li>
-	 *            <li>a pair of non-zero positive integers (the context position
-	 *            and the context size)</li>
-	 *            <li>a set of variable bindings</li>
-	 *            <li>a function library</li>
-	 *            <li>the set of namespace declarations in scope for the
-	 *            expression.</li>
-	 *            <ul>
+	 *                    The environment object. The environment in which this
+	 *                    iterator
+	 *                    operates, which should provide:
+	 *                    <ul>
+	 *                    <li>a node (the context node... same value as "root"
+	 *                    defined
+	 *                    below)</li>
+	 *                    <li>a pair of non-zero positive integers (the context
+	 *                    position
+	 *                    and the context size)</li>
+	 *                    <li>a set of variable bindings</li>
+	 *                    <li>a function library</li>
+	 *                    <li>the set of namespace declarations in scope for the
+	 *                    expression.</li>
+	 *                    <ul>
 	 *
-	 *            <p>
-	 *            At this time the exact implementation of this environment is
-	 *            application dependent. Probably a proper interface will be
-	 *            created fairly soon.
-	 *            </p>
+	 *                    <p>
+	 *                    At this time the exact implementation of this
+	 *                    environment is
+	 *                    application dependent. Probably a proper interface
+	 *                    will be
+	 *                    created fairly soon.
+	 *                    </p>
 	 *
 	 */
 	public void setRoot(int nodeHandle, Object environment);
@@ -220,8 +222,9 @@ public interface DTMIterator {
 	 * Specify if it's OK for detach to release the iterator for reuse.
 	 *
 	 * @param allowRelease
-	 *            true if it is OK for detach to release this iterator for
-	 *            pooling.
+	 *                     true if it is OK for detach to release this iterator
+	 *                     for
+	 *                     pooling.
 	 */
 	public void allowDetachToRelease(boolean allowRelease);
 
@@ -253,7 +256,7 @@ public interface DTMIterator {
 	 * they're called on a DTMIterator with this flag set false?
 	 *
 	 * @param b
-	 *            true if the nodes should be cached.
+	 *          true if the nodes should be cached.
 	 */
 	public void setShouldCacheNodes(boolean b);
 
@@ -281,8 +284,8 @@ public interface DTMIterator {
 	 * end and completely fill the cache.
 	 *
 	 * @param index
-	 *            The index to run to, or -1 if the iterator should be run to
-	 *            the end.
+	 *              The index to run to, or -1 if the iterator should be run to
+	 *              the end.
 	 */
 	public void runTo(int index);
 
@@ -290,7 +293,7 @@ public interface DTMIterator {
 	 * Set the current position in the node set.
 	 *
 	 * @param i
-	 *            Must be a valid index.
+	 *          Must be a valid index.
 	 */
 	public void setCurrentPos(int i);
 
@@ -300,7 +303,7 @@ public interface DTMIterator {
 	 * list, this returns <code>null</code>.
 	 *
 	 * @param index
-	 *            of the item.
+	 *              of the item.
 	 * @return The node handle at the <code>index</code>th position in the
 	 *         <code>DTMIterator</code>, or <code>-1</code> if that is not a
 	 *         valid index.
@@ -321,9 +324,9 @@ public interface DTMIterator {
 	 * </p>
 	 *
 	 * @param node
-	 *            Node to set
+	 *              Node to set
 	 * @param index
-	 *            Index of where to set the node
+	 *              Index of where to set the node
 	 */
 	public void setItem(int node, int index);
 

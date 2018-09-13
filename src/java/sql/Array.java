@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -77,10 +57,12 @@ public interface Array {
 	 *         built-in base type; or the fully-qualified SQL type name for a
 	 *         base type that is a UDT
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the type
-	 *                name
+	 *                                            if an error occurs while
+	 *                                            attempting to access the type
+	 *                                            name
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	String getBaseTypeName() throws SQLException;
@@ -93,10 +75,12 @@ public interface Array {
 	 *         code for the elements in the array designated by this
 	 *         <code>Array</code> object
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the base
-	 *                type
+	 *                                            if an error occurs while
+	 *                                            attempting to access the base
+	 *                                            type
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	int getBaseType() throws SQLException;
@@ -117,9 +101,11 @@ public interface Array {
 	 *         ordered elements of the SQL <code>ARRAY</code> value designated
 	 *         by this <code>Array</code> object
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	Object getArray() throws SQLException;
@@ -144,9 +130,11 @@ public interface Array {
 	 * @return an array in the Java programming language that contains the
 	 *         ordered elements of the SQL array designated by this object
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	Object getArray(java.util.Map<String, Class<?>> map) throws SQLException;
@@ -164,16 +152,18 @@ public interface Array {
 	 * primitive data type or an array of <code>Object</code>.
 	 *
 	 * @param index
-	 *            the array index of the first element to retrieve; the first
-	 *            element is at index 1
+	 *              the array index of the first element to retrieve; the first
+	 *              element is at index 1
 	 * @param count
-	 *            the number of successive SQL array elements to retrieve
+	 *              the number of successive SQL array elements to retrieve
 	 * @return an array containing up to <code>count</code> consecutive elements
 	 *         of the SQL array, beginning with element <code>index</code>
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	Object getArray(long index, int count) throws SQLException;
@@ -197,25 +187,28 @@ public interface Array {
 	 * primitive data type or an array of <code>Object</code>.
 	 *
 	 * @param index
-	 *            the array index of the first element to retrieve; the first
-	 *            element is at index 1
+	 *              the array index of the first element to retrieve; the first
+	 *              element is at index 1
 	 * @param count
-	 *            the number of successive SQL array elements to retrieve
+	 *              the number of successive SQL array elements to retrieve
 	 * @param map
-	 *            a <code>java.util.Map</code> object that contains SQL type
-	 *            names and the classes in the Java programming language to
-	 *            which they are mapped
+	 *              a <code>java.util.Map</code> object that contains SQL type
+	 *              names and the classes in the Java programming language to
+	 *              which they are mapped
 	 * @return an array containing up to <code>count</code> consecutive elements
 	 *         of the SQL <code>ARRAY</code> value designated by this
 	 *         <code>Array</code> object, beginning with element
 	 *         <code>index</code>
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
-	Object getArray(long index, int count, java.util.Map<String, Class<?>> map) throws SQLException;
+	Object getArray(long index, int count, java.util.Map<String, Class<?>> map)
+			throws SQLException;
 
 	/**
 	 * Retrieves a result set that contains the elements of the SQL
@@ -233,9 +226,11 @@ public interface Array {
 	 *         elements in the array designated by this <code>Array</code>
 	 *         object, with the rows in ascending order based on the indices.
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	ResultSet getResultSet() throws SQLException;
@@ -263,12 +258,15 @@ public interface Array {
 	 *         the elements in the array designated by this <code>Array</code>
 	 *         object, with the rows in ascending order based on the indices.
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
-	ResultSet getResultSet(java.util.Map<String, Class<?>> map) throws SQLException;
+	ResultSet getResultSet(java.util.Map<String, Class<?>> map)
+			throws SQLException;
 
 	/**
 	 * Retrieves a result set holding the elements of the subarray that starts
@@ -285,18 +283,20 @@ public interface Array {
 	 * into the array for that element.
 	 *
 	 * @param index
-	 *            the array index of the first element to retrieve; the first
-	 *            element is at index 1
+	 *              the array index of the first element to retrieve; the first
+	 *              element is at index 1
 	 * @param count
-	 *            the number of successive SQL array elements to retrieve
+	 *              the number of successive SQL array elements to retrieve
 	 * @return a <code>ResultSet</code> object containing up to
 	 *         <code>count</code> consecutive elements of the SQL array
 	 *         designated by this <code>Array</code> object, starting at index
 	 *         <code>index</code>.
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
 	ResultSet getResultSet(long index, int count) throws SQLException;
@@ -319,25 +319,27 @@ public interface Array {
 	 * into the array for that element.
 	 *
 	 * @param index
-	 *            the array index of the first element to retrieve; the first
-	 *            element is at index 1
+	 *              the array index of the first element to retrieve; the first
+	 *              element is at index 1
 	 * @param count
-	 *            the number of successive SQL array elements to retrieve
+	 *              the number of successive SQL array elements to retrieve
 	 * @param map
-	 *            the <code>Map</code> object that contains the mapping of SQL
-	 *            type names to classes in the Java(tm) programming language
+	 *              the <code>Map</code> object that contains the mapping of SQL
+	 *              type names to classes in the Java(tm) programming language
 	 * @return a <code>ResultSet</code> object containing up to
 	 *         <code>count</code> consecutive elements of the SQL array
 	 *         designated by this <code>Array</code> object, starting at index
 	 *         <code>index</code>.
 	 * @exception SQLException
-	 *                if an error occurs while attempting to access the array
+	 *                                            if an error occurs while
+	 *                                            attempting to access the array
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 */
-	ResultSet getResultSet(long index, int count, java.util.Map<String, Class<?>> map)
-			throws SQLException;
+	ResultSet getResultSet(long index, int count,
+			java.util.Map<String, Class<?>> map) throws SQLException;
 
 	/**
 	 * This method frees the <code>Array</code> object and releases the
@@ -351,9 +353,10 @@ public interface Array {
 	 * <p>
 	 *
 	 * @throws SQLException
-	 *             if an error occurs releasing the Array's resources
+	 *                      if an error occurs releasing the Array's resources
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void free() throws SQLException;

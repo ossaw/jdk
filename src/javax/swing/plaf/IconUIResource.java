@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf;
@@ -56,7 +36,7 @@ public class IconUIResource implements Icon, UIResource, Serializable {
 	 * Creates a UIResource icon object which wraps an existing Icon instance.
 	 * 
 	 * @param delegate
-	 *            the icon being wrapped
+	 *                 the icon being wrapped
 	 */
 	public IconUIResource(Icon delegate) {
 		if (delegate == null) {

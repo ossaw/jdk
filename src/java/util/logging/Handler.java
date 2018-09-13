@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -72,8 +52,7 @@ public abstract class Handler {
 	 * default <tt>ErrorManager</tt> instance is installed as the
 	 * <tt>ErrorManager</tt>.
 	 */
-	protected Handler() {
-	}
+	protected Handler() {}
 
 	/**
 	 * Publish a <tt>LogRecord</tt>.
@@ -85,8 +64,8 @@ public abstract class Handler {
 	 * if necessary. The formatting should include localization.
 	 *
 	 * @param record
-	 *            description of the log event. A null record is silently
-	 *            ignored and is not published
+	 *               description of the log event. A null record is silently
+	 *               ignored and is not published
 	 */
 	public abstract void publish(LogRecord record);
 
@@ -104,8 +83,9 @@ public abstract class Handler {
 	 * may throw runtime exceptions.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
 	public abstract void close() throws SecurityException;
 
@@ -118,12 +98,14 @@ public abstract class Handler {
 	 * <p>
 	 * 
 	 * @param newFormatter
-	 *            the <tt>Formatter</tt> to use (may not be null)
+	 *                     the <tt>Formatter</tt> to use (may not be null)
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
-	public synchronized void setFormatter(Formatter newFormatter) throws SecurityException {
+	public synchronized void setFormatter(Formatter newFormatter)
+			throws SecurityException {
 		checkPermission();
 		// Check for a null pointer:
 		newFormatter.getClass();
@@ -146,13 +128,17 @@ public abstract class Handler {
 	 * the <tt>Handler</tt>.
 	 *
 	 * @param encoding
-	 *            The name of a supported character encoding. May be null, to
-	 *            indicate the default platform encoding.
+	 *                 The name of a supported character encoding. May be null,
+	 *                 to
+	 *                 indicate the default platform encoding.
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                                         if a security manager exists and
+	 *                                         if the caller does not
+	 *                                         have
+	 *                                         <tt>LoggingPermission("control")</tt>.
 	 * @exception UnsupportedEncodingException
-	 *                if the named encoding is not supported.
+	 *                                         if the named encoding is not
+	 *                                         supported.
 	 */
 	public synchronized void setEncoding(String encoding)
 			throws SecurityException, java.io.UnsupportedEncodingException {
@@ -187,12 +173,14 @@ public abstract class Handler {
 	 * should be published or discarded.
 	 *
 	 * @param newFilter
-	 *            a <tt>Filter</tt> object (may be null)
+	 *                  a <tt>Filter</tt> object (may be null)
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
-	public synchronized void setFilter(Filter newFilter) throws SecurityException {
+	public synchronized void setFilter(Filter newFilter)
+			throws SecurityException {
 		checkPermission();
 		filter = newFilter;
 	}
@@ -213,10 +201,11 @@ public abstract class Handler {
 	 * while using this Handler.
 	 *
 	 * @param em
-	 *            the new ErrorManager
+	 *           the new ErrorManager
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
 	public synchronized void setErrorManager(ErrorManager em) {
 		checkPermission();
@@ -231,8 +220,9 @@ public abstract class Handler {
 	 *
 	 * @return the ErrorManager for this Handler
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
 	public ErrorManager getErrorManager() {
 		checkPermission();
@@ -246,11 +236,11 @@ public abstract class Handler {
 	 * where the caller may be non-privileged.
 	 *
 	 * @param msg
-	 *            a descriptive string (may be null)
+	 *             a descriptive string (may be null)
 	 * @param ex
-	 *            an exception (may be null)
+	 *             an exception (may be null)
 	 * @param code
-	 *            an error code defined in ErrorManager
+	 *             an error code defined in ErrorManager
 	 */
 	protected void reportError(String msg, Exception ex, int code) {
 		try {
@@ -269,10 +259,11 @@ public abstract class Handler {
 	 * to limit the messages that are sent to certain <tt>Handlers</tt>.
 	 *
 	 * @param newLevel
-	 *            the new value for the log level
+	 *                 the new value for the log level
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
 	public synchronized void setLevel(Level newLevel) throws SecurityException {
 		if (newLevel == null) {
@@ -304,13 +295,14 @@ public abstract class Handler {
 	 * <p>
 	 * 
 	 * @param record
-	 *            a <tt>LogRecord</tt>
+	 *               a <tt>LogRecord</tt>
 	 * @return true if the <tt>LogRecord</tt> would be logged.
 	 *
 	 */
 	public boolean isLoggable(LogRecord record) {
 		final int levelValue = getLevel().intValue();
-		if (record.getLevel().intValue() < levelValue || levelValue == offValue) {
+		if (record.getLevel().intValue() < levelValue
+				|| levelValue == offValue) {
 			return false;
 		}
 		final Filter filter = getFilter();

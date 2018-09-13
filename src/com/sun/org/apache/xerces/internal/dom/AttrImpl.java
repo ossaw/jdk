@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -157,8 +154,7 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	}
 
 	// for AttrNSImpl
-	protected AttrImpl() {
-	}
+	protected AttrImpl() {}
 
 	// Support for DOM Level 3 renameNode method.
 	// Note: This only deals with part of the pb. It is expected to be
@@ -175,7 +171,8 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	protected void makeChildNode() {
 		if (hasStringValue()) {
 			if (value != null) {
-				TextImpl text = (TextImpl) ownerDocument().createTextNode((String) value);
+				TextImpl text = (TextImpl) ownerDocument().createTextNode(
+						(String) value);
 				value = text;
 				text.isFirstChild(true);
 				text.previousSibling = text;
@@ -240,7 +237,8 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 			// Cloning an Attribute always clones its children,
 			// since they represent its value, no matter whether this
 			// is a deep clone or not
-			for (Node child = (Node) value; child != null; child = child.getNextSibling()) {
+			for (Node child = (Node) value; child != null; child = child
+					.getNextSibling()) {
 				clone.appendChild(child.cloneNode(true));
 			}
 		}
@@ -337,9 +335,11 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 		CoreDocumentImpl ownerDocument = ownerDocument();
 
 		if (ownerDocument.errorChecking && isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 
 		Element ownerElement = getOwnerElement();
@@ -359,7 +359,8 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 					// create an actual text node as our child so
 					// that we can use it in the event
 					if (textNode == null) {
-						textNode = (TextImpl) ownerDocument.createTextNode((String) value);
+						textNode = (TextImpl) ownerDocument.createTextNode(
+								(String) value);
 					} else {
 						textNode.data = (String) value;
 					}
@@ -405,7 +406,8 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 		isSpecified(true);
 		if (ownerDocument.getMutationEvents()) {
 			// if there are any event handlers create a real node
-			internalInsertBefore(ownerDocument.createTextNode(newvalue), null, true);
+			internalInsertBefore(ownerDocument.createTextNode(newvalue), null,
+					true);
 			hasStringValue(false);
 			// notify document
 			ownerDocument.modifiedAttrValue(this, oldvalue);
@@ -545,7 +547,8 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 					next = kid; // Don't advance; there might be another.
 				} else {
 					// If kid is empty, remove it
-					if (kid.getNodeValue() == null || kid.getNodeValue().length() == 0) {
+					if (kid.getNodeValue() == null || kid.getNodeValue()
+							.length() == 0) {
 						removeChild(kid);
 					}
 				}
@@ -660,29 +663,40 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * implicitly removes them from their previous parent.
 	 *
 	 * @param newChild
-	 *            The Node to be moved to our subtree. As a convenience feature,
-	 *            inserting a DocumentNode will instead insert all its children.
+	 *                 The Node to be moved to our subtree. As a convenience
+	 *                 feature,
+	 *                 inserting a DocumentNode will instead insert all its
+	 *                 children.
 	 *
 	 * @param refChild
-	 *            Current child which newChild should be placed immediately
-	 *            before. If refChild is null, the insertion occurs after all
-	 *            existing Nodes, like appendChild().
+	 *                 Current child which newChild should be placed immediately
+	 *                 before. If refChild is null, the insertion occurs after
+	 *                 all
+	 *                 existing Nodes, like appendChild().
 	 *
 	 * @return newChild, in its new state (relocated, or emptied in the case of
 	 *         DocumentNode.)
 	 *
 	 * @throws DOMException(HIERARCHY_REQUEST_ERR)
-	 *             if newChild is of a type that shouldn't be a child of this
-	 *             node, or if newChild is an ancestor of this node.
+	 *                                                   if newChild is of a
+	 *                                                   type that shouldn't be
+	 *                                                   a child of this
+	 *                                                   node, or if newChild is
+	 *                                                   an ancestor of this
+	 *                                                   node.
 	 *
 	 * @throws DOMException(WRONG_DOCUMENT_ERR)
-	 *             if newChild has a different owner document than we do.
+	 *                                                   if newChild has a
+	 *                                                   different owner
+	 *                                                   document than we do.
 	 *
 	 * @throws DOMException(NOT_FOUND_ERR)
-	 *             if refChild is not a child of this node.
+	 *                                                   if refChild is not a
+	 *                                                   child of this node.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if this node is read-only.
+	 *                                                   if this node is
+	 *                                                   read-only.
 	 */
 	public Node insertBefore(Node newChild, Node refChild) throws DOMException {
 		// Tail-call; optimizer should be able to do good things with.
@@ -695,7 +709,8 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * insertBefore operation allows us to do so. It is not intended for use by
 	 * application programs.
 	 */
-	Node internalInsertBefore(Node newChild, Node refChild, boolean replace) throws DOMException {
+	Node internalInsertBefore(Node newChild, Node refChild, boolean replace)
+			throws DOMException {
 
 		CoreDocumentImpl ownerDocument = ownerDocument();
 		boolean errorChecking = ownerDocument.errorChecking;
@@ -720,12 +735,14 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 			// they wouldn't be kids of that DocFrag.
 			if (errorChecking) {
 				for (Node kid = newChild.getFirstChild(); // Prescan
-				kid != null; kid = kid.getNextSibling()) {
+						kid != null; kid = kid.getNextSibling()) {
 
 					if (!ownerDocument.isKidOK(this, kid)) {
 						String msg = DOMMessageFormatter.formatMessage(
-								DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR", null);
-						throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, msg);
+								DOMMessageFormatter.DOM_DOMAIN,
+								"HIERARCHY_REQUEST_ERR", null);
+						throw new DOMException(
+								DOMException.HIERARCHY_REQUEST_ERR, msg);
 					}
 				}
 			}
@@ -750,24 +767,28 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 
 		if (errorChecking) {
 			if (isReadOnly()) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN,
 						"NO_MODIFICATION_ALLOWED_ERR", null);
-				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+						msg);
 			}
 			if (newChild.getOwnerDocument() != ownerDocument) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"WRONG_DOCUMENT_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
+						null);
 				throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
 			}
 			if (!ownerDocument.isKidOK(this, newChild)) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"HIERARCHY_REQUEST_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
+						null);
 				throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, msg);
 			}
 			// refChild must be a child of this node (or null)
 			if (refChild != null && refChild.getParentNode() != this) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"NOT_FOUND_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
 				throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
 			}
 
@@ -779,8 +800,9 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 				treeSafe = newChild != a;
 			}
 			if (!treeSafe) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"HIERARCHY_REQUEST_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
+						null);
 				throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, msg);
 			}
 		}
@@ -859,17 +881,19 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * @return oldChild, in its new state (removed).
 	 *
 	 * @throws DOMException(NOT_FOUND_ERR)
-	 *             if oldChild is not a child of this node.
+	 *                                                   if oldChild is not a
+	 *                                                   child of this node.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if this node is read-only.
+	 *                                                   if this node is
+	 *                                                   read-only.
 	 */
 	public Node removeChild(Node oldChild) throws DOMException {
 		// Tail-call, should be optimizable
 		if (hasStringValue()) {
 			// we don't have any child per say so it can't be one of them!
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"NOT_FOUND_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
 			throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
 		}
 		return internalRemoveChild(oldChild, false);
@@ -881,18 +905,21 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * removeChild operation allows us to do so. It is not intended for use by
 	 * application programs.
 	 */
-	Node internalRemoveChild(Node oldChild, boolean replace) throws DOMException {
+	Node internalRemoveChild(Node oldChild, boolean replace)
+			throws DOMException {
 
 		CoreDocumentImpl ownerDocument = ownerDocument();
 		if (ownerDocument.errorChecking) {
 			if (isReadOnly()) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN,
 						"NO_MODIFICATION_ALLOWED_ERR", null);
-				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+						msg);
 			}
 			if (oldChild != null && oldChild.getParentNode() != this) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"NOT_FOUND_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
 				throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
 			}
 		}
@@ -956,17 +983,24 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * @return oldChild, in its new state (removed).
 	 *
 	 * @throws DOMException(HIERARCHY_REQUEST_ERR)
-	 *             if newChild is of a type that shouldn't be a child of this
-	 *             node, or if newChild is one of our ancestors.
+	 *                                                   if newChild is of a
+	 *                                                   type that shouldn't be
+	 *                                                   a child of this
+	 *                                                   node, or if newChild is
+	 *                                                   one of our ancestors.
 	 *
 	 * @throws DOMException(WRONG_DOCUMENT_ERR)
-	 *             if newChild has a different owner document than we do.
+	 *                                                   if newChild has a
+	 *                                                   different owner
+	 *                                                   document than we do.
 	 *
 	 * @throws DOMException(NOT_FOUND_ERR)
-	 *             if oldChild is not a child of this node.
+	 *                                                   if oldChild is not a
+	 *                                                   child of this node.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if this node is read-only.
+	 *                                                   if this node is
+	 *                                                   read-only.
 	 */
 	public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
 
@@ -1022,7 +1056,7 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * 
 	 * @return org.w3c.dom.Node
 	 * @param Index
-	 *            int
+	 *              int
 	 */
 	public Node item(int index) {
 
@@ -1064,11 +1098,11 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * http://www.w3.org/TR/DOM-Level-3-Core/core.html#TypeInfo-isDerivedFrom
 	 *
 	 * @param ancestorNS
-	 *            The namspace of the ancestor type declaration
+	 *                     The namspace of the ancestor type declaration
 	 * @param ancestorName
-	 *            The name of the ancestor type declaration
+	 *                     The name of the ancestor type declaration
 	 * @param type
-	 *            The reference type definition
+	 *                     The reference type definition
 	 *
 	 * @return boolean True if the type is derived by restriciton for the
 	 *         reference type
@@ -1139,10 +1173,10 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * </ul>
 	 *
 	 * @param insertedChild
-	 *            the child node that was inserted into this node
+	 *                      the child node that was inserted into this node
 	 *
 	 * @throws NullPointerException
-	 *             if the inserted child is <code>null</code>
+	 *                              if the inserted child is <code>null</code>
 	 */
 	void checkNormalizationAfterInsert(ChildNode insertedChild) {
 		// See if insertion caused this node to be unnormalized.
@@ -1173,14 +1207,15 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	 * </ul>
 	 *
 	 * @param previousSibling
-	 *            the previous sibling of the removed child, or
-	 *            <code>null</code>
+	 *                        the previous sibling of the removed child, or
+	 *                        <code>null</code>
 	 */
 	void checkNormalizationAfterRemove(ChildNode previousSibling) {
 		// See if removal caused this node to be unnormalized.
 		// If the adjacent siblings of the removed child were both text nodes,
 		// flag this node as unnormalized.
-		if (previousSibling != null && previousSibling.getNodeType() == Node.TEXT_NODE) {
+		if (previousSibling != null && previousSibling
+				.getNodeType() == Node.TEXT_NODE) {
 
 			ChildNode next = previousSibling.nextSibling;
 			if (next != null && next.getNodeType() == Node.TEXT_NODE) {
@@ -1206,7 +1241,8 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 	} // writeObject(ObjectOutputStream)
 
 	/** Deserialize object. */
-	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream ois)
+			throws ClassNotFoundException, IOException {
 
 		// perform default deseralization
 		ois.defaultReadObject();

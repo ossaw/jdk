@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -84,16 +81,18 @@ final class RelationalExpr extends Expression {
 	}
 
 	public boolean hasReferenceArgs() {
-		return _left.getType() instanceof ReferenceType
-				|| _right.getType() instanceof ReferenceType;
+		return _left.getType() instanceof ReferenceType || _right
+				.getType() instanceof ReferenceType;
 	}
 
 	public boolean hasNodeArgs() {
-		return _left.getType() instanceof NodeType || _right.getType() instanceof NodeType;
+		return _left.getType() instanceof NodeType || _right
+				.getType() instanceof NodeType;
 	}
 
 	public boolean hasNodeSetArgs() {
-		return _left.getType() instanceof NodeSetType || _right.getType() instanceof NodeSetType;
+		return _left.getType() instanceof NodeSetType || _right
+				.getType() instanceof NodeSetType;
 	}
 
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
@@ -101,7 +100,8 @@ final class RelationalExpr extends Expression {
 		Type tright = _right.typeCheck(stable);
 
 		// bug fix # 2838, cast to reals if both are result tree fragments
-		if (tleft instanceof ResultTreeType && tright instanceof ResultTreeType) {
+		if (tleft instanceof ResultTreeType
+				&& tright instanceof ResultTreeType) {
 			_right = new CastExpr(_right, Type.Real);
 			_left = new CastExpr(_left, Type.Real);
 			return _type = Type.Boolean;
@@ -150,7 +150,8 @@ final class RelationalExpr extends Expression {
 				_left = temp;
 				_op = (_op == Operators.GT) ? Operators.LT
 						: (_op == Operators.LT) ? Operators.GT
-								: (_op == Operators.GE) ? Operators.LE : Operators.GE;
+								: (_op == Operators.GE) ? Operators.LE
+										: Operators.GE;
 				tright = _right.getType();
 			}
 
@@ -213,9 +214,9 @@ final class RelationalExpr extends Expression {
 			il.append(new PUSH(cpg, _op));
 			il.append(methodGen.loadDOM());
 
-			int index = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare",
-					"(" + _left.getType().toSignature() + _right.getType().toSignature() + "I"
-							+ DOM_INTF_SIG + ")Z");
+			int index = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare", "("
+					+ _left.getType().toSignature() + _right.getType()
+							.toSignature() + "I" + DOM_INTF_SIG + ")Z");
 			il.append(new INVOKESTATIC(index));
 		} else {
 			translateDesynthesized(classGen, methodGen);
@@ -223,7 +224,8 @@ final class RelationalExpr extends Expression {
 		}
 	}
 
-	public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateDesynthesized(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		if (hasNodeSetArgs() || hasReferenceArgs()) {
 			translate(classGen, methodGen);
 			desynthesize(classGen, methodGen);
@@ -240,31 +242,33 @@ final class RelationalExpr extends Expression {
 			Type tleft = _left.getType();
 
 			if (tleft instanceof RealType) {
-				il.append(tleft.CMP(_op == Operators.LT || _op == Operators.LE));
+				il.append(tleft.CMP(_op == Operators.LT
+						|| _op == Operators.LE));
 				tleft = Type.Int;
 				tozero = true;
 			}
 
 			switch (_op) {
-			case Operators.LT:
-				bi = tleft.GE(tozero);
-				break;
+				case Operators.LT:
+					bi = tleft.GE(tozero);
+					break;
 
-			case Operators.GT:
-				bi = tleft.LE(tozero);
-				break;
+				case Operators.GT:
+					bi = tleft.LE(tozero);
+					break;
 
-			case Operators.LE:
-				bi = tleft.GT(tozero);
-				break;
+				case Operators.LE:
+					bi = tleft.GT(tozero);
+					break;
 
-			case Operators.GE:
-				bi = tleft.LT(tozero);
-				break;
+				case Operators.GE:
+					bi = tleft.LT(tozero);
+					break;
 
-			default:
-				ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_RELAT_OP_ERR, this);
-				getParser().reportError(Constants.FATAL, msg);
+				default:
+					ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_RELAT_OP_ERR,
+							this);
+					getParser().reportError(Constants.FATAL, msg);
 			}
 
 			_falseList.add(il.append(bi)); // must be backpatched

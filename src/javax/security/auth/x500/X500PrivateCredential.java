@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.x500;
@@ -48,11 +28,12 @@ public final class X500PrivateCredential implements Destroyable {
 	 * <p>
 	 * 
 	 * @param cert
-	 *            X509Certificate
+	 *             X509Certificate
 	 * @param key
-	 *            PrivateKey for the certificate
+	 *             PrivateKey for the certificate
 	 * @exception IllegalArgumentException
-	 *                if either {@code cert} or {@code key} is null
+	 *                                     if either {@code cert} or {@code key}
+	 *                                     is null
 	 *
 	 */
 
@@ -70,17 +51,19 @@ public final class X500PrivateCredential implements Destroyable {
 	 * <p>
 	 * 
 	 * @param cert
-	 *            X509Certificate
+	 *              X509Certificate
 	 * @param key
-	 *            PrivateKey for the certificate
+	 *              PrivateKey for the certificate
 	 * @param alias
-	 *            KeyStore alias
+	 *              KeyStore alias
 	 * @exception IllegalArgumentException
-	 *                if either {@code cert}, {@code key} or {@code alias} is
-	 *                null
+	 *                                     if either {@code cert}, {@code key}
+	 *                                     or {@code alias} is
+	 *                                     null
 	 *
 	 */
-	public X500PrivateCredential(X509Certificate cert, PrivateKey key, String alias) {
+	public X500PrivateCredential(X509Certificate cert, PrivateKey key,
+			String alias) {
 		if (cert == null || key == null || alias == null)
 			throw new IllegalArgumentException();
 		this.cert = cert;

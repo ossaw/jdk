@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -107,7 +87,7 @@ abstract public class CallSite {
 	 * {@link CallSite#setTarget(MethodHandle) setTarget}.
 	 * 
 	 * @throws NullPointerException
-	 *             if the proposed type is null
+	 *                              if the proposed type is null
 	 */
 	/* package-private */
 	CallSite(MethodType type) {
@@ -118,10 +98,11 @@ abstract public class CallSite {
 	 * Make a call site object equipped with an initial target method handle.
 	 * 
 	 * @param target
-	 *            the method handle which will be the initial target of the call
-	 *            site
+	 *               the method handle which will be the initial target of the
+	 *               call
+	 *               site
 	 * @throws NullPointerException
-	 *             if the proposed target is null
+	 *                              if the proposed target is null
 	 */
 	/* package-private */
 	CallSite(MethodHandle target) {
@@ -133,27 +114,34 @@ abstract public class CallSite {
 	 * Make a call site object equipped with an initial target method handle.
 	 * 
 	 * @param targetType
-	 *            the desired type of the call site
+	 *                         the desired type of the call site
 	 * @param createTargetHook
-	 *            a hook which will bind the call site to the target method
-	 *            handle
+	 *                         a hook which will bind the call site to the
+	 *                         target method
+	 *                         handle
 	 * @throws WrongMethodTypeException
-	 *             if the hook cannot be invoked on the required arguments, or
-	 *             if the target returned by the hook is not of the given
-	 *             {@code targetType}
+	 *                                  if the hook cannot be invoked on the
+	 *                                  required arguments, or
+	 *                                  if the target returned by the hook is
+	 *                                  not of the given
+	 *                                  {@code targetType}
 	 * @throws NullPointerException
-	 *             if the hook returns a null value
+	 *                                  if the hook returns a null value
 	 * @throws ClassCastException
-	 *             if the hook returns something other than a
-	 *             {@code MethodHandle}
+	 *                                  if the hook returns something other than
+	 *                                  a
+	 *                                  {@code MethodHandle}
 	 * @throws Throwable
-	 *             anything else thrown by the hook function
+	 *                                  anything else thrown by the hook
+	 *                                  function
 	 */
 	/* package-private */
-	CallSite(MethodType targetType, MethodHandle createTargetHook) throws Throwable {
+	CallSite(MethodType targetType, MethodHandle createTargetHook)
+			throws Throwable {
 		this(targetType);
 		ConstantCallSite selfCCS = (ConstantCallSite) this;
-		MethodHandle boundTarget = (MethodHandle) createTargetHook.invokeWithArguments(selfCCS);
+		MethodHandle boundTarget = (MethodHandle) createTargetHook
+				.invokeWithArguments(selfCCS);
 		checkTargetChange(this.target, boundTarget);
 		this.target = boundTarget;
 	}
@@ -198,12 +186,13 @@ abstract public class CallSite {
 	 * to} the type of the old target.
 	 *
 	 * @param newTarget
-	 *            the new target
+	 *                  the new target
 	 * @throws NullPointerException
-	 *             if the proposed new target is null
+	 *                                  if the proposed new target is null
 	 * @throws WrongMethodTypeException
-	 *             if the proposed new target has a method type that differs
-	 *             from the previous target
+	 *                                  if the proposed new target has a method
+	 *                                  type that differs
+	 *                                  from the previous target
 	 * @see CallSite#getTarget
 	 * @see ConstantCallSite#setTarget
 	 * @see MutableCallSite#setTarget
@@ -218,8 +207,10 @@ abstract public class CallSite {
 			throw wrongTargetType(newTarget, oldType);
 	}
 
-	private static WrongMethodTypeException wrongTargetType(MethodHandle target, MethodType type) {
-		return new WrongMethodTypeException(String.valueOf(target) + " should be of type " + type);
+	private static WrongMethodTypeException wrongTargetType(MethodHandle target,
+			MethodType type) {
+		return new WrongMethodTypeException(String.valueOf(target)
+				+ " should be of type " + type);
 	}
 
 	/**
@@ -244,7 +235,7 @@ abstract public class CallSite {
 	 */
 	public abstract MethodHandle dynamicInvoker();
 
-			/* non-public */ MethodHandle makeDynamicInvoker() {
+	/* non-public */ MethodHandle makeDynamicInvoker() {
 		MethodHandle getTarget = GET_TARGET.bindArgumentL(0, this);
 		MethodHandle invoker = MethodHandles.exactInvoker(this.type());
 		return MethodHandles.foldArguments(invoker, getTarget);
@@ -256,8 +247,9 @@ abstract public class CallSite {
 		try {
 			GET_TARGET = IMPL_LOOKUP.findVirtual(CallSite.class, "getTarget",
 					MethodType.methodType(MethodHandle.class));
-			THROW_UCS = IMPL_LOOKUP.findStatic(CallSite.class, "uninitializedCallSite",
-					MethodType.methodType(Object.class, Object[].class));
+			THROW_UCS = IMPL_LOOKUP.findStatic(CallSite.class,
+					"uninitializedCallSite", MethodType.methodType(Object.class,
+							Object[].class));
 		} catch (ReflectiveOperationException e) {
 			throw newInternalError(e);
 		}
@@ -273,10 +265,12 @@ abstract public class CallSite {
 
 	private MethodHandle makeUninitializedCallSite(MethodType targetType) {
 		MethodType basicType = targetType.basicType();
-		MethodHandle invoker = basicType.form().cachedMethodHandle(MethodTypeForm.MH_UNINIT_CS);
+		MethodHandle invoker = basicType.form().cachedMethodHandle(
+				MethodTypeForm.MH_UNINIT_CS);
 		if (invoker == null) {
 			invoker = THROW_UCS.asType(basicType);
-			invoker = basicType.form().setCachedMethodHandle(MethodTypeForm.MH_UNINIT_CS, invoker);
+			invoker = basicType.form().setCachedMethodHandle(
+					MethodTypeForm.MH_UNINIT_CS, invoker);
 		}
 		// unchecked view is OK since no values will be received or returned
 		return invoker.viewAsType(targetType, false);
@@ -286,7 +280,8 @@ abstract public class CallSite {
 	private static final long TARGET_OFFSET;
 	static {
 		try {
-			TARGET_OFFSET = UNSAFE.objectFieldOffset(CallSite.class.getDeclaredField("target"));
+			TARGET_OFFSET = UNSAFE.objectFieldOffset(CallSite.class
+					.getDeclaredField("target"));
 		} catch (Exception ex) {
 			throw new Error(ex);
 		}
@@ -329,49 +324,59 @@ abstract public class CallSite {
 				Object[] argv = (Object[]) info;
 				maybeReBoxElements(argv);
 				switch (argv.length) {
-				case 0:
-					binding = bootstrapMethod.invoke(caller, name, type);
-					break;
-				case 1:
-					binding = bootstrapMethod.invoke(caller, name, type, argv[0]);
-					break;
-				case 2:
-					binding = bootstrapMethod.invoke(caller, name, type, argv[0], argv[1]);
-					break;
-				case 3:
-					binding = bootstrapMethod.invoke(caller, name, type, argv[0], argv[1], argv[2]);
-					break;
-				case 4:
-					binding = bootstrapMethod.invoke(caller, name, type, argv[0], argv[1], argv[2],
-							argv[3]);
-					break;
-				case 5:
-					binding = bootstrapMethod.invoke(caller, name, type, argv[0], argv[1], argv[2],
-							argv[3], argv[4]);
-					break;
-				case 6:
-					binding = bootstrapMethod.invoke(caller, name, type, argv[0], argv[1], argv[2],
-							argv[3], argv[4], argv[5]);
-					break;
-				default:
-					final int NON_SPREAD_ARG_COUNT = 3; // (caller, name, type)
-					if (NON_SPREAD_ARG_COUNT + argv.length > MethodType.MAX_MH_ARITY)
-						throw new BootstrapMethodError("too many bootstrap method arguments");
-					MethodType bsmType = bootstrapMethod.type();
-					MethodType invocationType = MethodType
-							.genericMethodType(NON_SPREAD_ARG_COUNT + argv.length);
-					MethodHandle typedBSM = bootstrapMethod.asType(invocationType);
-					MethodHandle spreader = invocationType.invokers()
-							.spreadInvoker(NON_SPREAD_ARG_COUNT);
-					binding = spreader.invokeExact(typedBSM, (Object) caller, (Object) name,
-							(Object) type, argv);
+					case 0:
+						binding = bootstrapMethod.invoke(caller, name, type);
+						break;
+					case 1:
+						binding = bootstrapMethod.invoke(caller, name, type,
+								argv[0]);
+						break;
+					case 2:
+						binding = bootstrapMethod.invoke(caller, name, type,
+								argv[0], argv[1]);
+						break;
+					case 3:
+						binding = bootstrapMethod.invoke(caller, name, type,
+								argv[0], argv[1], argv[2]);
+						break;
+					case 4:
+						binding = bootstrapMethod.invoke(caller, name, type,
+								argv[0], argv[1], argv[2], argv[3]);
+						break;
+					case 5:
+						binding = bootstrapMethod.invoke(caller, name, type,
+								argv[0], argv[1], argv[2], argv[3], argv[4]);
+						break;
+					case 6:
+						binding = bootstrapMethod.invoke(caller, name, type,
+								argv[0], argv[1], argv[2], argv[3], argv[4],
+								argv[5]);
+						break;
+					default:
+						final int NON_SPREAD_ARG_COUNT = 3; // (caller, name, type)
+						if (NON_SPREAD_ARG_COUNT
+								+ argv.length > MethodType.MAX_MH_ARITY)
+							throw new BootstrapMethodError(
+									"too many bootstrap method arguments");
+						MethodType bsmType = bootstrapMethod.type();
+						MethodType invocationType = MethodType
+								.genericMethodType(NON_SPREAD_ARG_COUNT
+										+ argv.length);
+						MethodHandle typedBSM = bootstrapMethod.asType(
+								invocationType);
+						MethodHandle spreader = invocationType.invokers()
+								.spreadInvoker(NON_SPREAD_ARG_COUNT);
+						binding = spreader.invokeExact(typedBSM,
+								(Object) caller, (Object) name, (Object) type,
+								argv);
 				}
 			}
 			// System.out.println("BSM for "+name+type+" => "+binding);
 			if (binding instanceof CallSite) {
 				site = (CallSite) binding;
 			} else {
-				throw new ClassCastException("bootstrap method failed to produce a CallSite");
+				throw new ClassCastException(
+						"bootstrap method failed to produce a CallSite");
 			}
 			if (!site.getTarget().type().equals(type))
 				throw wrongTargetType(site.getTarget(), type);
@@ -380,7 +385,8 @@ abstract public class CallSite {
 			if (ex instanceof BootstrapMethodError)
 				bex = (BootstrapMethodError) ex;
 			else
-				bex = new BootstrapMethodError("call site initialization exception", ex);
+				bex = new BootstrapMethodError(
+						"call site initialization exception", ex);
 			throw bex;
 		}
 		return site;

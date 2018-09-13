@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.agent;
 
@@ -167,10 +147,12 @@ public interface SnmpMibRequest {
 	 * the result PDU.
 	 *
 	 * @param varbind
-	 *            The varbind for which the index value is querried. Note that
-	 *            this varbind <b>must</b> have been obtained from the
-	 *            enumeration returned by <CODE>getElements()</CODE>, or from
-	 *            the vector returned by <CODE>getSublist()</CODE>.
+	 *                The varbind for which the index value is querried. Note
+	 *                that
+	 *                this varbind <b>must</b> have been obtained from the
+	 *                enumeration returned by <CODE>getElements()</CODE>, or
+	 *                from
+	 *                the vector returned by <CODE>getSublist()</CODE>.
 	 *
 	 * @return The varbind index that should be embedded in an
 	 *         SnmpStatusException for this particular varbind.
@@ -182,7 +164,7 @@ public interface SnmpMibRequest {
 	 * purposes and you should never need to call it directly.
 	 *
 	 * @param varbind
-	 *            The varbind to be added in the sublist.
+	 *                The varbind to be added in the sublist.
 	 *
 	 */
 	public void addVarBind(SnmpVarBind varbind);

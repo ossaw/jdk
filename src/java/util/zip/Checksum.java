@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -35,7 +15,7 @@ public interface Checksum {
 	 * Updates the current checksum with the specified byte.
 	 *
 	 * @param b
-	 *            the byte to update the checksum with
+	 *          the byte to update the checksum with
 	 */
 	public void update(int b);
 

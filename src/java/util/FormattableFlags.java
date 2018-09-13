@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -36,8 +16,7 @@ package java.util;
 public class FormattableFlags {
 
 	// Explicit instantiation of this class is prohibited.
-	private FormattableFlags() {
-	}
+	private FormattableFlags() {}
 
 	/**
 	 * Left-justifies the output. Spaces (<tt>'&#92;u0020'</tt>) will be added

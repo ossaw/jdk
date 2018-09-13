@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -110,13 +90,15 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 	}
 
 	@Override
-	Object invokeM2(ConvertingMethod m, Object target, Object[] args, Object cookie)
-			throws InvocationTargetException, IllegalAccessException, MBeanException {
+	Object invokeM2(ConvertingMethod m, Object target, Object[] args,
+			Object cookie) throws InvocationTargetException,
+			IllegalAccessException, MBeanException {
 		return m.invokeWithOpenReturn((MXBeanLookup) cookie, target, args);
 	}
 
 	@Override
-	boolean validParameter(ConvertingMethod m, Object value, int paramNo, Object cookie) {
+	boolean validParameter(ConvertingMethod m, Object value, int paramNo,
+			Object cookie) {
 		if (value == null) {
 			// Null is a valid value for all OpenTypes, even though
 			// OpenType.isValue(null) will return false. It can always be
@@ -138,8 +120,8 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 	}
 
 	@Override
-	MBeanAttributeInfo getMBeanAttributeInfo(String attributeName, ConvertingMethod getter,
-			ConvertingMethod setter) {
+	MBeanAttributeInfo getMBeanAttributeInfo(String attributeName,
+			ConvertingMethod getter, ConvertingMethod setter) {
 
 		final boolean isReadable = (getter != null);
 		final boolean isWritable = (setter != null);
@@ -158,19 +140,22 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 		}
 		Descriptor descriptor = typeDescriptor(openType, originalType);
 		if (isReadable) {
-			descriptor = ImmutableDescriptor.union(descriptor, getter.getDescriptor());
+			descriptor = ImmutableDescriptor.union(descriptor, getter
+					.getDescriptor());
 		}
 		if (isWritable) {
-			descriptor = ImmutableDescriptor.union(descriptor, setter.getDescriptor());
+			descriptor = ImmutableDescriptor.union(descriptor, setter
+					.getDescriptor());
 		}
 
 		final MBeanAttributeInfo ai;
 		if (canUseOpenInfo(originalType)) {
-			ai = new OpenMBeanAttributeInfoSupport(attributeName, description, openType, isReadable,
-					isWritable, isIs, descriptor);
+			ai = new OpenMBeanAttributeInfoSupport(attributeName, description,
+					openType, isReadable, isWritable, isIs, descriptor);
 		} else {
-			ai = new MBeanAttributeInfo(attributeName, originalTypeString(originalType),
-					description, isReadable, isWritable, isIs, descriptor);
+			ai = new MBeanAttributeInfo(attributeName, originalTypeString(
+					originalType), description, isReadable, isWritable, isIs,
+					descriptor);
 		}
 		// could also consult annotations for defaultValue,
 		// minValue, maxValue, legalValues
@@ -179,7 +164,8 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 	}
 
 	@Override
-	MBeanOperationInfo getMBeanOperationInfo(String operationName, ConvertingMethod operation) {
+	MBeanOperationInfo getMBeanOperationInfo(String operationName,
+			ConvertingMethod operation) {
 		final Method method = operation.getMethod();
 		final String description = operationName;
 		/*
@@ -204,23 +190,23 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 			final OpenType<?> openType = paramTypes[i];
 			final Type originalType = originalParamTypes[i];
 			Descriptor descriptor = typeDescriptor(openType, originalType);
-			descriptor = ImmutableDescriptor.union(descriptor,
-					Introspector.descriptorForAnnotations(annots[i]));
+			descriptor = ImmutableDescriptor.union(descriptor, Introspector
+					.descriptorForAnnotations(annots[i]));
 			final MBeanParameterInfo pi;
 			if (canUseOpenInfo(originalType)) {
-				pi = new OpenMBeanParameterInfoSupport(paramName, paramDescription, openType,
-						descriptor);
+				pi = new OpenMBeanParameterInfoSupport(paramName,
+						paramDescription, openType, descriptor);
 			} else {
 				openParameterTypes = false;
-				pi = new MBeanParameterInfo(paramName, originalTypeString(originalType),
-						paramDescription, descriptor);
+				pi = new MBeanParameterInfo(paramName, originalTypeString(
+						originalType), paramDescription, descriptor);
 			}
 			params[i] = pi;
 		}
 
 		Descriptor descriptor = typeDescriptor(returnType, originalReturnType);
-		descriptor = ImmutableDescriptor.union(descriptor,
-				Introspector.descriptorForElement(method));
+		descriptor = ImmutableDescriptor.union(descriptor, Introspector
+				.descriptorForElement(method));
 		final MBeanOperationInfo oi;
 		if (openReturnType && openParameterTypes) {
 			/*
@@ -234,11 +220,12 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 			 */
 			final OpenMBeanParameterInfo[] oparams = new OpenMBeanParameterInfo[params.length];
 			System.arraycopy(params, 0, oparams, 0, params.length);
-			oi = new OpenMBeanOperationInfoSupport(operationName, description, oparams, returnType,
-					impact, descriptor);
+			oi = new OpenMBeanOperationInfoSupport(operationName, description,
+					oparams, returnType, impact, descriptor);
 		} else {
-			oi = new MBeanOperationInfo(operationName, description, params, openReturnType
-					? returnType.getClassName() : originalTypeString(originalReturnType), impact,
+			oi = new MBeanOperationInfo(operationName, description, params,
+					openReturnType ? returnType.getClassName()
+							: originalTypeString(originalReturnType), impact,
 					descriptor);
 		}
 
@@ -261,9 +248,11 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 		return ImmutableDescriptor.EMPTY_DESCRIPTOR;
 	}
 
-	private static Descriptor typeDescriptor(OpenType<?> openType, Type originalType) {
-		return new ImmutableDescriptor(new String[] { "openType", "originalType" },
-				new Object[] { openType, originalTypeString(originalType) });
+	private static Descriptor typeDescriptor(OpenType<?> openType,
+			Type originalType) {
+		return new ImmutableDescriptor(new String[] { "openType",
+				"originalType" }, new Object[] { openType, originalTypeString(
+						originalType) });
 	}
 
 	/**
@@ -286,7 +275,8 @@ class MXBeanIntrospector extends MBeanIntrospector<ConvertingMethod> {
 	 */
 	private static boolean canUseOpenInfo(Type type) {
 		if (type instanceof GenericArrayType) {
-			return canUseOpenInfo(((GenericArrayType) type).getGenericComponentType());
+			return canUseOpenInfo(((GenericArrayType) type)
+					.getGenericComponentType());
 		} else if (type instanceof Class<?> && ((Class<?>) type).isArray()) {
 			return canUseOpenInfo(((Class<?>) type).getComponentType());
 		}

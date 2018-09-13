@@ -1,39 +1,17 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996, 1997 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998 - All Rights Reserved
- *
- *   The original version of this source code and documentation is copyrighted
+ * The original version of this source code and documentation is copyrighted
  * and owned by Taligent, Inc., a wholly-owned subsidiary of IBM. These
  * materials are provided under terms of a License Agreement between Taligent
  * and Sun. This technology is protected by multiple US and International
  * patents. This notice and attribution to Taligent may not be removed.
- *   Taligent is a registered trademark of Taligent, Inc.
- *
+ * Taligent is a registered trademark of Taligent, Inc.
  */
 
 package java.text;
@@ -137,8 +115,7 @@ public abstract class Format implements Serializable, Cloneable {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected Format() {
-	}
+	protected Format() {}
 
 	/**
 	 * Formats an object to produce a string. This is equivalent to
@@ -151,7 +128,8 @@ public abstract class Format implements Serializable, Cloneable {
 	 *            The object to format
 	 * @return Formatted string.
 	 * @exception IllegalArgumentException
-	 *                if the Format cannot format the given object
+	 *                                     if the Format cannot format the given
+	 *                                     object
 	 */
 	public final String format(Object obj) {
 		return format(obj, new StringBuffer(), new FieldPosition(0)).toString();
@@ -164,20 +142,23 @@ public abstract class Format implements Serializable, Cloneable {
 	 * such field encountered.
 	 *
 	 * @param obj
-	 *            The object to format
+	 *                   The object to format
 	 * @param toAppendTo
-	 *            where the text is to be appended
+	 *                   where the text is to be appended
 	 * @param pos
-	 *            A <code>FieldPosition</code> identifying a field in the
-	 *            formatted text
+	 *                   A <code>FieldPosition</code> identifying a field in the
+	 *                   formatted text
 	 * @return the string buffer passed in as <code>toAppendTo</code>, with
 	 *         formatted text appended
 	 * @exception NullPointerException
-	 *                if <code>toAppendTo</code> or <code>pos</code> is null
+	 *                                     if <code>toAppendTo</code> or
+	 *                                     <code>pos</code> is null
 	 * @exception IllegalArgumentException
-	 *                if the Format cannot format the given object
+	 *                                     if the Format cannot format the given
+	 *                                     object
 	 */
-	public abstract StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos);
+	public abstract StringBuffer format(Object obj, StringBuffer toAppendTo,
+			FieldPosition pos);
 
 	/**
 	 * Formats an Object producing an <code>AttributedCharacterIterator</code>.
@@ -197,9 +178,10 @@ public abstract class Format implements Serializable, Cloneable {
 	 * <code>AttributedCharacterIterator</code> with meaningful attributes.
 	 *
 	 * @exception NullPointerException
-	 *                if obj is null.
+	 *                                     if obj is null.
 	 * @exception IllegalArgumentException
-	 *                when the Format cannot format the given object.
+	 *                                     when the Format cannot format the
+	 *                                     given object.
 	 * @param obj
 	 *            The object to format
 	 * @return AttributedCharacterIterator describing the formatted value.
@@ -223,14 +205,15 @@ public abstract class Format implements Serializable, Cloneable {
 	 * error occurred, and null is returned.
 	 *
 	 * @param source
-	 *            A <code>String</code>, part of which should be parsed.
+	 *               A <code>String</code>, part of which should be parsed.
 	 * @param pos
-	 *            A <code>ParsePosition</code> object with index and error index
-	 *            information as described above.
+	 *               A <code>ParsePosition</code> object with index and error
+	 *               index
+	 *               information as described above.
 	 * @return An <code>Object</code> parsed from the string. In case of error,
 	 *         returns null.
 	 * @exception NullPointerException
-	 *                if <code>pos</code> is null.
+	 *                                 if <code>pos</code> is null.
 	 */
 	public abstract Object parseObject(String source, ParsePosition pos);
 
@@ -239,16 +222,18 @@ public abstract class Format implements Serializable, Cloneable {
 	 * The method may not use the entire text of the given string.
 	 *
 	 * @param source
-	 *            A <code>String</code> whose beginning should be parsed.
+	 *               A <code>String</code> whose beginning should be parsed.
 	 * @return An <code>Object</code> parsed from the string.
 	 * @exception ParseException
-	 *                if the beginning of the specified string cannot be parsed.
+	 *                           if the beginning of the specified string cannot
+	 *                           be parsed.
 	 */
 	public Object parseObject(String source) throws ParseException {
 		ParsePosition pos = new ParsePosition(0);
 		Object result = parseObject(source, pos);
 		if (pos.index == 0) {
-			throw new ParseException("Format.parseObject(String) failed", pos.errorIndex);
+			throw new ParseException("Format.parseObject(String) failed",
+					pos.errorIndex);
 		}
 		return result;
 	}
@@ -277,7 +262,7 @@ public abstract class Format implements Serializable, Cloneable {
 	 * <code>s</code>.
 	 *
 	 * @param s
-	 *            String to create AttributedCharacterIterator from
+	 *          String to create AttributedCharacterIterator from
 	 * @return AttributedCharacterIterator wrapping s
 	 */
 	AttributedCharacterIterator createAttributedCharacterIterator(String s) {
@@ -292,8 +277,8 @@ public abstract class Format implements Serializable, Cloneable {
 	 * <code>AttributedCharacterIterator</code>s.
 	 *
 	 * @param iterators
-	 *            AttributedCharacterIterators used to create resulting
-	 *            AttributedCharacterIterators
+	 *                  AttributedCharacterIterators used to create resulting
+	 *                  AttributedCharacterIterators
 	 * @return AttributedCharacterIterator wrapping passed in
 	 *         AttributedCharacterIterators
 	 */
@@ -310,11 +295,11 @@ public abstract class Format implements Serializable, Cloneable {
 	 * <code>value</code>.
 	 *
 	 * @param string
-	 *            String to create AttributedCharacterIterator from
+	 *               String to create AttributedCharacterIterator from
 	 * @param key
-	 *            Key for AttributedCharacterIterator
+	 *               Key for AttributedCharacterIterator
 	 * @param value
-	 *            Value associated with key in AttributedCharacterIterator
+	 *               Value associated with key in AttributedCharacterIterator
 	 * @return AttributedCharacterIterator wrapping args
 	 */
 	AttributedCharacterIterator createAttributedCharacterIterator(String string,
@@ -331,16 +316,16 @@ public abstract class Format implements Serializable, Cloneable {
 	 * <code>value</code>.
 	 *
 	 * @param iterator
-	 *            Initial AttributedCharacterIterator to add arg to
+	 *                 Initial AttributedCharacterIterator to add arg to
 	 * @param key
-	 *            Key for AttributedCharacterIterator
+	 *                 Key for AttributedCharacterIterator
 	 * @param value
-	 *            Value associated with key in AttributedCharacterIterator
+	 *                 Value associated with key in AttributedCharacterIterator
 	 * @return AttributedCharacterIterator wrapping args
 	 */
 	AttributedCharacterIterator createAttributedCharacterIterator(
-			AttributedCharacterIterator iterator, AttributedCharacterIterator.Attribute key,
-			Object value) {
+			AttributedCharacterIterator iterator,
+			AttributedCharacterIterator.Attribute key, Object value) {
 		AttributedString as = new AttributedString(iterator);
 
 		as.addAttribute(key, value);
@@ -364,7 +349,7 @@ public abstract class Format implements Serializable, Cloneable {
 		 * Creates a Field with the specified name.
 		 *
 		 * @param name
-		 *            Name of the attribute
+		 *             Name of the attribute
 		 */
 		protected Field(String name) {
 			super(name);
@@ -391,38 +376,40 @@ public abstract class Format implements Serializable, Cloneable {
 		 * matching <code>attr</code>.
 		 *
 		 * @param attr
-		 *            Identifies the field matched
+		 *               Identifies the field matched
 		 * @param value
-		 *            Value associated with the field
+		 *               Value associated with the field
 		 * @param start
-		 *            Beginning location of the field, will be >= 0
+		 *               Beginning location of the field, will be >= 0
 		 * @param end
-		 *            End of the field, will be >= start and <= buffer.length()
+		 *               End of the field, will be >= start and <=
+		 *               buffer.length()
 		 * @param buffer
-		 *            Contains current formatted value, receiver should NOT
-		 *            modify it.
+		 *               Contains current formatted value, receiver should NOT
+		 *               modify it.
 		 */
-		public void formatted(Format.Field attr, Object value, int start, int end,
-				StringBuffer buffer);
+		public void formatted(Format.Field attr, Object value, int start,
+				int end, StringBuffer buffer);
 
 		/**
 		 * Notified when a particular region of the String is formatted.
 		 *
 		 * @param fieldID
-		 *            Identifies the field by integer
+		 *                Identifies the field by integer
 		 * @param attr
-		 *            Identifies the field matched
+		 *                Identifies the field matched
 		 * @param value
-		 *            Value associated with the field
+		 *                Value associated with the field
 		 * @param start
-		 *            Beginning location of the field, will be >= 0
+		 *                Beginning location of the field, will be >= 0
 		 * @param end
-		 *            End of the field, will be >= start and <= buffer.length()
+		 *                End of the field, will be >= start and <=
+		 *                buffer.length()
 		 * @param buffer
-		 *            Contains current formatted value, receiver should NOT
-		 *            modify it.
+		 *                Contains current formatted value, receiver should NOT
+		 *                modify it.
 		 */
-		public void formatted(int fieldID, Format.Field attr, Object value, int start, int end,
-				StringBuffer buffer);
+		public void formatted(int fieldID, Format.Field attr, Object value,
+				int start, int end, StringBuffer buffer);
 	}
 }

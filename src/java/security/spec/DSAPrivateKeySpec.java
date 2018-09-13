@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -53,18 +33,19 @@ public class DSAPrivateKeySpec implements KeySpec {
 	 * Creates a new DSAPrivateKeySpec with the specified parameter values.
 	 *
 	 * @param x
-	 *            the private key.
+	 *          the private key.
 	 *
 	 * @param p
-	 *            the prime.
+	 *          the prime.
 	 *
 	 * @param q
-	 *            the sub-prime.
+	 *          the sub-prime.
 	 *
 	 * @param g
-	 *            the base.
+	 *          the base.
 	 */
-	public DSAPrivateKeySpec(BigInteger x, BigInteger p, BigInteger q, BigInteger g) {
+	public DSAPrivateKeySpec(BigInteger x, BigInteger p, BigInteger q,
+			BigInteger g) {
 		this.x = x;
 		this.p = p;
 		this.q = q;

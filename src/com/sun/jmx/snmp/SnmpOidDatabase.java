@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -41,7 +40,7 @@ public interface SnmpOidDatabase extends SnmpOidTable {
 	 * <CODE>SnmpOidDatabase</CODE>.
 	 * 
 	 * @param table
-	 *            The table to add.
+	 *              The table to add.
 	 */
 	public void add(SnmpOidTable table);
 
@@ -50,7 +49,7 @@ public interface SnmpOidDatabase extends SnmpOidTable {
 	 * <CODE>SnmpOidDatabase</CODE>.
 	 * 
 	 * @param table
-	 *            The table to be removed.
+	 *              The table to be removed.
 	 */
 	public void remove(SnmpOidTable table) throws SnmpStatusException;
 
@@ -65,7 +64,7 @@ public interface SnmpOidDatabase extends SnmpOidTable {
 	 * <CODE>SnmpOidRecord</CODE> object containing information on the variable.
 	 * 
 	 * @param name
-	 *            The name of the MIB variable.
+	 *             The name of the MIB variable.
 	 * @return The <CODE>SnmpOidRecord</CODE> object containing information on
 	 *         the variable.
 	 */

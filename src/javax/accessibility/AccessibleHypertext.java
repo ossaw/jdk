@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -63,7 +43,7 @@ public interface AccessibleHypertext extends AccessibleText {
 	 * Returns the nth Link of this Hypertext document.
 	 *
 	 * @param linkIndex
-	 *            within the links of this Hypertext
+	 *                  within the links of this Hypertext
 	 * @return Link object encapsulating the nth link(s)
 	 */
 	public abstract AccessibleHyperlink getLink(int linkIndex);
@@ -74,7 +54,7 @@ public interface AccessibleHypertext extends AccessibleText {
 	 * index.
 	 *
 	 * @param charIndex
-	 *            index within the text
+	 *                  index within the text
 	 * @return index into the set of hyperlinks for this hypertext doc.
 	 */
 	public abstract int getLinkIndex(int charIndex);

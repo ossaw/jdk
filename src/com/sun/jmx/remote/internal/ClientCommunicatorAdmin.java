@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.internal;
@@ -40,7 +20,8 @@ public abstract class ClientCommunicatorAdmin {
 		if (period > 0) {
 			checker = new Checker();
 
-			Thread t = new Thread(checker, "JMX client heartbeat " + ++threadNo);
+			Thread t = new Thread(checker, "JMX client heartbeat "
+					+ ++threadNo);
 			t.setDaemon(true);
 			t.start();
 		} else
@@ -103,7 +84,8 @@ public abstract class ClientCommunicatorAdmin {
 						lock.wait();
 					} catch (InterruptedException ire) {
 						// be asked to give up
-						InterruptedIOException iioe = new InterruptedIOException(ire.toString());
+						InterruptedIOException iioe = new InterruptedIOException(
+								ire.toString());
 						EnvHelp.initCause(iioe, ire);
 
 						throw iioe;
@@ -194,18 +176,21 @@ public abstract class ClientCommunicatorAdmin {
 
 					e = (Exception) EnvHelp.getCause(e);
 
-					if (e instanceof IOException && !(e instanceof InterruptedIOException)) {
+					if (e instanceof IOException
+							&& !(e instanceof InterruptedIOException)) {
 						try {
 							gotIOException((IOException) e);
 						} catch (Exception ee) {
-							logger.warning("Checker-run", "Failed to check connection: " + e);
+							logger.warning("Checker-run",
+									"Failed to check connection: " + e);
 							logger.warning("Checker-run", "stopping");
 							logger.debug("Checker-run", e);
 
 							break;
 						}
 					} else {
-						logger.warning("Checker-run", "Failed to check the connection: " + e);
+						logger.warning("Checker-run",
+								"Failed to check the connection: " + e);
 						logger.debug("Checker-run", e);
 
 						// XXX stop checking?
@@ -245,6 +230,6 @@ public abstract class ClientCommunicatorAdmin {
 
 	private final int[] lock = new int[0];
 
-	private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
-			"ClientCommunicatorAdmin");
+	private static final ClassLogger logger = new ClassLogger(
+			"javax.management.remote.misc", "ClientCommunicatorAdmin");
 }

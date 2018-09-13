@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -95,13 +75,13 @@ import java.nio.channels.spi.SelectorProvider;
  * @see Selector
  */
 
-public abstract class SelectableChannel extends AbstractInterruptibleChannel implements Channel {
+public abstract class SelectableChannel extends AbstractInterruptibleChannel
+		implements Channel {
 
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected SelectableChannel() {
-	}
+	protected SelectableChannel() {}
 
 	/**
 	 * Returns the provider that created this channel.
@@ -204,26 +184,31 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel imp
 	 *            The attachment for the resulting key; may be <tt>null</tt>
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                      If this channel is closed
 	 *
 	 * @throws ClosedSelectorException
-	 *             If the selector is closed
+	 *                                      If the selector is closed
 	 *
 	 * @throws IllegalBlockingModeException
-	 *             If this channel is in blocking mode
+	 *                                      If this channel is in blocking mode
 	 *
 	 * @throws IllegalSelectorException
-	 *             If this channel was not created by the same provider as the
-	 *             given selector
+	 *                                      If this channel was not created by
+	 *                                      the same provider as the
+	 *                                      given selector
 	 *
 	 * @throws CancelledKeyException
-	 *             If this channel is currently registered with the given
-	 *             selector but the corresponding key has already been cancelled
+	 *                                      If this channel is currently
+	 *                                      registered with the given
+	 *                                      selector but the corresponding key
+	 *                                      has already been cancelled
 	 *
 	 * @throws IllegalArgumentException
-	 *             If a bit in the <tt>ops</tt> set does not correspond to an
-	 *             operation that is supported by this channel, that is, if
-	 *             {@code set & ~validOps() != 0}
+	 *                                      If a bit in the <tt>ops</tt> set
+	 *                                      does not correspond to an
+	 *                                      operation that is supported by this
+	 *                                      channel, that is, if
+	 *                                      {@code set & ~validOps() != 0}
 	 *
 	 * @return A key representing the registration of this channel with the
 	 *         given selector
@@ -263,31 +248,37 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel imp
 	 *            The interest set for the resulting key
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                      If this channel is closed
 	 *
 	 * @throws ClosedSelectorException
-	 *             If the selector is closed
+	 *                                      If the selector is closed
 	 *
 	 * @throws IllegalBlockingModeException
-	 *             If this channel is in blocking mode
+	 *                                      If this channel is in blocking mode
 	 *
 	 * @throws IllegalSelectorException
-	 *             If this channel was not created by the same provider as the
-	 *             given selector
+	 *                                      If this channel was not created by
+	 *                                      the same provider as the
+	 *                                      given selector
 	 *
 	 * @throws CancelledKeyException
-	 *             If this channel is currently registered with the given
-	 *             selector but the corresponding key has already been cancelled
+	 *                                      If this channel is currently
+	 *                                      registered with the given
+	 *                                      selector but the corresponding key
+	 *                                      has already been cancelled
 	 *
 	 * @throws IllegalArgumentException
-	 *             If a bit in <tt>ops</tt> does not correspond to an operation
-	 *             that is supported by this channel, that is, if {@code set &
+	 *                                      If a bit in <tt>ops</tt> does not
+	 *                                      correspond to an operation
+	 *                                      that is supported by this channel,
+	 *                                      that is, if {@code set &
 	 *          ~validOps() != 0}
 	 *
 	 * @return A key representing the registration of this channel with the
 	 *         given selector
 	 */
-	public final SelectionKey register(Selector sel, int ops) throws ClosedChannelException {
+	public final SelectionKey register(Selector sel, int ops)
+			throws ClosedChannelException {
 		return register(sel, ops, null);
 	}
 
@@ -312,23 +303,27 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel imp
 	 * </p>
 	 *
 	 * @param block
-	 *            If <tt>true</tt> then this channel will be placed in blocking
-	 *            mode; if <tt>false</tt> then it will be placed non-blocking
-	 *            mode
+	 *              If <tt>true</tt> then this channel will be placed in
+	 *              blocking
+	 *              mode; if <tt>false</tt> then it will be placed non-blocking
+	 *              mode
 	 *
 	 * @return This selectable channel
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                      If this channel is closed
 	 *
 	 * @throws IllegalBlockingModeException
-	 *             If <tt>block</tt> is <tt>true</tt> and this channel is
-	 *             registered with one or more selectors
+	 *                                      If <tt>block</tt> is <tt>true</tt>
+	 *                                      and this channel is
+	 *                                      registered with one or more
+	 *                                      selectors
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                      If an I/O error occurs
 	 */
-	public abstract SelectableChannel configureBlocking(boolean block) throws IOException;
+	public abstract SelectableChannel configureBlocking(boolean block)
+			throws IOException;
 	//
 	// sync(regLock) {
 	// sync(keySet) { throw IBME if block && isRegistered; }

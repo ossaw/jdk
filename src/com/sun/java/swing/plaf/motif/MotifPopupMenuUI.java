@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -102,13 +82,12 @@ public class MotifPopupMenuUI extends BasicPopupMenuUI {
 
 	protected ChangeListener createChangeListener(JPopupMenu m) {
 		return new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-			}
+			public void stateChanged(ChangeEvent e) {}
 		};
 	}
 
 	public boolean isPopupTrigger(MouseEvent e) {
-		return ((e.getID() == MouseEvent.MOUSE_PRESSED)
-				&& ((e.getModifiers() & MouseEvent.BUTTON3_MASK) != 0));
+		return ((e.getID() == MouseEvent.MOUSE_PRESSED) && ((e.getModifiers()
+				& MouseEvent.BUTTON3_MASK) != 0));
 	}
 }

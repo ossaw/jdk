@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.monitoring;
@@ -32,8 +12,8 @@ public class MonitoredAttributeInfoImpl implements MonitoredAttributeInfo {
 	private final Class type;
 	private final boolean writableFlag, statisticFlag;
 
-	MonitoredAttributeInfoImpl(String description, Class type, boolean isWritable,
-			boolean isStatistic) {
+	MonitoredAttributeInfoImpl(String description, Class type,
+			boolean isWritable, boolean isStatistic) {
 		this.description = description;
 		this.type = type;
 		this.writableFlag = isWritable;

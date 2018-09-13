@@ -1,37 +1,12 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- **********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997                      ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
- **********************************************************************
- **********************************************************************
+ ********************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997 ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************/
 
 package java.awt.color;
@@ -99,9 +74,10 @@ public class ICC_ColorSpace extends ColorSpace {
 	 * Constructs a new ICC_ColorSpace from an ICC_Profile object.
 	 * 
 	 * @param profile
-	 *            the specified ICC_Profile object
+	 *                the specified ICC_Profile object
 	 * @exception IllegalArgumentException
-	 *                if profile is inappropriate for representing a ColorSpace.
+	 *                                     if profile is inappropriate for
+	 *                                     representing a ColorSpace.
 	 */
 	public ICC_ColorSpace(ICC_Profile profile) {
 		super(profile.getColorSpaceType(), profile.getNumComponents());
@@ -109,7 +85,8 @@ public class ICC_ColorSpace extends ColorSpace {
 		int profileClass = profile.getProfileClass();
 
 		/* REMIND - is NAMEDCOLOR OK? */
-		if ((profileClass != ICC_Profile.CLASS_INPUT) && (profileClass != ICC_Profile.CLASS_DISPLAY)
+		if ((profileClass != ICC_Profile.CLASS_INPUT)
+				&& (profileClass != ICC_Profile.CLASS_DISPLAY)
 				&& (profileClass != ICC_Profile.CLASS_OUTPUT)
 				&& (profileClass != ICC_Profile.CLASS_COLORSPACECONVERSION)
 				&& (profileClass != ICC_Profile.CLASS_NAMEDCOLOR)
@@ -146,23 +123,26 @@ public class ICC_ColorSpace extends ColorSpace {
 	 * <p>
 	 * 
 	 * @param colorvalue
-	 *            a float array with length of at least the number of components
-	 *            in this ColorSpace.
+	 *                   a float array with length of at least the number of
+	 *                   components
+	 *                   in this ColorSpace.
 	 * @return a float array of length 3.
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least the number of components in
-	 *             this ColorSpace.
+	 *                                        if array length is not at least
+	 *                                        the number of components in
+	 *                                        this ColorSpace.
 	 */
 	public float[] toRGB(float[] colorvalue) {
 
 		if (this2srgb == null) {
 			ColorTransform[] transformList = new ColorTransform[2];
-			ICC_ColorSpace srgbCS = (ICC_ColorSpace) ColorSpace.getInstance(CS_sRGB);
+			ICC_ColorSpace srgbCS = (ICC_ColorSpace) ColorSpace.getInstance(
+					CS_sRGB);
 			PCMM mdl = CMSManager.getModule();
-			transformList[0] = mdl.createTransform(thisProfile, ColorTransform.Any,
-					ColorTransform.In);
-			transformList[1] = mdl.createTransform(srgbCS.getProfile(), ColorTransform.Any,
-					ColorTransform.Out);
+			transformList[0] = mdl.createTransform(thisProfile,
+					ColorTransform.Any, ColorTransform.In);
+			transformList[1] = mdl.createTransform(srgbCS.getProfile(),
+					ColorTransform.Any, ColorTransform.Out);
 			this2srgb = mdl.createTransform(transformList);
 			if (needScaleInit) {
 				setComponentScaling();
@@ -172,7 +152,8 @@ public class ICC_ColorSpace extends ColorSpace {
 		int nc = this.getNumComponents();
 		short tmp[] = new short[nc];
 		for (int i = 0; i < nc; i++) {
-			tmp[i] = (short) ((colorvalue[i] - minVal[i]) * invDiffMinMax[i] + 0.5f);
+			tmp[i] = (short) ((colorvalue[i] - minVal[i]) * invDiffMinMax[i]
+					+ 0.5f);
 		}
 		tmp = this2srgb.colorConvert(tmp, null);
 		float[] result = new float[3];
@@ -198,22 +179,23 @@ public class ICC_ColorSpace extends ColorSpace {
 	 * <p>
 	 * 
 	 * @param rgbvalue
-	 *            a float array with length of at least 3.
+	 *                 a float array with length of at least 3.
 	 * @return a float array with length equal to the number of components in
 	 *         this ColorSpace.
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least 3.
+	 *                                        if array length is not at least 3.
 	 */
 	public float[] fromRGB(float[] rgbvalue) {
 
 		if (srgb2this == null) {
 			ColorTransform[] transformList = new ColorTransform[2];
-			ICC_ColorSpace srgbCS = (ICC_ColorSpace) ColorSpace.getInstance(CS_sRGB);
+			ICC_ColorSpace srgbCS = (ICC_ColorSpace) ColorSpace.getInstance(
+					CS_sRGB);
 			PCMM mdl = CMSManager.getModule();
-			transformList[0] = mdl.createTransform(srgbCS.getProfile(), ColorTransform.Any,
-					ColorTransform.In);
-			transformList[1] = mdl.createTransform(thisProfile, ColorTransform.Any,
-					ColorTransform.Out);
+			transformList[0] = mdl.createTransform(srgbCS.getProfile(),
+					ColorTransform.Any, ColorTransform.In);
+			transformList[1] = mdl.createTransform(thisProfile,
+					ColorTransform.Any, ColorTransform.Out);
 			srgb2this = mdl.createTransform(transformList);
 			if (needScaleInit) {
 				setComponentScaling();
@@ -228,7 +210,8 @@ public class ICC_ColorSpace extends ColorSpace {
 		int nc = this.getNumComponents();
 		float[] result = new float[nc];
 		for (int i = 0; i < nc; i++) {
-			result[i] = (((float) (tmp[i] & 0xffff)) / 65535.0f) * diffMinMax[i] + minVal[i];
+			result[i] = (((float) (tmp[i] & 0xffff)) / 65535.0f) * diffMinMax[i]
+					+ minVal[i];
 		}
 		return result;
 	}
@@ -329,28 +312,31 @@ public class ICC_ColorSpace extends ColorSpace {
 	 * <p>
 	 * 
 	 * @param colorvalue
-	 *            a float array with length of at least the number of components
-	 *            in this ColorSpace.
+	 *                   a float array with length of at least the number of
+	 *                   components
+	 *                   in this ColorSpace.
 	 * @return a float array of length 3.
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least the number of components in
-	 *             this ColorSpace.
+	 *                                        if array length is not at least
+	 *                                        the number of components in
+	 *                                        this ColorSpace.
 	 */
 	public float[] toCIEXYZ(float[] colorvalue) {
 
 		if (this2xyz == null) {
 			ColorTransform[] transformList = new ColorTransform[2];
-			ICC_ColorSpace xyzCS = (ICC_ColorSpace) ColorSpace.getInstance(CS_CIEXYZ);
+			ICC_ColorSpace xyzCS = (ICC_ColorSpace) ColorSpace.getInstance(
+					CS_CIEXYZ);
 			PCMM mdl = CMSManager.getModule();
 			try {
 				transformList[0] = mdl.createTransform(thisProfile,
 						ICC_Profile.icRelativeColorimetric, ColorTransform.In);
 			} catch (CMMException e) {
-				transformList[0] = mdl.createTransform(thisProfile, ColorTransform.Any,
-						ColorTransform.In);
+				transformList[0] = mdl.createTransform(thisProfile,
+						ColorTransform.Any, ColorTransform.In);
 			}
-			transformList[1] = mdl.createTransform(xyzCS.getProfile(), ColorTransform.Any,
-					ColorTransform.Out);
+			transformList[1] = mdl.createTransform(xyzCS.getProfile(),
+					ColorTransform.Any, ColorTransform.Out);
 			this2xyz = mdl.createTransform(transformList);
 			if (needScaleInit) {
 				setComponentScaling();
@@ -360,7 +346,8 @@ public class ICC_ColorSpace extends ColorSpace {
 		int nc = this.getNumComponents();
 		short tmp[] = new short[nc];
 		for (int i = 0; i < nc; i++) {
-			tmp[i] = (short) ((colorvalue[i] - minVal[i]) * invDiffMinMax[i] + 0.5f);
+			tmp[i] = (short) ((colorvalue[i] - minVal[i]) * invDiffMinMax[i]
+					+ 0.5f);
 		}
 		tmp = this2xyz.colorConvert(tmp, null);
 		float ALMOST_TWO = 1.0f + (32767.0f / 32768.0f);
@@ -470,26 +457,27 @@ public class ICC_ColorSpace extends ColorSpace {
 	 * <p>
 	 * 
 	 * @param colorvalue
-	 *            a float array with length of at least 3.
+	 *                   a float array with length of at least 3.
 	 * @return a float array with length equal to the number of components in
 	 *         this ColorSpace.
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least 3.
+	 *                                        if array length is not at least 3.
 	 */
 	public float[] fromCIEXYZ(float[] colorvalue) {
 
 		if (xyz2this == null) {
 			ColorTransform[] transformList = new ColorTransform[2];
-			ICC_ColorSpace xyzCS = (ICC_ColorSpace) ColorSpace.getInstance(CS_CIEXYZ);
+			ICC_ColorSpace xyzCS = (ICC_ColorSpace) ColorSpace.getInstance(
+					CS_CIEXYZ);
 			PCMM mdl = CMSManager.getModule();
-			transformList[0] = mdl.createTransform(xyzCS.getProfile(), ColorTransform.Any,
-					ColorTransform.In);
+			transformList[0] = mdl.createTransform(xyzCS.getProfile(),
+					ColorTransform.Any, ColorTransform.In);
 			try {
 				transformList[1] = mdl.createTransform(thisProfile,
 						ICC_Profile.icRelativeColorimetric, ColorTransform.Out);
 			} catch (CMMException e) {
-				transformList[1] = CMSManager.getModule().createTransform(thisProfile,
-						ColorTransform.Any, ColorTransform.Out);
+				transformList[1] = CMSManager.getModule().createTransform(
+						thisProfile, ColorTransform.Any, ColorTransform.Out);
 			}
 			xyz2this = mdl.createTransform(transformList);
 			if (needScaleInit) {
@@ -508,7 +496,8 @@ public class ICC_ColorSpace extends ColorSpace {
 		int nc = this.getNumComponents();
 		float[] result = new float[nc];
 		for (int i = 0; i < nc; i++) {
-			result[i] = (((float) (tmp[i] & 0xffff)) / 65535.0f) * diffMinMax[i] + minVal[i];
+			result[i] = (((float) (tmp[i] & 0xffff)) / 65535.0f) * diffMinMax[i]
+					+ minVal[i];
 		}
 		return result;
 	}
@@ -525,16 +514,18 @@ public class ICC_ColorSpace extends ColorSpace {
 	 * this method.
 	 * 
 	 * @param component
-	 *            The component index.
+	 *                  The component index.
 	 * @return The minimum normalized component value.
 	 * @throws IllegalArgumentException
-	 *             if component is less than 0 or greater than numComponents -
-	 *             1.
+	 *                                  if component is less than 0 or greater
+	 *                                  than numComponents -
+	 *                                  1.
 	 * @since 1.4
 	 */
 	public float getMinValue(int component) {
 		if ((component < 0) || (component > this.getNumComponents() - 1)) {
-			throw new IllegalArgumentException("Component index out of range: + component");
+			throw new IllegalArgumentException(
+					"Component index out of range: + component");
 		}
 		return minVal[component];
 	}
@@ -551,16 +542,18 @@ public class ICC_ColorSpace extends ColorSpace {
 	 * this class and override this method.
 	 * 
 	 * @param component
-	 *            The component index.
+	 *                  The component index.
 	 * @return The maximum normalized component value.
 	 * @throws IllegalArgumentException
-	 *             if component is less than 0 or greater than numComponents -
-	 *             1.
+	 *                                  if component is less than 0 or greater
+	 *                                  than numComponents -
+	 *                                  1.
 	 * @since 1.4
 	 */
 	public float getMaxValue(int component) {
 		if ((component < 0) || (component > this.getNumComponents() - 1)) {
-			throw new IllegalArgumentException("Component index out of range: + component");
+			throw new IllegalArgumentException(
+					"Component index out of range: + component");
 		}
 		return maxVal[component];
 	}

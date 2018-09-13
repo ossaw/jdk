@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.timer;
@@ -68,7 +48,8 @@ class TimerAlarmClock extends java.util.TimerTask {
 
 		try {
 			// this.sleep(timeout);
-			TimerAlarmClockNotification notif = new TimerAlarmClockNotification(this);
+			TimerAlarmClockNotification notif = new TimerAlarmClockNotification(
+					this);
 			listener.notifyAlarmClock(notif);
 		} catch (Exception e) {
 			TIMER_LOGGER.logp(Level.FINEST, Timer.class.getName(), "run",

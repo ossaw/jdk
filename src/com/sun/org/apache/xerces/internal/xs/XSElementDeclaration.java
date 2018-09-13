@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,8 +58,9 @@ public interface XSElementDeclaration extends XSTerm {
 	 * constraint.
 	 * 
 	 * @exception XSException
-	 *                NOT_SUPPORTED_ERR: Raised if the implementation does not
-	 *                support this method.
+	 *                        NOT_SUPPORTED_ERR: Raised if the implementation
+	 *                        does not
+	 *                        support this method.
 	 */
 	public Object getActualVC() throws XSException;
 
@@ -78,8 +76,9 @@ public interface XSElementDeclaration extends XSTerm {
 	 * method returns <code>UNAVAILABLE_DT</code> .
 	 * 
 	 * @exception XSException
-	 *                NOT_SUPPORTED_ERR: Raised if the implementation does not
-	 *                support this method.
+	 *                        NOT_SUPPORTED_ERR: Raised if the implementation
+	 *                        does not
+	 *                        support this method.
 	 */
 	public short getActualVCType() throws XSException;
 
@@ -93,8 +92,9 @@ public interface XSElementDeclaration extends XSTerm {
 	 * memberType kind. For examples, see <code>ItemPSVI.itemValueTypes</code>.
 	 * 
 	 * @exception XSException
-	 *                NOT_SUPPORTED_ERR: Raised if the implementation does not
-	 *                support this method.
+	 *                        NOT_SUPPORTED_ERR: Raised if the implementation
+	 *                        does not
+	 *                        support this method.
 	 */
 	public ShortList getItemValueTypes() throws XSException;
 
@@ -125,9 +125,11 @@ public interface XSElementDeclaration extends XSTerm {
 	 * substitution group exclusion for this element declaration.
 	 * 
 	 * @param exclusion
-	 *            <code>DERIVATION_EXTENSION, DERIVATION_RESTRICTION</code> or
-	 *            <code>DERIVATION_NONE</code>. Represents final set for the
-	 *            element.
+	 *                  <code>DERIVATION_EXTENSION, DERIVATION_RESTRICTION</code>
+	 *                  or
+	 *                  <code>DERIVATION_NONE</code>. Represents final set for
+	 *                  the
+	 *                  element.
 	 * @return True if <code>exclusion</code> is a part of the substitution
 	 *         group exclusion subset.
 	 */
@@ -146,10 +148,11 @@ public interface XSElementDeclaration extends XSTerm {
 	 * substitution for this element declaration.
 	 * 
 	 * @param disallowed
-	 *            {
-	 *            <code>DERIVATION_SUBSTITUTION, DERIVATION_EXTENSION, DERIVATION_RESTRICTION</code>
-	 *            } or <code>DERIVATION_NONE</code>. Represents a block set for
-	 *            the element.
+	 *                   {
+	 *                   <code>DERIVATION_SUBSTITUTION, DERIVATION_EXTENSION, DERIVATION_RESTRICTION</code>
+	 *                   } or <code>DERIVATION_NONE</code>. Represents a block
+	 *                   set for
+	 *                   the element.
 	 * @return True if <code>disallowed</code> is a part of the substitution
 	 *         group exclusion subset.
 	 */

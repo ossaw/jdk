@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.jgss;
@@ -84,20 +64,26 @@ public interface ExtendedGSSContext extends GSSContext {
 	 * </pre>
 	 * 
 	 * @param type
-	 *            the type of the attribute requested
+	 *             the type of the attribute requested
 	 * @return the attribute, see the method documentation for details.
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#BAD_MECH GSSException.BAD_MECH} if the
-	 *             mechanism does not support this method,
-	 *             {@link GSSException#UNAVAILABLE GSSException.UNAVAILABLE} if
-	 *             the type specified is not supported,
-	 *             {@link GSSException#NO_CONTEXT GSSException.NO_CONTEXT} if
-	 *             the security context is invalid, {@link GSSException#FAILURE
-	 *             GSSException.FAILURE} for other unspecified failures.
+	 *                           containing the following major error codes:
+	 *                           {@link GSSException#BAD_MECH
+	 *                           GSSException.BAD_MECH} if the
+	 *                           mechanism does not support this method,
+	 *                           {@link GSSException#UNAVAILABLE
+	 *                           GSSException.UNAVAILABLE} if
+	 *                           the type specified is not supported,
+	 *                           {@link GSSException#NO_CONTEXT
+	 *                           GSSException.NO_CONTEXT} if
+	 *                           the security context is invalid,
+	 *                           {@link GSSException#FAILURE
+	 *                           GSSException.FAILURE} for other unspecified
+	 *                           failures.
 	 * @throws SecurityException
-	 *             if a security manager exists and a proper
-	 *             {@link InquireSecContextPermission} is not granted.
+	 *                           if a security manager exists and a proper
+	 *                           {@link InquireSecContextPermission} is not
+	 *                           granted.
 	 * @see InquireSecContextPermission
 	 */
 	public Object inquireSecContext(InquireType type) throws GSSException;
@@ -142,10 +128,10 @@ public interface ExtendedGSSContext extends GSSContext {
 	 * on the authentication path must also have the OK-AS-DELAGATE flags set.
 	 * 
 	 * @param state
-	 *            true if the policy should be respected
+	 *              true if the policy should be respected
 	 * @throws GSSException
-	 *             containing the following major error codes:
-	 *             {@link GSSException#FAILURE GSSException.FAILURE}
+	 *                      containing the following major error codes:
+	 *                      {@link GSSException#FAILURE GSSException.FAILURE}
 	 */
 	public void requestDelegPolicy(boolean state) throws GSSException;
 

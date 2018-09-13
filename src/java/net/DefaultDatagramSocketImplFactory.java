@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.net;
 
@@ -69,20 +49,24 @@ class DefaultDatagramSocketImplFactory {
 		boolean exclusiveBindLocal = true;
 
 		// Determine Windows Version.
-		java.security.AccessController.doPrivileged(new PrivilegedAction<Object>() {
-			public Object run() {
-				version = 0;
-				try {
-					version = Float.parseFloat(System.getProperties().getProperty("os.version"));
-					preferIPv4Stack = Boolean.parseBoolean(
-							System.getProperties().getProperty("java.net.preferIPv4Stack"));
-					exclBindProp = System.getProperty("sun.net.useExclusiveBind");
-				} catch (NumberFormatException e) {
-					assert false : e;
-				}
-				return null; // nothing to return
-			}
-		});
+		java.security.AccessController.doPrivileged(
+				new PrivilegedAction<Object>() {
+					public Object run() {
+						version = 0;
+						try {
+							version = Float.parseFloat(System.getProperties()
+									.getProperty("os.version"));
+							preferIPv4Stack = Boolean.parseBoolean(System
+									.getProperties().getProperty(
+											"java.net.preferIPv4Stack"));
+							exclBindProp = System.getProperty(
+									"sun.net.useExclusiveBind");
+						} catch (NumberFormatException e) {
+							assert false : e;
+						}
+						return null; // nothing to return
+					}
+				});
 
 		// (version >= 6.0) implies Vista or greater.
 		if (version >= 6.0 && !preferIPv4Stack) {
@@ -99,10 +83,12 @@ class DefaultDatagramSocketImplFactory {
 		// impl.prefix
 		String prefix = null;
 		try {
-			prefix = AccessController
-					.doPrivileged(new sun.security.action.GetPropertyAction("impl.prefix", null));
+			prefix = AccessController.doPrivileged(
+					new sun.security.action.GetPropertyAction("impl.prefix",
+							null));
 			if (prefix != null)
-				prefixImplClassLocal = Class.forName("java.net." + prefix + "DatagramSocketImpl");
+				prefixImplClassLocal = Class.forName("java.net." + prefix
+						+ "DatagramSocketImpl");
 		} catch (Exception e) {
 			System.err.println("Can't find class: java.net." + prefix
 					+ "DatagramSocketImpl: check impl.prefix property");
@@ -117,21 +103,24 @@ class DefaultDatagramSocketImplFactory {
 	 * Creates a new <code>DatagramSocketImpl</code> instance.
 	 *
 	 * @param isMulticast
-	 *            true if this impl is to be used for a MutlicastSocket
+	 *                    true if this impl is to be used for a MutlicastSocket
 	 * @return a new instance of <code>PlainDatagramSocketImpl</code>.
 	 */
-	static DatagramSocketImpl createDatagramSocketImpl(boolean isMulticast) throws SocketException {
+	static DatagramSocketImpl createDatagramSocketImpl(boolean isMulticast)
+			throws SocketException {
 		if (prefixImplClass != null) {
 			try {
 				return (DatagramSocketImpl) prefixImplClass.newInstance();
 			} catch (Exception e) {
-				throw new SocketException("can't instantiate DatagramSocketImpl");
+				throw new SocketException(
+						"can't instantiate DatagramSocketImpl");
 			}
 		} else {
 			if (useDualStackImpl && !isMulticast)
 				return new DualStackPlainDatagramSocketImpl(exclusiveBind);
 			else
-				return new TwoStacksPlainDatagramSocketImpl(exclusiveBind && !isMulticast);
+				return new TwoStacksPlainDatagramSocketImpl(exclusiveBind
+						&& !isMulticast);
 		}
 	}
 }

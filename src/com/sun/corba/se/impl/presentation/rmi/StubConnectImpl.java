@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.presentation.rmi;
@@ -50,23 +30,26 @@ import com.sun.corba.se.impl.logging.UtilSystemException;
 import com.sun.corba.se.impl.corba.CORBAObjectImpl;
 
 public abstract class StubConnectImpl {
-	static UtilSystemException wrapper = UtilSystemException.get(CORBALogDomains.RMIIIOP);
+	static UtilSystemException wrapper = UtilSystemException.get(
+			CORBALogDomains.RMIIIOP);
 
 	/**
 	 * Connect the stub to the orb if necessary.
 	 * 
 	 * @param ior
-	 *            The StubIORImpl for this stub (may be null)
+	 *              The StubIORImpl for this stub (may be null)
 	 * @param proxy
-	 *            The externally visible stub seen by the user (may be the same
-	 *            as stub)
+	 *              The externally visible stub seen by the user (may be the
+	 *              same
+	 *              as stub)
 	 * @param stub
-	 *            The stub implementation that extends ObjectImpl
+	 *              The stub implementation that extends ObjectImpl
 	 * @param orb
-	 *            The ORB to which we connect the stub.
+	 *              The ORB to which we connect the stub.
 	 */
-	public static StubIORImpl connect(StubIORImpl ior, org.omg.CORBA.Object proxy,
-			org.omg.CORBA.portable.ObjectImpl stub, ORB orb) throws RemoteException {
+	public static StubIORImpl connect(StubIORImpl ior,
+			org.omg.CORBA.Object proxy, org.omg.CORBA.portable.ObjectImpl stub,
+			ORB orb) throws RemoteException {
 		Delegate del = null;
 
 		try {
@@ -78,7 +61,8 @@ public abstract class StubConnectImpl {
 			} catch (org.omg.CORBA.BAD_OPERATION err) {
 				if (ior == null) {
 					// No IOR, can we get a Tie for this stub?
-					Tie tie = (javax.rmi.CORBA.Tie) Utility.getAndForgetTie(proxy);
+					Tie tie = (javax.rmi.CORBA.Tie) Utility.getAndForgetTie(
+							proxy);
 					if (tie == null)
 						throw wrapper.connectNoTie();
 

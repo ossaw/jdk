@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +44,7 @@ public class IntStack extends IntVector {
 	 * Construct a IntVector, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of block to allocate
+	 *                  Size of block to allocate
 	 */
 	public IntStack(int blocksize) {
 		super(blocksize);
@@ -57,7 +54,7 @@ public class IntStack extends IntVector {
 	 * Copy constructor for IntStack
 	 *
 	 * @param v
-	 *            IntStack to copy
+	 *          IntStack to copy
 	 */
 	public IntStack(IntStack v) {
 		super(v);
@@ -67,7 +64,7 @@ public class IntStack extends IntVector {
 	 * Pushes an item onto the top of this stack.
 	 *
 	 * @param i
-	 *            the int to be pushed onto this stack.
+	 *          the int to be pushed onto this stack.
 	 * @return the <code>item</code> argument.
 	 */
 	public int push(int i) {
@@ -113,7 +110,7 @@ public class IntStack extends IntVector {
 	 *
 	 * @return the object at the top of this stack.
 	 * @throws EmptyStackException
-	 *             if this stack is empty.
+	 *                             if this stack is empty.
 	 */
 	public final int peek() {
 		try {
@@ -127,10 +124,10 @@ public class IntStack extends IntVector {
 	 * Looks at the object at the position the stack counting down n items.
 	 *
 	 * @param n
-	 *            The number of items down, indexed from zero.
+	 *          The number of items down, indexed from zero.
 	 * @return the object at n items down.
 	 * @throws EmptyStackException
-	 *             if this stack is empty.
+	 *                             if this stack is empty.
 	 */
 	public int peek(int n) {
 		try {
@@ -147,7 +144,7 @@ public class IntStack extends IntVector {
 	 * @param val
 	 *            object to set at the top
 	 * @throws EmptyStackException
-	 *             if this stack is empty.
+	 *                             if this stack is empty.
 	 */
 	public void setTop(int val) {
 		try {
@@ -172,7 +169,7 @@ public class IntStack extends IntVector {
 	 * Returns where an object is on this stack.
 	 *
 	 * @param o
-	 *            the desired object.
+	 *          the desired object.
 	 * @return the distance from the top of the stack where the object is]
 	 *         located; the return value <code>-1</code> indicates that the
 	 *         object is not on the stack.

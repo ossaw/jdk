@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -70,7 +50,8 @@ public abstract class FocusManager extends DefaultKeyboardFocusManager {
 	 * @see #setCurrentManager
 	 */
 	public static FocusManager getCurrentManager() {
-		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		KeyboardFocusManager manager = KeyboardFocusManager
+				.getCurrentKeyboardFocusManager();
 		if (manager instanceof FocusManager) {
 			return (FocusManager) manager;
 		} else {
@@ -92,21 +73,25 @@ public abstract class FocusManager extends DefaultKeyboardFocusManager {
 	 * <code>KeyboardFocusManager</code> will be unchanged.
 	 *
 	 * @param aFocusManager
-	 *            the new <code>KeyboardFocusManager</code> for this thread's
-	 *            context
+	 *                      the new <code>KeyboardFocusManager</code> for this
+	 *                      thread's
+	 *                      context
 	 * @see #getCurrentManager
 	 * @see java.awt.DefaultKeyboardFocusManager
 	 * @throws SecurityException
-	 *             if the calling thread does not have permission to replace the
-	 *             current <code>KeyboardFocusManager</code>
+	 *                           if the calling thread does not have permission
+	 *                           to replace the
+	 *                           current <code>KeyboardFocusManager</code>
 	 */
-	public static void setCurrentManager(FocusManager aFocusManager) throws SecurityException {
+	public static void setCurrentManager(FocusManager aFocusManager)
+			throws SecurityException {
 		// Note: This method is not backward-compatible with 1.3 and earlier
 		// releases. It now throws a SecurityException in an applet, whereas
 		// in previous releases, it did not. This issue was discussed at
 		// length, and ultimately approved by Hans.
 		KeyboardFocusManager toSet = (aFocusManager instanceof DelegatingDefaultFocusManager)
-				? ((DelegatingDefaultFocusManager) aFocusManager).getDelegate() : aFocusManager;
+				? ((DelegatingDefaultFocusManager) aFocusManager).getDelegate()
+				: aFocusManager;
 		KeyboardFocusManager.setCurrentKeyboardFocusManager(toSet);
 	}
 
@@ -125,7 +110,8 @@ public abstract class FocusManager extends DefaultKeyboardFocusManager {
 		if (enabled) {
 			enabled = false;
 			KeyboardFocusManager.getCurrentKeyboardFocusManager()
-					.setDefaultFocusTraversalPolicy(new DefaultFocusTraversalPolicy());
+					.setDefaultFocusTraversalPolicy(
+							new DefaultFocusTraversalPolicy());
 		}
 	}
 

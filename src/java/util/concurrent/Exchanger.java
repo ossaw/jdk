@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea, Bill Scherer, and Michael Scott with
  * assistance from members of JCP JSR-166 Expert Group and released to
  * the public domain, as explained at
@@ -105,25 +80,22 @@ import java.util.concurrent.locks.LockSupport;
  * @since 1.5
  * @author Doug Lea and Bill Scherer and Michael Scott
  * @param <V>
- *            The type of objects that may be exchanged
+ *        The type of objects that may be exchanged
  */
 public class Exchanger<V> {
 
 	/*
 	 * Overview: The core algorithm is, for an exchange "slot", and a
 	 * participant (caller) with an item:
-	 *
 	 * for (;;) { if (slot is empty) { // offer place item in a Node; if (can
 	 * CAS slot from empty to node) { wait for release; return matching item in
 	 * node; } } else if (can CAS slot from node to empty) { // release get the
 	 * item in node; set matching item in node; release waiting thread; } //
 	 * else retry on CAS failure }
-	 *
 	 * This is among the simplest forms of a "dual data structure" -- see Scott
 	 * and Scherer's DISC 04 paper and
 	 * http://www.cs.rochester.edu/research/synchronization/pseudocode/duals.
 	 * html
-	 *
 	 * This works great in principle. But in practice, like many algorithms
 	 * centered on atomic updates to a single location, it scales horribly when
 	 * there are more than a few participants using the same Exchanger. So the
@@ -138,7 +110,6 @@ public class Exchanger<V> {
 	 * per-thread nodes rather than creating them fresh each time because slots
 	 * alternate between pointing to a node vs null, so cannot encounter ABA
 	 * problems. However, we do need some care in resetting them between uses.)
-	 *
 	 * Implementing an effective arena requires allocating a bunch of space, so
 	 * we only do so upon detecting contention (except on uniprocessors, where
 	 * they wouldn't help, so aren't used). Otherwise, exchanges use the
@@ -152,7 +123,6 @@ public class Exchanger<V> {
 	 * padding (via sun.misc.Contended) to Nodes, embedding "bound" as an
 	 * Exchanger field, and reworking some park/unpark mechanics compared to
 	 * LockSupport versions.
-	 *
 	 * The arena starts out with only one used slot. We expand the effective
 	 * arena size by tracking collisions; i.e., failed CASes while trying to
 	 * exchange. By nature of the above algorithm, the only kinds of collision
@@ -166,7 +136,6 @@ public class Exchanger<V> {
 	 * (sequence) number on the "bound" field, and conservatively reset
 	 * collision counts when a participant notices that bound has been updated
 	 * (in either direction).
-	 *
 	 * The effective arena size is reduced (when there is more than one slot) by
 	 * giving up on waiting after a while and trying to decrement the arena size
 	 * on expiration. The value of "a while" is an empirical matter. We
@@ -189,7 +158,6 @@ public class Exchanger<V> {
 	 * asynchrony a bit, at the expense of poorer collision detection and
 	 * inability to always reuse per-thread nodes. So the current scheme is
 	 * typically a better tradeoff.
-	 *
 	 * On collisions, indices traverse the arena cyclically in reverse order,
 	 * restarting at the maximum index (which will tend to be sparsest) when
 	 * bounds change. (On expirations, indices instead are halved until reaching
@@ -200,12 +168,10 @@ public class Exchanger<V> {
 	 * operations that occur very quickly unless there is sustained contention,
 	 * so simpler/faster control policies work better than more accurate but
 	 * slower ones.
-	 *
 	 * Because we use expiration for arena size control, we cannot throw
 	 * TimeoutExceptions in the timed version of the public exchange method
 	 * until the arena size has shrunken to zero (or the arena isn't enabled).
 	 * This may delay response to timeout but is still within spec.
-	 *
 	 * Essentially all of the implementation is in methods slotExchange and
 	 * arenaExchange. These have similar overall structure, but differ in too
 	 * many details to combine. The slotExchange method uses the single
@@ -215,7 +181,6 @@ public class Exchanger<V> {
 	 * InterruptedExceptions come out right during transitions when both methods
 	 * may be called. This is done by using null return as a sentinel to recheck
 	 * interrupt status.)
-	 *
 	 * As is too common in this sort of code, methods are monolithic because
 	 * most of the logic relies on reads of fields that are maintained as local
 	 * variables so can't be nicely factored -- mainly, here, bulky
@@ -334,11 +299,11 @@ public class Exchanger<V> {
 	 * Exchange function when arenas enabled. See above for explanation.
 	 *
 	 * @param item
-	 *            the (non-null) item to exchange
+	 *              the (non-null) item to exchange
 	 * @param timed
-	 *            true if the wait is timed
+	 *              true if the wait is timed
 	 * @param ns
-	 *            if timed, the maximum wait time, else 0L
+	 *              if timed, the maximum wait time, else 0L
 	 * @return the other thread's item; or null if interrupted; or TIMED_OUT if
 	 *         timed and timed out
 	 */
@@ -379,8 +344,8 @@ public class Exchanger<V> {
 								Thread.yield(); // two yields per wait
 						} else if (U.getObjectVolatile(a, j) != p)
 							spins = SPINS; // releaser hasn't set match yet
-						else if (!t.isInterrupted() && m == 0
-								&& (!timed || (ns = end - System.nanoTime()) > 0L)) {
+						else if (!t.isInterrupted() && m == 0 && (!timed
+								|| (ns = end - System.nanoTime()) > 0L)) {
 							U.putObject(t, BLOCKER, this); // emulate
 															// LockSupport
 							p.parked = t; // minimize window
@@ -388,10 +353,11 @@ public class Exchanger<V> {
 								U.park(false, ns);
 							p.parked = null;
 							U.putObject(t, BLOCKER, null);
-						} else if (U.getObjectVolatile(a, j) == p
-								&& U.compareAndSwapObject(a, j, p, null)) {
+						} else if (U.getObjectVolatile(a, j) == p && U
+								.compareAndSwapObject(a, j, p, null)) {
 							if (m != 0) // try to shrink
-								U.compareAndSwapInt(this, BOUND, b, b + SEQ - 1);
+								U.compareAndSwapInt(this, BOUND, b, b + SEQ
+										- 1);
 							p.item = null;
 							p.hash = h;
 							i = p.index >>>= 1; // descend
@@ -409,8 +375,8 @@ public class Exchanger<V> {
 					p.bound = b;
 					p.collides = 0;
 					i = (i != m || m == 0) ? m : m - 1;
-				} else if ((c = p.collides) < m || m == FULL
-						|| !U.compareAndSwapInt(this, BOUND, b, b + SEQ + 1)) {
+				} else if ((c = p.collides) < m || m == FULL || !U
+						.compareAndSwapInt(this, BOUND, b, b + SEQ + 1)) {
 					p.collides = c + 1;
 					i = (i == 0) ? m : i - 1; // cyclically traverse
 				} else
@@ -424,11 +390,11 @@ public class Exchanger<V> {
 	 * Exchange function used until arenas enabled. See above for explanation.
 	 *
 	 * @param item
-	 *            the item to exchange
+	 *              the item to exchange
 	 * @param timed
-	 *            true if the wait is timed
+	 *              true if the wait is timed
 	 * @param ns
-	 *            if timed, the maximum wait time, else 0L
+	 *              if timed, the maximum wait time, else 0L
 	 * @return the other thread's item; or null if either the arena was enabled
 	 *         or the thread was interrupted before completion; or TIMED_OUT if
 	 *         timed and timed out
@@ -451,7 +417,8 @@ public class Exchanger<V> {
 					return v;
 				}
 				// create arena on contention, but continue until slot null
-				if (NCPU > 1 && bound == 0 && U.compareAndSwapInt(this, BOUND, 0, SEQ))
+				if (NCPU > 1 && bound == 0 && U.compareAndSwapInt(this, BOUND,
+						0, SEQ))
 					arena = new Node[(FULL + 2) << ASHIFT];
 			} else if (arena != null)
 				return null; // caller must reroute to arenaExchange
@@ -479,8 +446,8 @@ public class Exchanger<V> {
 					Thread.yield();
 			} else if (slot != p)
 				spins = SPINS;
-			else if (!t.isInterrupted() && arena == null
-					&& (!timed || (ns = end - System.nanoTime()) > 0L)) {
+			else if (!t.isInterrupted() && arena == null && (!timed || (ns = end
+					- System.nanoTime()) > 0L)) {
 				U.putObject(t, BLOCKER, this);
 				p.parked = t;
 				if (slot == p)
@@ -536,10 +503,11 @@ public class Exchanger<V> {
 	 * interrupted status is cleared.
 	 *
 	 * @param x
-	 *            the object to exchange
+	 *          the object to exchange
 	 * @return the object provided by the other thread
 	 * @throws InterruptedException
-	 *             if the current thread was interrupted while waiting
+	 *                              if the current thread was interrupted while
+	 *                              waiting
 	 */
 	@SuppressWarnings("unchecked")
 	public V exchange(V x) throws InterruptedException {
@@ -590,17 +558,19 @@ public class Exchanger<V> {
 	 * wait at all.
 	 *
 	 * @param x
-	 *            the object to exchange
+	 *                the object to exchange
 	 * @param timeout
-	 *            the maximum time to wait
+	 *                the maximum time to wait
 	 * @param unit
-	 *            the time unit of the {@code timeout} argument
+	 *                the time unit of the {@code timeout} argument
 	 * @return the object provided by the other thread
 	 * @throws InterruptedException
-	 *             if the current thread was interrupted while waiting
+	 *                              if the current thread was interrupted while
+	 *                              waiting
 	 * @throws TimeoutException
-	 *             if the specified waiting time elapses before another thread
-	 *             enters the exchange
+	 *                              if the specified waiting time elapses before
+	 *                              another thread
+	 *                              enters the exchange
 	 */
 	@SuppressWarnings("unchecked")
 	public V exchange(V x, long timeout, TimeUnit unit)
@@ -609,7 +579,8 @@ public class Exchanger<V> {
 		Object item = (x == null) ? NULL_ITEM : x;
 		long ns = unit.toNanos(timeout);
 		if ((arena != null || (v = slotExchange(item, true, ns)) == null)
-				&& ((Thread.interrupted() || (v = arenaExchange(item, true, ns)) == null)))
+				&& ((Thread.interrupted() || (v = arenaExchange(item, true,
+						ns)) == null)))
 			throw new InterruptedException();
 		if (v == TIMED_OUT)
 			throw new TimeoutException();

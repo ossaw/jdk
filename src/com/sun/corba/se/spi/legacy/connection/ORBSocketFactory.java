@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.legacy.connection;
@@ -307,7 +287,8 @@ public interface ORBSocketFactory {
 	 * <p>
 	 *
 	 */
-	public ServerSocket createServerSocket(String type, int port) throws IOException;
+	public ServerSocket createServerSocket(String type, int port)
+			throws IOException;
 
 	/**
 	 * DEPRECATED. DEPRECATED. DEPRECATED. DEPRECATED.
@@ -364,7 +345,8 @@ public interface ORBSocketFactory {
 	 * <p>
 	 *
 	 */
-	public SocketInfo getEndPointInfo(org.omg.CORBA.ORB orb, IOR ior, SocketInfo socketInfo);
+	public SocketInfo getEndPointInfo(org.omg.CORBA.ORB orb, IOR ior,
+			SocketInfo socketInfo);
 
 	/**
 	 * DEPRECATED. DEPRECATED. DEPRECATED. DEPRECATED. <p
@@ -385,8 +367,8 @@ public interface ORBSocketFactory {
 	 * <p>
 	 *
 	 */
-	public Socket createSocket(SocketInfo socketInfo)
-			throws IOException, GetEndPointInfoAgainException;
+	public Socket createSocket(SocketInfo socketInfo) throws IOException,
+			GetEndPointInfoAgainException;
 }
 
 // End of file.

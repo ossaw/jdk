@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -60,9 +40,9 @@ public class BoxView extends CompositeView {
 	 * Constructs a <code>BoxView</code>.
 	 *
 	 * @param elem
-	 *            the element this view is responsible for
+	 *             the element this view is responsible for
 	 * @param axis
-	 *            either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
+	 *             either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
 	 */
 	public BoxView(Element elem, int axis) {
 		super(elem);
@@ -97,7 +77,7 @@ public class BoxView extends CompositeView {
 	 * are tiled.
 	 *
 	 * @param axis
-	 *            either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
+	 *             either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
 	 *
 	 * @since 1.3
 	 */
@@ -118,7 +98,7 @@ public class BoxView extends CompositeView {
 	 * on this view (typically in paint).
 	 *
 	 * @param axis
-	 *            either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
+	 *             either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
 	 *
 	 * @since 1.3
 	 */
@@ -134,7 +114,7 @@ public class BoxView extends CompositeView {
 	 * Determines if the layout is valid along the given axis.
 	 *
 	 * @param axis
-	 *            either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
+	 *             either <code>View.X_AXIS</code> or <code>View.Y_AXIS</code>
 	 *
 	 * @since 1.4
 	 */
@@ -151,11 +131,11 @@ public class BoxView extends CompositeView {
 	 * this to paint things relative to the child.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *              the graphics context
 	 * @param alloc
-	 *            the allocated region to paint into
+	 *              the allocated region to paint into
 	 * @param index
-	 *            the child index, &gt;= 0 &amp;&amp; &lt; getViewCount()
+	 *              the child index, &gt;= 0 &amp;&amp; &lt; getViewCount()
 	 */
 	protected void paintChild(Graphics g, Rectangle alloc, int index) {
 		View child = getView(index);
@@ -170,14 +150,17 @@ public class BoxView extends CompositeView {
 	 * children will have an offset and span of 0.
 	 *
 	 * @param index
-	 *            the starting index into the child views to insert the new
-	 *            views; this should be a value &gt;= 0 and &lt;= getViewCount
+	 *               the starting index into the child views to insert the new
+	 *               views; this should be a value &gt;= 0 and &lt;=
+	 *               getViewCount
 	 * @param length
-	 *            the number of existing child views to remove; This should be a
-	 *            value &gt;= 0 and &lt;= (getViewCount() - offset)
+	 *               the number of existing child views to remove; This should
+	 *               be a
+	 *               value &gt;= 0 and &lt;= (getViewCount() - offset)
 	 * @param elems
-	 *            the child views to add; this value can be <code>null</code>to
-	 *            indicate no children are being added (useful to remove)
+	 *               the child views to add; this value can be
+	 *               <code>null</code>to
+	 *               indicate no children are being added (useful to remove)
 	 */
 	public void replace(int index, int length, View[] elems) {
 		super.replace(index, length, elems);
@@ -202,13 +185,14 @@ public class BoxView extends CompositeView {
 	 * the new array.
 	 *
 	 * @param oldArray
-	 *            the original layout array
+	 *                  the original layout array
 	 * @param offset
-	 *            location where new views will be inserted
+	 *                  location where new views will be inserted
 	 * @param nInserted
-	 *            the number of child views being inserted; therefore the number
-	 *            of blank spaces to leave in the new array at location
-	 *            <code>offset</code>
+	 *                  the number of child views being inserted; therefore the
+	 *                  number
+	 *                  of blank spaces to leave in the new array at location
+	 *                  <code>offset</code>
 	 * @return the new layout array
 	 */
 	int[] updateLayoutArray(int[] oldArray, int offset, int nInserted) {
@@ -216,7 +200,8 @@ public class BoxView extends CompositeView {
 		int[] newArray = new int[n];
 
 		System.arraycopy(oldArray, 0, newArray, 0, offset);
-		System.arraycopy(oldArray, offset, newArray, offset + nInserted, n - nInserted - offset);
+		System.arraycopy(oldArray, offset, newArray, offset + nInserted, n
+				- nInserted - offset);
 		return newArray;
 	}
 
@@ -228,21 +213,21 @@ public class BoxView extends CompositeView {
 	 * repainted.
 	 *
 	 * @param ec
-	 *            changes to the element this view is responsible for (may be
-	 *            <code>null</code> if there were no changes)
+	 *           changes to the element this view is responsible for (may be
+	 *           <code>null</code> if there were no changes)
 	 * @param e
-	 *            the change information from the associated document
+	 *           the change information from the associated document
 	 * @param a
-	 *            the current allocation of the view
+	 *           the current allocation of the view
 	 * @param f
-	 *            the factory to use to rebuild if the view has children
+	 *           the factory to use to rebuild if the view has children
 	 * @see #insertUpdate
 	 * @see #removeUpdate
 	 * @see #changedUpdate
 	 * @since 1.3
 	 */
-	protected void forwardUpdate(DocumentEvent.ElementChange ec, DocumentEvent e, Shape a,
-			ViewFactory f) {
+	protected void forwardUpdate(DocumentEvent.ElementChange ec,
+			DocumentEvent e, Shape a, ViewFactory f) {
 		boolean wasValid = isLayoutValid(majorAxis);
 		super.forwardUpdate(ec, e, a, f);
 
@@ -274,11 +259,11 @@ public class BoxView extends CompositeView {
 	 * calculations will be done the next time the children need an allocation.
 	 *
 	 * @param child
-	 *            the child view
+	 *               the child view
 	 * @param width
-	 *            true if the width preference should change
+	 *               true if the width preference should change
 	 * @param height
-	 *            true if the height preference should change
+	 *               true if the height preference should change
 	 */
 	public void preferenceChanged(View child, boolean width, boolean height) {
 		boolean majorChanged = (majorAxis == X_AXIS) ? width : height;
@@ -298,11 +283,11 @@ public class BoxView extends CompositeView {
 	 * Gets the resize weight. A value of 0 or less is not resizable.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the weight
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis
+	 *                                     for an invalid axis
 	 */
 	public int getResizeWeight(int axis) {
 		checkRequests(axis);
@@ -325,10 +310,10 @@ public class BoxView extends CompositeView {
 	 * view along the given axis.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @param span
-	 *            the span to layout to >= 0
+	 *             the span to layout to >= 0
 	 */
 	void setSpanOnAxis(int axis, float span) {
 		if (axis == majorAxis) {
@@ -385,8 +370,8 @@ public class BoxView extends CompositeView {
 	 * zero.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the current span of the view along the given axis, >= 0
 	 */
 	float getSpanOnAxis(int axis) {
@@ -403,9 +388,9 @@ public class BoxView extends CompositeView {
 	 * layout method with the sizes inside of the insets.
 	 *
 	 * @param width
-	 *            the width &gt;= 0
+	 *               the width &gt;= 0
 	 * @param height
-	 *            the height &gt;= 0
+	 *               the height &gt;= 0
 	 */
 	public void setSize(float width, float height) {
 		layout(Math.max(0, (int) (width - getLeftInset() - getRightInset())),
@@ -418,13 +403,14 @@ public class BoxView extends CompositeView {
 	 * the given <code>Graphics</code> will be rendered.
 	 *
 	 * @param g
-	 *            the rendering surface to use
+	 *                   the rendering surface to use
 	 * @param allocation
-	 *            the allocated region to render into
+	 *                   the allocated region to render into
 	 * @see View#paint
 	 */
 	public void paint(Graphics g, Shape allocation) {
-		Rectangle alloc = (allocation instanceof Rectangle) ? (Rectangle) allocation
+		Rectangle alloc = (allocation instanceof Rectangle)
+				? (Rectangle) allocation
 				: allocation.getBounds();
 		int n = getViewCount();
 		int x = alloc.x + getLeftInset();
@@ -443,7 +429,8 @@ public class BoxView extends CompositeView {
 			// even if the intersection has no inside points (is a line).
 			// This is needed for supporting views that have zero width, like
 			// views that contain only combining marks.
-			if ((trx1 >= crx0) && (try1 >= cry0) && (crx1 >= trx0) && (cry1 >= try0)) {
+			if ((trx1 >= crx0) && (try1 >= cry0) && (crx1 >= trx0)
+					&& (cry1 >= try0)) {
 				paintChild(g, tempRect, i);
 			}
 		}
@@ -456,9 +443,10 @@ public class BoxView extends CompositeView {
 	 * behavior is executed.
 	 *
 	 * @param index
-	 *            the index of the child, &gt;= 0 &amp;&amp; &gt; getViewCount()
+	 *              the index of the child, &gt;= 0 &amp;&amp; &gt;
+	 *              getViewCount()
 	 * @param a
-	 *            the allocation to this view
+	 *              the allocation to this view
 	 * @return the allocation to the child; or <code>null</code> if
 	 *         <code>a</code> is <code>null</code>; or <code>null</code> if the
 	 *         layout is invalid
@@ -468,7 +456,8 @@ public class BoxView extends CompositeView {
 			Shape ca = super.getChildAllocation(index, a);
 			if ((ca != null) && (!isAllocationValid())) {
 				// The child allocation may not have been set yet.
-				Rectangle r = (ca instanceof Rectangle) ? (Rectangle) ca : ca.getBounds();
+				Rectangle r = (ca instanceof Rectangle) ? (Rectangle) ca
+						: ca.getBounds();
 				if ((r.width == 0) && (r.height == 0)) {
 					return null;
 				}
@@ -489,11 +478,13 @@ public class BoxView extends CompositeView {
 	 *            the allocated region to render into
 	 * @return the bounding box of the given position
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see View#modelToView
 	 */
-	public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+	public Shape modelToView(int pos, Shape a, Position.Bias b)
+			throws BadLocationException {
 		if (!isAllocationValid()) {
 			Rectangle alloc = a.getBounds();
 			setSize(alloc.width, alloc.height);
@@ -506,11 +497,11 @@ public class BoxView extends CompositeView {
 	 * coordinate space of the model.
 	 *
 	 * @param x
-	 *            x coordinate of the view location to convert &gt;= 0
+	 *          x coordinate of the view location to convert &gt;= 0
 	 * @param y
-	 *            y coordinate of the view location to convert &gt;= 0
+	 *          y coordinate of the view location to convert &gt;= 0
 	 * @param a
-	 *            the allocated region to render into
+	 *          the allocated region to render into
 	 * @return the location within the model that best represents the given
 	 *         point in the view &gt;= 0
 	 * @see View#viewToModel
@@ -531,15 +522,15 @@ public class BoxView extends CompositeView {
 	 * (i.e. 0.5f).
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the desired alignment &gt;= 0.0f &amp;&amp; &lt;= 1.0f; this
 	 *         should be a value between 0.0 and 1.0 where 0 indicates alignment
 	 *         at the origin and 1.0 indicates alignment to the full span away
 	 *         from the origin; an alignment of 0.5 would be the center of the
 	 *         view
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis
+	 *                                     for an invalid axis
 	 */
 	public float getAlignment(int axis) {
 		checkRequests(axis);
@@ -554,14 +545,14 @@ public class BoxView extends CompositeView {
 	 * Determines the preferred span for this view along an axis.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the span the view would like to be rendered into &gt;= 0;
 	 *         typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee; the parent may choose
 	 *         to resize or break the view
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis type
+	 *                                     for an invalid axis type
 	 */
 	public float getPreferredSpan(int axis) {
 		checkRequests(axis);
@@ -578,14 +569,14 @@ public class BoxView extends CompositeView {
 	 * Determines the minimum span for this view along an axis.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the span the view would like to be rendered into &gt;= 0;
 	 *         typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee; the parent may choose
 	 *         to resize or break the view
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis type
+	 *                                     for an invalid axis type
 	 */
 	public float getMinimumSpan(int axis) {
 		checkRequests(axis);
@@ -602,14 +593,14 @@ public class BoxView extends CompositeView {
 	 * Determines the maximum span for this view along an axis.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the span the view would like to be rendered into &gt;= 0;
 	 *         typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee; the parent may choose
 	 *         to resize or break the view
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis type
+	 *                                     for an invalid axis type
 	 */
 	public float getMaximumSpan(int axis) {
 		checkRequests(axis);
@@ -637,11 +628,12 @@ public class BoxView extends CompositeView {
 	 * Determines if a point falls before an allocated region.
 	 *
 	 * @param x
-	 *            the X coordinate &gt;= 0
+	 *                   the X coordinate &gt;= 0
 	 * @param y
-	 *            the Y coordinate &gt;= 0
+	 *                   the Y coordinate &gt;= 0
 	 * @param innerAlloc
-	 *            the allocated region; this is the area inside of the insets
+	 *                   the allocated region; this is the area inside of the
+	 *                   insets
 	 * @return true if the point lies before the region else false
 	 */
 	protected boolean isBefore(int x, int y, Rectangle innerAlloc) {
@@ -656,11 +648,12 @@ public class BoxView extends CompositeView {
 	 * Determines if a point falls after an allocated region.
 	 *
 	 * @param x
-	 *            the X coordinate &gt;= 0
+	 *                   the X coordinate &gt;= 0
 	 * @param y
-	 *            the Y coordinate &gt;= 0
+	 *                   the Y coordinate &gt;= 0
 	 * @param innerAlloc
-	 *            the allocated region; this is the area inside of the insets
+	 *                   the allocated region; this is the area inside of the
+	 *                   insets
 	 * @return true if the point lies after the region else false
 	 */
 	protected boolean isAfter(int x, int y, Rectangle innerAlloc) {
@@ -675,12 +668,13 @@ public class BoxView extends CompositeView {
 	 * Fetches the child view at the given coordinates.
 	 *
 	 * @param x
-	 *            the X coordinate &gt;= 0
+	 *              the X coordinate &gt;= 0
 	 * @param y
-	 *            the Y coordinate &gt;= 0
+	 *              the Y coordinate &gt;= 0
 	 * @param alloc
-	 *            the parents inner allocation on entry, which should be changed
-	 *            to the child's allocation on exit
+	 *              the parents inner allocation on entry, which should be
+	 *              changed
+	 *              to the child's allocation on exit
 	 * @return the view
 	 */
 	protected View getViewAtPoint(int x, int y, Rectangle alloc) {
@@ -718,10 +712,10 @@ public class BoxView extends CompositeView {
 	 * Allocates a region for a child view.
 	 *
 	 * @param index
-	 *            the index of the child view to allocate, &gt;= 0 &amp;&amp;
-	 *            &lt; getViewCount()
+	 *              the index of the child view to allocate, &gt;= 0 &amp;&amp;
+	 *              &lt; getViewCount()
 	 * @param alloc
-	 *            the allocated region
+	 *              the allocated region
 	 */
 	protected void childAllocation(int index, Rectangle alloc) {
 		alloc.x += getOffset(X_AXIS, index);
@@ -734,9 +728,9 @@ public class BoxView extends CompositeView {
 	 * Perform layout on the box
 	 *
 	 * @param width
-	 *            the width (inside of the insets) &gt;= 0
+	 *               the width (inside of the insets) &gt;= 0
 	 * @param height
-	 *            the height (inside of the insets) &gt;= 0
+	 *               the height (inside of the insets) &gt;= 0
 	 */
 	protected void layout(int width, int height) {
 		setSpanOnAxis(X_AXIS, width);
@@ -784,19 +778,23 @@ public class BoxView extends CompositeView {
 	 * to the children along the major axis.
 	 *
 	 * @param targetSpan
-	 *            the total span given to the view, which would be used to
-	 *            layout the children
+	 *                   the total span given to the view, which would be used
+	 *                   to
+	 *                   layout the children
 	 * @param axis
-	 *            the axis being layed out
+	 *                   the axis being layed out
 	 * @param offsets
-	 *            the offsets from the origin of the view for each of the child
-	 *            views; this is a return value and is filled in by the
-	 *            implementation of this method
+	 *                   the offsets from the origin of the view for each of the
+	 *                   child
+	 *                   views; this is a return value and is filled in by the
+	 *                   implementation of this method
 	 * @param spans
-	 *            the span of each child view; this is a return value and is
-	 *            filled in by the implementation of this method
+	 *                   the span of each child view; this is a return value and
+	 *                   is
+	 *                   filled in by the implementation of this method
 	 */
-	protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
+	protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets,
+			int[] spans) {
 		/*
 		 * first pass, calculate the preferred sizes and the flexibility to
 		 * adjust the sizes.
@@ -849,7 +847,8 @@ public class BoxView extends CompositeView {
 				float adjF = adjustmentFactor * diffs[i];
 				spans[i] += Math.round(adjF);
 			}
-			totalOffset = (int) Math.min((long) totalOffset + (long) spans[i], Integer.MAX_VALUE);
+			totalOffset = (int) Math.min((long) totalOffset + (long) spans[i],
+					Integer.MAX_VALUE);
 		}
 	}
 
@@ -860,19 +859,23 @@ public class BoxView extends CompositeView {
 	 * represent the allocations to the children along the minor axis.
 	 *
 	 * @param targetSpan
-	 *            the total span given to the view, which would be used to
-	 *            layout the children
+	 *                   the total span given to the view, which would be used
+	 *                   to
+	 *                   layout the children
 	 * @param axis
-	 *            the axis being layed out
+	 *                   the axis being layed out
 	 * @param offsets
-	 *            the offsets from the origin of the view for each of the child
-	 *            views; this is a return value and is filled in by the
-	 *            implementation of this method
+	 *                   the offsets from the origin of the view for each of the
+	 *                   child
+	 *                   views; this is a return value and is filled in by the
+	 *                   implementation of this method
 	 * @param spans
-	 *            the span of each child view; this is a return value and is
-	 *            filled in by the implementation of this method
+	 *                   the span of each child view; this is a return value and
+	 *                   is
+	 *                   filled in by the implementation of this method
 	 */
-	protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
+	protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets,
+			int[] spans) {
 		int n = getViewCount();
 		for (int i = 0; i < n; i++) {
 			View v = getView(i);
@@ -895,14 +898,16 @@ public class BoxView extends CompositeView {
 	 * Calculates the size requirements for the major axis <code>axis</code>.
 	 *
 	 * @param axis
-	 *            the axis being studied
+	 *             the axis being studied
 	 * @param r
-	 *            the <code>SizeRequirements</code> object; if <code>null</code>
-	 *            one will be created
+	 *             the <code>SizeRequirements</code> object; if
+	 *             <code>null</code>
+	 *             one will be created
 	 * @return the newly initialized <code>SizeRequirements</code> object
 	 * @see javax.swing.SizeRequirements
 	 */
-	protected SizeRequirements calculateMajorAxisRequirements(int axis, SizeRequirements r) {
+	protected SizeRequirements calculateMajorAxisRequirements(int axis,
+			SizeRequirements r) {
 		// calculate tiled request
 		float min = 0;
 		float pref = 0;
@@ -930,14 +935,16 @@ public class BoxView extends CompositeView {
 	 * Calculates the size requirements for the minor axis <code>axis</code>.
 	 *
 	 * @param axis
-	 *            the axis being studied
+	 *             the axis being studied
 	 * @param r
-	 *            the <code>SizeRequirements</code> object; if <code>null</code>
-	 *            one will be created
+	 *             the <code>SizeRequirements</code> object; if
+	 *             <code>null</code>
+	 *             one will be created
 	 * @return the newly initialized <code>SizeRequirements</code> object
 	 * @see javax.swing.SizeRequirements
 	 */
-	protected SizeRequirements calculateMinorAxisRequirements(int axis, SizeRequirements r) {
+	protected SizeRequirements calculateMinorAxisRequirements(int axis,
+			SizeRequirements r) {
 		int min = 0;
 		long pref = 0;
 		int max = Integer.MAX_VALUE;
@@ -963,10 +970,11 @@ public class BoxView extends CompositeView {
 	 * Checks the request cache and update if needed.
 	 * 
 	 * @param axis
-	 *            the axis being studied
+	 *             the axis being studied
 	 * @exception IllegalArgumentException
-	 *                if <code>axis</code> is neither <code>View.X_AXIS</code>
-	 *                nor <code>View.Y_AXIS</code>
+	 *                                     if <code>axis</code> is neither
+	 *                                     <code>View.X_AXIS</code>
+	 *                                     nor <code>View.Y_AXIS</code>
 	 */
 	void checkRequests(int axis) {
 		if ((axis != X_AXIS) && (axis != Y_AXIS)) {
@@ -974,7 +982,8 @@ public class BoxView extends CompositeView {
 		}
 		if (axis == majorAxis) {
 			if (!majorReqValid) {
-				majorRequest = calculateMajorAxisRequirements(axis, majorRequest);
+				majorRequest = calculateMajorAxisRequirements(axis,
+						majorRequest);
 				majorReqValid = true;
 			}
 		} else if (!minorReqValid) {
@@ -989,19 +998,24 @@ public class BoxView extends CompositeView {
 	 * width (or height) of the region we have to work with.
 	 *
 	 * @param targetSpan
-	 *            the total span given to the view, which would be used to
-	 *            layout the children
+	 *                   the total span given to the view, which would be used
+	 *                   to
+	 *                   layout the children
 	 * @param axis
-	 *            the axis being studied, either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *                   the axis being studied, either <code>View.X_AXIS</code>
+	 *                   or
+	 *                   <code>View.Y_AXIS</code>
 	 * @param offsets
-	 *            an empty array filled by this method with values specifying
-	 *            the location of each child view
+	 *                   an empty array filled by this method with values
+	 *                   specifying
+	 *                   the location of each child view
 	 * @param spans
-	 *            an empty array filled by this method with values specifying
-	 *            the extent of each child view
+	 *                   an empty array filled by this method with values
+	 *                   specifying
+	 *                   the extent of each child view
 	 */
-	protected void baselineLayout(int targetSpan, int axis, int[] offsets, int[] spans) {
+	protected void baselineLayout(int targetSpan, int axis, int[] offsets,
+			int[] spans) {
 		int totalAscent = (int) (targetSpan * getAlignment(axis));
 		int totalDescent = targetSpan - totalAscent;
 
@@ -1023,13 +1037,16 @@ public class BoxView extends CompositeView {
 				if (align == 0.0f) {
 					// if the alignment is 0 then we need to fit into the
 					// descent
-					viewSpan = Math.max(Math.min(maxSpan, totalDescent), minSpan);
+					viewSpan = Math.max(Math.min(maxSpan, totalDescent),
+							minSpan);
 				} else if (align == 1.0f) {
 					// if the alignment is 1 then we need to fit into the ascent
-					viewSpan = Math.max(Math.min(maxSpan, totalAscent), minSpan);
+					viewSpan = Math.max(Math.min(maxSpan, totalAscent),
+							minSpan);
 				} else {
 					// figure out the span that we must fit into
-					float fitSpan = Math.min(totalAscent / align, totalDescent / (1.0f - align));
+					float fitSpan = Math.min(totalAscent / align, totalDescent
+							/ (1.0f - align));
 					// fit into the calculated span
 					viewSpan = Math.max(Math.min(maxSpan, fitSpan), minSpan);
 				}
@@ -1048,13 +1065,15 @@ public class BoxView extends CompositeView {
 	 * examining the size of each child view.
 	 *
 	 * @param axis
-	 *            the axis being studied
+	 *             the axis being studied
 	 * @param r
-	 *            the <code>SizeRequirements</code> object; if <code>null</code>
-	 *            one will be created
+	 *             the <code>SizeRequirements</code> object; if
+	 *             <code>null</code>
+	 *             one will be created
 	 * @return the newly initialized <code>SizeRequirements</code> object
 	 */
-	protected SizeRequirements baselineRequirements(int axis, SizeRequirements r) {
+	protected SizeRequirements baselineRequirements(int axis,
+			SizeRequirements r) {
 		SizeRequirements totalAscent = new SizeRequirements();
 		SizeRequirements totalDescent = new SizeRequirements();
 
@@ -1111,8 +1130,8 @@ public class BoxView extends CompositeView {
 
 		// calculate the preferred span as the sum of the preferred ascent and
 		// preferred descent
-		r.preferred = (int) Math.min((long) totalAscent.preferred + (long) totalDescent.preferred,
-				Integer.MAX_VALUE);
+		r.preferred = (int) Math.min((long) totalAscent.preferred
+				+ (long) totalDescent.preferred, Integer.MAX_VALUE);
 
 		// calculate the preferred alignment as the preferred ascent divided by
 		// the preferred span
@@ -1156,9 +1175,9 @@ public class BoxView extends CompositeView {
 	 * Fetches the offset of a particular child's current layout.
 	 * 
 	 * @param axis
-	 *            the axis being studied
+	 *                   the axis being studied
 	 * @param childIndex
-	 *            the index of the requested child
+	 *                   the index of the requested child
 	 * @return the offset (location) for the specified child
 	 */
 	protected int getOffset(int axis, int childIndex) {
@@ -1170,9 +1189,9 @@ public class BoxView extends CompositeView {
 	 * Fetches the span of a particular child's current layout.
 	 * 
 	 * @param axis
-	 *            the axis being studied
+	 *                   the axis being studied
 	 * @param childIndex
-	 *            the index of the requested child
+	 *                   the index of the requested child
 	 * @return the span (width or height) of the specified child
 	 */
 	protected int getSpan(int axis, int childIndex) {
@@ -1200,10 +1219,10 @@ public class BoxView extends CompositeView {
 	 * false.
 	 *
 	 * @param position
-	 *            position into the model
+	 *                 position into the model
 	 * @param bias
-	 *            either <code>Position.Bias.Forward</code> or
-	 *            <code>Position.Bias.Backward</code>
+	 *                 either <code>Position.Bias.Forward</code> or
+	 *                 <code>Position.Bias.Backward</code>
 	 * @return true if the <code>View</code>s surrounding the <code>View</code>
 	 *         responding for rendering <code>position</code> and
 	 *         <code>bias</code> are layed out in descending order; otherwise
@@ -1211,12 +1230,14 @@ public class BoxView extends CompositeView {
 	 */
 	protected boolean flipEastAndWestAtEnds(int position, Position.Bias bias) {
 		if (majorAxis == Y_AXIS) {
-			int testPos = (bias == Position.Bias.Backward) ? Math.max(0, position - 1) : position;
+			int testPos = (bias == Position.Bias.Backward) ? Math.max(0,
+					position - 1) : position;
 			int index = getViewIndexAtPosition(testPos);
 			if (index != -1) {
 				View v = getView(index);
 				if (v != null && v instanceof CompositeView) {
-					return ((CompositeView) v).flipEastAndWestAtEnds(position, bias);
+					return ((CompositeView) v).flipEastAndWestAtEnds(position,
+							bias);
 				}
 			}
 		}

@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -193,7 +191,8 @@ public final class Template extends TopLevelElement {
 
 		if (name.length() > 0) {
 			if (!XML11Char.isXML11ValidQName(name)) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name,
+						this);
 				parser.reportError(Constants.ERROR, err);
 			}
 			_name = parser.getQNameIgnoreDefaultNs(name);
@@ -201,7 +200,8 @@ public final class Template extends TopLevelElement {
 
 		if (mode.length() > 0) {
 			if (!XML11Char.isXML11ValidQName(mode)) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, mode, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, mode,
+						this);
 				parser.reportError(Constants.ERROR, err);
 			}
 			_mode = parser.getQNameIgnoreDefaultNs(mode);
@@ -226,7 +226,8 @@ public final class Template extends TopLevelElement {
 		if (_name != null) {
 			Template other = parser.getSymbolTable().addTemplate(this);
 			if (!resolveNamedTemplates(other, parser)) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.TEMPLATE_REDEF_ERR, _name, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.TEMPLATE_REDEF_ERR, _name,
+						this);
 				parser.reportError(Constants.ERROR, err);
 			}
 			// Is this a simple named template?
@@ -302,7 +303,8 @@ public final class Template extends TopLevelElement {
 			il.append(methodGen.loadHandler());
 			il.append(methodGen.loadCurrentNode());
 			il.append(new INVOKEVIRTUAL(cpg.addMethodref(className, methodName,
-					"(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG + "I)V")));
+					"(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG
+							+ "I)V")));
 			return;
 		}
 
@@ -311,7 +313,8 @@ public final class Template extends TopLevelElement {
 		_compiled = true;
 
 		// %OPT% Special handling for simple named templates.
-		if (_isSimpleNamedTemplate && methodGen instanceof NamedMethodGenerator) {
+		if (_isSimpleNamedTemplate
+				&& methodGen instanceof NamedMethodGenerator) {
 			int numParams = _parameters.size();
 			NamedMethodGenerator namedMethodGen = (NamedMethodGenerator) methodGen;
 

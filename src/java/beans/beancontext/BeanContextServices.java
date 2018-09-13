@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans.beancontext;
@@ -41,7 +21,8 @@ import java.beans.beancontext.BeanContextServicesListener;
  * expose generic "services" to the BeanContextChild objects within.
  * </p>
  */
-public interface BeanContextServices extends BeanContext, BeanContextServicesListener {
+public interface BeanContextServices extends BeanContext,
+		BeanContextServicesListener {
 
 	/**
 	 * Adds a service to this BeanContext.
@@ -56,13 +37,15 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * simply returns <code>false</code>.
 	 * 
 	 * @param serviceClass
-	 *            the service to add
+	 *                        the service to add
 	 * @param serviceProvider
-	 *            the <code>BeanContextServiceProvider</code> associated with
-	 *            the service
+	 *                        the <code>BeanContextServiceProvider</code>
+	 *                        associated with
+	 *                        the service
 	 * @return true if the service was successful added, false otherwise
 	 */
-	boolean addService(Class serviceClass, BeanContextServiceProvider serviceProvider);
+	boolean addService(Class serviceClass,
+			BeanContextServiceProvider serviceProvider);
 
 	/**
 	 * BeanContextServiceProviders wishing to remove a currently registered
@@ -73,18 +56,25 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * <code>BeanContextServicesListeners</code>.
 	 * 
 	 * @param serviceClass
-	 *            the service to revoke from this BeanContextServices
+	 *                                 the service to revoke from this
+	 *                                 BeanContextServices
 	 * @param serviceProvider
-	 *            the BeanContextServiceProvider associated with this particular
-	 *            service that is being revoked
+	 *                                 the BeanContextServiceProvider associated
+	 *                                 with this particular
+	 *                                 service that is being revoked
 	 * @param revokeCurrentServicesNow
-	 *            a value of <code>true</code> indicates an exceptional
-	 *            circumstance where the <code>BeanContextServiceProvider</code>
-	 *            or <code>BeanContextServices</code> wishes to immediately
-	 *            terminate service to all currently outstanding references to
-	 *            the specified service.
+	 *                                 a value of <code>true</code> indicates an
+	 *                                 exceptional
+	 *                                 circumstance where the
+	 *                                 <code>BeanContextServiceProvider</code>
+	 *                                 or <code>BeanContextServices</code>
+	 *                                 wishes to immediately
+	 *                                 terminate service to all currently
+	 *                                 outstanding references to
+	 *                                 the specified service.
 	 */
-	void revokeService(Class serviceClass, BeanContextServiceProvider serviceProvider,
+	void revokeService(Class serviceClass,
+			BeanContextServiceProvider serviceProvider,
 			boolean revokeCurrentServicesNow);
 
 	/**
@@ -92,7 +82,7 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * context.
 	 * 
 	 * @param serviceClass
-	 *            the service in question
+	 *                     the service in question
 	 * @return true if the service is available
 	 */
 	boolean hasService(Class serviceClass);
@@ -106,23 +96,26 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * <code>BeanContextServiceProvider</code>.
 	 * 
 	 * @param child
-	 *            the <code>BeanContextChild</code> associated with this request
+	 *                        the <code>BeanContextChild</code> associated with
+	 *                        this request
 	 * @param requestor
-	 *            the object requesting the service
+	 *                        the object requesting the service
 	 * @param serviceClass
-	 *            class of the requested service
+	 *                        class of the requested service
 	 * @param serviceSelector
-	 *            the service dependent parameter
+	 *                        the service dependent parameter
 	 * @param bcsrl
-	 *            the <code>BeanContextServiceRevokedListener</code> to notify
-	 *            if the service should later become revoked
+	 *                        the <code>BeanContextServiceRevokedListener</code>
+	 *                        to notify
+	 *                        if the service should later become revoked
 	 * @throws TooManyListenersException
-	 *             if there are too many listeners
+	 *                                   if there are too many listeners
 	 * @return a reference to this context's named Service as requested or
 	 *         <code>null</code>
 	 */
-	Object getService(BeanContextChild child, Object requestor, Class serviceClass,
-			Object serviceSelector, BeanContextServiceRevokedListener bcsrl)
+	Object getService(BeanContextChild child, Object requestor,
+			Class serviceClass, Object serviceSelector,
+			BeanContextServiceRevokedListener bcsrl)
 			throws TooManyListenersException;
 
 	/**
@@ -132,13 +125,14 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * <code>BeanContextServiceProvider</code>.
 	 * 
 	 * @param child
-	 *            the <code>BeanContextChild</code>
+	 *                  the <code>BeanContextChild</code>
 	 * @param requestor
-	 *            the requestor
+	 *                  the requestor
 	 * @param service
-	 *            the service
+	 *                  the service
 	 */
-	void releaseService(BeanContextChild child, Object requestor, Object service);
+	void releaseService(BeanContextChild child, Object requestor,
+			Object service);
 
 	/**
 	 * Gets the currently available services for this context.
@@ -154,7 +148,7 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * underlying BeanContextServiceProvider.
 	 * 
 	 * @param serviceClass
-	 *            the specified service
+	 *                     the specified service
 	 * @return the currently available service selectors for the named
 	 *         serviceClass
 	 */
@@ -164,7 +158,7 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * Adds a <code>BeanContextServicesListener</code> to this BeanContext
 	 * 
 	 * @param bcsl
-	 *            the <code>BeanContextServicesListener</code> to add
+	 *             the <code>BeanContextServicesListener</code> to add
 	 */
 	void addBeanContextServicesListener(BeanContextServicesListener bcsl);
 
@@ -173,8 +167,8 @@ public interface BeanContextServices extends BeanContext, BeanContextServicesLis
 	 * <code>BeanContext</code>
 	 * 
 	 * @param bcsl
-	 *            the <code>BeanContextServicesListener</code> to remove from
-	 *            this context
+	 *             the <code>BeanContextServicesListener</code> to remove from
+	 *             this context
 	 */
 	void removeBeanContextServicesListener(BeanContextServicesListener bcsl);
 }

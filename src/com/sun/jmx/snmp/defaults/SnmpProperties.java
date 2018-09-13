@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.defaults;
@@ -47,8 +27,7 @@ import java.util.Enumeration;
 public class SnmpProperties {
 
 	// private constructor defined to "hide" the default public constructor
-	private SnmpProperties() {
-	}
+	private SnmpProperties() {}
 
 	// PUBLIC STATIC METHODS
 	// ----------------------

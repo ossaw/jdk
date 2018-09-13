@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.element;
@@ -69,9 +49,9 @@ import javax.lang.model.type.TypeMirror;
  * 8 and higher platform versions.
  *
  * @param <R>
- *            the return type of this visitor's methods
+ *        the return type of this visitor's methods
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
+ *        the type of the additional parameter to this visitor's methods.
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
@@ -82,9 +62,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits an annotation value.
 	 * 
 	 * @param av
-	 *            the value to visit
+	 *           the value to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *           a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visit(AnnotationValue av, P p);
@@ -93,7 +73,7 @@ public interface AnnotationValueVisitor<R, P> {
 	 * A convenience method equivalent to {@code v.visit(av, null)}.
 	 * 
 	 * @param av
-	 *            the value to visit
+	 *           the value to visit
 	 * @return a visitor-specified result
 	 */
 	R visit(AnnotationValue av);
@@ -102,9 +82,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a {@code boolean} value in an annotation.
 	 * 
 	 * @param b
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitBoolean(boolean b, P p);
@@ -113,9 +93,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a {@code byte} value in an annotation.
 	 * 
 	 * @param b
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitByte(byte b, P p);
@@ -124,9 +104,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a {@code char} value in an annotation.
 	 * 
 	 * @param c
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitChar(char c, P p);
@@ -135,9 +115,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a {@code double} value in an annotation.
 	 * 
 	 * @param d
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitDouble(double d, P p);
@@ -146,9 +126,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a {@code float} value in an annotation.
 	 * 
 	 * @param f
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitFloat(float f, P p);
@@ -157,9 +137,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits an {@code int} value in an annotation.
 	 * 
 	 * @param i
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitInt(int i, P p);
@@ -168,9 +148,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a {@code long} value in an annotation.
 	 * 
 	 * @param i
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitLong(long i, P p);
@@ -179,9 +159,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a {@code short} value in an annotation.
 	 * 
 	 * @param s
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitShort(short s, P p);
@@ -190,9 +170,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a string value in an annotation.
 	 * 
 	 * @param s
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitString(String s, P p);
@@ -201,9 +181,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits a type value in an annotation.
 	 * 
 	 * @param t
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitType(TypeMirror t, P p);
@@ -212,9 +192,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits an {@code enum} value in an annotation.
 	 * 
 	 * @param c
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitEnumConstant(VariableElement c, P p);
@@ -223,9 +203,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits an annotation value in an annotation.
 	 * 
 	 * @param a
-	 *            the value being visited
+	 *          the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitAnnotation(AnnotationMirror a, P p);
@@ -234,9 +214,9 @@ public interface AnnotationValueVisitor<R, P> {
 	 * Visits an array value in an annotation.
 	 * 
 	 * @param vals
-	 *            the value being visited
+	 *             the value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *             a visitor-specified parameter
 	 * @return the result of the visit
 	 */
 	R visitArray(List<? extends AnnotationValue> vals, P p);
@@ -246,12 +226,13 @@ public interface AnnotationValueVisitor<R, P> {
 	 * language evolves and new kinds of value can be stored in an annotation.
 	 * 
 	 * @param av
-	 *            the unknown value being visited
+	 *           the unknown value being visited
 	 * @param p
-	 *            a visitor-specified parameter
+	 *           a visitor-specified parameter
 	 * @return the result of the visit
 	 * @throws UnknownAnnotationValueException
-	 *             a visitor implementation may optionally throw this exception
+	 *                                         a visitor implementation may
+	 *                                         optionally throw this exception
 	 */
 	R visitUnknown(AnnotationValue av, P p);
 }

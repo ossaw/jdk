@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -56,8 +36,7 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
 	/**
 	 * Basic Constructor.
 	 */
-	public BinaryRelQueryExp() {
-	}
+	public BinaryRelQueryExp() {}
 
 	/**
 	 * Creates a new BinaryRelQueryExp with operator op applied on v1 and v2
@@ -94,8 +73,8 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
 	 * Applies the BinaryRelQueryExp on an MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the BinaryRelQueryExp will be
-	 *            applied.
+	 *             The name of the MBean on which the BinaryRelQueryExp will be
+	 *             applied.
 	 *
 	 * @return True if the query was successfully applied to the MBean, false
 	 *         otherwise.
@@ -105,9 +84,9 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public boolean apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public boolean apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		Object val1 = exp1.apply(name);
 		Object val2 = exp2.apply(name);
 		boolean numeric = val1 instanceof NumericValueExp;
@@ -118,32 +97,32 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
 				long lval2 = ((NumericValueExp) val2).longValue();
 
 				switch (relOp) {
-				case Query.GT:
-					return lval1 > lval2;
-				case Query.LT:
-					return lval1 < lval2;
-				case Query.GE:
-					return lval1 >= lval2;
-				case Query.LE:
-					return lval1 <= lval2;
-				case Query.EQ:
-					return lval1 == lval2;
+					case Query.GT:
+						return lval1 > lval2;
+					case Query.LT:
+						return lval1 < lval2;
+					case Query.GE:
+						return lval1 >= lval2;
+					case Query.LE:
+						return lval1 <= lval2;
+					case Query.EQ:
+						return lval1 == lval2;
 				}
 			} else {
 				double dval1 = ((NumericValueExp) val1).doubleValue();
 				double dval2 = ((NumericValueExp) val2).doubleValue();
 
 				switch (relOp) {
-				case Query.GT:
-					return dval1 > dval2;
-				case Query.LT:
-					return dval1 < dval2;
-				case Query.GE:
-					return dval1 >= dval2;
-				case Query.LE:
-					return dval1 <= dval2;
-				case Query.EQ:
-					return dval1 == dval2;
+					case Query.GT:
+						return dval1 > dval2;
+					case Query.LT:
+						return dval1 < dval2;
+					case Query.GE:
+						return dval1 >= dval2;
+					case Query.LE:
+						return dval1 <= dval2;
+					case Query.EQ:
+						return dval1 == dval2;
 				}
 			}
 
@@ -153,16 +132,16 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
 			boolean bval2 = ((BooleanValueExp) val2).getValue().booleanValue();
 
 			switch (relOp) {
-			case Query.GT:
-				return bval1 && !bval2;
-			case Query.LT:
-				return !bval1 && bval2;
-			case Query.GE:
-				return bval1 || !bval2;
-			case Query.LE:
-				return !bval1 || bval2;
-			case Query.EQ:
-				return bval1 == bval2;
+				case Query.GT:
+					return bval1 && !bval2;
+				case Query.LT:
+					return !bval1 && bval2;
+				case Query.GE:
+					return bval1 || !bval2;
+				case Query.LE:
+					return !bval1 || bval2;
+				case Query.EQ:
+					return bval1 == bval2;
 			}
 
 		} else {
@@ -170,16 +149,16 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
 			String sval2 = ((StringValueExp) val2).getValue();
 
 			switch (relOp) {
-			case Query.GT:
-				return sval1.compareTo(sval2) > 0;
-			case Query.LT:
-				return sval1.compareTo(sval2) < 0;
-			case Query.GE:
-				return sval1.compareTo(sval2) >= 0;
-			case Query.LE:
-				return sval1.compareTo(sval2) <= 0;
-			case Query.EQ:
-				return sval1.compareTo(sval2) == 0;
+				case Query.GT:
+					return sval1.compareTo(sval2) > 0;
+				case Query.LT:
+					return sval1.compareTo(sval2) < 0;
+				case Query.GE:
+					return sval1.compareTo(sval2) >= 0;
+				case Query.LE:
+					return sval1.compareTo(sval2) <= 0;
+				case Query.EQ:
+					return sval1.compareTo(sval2) == 0;
 			}
 		}
 
@@ -196,16 +175,16 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
 
 	private String relOpString() {
 		switch (relOp) {
-		case Query.GT:
-			return ">";
-		case Query.LT:
-			return "<";
-		case Query.GE:
-			return ">=";
-		case Query.LE:
-			return "<=";
-		case Query.EQ:
-			return "=";
+			case Query.GT:
+				return ">";
+			case Query.LT:
+				return "<";
+			case Query.GE:
+				return ">=";
+			case Query.LE:
+				return "<=";
+			case Query.EQ:
+				return "=";
 		}
 
 		return "=";

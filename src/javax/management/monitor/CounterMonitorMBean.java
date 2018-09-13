@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.monitor;
@@ -78,20 +58,21 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * @see #getThreshold()
 	 *
 	 * @param value
-	 *            The threshold value.
+	 *              The threshold value.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The specified threshold is null or the threshold value is
-	 *                less than zero.
+	 *            The specified threshold is null or the threshold value is
+	 *            less than zero.
 	 * @deprecated As of JMX 1.2, replaced by {@link #setInitThreshold}
 	 */
 	@Deprecated
-	public void setThreshold(Number value) throws java.lang.IllegalArgumentException;
+	public void setThreshold(Number value)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Gets the derived gauge for the specified MBean.
 	 *
 	 * @param object
-	 *            the MBean for which the derived gauge is to be returned
+	 *               the MBean for which the derived gauge is to be returned
 	 * @return The derived gauge for the specified MBean if this MBean is in the
 	 *         set of observed MBeans, or <code>null</code> otherwise.
 	 *
@@ -102,8 +83,8 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * Gets the derived gauge timestamp for the specified MBean.
 	 *
 	 * @param object
-	 *            the MBean for which the derived gauge timestamp is to be
-	 *            returned
+	 *               the MBean for which the derived gauge timestamp is to be
+	 *               returned
 	 * @return The derived gauge timestamp for the specified MBean if this MBean
 	 *         is in the set of observed MBeans, or <code>null</code> otherwise.
 	 *
@@ -114,7 +95,7 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * Gets the threshold value for the specified MBean.
 	 *
 	 * @param object
-	 *            the MBean for which the threshold value is to be returned
+	 *               the MBean for which the threshold value is to be returned
 	 * @return The threshold value for the specified MBean if this MBean is in
 	 *         the set of observed MBeans, or <code>null</code> otherwise.
 	 *
@@ -137,15 +118,16 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * Sets the initial threshold value common to all observed MBeans.
 	 *
 	 * @param value
-	 *            The initial threshold value.
+	 *              The initial threshold value.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The specified threshold is null or the threshold value is
-	 *                less than zero.
+	 *            The specified threshold is null or the threshold value is
+	 *            less than zero.
 	 *
 	 * @see #getInitThreshold
 	 *
 	 */
-	public void setInitThreshold(Number value) throws java.lang.IllegalArgumentException;
+	public void setInitThreshold(Number value)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Gets the offset value.
@@ -160,14 +142,15 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * Sets the offset value.
 	 *
 	 * @param value
-	 *            The offset value.
+	 *              The offset value.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The specified offset is null or the offset value is less
-	 *                than zero.
+	 *            The specified offset is null or the offset value is less
+	 *            than zero.
 	 *
 	 * @see #getOffset()
 	 */
-	public void setOffset(Number value) throws java.lang.IllegalArgumentException;
+	public void setOffset(Number value)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Gets the modulus value.
@@ -182,14 +165,15 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * Sets the modulus value.
 	 *
 	 * @param value
-	 *            The modulus value.
+	 *              The modulus value.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The specified modulus is null or the modulus value is less
-	 *                than zero.
+	 *            The specified modulus is null or the modulus value is less
+	 *            than zero.
 	 *
 	 * @see #getModulus
 	 */
-	public void setModulus(Number value) throws java.lang.IllegalArgumentException;
+	public void setModulus(Number value)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Gets the notification's on/off switch value.
@@ -205,7 +189,7 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * Sets the notification's on/off switch value.
 	 *
 	 * @param value
-	 *            The notification's on/off switch value.
+	 *              The notification's on/off switch value.
 	 *
 	 * @see #getNotify
 	 */
@@ -225,7 +209,7 @@ public interface CounterMonitorMBean extends MonitorMBean {
 	 * Sets the difference mode flag value.
 	 *
 	 * @param value
-	 *            The difference mode flag value.
+	 *              The difference mode flag value.
 	 *
 	 * @see #getDifferenceMode
 	 */

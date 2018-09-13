@@ -1,32 +1,11 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Written by Doug Lea with assistance from members of JCP JSR-166
- * Expert Group.  Adapted and released, under explicit permission,
+ * Expert Group. Adapted and released, under explicit permission,
  * from JDK ArrayList.java which carries the following copyright:
- *
  * Copyright 1997 by Sun Microsystems, Inc.,
  * 901 San Antonio Road, Palo Alto, California, 94303, U.S.A.
  * All rights reserved.
@@ -89,10 +68,10 @@ import java.util.function.UnaryOperator;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
-public class CopyOnWriteArrayList<E>
-		implements List<E>, RandomAccess, Cloneable, java.io.Serializable {
+public class CopyOnWriteArrayList<E> implements List<E>, RandomAccess,
+		Cloneable, java.io.Serializable {
 	private static final long serialVersionUID = 8673264195747942595L;
 
 	/** The lock protecting all mutators */
@@ -128,9 +107,9 @@ public class CopyOnWriteArrayList<E>
 	 * the order they are returned by the collection's iterator.
 	 *
 	 * @param c
-	 *            the collection of initially held elements
+	 *          the collection of initially held elements
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 */
 	public CopyOnWriteArrayList(Collection<? extends E> c) {
 		Object[] elements;
@@ -140,7 +119,8 @@ public class CopyOnWriteArrayList<E>
 			elements = c.toArray();
 			// c.toArray might (incorrectly) not return Object[] (see 6260652)
 			if (elements.getClass() != Object[].class)
-				elements = Arrays.copyOf(elements, elements.length, Object[].class);
+				elements = Arrays.copyOf(elements, elements.length,
+						Object[].class);
 		}
 		setArray(elements);
 	}
@@ -149,9 +129,10 @@ public class CopyOnWriteArrayList<E>
 	 * Creates a list holding a copy of the given array.
 	 *
 	 * @param toCopyIn
-	 *            the array (a copy of this array is used as the internal array)
+	 *                 the array (a copy of this array is used as the internal
+	 *                 array)
 	 * @throws NullPointerException
-	 *             if the specified array is null
+	 *                              if the specified array is null
 	 */
 	public CopyOnWriteArrayList(E[] toCopyIn) {
 		setArray(Arrays.copyOf(toCopyIn, toCopyIn.length, Object[].class));
@@ -187,16 +168,17 @@ public class CopyOnWriteArrayList<E>
 	 * re-acquire array each time.
 	 * 
 	 * @param o
-	 *            element to search for
+	 *                 element to search for
 	 * @param elements
-	 *            the array
+	 *                 the array
 	 * @param index
-	 *            first index to search
+	 *                 first index to search
 	 * @param fence
-	 *            one past last index to search
+	 *                 one past last index to search
 	 * @return index of element, or -1 if absent
 	 */
-	private static int indexOf(Object o, Object[] elements, int index, int fence) {
+	private static int indexOf(Object o, Object[] elements, int index,
+			int fence) {
 		if (o == null) {
 			for (int i = index; i < fence; i++)
 				if (elements[i] == null)
@@ -213,11 +195,11 @@ public class CopyOnWriteArrayList<E>
 	 * static version of lastIndexOf.
 	 * 
 	 * @param o
-	 *            element to search for
+	 *                 element to search for
 	 * @param elements
-	 *            the array
+	 *                 the array
 	 * @param index
-	 *            first index to search
+	 *                 first index to search
 	 * @return index of element, or -1 if absent
 	 */
 	private static int lastIndexOf(Object o, Object[] elements, int index) {
@@ -240,7 +222,7 @@ public class CopyOnWriteArrayList<E>
 	 * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
 	 *
 	 * @param o
-	 *            element whose presence in this list is to be tested
+	 *          element whose presence in this list is to be tested
 	 * @return {@code true} if this list contains the specified element
 	 */
 	public boolean contains(Object o) {
@@ -265,14 +247,14 @@ public class CopyOnWriteArrayList<E>
 	 * , or -1 if there is no such index.
 	 *
 	 * @param e
-	 *            element to search for
+	 *              element to search for
 	 * @param index
-	 *            index to start searching from
+	 *              index to start searching from
 	 * @return the index of the first occurrence of the element in this list at
 	 *         position {@code index} or later in the list; {@code -1} if the
 	 *         element is not found.
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 */
 	public int indexOf(E e, int index) {
 		Object[] elements = getArray();
@@ -296,15 +278,16 @@ public class CopyOnWriteArrayList<E>
 	 * , or -1 if there is no such index.
 	 *
 	 * @param e
-	 *            element to search for
+	 *              element to search for
 	 * @param index
-	 *            index to start searching backwards from
+	 *              index to start searching backwards from
 	 * @return the index of the last occurrence of the element at position less
 	 *         than or equal to {@code index} in this list; -1 if the element is
 	 *         not found.
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is greater than or equal to the
-	 *             current size of this list
+	 *                                   if the specified index is greater than
+	 *                                   or equal to the
+	 *                                   current size of this list
 	 */
 	public int lastIndexOf(E e, int index) {
 		Object[] elements = getArray();
@@ -384,15 +367,17 @@ public class CopyOnWriteArrayList<E>
 	 * {@code toArray()}.
 	 *
 	 * @param a
-	 *            the array into which the elements of the list are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose.
+	 *          the array into which the elements of the list are to be
+	 *          stored, if it is big enough; otherwise, a new array of the
+	 *          same runtime type is allocated for this purpose.
 	 * @return an array containing all the elements in this list
 	 * @throws ArrayStoreException
-	 *             if the runtime type of the specified array is not a supertype
-	 *             of the runtime type of every element in this list
+	 *                              if the runtime type of the specified array
+	 *                              is not a supertype
+	 *                              of the runtime type of every element in this
+	 *                              list
 	 * @throws NullPointerException
-	 *             if the specified array is null
+	 *                              if the specified array is null
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T[] toArray(T a[]) {
@@ -419,7 +404,7 @@ public class CopyOnWriteArrayList<E>
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public E get(int index) {
 		return get(getArray(), index);
@@ -430,7 +415,7 @@ public class CopyOnWriteArrayList<E>
 	 * specified element.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public E set(int index, E element) {
 		final ReentrantLock lock = this.lock;
@@ -458,7 +443,7 @@ public class CopyOnWriteArrayList<E>
 	 * Appends the specified element to the end of this list.
 	 *
 	 * @param e
-	 *            element to be appended to this list
+	 *          element to be appended to this list
 	 * @return {@code true} (as specified by {@link Collection#add})
 	 */
 	public boolean add(E e) {
@@ -482,7 +467,7 @@ public class CopyOnWriteArrayList<E>
 	 * elements to the right (adds one to their indices).
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public void add(int index, E element) {
 		final ReentrantLock lock = this.lock;
@@ -491,7 +476,8 @@ public class CopyOnWriteArrayList<E>
 			Object[] elements = getArray();
 			int len = elements.length;
 			if (index > len || index < 0)
-				throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + len);
+				throw new IndexOutOfBoundsException("Index: " + index
+						+ ", Size: " + len);
 			Object[] newElements;
 			int numMoved = len - index;
 			if (numMoved == 0)
@@ -499,7 +485,8 @@ public class CopyOnWriteArrayList<E>
 			else {
 				newElements = new Object[len + 1];
 				System.arraycopy(elements, 0, newElements, 0, index);
-				System.arraycopy(elements, index, newElements, index + 1, numMoved);
+				System.arraycopy(elements, index, newElements, index + 1,
+						numMoved);
 			}
 			newElements[index] = element;
 			setArray(newElements);
@@ -514,7 +501,7 @@ public class CopyOnWriteArrayList<E>
 	 * Returns the element that was removed from the list.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public E remove(int index) {
 		final ReentrantLock lock = this.lock;
@@ -529,7 +516,8 @@ public class CopyOnWriteArrayList<E>
 			else {
 				Object[] newElements = new Object[len - 1];
 				System.arraycopy(elements, 0, newElements, 0, index);
-				System.arraycopy(elements, index + 1, newElements, index, numMoved);
+				System.arraycopy(elements, index + 1, newElements, index,
+						numMoved);
 				setArray(newElements);
 			}
 			return oldValue;
@@ -549,7 +537,7 @@ public class CopyOnWriteArrayList<E>
 	 * of the call).
 	 *
 	 * @param o
-	 *            element to be removed from this list, if present
+	 *          element to be removed from this list, if present
 	 * @return {@code true} if this list contained the specified element
 	 */
 	public boolean remove(Object o) {
@@ -587,7 +575,8 @@ public class CopyOnWriteArrayList<E>
 				}
 			Object[] newElements = new Object[len - 1];
 			System.arraycopy(current, 0, newElements, 0, index);
-			System.arraycopy(current, index + 1, newElements, index, len - index - 1);
+			System.arraycopy(current, index + 1, newElements, index, len - index
+					- 1);
 			setArray(newElements);
 			return true;
 		} finally {
@@ -603,13 +592,13 @@ public class CopyOnWriteArrayList<E>
 	 * {@code toIndex==fromIndex}, this operation has no effect.)
 	 *
 	 * @param fromIndex
-	 *            index of first element to be removed
+	 *                  index of first element to be removed
 	 * @param toIndex
-	 *            index after last element to be removed
+	 *                  index after last element to be removed
 	 * @throws IndexOutOfBoundsException
-	 *             if fromIndex or toIndex out of range (
-	 *             {@code fromIndex < 0 || toIndex > size() || toIndex < fromIndex}
-	 *             )
+	 *                                   if fromIndex or toIndex out of range (
+	 *                                   {@code fromIndex < 0 || toIndex > size() || toIndex < fromIndex}
+	 *                                   )
 	 */
 	void removeRange(int fromIndex, int toIndex) {
 		final ReentrantLock lock = this.lock;
@@ -627,7 +616,8 @@ public class CopyOnWriteArrayList<E>
 			else {
 				Object[] newElements = new Object[newlen];
 				System.arraycopy(elements, 0, newElements, 0, fromIndex);
-				System.arraycopy(elements, toIndex, newElements, fromIndex, numMoved);
+				System.arraycopy(elements, toIndex, newElements, fromIndex,
+						numMoved);
 				setArray(newElements);
 			}
 		} finally {
@@ -639,12 +629,13 @@ public class CopyOnWriteArrayList<E>
 	 * Appends the element, if not present.
 	 *
 	 * @param e
-	 *            element to be added to this list, if absent
+	 *          element to be added to this list, if absent
 	 * @return {@code true} if the element was added
 	 */
 	public boolean addIfAbsent(E e) {
 		Object[] snapshot = getArray();
-		return indexOf(e, snapshot, 0, snapshot.length) >= 0 ? false : addIfAbsent(e, snapshot);
+		return indexOf(e, snapshot, 0, snapshot.length) >= 0 ? false
+				: addIfAbsent(e, snapshot);
 	}
 
 	/**
@@ -680,11 +671,11 @@ public class CopyOnWriteArrayList<E>
 	 * specified collection.
 	 *
 	 * @param c
-	 *            collection to be checked for containment in this list
+	 *          collection to be checked for containment in this list
 	 * @return {@code true} if this list contains all of the elements of the
 	 *         specified collection
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 * @see #contains(Object)
 	 */
 	public boolean containsAll(Collection<?> c) {
@@ -703,18 +694,23 @@ public class CopyOnWriteArrayList<E>
 	 * class because of the need for an internal temporary array.
 	 *
 	 * @param c
-	 *            collection containing elements to be removed from this list
+	 *          collection containing elements to be removed from this list
 	 * @return {@code true} if this list changed as a result of the call
 	 * @throws ClassCastException
-	 *             if the class of an element of this list is incompatible with
-	 *             the specified collection (
-	 *             <a href="../Collection.html#optional-restrictions">optional
-	 *             </a>)
+	 *                              if the class of an element of this list is
+	 *                              incompatible with
+	 *                              the specified collection (
+	 *                              <a href=
+	 *                              "../Collection.html#optional-restrictions">optional
+	 *                              </a>)
 	 * @throws NullPointerException
-	 *             if this list contains a null element and the specified
-	 *             collection does not permit null elements (
-	 *             <a href="../Collection.html#optional-restrictions">optional
-	 *             </a>), or if the specified collection is null
+	 *                              if this list contains a null element and the
+	 *                              specified
+	 *                              collection does not permit null elements (
+	 *                              <a href=
+	 *                              "../Collection.html#optional-restrictions">optional
+	 *                              </a>), or if the specified collection is
+	 *                              null
 	 * @see #remove(Object)
 	 */
 	public boolean removeAll(Collection<?> c) {
@@ -751,18 +747,23 @@ public class CopyOnWriteArrayList<E>
 	 * elements that are not contained in the specified collection.
 	 *
 	 * @param c
-	 *            collection containing elements to be retained in this list
+	 *          collection containing elements to be retained in this list
 	 * @return {@code true} if this list changed as a result of the call
 	 * @throws ClassCastException
-	 *             if the class of an element of this list is incompatible with
-	 *             the specified collection (
-	 *             <a href="../Collection.html#optional-restrictions">optional
-	 *             </a>)
+	 *                              if the class of an element of this list is
+	 *                              incompatible with
+	 *                              the specified collection (
+	 *                              <a href=
+	 *                              "../Collection.html#optional-restrictions">optional
+	 *                              </a>)
 	 * @throws NullPointerException
-	 *             if this list contains a null element and the specified
-	 *             collection does not permit null elements (
-	 *             <a href="../Collection.html#optional-restrictions">optional
-	 *             </a>), or if the specified collection is null
+	 *                              if this list contains a null element and the
+	 *                              specified
+	 *                              collection does not permit null elements (
+	 *                              <a href=
+	 *                              "../Collection.html#optional-restrictions">optional
+	 *                              </a>), or if the specified collection is
+	 *                              null
 	 * @see #remove(Object)
 	 */
 	public boolean retainAll(Collection<?> c) {
@@ -799,10 +800,10 @@ public class CopyOnWriteArrayList<E>
 	 * that they are returned by the specified collection's iterator.
 	 *
 	 * @param c
-	 *            collection containing elements to be added to this list
+	 *          collection containing elements to be added to this list
 	 * @return the number of elements added
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 * @see #addIfAbsent(Object)
 	 */
 	public int addAllAbsent(Collection<? extends E> c) {
@@ -818,7 +819,8 @@ public class CopyOnWriteArrayList<E>
 			// uniquify and compact elements in cs
 			for (int i = 0; i < cs.length; ++i) {
 				Object e = cs[i];
-				if (indexOf(e, elements, 0, len) < 0 && indexOf(e, cs, 0, added) < 0)
+				if (indexOf(e, elements, 0, len) < 0 && indexOf(e, cs, 0,
+						added) < 0)
 					cs[added++] = e;
 			}
 			if (added > 0) {
@@ -852,15 +854,16 @@ public class CopyOnWriteArrayList<E>
 	 * collection's iterator.
 	 *
 	 * @param c
-	 *            collection containing elements to be added to this list
+	 *          collection containing elements to be added to this list
 	 * @return {@code true} if this list changed as a result of the call
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 * @see #add(Object)
 	 */
 	public boolean addAll(Collection<? extends E> c) {
 		Object[] cs = (c.getClass() == CopyOnWriteArrayList.class)
-				? ((CopyOnWriteArrayList<?>) c).getArray() : c.toArray();
+				? ((CopyOnWriteArrayList<?>) c).getArray()
+				: c.toArray();
 		if (cs.length == 0)
 			return false;
 		final ReentrantLock lock = this.lock;
@@ -889,15 +892,16 @@ public class CopyOnWriteArrayList<E>
 	 * that they are returned by the specified collection's iterator.
 	 *
 	 * @param index
-	 *            index at which to insert the first element from the specified
-	 *            collection
+	 *              index at which to insert the first element from the
+	 *              specified
+	 *              collection
 	 * @param c
-	 *            collection containing elements to be added to this list
+	 *              collection containing elements to be added to this list
 	 * @return {@code true} if this list changed as a result of the call
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                                   if the specified collection is null
 	 * @see #add(int,Object)
 	 */
 	public boolean addAll(int index, Collection<? extends E> c) {
@@ -908,7 +912,8 @@ public class CopyOnWriteArrayList<E>
 			Object[] elements = getArray();
 			int len = elements.length;
 			if (index > len || index < 0)
-				throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + len);
+				throw new IndexOutOfBoundsException("Index: " + index
+						+ ", Size: " + len);
 			if (cs.length == 0)
 				return false;
 			int numMoved = len - index;
@@ -918,7 +923,8 @@ public class CopyOnWriteArrayList<E>
 			else {
 				newElements = new Object[len + cs.length];
 				System.arraycopy(elements, 0, newElements, 0, index);
-				System.arraycopy(elements, index, newElements, index + cs.length, numMoved);
+				System.arraycopy(elements, index, newElements, index
+						+ cs.length, numMoved);
 			}
 			System.arraycopy(cs, 0, newElements, index, cs.length);
 			setArray(newElements);
@@ -1007,14 +1013,15 @@ public class CopyOnWriteArrayList<E>
 	 * Saves this list to a stream (that is, serializes it).
 	 *
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws java.io.IOException
-	 *             if an I/O error occurs
+	 *         if an I/O error occurs
 	 * @serialData The length of the array backing the list is emitted (int),
 	 *             followed by all of its elements (each an Object) in the
 	 *             proper order.
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 
 		s.defaultWriteObject();
 
@@ -1031,11 +1038,12 @@ public class CopyOnWriteArrayList<E>
 	 * Reconstitutes this list from a stream (that is, deserializes it).
 	 * 
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws ClassNotFoundException
-	 *             if the class of a serialized object could not be found
-	 * @throws java.io.IOException
-	 *             if an I/O error occurs
+	 *                                if the class of a serialized object could
+	 *                                not be found
+	 * @throws                        java.io.IOException
+	 *                                if an I/O error occurs
 	 */
 	private void readObject(java.io.ObjectInputStream s)
 			throws java.io.IOException, ClassNotFoundException {
@@ -1081,7 +1089,7 @@ public class CopyOnWriteArrayList<E>
 	 * <em>equal</em> if {@code (e1==null ? e2==null : e1.equals(e2))}.
 	 *
 	 * @param o
-	 *            the object to be compared for equality with this list
+	 *          the object to be compared for equality with this list
 	 * @return {@code true} if the specified object is equal to this list
 	 */
 	public boolean equals(Object o) {
@@ -1159,7 +1167,7 @@ public class CopyOnWriteArrayList<E>
 	 * {@code remove}, {@code set} or {@code add} methods.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public ListIterator<E> listIterator(int index) {
 		Object[] elements = getArray();
@@ -1187,7 +1195,8 @@ public class CopyOnWriteArrayList<E>
 	 * @since 1.8
 	 */
 	public Spliterator<E> spliterator() {
-		return Spliterators.spliterator(getArray(), Spliterator.IMMUTABLE | Spliterator.ORDERED);
+		return Spliterators.spliterator(getArray(), Spliterator.IMMUTABLE
+				| Spliterator.ORDERED);
 	}
 
 	static final class COWIterator<E> implements ListIterator<E> {
@@ -1235,7 +1244,8 @@ public class CopyOnWriteArrayList<E>
 		 * Not supported. Always throws UnsupportedOperationException.
 		 * 
 		 * @throws UnsupportedOperationException
-		 *             always; {@code remove} is not supported by this iterator.
+		 *                                       always; {@code remove} is not
+		 *                                       supported by this iterator.
 		 */
 		public void remove() {
 			throw new UnsupportedOperationException();
@@ -1245,7 +1255,8 @@ public class CopyOnWriteArrayList<E>
 		 * Not supported. Always throws UnsupportedOperationException.
 		 * 
 		 * @throws UnsupportedOperationException
-		 *             always; {@code set} is not supported by this iterator.
+		 *                                       always; {@code set} is not
+		 *                                       supported by this iterator.
 		 */
 		public void set(E e) {
 			throw new UnsupportedOperationException();
@@ -1255,7 +1266,8 @@ public class CopyOnWriteArrayList<E>
 		 * Not supported. Always throws UnsupportedOperationException.
 		 * 
 		 * @throws UnsupportedOperationException
-		 *             always; {@code add} is not supported by this iterator.
+		 *                                       always; {@code add} is not
+		 *                                       supported by this iterator.
 		 */
 		public void add(E e) {
 			throw new UnsupportedOperationException();
@@ -1286,12 +1298,12 @@ public class CopyOnWriteArrayList<E>
 	 * returned list.
 	 *
 	 * @param fromIndex
-	 *            low endpoint (inclusive) of the subList
+	 *                  low endpoint (inclusive) of the subList
 	 * @param toIndex
-	 *            high endpoint (exclusive) of the subList
+	 *                  high endpoint (exclusive) of the subList
 	 * @return a view of the specified range within this list
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public List<E> subList(int fromIndex, int toIndex) {
 		final ReentrantLock lock = this.lock;
@@ -1319,7 +1331,8 @@ public class CopyOnWriteArrayList<E>
 	 * operations inherited from AbstractList are already so slow on COW
 	 * sublists that adding a bit more space/time doesn't seem even noticeable.
 	 */
-	private static class COWSubList<E> extends AbstractList<E> implements RandomAccess {
+	private static class COWSubList<E> extends AbstractList<E> implements
+			RandomAccess {
 		private final CopyOnWriteArrayList<E> l;
 		private final int offset;
 		private int size;
@@ -1342,7 +1355,8 @@ public class CopyOnWriteArrayList<E>
 		// only call this holding l's lock
 		private void rangeCheck(int index) {
 			if (index < 0 || index >= size)
-				throw new IndexOutOfBoundsException("Index: " + index + ",Size: " + size);
+				throw new IndexOutOfBoundsException("Index: " + index
+						+ ",Size: " + size);
 		}
 
 		public E set(int index, E element) {
@@ -1450,7 +1464,8 @@ public class CopyOnWriteArrayList<E>
 			try {
 				checkForComodification();
 				if (index < 0 || index > size)
-					throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+					throw new IndexOutOfBoundsException("Index: " + index
+							+ ", Size: " + size);
 				return new COWSubListIterator<E>(l, index, offset, size);
 			} finally {
 				lock.unlock();
@@ -1464,7 +1479,8 @@ public class CopyOnWriteArrayList<E>
 				checkForComodification();
 				if (fromIndex < 0 || toIndex > size || fromIndex > toIndex)
 					throw new IndexOutOfBoundsException();
-				return new COWSubList<E>(l, fromIndex + offset, toIndex + offset);
+				return new COWSubList<E>(l, fromIndex + offset, toIndex
+						+ offset);
 			} finally {
 				lock.unlock();
 			}
@@ -1563,7 +1579,8 @@ public class CopyOnWriteArrayList<E>
 						Object[] newElements = new Object[len - n + newSize];
 						System.arraycopy(elements, 0, newElements, 0, lo);
 						System.arraycopy(temp, 0, newElements, lo, newSize);
-						System.arraycopy(elements, hi, newElements, lo + newSize, len - hi);
+						System.arraycopy(elements, hi, newElements, lo
+								+ newSize, len - hi);
 						size = newSize;
 						removed = true;
 						l.setArray(expectedArray = newElements);
@@ -1603,7 +1620,8 @@ public class CopyOnWriteArrayList<E>
 						Object[] newElements = new Object[len - n + newSize];
 						System.arraycopy(elements, 0, newElements, 0, lo);
 						System.arraycopy(temp, 0, newElements, lo, newSize);
-						System.arraycopy(elements, hi, newElements, lo + newSize, len - hi);
+						System.arraycopy(elements, hi, newElements, lo
+								+ newSize, len - hi);
 						size = newSize;
 						removed = true;
 						l.setArray(expectedArray = newElements);
@@ -1644,7 +1662,8 @@ public class CopyOnWriteArrayList<E>
 						Object[] newElements = new Object[len - n + newSize];
 						System.arraycopy(elements, 0, newElements, 0, lo);
 						System.arraycopy(temp, 0, newElements, lo, newSize);
-						System.arraycopy(elements, hi, newElements, lo + newSize, len - hi);
+						System.arraycopy(elements, hi, newElements, lo
+								+ newSize, len - hi);
 						size = newSize;
 						removed = true;
 						l.setArray(expectedArray = newElements);
@@ -1664,7 +1683,8 @@ public class CopyOnWriteArrayList<E>
 				throw new ConcurrentModificationException();
 			if (lo < 0 || hi > a.length)
 				throw new IndexOutOfBoundsException();
-			return Spliterators.spliterator(a, lo, hi, Spliterator.IMMUTABLE | Spliterator.ORDERED);
+			return Spliterators.spliterator(a, lo, hi, Spliterator.IMMUTABLE
+					| Spliterator.ORDERED);
 		}
 
 	}

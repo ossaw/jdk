@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -84,7 +64,7 @@ public interface KeyEventPostProcessor {
 	 * consumed KeyEvent.
 	 *
 	 * @param e
-	 *            the KeyEvent to post-process
+	 *          the KeyEvent to post-process
 	 * @return <code>true</code> if the AWT should take no further action with
 	 *         regard to the KeyEvent; <code>false</code> otherwise
 	 * @see KeyboardFocusManager#redispatchEvent

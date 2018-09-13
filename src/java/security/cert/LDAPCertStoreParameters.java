@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -62,11 +42,11 @@ public class LDAPCertStoreParameters implements CertStoreParameters {
 	 * parameter values.
 	 *
 	 * @param serverName
-	 *            the DNS name of the LDAP server
+	 *                   the DNS name of the LDAP server
 	 * @param port
-	 *            the port number of the LDAP server
+	 *                   the port number of the LDAP server
 	 * @exception NullPointerException
-	 *                if {@code serverName} is {@code null}
+	 *                                 if {@code serverName} is {@code null}
 	 */
 	public LDAPCertStoreParameters(String serverName, int port) {
 		if (serverName == null)
@@ -80,9 +60,9 @@ public class LDAPCertStoreParameters implements CertStoreParameters {
 	 * server name and a default port of 389.
 	 *
 	 * @param serverName
-	 *            the DNS name of the LDAP server
+	 *                   the DNS name of the LDAP server
 	 * @exception NullPointerException
-	 *                if {@code serverName} is {@code null}
+	 *                                 if {@code serverName} is {@code null}
 	 */
 	public LDAPCertStoreParameters(String serverName) {
 		this(serverName, LDAP_DEFAULT_PORT);

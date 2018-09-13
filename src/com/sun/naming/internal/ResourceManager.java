@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.naming.internal;
@@ -81,7 +61,8 @@ public final class ResourceManager {
 			// package.
 			javax.naming.ldap.LdapContext.CONTROL_FACTORIES };
 
-	private static final VersionHelper helper = VersionHelper.getVersionHelper();
+	private static final VersionHelper helper = VersionHelper
+			.getVersionHelper();
 
 	/*
 	 * A cache of the properties that have been constructed by the
@@ -95,7 +76,6 @@ public final class ResourceManager {
 
 	/*
 	 * A cache of factory objects (ObjectFactory, StateFactory, ControlFactory).
-	 *
 	 * A two-level cache keyed first on context class loader and then on
 	 * propValue. Value is a list of class or factory objects, weakly referenced
 	 * so as not to prevent GC of the class loader. Used in getFactories().
@@ -105,7 +85,6 @@ public final class ResourceManager {
 
 	/*
 	 * A cache of URL factory objects (ObjectFactory).
-	 *
 	 * A two-level cache keyed first on context class loader and then on
 	 * classSuffix+propValue. Value is the factory itself (weakly referenced so
 	 * as not to prevent GC of the class loader) or NO_FACTORY if a previous
@@ -113,7 +92,8 @@ public final class ResourceManager {
 	 */
 	private static final WeakHashMap<ClassLoader, Map<String, WeakReference<Object>>> urlFactoryCache = new WeakHashMap<>(
 			11);
-	private static final WeakReference<Object> NO_FACTORY = new WeakReference<>(null);
+	private static final WeakReference<Object> NO_FACTORY = new WeakReference<>(
+			null);
 
 	/**
 	 * A class to allow JNDI properties be specified as applet parameters
@@ -121,7 +101,8 @@ public final class ResourceManager {
 	 */
 	private static class AppletParameter {
 		private static final Class<?> clazz = getClass("java.applet.Applet");
-		private static final Method getMethod = getMethod(clazz, "getParameter", String.class);
+		private static final Method getMethod = getMethod(clazz, "getParameter",
+				String.class);
 
 		private static Class<?> getClass(String name) {
 			try {
@@ -131,7 +112,8 @@ public final class ResourceManager {
 			}
 		}
 
-		private static Method getMethod(Class<?> clazz, String name, Class<?>... paramTypes) {
+		private static Method getMethod(Class<?> clazz, String name,
+				Class<?>... paramTypes) {
 			if (clazz != null) {
 				try {
 					return clazz.getMethod(name, paramTypes);
@@ -159,8 +141,7 @@ public final class ResourceManager {
 	}
 
 	// There should be no instances of this class.
-	private ResourceManager() {
-	}
+	private ResourceManager() {}
 
 	// ---------- Public methods ----------
 
@@ -170,13 +151,10 @@ public final class ResourceManager {
 	 * null). This is based on the environment parameter, the applet parameters
 	 * (where appropriate), the system properties, and all application resource
 	 * files.
-	 *
 	 * <p> This method will modify <tt>env</tt> and save a reference to it. The
 	 * caller may no longer modify it.
-	 *
 	 * @param env environment passed to initial context constructor. Null
 	 * indicates an empty environment.
-	 *
 	 * @throws NamingException if an error occurs while reading a resource file
 	 */
 	@SuppressWarnings("unchecked")
@@ -204,7 +182,8 @@ public final class ResourceManager {
 				}
 				if (val == null) {
 					// Read system property.
-					val = (jndiSysProps != null) ? jndiSysProps[i] : helper.getJndiProperty(i);
+					val = (jndiSysProps != null) ? jndiSysProps[i]
+							: helper.getJndiProperty(i);
 				}
 				if (val != null) {
 					((Hashtable<String, Object>) env).put(props[i], val);
@@ -238,19 +217,20 @@ public final class ResourceManager {
 	 * Returns null if no value is found.
 	 *
 	 * @param propName
-	 *            The non-null property name
+	 *                 The non-null property name
 	 * @param env
-	 *            The possibly null environment properties
+	 *                 The possibly null environment properties
 	 * @param ctx
-	 *            The possibly null context
+	 *                 The possibly null context
 	 * @param concat
-	 *            True if multiple values should be concatenated
+	 *                 True if multiple values should be concatenated
 	 * @return the property value, or null is there is none.
 	 * @throws NamingException
-	 *             if an error occurs while reading the provider resource file.
+	 *                         if an error occurs while reading the provider
+	 *                         resource file.
 	 */
-	public static String getProperty(String propName, Hashtable<?, ?> env, Context ctx,
-			boolean concat) throws NamingException {
+	public static String getProperty(String propName, Hashtable<?, ?> env,
+			Context ctx, boolean concat) throws NamingException {
 
 		String val1 = (env != null) ? (String) env.get(propName) : null;
 		if ((ctx == null) || ((val1 != null) && !concat)) {
@@ -295,23 +275,24 @@ public final class ResourceManager {
 	 * an instantiated factory object.
 	 *
 	 * @param propName
-	 *            The non-null property name
+	 *                 The non-null property name
 	 * @param env
-	 *            The possibly null environment properties
+	 *                 The possibly null environment properties
 	 * @param ctx
-	 *            The possibly null context
+	 *                 The possibly null context
 	 * @return An enumeration of factory classes/objects; null if none.
 	 * @exception NamingException
-	 *                If encounter problem while reading the provider property
-	 *                file.
+	 *                            If encounter problem while reading the
+	 *                            provider property
+	 *                            file.
 	 * @see javax.naming.spi.NamingManager#getObjectInstance
 	 * @see javax.naming.spi.NamingManager#getStateToBind
 	 * @see javax.naming.spi.DirectoryManager#getObjectInstance
 	 * @see javax.naming.spi.DirectoryManager#getStateToBind
 	 * @see javax.naming.ldap.ControlFactory#getControlInstance
 	 */
-	public static FactoryEnumeration getFactories(String propName, Hashtable<?, ?> env, Context ctx)
-			throws NamingException {
+	public static FactoryEnumeration getFactories(String propName,
+			Hashtable<?, ?> env, Context ctx) throws NamingException {
 
 		String facProp = getProperty(propName, env, ctx, true);
 		if (facProp == null)
@@ -330,10 +311,12 @@ public final class ResourceManager {
 		}
 
 		synchronized (perLoaderCache) {
-			List<NamedWeakReference<Object>> factories = perLoaderCache.get(facProp);
+			List<NamedWeakReference<Object>> factories = perLoaderCache.get(
+					facProp);
 			if (factories != null) {
 				// Cached list
-				return factories.size() == 0 ? null : new FactoryEnumeration(factories, loader);
+				return factories.size() == 0 ? null
+						: new FactoryEnumeration(factories, loader);
 			} else {
 				// Populate list with classes named in facProp; skipping
 				// those that we cannot load
@@ -344,7 +327,8 @@ public final class ResourceManager {
 						// System.out.println("loading");
 						String className = parser.nextToken();
 						Class<?> c = helper.loadClass(className, loader);
-						factories.add(new NamedWeakReference<Object>(c, className));
+						factories.add(new NamedWeakReference<Object>(c,
+								className));
 					} catch (Exception e) {
 						// ignore ClassNotFoundException,
 						// IllegalArgumentException
@@ -376,26 +360,29 @@ public final class ResourceManager {
 	 * quickly.
 	 *
 	 * @param propName
-	 *            The non-null property name
+	 *                         The non-null property name
 	 * @param env
-	 *            The possibly null environment properties
+	 *                         The possibly null environment properties
 	 * @param ctx
-	 *            The possibly null context
+	 *                         The possibly null context
 	 * @param classSuffix
-	 *            The non-null class name (e.g. ".ldap.ldapURLContextFactory).
+	 *                         The non-null class name (e.g.
+	 *                         ".ldap.ldapURLContextFactory).
 	 * @param defaultPkgPrefix
-	 *            The non-null default package prefix. (e.g.,
-	 *            "com.sun.jndi.url").
+	 *                         The non-null default package prefix. (e.g.,
+	 *                         "com.sun.jndi.url").
 	 * @return An factory object; null if none.
 	 * @exception NamingException
-	 *                If encounter problem while reading the provider property
-	 *                file, or problem instantiating the factory.
+	 *                            If encounter problem while reading the
+	 *                            provider property
+	 *                            file, or problem instantiating the factory.
 	 *
 	 * @see javax.naming.spi.NamingManager#getURLContext
 	 * @see javax.naming.spi.NamingManager#getURLObject
 	 */
-	public static Object getFactory(String propName, Hashtable<?, ?> env, Context ctx,
-			String classSuffix, String defaultPkgPrefix) throws NamingException {
+	public static Object getFactory(String propName, Hashtable<?, ?> env,
+			Context ctx, String classSuffix, String defaultPkgPrefix)
+			throws NamingException {
 
 		// Merge property with provider property and supplied default
 		String facProp = getProperty(propName, env, ctx, true);
@@ -440,11 +427,13 @@ public final class ResourceManager {
 					// System.out.println("loading " + className);
 					factory = helper.loadClass(className, loader).newInstance();
 				} catch (InstantiationException e) {
-					NamingException ne = new NamingException("Cannot instantiate " + className);
+					NamingException ne = new NamingException(
+							"Cannot instantiate " + className);
 					ne.setRootCause(e);
 					throw ne;
 				} catch (IllegalAccessException e) {
-					NamingException ne = new NamingException("Cannot access " + className);
+					NamingException ne = new NamingException("Cannot access "
+							+ className);
 					ne.setRootCause(e);
 					throw ne;
 				} catch (Exception e) {
@@ -454,7 +443,8 @@ public final class ResourceManager {
 			}
 
 			// Cache it.
-			perLoaderCache.put(key, (factory != null) ? new WeakReference<>(factory) : NO_FACTORY);
+			perLoaderCache.put(key, (factory != null) ? new WeakReference<>(
+					factory) : NO_FACTORY);
 			return factory;
 		}
 	}
@@ -465,11 +455,10 @@ public final class ResourceManager {
 	 * Returns the properties contained in the provider resource file of an
 	 * object's package. Returns an empty hash table if the object is null or
 	 * the resource file cannot be found. The results are cached.
-	 *
 	 * @throws NamingException if an error occurs while reading the file.
 	 */
-	private static Hashtable<? super String, Object> getProviderResource(Object obj)
-			throws NamingException {
+	private static Hashtable<? super String, Object> getProviderResource(
+			Object obj) throws NamingException {
 		if (obj == null) {
 			return (new Hashtable<>(1));
 		}
@@ -482,7 +471,8 @@ public final class ResourceManager {
 			}
 			props = new Properties();
 
-			InputStream istream = helper.getResourceAsStream(c, PROVIDER_RESOURCE_FILE_NAME);
+			InputStream istream = helper.getResourceAsStream(c,
+					PROVIDER_RESOURCE_FILE_NAME);
 
 			if (istream != null) {
 				try {
@@ -504,12 +494,10 @@ public final class ResourceManager {
 	 * application resource files available to this thread's context class
 	 * loader. The properties file in <java.home>/lib is also merged in. The
 	 * results are cached.
-	 *
 	 * SECURITY NOTES: 1. JNDI needs permission to read the application resource
 	 * files. 2. Any class will be able to use JNDI to view the contents of the
 	 * application resource files in its own classpath. Give careful
 	 * consideration to this before storing sensitive information there.
-	 *
 	 * @throws NamingException if an error occurs while reading a resource file.
 	 */
 	private static Hashtable<? super String, Object> getApplicationResources()
@@ -524,8 +512,8 @@ public final class ResourceManager {
 			}
 
 			try {
-				NamingEnumeration<InputStream> resources = helper.getResources(cl,
-						APP_RESOURCE_FILE_NAME);
+				NamingEnumeration<InputStream> resources = helper.getResources(
+						cl, APP_RESOURCE_FILE_NAME);
 				try {
 					while (resources.hasMore()) {
 						Properties props = new Properties();
@@ -549,7 +537,8 @@ public final class ResourceManager {
 				}
 
 				// Merge in properties from file in <java.home>/lib.
-				InputStream istream = helper.getJavaHomeLibStream(JRELIB_PROPERTY_FILE_NAME);
+				InputStream istream = helper.getJavaHomeLibStream(
+						JRELIB_PROPERTY_FILE_NAME);
 				if (istream != null) {
 					try {
 						Properties props = new Properties();

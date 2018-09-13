@@ -1,38 +1,16 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *******************************************************************************
- * (C) Copyright IBM Corp. 1996-2005 - All Rights Reserved                     *
- *                                                                             *
- * The original version of this source code and documentation is copyrighted   *
- * and owned by IBM, These materials are provided under terms of a License     *
- * Agreement between IBM and Sun. This technology is protected by multiple     *
- * US and International patents. This notice and attribution to IBM may not    *
- * to removed.                                                                 *
- *******************************************************************************
+ ******************************************************************************* (C) Copyright IBM Corp. 1996-2005 - All Rights Reserved *
+ * *
+ * The original version of this source code and documentation is copyrighted *
+ * and owned by IBM, These materials are provided under terms of a License *
+ * Agreement between IBM and Sun. This technology is protected by multiple *
+ * US and International patents. This notice and attribution to IBM may not *
+ * to removed. *
  */
 
 package java.text;
@@ -110,8 +88,7 @@ import sun.text.normalizer.NormalizerImpl;
  */
 public final class Normalizer {
 
-	private Normalizer() {
-	};
+	private Normalizer() {};
 
 	/**
 	 * This enum provides constants of the four Unicode normalization forms that
@@ -150,16 +127,17 @@ public final class Normalizer {
 	 * according to the specified normalization from.
 	 * 
 	 * @param src
-	 *            The sequence of char values to normalize.
+	 *             The sequence of char values to normalize.
 	 * @param form
-	 *            The normalization form; one of
-	 *            {@link java.text.Normalizer.Form#NFC},
-	 *            {@link java.text.Normalizer.Form#NFD},
-	 *            {@link java.text.Normalizer.Form#NFKC},
-	 *            {@link java.text.Normalizer.Form#NFKD}
+	 *             The normalization form; one of
+	 *             {@link java.text.Normalizer.Form#NFC},
+	 *             {@link java.text.Normalizer.Form#NFD},
+	 *             {@link java.text.Normalizer.Form#NFKC},
+	 *             {@link java.text.Normalizer.Form#NFKD}
 	 * @return The normalized String
 	 * @throws NullPointerException
-	 *             If <code>src</code> or <code>form</code> is null.
+	 *                              If <code>src</code> or <code>form</code> is
+	 *                              null.
 	 */
 	public static String normalize(CharSequence src, Form form) {
 		return NormalizerBase.normalize(src.toString(), form);
@@ -169,17 +147,18 @@ public final class Normalizer {
 	 * Determines if the given sequence of char values is normalized.
 	 * 
 	 * @param src
-	 *            The sequence of char values to be checked.
+	 *             The sequence of char values to be checked.
 	 * @param form
-	 *            The normalization form; one of
-	 *            {@link java.text.Normalizer.Form#NFC},
-	 *            {@link java.text.Normalizer.Form#NFD},
-	 *            {@link java.text.Normalizer.Form#NFKC},
-	 *            {@link java.text.Normalizer.Form#NFKD}
+	 *             The normalization form; one of
+	 *             {@link java.text.Normalizer.Form#NFC},
+	 *             {@link java.text.Normalizer.Form#NFD},
+	 *             {@link java.text.Normalizer.Form#NFKC},
+	 *             {@link java.text.Normalizer.Form#NFKD}
 	 * @return true if the sequence of char values is normalized; false
 	 *         otherwise.
 	 * @throws NullPointerException
-	 *             If <code>src</code> or <code>form</code> is null.
+	 *                              If <code>src</code> or <code>form</code> is
+	 *                              null.
 	 */
 	public static boolean isNormalized(CharSequence src, Form form) {
 		return NormalizerBase.isNormalized(src.toString(), form);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -48,11 +28,12 @@ class TableScrollPaneCorner extends JComponent implements UIResource {
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
-		Painter painter = (Painter) UIManager
-				.get("TableHeader:\"TableHeader.renderer\"[Enabled].backgroundPainter");
+		Painter painter = (Painter) UIManager.get(
+				"TableHeader:\"TableHeader.renderer\"[Enabled].backgroundPainter");
 		if (painter != null) {
 			if (g instanceof Graphics2D) {
-				painter.paint((Graphics2D) g, this, getWidth() + 1, getHeight());
+				painter.paint((Graphics2D) g, this, getWidth() + 1,
+						getHeight());
 			} else {
 				// paint using image to not Graphics2D to support
 				// Java 1.1 printing API

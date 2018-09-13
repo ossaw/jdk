@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -164,7 +144,8 @@ public class POAFactory implements ObjectAdapterFactory {
 
 		while (managers.hasNext()) {
 			try {
-				((POAManager) managers.next()).deactivate(true, waitForCompletion);
+				((POAManager) managers.next()).deactivate(true,
+						waitForCompletion);
 			} catch (org.omg.PortableServer.POAManagerPackage.AdapterInactive e) {
 			}
 		}
@@ -206,7 +187,8 @@ public class POAFactory implements ObjectAdapterFactory {
 			}
 
 			try {
-				Object obj = orb.resolve_initial_references(ORBConstants.ROOT_POA_NAME);
+				Object obj = orb.resolve_initial_references(
+						ORBConstants.ROOT_POA_NAME);
 				rootPOA = (POAImpl) obj;
 			} catch (InvalidName inv) {
 				throw wrapper.cantResolveRootPoa(inv);

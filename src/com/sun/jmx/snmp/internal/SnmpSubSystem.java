@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -52,9 +32,9 @@ public interface SnmpSubSystem {
 	 * Adds a model to this sub system.
 	 * 
 	 * @param id
-	 *            The model ID.
+	 *              The model ID.
 	 * @param model
-	 *            The model to add.
+	 *              The model to add.
 	 */
 	public void addModel(int id, SnmpModel model);
 
@@ -62,7 +42,7 @@ public interface SnmpSubSystem {
 	 * Removes a model from this sub system.
 	 * 
 	 * @param id
-	 *            The model ID to remove.
+	 *           The model ID to remove.
 	 * @return The removed model.
 	 */
 	public SnmpModel removeModel(int id) throws SnmpUnknownModelException;
@@ -71,7 +51,7 @@ public interface SnmpSubSystem {
 	 * Gets a model from this sub system.
 	 * 
 	 * @param id
-	 *            The model ID to get.
+	 *           The model ID to get.
 	 * @return The model.
 	 */
 	public SnmpModel getModel(int id) throws SnmpUnknownModelException;

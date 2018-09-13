@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.jpeg;
@@ -40,14 +20,16 @@ import java.util.Locale;
 
 public class JPEGImageWriterSpi extends ImageWriterSpi {
 
-	private static String[] readerSpiNames = { "com.sun.imageio.plugins.jpeg.JPEGImageReaderSpi" };
+	private static String[] readerSpiNames = {
+			"com.sun.imageio.plugins.jpeg.JPEGImageReaderSpi" };
 
 	public JPEGImageWriterSpi() {
-		super(JPEG.vendor, JPEG.version, JPEG.names, JPEG.suffixes, JPEG.MIMETypes,
-				"com.sun.imageio.plugins.jpeg.JPEGImageWriter",
+		super(JPEG.vendor, JPEG.version, JPEG.names, JPEG.suffixes,
+				JPEG.MIMETypes, "com.sun.imageio.plugins.jpeg.JPEGImageWriter",
 				new Class[] { ImageOutputStream.class }, readerSpiNames, true,
-				JPEG.nativeStreamMetadataFormatName, JPEG.nativeStreamMetadataFormatClassName, null,
-				null, true, JPEG.nativeImageMetadataFormatName,
+				JPEG.nativeStreamMetadataFormatName,
+				JPEG.nativeStreamMetadataFormatClassName, null, null, true,
+				JPEG.nativeImageMetadataFormatName,
 				JPEG.nativeImageMetadataFormatClassName, null, null);
 	}
 
@@ -79,7 +61,8 @@ public class JPEGImageWriterSpi extends ImageWriterSpi {
 		return true;
 	}
 
-	public ImageWriter createWriterInstance(Object extension) throws IIOException {
+	public ImageWriter createWriterInstance(Object extension)
+			throws IIOException {
 		return new JPEGImageWriter(this);
 	}
 }

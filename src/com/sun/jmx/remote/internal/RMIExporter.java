@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.internal;
@@ -50,5 +30,6 @@ public interface RMIExporter {
 	public Remote exportObject(Remote obj, int port, RMIClientSocketFactory csf,
 			RMIServerSocketFactory ssf) throws RemoteException;
 
-	public boolean unexportObject(Remote obj, boolean force) throws NoSuchObjectException;
+	public boolean unexportObject(Remote obj, boolean force)
+			throws NoSuchObjectException;
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.relation;
@@ -73,10 +53,11 @@ public interface RelationSupportMBean extends Relation {
 	 * information about it!
 	 *
 	 * @param flag
-	 *            whether the relation is handled by the Relation Service.
+	 *             whether the relation is handled by the Relation Service.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if null parameter
+	 *                                     if null parameter
 	 */
-	public void setRelationServiceManagementFlag(Boolean flag) throws IllegalArgumentException;
+	public void setRelationServiceManagementFlag(Boolean flag)
+			throws IllegalArgumentException;
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -139,16 +119,18 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * ANNOTATION_PROCESSOR_PATH} location.
 	 *
 	 * @param location
-	 *            a location
+	 *                 a location
 	 * @return a class loader for the given location; or {@code null} if loading
 	 *         plug-ins from the given location is disabled or if the location
 	 *         is not known
 	 * @throws SecurityException
-	 *             if a class loader can not be created in the current security
-	 *             context
+	 *                               if a class loader can not be created in the
+	 *                               current security
+	 *                               context
 	 * @throws IllegalStateException
-	 *             if {@link #close} has been called and this file manager
-	 *             cannot be reopened
+	 *                               if {@link #close} has been called and this
+	 *                               file manager
+	 *                               cannot be reopened
 	 */
 	ClassLoader getClassLoader(Location location);
 
@@ -162,23 +144,26 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * exception.
 	 *
 	 * @param location
-	 *            a location
+	 *                    a location
 	 * @param packageName
-	 *            a package name
+	 *                    a package name
 	 * @param kinds
-	 *            return objects only of these kinds
+	 *                    return objects only of these kinds
 	 * @param recurse
-	 *            if true include "subpackages"
+	 *                    if true include "subpackages"
 	 * @return an Iterable of file objects matching the given criteria
 	 * @throws IOException
-	 *             if an I/O error occurred, or if {@link #close} has been
-	 *             called and this file manager cannot be reopened
+	 *                               if an I/O error occurred, or if
+	 *                               {@link #close} has been
+	 *                               called and this file manager cannot be
+	 *                               reopened
 	 * @throws IllegalStateException
-	 *             if {@link #close} has been called and this file manager
-	 *             cannot be reopened
+	 *                               if {@link #close} has been called and this
+	 *                               file manager
+	 *                               cannot be reopened
 	 */
-	Iterable<JavaFileObject> list(Location location, String packageName, Set<Kind> kinds,
-			boolean recurse) throws IOException;
+	Iterable<JavaFileObject> list(Location location, String packageName,
+			Set<Kind> kinds, boolean recurse) throws IOException;
 
 	/**
 	 * Infers a binary name of a file object based on a location. The binary
@@ -186,14 +171,15 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * Java&trade; Language Specification</cite>.
 	 *
 	 * @param location
-	 *            a location
+	 *                 a location
 	 * @param file
-	 *            a file object
+	 *                 a file object
 	 * @return a binary name or {@code null} the file object is not found in the
 	 *         given location
 	 * @throws IllegalStateException
-	 *             if {@link #close} has been called and this file manager
-	 *             cannot be reopened
+	 *                               if {@link #close} has been called and this
+	 *                               file manager
+	 *                               cannot be reopened
 	 */
 	String inferBinaryName(Location location, JavaFileObject file);
 
@@ -202,16 +188,18 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * underlying object.
 	 *
 	 * @param a
-	 *            a file object
+	 *          a file object
 	 * @param b
-	 *            a file object
+	 *          a file object
 	 * @return true if the given file objects represent the same underlying
 	 *         object
 	 *
 	 * @throws IllegalArgumentException
-	 *             if either of the arguments were created with another file
-	 *             manager and this file manager does not support foreign file
-	 *             objects
+	 *                                  if either of the arguments were created
+	 *                                  with another file
+	 *                                  manager and this file manager does not
+	 *                                  support foreign file
+	 *                                  objects
 	 */
 	boolean isSameFile(FileObject a, FileObject b);
 
@@ -221,16 +209,18 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * return true, otherwise return false.
 	 *
 	 * @param current
-	 *            current option
+	 *                  current option
 	 * @param remaining
-	 *            remaining options
+	 *                  remaining options
 	 * @return true if this option was handled by this file manager, false
 	 *         otherwise
 	 * @throws IllegalArgumentException
-	 *             if this option to this file manager is used incorrectly
+	 *                                  if this option to this file manager is
+	 *                                  used incorrectly
 	 * @throws IllegalStateException
-	 *             if {@link #close} has been called and this file manager
-	 *             cannot be reopened
+	 *                                  if {@link #close} has been called and
+	 *                                  this file manager
+	 *                                  cannot be reopened
 	 */
 	boolean handleOption(String current, Iterator<String> remaining);
 
@@ -238,7 +228,7 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * Determines if a location is known to this file manager.
 	 *
 	 * @param location
-	 *            a location
+	 *                 a location
 	 * @return true if the location is known
 	 */
 	boolean hasLocation(Location location);
@@ -248,28 +238,33 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * specified class of the specified kind in the given location.
 	 *
 	 * @param location
-	 *            a location
+	 *                  a location
 	 * @param className
-	 *            the name of a class
+	 *                  the name of a class
 	 * @param kind
-	 *            the kind of file, must be one of
-	 *            {@link JavaFileObject.Kind#SOURCE SOURCE} or
-	 *            {@link JavaFileObject.Kind#CLASS CLASS}
+	 *                  the kind of file, must be one of
+	 *                  {@link JavaFileObject.Kind#SOURCE SOURCE} or
+	 *                  {@link JavaFileObject.Kind#CLASS CLASS}
 	 * @return a file object, might return {@code null} if the file does not
 	 *         exist
 	 * @throws IllegalArgumentException
-	 *             if the location is not known to this file manager and the
-	 *             file manager does not support unknown locations, or if the
-	 *             kind is not valid
+	 *                                  if the location is not known to this
+	 *                                  file manager and the
+	 *                                  file manager does not support unknown
+	 *                                  locations, or if the
+	 *                                  kind is not valid
 	 * @throws IOException
-	 *             if an I/O error occurred, or if {@link #close} has been
-	 *             called and this file manager cannot be reopened
+	 *                                  if an I/O error occurred, or if
+	 *                                  {@link #close} has been
+	 *                                  called and this file manager cannot be
+	 *                                  reopened
 	 * @throws IllegalStateException
-	 *             if {@link #close} has been called and this file manager
-	 *             cannot be reopened
+	 *                                  if {@link #close} has been called and
+	 *                                  this file manager
+	 *                                  cannot be reopened
 	 */
-	JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
-			throws IOException;
+	JavaFileObject getJavaFileForInput(Location location, String className,
+			Kind kind) throws IOException;
 
 	/**
 	 * Gets a {@linkplain JavaFileObject file object} for output representing
@@ -284,31 +279,37 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * provide the originating source file as sibling when calling this method.
 	 *
 	 * @param location
-	 *            a location
+	 *                  a location
 	 * @param className
-	 *            the name of a class
+	 *                  the name of a class
 	 * @param kind
-	 *            the kind of file, must be one of
-	 *            {@link JavaFileObject.Kind#SOURCE SOURCE} or
-	 *            {@link JavaFileObject.Kind#CLASS CLASS}
+	 *                  the kind of file, must be one of
+	 *                  {@link JavaFileObject.Kind#SOURCE SOURCE} or
+	 *                  {@link JavaFileObject.Kind#CLASS CLASS}
 	 * @param sibling
-	 *            a file object to be used as hint for placement; might be
-	 *            {@code null}
+	 *                  a file object to be used as hint for placement; might be
+	 *                  {@code null}
 	 * @return a file object for output
 	 * @throws IllegalArgumentException
-	 *             if sibling is not known to this file manager, or if the
-	 *             location is not known to this file manager and the file
-	 *             manager does not support unknown locations, or if the kind is
-	 *             not valid
+	 *                                  if sibling is not known to this file
+	 *                                  manager, or if the
+	 *                                  location is not known to this file
+	 *                                  manager and the file
+	 *                                  manager does not support unknown
+	 *                                  locations, or if the kind is
+	 *                                  not valid
 	 * @throws IOException
-	 *             if an I/O error occurred, or if {@link #close} has been
-	 *             called and this file manager cannot be reopened
+	 *                                  if an I/O error occurred, or if
+	 *                                  {@link #close} has been
+	 *                                  called and this file manager cannot be
+	 *                                  reopened
 	 * @throws IllegalStateException
-	 *             {@link #close} has been called and this file manager cannot
-	 *             be reopened
+	 *                                  {@link #close} has been called and this
+	 *                                  file manager cannot
+	 *                                  be reopened
 	 */
-	JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind,
-			FileObject sibling) throws IOException;
+	JavaFileObject getJavaFileForOutput(Location location, String className,
+			Kind kind, FileObject sibling) throws IOException;
 
 	/**
 	 * Gets a {@linkplain FileObject file object} for input representing the
@@ -330,7 +331,8 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * method might be called like so:
 	 *
 	 * <pre>
-	 * getFileForInput(SOURCE_PATH, "com.sun.tools.javac", "resources/compiler.properties");
+	 * getFileForInput(SOURCE_PATH, "com.sun.tools.javac",
+	 * 		"resources/compiler.properties");
 	 * </pre>
 	 *
 	 * <p>
@@ -341,26 +343,31 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * .
 	 *
 	 * @param location
-	 *            a location
+	 *                     a location
 	 * @param packageName
-	 *            a package name
+	 *                     a package name
 	 * @param relativeName
-	 *            a relative name
+	 *                     a relative name
 	 * @return a file object, might return {@code null} if the file does not
 	 *         exist
 	 * @throws IllegalArgumentException
-	 *             if the location is not known to this file manager and the
-	 *             file manager does not support unknown locations, or if
-	 *             {@code relativeName} is not valid
+	 *                                  if the location is not known to this
+	 *                                  file manager and the
+	 *                                  file manager does not support unknown
+	 *                                  locations, or if
+	 *                                  {@code relativeName} is not valid
 	 * @throws IOException
-	 *             if an I/O error occurred, or if {@link #close} has been
-	 *             called and this file manager cannot be reopened
+	 *                                  if an I/O error occurred, or if
+	 *                                  {@link #close} has been
+	 *                                  called and this file manager cannot be
+	 *                                  reopened
 	 * @throws IllegalStateException
-	 *             if {@link #close} has been called and this file manager
-	 *             cannot be reopened
+	 *                                  if {@link #close} has been called and
+	 *                                  this file manager
+	 *                                  cannot be reopened
 	 */
-	FileObject getFileForInput(Location location, String packageName, String relativeName)
-			throws IOException;
+	FileObject getFileForInput(Location location, String packageName,
+			String relativeName) throws IOException;
 
 	/**
 	 * Gets a {@linkplain FileObject file object} for output representing the
@@ -388,36 +395,43 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * example.
 	 *
 	 * @param location
-	 *            a location
+	 *                     a location
 	 * @param packageName
-	 *            a package name
+	 *                     a package name
 	 * @param relativeName
-	 *            a relative name
+	 *                     a relative name
 	 * @param sibling
-	 *            a file object to be used as hint for placement; might be
-	 *            {@code null}
+	 *                     a file object to be used as hint for placement; might
+	 *                     be
+	 *                     {@code null}
 	 * @return a file object
 	 * @throws IllegalArgumentException
-	 *             if sibling is not known to this file manager, or if the
-	 *             location is not known to this file manager and the file
-	 *             manager does not support unknown locations, or if
-	 *             {@code relativeName} is not valid
+	 *                                  if sibling is not known to this file
+	 *                                  manager, or if the
+	 *                                  location is not known to this file
+	 *                                  manager and the file
+	 *                                  manager does not support unknown
+	 *                                  locations, or if
+	 *                                  {@code relativeName} is not valid
 	 * @throws IOException
-	 *             if an I/O error occurred, or if {@link #close} has been
-	 *             called and this file manager cannot be reopened
+	 *                                  if an I/O error occurred, or if
+	 *                                  {@link #close} has been
+	 *                                  called and this file manager cannot be
+	 *                                  reopened
 	 * @throws IllegalStateException
-	 *             if {@link #close} has been called and this file manager
-	 *             cannot be reopened
+	 *                                  if {@link #close} has been called and
+	 *                                  this file manager
+	 *                                  cannot be reopened
 	 */
-	FileObject getFileForOutput(Location location, String packageName, String relativeName,
-			FileObject sibling) throws IOException;
+	FileObject getFileForOutput(Location location, String packageName,
+			String relativeName, FileObject sibling) throws IOException;
 
 	/**
 	 * Flushes any resources opened for output by this file manager directly or
 	 * indirectly. Flushing a closed file manager has no effect.
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurred
+	 *                     if an I/O error occurred
 	 * @see #close
 	 */
 	void flush() throws IOException;
@@ -430,7 +444,7 @@ public interface JavaFileManager extends Closeable, Flushable, OptionChecker {
 	 * closing a file manager which has already been closed has no effect.
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurred
+	 *                     if an I/O error occurred
 	 * @see #flush
 	 */
 	void close() throws IOException;

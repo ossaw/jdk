@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -70,7 +67,8 @@ public class OpMap {
 	 * the end of the m_tokenQueue. The idea is that the queue can be marked and
 	 * a sequence of tokens can be reused.
 	 */
-	ObjectVector m_tokenQueue = new ObjectVector(MAXTOKENQUEUESIZE, BLOCKTOKENQUEUESIZE);
+	ObjectVector m_tokenQueue = new ObjectVector(MAXTOKENQUEUESIZE,
+			BLOCKTOKENQUEUESIZE);
 
 	/**
 	 * Get the XPath as a list of tokens.
@@ -161,7 +159,7 @@ public class OpMap {
 	 * Given an operation position, return the current op.
 	 *
 	 * @param opPos
-	 *            index into op map.
+	 *              index into op map.
 	 * @return the op that corresponds to the opPos argument.
 	 */
 	public int getOp(int opPos) {
@@ -172,9 +170,9 @@ public class OpMap {
 	 * Set the op at index to the given int.
 	 *
 	 * @param opPos
-	 *            index into op map.
+	 *              index into op map.
 	 * @param value
-	 *            Value to set
+	 *              Value to set
 	 */
 	public void setOp(int opPos, int value) {
 		m_opMap.setElementAt(value, opPos);
@@ -185,8 +183,9 @@ public class OpMap {
 	 * of the next operation.
 	 *
 	 * @param opPos
-	 *            An op position of an operation for which there is a size entry
-	 *            following.
+	 *              An op position of an operation for which there is a size
+	 *              entry
+	 *              following.
 	 * @return position of next operation in m_opMap.
 	 */
 	public int getNextOpPos(int opPos) {
@@ -198,14 +197,15 @@ public class OpMap {
 	 * beginning of the next step.
 	 *
 	 * @param opPos
-	 *            the position of a location step.
+	 *              the position of a location step.
 	 * @return the position of the next location step.
 	 */
 	public int getNextStepPos(int opPos) {
 
 		int stepType = getOp(opPos);
 
-		if ((stepType >= OpCodes.AXES_START_TYPES) && (stepType <= OpCodes.AXES_END_TYPES)) {
+		if ((stepType >= OpCodes.AXES_START_TYPES)
+				&& (stepType <= OpCodes.AXES_END_TYPES)) {
 			return getNextOpPos(opPos);
 		} else if ((stepType >= OpCodes.FIRST_NODESET_OP)
 				&& (stepType <= OpCodes.LAST_NODESET_OP)) {
@@ -217,15 +217,16 @@ public class OpMap {
 
 			stepType = getOp(newOpPos);
 
-			if (!((stepType >= OpCodes.AXES_START_TYPES) && (stepType <= OpCodes.AXES_END_TYPES))) {
+			if (!((stepType >= OpCodes.AXES_START_TYPES)
+					&& (stepType <= OpCodes.AXES_END_TYPES))) {
 				return OpCodes.ENDOP;
 			}
 
 			return newOpPos;
 		} else {
-			throw new RuntimeException(
-					XSLMessages.createXPATHMessage(XPATHErrorResources.ER_UNKNOWN_STEP,
-							new Object[] { String.valueOf(stepType) }));
+			throw new RuntimeException(XSLMessages.createXPATHMessage(
+					XPATHErrorResources.ER_UNKNOWN_STEP, new Object[] { String
+							.valueOf(stepType) }));
 			// "Programmer's assertion in getNextStepPos: unknown stepType: " +
 			// stepType);
 		}
@@ -236,9 +237,10 @@ public class OpMap {
 	 * of the next operation.
 	 *
 	 * @param opMap
-	 *            The operations map.
+	 *              The operations map.
 	 * @param opPos
-	 *            index to operation, for which there is a size entry following.
+	 *              index to operation, for which there is a size entry
+	 *              following.
 	 * @return position of next operation in m_opMap.
 	 */
 	public static int getNextOpPos(int[] opMap, int opPos) {
@@ -253,14 +255,16 @@ public class OpMap {
 	 * xpath.getOp(posOfPredicate);
 	 *
 	 * @param opPos
-	 *            position of FROM_stepType op.
+	 *              position of FROM_stepType op.
 	 * @return position of predicate in FROM_stepType structure.
 	 */
-	public int getFirstPredicateOpPos(int opPos) throws javax.xml.transform.TransformerException {
+	public int getFirstPredicateOpPos(int opPos)
+			throws javax.xml.transform.TransformerException {
 
 		int stepType = m_opMap.elementAt(opPos);
 
-		if ((stepType >= OpCodes.AXES_START_TYPES) && (stepType <= OpCodes.AXES_END_TYPES)) {
+		if ((stepType >= OpCodes.AXES_START_TYPES)
+				&& (stepType <= OpCodes.AXES_END_TYPES)) {
 			return opPos + m_opMap.elementAt(opPos + 2);
 		} else if ((stepType >= OpCodes.FIRST_NODESET_OP)
 				&& (stepType <= OpCodes.LAST_NODESET_OP)) {
@@ -270,9 +274,9 @@ public class OpMap {
 		} else {
 			error(com.sun.org.apache.xpath.internal.res.XPATHErrorResources.ER_UNKNOWN_OPCODE,
 					new Object[] { String.valueOf(stepType) }); // "ERROR!
-																// Unknown op
-																// code:
-																// "+m_opMap[opPos]);
+																																					// Unknown op
+																																					// code:
+																																					// "+m_opMap[opPos]);
 			return -1;
 		}
 	}
@@ -281,19 +285,22 @@ public class OpMap {
 	 * Tell the user of an error, and probably throw an exception.
 	 *
 	 * @param msg
-	 *            An error msgkey that corresponds to one of the constants found
-	 *            in
-	 *            {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-	 *            , which is a key for a format string.
+	 *             An error msgkey that corresponds to one of the constants
+	 *             found
+	 *             in
+	 *             {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+	 *             , which is a key for a format string.
 	 * @param args
-	 *            An array of arguments represented in the format string, which
-	 *            may be null.
+	 *             An array of arguments represented in the format string, which
+	 *             may be null.
 	 *
 	 * @throws TransformerException
-	 *             if the current ErrorListoner determines to throw an
-	 *             exception.
+	 *                              if the current ErrorListoner determines to
+	 *                              throw an
+	 *                              exception.
 	 */
-	public void error(String msg, Object[] args) throws javax.xml.transform.TransformerException {
+	public void error(String msg, Object[] args)
+			throws javax.xml.transform.TransformerException {
 
 		java.lang.String fmsg = com.sun.org.apache.xalan.internal.res.XSLMessages
 				.createXPATHMessage(msg, args);
@@ -305,7 +312,7 @@ public class OpMap {
 	 * Go to the first child of a given operation.
 	 *
 	 * @param opPos
-	 *            position of operation.
+	 *              position of operation.
 	 *
 	 * @return The position of the first child of the operation.
 	 */
@@ -317,7 +324,7 @@ public class OpMap {
 	 * Get the length of an operation.
 	 *
 	 * @param opPos
-	 *            The position of the operation in the op map.
+	 *              The position of the operation in the op map.
 	 *
 	 * @return The size of the operation.
 	 */
@@ -329,7 +336,7 @@ public class OpMap {
 	 * Given a location step, get the length of that step.
 	 *
 	 * @param opPos
-	 *            Position of location step in op map.
+	 *              Position of location step in op map.
 	 *
 	 * @return The length of the step.
 	 */
@@ -341,7 +348,7 @@ public class OpMap {
 	 * Get the first child position of a given location step.
 	 *
 	 * @param opPos
-	 *            Position of location step in the location map.
+	 *              Position of location step in the location map.
 	 *
 	 * @return The first child position of the step.
 	 */
@@ -353,7 +360,7 @@ public class OpMap {
 	 * Get the test type of the step, i.e. NODETYPE_XXX value.
 	 *
 	 * @param opPosOfStep
-	 *            The position of the FROM_XXX step.
+	 *                    The position of the FROM_XXX step.
 	 *
 	 * @return NODETYPE_XXX value.
 	 */
@@ -366,7 +373,7 @@ public class OpMap {
 	 * Get the namespace of the step.
 	 *
 	 * @param opPosOfStep
-	 *            The position of the FROM_XXX step.
+	 *                    The position of the FROM_XXX step.
 	 *
 	 * @return The step's namespace, NodeTest.WILD, or null for null namespace.
 	 */
@@ -392,7 +399,7 @@ public class OpMap {
 	 * Get the local name of the step.
 	 * 
 	 * @param opPosOfStep
-	 *            The position of the FROM_XXX step.
+	 *                    The position of the FROM_XXX step.
 	 *
 	 * @return OpCodes.EMPTY, OpCodes.ELEMWILDCARD, or the local name.
 	 */
@@ -404,21 +411,21 @@ public class OpMap {
 		int index;
 
 		switch (argLenOfStep) {
-		case 0:
-			index = OpCodes.EMPTY;
-			break;
-		case 1:
-			index = OpCodes.ELEMWILDCARD;
-			break;
-		case 2:
-			index = m_opMap.elementAt(opPosOfStep + 4);
-			break;
-		case 3:
-			index = m_opMap.elementAt(opPosOfStep + 5);
-			break;
-		default:
-			index = OpCodes.EMPTY;
-			break; // Should assert error
+			case 0:
+				index = OpCodes.EMPTY;
+				break;
+			case 1:
+				index = OpCodes.ELEMWILDCARD;
+				break;
+			case 2:
+				index = m_opMap.elementAt(opPosOfStep + 4);
+				break;
+			case 3:
+				index = m_opMap.elementAt(opPosOfStep + 5);
+				break;
+			default:
+				index = OpCodes.EMPTY;
+				break; // Should assert error
 		}
 
 		// int index = (argLenOfStep == 3) ? m_opMap[opPosOfStep+5]

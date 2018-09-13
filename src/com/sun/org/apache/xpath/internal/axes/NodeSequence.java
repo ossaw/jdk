@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,7 +34,8 @@ import com.sun.org.apache.xpath.internal.objects.XObject;
  * This class is the dynamic wrapper for a Xalan DTMIterator instance, and
  * provides random access capabilities.
  */
-public class NodeSequence extends XObject implements DTMIterator, Cloneable, PathComponent {
+public class NodeSequence extends XObject implements DTMIterator, Cloneable,
+		PathComponent {
 	static final long serialVersionUID = 3866261934726581044L;
 	/** The index of the last node in the iteration. */
 	protected int m_last = -1;
@@ -125,7 +123,7 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable, Pat
 	 * Set the functional iterator that fetches nodes.
 	 * 
 	 * @param iter
-	 *            The iterator that is to be contained.
+	 *             The iterator that is to be contained.
 	 */
 	public final void setIter(DTMIterator iter) {
 		m_iter = iter;
@@ -152,13 +150,13 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable, Pat
 	 * Create a new NodeSequence from a (already cloned) iterator.
 	 *
 	 * @param iter
-	 *            Cloned (not static) DTMIterator.
+	 *                         Cloned (not static) DTMIterator.
 	 * @param context
-	 *            The initial context node.
+	 *                         The initial context node.
 	 * @param xctxt
-	 *            The execution context.
+	 *                         The execution context.
 	 * @param shouldCacheNodes
-	 *            True if this sequence can random access.
+	 *                         True if this sequence can random access.
 	 */
 	private NodeSequence(DTMIterator iter, int context, XPathContext xctxt,
 			boolean shouldCacheNodes) {
@@ -213,7 +211,8 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable, Pat
 		if (null != mgr)
 			return getDTMManager().getDTM(nodeHandle);
 		else {
-			assertion(false, "Can not get a DTM Unless a DTMManager has been set!");
+			assertion(false,
+					"Can not get a DTM Unless a DTMManager has been set!");
 			return null;
 		}
 	}
@@ -246,7 +245,8 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable, Pat
 	public void setRoot(int nodeHandle, Object environment) {
 		// If root is DTM.NULL, then something's wrong with the context
 		if (nodeHandle == DTM.NULL) {
-			throw new RuntimeException("Unable to evaluate expression using " + "this context");
+			throw new RuntimeException("Unable to evaluate expression using "
+					+ "this context");
 		}
 
 		if (null != m_iter) {
@@ -275,8 +275,8 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable, Pat
 	 * @see DTMIterator#getWhatToShow()
 	 */
 	public int getWhatToShow() {
-		return hasCache() ? (DTMFilter.SHOW_ALL & ~DTMFilter.SHOW_ENTITY_REFERENCE)
-				: m_iter.getWhatToShow();
+		return hasCache() ? (DTMFilter.SHOW_ALL
+				& ~DTMFilter.SHOW_ENTITY_REFERENCE) : m_iter.getWhatToShow();
 	}
 
 	/**
@@ -617,7 +617,8 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable, Pat
 		if (null != m_iter)
 			return m_iter.getAxis();
 		else {
-			assertion(false, "Can not getAxis from a non-iterated node sequence!");
+			assertion(false,
+					"Can not getAxis from a non-iterated node sequence!");
 			return 0;
 		}
 	}
@@ -644,13 +645,15 @@ public class NodeSequence extends XObject implements DTMIterator, Cloneable, Pat
 	 * order.
 	 * 
 	 * @param node
-	 *            The node to be added.
+	 *             The node to be added.
 	 * @return insertIndex.
 	 * @throws RuntimeException
-	 *             thrown if this NodeSetDTM is not of a mutable type.
+	 *                          thrown if this NodeSetDTM is not of a mutable
+	 *                          type.
 	 */
 	protected int addNodeInDocOrder(int node) {
-		assertion(hasCache(), "addNodeInDocOrder must be done on a mutable sequence!");
+		assertion(hasCache(),
+				"addNodeInDocOrder must be done on a mutable sequence!");
 
 		int insertIndex = -1;
 

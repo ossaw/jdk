@@ -16,8 +16,7 @@ public final class TaggedProfile implements org.omg.CORBA.portable.IDLEntity {
 	/** The associated profile data. */
 	public byte profile_data[] = null;
 
-	public TaggedProfile() {
-	} // ctor
+	public TaggedProfile() {} // ctor
 
 	public TaggedProfile(int _tag, byte[] _profile_data) {
 		tag = _tag;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -75,7 +55,8 @@ class ExpiringCache {
 	ExpiringCache(long millisUntilExpiration) {
 		this.millisUntilExpiration = millisUntilExpiration;
 		map = new LinkedHashMap<String, Entry>() {
-			protected boolean removeEldestEntry(Map.Entry<String, Entry> eldest) {
+			protected boolean removeEldestEntry(
+					Map.Entry<String, Entry> eldest) {
 				return size() > MAX_ENTRIES;
 			}
 		};

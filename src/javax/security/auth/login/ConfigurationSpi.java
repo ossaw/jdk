@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.login;
@@ -48,12 +28,13 @@ public abstract class ConfigurationSpi {
 	 * <p>
 	 *
 	 * @param name
-	 *            the name used to index the Configuration.
+	 *             the name used to index the Configuration.
 	 *
 	 * @return an array of AppConfigurationEntries for the specified <i>name</i>
 	 *         , or null if there are no entries.
 	 */
-	protected abstract AppConfigurationEntry[] engineGetAppConfigurationEntry(String name);
+	protected abstract AppConfigurationEntry[] engineGetAppConfigurationEntry(
+			String name);
 
 	/**
 	 * Refresh and reload the Configuration.
@@ -70,9 +51,9 @@ public abstract class ConfigurationSpi {
 	 * implementation.
 	 *
 	 * @exception SecurityException
-	 *                if the caller does not have permission to refresh its
-	 *                Configuration.
+	 *                              if the caller does not have permission to
+	 *                              refresh its
+	 *                              Configuration.
 	 */
-	protected void engineRefresh() {
-	}
+	protected void engineRefresh() {}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -60,11 +40,10 @@ public class BasicViewportUI extends ViewportUI {
 	}
 
 	protected void installDefaults(JComponent c) {
-		LookAndFeel.installColorsAndFont(c, "Viewport.background", "Viewport.foreground",
-				"Viewport.font");
+		LookAndFeel.installColorsAndFont(c, "Viewport.background",
+				"Viewport.foreground", "Viewport.font");
 		LookAndFeel.installProperty(c, "opaque", Boolean.TRUE);
 	}
 
-	protected void uninstallDefaults(JComponent c) {
-	}
+	protected void uninstallDefaults(JComponent c) {}
 }

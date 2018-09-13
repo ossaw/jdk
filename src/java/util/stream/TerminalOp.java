@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -40,9 +20,9 @@ import java.util.Spliterator;
  * operations.
  *
  * @param <E_IN>
- *            the type of input elements
+ *        the type of input elements
  * @param <R>
- *            the type of the result
+ *        the type of the result
  * @since 1.8
  */
 interface TerminalOp<E_IN, R> {
@@ -81,14 +61,16 @@ interface TerminalOp<E_IN, R> {
 	 *           using the specified {@code PipelineHelper}.
 	 *
 	 * @param helper
-	 *            the pipeline helper
+	 *                    the pipeline helper
 	 * @param spliterator
-	 *            the source spliterator
+	 *                    the source spliterator
 	 * @return the result of the evaluation
 	 */
-	default <P_IN> R evaluateParallel(PipelineHelper<E_IN> helper, Spliterator<P_IN> spliterator) {
+	default <P_IN> R evaluateParallel(PipelineHelper<E_IN> helper,
+			Spliterator<P_IN> spliterator) {
 		if (Tripwire.ENABLED)
-			Tripwire.trip(getClass(), "{0} triggering TerminalOp.evaluateParallel serial default");
+			Tripwire.trip(getClass(),
+					"{0} triggering TerminalOp.evaluateParallel serial default");
 		return evaluateSequential(helper, spliterator);
 	}
 
@@ -98,10 +80,11 @@ interface TerminalOp<E_IN, R> {
 	 * operations.
 	 *
 	 * @param helper
-	 *            the pipeline helper
+	 *                    the pipeline helper
 	 * @param spliterator
-	 *            the source spliterator
+	 *                    the source spliterator
 	 * @return the result of the evaluation
 	 */
-	<P_IN> R evaluateSequential(PipelineHelper<E_IN> helper, Spliterator<P_IN> spliterator);
+	<P_IN> R evaluateSequential(PipelineHelper<E_IN> helper,
+			Spliterator<P_IN> spliterator);
 }

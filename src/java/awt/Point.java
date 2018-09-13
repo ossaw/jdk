@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -78,7 +58,7 @@ public class Point extends Point2D implements java.io.Serializable {
 	 * specified <code>Point</code> object.
 	 * 
 	 * @param p
-	 *            a point
+	 *          a point
 	 * @since 1.1
 	 */
 	public Point(Point p) {
@@ -90,9 +70,9 @@ public class Point extends Point2D implements java.io.Serializable {
 	 * location in the coordinate space.
 	 * 
 	 * @param x
-	 *            the X coordinate of the newly constructed <code>Point</code>
+	 *          the X coordinate of the newly constructed <code>Point</code>
 	 * @param y
-	 *            the Y coordinate of the newly constructed <code>Point</code>
+	 *          the Y coordinate of the newly constructed <code>Point</code>
 	 * @since 1.0
 	 */
 	public Point(int x, int y) {
@@ -140,7 +120,7 @@ public class Point extends Point2D implements java.io.Serializable {
 	 * method of <code>Component</code>.
 	 * 
 	 * @param p
-	 *            a point, the new location for this point
+	 *          a point, the new location for this point
 	 * @see java.awt.Component#setLocation(java.awt.Point)
 	 * @see java.awt.Point#getLocation
 	 * @since 1.1
@@ -157,9 +137,9 @@ public class Point extends Point2D implements java.io.Serializable {
 	 * is identical with <code>move(int,&nbsp;int)</code>.
 	 * 
 	 * @param x
-	 *            the X coordinate of the new location
+	 *          the X coordinate of the new location
 	 * @param y
-	 *            the Y coordinate of the new location
+	 *          the Y coordinate of the new location
 	 * @see java.awt.Component#setLocation(int, int)
 	 * @see java.awt.Point#getLocation
 	 * @see java.awt.Point#move(int, int)
@@ -177,9 +157,9 @@ public class Point extends Point2D implements java.io.Serializable {
 	 * to <code>MAX_VALUE</code>.
 	 *
 	 * @param x
-	 *            the X coordinate of the new location
+	 *          the X coordinate of the new location
 	 * @param y
-	 *            the Y coordinate of the new location
+	 *          the Y coordinate of the new location
 	 * @see #getLocation
 	 */
 	public void setLocation(double x, double y) {
@@ -193,9 +173,9 @@ public class Point extends Point2D implements java.io.Serializable {
 	 * <code>setLocation(int,&nbsp;int)</code>.
 	 * 
 	 * @param x
-	 *            the X coordinate of the new location
+	 *          the X coordinate of the new location
 	 * @param y
-	 *            the Y coordinate of the new location
+	 *          the Y coordinate of the new location
 	 * @see java.awt.Component#setLocation(int, int)
 	 */
 	public void move(int x, int y) {
@@ -209,9 +189,9 @@ public class Point extends Point2D implements java.io.Serializable {
 	 * represents the point {@code (x+dx,y+dy)}.
 	 *
 	 * @param dx
-	 *            the distance to move this point along the X axis
+	 *           the distance to move this point along the X axis
 	 * @param dy
-	 *            the distance to move this point along the Y axis
+	 *           the distance to move this point along the Y axis
 	 */
 	public void translate(int dx, int dy) {
 		this.x += dx;

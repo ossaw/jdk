@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -378,67 +358,85 @@ public interface Marshaller {
 	 * derived classes of <tt>Result</tt> as well.
 	 *
 	 * @param jaxbElement
-	 *            The root of content tree to be marshalled.
+	 *                    The root of content tree to be marshalled.
 	 * @param result
-	 *            XML will be sent to this Result
+	 *                    XML will be sent to this Result
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>obj</tt> (or any
-	 *             object reachable from <tt>obj</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>obj</tt> (or any
+	 *                                  object reachable from <tt>obj</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 */
-	public void marshal(Object jaxbElement, javax.xml.transform.Result result) throws JAXBException;
+	public void marshal(Object jaxbElement, javax.xml.transform.Result result)
+			throws JAXBException;
 
 	/**
 	 * Marshal the content tree rooted at <tt>jaxbElement</tt> into an output
 	 * stream.
 	 *
 	 * @param jaxbElement
-	 *            The root of content tree to be marshalled.
+	 *                    The root of content tree to be marshalled.
 	 * @param os
-	 *            XML will be added to this stream.
+	 *                    XML will be added to this stream.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>obj</tt> (or any
-	 *             object reachable from <tt>obj</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>obj</tt> (or any
+	 *                                  object reachable from <tt>obj</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 */
-	public void marshal(Object jaxbElement, java.io.OutputStream os) throws JAXBException;
+	public void marshal(Object jaxbElement, java.io.OutputStream os)
+			throws JAXBException;
 
 	/**
 	 * Marshal the content tree rooted at <tt>jaxbElement</tt> into a file.
 	 *
 	 * @param jaxbElement
-	 *            The root of content tree to be marshalled.
+	 *                    The root of content tree to be marshalled.
 	 * @param output
-	 *            File to be written. If this file already exists, it will be
-	 *            overwritten.
+	 *                    File to be written. If this file already exists, it
+	 *                    will be
+	 *                    overwritten.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>obj</tt> (or any
-	 *             object reachable from <tt>obj</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>obj</tt> (or any
+	 *                                  object reachable from <tt>obj</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 * @since JAXB2.1
 	 */
 	public void marshal(Object jaxbElement, File output) throws JAXBException;
@@ -447,43 +445,54 @@ public interface Marshaller {
 	 * Marshal the content tree rooted at <tt>jaxbElement</tt> into a Writer.
 	 *
 	 * @param jaxbElement
-	 *            The root of content tree to be marshalled.
+	 *                    The root of content tree to be marshalled.
 	 * @param writer
-	 *            XML will be sent to this writer.
+	 *                    XML will be sent to this writer.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>obj</tt> (or any
-	 *             object reachable from <tt>obj</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>obj</tt> (or any
+	 *                                  object reachable from <tt>obj</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 */
-	public void marshal(Object jaxbElement, java.io.Writer writer) throws JAXBException;
+	public void marshal(Object jaxbElement, java.io.Writer writer)
+			throws JAXBException;
 
 	/**
 	 * Marshal the content tree rooted at <tt>jaxbElement</tt> into SAX2 events.
 	 *
 	 * @param jaxbElement
-	 *            The root of content tree to be marshalled.
+	 *                    The root of content tree to be marshalled.
 	 * @param handler
-	 *            XML will be sent to this handler as SAX2 events.
+	 *                    XML will be sent to this handler as SAX2 events.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>obj</tt> (or any
-	 *             object reachable from <tt>obj</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>obj</tt> (or any
+	 *                                  object reachable from <tt>obj</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 */
 	public void marshal(Object jaxbElement, org.xml.sax.ContentHandler handler)
 			throws JAXBException;
@@ -492,77 +501,95 @@ public interface Marshaller {
 	 * Marshal the content tree rooted at <tt>jaxbElement</tt> into a DOM tree.
 	 *
 	 * @param jaxbElement
-	 *            The content tree to be marshalled.
+	 *                    The content tree to be marshalled.
 	 * @param node
-	 *            DOM nodes will be added as children of this node. This
-	 *            parameter must be a Node that accepts children (
-	 *            {@link org.w3c.dom.Document},
-	 *            {@link org.w3c.dom.DocumentFragment}, or
-	 *            {@link org.w3c.dom.Element})
+	 *                    DOM nodes will be added as children of this node. This
+	 *                    parameter must be a Node that accepts children (
+	 *                    {@link org.w3c.dom.Document},
+	 *                    {@link org.w3c.dom.DocumentFragment}, or
+	 *                    {@link org.w3c.dom.Element})
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>jaxbElement</tt>
-	 *             (or any object reachable from <tt>jaxbElement</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>jaxbElement</tt>
+	 *                                  (or any object reachable from
+	 *                                  <tt>jaxbElement</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 */
-	public void marshal(Object jaxbElement, org.w3c.dom.Node node) throws JAXBException;
+	public void marshal(Object jaxbElement, org.w3c.dom.Node node)
+			throws JAXBException;
 
 	/**
 	 * Marshal the content tree rooted at <tt>jaxbElement</tt> into a
 	 * {@link javax.xml.stream.XMLStreamWriter}.
 	 *
 	 * @param jaxbElement
-	 *            The content tree to be marshalled.
+	 *                    The content tree to be marshalled.
 	 * @param writer
-	 *            XML will be sent to this writer.
+	 *                    XML will be sent to this writer.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>obj</tt> (or any
-	 *             object reachable from <tt>obj</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>obj</tt> (or any
+	 *                                  object reachable from <tt>obj</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 * @since JAXB 2.0
 	 */
-	public void marshal(Object jaxbElement, javax.xml.stream.XMLStreamWriter writer)
-			throws JAXBException;
+	public void marshal(Object jaxbElement,
+			javax.xml.stream.XMLStreamWriter writer) throws JAXBException;
 
 	/**
 	 * Marshal the content tree rooted at <tt>jaxbElement</tt> into a
 	 * {@link javax.xml.stream.XMLEventWriter}.
 	 *
 	 * @param jaxbElement
-	 *            The content tree rooted at jaxbElement to be marshalled.
+	 *                    The content tree rooted at jaxbElement to be
+	 *                    marshalled.
 	 * @param writer
-	 *            XML will be sent to this writer.
+	 *                    XML will be sent to this writer.
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs during the marshalling.
+	 *                                  If any unexpected problem occurs during
+	 *                                  the marshalling.
 	 * @throws MarshalException
-	 *             If the {@link ValidationEventHandler ValidationEventHandler}
-	 *             returns false from its <tt>handleEvent</tt> method or the
-	 *             <tt>Marshaller</tt> is unable to marshal <tt>obj</tt> (or any
-	 *             object reachable from <tt>obj</tt>). See
-	 *             <a href="#elementMarshalling"> Marshalling a JAXB element</a>
-	 *             .
+	 *                                  If the {@link ValidationEventHandler
+	 *                                  ValidationEventHandler}
+	 *                                  returns false from its
+	 *                                  <tt>handleEvent</tt> method or the
+	 *                                  <tt>Marshaller</tt> is unable to marshal
+	 *                                  <tt>obj</tt> (or any
+	 *                                  object reachable from <tt>obj</tt>). See
+	 *                                  <a href="#elementMarshalling">
+	 *                                  Marshalling a JAXB element</a>
+	 *                                  .
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                  If any of the method parameters are null
 	 * @since JAXB 2.0
 	 */
-	public void marshal(Object jaxbElement, javax.xml.stream.XMLEventWriter writer)
-			throws JAXBException;
+	public void marshal(Object jaxbElement,
+			javax.xml.stream.XMLEventWriter writer) throws JAXBException;
 
 	/**
 	 * Get a DOM tree view of the content tree(Optional).
@@ -572,22 +599,25 @@ public interface Marshaller {
 	 * a deep copy of the content tree to a DOM representation.
 	 *
 	 * @param contentTree
-	 *            - JAXB Java representation of XML content
+	 *                    - JAXB Java representation of XML content
 	 *
 	 * @return the DOM tree view of the contentTree
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the JAXB provider implementation does not support a DOM
-	 *             view of the content tree
+	 *                                       If the JAXB provider implementation
+	 *                                       does not support a DOM
+	 *                                       view of the content tree
 	 *
 	 * @throws IllegalArgumentException
-	 *             If any of the method parameters are null
+	 *                                       If any of the method parameters are
+	 *                                       null
 	 *
 	 * @throws JAXBException
-	 *             If any unexpected problem occurs
+	 *                                       If any unexpected problem occurs
 	 *
 	 */
-	public org.w3c.dom.Node getNode(java.lang.Object contentTree) throws JAXBException;
+	public org.w3c.dom.Node getNode(java.lang.Object contentTree)
+			throws JAXBException;
 
 	/**
 	 * Set the particular property in the underlying implementation of
@@ -598,16 +628,18 @@ public interface Marshaller {
 	 * Properties</a>.
 	 *
 	 * @param name
-	 *            the name of the property to be set. This value can either be
-	 *            specified using one of the constant fields or a user supplied
-	 *            string.
+	 *              the name of the property to be set. This value can either be
+	 *              specified using one of the constant fields or a user
+	 *              supplied
+	 *              string.
 	 * @param value
-	 *            the value of the property to be set
+	 *              the value of the property to be set
 	 *
 	 * @throws PropertyException
-	 *             when there is an error processing the given property or value
+	 *                                  when there is an error processing the
+	 *                                  given property or value
 	 * @throws IllegalArgumentException
-	 *             If the name parameter is null
+	 *                                  If the name parameter is null
 	 */
 	public void setProperty(String name, Object value) throws PropertyException;
 
@@ -620,14 +652,15 @@ public interface Marshaller {
 	 * Properties</a>.
 	 *
 	 * @param name
-	 *            the name of the property to retrieve
+	 *             the name of the property to retrieve
 	 * @return the value of the requested property
 	 *
 	 * @throws PropertyException
-	 *             when there is an error retrieving the given property or value
-	 *             property name
+	 *                                  when there is an error retrieving the
+	 *                                  given property or value
+	 *                                  property name
 	 * @throws IllegalArgumentException
-	 *             If the name parameter is null
+	 *                                  If the name parameter is null
 	 */
 	public Object getProperty(String name) throws PropertyException;
 
@@ -646,11 +679,13 @@ public interface Marshaller {
 	 * revert back to the default default event handler.
 	 *
 	 * @param handler
-	 *            the validation event handler
+	 *                the validation event handler
 	 * @throws JAXBException
-	 *             if an error was encountered while setting the event handler
+	 *                       if an error was encountered while setting the event
+	 *                       handler
 	 */
-	public void setEventHandler(ValidationEventHandler handler) throws JAXBException;
+	public void setEventHandler(ValidationEventHandler handler)
+			throws JAXBException;
 
 	/**
 	 * Return the current event handler or the default event handler if one
@@ -659,8 +694,9 @@ public interface Marshaller {
 	 * @return the current ValidationEventHandler or the default event handler
 	 *         if it hasn't been set
 	 * @throws JAXBException
-	 *             if an error was encountered while getting the current event
-	 *             handler
+	 *                       if an error was encountered while getting the
+	 *                       current event
+	 *                       handler
 	 */
 	public ValidationEventHandler getEventHandler() throws JAXBException;
 
@@ -674,9 +710,10 @@ public interface Marshaller {
 	 *
 	 * @see #setAdapter(Class,XmlAdapter)
 	 * @throws IllegalArgumentException
-	 *             if the adapter parameter is null.
+	 *                                       if the adapter parameter is null.
 	 * @throws UnsupportedOperationException
-	 *             if invoked agains a JAXB 1.0 implementation.
+	 *                                       if invoked agains a JAXB 1.0
+	 *                                       implementation.
 	 * @since JAXB 2.0
 	 */
 	public void setAdapter(XmlAdapter adapter);
@@ -697,17 +734,19 @@ public interface Marshaller {
 	 * marshaller will create one by invoking its default constructor.
 	 *
 	 * @param type
-	 *            The type of the adapter. The specified instance will be used
-	 *            when
-	 *            {@link javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter#value()}
-	 *            refers to this type.
+	 *                The type of the adapter. The specified instance will be
+	 *                used
+	 *                when
+	 *                {@link javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter#value()}
+	 *                refers to this type.
 	 * @param adapter
-	 *            The instance of the adapter to be used. If null, it will
-	 *            un-register the current adapter set for this type.
+	 *                The instance of the adapter to be used. If null, it will
+	 *                un-register the current adapter set for this type.
 	 * @throws IllegalArgumentException
-	 *             if the type parameter is null.
+	 *                                       if the type parameter is null.
 	 * @throws UnsupportedOperationException
-	 *             if invoked agains a JAXB 1.0 implementation.
+	 *                                       if invoked agains a JAXB 1.0
+	 *                                       implementation.
 	 * @since JAXB 2.0
 	 */
 	public <A extends XmlAdapter> void setAdapter(Class<A> type, A adapter);
@@ -718,9 +757,10 @@ public interface Marshaller {
 	 * This is the reverse operation of the {@link #setAdapter} method.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the type parameter is null.
+	 *                                       if the type parameter is null.
 	 * @throws UnsupportedOperationException
-	 *             if invoked agains a JAXB 1.0 implementation.
+	 *                                       if invoked agains a JAXB 1.0
+	 *                                       implementation.
 	 * @since JAXB 2.0
 	 */
 	public <A extends XmlAdapter> A getAdapter(Class<A> type);
@@ -733,8 +773,9 @@ public interface Marshaller {
 	 * references stored within the xml document.
 	 *
 	 * @throws IllegalStateException
-	 *             if attempt to concurrently call this method during a marshal
-	 *             operation.
+	 *                               if attempt to concurrently call this method
+	 *                               during a marshal
+	 *                               operation.
 	 */
 	void setAttachmentMarshaller(AttachmentMarshaller am);
 
@@ -753,12 +794,15 @@ public interface Marshaller {
 	 * Initially this property is set to <tt>null</tt>.
 	 *
 	 * @param schema
-	 *            Schema object to validate marshal operations against or null
-	 *            to disable validation
+	 *               Schema object to validate marshal operations against or
+	 *               null
+	 *               to disable validation
 	 * @throws UnsupportedOperationException
-	 *             could be thrown if this method is invoked on an Marshaller
-	 *             created from a JAXBContext referencing JAXB 1.0 mapped
-	 *             classes
+	 *                                       could be thrown if this method is
+	 *                                       invoked on an Marshaller
+	 *                                       created from a JAXBContext
+	 *                                       referencing JAXB 1.0 mapped
+	 *                                       classes
 	 * @since JAXB2.0
 	 */
 	public void setSchema(Schema schema);
@@ -772,9 +816,11 @@ public interface Marshaller {
 	 * @return the Schema object being used to perform marshal-time validation
 	 *         or null if not present.
 	 * @throws UnsupportedOperationException
-	 *             could be thrown if this method is invoked on an Marshaller
-	 *             created from a JAXBContext referencing JAXB 1.0 mapped
-	 *             classes
+	 *                                       could be thrown if this method is
+	 *                                       invoked on an Marshaller
+	 *                                       created from a JAXBContext
+	 *                                       referencing JAXB 1.0 mapped
+	 *                                       classes
 	 * @since JAXB2.0
 	 */
 	public Schema getSchema();
@@ -814,11 +860,10 @@ public interface Marshaller {
 		 * callback method is invoked just before this method is invoked.
 		 *
 		 * @param source
-		 *            instance of JAXB mapped class prior to marshalling from
-		 *            it.
+		 *               instance of JAXB mapped class prior to marshalling from
+		 *               it.
 		 */
-		public void beforeMarshal(Object source) {
-		}
+		public void beforeMarshal(Object source) {}
 
 		/**
 		 * <p/>
@@ -831,10 +876,9 @@ public interface Marshaller {
 		 * callback method is invoked just before this method is invoked.
 		 *
 		 * @param source
-		 *            instance of JAXB mapped class after marshalling it.
+		 *               instance of JAXB mapped class after marshalling it.
 		 */
-		public void afterMarshal(Object source) {
-		}
+		public void afterMarshal(Object source) {}
 	}
 
 	/**
@@ -848,7 +892,7 @@ public interface Marshaller {
 	 * listener to <tt>null</tt>.
 	 *
 	 * @param listener
-	 *            an instance of a class that implements {@link Listener}
+	 *                 an instance of a class that implements {@link Listener}
 	 * @since JAXB2.0
 	 */
 	public void setListener(Listener listener);

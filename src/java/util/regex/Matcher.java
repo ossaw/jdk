@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.regex;
@@ -225,8 +205,7 @@ public final class Matcher implements MatchResult {
 	/**
 	 * No default constructor.
 	 */
-	Matcher() {
-	}
+	Matcher() {}
 
 	/**
 	 * All matchers have the state used by Pattern during a match.
@@ -280,10 +259,10 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param newPattern
-	 *            The new pattern used by this matcher
+	 *                   The new pattern used by this matcher
 	 * @return This matcher
 	 * @throws IllegalArgumentException
-	 *             If newPattern is <tt>null</tt>
+	 *                                  If newPattern is <tt>null</tt>
 	 * @since 1.5
 	 */
 	public Matcher usePattern(Pattern newPattern) {
@@ -337,7 +316,7 @@ public final class Matcher implements MatchResult {
 	 * transparency of this matcher's region boundaries are unaffected.
 	 *
 	 * @param input
-	 *            The new input character sequence
+	 *              The new input character sequence
 	 *
 	 * @return This matcher
 	 */
@@ -352,8 +331,9 @@ public final class Matcher implements MatchResult {
 	 * @return The index of the first character matched
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                               If no match has yet been attempted, or if
+	 *                               the previous match
+	 *                               operation failed
 	 */
 	public int start() {
 		if (first < 0)
@@ -373,19 +353,21 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param group
-	 *            The index of a capturing group in this matcher's pattern
+	 *              The index of a capturing group in this matcher's pattern
 	 *
 	 * @return The index of the first character captured by the group, or
 	 *         <tt>-1</tt> if the match was successful but the group itself did
 	 *         not match anything
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                   If no match has yet been attempted, or
+	 *                                   if the previous match
+	 *                                   operation failed
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If there is no capturing group in the pattern with the given
-	 *             index
+	 *                                   If there is no capturing group in the
+	 *                                   pattern with the given
+	 *                                   index
 	 */
 	public int start(int group) {
 		if (first < 0)
@@ -401,19 +383,21 @@ public final class Matcher implements MatchResult {
 	 * previous match operation.
 	 *
 	 * @param name
-	 *            The name of a named-capturing group in this matcher's pattern
+	 *             The name of a named-capturing group in this matcher's pattern
 	 *
 	 * @return The index of the first character captured by the group, or
 	 *         {@code -1} if the match was successful but the group itself did
 	 *         not match anything
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                  If no match has yet been attempted, or
+	 *                                  if the previous match
+	 *                                  operation failed
 	 *
 	 * @throws IllegalArgumentException
-	 *             If there is no capturing group in the pattern with the given
-	 *             name
+	 *                                  If there is no capturing group in the
+	 *                                  pattern with the given
+	 *                                  name
 	 * @since 1.8
 	 */
 	public int start(String name) {
@@ -426,8 +410,9 @@ public final class Matcher implements MatchResult {
 	 * @return The offset after the last character matched
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                               If no match has yet been attempted, or if
+	 *                               the previous match
+	 *                               operation failed
 	 */
 	public int end() {
 		if (first < 0)
@@ -447,19 +432,21 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param group
-	 *            The index of a capturing group in this matcher's pattern
+	 *              The index of a capturing group in this matcher's pattern
 	 *
 	 * @return The offset after the last character captured by the group, or
 	 *         <tt>-1</tt> if the match was successful but the group itself did
 	 *         not match anything
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                   If no match has yet been attempted, or
+	 *                                   if the previous match
+	 *                                   operation failed
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If there is no capturing group in the pattern with the given
-	 *             index
+	 *                                   If there is no capturing group in the
+	 *                                   pattern with the given
+	 *                                   index
 	 */
 	public int end(int group) {
 		if (first < 0)
@@ -475,19 +462,21 @@ public final class Matcher implements MatchResult {
 	 * during the previous match operation.
 	 *
 	 * @param name
-	 *            The name of a named-capturing group in this matcher's pattern
+	 *             The name of a named-capturing group in this matcher's pattern
 	 *
 	 * @return The offset after the last character captured by the group, or
 	 *         {@code -1} if the match was successful but the group itself did
 	 *         not match anything
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                  If no match has yet been attempted, or
+	 *                                  if the previous match
+	 *                                  operation failed
 	 *
 	 * @throws IllegalArgumentException
-	 *             If there is no capturing group in the pattern with the given
-	 *             name
+	 *                                  If there is no capturing group in the
+	 *                                  pattern with the given
+	 *                                  name
 	 * @since 1.8
 	 */
 	public int end(String name) {
@@ -513,8 +502,9 @@ public final class Matcher implements MatchResult {
 	 *         in string form
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                               If no match has yet been attempted, or if
+	 *                               the previous match
+	 *                               operation failed
 	 */
 	public String group() {
 		return group(0);
@@ -546,19 +536,21 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param group
-	 *            The index of a capturing group in this matcher's pattern
+	 *              The index of a capturing group in this matcher's pattern
 	 *
 	 * @return The (possibly empty) subsequence captured by the group during the
 	 *         previous match, or <tt>null</tt> if the group failed to match
 	 *         part of the input
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                   If no match has yet been attempted, or
+	 *                                   if the previous match
+	 *                                   operation failed
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If there is no capturing group in the pattern with the given
-	 *             index
+	 *                                   If there is no capturing group in the
+	 *                                   pattern with the given
+	 *                                   index
 	 */
 	public String group(int group) {
 		if (first < 0)
@@ -567,7 +559,8 @@ public final class Matcher implements MatchResult {
 			throw new IndexOutOfBoundsException("No group " + group);
 		if ((groups[group * 2] == -1) || (groups[group * 2 + 1] == -1))
 			return null;
-		return getSubSequence(groups[group * 2], groups[group * 2 + 1]).toString();
+		return getSubSequence(groups[group * 2], groups[group * 2 + 1])
+				.toString();
 	}
 
 	/**
@@ -584,26 +577,29 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of a named-capturing group in this matcher's pattern
+	 *             The name of a named-capturing group in this matcher's pattern
 	 *
 	 * @return The (possibly empty) subsequence captured by the named group
 	 *         during the previous match, or <tt>null</tt> if the group failed
 	 *         to match part of the input
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                  If no match has yet been attempted, or
+	 *                                  if the previous match
+	 *                                  operation failed
 	 *
 	 * @throws IllegalArgumentException
-	 *             If there is no capturing group in the pattern with the given
-	 *             name
+	 *                                  If there is no capturing group in the
+	 *                                  pattern with the given
+	 *                                  name
 	 * @since 1.7
 	 */
 	public String group(String name) {
 		int group = getMatchedGroupIndex(name);
 		if ((groups[group * 2] == -1) || (groups[group * 2 + 1] == -1))
 			return null;
-		return getSubSequence(groups[group * 2], groups[group * 2 + 1]).toString();
+		return getSubSequence(groups[group * 2], groups[group * 2 + 1])
+				.toString();
 	}
 
 	/**
@@ -687,10 +683,11 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param start
-	 *            the index to start searching for a match
+	 *              the index to start searching for a match
 	 * @throws IndexOutOfBoundsException
-	 *             If start is less than zero or if start is greater than the
-	 *             length of the input sequence.
+	 *                                   If start is less than zero or if start
+	 *                                   is greater than the
+	 *                                   length of the input sequence.
 	 *
 	 * @return <tt>true</tt> if, and only if, a subsequence of the input
 	 *         sequence starting at the given index matches this matcher's
@@ -737,7 +734,7 @@ public final class Matcher implements MatchResult {
 	 * meaning.
 	 *
 	 * @param s
-	 *            The string to be literalized
+	 *          The string to be literalized
 	 * @return A literal string replacement
 	 * @since 1.5
 	 */
@@ -835,24 +832,27 @@ public final class Matcher implements MatchResult {
 	 * </blockquote>
 	 *
 	 * @param sb
-	 *            The target string buffer
+	 *                    The target string buffer
 	 *
 	 * @param replacement
-	 *            The replacement string
+	 *                    The replacement string
 	 *
 	 * @return This matcher
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                   If no match has yet been attempted, or
+	 *                                   if the previous match
+	 *                                   operation failed
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the replacement string refers to a named-capturing group
-	 *             that does not exist in the pattern
+	 *                                   If the replacement string refers to a
+	 *                                   named-capturing group
+	 *                                   that does not exist in the pattern
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If the replacement string refers to a capturing group that
-	 *             does not exist in the pattern
+	 *                                   If the replacement string refers to a
+	 *                                   capturing group that
+	 *                                   does not exist in the pattern
 	 */
 	public Matcher appendReplacement(StringBuffer sb, String replacement) {
 
@@ -869,7 +869,8 @@ public final class Matcher implements MatchResult {
 			if (nextChar == '\\') {
 				cursor++;
 				if (cursor == replacement.length())
-					throw new IllegalArgumentException("character to be escaped is missing");
+					throw new IllegalArgumentException(
+							"character to be escaped is missing");
 				nextChar = replacement.charAt(cursor);
 				result.append(nextChar);
 				cursor++;
@@ -904,16 +905,19 @@ public final class Matcher implements MatchResult {
 					String gname = gsb.toString();
 					if (ASCII.isDigit(gname.charAt(0)))
 						throw new IllegalArgumentException(
-								"capturing group name {" + gname + "} starts with digit character");
+								"capturing group name {" + gname
+										+ "} starts with digit character");
 					if (!parentPattern.namedGroups().containsKey(gname))
-						throw new IllegalArgumentException("No group with name {" + gname + "}");
+						throw new IllegalArgumentException(
+								"No group with name {" + gname + "}");
 					refNum = parentPattern.namedGroups().get(gname);
 					cursor++;
 				} else {
 					// The first number is always a group
 					refNum = (int) nextChar - '0';
 					if ((refNum < 0) || (refNum > 9))
-						throw new IllegalArgumentException("Illegal group reference");
+						throw new IllegalArgumentException(
+								"Illegal group reference");
 					cursor++;
 					// Capture the largest legal group string
 					boolean done = false;
@@ -964,7 +968,7 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param sb
-	 *            The target string buffer
+	 *           The target string buffer
 	 *
 	 * @return The target string buffer
 	 */
@@ -1005,7 +1009,7 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param replacement
-	 *            The replacement string
+	 *                    The replacement string
 	 *
 	 * @return The string constructed by replacing each matching subsequence by
 	 *         the replacement string, substituting captured subsequences as
@@ -1059,7 +1063,7 @@ public final class Matcher implements MatchResult {
 	 * </p>
 	 *
 	 * @param replacement
-	 *            The replacement string
+	 *                    The replacement string
 	 * @return The string constructed by replacing the first matching
 	 *         subsequence by the replacement string, substituting captured
 	 *         subsequences as needed
@@ -1091,14 +1095,17 @@ public final class Matcher implements MatchResult {
 	 * region.
 	 *
 	 * @param start
-	 *            The index to start searching at (inclusive)
+	 *              The index to start searching at (inclusive)
 	 * @param end
-	 *            The index to end searching at (exclusive)
+	 *              The index to end searching at (exclusive)
 	 * @throws IndexOutOfBoundsException
-	 *             If start or end is less than zero, if start is greater than
-	 *             the length of the input sequence, if end is greater than the
-	 *             length of the input sequence, or if start is greater than
-	 *             end.
+	 *                                   If start or end is less than zero, if
+	 *                                   start is greater than
+	 *                                   the length of the input sequence, if
+	 *                                   end is greater than the
+	 *                                   length of the input sequence, or if
+	 *                                   start is greater than
+	 *                                   end.
 	 * @return this matcher
 	 * @since 1.5
 	 */
@@ -1188,8 +1195,8 @@ public final class Matcher implements MatchResult {
 	 * By default, a matcher uses opaque bounds.
 	 *
 	 * @param b
-	 *            a boolean indicating whether to use opaque or transparent
-	 *            regions
+	 *          a boolean indicating whether to use opaque or transparent
+	 *          regions
 	 * @return this matcher
 	 * @see java.util.regex.Matcher#hasTransparentBounds
 	 * @since 1.5
@@ -1242,7 +1249,7 @@ public final class Matcher implements MatchResult {
 	 * By default, a matcher uses anchoring region boundaries.
 	 *
 	 * @param b
-	 *            a boolean indicating whether or not to use anchoring bounds.
+	 *          a boolean indicating whether or not to use anchoring bounds.
 	 * @return this matcher
 	 * @see java.util.regex.Matcher#hasAnchoringBounds
 	 * @since 1.5
@@ -1375,9 +1382,9 @@ public final class Matcher implements MatchResult {
 	 * Generates a String from this Matcher's input in the specified range.
 	 *
 	 * @param beginIndex
-	 *            the beginning index, inclusive
+	 *                   the beginning index, inclusive
 	 * @param endIndex
-	 *            the ending index, exclusive
+	 *                   the ending index, exclusive
 	 * @return A String generated from this Matcher's input
 	 */
 	CharSequence getSubSequence(int beginIndex, int endIndex) {
@@ -1403,7 +1410,8 @@ public final class Matcher implements MatchResult {
 		if (first < 0)
 			throw new IllegalStateException("No match found");
 		if (!parentPattern.namedGroups().containsKey(name))
-			throw new IllegalArgumentException("No group with name <" + name + ">");
+			throw new IllegalArgumentException("No group with name <" + name
+					+ ">");
 		return parentPattern.namedGroups().get(name);
 	}
 }

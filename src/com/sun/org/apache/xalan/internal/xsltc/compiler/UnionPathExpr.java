@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -114,9 +111,10 @@ final class UnionPathExpr extends Expression {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 
-		final int init = cpg.addMethodref(UNION_ITERATOR_CLASS, "<init>",
-				"(" + DOM_INTF_SIG + ")V");
-		final int iter = cpg.addMethodref(UNION_ITERATOR_CLASS, ADD_ITERATOR, ADD_ITERATOR_SIG);
+		final int init = cpg.addMethodref(UNION_ITERATOR_CLASS, "<init>", "("
+				+ DOM_INTF_SIG + ")V");
+		final int iter = cpg.addMethodref(UNION_ITERATOR_CLASS, ADD_ITERATOR,
+				ADD_ITERATOR_SIG);
 
 		// Create the UnionIterator and leave it on the stack
 		il.append(new NEW(cpg.addClass(UNION_ITERATOR_CLASS)));
@@ -133,8 +131,8 @@ final class UnionPathExpr extends Expression {
 
 		// Order the iterator only if strictly needed
 		if (_reverse) {
-			final int order = cpg.addInterfaceMethodref(DOM_INTF, ORDER_ITERATOR,
-					ORDER_ITERATOR_SIG);
+			final int order = cpg.addInterfaceMethodref(DOM_INTF,
+					ORDER_ITERATOR, ORDER_ITERATOR_SIG);
 			il.append(methodGen.loadDOM());
 			il.append(SWAP);
 			il.append(methodGen.loadContextNode());

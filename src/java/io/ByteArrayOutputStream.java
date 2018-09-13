@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -66,13 +46,14 @@ public class ByteArrayOutputStream extends OutputStream {
 	 * specified size, in bytes.
 	 *
 	 * @param size
-	 *            the initial size.
+	 *             the initial size.
 	 * @exception IllegalArgumentException
-	 *                if size is negative.
+	 *                                     if size is negative.
 	 */
 	public ByteArrayOutputStream(int size) {
 		if (size < 0) {
-			throw new IllegalArgumentException("Negative initial size: " + size);
+			throw new IllegalArgumentException("Negative initial size: "
+					+ size);
 		}
 		buf = new byte[size];
 	}
@@ -82,12 +63,13 @@ public class ByteArrayOutputStream extends OutputStream {
 	 * the number of elements specified by the minimum capacity argument.
 	 *
 	 * @param minCapacity
-	 *            the desired minimum capacity
+	 *                    the desired minimum capacity
 	 * @throws OutOfMemoryError
-	 *             if {@code minCapacity < 0}. This is interpreted as a request
-	 *             for the unsatisfiably large capacity
-	 *             {@code (long) Integer.MAX_VALUE + (minCapacity - Integer.MAX_VALUE)}
-	 *             .
+	 *                          if {@code minCapacity < 0}. This is interpreted
+	 *                          as a request
+	 *                          for the unsatisfiably large capacity
+	 *                          {@code (long) Integer.MAX_VALUE + (minCapacity - Integer.MAX_VALUE)}
+	 *                          .
 	 */
 	private void ensureCapacity(int minCapacity) {
 		// overflow-conscious code
@@ -107,7 +89,7 @@ public class ByteArrayOutputStream extends OutputStream {
 	 * elements specified by the minimum capacity argument.
 	 *
 	 * @param minCapacity
-	 *            the desired minimum capacity
+	 *                    the desired minimum capacity
 	 */
 	private void grow(int minCapacity) {
 		// overflow-conscious code
@@ -123,14 +105,15 @@ public class ByteArrayOutputStream extends OutputStream {
 	private static int hugeCapacity(int minCapacity) {
 		if (minCapacity < 0) // overflow
 			throw new OutOfMemoryError();
-		return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
+		return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE
+				: MAX_ARRAY_SIZE;
 	}
 
 	/**
 	 * Writes the specified byte to this byte array output stream.
 	 *
 	 * @param b
-	 *            the byte to be written.
+	 *          the byte to be written.
 	 */
 	public synchronized void write(int b) {
 		ensureCapacity(count + 1);
@@ -150,7 +133,8 @@ public class ByteArrayOutputStream extends OutputStream {
 	 *            the number of bytes to write.
 	 */
 	public synchronized void write(byte b[], int off, int len) {
-		if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) - b.length > 0)) {
+		if ((off < 0) || (off > b.length) || (len < 0) || ((off + len)
+				- b.length > 0)) {
 			throw new IndexOutOfBoundsException();
 		}
 		ensureCapacity(count + len);
@@ -166,7 +150,7 @@ public class ByteArrayOutputStream extends OutputStream {
 	 * @param out
 	 *            the output stream to which to write the data.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public synchronized void writeTo(OutputStream out) throws IOException {
 		out.write(buf, 0, count);
@@ -239,14 +223,17 @@ public class ByteArrayOutputStream extends OutputStream {
 	 * control over the decoding process is required.
 	 *
 	 * @param charsetName
-	 *            the name of a supported {@link java.nio.charset.Charset
-	 *            charset}
+	 *                    the name of a supported
+	 *                    {@link java.nio.charset.Charset
+	 *                    charset}
 	 * @return String decoded from the buffer's contents.
 	 * @exception UnsupportedEncodingException
-	 *                If the named charset is not supported
+	 *                                         If the named charset is not
+	 *                                         supported
 	 * @since JDK1.1
 	 */
-	public synchronized String toString(String charsetName) throws UnsupportedEncodingException {
+	public synchronized String toString(String charsetName)
+			throws UnsupportedEncodingException {
 		return new String(buf, 0, count, charsetName);
 	}
 
@@ -270,7 +257,7 @@ public class ByteArrayOutputStream extends OutputStream {
 	 *             method, which uses the platform's default character encoding.
 	 *
 	 * @param hibyte
-	 *            the high byte of each resulting Unicode character.
+	 *               the high byte of each resulting Unicode character.
 	 * @return the current contents of the output stream, as a string.
 	 * @see java.io.ByteArrayOutputStream#size()
 	 * @see java.io.ByteArrayOutputStream#toString(String)
@@ -286,7 +273,6 @@ public class ByteArrayOutputStream extends OutputStream {
 	 * this class can be called after the stream has been closed without
 	 * generating an <tt>IOException</tt>.
 	 */
-	public void close() throws IOException {
-	}
+	public void close() throws IOException {}
 
 }

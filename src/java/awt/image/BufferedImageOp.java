@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -69,16 +49,18 @@ public interface BufferedImageOp {
 	 * allowed by the class implementing this filter.
 	 *
 	 * @param src
-	 *            The <CODE>BufferedImage</CODE> to be filtered
+	 *             The <CODE>BufferedImage</CODE> to be filtered
 	 * @param dest
-	 *            The <CODE>BufferedImage</CODE> in which to store the results$
+	 *             The <CODE>BufferedImage</CODE> in which to store the results$
 	 *
 	 * @return The filtered <CODE>BufferedImage</CODE>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the source and/or destination image is not compatible with
-	 *             the types of images allowed by the class implementing this
-	 *             filter.
+	 *                                  If the source and/or destination image
+	 *                                  is not compatible with
+	 *                                  the types of images allowed by the class
+	 *                                  implementing this
+	 *                                  filter.
 	 */
 	public BufferedImage filter(BufferedImage src, BufferedImage dest);
 
@@ -103,14 +85,15 @@ public interface BufferedImageOp {
 	 * class implementing this filter.
 	 *
 	 * @param src
-	 *            The <CODE>BufferedImage</CODE> to be filtered
+	 *               The <CODE>BufferedImage</CODE> to be filtered
 	 * @param destCM
-	 *            <CODE>ColorModel</CODE> of the destination. If null, the
-	 *            <CODE>ColorModel</CODE> of the source is used.
+	 *               <CODE>ColorModel</CODE> of the destination. If null, the
+	 *               <CODE>ColorModel</CODE> of the source is used.
 	 *
 	 * @return The zeroed destination image.
 	 */
-	public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel destCM);
+	public BufferedImage createCompatibleDestImage(BufferedImage src,
+			ColorModel destCM);
 
 	/**
 	 * Returns the location of the corresponding destination point given a point
@@ -118,10 +101,10 @@ public interface BufferedImageOp {
 	 * hold the return value.
 	 * 
 	 * @param srcPt
-	 *            the <code>Point2D</code> that represents the point in the
-	 *            source image
+	 *              the <code>Point2D</code> that represents the point in the
+	 *              source image
 	 * @param dstPt
-	 *            The <CODE>Point2D</CODE> in which to store the result
+	 *              The <CODE>Point2D</CODE> in which to store the result
 	 *
 	 * @return The <CODE>Point2D</CODE> in the destination image that
 	 *         corresponds to the specified point in the source image.

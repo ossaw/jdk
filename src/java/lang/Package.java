@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -220,15 +200,17 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 	 * period is skipped and the next pair of components is compared.
 	 *
 	 * @param desired
-	 *            the version string of the desired version.
+	 *                the version string of the desired version.
 	 * @return true if this package's version number is greater than or equal to
 	 *         the desired version number
 	 *
 	 * @exception NumberFormatException
-	 *                if the desired or current version is not of the correct
-	 *                dotted form.
+	 *                                  if the desired or current version is not
+	 *                                  of the correct
+	 *                                  dotted form.
 	 */
-	public boolean isCompatibleWith(String desired) throws NumberFormatException {
+	public boolean isCompatibleWith(String desired)
+			throws NumberFormatException {
 		if (specVersion == null || specVersion.length() < 1) {
 			throw new NumberFormatException("Empty version string");
 		}
@@ -275,7 +257,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 	 * accompany the classes.
 	 *
 	 * @param name
-	 *            a package name, for example, java.lang.
+	 *             a package name, for example, java.lang.
 	 * @return the package of the requested name. It may be null if no package
 	 *         information is available from the archive or codebase.
 	 */
@@ -324,7 +306,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 	 * accompany the classes.
 	 *
 	 * @param c
-	 *            the class to get the package of.
+	 *          the class to get the package of.
 	 * @return the package of the class. It may be null if no package
 	 *         information is available from the archive or codebase.
 	 */
@@ -377,11 +359,11 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 	private Class<?> getPackageInfo() {
 		if (packageInfo == null) {
 			try {
-				packageInfo = Class.forName(pkgName + ".package-info", false, loader);
+				packageInfo = Class.forName(pkgName + ".package-info", false,
+						loader);
 			} catch (ClassNotFoundException ex) {
 				// store a proxy for the package info that has no annotations
-				class PackageInfoProxy {
-				}
+				class PackageInfoProxy {}
 				packageInfo = PackageInfoProxy.class;
 			}
 		}
@@ -390,7 +372,7 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.5
 	 */
 	public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
@@ -401,21 +383,23 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 	 * {@inheritDoc}
 	 * 
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.5
 	 */
 	@Override
-	public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
+	public boolean isAnnotationPresent(
+			Class<? extends Annotation> annotationClass) {
 		return AnnotatedElement.super.isAnnotationPresent(annotationClass);
 	}
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <A extends Annotation> A[] getAnnotationsByType(Class<A> annotationClass) {
+	public <A extends Annotation> A[] getAnnotationsByType(
+			Class<A> annotationClass) {
 		return getPackageInfo().getAnnotationsByType(annotationClass);
 	}
 
@@ -428,21 +412,23 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <A extends Annotation> A getDeclaredAnnotation(Class<A> annotationClass) {
+	public <A extends Annotation> A getDeclaredAnnotation(
+			Class<A> annotationClass) {
 		return getPackageInfo().getDeclaredAnnotation(annotationClass);
 	}
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	public <A extends Annotation> A[] getDeclaredAnnotationsByType(Class<A> annotationClass) {
+	public <A extends Annotation> A[] getDeclaredAnnotationsByType(
+			Class<A> annotationClass) {
 		return getPackageInfo().getDeclaredAnnotationsByType(annotationClass);
 	}
 
@@ -457,22 +443,23 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 	 * Construct a package instance with the specified version information.
 	 * 
 	 * @param name
-	 *            the name of the package
+	 *                    the name of the package
 	 * @param spectitle
-	 *            the title of the specification
+	 *                    the title of the specification
 	 * @param specversion
-	 *            the version of the specification
+	 *                    the version of the specification
 	 * @param specvendor
-	 *            the organization that maintains the specification
+	 *                    the organization that maintains the specification
 	 * @param impltitle
-	 *            the title of the implementation
+	 *                    the title of the implementation
 	 * @param implversion
-	 *            the version of the implementation
+	 *                    the version of the implementation
 	 * @param implvendor
-	 *            the organization that maintains the implementation
+	 *                    the organization that maintains the implementation
 	 */
-	Package(String name, String spectitle, String specversion, String specvendor, String impltitle,
-			String implversion, String implvendor, URL sealbase, ClassLoader loader) {
+	Package(String name, String spectitle, String specversion,
+			String specvendor, String impltitle, String implversion,
+			String implvendor, URL sealbase, ClassLoader loader) {
 		pkgName = name;
 		implTitle = impltitle;
 		implVersion = implversion;
@@ -486,11 +473,8 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 
 	/*
 	 * Construct a package using the attributes from the specified manifest.
-	 *
 	 * @param name the package name
-	 * 
 	 * @param man the optional manifest for the package
-	 * 
 	 * @param url the optional code source url for the package
 	 */
 	private Package(String name, Manifest man, URL url, ClassLoader loader) {
@@ -582,7 +566,8 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 		}
 	}
 
-	private static Package defineSystemPackage(final String iname, final String fn) {
+	private static Package defineSystemPackage(final String iname,
+			final String fn) {
 		return AccessController.doPrivileged(new PrivilegedAction<Package>() {
 			public Package run() {
 				String name = iname;
@@ -610,7 +595,8 @@ public class Package implements java.lang.reflect.AnnotatedElement {
 				if (man != null) {
 					pkg = new Package(name, man, url, null);
 				} else {
-					pkg = new Package(name, null, null, null, null, null, null, null, null);
+					pkg = new Package(name, null, null, null, null, null, null,
+							null, null);
 				}
 				pkgs.put(name, pkg);
 				return pkg;

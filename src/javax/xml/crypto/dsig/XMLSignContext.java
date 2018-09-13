@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: XMLSignContext.java,v 1.8 2005/05/10 16:03:48 mullan Exp $
@@ -61,5 +41,4 @@ import javax.xml.crypto.XMLCryptoContext;
  * @since 1.6
  * @see XMLSignature#sign(XMLSignContext)
  */
-public interface XMLSignContext extends XMLCryptoContext {
-}
+public interface XMLSignContext extends XMLCryptoContext {}

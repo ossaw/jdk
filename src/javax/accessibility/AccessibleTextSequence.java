@@ -1,31 +1,12 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.accessibility;
 
 /**
- * <P>The AccessibleTextSequence provides information about
+ * <P>
+ * The AccessibleTextSequence provides information about
  * a contiguous sequence of text.
  *
  * @see Accessible
@@ -34,7 +15,7 @@ package javax.accessibility;
  * @see AccessibleContext#getAccessibleText
  * @see AccessibleAttributeSequence
  *
- * @author       Lynn Monsanto
+ * @author Lynn Monsanto
  */
 
 /**
@@ -62,11 +43,11 @@ public class AccessibleTextSequence {
 	 * parameters.
 	 *
 	 * @param start
-	 *            the beginning index of the span of text
+	 *              the beginning index of the span of text
 	 * @param end
-	 *            the ending index of the span of text
+	 *              the ending index of the span of text
 	 * @param txt
-	 *            the <code>String</code> shared by this text span
+	 *              the <code>String</code> shared by this text span
 	 *
 	 * @since 1.6
 	 */

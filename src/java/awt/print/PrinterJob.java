@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.print;
@@ -66,27 +46,32 @@ public abstract class PrinterJob {
 	 * @return a new <code>PrinterJob</code>.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkPrintJobAccess} method
-	 *             disallows this thread from creating a print job request
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkPrintJobAccess}
+	 *                           method
+	 *                           disallows this thread from creating a print job
+	 *                           request
 	 */
 	public static PrinterJob getPrinterJob() {
 		SecurityManager security = System.getSecurityManager();
 		if (security != null) {
 			security.checkPrintJobAccess();
 		}
-		return (PrinterJob) java.security.AccessController
-				.doPrivileged(new java.security.PrivilegedAction() {
+		return (PrinterJob) java.security.AccessController.doPrivileged(
+				new java.security.PrivilegedAction() {
 					public Object run() {
-						String nm = System.getProperty("java.awt.printerjob", null);
+						String nm = System.getProperty("java.awt.printerjob",
+								null);
 						try {
 							return (PrinterJob) Class.forName(nm).newInstance();
 						} catch (ClassNotFoundException e) {
 							throw new AWTError("PrinterJob not found: " + nm);
 						} catch (InstantiationException e) {
-							throw new AWTError("Could not instantiate PrinterJob: " + nm);
+							throw new AWTError(
+									"Could not instantiate PrinterJob: " + nm);
 						} catch (IllegalAccessException e) {
-							throw new AWTError("Could not access PrinterJob: " + nm);
+							throw new AWTError("Could not access PrinterJob: "
+									+ nm);
 						}
 					}
 				});
@@ -104,7 +89,8 @@ public abstract class PrinterJob {
 	 * @since 1.4
 	 */
 	public static PrintService[] lookupPrintServices() {
-		return PrintServiceLookup.lookupPrintServices(DocFlavor.SERVICE_FORMATTED.PAGEABLE, null);
+		return PrintServiceLookup.lookupPrintServices(
+				DocFlavor.SERVICE_FORMATTED.PAGEABLE, null);
 	}
 
 	/**
@@ -141,13 +127,14 @@ public abstract class PrinterJob {
 	 * specifying a Pageable DocFlavor.
 	 *
 	 * @param mimeType
-	 *            the required output format, or null to mean any format.
+	 *                 the required output format, or null to mean any format.
 	 * @return a possibly empty array of 2D stream print service factories.
 	 * @since 1.4
 	 */
-	public static StreamPrintServiceFactory[] lookupStreamPrintServices(String mimeType) {
-		return StreamPrintServiceFactory
-				.lookupStreamPrintServiceFactories(DocFlavor.SERVICE_FORMATTED.PAGEABLE, mimeType);
+	public static StreamPrintServiceFactory[] lookupStreamPrintServices(
+			String mimeType) {
+		return StreamPrintServiceFactory.lookupStreamPrintServiceFactories(
+				DocFlavor.SERVICE_FORMATTED.PAGEABLE, mimeType);
 	}
 
 	/* Public Methods */
@@ -156,8 +143,7 @@ public abstract class PrinterJob {
 	 * A <code>PrinterJob</code> object should be created using the static
 	 * {@link #getPrinterJob() getPrinterJob} method.
 	 */
-	public PrinterJob() {
-	}
+	public PrinterJob() {}
 
 	/**
 	 * Returns the service (printer) for this printer job. Implementations of
@@ -182,17 +168,21 @@ public abstract class PrinterJob {
 	 * necessary to support 2D printing.
 	 * 
 	 * @param service
-	 *            a print service that supports 2D printing
+	 *                a print service that supports 2D printing
 	 * @exception PrinterException
-	 *                if the specified service does not support 2D printing, or
-	 *                this PrinterJob class does not support setting a 2D print
-	 *                service, or the specified service is otherwise not a valid
-	 *                print service.
+	 *                             if the specified service does not support 2D
+	 *                             printing, or
+	 *                             this PrinterJob class does not support
+	 *                             setting a 2D print
+	 *                             service, or the specified service is
+	 *                             otherwise not a valid
+	 *                             print service.
 	 * @see #getPrintService
 	 * @since 1.4
 	 */
 	public void setPrintService(PrintService service) throws PrinterException {
-		throw new PrinterException("Setting a service is not supported on this class");
+		throw new PrinterException(
+				"Setting a service is not supported on this class");
 	}
 
 	/**
@@ -202,8 +192,8 @@ public abstract class PrinterJob {
 	 * for each page is the default page format.
 	 * 
 	 * @param painter
-	 *            the <code>Printable</code> that renders each page of the
-	 *            document.
+	 *                the <code>Printable</code> that renders each page of the
+	 *                document.
 	 */
 	public abstract void setPrintable(Printable painter);
 
@@ -215,10 +205,11 @@ public abstract class PrinterJob {
 	 * <code>format</code>.
 	 * 
 	 * @param painter
-	 *            the <code>Printable</code> called to render each page of the
-	 *            document
+	 *                the <code>Printable</code> called to render each page of
+	 *                the
+	 *                document
 	 * @param format
-	 *            the size and orientation of each page to be printed
+	 *                the size and orientation of each page to be printed
 	 */
 	public abstract void setPrintable(Printable painter, PageFormat format);
 
@@ -228,13 +219,15 @@ public abstract class PrinterJob {
 	 * the <code>Pageable</code> instance, <code>document</code>.
 	 * 
 	 * @param document
-	 *            the pages to be printed. It can not be <code>null</code>.
+	 *                 the pages to be printed. It can not be <code>null</code>.
 	 * @exception NullPointerException
-	 *                the <code>Pageable</code> passed in was <code>null</code>.
+	 *                                 the <code>Pageable</code> passed in was
+	 *                                 <code>null</code>.
 	 * @see PageFormat
 	 * @see Printable
 	 */
-	public abstract void setPageable(Pageable document) throws NullPointerException;
+	public abstract void setPageable(Pageable document)
+			throws NullPointerException;
 
 	/**
 	 * Presents a dialog to the user for changing the properties of the print
@@ -251,7 +244,8 @@ public abstract class PrinterJob {
 	 * @return <code>true</code> if the user does not cancel the dialog;
 	 *         <code>false</code> otherwise.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public abstract boolean printDialog() throws HeadlessException;
@@ -287,20 +281,25 @@ public abstract class PrinterJob {
 	 * by the user.
 	 * 
 	 * @param attributes
-	 *            on input is application supplied attributes, on output the
-	 *            contents are updated to reflect user choices. This parameter
-	 *            may not be null.
+	 *                   on input is application supplied attributes, on output
+	 *                   the
+	 *                   contents are updated to reflect user choices. This
+	 *                   parameter
+	 *                   may not be null.
 	 * @return <code>true</code> if the user does not cancel the dialog;
 	 *         <code>false</code> otherwise.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                                 if GraphicsEnvironment.isHeadless()
+	 *                                 returns true.
 	 * @exception NullPointerException
-	 *                if <code>attributes</code> parameter is null.
+	 *                                 if <code>attributes</code> parameter is
+	 *                                 null.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @since 1.4
 	 *
 	 */
-	public boolean printDialog(PrintRequestAttributeSet attributes) throws HeadlessException {
+	public boolean printDialog(PrintRequestAttributeSet attributes)
+			throws HeadlessException {
 
 		if (attributes == null) {
 			throw new NullPointerException("attributes");
@@ -318,17 +317,19 @@ public abstract class PrinterJob {
 	 * <code>page</code> object is not modified.
 	 * 
 	 * @param page
-	 *            the default <code>PageFormat</code> presented to the user for
-	 *            modification
+	 *             the default <code>PageFormat</code> presented to the user for
+	 *             modification
 	 * @return the original <code>page</code> object if the dialog is cancelled;
 	 *         a new <code>PageFormat</code> object containing the format
 	 *         indicated by the user if the dialog is acknowledged.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @since 1.2
 	 */
-	public abstract PageFormat pageDialog(PageFormat page) throws HeadlessException;
+	public abstract PageFormat pageDialog(PageFormat page)
+			throws HeadlessException;
 
 	/**
 	 * A convenience method which displays a cross-platform page setup dialog.
@@ -348,20 +349,25 @@ public abstract class PrinterJob {
 	 * be null.
 	 * 
 	 * @param attributes
-	 *            on input is application supplied attributes, on output the
-	 *            contents are updated to reflect user choices. This parameter
-	 *            may not be null.
+	 *                   on input is application supplied attributes, on output
+	 *                   the
+	 *                   contents are updated to reflect user choices. This
+	 *                   parameter
+	 *                   may not be null.
 	 * @return a page format if the user does not cancel the dialog;
 	 *         <code>null</code> otherwise.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                                 if GraphicsEnvironment.isHeadless()
+	 *                                 returns true.
 	 * @exception NullPointerException
-	 *                if <code>attributes</code> parameter is null.
+	 *                                 if <code>attributes</code> parameter is
+	 *                                 null.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @since 1.4
 	 *
 	 */
-	public PageFormat pageDialog(PrintRequestAttributeSet attributes) throws HeadlessException {
+	public PageFormat pageDialog(PrintRequestAttributeSet attributes)
+			throws HeadlessException {
 
 		if (attributes == null) {
 			throw new NullPointerException("attributes");
@@ -374,7 +380,7 @@ public abstract class PrinterJob {
 	 * describe a default page size and orientation.
 	 * 
 	 * @param page
-	 *            the <code>PageFormat</code> to be cloned and altered
+	 *             the <code>PageFormat</code> to be cloned and altered
 	 * @return clone of <code>page</code>, altered to describe a default
 	 *         <code>PageFormat</code>.
 	 */
@@ -402,9 +408,10 @@ public abstract class PrinterJob {
 	 * PageFormat to print a Pageable object.
 	 * 
 	 * @param attributes
-	 *            a set of printing attributes, for example obtained from
-	 *            calling printDialog. If <code>attributes</code> is null a
-	 *            default PageFormat is returned.
+	 *                   a set of printing attributes, for example obtained from
+	 *                   calling printDialog. If <code>attributes</code> is null
+	 *                   a
+	 *                   default PageFormat is returned.
 	 * @return a <code>PageFormat</code> whose settings conform with those of
 	 *         the current service and the specified attributes.
 	 * @since 1.6
@@ -419,9 +426,10 @@ public abstract class PrinterJob {
 		}
 
 		Media media = (Media) attributes.get(Media.class);
-		MediaPrintableArea mpa = (MediaPrintableArea) attributes.get(MediaPrintableArea.class);
-		OrientationRequested orientReq = (OrientationRequested) attributes
-				.get(OrientationRequested.class);
+		MediaPrintableArea mpa = (MediaPrintableArea) attributes.get(
+				MediaPrintableArea.class);
+		OrientationRequested orientReq = (OrientationRequested) attributes.get(
+				OrientationRequested.class);
 
 		if (media == null && mpa == null && orientReq == null) {
 			return pf;
@@ -432,17 +440,18 @@ public abstract class PrinterJob {
 		 * If there's a media but no media printable area, we can try to
 		 * retrieve the default value for mpa and use that.
 		 */
-		if (mpa == null && media != null
-				&& service.isAttributeCategorySupported(MediaPrintableArea.class)) {
-			Object mpaVals = service.getSupportedAttributeValues(MediaPrintableArea.class, null,
-					attributes);
+		if (mpa == null && media != null && service
+				.isAttributeCategorySupported(MediaPrintableArea.class)) {
+			Object mpaVals = service.getSupportedAttributeValues(
+					MediaPrintableArea.class, null, attributes);
 			if (mpaVals instanceof MediaPrintableArea[]
 					&& ((MediaPrintableArea[]) mpaVals).length > 0) {
 				mpa = ((MediaPrintableArea[]) mpaVals)[0];
 			}
 		}
 
-		if (media != null && service.isAttributeValueSupported(media, null, attributes)) {
+		if (media != null && service.isAttributeValueSupported(media, null,
+				attributes)) {
 			if (media instanceof MediaSizeName) {
 				MediaSizeName msn = (MediaSizeName) media;
 				MediaSize msz = MediaSize.getMediaSizeForName(msn);
@@ -459,16 +468,19 @@ public abstract class PrinterJob {
 			}
 		}
 
-		if (mpa != null && service.isAttributeValueSupported(mpa, null, attributes)) {
-			float[] printableArea = mpa.getPrintableArea(MediaPrintableArea.INCH);
+		if (mpa != null && service.isAttributeValueSupported(mpa, null,
+				attributes)) {
+			float[] printableArea = mpa.getPrintableArea(
+					MediaPrintableArea.INCH);
 			for (int i = 0; i < printableArea.length; i++) {
 				printableArea[i] = printableArea[i] * 72.0f;
 			}
-			paper.setImageableArea(printableArea[0], printableArea[1], printableArea[2],
-					printableArea[3]);
+			paper.setImageableArea(printableArea[0], printableArea[1],
+					printableArea[2], printableArea[3]);
 		}
 
-		if (orientReq != null && service.isAttributeValueSupported(orientReq, null, attributes)) {
+		if (orientReq != null && service.isAttributeValueSupported(orientReq,
+				null, attributes)) {
 			int orient;
 			if (orientReq.equals(OrientationRequested.REVERSE_LANDSCAPE)) {
 				orient = PageFormat.REVERSE_LANDSCAPE;
@@ -493,8 +505,8 @@ public abstract class PrinterJob {
 	 * by the current printer.
 	 * 
 	 * @param page
-	 *            the <code>PageFormat</code> that is cloned and whose settings
-	 *            are changed to be compatible with the current printer
+	 *             the <code>PageFormat</code> that is cloned and whose settings
+	 *             are changed to be compatible with the current printer
 	 * @return a <code>PageFormat</code> that is cloned from <code>page</code>
 	 *         and whose settings are changed to conform with this
 	 *         <code>PrinterJob</code>.
@@ -505,7 +517,8 @@ public abstract class PrinterJob {
 	 * Prints a set of pages.
 	 * 
 	 * @exception PrinterException
-	 *                an error in the print system caused the job to be aborted.
+	 *                             an error in the print system caused the job
+	 *                             to be aborted.
 	 * @see Book
 	 * @see Pageable
 	 * @see Printable
@@ -541,15 +554,17 @@ public abstract class PrinterJob {
 	 * <p>
 	 *
 	 * @param attributes
-	 *            a set of attributes for the job
+	 *                   a set of attributes for the job
 	 * @exception PrinterException
-	 *                an error in the print system caused the job to be aborted.
+	 *                             an error in the print system caused the job
+	 *                             to be aborted.
 	 * @see Book
 	 * @see Pageable
 	 * @see Printable
 	 * @since 1.4
 	 */
-	public void print(PrintRequestAttributeSet attributes) throws PrinterException {
+	public void print(PrintRequestAttributeSet attributes)
+			throws PrinterException {
 		print();
 	}
 
@@ -557,7 +572,7 @@ public abstract class PrinterJob {
 	 * Sets the number of copies to be printed.
 	 * 
 	 * @param copies
-	 *            the number of copies to be printed
+	 *               the number of copies to be printed
 	 * @see #getCopies
 	 */
 	public abstract void setCopies(int copies);
@@ -582,7 +597,7 @@ public abstract class PrinterJob {
 	 * <code>null</code>.
 	 * 
 	 * @param jobName
-	 *            the name of the document to be printed
+	 *                the name of the document to be printed
 	 * @see #getJobName
 	 */
 	public abstract void setJobName(String jobName);

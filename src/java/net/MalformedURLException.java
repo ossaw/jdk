@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -41,8 +21,7 @@ public class MalformedURLException extends IOException {
 	/**
 	 * Constructs a {@code MalformedURLException} with no detail message.
 	 */
-	public MalformedURLException() {
-	}
+	public MalformedURLException() {}
 
 	/**
 	 * Constructs a {@code MalformedURLException} with the specified detail

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -60,7 +40,7 @@ public class Encoder {
 	 * methods returned by the Introspector.
 	 *
 	 * @param o
-	 *            The object to be written to the stream.
+	 *          The object to be written to the stream.
 	 *
 	 * @see XMLDecoder#readObject
 	 */
@@ -68,7 +48,8 @@ public class Encoder {
 		if (o == this) {
 			return;
 		}
-		PersistenceDelegate info = getPersistenceDelegate(o == null ? null : o.getClass());
+		PersistenceDelegate info = getPersistenceDelegate(o == null ? null
+				: o.getClass());
 		info.writeObject(o, this);
 	}
 
@@ -78,8 +59,9 @@ public class Encoder {
 	 * this stream catches recoverable exceptions.
 	 *
 	 * @param exceptionListener
-	 *            The exception handler for this stream; if <code>null</code>
-	 *            the default exception listener will be used.
+	 *                          The exception handler for this stream; if
+	 *                          <code>null</code>
+	 *                          the default exception listener will be used.
 	 *
 	 * @see #getExceptionListener
 	 */
@@ -96,7 +78,8 @@ public class Encoder {
 	 * @see #setExceptionListener
 	 */
 	public ExceptionListener getExceptionListener() {
-		return (exceptionListener != null) ? exceptionListener : Statement.defaultExceptionListener;
+		return (exceptionListener != null) ? exceptionListener
+				: Statement.defaultExceptionListener;
 	}
 
 	Object getValue(Expression exp) {
@@ -173,7 +156,7 @@ public class Encoder {
 	 * </ol>
 	 *
 	 * @param type
-	 *            the class of the objects
+	 *             the class of the objects
 	 * @return the persistence delegate for the given type
 	 *
 	 * @see #setPersistenceDelegate
@@ -195,16 +178,18 @@ public class Encoder {
 	 * Associates the specified persistence delegate with the given type.
 	 *
 	 * @param type
-	 *            the class of objects that the specified persistence delegate
-	 *            applies to
+	 *                 the class of objects that the specified persistence
+	 *                 delegate
+	 *                 applies to
 	 * @param delegate
-	 *            the persistence delegate for instances of the given type
+	 *                 the persistence delegate for instances of the given type
 	 *
 	 * @see #getPersistenceDelegate
 	 * @see java.beans.Introspector#getBeanInfo
 	 * @see java.beans.BeanInfo#getBeanDescriptor
 	 */
-	public void setPersistenceDelegate(Class<?> type, PersistenceDelegate delegate) {
+	public void setPersistenceDelegate(Class<?> type,
+			PersistenceDelegate delegate) {
 		this.finder.register(type, delegate);
 	}
 
@@ -212,7 +197,7 @@ public class Encoder {
 	 * Removes the entry for this instance, returning the old entry.
 	 *
 	 * @param oldInstance
-	 *            The entry that should be removed.
+	 *                    The entry that should be removed.
 	 * @return The entry that was removed.
 	 *
 	 * @see #get
@@ -231,11 +216,12 @@ public class Encoder {
 	 * value, null is returned.
 	 *
 	 * @param oldInstance
-	 *            The instance to be looked up.
+	 *                    The instance to be looked up.
 	 * @return The object, null if the object has not been seen before.
 	 */
 	public Object get(Object oldInstance) {
-		if (oldInstance == null || oldInstance == this || oldInstance.getClass() == String.class) {
+		if (oldInstance == null || oldInstance == this || oldInstance
+				.getClass() == String.class) {
 			return oldInstance;
 		}
 		Expression exp = bindings.get(oldInstance);
@@ -282,7 +268,7 @@ public class Encoder {
 	 * a new expression with the results.
 	 *
 	 * @param oldStm
-	 *            The expression to be written to the stream.
+	 *               The expression to be written to the stream.
 	 */
 	public void writeStatement(Statement oldStm) {
 		// System.out.println("writeStatement: " + oldExp);
@@ -291,8 +277,8 @@ public class Encoder {
 			try {
 				newStm.execute();
 			} catch (Exception e) {
-				getExceptionListener().exceptionThrown(
-						new Exception("Encoder: discarding statement " + newStm, e));
+				getExceptionListener().exceptionThrown(new Exception(
+						"Encoder: discarding statement " + newStm, e));
 			}
 		}
 	}
@@ -305,7 +291,7 @@ public class Encoder {
 	 * calling <code>writeObject</code>.
 	 *
 	 * @param oldExp
-	 *            The expression to be written to the stream.
+	 *               The expression to be written to the stream.
 	 */
 	public void writeExpression(Expression oldExp) {
 		// System.out.println("Encoder::writeExpression: " + oldExp);

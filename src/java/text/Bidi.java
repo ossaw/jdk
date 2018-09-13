@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright IBM Corp. 1999-2003 - All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by IBM. These materials are provided
  * under terms of a License Agreement between IBM and Sun.
@@ -90,19 +69,22 @@ public final class Bidi {
 	 * Create Bidi from the given paragraph of text and base direction.
 	 * 
 	 * @param paragraph
-	 *            a paragraph of text
+	 *                  a paragraph of text
 	 * @param flags
-	 *            a collection of flags that control the algorithm. The
-	 *            algorithm understands the flags DIRECTION_LEFT_TO_RIGHT,
-	 *            DIRECTION_RIGHT_TO_LEFT, DIRECTION_DEFAULT_LEFT_TO_RIGHT, and
-	 *            DIRECTION_DEFAULT_RIGHT_TO_LEFT. Other values are reserved.
+	 *                  a collection of flags that control the algorithm. The
+	 *                  algorithm understands the flags DIRECTION_LEFT_TO_RIGHT,
+	 *                  DIRECTION_RIGHT_TO_LEFT,
+	 *                  DIRECTION_DEFAULT_LEFT_TO_RIGHT, and
+	 *                  DIRECTION_DEFAULT_RIGHT_TO_LEFT. Other values are
+	 *                  reserved.
 	 */
 	public Bidi(String paragraph, int flags) {
 		if (paragraph == null) {
 			throw new IllegalArgumentException("paragraph is null");
 		}
 
-		bidiBase = new BidiBase(paragraph.toCharArray(), 0, null, 0, paragraph.length(), flags);
+		bidiBase = new BidiBase(paragraph.toCharArray(), 0, null, 0, paragraph
+				.length(), flags);
 	}
 
 	/**
@@ -126,8 +108,9 @@ public final class Bidi {
 	 * attribute, if present, must be applied to all the text in the paragraph.
 	 *
 	 * @param paragraph
-	 *            a paragraph of text with optional character and paragraph
-	 *            attribute information
+	 *                  a paragraph of text with optional character and
+	 *                  paragraph
+	 *                  attribute information
 	 *
 	 * @see java.awt.font.TextAttribute#BIDI_EMBEDDING
 	 * @see java.awt.font.TextAttribute#NUMERIC_SHAPING
@@ -151,43 +134,57 @@ public final class Bidi {
 	 * as determined by the base direction is assumed.
 	 * 
 	 * @param text
-	 *            an array containing the paragraph of text to process.
+	 *                        an array containing the paragraph of text to
+	 *                        process.
 	 * @param textStart
-	 *            the index into the text array of the start of the paragraph.
+	 *                        the index into the text array of the start of the
+	 *                        paragraph.
 	 * @param embeddings
-	 *            an array containing embedding values for each character in the
-	 *            paragraph. This can be null, in which case it is assumed that
-	 *            there is no external embedding information.
+	 *                        an array containing embedding values for each
+	 *                        character in the
+	 *                        paragraph. This can be null, in which case it is
+	 *                        assumed that
+	 *                        there is no external embedding information.
 	 * @param embStart
-	 *            the index into the embedding array of the start of the
-	 *            paragraph.
+	 *                        the index into the embedding array of the start of
+	 *                        the
+	 *                        paragraph.
 	 * @param paragraphLength
-	 *            the length of the paragraph in the text and embeddings arrays.
+	 *                        the length of the paragraph in the text and
+	 *                        embeddings arrays.
 	 * @param flags
-	 *            a collection of flags that control the algorithm. The
-	 *            algorithm understands the flags DIRECTION_LEFT_TO_RIGHT,
-	 *            DIRECTION_RIGHT_TO_LEFT, DIRECTION_DEFAULT_LEFT_TO_RIGHT, and
-	 *            DIRECTION_DEFAULT_RIGHT_TO_LEFT. Other values are reserved.
+	 *                        a collection of flags that control the algorithm.
+	 *                        The
+	 *                        algorithm understands the flags
+	 *                        DIRECTION_LEFT_TO_RIGHT,
+	 *                        DIRECTION_RIGHT_TO_LEFT,
+	 *                        DIRECTION_DEFAULT_LEFT_TO_RIGHT, and
+	 *                        DIRECTION_DEFAULT_RIGHT_TO_LEFT. Other values are
+	 *                        reserved.
 	 */
-	public Bidi(char[] text, int textStart, byte[] embeddings, int embStart, int paragraphLength,
-			int flags) {
+	public Bidi(char[] text, int textStart, byte[] embeddings, int embStart,
+			int paragraphLength, int flags) {
 		if (text == null) {
 			throw new IllegalArgumentException("text is null");
 		}
 		if (paragraphLength < 0) {
-			throw new IllegalArgumentException("bad length: " + paragraphLength);
+			throw new IllegalArgumentException("bad length: "
+					+ paragraphLength);
 		}
 		if (textStart < 0 || paragraphLength > text.length - textStart) {
-			throw new IllegalArgumentException("bad range: " + textStart + " length: "
-					+ paragraphLength + " for text of length: " + text.length);
+			throw new IllegalArgumentException("bad range: " + textStart
+					+ " length: " + paragraphLength + " for text of length: "
+					+ text.length);
 		}
-		if (embeddings != null
-				&& (embStart < 0 || paragraphLength > embeddings.length - embStart)) {
-			throw new IllegalArgumentException("bad range: " + embStart + " length: "
-					+ paragraphLength + " for embeddings of length: " + text.length);
+		if (embeddings != null && (embStart < 0
+				|| paragraphLength > embeddings.length - embStart)) {
+			throw new IllegalArgumentException("bad range: " + embStart
+					+ " length: " + paragraphLength
+					+ " for embeddings of length: " + text.length);
 		}
 
-		bidiBase = new BidiBase(text, textStart, embeddings, embStart, paragraphLength, flags);
+		bidiBase = new BidiBase(text, textStart, embeddings, embStart,
+				paragraphLength, flags);
 	}
 
 	/**
@@ -196,18 +193,21 @@ public final class Bidi {
 	 * required if the entire paragraph fits on one line.
 	 *
 	 * @param lineStart
-	 *            the offset from the start of the paragraph to the start of the
-	 *            line.
+	 *                  the offset from the start of the paragraph to the start
+	 *                  of the
+	 *                  line.
 	 * @param lineLimit
-	 *            the offset from the start of the paragraph to the limit of the
-	 *            line.
+	 *                  the offset from the start of the paragraph to the limit
+	 *                  of the
+	 *                  line.
 	 * @return a {@code Bidi} object
 	 */
 	public Bidi createLineBidi(int lineStart, int lineLimit) {
 		AttributedString astr = new AttributedString("");
 		Bidi newBidi = new Bidi(astr.getIterator());
 
-		return bidiBase.setLine(this, bidiBase, newBidi, newBidi.bidiBase, lineStart, lineLimit);
+		return bidiBase.setLine(this, bidiBase, newBidi, newBidi.bidiBase,
+				lineStart, lineLimit);
 	}
 
 	/**
@@ -276,7 +276,7 @@ public final class Bidi {
 	 * level.
 	 *
 	 * @param offset
-	 *            the index of the character for which to return the level
+	 *               the index of the character for which to return the level
 	 * @return the resolved level of the character at offset
 	 */
 	public int getLevelAt(int offset) {
@@ -336,11 +336,11 @@ public final class Bidi {
 	 * will not cause this function to return true.
 	 *
 	 * @param text
-	 *            the text containing the characters to test
+	 *              the text containing the characters to test
 	 * @param start
-	 *            the start of the range of characters to test
+	 *              the start of the range of characters to test
 	 * @param limit
-	 *            the limit of the range of characters to test
+	 *              the limit of the range of characters to test
 	 * @return true if the range of characters requires bidi analysis
 	 */
 	public static boolean requiresBidi(char[] text, int start, int limit) {
@@ -358,19 +358,20 @@ public final class Bidi {
 	 * array (at <code>index - objectStart + levelStart</code>).
 	 *
 	 * @param levels
-	 *            an array representing the bidi level of each object
+	 *                    an array representing the bidi level of each object
 	 * @param levelStart
-	 *            the start position in the levels array
+	 *                    the start position in the levels array
 	 * @param objects
-	 *            the array of objects to be reordered into visual order
+	 *                    the array of objects to be reordered into visual order
 	 * @param objectStart
-	 *            the start position in the objects array
+	 *                    the start position in the objects array
 	 * @param count
-	 *            the number of objects to reorder
+	 *                    the number of objects to reorder
 	 */
-	public static void reorderVisually(byte[] levels, int levelStart, Object[] objects,
-			int objectStart, int count) {
-		BidiBase.reorderVisually(levels, levelStart, objects, objectStart, count);
+	public static void reorderVisually(byte[] levels, int levelStart,
+			Object[] objects, int objectStart, int count) {
+		BidiBase.reorderVisually(levels, levelStart, objects, objectStart,
+				count);
 	}
 
 	/**

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol;
@@ -50,7 +30,8 @@ import com.sun.corba.se.impl.orbutil.DenseIntMapImpl;
  * LocalClientRequestDispatcherFactory, ClientRequestDispatcher,
  * ServerSubcontract, and ObjectAdapterFactory.
  */
-public class RequestDispatcherRegistryImpl implements RequestDispatcherRegistry {
+public class RequestDispatcherRegistryImpl implements
+		RequestDispatcherRegistry {
 	private ORB orb;
 
 	protected int defaultId; // The default subcontract ID to use if
@@ -76,12 +57,13 @@ public class RequestDispatcherRegistryImpl implements RequestDispatcherRegistry 
 		OAFRegistry = new DenseIntMapImpl();
 		LCSFRegistry = new DenseIntMapImpl();
 		objectAdapterFactories = new HashSet();
-		objectAdapterFactoriesView = Collections.unmodifiableSet(objectAdapterFactories);
+		objectAdapterFactoriesView = Collections.unmodifiableSet(
+				objectAdapterFactories);
 		stringToServerSubcontract = new HashMap();
 	}
 
-	public synchronized void registerClientRequestDispatcher(ClientRequestDispatcher csc,
-			int scid) {
+	public synchronized void registerClientRequestDispatcher(
+			ClientRequestDispatcher csc, int scid) {
 		CSRegistry.set(scid, csc);
 	}
 
@@ -90,17 +72,18 @@ public class RequestDispatcherRegistryImpl implements RequestDispatcherRegistry 
 		LCSFRegistry.set(scid, csc);
 	}
 
-	public synchronized void registerServerRequestDispatcher(CorbaServerRequestDispatcher ssc,
-			int scid) {
+	public synchronized void registerServerRequestDispatcher(
+			CorbaServerRequestDispatcher ssc, int scid) {
 		SDRegistry.set(scid, ssc);
 	}
 
-	public synchronized void registerServerRequestDispatcher(CorbaServerRequestDispatcher scc,
-			String name) {
+	public synchronized void registerServerRequestDispatcher(
+			CorbaServerRequestDispatcher scc, String name) {
 		stringToServerSubcontract.put(name, scc);
 	}
 
-	public synchronized void registerObjectAdapterFactory(ObjectAdapterFactory oaf, int scid) {
+	public synchronized void registerObjectAdapterFactory(
+			ObjectAdapterFactory oaf, int scid) {
 		objectAdapterFactories.add(oaf);
 		OAFRegistry.set(scid, oaf);
 	}
@@ -118,14 +101,16 @@ public class RequestDispatcherRegistryImpl implements RequestDispatcherRegistry 
 	// will similarly need to return the default ServerRequestDispatcher.
 
 	public CorbaServerRequestDispatcher getServerRequestDispatcher(int scid) {
-		CorbaServerRequestDispatcher sdel = (CorbaServerRequestDispatcher) (SDRegistry.get(scid));
+		CorbaServerRequestDispatcher sdel = (CorbaServerRequestDispatcher) (SDRegistry
+				.get(scid));
 		if (sdel == null)
 			sdel = (CorbaServerRequestDispatcher) (SDRegistry.get(defaultId));
 
 		return sdel;
 	}
 
-	public CorbaServerRequestDispatcher getServerRequestDispatcher(String name) {
+	public CorbaServerRequestDispatcher getServerRequestDispatcher(
+			String name) {
 		CorbaServerRequestDispatcher sdel = (CorbaServerRequestDispatcher) stringToServerSubcontract
 				.get(name);
 
@@ -135,18 +120,21 @@ public class RequestDispatcherRegistryImpl implements RequestDispatcherRegistry 
 		return sdel;
 	}
 
-	public LocalClientRequestDispatcherFactory getLocalClientRequestDispatcherFactory(int scid) {
+	public LocalClientRequestDispatcherFactory getLocalClientRequestDispatcherFactory(
+			int scid) {
 		LocalClientRequestDispatcherFactory factory = (LocalClientRequestDispatcherFactory) (LCSFRegistry
 				.get(scid));
 		if (factory == null) {
-			factory = (LocalClientRequestDispatcherFactory) (LCSFRegistry.get(defaultId));
+			factory = (LocalClientRequestDispatcherFactory) (LCSFRegistry.get(
+					defaultId));
 		}
 
 		return factory;
 	}
 
 	public ClientRequestDispatcher getClientRequestDispatcher(int scid) {
-		ClientRequestDispatcher subcontract = (ClientRequestDispatcher) (CSRegistry.get(scid));
+		ClientRequestDispatcher subcontract = (ClientRequestDispatcher) (CSRegistry
+				.get(scid));
 		if (subcontract == null) {
 			subcontract = (ClientRequestDispatcher) (CSRegistry.get(defaultId));
 		}
@@ -155,7 +143,8 @@ public class RequestDispatcherRegistryImpl implements RequestDispatcherRegistry 
 	}
 
 	public ObjectAdapterFactory getObjectAdapterFactory(int scid) {
-		ObjectAdapterFactory oaf = (ObjectAdapterFactory) (OAFRegistry.get(scid));
+		ObjectAdapterFactory oaf = (ObjectAdapterFactory) (OAFRegistry.get(
+				scid));
 		if (oaf == null)
 			oaf = (ObjectAdapterFactory) (OAFRegistry.get(defaultId));
 

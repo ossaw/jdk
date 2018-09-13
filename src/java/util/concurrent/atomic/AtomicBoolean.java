@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -55,7 +30,8 @@ public class AtomicBoolean implements java.io.Serializable {
 
 	static {
 		try {
-			valueOffset = unsafe.objectFieldOffset(AtomicBoolean.class.getDeclaredField("value"));
+			valueOffset = unsafe.objectFieldOffset(AtomicBoolean.class
+					.getDeclaredField("value"));
 		} catch (Exception ex) {
 			throw new Error(ex);
 		}
@@ -67,7 +43,7 @@ public class AtomicBoolean implements java.io.Serializable {
 	 * Creates a new {@code AtomicBoolean} with the given initial value.
 	 *
 	 * @param initialValue
-	 *            the initial value
+	 *                     the initial value
 	 */
 	public AtomicBoolean(boolean initialValue) {
 		value = initialValue ? 1 : 0;
@@ -76,8 +52,7 @@ public class AtomicBoolean implements java.io.Serializable {
 	/**
 	 * Creates a new {@code AtomicBoolean} with initial value {@code false}.
 	 */
-	public AtomicBoolean() {
-	}
+	public AtomicBoolean() {}
 
 	/**
 	 * Returns the current value.
@@ -93,9 +68,9 @@ public class AtomicBoolean implements java.io.Serializable {
 	 * {@code ==} the expected value.
 	 *
 	 * @param expect
-	 *            the expected value
+	 *               the expected value
 	 * @param update
-	 *            the new value
+	 *               the new value
 	 * @return {@code true} if successful. False return indicates that the
 	 *         actual value was not equal to the expected value.
 	 */
@@ -115,9 +90,9 @@ public class AtomicBoolean implements java.io.Serializable {
 	 * appropriate alternative to {@code compareAndSet}.
 	 *
 	 * @param expect
-	 *            the expected value
+	 *               the expected value
 	 * @param update
-	 *            the new value
+	 *               the new value
 	 * @return {@code true} if successful
 	 */
 	public boolean weakCompareAndSet(boolean expect, boolean update) {
@@ -130,7 +105,7 @@ public class AtomicBoolean implements java.io.Serializable {
 	 * Unconditionally sets to the given value.
 	 *
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 */
 	public final void set(boolean newValue) {
 		value = newValue ? 1 : 0;
@@ -140,7 +115,7 @@ public class AtomicBoolean implements java.io.Serializable {
 	 * Eventually sets to the given value.
 	 *
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 * @since 1.6
 	 */
 	public final void lazySet(boolean newValue) {
@@ -152,7 +127,7 @@ public class AtomicBoolean implements java.io.Serializable {
 	 * Atomically sets to the given value and returns the previous value.
 	 *
 	 * @param newValue
-	 *            the new value
+	 *                 the new value
 	 * @return the previous value
 	 */
 	public final boolean getAndSet(boolean newValue) {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -86,7 +83,8 @@ public class ElementNSImpl extends ElementImpl {
 		this.namespaceURI = namespaceURI;
 		if (namespaceURI != null) {
 			// convert the empty string to 'null'
-			this.namespaceURI = (namespaceURI.length() == 0) ? null : namespaceURI;
+			this.namespaceURI = (namespaceURI.length() == 0) ? null
+					: namespaceURI;
 		}
 
 		int colon1, colon2;
@@ -98,8 +96,8 @@ public class ElementNSImpl extends ElementImpl {
 		// We dont need to check for namespaceURI != null, if qualified name is
 		// null throw DOMException.
 		if (qname == null) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"NAMESPACE_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
 			throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 		} else {
 			colon1 = qname.indexOf(':');
@@ -112,13 +110,14 @@ public class ElementNSImpl extends ElementImpl {
 			localName = qname;
 			if (ownerDocument.errorChecking) {
 				ownerDocument.checkQName(null, localName);
-				if (qname.equals("xmlns")
-						&& (namespaceURI == null
-								|| !namespaceURI.equals(NamespaceContext.XMLNS_URI))
-						|| (namespaceURI != null && namespaceURI.equals(NamespaceContext.XMLNS_URI)
-								&& !qname.equals("xmlns"))) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-							"NAMESPACE_ERR", null);
+				if (qname.equals("xmlns") && (namespaceURI == null
+						|| !namespaceURI.equals(NamespaceContext.XMLNS_URI))
+						|| (namespaceURI != null && namespaceURI.equals(
+								NamespaceContext.XMLNS_URI) && !qname.equals(
+										"xmlns"))) {
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+							null);
 					throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 				}
 			}
@@ -138,8 +137,9 @@ public class ElementNSImpl extends ElementImpl {
 			if (ownerDocument.errorChecking) {
 				if (namespaceURI == null || (prefix.equals("xml")
 						&& !namespaceURI.equals(NamespaceContext.XML_URI))) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-							"NAMESPACE_ERR", null);
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+							null);
 					throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 				}
 
@@ -183,8 +183,8 @@ public class ElementNSImpl extends ElementImpl {
 	 * @param qualifiedName
 	 * @param localName
 	 */
-	protected void setValues(CoreDocumentImpl ownerDocument, String namespaceURI,
-			String qualifiedName, String localName) {
+	protected void setValues(CoreDocumentImpl ownerDocument,
+			String namespaceURI, String qualifiedName, String localName) {
 
 		// remove children first
 		firstChild = null;
@@ -269,12 +269,14 @@ public class ElementNSImpl extends ElementImpl {
 	 * <p>
 	 *
 	 * @param prefix
-	 *            The namespace prefix of this node, or null(empty string) if it
-	 *            is unspecified.
+	 *               The namespace prefix of this node, or null(empty string) if
+	 *               it
+	 *               is unspecified.
 	 *
 	 * @exception INVALID_CHARACTER_ERR
-	 *                Raised if the specified prefix contains an invalid
-	 *                character.
+	 *                                  Raised if the specified prefix contains
+	 *                                  an invalid
+	 *                                  character.
 	 * @exception DOMException
 	 * @since WD-DOM-Level-2-19990923
 	 */
@@ -284,24 +286,31 @@ public class ElementNSImpl extends ElementImpl {
 		}
 		if (ownerDocument.errorChecking) {
 			if (isReadOnly()) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN,
 						"NO_MODIFICATION_ALLOWED_ERR", null);
-				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+						msg);
 			}
 			if (prefix != null && prefix.length() != 0) {
-				if (!CoreDocumentImpl.isXMLName(prefix, ownerDocument.isXML11Version())) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				if (!CoreDocumentImpl.isXMLName(prefix, ownerDocument
+						.isXML11Version())) {
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN,
 							"INVALID_CHARACTER_ERR", null);
-					throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
+					throw new DOMException(DOMException.INVALID_CHARACTER_ERR,
+							msg);
 				}
 				if (namespaceURI == null || prefix.indexOf(':') >= 0) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-							"NAMESPACE_ERR", null);
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+							null);
 					throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 				} else if (prefix.equals("xml")) {
 					if (!namespaceURI.equals(xmlURI)) {
 						String msg = DOMMessageFormatter.formatMessage(
-								DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+								DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+								null);
 						throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 					}
 				}
@@ -346,8 +355,8 @@ public class ElementNSImpl extends ElementImpl {
 		// one exists
 
 		if (attributes != null) {
-			Attr attrNode = (Attr) attributes.getNamedItemNS("http://www.w3.org/XML/1998/namespace",
-					"base");
+			Attr attrNode = (Attr) attributes.getNamedItemNS(
+					"http://www.w3.org/XML/1998/namespace", "base");
 			if (attrNode != null) {
 				String uri = attrNode.getNodeValue();
 				if (uri.length() != 0) {// attribute value is always empty
@@ -359,16 +368,20 @@ public class ElementNSImpl extends ElementImpl {
 
 						// Start from the base URI of the parent, or if this
 						// node has no parent, the owner node.
-						NodeImpl parentOrOwner = (parentNode() != null) ? parentNode() : ownerNode;
+						NodeImpl parentOrOwner = (parentNode() != null)
+								? parentNode()
+								: ownerNode;
 
 						// Make any parentURI into a URI object to use with the
 						// URI(URI, String) constructor.
-						String parentBaseURI = (parentOrOwner != null) ? parentOrOwner.getBaseURI()
+						String parentBaseURI = (parentOrOwner != null)
+								? parentOrOwner.getBaseURI()
 								: null;
 
 						if (parentBaseURI != null) {
 							try {
-								uri = new URI(new URI(parentBaseURI), uri).toString();
+								uri = new URI(new URI(parentBaseURI), uri)
+										.toString();
 							} catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException ex) {
 								// This should never happen: parent should have
 								// checked the URI and returned null if invalid.
@@ -387,8 +400,8 @@ public class ElementNSImpl extends ElementImpl {
 		// 2.the base URI of the element's parent element within the document or
 		// external entity,
 		// if one exists
-		String parentElementBaseURI = (this.parentNode() != null) ? this.parentNode().getBaseURI()
-				: null;
+		String parentElementBaseURI = (this.parentNode() != null) ? this
+				.parentNode().getBaseURI() : null;
 		// base URI of parent element is not null
 		if (parentElementBaseURI != null) {
 			try {
@@ -402,7 +415,8 @@ public class ElementNSImpl extends ElementImpl {
 		// 3. the base URI of the document entity or external entity containing
 		// the element
 
-		String baseURI = (this.ownerNode != null) ? this.ownerNode.getBaseURI() : null;
+		String baseURI = (this.ownerNode != null) ? this.ownerNode.getBaseURI()
+				: null;
 
 		if (baseURI != null) {
 			try {
@@ -449,11 +463,11 @@ public class ElementNSImpl extends ElementImpl {
 	 * http://www.w3.org/TR/DOM-Level-3-Core/core.html#TypeInfo-isDerivedFrom
 	 *
 	 * @param ancestorNS
-	 *            The namspace of the ancestor type declaration
+	 *                     The namspace of the ancestor type declaration
 	 * @param ancestorName
-	 *            The name of the ancestor type declaration
+	 *                     The name of the ancestor type declaration
 	 * @param type
-	 *            The reference type definition
+	 *                     The reference type definition
 	 *
 	 * @return boolean True if the type is derived by restriciton for the
 	 *         reference type
@@ -465,11 +479,11 @@ public class ElementNSImpl extends ElementImpl {
 		}
 		if (type != null) {
 			if (type instanceof XSSimpleTypeDecl) {
-				return ((XSSimpleTypeDecl) type).isDOMDerivedFrom(typeNamespaceArg, typeNameArg,
-						derivationMethod);
+				return ((XSSimpleTypeDecl) type).isDOMDerivedFrom(
+						typeNamespaceArg, typeNameArg, derivationMethod);
 			} else if (type instanceof XSComplexTypeDecl) {
-				return ((XSComplexTypeDecl) type).isDOMDerivedFrom(typeNamespaceArg, typeNameArg,
-						derivationMethod);
+				return ((XSComplexTypeDecl) type).isDOMDerivedFrom(
+						typeNamespaceArg, typeNameArg, derivationMethod);
 			}
 		}
 		return false;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -46,7 +26,8 @@ final class ArrowButtonPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -54,8 +35,10 @@ final class ArrowButtonPainter extends AbstractRegionPainter {
 	// by a particular instance of ArrowButtonPainter would be created. For the
 	// moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBase", 0.027408898f, -0.57391655f, 0.1490196f, 0);
-	private Color color2 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f, -0.37254906f, 0);
+	private Color color1 = decodeColor("nimbusBase", 0.027408898f, -0.57391655f,
+			0.1490196f, 0);
+	private Color color2 = decodeColor("nimbusBase", -0.57865167f, -0.6357143f,
+			-0.37254906f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
@@ -75,12 +58,12 @@ final class ArrowButtonPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case FOREGROUND_DISABLED:
-			paintForegroundDisabled(g);
-			break;
-		case FOREGROUND_ENABLED:
-			paintForegroundEnabled(g);
-			break;
+			case FOREGROUND_DISABLED:
+				paintForegroundDisabled(g);
+				break;
+			case FOREGROUND_ENABLED:
+				paintForegroundEnabled(g);
+				break;
 
 		}
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX error handler.
@@ -93,12 +73,14 @@ public interface ErrorHandler {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The warning information encapsulated in a SAX parse exception.
+	 *                  The warning information encapsulated in a SAX parse
+	 *                  exception.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @see org.xml.sax.SAXParseException
 	 */
-	public abstract void warning(SAXParseException exception) throws SAXException;
+	public abstract void warning(SAXParseException exception)
+			throws SAXException;
 
 	/**
 	 * Receive notification of a recoverable error.
@@ -123,9 +105,10 @@ public interface ErrorHandler {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @see org.xml.sax.SAXParseException
 	 */
 	public abstract void error(SAXParseException exception) throws SAXException;
@@ -157,12 +140,14 @@ public interface ErrorHandler {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @see org.xml.sax.SAXParseException
 	 */
-	public abstract void fatalError(SAXParseException exception) throws SAXException;
+	public abstract void fatalError(SAXParseException exception)
+			throws SAXException;
 
 }
 

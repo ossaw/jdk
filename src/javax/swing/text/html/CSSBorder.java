@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -59,13 +39,15 @@ class CSSBorder extends AbstractBorder {
 	final static int TOP = 0, RIGHT = 1, BOTTOM = 2, LEFT = 3;
 
 	/** The attribute groups. */
-	final static Attribute[][] ATTRIBUTES = {
-			{ Attribute.BORDER_TOP_COLOR, Attribute.BORDER_RIGHT_COLOR,
-					Attribute.BORDER_BOTTOM_COLOR, Attribute.BORDER_LEFT_COLOR, },
-			{ Attribute.BORDER_TOP_STYLE, Attribute.BORDER_RIGHT_STYLE,
-					Attribute.BORDER_BOTTOM_STYLE, Attribute.BORDER_LEFT_STYLE, },
-			{ Attribute.BORDER_TOP_WIDTH, Attribute.BORDER_RIGHT_WIDTH,
-					Attribute.BORDER_BOTTOM_WIDTH, Attribute.BORDER_LEFT_WIDTH, }, };
+	final static Attribute[][] ATTRIBUTES = { { Attribute.BORDER_TOP_COLOR,
+			Attribute.BORDER_RIGHT_COLOR, Attribute.BORDER_BOTTOM_COLOR,
+			Attribute.BORDER_LEFT_COLOR, }, { Attribute.BORDER_TOP_STYLE,
+					Attribute.BORDER_RIGHT_STYLE, Attribute.BORDER_BOTTOM_STYLE,
+					Attribute.BORDER_LEFT_STYLE, }, {
+							Attribute.BORDER_TOP_WIDTH,
+							Attribute.BORDER_RIGHT_WIDTH,
+							Attribute.BORDER_BOTTOM_WIDTH,
+							Attribute.BORDER_LEFT_WIDTH, }, };
 
 	/** Parsers for the border properties. */
 	final static CssValue PARSERS[] = { new ColorValue(), new BorderStyle(),
@@ -73,11 +55,12 @@ class CSSBorder extends AbstractBorder {
 
 	/** Default values for the border properties. */
 	final static Object[] DEFAULTS = { Attribute.BORDER_COLOR, // marker: value
-																// will be
-																// computed on
-																// request
+			// will be
+			// computed on
+			// request
 			PARSERS[1].parseCssValue(Attribute.BORDER_STYLE.getDefaultValue()),
-			PARSERS[2].parseCssValue(Attribute.BORDER_WIDTH.getDefaultValue()), };
+			PARSERS[2].parseCssValue(Attribute.BORDER_WIDTH
+					.getDefaultValue()), };
 
 	/** Attribute set containing border properties. */
 	final AttributeSet attrs;
@@ -102,7 +85,8 @@ class CSSBorder extends AbstractBorder {
 			// computed value of the 'border-color' property (CSS2 8.5.2)
 			cv = (ColorValue) attrs.getAttribute(Attribute.COLOR);
 			if (cv == null) {
-				cv = (ColorValue) PARSERS[COLOR].parseCssValue(Attribute.COLOR.getDefaultValue());
+				cv = (ColorValue) PARSERS[COLOR].parseCssValue(Attribute.COLOR
+						.getDefaultValue());
 			}
 		}
 		return cv.getValue();
@@ -113,11 +97,13 @@ class CSSBorder extends AbstractBorder {
 	 */
 	private int getBorderWidth(int side) {
 		int width = 0;
-		BorderStyle bs = (BorderStyle) attrs.getAttribute(ATTRIBUTES[STYLE][side]);
+		BorderStyle bs = (BorderStyle) attrs.getAttribute(
+				ATTRIBUTES[STYLE][side]);
 		if ((bs != null) && (bs.getValue() != Value.NONE)) {
 			// The 'border-style' value of "none" forces the computed value
 			// of 'border-width' to be 0 (CSS2 8.5.3)
-			LengthValue bw = (LengthValue) attrs.getAttribute(ATTRIBUTES[WIDTH][side]);
+			LengthValue bw = (LengthValue) attrs.getAttribute(
+					ATTRIBUTES[WIDTH][side]);
 			if (bw == null) {
 				bw = (LengthValue) DEFAULTS[WIDTH];
 			}
@@ -141,7 +127,8 @@ class CSSBorder extends AbstractBorder {
 	 * Return the border style for the given side.
 	 */
 	private Value getBorderStyle(int side) {
-		BorderStyle style = (BorderStyle) attrs.getAttribute(ATTRIBUTES[STYLE][side]);
+		BorderStyle style = (BorderStyle) attrs.getAttribute(
+				ATTRIBUTES[STYLE][side]);
 		if (style == null) {
 			style = (BorderStyle) DEFAULTS[STYLE];
 		}
@@ -182,8 +169,8 @@ class CSSBorder extends AbstractBorder {
 	static Color getAdjustedColor(Color c, double factor) {
 		double f = 1 - Math.min(Math.abs(factor), 1);
 		double inc = (factor > 0 ? 255 * (1 - f) : 0);
-		return new Color((int) (c.getRed() * f + inc), (int) (c.getGreen() * f + inc),
-				(int) (c.getBlue() * f + inc));
+		return new Color((int) (c.getRed() * f + inc), (int) (c.getGreen() * f
+				+ inc), (int) (c.getBlue() * f + inc));
 	}
 
 	/* The javax.swing.border.Border methods. */
@@ -194,7 +181,8 @@ class CSSBorder extends AbstractBorder {
 		return insets;
 	}
 
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height) {
 		if (!(g instanceof Graphics2D)) {
 			return;
 		}
@@ -210,8 +198,8 @@ class CSSBorder extends AbstractBorder {
 		int intHeight = height - (widths[TOP] + widths[BOTTOM]);
 
 		// Coordinates of the interior corners, from NW clockwise.
-		int[][] intCorners = { { intX, intY }, { intX + intWidth, intY },
-				{ intX + intWidth, intY + intHeight }, { intX, intY + intHeight, }, };
+		int[][] intCorners = { { intX, intY }, { intX + intWidth, intY }, { intX
+				+ intWidth, intY + intHeight }, { intX, intY + intHeight, }, };
 
 		// Draw the borders for all sides.
 		for (int i = 0; i < 4; i++) {
@@ -280,8 +268,8 @@ class CSSBorder extends AbstractBorder {
 		/**
 		 * Paint strokes repeatedly using the given length and color patterns.
 		 */
-		void paintStrokes(Rectangle r, Graphics g, int axis, int[] lengthPattern,
-				Color[] colorPattern) {
+		void paintStrokes(Rectangle r, Graphics g, int axis,
+				int[] lengthPattern, Color[] colorPattern) {
 			boolean xAxis = (axis == View.X_AXIS);
 			int start = 0;
 			int end = (xAxis ? r.width : r.height);
@@ -371,9 +359,11 @@ class CSSBorder extends AbstractBorder {
 			Rectangle r = shape.getBounds();
 			int length = Math.max(r.height / 2, 1);
 			int[] lengthPattern = { length, length };
-			Color[] colorPattern = ((side + 1) % 4 < 2) == (type == Value.GROOVE)
-					? new Color[] { getShadowColor(color), getLightColor(color) }
-					: new Color[] { getLightColor(color), getShadowColor(color) };
+			Color[] colorPattern = ((side + 1)
+					% 4 < 2) == (type == Value.GROOVE) ? new Color[] {
+							getShadowColor(color), getLightColor(color) }
+							: new Color[] { getLightColor(color),
+									getShadowColor(color) };
 			paintStrokes(r, g, View.Y_AXIS, lengthPattern, colorPattern);
 		}
 	}
@@ -389,7 +379,8 @@ class CSSBorder extends AbstractBorder {
 		}
 
 		public void paint(Polygon shape, Graphics g, Color color, int side) {
-			g.setColor(((side + 1) % 4 < 2) == (type == Value.INSET) ? getShadowColor(color)
+			g.setColor(((side + 1) % 4 < 2) == (type == Value.INSET)
+					? getShadowColor(color)
 					: getLightColor(color));
 			g.fillPolygon(shape);
 		}
@@ -413,9 +404,11 @@ class CSSBorder extends AbstractBorder {
 		registerBorderPainter(Value.DOUBLE, new DoublePainter());
 		registerBorderPainter(Value.DOTTED, new DottedDashedPainter(1));
 		registerBorderPainter(Value.DASHED, new DottedDashedPainter(3));
-		registerBorderPainter(Value.GROOVE, new GrooveRidgePainter(Value.GROOVE));
+		registerBorderPainter(Value.GROOVE, new GrooveRidgePainter(
+				Value.GROOVE));
 		registerBorderPainter(Value.RIDGE, new GrooveRidgePainter(Value.RIDGE));
 		registerBorderPainter(Value.INSET, new InsetOutsetPainter(Value.INSET));
-		registerBorderPainter(Value.OUTSET, new InsetOutsetPainter(Value.OUTSET));
+		registerBorderPainter(Value.OUTSET, new InsetOutsetPainter(
+				Value.OUTSET));
 	}
 }

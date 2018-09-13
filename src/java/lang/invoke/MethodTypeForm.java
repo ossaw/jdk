@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -63,13 +43,13 @@ final class MethodTypeForm {
 	final @Stable SoftReference<LambdaForm>[] lambdaForms;
 	// Indexes into lambdaForms:
 	static final int LF_INVVIRTUAL = 0, // DMH invokeVirtual
-			LF_INVSTATIC = 1, LF_INVSPECIAL = 2, LF_NEWINVSPECIAL = 3, LF_INVINTERFACE = 4,
-			LF_INVSTATIC_INIT = 5, // DMH invokeStatic with <clinit> barrier
+			LF_INVSTATIC = 1, LF_INVSPECIAL = 2, LF_NEWINVSPECIAL = 3,
+			LF_INVINTERFACE = 4, LF_INVSTATIC_INIT = 5, // DMH invokeStatic with <clinit> barrier
 			LF_INTERPRET = 6, // LF interpreter
 			LF_REBIND = 7, // BoundMethodHandle
 			LF_DELEGATE = 8, // DelegatingMethodHandle
 			LF_DELEGATE_BLOCK_INLINING = 9, // Counting DelegatingMethodHandle
-											// w/ @DontInline
+			// w/ @DontInline
 			LF_EX_LINKER = 10, // invokeExact_MT (for invokehandle)
 			LF_EX_INVOKER = 11, // MHs.invokeExact
 			LF_GEN_LINKER = 12, // generic invoke_MT (for invokehandle)
@@ -101,8 +81,8 @@ final class MethodTypeForm {
 
 	private boolean assertIsBasicType() {
 		// primitives must be flattened also
-		assert (erasedType == basicType) : "erasedType: " + erasedType + " != basicType: "
-				+ basicType;
+		assert (erasedType == basicType) : "erasedType: " + erasedType
+				+ " != basicType: " + basicType;
 		return true;
 	}
 
@@ -112,7 +92,8 @@ final class MethodTypeForm {
 		return (entry != null) ? entry.get() : null;
 	}
 
-	synchronized public MethodHandle setCachedMethodHandle(int which, MethodHandle mh) {
+	synchronized public MethodHandle setCachedMethodHandle(int which,
+			MethodHandle mh) {
 		// Simulate a CAS, to avoid racy duplication of results.
 		SoftReference<MethodHandle> entry = methodHandles[which];
 		if (entry != null) {
@@ -131,7 +112,8 @@ final class MethodTypeForm {
 		return (entry != null) ? entry.get() : null;
 	}
 
-	synchronized public LambdaForm setCachedLambdaForm(int which, LambdaForm form) {
+	synchronized public LambdaForm setCachedLambdaForm(int which,
+			LambdaForm form) {
 		// Simulate a CAS, to avoid racy duplication of results.
 		SoftReference<LambdaForm> entry = lambdaForms[which];
 		if (entry != null) {
@@ -230,7 +212,8 @@ final class MethodTypeForm {
 			// have primitives but no long primitives; share slot counts with
 			// generic
 			assert (ptypeCount == pslotCount);
-			MethodTypeForm that = MethodType.genericMethodType(ptypeCount).form();
+			MethodTypeForm that = MethodType.genericMethodType(ptypeCount)
+					.form();
 			assert (this != that);
 			slotToArgTab = that.slotToArgTable;
 			argToSlotTab = that.argToSlotTable;
@@ -316,7 +299,8 @@ final class MethodTypeForm {
 	}
 
 	public boolean hasLongPrimitives() {
-		return (longPrimitiveParameterCount() | longPrimitiveReturnCount()) != 0;
+		return (longPrimitiveParameterCount()
+				| longPrimitiveReturnCount()) != 0;
 	}
 
 	public int parameterToArgSlot(int i) {
@@ -352,14 +336,15 @@ final class MethodTypeForm {
 	 * (assumed to be a return type) to int if it is smaller than an int, or if
 	 * it is void.
 	 */
-	public static final int NO_CHANGE = 0, ERASE = 1, WRAP = 2, UNWRAP = 3, INTS = 4, LONGS = 5,
-			RAW_RETURN = 6;
+	public static final int NO_CHANGE = 0, ERASE = 1, WRAP = 2, UNWRAP = 3,
+			INTS = 4, LONGS = 5, RAW_RETURN = 6;
 
 	/**
 	 * Canonicalize the types in the given method type. If any types change,
 	 * intern the new type, and return it. Otherwise return null.
 	 */
-	public static MethodType canonicalize(MethodType mt, int howRet, int howArgs) {
+	public static MethodType canonicalize(MethodType mt, int howRet,
+			int howArgs) {
 		Class<?>[] ptypes = mt.ptypes();
 		Class<?>[] ptc = MethodTypeForm.canonicalizeAll(ptypes, howArgs);
 		Class<?> rtype = mt.returnType();
@@ -386,43 +371,44 @@ final class MethodTypeForm {
 			// no change, ever
 		} else if (!t.isPrimitive()) {
 			switch (how) {
-			case UNWRAP:
-				ct = Wrapper.asPrimitiveType(t);
-				if (ct != t)
-					return ct;
-				break;
-			case RAW_RETURN:
-			case ERASE:
-				return Object.class;
+				case UNWRAP:
+					ct = Wrapper.asPrimitiveType(t);
+					if (ct != t)
+						return ct;
+					break;
+				case RAW_RETURN:
+				case ERASE:
+					return Object.class;
 			}
 		} else if (t == void.class) {
 			// no change, usually
 			switch (how) {
-			case RAW_RETURN:
-				return int.class;
-			case WRAP:
-				return Void.class;
+				case RAW_RETURN:
+					return int.class;
+				case WRAP:
+					return Void.class;
 			}
 		} else {
 			// non-void primitive
 			switch (how) {
-			case WRAP:
-				return Wrapper.asWrapperType(t);
-			case INTS:
-				if (t == int.class || t == long.class)
-					return null; // no change
-				if (t == double.class)
+				case WRAP:
+					return Wrapper.asWrapperType(t);
+				case INTS:
+					if (t == int.class || t == long.class)
+						return null; // no change
+					if (t == double.class)
+						return long.class;
+					return int.class;
+				case LONGS:
+					if (t == long.class)
+						return null; // no change
 					return long.class;
-				return int.class;
-			case LONGS:
-				if (t == long.class)
-					return null; // no change
-				return long.class;
-			case RAW_RETURN:
-				if (t == int.class || t == long.class || t == float.class || t == double.class)
-					return null; // no change
-				// everything else returns as an int
-				return int.class;
+				case RAW_RETURN:
+					if (t == int.class || t == long.class || t == float.class
+							|| t == double.class)
+						return null; // no change
+					// everything else returns as an int
+					return int.class;
 			}
 		}
 		// no change; return null to signify

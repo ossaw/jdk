@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -48,7 +28,7 @@ public class PropertyEditorSupport implements PropertyEditor {
 	 * Constructs a <code>PropertyEditorSupport</code> object.
 	 *
 	 * @param source
-	 *            the source used for event firing
+	 *               the source used for event firing
 	 * @since 1.5
 	 */
 	public PropertyEditorSupport(Object source) {
@@ -78,7 +58,7 @@ public class PropertyEditorSupport implements PropertyEditor {
 	 * be modified by the PropertyEditor.
 	 *
 	 * @param source
-	 *            source object to be used for events
+	 *               source object to be used for events
 	 * @since 1.5
 	 */
 	public void setSource(Object source) {
@@ -89,10 +69,11 @@ public class PropertyEditorSupport implements PropertyEditor {
 	 * Set (or change) the object that is to be edited.
 	 *
 	 * @param value
-	 *            The new target object to be edited. Note that this object
-	 *            should not be modified by the PropertyEditor, rather the
-	 *            PropertyEditor should create a new object to hold any modified
-	 *            value.
+	 *              The new target object to be edited. Note that this object
+	 *              should not be modified by the PropertyEditor, rather the
+	 *              PropertyEditor should create a new object to hold any
+	 *              modified
+	 *              value.
 	 */
 	public void setValue(Object value) {
 		this.value = value;
@@ -133,8 +114,7 @@ public class PropertyEditorSupport implements PropertyEditor {
 	 * @param box
 	 *            Rectangle within graphics object into which we should paint.
 	 */
-	public void paintValue(java.awt.Graphics gfx, java.awt.Rectangle box) {
-	}
+	public void paintValue(java.awt.Graphics gfx, java.awt.Rectangle box) {}
 
 	// ----------------------------------------------------------------------
 
@@ -176,9 +156,10 @@ public class PropertyEditorSupport implements PropertyEditor {
 	 * formatted or if this kind of property can't be expressed as text.
 	 *
 	 * @param text
-	 *            The string to be parsed.
+	 *             The string to be parsed.
 	 */
-	public void setAsText(String text) throws java.lang.IllegalArgumentException {
+	public void setAsText(String text)
+			throws java.lang.IllegalArgumentException {
 		if (value instanceof String) {
 			setValue(text);
 			return;
@@ -246,9 +227,10 @@ public class PropertyEditorSupport implements PropertyEditor {
 	 * exception is thrown and no action is taken.
 	 *
 	 * @param listener
-	 *            the {@link PropertyChangeListener} to add
+	 *                 the {@link PropertyChangeListener} to add
 	 */
-	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+	public synchronized void addPropertyChangeListener(
+			PropertyChangeListener listener) {
 		if (listeners == null) {
 			listeners = new java.util.Vector<>();
 		}
@@ -263,9 +245,10 @@ public class PropertyEditorSupport implements PropertyEditor {
 	 * was never added, no exception is thrown and no action is taken.
 	 *
 	 * @param listener
-	 *            the {@link PropertyChangeListener} to remove
+	 *                 the {@link PropertyChangeListener} to remove
 	 */
-	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+	public synchronized void removePropertyChangeListener(
+			PropertyChangeListener listener) {
 		if (listeners == null) {
 			return;
 		}
@@ -284,7 +267,8 @@ public class PropertyEditorSupport implements PropertyEditor {
 			targets = unsafeClone(listeners);
 		}
 		// Tell our listeners that "everything" has changed.
-		PropertyChangeEvent evt = new PropertyChangeEvent(source, null, null, null);
+		PropertyChangeEvent evt = new PropertyChangeEvent(source, null, null,
+				null);
 
 		for (int i = 0; i < targets.size(); i++) {
 			PropertyChangeListener target = targets.elementAt(i);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.javadoc;
@@ -90,7 +70,7 @@ public interface RootDoc extends Doc, DocErrorReporter {
 	 * Return a PackageDoc for the specified package name.
 	 *
 	 * @param name
-	 *            package name
+	 *             package name
 	 *
 	 * @return a PackageDoc holding the specified package, null if this package
 	 *         is not referenced.
@@ -101,8 +81,9 @@ public interface RootDoc extends Doc, DocErrorReporter {
 	 * Return a ClassDoc for the specified class or interface name.
 	 *
 	 * @param qualifiedName
-	 *            <a href="package-summary.html#qualified">qualified</a> class
-	 *            or package name
+	 *                      <a href=
+	 *                      "package-summary.html#qualified">qualified</a> class
+	 *                      or package name
 	 *
 	 * @return a ClassDoc holding the specified class, null if this class is not
 	 *         referenced.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -59,9 +39,9 @@ public class ObjectStreamField implements Comparable<Object> {
 	 * documented with a <code>serialField</code> tag.
 	 *
 	 * @param name
-	 *            the name of the serializable field
+	 *             the name of the serializable field
 	 * @param type
-	 *            the <code>Class</code> object of the serializable field
+	 *             the <code>Class</code> object of the serializable field
 	 */
 	public ObjectStreamField(String name, Class<?> type) {
 		this(name, type, false);
@@ -78,13 +58,14 @@ public class ObjectStreamField implements Comparable<Object> {
 	 * writeUnshared and readUnshared.
 	 *
 	 * @param name
-	 *            field name
+	 *                 field name
 	 * @param type
-	 *            field type
+	 *                 field type
 	 * @param unshared
-	 *            if false, write/read field values in the same manner as
-	 *            writeObject/readObject; if true, write/read in the same manner
-	 *            as writeUnshared/readUnshared
+	 *                 if false, write/read field values in the same manner as
+	 *                 writeObject/readObject; if true, write/read in the same
+	 *                 manner
+	 *                 as writeUnshared/readUnshared
 	 * @since 1.4
 	 */
 	public ObjectStreamField(String name, Class<?> type, boolean unshared) {
@@ -112,36 +93,36 @@ public class ObjectStreamField implements Comparable<Object> {
 		field = null;
 
 		switch (signature.charAt(0)) {
-		case 'Z':
-			type = Boolean.TYPE;
-			break;
-		case 'B':
-			type = Byte.TYPE;
-			break;
-		case 'C':
-			type = Character.TYPE;
-			break;
-		case 'S':
-			type = Short.TYPE;
-			break;
-		case 'I':
-			type = Integer.TYPE;
-			break;
-		case 'J':
-			type = Long.TYPE;
-			break;
-		case 'F':
-			type = Float.TYPE;
-			break;
-		case 'D':
-			type = Double.TYPE;
-			break;
-		case 'L':
-		case '[':
-			type = Object.class;
-			break;
-		default:
-			throw new IllegalArgumentException("illegal signature");
+			case 'Z':
+				type = Boolean.TYPE;
+				break;
+			case 'B':
+				type = Byte.TYPE;
+				break;
+			case 'C':
+				type = Character.TYPE;
+				break;
+			case 'S':
+				type = Short.TYPE;
+				break;
+			case 'I':
+				type = Integer.TYPE;
+				break;
+			case 'J':
+				type = Long.TYPE;
+				break;
+			case 'F':
+				type = Float.TYPE;
+				break;
+			case 'D':
+				type = Double.TYPE;
+				break;
+			case 'L':
+			case '[':
+				type = Object.class;
+				break;
+			default:
+				throw new IllegalArgumentException("illegal signature");
 		}
 	}
 
@@ -245,7 +226,7 @@ public class ObjectStreamField implements Comparable<Object> {
 	 * Offset within instance data.
 	 *
 	 * @param offset
-	 *            the offset of the field
+	 *               the offset of the field
 	 * @see #getOffset
 	 */
 	// REMIND: deprecate?

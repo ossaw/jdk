@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -97,16 +77,21 @@ public interface NotificationEmitter extends NotificationBroadcaster {
 	 * </p>
 	 *
 	 * @param listener
-	 *            A listener that was previously added to this MBean.
+	 *                 A listener that was previously added to this MBean.
 	 * @param filter
-	 *            The filter that was specified when the listener was added.
+	 *                 The filter that was specified when the listener was
+	 *                 added.
 	 * @param handback
-	 *            The handback that was specified when the listener was added.
+	 *                 The handback that was specified when the listener was
+	 *                 added.
 	 *
 	 * @exception ListenerNotFoundException
-	 *                The listener is not registered with the MBean, or it is
-	 *                not registered with the given filter and handback.
+	 *                                      The listener is not registered with
+	 *                                      the MBean, or it is
+	 *                                      not registered with the given filter
+	 *                                      and handback.
 	 */
-	public void removeNotificationListener(NotificationListener listener, NotificationFilter filter,
-			Object handback) throws ListenerNotFoundException;
+	public void removeNotificationListener(NotificationListener listener,
+			NotificationFilter filter, Object handback)
+			throws ListenerNotFoundException;
 }

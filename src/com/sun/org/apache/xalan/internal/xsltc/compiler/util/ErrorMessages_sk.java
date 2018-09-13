@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,58 +29,44 @@ public class ErrorMessages_sk extends ListResourceBundle {
 
 	/*
 	 * XSLTC compile-time error messages.
-	 *
 	 * General notes to translators and definitions:
-	 *
 	 * 1) XSLTC is the name of the product. It is an acronym for "XSLT Compiler"
 	 * . XSLT is an acronym for "XML Stylesheet Language: Transformations".
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An axis is a particular "dimension" in a tree representation of an XML
 	 * document; the nodes in the tree are divided along different axes.
 	 * Traversing the "child" axis, for instance, means that the program would
 	 * visit each child of a particular node; traversing the "descendant" axis
 	 * means that the program would visit the child nodes of a particular node,
 	 * their children, and so on until the leaf nodes of the tree are reached.
-	 *
 	 * 5) An iterator is an object that traverses nodes in a tree along a
 	 * particular axis, one at a time.
-	 *
 	 * 6) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 7) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 8) DOM is an acronym for Document Object Model. It is a tree
 	 * representation of an XML document.
-	 *
 	 * SAX is an acronym for the Simple API for XML processing. It is an API
 	 * used inform an XML processor (in this case XSLTC) of the structure and
 	 * content of an XML document.
-	 *
 	 * Input to the stylesheet processor can come from an XML parser in the form
 	 * of a DOM tree or through the SAX API.
-	 *
 	 * 9) DTD is a document type declaration. It is a way of specifying the
 	 * grammar for an XML file, the names and types of elements, attributes,
 	 * etc.
-	 *
 	 * 10) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 11) Translet is an invented term that refers to the class file that
 	 * contains the compiled form of a stylesheet.
 	 */
@@ -160,7 +143,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * Note to translators: The file or URI named in the
 				 * substitution text is missing.
 				 */
-				{ ErrorMsg.FILE_NOT_FOUND_ERR, "S\u00fabor alebo URI ''{0}'' sa nena\u0161li." },
+				{ ErrorMsg.FILE_NOT_FOUND_ERR,
+						"S\u00fabor alebo URI ''{0}'' sa nena\u0161li." },
 
 				/*
 				 * Note to translators: This message is displayed when the URI
@@ -211,7 +195,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * syntactic error in the form of an XPath expression. The
 				 * substitution text is the expression.
 				 */
-				{ ErrorMsg.XPATH_PARSER_ERR, "Chyba pri anal\u00fdze v\u00fdrazu XPath ''{0}''." },
+				{ ErrorMsg.XPATH_PARSER_ERR,
+						"Chyba pri anal\u00fdze v\u00fdrazu XPath ''{0}''." },
 
 				/*
 				 * Note to translators: An element in the stylesheet requires a
@@ -226,7 +211,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * not permitted in an XPath expression was encountered. The
 				 * substitution text is the offending character.
 				 */
-				{ ErrorMsg.ILLEGAL_CHAR_ERR, "Neplatn\u00fd znak ''{0}'' vo v\u00fdraze XPath." },
+				{ ErrorMsg.ILLEGAL_CHAR_ERR,
+						"Neplatn\u00fd znak ''{0}'' vo v\u00fdraze XPath." },
 
 				/*
 				 * Note to translators: A processing instruction is a mark-up
@@ -244,14 +230,16 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * element. The substitution text specifies the name of the
 				 * attribute.
 				 */
-				{ ErrorMsg.STRAY_ATTRIBUTE_ERR, "Atrib\u00fat ''{0}'' mimo elementu." },
+				{ ErrorMsg.STRAY_ATTRIBUTE_ERR,
+						"Atrib\u00fat ''{0}'' mimo elementu." },
 
 				/*
 				 * Note to translators: An attribute that wasn't recognized was
 				 * specified on an element in the stylesheet. The attribute is
 				 * named by the substitution text.
 				 */
-				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "Neleg\u00e1lny atrib\u00fat ''{0}''." },
+				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
+						"Neleg\u00e1lny atrib\u00fat ''{0}''." },
 
 				/*
 				 * Note to translators: "import" and "include" are keywords that
@@ -283,7 +271,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * Note to translators: The stylesheet version named in the
 				 * substitution text is not supported.
 				 */
-				{ ErrorMsg.XSL_VERSION_ERR, "Verzia XSL ''{0}'' nie je podporovan\u00e1 XSLTC." },
+				{ ErrorMsg.XSL_VERSION_ERR,
+						"Verzia XSL ''{0}'' nie je podporovan\u00e1 XSLTC." },
 
 				/*
 				 * Note to translators: The definitions of one or more variables
@@ -303,7 +292,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * Note to translators: This message is produced if a reference
 				 * to a function has too many or too few arguments.
 				 */
-				{ ErrorMsg.ILLEGAL_ARG_ERR, "Neplatn\u00fd argument(y) pre volanie funkcie." },
+				{ ErrorMsg.ILLEGAL_ARG_ERR,
+						"Neplatn\u00fd argument(y) pre volanie funkcie." },
 
 				/*
 				 * Note to translators: "document()" is the name of function and
@@ -364,14 +354,16 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * Note to translators: An element in the stylesheet contained
 				 * an element of a type that it was not permitted to contain.
 				 */
-				{ ErrorMsg.ILLEGAL_CHILD_ERR, "Neplatn\u00fd element potomka." },
+				{ ErrorMsg.ILLEGAL_CHILD_ERR,
+						"Neplatn\u00fd element potomka." },
 
 				/*
 				 * Note to translators: The stylesheet tried to create an
 				 * element with a name that was not a valid XML name. The
 				 * substitution text contains the name.
 				 */
-				{ ErrorMsg.ILLEGAL_ELEM_NAME_ERR, "Nem\u00f4\u017eete vola\u0165 element ''{0}''" },
+				{ ErrorMsg.ILLEGAL_ELEM_NAME_ERR,
+						"Nem\u00f4\u017eete vola\u0165 element ''{0}''" },
 
 				/*
 				 * Note to translators: The stylesheet tried to create an
@@ -413,7 +405,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * was not recognized as part of the XSL syntax. The
 				 * substitution text gives the element name.
 				 */
-				{ ErrorMsg.UNSUPPORTED_XSL_ERR, "Nepodporovan\u00fd element XSL ''{0}''." },
+				{ ErrorMsg.UNSUPPORTED_XSL_ERR,
+						"Nepodporovan\u00fd element XSL ''{0}''." },
 
 				/*
 				 * Note to translators: The stylesheet referred to an extension
@@ -454,7 +447,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * error in condition in XSLTC. The substitution text is the
 				 * class name in XSLTC that is missing some functionality.
 				 */
-				{ ErrorMsg.NOT_IMPLEMENTED_ERR, "Nie je implementovan\u00e9: ''{0}''." },
+				{ ErrorMsg.NOT_IMPLEMENTED_ERR,
+						"Nie je implementovan\u00e9: ''{0}''." },
 
 				/*
 				 * Note to translators: The XML document given to XSLTC as a
@@ -732,7 +726,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * required in a particular context. The substitution text is
 				 * the expression that was in error.
 				 */
-				{ ErrorMsg.TYPE_CHECK_ERR, "Chyba pri kontrole typu v\u00fdrazu ''{0}''." },
+				{ ErrorMsg.TYPE_CHECK_ERR,
+						"Chyba pri kontrole typu v\u00fdrazu ''{0}''." },
 
 				/*
 				 * Note to translators: An XPath expression was not of the type
@@ -763,7 +758,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "UPOZORNENIE:  ''{0}''\n       :{1}" },
+				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
+						"UPOZORNENIE:  ''{0}''\n       :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -796,7 +792,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "CHYBA:  ''{0}''\n     :{1}" },
+				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
+						"CHYBA:  ''{0}''\n     :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -840,7 +837,8 @@ public class ErrorMessages_sk extends ListResourceBundle {
 				 * header. All the warning messages are collected together and
 				 * displayed beneath this message.
 				 */
-				{ ErrorMsg.COMPILER_WARNING_KEY, "Upozornenia preklada\u010da:" },
+				{ ErrorMsg.COMPILER_WARNING_KEY,
+						"Upozornenia preklada\u010da:" },
 
 				/*
 				 * Note to translators: The following message is used as a

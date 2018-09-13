@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -61,13 +41,15 @@ public class SetOverrideType implements org.omg.CORBA.portable.IDLEntity {
 	 * The <code>SetOverrideType</code> constant for the enum value
 	 * SET_OVERRIDE.
 	 */
-	public static final SetOverrideType SET_OVERRIDE = new SetOverrideType(_SET_OVERRIDE);
+	public static final SetOverrideType SET_OVERRIDE = new SetOverrideType(
+			_SET_OVERRIDE);
 
 	/**
 	 * The <code>SetOverrideType</code> constant for the enum value
 	 * ADD_OVERRIDE.
 	 */
-	public static final SetOverrideType ADD_OVERRIDE = new SetOverrideType(_ADD_OVERRIDE);
+	public static final SetOverrideType ADD_OVERRIDE = new SetOverrideType(
+			_ADD_OVERRIDE);
 
 	/**
 	 * Retrieves the value of this <code>SetOverrideType</code> instance.
@@ -84,23 +66,24 @@ public class SetOverrideType implements org.omg.CORBA.portable.IDLEntity {
 	 * <code>SetOverrideType</code> instance.
 	 *
 	 * @param i
-	 *            the <code>int</code> to convert; must be either
-	 *            <code>SetOverrideType._SET_OVERRIDE</code> or
-	 *            <code>SetOverrideType._ADD_OVERRIDE</code>
+	 *          the <code>int</code> to convert; must be either
+	 *          <code>SetOverrideType._SET_OVERRIDE</code> or
+	 *          <code>SetOverrideType._ADD_OVERRIDE</code>
 	 * @return the <code>SetOverrideType</code> instance whose value matches the
 	 *         given <code>int</code>
 	 * @exception BAD_PARAM
-	 *                if the given <code>int</code> does not match the value of
-	 *                any <code>SetOverrideType</code> instance
+	 *                      if the given <code>int</code> does not match the
+	 *                      value of
+	 *                      any <code>SetOverrideType</code> instance
 	 */
 	public static SetOverrideType from_int(int i) {
 		switch (i) {
-		case _SET_OVERRIDE:
-			return SET_OVERRIDE;
-		case _ADD_OVERRIDE:
-			return ADD_OVERRIDE;
-		default:
-			throw new org.omg.CORBA.BAD_PARAM();
+			case _SET_OVERRIDE:
+				return SET_OVERRIDE;
+			case _ADD_OVERRIDE:
+				return ADD_OVERRIDE;
+			default:
+				throw new org.omg.CORBA.BAD_PARAM();
 		}
 	}
 
@@ -109,8 +92,8 @@ public class SetOverrideType implements org.omg.CORBA.portable.IDLEntity {
 	 * <code>int</code>.
 	 * 
 	 * @param _value
-	 *            must be either <code>SET_OVERRIDE</code> or
-	 *            <code>ADD_OVERRIDE</code>
+	 *               must be either <code>SET_OVERRIDE</code> or
+	 *               <code>ADD_OVERRIDE</code>
 	 */
 	protected SetOverrideType(int _value) {
 		this._value = _value;

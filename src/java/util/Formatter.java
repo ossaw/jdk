@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -125,7 +105,8 @@ import sun.misc.FormattedFloatingDecimal;
  * // -&gt; "Local time: 13:34:18"
  *
  * // Writes formatted output to System.err.
- * System.err.printf("Unable to open file '%1$s': %2$s", fileName, exception.getMessage());
+ * System.err.printf("Unable to open file '%1$s': %2$s", fileName, exception
+ * 		.getMessage());
  * // -&gt; "Unable to open file 'food': No such file or directory"
  * </pre>
  * 
@@ -2076,7 +2057,8 @@ import sun.misc.FormattedFloatingDecimal;
  * <blockquote>
  * 
  * <pre>
- * formatter.format("%4$s %3$s %2$s %1$s %4$s %3$s %2$s %1$s", "a", "b", "c", "d")
+ * formatter.format("%4$s %3$s %2$s %1$s %4$s %3$s %2$s %1$s", "a", "b", "c",
+ * 		"d")
  * // -&gt; "d c b a d c b a"
  * </pre>
  * 
@@ -2163,15 +2145,17 @@ public final class Formatter implements Closeable, Flushable {
 	 * Returns a charset object for the given charset name.
 	 * 
 	 * @throws NullPointerException
-	 *             is csn is null
+	 *                                      is csn is null
 	 * @throws UnsupportedEncodingException
-	 *             if the charset is not supported
+	 *                                      if the charset is not supported
 	 */
-	private static Charset toCharset(String csn) throws UnsupportedEncodingException {
+	private static Charset toCharset(String csn)
+			throws UnsupportedEncodingException {
 		Objects.requireNonNull(csn, "charsetName");
 		try {
 			return Charset.forName(csn);
-		} catch (IllegalCharsetNameException | UnsupportedCharsetException unused) {
+		} catch (IllegalCharsetNameException
+				| UnsupportedCharsetException unused) {
 			// UnsupportedEncodingException should be thrown
 			throw new UnsupportedEncodingException(csn);
 		}
@@ -2191,8 +2175,10 @@ public final class Formatter implements Closeable, Flushable {
 		this.zero = getZero(l);
 	}
 
-	private Formatter(Charset charset, Locale l, File file) throws FileNotFoundException {
-		this(l, new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), charset)));
+	private Formatter(Charset charset, Locale l, File file)
+			throws FileNotFoundException {
+		this(l, new BufferedWriter(new OutputStreamWriter(new FileOutputStream(
+				file), charset)));
 	}
 
 	/**
@@ -2219,8 +2205,8 @@ public final class Formatter implements Closeable, Flushable {
 	 * this instance of the Java virtual machine.
 	 *
 	 * @param a
-	 *            Destination for the formatted output. If {@code a} is
-	 *            {@code null} then a {@link StringBuilder} will be created.
+	 *          Destination for the formatted output. If {@code a} is
+	 *          {@code null} then a {@link StringBuilder} will be created.
 	 */
 	public Formatter(Appendable a) {
 		this(Locale.getDefault(Locale.Category.FORMAT), nonNullAppendable(a));
@@ -2235,9 +2221,9 @@ public final class Formatter implements Closeable, Flushable {
 	 * may be converted into a string by invoking {@link #toString toString()}.
 	 *
 	 * @param l
-	 *            The {@linkplain java.util.Locale locale} to apply during
-	 *            formatting. If {@code l} is {@code null} then no localization
-	 *            is applied.
+	 *          The {@linkplain java.util.Locale locale} to apply during
+	 *          formatting. If {@code l} is {@code null} then no localization
+	 *          is applied.
 	 */
 	public Formatter(Locale l) {
 		this(l, new StringBuilder());
@@ -2247,13 +2233,13 @@ public final class Formatter implements Closeable, Flushable {
 	 * Constructs a new formatter with the specified destination and locale.
 	 *
 	 * @param a
-	 *            Destination for the formatted output. If {@code a} is
-	 *            {@code null} then a {@link StringBuilder} will be created.
+	 *          Destination for the formatted output. If {@code a} is
+	 *          {@code null} then a {@link StringBuilder} will be created.
 	 *
 	 * @param l
-	 *            The {@linkplain java.util.Locale locale} to apply during
-	 *            formatting. If {@code l} is {@code null} then no localization
-	 *            is applied.
+	 *          The {@linkplain java.util.Locale locale} to apply during
+	 *          formatting. If {@code l} is {@code null} then no localization
+	 *          is applied.
 	 */
 	public Formatter(Appendable a, Locale l) {
 		this(l, nonNullAppendable(a));
@@ -2273,25 +2259,31 @@ public final class Formatter implements Closeable, Flushable {
 	 * this instance of the Java virtual machine.
 	 *
 	 * @param fileName
-	 *            The name of the file to use as the destination of this
-	 *            formatter. If the file exists then it will be truncated to
-	 *            zero size; otherwise, a new file will be created. The output
-	 *            will be written to the file and is buffered.
+	 *                 The name of the file to use as the destination of this
+	 *                 formatter. If the file exists then it will be truncated
+	 *                 to
+	 *                 zero size; otherwise, a new file will be created. The
+	 *                 output
+	 *                 will be written to the file and is buffered.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and
-	 *             {@link SecurityManager#checkWrite checkWrite(fileName)}
-	 *             denies write access to the file
+	 *                               If a security manager is present and
+	 *                               {@link SecurityManager#checkWrite
+	 *                               checkWrite(fileName)}
+	 *                               denies write access to the file
 	 *
 	 * @throws FileNotFoundException
-	 *             If the given file name does not denote an existing, writable
-	 *             regular file and a new regular file of that name cannot be
-	 *             created, or if some other error occurs while opening or
-	 *             creating the file
+	 *                               If the given file name does not denote an
+	 *                               existing, writable
+	 *                               regular file and a new regular file of that
+	 *                               name cannot be
+	 *                               created, or if some other error occurs
+	 *                               while opening or
+	 *                               creating the file
 	 */
 	public Formatter(String fileName) throws FileNotFoundException {
-		this(Locale.getDefault(Locale.Category.FORMAT),
-				new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName))));
+		this(Locale.getDefault(Locale.Category.FORMAT), new BufferedWriter(
+				new OutputStreamWriter(new FileOutputStream(fileName))));
 	}
 
 	/**
@@ -2303,31 +2295,39 @@ public final class Formatter implements Closeable, Flushable {
 	 * this instance of the Java virtual machine.
 	 *
 	 * @param fileName
-	 *            The name of the file to use as the destination of this
-	 *            formatter. If the file exists then it will be truncated to
-	 *            zero size; otherwise, a new file will be created. The output
-	 *            will be written to the file and is buffered.
+	 *                 The name of the file to use as the destination of this
+	 *                 formatter. If the file exists then it will be truncated
+	 *                 to
+	 *                 zero size; otherwise, a new file will be created. The
+	 *                 output
+	 *                 will be written to the file and is buffered.
 	 *
 	 * @param csn
-	 *            The name of a supported {@linkplain java.nio.charset.Charset
-	 *            charset}
+	 *                 The name of a supported
+	 *                 {@linkplain java.nio.charset.Charset
+	 *                 charset}
 	 *
 	 * @throws FileNotFoundException
-	 *             If the given file name does not denote an existing, writable
-	 *             regular file and a new regular file of that name cannot be
-	 *             created, or if some other error occurs while opening or
-	 *             creating the file
+	 *                                      If the given file name does not
+	 *                                      denote an existing, writable
+	 *                                      regular file and a new regular file
+	 *                                      of that name cannot be
+	 *                                      created, or if some other error
+	 *                                      occurs while opening or
+	 *                                      creating the file
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and
-	 *             {@link SecurityManager#checkWrite checkWrite(fileName)}
-	 *             denies write access to the file
+	 *                                      If a security manager is present and
+	 *                                      {@link SecurityManager#checkWrite
+	 *                                      checkWrite(fileName)}
+	 *                                      denies write access to the file
 	 *
 	 * @throws UnsupportedEncodingException
-	 *             If the named charset is not supported
+	 *                                      If the named charset is not
+	 *                                      supported
 	 */
-	public Formatter(String fileName, String csn)
-			throws FileNotFoundException, UnsupportedEncodingException {
+	public Formatter(String fileName, String csn) throws FileNotFoundException,
+			UnsupportedEncodingException {
 		this(fileName, csn, Locale.getDefault(Locale.Category.FORMAT));
 	}
 
@@ -2336,33 +2336,42 @@ public final class Formatter implements Closeable, Flushable {
 	 * locale.
 	 *
 	 * @param fileName
-	 *            The name of the file to use as the destination of this
-	 *            formatter. If the file exists then it will be truncated to
-	 *            zero size; otherwise, a new file will be created. The output
-	 *            will be written to the file and is buffered.
+	 *                 The name of the file to use as the destination of this
+	 *                 formatter. If the file exists then it will be truncated
+	 *                 to
+	 *                 zero size; otherwise, a new file will be created. The
+	 *                 output
+	 *                 will be written to the file and is buffered.
 	 *
 	 * @param csn
-	 *            The name of a supported {@linkplain java.nio.charset.Charset
-	 *            charset}
+	 *                 The name of a supported
+	 *                 {@linkplain java.nio.charset.Charset
+	 *                 charset}
 	 *
 	 * @param l
-	 *            The {@linkplain java.util.Locale locale} to apply during
-	 *            formatting. If {@code l} is {@code null} then no localization
-	 *            is applied.
+	 *                 The {@linkplain java.util.Locale locale} to apply during
+	 *                 formatting. If {@code l} is {@code null} then no
+	 *                 localization
+	 *                 is applied.
 	 *
 	 * @throws FileNotFoundException
-	 *             If the given file name does not denote an existing, writable
-	 *             regular file and a new regular file of that name cannot be
-	 *             created, or if some other error occurs while opening or
-	 *             creating the file
+	 *                                      If the given file name does not
+	 *                                      denote an existing, writable
+	 *                                      regular file and a new regular file
+	 *                                      of that name cannot be
+	 *                                      created, or if some other error
+	 *                                      occurs while opening or
+	 *                                      creating the file
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and
-	 *             {@link SecurityManager#checkWrite checkWrite(fileName)}
-	 *             denies write access to the file
+	 *                                      If a security manager is present and
+	 *                                      {@link SecurityManager#checkWrite
+	 *                                      checkWrite(fileName)}
+	 *                                      denies write access to the file
 	 *
 	 * @throws UnsupportedEncodingException
-	 *             If the named charset is not supported
+	 *                                      If the named charset is not
+	 *                                      supported
 	 */
 	public Formatter(String fileName, String csn, Locale l)
 			throws FileNotFoundException, UnsupportedEncodingException {
@@ -2383,25 +2392,30 @@ public final class Formatter implements Closeable, Flushable {
 	 * this instance of the Java virtual machine.
 	 *
 	 * @param file
-	 *            The file to use as the destination of this formatter. If the
-	 *            file exists then it will be truncated to zero size; otherwise,
-	 *            a new file will be created. The output will be written to the
-	 *            file and is buffered.
+	 *             The file to use as the destination of this formatter. If the
+	 *             file exists then it will be truncated to zero size;
+	 *             otherwise,
+	 *             a new file will be created. The output will be written to the
+	 *             file and is buffered.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and
-	 *             {@link SecurityManager#checkWrite checkWrite(file.getPath())}
-	 *             denies write access to the file
+	 *                               If a security manager is present and
+	 *                               {@link SecurityManager#checkWrite
+	 *                               checkWrite(file.getPath())}
+	 *                               denies write access to the file
 	 *
 	 * @throws FileNotFoundException
-	 *             If the given file object does not denote an existing,
-	 *             writable regular file and a new regular file of that name
-	 *             cannot be created, or if some other error occurs while
-	 *             opening or creating the file
+	 *                               If the given file object does not denote an
+	 *                               existing,
+	 *                               writable regular file and a new regular
+	 *                               file of that name
+	 *                               cannot be created, or if some other error
+	 *                               occurs while
+	 *                               opening or creating the file
 	 */
 	public Formatter(File file) throws FileNotFoundException {
-		this(Locale.getDefault(Locale.Category.FORMAT),
-				new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file))));
+		this(Locale.getDefault(Locale.Category.FORMAT), new BufferedWriter(
+				new OutputStreamWriter(new FileOutputStream(file))));
 	}
 
 	/**
@@ -2413,31 +2427,37 @@ public final class Formatter implements Closeable, Flushable {
 	 * this instance of the Java virtual machine.
 	 *
 	 * @param file
-	 *            The file to use as the destination of this formatter. If the
-	 *            file exists then it will be truncated to zero size; otherwise,
-	 *            a new file will be created. The output will be written to the
-	 *            file and is buffered.
+	 *             The file to use as the destination of this formatter. If the
+	 *             file exists then it will be truncated to zero size;
+	 *             otherwise,
+	 *             a new file will be created. The output will be written to the
+	 *             file and is buffered.
 	 *
 	 * @param csn
-	 *            The name of a supported {@linkplain java.nio.charset.Charset
-	 *            charset}
+	 *             The name of a supported {@linkplain java.nio.charset.Charset
+	 *             charset}
 	 *
 	 * @throws FileNotFoundException
-	 *             If the given file object does not denote an existing,
-	 *             writable regular file and a new regular file of that name
-	 *             cannot be created, or if some other error occurs while
-	 *             opening or creating the file
+	 *                                      If the given file object does not
+	 *                                      denote an existing,
+	 *                                      writable regular file and a new
+	 *                                      regular file of that name
+	 *                                      cannot be created, or if some other
+	 *                                      error occurs while
+	 *                                      opening or creating the file
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and
-	 *             {@link SecurityManager#checkWrite checkWrite(file.getPath())}
-	 *             denies write access to the file
+	 *                                      If a security manager is present and
+	 *                                      {@link SecurityManager#checkWrite
+	 *                                      checkWrite(file.getPath())}
+	 *                                      denies write access to the file
 	 *
 	 * @throws UnsupportedEncodingException
-	 *             If the named charset is not supported
+	 *                                      If the named charset is not
+	 *                                      supported
 	 */
-	public Formatter(File file, String csn)
-			throws FileNotFoundException, UnsupportedEncodingException {
+	public Formatter(File file, String csn) throws FileNotFoundException,
+			UnsupportedEncodingException {
 		this(file, csn, Locale.getDefault(Locale.Category.FORMAT));
 	}
 
@@ -2445,33 +2465,39 @@ public final class Formatter implements Closeable, Flushable {
 	 * Constructs a new formatter with the specified file, charset, and locale.
 	 *
 	 * @param file
-	 *            The file to use as the destination of this formatter. If the
-	 *            file exists then it will be truncated to zero size; otherwise,
-	 *            a new file will be created. The output will be written to the
-	 *            file and is buffered.
+	 *             The file to use as the destination of this formatter. If the
+	 *             file exists then it will be truncated to zero size;
+	 *             otherwise,
+	 *             a new file will be created. The output will be written to the
+	 *             file and is buffered.
 	 *
 	 * @param csn
-	 *            The name of a supported {@linkplain java.nio.charset.Charset
-	 *            charset}
+	 *             The name of a supported {@linkplain java.nio.charset.Charset
+	 *             charset}
 	 *
 	 * @param l
-	 *            The {@linkplain java.util.Locale locale} to apply during
-	 *            formatting. If {@code l} is {@code null} then no localization
-	 *            is applied.
+	 *             The {@linkplain java.util.Locale locale} to apply during
+	 *             formatting. If {@code l} is {@code null} then no localization
+	 *             is applied.
 	 *
 	 * @throws FileNotFoundException
-	 *             If the given file object does not denote an existing,
-	 *             writable regular file and a new regular file of that name
-	 *             cannot be created, or if some other error occurs while
-	 *             opening or creating the file
+	 *                                      If the given file object does not
+	 *                                      denote an existing,
+	 *                                      writable regular file and a new
+	 *                                      regular file of that name
+	 *                                      cannot be created, or if some other
+	 *                                      error occurs while
+	 *                                      opening or creating the file
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and
-	 *             {@link SecurityManager#checkWrite checkWrite(file.getPath())}
-	 *             denies write access to the file
+	 *                                      If a security manager is present and
+	 *                                      {@link SecurityManager#checkWrite
+	 *                                      checkWrite(file.getPath())}
+	 *                                      denies write access to the file
 	 *
 	 * @throws UnsupportedEncodingException
-	 *             If the named charset is not supported
+	 *                                      If the named charset is not
+	 *                                      supported
 	 */
 	public Formatter(File file, String csn, Locale l)
 			throws FileNotFoundException, UnsupportedEncodingException {
@@ -2492,10 +2518,11 @@ public final class Formatter implements Closeable, Flushable {
 	 * charset.
 	 *
 	 * @param ps
-	 *            The stream to use as the destination of this formatter.
+	 *           The stream to use as the destination of this formatter.
 	 */
 	public Formatter(PrintStream ps) {
-		this(Locale.getDefault(Locale.Category.FORMAT), (Appendable) Objects.requireNonNull(ps));
+		this(Locale.getDefault(Locale.Category.FORMAT), (Appendable) Objects
+				.requireNonNull(ps));
 	}
 
 	/**
@@ -2512,12 +2539,12 @@ public final class Formatter implements Closeable, Flushable {
 	 * this instance of the Java virtual machine.
 	 *
 	 * @param os
-	 *            The output stream to use as the destination of this formatter.
-	 *            The output will be buffered.
+	 *           The output stream to use as the destination of this formatter.
+	 *           The output will be buffered.
 	 */
 	public Formatter(OutputStream os) {
-		this(Locale.getDefault(Locale.Category.FORMAT),
-				new BufferedWriter(new OutputStreamWriter(os)));
+		this(Locale.getDefault(Locale.Category.FORMAT), new BufferedWriter(
+				new OutputStreamWriter(os)));
 	}
 
 	/**
@@ -2537,9 +2564,11 @@ public final class Formatter implements Closeable, Flushable {
 	 *            charset}
 	 *
 	 * @throws UnsupportedEncodingException
-	 *             If the named charset is not supported
+	 *                                      If the named charset is not
+	 *                                      supported
 	 */
-	public Formatter(OutputStream os, String csn) throws UnsupportedEncodingException {
+	public Formatter(OutputStream os, String csn)
+			throws UnsupportedEncodingException {
 		this(os, csn, Locale.getDefault(Locale.Category.FORMAT));
 	}
 
@@ -2561,9 +2590,11 @@ public final class Formatter implements Closeable, Flushable {
 	 *            is applied.
 	 *
 	 * @throws UnsupportedEncodingException
-	 *             If the named charset is not supported
+	 *                                      If the named charset is not
+	 *                                      supported
 	 */
-	public Formatter(OutputStream os, String csn, Locale l) throws UnsupportedEncodingException {
+	public Formatter(OutputStream os, String csn, Locale l)
+			throws UnsupportedEncodingException {
 		this(l, new BufferedWriter(new OutputStreamWriter(os, csn)));
 	}
 
@@ -2586,8 +2617,9 @@ public final class Formatter implements Closeable, Flushable {
 	 * @return {@code null} if no localization is applied, otherwise a locale
 	 *
 	 * @throws FormatterClosedException
-	 *             If this formatter has been closed by invoking its
-	 *             {@link #close()} method
+	 *                                  If this formatter has been closed by
+	 *                                  invoking its
+	 *                                  {@link #close()} method
 	 */
 	public Locale locale() {
 		ensureOpen();
@@ -2600,8 +2632,9 @@ public final class Formatter implements Closeable, Flushable {
 	 * @return The destination for the output
 	 *
 	 * @throws FormatterClosedException
-	 *             If this formatter has been closed by invoking its
-	 *             {@link #close()} method
+	 *                                  If this formatter has been closed by
+	 *                                  invoking its
+	 *                                  {@link #close()} method
 	 */
 	public Appendable out() {
 		ensureOpen();
@@ -2643,8 +2676,9 @@ public final class Formatter implements Closeable, Flushable {
 	 *         the output
 	 *
 	 * @throws FormatterClosedException
-	 *             If this formatter has been closed by invoking its
-	 *             {@link #close()} method
+	 *                                  If this formatter has been closed by
+	 *                                  invoking its
+	 *                                  {@link #close()} method
 	 */
 	public String toString() {
 		ensureOpen();
@@ -2661,8 +2695,9 @@ public final class Formatter implements Closeable, Flushable {
 	 * underlying stream.
 	 *
 	 * @throws FormatterClosedException
-	 *             If this formatter has been closed by invoking its
-	 *             {@link #close()} method
+	 *                                  If this formatter has been closed by
+	 *                                  invoking its
+	 *                                  {@link #close()} method
 	 */
 	public void flush() {
 		ensureOpen();
@@ -2729,28 +2764,36 @@ public final class Formatter implements Closeable, Flushable {
 	 * during the construction of this formatter.
 	 *
 	 * @param format
-	 *            A format string as described in <a href="#syntax">Format
-	 *            string syntax</a>.
+	 *               A format string as described in <a href="#syntax">Format
+	 *               string syntax</a>.
 	 *
 	 * @param args
-	 *            Arguments referenced by the format specifiers in the format
-	 *            string. If there are more arguments than format specifiers,
-	 *            the extra arguments are ignored. The maximum number of
-	 *            arguments is limited by the maximum dimension of a Java array
-	 *            as defined by <cite>The Java&trade; Virtual Machine
-	 *            Specification</cite>.
+	 *               Arguments referenced by the format specifiers in the format
+	 *               string. If there are more arguments than format specifiers,
+	 *               the extra arguments are ignored. The maximum number of
+	 *               arguments is limited by the maximum dimension of a Java
+	 *               array
+	 *               as defined by <cite>The Java&trade; Virtual Machine
+	 *               Specification</cite>.
 	 *
 	 * @throws IllegalFormatException
-	 *             If a format string contains an illegal syntax, a format
-	 *             specifier that is incompatible with the given arguments,
-	 *             insufficient arguments given the format string, or other
-	 *             illegal conditions. For specification of all possible
-	 *             formatting errors, see the <a href="#detail">Details</a>
-	 *             section of the formatter class specification.
+	 *                                  If a format string contains an illegal
+	 *                                  syntax, a format
+	 *                                  specifier that is incompatible with the
+	 *                                  given arguments,
+	 *                                  insufficient arguments given the format
+	 *                                  string, or other
+	 *                                  illegal conditions. For specification of
+	 *                                  all possible
+	 *                                  formatting errors, see the
+	 *                                  <a href="#detail">Details</a>
+	 *                                  section of the formatter class
+	 *                                  specification.
 	 *
 	 * @throws FormatterClosedException
-	 *             If this formatter has been closed by invoking its
-	 *             {@link #close()} method
+	 *                                  If this formatter has been closed by
+	 *                                  invoking its
+	 *                                  {@link #close()} method
 	 *
 	 * @return This formatter
 	 */
@@ -2763,34 +2806,44 @@ public final class Formatter implements Closeable, Flushable {
 	 * specified locale, format string, and arguments.
 	 *
 	 * @param l
-	 *            The {@linkplain java.util.Locale locale} to apply during
-	 *            formatting. If {@code l} is {@code null} then no localization
-	 *            is applied. This does not change this object's locale that was
-	 *            set during construction.
+	 *               The {@linkplain java.util.Locale locale} to apply during
+	 *               formatting. If {@code l} is {@code null} then no
+	 *               localization
+	 *               is applied. This does not change this object's locale that
+	 *               was
+	 *               set during construction.
 	 *
 	 * @param format
-	 *            A format string as described in <a href="#syntax">Format
-	 *            string syntax</a>
+	 *               A format string as described in <a href="#syntax">Format
+	 *               string syntax</a>
 	 *
 	 * @param args
-	 *            Arguments referenced by the format specifiers in the format
-	 *            string. If there are more arguments than format specifiers,
-	 *            the extra arguments are ignored. The maximum number of
-	 *            arguments is limited by the maximum dimension of a Java array
-	 *            as defined by <cite>The Java&trade; Virtual Machine
-	 *            Specification</cite>.
+	 *               Arguments referenced by the format specifiers in the format
+	 *               string. If there are more arguments than format specifiers,
+	 *               the extra arguments are ignored. The maximum number of
+	 *               arguments is limited by the maximum dimension of a Java
+	 *               array
+	 *               as defined by <cite>The Java&trade; Virtual Machine
+	 *               Specification</cite>.
 	 *
 	 * @throws IllegalFormatException
-	 *             If a format string contains an illegal syntax, a format
-	 *             specifier that is incompatible with the given arguments,
-	 *             insufficient arguments given the format string, or other
-	 *             illegal conditions. For specification of all possible
-	 *             formatting errors, see the <a href="#detail">Details</a>
-	 *             section of the formatter class specification.
+	 *                                  If a format string contains an illegal
+	 *                                  syntax, a format
+	 *                                  specifier that is incompatible with the
+	 *                                  given arguments,
+	 *                                  insufficient arguments given the format
+	 *                                  string, or other
+	 *                                  illegal conditions. For specification of
+	 *                                  all possible
+	 *                                  formatting errors, see the
+	 *                                  <a href="#detail">Details</a>
+	 *                                  section of the formatter class
+	 *                                  specification.
 	 *
 	 * @throws FormatterClosedException
-	 *             If this formatter has been closed by invoking its
-	 *             {@link #close()} method
+	 *                                  If this formatter has been closed by
+	 *                                  invoking its
+	 *                                  {@link #close()} method
 	 *
 	 * @return This formatter
 	 */
@@ -2808,27 +2861,31 @@ public final class Formatter implements Closeable, Flushable {
 			int index = fs.index();
 			try {
 				switch (index) {
-				case -2: // fixed string, "%n", or "%%"
-					fs.print(null, l);
-					break;
-				case -1: // relative index
-					if (last < 0 || (args != null && last > args.length - 1))
-						throw new MissingFormatArgumentException(fs.toString());
-					fs.print((args == null ? null : args[last]), l);
-					break;
-				case 0: // ordinary index
-					lasto++;
-					last = lasto;
-					if (args != null && lasto > args.length - 1)
-						throw new MissingFormatArgumentException(fs.toString());
-					fs.print((args == null ? null : args[lasto]), l);
-					break;
-				default: // explicit index
-					last = index - 1;
-					if (args != null && last > args.length - 1)
-						throw new MissingFormatArgumentException(fs.toString());
-					fs.print((args == null ? null : args[last]), l);
-					break;
+					case -2: // fixed string, "%n", or "%%"
+						fs.print(null, l);
+						break;
+					case -1: // relative index
+						if (last < 0 || (args != null && last > args.length
+								- 1))
+							throw new MissingFormatArgumentException(fs
+									.toString());
+						fs.print((args == null ? null : args[last]), l);
+						break;
+					case 0: // ordinary index
+						lasto++;
+						last = lasto;
+						if (args != null && lasto > args.length - 1)
+							throw new MissingFormatArgumentException(fs
+									.toString());
+						fs.print((args == null ? null : args[lasto]), l);
+						break;
+					default: // explicit index
+						last = index - 1;
+						if (args != null && last > args.length - 1)
+							throw new MissingFormatArgumentException(fs
+									.toString());
+						fs.print((args == null ? null : args[last]), l);
+						break;
 				}
 			} catch (IOException x) {
 				lastException = x;
@@ -3004,7 +3061,8 @@ public final class Formatter implements Closeable, Flushable {
 			c = s.charAt(0);
 			if (!dt) {
 				if (!Conversion.isValid(c))
-					throw new UnknownFormatConversionException(String.valueOf(c));
+					throw new UnknownFormatConversionException(String.valueOf(
+							c));
 				if (Character.isUpperCase(c))
 					f.add(Flags.UPPERCASE);
 				c = Character.toLowerCase(c);
@@ -3057,38 +3115,38 @@ public final class Formatter implements Closeable, Flushable {
 				return;
 			}
 			switch (c) {
-			case Conversion.DECIMAL_INTEGER:
-			case Conversion.OCTAL_INTEGER:
-			case Conversion.HEXADECIMAL_INTEGER:
-				printInteger(arg, l);
-				break;
-			case Conversion.SCIENTIFIC:
-			case Conversion.GENERAL:
-			case Conversion.DECIMAL_FLOAT:
-			case Conversion.HEXADECIMAL_FLOAT:
-				printFloat(arg, l);
-				break;
-			case Conversion.CHARACTER:
-			case Conversion.CHARACTER_UPPER:
-				printCharacter(arg);
-				break;
-			case Conversion.BOOLEAN:
-				printBoolean(arg);
-				break;
-			case Conversion.STRING:
-				printString(arg, l);
-				break;
-			case Conversion.HASHCODE:
-				printHashCode(arg);
-				break;
-			case Conversion.LINE_SEPARATOR:
-				a.append(System.lineSeparator());
-				break;
-			case Conversion.PERCENT_SIGN:
-				a.append('%');
-				break;
-			default:
-				assert false;
+				case Conversion.DECIMAL_INTEGER:
+				case Conversion.OCTAL_INTEGER:
+				case Conversion.HEXADECIMAL_INTEGER:
+					printInteger(arg, l);
+					break;
+				case Conversion.SCIENTIFIC:
+				case Conversion.GENERAL:
+				case Conversion.DECIMAL_FLOAT:
+				case Conversion.HEXADECIMAL_FLOAT:
+					printFloat(arg, l);
+					break;
+				case Conversion.CHARACTER:
+				case Conversion.CHARACTER_UPPER:
+					printCharacter(arg);
+					break;
+				case Conversion.BOOLEAN:
+					printBoolean(arg);
+					break;
+				case Conversion.STRING:
+					printString(arg, l);
+					break;
+				case Conversion.HASHCODE:
+					printHashCode(arg);
+					break;
+				case Conversion.LINE_SEPARATOR:
+					a.append(System.lineSeparator());
+					break;
+				case Conversion.PERCENT_SIGN:
+					a.append('%');
+					break;
+				default:
+					assert false;
 			}
 		}
 
@@ -3192,7 +3250,8 @@ public final class Formatter implements Closeable, Flushable {
 				Formatter fmt = Formatter.this;
 				if (fmt.locale() != l)
 					fmt = new Formatter(fmt.out(), l);
-				((Formattable) arg).formatTo(fmt, f.valueOf(), width, precision);
+				((Formattable) arg).formatTo(fmt, f.valueOf(), width,
+						precision);
 			} else {
 				if (f.contains(Flags.ALTERNATE))
 					failMismatch(Flags.ALTERNATE, 's');
@@ -3214,7 +3273,8 @@ public final class Formatter implements Closeable, Flushable {
 		}
 
 		private void printHashCode(Object arg) throws IOException {
-			String s = (arg == null ? "null" : Integer.toHexString(arg.hashCode()));
+			String s = (arg == null ? "null"
+					: Integer.toHexString(arg.hashCode()));
 			print(s);
 		}
 
@@ -3255,19 +3315,20 @@ public final class Formatter implements Closeable, Flushable {
 				sb.append('.').append(precision);
 			if (dt)
 				sb.append(f.contains(Flags.UPPERCASE) ? 'T' : 't');
-			sb.append(f.contains(Flags.UPPERCASE) ? Character.toUpperCase(c) : c);
+			sb.append(f.contains(Flags.UPPERCASE) ? Character.toUpperCase(c)
+					: c);
 			return sb.toString();
 		}
 
 		private void checkGeneral() {
-			if ((c == Conversion.BOOLEAN || c == Conversion.HASHCODE)
-					&& f.contains(Flags.ALTERNATE))
+			if ((c == Conversion.BOOLEAN || c == Conversion.HASHCODE) && f
+					.contains(Flags.ALTERNATE))
 				failMismatch(Flags.ALTERNATE, c);
 			// '-' requires a width
 			if (width == -1 && f.contains(Flags.LEFT_JUSTIFY))
 				throw new MissingFormatWidthException(toString());
-			checkBadFlags(Flags.PLUS, Flags.LEADING_SPACE, Flags.ZERO_PAD, Flags.GROUP,
-					Flags.PARENTHESES);
+			checkBadFlags(Flags.PLUS, Flags.LEADING_SPACE, Flags.ZERO_PAD,
+					Flags.GROUP, Flags.PARENTHESES);
 		}
 
 		private void checkDateTime() {
@@ -3275,8 +3336,8 @@ public final class Formatter implements Closeable, Flushable {
 				throw new IllegalFormatPrecisionException(precision);
 			if (!DateTime.isValid(c))
 				throw new UnknownFormatConversionException("t" + c);
-			checkBadFlags(Flags.ALTERNATE, Flags.PLUS, Flags.LEADING_SPACE, Flags.ZERO_PAD,
-					Flags.GROUP, Flags.PARENTHESES);
+			checkBadFlags(Flags.ALTERNATE, Flags.PLUS, Flags.LEADING_SPACE,
+					Flags.ZERO_PAD, Flags.GROUP, Flags.PARENTHESES);
 			// '-' requires a width
 			if (width == -1 && f.contains(Flags.LEFT_JUSTIFY))
 				throw new MissingFormatWidthException(toString());
@@ -3285,8 +3346,8 @@ public final class Formatter implements Closeable, Flushable {
 		private void checkCharacter() {
 			if (precision != -1)
 				throw new IllegalFormatPrecisionException(precision);
-			checkBadFlags(Flags.ALTERNATE, Flags.PLUS, Flags.LEADING_SPACE, Flags.ZERO_PAD,
-					Flags.GROUP, Flags.PARENTHESES);
+			checkBadFlags(Flags.ALTERNATE, Flags.PLUS, Flags.LEADING_SPACE,
+					Flags.ZERO_PAD, Flags.GROUP, Flags.PARENTHESES);
 			// '-' requires a width
 			if (width == -1 && f.contains(Flags.LEFT_JUSTIFY))
 				throw new MissingFormatWidthException(toString());
@@ -3331,12 +3392,14 @@ public final class Formatter implements Closeable, Flushable {
 				throw new IllegalFormatPrecisionException(precision);
 
 			// '-' and '0' require a width
-			if (width == -1 && (f.contains(Flags.LEFT_JUSTIFY) || f.contains(Flags.ZERO_PAD)))
+			if (width == -1 && (f.contains(Flags.LEFT_JUSTIFY) || f.contains(
+					Flags.ZERO_PAD)))
 				throw new MissingFormatWidthException(toString());
 
 			// bad combination
 			if ((f.contains(Flags.PLUS) && f.contains(Flags.LEADING_SPACE))
-					|| (f.contains(Flags.LEFT_JUSTIFY) && f.contains(Flags.ZERO_PAD)))
+					|| (f.contains(Flags.LEFT_JUSTIFY) && f.contains(
+							Flags.ZERO_PAD)))
 				throw new IllegalFormatFlagsException(f.toString());
 		}
 
@@ -3344,29 +3407,29 @@ public final class Formatter implements Closeable, Flushable {
 			if (precision != -1)
 				throw new IllegalFormatPrecisionException(precision);
 			switch (c) {
-			case Conversion.PERCENT_SIGN:
-				if (f.valueOf() != Flags.LEFT_JUSTIFY.valueOf()
-						&& f.valueOf() != Flags.NONE.valueOf())
-					throw new IllegalFormatFlagsException(f.toString());
-				// '-' requires a width
-				if (width == -1 && f.contains(Flags.LEFT_JUSTIFY))
-					throw new MissingFormatWidthException(toString());
-				break;
-			case Conversion.LINE_SEPARATOR:
-				if (width != -1)
-					throw new IllegalFormatWidthException(width);
-				if (f.valueOf() != Flags.NONE.valueOf())
-					throw new IllegalFormatFlagsException(f.toString());
-				break;
-			default:
-				assert false;
+				case Conversion.PERCENT_SIGN:
+					if (f.valueOf() != Flags.LEFT_JUSTIFY.valueOf() && f
+							.valueOf() != Flags.NONE.valueOf())
+						throw new IllegalFormatFlagsException(f.toString());
+					// '-' requires a width
+					if (width == -1 && f.contains(Flags.LEFT_JUSTIFY))
+						throw new MissingFormatWidthException(toString());
+					break;
+				case Conversion.LINE_SEPARATOR:
+					if (width != -1)
+						throw new IllegalFormatWidthException(width);
+					if (f.valueOf() != Flags.NONE.valueOf())
+						throw new IllegalFormatFlagsException(f.toString());
+					break;
+				default:
+					assert false;
 			}
 		}
 
 		private void print(byte value, Locale l) throws IOException {
 			long v = value;
-			if (value < 0
-					&& (c == Conversion.OCTAL_INTEGER || c == Conversion.HEXADECIMAL_INTEGER)) {
+			if (value < 0 && (c == Conversion.OCTAL_INTEGER
+					|| c == Conversion.HEXADECIMAL_INTEGER)) {
 				v += (1L << 8);
 				assert v >= 0 : v;
 			}
@@ -3375,8 +3438,8 @@ public final class Formatter implements Closeable, Flushable {
 
 		private void print(short value, Locale l) throws IOException {
 			long v = value;
-			if (value < 0
-					&& (c == Conversion.OCTAL_INTEGER || c == Conversion.HEXADECIMAL_INTEGER)) {
+			if (value < 0 && (c == Conversion.OCTAL_INTEGER
+					|| c == Conversion.HEXADECIMAL_INTEGER)) {
 				v += (1L << 16);
 				assert v >= 0 : v;
 			}
@@ -3385,8 +3448,8 @@ public final class Formatter implements Closeable, Flushable {
 
 		private void print(int value, Locale l) throws IOException {
 			long v = value;
-			if (value < 0
-					&& (c == Conversion.OCTAL_INTEGER || c == Conversion.HEXADECIMAL_INTEGER)) {
+			if (value < 0 && (c == Conversion.OCTAL_INTEGER
+					|| c == Conversion.HEXADECIMAL_INTEGER)) {
 				v += (1L << 32);
 				assert v >= 0 : v;
 			}
@@ -3414,9 +3477,11 @@ public final class Formatter implements Closeable, Flushable {
 				// trailing sign indicator
 				trailingSign(sb, neg);
 			} else if (c == Conversion.OCTAL_INTEGER) {
-				checkBadFlags(Flags.PARENTHESES, Flags.LEADING_SPACE, Flags.PLUS);
+				checkBadFlags(Flags.PARENTHESES, Flags.LEADING_SPACE,
+						Flags.PLUS);
 				String s = Long.toOctalString(value);
-				int len = (f.contains(Flags.ALTERNATE) ? s.length() + 1 : s.length());
+				int len = (f.contains(Flags.ALTERNATE) ? s.length() + 1
+						: s.length());
 
 				// apply ALTERNATE (radix indicator for octal) before ZERO_PAD
 				if (f.contains(Flags.ALTERNATE))
@@ -3426,9 +3491,11 @@ public final class Formatter implements Closeable, Flushable {
 						sb.append('0');
 				sb.append(s);
 			} else if (c == Conversion.HEXADECIMAL_INTEGER) {
-				checkBadFlags(Flags.PARENTHESES, Flags.LEADING_SPACE, Flags.PLUS);
+				checkBadFlags(Flags.PARENTHESES, Flags.LEADING_SPACE,
+						Flags.PLUS);
 				String s = Long.toHexString(value);
-				int len = (f.contains(Flags.ALTERNATE) ? s.length() + 2 : s.length());
+				int len = (f.contains(Flags.ALTERNATE) ? s.length() + 2
+						: s.length());
 
 				// apply ALTERNATE (radix indicator for hex) before ZERO_PAD
 				if (f.contains(Flags.ALTERNATE))
@@ -3543,7 +3610,8 @@ public final class Formatter implements Closeable, Flushable {
 				if (!Double.isInfinite(v))
 					print(sb, v, l, f, c, precision, neg);
 				else
-					sb.append(f.contains(Flags.UPPERCASE) ? "INFINITY" : "Infinity");
+					sb.append(f.contains(Flags.UPPERCASE) ? "INFINITY"
+							: "Infinity");
 
 				// trailing sign indicator
 				trailingSign(sb, neg);
@@ -3556,15 +3624,15 @@ public final class Formatter implements Closeable, Flushable {
 		}
 
 		// !Double.isInfinite(value) && !Double.isNaN(value)
-		private void print(StringBuilder sb, double value, Locale l, Flags f, char c, int precision,
-				boolean neg) throws IOException {
+		private void print(StringBuilder sb, double value, Locale l, Flags f,
+				char c, int precision, boolean neg) throws IOException {
 			if (c == Conversion.SCIENTIFIC) {
 				// Create a new FormattedFloatingDecimal with the desired
 				// precision.
 				int prec = (precision == -1 ? 6 : precision);
 
-				FormattedFloatingDecimal fd = FormattedFloatingDecimal.valueOf(value, prec,
-						FormattedFloatingDecimal.Form.SCIENTIFIC);
+				FormattedFloatingDecimal fd = FormattedFloatingDecimal.valueOf(
+						value, prec, FormattedFloatingDecimal.Form.SCIENTIFIC);
 
 				char[] mant = addZeros(fd.getMantissa(), prec);
 
@@ -3573,7 +3641,8 @@ public final class Formatter implements Closeable, Flushable {
 				if (f.contains(Flags.ALTERNATE) && (prec == 0))
 					mant = addDot(mant);
 
-				char[] exp = (value == 0.0) ? new char[] { '+', '0', '0' } : fd.getExponent();
+				char[] exp = (value == 0.0) ? new char[] { '+', '0', '0' }
+						: fd.getExponent();
 
 				int newW = width;
 				if (width != -1)
@@ -3595,7 +3664,8 @@ public final class Formatter implements Closeable, Flushable {
 				// precision.
 				int prec = (precision == -1 ? 6 : precision);
 
-				FormattedFloatingDecimal fd = FormattedFloatingDecimal.valueOf(value, prec,
+				FormattedFloatingDecimal fd = FormattedFloatingDecimal.valueOf(
+						value, prec,
 						FormattedFloatingDecimal.Form.DECIMAL_FLOAT);
 
 				char[] mant = addZeros(fd.getMantissa(), prec);
@@ -3624,8 +3694,9 @@ public final class Formatter implements Closeable, Flushable {
 					mant = new char[] { '0' };
 					expRounded = 0;
 				} else {
-					FormattedFloatingDecimal fd = FormattedFloatingDecimal.valueOf(value, prec,
-							FormattedFloatingDecimal.Form.GENERAL);
+					FormattedFloatingDecimal fd = FormattedFloatingDecimal
+							.valueOf(value, prec,
+									FormattedFloatingDecimal.Form.GENERAL);
 					exp = fd.getExponent();
 					mant = fd.getMantissa();
 					expRounded = fd.getExponentRounded();
@@ -3717,7 +3788,8 @@ public final class Formatter implements Closeable, Flushable {
 				return v;
 
 			// Create new array with existing contents.
-			char[] tmp = new char[v.length + prec - outPrec + (needDot ? 1 : 0)];
+			char[] tmp = new char[v.length + prec - outPrec + (needDot ? 1
+					: 0)];
 			System.arraycopy(v, 0, tmp, 0, v.length);
 
 			// Add dot if previously determined to be necessary.
@@ -3760,7 +3832,8 @@ public final class Formatter implements Closeable, Flushable {
 
 				int precision = 1 + prec * 4;
 				int shiftDistance = DoubleConsts.SIGNIFICAND_WIDTH - precision;
-				assert (shiftDistance >= 1 && shiftDistance < DoubleConsts.SIGNIFICAND_WIDTH);
+				assert (shiftDistance >= 1
+						&& shiftDistance < DoubleConsts.SIGNIFICAND_WIDTH);
 
 				long doppel = Double.doubleToLongBits(d);
 				// Deterime the number of bits to keep.
@@ -3775,9 +3848,10 @@ public final class Formatter implements Closeable, Flushable {
 				// are nonzero (the sticky bit).
 
 				boolean leastZero = (newSignif & 0x1L) == 0L;
-				boolean round = ((1L << (shiftDistance - 1)) & roundingBits) != 0L;
-				boolean sticky = shiftDistance > 1
-						&& (~(1L << (shiftDistance - 1)) & roundingBits) != 0;
+				boolean round = ((1L << (shiftDistance - 1))
+						& roundingBits) != 0L;
+				boolean sticky = shiftDistance > 1 && (~(1L << (shiftDistance
+						- 1)) & roundingBits) != 0;
 				if ((leastZero && round && sticky) || (!leastZero && round)) {
 					newSignif++;
 				}
@@ -3804,7 +3878,8 @@ public final class Formatter implements Closeable, Flushable {
 							// Get exponent and append at the end.
 							String exp = res.substring(idx + 1);
 							int iexp = Integer.parseInt(exp) - 54;
-							return res.substring(0, idx) + "p" + Integer.toString(iexp);
+							return res.substring(0, idx) + "p" + Integer
+									.toString(iexp);
 						}
 					}
 				}
@@ -3831,8 +3906,9 @@ public final class Formatter implements Closeable, Flushable {
 		}
 
 		// value > 0
-		private void print(StringBuilder sb, BigDecimal value, Locale l, Flags f, char c,
-				int precision, boolean neg) throws IOException {
+		private void print(StringBuilder sb, BigDecimal value, Locale l,
+				Flags f, char c, int precision, boolean neg)
+				throws IOException {
 			if (c == Conversion.SCIENTIFIC) {
 				// Create a new BigDecimal with the desired precision.
 				int prec = (precision == -1 ? 6 : precision);
@@ -3851,8 +3927,8 @@ public final class Formatter implements Closeable, Flushable {
 				MathContext mc = new MathContext(compPrec);
 				BigDecimal v = new BigDecimal(value.unscaledValue(), scale, mc);
 
-				BigDecimalLayout bdl = new BigDecimalLayout(v.unscaledValue(), v.scale(),
-						BigDecimalLayoutForm.SCIENTIFIC);
+				BigDecimalLayout bdl = new BigDecimalLayout(v.unscaledValue(), v
+						.scale(), BigDecimalLayoutForm.SCIENTIFIC);
 
 				char[] mant = bdl.mantissa();
 
@@ -3861,8 +3937,8 @@ public final class Formatter implements Closeable, Flushable {
 				// representation has no fractional part) or the original
 				// precision is one. Append a decimal point if '#' is set or if
 				// we require zero padding to get to the requested precision.
-				if ((origPrec == 1 || !bdl.hasDot())
-						&& (nzeros > 0 || (f.contains(Flags.ALTERNATE))))
+				if ((origPrec == 1 || !bdl.hasDot()) && (nzeros > 0 || (f
+						.contains(Flags.ALTERNATE))))
 					mant = addDot(mant);
 
 				// Add trailing zeros in the case precision is greater than
@@ -3902,7 +3978,8 @@ public final class Formatter implements Closeable, Flushable {
 								new MathContext(compPrec));
 					}
 				}
-				BigDecimalLayout bdl = new BigDecimalLayout(value.unscaledValue(), value.scale(),
+				BigDecimalLayout bdl = new BigDecimalLayout(value
+						.unscaledValue(), value.scale(),
 						BigDecimalLayoutForm.DECIMAL_FLOAT);
 
 				char mant[] = bdl.mantissa();
@@ -3913,7 +3990,8 @@ public final class Formatter implements Closeable, Flushable {
 				// representation has no fractional part). Append a decimal
 				// point if '#' is set or we require zero padding to get to the
 				// requested precision.
-				if (bdl.scale() == 0 && (f.contains(Flags.ALTERNATE) || nzeros > 0))
+				if (bdl.scale() == 0 && (f.contains(Flags.ALTERNATE)
+						|| nzeros > 0))
 					mant = addDot(bdl.mantissa());
 
 				// Add trailing zeros if the precision is greater than the
@@ -3930,10 +4008,12 @@ public final class Formatter implements Closeable, Flushable {
 
 				BigDecimal tenToTheNegFour = BigDecimal.valueOf(1, 4);
 				BigDecimal tenToThePrec = BigDecimal.valueOf(1, -prec);
-				if ((value.equals(BigDecimal.ZERO)) || ((value.compareTo(tenToTheNegFour) != -1)
-						&& (value.compareTo(tenToThePrec) == -1))) {
+				if ((value.equals(BigDecimal.ZERO)) || ((value.compareTo(
+						tenToTheNegFour) != -1) && (value.compareTo(
+								tenToThePrec) == -1))) {
 
-					int e = -value.scale() + (value.unscaledValue().toString().length() - 1);
+					int e = -value.scale() + (value.unscaledValue().toString()
+							.length() - 1);
 
 					// xxx.yyy
 					// g precision (# sig digits) = #x + #y
@@ -3949,7 +4029,8 @@ public final class Formatter implements Closeable, Flushable {
 
 					print(sb, value, l, f, Conversion.DECIMAL_FLOAT, prec, neg);
 				} else {
-					print(sb, value, l, f, Conversion.SCIENTIFIC, prec - 1, neg);
+					print(sb, value, l, f, Conversion.SCIENTIFIC, prec - 1,
+							neg);
 				}
 			} else if (c == Conversion.HEXADECIMAL_FLOAT) {
 				// This conversion isn't supported. The error should be
@@ -3964,7 +4045,8 @@ public final class Formatter implements Closeable, Flushable {
 			private boolean dot = false;
 			private int scale;
 
-			public BigDecimalLayout(BigInteger intVal, int scale, BigDecimalLayoutForm form) {
+			public BigDecimalLayout(BigInteger intVal, int scale,
+					BigDecimalLayoutForm form) {
 				layout(intVal, scale, form);
 			}
 
@@ -4004,7 +4086,8 @@ public final class Formatter implements Closeable, Flushable {
 				return result;
 			}
 
-			private void layout(BigInteger intVal, int scale, BigDecimalLayoutForm form) {
+			private void layout(BigInteger intVal, int scale,
+					BigDecimalLayoutForm form) {
 				char coeff[] = intVal.toString().toCharArray();
 				this.scale = scale;
 
@@ -4133,261 +4216,39 @@ public final class Formatter implements Closeable, Flushable {
 			if (sb == null)
 				sb = new StringBuilder();
 			switch (c) {
-			case DateTime.HOUR_OF_DAY_0: // 'H' (00 - 23)
-			case DateTime.HOUR_0: // 'I' (01 - 12)
-			case DateTime.HOUR_OF_DAY: // 'k' (0 - 23) -- like H
-			case DateTime.HOUR: { // 'l' (1 - 12) -- like I
-				int i = t.get(Calendar.HOUR_OF_DAY);
-				if (c == DateTime.HOUR_0 || c == DateTime.HOUR)
-					i = (i == 0 || i == 12 ? 12 : i % 12);
-				Flags flags = (c == DateTime.HOUR_OF_DAY_0 || c == DateTime.HOUR_0 ? Flags.ZERO_PAD
-						: Flags.NONE);
-				sb.append(localizedMagnitude(null, i, flags, 2, l));
-				break;
-			}
-			case DateTime.MINUTE: { // 'M' (00 - 59)
-				int i = t.get(Calendar.MINUTE);
-				Flags flags = Flags.ZERO_PAD;
-				sb.append(localizedMagnitude(null, i, flags, 2, l));
-				break;
-			}
-			case DateTime.NANOSECOND: { // 'N' (000000000 - 999999999)
-				int i = t.get(Calendar.MILLISECOND) * 1000000;
-				Flags flags = Flags.ZERO_PAD;
-				sb.append(localizedMagnitude(null, i, flags, 9, l));
-				break;
-			}
-			case DateTime.MILLISECOND: { // 'L' (000 - 999)
-				int i = t.get(Calendar.MILLISECOND);
-				Flags flags = Flags.ZERO_PAD;
-				sb.append(localizedMagnitude(null, i, flags, 3, l));
-				break;
-			}
-			case DateTime.MILLISECOND_SINCE_EPOCH: { // 'Q' (0 - 99...?)
-				long i = t.getTimeInMillis();
-				Flags flags = Flags.NONE;
-				sb.append(localizedMagnitude(null, i, flags, width, l));
-				break;
-			}
-			case DateTime.AM_PM: { // 'p' (am or pm)
-				// Calendar.AM = 0, Calendar.PM = 1, LocaleElements defines
-				// upper
-				String[] ampm = { "AM", "PM" };
-				if (l != null && l != Locale.US) {
-					DateFormatSymbols dfs = DateFormatSymbols.getInstance(l);
-					ampm = dfs.getAmPmStrings();
-				}
-				String s = ampm[t.get(Calendar.AM_PM)];
-				sb.append(s.toLowerCase(l != null ? l : Locale.US));
-				break;
-			}
-			case DateTime.SECONDS_SINCE_EPOCH: { // 's' (0 - 99...?)
-				long i = t.getTimeInMillis() / 1000;
-				Flags flags = Flags.NONE;
-				sb.append(localizedMagnitude(null, i, flags, width, l));
-				break;
-			}
-			case DateTime.SECOND: { // 'S' (00 - 60 - leap second)
-				int i = t.get(Calendar.SECOND);
-				Flags flags = Flags.ZERO_PAD;
-				sb.append(localizedMagnitude(null, i, flags, 2, l));
-				break;
-			}
-			case DateTime.ZONE_NUMERIC: { // 'z' ({-|+}####) - ls minus?
-				int i = t.get(Calendar.ZONE_OFFSET) + t.get(Calendar.DST_OFFSET);
-				boolean neg = i < 0;
-				sb.append(neg ? '-' : '+');
-				if (neg)
-					i = -i;
-				int min = i / 60000;
-				// combine minute and hour into a single integer
-				int offset = (min / 60) * 100 + (min % 60);
-				Flags flags = Flags.ZERO_PAD;
-
-				sb.append(localizedMagnitude(null, offset, flags, 4, l));
-				break;
-			}
-			case DateTime.ZONE: { // 'Z' (symbol)
-				TimeZone tz = t.getTimeZone();
-				sb.append(tz.getDisplayName((t.get(Calendar.DST_OFFSET) != 0), TimeZone.SHORT,
-						(l == null) ? Locale.US : l));
-				break;
-			}
-
-			// Date
-			case DateTime.NAME_OF_DAY_ABBREV: // 'a'
-			case DateTime.NAME_OF_DAY: { // 'A'
-				int i = t.get(Calendar.DAY_OF_WEEK);
-				Locale lt = ((l == null) ? Locale.US : l);
-				DateFormatSymbols dfs = DateFormatSymbols.getInstance(lt);
-				if (c == DateTime.NAME_OF_DAY)
-					sb.append(dfs.getWeekdays()[i]);
-				else
-					sb.append(dfs.getShortWeekdays()[i]);
-				break;
-			}
-			case DateTime.NAME_OF_MONTH_ABBREV: // 'b'
-			case DateTime.NAME_OF_MONTH_ABBREV_X: // 'h' -- same b
-			case DateTime.NAME_OF_MONTH: { // 'B'
-				int i = t.get(Calendar.MONTH);
-				Locale lt = ((l == null) ? Locale.US : l);
-				DateFormatSymbols dfs = DateFormatSymbols.getInstance(lt);
-				if (c == DateTime.NAME_OF_MONTH)
-					sb.append(dfs.getMonths()[i]);
-				else
-					sb.append(dfs.getShortMonths()[i]);
-				break;
-			}
-			case DateTime.CENTURY: // 'C' (00 - 99)
-			case DateTime.YEAR_2: // 'y' (00 - 99)
-			case DateTime.YEAR_4: { // 'Y' (0000 - 9999)
-				int i = t.get(Calendar.YEAR);
-				int size = 2;
-				switch (c) {
-				case DateTime.CENTURY:
-					i /= 100;
-					break;
-				case DateTime.YEAR_2:
-					i %= 100;
-					break;
-				case DateTime.YEAR_4:
-					size = 4;
-					break;
-				}
-				Flags flags = Flags.ZERO_PAD;
-				sb.append(localizedMagnitude(null, i, flags, size, l));
-				break;
-			}
-			case DateTime.DAY_OF_MONTH_0: // 'd' (01 - 31)
-			case DateTime.DAY_OF_MONTH: { // 'e' (1 - 31) -- like d
-				int i = t.get(Calendar.DATE);
-				Flags flags = (c == DateTime.DAY_OF_MONTH_0 ? Flags.ZERO_PAD : Flags.NONE);
-				sb.append(localizedMagnitude(null, i, flags, 2, l));
-				break;
-			}
-			case DateTime.DAY_OF_YEAR: { // 'j' (001 - 366)
-				int i = t.get(Calendar.DAY_OF_YEAR);
-				Flags flags = Flags.ZERO_PAD;
-				sb.append(localizedMagnitude(null, i, flags, 3, l));
-				break;
-			}
-			case DateTime.MONTH: { // 'm' (01 - 12)
-				int i = t.get(Calendar.MONTH) + 1;
-				Flags flags = Flags.ZERO_PAD;
-				sb.append(localizedMagnitude(null, i, flags, 2, l));
-				break;
-			}
-
-			// Composites
-			case DateTime.TIME: // 'T' (24 hour hh:mm:ss - %tH:%tM:%tS)
-			case DateTime.TIME_24_HOUR: { // 'R' (hh:mm same as %H:%M)
-				char sep = ':';
-				print(sb, t, DateTime.HOUR_OF_DAY_0, l).append(sep);
-				print(sb, t, DateTime.MINUTE, l);
-				if (c == DateTime.TIME) {
-					sb.append(sep);
-					print(sb, t, DateTime.SECOND, l);
-				}
-				break;
-			}
-			case DateTime.TIME_12_HOUR: { // 'r' (hh:mm:ss [AP]M)
-				char sep = ':';
-				print(sb, t, DateTime.HOUR_0, l).append(sep);
-				print(sb, t, DateTime.MINUTE, l).append(sep);
-				print(sb, t, DateTime.SECOND, l).append(' ');
-				// this may be in wrong place for some locales
-				StringBuilder tsb = new StringBuilder();
-				print(tsb, t, DateTime.AM_PM, l);
-				sb.append(tsb.toString().toUpperCase(l != null ? l : Locale.US));
-				break;
-			}
-			case DateTime.DATE_TIME: { // 'c' (Sat Nov 04 12:02:33 EST 1999)
-				char sep = ' ';
-				print(sb, t, DateTime.NAME_OF_DAY_ABBREV, l).append(sep);
-				print(sb, t, DateTime.NAME_OF_MONTH_ABBREV, l).append(sep);
-				print(sb, t, DateTime.DAY_OF_MONTH_0, l).append(sep);
-				print(sb, t, DateTime.TIME, l).append(sep);
-				print(sb, t, DateTime.ZONE, l).append(sep);
-				print(sb, t, DateTime.YEAR_4, l);
-				break;
-			}
-			case DateTime.DATE: { // 'D' (mm/dd/yy)
-				char sep = '/';
-				print(sb, t, DateTime.MONTH, l).append(sep);
-				print(sb, t, DateTime.DAY_OF_MONTH_0, l).append(sep);
-				print(sb, t, DateTime.YEAR_2, l);
-				break;
-			}
-			case DateTime.ISO_STANDARD_DATE: { // 'F' (%Y-%m-%d)
-				char sep = '-';
-				print(sb, t, DateTime.YEAR_4, l).append(sep);
-				print(sb, t, DateTime.MONTH, l).append(sep);
-				print(sb, t, DateTime.DAY_OF_MONTH_0, l);
-				break;
-			}
-			default:
-				assert false;
-			}
-			return sb;
-		}
-
-		private void print(TemporalAccessor t, char c, Locale l) throws IOException {
-			StringBuilder sb = new StringBuilder();
-			print(sb, t, c, l);
-			// justify based on width
-			String s = justify(sb.toString());
-			if (f.contains(Flags.UPPERCASE))
-				s = s.toUpperCase();
-			a.append(s);
-		}
-
-		private Appendable print(StringBuilder sb, TemporalAccessor t, char c, Locale l)
-				throws IOException {
-			if (sb == null)
-				sb = new StringBuilder();
-			try {
-				switch (c) {
-				case DateTime.HOUR_OF_DAY_0: { // 'H' (00 - 23)
-					int i = t.get(ChronoField.HOUR_OF_DAY);
-					sb.append(localizedMagnitude(null, i, Flags.ZERO_PAD, 2, l));
-					break;
-				}
-				case DateTime.HOUR_OF_DAY: { // 'k' (0 - 23) -- like H
-					int i = t.get(ChronoField.HOUR_OF_DAY);
-					sb.append(localizedMagnitude(null, i, Flags.NONE, 2, l));
-					break;
-				}
-				case DateTime.HOUR_0: { // 'I' (01 - 12)
-					int i = t.get(ChronoField.CLOCK_HOUR_OF_AMPM);
-					sb.append(localizedMagnitude(null, i, Flags.ZERO_PAD, 2, l));
-					break;
-				}
+				case DateTime.HOUR_OF_DAY_0: // 'H' (00 - 23)
+				case DateTime.HOUR_0: // 'I' (01 - 12)
+				case DateTime.HOUR_OF_DAY: // 'k' (0 - 23) -- like H
 				case DateTime.HOUR: { // 'l' (1 - 12) -- like I
-					int i = t.get(ChronoField.CLOCK_HOUR_OF_AMPM);
-					sb.append(localizedMagnitude(null, i, Flags.NONE, 2, l));
+					int i = t.get(Calendar.HOUR_OF_DAY);
+					if (c == DateTime.HOUR_0 || c == DateTime.HOUR)
+						i = (i == 0 || i == 12 ? 12 : i % 12);
+					Flags flags = (c == DateTime.HOUR_OF_DAY_0
+							|| c == DateTime.HOUR_0 ? Flags.ZERO_PAD
+									: Flags.NONE);
+					sb.append(localizedMagnitude(null, i, flags, 2, l));
 					break;
 				}
 				case DateTime.MINUTE: { // 'M' (00 - 59)
-					int i = t.get(ChronoField.MINUTE_OF_HOUR);
+					int i = t.get(Calendar.MINUTE);
 					Flags flags = Flags.ZERO_PAD;
 					sb.append(localizedMagnitude(null, i, flags, 2, l));
 					break;
 				}
 				case DateTime.NANOSECOND: { // 'N' (000000000 - 999999999)
-					int i = t.get(ChronoField.MILLI_OF_SECOND) * 1000000;
+					int i = t.get(Calendar.MILLISECOND) * 1000000;
 					Flags flags = Flags.ZERO_PAD;
 					sb.append(localizedMagnitude(null, i, flags, 9, l));
 					break;
 				}
 				case DateTime.MILLISECOND: { // 'L' (000 - 999)
-					int i = t.get(ChronoField.MILLI_OF_SECOND);
+					int i = t.get(Calendar.MILLISECOND);
 					Flags flags = Flags.ZERO_PAD;
 					sb.append(localizedMagnitude(null, i, flags, 3, l));
 					break;
 				}
 				case DateTime.MILLISECOND_SINCE_EPOCH: { // 'Q' (0 - 99...?)
-					long i = t.getLong(ChronoField.INSTANT_SECONDS) * 1000L
-							+ t.getLong(ChronoField.MILLI_OF_SECOND);
+					long i = t.getTimeInMillis();
 					Flags flags = Flags.NONE;
 					sb.append(localizedMagnitude(null, i, flags, width, l));
 					break;
@@ -4397,58 +4258,53 @@ public final class Formatter implements Closeable, Flushable {
 					// upper
 					String[] ampm = { "AM", "PM" };
 					if (l != null && l != Locale.US) {
-						DateFormatSymbols dfs = DateFormatSymbols.getInstance(l);
+						DateFormatSymbols dfs = DateFormatSymbols.getInstance(
+								l);
 						ampm = dfs.getAmPmStrings();
 					}
-					String s = ampm[t.get(ChronoField.AMPM_OF_DAY)];
+					String s = ampm[t.get(Calendar.AM_PM)];
 					sb.append(s.toLowerCase(l != null ? l : Locale.US));
 					break;
 				}
 				case DateTime.SECONDS_SINCE_EPOCH: { // 's' (0 - 99...?)
-					long i = t.getLong(ChronoField.INSTANT_SECONDS);
+					long i = t.getTimeInMillis() / 1000;
 					Flags flags = Flags.NONE;
 					sb.append(localizedMagnitude(null, i, flags, width, l));
 					break;
 				}
 				case DateTime.SECOND: { // 'S' (00 - 60 - leap second)
-					int i = t.get(ChronoField.SECOND_OF_MINUTE);
+					int i = t.get(Calendar.SECOND);
 					Flags flags = Flags.ZERO_PAD;
 					sb.append(localizedMagnitude(null, i, flags, 2, l));
 					break;
 				}
 				case DateTime.ZONE_NUMERIC: { // 'z' ({-|+}####) - ls minus?
-					int i = t.get(ChronoField.OFFSET_SECONDS);
+					int i = t.get(Calendar.ZONE_OFFSET) + t.get(
+							Calendar.DST_OFFSET);
 					boolean neg = i < 0;
 					sb.append(neg ? '-' : '+');
 					if (neg)
 						i = -i;
-					int min = i / 60;
+					int min = i / 60000;
 					// combine minute and hour into a single integer
 					int offset = (min / 60) * 100 + (min % 60);
 					Flags flags = Flags.ZERO_PAD;
+
 					sb.append(localizedMagnitude(null, offset, flags, 4, l));
 					break;
 				}
 				case DateTime.ZONE: { // 'Z' (symbol)
-					ZoneId zid = t.query(TemporalQueries.zone());
-					if (zid == null) {
-						throw new IllegalFormatConversionException(c, t.getClass());
-					}
-					if (!(zid instanceof ZoneOffset)
-							&& t.isSupported(ChronoField.INSTANT_SECONDS)) {
-						Instant instant = Instant.from(t);
-						sb.append(TimeZone.getTimeZone(zid.getId()).getDisplayName(
-								zid.getRules().isDaylightSavings(instant), TimeZone.SHORT,
-								(l == null) ? Locale.US : l));
-						break;
-					}
-					sb.append(zid.getId());
+					TimeZone tz = t.getTimeZone();
+					sb.append(tz.getDisplayName((t.get(
+							Calendar.DST_OFFSET) != 0), TimeZone.SHORT,
+							(l == null) ? Locale.US : l));
 					break;
 				}
+
 				// Date
 				case DateTime.NAME_OF_DAY_ABBREV: // 'a'
 				case DateTime.NAME_OF_DAY: { // 'A'
-					int i = t.get(ChronoField.DAY_OF_WEEK) % 7 + 1;
+					int i = t.get(Calendar.DAY_OF_WEEK);
 					Locale lt = ((l == null) ? Locale.US : l);
 					DateFormatSymbols dfs = DateFormatSymbols.getInstance(lt);
 					if (c == DateTime.NAME_OF_DAY)
@@ -4460,7 +4316,7 @@ public final class Formatter implements Closeable, Flushable {
 				case DateTime.NAME_OF_MONTH_ABBREV: // 'b'
 				case DateTime.NAME_OF_MONTH_ABBREV_X: // 'h' -- same b
 				case DateTime.NAME_OF_MONTH: { // 'B'
-					int i = t.get(ChronoField.MONTH_OF_YEAR) - 1;
+					int i = t.get(Calendar.MONTH);
 					Locale lt = ((l == null) ? Locale.US : l);
 					DateFormatSymbols dfs = DateFormatSymbols.getInstance(lt);
 					if (c == DateTime.NAME_OF_MONTH)
@@ -4472,18 +4328,18 @@ public final class Formatter implements Closeable, Flushable {
 				case DateTime.CENTURY: // 'C' (00 - 99)
 				case DateTime.YEAR_2: // 'y' (00 - 99)
 				case DateTime.YEAR_4: { // 'Y' (0000 - 9999)
-					int i = t.get(ChronoField.YEAR_OF_ERA);
+					int i = t.get(Calendar.YEAR);
 					int size = 2;
 					switch (c) {
-					case DateTime.CENTURY:
-						i /= 100;
-						break;
-					case DateTime.YEAR_2:
-						i %= 100;
-						break;
-					case DateTime.YEAR_4:
-						size = 4;
-						break;
+						case DateTime.CENTURY:
+							i /= 100;
+							break;
+						case DateTime.YEAR_2:
+							i %= 100;
+							break;
+						case DateTime.YEAR_4:
+							size = 4;
+							break;
 					}
 					Flags flags = Flags.ZERO_PAD;
 					sb.append(localizedMagnitude(null, i, flags, size, l));
@@ -4491,19 +4347,20 @@ public final class Formatter implements Closeable, Flushable {
 				}
 				case DateTime.DAY_OF_MONTH_0: // 'd' (01 - 31)
 				case DateTime.DAY_OF_MONTH: { // 'e' (1 - 31) -- like d
-					int i = t.get(ChronoField.DAY_OF_MONTH);
-					Flags flags = (c == DateTime.DAY_OF_MONTH_0 ? Flags.ZERO_PAD : Flags.NONE);
+					int i = t.get(Calendar.DATE);
+					Flags flags = (c == DateTime.DAY_OF_MONTH_0 ? Flags.ZERO_PAD
+							: Flags.NONE);
 					sb.append(localizedMagnitude(null, i, flags, 2, l));
 					break;
 				}
 				case DateTime.DAY_OF_YEAR: { // 'j' (001 - 366)
-					int i = t.get(ChronoField.DAY_OF_YEAR);
+					int i = t.get(Calendar.DAY_OF_YEAR);
 					Flags flags = Flags.ZERO_PAD;
 					sb.append(localizedMagnitude(null, i, flags, 3, l));
 					break;
 				}
 				case DateTime.MONTH: { // 'm' (01 - 12)
-					int i = t.get(ChronoField.MONTH_OF_YEAR);
+					int i = t.get(Calendar.MONTH) + 1;
 					Flags flags = Flags.ZERO_PAD;
 					sb.append(localizedMagnitude(null, i, flags, 2, l));
 					break;
@@ -4529,7 +4386,8 @@ public final class Formatter implements Closeable, Flushable {
 					// this may be in wrong place for some locales
 					StringBuilder tsb = new StringBuilder();
 					print(tsb, t, DateTime.AM_PM, l);
-					sb.append(tsb.toString().toUpperCase(l != null ? l : Locale.US));
+					sb.append(tsb.toString().toUpperCase(l != null ? l
+							: Locale.US));
 					break;
 				}
 				case DateTime.DATE_TIME: { // 'c' (Sat Nov 04 12:02:33 EST 1999)
@@ -4558,6 +4416,255 @@ public final class Formatter implements Closeable, Flushable {
 				}
 				default:
 					assert false;
+			}
+			return sb;
+		}
+
+		private void print(TemporalAccessor t, char c, Locale l)
+				throws IOException {
+			StringBuilder sb = new StringBuilder();
+			print(sb, t, c, l);
+			// justify based on width
+			String s = justify(sb.toString());
+			if (f.contains(Flags.UPPERCASE))
+				s = s.toUpperCase();
+			a.append(s);
+		}
+
+		private Appendable print(StringBuilder sb, TemporalAccessor t, char c,
+				Locale l) throws IOException {
+			if (sb == null)
+				sb = new StringBuilder();
+			try {
+				switch (c) {
+					case DateTime.HOUR_OF_DAY_0: { // 'H' (00 - 23)
+						int i = t.get(ChronoField.HOUR_OF_DAY);
+						sb.append(localizedMagnitude(null, i, Flags.ZERO_PAD, 2,
+								l));
+						break;
+					}
+					case DateTime.HOUR_OF_DAY: { // 'k' (0 - 23) -- like H
+						int i = t.get(ChronoField.HOUR_OF_DAY);
+						sb.append(localizedMagnitude(null, i, Flags.NONE, 2,
+								l));
+						break;
+					}
+					case DateTime.HOUR_0: { // 'I' (01 - 12)
+						int i = t.get(ChronoField.CLOCK_HOUR_OF_AMPM);
+						sb.append(localizedMagnitude(null, i, Flags.ZERO_PAD, 2,
+								l));
+						break;
+					}
+					case DateTime.HOUR: { // 'l' (1 - 12) -- like I
+						int i = t.get(ChronoField.CLOCK_HOUR_OF_AMPM);
+						sb.append(localizedMagnitude(null, i, Flags.NONE, 2,
+								l));
+						break;
+					}
+					case DateTime.MINUTE: { // 'M' (00 - 59)
+						int i = t.get(ChronoField.MINUTE_OF_HOUR);
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, i, flags, 2, l));
+						break;
+					}
+					case DateTime.NANOSECOND: { // 'N' (000000000 - 999999999)
+						int i = t.get(ChronoField.MILLI_OF_SECOND) * 1000000;
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, i, flags, 9, l));
+						break;
+					}
+					case DateTime.MILLISECOND: { // 'L' (000 - 999)
+						int i = t.get(ChronoField.MILLI_OF_SECOND);
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, i, flags, 3, l));
+						break;
+					}
+					case DateTime.MILLISECOND_SINCE_EPOCH: { // 'Q' (0 - 99...?)
+						long i = t.getLong(ChronoField.INSTANT_SECONDS) * 1000L
+								+ t.getLong(ChronoField.MILLI_OF_SECOND);
+						Flags flags = Flags.NONE;
+						sb.append(localizedMagnitude(null, i, flags, width, l));
+						break;
+					}
+					case DateTime.AM_PM: { // 'p' (am or pm)
+						// Calendar.AM = 0, Calendar.PM = 1, LocaleElements defines
+						// upper
+						String[] ampm = { "AM", "PM" };
+						if (l != null && l != Locale.US) {
+							DateFormatSymbols dfs = DateFormatSymbols
+									.getInstance(l);
+							ampm = dfs.getAmPmStrings();
+						}
+						String s = ampm[t.get(ChronoField.AMPM_OF_DAY)];
+						sb.append(s.toLowerCase(l != null ? l : Locale.US));
+						break;
+					}
+					case DateTime.SECONDS_SINCE_EPOCH: { // 's' (0 - 99...?)
+						long i = t.getLong(ChronoField.INSTANT_SECONDS);
+						Flags flags = Flags.NONE;
+						sb.append(localizedMagnitude(null, i, flags, width, l));
+						break;
+					}
+					case DateTime.SECOND: { // 'S' (00 - 60 - leap second)
+						int i = t.get(ChronoField.SECOND_OF_MINUTE);
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, i, flags, 2, l));
+						break;
+					}
+					case DateTime.ZONE_NUMERIC: { // 'z' ({-|+}####) - ls minus?
+						int i = t.get(ChronoField.OFFSET_SECONDS);
+						boolean neg = i < 0;
+						sb.append(neg ? '-' : '+');
+						if (neg)
+							i = -i;
+						int min = i / 60;
+						// combine minute and hour into a single integer
+						int offset = (min / 60) * 100 + (min % 60);
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, offset, flags, 4,
+								l));
+						break;
+					}
+					case DateTime.ZONE: { // 'Z' (symbol)
+						ZoneId zid = t.query(TemporalQueries.zone());
+						if (zid == null) {
+							throw new IllegalFormatConversionException(c, t
+									.getClass());
+						}
+						if (!(zid instanceof ZoneOffset) && t.isSupported(
+								ChronoField.INSTANT_SECONDS)) {
+							Instant instant = Instant.from(t);
+							sb.append(TimeZone.getTimeZone(zid.getId())
+									.getDisplayName(zid.getRules()
+											.isDaylightSavings(instant),
+											TimeZone.SHORT, (l == null)
+													? Locale.US
+													: l));
+							break;
+						}
+						sb.append(zid.getId());
+						break;
+					}
+					// Date
+					case DateTime.NAME_OF_DAY_ABBREV: // 'a'
+					case DateTime.NAME_OF_DAY: { // 'A'
+						int i = t.get(ChronoField.DAY_OF_WEEK) % 7 + 1;
+						Locale lt = ((l == null) ? Locale.US : l);
+						DateFormatSymbols dfs = DateFormatSymbols.getInstance(
+								lt);
+						if (c == DateTime.NAME_OF_DAY)
+							sb.append(dfs.getWeekdays()[i]);
+						else
+							sb.append(dfs.getShortWeekdays()[i]);
+						break;
+					}
+					case DateTime.NAME_OF_MONTH_ABBREV: // 'b'
+					case DateTime.NAME_OF_MONTH_ABBREV_X: // 'h' -- same b
+					case DateTime.NAME_OF_MONTH: { // 'B'
+						int i = t.get(ChronoField.MONTH_OF_YEAR) - 1;
+						Locale lt = ((l == null) ? Locale.US : l);
+						DateFormatSymbols dfs = DateFormatSymbols.getInstance(
+								lt);
+						if (c == DateTime.NAME_OF_MONTH)
+							sb.append(dfs.getMonths()[i]);
+						else
+							sb.append(dfs.getShortMonths()[i]);
+						break;
+					}
+					case DateTime.CENTURY: // 'C' (00 - 99)
+					case DateTime.YEAR_2: // 'y' (00 - 99)
+					case DateTime.YEAR_4: { // 'Y' (0000 - 9999)
+						int i = t.get(ChronoField.YEAR_OF_ERA);
+						int size = 2;
+						switch (c) {
+							case DateTime.CENTURY:
+								i /= 100;
+								break;
+							case DateTime.YEAR_2:
+								i %= 100;
+								break;
+							case DateTime.YEAR_4:
+								size = 4;
+								break;
+						}
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, i, flags, size, l));
+						break;
+					}
+					case DateTime.DAY_OF_MONTH_0: // 'd' (01 - 31)
+					case DateTime.DAY_OF_MONTH: { // 'e' (1 - 31) -- like d
+						int i = t.get(ChronoField.DAY_OF_MONTH);
+						Flags flags = (c == DateTime.DAY_OF_MONTH_0
+								? Flags.ZERO_PAD
+								: Flags.NONE);
+						sb.append(localizedMagnitude(null, i, flags, 2, l));
+						break;
+					}
+					case DateTime.DAY_OF_YEAR: { // 'j' (001 - 366)
+						int i = t.get(ChronoField.DAY_OF_YEAR);
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, i, flags, 3, l));
+						break;
+					}
+					case DateTime.MONTH: { // 'm' (01 - 12)
+						int i = t.get(ChronoField.MONTH_OF_YEAR);
+						Flags flags = Flags.ZERO_PAD;
+						sb.append(localizedMagnitude(null, i, flags, 2, l));
+						break;
+					}
+
+					// Composites
+					case DateTime.TIME: // 'T' (24 hour hh:mm:ss - %tH:%tM:%tS)
+					case DateTime.TIME_24_HOUR: { // 'R' (hh:mm same as %H:%M)
+						char sep = ':';
+						print(sb, t, DateTime.HOUR_OF_DAY_0, l).append(sep);
+						print(sb, t, DateTime.MINUTE, l);
+						if (c == DateTime.TIME) {
+							sb.append(sep);
+							print(sb, t, DateTime.SECOND, l);
+						}
+						break;
+					}
+					case DateTime.TIME_12_HOUR: { // 'r' (hh:mm:ss [AP]M)
+						char sep = ':';
+						print(sb, t, DateTime.HOUR_0, l).append(sep);
+						print(sb, t, DateTime.MINUTE, l).append(sep);
+						print(sb, t, DateTime.SECOND, l).append(' ');
+						// this may be in wrong place for some locales
+						StringBuilder tsb = new StringBuilder();
+						print(tsb, t, DateTime.AM_PM, l);
+						sb.append(tsb.toString().toUpperCase(l != null ? l
+								: Locale.US));
+						break;
+					}
+					case DateTime.DATE_TIME: { // 'c' (Sat Nov 04 12:02:33 EST 1999)
+						char sep = ' ';
+						print(sb, t, DateTime.NAME_OF_DAY_ABBREV, l).append(
+								sep);
+						print(sb, t, DateTime.NAME_OF_MONTH_ABBREV, l).append(
+								sep);
+						print(sb, t, DateTime.DAY_OF_MONTH_0, l).append(sep);
+						print(sb, t, DateTime.TIME, l).append(sep);
+						print(sb, t, DateTime.ZONE, l).append(sep);
+						print(sb, t, DateTime.YEAR_4, l);
+						break;
+					}
+					case DateTime.DATE: { // 'D' (mm/dd/yy)
+						char sep = '/';
+						print(sb, t, DateTime.MONTH, l).append(sep);
+						print(sb, t, DateTime.DAY_OF_MONTH_0, l).append(sep);
+						print(sb, t, DateTime.YEAR_2, l);
+						break;
+					}
+					case DateTime.ISO_STANDARD_DATE: { // 'F' (%Y-%m-%d)
+						char sep = '-';
+						print(sb, t, DateTime.YEAR_4, l).append(sep);
+						print(sb, t, DateTime.MONTH, l).append(sep);
+						print(sb, t, DateTime.DAY_OF_MONTH_0, l);
+						break;
+					}
+					default:
+						assert false;
 				}
 			} catch (DateTimeException x) {
 				throw new IllegalFormatConversionException(c, t.getClass());
@@ -4584,14 +4691,14 @@ public final class Formatter implements Closeable, Flushable {
 			return zero;
 		}
 
-		private StringBuilder localizedMagnitude(StringBuilder sb, long value, Flags f, int width,
-				Locale l) {
+		private StringBuilder localizedMagnitude(StringBuilder sb, long value,
+				Flags f, int width, Locale l) {
 			char[] va = Long.toString(value, 10).toCharArray();
 			return localizedMagnitude(sb, va, f, width, l);
 		}
 
-		private StringBuilder localizedMagnitude(StringBuilder sb, char[] value, Flags f, int width,
-				Locale l) {
+		private StringBuilder localizedMagnitude(StringBuilder sb, char[] value,
+				Flags f, int width, Locale l) {
 			if (sb == null)
 				sb = new StringBuilder();
 			int begin = sb.length();
@@ -4616,7 +4723,8 @@ public final class Formatter implements Closeable, Flushable {
 				if (l == null || l.equals(Locale.US)) {
 					decSep = '.';
 				} else {
-					DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(l);
+					DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(
+							l);
 					decSep = dfs.getDecimalSeparator();
 				}
 			}
@@ -4626,9 +4734,11 @@ public final class Formatter implements Closeable, Flushable {
 					grpSep = ',';
 					grpSize = 3;
 				} else {
-					DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(l);
+					DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(
+							l);
 					grpSep = dfs.getGroupingSeparator();
-					DecimalFormat df = (DecimalFormat) NumberFormat.getIntegerInstance(l);
+					DecimalFormat df = (DecimalFormat) NumberFormat
+							.getIntegerInstance(l);
 					grpSize = df.getGroupingSize();
 				}
 			}
@@ -4644,7 +4754,8 @@ public final class Formatter implements Closeable, Flushable {
 
 				char c = value[j];
 				sb.append((char) ((c - '0') + zero));
-				if (grpSep != '\0' && j != dot - 1 && ((dot - j) % grpSize == 1))
+				if (grpSep != '\0' && j != dot - 1 && ((dot - j)
+						% grpSize == 1))
 					sb.append(grpSep);
 			}
 
@@ -4719,24 +4830,24 @@ public final class Formatter implements Closeable, Flushable {
 		// parse those flags which may be provided by users
 		private static Flags parse(char c) {
 			switch (c) {
-			case '-':
-				return LEFT_JUSTIFY;
-			case '#':
-				return ALTERNATE;
-			case '+':
-				return PLUS;
-			case ' ':
-				return LEADING_SPACE;
-			case '0':
-				return ZERO_PAD;
-			case ',':
-				return GROUP;
-			case '(':
-				return PARENTHESES;
-			case '<':
-				return PREVIOUS;
-			default:
-				throw new UnknownFormatFlagsException(String.valueOf(c));
+				case '-':
+					return LEFT_JUSTIFY;
+				case '#':
+					return ALTERNATE;
+				case '+':
+					return PLUS;
+				case ' ':
+					return LEADING_SPACE;
+				case '0':
+					return ZERO_PAD;
+				case ',':
+					return GROUP;
+				case '(':
+					return PARENTHESES;
+				case '<':
+					return PREVIOUS;
+				default:
+					throw new UnknownFormatFlagsException(String.valueOf(c));
 			}
 		}
 
@@ -4812,73 +4923,73 @@ public final class Formatter implements Closeable, Flushable {
 		static final char PERCENT_SIGN = '%';
 
 		static boolean isValid(char c) {
-			return (isGeneral(c) || isInteger(c) || isFloat(c) || isText(c) || c == 't'
-					|| isCharacter(c));
+			return (isGeneral(c) || isInteger(c) || isFloat(c) || isText(c)
+					|| c == 't' || isCharacter(c));
 		}
 
 		// Returns true iff the Conversion is applicable to all objects.
 		static boolean isGeneral(char c) {
 			switch (c) {
-			case BOOLEAN:
-			case BOOLEAN_UPPER:
-			case STRING:
-			case STRING_UPPER:
-			case HASHCODE:
-			case HASHCODE_UPPER:
-				return true;
-			default:
-				return false;
+				case BOOLEAN:
+				case BOOLEAN_UPPER:
+				case STRING:
+				case STRING_UPPER:
+				case HASHCODE:
+				case HASHCODE_UPPER:
+					return true;
+				default:
+					return false;
 			}
 		}
 
 		// Returns true iff the Conversion is applicable to character.
 		static boolean isCharacter(char c) {
 			switch (c) {
-			case CHARACTER:
-			case CHARACTER_UPPER:
-				return true;
-			default:
-				return false;
+				case CHARACTER:
+				case CHARACTER_UPPER:
+					return true;
+				default:
+					return false;
 			}
 		}
 
 		// Returns true iff the Conversion is an integer type.
 		static boolean isInteger(char c) {
 			switch (c) {
-			case DECIMAL_INTEGER:
-			case OCTAL_INTEGER:
-			case HEXADECIMAL_INTEGER:
-			case HEXADECIMAL_INTEGER_UPPER:
-				return true;
-			default:
-				return false;
+				case DECIMAL_INTEGER:
+				case OCTAL_INTEGER:
+				case HEXADECIMAL_INTEGER:
+				case HEXADECIMAL_INTEGER_UPPER:
+					return true;
+				default:
+					return false;
 			}
 		}
 
 		// Returns true iff the Conversion is a floating-point type.
 		static boolean isFloat(char c) {
 			switch (c) {
-			case SCIENTIFIC:
-			case SCIENTIFIC_UPPER:
-			case GENERAL:
-			case GENERAL_UPPER:
-			case DECIMAL_FLOAT:
-			case HEXADECIMAL_FLOAT:
-			case HEXADECIMAL_FLOAT_UPPER:
-				return true;
-			default:
-				return false;
+				case SCIENTIFIC:
+				case SCIENTIFIC_UPPER:
+				case GENERAL:
+				case GENERAL_UPPER:
+				case DECIMAL_FLOAT:
+				case HEXADECIMAL_FLOAT:
+				case HEXADECIMAL_FLOAT_UPPER:
+					return true;
+				default:
+					return false;
 			}
 		}
 
 		// Returns true iff the Conversion does not require an argument
 		static boolean isText(char c) {
 			switch (c) {
-			case LINE_SEPARATOR:
-			case PERCENT_SIGN:
-				return true;
-			default:
-				return false;
+				case LINE_SEPARATOR:
+				case PERCENT_SIGN:
+					return true;
+				default:
+					return false;
 			}
 		}
 	}
@@ -4933,53 +5044,53 @@ public final class Formatter implements Closeable, Flushable {
 
 		static boolean isValid(char c) {
 			switch (c) {
-			case HOUR_OF_DAY_0:
-			case HOUR_0:
-			case HOUR_OF_DAY:
-			case HOUR:
-			case MINUTE:
-			case NANOSECOND:
-			case MILLISECOND:
-			case MILLISECOND_SINCE_EPOCH:
-			case AM_PM:
-			case SECONDS_SINCE_EPOCH:
-			case SECOND:
-			case TIME:
-			case ZONE_NUMERIC:
-			case ZONE:
+				case HOUR_OF_DAY_0:
+				case HOUR_0:
+				case HOUR_OF_DAY:
+				case HOUR:
+				case MINUTE:
+				case NANOSECOND:
+				case MILLISECOND:
+				case MILLISECOND_SINCE_EPOCH:
+				case AM_PM:
+				case SECONDS_SINCE_EPOCH:
+				case SECOND:
+				case TIME:
+				case ZONE_NUMERIC:
+				case ZONE:
 
-				// Date
-			case NAME_OF_DAY_ABBREV:
-			case NAME_OF_DAY:
-			case NAME_OF_MONTH_ABBREV:
-			case NAME_OF_MONTH:
-			case CENTURY:
-			case DAY_OF_MONTH_0:
-			case DAY_OF_MONTH:
-				// * case ISO_WEEK_OF_YEAR_2:
-				// * case ISO_WEEK_OF_YEAR_4:
-			case NAME_OF_MONTH_ABBREV_X:
-			case DAY_OF_YEAR:
-			case MONTH:
-				// * case DAY_OF_WEEK_1:
-				// * case WEEK_OF_YEAR_SUNDAY:
-				// * case WEEK_OF_YEAR_MONDAY_01:
-				// * case DAY_OF_WEEK_0:
-				// * case WEEK_OF_YEAR_MONDAY:
-			case YEAR_2:
-			case YEAR_4:
+					// Date
+				case NAME_OF_DAY_ABBREV:
+				case NAME_OF_DAY:
+				case NAME_OF_MONTH_ABBREV:
+				case NAME_OF_MONTH:
+				case CENTURY:
+				case DAY_OF_MONTH_0:
+				case DAY_OF_MONTH:
+					// * case ISO_WEEK_OF_YEAR_2:
+					// * case ISO_WEEK_OF_YEAR_4:
+				case NAME_OF_MONTH_ABBREV_X:
+				case DAY_OF_YEAR:
+				case MONTH:
+					// * case DAY_OF_WEEK_1:
+					// * case WEEK_OF_YEAR_SUNDAY:
+					// * case WEEK_OF_YEAR_MONDAY_01:
+					// * case DAY_OF_WEEK_0:
+					// * case WEEK_OF_YEAR_MONDAY:
+				case YEAR_2:
+				case YEAR_4:
 
-				// Composites
-			case TIME_12_HOUR:
-			case TIME_24_HOUR:
-				// * case LOCALE_TIME:
-			case DATE_TIME:
-			case DATE:
-			case ISO_STANDARD_DATE:
-				// * case LOCALE_DATE:
-				return true;
-			default:
-				return false;
+					// Composites
+				case TIME_12_HOUR:
+				case TIME_24_HOUR:
+					// * case LOCALE_TIME:
+				case DATE_TIME:
+				case DATE:
+				case ISO_STANDARD_DATE:
+					// * case LOCALE_DATE:
+					return true;
+				default:
+					return false;
 			}
 		}
 	}

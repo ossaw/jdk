@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -78,7 +58,7 @@ public interface Externalizable extends java.io.Serializable {
 	 * @param out
 	 *            the stream to write the object to
 	 * @exception IOException
-	 *                Includes any I/O exceptions that may occur
+	 *                        Includes any I/O exceptions that may occur
 	 */
 	void writeExternal(ObjectOutput out) throws IOException;
 
@@ -90,11 +70,13 @@ public interface Externalizable extends java.io.Serializable {
 	 * writeExternal.
 	 *
 	 * @param in
-	 *            the stream to read data from in order to restore the object
+	 *           the stream to read data from in order to restore the object
 	 * @exception IOException
-	 *                if I/O errors occur
+	 *                                   if I/O errors occur
 	 * @exception ClassNotFoundException
-	 *                If the class for an object being restored cannot be found.
+	 *                                   If the class for an object being
+	 *                                   restored cannot be found.
 	 */
-	void readExternal(ObjectInput in) throws IOException, ClassNotFoundException;
+	void readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException;
 }

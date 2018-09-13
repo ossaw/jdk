@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior.iiop;
@@ -36,8 +16,8 @@ import com.sun.corba.se.spi.ior.iiop.JavaCodebaseComponent;
 /**
  * @author
  */
-public class JavaCodebaseComponentImpl extends TaggedComponentBase
-		implements JavaCodebaseComponent {
+public class JavaCodebaseComponentImpl extends TaggedComponentBase implements
+		JavaCodebaseComponent {
 	private String URLs;
 
 	public boolean equals(Object obj) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -40,8 +20,8 @@ import java.awt.*;
  * @author Steve Wilson
  * @since 1.7
  */
-public class SynthDesktopPaneUI extends BasicDesktopPaneUI
-		implements PropertyChangeListener, SynthUI {
+public class SynthDesktopPaneUI extends BasicDesktopPaneUI implements
+		PropertyChangeListener, SynthUI {
 	private SynthStyle style;
 	private TaskBar taskBar;
 	private DesktopManager oldDesktopManager;
@@ -50,7 +30,7 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 	 * Creates a new UI object for the given component.
 	 *
 	 * @param c
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -98,11 +78,13 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 				}
 				if (desktopIcon.getParent() != taskBar) {
 					taskBar.add(desktopIcon);
-					desktopIcon.getInternalFrame().addComponentListener(taskBar);
+					desktopIcon.getInternalFrame().addComponentListener(
+							taskBar);
 				}
 			}
 			taskBar.setBackground(desktop.getBackground());
-			desktop.add(taskBar, Integer.valueOf(JLayeredPane.PALETTE_LAYER.intValue() + 1));
+			desktop.add(taskBar, Integer.valueOf(JLayeredPane.PALETTE_LAYER
+					.intValue() + 1));
 			if (desktop.isShowing()) {
 				taskBar.adjustSize();
 			}
@@ -181,9 +163,11 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 	 */
 	@Override
 	protected void uninstallDesktopManager() {
-		if (oldDesktopManager != null && !(oldDesktopManager instanceof UIResource)) {
+		if (oldDesktopManager != null
+				&& !(oldDesktopManager instanceof UIResource)) {
 			desktopManager = desktop.getDesktopManager();
-			if (desktopManager == null || desktopManager instanceof UIResource) {
+			if (desktopManager == null
+					|| desktopManager instanceof UIResource) {
 				desktop.setDesktopManager(oldDesktopManager);
 			}
 		}
@@ -191,7 +175,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 		super.uninstallDesktopManager();
 	}
 
-	static class TaskBar extends JPanel implements ComponentListener, ContainerListener {
+	static class TaskBar extends JPanel implements ComponentListener,
+			ContainerListener {
 		TaskBar() {
 			setOpaque(true);
 			setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0) {
@@ -215,7 +200,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 						int w = Math.min(prefWidth, Math.max(10, tw / n));
 						for (Component c : comps) {
 							Dimension prefSize = c.getPreferredSize();
-							c.setPreferredSize(new Dimension(w, prefSize.height));
+							c.setPreferredSize(new Dimension(w,
+									prefSize.height));
 						}
 					}
 					super.layoutContainer(target);
@@ -224,8 +210,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 
 			// PENDING: This should be handled by the painter
 			setBorder(new BevelBorder(BevelBorder.RAISED) {
-				protected void paintRaisedBevel(Component c, Graphics g, int x, int y, int w,
-						int h) {
+				protected void paintRaisedBevel(Component c, Graphics g, int x,
+						int y, int w, int h) {
 					Color oldColor = g.getColor();
 					g.translate(x, y);
 					g.setColor(getHighlightOuterColor(c));
@@ -254,7 +240,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 						height = getHeight();
 					}
 				}
-				setBounds(0, desktop.getHeight() - height, desktop.getWidth(), height);
+				setBounds(0, desktop.getHeight() - height, desktop.getWidth(),
+						height);
 				revalidate();
 				repaint();
 			}
@@ -268,8 +255,7 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 			}
 		}
 
-		public void componentMoved(ComponentEvent e) {
-		}
+		public void componentMoved(ComponentEvent e) {}
 
 		public void componentShown(ComponentEvent e) {
 			if (e.getSource() instanceof JInternalFrame) {
@@ -279,7 +265,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 
 		public void componentHidden(ComponentEvent e) {
 			if (e.getSource() instanceof JInternalFrame) {
-				((JInternalFrame) e.getSource()).getDesktopIcon().setVisible(false);
+				((JInternalFrame) e.getSource()).getDesktopIcon().setVisible(
+						false);
 				revalidate();
 			}
 		}
@@ -319,7 +306,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 		}
 	}
 
-	class SynthDesktopManager extends DefaultDesktopManager implements UIResource {
+	class SynthDesktopManager extends DefaultDesktopManager implements
+			UIResource {
 
 		public void maximizeFrame(JInternalFrame f) {
 			if (f.isIcon()) {
@@ -330,8 +318,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 			} else {
 				f.setNormalBounds(f.getBounds());
 				Component desktop = f.getParent();
-				setBoundsForFrame(f, 0, 0, desktop.getWidth(),
-						desktop.getHeight() - taskBar.getHeight());
+				setBoundsForFrame(f, 0, 0, desktop.getWidth(), desktop
+						.getHeight() - taskBar.getHeight());
 			}
 
 			try {
@@ -408,8 +396,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 			taskBar.validate();
 		}
 
-		public void setBoundsForFrame(JComponent f, int newX, int newY, int newWidth,
-				int newHeight) {
+		public void setBoundsForFrame(JComponent f, int newX, int newY,
+				int newWidth, int newHeight) {
 			super.setBoundsForFrame(f, newX, newY, newWidth, newHeight);
 			if (taskBar != null && newY >= taskBar.getY()) {
 				f.setLocation(f.getX(), taskBar.getY() - f.getInsets().top);
@@ -443,9 +431,9 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -453,8 +441,8 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintDesktopPaneBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight());
+		context.getPainter().paintDesktopPaneBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -466,9 +454,9 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -483,19 +471,19 @@ public class SynthDesktopPaneUI extends BasicDesktopPaneUI
 	 * Paints the specified component. This implementation does nothing.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
-	protected void paint(SynthContext context, Graphics g) {
-	}
+	protected void paint(SynthContext context, Graphics g) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintDesktopPaneBorder(context, g, x, y, w, h);
 	}
 

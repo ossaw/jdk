@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.nimbus;
@@ -51,8 +31,8 @@ final class ToolBarSeparatorPainter extends AbstractRegionPainter {
 		// but calculates where to paint the circles manually. As such, we
 		// only need to indicate in our PaintContext that we don't want this
 		// to ever be cached
-		return new PaintContext(new Insets(1, 0, 1, 0), new Dimension(38, 7), false,
-				CacheMode.NO_CACHING, 1, 1);
+		return new PaintContext(new Insets(1, 0, 1, 0), new Dimension(38, 7),
+				false, CacheMode.NO_CACHING, 1, 1);
 	}
 
 	@Override

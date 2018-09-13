@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,8 +50,7 @@ class ShortHandPointer implements XPointerPart {
 	//
 	// Constructors
 	//
-	public ShortHandPointer() {
-	}
+	public ShortHandPointer() {}
 
 	public ShortHandPointer(SymbolTable symbolTable) {
 		fSymbolTable = symbolTable;
@@ -84,8 +80,8 @@ class ShortHandPointer implements XPointerPart {
 	 */
 	int fMatchingChildCount = 0;
 
-	public boolean resolveXPointer(QName element, XMLAttributes attributes, Augmentations augs,
-			int event) throws XNIException {
+	public boolean resolveXPointer(QName element, XMLAttributes attributes,
+			Augmentations augs, int event) throws XNIException {
 
 		// reset fIsFragmentResolved
 		if (fMatchingChildCount == 0) {
@@ -96,14 +92,16 @@ class ShortHandPointer implements XPointerPart {
 		// elements were found, check for a matching idenfitier.
 		if (event == XPointerPart.EVENT_ELEMENT_START) {
 			if (fMatchingChildCount == 0) {
-				fIsFragmentResolved = hasMatchingIdentifier(element, attributes, augs, event);
+				fIsFragmentResolved = hasMatchingIdentifier(element, attributes,
+						augs, event);
 			}
 			if (fIsFragmentResolved) {
 				fMatchingChildCount++;
 			}
 		} else if (event == XPointerPart.EVENT_ELEMENT_EMPTY) {
 			if (fMatchingChildCount == 0) {
-				fIsFragmentResolved = hasMatchingIdentifier(element, attributes, augs, event);
+				fIsFragmentResolved = hasMatchingIdentifier(element, attributes,
+						augs, event);
 			}
 		} else {
 			// On endElement, decrease the matching child count if the child or
@@ -125,8 +123,9 @@ class ShortHandPointer implements XPointerPart {
 	 * @return
 	 * @throws XNIException
 	 */
-	private boolean hasMatchingIdentifier(QName element, XMLAttributes attributes,
-			Augmentations augs, int event) throws XNIException {
+	private boolean hasMatchingIdentifier(QName element,
+			XMLAttributes attributes, Augmentations augs, int event)
+			throws XNIException {
 		String normalizedValue = null;
 
 		// The identifiers of an element are determined by the
@@ -175,7 +174,8 @@ class ShortHandPointer implements XPointerPart {
 			}
 		}
 
-		if (normalizedValue != null && normalizedValue.equals(fShortHandPointer)) {
+		if (normalizedValue != null && normalizedValue.equals(
+				fShortHandPointer)) {
 			return true;
 		}
 
@@ -190,7 +190,8 @@ class ShortHandPointer implements XPointerPart {
 	 * @return String
 	 * @throws XNIException
 	 */
-	public String getDTDDeterminedID(XMLAttributes attributes, int index) throws XNIException {
+	public String getDTDDeterminedID(XMLAttributes attributes, int index)
+			throws XNIException {
 
 		if (attributes.getType(index).equals("ID")) {
 			return attributes.getValue(index);
@@ -207,9 +208,11 @@ class ShortHandPointer implements XPointerPart {
 	 * @return A String containing the schema-determined ID.
 	 * @throws XNIException
 	 */
-	public String getSchemaDeterminedID(XMLAttributes attributes, int index) throws XNIException {
+	public String getSchemaDeterminedID(XMLAttributes attributes, int index)
+			throws XNIException {
 		Augmentations augs = attributes.getAugmentations(index);
-		AttributePSVI attrPSVI = (AttributePSVI) augs.getItem(Constants.ATTRIBUTE_PSVI);
+		AttributePSVI attrPSVI = (AttributePSVI) augs.getItem(
+				Constants.ATTRIBUTE_PSVI);
 
 		if (attrPSVI != null) {
 			// An element or attribute information item is a schema-determined
@@ -253,8 +256,8 @@ class ShortHandPointer implements XPointerPart {
 	 * @return String - We return null since we currenly do not supprt this.
 	 * @throws XNIException
 	 */
-	public String getChildrenSchemaDeterminedID(XMLAttributes attributes, int index)
-			throws XNIException {
+	public String getChildrenSchemaDeterminedID(XMLAttributes attributes,
+			int index) throws XNIException {
 		return null;
 	}
 

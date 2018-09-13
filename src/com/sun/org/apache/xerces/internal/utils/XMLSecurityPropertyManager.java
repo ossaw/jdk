@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xerces.internal.utils;
@@ -40,8 +20,8 @@ public final class XMLSecurityPropertyManager {
 	 * properties, and jaxp api properties
 	 */
 	public static enum State {
-		// this order reflects the overriding order
-		DEFAULT, FSP, JAXPDOTPROPERTIES, SYSTEMPROPERTY, APIPROPERTY
+	// this order reflects the overriding order
+	DEFAULT, FSP, JAXPDOTPROPERTIES, SYSTEMPROPERTY, APIPROPERTY
 	}
 
 	/**
@@ -50,7 +30,8 @@ public final class XMLSecurityPropertyManager {
 	public static enum Property {
 		ACCESS_EXTERNAL_DTD(XMLConstants.ACCESS_EXTERNAL_DTD,
 				Constants.EXTERNAL_ACCESS_DEFAULT), ACCESS_EXTERNAL_SCHEMA(
-						XMLConstants.ACCESS_EXTERNAL_SCHEMA, Constants.EXTERNAL_ACCESS_DEFAULT);
+						XMLConstants.ACCESS_EXTERNAL_SCHEMA,
+						Constants.EXTERNAL_ACCESS_DEFAULT);
 
 		final String name;
 		final String defaultValue;
@@ -94,11 +75,11 @@ public final class XMLSecurityPropertyManager {
 	 * Set limit by property name and state
 	 * 
 	 * @param propertyName
-	 *            property name
+	 *                     property name
 	 * @param state
-	 *            the state of the property
+	 *                     the state of the property
 	 * @param value
-	 *            the value of the property
+	 *                     the value of the property
 	 * @return true if the property is managed by the security property manager;
 	 *         false if otherwise.
 	 */
@@ -115,11 +96,11 @@ public final class XMLSecurityPropertyManager {
 	 * Set the value for a specific property.
 	 *
 	 * @param property
-	 *            the property
+	 *                 the property
 	 * @param state
-	 *            the state of the property
+	 *                 the state of the property
 	 * @param value
-	 *            the value of the property
+	 *                 the value of the property
 	 */
 	public void setValue(Property property, State state, String value) {
 		// only update if it shall override
@@ -133,11 +114,11 @@ public final class XMLSecurityPropertyManager {
 	 * Set the value of a property by its index
 	 * 
 	 * @param index
-	 *            the index of the property
+	 *              the index of the property
 	 * @param state
-	 *            the state of the property
+	 *              the state of the property
 	 * @param value
-	 *            the value of the property
+	 *              the value of the property
 	 */
 	public void setValue(int index, State state, String value) {
 		// only update if it shall override
@@ -151,7 +132,7 @@ public final class XMLSecurityPropertyManager {
 	 * Return the value of the specified property
 	 *
 	 * @param propertyName
-	 *            the property name
+	 *                     the property name
 	 * @return the value of the property as a string
 	 */
 	public String getValue(String propertyName) {
@@ -167,7 +148,7 @@ public final class XMLSecurityPropertyManager {
 	 * Return the value of the specified property
 	 *
 	 * @param property
-	 *            the property
+	 *                 the property
 	 * @return the value of the property
 	 */
 	public String getValue(Property property) {
@@ -178,7 +159,7 @@ public final class XMLSecurityPropertyManager {
 	 * Return the value of a property by its ordinal
 	 * 
 	 * @param index
-	 *            the index of a property
+	 *              the index of a property
 	 * @return value of a property
 	 */
 	public String getValueByIndex(int index) {
@@ -189,7 +170,7 @@ public final class XMLSecurityPropertyManager {
 	 * Get the index by property name
 	 * 
 	 * @param propertyName
-	 *            property name
+	 *                     property name
 	 * @return the index of the property if found; return -1 if not
 	 */
 	public int getIndex(String propertyName) {
@@ -206,17 +187,19 @@ public final class XMLSecurityPropertyManager {
 	 * Read from system properties, or those in jaxp.properties
 	 */
 	private void readSystemProperties() {
-		getSystemProperty(Property.ACCESS_EXTERNAL_DTD, Constants.SP_ACCESS_EXTERNAL_DTD);
-		getSystemProperty(Property.ACCESS_EXTERNAL_SCHEMA, Constants.SP_ACCESS_EXTERNAL_SCHEMA);
+		getSystemProperty(Property.ACCESS_EXTERNAL_DTD,
+				Constants.SP_ACCESS_EXTERNAL_DTD);
+		getSystemProperty(Property.ACCESS_EXTERNAL_SCHEMA,
+				Constants.SP_ACCESS_EXTERNAL_SCHEMA);
 	}
 
 	/**
 	 * Read from system properties, or those in jaxp.properties
 	 *
 	 * @param property
-	 *            the property
+	 *                       the property
 	 * @param systemProperty
-	 *            the name of the system property
+	 *                       the name of the system property
 	 */
 	private void getSystemProperty(Property property, String systemProperty) {
 		try {

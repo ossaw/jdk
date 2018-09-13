@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -80,9 +60,9 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * <code>context</code> field.
 	 *
 	 * @param n
-	 *            The specified <code>Bindings</code>.
+	 *          The specified <code>Bindings</code>.
 	 * @throws NullPointerException
-	 *             if n is null.
+	 *                              if n is null.
 	 */
 	public AbstractScriptEngine(Bindings n) {
 
@@ -98,9 +78,9 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * specified <code>ScriptContext</code>.
 	 *
 	 * @param ctxt
-	 *            The specified <code>ScriptContext</code>.
+	 *             The specified <code>ScriptContext</code>.
 	 * @throws NullPointerException
-	 *             if ctxt is null.
+	 *                              if ctxt is null.
 	 */
 	public void setContext(ScriptContext ctxt) {
 		if (ctxt == null) {
@@ -123,13 +103,14 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * protected <code>context</code> field.
 	 *
 	 * @param scope
-	 *            The specified scope
+	 *              The specified scope
 	 *
 	 * @return The corresponding <code>Bindings</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the value of scope is invalid for the type the protected
-	 *             <code>context</code> field.
+	 *                                  if the value of scope is invalid for the
+	 *                                  type the protected
+	 *                                  <code>context</code> field.
 	 */
 	public Bindings getBindings(int scope) {
 
@@ -147,16 +128,17 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * <code>context</code> field.
 	 *
 	 * @param bindings
-	 *            The specified <code>Bindings</code>.
+	 *                 The specified <code>Bindings</code>.
 	 * @param scope
-	 *            The specified scope.
+	 *                 The specified scope.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the value of scope is invalid for the type the
-	 *             <code>context</code> field.
+	 *                                  if the value of scope is invalid for the
+	 *                                  type the
+	 *                                  <code>context</code> field.
 	 * @throws NullPointerException
-	 *             if the bindings is null and the scope is
-	 *             <code>ScriptContext.ENGINE_SCOPE</code>
+	 *                                  if the bindings is null and the scope is
+	 *                                  <code>ScriptContext.ENGINE_SCOPE</code>
 	 */
 	public void setBindings(Bindings bindings, int scope) {
 
@@ -177,14 +159,14 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * <code>context</code> field.
 	 *
 	 * @param key
-	 *            The specified key.
+	 *              The specified key.
 	 * @param value
-	 *            The specified value.
+	 *              The specified value.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null.
+	 *                                  if key is null.
 	 * @throws IllegalArgumentException
-	 *             if key is empty.
+	 *                                  if key is empty.
 	 */
 	public void put(String key, Object value) {
 
@@ -202,9 +184,9 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * @return The value for the specified key.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null.
+	 *                                  if key is null.
 	 * @throws IllegalArgumentException
-	 *             if key is empty.
+	 *                                  if key is empty.
 	 */
 	public Object get(String key) {
 
@@ -227,18 +209,20 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * <code>Bindings</code> of the <code>context</code> field.
 	 *
 	 * @param reader
-	 *            A <code>Reader</code> containing the source of the script.
+	 *                 A <code>Reader</code> containing the source of the
+	 *                 script.
 	 * @param bindings
-	 *            A <code>Bindings</code> to use for the
-	 *            <code>ENGINE_SCOPE</code> while the script executes.
+	 *                 A <code>Bindings</code> to use for the
+	 *                 <code>ENGINE_SCOPE</code> while the script executes.
 	 *
 	 * @return The return value from <code>eval(Reader, ScriptContext)</code>
 	 * @throws ScriptException
-	 *             if an error occurs in script.
+	 *                              if an error occurs in script.
 	 * @throws NullPointerException
-	 *             if any of the parameters is null.
+	 *                              if any of the parameters is null.
 	 */
-	public Object eval(Reader reader, Bindings bindings) throws ScriptException {
+	public Object eval(Reader reader, Bindings bindings)
+			throws ScriptException {
 
 		ScriptContext ctxt = getScriptContext(bindings);
 
@@ -250,19 +234,21 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * <code>eval(String, ScriptContext)</code> is used.
 	 *
 	 * @param script
-	 *            A <code>String</code> containing the source of the script.
+	 *                 A <code>String</code> containing the source of the
+	 *                 script.
 	 *
 	 * @param bindings
-	 *            A <code>Bindings</code> to use as the
-	 *            <code>ENGINE_SCOPE</code> while the script executes.
+	 *                 A <code>Bindings</code> to use as the
+	 *                 <code>ENGINE_SCOPE</code> while the script executes.
 	 *
 	 * @return The return value from <code>eval(String, ScriptContext)</code>
 	 * @throws ScriptException
-	 *             if an error occurs in script.
+	 *                              if an error occurs in script.
 	 * @throws NullPointerException
-	 *             if any of the parameters is null.
+	 *                              if any of the parameters is null.
 	 */
-	public Object eval(String script, Bindings bindings) throws ScriptException {
+	public Object eval(String script, Bindings bindings)
+			throws ScriptException {
 
 		ScriptContext ctxt = getScriptContext(bindings);
 
@@ -275,12 +261,12 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * <code>context</code> field.
 	 *
 	 * @param reader
-	 *            A <code>Reader</code> containing the source of the script.
+	 *               A <code>Reader</code> containing the source of the script.
 	 * @return The return value from <code>eval(Reader, ScriptContext)</code>
 	 * @throws ScriptException
-	 *             if an error occurs in script.
+	 *                              if an error occurs in script.
 	 * @throws NullPointerException
-	 *             if any of the parameters is null.
+	 *                              if any of the parameters is null.
 	 */
 	public Object eval(Reader reader) throws ScriptException {
 
@@ -292,12 +278,12 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * <code>eval(String, ScriptContext)</code> is used.
 	 *
 	 * @param script
-	 *            A <code>String</code> containing the source of the script.
+	 *               A <code>String</code> containing the source of the script.
 	 * @return The return value from <code>eval(String, ScriptContext)</code>
 	 * @throws ScriptException
-	 *             if an error occurs in script.
+	 *                              if an error occurs in script.
 	 * @throws NullPointerException
-	 *             if any of the parameters is null.
+	 *                              if any of the parameters is null.
 	 */
 	public Object eval(String script) throws ScriptException {
 
@@ -324,7 +310,7 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 	 * versions.
 	 *
 	 * @param nn
-	 *            Bindings to use for the <code>ENGINE_SCOPE</code>
+	 *           Bindings to use for the <code>ENGINE_SCOPE</code>
 	 * @return The <code>SimpleScriptContext</code>
 	 */
 	protected ScriptContext getScriptContext(Bindings nn) {
@@ -339,7 +325,8 @@ public abstract class AbstractScriptEngine implements ScriptEngine {
 		if (nn != null) {
 			ctxt.setBindings(nn, ScriptContext.ENGINE_SCOPE);
 		} else {
-			throw new NullPointerException("Engine scope Bindings may not be null.");
+			throw new NullPointerException(
+					"Engine scope Bindings may not be null.");
 		}
 
 		ctxt.setReader(context.getReader());

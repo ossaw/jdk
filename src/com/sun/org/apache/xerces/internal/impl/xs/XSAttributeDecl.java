@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -73,8 +70,9 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
 	// otherwise.
 	private XSNamespaceItem fNamespaceItem = null;
 
-	public void setValues(String name, String targetNamespace, XSSimpleType simpleType,
-			short constraintType, short scope, ValidatedInfo valInfo, XSComplexTypeDecl enclosingCT,
+	public void setValues(String name, String targetNamespace,
+			XSSimpleType simpleType, short constraintType, short scope,
+			ValidatedInfo valInfo, XSComplexTypeDecl enclosingCT,
 			XSObjectList annotations) {
 		fName = name;
 		fTargetNamespace = targetNamespace;
@@ -160,21 +158,24 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
 	 */
 	public String getConstraintValue() {
 		// REVISIT: SCAPI: what's the proper representation
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.stringValue();
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.stringValue();
 	}
 
 	/**
 	 * Optional. Annotation.
 	 */
 	public XSAnnotation getAnnotation() {
-		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0) : null;
+		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0)
+				: null;
 	}
 
 	/**
 	 * Optional. Annotations.
 	 */
 	public XSObjectList getAnnotations() {
-		return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
+		return (fAnnotations != null) ? fAnnotations
+				: XSObjectListImpl.EMPTY_LIST;
 	}
 
 	public ValidatedInfo getValInfo() {
@@ -193,16 +194,19 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
 	}
 
 	public Object getActualVC() {
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.actualValue;
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.actualValue;
 	}
 
 	public short getActualVCType() {
-		return getConstraintType() == XSConstants.VC_NONE ? XSConstants.UNAVAILABLE_DT
+		return getConstraintType() == XSConstants.VC_NONE
+				? XSConstants.UNAVAILABLE_DT
 				: fDefault.actualValueType;
 	}
 
 	public ShortList getItemValueTypes() {
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.itemValueTypes;
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.itemValueTypes;
 	}
 
 } // class XSAttributeDecl

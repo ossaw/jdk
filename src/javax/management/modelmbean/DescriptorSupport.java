@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -109,8 +88,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	private static final long serialVersionUID;
 	/**
 	 * @serialField descriptor
-	 *                  HashMap The collection of fields representing this
-	 *                  descriptor
+	 *              HashMap The collection of fields representing this
+	 *              descriptor
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static final String serialForm;
@@ -141,7 +120,6 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * preserved. This means that we need to be able to map from a name that may
 	 * differ in case to the actual name that is used in the HashMap. Thus,
 	 * descriptorMap is a TreeMap with a Comparator that ignores case.
-	 * 
 	 * Previous versions of this class had a field called "descriptor" of type
 	 * HashMap where the keys were directly Strings. This is hard to reconcile
 	 * with the required semantics, so we fabricate that field virtually during
@@ -160,8 +138,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 */
 	public DescriptorSupport() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"DescriptorSupport()", "Constructor");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "DescriptorSupport()", "Constructor");
 		}
 		init(null);
 	}
@@ -173,25 +151,32 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * method {@link #isValid isValid} returns <CODE>false</CODE>).
 	 *
 	 * @param initNumFields
-	 *            The initial capacity of the Map that stores the descriptor
-	 *            fields.
+	 *                      The initial capacity of the Map that stores the
+	 *                      descriptor
+	 *                      fields.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for initNumFields (&lt;= 0)
+	 *                                       for illegal value for initNumFields
+	 *                                       (&lt;= 0)
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 */
-	public DescriptorSupport(int initNumFields) throws MBeanException, RuntimeOperationsException {
+	public DescriptorSupport(int initNumFields) throws MBeanException,
+			RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(initNumFields = " + initNumFields + ")", "Constructor");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(initNumFields = " + initNumFields
+							+ ")", "Constructor");
 		}
 		if (initNumFields <= 0) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"Descriptor(initNumFields)", "Illegal arguments: initNumFields <= 0");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "Descriptor(initNumFields)",
+						"Illegal arguments: initNumFields <= 0");
 			}
-			final String msg = "Descriptor field limit invalid: " + initNumFields;
+			final String msg = "Descriptor field limit invalid: "
+					+ initNumFields;
 			final RuntimeException iae = new IllegalArgumentException(msg);
 			throw new RuntimeOperationsException(iae, msg);
 		}
@@ -204,14 +189,15 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * parameter.
 	 *
 	 * @param inDescr
-	 *            the descriptor to be used to initialize the constructed
-	 *            descriptor. If it is null or contains no descriptor fields, an
-	 *            empty Descriptor will be created.
+	 *                the descriptor to be used to initialize the constructed
+	 *                descriptor. If it is null or contains no descriptor
+	 *                fields, an
+	 *                empty Descriptor will be created.
 	 */
 	public DescriptorSupport(DescriptorSupport inDescr) {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(Descriptor)", "Constructor");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(Descriptor)", "Constructor");
 		}
 		if (inDescr == null)
 			init(null);
@@ -238,19 +224,25 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * </p>
 	 *
 	 * @param inStr
-	 *            An XML-formatted string used to populate this Descriptor. The
-	 *            format is not defined, but any implementation must ensure that
-	 *            the string returned by method {@link #toXMLString toXMLString}
-	 *            on an existing descriptor can be used to instantiate an
-	 *            equivalent descriptor when instantiated using this
-	 *            constructor.
+	 *              An XML-formatted string used to populate this Descriptor.
+	 *              The
+	 *              format is not defined, but any implementation must ensure
+	 *              that
+	 *              the string returned by method {@link #toXMLString
+	 *              toXMLString}
+	 *              on an existing descriptor can be used to instantiate an
+	 *              equivalent descriptor when instantiated using this
+	 *              constructor.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                If the String inStr passed in parameter is null
+	 *                                       If the String inStr passed in
+	 *                                       parameter is null
 	 * @exception XMLParseException
-	 *                XML parsing problem while parsing the input String
+	 *                                       XML parsing problem while parsing
+	 *                                       the input String
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 */
 	/*
 	 * At some stage we should rewrite this code to be cleverer. Using a
@@ -259,19 +251,21 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * string being parsed at characters like > even if they occur in the middle
 	 * of a field value.
 	 */
-	public DescriptorSupport(String inStr)
-			throws MBeanException, RuntimeOperationsException, XMLParseException {
+	public DescriptorSupport(String inStr) throws MBeanException,
+			RuntimeOperationsException, XMLParseException {
 		/*
 		 * parse an XML-formatted string and populate internal structure with it
 		 */
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(String = '" + inStr + "')", "Constructor");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(String = '" + inStr + "')",
+					"Constructor");
 		}
 		if (inStr == null) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"Descriptor(String = null)", "Illegal arguments");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "Descriptor(String = null)",
+						"Illegal arguments");
 			}
 			final String msg = "String in parameter is null";
 			final RuntimeException iae = new IllegalArgumentException(msg);
@@ -279,7 +273,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		}
 
 		final String lowerInStr = inStr.toLowerCase();
-		if (!lowerInStr.startsWith("<descriptor>") || !lowerInStr.endsWith("</descriptor>")) {
+		if (!lowerInStr.startsWith("<descriptor>") || !lowerInStr.endsWith(
+				"</descriptor>")) {
 			throw new XMLParseException("No <descriptor>, </descriptor> pair");
 		}
 
@@ -305,7 +300,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 				if ((fieldName != null) && (fieldValue != null)) {
 					fieldName = fieldName.substring(fieldName.indexOf('"') + 1,
 							fieldName.lastIndexOf('"'));
-					final Object fieldValueObject = parseQuotedFieldValue(fieldValue);
+					final Object fieldValueObject = parseQuotedFieldValue(
+							fieldValue);
 					setField(fieldName, fieldValueObject);
 				}
 				fieldName = null;
@@ -329,18 +325,20 @@ public class DescriptorSupport implements javax.management.Descriptor {
 					else if (kwPart.equalsIgnoreCase("VALUE"))
 						fieldValue = valPart;
 					else { // xml parse exception
-						final String msg = "Expected `name' or `value', got `" + tok + "'";
+						final String msg = "Expected `name' or `value', got `"
+								+ tok + "'";
 						throw new XMLParseException(msg);
 					}
 				} else { // xml parse exception
-					final String msg = "Expected `keyword=value', got `" + tok + "'";
+					final String msg = "Expected `keyword=value', got `" + tok
+							+ "'";
 					throw new XMLParseException(msg);
 				}
 			}
 		} // while tokens
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(XMLString)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(XMLString)", "Exit");
 		}
 	}
 
@@ -349,38 +347,48 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * null.
 	 *
 	 * @param fieldNames
-	 *            String array of field names. No elements of this array can be
-	 *            null.
+	 *                    String array of field names. No elements of this array
+	 *                    can be
+	 *                    null.
 	 * @param fieldValues
-	 *            Object array of the corresponding field values. Elements of
-	 *            the array can be null. The <code>fieldValue</code> must be
-	 *            valid for the <code>fieldName</code> (as defined in method
-	 *            {@link #isValid isValid})
+	 *                    Object array of the corresponding field values.
+	 *                    Elements of
+	 *                    the array can be null. The <code>fieldValue</code>
+	 *                    must be
+	 *                    valid for the <code>fieldName</code> (as defined in
+	 *                    method
+	 *                    {@link #isValid isValid})
 	 *
-	 *            <p>
-	 *            Note: array sizes of parameters should match. If both arrays
-	 *            are empty, then an empty descriptor is created.
-	 *            </p>
+	 *                    <p>
+	 *                    Note: array sizes of parameters should match. If both
+	 *                    arrays
+	 *                    are empty, then an empty descriptor is created.
+	 *                    </p>
 	 *
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for field Names or field Values. The
-	 *                array lengths must be equal. If the descriptor
-	 *                construction fails for any reason, this exception will be
-	 *                thrown.
+	 *                                       for illegal value for field Names
+	 *                                       or field Values. The
+	 *                                       array lengths must be equal. If the
+	 *                                       descriptor
+	 *                                       construction fails for any reason,
+	 *                                       this exception will be
+	 *                                       thrown.
 	 *
 	 */
 	public DescriptorSupport(String[] fieldNames, Object[] fieldValues)
 			throws RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(fieldNames,fieldObjects)", "Constructor");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(fieldNames,fieldObjects)",
+					"Constructor");
 		}
 
 		if ((fieldNames == null) || (fieldValues == null)
 				|| (fieldNames.length != fieldValues.length)) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"Descriptor(fieldNames,fieldObjects)", "Illegal arguments");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "Descriptor(fieldNames,fieldObjects)",
+						"Illegal arguments");
 			}
 
 			final String msg = "Null or invalid fieldNames or fieldValues";
@@ -396,8 +404,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 			setField(fieldNames[i], fieldValues[i]);
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(fieldNames,fieldObjects)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(fieldNames,fieldObjects)", "Exit");
 		}
 	}
 
@@ -405,36 +413,43 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * Constructor taking fields in the <i>fieldName=fieldValue</i> format.
 	 *
 	 * @param fields
-	 *            String array with each element containing a field name and
-	 *            value. If this array is null or empty, then the default
-	 *            constructor will be executed. Null strings or empty strings
-	 *            will be ignored.
+	 *               String array with each element containing a field name and
+	 *               value. If this array is null or empty, then the default
+	 *               constructor will be executed. Null strings or empty strings
+	 *               will be ignored.
 	 *
-	 *            <p>
-	 *            All field values should be Strings. If the field values are
-	 *            not Strings, the programmer will have to reset or convert
-	 *            these fields correctly.
+	 *               <p>
+	 *               All field values should be Strings. If the field values are
+	 *               not Strings, the programmer will have to reset or convert
+	 *               these fields correctly.
 	 *
-	 *            <p>
-	 *            Note: Each string should be of the form
-	 *            <i>fieldName=fieldValue</i>. The field name ends at the first
-	 *            {@code =} character; for example if the String is
-	 *            {@code a=b=c} then the field name is {@code a} and its value
-	 *            is {@code b=c}.
+	 *               <p>
+	 *               Note: Each string should be of the form
+	 *               <i>fieldName=fieldValue</i>. The field name ends at the
+	 *               first
+	 *               {@code =} character; for example if the String is
+	 *               {@code a=b=c} then the field name is {@code a} and its
+	 *               value
+	 *               is {@code b=c}.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for field Names or field Values. The
-	 *                field must contain an "=". "=fieldValue", "fieldName", and
-	 *                "fieldValue" are illegal. FieldName cannot be null.
-	 *                "fieldName=" will cause the value to be null. If the
-	 *                descriptor construction fails for any reason, this
-	 *                exception will be thrown.
+	 *                                       for illegal value for field Names
+	 *                                       or field Values. The
+	 *                                       field must contain an "=".
+	 *                                       "=fieldValue", "fieldName", and
+	 *                                       "fieldValue" are illegal. FieldName
+	 *                                       cannot be null.
+	 *                                       "fieldName=" will cause the value
+	 *                                       to be null. If the
+	 *                                       descriptor construction fails for
+	 *                                       any reason, this
+	 *                                       exception will be thrown.
 	 *
 	 */
 	public DescriptorSupport(String... fields) {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(String... fields)", "Constructor");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(String... fields)", "Constructor");
 		}
 		init(null);
 		if ((fields == null) || (fields.length == 0))
@@ -450,8 +465,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 			if (eq_separator < 0) {
 				// illegal if no = or is first character
 				if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-							"Descriptor(String... fields)",
+					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+							.getName(), "Descriptor(String... fields)",
 							"Illegal arguments: field does not have "
 									+ "'=' as a name and value separator");
 				}
@@ -469,8 +484,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 			if (fieldName.equals("")) {
 				if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-							"Descriptor(String... fields)",
+					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+							.getName(), "Descriptor(String... fields)",
 							"Illegal arguments: fieldName is empty");
 				}
 
@@ -482,25 +497,28 @@ public class DescriptorSupport implements javax.management.Descriptor {
 			setField(fieldName, fieldValue);
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"Descriptor(String... fields)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "Descriptor(String... fields)", "Exit");
 		}
 	}
 
 	private void init(Map<String, ?> initMap) {
-		descriptorMap = new TreeMap<String, Object>(String.CASE_INSENSITIVE_ORDER);
+		descriptorMap = new TreeMap<String, Object>(
+				String.CASE_INSENSITIVE_ORDER);
 		if (initMap != null)
 			descriptorMap.putAll(initMap);
 	}
 
 	// Implementation of the Descriptor interface
 
-	public synchronized Object getFieldValue(String fieldName) throws RuntimeOperationsException {
+	public synchronized Object getFieldValue(String fieldName)
+			throws RuntimeOperationsException {
 
 		if ((fieldName == null) || (fieldName.equals(""))) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"getFieldValue(String fieldName)", "Illegal arguments: null field name");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "getFieldValue(String fieldName)",
+						"Illegal arguments: null field name");
 			}
 			final String msg = "Fieldname requested is null";
 			final RuntimeException iae = new IllegalArgumentException(msg);
@@ -508,9 +526,9 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		}
 		Object retValue = descriptorMap.get(fieldName);
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"getFieldValue(String fieldName = " + fieldName + ")",
-					"Returns '" + retValue + "'");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFieldValue(String fieldName = " + fieldName
+							+ ")", "Returns '" + retValue + "'");
 		}
 		return (retValue);
 	}
@@ -521,8 +539,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		// field name cannot be null or empty
 		if ((fieldName == null) || (fieldName.equals(""))) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"setField(fieldName,fieldValue)",
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "setField(fieldName,fieldValue)",
 						"Illegal arguments: null or empty field name");
 			}
 
@@ -533,19 +551,22 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 		if (!validateField(fieldName, fieldValue)) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"setField(fieldName,fieldValue)", "Illegal arguments");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "setField(fieldName,fieldValue)",
+						"Illegal arguments");
 			}
 
-			final String msg = "Field value invalid: " + fieldName + "=" + fieldValue;
+			final String msg = "Field value invalid: " + fieldName + "="
+					+ fieldValue;
 			final RuntimeException iae = new IllegalArgumentException(msg);
 			throw new RuntimeOperationsException(iae, msg);
 		}
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"setField(fieldName,fieldValue)",
-					"Entry: setting '" + fieldName + "' to '" + fieldValue + "'");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "setField(fieldName,fieldValue)",
+					"Entry: setting '" + fieldName + "' to '" + fieldValue
+							+ "'");
 		}
 
 		// Since we do not remove any existing entry with this name,
@@ -556,8 +577,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 	public synchronized String[] getFields() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "getFields()",
-					"Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFields()", "Entry");
 		}
 		int numberOfEntries = descriptorMap.size();
 
@@ -567,17 +588,18 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		int i = 0;
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "getFields()",
-					"Returning " + numberOfEntries + " fields");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFields()", "Returning " + numberOfEntries
+							+ " fields");
 		}
-		for (Iterator<Map.Entry<String, Object>> iter = returnedSet.iterator(); iter
-				.hasNext(); i++) {
+		for (Iterator<Map.Entry<String, Object>> iter = returnedSet
+				.iterator(); iter.hasNext(); i++) {
 			Map.Entry<String, Object> currElement = iter.next();
 
 			if (currElement == null) {
 				if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-							"getFields()", "Element is null");
+					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+							.getName(), "getFields()", "Element is null");
 				}
 			} else {
 				Object currValue = currElement.getValue();
@@ -585,18 +607,19 @@ public class DescriptorSupport implements javax.management.Descriptor {
 					responseFields[i] = currElement.getKey() + "=";
 				} else {
 					if (currValue instanceof java.lang.String) {
-						responseFields[i] = currElement.getKey() + "=" + currValue.toString();
+						responseFields[i] = currElement.getKey() + "="
+								+ currValue.toString();
 					} else {
-						responseFields[i] = currElement.getKey() + "=(" + currValue.toString()
-								+ ")";
+						responseFields[i] = currElement.getKey() + "=("
+								+ currValue.toString() + ")";
 					}
 				}
 			}
 		}
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "getFields()",
-					"Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFields()", "Exit");
 		}
 
 		return responseFields;
@@ -604,8 +627,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 	public synchronized String[] getFieldNames() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"getFieldNames()", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFieldNames()", "Entry");
 		}
 		int numberOfEntries = descriptorMap.size();
 
@@ -615,18 +638,19 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		int i = 0;
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"getFieldNames()", "Returning " + numberOfEntries + " fields");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFieldNames()", "Returning "
+							+ numberOfEntries + " fields");
 		}
 
-		for (Iterator<Map.Entry<String, Object>> iter = returnedSet.iterator(); iter
-				.hasNext(); i++) {
+		for (Iterator<Map.Entry<String, Object>> iter = returnedSet
+				.iterator(); iter.hasNext(); i++) {
 			Map.Entry<String, Object> currElement = iter.next();
 
 			if ((currElement == null) || (currElement.getKey() == null)) {
 				if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-							"getFieldNames()", "Field is null");
+					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+							.getName(), "getFieldNames()", "Field is null");
 				}
 			} else {
 				responseFields[i] = currElement.getKey().toString();
@@ -634,8 +658,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		}
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"getFieldNames()", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFieldNames()", "Exit");
 		}
 
 		return responseFields;
@@ -643,20 +667,22 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 	public synchronized Object[] getFieldValues(String... fieldNames) {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"getFieldValues(String... fieldNames)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFieldValues(String... fieldNames)",
+					"Entry");
 		}
 		// if fieldNames == null return all values
 		// if fieldNames is String[0] return no values
 
-		final int numberOfEntries = (fieldNames == null) ? descriptorMap.size() : fieldNames.length;
+		final int numberOfEntries = (fieldNames == null) ? descriptorMap.size()
+				: fieldNames.length;
 		final Object[] responseFields = new Object[numberOfEntries];
 
 		int i = 0;
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"getFieldValues(String... fieldNames)",
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFieldValues(String... fieldNames)",
 					"Returning " + numberOfEntries + " fields");
 		}
 
@@ -674,26 +700,27 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		}
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"getFieldValues(String... fieldNames)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "getFieldValues(String... fieldNames)", "Exit");
 		}
 
 		return responseFields;
 	}
 
-	public synchronized void setFields(String[] fieldNames, Object[] fieldValues)
-			throws RuntimeOperationsException {
+	public synchronized void setFields(String[] fieldNames,
+			Object[] fieldValues) throws RuntimeOperationsException {
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"setFields(fieldNames,fieldValues)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "setFields(fieldNames,fieldValues)", "Entry");
 		}
 
 		if ((fieldNames == null) || (fieldValues == null)
 				|| (fieldNames.length != fieldValues.length)) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"setFields(fieldNames,fieldValues)", "Illegal arguments");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "setFields(fieldNames,fieldValues)",
+						"Illegal arguments");
 			}
 
 			final String msg = "fieldNames and fieldValues are null or invalid";
@@ -704,8 +731,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		for (int i = 0; i < fieldNames.length; i++) {
 			if ((fieldNames[i] == null) || (fieldNames[i].equals(""))) {
 				if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-							"setFields(fieldNames,fieldValues)",
+					MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+							.getName(), "setFields(fieldNames,fieldValues)",
 							"Null field name encountered at element " + i);
 				}
 				final String msg = "fieldNames is null or invalid";
@@ -715,8 +742,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 			setField(fieldNames[i], fieldValues[i]);
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-					"setFields(fieldNames,fieldValues)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "setFields(fieldNames,fieldValues)", "Exit");
 		}
 	}
 
@@ -724,16 +751,18 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * Returns a new Descriptor which is a duplicate of the Descriptor.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for field Names or field Values. If the
-	 *                descriptor construction fails for any reason, this
-	 *                exception will be thrown.
+	 *                                       for illegal value for field Names
+	 *                                       or field Values. If the
+	 *                                       descriptor construction fails for
+	 *                                       any reason, this
+	 *                                       exception will be thrown.
 	 */
 
 	@Override
 	public synchronized Object clone() throws RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "clone()",
-					"Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "clone()", "Entry");
 		}
 		return (new DescriptorSupport(this));
 	}
@@ -764,7 +793,7 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * </ul>
 	 *
 	 * @param o
-	 *            the object to compare with.
+	 *          the object to compare with.
 	 *
 	 * @return {@code true} if the objects are the same; {@code false}
 	 *         otherwise.
@@ -845,14 +874,15 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * </UL>
 	 *
 	 * @exception RuntimeOperationsException
-	 *                If the validity checking fails for any reason, this
-	 *                exception will be thrown.
+	 *                                       If the validity checking fails for
+	 *                                       any reason, this
+	 *                                       exception will be thrown.
 	 */
 
 	public synchronized boolean isValid() throws RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "isValid()",
-					"Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "isValid()", "Entry");
 		}
 		// verify that the descriptor is valid, by iterating over each field...
 
@@ -860,8 +890,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 		if (returnedSet == null) { // null descriptor, not valid
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "isValid()",
-						"Returns false (null set)");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "isValid()", "Returns false (null set)");
 			}
 			return false;
 		}
@@ -869,8 +899,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		String thisName = (String) (this.getFieldValue("name"));
 		String thisDescType = (String) (getFieldValue("descriptorType"));
 
-		if ((thisName == null) || (thisDescType == null) || (thisName.equals(""))
-				|| (thisDescType.equals(""))) {
+		if ((thisName == null) || (thisDescType == null) || (thisName.equals(
+				"")) || (thisDescType.equals(""))) {
 			return false;
 		}
 
@@ -885,9 +915,11 @@ public class DescriptorSupport implements javax.management.Descriptor {
 						continue;
 					} else {
 						if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-							MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-									"isValid()", "Field " + currElement.getKey() + "="
-											+ currElement.getValue() + " is not valid");
+							MODELMBEAN_LOGGER.logp(Level.FINEST,
+									DescriptorSupport.class.getName(),
+									"isValid()", "Field " + currElement.getKey()
+											+ "=" + currElement.getValue()
+											+ " is not valid");
 						}
 						return false;
 					}
@@ -897,8 +929,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 		// fell through, all fields OK
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "isValid()",
-					"Returns true");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "isValid()", "Returns true");
 		}
 		return true;
 	}
@@ -930,8 +962,9 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		boolean nameOrDescriptorType = (fldName.equalsIgnoreCase("Name")
 				|| fldName.equalsIgnoreCase("DescriptorType"));
 		if (nameOrDescriptorType || fldName.equalsIgnoreCase("SetMethod")
-				|| fldName.equalsIgnoreCase("GetMethod") || fldName.equalsIgnoreCase("Role")
-				|| fldName.equalsIgnoreCase("Class")) {
+				|| fldName.equalsIgnoreCase("GetMethod") || fldName
+						.equalsIgnoreCase("Role") || fldName.equalsIgnoreCase(
+								"Class")) {
 			if (fldValue == null || !isAString)
 				return false;
 			if (nameOrDescriptorType && SfldValue.equals(""))
@@ -962,15 +995,17 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 			return (v >= 0 && v <= 6);
 		} else if (fldName.equalsIgnoreCase("PersistPolicy")) {
-			return (((fldValue != null) && (isAString)) && (SfldValue.equalsIgnoreCase("OnUpdate")
-					|| SfldValue.equalsIgnoreCase("OnTimer")
-					|| SfldValue.equalsIgnoreCase("NoMoreOftenThan")
-					|| SfldValue.equalsIgnoreCase("Always") || SfldValue.equalsIgnoreCase("Never")
-					|| SfldValue.equalsIgnoreCase("OnUnregister")));
-		} else if (fldName.equalsIgnoreCase("PersistPeriod")
-				|| fldName.equalsIgnoreCase("CurrencyTimeLimit")
-				|| fldName.equalsIgnoreCase("LastUpdatedTimeStamp")
-				|| fldName.equalsIgnoreCase("LastReturnedTimeStamp")) {
+			return (((fldValue != null) && (isAString)) && (SfldValue
+					.equalsIgnoreCase("OnUpdate") || SfldValue.equalsIgnoreCase(
+							"OnTimer") || SfldValue.equalsIgnoreCase(
+									"NoMoreOftenThan") || SfldValue
+											.equalsIgnoreCase("Always")
+					|| SfldValue.equalsIgnoreCase("Never") || SfldValue
+							.equalsIgnoreCase("OnUnregister")));
+		} else if (fldName.equalsIgnoreCase("PersistPeriod") || fldName
+				.equalsIgnoreCase("CurrencyTimeLimit") || fldName
+						.equalsIgnoreCase("LastUpdatedTimeStamp") || fldName
+								.equalsIgnoreCase("LastReturnedTimeStamp")) {
 
 			long v;
 			if ((fldValue != null) && (isAString)) {
@@ -982,10 +1017,11 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 			return (v >= -1);
 		} else if (fldName.equalsIgnoreCase("log")) {
-			return ((fldValue instanceof java.lang.Boolean)
-					|| (isAString && (SfldValue.equalsIgnoreCase("T")
-							|| SfldValue.equalsIgnoreCase("true") || SfldValue.equalsIgnoreCase("F")
-							|| SfldValue.equalsIgnoreCase("false"))));
+			return ((fldValue instanceof java.lang.Boolean) || (isAString
+					&& (SfldValue.equalsIgnoreCase("T") || SfldValue
+							.equalsIgnoreCase("true") || SfldValue
+									.equalsIgnoreCase("F") || SfldValue
+											.equalsIgnoreCase("false"))));
 		}
 
 		// default to true, it is a field we aren't validating (user etc.)
@@ -1020,9 +1056,11 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * @return the XML string.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for field Names or field Values. If the
-	 *                XML formatted string construction fails for any reason,
-	 *                this exception will be thrown.
+	 *                                       for illegal value for field Names
+	 *                                       or field Values. If the
+	 *                                       XML formatted string construction
+	 *                                       fails for any reason,
+	 *                                       this exception will be thrown.
 	 */
 	public synchronized String toXMLString() {
 		final StringBuilder buf = new StringBuilder("<Descriptor>");
@@ -1045,15 +1083,15 @@ public class DescriptorSupport implements javax.management.Descriptor {
 			}
 			if (valueString == null)
 				valueString = makeFieldValue(value);
-			buf.append("<field name=\"").append(name).append("\" value=\"").append(valueString)
-					.append("\"></field>");
+			buf.append("<field name=\"").append(name).append("\" value=\"")
+					.append(valueString).append("\"></field>");
 		}
 		buf.append("</Descriptor>");
 		return buf.toString();
 	}
 
-	private static final String[] entities = { " &#32;", "\"&quot;", "<&lt;", ">&gt;", "&&amp;",
-			"\r&#13;", "\t&#9;", "\n&#10;", "\f&#12;", };
+	private static final String[] entities = { " &#32;", "\"&quot;", "<&lt;",
+			">&gt;", "&&amp;", "\r&#13;", "\t&#9;", "\n&#10;", "\f&#12;", };
 	private static final Map<String, Character> entityToCharMap = new HashMap<String, Character>();
 	private static final String[] charToEntityMap;
 
@@ -1115,7 +1153,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 			final int semi;
 			final Character quoted;
 			if (c == '&' && (semi = s.indexOf(';', i + 1)) >= 0
-					&& ((quoted = entityToCharMap.get(s.substring(i, semi + 1))) != null)) {
+					&& ((quoted = entityToCharMap.get(s.substring(i, semi
+							+ 1))) != null)) {
 				buf.append(quoted);
 				i = semi;
 			} else
@@ -1129,7 +1168,7 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * String.
 	 * 
 	 * @throws RuntimeOperationsException
-	 *             if the value cannot be encoded.
+	 *                                    if the value cannot be encoded.
 	 */
 	private static String makeFieldValue(Object value) {
 		if (value == null)
@@ -1139,10 +1178,12 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		try {
 			valueClass.getConstructor(String.class);
 		} catch (NoSuchMethodException e) {
-			final String msg = "Class " + valueClass + " does not have a public "
+			final String msg = "Class " + valueClass
+					+ " does not have a public "
 					+ "constructor with a single string arg";
 			final RuntimeException iae = new IllegalArgumentException(msg);
-			throw new RuntimeOperationsException(iae, "Cannot make XML descriptor");
+			throw new RuntimeOperationsException(iae,
+					"Cannot make XML descriptor");
 		} catch (SecurityException e) {
 			// OK: we'll pretend the constructor is there
 			// too bad if it's not: we'll find out when we try to
@@ -1164,7 +1205,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * equivalent to `new some.class.name("xxx")'; - some other string, in which
 	 * case the result is that string, without the parentheses.
 	 */
-	private static Object parseQuotedFieldValue(String s) throws XMLParseException {
+	private static Object parseQuotedFieldValue(String s)
+			throws XMLParseException {
 		s = unquote(s);
 		if (s.equalsIgnoreCase("(null)"))
 			return null;
@@ -1180,8 +1222,10 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		final Constructor<?> constr;
 		try {
 			ReflectUtil.checkPackageAccess(className);
-			final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-			final Class<?> c = Class.forName(className, false, contextClassLoader);
+			final ClassLoader contextClassLoader = Thread.currentThread()
+					.getContextClassLoader();
+			final Class<?> c = Class.forName(className, false,
+					contextClassLoader);
 			constr = c.getConstructor(new Class<?>[] { String.class });
 		} catch (Exception e) {
 			throw new XMLParseException(e, "Cannot parse value: <" + s + ">");
@@ -1190,8 +1234,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		try {
 			return constr.newInstance(new Object[] { arg });
 		} catch (Exception e) {
-			final String msg = "Cannot construct instance of " + className + " with arg: <" + s
-					+ ">";
+			final String msg = "Cannot construct instance of " + className
+					+ " with arg: <" + s + ">";
 			throw new XMLParseException(e, msg);
 		}
 	}
@@ -1209,15 +1253,17 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * parenthesis.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for field Names or field Values. If the
-	 *                descriptor string fails for any reason, this exception
-	 *                will be thrown.
+	 *                                       for illegal value for field Names
+	 *                                       or field Values. If the
+	 *                                       descriptor string fails for any
+	 *                                       reason, this exception
+	 *                                       will be thrown.
 	 */
 	@Override
 	public synchronized String toString() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "toString()",
-					"Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "toString()", "Entry");
 		}
 
 		String respStr = "";
@@ -1225,15 +1271,16 @@ public class DescriptorSupport implements javax.management.Descriptor {
 
 		if ((fields == null) || (fields.length == 0)) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(),
-						"toString()", "Empty Descriptor");
+				MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+						.getName(), "toString()", "Empty Descriptor");
 			}
 			return respStr;
 		}
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "toString()",
-					"Printing " + fields.length + " fields");
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "toString()", "Printing " + fields.length
+							+ " fields");
 		}
 
 		for (int i = 0; i < fields.length; i++) {
@@ -1245,8 +1292,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		}
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINEST)) {
-			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class.getName(), "toString()",
-					"Exit returning " + respStr);
+			MODELMBEAN_LOGGER.logp(Level.FINEST, DescriptorSupport.class
+					.getName(), "toString()", "Exit returning " + respStr);
 		}
 
 		return respStr;
@@ -1266,7 +1313,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 	 * Deserializes a {@link DescriptorSupport} from an
 	 * {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		ObjectInputStream.GetField fields = in.readFields();
 		Map<String, Object> descriptor = cast(fields.get("descriptor", null));
 		init(null);
@@ -1309,7 +1357,8 @@ public class DescriptorSupport implements javax.management.Descriptor {
 		}
 
 		final HashMap<String, Object> descriptor;
-		if (compat || "1.2.0".equals(serialForm) || "1.2.1".equals(serialForm)) {
+		if (compat || "1.2.0".equals(serialForm) || "1.2.1".equals(
+				serialForm)) {
 			descriptor = new HashMap<String, Object>();
 			for (Map.Entry<String, Object> entry : startMap.entrySet())
 				descriptor.put(entry.getKey().toLowerCase(), entry.getValue());

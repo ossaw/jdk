@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,17 +58,18 @@ public abstract class Hashtree2Node {
 	 * </p>
 	 *
 	 * @param hash
-	 *            to get info from (may have sub-hashtables)
+	 *                  to get info from (may have sub-hashtables)
 	 * @param name
-	 *            to use as parent element for appended node futurework could
-	 *            have namespace and prefix as well
+	 *                  to use as parent element for appended node futurework
+	 *                  could
+	 *                  have namespace and prefix as well
 	 * @param container
-	 *            Node to append our report to
+	 *                  Node to append our report to
 	 * @param factory
-	 *            Document providing createElement, etc. services
+	 *                  Document providing createElement, etc. services
 	 */
-	public static void appendHashToNode(Hashtable hash, String name, Node container,
-			Document factory) {
+	public static void appendHashToNode(Hashtable hash, String name,
+			Node container, Document factory) {
 		// Required arguments must not be null
 		if ((null == container) || (null == factory) || (null == hash)) {
 			return;
@@ -113,7 +111,8 @@ public abstract class Hashtree2Node {
 						Element node = factory.createElement("item");
 						node.setAttribute("key", keyStr);
 						node.appendChild(factory.createTextNode(
-								"ERROR: Reading " + key + " threw: " + e.toString()));
+								"ERROR: Reading " + key + " threw: " + e
+										.toString()));
 						hashNode.appendChild(node);
 					}
 				}

@@ -8,8 +8,8 @@ package org.omg.PortableInterceptor;
  * 9:58:52 PM PDT
  */
 
-public interface IORInterceptor_3_0Operations
-		extends org.omg.PortableInterceptor.IORInterceptorOperations {
+public interface IORInterceptor_3_0Operations extends
+		org.omg.PortableInterceptor.IORInterceptorOperations {
 
 	/**
 	 * The components_established method is invoked on all registered
@@ -23,7 +23,7 @@ public interface IORInterceptor_3_0Operations
 	 * results in a OBJ_ADAPTER exception with an OMG standard minor code of 6.
 	 * 
 	 * @param info
-	 *            The IORInfo for the object adapter being created.
+	 *             The IORInfo for the object adapter being created.
 	 */
 	void components_established(org.omg.PortableInterceptor.IORInfo info);
 
@@ -34,10 +34,10 @@ public interface IORInterceptor_3_0Operations
 	 * <code>adapter_state_changed</code>.
 	 * 
 	 * @param id
-	 *            the adapter manager id of the adapter manager that changed
-	 *            state
+	 *              the adapter manager id of the adapter manager that changed
+	 *              state
 	 * @param state
-	 *            the new state of the adapter manager
+	 *              the new state of the adapter manager
 	 */
 	void adapter_manager_state_changed(int id, short state);
 
@@ -47,12 +47,14 @@ public interface IORInterceptor_3_0Operations
 	 * all registered <code>IORInterceptor_3_0</code> instances.
 	 * 
 	 * @param templates
-	 *            the sequence of <code>ObjectReferenceTemplate</code> instances
-	 *            on which this state change occurred.
+	 *                  the sequence of <code>ObjectReferenceTemplate</code>
+	 *                  instances
+	 *                  on which this state change occurred.
 	 * @param state
-	 *            the new <code>AdapterState</code> shared by all of the
-	 *            templates.
+	 *                  the new <code>AdapterState</code> shared by all of the
+	 *                  templates.
 	 */
-	void adapter_state_changed(org.omg.PortableInterceptor.ObjectReferenceTemplate[] templates,
+	void adapter_state_changed(
+			org.omg.PortableInterceptor.ObjectReferenceTemplate[] templates,
 			short state);
 } // interface IORInterceptor_3_0Operations

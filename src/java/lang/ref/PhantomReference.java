@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.ref;
@@ -76,10 +56,11 @@ public class PhantomReference<T> extends Reference<T> {
 	 * enqueued.
 	 *
 	 * @param referent
-	 *            the object the new phantom reference will refer to
+	 *                 the object the new phantom reference will refer to
 	 * @param q
-	 *            the queue with which the reference is to be registered, or
-	 *            <tt>null</tt> if registration is not required
+	 *                 the queue with which the reference is to be registered,
+	 *                 or
+	 *                 <tt>null</tt> if registration is not required
 	 */
 	public PhantomReference(T referent, ReferenceQueue<? super T> q) {
 		super(referent, q);

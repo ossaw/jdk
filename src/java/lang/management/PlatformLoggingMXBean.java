@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -36,7 +16,8 @@ package java.lang.management;
  * {@code PlatformLoggingMXBean} object as follows:
  * 
  * <pre>
- * PlatformLoggingMXBean logging = ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class);
+ * PlatformLoggingMXBean logging = ManagementFactory.getPlatformMXBean(
+ * 		PlatformLoggingMXBean.class);
  * </pre>
  * 
  * The {@code PlatformLoggingMXBean} object is also registered with the platform
@@ -82,7 +63,7 @@ public interface PlatformLoggingMXBean extends PlatformManagedObject {
 	 * string will be returned.
 	 *
 	 * @param loggerName
-	 *            The name of the {@code Logger} to be retrieved.
+	 *                   The name of the {@code Logger} to be retrieved.
 	 *
 	 * @return The name of the log level of the specified logger; or an empty
 	 *         string if the log level of the specified logger is {@code null}.
@@ -103,19 +84,24 @@ public interface PlatformLoggingMXBean extends PlatformManagedObject {
 	 * (non-null) level value.
 	 *
 	 * @param loggerName
-	 *            The name of the {@code Logger} to be set. Must be non-null.
+	 *                   The name of the {@code Logger} to be set. Must be
+	 *                   non-null.
 	 * @param levelName
-	 *            The name of the level to set on the specified logger, or
-	 *            {@code null} if setting the level to inherit from its nearest
-	 *            ancestor.
+	 *                   The name of the level to set on the specified logger,
+	 *                   or
+	 *                   {@code null} if setting the level to inherit from its
+	 *                   nearest
+	 *                   ancestor.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the specified logger does not exist, or {@code levelName}
-	 *             is not a valid level name.
+	 *                                  if the specified logger does not exist,
+	 *                                  or {@code levelName}
+	 *                                  is not a valid level name.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and if the caller does not have
-	 *             LoggingPermission("control").
+	 *                                  if a security manager exists and if the
+	 *                                  caller does not have
+	 *                                  LoggingPermission("control").
 	 *
 	 * @see java.util.logging.Logger#setLevel
 	 */
@@ -128,7 +114,7 @@ public interface PlatformLoggingMXBean extends PlatformManagedObject {
 	 * {@code Logger} in the namespace, the result will be an empty string.
 	 *
 	 * @param loggerName
-	 *            The name of a {@code Logger}.
+	 *                   The name of a {@code Logger}.
 	 *
 	 * @return the name of the nearest existing parent logger; an empty string
 	 *         if the specified logger is the root logger. If the specified

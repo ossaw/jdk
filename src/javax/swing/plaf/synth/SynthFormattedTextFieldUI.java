@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.synth;
 
@@ -39,7 +19,7 @@ public class SynthFormattedTextFieldUI extends SynthTextFieldUI {
 	 * Creates a UI for a JFormattedTextField.
 	 *
 	 * @param c
-	 *            the formatted text field
+	 *          the formatted text field
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -62,15 +42,17 @@ public class SynthFormattedTextFieldUI extends SynthTextFieldUI {
 	 */
 	@Override
 	void paintBackground(SynthContext context, Graphics g, JComponent c) {
-		context.getPainter().paintFormattedTextFieldBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight());
+		context.getPainter().paintFormattedTextFieldBackground(context, g, 0, 0,
+				c.getWidth(), c.getHeight());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
-		context.getPainter().paintFormattedTextFieldBorder(context, g, x, y, w, h);
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
+		context.getPainter().paintFormattedTextFieldBorder(context, g, x, y, w,
+				h);
 	}
 }

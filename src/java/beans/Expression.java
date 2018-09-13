@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -60,11 +40,12 @@ public class Expression extends Statement {
 	 * {@code arguments} property.
 	 *
 	 * @param target
-	 *            the target object of this expression
+	 *                   the target object of this expression
 	 * @param methodName
-	 *            the name of the method to invoke on the specified target
+	 *                   the name of the method to invoke on the specified
+	 *                   target
 	 * @param arguments
-	 *            the array of arguments to invoke the specified method
+	 *                   the array of arguments to invoke the specified method
 	 *
 	 * @see #getValue
 	 */
@@ -87,17 +68,19 @@ public class Expression extends Statement {
 	 * {@code arguments} property.
 	 *
 	 * @param value
-	 *            the value of this expression
+	 *                   the value of this expression
 	 * @param target
-	 *            the target object of this expression
+	 *                   the target object of this expression
 	 * @param methodName
-	 *            the name of the method to invoke on the specified target
+	 *                   the name of the method to invoke on the specified
+	 *                   target
 	 * @param arguments
-	 *            the array of arguments to invoke the specified method
+	 *                   the array of arguments to invoke the specified method
 	 *
 	 * @see #setValue
 	 */
-	public Expression(Object value, Object target, String methodName, Object[] arguments) {
+	public Expression(Object value, Object target, String methodName,
+			Object[] arguments) {
 		this(target, methodName, arguments);
 		setValue(value);
 	}
@@ -111,15 +94,17 @@ public class Expression extends Statement {
 	 * {@code void}.
 	 *
 	 * @throws NullPointerException
-	 *             if the value of the {@code target} or {@code methodName}
-	 *             property is {@code null}
+	 *                               if the value of the {@code target} or
+	 *                               {@code methodName}
+	 *                               property is {@code null}
 	 * @throws NoSuchMethodException
-	 *             if a matching method is not found
+	 *                               if a matching method is not found
 	 * @throws SecurityException
-	 *             if a security manager exists and it denies the method
-	 *             invocation
+	 *                               if a security manager exists and it denies
+	 *                               the method
+	 *                               invocation
 	 * @throws Exception
-	 *             that is thrown by the invoked method
+	 *                               that is thrown by the invoked method
 	 *
 	 * @see java.lang.reflect.Method
 	 * @since 1.7
@@ -154,8 +139,8 @@ public class Expression extends Statement {
 	 *
 	 * @return The result of applying this method to these arguments.
 	 * @throws Exception
-	 *             if the method with the specified methodName throws an
-	 *             exception
+	 *                   if the method with the specified methodName throws an
+	 *                   exception
 	 */
 	public Object getValue() throws Exception {
 		if (value == unbound) {
@@ -170,7 +155,7 @@ public class Expression extends Statement {
 	 * with this expression.
 	 *
 	 * @param value
-	 *            The value of this expression.
+	 *              The value of this expression.
 	 *
 	 * @see #getValue
 	 */
@@ -178,7 +163,7 @@ public class Expression extends Statement {
 		this.value = value;
 	}
 
-			/* pp */ String instanceName(Object instance) {
+	/* pp */ String instanceName(Object instance) {
 		return instance == unbound ? "<unbound>" : super.instanceName(instance);
 	}
 

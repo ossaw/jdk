@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -146,14 +126,16 @@ class LambdaForm {
 
 	enum BasicType {
 		L_TYPE('L', Object.class, Wrapper.OBJECT), // all reference types
-		I_TYPE('I', int.class, Wrapper.INT), J_TYPE('J', long.class, Wrapper.LONG), F_TYPE('F',
-				float.class, Wrapper.FLOAT), D_TYPE('D', double.class, Wrapper.DOUBLE), // all
-																						// primitive
-																						// types
+		I_TYPE('I', int.class, Wrapper.INT), J_TYPE('J', long.class,
+				Wrapper.LONG), F_TYPE('F', float.class, Wrapper.FLOAT), D_TYPE(
+						'D', double.class, Wrapper.DOUBLE), // all
+		// primitive
+		// types
 		V_TYPE('V', void.class, Wrapper.VOID); // not valid in all contexts
 
 		static final BasicType[] ALL_TYPES = BasicType.values();
-		static final BasicType[] ARG_TYPES = Arrays.copyOf(ALL_TYPES, ALL_TYPES.length - 1);
+		static final BasicType[] ARG_TYPES = Arrays.copyOf(ALL_TYPES,
+				ALL_TYPES.length - 1);
 
 		static final int ARG_TYPE_LIMIT = ARG_TYPES.length;
 		static final int TYPE_LIMIT = ALL_TYPES.length;
@@ -190,26 +172,26 @@ class LambdaForm {
 
 		static BasicType basicType(char type) {
 			switch (type) {
-			case 'L':
-				return L_TYPE;
-			case 'I':
-				return I_TYPE;
-			case 'J':
-				return J_TYPE;
-			case 'F':
-				return F_TYPE;
-			case 'D':
-				return D_TYPE;
-			case 'V':
-				return V_TYPE;
-			// all subword types are represented as ints
-			case 'Z':
-			case 'B':
-			case 'S':
-			case 'C':
-				return I_TYPE;
-			default:
-				throw newInternalError("Unknown type char: '" + type + "'");
+				case 'L':
+					return L_TYPE;
+				case 'I':
+					return I_TYPE;
+				case 'J':
+					return J_TYPE;
+				case 'F':
+					return F_TYPE;
+				case 'D':
+					return D_TYPE;
+				case 'V':
+					return V_TYPE;
+				// all subword types are represented as ints
+				case 'Z':
+				case 'B':
+				case 'S':
+				case 'C':
+					return I_TYPE;
+				default:
+					throw newInternalError("Unknown type char: '" + type + "'");
 			}
 		}
 
@@ -279,11 +261,12 @@ class LambdaForm {
 	}
 
 	LambdaForm(String debugName, int arity, Name[] names, int result) {
-		this(debugName, arity, names, result, /* forceInline= */true, /* customized= */null);
+		this(debugName, arity, names, result, /* forceInline= */true,
+				/* customized= */null);
 	}
 
-	LambdaForm(String debugName, int arity, Name[] names, int result, boolean forceInline,
-			MethodHandle customized) {
+	LambdaForm(String debugName, int arity, Name[] names, int result,
+			boolean forceInline, MethodHandle customized) {
 		assert (namesOK(arity, names));
 		this.arity = arity;
 		this.result = fixResult(result, names);
@@ -300,24 +283,29 @@ class LambdaForm {
 	}
 
 	LambdaForm(String debugName, int arity, Name[] names) {
-		this(debugName, arity, names, LAST_RESULT, /* forceInline= */true, /* customized= */null);
+		this(debugName, arity, names, LAST_RESULT, /* forceInline= */true,
+				/* customized= */null);
 	}
 
 	LambdaForm(String debugName, int arity, Name[] names, boolean forceInline) {
-		this(debugName, arity, names, LAST_RESULT, forceInline, /* customized= */null);
+		this(debugName, arity, names, LAST_RESULT, forceInline, /*
+																 * customized=
+																 */null);
 	}
 
 	LambdaForm(String debugName, Name[] formals, Name[] temps, Name result) {
-		this(debugName, formals.length, buildNames(formals, temps, result), LAST_RESULT,
-				/* forceInline= */true, /* customized= */null);
+		this(debugName, formals.length, buildNames(formals, temps, result),
+				LAST_RESULT, /* forceInline= */true, /* customized= */null);
 	}
 
-	LambdaForm(String debugName, Name[] formals, Name[] temps, Name result, boolean forceInline) {
-		this(debugName, formals.length, buildNames(formals, temps, result), LAST_RESULT,
-				forceInline, /* customized= */null);
+	LambdaForm(String debugName, Name[] formals, Name[] temps, Name result,
+			boolean forceInline) {
+		this(debugName, formals.length, buildNames(formals, temps, result),
+				LAST_RESULT, forceInline, /* customized= */null);
 	}
 
-	private static Name[] buildNames(Name[] formals, Name[] temps, Name result) {
+	private static Name[] buildNames(Name[] formals, Name[] temps,
+			Name result) {
 		int arity = formals.length;
 		int length = arity + temps.length + (result == null ? 0 : 1);
 		Name[] names = Arrays.copyOf(formals, length);
@@ -341,18 +329,25 @@ class LambdaForm {
 		this.customized = null;
 		assert (nameRefsAreLegal());
 		assert (isEmpty());
-		assert (sig.equals(basicTypeSignature())) : sig + " != " + basicTypeSignature();
+		assert (sig.equals(basicTypeSignature())) : sig + " != "
+				+ basicTypeSignature();
 	}
 
-	private static Name[] buildEmptyNames(int arity, String basicTypeSignature) {
+	private static Name[] buildEmptyNames(int arity,
+			String basicTypeSignature) {
 		assert (isValidSignature(basicTypeSignature));
 		int resultPos = arity + 1; // skip '_'
 		if (arity < 0 || basicTypeSignature.length() != resultPos + 1)
-			throw new IllegalArgumentException("bad arity for " + basicTypeSignature);
-		int numRes = (basicType(basicTypeSignature.charAt(resultPos)) == V_TYPE ? 0 : 1);
-		Name[] names = arguments(numRes, basicTypeSignature.substring(0, arity));
+			throw new IllegalArgumentException("bad arity for "
+					+ basicTypeSignature);
+		int numRes = (basicType(basicTypeSignature.charAt(resultPos)) == V_TYPE
+				? 0
+				: 1);
+		Name[] names = arguments(numRes, basicTypeSignature.substring(0,
+				arity));
 		for (int i = 0; i < numRes; i++) {
-			Name zero = new Name(constantZero(basicType(basicTypeSignature.charAt(resultPos + i))));
+			Name zero = new Name(constantZero(basicType(basicTypeSignature
+					.charAt(resultPos + i))));
 			names[arity + i] = zero.newIndex(arity + i);
 		}
 		return names;
@@ -388,7 +383,8 @@ class LambdaForm {
 				buf.insert(leadingZero, '0');
 			if (under < length) {
 				++under; // skip "_"
-				while (under < length && Character.isDigit(debugName.charAt(under))) {
+				while (under < length && Character.isDigit(debugName.charAt(
+						under))) {
 					++under;
 				}
 				if (under < length && debugName.charAt(under) == '_')
@@ -415,7 +411,8 @@ class LambdaForm {
 
 	/** Customize LambdaForm for a particular MethodHandle */
 	LambdaForm customize(MethodHandle mh) {
-		LambdaForm customForm = new LambdaForm(debugName, arity, names, result, forceInline, mh);
+		LambdaForm customForm = new LambdaForm(debugName, arity, names, result,
+				forceInline, mh);
 		if (COMPILE_THRESHOLD > 0 && isCompiled) {
 			// If shared LambdaForm has been compiled, compile customized
 			// version as well.
@@ -471,7 +468,8 @@ class LambdaForm {
 			if (startFixing <= changesStart)
 				startFixing = changesStart + 1;
 			for (int i = startFixing; i < names.length; i++) {
-				Name fixed = names[i].replaceNames(oldNames, names, changesStart, i);
+				Name fixed = names[i].replaceNames(oldNames, names,
+						changesStart, i);
 				names[i] = fixed.newIndex(i);
 			}
 		}
@@ -521,10 +519,11 @@ class LambdaForm {
 					Name n2 = (Name) arg;
 					int i2 = n2.index;
 					assert (0 <= i2 && i2 < names.length) : n.debugString()
-							+ ": 0 <= i2 && i2 < names.length: 0 <= " + i2 + " < " + names.length;
-					assert (names[i2] == n2) : Arrays.asList("-1-", i, "-2-", n.debugString(),
-							"-3-", i2, "-4-", n2.debugString(), "-5-", names[i2].debugString(),
-							"-6-", this);
+							+ ": 0 <= i2 && i2 < names.length: 0 <= " + i2
+							+ " < " + names.length;
+					assert (names[i2] == n2) : Arrays.asList("-1-", i, "-2-", n
+							.debugString(), "-3-", i2, "-4-", n2.debugString(),
+							"-5-", names[i2].debugString(), "-6-", this);
 					assert (i2 < i); // ref must come after def!
 				}
 			}
@@ -628,11 +627,9 @@ class LambdaForm {
 
 	/*
 	 * Code generation issues:
-	 *
 	 * Compiled LFs should be reusable in general. The biggest issue is how to
 	 * decide when to pull a name into the bytecode, versus loading a reified
 	 * form from the MH data.
-	 *
 	 * For example, an asType wrapper may require execution of a cast after a
 	 * call to a MH. The target type of the cast can be placed as a constant in
 	 * the LF itself. This will force the cast type to be compiled into the
@@ -640,13 +637,11 @@ class LambdaForm {
 	 * be erased in the LF, and loaded from the MH data. (Later on, if the MH as
 	 * a whole is inlined, the data will flow into the inlined instance of the
 	 * LF, as a constant, and the end result will be an optimal cast.)
-	 *
 	 * This erasure of cast types can be done with any use of reference types.
 	 * It can also be done with whole method handles. Erasing a method handle
 	 * might leave behind LF code that executes correctly for any MH of a given
 	 * type, and load the required MH from the enclosing MH's data. Or, the
 	 * erasure might even erase the expected MT.
-	 *
 	 * Also, for direct MHs, the MemberName of the target could be erased, and
 	 * loaded from the containing direct MH. As a simple case, a LF for all
 	 * int-valued non-static field getters would perform a cast on its input
@@ -655,7 +650,6 @@ class LambdaForm {
 	 * derived from the MemberName). Such MN-erased LFs would be inlinable back
 	 * to optimized code, whenever a constant enclosing DMH is available to
 	 * supply a constant MN from its data.
-	 *
 	 * The main problem here is to keep LFs reasonably generic, while ensuring
 	 * that hot spots will inline good instances. "Reasonably generic" means
 	 * that we don't end up with repeated versions of bytecode or machine code
@@ -665,12 +659,10 @@ class LambdaForm {
 	 * ready to erase details from LFs and move them into MH data, whevener
 	 * those details are not relevant to significant optimization. "Significant"
 	 * means optimization of code that is actually hot.
-	 *
 	 * Achieving this may require dynamic splitting of MHs, by replacing a
 	 * generic LF with a more specialized one, on the same MH, if (a) the MH is
 	 * frequently executed and (b) the MH cannot be inlined into a containing
 	 * caller, such as an invokedynamic.
-	 *
 	 * Compiled LFs that are no longer used should be GC-able. If they contain
 	 * non-BCP references, they should be properly interlinked with the class
 	 * loader(s) that their embedded types depend on. This probably means that
@@ -703,9 +695,11 @@ class LambdaForm {
 			return vmentry; // already compiled somehow
 		}
 		MethodType invokerType = methodType();
-		assert (vmentry == null || vmentry.getMethodType().basicType().equals(invokerType));
+		assert (vmentry == null || vmentry.getMethodType().basicType().equals(
+				invokerType));
 		try {
-			vmentry = InvokerBytecodeGenerator.generateCustomizedCode(this, invokerType);
+			vmentry = InvokerBytecodeGenerator.generateCustomizedCode(this,
+					invokerType);
 			if (TRACE_INTERPRETER)
 				traceInterpreter("compileToBytecode", this);
 			isCompiled = true;
@@ -718,18 +712,21 @@ class LambdaForm {
 	private static void computeInitialPreparedForms() {
 		// Find all predefined invokers and associate them with canonical empty
 		// lambda forms.
-		for (MemberName m : MemberName.getFactory().getMethods(LambdaForm.class, false, null, null,
-				null)) {
+		for (MemberName m : MemberName.getFactory().getMethods(LambdaForm.class,
+				false, null, null, null)) {
 			if (!m.isStatic() || !m.isPackage())
 				continue;
 			MethodType mt = m.getMethodType();
-			if (mt.parameterCount() > 0 && mt.parameterType(0) == MethodHandle.class
-					&& m.getName().startsWith("interpret_")) {
+			if (mt.parameterCount() > 0 && mt.parameterType(
+					0) == MethodHandle.class && m.getName().startsWith(
+							"interpret_")) {
 				String sig = basicTypeSignature(mt);
-				assert (m.getName().equals("interpret" + sig.substring(sig.indexOf('_'))));
+				assert (m.getName().equals("interpret" + sig.substring(sig
+						.indexOf('_'))));
 				LambdaForm form = new LambdaForm(sig);
 				form.vmentry = m;
-				form = mt.form().setCachedLambdaForm(MethodTypeForm.LF_INTERPRET, form);
+				form = mt.form().setCachedLambdaForm(
+						MethodTypeForm.LF_INTERPRET, form);
 			}
 		}
 	}
@@ -758,7 +755,8 @@ class LambdaForm {
 		return res;
 	}
 
-	static Object interpret_L(MethodHandle mh, Object x1, Object x2) throws Throwable {
+	static Object interpret_L(MethodHandle mh, Object x1, Object x2)
+			throws Throwable {
 		Object[] av = { mh, x1, x2 };
 		String sig = null;
 		assert (argumentTypesMatch(sig = "LLL_L", av));
@@ -769,13 +767,16 @@ class LambdaForm {
 
 	private static LambdaForm getPreparedForm(String sig) {
 		MethodType mtype = signatureType(sig);
-		LambdaForm prep = mtype.form().cachedLambdaForm(MethodTypeForm.LF_INTERPRET);
+		LambdaForm prep = mtype.form().cachedLambdaForm(
+				MethodTypeForm.LF_INTERPRET);
 		if (prep != null)
 			return prep;
 		assert (isValidSignature(sig));
 		prep = new LambdaForm(sig);
-		prep.vmentry = InvokerBytecodeGenerator.generateLambdaFormInterpreterEntryPoint(sig);
-		return mtype.form().setCachedLambdaForm(MethodTypeForm.LF_INTERPRET, prep);
+		prep.vmentry = InvokerBytecodeGenerator
+				.generateLambdaFormInterpreterEntryPoint(sig);
+		return mtype.form().setCachedLambdaForm(MethodTypeForm.LF_INTERPRET,
+				prep);
 	}
 
 	// The next few routines are called only from assert expressions
@@ -783,14 +784,16 @@ class LambdaForm {
 	// types.
 	private static boolean argumentTypesMatch(String sig, Object[] av) {
 		int arity = signatureArity(sig);
-		assert (av.length == arity) : "av.length == arity: av.length=" + av.length + ", arity="
-				+ arity;
-		assert (av[0] instanceof MethodHandle) : "av[0] not instace of MethodHandle: " + av[0];
+		assert (av.length == arity) : "av.length == arity: av.length="
+				+ av.length + ", arity=" + arity;
+		assert (av[0] instanceof MethodHandle) : "av[0] not instace of MethodHandle: "
+				+ av[0];
 		MethodHandle mh = (MethodHandle) av[0];
 		MethodType mt = mh.type();
 		assert (mt.parameterCount() == arity - 1);
 		for (int i = 0; i < av.length; i++) {
-			Class<?> pt = (i == 0 ? MethodHandle.class : mt.parameterType(i - 1));
+			Class<?> pt = (i == 0 ? MethodHandle.class
+					: mt.parameterType(i - 1));
 			assert (valueMatches(basicType(sig.charAt(i)), pt, av[i]));
 		}
 		return true;
@@ -801,32 +804,34 @@ class LambdaForm {
 		// non-void invokers
 		if (type == void.class)
 			tc = V_TYPE; // can drop any kind of value
-		assert tc == basicType(type) : tc + " == basicType(" + type + ")=" + basicType(type);
+		assert tc == basicType(type) : tc + " == basicType(" + type + ")="
+				+ basicType(type);
 		switch (tc) {
-		case I_TYPE:
-			assert checkInt(type, x) : "checkInt(" + type + "," + x + ")";
-			break;
-		case J_TYPE:
-			assert x instanceof Long : "instanceof Long: " + x;
-			break;
-		case F_TYPE:
-			assert x instanceof Float : "instanceof Float: " + x;
-			break;
-		case D_TYPE:
-			assert x instanceof Double : "instanceof Double: " + x;
-			break;
-		case L_TYPE:
-			assert checkRef(type, x) : "checkRef(" + type + "," + x + ")";
-			break;
-		case V_TYPE:
-			break; // allow anything here; will be dropped
-		default:
-			assert (false);
+			case I_TYPE:
+				assert checkInt(type, x) : "checkInt(" + type + "," + x + ")";
+				break;
+			case J_TYPE:
+				assert x instanceof Long : "instanceof Long: " + x;
+				break;
+			case F_TYPE:
+				assert x instanceof Float : "instanceof Float: " + x;
+				break;
+			case D_TYPE:
+				assert x instanceof Double : "instanceof Double: " + x;
+				break;
+			case L_TYPE:
+				assert checkRef(type, x) : "checkRef(" + type + "," + x + ")";
+				break;
+			case V_TYPE:
+				break; // allow anything here; will be dropped
+			default:
+				assert (false);
 		}
 		return true;
 	}
 
-	private static boolean returnTypesMatch(String sig, Object[] av, Object res) {
+	private static boolean returnTypesMatch(String sig, Object[] av,
+			Object res) {
 		MethodHandle mh = (MethodHandle) av[0];
 		return valueMatches(signatureReturn(sig), mh.type().returnType(), res);
 	}
@@ -885,8 +890,10 @@ class LambdaForm {
 	 */
 	Object interpretName(Name name, Object[] values) throws Throwable {
 		if (TRACE_INTERPRETER)
-			traceInterpreter("| interpretName", name.debugString(), (Object[]) null);
-		Object[] arguments = Arrays.copyOf(name.arguments, name.arguments.length, Object[].class);
+			traceInterpreter("| interpretName", name.debugString(),
+					(Object[]) null);
+		Object[] arguments = Arrays.copyOf(name.arguments,
+				name.arguments.length, Object[].class);
 		for (int i = 0; i < arguments.length; i++) {
 			Object a = arguments[i];
 			if (a instanceof Name) {
@@ -909,7 +916,8 @@ class LambdaForm {
 		}
 	}
 
-	Object interpretWithArgumentsTracing(Object... argumentValues) throws Throwable {
+	Object interpretWithArgumentsTracing(Object... argumentValues)
+			throws Throwable {
 		traceInterpreter("[ interpretWithArguments", this, argumentValues);
 		if (invocationCounter < COMPILE_THRESHOLD) {
 			int ctr = invocationCounter++; // benign race
@@ -937,7 +945,8 @@ class LambdaForm {
 	static void traceInterpreter(String event, Object obj, Object... args) {
 		if (TRACE_INTERPRETER) {
 			System.out.println("LFI: " + event + " " + (obj != null ? obj : "")
-					+ (args != null && args.length != 0 ? Arrays.asList(args) : ""));
+					+ (args != null && args.length != 0 ? Arrays.asList(args)
+							: ""));
 		}
 	}
 
@@ -946,11 +955,12 @@ class LambdaForm {
 	}
 
 	private boolean arityCheck(Object[] argumentValues) {
-		assert (argumentValues.length == arity) : arity + "!=" + Arrays.asList(argumentValues)
-				+ ".length";
+		assert (argumentValues.length == arity) : arity + "!=" + Arrays.asList(
+				argumentValues) + ".length";
 		// also check that the leading (receiver) argument is somehow bound to
 		// this LF:
-		assert (argumentValues[0] instanceof MethodHandle) : "not MH: " + argumentValues[0];
+		assert (argumentValues[0] instanceof MethodHandle) : "not MH: "
+				+ argumentValues[0];
 		MethodHandle mh = (MethodHandle) argumentValues[0];
 		assert (mh.internalForm() == this);
 		// note: argument #0 could also be an interface wrapper, in the future
@@ -1046,7 +1056,8 @@ class LambdaForm {
 			result2 += inTypes;
 		// Note: The LF constructor will rename names2[argpos...].
 		// Make space for new arguments (shift temporaries).
-		System.arraycopy(names, argpos, names2, argpos + inTypes, length - argpos);
+		System.arraycopy(names, argpos, names2, argpos + inTypes, length
+				- argpos);
 		for (int i = 0; i < inTypes; i++) {
 			names2[argpos + i] = new Name(types[i]);
 		}
@@ -1073,7 +1084,8 @@ class LambdaForm {
 		System.arraycopy(names, 0, names2, 0, skip + pos);
 		// copy the body:
 		int bodyLength = length - arity;
-		System.arraycopy(names, skip + outArgs, names2, skip + inTypes, bodyLength);
+		System.arraycopy(names, skip + outArgs, names2, skip + inTypes,
+				bodyLength);
 		int arity2 = names2.length - bodyLength;
 		int result2 = result;
 		if (result2 >= 0) {
@@ -1117,7 +1129,8 @@ class LambdaForm {
 		return new LambdaForm(debugName, arity2, names2, result2);
 	}
 
-	static boolean permutedTypesMatch(int[] reorder, BasicType[] types, Name[] names, int skip) {
+	static boolean permutedTypesMatch(int[] reorder, BasicType[] types,
+			Name[] names, int skip) {
 		int inTypes = types.length;
 		int outArgs = reorder.length;
 		for (int i = 0; i < outArgs; i++) {
@@ -1147,9 +1160,12 @@ class LambdaForm {
 		}
 
 		NamedFunction(MethodType basicInvokerType) {
-			assert (basicInvokerType == basicInvokerType.basicType()) : basicInvokerType;
-			if (basicInvokerType.parameterSlotCount() < MethodType.MAX_MH_INVOKER_ARITY) {
-				this.resolvedHandle = basicInvokerType.invokers().basicInvoker();
+			assert (basicInvokerType == basicInvokerType
+					.basicType()) : basicInvokerType;
+			if (basicInvokerType
+					.parameterSlotCount() < MethodType.MAX_MH_INVOKER_ARITY) {
+				this.resolvedHandle = basicInvokerType.invokers()
+						.basicInvoker();
 				this.member = resolvedHandle.internalMemberName();
 			} else {
 				// necessary to pass BigArityTest
@@ -1159,8 +1175,9 @@ class LambdaForm {
 		}
 
 		private static boolean isInvokeBasic(MemberName member) {
-			return member != null && member.getDeclaringClass() == MethodHandle.class
-					&& "invokeBasic".equals(member.getName());
+			return member != null && member
+					.getDeclaringClass() == MethodHandle.class && "invokeBasic"
+							.equals(member.getName());
 		}
 
 		// The next 3 constructors are used to break circular dependencies on
@@ -1214,12 +1231,13 @@ class LambdaForm {
 
 		// Put the predefined NamedFunction invokers into the table.
 		static void initializeInvokers() {
-			for (MemberName m : MemberName.getFactory().getMethods(NamedFunction.class, false, null,
-					null, null)) {
+			for (MemberName m : MemberName.getFactory().getMethods(
+					NamedFunction.class, false, null, null, null)) {
 				if (!m.isStatic() || !m.isPackage())
 					continue;
 				MethodType type = m.getMethodType();
-				if (type.equals(INVOKER_METHOD_TYPE) && m.getName().startsWith("invoke_")) {
+				if (type.equals(INVOKER_METHOD_TYPE) && m.getName().startsWith(
+						"invoke_")) {
 					String sig = m.getName().substring("invoke_".length());
 					int arity = LambdaForm.signatureArity(sig);
 					MethodType srcType = MethodType.genericMethodType(arity);
@@ -1251,28 +1269,32 @@ class LambdaForm {
 		}
 
 		@Hidden
-		static Object invoke_LL_V(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LL_V(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(2, void.class, mh, a));
 			mh.invokeBasic(a[0], a[1]);
 			return null;
 		}
 
 		@Hidden
-		static Object invoke_LLL_V(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LLL_V(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(3, void.class, mh, a));
 			mh.invokeBasic(a[0], a[1], a[2]);
 			return null;
 		}
 
 		@Hidden
-		static Object invoke_LLLL_V(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LLLL_V(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(4, void.class, mh, a));
 			mh.invokeBasic(a[0], a[1], a[2], a[3]);
 			return null;
 		}
 
 		@Hidden
-		static Object invoke_LLLLL_V(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LLLLL_V(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(5, void.class, mh, a));
 			mh.invokeBasic(a[0], a[1], a[2], a[3], a[4]);
 			return null;
@@ -1292,34 +1314,40 @@ class LambdaForm {
 		}
 
 		@Hidden
-		static Object invoke_LL_L(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LL_L(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(2, mh, a));
 			return mh.invokeBasic(a[0], a[1]);
 		}
 
 		@Hidden
-		static Object invoke_LLL_L(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LLL_L(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(3, mh, a));
 			return mh.invokeBasic(a[0], a[1], a[2]);
 		}
 
 		@Hidden
-		static Object invoke_LLLL_L(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LLLL_L(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(4, mh, a));
 			return mh.invokeBasic(a[0], a[1], a[2], a[3]);
 		}
 
 		@Hidden
-		static Object invoke_LLLLL_L(MethodHandle mh, Object[] a) throws Throwable {
+		static Object invoke_LLLLL_L(MethodHandle mh, Object[] a)
+				throws Throwable {
 			assert (arityCheck(5, mh, a));
 			return mh.invokeBasic(a[0], a[1], a[2], a[3], a[4]);
 		}
 
-		private static boolean arityCheck(int arity, MethodHandle mh, Object[] a) {
+		private static boolean arityCheck(int arity, MethodHandle mh,
+				Object[] a) {
 			return arityCheck(arity, Object.class, mh, a);
 		}
 
-		private static boolean arityCheck(int arity, Class<?> rtype, MethodHandle mh, Object[] a) {
+		private static boolean arityCheck(int arity, Class<?> rtype,
+				MethodHandle mh, Object[] a) {
 			assert (a.length == arity) : Arrays.asList(a.length, arity);
 			assert (mh.type().basicType() == MethodType.genericMethodType(arity)
 					.changeReturnType(rtype)) : Arrays.asList(mh, rtype, arity);
@@ -1328,27 +1356,31 @@ class LambdaForm {
 				assert (arity > 0);
 				assert (a[0] instanceof MethodHandle);
 				MethodHandle mh2 = (MethodHandle) a[0];
-				assert (mh2.type().basicType() == MethodType.genericMethodType(arity - 1)
-						.changeReturnType(rtype)) : Arrays.asList(member, mh2, rtype, arity);
+				assert (mh2.type().basicType() == MethodType.genericMethodType(
+						arity - 1).changeReturnType(rtype)) : Arrays.asList(
+								member, mh2, rtype, arity);
 			}
 			return true;
 		}
 
-		static final MethodType INVOKER_METHOD_TYPE = MethodType.methodType(Object.class,
-				MethodHandle.class, Object[].class);
+		static final MethodType INVOKER_METHOD_TYPE = MethodType.methodType(
+				Object.class, MethodHandle.class, Object[].class);
 
 		private static MethodHandle computeInvoker(MethodTypeForm typeForm) {
 			typeForm = typeForm.basicType().form(); // normalize to basic type
-			MethodHandle mh = typeForm.cachedMethodHandle(MethodTypeForm.MH_NF_INV);
+			MethodHandle mh = typeForm.cachedMethodHandle(
+					MethodTypeForm.MH_NF_INV);
 			if (mh != null)
 				return mh;
-			MemberName invoker = InvokerBytecodeGenerator.generateNamedFunctionInvoker(typeForm); // this
-																									// could
-																									// take
-																									// a
-																									// while
+			MemberName invoker = InvokerBytecodeGenerator
+					.generateNamedFunctionInvoker(typeForm); // this
+																											// could
+																											// take
+																											// a
+																											// while
 			mh = DirectMethodHandle.make(invoker);
-			MethodHandle mh2 = typeForm.cachedMethodHandle(MethodTypeForm.MH_NF_INV);
+			MethodHandle mh2 = typeForm.cachedMethodHandle(
+					MethodTypeForm.MH_NF_INV);
 			if (mh2 != null)
 				return mh2; // benign race
 			if (!mh.type().equals(INVOKER_METHOD_TYPE))
@@ -1396,7 +1428,8 @@ class LambdaForm {
 			return invoker = computeInvoker(methodType().form());
 		}
 
-		private static boolean checkArgumentTypes(Object[] arguments, MethodType methodType) {
+		private static boolean checkArgumentTypes(Object[] arguments,
+				MethodType methodType) {
 			if (true)
 				return true; // FIXME
 			MethodType dstType = methodType.form().erasedType();
@@ -1407,11 +1440,14 @@ class LambdaForm {
 				Class<?> ptype = arg == null ? Object.class : arg.getClass();
 				// If the dest. type is a primitive we keep the
 				// argument type.
-				ptypes[i] = dstType.parameterType(i).isPrimitive() ? ptype : Object.class;
+				ptypes[i] = dstType.parameterType(i).isPrimitive() ? ptype
+						: Object.class;
 			}
-			MethodType argType = MethodType.methodType(srcType.returnType(), ptypes).wrap();
-			assert (argType.isConvertibleTo(srcType)) : "wrong argument types: cannot convert "
-					+ argType + " to " + srcType;
+			MethodType argType = MethodType.methodType(srcType.returnType(),
+					ptypes).wrap();
+			assert (argType.isConvertibleTo(
+					srcType)) : "wrong argument types: cannot convert "
+							+ argType + " to " + srcType;
 			return true;
 		}
 
@@ -1456,7 +1492,8 @@ class LambdaForm {
 		public String toString() {
 			if (member == null)
 				return String.valueOf(resolvedHandle);
-			return member.getDeclaringClass().getSimpleName() + "." + member.getName();
+			return member.getDeclaringClass().getSimpleName() + "." + member
+					.getName();
 		}
 
 		public boolean isIdentity() {
@@ -1529,7 +1566,8 @@ class LambdaForm {
 		@Stable
 		final Object[] arguments;
 
-		private Name(int index, BasicType type, NamedFunction function, Object[] arguments) {
+		private Name(int index, BasicType type, NamedFunction function,
+				Object[] arguments) {
 			this.index = (short) index;
 			this.type = type;
 			this.function = function;
@@ -1546,7 +1584,8 @@ class LambdaForm {
 			this.constraint = constraint;
 			assert (constraint == null || isParam()); // only params have
 														// constraints
-			assert (constraint == null || constraint instanceof BoundMethodHandle.SpeciesData
+			assert (constraint == null
+					|| constraint instanceof BoundMethodHandle.SpeciesData
 					|| constraint instanceof Class);
 		}
 
@@ -1556,7 +1595,8 @@ class LambdaForm {
 
 		Name(MethodType functionType, Object... arguments) {
 			this(new NamedFunction(functionType), arguments);
-			assert (arguments[0] instanceof Name && ((Name) arguments[0]).type == L_TYPE);
+			assert (arguments[0] instanceof Name
+					&& ((Name) arguments[0]).type == L_TYPE);
 		}
 
 		Name(MemberName function, Object... arguments) {
@@ -1564,16 +1604,18 @@ class LambdaForm {
 		}
 
 		Name(NamedFunction function, Object... arguments) {
-			this(-1, function.returnType(), function,
-					arguments = Arrays.copyOf(arguments, arguments.length, Object[].class));
-			assert (arguments.length == function.arity()) : "arity mismatch: arguments.length="
-					+ arguments.length + " == function.arity()=" + function.arity() + " in "
-					+ debugString();
+			this(-1, function.returnType(), function, arguments = Arrays.copyOf(
+					arguments, arguments.length, Object[].class));
+			assert (arguments.length == function
+					.arity()) : "arity mismatch: arguments.length="
+							+ arguments.length + " == function.arity()="
+							+ function.arity() + " in " + debugString();
 			for (int i = 0; i < arguments.length; i++)
 				assert (typesMatch(function.parameterType(i),
-						arguments[i])) : "types don't match: function.parameterType(" + i + ")="
-								+ function.parameterType(i) + ", arguments[" + i + "]="
-								+ arguments[i] + " in " + debugString();
+						arguments[i])) : "types don't match: function.parameterType("
+								+ i + ")=" + function.parameterType(i)
+								+ ", arguments[" + i + "]=" + arguments[i]
+								+ " in " + debugString();
 		}
 
 		/** Create a raw parameter of the given type, with an expected index. */
@@ -1619,8 +1661,10 @@ class LambdaForm {
 		}
 
 		Name cloneWithIndex(int i) {
-			Object[] newArguments = (arguments == null) ? null : arguments.clone();
-			return new Name(i, type, function, newArguments).withConstraint(constraint);
+			Object[] newArguments = (arguments == null) ? null
+					: arguments.clone();
+			return new Name(i, type, function, newArguments).withConstraint(
+					constraint);
 		}
 
 		Name withConstraint(Object constraint) {
@@ -1658,7 +1702,8 @@ class LambdaForm {
 		 * newNames[i]. Limit such replacements to {@code start<=i<end}. Return
 		 * possibly changed self.
 		 */
-		Name replaceNames(Name[] oldNames, Name[] newNames, int start, int end) {
+		Name replaceNames(Name[] oldNames, Name[] newNames, int start,
+				int end) {
 			if (start >= end)
 				return this;
 			@SuppressWarnings("LocalVariableHidesMemberVariable")
@@ -1670,7 +1715,8 @@ class LambdaForm {
 					int check = n.index;
 					// harmless check to see if the thing is already in
 					// newNames:
-					if (check >= 0 && check < newNames.length && n == newNames[check])
+					if (check >= 0 && check < newNames.length
+							&& n == newNames[check])
 						continue eachArg;
 					// n might not have the correct index: n !=
 					// oldNames[n.index].
@@ -1710,12 +1756,13 @@ class LambdaForm {
 		}
 
 		boolean isConstantZero() {
-			return !isParam() && arguments.length == 0 && function.isConstantZero();
+			return !isParam() && arguments.length == 0 && function
+					.isConstantZero();
 		}
 
 		public String toString() {
-			return (isParam() ? "a" : "t") + (index >= 0 ? index : System.identityHashCode(this))
-					+ ":" + typeChar();
+			return (isParam() ? "a" : "t") + (index >= 0 ? index
+					: System.identityHashCode(this)) + ":" + typeChar();
 		}
 
 		public String debugString() {
@@ -1756,14 +1803,14 @@ class LambdaForm {
 				return ((Name) object).type == parameterType;
 			}
 			switch (parameterType) {
-			case I_TYPE:
-				return object instanceof Integer;
-			case J_TYPE:
-				return object instanceof Long;
-			case F_TYPE:
-				return object instanceof Float;
-			case D_TYPE:
-				return object instanceof Double;
+				case I_TYPE:
+					return object instanceof Integer;
+				case J_TYPE:
+					return object instanceof Long;
+				case F_TYPE:
+					return object instanceof Float;
+				case D_TYPE:
+					return object instanceof Double;
 			}
 			assert (parameterType == L_TYPE);
 			return true;
@@ -1933,7 +1980,8 @@ class LambdaForm {
 		}
 	}
 
-	private static final MemberName.Factory IMPL_NAMES = MemberName.getFactory();
+	private static final MemberName.Factory IMPL_NAMES = MemberName
+			.getFactory();
 
 	static LambdaForm identityForm(BasicType type) {
 		return LF_identityForm[type.ordinal()];
@@ -1963,17 +2011,18 @@ class LambdaForm {
 			boolean isVoid = (type == V_TYPE);
 			Class<?> btClass = type.btClass;
 			MethodType zeType = MethodType.methodType(btClass);
-			MethodType idType = isVoid ? zeType : zeType.appendParameterTypes(btClass);
+			MethodType idType = isVoid ? zeType
+					: zeType.appendParameterTypes(btClass);
 
 			// Look up some symbolic names. It might not be necessary to have
 			// these,
 			// but if we need to emit direct references to bytecodes, it helps.
 			// Zero is built from a call to an identity function with a constant
 			// zero input.
-			MemberName idMem = new MemberName(LambdaForm.class, "identity_" + btChar, idType,
-					REF_invokeStatic);
-			MemberName zeMem = new MemberName(LambdaForm.class, "zero_" + btChar, zeType,
-					REF_invokeStatic);
+			MemberName idMem = new MemberName(LambdaForm.class, "identity_"
+					+ btChar, idType, REF_invokeStatic);
+			MemberName zeMem = new MemberName(LambdaForm.class, "zero_"
+					+ btChar, zeType, REF_invokeStatic);
 			try {
 				zeMem = IMPL_NAMES.resolveOrFail(REF_invokeStatic, zeMem, null,
 						NoSuchMethodException.class);
@@ -1987,9 +2036,11 @@ class LambdaForm {
 			LambdaForm idForm;
 			if (isVoid) {
 				Name[] idNames = new Name[] { argument(0, L_TYPE) };
-				idForm = new LambdaForm(idMem.getName(), 1, idNames, VOID_RESULT);
+				idForm = new LambdaForm(idMem.getName(), 1, idNames,
+						VOID_RESULT);
 			} else {
-				Name[] idNames = new Name[] { argument(0, L_TYPE), argument(1, type) };
+				Name[] idNames = new Name[] { argument(0, L_TYPE), argument(1,
+						type) };
 				idForm = new LambdaForm(idMem.getName(), 2, idNames, 1);
 			}
 			LF_identityForm[ord] = idForm;
@@ -2001,7 +2052,8 @@ class LambdaForm {
 				zeForm = idForm;
 			} else {
 				Object zeValue = Wrapper.forBasicType(btChar).zero();
-				Name[] zeNames = new Name[] { argument(0, L_TYPE), new Name(idFun, zeValue) };
+				Name[] zeNames = new Name[] { argument(0, L_TYPE), new Name(
+						idFun, zeValue) };
 				zeForm = new LambdaForm(zeMem.getName(), 1, zeNames, 1);
 			}
 			LF_zeroForm[ord] = zeForm;
@@ -2019,12 +2071,14 @@ class LambdaForm {
 			NamedFunction idFun = NF_identity[ord];
 			LambdaForm idForm = LF_identityForm[ord];
 			MemberName idMem = idFun.member;
-			idFun.resolvedHandle = SimpleMethodHandle.make(idMem.getInvocationType(), idForm);
+			idFun.resolvedHandle = SimpleMethodHandle.make(idMem
+					.getInvocationType(), idForm);
 
 			NamedFunction zeFun = NF_zero[ord];
 			LambdaForm zeForm = LF_zeroForm[ord];
 			MemberName zeMem = zeFun.member;
-			zeFun.resolvedHandle = SimpleMethodHandle.make(zeMem.getInvocationType(), zeForm);
+			zeFun.resolvedHandle = SimpleMethodHandle.make(zeMem
+					.getInvocationType(), zeForm);
 
 			assert (idFun.isIdentity());
 			assert (zeFun.isConstantZero());

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -88,8 +85,8 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLPullParserConfiguration;
  *
  * @version $Id: DTDConfiguration.java,v 1.7 2010-11-01 04:40:09 joehw Exp $
  */
-public class DTDConfiguration extends BasicParserConfiguration
-		implements XMLPullParserConfiguration {
+public class DTDConfiguration extends BasicParserConfiguration implements
+		XMLPullParserConfiguration {
 
 	//
 	// Constants
@@ -257,7 +254,7 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * Constructs a parser configuration using the specified symbol table.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 */
 	public DTDConfiguration(SymbolTable symbolTable) {
 		this(symbolTable, null, null);
@@ -271,11 +268,12 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * validation engine is implemented.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                    The grammar pool to use.
 	 */
-	public DTDConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
+	public DTDConfiguration(SymbolTable symbolTable,
+			XMLGrammarPool grammarPool) {
 		this(symbolTable, grammarPool, null);
 	} // <init>(SymbolTable,XMLGrammarPool)
 
@@ -287,11 +285,11 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * validation engine is implemented.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                       The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                       The grammar pool to use.
 	 * @param parentSettings
-	 *            The parent settings.
+	 *                       The parent settings.
 	 */
 	public DTDConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
 			XMLComponentManager parentSettings) {
@@ -304,9 +302,9 @@ public class DTDConfiguration extends BasicParserConfiguration
 				// ALLOW_JAVA_ENCODINGS, // from XMLEntityManager
 				CONTINUE_AFTER_FATAL_ERROR, LOAD_EXTERNAL_DTD, // from
 																// XMLDTDScannerImpl
-				// NOTIFY_BUILTIN_REFS, // from XMLDocumentFragmentScannerImpl
-				// NOTIFY_CHAR_REFS, // from XMLDocumentFragmentScannerImpl
-				// WARN_ON_DUPLICATE_ENTITYDEF, // from XMLEntityManager
+																// NOTIFY_BUILTIN_REFS, // from XMLDocumentFragmentScannerImpl
+																// NOTIFY_CHAR_REFS, // from XMLDocumentFragmentScannerImpl
+																// WARN_ON_DUPLICATE_ENTITYDEF, // from XMLEntityManager
 		};
 		addRecognizedFeatures(recognizedFeatures);
 
@@ -326,10 +324,11 @@ public class DTDConfiguration extends BasicParserConfiguration
 		// XMLEntityManager
 
 		// add default recognized properties
-		final String[] recognizedProperties = { ERROR_REPORTER, ENTITY_MANAGER, DOCUMENT_SCANNER,
-				DTD_SCANNER, DTD_PROCESSOR, DTD_VALIDATOR, NAMESPACE_BINDER, XMLGRAMMAR_POOL,
-				DATATYPE_VALIDATOR_FACTORY, VALIDATION_MANAGER, JAXP_SCHEMA_SOURCE,
-				JAXP_SCHEMA_LANGUAGE, LOCALE, SECURITY_MANAGER, XML_SECURITY_PROPERTY_MANAGER };
+		final String[] recognizedProperties = { ERROR_REPORTER, ENTITY_MANAGER,
+				DOCUMENT_SCANNER, DTD_SCANNER, DTD_PROCESSOR, DTD_VALIDATOR,
+				NAMESPACE_BINDER, XMLGRAMMAR_POOL, DATATYPE_VALIDATOR_FACTORY,
+				VALIDATION_MANAGER, JAXP_SCHEMA_SOURCE, JAXP_SCHEMA_LANGUAGE,
+				LOCALE, SECURITY_MANAGER, XML_SECURITY_PROPERTY_MANAGER };
 		addRecognizedProperties(recognizedProperties);
 
 		fGrammarPool = grammarPool;
@@ -390,10 +389,13 @@ public class DTDConfiguration extends BasicParserConfiguration
 			setProperty(VALIDATION_MANAGER, fValidationManager);
 		}
 		// add message formatters
-		if (fErrorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN) == null) {
+		if (fErrorReporter.getMessageFormatter(
+				XMLMessageFormatter.XML_DOMAIN) == null) {
 			XMLMessageFormatter xmft = new XMLMessageFormatter();
-			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN, xmft);
-			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN, xmft);
+			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN,
+					xmft);
+			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN,
+					xmft);
 		}
 
 		// set locale
@@ -404,21 +406,24 @@ public class DTDConfiguration extends BasicParserConfiguration
 			// REVISIT: What is the right thing to do? -Ac
 		}
 
-		setProperty(XML_SECURITY_PROPERTY_MANAGER, new XMLSecurityPropertyManager());
+		setProperty(XML_SECURITY_PROPERTY_MANAGER,
+				new XMLSecurityPropertyManager());
 	} // <init>(SymbolTable,XMLGrammarPool)
 
 	//
 	// Public methods
 	//
 
-	public PropertyState getPropertyState(String propertyId) throws XMLConfigurationException {
+	public PropertyState getPropertyState(String propertyId)
+			throws XMLConfigurationException {
 		if (LOCALE.equals(propertyId)) {
 			return PropertyState.is(getLocale());
 		}
 		return super.getPropertyState(propertyId);
 	}
 
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException {
 		if (LOCALE.equals(propertyId)) {
 			setLocale((Locale) value);
 		}
@@ -429,11 +434,12 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * Set the locale to use for messages.
 	 *
 	 * @param locale
-	 *            The locale object to use for localization of messages.
+	 *               The locale object to use for localization of messages.
 	 *
 	 * @exception XNIException
-	 *                Thrown if the parser does not support the specified
-	 *                locale.
+	 *                         Thrown if the parser does not support the
+	 *                         specified
+	 *                         locale.
 	 */
 	public void setLocale(Locale locale) throws XNIException {
 		super.setLocale(locale);
@@ -450,13 +456,14 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * Sets the input source for the document to parse.
 	 *
 	 * @param inputSource
-	 *            The document's input source.
+	 *                    The document's input source.
 	 *
 	 * @exception XMLConfigurationException
-	 *                Thrown if there is a configuration error when initializing
-	 *                the parser.
+	 *                                      Thrown if there is a configuration
+	 *                                      error when initializing
+	 *                                      the parser.
 	 * @exception IOException
-	 *                Thrown on I/O error.
+	 *                                      Thrown on I/O error.
 	 *
 	 * @see #parse(boolean)
 	 */
@@ -476,16 +483,20 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * Parses the document in a pull parsing fashion.
 	 *
 	 * @param complete
-	 *            True if the pull parser should parse the remaining document
-	 *            completely.
+	 *                 True if the pull parser should parse the remaining
+	 *                 document
+	 *                 completely.
 	 *
 	 * @return True if there is more document to parse.
 	 *
 	 * @exception XNIException
-	 *                Any XNI exception, possibly wrapping another exception.
+	 *                         Any XNI exception, possibly wrapping another
+	 *                         exception.
 	 * @exception IOException
-	 *                An IO exception from the parser, possibly from a byte
-	 *                stream or character stream supplied by the parser.
+	 *                         An IO exception from the parser, possibly from a
+	 *                         byte
+	 *                         stream or character stream supplied by the
+	 *                         parser.
 	 *
 	 * @see #setInputSource
 	 */
@@ -556,18 +567,19 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * Parses the specified input source.
 	 *
 	 * @param source
-	 *            The input source.
+	 *               The input source.
 	 *
 	 * @exception XNIException
-	 *                Throws exception on XNI error.
-	 * @exception java.io.IOException
-	 *                Throws exception on i/o error.
+	 *                         Throws exception on XNI error.
+	 * @exception              java.io.IOException
+	 *                         Throws exception on i/o error.
 	 */
 	public void parse(XMLInputSource source) throws XNIException, IOException {
 
 		if (fParseInProgress) {
 			// REVISIT - need to add new error message
-			throw new XNIException("FWK005 parse may not be called while parsing.");
+			throw new XNIException(
+					"FWK005 parse may not be called while parsing.");
 		}
 		fParseInProgress = true;
 
@@ -606,7 +618,7 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * Reset all components before parsing.
 	 *
 	 * @throws XNIException
-	 *             Thrown if an error occurs during initialization.
+	 *                      Thrown if an error occurs during initialization.
 	 */
 	protected void reset() throws XNIException {
 
@@ -674,9 +686,11 @@ public class DTDConfiguration extends BasicParserConfiguration
 
 				fDTDScanner.setDTDContentModelHandler(fDTDProcessor);
 				fDTDProcessor.setDTDContentModelSource(fDTDScanner);
-				fDTDProcessor.setDTDContentModelHandler(fDTDContentModelHandler);
+				fDTDProcessor.setDTDContentModelHandler(
+						fDTDContentModelHandler);
 				if (fDTDContentModelHandler != null) {
-					fDTDContentModelHandler.setDTDContentModelSource(fDTDProcessor);
+					fDTDContentModelHandler.setDTDContentModelSource(
+							fDTDProcessor);
 				}
 			} else {
 				fDTDScanner.setDTDHandler(fDTDHandler);
@@ -685,7 +699,8 @@ public class DTDConfiguration extends BasicParserConfiguration
 				}
 				fDTDScanner.setDTDContentModelHandler(fDTDContentModelHandler);
 				if (fDTDContentModelHandler != null) {
-					fDTDContentModelHandler.setDTDContentModelSource(fDTDScanner);
+					fDTDContentModelHandler.setDTDContentModelSource(
+							fDTDScanner);
 				}
 			}
 		}
@@ -699,21 +714,25 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * returns. Otherwise, the appropriate exception is thrown.
 	 *
 	 * @param featureId
-	 *            The unique identifier (URI) of the feature.
+	 *                  The unique identifier (URI) of the feature.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown for configuration error. In general, components should
-	 *             only throw this exception if it is <strong>really</strong> a
-	 *             critical error.
+	 *                                   Thrown for configuration error. In
+	 *                                   general, components should
+	 *                                   only throw this exception if it is
+	 *                                   <strong>really</strong> a
+	 *                                   critical error.
 	 */
-	protected FeatureState checkFeature(String featureId) throws XMLConfigurationException {
+	protected FeatureState checkFeature(String featureId)
+			throws XMLConfigurationException {
 
 		//
 		// Xerces Features
 		//
 
 		if (featureId.startsWith(Constants.XERCES_FEATURE_PREFIX)) {
-			final int suffixLength = featureId.length() - Constants.XERCES_FEATURE_PREFIX.length();
+			final int suffixLength = featureId.length()
+					- Constants.XERCES_FEATURE_PREFIX.length();
 
 			//
 			// http://apache.org/xml/features/validation/dynamic
@@ -722,23 +741,26 @@ public class DTDConfiguration extends BasicParserConfiguration
 			// on each document instance, automatically.
 			//
 			if (suffixLength == Constants.DYNAMIC_VALIDATION_FEATURE.length()
-					&& featureId.endsWith(Constants.DYNAMIC_VALIDATION_FEATURE)) {
+					&& featureId.endsWith(
+							Constants.DYNAMIC_VALIDATION_FEATURE)) {
 				return FeatureState.RECOGNIZED;
 			}
 
 			//
 			// http://apache.org/xml/features/validation/default-attribute-values
 			//
-			if (suffixLength == Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE.length()
-					&& featureId.endsWith(Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE)) {
+			if (suffixLength == Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE
+					.length() && featureId.endsWith(
+							Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE)) {
 				// REVISIT
 				return FeatureState.NOT_SUPPORTED;
 			}
 			//
 			// http://apache.org/xml/features/validation/default-attribute-values
 			//
-			if (suffixLength == Constants.VALIDATE_CONTENT_MODELS_FEATURE.length()
-					&& featureId.endsWith(Constants.VALIDATE_CONTENT_MODELS_FEATURE)) {
+			if (suffixLength == Constants.VALIDATE_CONTENT_MODELS_FEATURE
+					.length() && featureId.endsWith(
+							Constants.VALIDATE_CONTENT_MODELS_FEATURE)) {
 				// REVISIT
 				return FeatureState.NOT_SUPPORTED;
 			}
@@ -753,7 +775,8 @@ public class DTDConfiguration extends BasicParserConfiguration
 			// http://apache.org/xml/features/validation/nonvalidating/load-external-dtd
 			//
 			if (suffixLength == Constants.LOAD_EXTERNAL_DTD_FEATURE.length()
-					&& featureId.endsWith(Constants.LOAD_EXTERNAL_DTD_FEATURE)) {
+					&& featureId.endsWith(
+							Constants.LOAD_EXTERNAL_DTD_FEATURE)) {
 				return FeatureState.RECOGNIZED;
 			}
 
@@ -761,7 +784,8 @@ public class DTDConfiguration extends BasicParserConfiguration
 			// http://apache.org/xml/features/validation/default-attribute-values
 			//
 			if (suffixLength == Constants.VALIDATE_DATATYPES_FEATURE.length()
-					&& featureId.endsWith(Constants.VALIDATE_DATATYPES_FEATURE)) {
+					&& featureId.endsWith(
+							Constants.VALIDATE_DATATYPES_FEATURE)) {
 				return FeatureState.NOT_SUPPORTED;
 			}
 		}
@@ -779,14 +803,17 @@ public class DTDConfiguration extends BasicParserConfiguration
 	 * simply returns. Otherwise, the appropriate exception is thrown.
 	 *
 	 * @param propertyId
-	 *            The unique identifier (URI) of the property being set.
+	 *                   The unique identifier (URI) of the property being set.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown for configuration error. In general, components should
-	 *             only throw this exception if it is <strong>really</strong> a
-	 *             critical error.
+	 *                                   Thrown for configuration error. In
+	 *                                   general, components should
+	 *                                   only throw this exception if it is
+	 *                                   <strong>really</strong> a
+	 *                                   critical error.
 	 */
-	protected PropertyState checkProperty(String propertyId) throws XMLConfigurationException {
+	protected PropertyState checkProperty(String propertyId)
+			throws XMLConfigurationException {
 
 		//
 		// Xerces Properties

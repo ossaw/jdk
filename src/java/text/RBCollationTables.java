@@ -1,39 +1,17 @@
 /*
  * Copyright (c) 1999, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996, 1997 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996-1998 - All Rights Reserved
- *
- *   The original version of this source code and documentation is copyrighted
+ * The original version of this source code and documentation is copyrighted
  * and owned by Taligent, Inc., a wholly-owned subsidiary of IBM. These
  * materials are provided under terms of a License Agreement between Taligent
  * and Sun. This technology is protected by multiple US and International
  * patents. This notice and attribution to Taligent may not be removed.
- *   Taligent is a registered trademark of Taligent, Inc.
- *
+ * Taligent is a registered trademark of Taligent, Inc.
  */
 
 package java.text;
@@ -94,8 +72,7 @@ final class RBCollationTables {
 		 * Private constructor. Prevents anyone else besides RBTableBuilder from
 		 * gaining direct access to the internals of this class.
 		 */
-		private BuildAPI() {
-		}
+		private BuildAPI() {}
 
 		/**
 		 * This function is used by RBTableBuilder to fill in all the members of
@@ -107,30 +84,31 @@ final class RBCollationTables {
 		 * function does that "copying en masse".
 		 * 
 		 * @param f2ary
-		 *            The value for frenchSec (the French-secondary flag)
+		 *              The value for frenchSec (the French-secondary flag)
 		 * @param swap
-		 *            The value for SE Asian swapping rule
+		 *              The value for SE Asian swapping rule
 		 * @param map
-		 *            The collator's character-mapping table (the value for
-		 *            mapping)
+		 *              The collator's character-mapping table (the value for
+		 *              mapping)
 		 * @param cTbl
-		 *            The collator's contracting-character table (the value for
-		 *            contractTable)
+		 *              The collator's contracting-character table (the value
+		 *              for
+		 *              contractTable)
 		 * @param eTbl
-		 *            The collator's expanding-character table (the value for
-		 *            expandTable)
+		 *              The collator's expanding-character table (the value for
+		 *              expandTable)
 		 * @param cFlgs
-		 *            The hash table of characters that participate in
-		 *            contracting- character sequences (the value for
-		 *            contractFlags)
+		 *              The hash table of characters that participate in
+		 *              contracting- character sequences (the value for
+		 *              contractFlags)
 		 * @param mso
-		 *            The value for maxSecOrder
+		 *              The value for maxSecOrder
 		 * @param mto
-		 *            The value for maxTerOrder
+		 *              The value for maxTerOrder
 		 */
 		void fillInTables(boolean f2ary, boolean swap, UCompactIntArray map,
-				Vector<Vector<EntryPair>> cTbl, Vector<int[]> eTbl, IntHashtable cFlgs, short mso,
-				short mto) {
+				Vector<Vector<EntryPair>> cTbl, Vector<int[]> eTbl,
+				IntHashtable cFlgs, short mso, short mto) {
 			frenchSec = f2ary;
 			seAsianSwapping = swap;
 			mapping = map;
@@ -169,7 +147,7 @@ final class RBCollationTables {
 	 * table.
 	 * 
 	 * @param ch
-	 *            the starting character of the contracting string
+	 *           the starting character of the contracting string
 	 */
 	Vector<EntryPair> getContractValues(int ch) {
 		int index = mapping.elementAt(ch);
@@ -199,7 +177,7 @@ final class RBCollationTables {
 	 * specified comparison order.
 	 *
 	 * @param order
-	 *            a collation order returned by previous or next.
+	 *              a collation order returned by previous or next.
 	 * @return the maximum length of any expansion seuences ending with the
 	 *         specified order.
 	 *
@@ -273,7 +251,8 @@ final class RBCollationTables {
 		}
 	}
 
-	final static int getEntry(Vector<EntryPair> list, String name, boolean fwd) {
+	final static int getEntry(Vector<EntryPair> list, String name,
+			boolean fwd) {
 		for (int i = 0; i < list.size(); i++) {
 			EntryPair pair = list.elementAt(i);
 			if (pair.fwd == fwd && pair.entryName.equals(name)) {

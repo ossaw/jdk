@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -75,7 +55,7 @@ public abstract class X509CRLEntry implements X509Extension {
 	 * encoded form of this CRL entry.
 	 *
 	 * @param other
-	 *            the object to test for equality with this CRL entry.
+	 *              the object to test for equality with this CRL entry.
 	 * @return true iff the encoded forms of the two CRL entries match, false
 	 *         otherwise.
 	 */
@@ -123,7 +103,7 @@ public abstract class X509CRLEntry implements X509Extension {
 	 *
 	 * @return the encoded form of this certificate
 	 * @exception CRLException
-	 *                if an encoding error occurs.
+	 *                         if an encoding error occurs.
 	 */
 	public abstract byte[] getEncoded() throws CRLException;
 

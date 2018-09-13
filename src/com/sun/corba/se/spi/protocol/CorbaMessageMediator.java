@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.protocol;
@@ -112,7 +92,8 @@ public interface CorbaMessageMediator extends MessageMediator, ResponseHandler {
 
 	public boolean isDIIRequest();
 
-	public Exception unmarshalDIIUserException(String repoId, InputStream inputStream);
+	public Exception unmarshalDIIUserException(String repoId,
+			InputStream inputStream);
 
 	public void setDIIException(Exception exception);
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -60,17 +40,16 @@ public final class BooleanHolder implements Streamable {
 	 * Constructs a new <code>BooleanHolder</code> object with its
 	 * <code>value</code> field initialized to <code>false</code>.
 	 */
-	public BooleanHolder() {
-	}
+	public BooleanHolder() {}
 
 	/**
 	 * Constructs a new <code>BooleanHolder</code> object with its
 	 * <code>value</code> field initialized with the given <code>boolean</code>.
 	 * 
 	 * @param initial
-	 *            the <code>boolean</code> with which to initialize the
-	 *            <code>value</code> field of the newly-created
-	 *            <code>BooleanHolder</code> object
+	 *                the <code>boolean</code> with which to initialize the
+	 *                <code>value</code> field of the newly-created
+	 *                <code>BooleanHolder</code> object
 	 */
 	public BooleanHolder(boolean initial) {
 		value = initial;
@@ -81,8 +60,8 @@ public final class BooleanHolder implements Streamable {
 	 * <code>BooleanHolder</code> object's <code>value</code> field.
 	 *
 	 * @param input
-	 *            the <code>InputStream</code> object containing CDR formatted
-	 *            data from the wire
+	 *              the <code>InputStream</code> object containing CDR formatted
+	 *              data from the wire
 	 */
 	public void _read(InputStream input) {
 		value = input.read_boolean();
@@ -93,7 +72,7 @@ public final class BooleanHolder implements Streamable {
 	 * <code>value</code> field to the output stream <code>output</code>.
 	 *
 	 * @param output
-	 *            the OutputStream which will contain the CDR formatted data
+	 *               the OutputStream which will contain the CDR formatted data
 	 */
 	public void _write(OutputStream output) {
 		output.write_boolean(value);

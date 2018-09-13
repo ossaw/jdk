@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -249,9 +229,9 @@ public abstract class VolatileImage extends Image implements Transparency {
 	 * problems with rendering.
 	 *
 	 * @param gc
-	 *            a <code>GraphicsConfiguration</code> object for this image to
-	 *            be validated against. A null gc implies that the validate
-	 *            method should skip the compatibility test.
+	 *           a <code>GraphicsConfiguration</code> object for this image to
+	 *           be validated against. A null gc implies that the validate
+	 *           method should skip the compatibility test.
 	 * @return <code>IMAGE_OK</code> if the image did not need validation<BR>
 	 *         <code>IMAGE_RESTORED</code> if the image needed restoration.
 	 *         Restoration implies that the contents of the image may have been

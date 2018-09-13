@@ -1,17 +1,13 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-/* ********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997                      ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
- **********************************************************************
- **********************************************************************
+/*
+ * ********************************************************************
+ ********************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997 ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************/
 
 package com.sun.image.codec.jpeg;
@@ -45,7 +41,7 @@ public class TruncatedFileException extends RuntimeException {
 	 * decoded BufferedImage.
 	 *
 	 * @param bi
-	 *            the partially decoded BufferedImage (may be null).
+	 *           the partially decoded BufferedImage (may be null).
 	 * @since 1.2
 	 */
 	public TruncatedFileException(BufferedImage bi) {

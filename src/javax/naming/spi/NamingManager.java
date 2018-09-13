@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.spi;
@@ -65,8 +45,7 @@ public class NamingManager {
 	 * DirectoryManager can subclass.
 	 */
 
-	NamingManager() {
-	}
+	NamingManager() {}
 
 	// should be protected and package private
 	static final VersionHelper helper = VersionHelper.getVersionHelper();
@@ -91,22 +70,24 @@ public class NamingManager {
 	 * <p>
 	 * 
 	 * @param builder
-	 *            The factory builder to install. If null, no builder is
-	 *            installed.
+	 *                The factory builder to install. If null, no builder is
+	 *                installed.
 	 * @exception SecurityException
-	 *                builder cannot be installed for security reasons.
+	 *                                  builder cannot be installed for security
+	 *                                  reasons.
 	 * @exception NamingException
-	 *                builder cannot be installed for a non-security-related
-	 *                reason.
+	 *                                  builder cannot be installed for a
+	 *                                  non-security-related
+	 *                                  reason.
 	 * @exception IllegalStateException
-	 *                If a factory has already been installed.
+	 *                                  If a factory has already been installed.
 	 * @see #getObjectInstance
 	 * @see ObjectFactory
 	 * @see ObjectFactoryBuilder
 	 * @see java.lang.SecurityManager#checkSetFactory
 	 */
-	public static synchronized void setObjectFactoryBuilder(ObjectFactoryBuilder builder)
-			throws NamingException {
+	public static synchronized void setObjectFactoryBuilder(
+			ObjectFactoryBuilder builder) throws NamingException {
 		if (object_factory_builder != null)
 			throw new IllegalStateException("ObjectFactoryBuilder already set");
 
@@ -130,14 +111,15 @@ public class NamingManager {
 	 * the factory's class.
 	 * 
 	 * @param ref
-	 *            The non-null reference to use.
+	 *                    The non-null reference to use.
 	 * @param factoryName
-	 *            The non-null class name of the factory.
+	 *                    The non-null class name of the factory.
 	 * @return The object factory for the object identified by ref; null if
 	 *         unable to load the factory.
 	 */
-	static ObjectFactory getObjectFactoryFromReference(Reference ref, String factoryName)
-			throws IllegalAccessException, InstantiationException, MalformedURLException {
+	static ObjectFactory getObjectFactoryFromReference(Reference ref,
+			String factoryName) throws IllegalAccessException,
+			InstantiationException, MalformedURLException {
 		Class<?> clas = null;
 
 		// Try to use current class loader
@@ -151,7 +133,8 @@ public class NamingManager {
 
 		// Not in class path; try to use codebase
 		String codebase;
-		if (clas == null && (codebase = ref.getFactoryClassLocation()) != null) {
+		if (clas == null && (codebase = ref
+				.getFactoryClassLocation()) != null) {
 			try {
 				clas = helper.loadClass(factoryName, codebase);
 			} catch (ClassNotFoundException e) {
@@ -168,11 +151,11 @@ public class NamingManager {
 	 *
 	 * @return factory created; null if cannot create
 	 */
-	private static Object createObjectFromFactories(Object obj, Name name, Context nameCtx,
-			Hashtable<?, ?> environment) throws Exception {
+	private static Object createObjectFromFactories(Object obj, Name name,
+			Context nameCtx, Hashtable<?, ?> environment) throws Exception {
 
-		FactoryEnumeration factories = ResourceManager.getFactories(Context.OBJECT_FACTORIES,
-				environment, nameCtx);
+		FactoryEnumeration factories = ResourceManager.getFactories(
+				Context.OBJECT_FACTORIES, environment, nameCtx);
 
 		if (factories == null)
 			return null;
@@ -248,38 +231,49 @@ public class NamingManager {
 	 * is being specified, the <code>name</code> parameter should be null.
 	 *
 	 * @param refInfo
-	 *            The possibly null object for which to create an object.
+	 *                    The possibly null object for which to create an
+	 *                    object.
 	 * @param name
-	 *            The name of this object relative to <code>nameCtx</code>.
-	 *            Specifying a name is optional; if it is omitted,
-	 *            <code>name</code> should be null.
+	 *                    The name of this object relative to
+	 *                    <code>nameCtx</code>.
+	 *                    Specifying a name is optional; if it is omitted,
+	 *                    <code>name</code> should be null.
 	 * @param nameCtx
-	 *            The context relative to which the <code>name</code> parameter
-	 *            is specified. If null, <code>name</code> is relative to the
-	 *            default initial context.
+	 *                    The context relative to which the <code>name</code>
+	 *                    parameter
+	 *                    is specified. If null, <code>name</code> is relative
+	 *                    to the
+	 *                    default initial context.
 	 * @param environment
-	 *            The possibly null environment to be used in the creation of
-	 *            the object factory and the object.
+	 *                    The possibly null environment to be used in the
+	 *                    creation of
+	 *                    the object factory and the object.
 	 * @return An object created using <code>refInfo</code>; or
 	 *         <code>refInfo</code> if an object cannot be created using the
 	 *         algorithm described above.
 	 * @exception NamingException
-	 *                if a naming exception was encountered while attempting to
-	 *                get a URL context, or if one of the factories accessed
-	 *                throws a NamingException.
+	 *                            if a naming exception was encountered while
+	 *                            attempting to
+	 *                            get a URL context, or if one of the factories
+	 *                            accessed
+	 *                            throws a NamingException.
 	 * @exception Exception
-	 *                if one of the factories accessed throws an exception, or
-	 *                if an error was encountered while loading and
-	 *                instantiating the factory and object classes. A factory
-	 *                should only throw an exception if it does not want other
-	 *                factories to be used in an attempt to create an object.
-	 *                See ObjectFactory.getObjectInstance().
+	 *                            if one of the factories accessed throws an
+	 *                            exception, or
+	 *                            if an error was encountered while loading and
+	 *                            instantiating the factory and object classes.
+	 *                            A factory
+	 *                            should only throw an exception if it does not
+	 *                            want other
+	 *                            factories to be used in an attempt to create
+	 *                            an object.
+	 *                            See ObjectFactory.getObjectInstance().
 	 * @see #getURLContext
 	 * @see ObjectFactory
 	 * @see ObjectFactory#getObjectInstance
 	 */
-	public static Object getObjectInstance(Object refInfo, Name name, Context nameCtx,
-			Hashtable<?, ?> environment) throws Exception {
+	public static Object getObjectInstance(Object refInfo, Name name,
+			Context nameCtx, Hashtable<?, ?> environment) throws Exception {
 
 		ObjectFactory factory;
 
@@ -288,7 +282,8 @@ public class NamingManager {
 		if (builder != null) {
 			// builder must return non-null factory
 			factory = builder.createObjectFactory(refInfo, environment);
-			return factory.getObjectInstance(refInfo, name, nameCtx, environment);
+			return factory.getObjectInstance(refInfo, name, nameCtx,
+					environment);
 		}
 
 		// Use reference if possible
@@ -308,7 +303,8 @@ public class NamingManager {
 
 				factory = getObjectFactoryFromReference(ref, f);
 				if (factory != null) {
-					return factory.getObjectInstance(ref, name, nameCtx, environment);
+					return factory.getObjectInstance(ref, name, nameCtx,
+							environment);
 				}
 				// No factory found, so return original refInfo.
 				// Will reach this point if factory class is not in
@@ -340,7 +336,8 @@ public class NamingManager {
 
 		for (int i = 0; i < ref.size(); i++) {
 			RefAddr addr = ref.get(i);
-			if (addr instanceof StringRefAddr && addr.getType().equalsIgnoreCase("URL")) {
+			if (addr instanceof StringRefAddr && addr.getType()
+					.equalsIgnoreCase("URL")) {
 
 				String url = (String) addr.getContent();
 				Object answer = processURL(url, name, nameCtx, environment);
@@ -362,7 +359,8 @@ public class NamingManager {
 			String url = (String) refInfo;
 			String scheme = getURLScheme(url);
 			if (scheme != null) {
-				answer = getURLObject(scheme, refInfo, name, nameCtx, environment);
+				answer = getURLObject(scheme, refInfo, name, nameCtx,
+						environment);
 				if (answer != null) {
 					return answer;
 				}
@@ -377,7 +375,8 @@ public class NamingManager {
 			for (int i = 0; i < urls.length; i++) {
 				String scheme = getURLScheme(urls[i]);
 				if (scheme != null) {
-					answer = getURLObject(scheme, refInfo, name, nameCtx, environment);
+					answer = getURLObject(scheme, refInfo, name, nameCtx,
+							environment);
 					if (answer != null)
 						return answer;
 				}
@@ -391,24 +390,28 @@ public class NamingManager {
 	 * environment. Used by ContinuationContext.
 	 *
 	 * @param obj
-	 *            The object identifying the context.
+	 *                    The object identifying the context.
 	 * @param name
-	 *            The name of the context being returned, relative to
-	 *            <code>nameCtx</code>, or null if no name is being specified.
-	 *            See the <code>getObjectInstance</code> method for details.
+	 *                    The name of the context being returned, relative to
+	 *                    <code>nameCtx</code>, or null if no name is being
+	 *                    specified.
+	 *                    See the <code>getObjectInstance</code> method for
+	 *                    details.
 	 * @param nameCtx
-	 *            The context relative to which <code>name</code> is specified,
-	 *            or null for the default initial context. See the
-	 *            <code>getObjectInstance</code> method for details.
+	 *                    The context relative to which <code>name</code> is
+	 *                    specified,
+	 *                    or null for the default initial context. See the
+	 *                    <code>getObjectInstance</code> method for details.
 	 * @param environment
-	 *            Environment specifying characteristics of the resulting
-	 *            context.
+	 *                    Environment specifying characteristics of the
+	 *                    resulting
+	 *                    context.
 	 * @return A context identified by <code>obj</code>.
 	 *
 	 * @see #getObjectInstance
 	 */
-	static Context getContext(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
-			throws NamingException {
+	static Context getContext(Object obj, Name name, Context nameCtx,
+			Hashtable<?, ?> environment) throws NamingException {
 		Object answer;
 
 		if (obj instanceof Context) {
@@ -430,8 +433,8 @@ public class NamingManager {
 	}
 
 	// Used by ContinuationContext
-	static Resolver getResolver(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
-			throws NamingException {
+	static Resolver getResolver(Object obj, Name name, Context nameCtx,
+			Hashtable<?, ?> environment) throws NamingException {
 		Object answer;
 
 		if (obj instanceof Resolver) {
@@ -499,20 +502,23 @@ public class NamingManager {
 	 * no arguments.
 	 *
 	 * @param scheme
-	 *            The non-null scheme-id of the URLs supported by the context.
+	 *                    The non-null scheme-id of the URLs supported by the
+	 *                    context.
 	 * @param environment
-	 *            The possibly null environment properties to be used in the
-	 *            creation of the object factory and the context.
+	 *                    The possibly null environment properties to be used in
+	 *                    the
+	 *                    creation of the object factory and the context.
 	 * @return A context for resolving URLs with the scheme id
 	 *         <code>scheme</code>; <code>null</code> if the factory for
 	 *         creating the context is not found.
 	 * @exception NamingException
-	 *                If a naming exception occurs while creating the context.
+	 *                            If a naming exception occurs while creating
+	 *                            the context.
 	 * @see #getObjectInstance
 	 * @see ObjectFactory#getObjectInstance
 	 */
-	public static Context getURLContext(String scheme, Hashtable<?, ?> environment)
-			throws NamingException {
+	public static Context getURLContext(String scheme,
+			Hashtable<?, ?> environment) throws NamingException {
 		// pass in 'null' to indicate creation of generic context for scheme
 		// (i.e. not specific to a URL).
 
@@ -543,32 +549,35 @@ public class NamingManager {
 	 * the URL scheme.
 	 * 
 	 * @param scheme
-	 *            the URL scheme id for the context
+	 *                    the URL scheme id for the context
 	 * @param urlInfo
-	 *            information used to create the context
+	 *                    information used to create the context
 	 * @param name
-	 *            name of this object relative to <code>nameCtx</code>
+	 *                    name of this object relative to <code>nameCtx</code>
 	 * @param nameCtx
-	 *            Context whose provider resource file will be searched for
-	 *            package prefix values (or null if none)
+	 *                    Context whose provider resource file will be searched
+	 *                    for
+	 *                    package prefix values (or null if none)
 	 * @param environment
-	 *            Environment properties for creating the context
+	 *                    Environment properties for creating the context
 	 * @see javax.naming.InitialContext
 	 */
-	private static Object getURLObject(String scheme, Object urlInfo, Name name, Context nameCtx,
-			Hashtable<?, ?> environment) throws NamingException {
+	private static Object getURLObject(String scheme, Object urlInfo, Name name,
+			Context nameCtx, Hashtable<?, ?> environment)
+			throws NamingException {
 
 		// e.g. "ftpURLContextFactory"
-		ObjectFactory factory = (ObjectFactory) ResourceManager.getFactory(Context.URL_PKG_PREFIXES,
-				environment, nameCtx, "." + scheme + "." + scheme + "URLContextFactory",
-				defaultPkgPrefix);
+		ObjectFactory factory = (ObjectFactory) ResourceManager.getFactory(
+				Context.URL_PKG_PREFIXES, environment, nameCtx, "." + scheme
+						+ "." + scheme + "URLContextFactory", defaultPkgPrefix);
 
 		if (factory == null)
 			return null;
 
 		// Found object factory
 		try {
-			return factory.getObjectInstance(urlInfo, name, nameCtx, environment);
+			return factory.getObjectInstance(urlInfo, name, nameCtx,
+					environment);
 		} catch (NamingException e) {
 			throw e;
 		} catch (Exception e) {
@@ -605,16 +614,23 @@ public class NamingManager {
 	 *            the context.
 	 * @return A non-null initial context.
 	 * @exception NoInitialContextException
-	 *                If the <tt>Context.INITIAL_CONTEXT_FACTORY</tt> property
-	 *                is not found or names a nonexistent class or a class that
-	 *                cannot be instantiated, or if the initial context could
-	 *                not be created for some other reason.
+	 *                                      If the
+	 *                                      <tt>Context.INITIAL_CONTEXT_FACTORY</tt>
+	 *                                      property
+	 *                                      is not found or names a nonexistent
+	 *                                      class or a class that
+	 *                                      cannot be instantiated, or if the
+	 *                                      initial context could
+	 *                                      not be created for some other
+	 *                                      reason.
 	 * @exception NamingException
-	 *                If some other naming exception was encountered.
+	 *                                      If some other naming exception was
+	 *                                      encountered.
 	 * @see javax.naming.InitialContext
 	 * @see javax.naming.directory.InitialDirContext
 	 */
-	public static Context getInitialContext(Hashtable<?, ?> env) throws NamingException {
+	public static Context getInitialContext(Hashtable<?, ?> env)
+			throws NamingException {
 		InitialContextFactory factory;
 
 		InitialContextFactoryBuilder builder = getInitialContextFactoryBuilder();
@@ -622,18 +638,20 @@ public class NamingManager {
 			// No factory installed, use property
 			// Get initial context factory class name
 
-			String className = env != null ? (String) env.get(Context.INITIAL_CONTEXT_FACTORY)
-					: null;
+			String className = env != null ? (String) env.get(
+					Context.INITIAL_CONTEXT_FACTORY) : null;
 			if (className == null) {
 				NoInitialContextException ne = new NoInitialContextException(
 						"Need to specify class name in environment or system "
 								+ "property, or as an applet parameter, or in an "
-								+ "application resource file:  " + Context.INITIAL_CONTEXT_FACTORY);
+								+ "application resource file:  "
+								+ Context.INITIAL_CONTEXT_FACTORY);
 				throw ne;
 			}
 
 			try {
-				factory = (InitialContextFactory) helper.loadClass(className).newInstance();
+				factory = (InitialContextFactory) helper.loadClass(className)
+						.newInstance();
 			} catch (Exception e) {
 				NoInitialContextException ne = new NoInitialContextException(
 						"Cannot instantiate class: " + className);
@@ -656,22 +674,26 @@ public class NamingManager {
 	 * replaced.
 	 * 
 	 * @param builder
-	 *            The initial context factory builder to install. If null, no
-	 *            builder is set.
+	 *                The initial context factory builder to install. If null,
+	 *                no
+	 *                builder is set.
 	 * @exception SecurityException
-	 *                builder cannot be installed for security reasons.
+	 *                                  builder cannot be installed for security
+	 *                                  reasons.
 	 * @exception NamingException
-	 *                builder cannot be installed for a non-security-related
-	 *                reason.
+	 *                                  builder cannot be installed for a
+	 *                                  non-security-related
+	 *                                  reason.
 	 * @exception IllegalStateException
-	 *                If a builder was previous installed.
+	 *                                  If a builder was previous installed.
 	 * @see #hasInitialContextFactoryBuilder
 	 * @see java.lang.SecurityManager#checkSetFactory
 	 */
 	public static synchronized void setInitialContextFactoryBuilder(
 			InitialContextFactoryBuilder builder) throws NamingException {
 		if (initctx_factory_builder != null)
-			throw new IllegalStateException("InitialContextFactoryBuilder already set");
+			throw new IllegalStateException(
+					"InitialContextFactoryBuilder already set");
 
 		SecurityManager security = System.getSecurityManager();
 		if (security != null) {
@@ -730,13 +752,14 @@ public class NamingManager {
 	 *            The non-null exception that triggered this continuation.
 	 * @return A non-null Context object for continuing the operation.
 	 * @exception NamingException
-	 *                If a naming exception occurred.
+	 *                            If a naming exception occurred.
 	 */
 	@SuppressWarnings("unchecked")
 	public static Context getContinuationContext(CannotProceedException cpe)
 			throws NamingException {
 
-		Hashtable<Object, Object> env = (Hashtable<Object, Object>) cpe.getEnvironment();
+		Hashtable<Object, Object> env = (Hashtable<Object, Object>) cpe
+				.getEnvironment();
 		if (env == null) {
 			env = new Hashtable<>(7);
 		} else {
@@ -785,26 +808,34 @@ public class NamingManager {
 	 * store that instead.
 	 *
 	 * @param obj
-	 *            The non-null object for which to get state to bind.
+	 *                    The non-null object for which to get state to bind.
 	 * @param name
-	 *            The name of this object relative to <code>nameCtx</code>, or
-	 *            null if no name is specified.
+	 *                    The name of this object relative to
+	 *                    <code>nameCtx</code>, or
+	 *                    null if no name is specified.
 	 * @param nameCtx
-	 *            The context relative to which the <code>name</code> parameter
-	 *            is specified, or null if <code>name</code> is relative to the
-	 *            default initial context.
+	 *                    The context relative to which the <code>name</code>
+	 *                    parameter
+	 *                    is specified, or null if <code>name</code> is relative
+	 *                    to the
+	 *                    default initial context.
 	 * @param environment
-	 *            The possibly null environment to be used in the creation of
-	 *            the state factory and the object's state.
+	 *                    The possibly null environment to be used in the
+	 *                    creation of
+	 *                    the state factory and the object's state.
 	 * @return The non-null object representing <tt>obj</tt>'s state for
 	 *         binding. It could be the object (<tt>obj</tt>) itself.
 	 * @exception NamingException
-	 *                If one of the factories accessed throws an exception, or
-	 *                if an error was encountered while loading and
-	 *                instantiating the factory and object classes. A factory
-	 *                should only throw an exception if it does not want other
-	 *                factories to be used in an attempt to create an object.
-	 *                See <tt>StateFactory.getStateToBind()</tt>.
+	 *                            If one of the factories accessed throws an
+	 *                            exception, or
+	 *                            if an error was encountered while loading and
+	 *                            instantiating the factory and object classes.
+	 *                            A factory
+	 *                            should only throw an exception if it does not
+	 *                            want other
+	 *                            factories to be used in an attempt to create
+	 *                            an object.
+	 *                            See <tt>StateFactory.getStateToBind()</tt>.
 	 * @see StateFactory
 	 * @see StateFactory#getStateToBind
 	 * @see DirectoryManager#getStateToBind
@@ -813,8 +844,8 @@ public class NamingManager {
 	public static Object getStateToBind(Object obj, Name name, Context nameCtx,
 			Hashtable<?, ?> environment) throws NamingException {
 
-		FactoryEnumeration factories = ResourceManager.getFactories(Context.STATE_FACTORIES,
-				environment, nameCtx);
+		FactoryEnumeration factories = ResourceManager.getFactories(
+				Context.STATE_FACTORIES, environment, nameCtx);
 
 		if (factories == null) {
 			return obj;

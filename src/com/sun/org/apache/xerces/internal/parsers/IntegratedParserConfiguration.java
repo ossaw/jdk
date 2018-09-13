@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -98,7 +95,7 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
 	 * Constructs a parser configuration using the specified symbol table.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 */
 	public IntegratedParserConfiguration(SymbolTable symbolTable) {
 		this(symbolTable, null, null);
@@ -112,11 +109,12 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
 	 * validation engine is implemented.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                    The grammar pool to use.
 	 */
-	public IntegratedParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
+	public IntegratedParserConfiguration(SymbolTable symbolTable,
+			XMLGrammarPool grammarPool) {
 		this(symbolTable, grammarPool, null);
 	} // <init>(SymbolTable,XMLGrammarPool)
 
@@ -128,14 +126,14 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
 	 * validation engine is implemented.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                       The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                       The grammar pool to use.
 	 * @param parentSettings
-	 *            The parent settings.
+	 *                       The parent settings.
 	 */
-	public IntegratedParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
-			XMLComponentManager parentSettings) {
+	public IntegratedParserConfiguration(SymbolTable symbolTable,
+			XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
 		super(symbolTable, grammarPool, parentSettings);
 
 		// create components
@@ -211,9 +209,11 @@ public class IntegratedParserConfiguration extends StandardParserConfiguration {
 				fProperties.put(SCHEMA_VALIDATOR, fSchemaValidator);
 				addComponent(fSchemaValidator);
 				// add schema message formatter
-				if (fErrorReporter.getMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN) == null) {
+				if (fErrorReporter.getMessageFormatter(
+						XSMessageFormatter.SCHEMA_DOMAIN) == null) {
 					XSMessageFormatter xmft = new XSMessageFormatter();
-					fErrorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN, xmft);
+					fErrorReporter.putMessageFormatter(
+							XSMessageFormatter.SCHEMA_DOMAIN, xmft);
 				}
 
 			}

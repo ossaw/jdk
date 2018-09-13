@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels.spi;
@@ -73,7 +53,7 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 	 * Initializes a new instance of this class.
 	 *
 	 * @param provider
-	 *            The provider that created this channel
+	 *                 The provider that created this channel
 	 */
 	protected AbstractSelectableChannel(SelectorProvider provider) {
 		this.provider = provider;
@@ -180,19 +160,19 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 	 * </p>
 	 *
 	 * @throws ClosedSelectorException
-	 *             {@inheritDoc}
+	 *                                      {@inheritDoc}
 	 *
 	 * @throws IllegalBlockingModeException
-	 *             {@inheritDoc}
+	 *                                      {@inheritDoc}
 	 *
 	 * @throws IllegalSelectorException
-	 *             {@inheritDoc}
+	 *                                      {@inheritDoc}
 	 *
 	 * @throws CancelledKeyException
-	 *             {@inheritDoc}
+	 *                                      {@inheritDoc}
 	 *
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                      {@inheritDoc}
 	 */
 	public final SelectionKey register(Selector sel, int ops, Object att)
 			throws ClosedChannelException {
@@ -263,7 +243,7 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 	 * </p>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	protected abstract void implCloseSelectableChannel() throws IOException;
 
@@ -289,7 +269,8 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 	 * order to change the mode.
 	 * </p>
 	 */
-	public final SelectableChannel configureBlocking(boolean block) throws IOException {
+	public final SelectableChannel configureBlocking(boolean block)
+			throws IOException {
 		synchronized (regLock) {
 			if (!isOpen())
 				throw new ClosedChannelException();
@@ -314,13 +295,15 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 	 * </p>
 	 *
 	 * @param block
-	 *            If <tt>true</tt> then this channel will be placed in blocking
-	 *            mode; if <tt>false</tt> then it will be placed non-blocking
-	 *            mode
+	 *              If <tt>true</tt> then this channel will be placed in
+	 *              blocking
+	 *              mode; if <tt>false</tt> then it will be placed non-blocking
+	 *              mode
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
-	protected abstract void implConfigureBlocking(boolean block) throws IOException;
+	protected abstract void implConfigureBlocking(boolean block)
+			throws IOException;
 
 }

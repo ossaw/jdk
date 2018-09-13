@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.spi;
@@ -62,14 +42,16 @@ public abstract class IIOServiceProvider implements RegisterableService {
 	 * and version identifier.
 	 *
 	 * @param vendorName
-	 *            the vendor name.
+	 *                   the vendor name.
 	 * @param version
-	 *            a version identifier.
+	 *                   a version identifier.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>vendorName</code> is <code>null</code>.
+	 *                                     if <code>vendorName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>version</code> is <code>null</code>.
+	 *                                     if <code>version</code> is
+	 *                                     <code>null</code>.
 	 */
 	public IIOServiceProvider(String vendorName, String version) {
 		if (vendorName == null) {
@@ -89,8 +71,7 @@ public abstract class IIOServiceProvider implements RegisterableService {
 	 * and <code>getVersion</code> methods will return non-<code>null</code>
 	 * values.
 	 */
-	public IIOServiceProvider() {
-	}
+	public IIOServiceProvider() {}
 
 	/**
 	 * A callback that will be called exactly once after the Spi class has been
@@ -108,8 +89,7 @@ public abstract class IIOServiceProvider implements RegisterableService {
 	 *
 	 * @see ServiceRegistry#registerServiceProvider(Object provider)
 	 */
-	public void onRegistration(ServiceRegistry registry, Class<?> category) {
-	}
+	public void onRegistration(ServiceRegistry registry, Class<?> category) {}
 
 	/**
 	 * A callback that will be whenever the Spi class has been deregistered from
@@ -123,8 +103,7 @@ public abstract class IIOServiceProvider implements RegisterableService {
 	 *
 	 * @see ServiceRegistry#deregisterServiceProvider(Object provider)
 	 */
-	public void onDeregistration(ServiceRegistry registry, Class<?> category) {
-	}
+	public void onDeregistration(ServiceRegistry registry, Class<?> category) {}
 
 	/**
 	 * Returns the name of the vendor responsible for creating this service
@@ -165,8 +144,8 @@ public abstract class IIOServiceProvider implements RegisterableService {
 	 * for the supplied <code>Locale</code>, if possible.
 	 *
 	 * @param locale
-	 *            a <code>Locale</code> for which the return value should be
-	 *            localized.
+	 *               a <code>Locale</code> for which the return value should be
+	 *               localized.
 	 *
 	 * @return a <code>String</code> containing a description of this service
 	 *         provider.

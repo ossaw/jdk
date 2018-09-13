@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -46,7 +26,7 @@ class LineView extends ParagraphView {
 	 * Creates a LineView object.
 	 *
 	 * @param elem
-	 *            the element to wrap in a view
+	 *             the element to wrap in a view
 	 */
 	public LineView(Element elem) {
 		super(elem);
@@ -65,8 +45,8 @@ class LineView extends ParagraphView {
 	 * line should refuse to be sized less than the preferred size.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the minimum span the view can be rendered into
 	 * @see View#getPreferredSpan
 	 */
@@ -78,17 +58,17 @@ class LineView extends ParagraphView {
 	 * Gets the resize weight for the specified axis.
 	 *
 	 * @param axis
-	 *            may be either X_AXIS or Y_AXIS
+	 *             may be either X_AXIS or Y_AXIS
 	 * @return the weight
 	 */
 	public int getResizeWeight(int axis) {
 		switch (axis) {
-		case View.X_AXIS:
-			return 1;
-		case View.Y_AXIS:
-			return 0;
-		default:
-			throw new IllegalArgumentException("Invalid axis: " + axis);
+			case View.X_AXIS:
+				return 1;
+			case View.Y_AXIS:
+				return 0;
+			default:
+				throw new IllegalArgumentException("Invalid axis: " + axis);
 		}
 	}
 
@@ -96,7 +76,7 @@ class LineView extends ParagraphView {
 	 * Gets the alignment for an axis.
 	 *
 	 * @param axis
-	 *            may be either X_AXIS or Y_AXIS
+	 *             may be either X_AXIS or Y_AXIS
 	 * @return the alignment
 	 */
 	public float getAlignment(int axis) {
@@ -114,12 +94,14 @@ class LineView extends ParagraphView {
 	 * vertical preference is rigid.
 	 *
 	 * @param width
-	 *            the width to lay out against >= 0. This is the width inside of
-	 *            the inset area.
+	 *               the width to lay out against >= 0. This is the width inside
+	 *               of
+	 *               the inset area.
 	 * @param height
-	 *            the height to lay out against >= 0 (not used by paragraph, but
-	 *            used by the superclass). This is the height inside of the
-	 *            inset area.
+	 *               the height to lay out against >= 0 (not used by paragraph,
+	 *               but
+	 *               used by the superclass). This is the height inside of the
+	 *               inset area.
 	 */
 	protected void layout(int width, int height) {
 		super.layout(Integer.MAX_VALUE - 1, height);
@@ -142,10 +124,11 @@ class LineView extends ParagraphView {
 	 * upon).
 	 *
 	 * @param x
-	 *            the X reference position
+	 *                  the X reference position
 	 * @param tabOffset
-	 *            the position within the text stream that the tab occurred at
-	 *            >= 0.
+	 *                  the position within the text stream that the tab
+	 *                  occurred at
+	 *                  >= 0.
 	 * @return the trailing end of the tab expansion >= 0
 	 * @see TabSet
 	 * @see TabStop
@@ -153,8 +136,8 @@ class LineView extends ParagraphView {
 	 */
 	public float nextTabStop(float x, int tabOffset) {
 		// If the text isn't left justified, offset by 10 pixels!
-		if (getTabSet() == null
-				&& StyleConstants.getAlignment(getAttributes()) == StyleConstants.ALIGN_LEFT) {
+		if (getTabSet() == null && StyleConstants.getAlignment(
+				getAttributes()) == StyleConstants.ALIGN_LEFT) {
 			return getPreTab(x, tabOffset);
 		}
 		return super.nextTabStop(x, tabOffset);

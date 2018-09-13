@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -58,12 +38,12 @@ import javax.lang.model.type.*;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -77,8 +57,7 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
 	/**
 	 * Constructor for concrete subclasses to call.
 	 */
-	protected AbstractTypeVisitor6() {
-	}
+	protected AbstractTypeVisitor6() {}
 
 	/**
 	 * Visits any type mirror as if by passing itself to that type mirror's
@@ -87,9 +66,9 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
 	 * t.accept(v, p)}.
 	 *
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	public final R visit(TypeMirror t, P p) {
@@ -103,7 +82,7 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
 	 * {@code t.accept(v, null)}.
 	 *
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @return a visitor-specified result
 	 */
 	public final R visit(TypeMirror t) {
@@ -115,9 +94,9 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
 	 * visitUnknown}.
 	 * 
 	 * @param t
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code visitUnknown}
 	 *
 	 * @since 1.7
@@ -131,9 +110,9 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
 	 * visitUnknown}.
 	 * 
 	 * @param t
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code visitUnknown}
 	 *
 	 * @since 1.8
@@ -151,10 +130,11 @@ public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
 	 * UnknownTypeException}. This behavior is not required of a subclass.
 	 *
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @return a visitor-specified result
 	 * @throws UnknownTypeException
-	 *             a visitor implementation may optionally throw this exception
+	 *                              a visitor implementation may optionally
+	 *                              throw this exception
 	 */
 	public R visitUnknown(TypeMirror t, P p) {
 		throw new UnknownTypeException(t, p);

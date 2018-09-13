@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.annotation;
@@ -222,6 +202,5 @@ public @interface XmlElementDecl {
 	 * Used in {@link XmlElementDecl#scope()} to signal that the declaration is
 	 * in the global scope.
 	 */
-	public final class GLOBAL {
-	}
+	public final class GLOBAL {}
 }

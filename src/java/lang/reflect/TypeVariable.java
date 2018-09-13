@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -44,12 +24,13 @@ package java.lang.reflect;
  * identity of instances of classes implementing this interface.
  *
  * @param <D>
- *            the type of generic declaration that declared the underlying type
- *            variable.
+ *        the type of generic declaration that declared the underlying type
+ *        variable.
  *
  * @since 1.5
  */
-public interface TypeVariable<D extends GenericDeclaration> extends Type, AnnotatedElement {
+public interface TypeVariable<D extends GenericDeclaration> extends Type,
+		AnnotatedElement {
 	/**
 	 * Returns an array of {@code Type} objects representing the upper bound(s)
 	 * of this type variable. Note that if no upper bound is explicitly
@@ -65,11 +46,14 @@ public interface TypeVariable<D extends GenericDeclaration> extends Type, Annota
 	 * </ul>
 	 *
 	 * @throws TypeNotPresentException
-	 *             if any of the bounds refers to a non-existent type
-	 *             declaration
+	 *                                             if any of the bounds refers
+	 *                                             to a non-existent type
+	 *                                             declaration
 	 * @throws MalformedParameterizedTypeException
-	 *             if any of the bounds refer to a parameterized type that
-	 *             cannot be instantiated for any reason
+	 *                                             if any of the bounds refer to
+	 *                                             a parameterized type that
+	 *                                             cannot be instantiated for
+	 *                                             any reason
 	 * @return an array of {@code Type}s representing the upper bound(s) of this
 	 *         type variable
 	 */

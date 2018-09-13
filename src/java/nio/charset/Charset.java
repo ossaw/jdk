@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.charset;
@@ -318,8 +298,8 @@ public abstract class Charset implements Comparable<Charset> {
 		if (level == null) {
 			if (!sun.misc.VM.isBooted())
 				return false;
-			bugLevel = level = AccessController
-					.doPrivileged(new GetPropertyAction("sun.nio.cs.bugLevel", ""));
+			bugLevel = level = AccessController.doPrivileged(
+					new GetPropertyAction("sun.nio.cs.bugLevel", ""));
 		}
 		return level.equals(bl);
 	}
@@ -329,10 +309,11 @@ public abstract class Charset implements Comparable<Charset> {
 	 * </p>
 	 *
 	 * @param s
-	 *            A purported charset name
+	 *          A purported charset name
 	 *
 	 * @throws IllegalCharsetNameException
-	 *             If the given name is not a legal charset name
+	 *                                     If the given name is not a legal
+	 *                                     charset name
 	 */
 	private static void checkName(String s) {
 		int n = s.length();
@@ -384,7 +365,8 @@ public abstract class Charset implements Comparable<Charset> {
 		return new Iterator<CharsetProvider>() {
 
 			ClassLoader cl = ClassLoader.getSystemClassLoader();
-			ServiceLoader<CharsetProvider> sl = ServiceLoader.load(CharsetProvider.class, cl);
+			ServiceLoader<CharsetProvider> sl = ServiceLoader.load(
+					CharsetProvider.class, cl);
 			Iterator<CharsetProvider> i = sl.iterator();
 
 			CharsetProvider next = null;
@@ -447,17 +429,19 @@ public abstract class Charset implements Comparable<Charset> {
 		try {
 			gate.set(gate);
 
-			return AccessController.doPrivileged(new PrivilegedAction<Charset>() {
-				public Charset run() {
-					for (Iterator<CharsetProvider> i = providers(); i.hasNext();) {
-						CharsetProvider cp = i.next();
-						Charset cs = cp.charsetForName(charsetName);
-						if (cs != null)
-							return cs;
-					}
-					return null;
-				}
-			});
+			return AccessController.doPrivileged(
+					new PrivilegedAction<Charset>() {
+						public Charset run() {
+							for (Iterator<CharsetProvider> i = providers(); i
+									.hasNext();) {
+								CharsetProvider cp = i.next();
+								Charset cs = cp.charsetForName(charsetName);
+								if (cs != null)
+									return cs;
+							}
+							return null;
+						}
+					});
 
 		} finally {
 			gate.set(null);
@@ -470,20 +454,23 @@ public abstract class Charset implements Comparable<Charset> {
 
 		// returns ExtendedProvider, if installed
 		private static CharsetProvider extendedProvider() {
-			return AccessController.doPrivileged(new PrivilegedAction<CharsetProvider>() {
-				public CharsetProvider run() {
-					try {
-						Class<?> epc = Class.forName("sun.nio.cs.ext.ExtendedCharsets");
-						return (CharsetProvider) epc.newInstance();
-					} catch (ClassNotFoundException x) {
-						// Extended charsets not available
-						// (charsets.jar not present)
-					} catch (InstantiationException | IllegalAccessException x) {
-						throw new Error(x);
-					}
-					return null;
-				}
-			});
+			return AccessController.doPrivileged(
+					new PrivilegedAction<CharsetProvider>() {
+						public CharsetProvider run() {
+							try {
+								Class<?> epc = Class.forName(
+										"sun.nio.cs.ext.ExtendedCharsets");
+								return (CharsetProvider) epc.newInstance();
+							} catch (ClassNotFoundException x) {
+								// Extended charsets not available
+								// (charsets.jar not present)
+							} catch (InstantiationException
+									| IllegalAccessException x) {
+								throw new Error(x);
+							}
+							return null;
+						}
+					});
 		}
 	}
 
@@ -528,17 +515,19 @@ public abstract class Charset implements Comparable<Charset> {
 	 * Tells whether the named charset is supported.
 	 *
 	 * @param charsetName
-	 *            The name of the requested charset; may be either a canonical
-	 *            name or an alias
+	 *                    The name of the requested charset; may be either a
+	 *                    canonical
+	 *                    name or an alias
 	 *
 	 * @return <tt>true</tt> if, and only if, support for the named charset is
 	 *         available in the current Java virtual machine
 	 *
 	 * @throws IllegalCharsetNameException
-	 *             If the given charset name is illegal
+	 *                                     If the given charset name is illegal
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the given <tt>charsetName</tt> is null
+	 *                                     If the given <tt>charsetName</tt> is
+	 *                                     null
 	 */
 	public static boolean isSupported(String charsetName) {
 		return (lookup(charsetName) != null);
@@ -548,20 +537,23 @@ public abstract class Charset implements Comparable<Charset> {
 	 * Returns a charset object for the named charset.
 	 *
 	 * @param charsetName
-	 *            The name of the requested charset; may be either a canonical
-	 *            name or an alias
+	 *                    The name of the requested charset; may be either a
+	 *                    canonical
+	 *                    name or an alias
 	 *
 	 * @return A charset object for the named charset
 	 *
 	 * @throws IllegalCharsetNameException
-	 *             If the given charset name is illegal
+	 *                                     If the given charset name is illegal
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the given <tt>charsetName</tt> is null
+	 *                                     If the given <tt>charsetName</tt> is
+	 *                                     null
 	 *
 	 * @throws UnsupportedCharsetException
-	 *             If no support for the named charset is available in this
-	 *             instance of the Java virtual machine
+	 *                                     If no support for the named charset
+	 *                                     is available in this
+	 *                                     instance of the Java virtual machine
 	 */
 	public static Charset forName(String charsetName) {
 		Charset cs = lookup(charsetName);
@@ -612,21 +604,23 @@ public abstract class Charset implements Comparable<Charset> {
 	 *         to charset objects
 	 */
 	public static SortedMap<String, Charset> availableCharsets() {
-		return AccessController.doPrivileged(new PrivilegedAction<SortedMap<String, Charset>>() {
-			public SortedMap<String, Charset> run() {
-				TreeMap<String, Charset> m = new TreeMap<String, Charset>(
-						ASCIICaseInsensitiveComparator.CASE_INSENSITIVE_ORDER);
-				put(standardProvider.charsets(), m);
-				CharsetProvider ecp = ExtendedProviderHolder.extendedProvider;
-				if (ecp != null)
-					put(ecp.charsets(), m);
-				for (Iterator<CharsetProvider> i = providers(); i.hasNext();) {
-					CharsetProvider cp = i.next();
-					put(cp.charsets(), m);
-				}
-				return Collections.unmodifiableSortedMap(m);
-			}
-		});
+		return AccessController.doPrivileged(
+				new PrivilegedAction<SortedMap<String, Charset>>() {
+					public SortedMap<String, Charset> run() {
+						TreeMap<String, Charset> m = new TreeMap<String, Charset>(
+								ASCIICaseInsensitiveComparator.CASE_INSENSITIVE_ORDER);
+						put(standardProvider.charsets(), m);
+						CharsetProvider ecp = ExtendedProviderHolder.extendedProvider;
+						if (ecp != null)
+							put(ecp.charsets(), m);
+						for (Iterator<CharsetProvider> i = providers(); i
+								.hasNext();) {
+							CharsetProvider cp = i.next();
+							put(cp.charsets(), m);
+						}
+						return Collections.unmodifiableSortedMap(m);
+					}
+				});
 	}
 
 	private static volatile Charset defaultCharset;
@@ -646,7 +640,8 @@ public abstract class Charset implements Comparable<Charset> {
 	public static Charset defaultCharset() {
 		if (defaultCharset == null) {
 			synchronized (Charset.class) {
-				String csn = AccessController.doPrivileged(new GetPropertyAction("file.encoding"));
+				String csn = AccessController.doPrivileged(
+						new GetPropertyAction("file.encoding"));
 				Charset cs = lookup(csn);
 				if (cs != null)
 					defaultCharset = cs;
@@ -667,14 +662,16 @@ public abstract class Charset implements Comparable<Charset> {
 	 * Initializes a new charset with the given canonical name and alias set.
 	 *
 	 * @param canonicalName
-	 *            The canonical name of this charset
+	 *                      The canonical name of this charset
 	 *
 	 * @param aliases
-	 *            An array of this charset's aliases, or null if it has no
-	 *            aliases
+	 *                      An array of this charset's aliases, or null if it
+	 *                      has no
+	 *                      aliases
 	 *
 	 * @throws IllegalCharsetNameException
-	 *             If the canonical name or any of the aliases are illegal
+	 *                                     If the canonical name or any of the
+	 *                                     aliases are illegal
 	 */
 	protected Charset(String canonicalName, String[] aliases) {
 		checkName(canonicalName);
@@ -747,7 +744,7 @@ public abstract class Charset implements Comparable<Charset> {
 	 * </p>
 	 *
 	 * @param locale
-	 *            The locale for which the display name is to be retrieved
+	 *               The locale for which the display name is to be retrieved
 	 *
 	 * @return The display name of this charset in the given locale
 	 */
@@ -781,7 +778,7 @@ public abstract class Charset implements Comparable<Charset> {
 	 * charset.
 	 *
 	 * @param cs
-	 *            The given charset
+	 *           The given charset
 	 *
 	 * @return <tt>true</tt> if the given charset is contained in this charset
 	 */
@@ -800,7 +797,8 @@ public abstract class Charset implements Comparable<Charset> {
 	 * @return A new encoder for this charset
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this charset does not support encoding
+	 *                                       If this charset does not support
+	 *                                       encoding
 	 */
 	public abstract CharsetEncoder newEncoder();
 
@@ -847,14 +845,15 @@ public abstract class Charset implements Comparable<Charset> {
 	 * </p>
 	 *
 	 * @param bb
-	 *            The byte buffer to be decoded
+	 *           The byte buffer to be decoded
 	 *
 	 * @return A char buffer containing the decoded characters
 	 */
 	public final CharBuffer decode(ByteBuffer bb) {
 		try {
-			return ThreadLocalCoders.decoderFor(this).onMalformedInput(CodingErrorAction.REPLACE)
-					.onUnmappableCharacter(CodingErrorAction.REPLACE).decode(bb);
+			return ThreadLocalCoders.decoderFor(this).onMalformedInput(
+					CodingErrorAction.REPLACE).onUnmappableCharacter(
+							CodingErrorAction.REPLACE).decode(bb);
 		} catch (CharacterCodingException x) {
 			throw new Error(x); // Can't happen
 		}
@@ -884,14 +883,15 @@ public abstract class Charset implements Comparable<Charset> {
 	 * </p>
 	 *
 	 * @param cb
-	 *            The char buffer to be encoded
+	 *           The char buffer to be encoded
 	 *
 	 * @return A byte buffer containing the encoded characters
 	 */
 	public final ByteBuffer encode(CharBuffer cb) {
 		try {
-			return ThreadLocalCoders.encoderFor(this).onMalformedInput(CodingErrorAction.REPLACE)
-					.onUnmappableCharacter(CodingErrorAction.REPLACE).encode(cb);
+			return ThreadLocalCoders.encoderFor(this).onMalformedInput(
+					CodingErrorAction.REPLACE).onUnmappableCharacter(
+							CodingErrorAction.REPLACE).encode(cb);
 		} catch (CharacterCodingException x) {
 			throw new Error(x); // Can't happen
 		}
@@ -925,7 +925,7 @@ public abstract class Charset implements Comparable<Charset> {
 	 * </p>
 	 *
 	 * @param that
-	 *            The charset to which this charset is to be compared
+	 *             The charset to which this charset is to be compared
 	 *
 	 * @return A negative integer, zero, or a positive integer as this charset
 	 *         is less than, equal to, or greater than the specified charset

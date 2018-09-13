@@ -24,7 +24,8 @@ package com.sun.org.apache.xml.internal.security.keys;
 
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 
-public class ContentHandlerAlreadyRegisteredException extends XMLSecurityException {
+public class ContentHandlerAlreadyRegisteredException extends
+		XMLSecurityException {
 
 	/**
 	 *
@@ -54,7 +55,8 @@ public class ContentHandlerAlreadyRegisteredException extends XMLSecurityExcepti
 	 * @param msgID
 	 * @param exArgs
 	 */
-	public ContentHandlerAlreadyRegisteredException(String msgID, Object exArgs[]) {
+	public ContentHandlerAlreadyRegisteredException(String msgID,
+			Object exArgs[]) {
 		super(msgID, exArgs);
 	}
 
@@ -64,7 +66,8 @@ public class ContentHandlerAlreadyRegisteredException extends XMLSecurityExcepti
 	 * @param msgID
 	 * @param originalException
 	 */
-	public ContentHandlerAlreadyRegisteredException(String msgID, Exception originalException) {
+	public ContentHandlerAlreadyRegisteredException(String msgID,
+			Exception originalException) {
 		super(msgID, originalException);
 	}
 
@@ -75,8 +78,8 @@ public class ContentHandlerAlreadyRegisteredException extends XMLSecurityExcepti
 	 * @param exArgs
 	 * @param originalException
 	 */
-	public ContentHandlerAlreadyRegisteredException(String msgID, Object exArgs[],
-			Exception originalException) {
+	public ContentHandlerAlreadyRegisteredException(String msgID,
+			Object exArgs[], Exception originalException) {
 		super(msgID, exArgs, originalException);
 	}
 

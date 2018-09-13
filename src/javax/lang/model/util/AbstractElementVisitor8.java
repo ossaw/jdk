@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -60,19 +40,20 @@ import static javax.lang.model.SourceVersion.*;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @see AbstractElementVisitor6
  * @see AbstractElementVisitor7
  * @since 1.8
  */
 @SupportedSourceVersion(RELEASE_8)
-public abstract class AbstractElementVisitor8<R, P> extends AbstractElementVisitor7<R, P> {
+public abstract class AbstractElementVisitor8<R, P> extends
+		AbstractElementVisitor7<R, P> {
 	/**
 	 * Constructor for concrete subclasses to call.
 	 */

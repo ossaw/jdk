@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -70,9 +50,9 @@ public class Patch {
 	 * numbers.
 	 * 
 	 * @param bank
-	 *            the bank index (in the range from 0 to 16383)
+	 *                the bank index (in the range from 0 to 16383)
 	 * @param program
-	 *            the program index (in the range from 0 to 127)
+	 *                the program index (in the range from 0 to 127)
 	 */
 	public Patch(int bank, int program) {
 

@@ -33,8 +33,7 @@ import org.w3c.dom.Element;
  */
 public abstract class SignatureElementProxy extends ElementProxy {
 
-	protected SignatureElementProxy() {
-	};
+	protected SignatureElementProxy() {};
 
 	/**
 	 * Constructor SignatureElementProxy
@@ -47,8 +46,8 @@ public abstract class SignatureElementProxy extends ElementProxy {
 		}
 
 		this.doc = doc;
-		this.constructionElement = XMLUtils.createElementInSignatureSpace(this.doc,
-				this.getBaseLocalName());
+		this.constructionElement = XMLUtils.createElementInSignatureSpace(
+				this.doc, this.getBaseLocalName());
 	}
 
 	/**
@@ -58,7 +57,8 @@ public abstract class SignatureElementProxy extends ElementProxy {
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public SignatureElementProxy(Element element, String BaseURI) throws XMLSecurityException {
+	public SignatureElementProxy(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 
 	}

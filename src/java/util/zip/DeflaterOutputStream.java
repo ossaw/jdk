@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -62,23 +42,26 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * and flush mode.
 	 * 
 	 * @param out
-	 *            the output stream
+	 *                  the output stream
 	 * @param def
-	 *            the compressor ("deflater")
+	 *                  the compressor ("deflater")
 	 * @param size
-	 *            the output buffer size
+	 *                  the output buffer size
 	 * @param syncFlush
-	 *            if {@code true} the {@link #flush()} method of this instance
-	 *            flushes the compressor with flush mode
-	 *            {@link Deflater#SYNC_FLUSH} before flushing the output stream,
-	 *            otherwise only flushes the output stream
+	 *                  if {@code true} the {@link #flush()} method of this
+	 *                  instance
+	 *                  flushes the compressor with flush mode
+	 *                  {@link Deflater#SYNC_FLUSH} before flushing the output
+	 *                  stream,
+	 *                  otherwise only flushes the output stream
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code size <= 0}
+	 *                                  if {@code size <= 0}
 	 *
 	 * @since 1.7
 	 */
-	public DeflaterOutputStream(OutputStream out, Deflater def, int size, boolean syncFlush) {
+	public DeflaterOutputStream(OutputStream out, Deflater def, int size,
+			boolean syncFlush) {
 		super(out);
 		if (out == null || def == null) {
 			throw new NullPointerException();
@@ -99,13 +82,13 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * 4-argument constructor DeflaterOutputStream(out, def, size, false).
 	 *
 	 * @param out
-	 *            the output stream
+	 *             the output stream
 	 * @param def
-	 *            the compressor ("deflater")
+	 *             the compressor ("deflater")
 	 * @param size
-	 *            the output buffer size
+	 *             the output buffer size
 	 * @exception IllegalArgumentException
-	 *                if {@code size <= 0}
+	 *                                     if {@code size <= 0}
 	 */
 	public DeflaterOutputStream(OutputStream out, Deflater def, int size) {
 		this(out, def, size, false);
@@ -116,18 +99,21 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * a default buffer size.
 	 *
 	 * @param out
-	 *            the output stream
+	 *                  the output stream
 	 * @param def
-	 *            the compressor ("deflater")
+	 *                  the compressor ("deflater")
 	 * @param syncFlush
-	 *            if {@code true} the {@link #flush()} method of this instance
-	 *            flushes the compressor with flush mode
-	 *            {@link Deflater#SYNC_FLUSH} before flushing the output stream,
-	 *            otherwise only flushes the output stream
+	 *                  if {@code true} the {@link #flush()} method of this
+	 *                  instance
+	 *                  flushes the compressor with flush mode
+	 *                  {@link Deflater#SYNC_FLUSH} before flushing the output
+	 *                  stream,
+	 *                  otherwise only flushes the output stream
 	 *
 	 * @since 1.7
 	 */
-	public DeflaterOutputStream(OutputStream out, Deflater def, boolean syncFlush) {
+	public DeflaterOutputStream(OutputStream out, Deflater def,
+			boolean syncFlush) {
 		this(out, def, 512, syncFlush);
 	}
 
@@ -155,12 +141,14 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * size and the specified flush mode.
 	 *
 	 * @param out
-	 *            the output stream
+	 *                  the output stream
 	 * @param syncFlush
-	 *            if {@code true} the {@link #flush()} method of this instance
-	 *            flushes the compressor with flush mode
-	 *            {@link Deflater#SYNC_FLUSH} before flushing the output stream,
-	 *            otherwise only flushes the output stream
+	 *                  if {@code true} the {@link #flush()} method of this
+	 *                  instance
+	 *                  flushes the compressor with flush mode
+	 *                  {@link Deflater#SYNC_FLUSH} before flushing the output
+	 *                  stream,
+	 *                  otherwise only flushes the output stream
 	 *
 	 * @since 1.7
 	 */
@@ -189,9 +177,9 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * until the byte can be written.
 	 * 
 	 * @param b
-	 *            the byte to be written
+	 *          the byte to be written
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public void write(int b) throws IOException {
 		byte[] buf = new byte[1];
@@ -210,7 +198,7 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * @param len
 	 *            the length of the data
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public void write(byte[] b, int off, int len) throws IOException {
 		if (def.finished()) {
@@ -235,7 +223,7 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * succession to the same output stream.
 	 * 
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public void finish() throws IOException {
 		if (!def.finished()) {
@@ -251,7 +239,7 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * underlying stream.
 	 * 
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public void close() throws IOException {
 		if (!closed) {
@@ -267,7 +255,7 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * Writes next block of compressed data to the output stream.
 	 * 
 	 * @throws IOException
-	 *             if an I/O error has occurred
+	 *                     if an I/O error has occurred
 	 */
 	protected void deflate() throws IOException {
 		int len = def.deflate(buf, 0, buf.length);
@@ -288,14 +276,15 @@ public class DeflaterOutputStream extends FilterOutputStream {
 	 * flushing the {@code compressor}.
 	 *
 	 * @throws IOException
-	 *             if an I/O error has occurred
+	 *                     if an I/O error has occurred
 	 *
 	 * @since 1.7
 	 */
 	public void flush() throws IOException {
 		if (syncFlush && !def.finished()) {
 			int len = 0;
-			while ((len = def.deflate(buf, 0, buf.length, Deflater.SYNC_FLUSH)) > 0) {
+			while ((len = def.deflate(buf, 0, buf.length,
+					Deflater.SYNC_FLUSH)) > 0) {
 				out.write(buf, 0, len);
 				if (len < buf.length)
 					break;

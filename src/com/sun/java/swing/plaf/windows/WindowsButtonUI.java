@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -66,7 +46,8 @@ public class WindowsButtonUI extends BasicButtonUI {
 	// ********************************
 	public static ComponentUI createUI(JComponent c) {
 		AppContext appContext = AppContext.getAppContext();
-		WindowsButtonUI windowsButtonUI = (WindowsButtonUI) appContext.get(WINDOWS_BUTTON_UI_KEY);
+		WindowsButtonUI windowsButtonUI = (WindowsButtonUI) appContext.get(
+				WINDOWS_BUTTON_UI_KEY);
 		if (windowsButtonUI == null) {
 			windowsButtonUI = new WindowsButtonUI();
 			appContext.put(WINDOWS_BUTTON_UI_KEY, windowsButtonUI);
@@ -112,12 +93,14 @@ public class WindowsButtonUI extends BasicButtonUI {
 	/**
 	 * Overridden method to render the text without the mnemonic
 	 */
-	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
-		WindowsGraphicsUtils.paintText(g, b, textRect, text, getTextShiftOffset());
+	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect,
+			String text) {
+		WindowsGraphicsUtils.paintText(g, b, textRect, text,
+				getTextShiftOffset());
 	}
 
-	protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
-			Rectangle iconRect) {
+	protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
+			Rectangle textRect, Rectangle iconRect) {
 
 		// focus painted same color as text on Basic??
 		int width = b.getWidth();
@@ -184,53 +167,59 @@ public class WindowsButtonUI extends BasicButtonUI {
 		ButtonModel model = b.getModel();
 		State state = State.NORMAL;
 		switch (part) {
-		case BP_RADIOBUTTON:
-			/* falls through */
-		case BP_CHECKBOX:
-			if (!model.isEnabled()) {
-				state = (model.isSelected()) ? State.CHECKEDDISABLED : State.UNCHECKEDDISABLED;
-			} else if (model.isPressed() && model.isArmed()) {
-				state = (model.isSelected()) ? State.CHECKEDPRESSED : State.UNCHECKEDPRESSED;
-			} else if (model.isRollover()) {
-				state = (model.isSelected()) ? State.CHECKEDHOT : State.UNCHECKEDHOT;
-			} else {
-				state = (model.isSelected()) ? State.CHECKEDNORMAL : State.UNCHECKEDNORMAL;
-			}
-			break;
-		case BP_PUSHBUTTON:
-			/* falls through */
-		case TP_BUTTON:
-			boolean toolbar = (b.getParent() instanceof JToolBar);
-			if (toolbar) {
-				if (model.isArmed() && model.isPressed()) {
-					state = State.PRESSED;
-				} else if (!model.isEnabled()) {
-					state = State.DISABLED;
-				} else if (model.isSelected() && model.isRollover()) {
-					state = State.HOTCHECKED;
-				} else if (model.isSelected()) {
-					state = State.CHECKED;
+			case BP_RADIOBUTTON:
+				/* falls through */
+			case BP_CHECKBOX:
+				if (!model.isEnabled()) {
+					state = (model.isSelected()) ? State.CHECKEDDISABLED
+							: State.UNCHECKEDDISABLED;
+				} else if (model.isPressed() && model.isArmed()) {
+					state = (model.isSelected()) ? State.CHECKEDPRESSED
+							: State.UNCHECKEDPRESSED;
 				} else if (model.isRollover()) {
-					state = State.HOT;
-				} else if (b.hasFocus()) {
-					state = State.HOT;
+					state = (model.isSelected()) ? State.CHECKEDHOT
+							: State.UNCHECKEDHOT;
+				} else {
+					state = (model.isSelected()) ? State.CHECKEDNORMAL
+							: State.UNCHECKEDNORMAL;
 				}
-			} else {
-				if ((model.isArmed() && model.isPressed()) || model.isSelected()) {
-					state = State.PRESSED;
-				} else if (!model.isEnabled()) {
-					state = State.DISABLED;
-				} else if (model.isRollover() || model.isPressed()) {
-					state = State.HOT;
-				} else if (b instanceof JButton && ((JButton) b).isDefaultButton()) {
-					state = State.DEFAULTED;
-				} else if (b.hasFocus()) {
-					state = State.HOT;
+				break;
+			case BP_PUSHBUTTON:
+				/* falls through */
+			case TP_BUTTON:
+				boolean toolbar = (b.getParent() instanceof JToolBar);
+				if (toolbar) {
+					if (model.isArmed() && model.isPressed()) {
+						state = State.PRESSED;
+					} else if (!model.isEnabled()) {
+						state = State.DISABLED;
+					} else if (model.isSelected() && model.isRollover()) {
+						state = State.HOTCHECKED;
+					} else if (model.isSelected()) {
+						state = State.CHECKED;
+					} else if (model.isRollover()) {
+						state = State.HOT;
+					} else if (b.hasFocus()) {
+						state = State.HOT;
+					}
+				} else {
+					if ((model.isArmed() && model.isPressed()) || model
+							.isSelected()) {
+						state = State.PRESSED;
+					} else if (!model.isEnabled()) {
+						state = State.DISABLED;
+					} else if (model.isRollover() || model.isPressed()) {
+						state = State.HOT;
+					} else if (b instanceof JButton && ((JButton) b)
+							.isDefaultButton()) {
+						state = State.DEFAULTED;
+					} else if (b.hasFocus()) {
+						state = State.HOT;
+					}
 				}
-			}
-			break;
-		default:
-			state = State.NORMAL;
+				break;
+			default:
+				state = State.NORMAL;
 		}
 
 		return state;
@@ -290,7 +279,8 @@ public class WindowsButtonUI extends BasicButtonUI {
 		} else if (b instanceof CompoundBorder) {
 			CompoundBorder cb = (CompoundBorder) b;
 			Insets iOut = getOpaqueInsets(cb.getOutsideBorder(), c);
-			if (iOut != null && iOut.equals(cb.getOutsideBorder().getBorderInsets(c))) {
+			if (iOut != null && iOut.equals(cb.getOutsideBorder()
+					.getBorderInsets(c))) {
 				// Outside border is opaque, keep looking
 				Insets iIn = getOpaqueInsets(cb.getInsideBorder(), c);
 				if (iIn == null) {

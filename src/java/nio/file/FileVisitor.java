@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -112,31 +92,33 @@ public interface FileVisitor<T> {
 	 * directory (and any descendants) will not be visited.
 	 *
 	 * @param dir
-	 *            a reference to the directory
+	 *              a reference to the directory
 	 * @param attrs
-	 *            the directory's basic attributes
+	 *              the directory's basic attributes
 	 *
 	 * @return the visit result
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
-	FileVisitResult preVisitDirectory(T dir, BasicFileAttributes attrs) throws IOException;
+	FileVisitResult preVisitDirectory(T dir, BasicFileAttributes attrs)
+			throws IOException;
 
 	/**
 	 * Invoked for a file in a directory.
 	 *
 	 * @param file
-	 *            a reference to the file
+	 *              a reference to the file
 	 * @param attrs
-	 *            the file's basic attributes
+	 *              the file's basic attributes
 	 *
 	 * @return the visit result
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
-	FileVisitResult visitFile(T file, BasicFileAttributes attrs) throws IOException;
+	FileVisitResult visitFile(T file, BasicFileAttributes attrs)
+			throws IOException;
 
 	/**
 	 * Invoked for a file that could not be visited. This method is invoked if
@@ -144,14 +126,14 @@ public interface FileVisitor<T> {
 	 * could not be opened, and other reasons.
 	 *
 	 * @param file
-	 *            a reference to the file
+	 *             a reference to the file
 	 * @param exc
-	 *            the I/O exception that prevented the file from being visited
+	 *             the I/O exception that prevented the file from being visited
 	 *
 	 * @return the visit result
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
 	FileVisitResult visitFileFailed(T file, IOException exc) throws IOException;
 
@@ -172,7 +154,8 @@ public interface FileVisitor<T> {
 	 * @return the visit result
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
-	FileVisitResult postVisitDirectory(T dir, IOException exc) throws IOException;
+	FileVisitResult postVisitDirectory(T dir, IOException exc)
+			throws IOException;
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.function;
 
@@ -44,9 +24,9 @@ public interface LongBinaryOperator {
 	 * Applies this operator to the given operands.
 	 *
 	 * @param left
-	 *            the first operand
+	 *              the first operand
 	 * @param right
-	 *            the second operand
+	 *              the second operand
 	 * @return the operator result
 	 */
 	long applyAsLong(long left, long right);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -41,7 +21,7 @@ public class IllegalFormatWidthException extends IllegalFormatException {
 	 * Constructs an instance of this class with the specified width.
 	 *
 	 * @param w
-	 *            The width
+	 *          The width
 	 */
 	public IllegalFormatWidthException(int w) {
 		this.w = w;

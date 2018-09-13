@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -65,26 +45,30 @@ public class NTSid implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param stringSid
-	 *            the Windows NT SID.
-	 *            <p>
+	 *                  the Windows NT SID.
+	 *                  <p>
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>String</code> is <code>null</code>.
+	 *                                     if the <code>String</code> is
+	 *                                     <code>null</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the <code>String</code> has zero length.
+	 *                                     if the <code>String</code> has zero
+	 *                                     length.
 	 */
 	public NTSid(String stringSid) {
 		if (stringSid == null) {
 			java.text.MessageFormat form = new java.text.MessageFormat(
-					sun.security.util.ResourcesMgr.getString("invalid.null.input.value",
+					sun.security.util.ResourcesMgr.getString(
+							"invalid.null.input.value",
 							"sun.security.util.AuthResources"));
 			Object[] source = { "stringSid" };
 			throw new NullPointerException(form.format(source));
 		}
 		if (stringSid.length() == 0) {
 			throw new IllegalArgumentException(sun.security.util.ResourcesMgr
-					.getString("Invalid.NTSid.value", "sun.security.util.AuthResources"));
+					.getString("Invalid.NTSid.value",
+							"sun.security.util.AuthResources"));
 		}
 		sid = new String(stringSid);
 	}
@@ -108,8 +92,9 @@ public class NTSid implements Principal, java.io.Serializable {
 	 * @return a string representation of this <code>NTSid</code>.
 	 */
 	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
-				.getString("NTSid.name", "sun.security.util.AuthResources"));
+		java.text.MessageFormat form = new java.text.MessageFormat(
+				sun.security.util.ResourcesMgr.getString("NTSid.name",
+						"sun.security.util.AuthResources"));
 		Object[] source = { sid };
 		return form.format(source);
 	}
@@ -122,8 +107,8 @@ public class NTSid implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>NTSid</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>NTSid</code>.
 	 *
 	 * @return true if the specified Object is equal to this <code>NTSid</code>.
 	 */

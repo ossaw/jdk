@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -43,7 +23,8 @@ class DirectLongBufferS
 	protected static final Unsafe unsafe = Bits.unsafe();
 
 	// Cached array base offset
-	private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(long[].class);
+	private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(
+			long[].class);
 
 	// Cached unaligned-access capability
 	protected static final boolean unaligned = Bits.unaligned();
@@ -88,14 +69,14 @@ class DirectLongBufferS
 	}
 
 	public LongBuffer duplicate() {
-		return new DirectLongBufferS(this, this.markValue(), this.position(), this.limit(),
-				this.capacity(), 0);
+		return new DirectLongBufferS(this, this.markValue(), this.position(),
+				this.limit(), this.capacity(), 0);
 	}
 
 	public LongBuffer asReadOnlyBuffer() {
 
-		return new DirectLongBufferRS(this, this.markValue(), this.position(), this.limit(),
-				this.capacity(), 0);
+		return new DirectLongBufferRS(this, this.markValue(), this.position(),
+				this.limit(), this.capacity(), 0);
 
 	}
 
@@ -127,11 +108,12 @@ class DirectLongBufferS
 				throw new BufferUnderflowException();
 
 			if (order() != ByteOrder.nativeOrder())
-				Bits.copyToLongArray(ix(pos), dst, (long) offset << 3, (long) length << 3);
+				Bits.copyToLongArray(ix(pos), dst, (long) offset << 3,
+						(long) length << 3);
 			else
 
-				Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 3,
-						(long) length << 3);
+				Bits.copyToArray(ix(pos), dst, arrayBaseOffset,
+						(long) offset << 3, (long) length << 3);
 			position(pos + length);
 		} else {
 			super.get(dst, offset, length);
@@ -205,11 +187,12 @@ class DirectLongBufferS
 				throw new BufferOverflowException();
 
 			if (order() != ByteOrder.nativeOrder())
-				Bits.copyFromLongArray(src, (long) offset << 3, ix(pos), (long) length << 3);
+				Bits.copyFromLongArray(src, (long) offset << 3, ix(pos),
+						(long) length << 3);
 			else
 
-				Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 3, ix(pos),
-						(long) length << 3);
+				Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 3, ix(
+						pos), (long) length << 3);
 			position(pos + length);
 		} else {
 			super.put(src, offset, length);
@@ -243,7 +226,8 @@ class DirectLongBufferS
 
 	public ByteOrder order() {
 
-		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
+		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
+				? ByteOrder.LITTLE_ENDIAN
 				: ByteOrder.BIG_ENDIAN);
 
 	}

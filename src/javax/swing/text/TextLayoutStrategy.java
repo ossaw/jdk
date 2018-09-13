@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -61,10 +41,11 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * used for repair).
 	 *
 	 * @param e
-	 *            the change information from the associated document
+	 *              the change information from the associated document
 	 * @param alloc
-	 *            the current allocation of the view inside of the insets. This
-	 *            value will be null if the view has not yet been displayed.
+	 *              the current allocation of the view inside of the insets.
+	 *              This
+	 *              value will be null if the view has not yet been displayed.
 	 * @see View#insertUpdate
 	 */
 	public void insertUpdate(FlowView fv, DocumentEvent e, Rectangle alloc) {
@@ -77,9 +58,9 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * location that the given flow view is responsible for.
 	 *
 	 * @param e
-	 *            the change information from the associated document
+	 *              the change information from the associated document
 	 * @param alloc
-	 *            the current allocation of the view inside of the insets.
+	 *              the current allocation of the view inside of the insets.
 	 * @see View#removeUpdate
 	 */
 	public void removeUpdate(FlowView fv, DocumentEvent e, Rectangle alloc) {
@@ -92,11 +73,11 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * location that this view is responsible for.
 	 *
 	 * @param changes
-	 *            the change information from the associated document
+	 *                the change information from the associated document
 	 * @param a
-	 *            the current allocation of the view
+	 *                the current allocation of the view
 	 * @param f
-	 *            the factory to use to rebuild if the view has children
+	 *                the factory to use to rebuild if the view has children
 	 * @see View#changedUpdate
 	 */
 	public void changedUpdate(FlowView fv, DocumentEvent e, Rectangle alloc) {
@@ -111,7 +92,7 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * flow.
 	 *
 	 * @param fv
-	 *            the view to reflow
+	 *           the view to reflow
 	 */
 	public void layout(FlowView fv) {
 		super.layout(fv);
@@ -146,9 +127,11 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 
 				for (int i = 0; i < n; i++) {
 					View v = row.getView(i);
-					int bidiIndex = bidiRoot.getElementIndex(v.getStartOffset());
+					int bidiIndex = bidiRoot.getElementIndex(v
+							.getStartOffset());
 					Element bidiElem = bidiRoot.getElement(bidiIndex);
-					levels[i] = (byte) StyleConstants.getBidiLevel(bidiElem.getAttributes());
+					levels[i] = (byte) StyleConstants.getBidiLevel(bidiElem
+							.getAttributes());
 					reorder[i] = v;
 				}
 
@@ -165,14 +148,14 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * implemented to do nothing.
 	 *
 	 * @param r
-	 *            the row to adjust to the current layout span.
+	 *                    the row to adjust to the current layout span.
 	 * @param desiredSpan
-	 *            the current layout span >= 0
+	 *                    the current layout span >= 0
 	 * @param x
-	 *            the location r starts at.
+	 *                    the location r starts at.
 	 */
-	protected void adjustRow(FlowView fv, int rowIndex, int desiredSpan, int x) {
-	}
+	protected void adjustRow(FlowView fv, int rowIndex, int desiredSpan,
+			int x) {}
 
 	/**
 	 * Creates a unidirectional view that can be used to represent the current
@@ -180,15 +163,16 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * fragment of the view.
 	 *
 	 * @param fv
-	 *            the view holding the flow
+	 *                    the view holding the flow
 	 * @param startOffset
-	 *            the start location for the view being created
+	 *                    the start location for the view being created
 	 * @param spanLeft
-	 *            the about of span left to fill in the row
+	 *                    the about of span left to fill in the row
 	 * @param rowIndex
-	 *            the row the view will be placed into
+	 *                    the row the view will be placed into
 	 */
-	protected View createView(FlowView fv, int startOffset, int spanLeft, int rowIndex) {
+	protected View createView(FlowView fv, int startOffset, int spanLeft,
+			int rowIndex) {
 		// Get the child view that contains the given starting position
 		View lv = getLogicalView(fv);
 		View row = fv.getView(rowIndex);
@@ -196,13 +180,15 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 		int childIndex = lv.getViewIndex(startOffset, Position.Bias.Forward);
 		View v = lv.getView(childIndex);
 
-		int endOffset = getLimitingOffset(v, startOffset, spanLeft, requireNextWord);
+		int endOffset = getLimitingOffset(v, startOffset, spanLeft,
+				requireNextWord);
 		if (endOffset == startOffset) {
 			return null;
 		}
 
 		View frag;
-		if ((startOffset == v.getStartOffset()) && (endOffset == v.getEndOffset())) {
+		if ((startOffset == v.getStartOffset()) && (endOffset == v
+				.getEndOffset())) {
 			// return the entire view
 			frag = v;
 		} else {
@@ -226,8 +212,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 				}
 			}
 			TextLayout tl = (isTab) ? null
-					: measurer.nextLayout(spanLeft, text.toIteratorIndex(endOffset),
-							requireNextWord);
+					: measurer.nextLayout(spanLeft, text.toIteratorIndex(
+							endOffset), requireNextWord);
 			if (tl != null) {
 				((GlyphView) frag).setGlyphPainter(new GlyphPainter2(tl));
 			}
@@ -244,11 +230,12 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * span.
 	 *
 	 * @param v
-	 *            the logical view representing the starting offset.
+	 *                    the logical view representing the starting offset.
 	 * @param startOffset
-	 *            the model location to start at.
+	 *                    the model location to start at.
 	 */
-	int getLimitingOffset(View v, int startOffset, int spanLeft, boolean requireNextWord) {
+	int getLimitingOffset(View v, int startOffset, int spanLeft,
+			boolean requireNextWord) {
 		int endOffset = v.getEndOffset();
 
 		// check for direction change
@@ -275,7 +262,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 				for (ch = s.next(); ch != Segment.DONE; ch = s.next()) {
 					if (ch == '\t') {
 						// found a tab, don't include it in the text
-						endOffset = startOffset + s.getIndex() - s.getBeginIndex();
+						endOffset = startOffset + s.getIndex() - s
+								.getBeginIndex();
 						break;
 					}
 				}
@@ -289,7 +277,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 			if (measurer.getPosition() != index) {
 				measurer.setPosition(index);
 			}
-			limitIndex = measurer.nextOffset(spanLeft, limitIndex, requireNextWord);
+			limitIndex = measurer.nextOffset(spanLeft, limitIndex,
+					requireNextWord);
 		}
 		int pos = text.toModelPosition(limitIndex);
 		return pos;
@@ -306,7 +295,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 		text.setView(lv);
 
 		Container container = fv.getContainer();
-		FontRenderContext frc = sun.swing.SwingUtilities2.getFontRenderContext(container);
+		FontRenderContext frc = sun.swing.SwingUtilities2.getFontRenderContext(
+				container);
 		BreakIterator iter;
 		Container c = fv.getContainer();
 		if (c != null) {
@@ -317,7 +307,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 
 		Object shaper = null;
 		if (c instanceof JComponent) {
-			shaper = ((JComponent) c).getClientProperty(TextAttribute.NUMERIC_SHAPING);
+			shaper = ((JComponent) c).getClientProperty(
+					TextAttribute.NUMERIC_SHAPING);
 		}
 		text.setShaper(shaper);
 
@@ -332,8 +323,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 				int p0 = child.getStartOffset();
 				int p1 = child.getEndOffset();
 				measurer.setPosition(text.toIteratorIndex(p0));
-				TextLayout layout = measurer.nextLayout(Float.MAX_VALUE, text.toIteratorIndex(p1),
-						false);
+				TextLayout layout = measurer.nextLayout(Float.MAX_VALUE, text
+						.toIteratorIndex(p1), false);
 				((GlyphView) child).setGlyphPainter(new GlyphPainter2(layout));
 			}
 		}
@@ -352,10 +343,10 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 	 * Implementation of AttributedCharacterIterator that supports the GlyphView
 	 * attributes for rendering the glyphs through a TextLayout.
 	 */
-	static class AttributedSegment extends Segment implements AttributedCharacterIterator {
+	static class AttributedSegment extends Segment implements
+			AttributedCharacterIterator {
 
-		AttributedSegment() {
-		}
+		AttributedSegment() {}
 
 		View getView() {
 			return v;
@@ -385,8 +376,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 		int getFontBoundary(int childIndex, int dir) {
 			View child = v.getView(childIndex);
 			Font f = getFont(childIndex);
-			for (childIndex += dir; (childIndex >= 0)
-					&& (childIndex < v.getViewCount()); childIndex += dir) {
+			for (childIndex += dir; (childIndex >= 0) && (childIndex < v
+					.getViewCount()); childIndex += dir) {
 				Font next = getFont(childIndex);
 				if (next != f) {
 					// this run is different
@@ -437,7 +428,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 		 * Returns the index of the first character of the run with respect to
 		 * the given attribute containing the current character.
 		 */
-		public int getRunStart(AttributedCharacterIterator.Attribute attribute) {
+		public int getRunStart(
+				AttributedCharacterIterator.Attribute attribute) {
 			if (attribute instanceof TextAttribute) {
 				int pos = toModelPosition(getIndex());
 				int i = v.getViewIndex(pos, Position.Bias.Forward);
@@ -477,7 +469,8 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 		 * Returns the index of the first character following the run with
 		 * respect to the given attribute containing the current character.
 		 */
-		public int getRunLimit(AttributedCharacterIterator.Attribute attribute) {
+		public int getRunLimit(
+				AttributedCharacterIterator.Attribute attribute) {
 			if (attribute instanceof TextAttribute) {
 				int pos = toModelPosition(getIndex());
 				int i = v.getViewIndex(pos, Position.Bias.Forward);
@@ -523,9 +516,10 @@ class TextLayoutStrategy extends FlowView.FlowStrategy {
 		 * Returns null if the attribute is not defined.
 		 * 
 		 * @param attribute
-		 *            the key of the attribute whose value is requested.
+		 *                  the key of the attribute whose value is requested.
 		 */
-		public Object getAttribute(AttributedCharacterIterator.Attribute attribute) {
+		public Object getAttribute(
+				AttributedCharacterIterator.Attribute attribute) {
 			int pos = toModelPosition(getIndex());
 			int childIndex = v.getViewIndex(pos, Position.Bias.Forward);
 			if (attribute == TextAttribute.FONT) {

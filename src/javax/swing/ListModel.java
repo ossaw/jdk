@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -35,7 +15,7 @@ import javax.swing.event.ListDataListener;
  * ListDataListeners.
  *
  * @param <E>
- *            the type of the elements of this model
+ *        the type of the elements of this model
  *
  * @author Hans Muller
  * @see JList
@@ -52,7 +32,7 @@ public interface ListModel<E> {
 	 * Returns the value at the specified index.
 	 * 
 	 * @param index
-	 *            the requested index
+	 *              the requested index
 	 * @return the value at <code>index</code>
 	 */
 	E getElementAt(int index);
@@ -62,7 +42,7 @@ public interface ListModel<E> {
 	 * data model occurs.
 	 * 
 	 * @param l
-	 *            the <code>ListDataListener</code> to be added
+	 *          the <code>ListDataListener</code> to be added
 	 */
 	void addListDataListener(ListDataListener l);
 
@@ -71,7 +51,7 @@ public interface ListModel<E> {
 	 * the data model occurs.
 	 * 
 	 * @param l
-	 *            the <code>ListDataListener</code> to be removed
+	 *          the <code>ListDataListener</code> to be removed
 	 */
 	void removeListDataListener(ListDataListener l);
 }

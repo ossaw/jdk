@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -82,8 +62,7 @@ public abstract class EndpointReference {
 	//
 	// Default constructor to be only called by derived types.
 	//
-	protected EndpointReference() {
-	}
+	protected EndpointReference() {}
 
 	/**
 	 * Factory method to read an EndpointReference from the infoset contained in
@@ -92,17 +71,19 @@ public abstract class EndpointReference {
 	 * {@link javax.xml.ws.spi.Provider#readEndpointReference} method.
 	 *
 	 * @param eprInfoset
-	 *            The <code>EndpointReference</code> infoset to be unmarshalled
+	 *                   The <code>EndpointReference</code> infoset to be
+	 *                   unmarshalled
 	 *
 	 * @return the EndpointReference unmarshalled from <code>eprInfoset</code>
 	 *         never <code>null</code>
 	 * @throws WebServiceException
-	 *             if an error occurs while creating the
-	 *             <code>EndpointReference</code> from the
-	 *             <CODE>eprInfoset</CODE>
-	 * @throws java.lang.IllegalArgumentException
-	 *             if the <code>null</code> <code>eprInfoset</code> value is
-	 *             given.
+	 *                             if an error occurs while creating the
+	 *                             <code>EndpointReference</code> from the
+	 *                             <CODE>eprInfoset</CODE>
+	 * @throws                     java.lang.IllegalArgumentException
+	 *                             if the <code>null</code>
+	 *                             <code>eprInfoset</code> value is
+	 *                             given.
 	 */
 	public static EndpointReference readFrom(Source eprInfoset) {
 		return Provider.provider().readEndpointReference(eprInfoset);
@@ -112,14 +93,16 @@ public abstract class EndpointReference {
 	 * write this <code>EndpointReference</code> to the specified infoset format
 	 *
 	 * @param result
-	 *            for writing infoset
+	 *               for writing infoset
 	 * @throws WebServiceException
-	 *             if there is an error writing the
-	 *             <code>EndpointReference</code> to the specified
-	 *             <code>result</code>.
+	 *                             if there is an error writing the
+	 *                             <code>EndpointReference</code> to the
+	 *                             specified
+	 *                             <code>result</code>.
 	 *
-	 * @throws java.lang.IllegalArgumentException
-	 *             If the <code>null</code> <code>result</code> value is given.
+	 * @throws                     java.lang.IllegalArgumentException
+	 *                             If the <code>null</code> <code>result</code>
+	 *                             value is given.
 	 */
 	public abstract void writeTo(Result result);
 
@@ -149,30 +132,40 @@ public abstract class EndpointReference {
 	 *
 	 *
 	 * @param serviceEndpointInterface
-	 *            Service endpoint interface
+	 *                                 Service endpoint interface
 	 * @param features
-	 *            An array of <code>WebServiceFeatures</code> to configure on
-	 *            the proxy. Supported features not in the <code>features
-	 *                </code> parameter will have their default values.
+	 *                                 An array of
+	 *                                 <code>WebServiceFeatures</code> to
+	 *                                 configure on
+	 *                                 the proxy. Supported features not in the
+	 *                                 <code>features
+	 *                </code>       parameter will have their default values.
 	 * @return Object Proxy instance that supports the specified service
 	 *         endpoint interface
 	 * @throws WebServiceException
-	 *             <UL>
-	 *             <LI>If there is an error during creation of the proxy
-	 *             <LI>If there is any missing WSDL metadata as required by this
-	 *             method
-	 *             <LI>If this <code>endpointReference</code> is invalid
-	 *             <LI>If an illegal <code>serviceEndpointInterface</code> is
-	 *             specified
-	 *             <LI>If a feature is enabled that is not compatible with this
-	 *             port or is unsupported.
-	 *             </UL>
+	 *                             <UL>
+	 *                             <LI>If there is an error during creation of
+	 *                             the proxy
+	 *                             <LI>If there is any missing WSDL metadata as
+	 *                             required by this
+	 *                             method
+	 *                             <LI>If this <code>endpointReference</code> is
+	 *                             invalid
+	 *                             <LI>If an illegal
+	 *                             <code>serviceEndpointInterface</code> is
+	 *                             specified
+	 *                             <LI>If a feature is enabled that is not
+	 *                             compatible with this
+	 *                             port or is unsupported.
+	 *                             </UL>
 	 *
 	 * @see java.lang.reflect.Proxy
 	 * @see WebServiceFeature
 	 **/
-	public <T> T getPort(Class<T> serviceEndpointInterface, WebServiceFeature... features) {
-		return Provider.provider().getPort(this, serviceEndpointInterface, features);
+	public <T> T getPort(Class<T> serviceEndpointInterface,
+			WebServiceFeature... features) {
+		return Provider.provider().getPort(this, serviceEndpointInterface,
+				features);
 	}
 
 	/**

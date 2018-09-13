@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.jar;
@@ -43,11 +23,13 @@ public class JarEntry extends ZipEntry {
 	 * name.
 	 *
 	 * @param name
-	 *            the JAR file entry name
+	 *             the JAR file entry name
 	 * @exception NullPointerException
-	 *                if the entry name is <code>null</code>
+	 *                                     if the entry name is
+	 *                                     <code>null</code>
 	 * @exception IllegalArgumentException
-	 *                if the entry name is longer than 0xFFFF bytes.
+	 *                                     if the entry name is longer than
+	 *                                     0xFFFF bytes.
 	 */
 	public JarEntry(String name) {
 		super(name);
@@ -58,8 +40,8 @@ public class JarEntry extends ZipEntry {
 	 * <code>ZipEntry</code> object.
 	 * 
 	 * @param ze
-	 *            the <code>ZipEntry</code> object to create the
-	 *            <code>JarEntry</code> from
+	 *           the <code>ZipEntry</code> object to create the
+	 *           <code>JarEntry</code> from
 	 */
 	public JarEntry(ZipEntry ze) {
 		super(ze);
@@ -70,7 +52,7 @@ public class JarEntry extends ZipEntry {
 	 * <code>JarEntry</code> object.
 	 *
 	 * @param je
-	 *            the <code>JarEntry</code> to copy
+	 *           the <code>JarEntry</code> to copy
 	 */
 	public JarEntry(JarEntry je) {
 		this((ZipEntry) je);
@@ -86,7 +68,7 @@ public class JarEntry extends ZipEntry {
 	 * @return the <code>Manifest</code> <code>Attributes</code> for this entry,
 	 *         or <code>null</code> if none
 	 * @throws IOException
-	 *             if an I/O error has occurred
+	 *                     if an I/O error has occurred
 	 */
 	public Attributes getAttributes() throws IOException {
 		return attr;

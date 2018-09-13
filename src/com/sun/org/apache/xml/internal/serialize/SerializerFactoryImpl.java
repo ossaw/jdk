@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,9 +37,11 @@ final class SerializerFactoryImpl extends SerializerFactory {
 	SerializerFactoryImpl(String method) {
 		_method = method;
 		if (!_method.equals(Method.XML) && !_method.equals(Method.HTML)
-				&& !_method.equals(Method.XHTML) && !_method.equals(Method.TEXT)) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
-					"MethodNotSupported", new Object[] { method });
+				&& !_method.equals(Method.XHTML) && !_method.equals(
+						Method.TEXT)) {
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.SERIALIZER_DOMAIN, "MethodNotSupported",
+					new Object[] { method });
 			throw new IllegalArgumentException(msg);
 		}
 	}
@@ -82,8 +81,9 @@ final class SerializerFactoryImpl extends SerializerFactory {
 		} else if (_method.equals(Method.TEXT)) {
 			return new TextSerializer();
 		} else {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
-					"MethodNotSupported", new Object[] { _method });
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.SERIALIZER_DOMAIN, "MethodNotSupported",
+					new Object[] { _method });
 			throw new IllegalStateException(msg);
 		}
 	}

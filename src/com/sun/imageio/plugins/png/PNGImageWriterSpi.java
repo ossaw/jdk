@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.png;
@@ -55,8 +35,9 @@ public class PNGImageWriterSpi extends ImageWriterSpi {
 
 	public PNGImageWriterSpi() {
 		super(vendorName, version, names, suffixes, MIMETypes, writerClassName,
-				new Class[] { ImageOutputStream.class }, readerSpiNames, false, null, null, null,
-				null, true, PNGMetadata.nativeMetadataFormatName,
+				new Class[] { ImageOutputStream.class }, readerSpiNames, false,
+				null, null, null, null, true,
+				PNGMetadata.nativeMetadataFormatName,
 				"com.sun.imageio.plugins.png.PNGMetadataFormat", null, null);
 	}
 

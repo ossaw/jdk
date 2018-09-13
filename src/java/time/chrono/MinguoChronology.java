@@ -1,47 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -107,7 +81,8 @@ import java.util.Map;
  *
  * @since 1.8
  */
-public final class MinguoChronology extends AbstractChronology implements Serializable {
+public final class MinguoChronology extends AbstractChronology implements
+		Serializable {
 
 	/**
 	 * Singleton instance for the Minguo chronology.
@@ -126,8 +101,7 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 	/**
 	 * Restricted constructor.
 	 */
-	private MinguoChronology() {
-	}
+	private MinguoChronology() {}
 
 	// -----------------------------------------------------------------------
 	/**
@@ -168,18 +142,18 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 	 * month-of-year and day-of-month fields.
 	 *
 	 * @param era
-	 *            the Minguo era, not null
+	 *                   the Minguo era, not null
 	 * @param yearOfEra
-	 *            the year-of-era
+	 *                   the year-of-era
 	 * @param month
-	 *            the month-of-year
+	 *                   the month-of-year
 	 * @param dayOfMonth
-	 *            the day-of-month
+	 *                   the day-of-month
 	 * @return the Minguo local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                            if unable to create the date
 	 * @throws ClassCastException
-	 *             if the {@code era} is not a {@code MinguoEra}
+	 *                            if the {@code era} is not a {@code MinguoEra}
 	 */
 	@Override
 	public MinguoDate date(Era era, int yearOfEra, int month, int dayOfMonth) {
@@ -191,18 +165,19 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 	 * month-of-year and day-of-month fields.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year
+	 *                      the proleptic-year
 	 * @param month
-	 *            the month-of-year
+	 *                      the month-of-year
 	 * @param dayOfMonth
-	 *            the day-of-month
+	 *                      the day-of-month
 	 * @return the Minguo local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override
 	public MinguoDate date(int prolepticYear, int month, int dayOfMonth) {
-		return new MinguoDate(LocalDate.of(prolepticYear + YEARS_DIFFERENCE, month, dayOfMonth));
+		return new MinguoDate(LocalDate.of(prolepticYear + YEARS_DIFFERENCE,
+				month, dayOfMonth));
 	}
 
 	/**
@@ -210,16 +185,16 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 	 * and day-of-year fields.
 	 *
 	 * @param era
-	 *            the Minguo era, not null
+	 *                  the Minguo era, not null
 	 * @param yearOfEra
-	 *            the year-of-era
+	 *                  the year-of-era
 	 * @param dayOfYear
-	 *            the day-of-year
+	 *                  the day-of-year
 	 * @return the Minguo local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                            if unable to create the date
 	 * @throws ClassCastException
-	 *             if the {@code era} is not a {@code MinguoEra}
+	 *                            if the {@code era} is not a {@code MinguoEra}
 	 */
 	@Override
 	public MinguoDate dateYearDay(Era era, int yearOfEra, int dayOfYear) {
@@ -231,26 +206,27 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 	 * and day-of-year fields.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year
+	 *                      the proleptic-year
 	 * @param dayOfYear
-	 *            the day-of-year
+	 *                      the day-of-year
 	 * @return the Minguo local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override
 	public MinguoDate dateYearDay(int prolepticYear, int dayOfYear) {
-		return new MinguoDate(LocalDate.ofYearDay(prolepticYear + YEARS_DIFFERENCE, dayOfYear));
+		return new MinguoDate(LocalDate.ofYearDay(prolepticYear
+				+ YEARS_DIFFERENCE, dayOfYear));
 	}
 
 	/**
 	 * Obtains a local date in the Minguo calendar system from the epoch-day.
 	 *
 	 * @param epochDay
-	 *            the epoch day
+	 *                 the epoch day
 	 * @return the Minguo local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override // override with covariant return type
 	public MinguoDate dateEpochDay(long epochDay) {
@@ -282,20 +258,24 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoLocalDateTime<MinguoDate> localDateTime(TemporalAccessor temporal) {
+	public ChronoLocalDateTime<MinguoDate> localDateTime(
+			TemporalAccessor temporal) {
 		return (ChronoLocalDateTime<MinguoDate>) super.localDateTime(temporal);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<MinguoDate> zonedDateTime(TemporalAccessor temporal) {
+	public ChronoZonedDateTime<MinguoDate> zonedDateTime(
+			TemporalAccessor temporal) {
 		return (ChronoZonedDateTime<MinguoDate>) super.zonedDateTime(temporal);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<MinguoDate> zonedDateTime(Instant instant, ZoneId zone) {
-		return (ChronoZonedDateTime<MinguoDate>) super.zonedDateTime(instant, zone);
+	public ChronoZonedDateTime<MinguoDate> zonedDateTime(Instant instant,
+			ZoneId zone) {
+		return (ChronoZonedDateTime<MinguoDate>) super.zonedDateTime(instant,
+				zone);
 	}
 
 	// -----------------------------------------------------------------------
@@ -307,12 +287,13 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 	 * for years in the supported range.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year to check, not validated for range
+	 *                      the proleptic-year to check, not validated for range
 	 * @return true if the year is a leap year
 	 */
 	@Override
 	public boolean isLeapYear(long prolepticYear) {
-		return IsoChronology.INSTANCE.isLeapYear(prolepticYear + YEARS_DIFFERENCE);
+		return IsoChronology.INSTANCE.isLeapYear(prolepticYear
+				+ YEARS_DIFFERENCE);
 	}
 
 	@Override
@@ -330,28 +311,28 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 
 	@Override
 	public List<Era> eras() {
-		return Arrays.<Era> asList(MinguoEra.values());
+		return Arrays.<Era>asList(MinguoEra.values());
 	}
 
 	// -----------------------------------------------------------------------
 	@Override
 	public ValueRange range(ChronoField field) {
 		switch (field) {
-		case PROLEPTIC_MONTH: {
-			ValueRange range = PROLEPTIC_MONTH.range();
-			return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE * 12L,
-					range.getMaximum() - YEARS_DIFFERENCE * 12L);
-		}
-		case YEAR_OF_ERA: {
-			ValueRange range = YEAR.range();
-			return ValueRange.of(1, range.getMaximum() - YEARS_DIFFERENCE,
-					-range.getMinimum() + 1 + YEARS_DIFFERENCE);
-		}
-		case YEAR: {
-			ValueRange range = YEAR.range();
-			return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE,
-					range.getMaximum() - YEARS_DIFFERENCE);
-		}
+			case PROLEPTIC_MONTH: {
+				ValueRange range = PROLEPTIC_MONTH.range();
+				return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE
+						* 12L, range.getMaximum() - YEARS_DIFFERENCE * 12L);
+			}
+			case YEAR_OF_ERA: {
+				ValueRange range = YEAR.range();
+				return ValueRange.of(1, range.getMaximum() - YEARS_DIFFERENCE,
+						-range.getMinimum() + 1 + YEARS_DIFFERENCE);
+			}
+			case YEAR: {
+				ValueRange range = YEAR.range();
+				return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE,
+						range.getMaximum() - YEARS_DIFFERENCE);
+			}
 		}
 		return field.range();
 	}
@@ -387,11 +368,12 @@ public final class MinguoChronology extends AbstractChronology implements Serial
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -75,10 +55,10 @@ public class BinaryRefAddr extends RefAddr {
 	 * byte array for contents.
 	 *
 	 * @param addrType
-	 *            A non-null string describing the type of the address.
+	 *                 A non-null string describing the type of the address.
 	 * @param src
-	 *            The non-null contents of the address as a byte array. The
-	 *            contents of src is copied into the new BinaryRefAddr.
+	 *                 The non-null contents of the address as a byte array. The
+	 *                 contents of src is copied into the new BinaryRefAddr.
 	 */
 	public BinaryRefAddr(String addrType, byte[] src) {
 		this(addrType, src, 0, src.length);
@@ -89,16 +69,16 @@ public class BinaryRefAddr extends RefAddr {
 	 * region of a byte array for contents.
 	 *
 	 * @param addrType
-	 *            A non-null string describing the type of the address.
+	 *                 A non-null string describing the type of the address.
 	 * @param src
-	 *            The non-null contents of the address as a byte array. The
-	 *            contents of src is copied into the new BinaryRefAddr.
+	 *                 The non-null contents of the address as a byte array. The
+	 *                 contents of src is copied into the new BinaryRefAddr.
 	 * @param offset
-	 *            The starting index in src to get the bytes.
-	 *            {@code 0 <= offset <= src.length}.
+	 *                 The starting index in src to get the bytes.
+	 *                 {@code 0 <= offset <= src.length}.
 	 * @param count
-	 *            The number of bytes to extract from src.
-	 *            {@code 0 <= count <= src.length-offset}.
+	 *                 The number of bytes to extract from src.
+	 *                 {@code 0 <= count <= src.length-offset}.
 	 */
 	public BinaryRefAddr(String addrType, byte[] src, int offset, int count) {
 		super(addrType);
@@ -133,7 +113,8 @@ public class BinaryRefAddr extends RefAddr {
 			if (addrType.compareTo(target.addrType) == 0) {
 				if (buf == null && target.buf == null)
 					return true;
-				if (buf == null || target.buf == null || buf.length != target.buf.length)
+				if (buf == null || target.buf == null
+						|| buf.length != target.buf.length)
 					return false;
 				for (int i = 0; i < buf.length; i++)
 					if (buf[i] != target.buf[i])

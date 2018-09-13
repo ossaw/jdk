@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -45,9 +20,10 @@ package java.util.concurrent;
  * @since 1.6
  * @author Doug Lea
  * @param <V>
- *            The result type returned by this Future's {@code get} method
+ *        The result type returned by this Future's {@code get} method
  */
-public interface RunnableScheduledFuture<V> extends RunnableFuture<V>, ScheduledFuture<V> {
+public interface RunnableScheduledFuture<V> extends RunnableFuture<V>,
+		ScheduledFuture<V> {
 
 	/**
 	 * Returns {@code true} if this task is periodic. A periodic task may re-run

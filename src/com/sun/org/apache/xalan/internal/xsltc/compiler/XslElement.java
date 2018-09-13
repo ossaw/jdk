@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,7 +72,8 @@ final class XslElement extends Instruction {
 		// Handle the 'name' attribute
 		String name = getAttribute("name");
 		if (name == EMPTYSTRING) {
-			ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_ELEM_NAME_ERR, name, this);
+			ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_ELEM_NAME_ERR, name,
+					this);
 			parser.reportError(WARNING, msg);
 			parseChildren(parser);
 			_ignore = true; // Ignore the element if the QName is invalid
@@ -88,7 +87,8 @@ final class XslElement extends Instruction {
 		_isLiteralName = Util.isLiteral(name);
 		if (_isLiteralName) {
 			if (!XML11Char.isXML11ValidQName(name)) {
-				ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_ELEM_NAME_ERR, name, this);
+				ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_ELEM_NAME_ERR,
+						name, this);
 				parser.reportError(WARNING, msg);
 				parseChildren(parser);
 				_ignore = true; // Ignore the element if the QName is invalid
@@ -106,7 +106,8 @@ final class XslElement extends Instruction {
 			if (!hasAttribute("namespace")) {
 				namespace = lookupNamespace(prefix);
 				if (namespace == null) {
-					ErrorMsg err = new ErrorMsg(ErrorMsg.NAMESPACE_UNDEF_ERR, prefix, this);
+					ErrorMsg err = new ErrorMsg(ErrorMsg.NAMESPACE_UNDEF_ERR,
+							prefix, this);
 					parser.reportError(WARNING, err);
 					parseChildren(parser);
 					_ignore = true; // Ignore the element if prefix is
@@ -114,7 +115,8 @@ final class XslElement extends Instruction {
 					return;
 				}
 				_prefix = prefix;
-				_namespace = new AttributeValueTemplate(namespace, parser, this);
+				_namespace = new AttributeValueTemplate(namespace, parser,
+						this);
 			} else {
 				if (prefix == EMPTYSTRING) {
 					if (Util.isLiteral(namespace)) {
@@ -132,7 +134,8 @@ final class XslElement extends Instruction {
 					name = newName.append(local).toString();
 				}
 				_prefix = prefix;
-				_namespace = new AttributeValueTemplate(namespace, parser, this);
+				_namespace = new AttributeValueTemplate(namespace, parser,
+						this);
 			}
 		} else {
 			_namespace = (namespace == EMPTYSTRING) ? null
@@ -144,7 +147,8 @@ final class XslElement extends Instruction {
 		final String useSets = getAttribute("use-attribute-sets");
 		if (useSets.length() > 0) {
 			if (!Util.isValidQNames(useSets)) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, useSets, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, useSets,
+						this);
 				parser.reportError(Constants.ERROR, err);
 			}
 			setFirstElement(new UseAttributeSets(useSets, parser));
@@ -172,7 +176,8 @@ final class XslElement extends Instruction {
 	 * time. In this case, there is no need to inspect the element name at
 	 * runtime to determine if a prefix exists, needs to be generated, etc.
 	 */
-	public void translateLiteral(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateLiteral(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 
@@ -220,8 +225,8 @@ final class XslElement extends Instruction {
 
 			// if the qname is an AVT, then the qname has to be checked at
 			// runtime if it is a valid qname
-			LocalVariableGen nameValue = methodGen.addLocalVariable2("nameValue",
-					Util.getJCRefType(STRING_SIG), null);
+			LocalVariableGen nameValue = methodGen.addLocalVariable2(
+					"nameValue", Util.getJCRefType(STRING_SIG), null);
 
 			// store the name into a variable first so _name.translate only
 			// needs to be called once
@@ -230,8 +235,8 @@ final class XslElement extends Instruction {
 			il.append(new ALOAD(nameValue.getIndex()));
 
 			// call checkQName if the name is an AVT
-			final int check = cpg.addMethodref(BASIS_LIBRARY_CLASS, "checkQName",
-					"(" + STRING_SIG + ")V");
+			final int check = cpg.addMethodref(BASIS_LIBRARY_CLASS,
+					"checkQName", "(" + STRING_SIG + ")V");
 			il.append(new INVOKESTATIC(check));
 
 			// Push handler for call to endElement()
@@ -252,8 +257,9 @@ final class XslElement extends Instruction {
 			il.append(methodGen.loadCurrentNode());
 
 			// Invoke BasisLibrary.startXslElemCheckQName()
-			il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS, "startXslElement",
-					"(" + STRING_SIG + STRING_SIG + TRANSLET_OUTPUT_SIG + DOM_INTF_SIG + "I)"
+			il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS,
+					"startXslElement", "(" + STRING_SIG + STRING_SIG
+							+ TRANSLET_OUTPUT_SIG + DOM_INTF_SIG + "I)"
 							+ STRING_SIG)));
 
 		}
@@ -269,7 +275,8 @@ final class XslElement extends Instruction {
 	 * Override this method to make sure that xsl:attributes are not copied to
 	 * output if this xsl:element is to be ignored
 	 */
-	public void translateContents(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateContents(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final int n = elementCount();
 		for (int i = 0; i < n; i++) {
 			final SyntaxTreeNode item = getContents().get(i);

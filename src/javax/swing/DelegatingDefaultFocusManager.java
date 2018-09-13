@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -98,14 +78,16 @@ final class DelegatingDefaultFocusManager extends DefaultFocusManager {
 		return delegate.getDefaultFocusTraversalPolicy();
 	}
 
-	public void setDefaultFocusTraversalPolicy(FocusTraversalPolicy defaultPolicy) {
+	public void setDefaultFocusTraversalPolicy(
+			FocusTraversalPolicy defaultPolicy) {
 		if (delegate != null) {
 			// Will be null when invoked from supers constructor.
 			delegate.setDefaultFocusTraversalPolicy(defaultPolicy);
 		}
 	}
 
-	public void setDefaultFocusTraversalKeys(int id, Set<? extends AWTKeyStroke> keystrokes) {
+	public void setDefaultFocusTraversalKeys(int id,
+			Set<? extends AWTKeyStroke> keystrokes) {
 		delegate.setDefaultFocusTraversalKeys(id, keystrokes);
 	}
 
@@ -129,11 +111,13 @@ final class DelegatingDefaultFocusManager extends DefaultFocusManager {
 		delegate.removePropertyChangeListener(listener);
 	}
 
-	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+	public void addPropertyChangeListener(String propertyName,
+			PropertyChangeListener listener) {
 		delegate.addPropertyChangeListener(propertyName, listener);
 	}
 
-	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+	public void removePropertyChangeListener(String propertyName,
+			PropertyChangeListener listener) {
 		delegate.removePropertyChangeListener(propertyName, listener);
 	}
 
@@ -145,11 +129,13 @@ final class DelegatingDefaultFocusManager extends DefaultFocusManager {
 		delegate.removeVetoableChangeListener(listener);
 	}
 
-	public void addVetoableChangeListener(String propertyName, VetoableChangeListener listener) {
+	public void addVetoableChangeListener(String propertyName,
+			VetoableChangeListener listener) {
 		delegate.addVetoableChangeListener(propertyName, listener);
 	}
 
-	public void removeVetoableChangeListener(String propertyName, VetoableChangeListener listener) {
+	public void removeVetoableChangeListener(String propertyName,
+			VetoableChangeListener listener) {
 		delegate.removeVetoableChangeListener(propertyName, listener);
 	}
 

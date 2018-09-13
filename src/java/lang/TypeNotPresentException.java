@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -53,11 +33,12 @@ public class TypeNotPresentException extends RuntimeException {
 	 * specified cause.
 	 *
 	 * @param typeName
-	 *            the fully qualified name of the unavailable type
+	 *                 the fully qualified name of the unavailable type
 	 * @param cause
-	 *            the exception that was thrown when the system attempted to
-	 *            load the named type, or <tt>null</tt> if unavailable or
-	 *            inapplicable
+	 *                 the exception that was thrown when the system attempted
+	 *                 to
+	 *                 load the named type, or <tt>null</tt> if unavailable or
+	 *                 inapplicable
 	 */
 	public TypeNotPresentException(String typeName, Throwable cause) {
 		super("Type " + typeName + " not present", cause);

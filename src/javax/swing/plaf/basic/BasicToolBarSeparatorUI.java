@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -63,8 +43,7 @@ public class BasicToolBarSeparatorUI extends BasicSeparatorUI {
 		}
 	}
 
-	public void paint(Graphics g, JComponent c) {
-	}
+	public void paint(Graphics g, JComponent c) {}
 
 	public Dimension getPreferredSize(JComponent c) {
 		Dimension size = ((JToolBar.Separator) c).getSeparatorSize();

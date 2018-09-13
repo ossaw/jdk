@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -130,13 +127,15 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 	private XMLSchemaValidatorComponentManager fComponentManager;
 
 	/** Simple Locator. **/
-	private final SimpleLocator fXMLLocator = new SimpleLocator(null, null, -1, -1, -1);
+	private final SimpleLocator fXMLLocator = new SimpleLocator(null, null, -1,
+			-1, -1);
 
 	/** DOM document handler. **/
 	private DOMDocumentHandler fDOMValidatorHandler;
 
 	/** DOM result augmentor. **/
-	private final DOMResultAugmentor fDOMResultAugmentor = new DOMResultAugmentor(this);
+	private final DOMResultAugmentor fDOMResultAugmentor = new DOMResultAugmentor(
+			this);
 
 	/** DOM result builder. **/
 	private final DOMResultBuilder fDOMResultBuilder = new DOMResultBuilder();
@@ -159,20 +158,27 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 	final XMLAttributesImpl fAttributes = new XMLAttributesImpl();
 	final XMLString fTempString = new XMLString();
 
-	public DOMValidatorHelper(XMLSchemaValidatorComponentManager componentManager) {
+	public DOMValidatorHelper(
+			XMLSchemaValidatorComponentManager componentManager) {
 		fComponentManager = componentManager;
-		fErrorReporter = (XMLErrorReporter) fComponentManager.getProperty(ERROR_REPORTER);
-		fNamespaceContext = (NamespaceSupport) fComponentManager.getProperty(NAMESPACE_CONTEXT);
-		fSchemaValidator = (XMLSchemaValidator) fComponentManager.getProperty(SCHEMA_VALIDATOR);
-		fSymbolTable = (SymbolTable) fComponentManager.getProperty(SYMBOL_TABLE);
-		fValidationManager = (ValidationManager) fComponentManager.getProperty(VALIDATION_MANAGER);
+		fErrorReporter = (XMLErrorReporter) fComponentManager.getProperty(
+				ERROR_REPORTER);
+		fNamespaceContext = (NamespaceSupport) fComponentManager.getProperty(
+				NAMESPACE_CONTEXT);
+		fSchemaValidator = (XMLSchemaValidator) fComponentManager.getProperty(
+				SCHEMA_VALIDATOR);
+		fSymbolTable = (SymbolTable) fComponentManager.getProperty(
+				SYMBOL_TABLE);
+		fValidationManager = (ValidationManager) fComponentManager.getProperty(
+				VALIDATION_MANAGER);
 	}
 
 	/*
 	 * ValidatorHelper methods
 	 */
 
-	public void validate(Source source, Result result) throws SAXException, IOException {
+	public void validate(Source source, Result result) throws SAXException,
+			IOException {
 		if (result instanceof DOMResult || result == null) {
 			final DOMSource domSource = (DOMSource) source;
 			final DOMResult domResult = (DOMResult) result;
@@ -189,10 +195,12 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 				try {
 					// regardless of what type of node this is, fire start and
 					// end document events
-					setupEntityMap((node.getNodeType() == Node.DOCUMENT_NODE) ? (Document) node
+					setupEntityMap((node.getNodeType() == Node.DOCUMENT_NODE)
+							? (Document) node
 							: node.getOwnerDocument());
 					setupDOMResultHandler(domSource, domResult);
-					fSchemaValidator.startDocument(fXMLLocator, null, fDOMNamespaceContext, null);
+					fSchemaValidator.startDocument(fXMLLocator, null,
+							fDOMNamespaceContext, null);
 					validate(node);
 					fSchemaValidator.endDocument(null);
 				} catch (XMLParseException e) {
@@ -212,9 +220,10 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 			}
 			return;
 		}
-		throw new IllegalArgumentException(JAXPValidationMessageFormatter.formatMessage(
-				fComponentManager.getLocale(), "SourceResultMismatch",
-				new Object[] { source.getClass().getName(), result.getClass().getName() }));
+		throw new IllegalArgumentException(JAXPValidationMessageFormatter
+				.formatMessage(fComponentManager.getLocale(),
+						"SourceResultMismatch", new Object[] { source.getClass()
+								.getName(), result.getClass().getName() }));
 	}
 
 	/*
@@ -271,68 +280,72 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 	/** Do processing for the start of a node. */
 	private void beginNode(Node node) {
 		switch (node.getNodeType()) {
-		case Node.ELEMENT_NODE:
-			fCurrentElement = node;
-			// push namespace context
-			fNamespaceContext.pushContext();
-			// start element
-			fillQName(fElementQName, node);
-			processAttributes(node.getAttributes());
-			fSchemaValidator.startElement(fElementQName, fAttributes, null);
-			break;
-		case Node.TEXT_NODE:
-			if (fDOMValidatorHandler != null) {
-				fDOMValidatorHandler.setIgnoringCharacters(true);
-				sendCharactersToValidator(node.getNodeValue());
-				fDOMValidatorHandler.setIgnoringCharacters(false);
-				fDOMValidatorHandler.characters((Text) node);
-			} else {
-				sendCharactersToValidator(node.getNodeValue());
-			}
-			break;
-		case Node.CDATA_SECTION_NODE:
-			if (fDOMValidatorHandler != null) {
-				fDOMValidatorHandler.setIgnoringCharacters(true);
-				fSchemaValidator.startCDATA(null);
-				sendCharactersToValidator(node.getNodeValue());
-				fSchemaValidator.endCDATA(null);
-				fDOMValidatorHandler.setIgnoringCharacters(false);
-				fDOMValidatorHandler.cdata((CDATASection) node);
-			} else {
-				fSchemaValidator.startCDATA(null);
-				sendCharactersToValidator(node.getNodeValue());
-				fSchemaValidator.endCDATA(null);
-			}
-			break;
-		case Node.PROCESSING_INSTRUCTION_NODE:
-			/**
-			 * The validator does nothing with processing instructions so bypass
-			 * it. Send the ProcessingInstruction node directly to the result
-			 * builder.
-			 */
-			if (fDOMValidatorHandler != null) {
-				fDOMValidatorHandler.processingInstruction((ProcessingInstruction) node);
-			}
-			break;
-		case Node.COMMENT_NODE:
-			/**
-			 * The validator does nothing with comments so bypass it. Send the
-			 * Comment node directly to the result builder.
-			 */
-			if (fDOMValidatorHandler != null) {
-				fDOMValidatorHandler.comment((Comment) node);
-			}
-			break;
-		case Node.DOCUMENT_TYPE_NODE:
-			/**
-			 * Send the DocumentType node directly to the result builder.
-			 */
-			if (fDOMValidatorHandler != null) {
-				fDOMValidatorHandler.doctypeDecl((DocumentType) node);
-			}
-			break;
-		default: // Ignore other node types.
-			break;
+			case Node.ELEMENT_NODE:
+				fCurrentElement = node;
+				// push namespace context
+				fNamespaceContext.pushContext();
+				// start element
+				fillQName(fElementQName, node);
+				processAttributes(node.getAttributes());
+				fSchemaValidator.startElement(fElementQName, fAttributes, null);
+				break;
+			case Node.TEXT_NODE:
+				if (fDOMValidatorHandler != null) {
+					fDOMValidatorHandler.setIgnoringCharacters(true);
+					sendCharactersToValidator(node.getNodeValue());
+					fDOMValidatorHandler.setIgnoringCharacters(false);
+					fDOMValidatorHandler.characters((Text) node);
+				} else {
+					sendCharactersToValidator(node.getNodeValue());
+				}
+				break;
+			case Node.CDATA_SECTION_NODE:
+				if (fDOMValidatorHandler != null) {
+					fDOMValidatorHandler.setIgnoringCharacters(true);
+					fSchemaValidator.startCDATA(null);
+					sendCharactersToValidator(node.getNodeValue());
+					fSchemaValidator.endCDATA(null);
+					fDOMValidatorHandler.setIgnoringCharacters(false);
+					fDOMValidatorHandler.cdata((CDATASection) node);
+				} else {
+					fSchemaValidator.startCDATA(null);
+					sendCharactersToValidator(node.getNodeValue());
+					fSchemaValidator.endCDATA(null);
+				}
+				break;
+			case Node.PROCESSING_INSTRUCTION_NODE:
+				/**
+				 * The validator does nothing with processing instructions so
+				 * bypass
+				 * it. Send the ProcessingInstruction node directly to the
+				 * result
+				 * builder.
+				 */
+				if (fDOMValidatorHandler != null) {
+					fDOMValidatorHandler.processingInstruction(
+							(ProcessingInstruction) node);
+				}
+				break;
+			case Node.COMMENT_NODE:
+				/**
+				 * The validator does nothing with comments so bypass it. Send
+				 * the
+				 * Comment node directly to the result builder.
+				 */
+				if (fDOMValidatorHandler != null) {
+					fDOMValidatorHandler.comment((Comment) node);
+				}
+				break;
+			case Node.DOCUMENT_TYPE_NODE:
+				/**
+				 * Send the DocumentType node directly to the result builder.
+				 */
+				if (fDOMValidatorHandler != null) {
+					fDOMValidatorHandler.doctypeDecl((DocumentType) node);
+				}
+				break;
+			default: // Ignore other node types.
+				break;
 		}
 	}
 
@@ -366,7 +379,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 	/**
 	 * Sets up handler for <code>DOMResult</code>.
 	 */
-	private void setupDOMResultHandler(DOMSource source, DOMResult result) throws SAXException {
+	private void setupDOMResultHandler(DOMSource source, DOMResult result)
+			throws SAXException {
 		// If there's no DOMResult, unset the validator handler
 		if (result == null) {
 			fDOMValidatorHandler = null;
@@ -385,8 +399,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 		}
 		if (result.getNode() == null) {
 			try {
-				DocumentBuilderFactory factory = fComponentManager
-						.getFeature(Constants.ORACLE_FEATURE_SERVICE_MECHANISM)
+				DocumentBuilderFactory factory = fComponentManager.getFeature(
+						Constants.ORACLE_FEATURE_SERVICE_MECHANISM)
 								? DocumentBuilderFactory.newInstance()
 								: new DocumentBuilderFactoryImpl();
 				factory.setNamespaceAware(true);
@@ -408,7 +422,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 		final String namespace = node.getNamespaceURI();
 
 		toFill.uri = (namespace != null && namespace.length() > 0)
-				? fSymbolTable.addSymbol(namespace) : null;
+				? fSymbolTable.addSymbol(namespace)
+				: null;
 		toFill.rawname = (rawName != null) ? fSymbolTable.addSymbol(rawName)
 				: XMLSymbols.EMPTY_STRING;
 
@@ -417,7 +432,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 			int k = rawName.indexOf(':');
 			if (k > 0) {
 				toFill.prefix = fSymbolTable.addSymbol(rawName.substring(0, k));
-				toFill.localpart = fSymbolTable.addSymbol(rawName.substring(k + 1));
+				toFill.localpart = fSymbolTable.addSymbol(rawName.substring(k
+						+ 1));
 			} else {
 				toFill.prefix = XMLSymbols.EMPTY_STRING;
 				toFill.localpart = toFill.rawname;
@@ -425,8 +441,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 		} else {
 			toFill.prefix = (prefix != null) ? fSymbolTable.addSymbol(prefix)
 					: XMLSymbols.EMPTY_STRING;
-			toFill.localpart = (localName != null) ? fSymbolTable.addSymbol(localName)
-					: XMLSymbols.EMPTY_STRING;
+			toFill.localpart = (localName != null) ? fSymbolTable.addSymbol(
+					localName) : XMLSymbols.EMPTY_STRING;
 		}
 	}
 
@@ -442,7 +458,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 			fillQName(fAttributeQName, attr);
 			// REVISIT: Assuming all attributes are of type CDATA. The actual
 			// type may not matter. -- mrglavas
-			fAttributes.addAttributeNS(fAttributeQName, XMLSymbols.fCDATASymbol, value);
+			fAttributes.addAttributeNS(fAttributeQName, XMLSymbols.fCDATASymbol,
+					value);
 			fAttributes.setSpecified(i, attr.getSpecified());
 			// REVISIT: Should we be looking at non-namespace attributes
 			// for additional mappings? Should we detect illegal namespace
@@ -451,10 +468,12 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 				// process namespace attribute
 				if (fAttributeQName.prefix == XMLSymbols.PREFIX_XMLNS) {
 					fNamespaceContext.declarePrefix(fAttributeQName.localpart,
-							value.length() != 0 ? fSymbolTable.addSymbol(value) : null);
+							value.length() != 0 ? fSymbolTable.addSymbol(value)
+									: null);
 				} else {
 					fNamespaceContext.declarePrefix(XMLSymbols.EMPTY_STRING,
-							value.length() != 0 ? fSymbolTable.addSymbol(value) : null);
+							value.length() != 0 ? fSymbolTable.addSymbol(value)
+									: null);
 				}
 			}
 		}
@@ -530,7 +549,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 					fillNamespaceContext();
 					fDOMContextBuilt = true;
 				}
-				if (fNamespaceSize > 0 && !fNamespaceContext.containsPrefix(prefix)) {
+				if (fNamespaceSize > 0 && !fNamespaceContext.containsPrefix(
+						prefix)) {
 					uri = getURI0(prefix);
 				}
 			}
@@ -581,11 +601,13 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 							if (fAttributeQName.uri == NamespaceContext.XMLNS_URI) {
 								// process namespace attribute
 								if (fAttributeQName.prefix == XMLSymbols.PREFIX_XMLNS) {
-									declarePrefix0(fAttributeQName.localpart, value.length() != 0
-											? fSymbolTable.addSymbol(value) : null);
+									declarePrefix0(fAttributeQName.localpart,
+											value.length() != 0 ? fSymbolTable
+													.addSymbol(value) : null);
 								} else {
-									declarePrefix0(XMLSymbols.EMPTY_STRING, value.length() != 0
-											? fSymbolTable.addSymbol(value) : null);
+									declarePrefix0(XMLSymbols.EMPTY_STRING,
+											value.length() != 0 ? fSymbolTable
+													.addSymbol(value) : null);
 								}
 							}
 						}
@@ -600,7 +622,8 @@ final class DOMValidatorHelper implements ValidatorHelper, EntityState {
 			// resize array, if needed
 			if (fNamespaceSize == fNamespace.length) {
 				String[] namespacearray = new String[fNamespaceSize * 2];
-				System.arraycopy(fNamespace, 0, namespacearray, 0, fNamespaceSize);
+				System.arraycopy(fNamespace, 0, namespacearray, 0,
+						fNamespaceSize);
 				fNamespace = namespacearray;
 			}
 

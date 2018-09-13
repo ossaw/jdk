@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html.parser;
@@ -235,8 +215,7 @@ public class Parser implements DTDConstants {
 	/**
 	 * Called when PCDATA is encountered.
 	 */
-	protected void handleText(char text[]) {
-	}
+	protected void handleText(char text[]) {}
 
 	/**
 	 * Called when an HTML title tag is encountered.
@@ -250,8 +229,7 @@ public class Parser implements DTDConstants {
 	/**
 	 * Called when an HTML comment is encountered.
 	 */
-	protected void handleComment(char text[]) {
-	}
+	protected void handleComment(char text[]) {}
 
 	protected void handleEOFInComment() {
 		// We've reached EOF. Our recovery strategy is to
@@ -281,20 +259,18 @@ public class Parser implements DTDConstants {
 	/**
 	 * Called when an empty tag is encountered.
 	 */
-	protected void handleEmptyTag(TagElement tag) throws ChangedCharSetException {
-	}
+	protected void handleEmptyTag(TagElement tag)
+			throws ChangedCharSetException {}
 
 	/**
 	 * Called when a start tag is encountered.
 	 */
-	protected void handleStartTag(TagElement tag) {
-	}
+	protected void handleStartTag(TagElement tag) {}
 
 	/**
 	 * Called when an end tag is encountered.
 	 */
-	protected void handleEndTag(TagElement tag) {
-	}
+	protected void handleEndTag(TagElement tag) {}
 
 	/**
 	 * An error has occurred.
@@ -318,7 +294,8 @@ public class Parser implements DTDConstants {
 			}
 		}
 		if (textpos == 0) {
-			if ((!space) || (stack == null) || last.breaksFlow() || !stack.advance(dtd.pcdata)) {
+			if ((!space) || (stack == null) || last.breaksFlow() || !stack
+					.advance(dtd.pcdata)) {
 				last = tag;
 				space = false;
 				lastBlockStartPos = currentBlockStartPos;
@@ -388,7 +365,8 @@ public class Parser implements DTDConstants {
 		// start tag that needs to be processed before
 		// handling the tag.
 		//
-		if (!elem.isEmpty() || ((last != null) && !last.breaksFlow()) || (textpos != 0)) {
+		if (!elem.isEmpty() || ((last != null) && !last.breaksFlow())
+				|| (textpos != 0)) {
 			handleText(tag);
 		} else {
 			// this variable gets updated in handleText().
@@ -404,9 +382,9 @@ public class Parser implements DTDConstants {
 
 		// check required attributes
 		for (AttributeList a = elem.atts; a != null; a = a.next) {
-			if ((a.modifier == REQUIRED)
-					&& ((attributes.isEmpty()) || ((!attributes.isDefined(a.name))
-							&& (!attributes.isDefined(HTML.getAttributeKey(a.name)))))) {
+			if ((a.modifier == REQUIRED) && ((attributes.isEmpty())
+					|| ((!attributes.isDefined(a.name)) && (!attributes
+							.isDefined(HTML.getAttributeKey(a.name)))))) {
 				error("req.att ", a.getName(), elem.getName());
 			}
 		}
@@ -452,8 +430,8 @@ public class Parser implements DTDConstants {
 		 * <ol> We additonally ignore the <meta> and the <style> tag if the body
 		 * tag has been seen.
 		 **/
-		if ((elemName.equals("html") && seenHtml) || (elemName.equals("head") && seenHead)
-				|| (elemName.equals("body") && seenBody)) {
+		if ((elemName.equals("html") && seenHtml) || (elemName.equals("head")
+				&& seenHead) || (elemName.equals("body") && seenBody)) {
 			return true;
 		}
 		if (elemName.equals("dt") || elemName.equals("dd")) {
@@ -467,11 +445,11 @@ public class Parser implements DTDConstants {
 		}
 
 		if (((stackElement.equals("table")) && (!elemName.equals("#pcdata"))
-				&& (!elemName.equals("input")))
-				|| ((elemName.equals("font"))
-						&& (stackElement.equals("ul") || stackElement.equals("ol")))
-				|| (elemName.equals("meta") && stack != null)
-				|| (elemName.equals("style") && seenBody)
+				&& (!elemName.equals("input"))) || ((elemName.equals("font"))
+						&& (stackElement.equals("ul") || stackElement.equals(
+								"ol"))) || (elemName.equals("meta")
+										&& stack != null) || (elemName.equals(
+												"style") && seenBody)
 				|| (stackElement.equals("table") && elemName.equals("a"))) {
 			return true;
 		}
@@ -560,8 +538,8 @@ public class Parser implements DTDConstants {
 			insertTag = true;
 		}
 
-		if (!strict && !insertTag
-				&& (stack.elem.getName() != elem.getName() || elem.getName().equals("body"))) {
+		if (!strict && !insertTag && (stack.elem.getName() != elem.getName()
+				|| elem.getName().equals("body"))) {
 			if (skipTag = ignoreElement(elem)) {
 				error("tag.ignore", elem.getName());
 				return skipTag;
@@ -572,8 +550,8 @@ public class Parser implements DTDConstants {
 		// or caption, and if those aren't there, insert the <tr> and call
 		// legalElementContext again.
 		if (!strict && stackElemName.equals("table") && !elemName.equals("tr")
-				&& !elemName.equals("td") && !elemName.equals("th")
-				&& !elemName.equals("caption")) {
+				&& !elemName.equals("td") && !elemName.equals("th") && !elemName
+						.equals("caption")) {
 			Element e = dtd.getElement("tr");
 			TagElement t = makeTag(e, true);
 			legalTagContext(t);
@@ -590,7 +568,8 @@ public class Parser implements DTDConstants {
 		// specification in the DTD then an html error is
 		// reported.
 		//
-		if (!insertTag && stack.terminate() && (!strict || stack.elem.omitEnd())) {
+		if (!insertTag && stack.terminate() && (!strict || stack.elem
+				.omitEnd())) {
 			for (TagStack s = stack.next; s != null; s = s.next) {
 				if (s.advance(elem)) {
 					while (stack != s) {
@@ -609,8 +588,8 @@ public class Parser implements DTDConstants {
 		// tag does not have its start tag spec in the DTD as optional.
 		//
 		Element next = stack.first();
-		if (next != null && (!strict || next.omitStart())
-				&& !(next == dtd.head && elem == dtd.pcdata)) {
+		if (next != null && (!strict || next.omitStart()) && !(next == dtd.head
+				&& elem == dtd.pcdata)) {
 			// System.out.println("-- omitting start tag: " + next);
 			TagElement t = makeTag(next, true);
 			legalTagContext(t);
@@ -640,7 +619,8 @@ public class Parser implements DTDConstants {
 
 					boolean reqAtts = false;
 
-					for (AttributeList a = e.getAttributes(); a != null; a = a.next) {
+					for (AttributeList a = e
+							.getAttributes(); a != null; a = a.next) {
 						if (a.modifier == REQUIRED) {
 							reqAtts = true;
 							break;
@@ -670,7 +650,8 @@ public class Parser implements DTDConstants {
 		// end tag. Report an error if the tag being ended does not have its
 		// end tag spec in the DTD as optional.
 		//
-		if (stack.terminate() && (stack.elem != dtd.body) && (!strict || stack.elem.omitEnd())) {
+		if (stack.terminate() && (stack.elem != dtd.body) && (!strict
+				|| stack.elem.omitEnd())) {
 			// System.out.println("-- omitting end tag: " + stack.elem);
 			if (!stack.elem.omitEnd()) {
 				error("end.missing", elem.getName());
@@ -721,7 +702,8 @@ public class Parser implements DTDConstants {
 	 * body context
 	 */
 	void errorContext() throws ChangedCharSetException {
-		for (; (stack != null) && (stack.tag.getElement() != dtd.body); stack = stack.next) {
+		for (; (stack != null) && (stack.tag
+				.getElement() != dtd.body); stack = stack.next) {
 			handleEndTag(stack.tag);
 		}
 		if (stack == null) {
@@ -787,28 +769,28 @@ public class Parser implements DTDConstants {
 	void skipSpace() throws IOException {
 		while (true) {
 			switch (ch) {
-			case '\n':
-				ln++;
-				ch = readCh();
-				lfCount++;
-				break;
-
-			case '\r':
-				ln++;
-				if ((ch = readCh()) == '\n') {
+				case '\n':
+					ln++;
 					ch = readCh();
-					crlfCount++;
-				} else {
-					crCount++;
-				}
-				break;
-			case ' ':
-			case '\t':
-				ch = readCh();
-				break;
+					lfCount++;
+					break;
 
-			default:
-				return;
+				case '\r':
+					ln++;
+					if ((ch = readCh()) == '\n') {
+						ch = readCh();
+						crlfCount++;
+					} else {
+						crCount++;
+					}
+					break;
+				case ' ':
+				case '\t':
+					ch = readCh();
+					break;
+
+				default:
+					return;
 			}
 		}
 	}
@@ -819,72 +801,6 @@ public class Parser implements DTDConstants {
 	 */
 	boolean parseIdentifier(boolean lower) throws IOException {
 		switch (ch) {
-		case 'A':
-		case 'B':
-		case 'C':
-		case 'D':
-		case 'E':
-		case 'F':
-		case 'G':
-		case 'H':
-		case 'I':
-		case 'J':
-		case 'K':
-		case 'L':
-		case 'M':
-		case 'N':
-		case 'O':
-		case 'P':
-		case 'Q':
-		case 'R':
-		case 'S':
-		case 'T':
-		case 'U':
-		case 'V':
-		case 'W':
-		case 'X':
-		case 'Y':
-		case 'Z':
-			if (lower) {
-				ch = 'a' + (ch - 'A');
-			}
-
-		case 'a':
-		case 'b':
-		case 'c':
-		case 'd':
-		case 'e':
-		case 'f':
-		case 'g':
-		case 'h':
-		case 'i':
-		case 'j':
-		case 'k':
-		case 'l':
-		case 'm':
-		case 'n':
-		case 'o':
-		case 'p':
-		case 'q':
-		case 'r':
-		case 's':
-		case 't':
-		case 'u':
-		case 'v':
-		case 'w':
-		case 'x':
-		case 'y':
-		case 'z':
-			break;
-
-		default:
-			return false;
-		}
-
-		while (true) {
-			addString(ch);
-
-			switch (ch = readCh()) {
 			case 'A':
 			case 'B':
 			case 'C':
@@ -941,26 +857,92 @@ public class Parser implements DTDConstants {
 			case 'x':
 			case 'y':
 			case 'z':
-
-			case '0':
-			case '1':
-			case '2':
-			case '3':
-			case '4':
-			case '5':
-			case '6':
-			case '7':
-			case '8':
-			case '9':
-
-			case '.':
-			case '-':
-
-			case '_': // not officially allowed
 				break;
 
 			default:
-				return true;
+				return false;
+		}
+
+		while (true) {
+			addString(ch);
+
+			switch (ch = readCh()) {
+				case 'A':
+				case 'B':
+				case 'C':
+				case 'D':
+				case 'E':
+				case 'F':
+				case 'G':
+				case 'H':
+				case 'I':
+				case 'J':
+				case 'K':
+				case 'L':
+				case 'M':
+				case 'N':
+				case 'O':
+				case 'P':
+				case 'Q':
+				case 'R':
+				case 'S':
+				case 'T':
+				case 'U':
+				case 'V':
+				case 'W':
+				case 'X':
+				case 'Y':
+				case 'Z':
+					if (lower) {
+						ch = 'a' + (ch - 'A');
+					}
+
+				case 'a':
+				case 'b':
+				case 'c':
+				case 'd':
+				case 'e':
+				case 'f':
+				case 'g':
+				case 'h':
+				case 'i':
+				case 'j':
+				case 'k':
+				case 'l':
+				case 'm':
+				case 'n':
+				case 'o':
+				case 'p':
+				case 'q':
+				case 'r':
+				case 's':
+				case 't':
+				case 'u':
+				case 'v':
+				case 'w':
+				case 'x':
+				case 'y':
+				case 'z':
+
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+
+				case '.':
+				case '-':
+
+				case '_': // not officially allowed
+					break;
+
+				default:
+					return true;
 			}
 		}
 	}
@@ -986,7 +968,8 @@ public class Parser implements DTDConstants {
 					// parse hexadecimal reference
 					ch = readCh();
 					char lch = (char) Character.toLowerCase(ch);
-					while ((lch >= '0') && (lch <= '9') || (lch >= 'a') && (lch <= 'f')) {
+					while ((lch >= '0') && (lch <= '9') || (lch >= 'a')
+							&& (lch <= 'f')) {
 						if (lch >= '0' && lch <= '9') {
 							n = (n * 16) + lch - '0';
 						} else {
@@ -997,25 +980,25 @@ public class Parser implements DTDConstants {
 					}
 				}
 				switch (ch) {
-				case '\n':
-					ln++;
-					ch = readCh();
-					lfCount++;
-					break;
-
-				case '\r':
-					ln++;
-					if ((ch = readCh()) == '\n') {
+					case '\n':
+						ln++;
 						ch = readCh();
-						crlfCount++;
-					} else {
-						crCount++;
-					}
-					break;
+						lfCount++;
+						break;
 
-				case ';':
-					ch = readCh();
-					break;
+					case '\r':
+						ln++;
+						if ((ch = readCh()) == '\n') {
+							ch = readCh();
+							crlfCount++;
+						} else {
+							crCount++;
+						}
+						break;
+
+					case ';':
+						ch = readCh();
+						break;
 				}
 				char data[] = mapNumericReference(n);
 				return data;
@@ -1035,27 +1018,27 @@ public class Parser implements DTDConstants {
 		boolean semicolon = false;
 
 		switch (ch) {
-		case '\n':
-			ln++;
-			ch = readCh();
-			lfCount++;
-			break;
-
-		case '\r':
-			ln++;
-			if ((ch = readCh()) == '\n') {
+			case '\n':
+				ln++;
 				ch = readCh();
-				crlfCount++;
-			} else {
-				crCount++;
-			}
-			break;
+				lfCount++;
+				break;
 
-		case ';':
-			semicolon = true;
+			case '\r':
+				ln++;
+				if ((ch = readCh()) == '\n') {
+					ch = readCh();
+					crlfCount++;
+				} else {
+					crCount++;
+				}
+				break;
 
-			ch = readCh();
-			break;
+			case ';':
+				semicolon = true;
+
+				ch = readCh();
+				break;
 		}
 
 		String nm = getString(pos);
@@ -1094,7 +1077,7 @@ public class Parser implements DTDConstants {
 	 * codes.
 	 *
 	 * @param c
-	 *            the code of numeric character reference.
+	 *          the code of numeric character reference.
 	 * @return a char array corresponding to the reference code.
 	 */
 	private char[] mapNumericReference(int c) {
@@ -1120,82 +1103,89 @@ public class Parser implements DTDConstants {
 		while (true) {
 			int c = ch;
 			switch (c) {
-			case '-':
-				/**
-				 * Presuming that the start string of a comment "<!--" has
-				 * already been parsed, the '-' character is valid only as part
-				 * of a comment termination and further more it must be present
-				 * in even numbers. Hence if strict is true, we presume the
-				 * comment has been terminated and return. However if strict is
-				 * false, then there is no even number requirement and this
-				 * character can appear anywhere in the comment. The parser
-				 * reads on until it sees the following pattern: "-->" or
-				 * "--!>".
-				 **/
-				if (!strict && (strpos != 0) && (str[strpos - 1] == '-')) {
-					if ((ch = readCh()) == '>') {
-						return;
-					}
-					if (ch == '!') {
+				case '-':
+					/**
+					 * Presuming that the start string of a comment "<!--" has
+					 * already been parsed, the '-' character is valid only as
+					 * part
+					 * of a comment termination and further more it must be
+					 * present
+					 * in even numbers. Hence if strict is true, we presume the
+					 * comment has been terminated and return. However if strict
+					 * is
+					 * false, then there is no even number requirement and this
+					 * character can appear anywhere in the comment. The parser
+					 * reads on until it sees the following pattern: "-->" or
+					 * "--!>".
+					 **/
+					if (!strict && (strpos != 0) && (str[strpos - 1] == '-')) {
 						if ((ch = readCh()) == '>') {
 							return;
-						} else {
-							/* to account for extra read()'s that happened */
-							addString('-');
-							addString('!');
-							continue;
 						}
+						if (ch == '!') {
+							if ((ch = readCh()) == '>') {
+								return;
+							} else {
+								/*
+								 * to account for extra read()'s that happened
+								 */
+								addString('-');
+								addString('!');
+								continue;
+							}
+						}
+						break;
+					}
+
+					if ((ch = readCh()) == '-') {
+						ch = readCh();
+						if (strict || ch == '>') {
+							return;
+						}
+						if (ch == '!') {
+							if ((ch = readCh()) == '>') {
+								return;
+							} else {
+								/*
+								 * to account for extra read()'s that happened
+								 */
+								addString('-');
+								addString('!');
+								continue;
+							}
+						}
+						/* to account for the extra read() */
+						addString('-');
 					}
 					break;
-				}
 
-				if ((ch = readCh()) == '-') {
+				case -1:
+					handleEOFInComment();
+					return;
+
+				case '\n':
+					ln++;
 					ch = readCh();
-					if (strict || ch == '>') {
-						return;
-					}
-					if (ch == '!') {
-						if ((ch = readCh()) == '>') {
-							return;
-						} else {
-							/* to account for extra read()'s that happened */
-							addString('-');
-							addString('!');
-							continue;
-						}
-					}
-					/* to account for the extra read() */
-					addString('-');
-				}
-				break;
+					lfCount++;
+					break;
 
-			case -1:
-				handleEOFInComment();
-				return;
-
-			case '\n':
-				ln++;
-				ch = readCh();
-				lfCount++;
-				break;
-
-			case '>':
-				ch = readCh();
-				break;
-
-			case '\r':
-				ln++;
-				if ((ch = readCh()) == '\n') {
+				case '>':
 					ch = readCh();
-					crlfCount++;
-				} else {
-					crCount++;
-				}
-				c = '\n';
-				break;
-			default:
-				ch = readCh();
-				break;
+					break;
+
+				case '\r':
+					ln++;
+					if ((ch = readCh()) == '\n') {
+						ch = readCh();
+						crlfCount++;
+					} else {
+						crCount++;
+					}
+					c = '\n';
+					break;
+				default:
+					ch = readCh();
+					break;
 			}
 
 			addString(c);
@@ -1209,62 +1199,62 @@ public class Parser implements DTDConstants {
 		while (true) {
 			int c = ch;
 			switch (c) {
-			case -1:
-				error("eof.literal", stack.elem.getName());
-				endTag(true);
-				return;
+				case -1:
+					error("eof.literal", stack.elem.getName());
+					endTag(true);
+					return;
 
-			case '>':
-				ch = readCh();
-				int i = textpos - (stack.elem.name.length() + 2), j = 0;
-
-				// match end tag
-				if ((i >= 0) && (text[i++] == '<') && (text[i] == '/')) {
-					while ((++i < textpos)
-							&& (Character.toLowerCase(text[i]) == stack.elem.name.charAt(j++)))
-						;
-					if (i == textpos) {
-						textpos -= (stack.elem.name.length() + 2);
-						if ((textpos > 0) && (text[textpos - 1] == '\n')) {
-							textpos--;
-						}
-						endTag(false);
-						return;
-					}
-				}
-				break;
-
-			case '&':
-				char data[] = parseEntityReference();
-				if (textpos + data.length > text.length) {
-					char newtext[] = new char[Math.max(textpos + data.length + 128,
-							text.length * 2)];
-					System.arraycopy(text, 0, newtext, 0, text.length);
-					text = newtext;
-				}
-				System.arraycopy(data, 0, text, textpos, data.length);
-				textpos += data.length;
-				continue;
-
-			case '\n':
-				ln++;
-				ch = readCh();
-				lfCount++;
-				break;
-
-			case '\r':
-				ln++;
-				if ((ch = readCh()) == '\n') {
+				case '>':
 					ch = readCh();
-					crlfCount++;
-				} else {
-					crCount++;
-				}
-				c = '\n';
-				break;
-			default:
-				ch = readCh();
-				break;
+					int i = textpos - (stack.elem.name.length() + 2), j = 0;
+
+					// match end tag
+					if ((i >= 0) && (text[i++] == '<') && (text[i] == '/')) {
+						while ((++i < textpos) && (Character.toLowerCase(
+								text[i]) == stack.elem.name.charAt(j++)))
+							;
+						if (i == textpos) {
+							textpos -= (stack.elem.name.length() + 2);
+							if ((textpos > 0) && (text[textpos - 1] == '\n')) {
+								textpos--;
+							}
+							endTag(false);
+							return;
+						}
+					}
+					break;
+
+				case '&':
+					char data[] = parseEntityReference();
+					if (textpos + data.length > text.length) {
+						char newtext[] = new char[Math.max(textpos + data.length
+								+ 128, text.length * 2)];
+						System.arraycopy(text, 0, newtext, 0, text.length);
+						text = newtext;
+					}
+					System.arraycopy(data, 0, text, textpos, data.length);
+					textpos += data.length;
+					continue;
+
+				case '\n':
+					ln++;
+					ch = readCh();
+					lfCount++;
+					break;
+
+				case '\r':
+					ln++;
+					if ((ch = readCh()) == '\n') {
+						ch = readCh();
+						crlfCount++;
+					} else {
+						crCount++;
+					}
+					c = '\n';
+					break;
+				default:
+					ch = readCh();
+					break;
 			}
 
 			// output character
@@ -1285,11 +1275,11 @@ public class Parser implements DTDConstants {
 
 		// Check for a delimiter
 		switch (ch) {
-		case '\'':
-		case '"':
-			delim = ch;
-			ch = readCh();
-			break;
+			case '\'':
+			case '"':
+				delim = ch;
+				ch = readCh();
+				break;
 		}
 
 		// Parse the rest of the value
@@ -1297,104 +1287,110 @@ public class Parser implements DTDConstants {
 			int c = ch;
 
 			switch (c) {
-			case '\n':
-				ln++;
-				ch = readCh();
-				lfCount++;
-				if (delim < 0) {
-					return getString(0);
-				}
-				break;
-
-			case '\r':
-				ln++;
-
-				if ((ch = readCh()) == '\n') {
+				case '\n':
+					ln++;
 					ch = readCh();
-					crlfCount++;
-				} else {
-					crCount++;
-				}
-				if (delim < 0) {
-					return getString(0);
-				}
-				break;
-
-			case '\t':
-				if (delim < 0)
-					c = ' ';
-			case ' ':
-				ch = readCh();
-				if (delim < 0) {
-					return getString(0);
-				}
-				break;
-
-			case '>':
-			case '<':
-				if (delim < 0) {
-					return getString(0);
-				}
-				ch = readCh();
-				break;
-
-			case '\'':
-			case '"':
-				ch = readCh();
-				if (c == delim) {
-					return getString(0);
-				} else if (delim == -1) {
-					error("attvalerr");
-					if (strict || ch == ' ') {
+					lfCount++;
+					if (delim < 0) {
 						return getString(0);
+					}
+					break;
+
+				case '\r':
+					ln++;
+
+					if ((ch = readCh()) == '\n') {
+						ch = readCh();
+						crlfCount++;
 					} else {
-						continue;
+						crCount++;
 					}
-				}
-				break;
-
-			case '=':
-				if (delim < 0) {
-					/*
-					 * In SGML a construct like <img src=/cgi-bin/foo?x=1> is
-					 * considered invalid since an = sign can only be contained
-					 * in an attributes value if the string is quoted.
-					 */
-					error("attvalerr");
-					/*
-					 * If strict is true then we return with the string we have
-					 * thus far. Otherwise we accept the = sign as part of the
-					 * attribute's value and process the rest of the img tag.
-					 */
-					if (strict) {
+					if (delim < 0) {
 						return getString(0);
 					}
-				}
-				ch = readCh();
-				break;
+					break;
 
-			case '&':
-				if (strict && delim < 0) {
+				case '\t':
+					if (delim < 0)
+						c = ' ';
+				case ' ':
+					ch = readCh();
+					if (delim < 0) {
+						return getString(0);
+					}
+					break;
+
+				case '>':
+				case '<':
+					if (delim < 0) {
+						return getString(0);
+					}
 					ch = readCh();
 					break;
-				}
 
-				char data[] = parseEntityReference();
-				for (int i = 0; i < data.length; i++) {
-					c = data[i];
-					addString((lower && (c >= 'A') && (c <= 'Z')) ? 'a' + c - 'A' : c);
-				}
-				continue;
+				case '\'':
+				case '"':
+					ch = readCh();
+					if (c == delim) {
+						return getString(0);
+					} else if (delim == -1) {
+						error("attvalerr");
+						if (strict || ch == ' ') {
+							return getString(0);
+						} else {
+							continue;
+						}
+					}
+					break;
 
-			case -1:
-				return getString(0);
+				case '=':
+					if (delim < 0) {
+						/*
+						 * In SGML a construct like <img src=/cgi-bin/foo?x=1>
+						 * is
+						 * considered invalid since an = sign can only be
+						 * contained
+						 * in an attributes value if the string is quoted.
+						 */
+						error("attvalerr");
+						/*
+						 * If strict is true then we return with the string we
+						 * have
+						 * thus far. Otherwise we accept the = sign as part of
+						 * the
+						 * attribute's value and process the rest of the img
+						 * tag.
+						 */
+						if (strict) {
+							return getString(0);
+						}
+					}
+					ch = readCh();
+					break;
 
-			default:
-				if (lower && (c >= 'A') && (c <= 'Z')) {
-					c = 'a' + c - 'A';
-				}
-				ch = readCh();
-				break;
+				case '&':
+					if (strict && delim < 0) {
+						ch = readCh();
+						break;
+					}
+
+					char data[] = parseEntityReference();
+					for (int i = 0; i < data.length; i++) {
+						c = data[i];
+						addString((lower && (c >= 'A') && (c <= 'Z')) ? 'a' + c
+								- 'A' : c);
+					}
+					continue;
+
+				case -1:
+					return getString(0);
+
+				default:
+					if (lower && (c >= 'A') && (c <= 'Z')) {
+						c = 'a' + c - 'A';
+					}
+					ch = readCh();
+					break;
 			}
 			addString(c);
 		}
@@ -1409,22 +1405,22 @@ public class Parser implements DTDConstants {
 			skipSpace();
 
 			switch (ch) {
-			case '/':
-			case '>':
-			case '<':
-			case -1:
-				return;
+				case '/':
+				case '>':
+				case '<':
+				case -1:
+					return;
 
-			case '-':
-				if ((ch = readCh()) == '-') {
-					ch = readCh();
-					parseComment();
-					strpos = 0;
-				} else {
-					error("invalid.tagchar", "-", elem.getName());
-					ch = readCh();
-				}
-				continue;
+				case '-':
+					if ((ch = readCh()) == '-') {
+						ch = readCh();
+						parseComment();
+						strpos = 0;
+					} else {
+						error("invalid.tagchar", "-", elem.getName());
+						ch = readCh();
+					}
+					continue;
 			}
 
 			AttributeList att;
@@ -1442,8 +1438,9 @@ public class Parser implements DTDConstants {
 					// Load the NAME of an Attribute Case Sensitive
 					// The case of the NAME must be intact
 					// MG 021898
-					attvalue = parseAttributeValue((att != null) && (att.type != CDATA)
-							&& (att.type != NOTATION) && (att.type != NAME));
+					attvalue = parseAttributeValue((att != null)
+							&& (att.type != CDATA) && (att.type != NOTATION)
+							&& (att.type != NAME));
 					// attvalue = parseAttributeValue((att != null) && (att.type
 					// != CDATA) && (att.type != NOTATION));
 				} else {
@@ -1477,8 +1474,9 @@ public class Parser implements DTDConstants {
 						ch = readCh();
 						skipSpace();
 						att = elem.getAttribute(attname);
-						attvalue = parseAttributeValue(
-								(att != null) && (att.type != CDATA) && (att.type != NOTATION));
+						attvalue = parseAttributeValue((att != null)
+								&& (att.type != CDATA)
+								&& (att.type != NOTATION));
 					} else {
 						attvalue = attname;
 						att = elem.getAttributeByValue(attvalue);
@@ -1500,8 +1498,8 @@ public class Parser implements DTDConstants {
 				skipSpace();
 				attname = elem.getName();
 				att = elem.getAttribute(attname);
-				attvalue = parseAttributeValue(
-						(att != null) && (att.type != CDATA) && (att.type != NOTATION));
+				attvalue = parseAttributeValue((att != null)
+						&& (att.type != CDATA) && (att.type != NOTATION));
 			} else if (!strict && (ch == '=')) {
 				ch = readCh();
 				skipSpace();
@@ -1532,7 +1530,8 @@ public class Parser implements DTDConstants {
 			if (attvalue == null) {
 				attvalue = ((att != null) && (att.value != null)) ? att.value
 						: HTML.NULL_ATTRIBUTE_VALUE;
-			} else if ((att != null) && (att.values != null) && !att.values.contains(attvalue)) {
+			} else if ((att != null) && (att.values != null) && !att.values
+					.contains(attvalue)) {
 				error("invalid.tagattval", attname, elem.getName());
 			}
 			HTML.Attribute attkey = HTML.getAttributeKey(attname);
@@ -1554,33 +1553,33 @@ public class Parser implements DTDConstants {
 		ch = readCh();
 		while (true) {
 			switch (ch) {
-			case '>':
-				ch = readCh();
-				return strBuff.toString();
-			case -1:
-				error("invalid.markup");
-				return strBuff.toString();
-			case '\n':
-				ln++;
-				ch = readCh();
-				lfCount++;
-				break;
-			case '"':
-				ch = readCh();
-				break;
-			case '\r':
-				ln++;
-				if ((ch = readCh()) == '\n') {
+				case '>':
 					ch = readCh();
-					crlfCount++;
-				} else {
-					crCount++;
-				}
-				break;
-			default:
-				strBuff.append((char) (ch & 0xFF));
-				ch = readCh();
-				break;
+					return strBuff.toString();
+				case -1:
+					error("invalid.markup");
+					return strBuff.toString();
+				case '\n':
+					ln++;
+					ch = readCh();
+					lfCount++;
+					break;
+				case '"':
+					ch = readCh();
+					break;
+				case '\r':
+					ln++;
+					if ((ch = readCh()) == '\n') {
+						ch = readCh();
+						crlfCount++;
+					} else {
+						crCount++;
+					}
+					break;
+				default:
+					strBuff.append((char) (ch & 0xFF));
+					ch = readCh();
+					break;
 			}
 		}
 	}
@@ -1590,11 +1589,12 @@ public class Parser implements DTDConstants {
 	 * Declaration markup. Returns true if it is a markup declaration false
 	 * otherwise.
 	 */
-	protected boolean parseMarkupDeclarations(StringBuffer strBuff) throws IOException {
+	protected boolean parseMarkupDeclarations(StringBuffer strBuff)
+			throws IOException {
 
 		/* Currently handles only the DOCTYPE */
-		if ((strBuff.length() == "DOCTYPE".length())
-				&& (strBuff.toString().toUpperCase().equals("DOCTYPE"))) {
+		if ((strBuff.length() == "DOCTYPE".length()) && (strBuff.toString()
+				.toUpperCase().equals("DOCTYPE"))) {
 			parseDTDMarkup();
 			return true;
 		}
@@ -1609,14 +1609,14 @@ public class Parser implements DTDConstants {
 		while (true) {
 			skipSpace();
 			switch (ch) {
-			case '>':
-			case -1:
-				ch = readCh();
-				return;
-			case '<':
-				return;
-			default:
-				ch = readCh();
+				case '>':
+				case -1:
+					ch = readCh();
+					return;
+				case '<':
+					return;
+				default:
+					ch = readCh();
 
 			}
 		}
@@ -1632,263 +1632,270 @@ public class Parser implements DTDConstants {
 		boolean unknown = false;
 
 		switch (ch = readCh()) {
-		case '!':
-			switch (ch = readCh()) {
-			case '-':
-				// Parse comment. [92] 391:7
-				while (true) {
-					if (ch == '-') {
-						if (!strict || ((ch = readCh()) == '-')) {
-							ch = readCh();
-							if (!strict && ch == '-') {
-								ch = readCh();
-							}
-							// send over any text you might see
-							// before parsing and sending the
-							// comment
-							if (textpos != 0) {
-								char newtext[] = new char[textpos];
-								System.arraycopy(text, 0, newtext, 0, textpos);
-								handleText(newtext);
-								lastBlockStartPos = currentBlockStartPos;
-								textpos = 0;
-							}
-							parseComment();
-							last = makeTag(dtd.getElement("comment"), true);
-							handleComment(getChars(0));
-							continue;
-						} else if (!warned) {
-							warned = true;
-							error("invalid.commentchar", "-");
-						}
-					}
-					skipSpace();
-					switch (ch) {
+			case '!':
+				switch (ch = readCh()) {
 					case '-':
-						continue;
-					case '>':
-						ch = readCh();
-					case -1:
-						return;
-					default:
-						ch = readCh();
-						if (!warned) {
-							warned = true;
-							error("invalid.commentchar", String.valueOf((char) ch));
+						// Parse comment. [92] 391:7
+						while (true) {
+							if (ch == '-') {
+								if (!strict || ((ch = readCh()) == '-')) {
+									ch = readCh();
+									if (!strict && ch == '-') {
+										ch = readCh();
+									}
+									// send over any text you might see
+									// before parsing and sending the
+									// comment
+									if (textpos != 0) {
+										char newtext[] = new char[textpos];
+										System.arraycopy(text, 0, newtext, 0,
+												textpos);
+										handleText(newtext);
+										lastBlockStartPos = currentBlockStartPos;
+										textpos = 0;
+									}
+									parseComment();
+									last = makeTag(dtd.getElement("comment"),
+											true);
+									handleComment(getChars(0));
+									continue;
+								} else if (!warned) {
+									warned = true;
+									error("invalid.commentchar", "-");
+								}
+							}
+							skipSpace();
+							switch (ch) {
+								case '-':
+									continue;
+								case '>':
+									ch = readCh();
+								case -1:
+									return;
+								default:
+									ch = readCh();
+									if (!warned) {
+										warned = true;
+										error("invalid.commentchar", String
+												.valueOf((char) ch));
+									}
+									break;
+							}
 						}
-						break;
-					}
+
+					default:
+						// deal with marked sections
+						StringBuffer strBuff = new StringBuffer();
+						while (true) {
+							strBuff.append((char) ch);
+							if (parseMarkupDeclarations(strBuff)) {
+								return;
+							}
+							switch (ch) {
+								case '>':
+									ch = readCh();
+								case -1:
+									error("invalid.markup");
+									return;
+								case '\n':
+									ln++;
+									ch = readCh();
+									lfCount++;
+									break;
+								case '\r':
+									ln++;
+									if ((ch = readCh()) == '\n') {
+										ch = readCh();
+										crlfCount++;
+									} else {
+										crCount++;
+									}
+									break;
+
+								default:
+									ch = readCh();
+									break;
+							}
+						}
 				}
 
-			default:
-				// deal with marked sections
-				StringBuffer strBuff = new StringBuffer();
-				while (true) {
-					strBuff.append((char) ch);
-					if (parseMarkupDeclarations(strBuff)) {
-						return;
-					}
-					switch (ch) {
+			case '/':
+				// parse end tag [19] 317:4
+				switch (ch = readCh()) {
 					case '>':
 						ch = readCh();
-					case -1:
-						error("invalid.markup");
-						return;
-					case '\n':
-						ln++;
-						ch = readCh();
-						lfCount++;
+					case '<':
+						// empty end tag. either </> or </<
+						if (recent == null) {
+							error("invalid.shortend");
+							return;
+						}
+						elem = recent;
 						break;
-					case '\r':
-						ln++;
-						if ((ch = readCh()) == '\n') {
-							ch = readCh();
-							crlfCount++;
+
+					default:
+						if (!parseIdentifier(true)) {
+							error("expected.endtagname");
+							return;
+						}
+						skipSpace();
+						switch (ch) {
+							case '>':
+								ch = readCh();
+							case '<':
+								break;
+
+							default:
+								error("expected", "'>'");
+								while ((ch != -1) && (ch != '\n')
+										&& (ch != '>')) {
+									ch = readCh();
+								}
+								if (ch == '>') {
+									ch = readCh();
+								}
+								break;
+						}
+						String elemStr = getString(0);
+						if (!dtd.elementExists(elemStr)) {
+							error("end.unrecognized", elemStr);
+							// Ignore RE before end tag
+							if ((textpos > 0) && (text[textpos - 1] == '\n')) {
+								textpos--;
+							}
+							elem = dtd.getElement("unknown");
+							elem.name = elemStr;
+							unknown = true;
 						} else {
-							crCount++;
+							elem = dtd.getElement(elemStr);
 						}
 						break;
-
-					default:
-						ch = readCh();
-						break;
-					}
 				}
-			}
 
-		case '/':
-			// parse end tag [19] 317:4
-			switch (ch = readCh()) {
-			case '>':
-				ch = readCh();
-			case '<':
-				// empty end tag. either </> or </<
-				if (recent == null) {
-					error("invalid.shortend");
+				// If the stack is null, we're seeing end tags without any begin
+				// tags. Ignore them.
+
+				if (stack == null) {
+					error("end.extra.tag", elem.getName());
 					return;
 				}
-				elem = recent;
-				break;
 
-			default:
-				if (!parseIdentifier(true)) {
-					error("expected.endtagname");
-					return;
-				}
-				skipSpace();
-				switch (ch) {
-				case '>':
-					ch = readCh();
-				case '<':
-					break;
-
-				default:
-					error("expected", "'>'");
-					while ((ch != -1) && (ch != '\n') && (ch != '>')) {
-						ch = readCh();
-					}
-					if (ch == '>') {
-						ch = readCh();
-					}
-					break;
-				}
-				String elemStr = getString(0);
-				if (!dtd.elementExists(elemStr)) {
-					error("end.unrecognized", elemStr);
-					// Ignore RE before end tag
-					if ((textpos > 0) && (text[textpos - 1] == '\n')) {
-						textpos--;
-					}
-					elem = dtd.getElement("unknown");
-					elem.name = elemStr;
-					unknown = true;
-				} else {
-					elem = dtd.getElement(elemStr);
-				}
-				break;
-			}
-
-			// If the stack is null, we're seeing end tags without any begin
-			// tags. Ignore them.
-
-			if (stack == null) {
-				error("end.extra.tag", elem.getName());
-				return;
-			}
-
-			// Ignore RE before end tag
-			if ((textpos > 0) && (text[textpos - 1] == '\n')) {
-				// In a pre tag, if there are blank lines
-				// we do not want to remove the newline
-				// before the end tag. Hence this code.
-				//
-				if (stack.pre) {
-					if ((textpos > 1) && (text[textpos - 2] != '\n')) {
-						textpos--;
-					}
-				} else {
-					textpos--;
-				}
-			}
-
-			// If the end tag is a form, since we did not put it
-			// on the tag stack, there is no corresponding start
-			// start tag to find. Hence do not touch the tag stack.
-			//
-
-			/*
-			 * if (!strict && elem.getName().equals("form")) { if (lastFormSent
-			 * != null) { handleEndTag(lastFormSent); return; } else { // do
-			 * nothing. return; } }
-			 */
-
-			if (unknown) {
-				// we will not see a corresponding start tag
-				// on the the stack. If we are seeing an
-				// end tag, lets send this on as an empty
-				// tag with the end tag attribute set to
-				// true.
-				TagElement t = makeTag(elem);
-				handleText(t);
-				attributes.addAttribute(HTML.Attribute.ENDTAG, "true");
-				handleEmptyTag(makeTag(elem));
-				unknown = false;
-				return;
-			}
-
-			// find the corresponding start tag
-
-			// A commonly occurring error appears to be the insertion
-			// of extra end tags in a table. The intent here is ignore
-			// such extra end tags.
-			//
-			if (!strict) {
-				String stackElem = stack.elem.getName();
-
-				if (stackElem.equals("table")) {
-					// If it is not a valid end tag ignore it and return
+				// Ignore RE before end tag
+				if ((textpos > 0) && (text[textpos - 1] == '\n')) {
+					// In a pre tag, if there are blank lines
+					// we do not want to remove the newline
+					// before the end tag. Hence this code.
 					//
-					if (!elem.getName().equals(stackElem)) {
-						error("tag.ignore", elem.getName());
-						return;
+					if (stack.pre) {
+						if ((textpos > 1) && (text[textpos - 2] != '\n')) {
+							textpos--;
+						}
+					} else {
+						textpos--;
 					}
 				}
 
-				if (stackElem.equals("tr") || stackElem.equals("td")) {
-					if ((!elem.getName().equals("table")) && (!elem.getName().equals(stackElem))) {
-						error("tag.ignore", elem.getName());
-						return;
-					}
-				}
-			}
-			TagStack sp = stack;
-
-			while ((sp != null) && (elem != sp.elem)) {
-				sp = sp.next;
-			}
-			if (sp == null) {
-				error("unmatched.endtag", elem.getName());
-				return;
-			}
-
-			// People put font ending tags in the darndest places.
-			// Don't close other contexts based on them being between
-			// a font tag and the corresponding end tag. Instead,
-			// ignore the end tag like it doesn't exist and allow the end
-			// of the document to close us out.
-			String elemName = elem.getName();
-			if (stack != sp && (elemName.equals("font") || elemName.equals("center"))) {
-
-				// Since closing out a center tag can have real wierd
-				// effects on the formatting, make sure that tags
-				// for which omitting an end tag is legimitate
-				// get closed out.
+				// If the end tag is a form, since we did not put it
+				// on the tag stack, there is no corresponding start
+				// start tag to find. Hence do not touch the tag stack.
 				//
-				if (elemName.equals("center")) {
-					while (stack.elem.omitEnd() && stack != sp) {
-						endTag(true);
+
+				/*
+				 * if (!strict && elem.getName().equals("form")) { if
+				 * (lastFormSent
+				 * != null) { handleEndTag(lastFormSent); return; } else { // do
+				 * nothing. return; } }
+				 */
+
+				if (unknown) {
+					// we will not see a corresponding start tag
+					// on the the stack. If we are seeing an
+					// end tag, lets send this on as an empty
+					// tag with the end tag attribute set to
+					// true.
+					TagElement t = makeTag(elem);
+					handleText(t);
+					attributes.addAttribute(HTML.Attribute.ENDTAG, "true");
+					handleEmptyTag(makeTag(elem));
+					unknown = false;
+					return;
+				}
+
+				// find the corresponding start tag
+
+				// A commonly occurring error appears to be the insertion
+				// of extra end tags in a table. The intent here is ignore
+				// such extra end tags.
+				//
+				if (!strict) {
+					String stackElem = stack.elem.getName();
+
+					if (stackElem.equals("table")) {
+						// If it is not a valid end tag ignore it and return
+						//
+						if (!elem.getName().equals(stackElem)) {
+							error("tag.ignore", elem.getName());
+							return;
+						}
 					}
-					if (stack.elem == elem) {
-						endTag(false);
+
+					if (stackElem.equals("tr") || stackElem.equals("td")) {
+						if ((!elem.getName().equals("table")) && (!elem
+								.getName().equals(stackElem))) {
+							error("tag.ignore", elem.getName());
+							return;
+						}
 					}
 				}
+				TagStack sp = stack;
+
+				while ((sp != null) && (elem != sp.elem)) {
+					sp = sp.next;
+				}
+				if (sp == null) {
+					error("unmatched.endtag", elem.getName());
+					return;
+				}
+
+				// People put font ending tags in the darndest places.
+				// Don't close other contexts based on them being between
+				// a font tag and the corresponding end tag. Instead,
+				// ignore the end tag like it doesn't exist and allow the end
+				// of the document to close us out.
+				String elemName = elem.getName();
+				if (stack != sp && (elemName.equals("font") || elemName.equals(
+						"center"))) {
+
+					// Since closing out a center tag can have real wierd
+					// effects on the formatting, make sure that tags
+					// for which omitting an end tag is legimitate
+					// get closed out.
+					//
+					if (elemName.equals("center")) {
+						while (stack.elem.omitEnd() && stack != sp) {
+							endTag(true);
+						}
+						if (stack.elem == elem) {
+							endTag(false);
+						}
+					}
+					return;
+				}
+				// People do the same thing with center tags. In this
+				// case we would like to close off the center tag but
+				// not necessarily all enclosing tags.
+
+				// end tags
+				while (stack != sp) {
+					endTag(true);
+				}
+
+				endTag(false);
 				return;
-			}
-			// People do the same thing with center tags. In this
-			// case we would like to close off the center tag but
-			// not necessarily all enclosing tags.
 
-			// end tags
-			while (stack != sp) {
-				endTag(true);
-			}
-
-			endTag(false);
-			return;
-
-		case -1:
-			error("eof");
-			return;
+			case -1:
+				error("eof");
+				return;
 		}
 
 		// start tag [14] 314:1
@@ -1922,19 +1929,19 @@ public class Parser implements DTDConstants {
 		parseAttributeSpecificationList(elem);
 
 		switch (ch) {
-		case '/':
-			net = true;
-		case '>':
-			ch = readCh();
-			if (ch == '>' && net) {
+			case '/':
+				net = true;
+			case '>':
 				ch = readCh();
-			}
-		case '<':
-			break;
+				if (ch == '>' && net) {
+					ch = readCh();
+				}
+			case '<':
+				break;
 
-		default:
-			error("expected", "'>'");
-			break;
+			default:
+				error("expected", "'>'");
+				break;
 		}
 
 		if (!strict) {
@@ -2000,17 +2007,17 @@ public class Parser implements DTDConstants {
 
 		if (!elem.isEmpty()) {
 			switch (elem.getType()) {
-			case CDATA:
-				parseLiteral(false);
-				break;
-			case RCDATA:
-				parseLiteral(true);
-				break;
-			default:
-				if (stack != null) {
-					stack.net = net;
-				}
-				break;
+				case CDATA:
+					parseLiteral(false);
+					break;
+				case RCDATA:
+					parseLiteral(true);
+					break;
+				default:
+					if (stack != null) {
+						stack.net = net;
+					}
+					break;
 			}
 		}
 	}
@@ -2018,7 +2025,8 @@ public class Parser implements DTDConstants {
 	private static final String START_COMMENT = "<!--";
 	private static final String END_COMMENT = "-->";
 	private static final char[] SCRIPT_END_TAG = "</script>".toCharArray();
-	private static final char[] SCRIPT_END_TAG_UPPER_CASE = "</SCRIPT>".toCharArray();
+	private static final char[] SCRIPT_END_TAG_UPPER_CASE = "</SCRIPT>"
+			.toCharArray();
 
 	void parseScript() throws IOException {
 		char[] charsToAdd = new char[SCRIPT_END_TAG.length];
@@ -2028,7 +2036,8 @@ public class Parser implements DTDConstants {
 		while (true) {
 			int i = 0;
 			while (!insideComment && i < SCRIPT_END_TAG.length
-					&& (SCRIPT_END_TAG[i] == ch || SCRIPT_END_TAG_UPPER_CASE[i] == ch)) {
+					&& (SCRIPT_END_TAG[i] == ch
+							|| SCRIPT_END_TAG_UPPER_CASE[i] == ch)) {
 				charsToAdd[i] = (char) ch;
 				ch = readCh();
 				i++;
@@ -2037,9 +2046,11 @@ public class Parser implements DTDConstants {
 				return;
 			}
 
-			if (!insideComment && i == 1 && charsToAdd[0] == START_COMMENT.charAt(0)) {
+			if (!insideComment && i == 1 && charsToAdd[0] == START_COMMENT
+					.charAt(0)) {
 				// it isn't end script tag, but may be it's start comment tag?
-				while (i < START_COMMENT.length() && START_COMMENT.charAt(i) == ch) {
+				while (i < START_COMMENT.length() && START_COMMENT.charAt(
+						i) == ch) {
 					charsToAdd[i] = (char) ch;
 					ch = readCh();
 					i++;
@@ -2049,7 +2060,8 @@ public class Parser implements DTDConstants {
 				}
 			}
 			if (insideComment) {
-				while (i < END_COMMENT.length() && END_COMMENT.charAt(i) == ch) {
+				while (i < END_COMMENT.length() && END_COMMENT.charAt(
+						i) == ch) {
 					charsToAdd[i] = (char) ch;
 					ch = readCh();
 					i++;
@@ -2064,29 +2076,29 @@ public class Parser implements DTDConstants {
 				addString(charsToAdd[j]);
 			}
 			switch (ch) {
-			case -1:
-				error("eof.script");
-				return;
-			case '\n':
-				ln++;
-				ch = readCh();
-				lfCount++;
-				addString('\n');
-				break;
-			case '\r':
-				ln++;
-				if ((ch = readCh()) == '\n') {
+				case -1:
+					error("eof.script");
+					return;
+				case '\n':
+					ln++;
 					ch = readCh();
-					crlfCount++;
-				} else {
-					crCount++;
-				}
-				addString('\n');
-				break;
-			default:
-				addString(ch);
-				ch = readCh();
-				break;
+					lfCount++;
+					addString('\n');
+					break;
+				case '\r':
+					ln++;
+					if ((ch = readCh()) == '\n') {
+						ch = readCh();
+						crlfCount++;
+					} else {
+						crCount++;
+					}
+					addString('\n');
+					break;
+				default:
+					addString(ch);
+					ch = readCh();
+					break;
 			} // switch
 		} // while
 	}
@@ -2117,8 +2129,8 @@ public class Parser implements DTDConstants {
 				int minLength = START_COMMENT.length() + END_COMMENT.length();
 				if (str.startsWith(START_COMMENT) && str.endsWith(END_COMMENT)
 						&& str.length() >= (minLength)) {
-					str = str.substring(START_COMMENT.length(),
-							str.length() - END_COMMENT.length());
+					str = str.substring(START_COMMENT.length(), str.length()
+							- END_COMMENT.length());
 				}
 
 				/* Handle resulting chars as comment */
@@ -2129,115 +2141,115 @@ public class Parser implements DTDConstants {
 				continue;
 			} else {
 				switch (c) {
-				case '<':
-					parseTag();
-					lastBlockStartPos = currentPosition;
-					continue;
-
-				case '/':
-					ch = readCh();
-					if ((stack != null) && stack.net) {
-						// null end tag.
-						endTag(false);
+					case '<':
+						parseTag();
+						lastBlockStartPos = currentPosition;
 						continue;
-					} else if (textpos == 0) {
-						if (!legalElementContext(dtd.pcdata)) {
-							error("unexpected.pcdata");
-						}
-						if (last.breaksFlow()) {
-							space = false;
-						}
-					}
-					break;
 
-				case -1:
-					return;
-
-				case '&':
-					if (textpos == 0) {
-						if (!legalElementContext(dtd.pcdata)) {
-							error("unexpected.pcdata");
-						}
-						if (last.breaksFlow()) {
-							space = false;
-						}
-					}
-					char data[] = parseEntityReference();
-					if (textpos + data.length + 1 > text.length) {
-						char newtext[] = new char[Math.max(textpos + data.length + 128,
-								text.length * 2)];
-						System.arraycopy(text, 0, newtext, 0, text.length);
-						text = newtext;
-					}
-					if (space) {
-						space = false;
-						text[textpos++] = ' ';
-					}
-					System.arraycopy(data, 0, text, textpos, data.length);
-					textpos += data.length;
-					ignoreSpace = false;
-					continue;
-
-				case '\n':
-					ln++;
-					lfCount++;
-					ch = readCh();
-					if ((stack != null) && stack.pre) {
-						break;
-					}
-					if (textpos == 0) {
-						lastBlockStartPos = currentPosition;
-					}
-					if (!ignoreSpace) {
-						space = true;
-					}
-					continue;
-
-				case '\r':
-					ln++;
-					c = '\n';
-					if ((ch = readCh()) == '\n') {
+					case '/':
 						ch = readCh();
-						crlfCount++;
-					} else {
-						crCount++;
-					}
-					if ((stack != null) && stack.pre) {
-						break;
-					}
-					if (textpos == 0) {
-						lastBlockStartPos = currentPosition;
-					}
-					if (!ignoreSpace) {
-						space = true;
-					}
-					continue;
-
-				case '\t':
-				case ' ':
-					ch = readCh();
-					if ((stack != null) && stack.pre) {
-						break;
-					}
-					if (textpos == 0) {
-						lastBlockStartPos = currentPosition;
-					}
-					if (!ignoreSpace) {
-						space = true;
-					}
-					continue;
-
-				default:
-					if (textpos == 0) {
-						if (!legalElementContext(dtd.pcdata)) {
-							error("unexpected.pcdata");
+						if ((stack != null) && stack.net) {
+							// null end tag.
+							endTag(false);
+							continue;
+						} else if (textpos == 0) {
+							if (!legalElementContext(dtd.pcdata)) {
+								error("unexpected.pcdata");
+							}
+							if (last.breaksFlow()) {
+								space = false;
+							}
 						}
-						if (last.breaksFlow()) {
+						break;
+
+					case -1:
+						return;
+
+					case '&':
+						if (textpos == 0) {
+							if (!legalElementContext(dtd.pcdata)) {
+								error("unexpected.pcdata");
+							}
+							if (last.breaksFlow()) {
+								space = false;
+							}
+						}
+						char data[] = parseEntityReference();
+						if (textpos + data.length + 1 > text.length) {
+							char newtext[] = new char[Math.max(textpos
+									+ data.length + 128, text.length * 2)];
+							System.arraycopy(text, 0, newtext, 0, text.length);
+							text = newtext;
+						}
+						if (space) {
 							space = false;
+							text[textpos++] = ' ';
 						}
-					}
-					ch = readCh();
-					break;
+						System.arraycopy(data, 0, text, textpos, data.length);
+						textpos += data.length;
+						ignoreSpace = false;
+						continue;
+
+					case '\n':
+						ln++;
+						lfCount++;
+						ch = readCh();
+						if ((stack != null) && stack.pre) {
+							break;
+						}
+						if (textpos == 0) {
+							lastBlockStartPos = currentPosition;
+						}
+						if (!ignoreSpace) {
+							space = true;
+						}
+						continue;
+
+					case '\r':
+						ln++;
+						c = '\n';
+						if ((ch = readCh()) == '\n') {
+							ch = readCh();
+							crlfCount++;
+						} else {
+							crCount++;
+						}
+						if ((stack != null) && stack.pre) {
+							break;
+						}
+						if (textpos == 0) {
+							lastBlockStartPos = currentPosition;
+						}
+						if (!ignoreSpace) {
+							space = true;
+						}
+						continue;
+
+					case '\t':
+					case ' ':
+						ch = readCh();
+						if ((stack != null) && stack.pre) {
+							break;
+						}
+						if (textpos == 0) {
+							lastBlockStartPos = currentPosition;
+						}
+						if (!ignoreSpace) {
+							space = true;
+						}
+						continue;
+
+					default:
+						if (textpos == 0) {
+							if (!legalElementContext(dtd.pcdata)) {
+								error("unexpected.pcdata");
+							}
+							if (last.breaksFlow()) {
+								space = false;
+							}
+						}
+						ch = readCh();
+						break;
 				}
 			}
 

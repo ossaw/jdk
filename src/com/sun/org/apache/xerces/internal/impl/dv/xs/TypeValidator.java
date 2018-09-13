@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,15 +41,14 @@ public abstract class TypeValidator {
 	// for number types (decimal, double, float, and types derived from them),
 	// get the BigDecimal, Double, Flout object.
 	// for some types (string and derived), they just return the string itself
-	public abstract Object getActualValue(String content, ValidationContext context)
-			throws InvalidDatatypeValueException;
+	public abstract Object getActualValue(String content,
+			ValidationContext context) throws InvalidDatatypeValueException;
 
 	// for ID/IDREF/ENTITY types, do some extra checking after the value is
 	// checked to be valid with respect to both lexical representation and
 	// facets
 	public void checkExtraRules(Object value, ValidationContext context)
-			throws InvalidDatatypeValueException {
-	}
+			throws InvalidDatatypeValueException {}
 
 	// the following methods might not be supported by every DV.
 	// but XSSimpleTypeDecl should know which type supports which methods,

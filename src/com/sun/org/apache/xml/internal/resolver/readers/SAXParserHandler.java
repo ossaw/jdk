@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,7 +53,8 @@ public class SAXParserHandler extends DefaultHandler {
 	}
 
 	// Entity Resolver
-	public InputSource resolveEntity(String publicId, String systemId) throws SAXException {
+	public InputSource resolveEntity(String publicId, String systemId)
+			throws SAXException {
 
 		if (er != null) {
 			try {
@@ -71,7 +69,8 @@ public class SAXParserHandler extends DefaultHandler {
 	}
 
 	// Content Handler
-	public void characters(char[] ch, int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
 		if (this.ch != null) {
 			this.ch.characters(ch, start, length);
 		}
@@ -96,13 +95,15 @@ public class SAXParserHandler extends DefaultHandler {
 		}
 	}
 
-	public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
+	public void ignorableWhitespace(char[] ch, int start, int length)
+			throws SAXException {
 		if (this.ch != null) {
 			this.ch.ignorableWhitespace(ch, start, length);
 		}
 	}
 
-	public void processingInstruction(String target, String data) throws SAXException {
+	public void processingInstruction(String target, String data)
+			throws SAXException {
 		if (ch != null) {
 			ch.processingInstruction(target, data);
 		}
@@ -126,14 +127,15 @@ public class SAXParserHandler extends DefaultHandler {
 		}
 	}
 
-	public void startElement(String namespaceURI, String localName, String qName, Attributes atts)
-			throws SAXException {
+	public void startElement(String namespaceURI, String localName,
+			String qName, Attributes atts) throws SAXException {
 		if (ch != null) {
 			ch.startElement(namespaceURI, localName, qName, atts);
 		}
 	}
 
-	public void startPrefixMapping(String prefix, String uri) throws SAXException {
+	public void startPrefixMapping(String prefix, String uri)
+			throws SAXException {
 		if (ch != null) {
 			ch.startPrefixMapping(prefix, uri);
 		}

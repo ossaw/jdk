@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -62,7 +42,7 @@ public class SQLTransientException extends java.sql.SQLException {
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *               a description of the exception
 	 * @since 1.6
 	 */
 	public SQLTransientException(String reason) {
@@ -80,9 +60,9 @@ public class SQLTransientException extends java.sql.SQLException {
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *                 a description of the exception
 	 * @param SQLState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                 an XOPEN or SQL:2003 code identifying the exception
 	 * @since 1.6
 	 */
 	public SQLTransientException(String reason, String SQLState) {
@@ -99,14 +79,15 @@ public class SQLTransientException extends java.sql.SQLException {
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *                   a description of the exception
 	 * @param SQLState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                   an XOPEN or SQL:2003 code identifying the exception
 	 * @param vendorCode
-	 *            a database vendor specific exception code
+	 *                   a database vendor specific exception code
 	 * @since 1.6
 	 */
-	public SQLTransientException(String reason, String SQLState, int vendorCode) {
+	public SQLTransientException(String reason, String SQLState,
+			int vendorCode) {
 		super(reason, SQLState, vendorCode);
 	}
 
@@ -120,10 +101,10 @@ public class SQLTransientException extends java.sql.SQLException {
 	 * <p>
 	 * 
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *              the underlying reason for this <code>SQLException</code>
+	 *              (which is saved for later retrieval by the
+	 *              <code>getCause()</code> method); may be null indicating the
+	 *              cause is non-existent or unknown.
 	 * @since 1.6
 	 */
 	public SQLTransientException(Throwable cause) {
@@ -137,12 +118,12 @@ public class SQLTransientException extends java.sql.SQLException {
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception.
+	 *               a description of the exception.
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *               the underlying reason for this <code>SQLException</code>
+	 *               (which is saved for later retrieval by the
+	 *               <code>getCause()</code> method); may be null indicating the
+	 *               cause is non-existent or unknown.
 	 * @since 1.6
 	 */
 	public SQLTransientException(String reason, Throwable cause) {
@@ -156,17 +137,19 @@ public class SQLTransientException extends java.sql.SQLException {
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception.
+	 *                 a description of the exception.
 	 * @param SQLState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                 an XOPEN or SQL:2003 code identifying the exception
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *                 the underlying reason for this <code>SQLException</code>
+	 *                 (which is saved for later retrieval by the
+	 *                 <code>getCause()</code> method); may be null indicating
+	 *                 the
+	 *                 cause is non-existent or unknown.
 	 * @since 1.6
 	 */
-	public SQLTransientException(String reason, String SQLState, Throwable cause) {
+	public SQLTransientException(String reason, String SQLState,
+			Throwable cause) {
 		super(reason, SQLState, cause);
 	}
 
@@ -177,19 +160,22 @@ public class SQLTransientException extends java.sql.SQLException {
 	 * <p>
 	 * 
 	 * @param reason
-	 *            a description of the exception
+	 *                   a description of the exception
 	 * @param SQLState
-	 *            an XOPEN or SQL:2003 code identifying the exception
+	 *                   an XOPEN or SQL:2003 code identifying the exception
 	 * @param vendorCode
-	 *            a database vendor-specific exception code
+	 *                   a database vendor-specific exception code
 	 * @param cause
-	 *            the underlying reason for this <code>SQLException</code>
-	 *            (which is saved for later retrieval by the
-	 *            <code>getCause()</code> method); may be null indicating the
-	 *            cause is non-existent or unknown.
+	 *                   the underlying reason for this
+	 *                   <code>SQLException</code>
+	 *                   (which is saved for later retrieval by the
+	 *                   <code>getCause()</code> method); may be null indicating
+	 *                   the
+	 *                   cause is non-existent or unknown.
 	 * @since 1.6
 	 */
-	public SQLTransientException(String reason, String SQLState, int vendorCode, Throwable cause) {
+	public SQLTransientException(String reason, String SQLState, int vendorCode,
+			Throwable cause) {
 		super(reason, SQLState, vendorCode, cause);
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -44,7 +24,8 @@ import org.xml.sax.helpers.DefaultHandler;
  * <code>XMLEncoder</code> class:
  * 
  * <pre>
- * XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream("Test.xml")));
+ * XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(
+ * 		"Test.xml")));
  * Object result = d.readObject();
  * d.close();
  * </pre>
@@ -75,7 +56,7 @@ public class XMLDecoder implements AutoCloseable {
 	 * <code>XMLEncoder</code> class.
 	 *
 	 * @param in
-	 *            The underlying stream.
+	 *           The underlying stream.
 	 *
 	 * @see XMLEncoder#XMLEncoder(java.io.OutputStream)
 	 */
@@ -88,9 +69,9 @@ public class XMLDecoder implements AutoCloseable {
 	 * <code>XMLEncoder</code> class.
 	 *
 	 * @param in
-	 *            The underlying stream.
+	 *              The underlying stream.
 	 * @param owner
-	 *            The owner of this stream.
+	 *              The owner of this stream.
 	 *
 	 */
 	public XMLDecoder(InputStream in, Object owner) {
@@ -102,14 +83,16 @@ public class XMLDecoder implements AutoCloseable {
 	 * <code>XMLEncoder</code> class.
 	 *
 	 * @param in
-	 *            the underlying stream.
+	 *                          the underlying stream.
 	 * @param owner
-	 *            the owner of this stream.
+	 *                          the owner of this stream.
 	 * @param exceptionListener
-	 *            the exception handler for the stream; if <code>null</code> the
-	 *            default exception listener will be used.
+	 *                          the exception handler for the stream; if
+	 *                          <code>null</code> the
+	 *                          default exception listener will be used.
 	 */
-	public XMLDecoder(InputStream in, Object owner, ExceptionListener exceptionListener) {
+	public XMLDecoder(InputStream in, Object owner,
+			ExceptionListener exceptionListener) {
 		this(in, owner, exceptionListener, null);
 	}
 
@@ -118,21 +101,26 @@ public class XMLDecoder implements AutoCloseable {
 	 * <code>XMLEncoder</code> class.
 	 *
 	 * @param in
-	 *            the underlying stream. <code>null</code> may be passed without
-	 *            error, though the resulting XMLDecoder will be useless
+	 *                          the underlying stream. <code>null</code> may be
+	 *                          passed without
+	 *                          error, though the resulting XMLDecoder will be
+	 *                          useless
 	 * @param owner
-	 *            the owner of this stream. <code>null</code> is a legal value
+	 *                          the owner of this stream. <code>null</code> is a
+	 *                          legal value
 	 * @param exceptionListener
-	 *            the exception handler for the stream, or <code>null</code> to
-	 *            use the default
+	 *                          the exception handler for the stream, or
+	 *                          <code>null</code> to
+	 *                          use the default
 	 * @param cl
-	 *            the class loader used for instantiating objects.
-	 *            <code>null</code> indicates that the default class loader
-	 *            should be used
+	 *                          the class loader used for instantiating objects.
+	 *                          <code>null</code> indicates that the default
+	 *                          class loader
+	 *                          should be used
 	 * @since 1.5
 	 */
-	public XMLDecoder(InputStream in, Object owner, ExceptionListener exceptionListener,
-			ClassLoader cl) {
+	public XMLDecoder(InputStream in, Object owner,
+			ExceptionListener exceptionListener, ClassLoader cl) {
 		this(new InputSource(in), owner, exceptionListener, cl);
 	}
 
@@ -144,7 +132,7 @@ public class XMLDecoder implements AutoCloseable {
 	 * a parameter.
 	 *
 	 * @param is
-	 *            the input source to parse
+	 *           the input source to parse
 	 *
 	 * @since 1.7
 	 */
@@ -157,19 +145,20 @@ public class XMLDecoder implements AutoCloseable {
 	 * {@code XMLEncoder} class.
 	 *
 	 * @param is
-	 *            the input source to parse
+	 *              the input source to parse
 	 * @param owner
-	 *            the owner of this decoder
+	 *              the owner of this decoder
 	 * @param el
-	 *            the exception handler for the parser, or {@code null} to use
-	 *            the default exception handler
+	 *              the exception handler for the parser, or {@code null} to use
+	 *              the default exception handler
 	 * @param cl
-	 *            the class loader used for instantiating objects, or
-	 *            {@code null} to use the default class loader
+	 *              the class loader used for instantiating objects, or
+	 *              {@code null} to use the default class loader
 	 *
 	 * @since 1.7
 	 */
-	private XMLDecoder(InputSource is, Object owner, ExceptionListener el, ClassLoader cl) {
+	private XMLDecoder(InputSource is, Object owner, ExceptionListener el,
+			ClassLoader cl) {
 		this.input = is;
 		this.owner = owner;
 		setExceptionListener(el);
@@ -222,8 +211,9 @@ public class XMLDecoder implements AutoCloseable {
 	 * this stream catches recoverable exceptions.
 	 *
 	 * @param exceptionListener
-	 *            The exception handler for this stream; if <code>null</code>
-	 *            the default exception listener will be used.
+	 *                          The exception handler for this stream; if
+	 *                          <code>null</code>
+	 *                          the default exception listener will be used.
 	 *
 	 * @see #getExceptionListener
 	 */
@@ -252,7 +242,8 @@ public class XMLDecoder implements AutoCloseable {
 	 * @return the next object read
 	 *
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the stream contains no objects (or no more objects)
+	 *                                        if the stream contains no objects
+	 *                                        (or no more objects)
 	 *
 	 * @see XMLEncoder#writeObject
 	 */
@@ -264,7 +255,7 @@ public class XMLDecoder implements AutoCloseable {
 	 * Sets the owner of this decoder to <code>owner</code>.
 	 *
 	 * @param owner
-	 *            The owner of this decoder.
+	 *              The owner of this decoder.
 	 *
 	 * @see #getOwner
 	 */
@@ -296,19 +287,20 @@ public class XMLDecoder implements AutoCloseable {
 	 * here</a>.
 	 *
 	 * @param owner
-	 *            the owner of the default handler that can be used as a value
-	 *            of &lt;java&gt; element
+	 *              the owner of the default handler that can be used as a value
+	 *              of &lt;java&gt; element
 	 * @param el
-	 *            the exception handler for the parser, or {@code null} to use
-	 *            the default exception handler
+	 *              the exception handler for the parser, or {@code null} to use
+	 *              the default exception handler
 	 * @param cl
-	 *            the class loader used for instantiating objects, or
-	 *            {@code null} to use the default class loader
+	 *              the class loader used for instantiating objects, or
+	 *              {@code null} to use the default class loader
 	 * @return an instance of {@code DefaultHandler} for SAX parser
 	 *
 	 * @since 1.7
 	 */
-	public static DefaultHandler createHandler(Object owner, ExceptionListener el, ClassLoader cl) {
+	public static DefaultHandler createHandler(Object owner,
+			ExceptionListener el, ClassLoader cl) {
 		DocumentHandler handler = new DocumentHandler();
 		handler.setOwner(owner);
 		handler.setExceptionListener(el);

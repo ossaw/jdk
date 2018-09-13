@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.java.swing.plaf.motif;
 
@@ -54,8 +34,9 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 
 	public void installUI(JComponent c) {
 		super.installUI(c);
-		arrowIcon = new MotifComboBoxArrowIcon(UIManager.getColor("controlHighlight"),
-				UIManager.getColor("controlShadow"), UIManager.getColor("control"));
+		arrowIcon = new MotifComboBoxArrowIcon(UIManager.getColor(
+				"controlHighlight"), UIManager.getColor("controlShadow"),
+				UIManager.getColor("control"));
 
 		Runnable initCode = new Runnable() {
 			public void run() {
@@ -102,15 +83,15 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 		 * Motif combo popup should not track the mouse in the list.
 		 */
 		public MouseMotionListener createListMouseMotionListener() {
-			return new MouseMotionAdapter() {
-			};
+			return new MouseMotionAdapter() {};
 		}
 
 		public KeyListener createKeyListener() {
 			return super.createKeyListener();
 		}
 
-		protected class InvocationKeyHandler extends BasicComboPopup.InvocationKeyHandler {
+		protected class InvocationKeyHandler extends
+				BasicComboPopup.InvocationKeyHandler {
 			protected InvocationKeyHandler() {
 				MotifComboPopup.this.super();
 			}
@@ -172,12 +153,13 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 		}
 	}
 
-	public void paintCurrentValue(Graphics g, Rectangle bounds, boolean hasFocus) {
+	public void paintCurrentValue(Graphics g, Rectangle bounds,
+			boolean hasFocus) {
 		ListCellRenderer renderer = comboBox.getRenderer();
 		Component c;
 		Dimension d;
-		c = renderer.getListCellRendererComponent(listBox, comboBox.getSelectedItem(), -1, false,
-				false);
+		c = renderer.getListCellRendererComponent(listBox, comboBox
+				.getSelectedItem(), -1, false, false);
 		c.setFont(comboBox.getFont());
 		if (comboBox.isEnabled()) {
 			c.setForeground(comboBox.getForeground());
@@ -187,7 +169,8 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 			c.setBackground(UIManager.getColor("ComboBox.disabledBackground"));
 		}
 		d = c.getPreferredSize();
-		currentValuePane.paintComponent(g, c, comboBox, bounds.x, bounds.y, bounds.width, d.height);
+		currentValuePane.paintComponent(g, c, comboBox, bounds.x, bounds.y,
+				bounds.width, d.height);
 	}
 
 	protected Rectangle rectangleForArrowIcon() {
@@ -220,9 +203,9 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 		int height = comboBox.getHeight();
 		Insets insets = getInsets();
 		if (MotifGraphicsUtils.isLeftToRight(comboBox)) {
-			return new Rectangle(insets.left, insets.top,
-					(width - (insets.left + insets.right)) - iconAreaWidth(),
-					height - (insets.top + insets.bottom));
+			return new Rectangle(insets.left, insets.top, (width - (insets.left
+					+ insets.right)) - iconAreaWidth(), height - (insets.top
+							+ insets.bottom));
 		} else {
 			return new Rectangle(insets.left + iconAreaWidth(), insets.top,
 					(width - (insets.left + insets.right)) - iconAreaWidth(),
@@ -255,7 +238,8 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 	 * class should be treated as a &quot;protected&quot; inner class.
 	 * Instantiate it only within subclasses of <FooUI>.
 	 */
-	public class ComboBoxLayoutManager extends BasicComboBoxUI.ComboBoxLayoutManager {
+	public class ComboBoxLayoutManager extends
+			BasicComboBoxUI.ComboBoxLayoutManager {
 		public ComboBoxLayoutManager() {
 			MotifComboBoxUI.this.super();
 		}
@@ -277,7 +261,8 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 		private Color darkShadow;
 		private Color fill;
 
-		public MotifComboBoxArrowIcon(Color lightShadow, Color darkShadow, Color fill) {
+		public MotifComboBoxArrowIcon(Color lightShadow, Color darkShadow,
+				Color fill) {
 			this.lightShadow = lightShadow;
 			this.darkShadow = darkShadow;
 			this.fill = fill;
@@ -293,7 +278,8 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 			g.setColor(darkShadow);
 			g.drawLine(xo + w - 2, yo + 1, xo + w - 1, yo + 1);
 
-			for (int x = xo + 1, y = yo + 2, dx = w - 6; y + 1 < yo + h; y += 2) {
+			for (int x = xo + 1, y = yo + 2, dx = w - 6; y + 1 < yo
+					+ h; y += 2) {
 				g.setColor(lightShadow);
 				g.drawLine(x, y, x + 1, y);
 				g.drawLine(x, y + 1, x + 1, y + 1);
@@ -335,7 +321,8 @@ public class MotifComboBoxUI extends BasicComboBoxUI implements Serializable {
 	/**
 	 * This class should be made &quot;protected&quot; in future releases.
 	 */
-	private class MotifPropertyChangeListener extends BasicComboBoxUI.PropertyChangeHandler {
+	private class MotifPropertyChangeListener extends
+			BasicComboBoxUI.PropertyChangeHandler {
 		public void propertyChange(PropertyChangeEvent e) {
 			super.propertyChange(e);
 			String propertyName = e.getPropertyName();

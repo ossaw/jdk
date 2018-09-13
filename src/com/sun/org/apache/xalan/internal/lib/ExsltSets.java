@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,8 +72,8 @@ public class ExsltSets extends ExsltBase {
 
 		for (int i = 0; i < nl1.getLength(); i++) {
 			Node testNode = nl1.item(i);
-			if (DOMHelper.isNodeAfter(testNode, endNode)
-					&& !DOMHelper.isNodeTheSame(testNode, endNode))
+			if (DOMHelper.isNodeAfter(testNode, endNode) && !DOMHelper
+					.isNodeTheSame(testNode, endNode))
 				leadNodes.addElement(testNode);
 		}
 		return leadNodes;
@@ -111,8 +109,8 @@ public class ExsltSets extends ExsltBase {
 
 		for (int i = 0; i < nl1.getLength(); i++) {
 			Node testNode = nl1.item(i);
-			if (DOMHelper.isNodeAfter(startNode, testNode)
-					&& !DOMHelper.isNodeTheSame(startNode, testNode))
+			if (DOMHelper.isNodeAfter(startNode, testNode) && !DOMHelper
+					.isNodeTheSame(startNode, testNode))
 				trailNodes.addElement(testNode);
 		}
 		return trailNodes;
@@ -185,7 +183,7 @@ public class ExsltSets extends ExsltBase {
 	 * precedes N in document order.
 	 *
 	 * @param nl
-	 *            NodeList for the node-set.
+	 *           NodeList for the node-set.
 	 * @return a NodeList with nodes from nl containing distinct string values.
 	 *         In other words, if more than one node in nl contains the same
 	 *         string value, only include the first such node found.

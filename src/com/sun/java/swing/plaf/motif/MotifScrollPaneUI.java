@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -76,7 +56,8 @@ public class MotifScrollPaneUI extends BasicScrollPaneUI {
 				if (propertyName.equals("componentOrientation")) {
 					JScrollPane pane = (JScrollPane) e.getSource();
 					JScrollBar vsb = pane.getVerticalScrollBar();
-					if (vsb != null && vsbBorder != null && vsb.getBorder() == vsbBorder) {
+					if (vsb != null && vsbBorder != null && vsb
+							.getBorder() == vsbBorder) {
 						// The Border on the verticall scrollbar matches
 						// what we installed, reset it.
 						if (MotifGraphicsUtils.isLeftToRight(pane)) {
@@ -100,9 +81,11 @@ public class MotifScrollPaneUI extends BasicScrollPaneUI {
 		JScrollBar vsb = scrollpane.getVerticalScrollBar();
 		if (vsb != null) {
 			if (MotifGraphicsUtils.isLeftToRight(scrollpane)) {
-				vsbBorder = new CompoundBorder(vsbMarginBorderR, vsb.getBorder());
+				vsbBorder = new CompoundBorder(vsbMarginBorderR, vsb
+						.getBorder());
 			} else {
-				vsbBorder = new CompoundBorder(vsbMarginBorderL, vsb.getBorder());
+				vsbBorder = new CompoundBorder(vsbMarginBorderL, vsb
+						.getBorder());
 			}
 			vsb.setBorder(vsbBorder);
 		}

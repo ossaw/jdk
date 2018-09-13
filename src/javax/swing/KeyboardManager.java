@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -129,7 +109,8 @@ class KeyboardManager {
 			Thread.dumpStack();
 		}
 
-		componentKeyStrokeMap.put(new ComponentKeyStrokePair(c, k), topContainer);
+		componentKeyStrokeMap.put(new ComponentKeyStrokePair(c, k),
+				topContainer);
 
 		// Check for EmbeddedFrame case, they know how to process accelerators
 		// even
@@ -144,8 +125,8 @@ class KeyboardManager {
 	 */
 	private static Container getTopAncestor(JComponent c) {
 		for (Container p = c.getParent(); p != null; p = p.getParent()) {
-			if (p instanceof Window && ((Window) p).isFocusableWindow() || p instanceof Applet
-					|| p instanceof JInternalFrame) {
+			if (p instanceof Window && ((Window) p).isFocusableWindow()
+					|| p instanceof Applet || p instanceof JInternalFrame) {
 
 				return p;
 			}
@@ -212,7 +193,8 @@ class KeyboardManager {
 	 * any chidren (or subchildren) of the specified container want a crack at
 	 * the event. If one of them wants it, then it will "DO-THE-RIGHT-THING"
 	 */
-	public boolean fireKeyboardAction(KeyEvent e, boolean pressed, Container topAncestor) {
+	public boolean fireKeyboardAction(KeyEvent e, boolean pressed,
+			Container topAncestor) {
 
 		if (e.isConsumed()) {
 			System.out.println("Acquired pre-used event!");
@@ -228,9 +210,11 @@ class KeyboardManager {
 			ks = KeyStroke.getKeyStroke(e.getKeyChar());
 		} else {
 			if (e.getKeyCode() != e.getExtendedKeyCode()) {
-				ksE = KeyStroke.getKeyStroke(e.getExtendedKeyCode(), e.getModifiers(), !pressed);
+				ksE = KeyStroke.getKeyStroke(e.getExtendedKeyCode(), e
+						.getModifiers(), !pressed);
 			}
-			ks = KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers(), !pressed);
+			ks = KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers(),
+					!pressed);
 		}
 
 		Hashtable keyMap = containerMap.get(topAncestor);
@@ -276,7 +260,8 @@ class KeyboardManager {
 					}
 				}
 			} else {
-				System.out.println("Unexpected condition in fireKeyboardAction " + tmp);
+				System.out.println("Unexpected condition in fireKeyboardAction "
+						+ tmp);
 				// This means that tmp wasn't null, a JComponent, or a Vector.
 				// What is it?
 				Thread.dumpStack();
@@ -316,7 +301,8 @@ class KeyboardManager {
 	}
 
 	void fireBinding(JComponent c, KeyStroke ks, KeyEvent e, boolean pressed) {
-		if (c.processKeyBinding(ks, e, JComponent.WHEN_IN_FOCUSED_WINDOW, pressed)) {
+		if (c.processKeyBinding(ks, e, JComponent.WHEN_IN_FOCUSED_WINDOW,
+				pressed)) {
 			e.consume();
 		}
 	}
@@ -391,7 +377,8 @@ class KeyboardManager {
 				return false;
 			}
 			ComponentKeyStrokePair ckp = (ComponentKeyStrokePair) o;
-			return ((component.equals(ckp.component)) && (keyStroke.equals(ckp.keyStroke)));
+			return ((component.equals(ckp.component)) && (keyStroke.equals(
+					ckp.keyStroke)));
 		}
 
 		public int hashCode() {

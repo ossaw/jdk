@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.legacy.connection;
@@ -64,7 +44,8 @@ public class SocketFactoryConnectionImpl extends SocketOrChannelConnectionImpl {
 				// REVISIT - case - needs interface method
 				((SocketFactoryContactInfoImpl) contactInfo).socketInfo;
 		try {
-			socket = orb.getORBData().getLegacySocketFactory().createSocket(socketInfo);
+			socket = orb.getORBData().getLegacySocketFactory().createSocket(
+					socketInfo);
 			socketChannel = socket.getChannel();
 			if (socketChannel != null) {
 				socketChannel.configureBlocking(isBlocking);
@@ -77,20 +58,21 @@ public class SocketFactoryConnectionImpl extends SocketOrChannelConnectionImpl {
 				dprint(".initialize: connection created: " + socket);
 			}
 		} catch (GetEndPointInfoAgainException ex) {
-			throw wrapper.connectFailure(ex, socketInfo.getType(), socketInfo.getHost(),
-					Integer.toString(socketInfo.getPort()));
+			throw wrapper.connectFailure(ex, socketInfo.getType(), socketInfo
+					.getHost(), Integer.toString(socketInfo.getPort()));
 		} catch (Exception ex) {
-			throw wrapper.connectFailure(ex, socketInfo.getType(), socketInfo.getHost(),
-					Integer.toString(socketInfo.getPort()));
+			throw wrapper.connectFailure(ex, socketInfo.getType(), socketInfo
+					.getHost(), Integer.toString(socketInfo.getPort()));
 		}
 		state = OPENING;
 	}
 
 	public String toString() {
 		synchronized (stateEvent) {
-			return "SocketFactoryConnectionImpl[" + " "
-					+ (socketChannel == null ? socket.toString() : socketChannel.toString()) + " "
-					+ getStateString(state) + " " + shouldUseSelectThreadToWait() + " "
+			return "SocketFactoryConnectionImpl[" + " " + (socketChannel == null
+					? socket.toString()
+					: socketChannel.toString()) + " " + getStateString(state)
+					+ " " + shouldUseSelectThreadToWait() + " "
 					+ shouldUseWorkerThreadForEvent() + "]";
 		}
 	}

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,13 +54,13 @@ public class Function2Args extends FunctionOneArg {
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		super.fixupVariables(vars, globalsSize);
@@ -76,14 +73,16 @@ public class Function2Args extends FunctionOneArg {
 	 * XPath compiler.
 	 *
 	 * @param arg
-	 *            non-null expression that represents the argument.
+	 *               non-null expression that represents the argument.
 	 * @param argNum
-	 *            The argument number index.
+	 *               The argument number index.
 	 *
 	 * @throws WrongNumberArgsException
-	 *             If the argNum parameter is greater than 1.
+	 *                                  If the argNum parameter is greater than
+	 *                                  1.
 	 */
-	public void setArg(Expression arg, int argNum) throws WrongNumberArgsException {
+	public void setArg(Expression arg, int argNum)
+			throws WrongNumberArgsException {
 
 		// System.out.println("argNum: "+argNum);
 		if (argNum == 0)
@@ -100,7 +99,8 @@ public class Function2Args extends FunctionOneArg {
 	 *
 	 *
 	 * @param argNum
-	 *            The number of arguments that is being passed to the function.
+	 *               The number of arguments that is being passed to the
+	 *               function.
 	 *
 	 * @throws WrongNumberArgsException
 	 */
@@ -116,7 +116,8 @@ public class Function2Args extends FunctionOneArg {
 	 * @throws WrongNumberArgsException
 	 */
 	protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-		throw new WrongNumberArgsException(XSLMessages.createXPATHMessage("two", null));
+		throw new WrongNumberArgsException(XSLMessages.createXPATHMessage("two",
+				null));
 	}
 
 	/**
@@ -126,7 +127,8 @@ public class Function2Args extends FunctionOneArg {
 	 * @return true if traversal outside the context node's subtree can occur.
 	 */
 	public boolean canTraverseOutsideSubtree() {
-		return super.canTraverseOutsideSubtree() ? true : m_arg1.canTraverseOutsideSubtree();
+		return super.canTraverseOutsideSubtree() ? true
+				: m_arg1.canTraverseOutsideSubtree();
 	}
 
 	class Arg1Owner implements ExpressionOwner {

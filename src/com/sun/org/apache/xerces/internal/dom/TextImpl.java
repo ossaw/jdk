@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -60,8 +57,7 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 	//
 
 	/** Default constructor */
-	public TextImpl() {
-	}
+	public TextImpl() {}
 
 	/** Factory constructor. */
 	public TextImpl(CoreDocumentImpl ownerDoc, String data) {
@@ -154,7 +150,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 
 		// concatenate text of logically adjacent text nodes to the left of this
 		// node in the tree
-		getWholeTextBackward(this.getPreviousSibling(), fBufferStr, this.getParentNode());
+		getWholeTextBackward(this.getPreviousSibling(), fBufferStr, this
+				.getParentNode());
 		String temp = fBufferStr.toString();
 
 		// clear buffer
@@ -162,7 +159,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 
 		// concatenate text of logically adjacent text nodes to the right of
 		// this node in the tree
-		getWholeTextForward(this.getNextSibling(), fBufferStr, this.getParentNode());
+		getWholeTextForward(this.getNextSibling(), fBufferStr, this
+				.getParentNode());
 
 		return temp + fBufferStr.toString();
 
@@ -192,7 +190,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 	 *         than EntityRef, Text, CDATA is encountered, otherwise return
 	 *         false
 	 */
-	private boolean getWholeTextForward(Node node, StringBuffer buffer, Node parent) {
+	private boolean getWholeTextForward(Node node, StringBuffer buffer,
+			Node parent) {
 		// boolean to indicate whether node is a child of an entity reference
 		boolean inEntRef = false;
 
@@ -206,7 +205,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 				if (getWholeTextForward(node.getFirstChild(), buffer, node)) {
 					return true;
 				}
-			} else if (type == Node.TEXT_NODE || type == Node.CDATA_SECTION_NODE) {
+			} else if (type == Node.TEXT_NODE
+					|| type == Node.CDATA_SECTION_NODE) {
 				((NodeImpl) node).getTextContent(buffer);
 			} else {
 				return true;
@@ -220,7 +220,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 		// logically adjacent
 		// text nodes
 		if (inEntRef) {
-			getWholeTextForward(parent.getNextSibling(), buffer, parent.getParentNode());
+			getWholeTextForward(parent.getNextSibling(), buffer, parent
+					.getParentNode());
 			return true;
 		}
 
@@ -238,7 +239,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 	 *         than EntityRef, Text, CDATA is encountered, otherwise return
 	 *         false
 	 */
-	private boolean getWholeTextBackward(Node node, StringBuffer buffer, Node parent) {
+	private boolean getWholeTextBackward(Node node, StringBuffer buffer,
+			Node parent) {
 
 		// boolean to indicate whether node is a child of an entity reference
 		boolean inEntRef = false;
@@ -252,7 +254,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 				if (getWholeTextBackward(node.getLastChild(), buffer, node)) {
 					return true;
 				}
-			} else if (type == Node.TEXT_NODE || type == Node.CDATA_SECTION_NODE) {
+			} else if (type == Node.TEXT_NODE
+					|| type == Node.CDATA_SECTION_NODE) {
 				((TextImpl) node).insertTextContent(buffer);
 			} else {
 				return true;
@@ -266,7 +269,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 		// logically adjacent
 		// text nodes
 		if (inEntRef) {
-			getWholeTextBackward(parent.getPreviousSibling(), buffer, parent.getParentNode());
+			getWholeTextBackward(parent.getPreviousSibling(), buffer, parent
+					.getParentNode());
 			return true;
 		}
 
@@ -280,7 +284,7 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 	 * replacement text.
 	 *
 	 * @param content
-	 *            The content of the replacing Text node.
+	 *                The content of the replacing Text node.
 	 * @return text - The Text node created with the specified content.
 	 * @since DOM Level 3
 	 */
@@ -304,14 +308,16 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 		if (ownerDocument().errorChecking) {
 			if (!canModifyPrev(this)) {
 				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-						DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+						DOMMessageFormatter.formatMessage(
+								DOMMessageFormatter.DOM_DOMAIN,
 								"NO_MODIFICATION_ALLOWED_ERR", null));
 			}
 
 			// make sure we can make the replacement
 			if (!canModifyNext(this)) {
 				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-						DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+						DOMMessageFormatter.formatMessage(
+								DOMMessageFormatter.DOM_DOMAIN,
 								"NO_MODIFICATION_ALLOWED_ERR", null));
 			}
 		}
@@ -339,9 +345,9 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 			// remove it. A logically adjacent node can be removed if
 			// it is a Text or CDATASection node or an EntityReference with
 			// Text and CDATA only children.
-			if ((prev.getNodeType() == Node.TEXT_NODE)
-					|| (prev.getNodeType() == Node.CDATA_SECTION_NODE)
-					|| (prev.getNodeType() == Node.ENTITY_REFERENCE_NODE
+			if ((prev.getNodeType() == Node.TEXT_NODE) || (prev
+					.getNodeType() == Node.CDATA_SECTION_NODE) || (prev
+							.getNodeType() == Node.ENTITY_REFERENCE_NODE
 							&& hasTextOnlyChildren(prev))) {
 				parent.removeChild(prev);
 				prev = currentNode;
@@ -358,9 +364,9 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 			// remove it. A logically adjacent node can be removed if
 			// it is a Text or CDATASection node or an EntityReference with
 			// Text and CDATA only children.
-			if ((next.getNodeType() == Node.TEXT_NODE)
-					|| (next.getNodeType() == Node.CDATA_SECTION_NODE)
-					|| (next.getNodeType() == Node.ENTITY_REFERENCE_NODE
+			if ((next.getNodeType() == Node.TEXT_NODE) || (next
+					.getNodeType() == Node.CDATA_SECTION_NODE) || (next
+							.getNodeType() == Node.ENTITY_REFERENCE_NODE
 							&& hasTextOnlyChildren(next))) {
 				parent.removeChild(next);
 				next = currentNode;
@@ -418,7 +424,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 				while (lastChild != null) {
 					short lType = lastChild.getNodeType();
 
-					if (lType == Node.TEXT_NODE || lType == Node.CDATA_SECTION_NODE) {
+					if (lType == Node.TEXT_NODE
+							|| lType == Node.CDATA_SECTION_NODE) {
 						textLastChild = true;
 					} else if (lType == Node.ENTITY_REFERENCE_NODE) {
 						if (!canModifyPrev(lastChild)) {
@@ -441,7 +448,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 					}
 					lastChild = lastChild.getPreviousSibling();
 				}
-			} else if (type == Node.TEXT_NODE || type == Node.CDATA_SECTION_NODE) {
+			} else if (type == Node.TEXT_NODE
+					|| type == Node.CDATA_SECTION_NODE) {
 				// If the previous sibling was text or cdatasection move to next
 			} else {
 				// If the previous sibling was anything but text or
@@ -500,7 +508,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 				while (firstChild != null) {
 					short lType = firstChild.getNodeType();
 
-					if (lType == Node.TEXT_NODE || lType == Node.CDATA_SECTION_NODE) {
+					if (lType == Node.TEXT_NODE
+							|| lType == Node.CDATA_SECTION_NODE) {
 						textFirstChild = true;
 					} else if (lType == Node.ENTITY_REFERENCE_NODE) {
 						if (!canModifyNext(firstChild)) {
@@ -522,7 +531,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 					}
 					firstChild = firstChild.getNextSibling();
 				}
-			} else if (type == Node.TEXT_NODE || type == Node.CDATA_SECTION_NODE) {
+			} else if (type == Node.TEXT_NODE
+					|| type == Node.CDATA_SECTION_NODE) {
 				// If the previous sibling was text or cdatasection move to next
 			} else {
 				// If the next sibling was anything but text or
@@ -588,23 +598,26 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 	 * orphans.)
 	 *
 	 * @param offset
-	 *            The offset at which to split. If offset is at the end of the
-	 *            available data, the second node will be empty.
+	 *               The offset at which to split. If offset is at the end of
+	 *               the
+	 *               available data, the second node will be empty.
 	 *
 	 * @return A reference to the new node (containing data after the offset
 	 *         point). The original node will contain data up to that point.
 	 *
 	 * @throws DOMException(INDEX_SIZE_ERR)
-	 *             if offset is <0 or >length.
+	 *                                                   if offset is <0 or
+	 *                                                   >length.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if node is read-only.
+	 *                                                   if node is read-only.
 	 */
 	public Text splitText(int offset) throws DOMException {
 
 		if (isReadOnly()) {
 			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-					DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+					DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN,
 							"NO_MODIFICATION_ALLOWED_ERR", null));
 		}
 
@@ -612,12 +625,15 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 			synchronizeData();
 		}
 		if (offset < 0 || offset > data.length()) {
-			throw new DOMException(DOMException.INDEX_SIZE_ERR, DOMMessageFormatter
-					.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "INDEX_SIZE_ERR", null));
+			throw new DOMException(DOMException.INDEX_SIZE_ERR,
+					DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "INDEX_SIZE_ERR",
+							null));
 		}
 
 		// split text into two separate nodes
-		Text newText = getOwnerDocument().createTextNode(data.substring(offset));
+		Text newText = getOwnerDocument().createTextNode(data.substring(
+				offset));
 		setNodeValue(data.substring(0, offset));
 
 		// insert new text node

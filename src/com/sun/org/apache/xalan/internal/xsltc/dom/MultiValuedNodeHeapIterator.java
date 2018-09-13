@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2006 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -83,7 +80,8 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
 			try {
 				clone = (HeapNode) super.clone();
 			} catch (CloneNotSupportedException e) {
-				BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
+				BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
+						.toString());
 				return null;
 			}
 
@@ -111,7 +109,7 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
 		 * Performs a comparison of the two heap nodes
 		 *
 		 * @param heapNode
-		 *            the heap node against which to compare
+		 *                 the heap node against which to compare
 		 * @return <code>true</code> if and only if the current node for this
 		 *         heap node is before the current node of the argument heap
 		 *         node in document order.
@@ -122,7 +120,7 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
 		 * Sets context with respect to which this heap node is evaluated.
 		 *
 		 * @param node
-		 *            The new context node
+		 *             The new context node
 		 * @return a {@link HeapNode} which may or may not be the same as this
 		 *         <code>HeapNode</code>.
 		 */
@@ -167,7 +165,8 @@ public abstract class MultiValuedNodeHeapIterator extends DTMAxisIteratorBase {
 			clone._heap = heapCopy;
 			return clone.reset();
 		} catch (CloneNotSupportedException e) {
-			BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
+			BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
+					.toString());
 			return null;
 		}
 	}

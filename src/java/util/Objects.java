@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -49,9 +29,9 @@ public final class Objects {
 	 * {@link Object#equals equals} method of the first argument.
 	 *
 	 * @param a
-	 *            an object
+	 *          an object
 	 * @param b
-	 *            an object to be compared with {@code a} for equality
+	 *          an object to be compared with {@code a} for equality
 	 * @return {@code true} if the arguments are equal to each other and
 	 *         {@code false} otherwise
 	 * @see Object#equals(Object)
@@ -71,9 +51,9 @@ public final class Objects {
 	 * argument.
 	 *
 	 * @param a
-	 *            an object
+	 *          an object
 	 * @param b
-	 *            an object to be compared with {@code a} for deep equality
+	 *          an object to be compared with {@code a} for deep equality
 	 * @return {@code true} if the arguments are deeply equal to each other and
 	 *         {@code false} otherwise
 	 * @see Arrays#deepEquals(Object[], Object[])
@@ -93,7 +73,7 @@ public final class Objects {
 	 * {@code null} argument.
 	 *
 	 * @param o
-	 *            an object
+	 *          an object
 	 * @return the hash code of a non-{@code null} argument and 0 for a
 	 *         {@code null} argument
 	 * @see Object#hashCode
@@ -129,7 +109,7 @@ public final class Objects {
 	 * value can be computed by calling {@link #hashCode(Object)}.
 	 *
 	 * @param values
-	 *            the values to be hashed
+	 *               the values to be hashed
 	 * @return a hash value of the sequence of input values
 	 * @see Arrays#hashCode(Object[])
 	 * @see List#hashCode
@@ -143,7 +123,7 @@ public final class Objects {
 	 * null} argument and {@code "null"} for a {@code null} argument.
 	 *
 	 * @param o
-	 *            an object
+	 *          an object
 	 * @return the result of calling {@code toString} for a non-{@code
 	 * null} argument and {@code "null"} for a {@code null} argument
 	 * @see Object#toString
@@ -159,9 +139,9 @@ public final class Objects {
 	 * otherwise.
 	 *
 	 * @param o
-	 *            an object
+	 *                    an object
 	 * @param nullDefault
-	 *            string to return if the first argument is {@code null}
+	 *                    string to return if the first argument is {@code null}
 	 * @return the result of calling {@code toString} on the first argument if
 	 *         it is not {@code null} and the second argument otherwise.
 	 * @see Objects#toString(Object)
@@ -181,14 +161,14 @@ public final class Objects {
 	 * policy, if any, the {@link Comparator Comparator} chooses to have for
 	 * {@code null} values.
 	 *
-	 * @param <T>
-	 *            the type of the objects being compared
+	 * @param   <T>
+	 *          the type of the objects being compared
 	 * @param a
-	 *            an object
+	 *          an object
 	 * @param b
-	 *            an object to be compared with {@code a}
+	 *          an object to be compared with {@code a}
 	 * @param c
-	 *            the {@code Comparator} to compare the first two arguments
+	 *          the {@code Comparator} to compare the first two arguments
 	 * @return 0 if the arguments are identical and {@code
 	 * c.compare(a, b)} otherwise.
 	 * @see Comparable
@@ -213,11 +193,11 @@ public final class Objects {
 	 *
 	 * @param obj
 	 *            the object reference to check for nullity
-	 * @param <T>
+	 * @param     <T>
 	 *            the type of the reference
 	 * @return {@code obj} if not {@code null}
 	 * @throws NullPointerException
-	 *             if {@code obj} is {@code null}
+	 *                              if {@code obj} is {@code null}
 	 */
 	public static <T> T requireNonNull(T obj) {
 		if (obj == null)
@@ -242,15 +222,15 @@ public final class Objects {
 	 * </blockquote>
 	 *
 	 * @param obj
-	 *            the object reference to check for nullity
+	 *                the object reference to check for nullity
 	 * @param message
-	 *            detail message to be used in the event that a {@code
+	 *                detail message to be used in the event that a {@code
 	 *                NullPointerException} is thrown
-	 * @param <T>
-	 *            the type of the reference
+	 * @param         <T>
+	 *                the type of the reference
 	 * @return {@code obj} if not {@code null}
 	 * @throws NullPointerException
-	 *             if {@code obj} is {@code null}
+	 *                              if {@code obj} is {@code null}
 	 */
 	public static <T> T requireNonNull(T obj, String message) {
 		if (obj == null)
@@ -311,18 +291,20 @@ public final class Objects {
 	 * creating the string message directly.
 	 *
 	 * @param obj
-	 *            the object reference to check for nullity
+	 *                        the object reference to check for nullity
 	 * @param messageSupplier
-	 *            supplier of the detail message to be used in the event that a
-	 *            {@code NullPointerException} is thrown
-	 * @param <T>
-	 *            the type of the reference
+	 *                        supplier of the detail message to be used in the
+	 *                        event that a
+	 *                        {@code NullPointerException} is thrown
+	 * @param                 <T>
+	 *                        the type of the reference
 	 * @return {@code obj} if not {@code null}
 	 * @throws NullPointerException
-	 *             if {@code obj} is {@code null}
+	 *                              if {@code obj} is {@code null}
 	 * @since 1.8
 	 */
-	public static <T> T requireNonNull(T obj, Supplier<String> messageSupplier) {
+	public static <T> T requireNonNull(T obj,
+			Supplier<String> messageSupplier) {
 		if (obj == null)
 			throw new NullPointerException(messageSupplier.get());
 		return obj;

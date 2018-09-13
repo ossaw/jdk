@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.validation;
@@ -126,8 +106,7 @@ public abstract class SchemaFactory {
 	 * {@link LSResourceResolver}.
 	 * </p>
 	 */
-	protected SchemaFactory() {
-	}
+	protected SchemaFactory() {}
 
 	/**
 	 * <p>
@@ -189,18 +168,25 @@ public abstract class SchemaFactory {
 	 * </pre>
 	 *
 	 * @param schemaLanguage
-	 *            Specifies the schema language which the returned SchemaFactory
-	 *            will understand. See <a href="#schemaLanguage">the list of
-	 *            available schema languages</a> for the possible values.
+	 *                       Specifies the schema language which the returned
+	 *                       SchemaFactory
+	 *                       will understand. See <a href="#schemaLanguage">the
+	 *                       list of
+	 *                       available schema languages</a> for the possible
+	 *                       values.
 	 *
 	 * @return New instance of a <code>SchemaFactory</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If no implementation of the schema language is available.
+	 *                                         If no implementation of the
+	 *                                         schema language is available.
 	 * @throws NullPointerException
-	 *             If the <code>schemaLanguage</code> parameter is null.
+	 *                                         If the
+	 *                                         <code>schemaLanguage</code>
+	 *                                         parameter is null.
 	 * @throws SchemaFactoryConfigurationError
-	 *             If a configuration error is encountered.
+	 *                                         If a configuration error is
+	 *                                         encountered.
 	 *
 	 * @see #newInstance(String schemaLanguage, String factoryClassName,
 	 *      ClassLoader classLoader)
@@ -215,11 +201,12 @@ public abstract class SchemaFactory {
 			cl = SchemaFactory.class.getClassLoader();
 		}
 
-		SchemaFactory f = new SchemaFactoryFinder(cl).newFactory(schemaLanguage);
+		SchemaFactory f = new SchemaFactoryFinder(cl).newFactory(
+				schemaLanguage);
 		if (f == null) {
-			throw new IllegalArgumentException(
-					"No SchemaFactory" + " that implements the schema language specified by: "
-							+ schemaLanguage + " could be loaded");
+			throw new IllegalArgumentException("No SchemaFactory"
+					+ " that implements the schema language specified by: "
+					+ schemaLanguage + " could be loaded");
 		}
 		return f;
 	}
@@ -249,45 +236,52 @@ public abstract class SchemaFactory {
 	 * </pre>
 	 *
 	 * @param schemaLanguage
-	 *            Specifies the schema language which the returned
-	 *            <code>SchemaFactory</code> will understand. See
-	 *            <a href="#schemaLanguage">the list of available schema
-	 *            languages</a> for the possible values.
+	 *                         Specifies the schema language which the returned
+	 *                         <code>SchemaFactory</code> will understand. See
+	 *                         <a href="#schemaLanguage">the list of available
+	 *                         schema
+	 *                         languages</a> for the possible values.
 	 *
 	 * @param factoryClassName
-	 *            fully qualified factory class name that provides
-	 *            implementation of
-	 *            <code>javax.xml.validation.SchemaFactory</code>.
+	 *                         fully qualified factory class name that provides
+	 *                         implementation of
+	 *                         <code>javax.xml.validation.SchemaFactory</code>.
 	 *
 	 * @param classLoader
-	 *            <code>ClassLoader</code> used to load the factory class. If
-	 *            <code>null</code> current <code>Thread</code>'s context
-	 *            classLoader is used to load the factory class.
+	 *                         <code>ClassLoader</code> used to load the factory
+	 *                         class. If
+	 *                         <code>null</code> current <code>Thread</code>'s
+	 *                         context
+	 *                         classLoader is used to load the factory class.
 	 *
 	 * @return New instance of a <code>SchemaFactory</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>factoryClassName</code> is <code>null</code>, or the
-	 *             factory class cannot be loaded, instantiated or doesn't
-	 *             support the schema language specified in
-	 *             <code>schemLanguage</code> parameter.
+	 *                                  if <code>factoryClassName</code> is
+	 *                                  <code>null</code>, or the
+	 *                                  factory class cannot be loaded,
+	 *                                  instantiated or doesn't
+	 *                                  support the schema language specified in
+	 *                                  <code>schemLanguage</code> parameter.
 	 *
 	 * @throws NullPointerException
-	 *             If the <code>schemaLanguage</code> parameter is null.
+	 *                                  If the <code>schemaLanguage</code>
+	 *                                  parameter is null.
 	 *
 	 * @see #newInstance(String schemaLanguage)
 	 *
 	 * @since 1.6
 	 */
-	public static SchemaFactory newInstance(String schemaLanguage, String factoryClassName,
-			ClassLoader classLoader) {
+	public static SchemaFactory newInstance(String schemaLanguage,
+			String factoryClassName, ClassLoader classLoader) {
 		ClassLoader cl = classLoader;
 
 		if (cl == null) {
 			cl = ss.getContextClassLoader();
 		}
 
-		SchemaFactory f = new SchemaFactoryFinder(cl).createInstance(factoryClassName);
+		SchemaFactory f = new SchemaFactoryFinder(cl).createInstance(
+				factoryClassName);
 		if (f == null) {
 			throw new IllegalArgumentException("Factory " + factoryClassName
 					+ " could not be loaded to implement the schema language specified by: "
@@ -298,8 +292,10 @@ public abstract class SchemaFactory {
 		if (f.isSchemaLanguageSupported(schemaLanguage)) {
 			return f;
 		} else {
-			throw new IllegalArgumentException("Factory " + f.getClass().getName()
-					+ " does not implement the schema language specified by: " + schemaLanguage);
+			throw new IllegalArgumentException("Factory " + f.getClass()
+					.getName()
+					+ " does not implement the schema language specified by: "
+					+ schemaLanguage);
 		}
 
 	}
@@ -310,20 +306,26 @@ public abstract class SchemaFactory {
 	 * </p>
 	 *
 	 * @param schemaLanguage
-	 *            Specifies the schema language which the returned
-	 *            <code>SchemaFactory</code> will understand.
-	 *            <code>schemaLanguage</code> must specify a
-	 *            <a href="#schemaLanguage">valid</a> schema language.
+	 *                       Specifies the schema language which the returned
+	 *                       <code>SchemaFactory</code> will understand.
+	 *                       <code>schemaLanguage</code> must specify a
+	 *                       <a href="#schemaLanguage">valid</a> schema
+	 *                       language.
 	 *
 	 * @return <code>true</code> if <code>SchemaFactory</code> supports
 	 *         <code>schemaLanguage</code>, else <code>false</code>.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>schemaLanguage</code> is <code>null</code>.
+	 *                                  If <code>schemaLanguage</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             If <code>schemaLanguage.length() == 0</code> or
-	 *             <code>schemaLanguage</code> does not specify a
-	 *             <a href="#schemaLanguage">valid</a> schema language.
+	 *                                  If
+	 *                                  <code>schemaLanguage.length() == 0</code>
+	 *                                  or
+	 *                                  <code>schemaLanguage</code> does not
+	 *                                  specify a
+	 *                                  <a href="#schemaLanguage">valid</a>
+	 *                                  schema language.
 	 */
 	public abstract boolean isSchemaLanguageSupported(String schemaLanguage);
 
@@ -341,22 +343,26 @@ public abstract class SchemaFactory {
 	 * </p>
 	 *
 	 * @param name
-	 *            The feature name, which is a non-null fully-qualified URI.
+	 *             The feature name, which is a non-null fully-qualified URI.
 	 *
 	 * @return The current value of the feature (true or false).
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the feature value can't be assigned or retrieved.
+	 *                                   If the feature value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link SchemaFactory} recognizes the feature name
-	 *             but cannot determine its value at this time.
+	 *                                   When the {@link SchemaFactory}
+	 *                                   recognizes the feature name
+	 *                                   but cannot determine its value at this
+	 *                                   time.
 	 * @throws NullPointerException
-	 *             If <code>name</code> is <code>null</code>.
+	 *                                   If <code>name</code> is
+	 *                                   <code>null</code>.
 	 *
 	 * @see #setFeature(String, boolean)
 	 */
-	public boolean getFeature(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public boolean getFeature(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 
 		if (name == null) {
 			throw new NullPointerException("the name parameter is null");
@@ -407,17 +413,20 @@ public abstract class SchemaFactory {
 	 * </ul>
 	 *
 	 * @param name
-	 *            The feature name, which is a non-null fully-qualified URI.
+	 *              The feature name, which is a non-null fully-qualified URI.
 	 * @param value
-	 *            The requested value of the feature (true or false).
+	 *              The requested value of the feature (true or false).
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the feature value can't be assigned or retrieved.
+	 *                                   If the feature value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link SchemaFactory} recognizes the feature name
-	 *             but cannot set the requested value.
+	 *                                   When the {@link SchemaFactory}
+	 *                                   recognizes the feature name
+	 *                                   but cannot set the requested value.
 	 * @throws NullPointerException
-	 *             If <code>name</code> is <code>null</code>.
+	 *                                   If <code>name</code> is
+	 *                                   <code>null</code>.
 	 *
 	 * @see #getFeature(String)
 	 */
@@ -488,17 +497,20 @@ public abstract class SchemaFactory {
 	 * </ul>
 	 *
 	 * @param name
-	 *            The property name, which is a non-null fully-qualified URI.
+	 *               The property name, which is a non-null fully-qualified URI.
 	 * @param object
-	 *            The requested value for the property.
+	 *               The requested value for the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the property value can't be assigned or retrieved.
+	 *                                   If the property value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link SchemaFactory} recognizes the property name
-	 *             but cannot set the requested value.
+	 *                                   When the {@link SchemaFactory}
+	 *                                   recognizes the property name
+	 *                                   but cannot set the requested value.
 	 * @throws NullPointerException
-	 *             If <code>name</code> is <code>null</code>.
+	 *                                   If <code>name</code> is
+	 *                                   <code>null</code>.
 	 */
 	public void setProperty(String name, Object object)
 			throws SAXNotRecognizedException, SAXNotSupportedException {
@@ -529,22 +541,25 @@ public abstract class SchemaFactory {
 	 * </p>
 	 *
 	 * @param name
-	 *            The property name, which is a non-null fully-qualified URI.
+	 *             The property name, which is a non-null fully-qualified URI.
 	 *
 	 * @return The current value of the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the property value can't be assigned or retrieved.
+	 *                                   If the property value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the XMLReader recognizes the property name but cannot
-	 *             determine its value at this time.
+	 *                                   When the XMLReader recognizes the
+	 *                                   property name but cannot
+	 *                                   determine its value at this time.
 	 * @throws NullPointerException
-	 *             If <code>name</code> is <code>null</code>.
+	 *                                   If <code>name</code> is
+	 *                                   <code>null</code>.
 	 *
 	 * @see #setProperty(String, Object)
 	 */
-	public Object getProperty(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public Object getProperty(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 
 		if (name == null) {
 			throw new NullPointerException("the name parameter is null");
@@ -605,8 +620,8 @@ public abstract class SchemaFactory {
 	 * are created from this {@link SchemaFactory}.
 	 *
 	 * @param errorHandler
-	 *            A new error handler to be set. This parameter can be
-	 *            <code>null</code>.
+	 *                     A new error handler to be set. This parameter can be
+	 *                     <code>null</code>.
 	 */
 	public abstract void setErrorHandler(ErrorHandler errorHandler);
 
@@ -665,9 +680,11 @@ public abstract class SchemaFactory {
 	 * are created from this {@link SchemaFactory}.
 	 *
 	 * @param resourceResolver
-	 *            A new resource resolver to be set. This parameter can be null.
+	 *                         A new resource resolver to be set. This parameter
+	 *                         can be null.
 	 */
-	public abstract void setResourceResolver(LSResourceResolver resourceResolver);
+	public abstract void setResourceResolver(
+			LSResourceResolver resourceResolver);
 
 	/**
 	 * Gets the current {@link LSResourceResolver} set to this
@@ -692,14 +709,14 @@ public abstract class SchemaFactory {
 	 * </p>
 	 *
 	 * @param schema
-	 *            Source that represents a schema.
+	 *               Source that represents a schema.
 	 *
 	 * @return New <code>Schema</code> from parsing <code>schema</code>.
 	 *
 	 * @throws SAXException
-	 *             If a SAX error occurs during parsing.
+	 *                              If a SAX error occurs during parsing.
 	 * @throws NullPointerException
-	 *             if <code>schema</code> is null.
+	 *                              if <code>schema</code> is null.
 	 */
 	public Schema newSchema(Source schema) throws SAXException {
 		return newSchema(new Source[] { schema });
@@ -716,14 +733,14 @@ public abstract class SchemaFactory {
 	 * </p>
 	 *
 	 * @param schema
-	 *            File that represents a schema.
+	 *               File that represents a schema.
 	 *
 	 * @return New <code>Schema</code> from parsing <code>schema</code>.
 	 *
 	 * @throws SAXException
-	 *             If a SAX error occurs during parsing.
+	 *                              If a SAX error occurs during parsing.
 	 * @throws NullPointerException
-	 *             if <code>schema</code> is null.
+	 *                              if <code>schema</code> is null.
 	 */
 	public Schema newSchema(File schema) throws SAXException {
 		return newSchema(new StreamSource(schema));
@@ -740,14 +757,14 @@ public abstract class SchemaFactory {
 	 * </p>
 	 *
 	 * @param schema
-	 *            <code>URL</code> that represents a schema.
+	 *               <code>URL</code> that represents a schema.
 	 *
 	 * @return New <code>Schema</code> from parsing <code>schema</code>.
 	 *
 	 * @throws SAXException
-	 *             If a SAX error occurs during parsing.
+	 *                              If a SAX error occurs during parsing.
 	 * @throws NullPointerException
-	 *             if <code>schema</code> is null.
+	 *                              if <code>schema</code> is null.
 	 */
 	public Schema newSchema(URL schema) throws SAXException {
 		return newSchema(new StreamSource(schema.toExternalForm()));
@@ -797,32 +814,41 @@ public abstract class SchemaFactory {
 	 *
 	 *
 	 * @param schemas
-	 *            inputs to be parsed. {@link SchemaFactory} is required to
-	 *            recognize {@link javax.xml.transform.sax.SAXSource},
-	 *            {@link StreamSource},
-	 *            {@link javax.xml.transform.stax.StAXSource}, and
-	 *            {@link javax.xml.transform.dom.DOMSource}. Input schemas must
-	 *            be XML documents or XML elements and must not be null. For
-	 *            backwards compatibility, the results of passing anything other
-	 *            than a document or element are implementation-dependent.
-	 *            Implementations must either recognize and process the input or
-	 *            thrown an IllegalArgumentException.
+	 *                inputs to be parsed. {@link SchemaFactory} is required to
+	 *                recognize {@link javax.xml.transform.sax.SAXSource},
+	 *                {@link StreamSource},
+	 *                {@link javax.xml.transform.stax.StAXSource}, and
+	 *                {@link javax.xml.transform.dom.DOMSource}. Input schemas
+	 *                must
+	 *                be XML documents or XML elements and must not be null. For
+	 *                backwards compatibility, the results of passing anything
+	 *                other
+	 *                than a document or element are implementation-dependent.
+	 *                Implementations must either recognize and process the
+	 *                input or
+	 *                thrown an IllegalArgumentException.
 	 *
 	 * @return Always return a non-null valid {@link Schema} object. Note that
 	 *         when an error has been reported, there is no guarantee that the
 	 *         returned {@link Schema} object is meaningful.
 	 *
 	 * @throws SAXException
-	 *             If an error is found during processing the specified inputs.
-	 *             When an {@link ErrorHandler} is set, errors are reported to
-	 *             there first. See {@link #setErrorHandler(ErrorHandler)}.
+	 *                                       If an error is found during
+	 *                                       processing the specified inputs.
+	 *                                       When an {@link ErrorHandler} is
+	 *                                       set, errors are reported to
+	 *                                       there first. See
+	 *                                       {@link #setErrorHandler(ErrorHandler)}.
 	 * @throws NullPointerException
-	 *             If the <code>schemas</code> parameter itself is null or any
-	 *             item in the array is null.
+	 *                                       If the <code>schemas</code>
+	 *                                       parameter itself is null or any
+	 *                                       item in the array is null.
 	 * @throws IllegalArgumentException
-	 *             If any item in the array is not recognized by this method.
+	 *                                       If any item in the array is not
+	 *                                       recognized by this method.
 	 * @throws UnsupportedOperationException
-	 *             If the schema language doesn't support this operation.
+	 *                                       If the schema language doesn't
+	 *                                       support this operation.
 	 */
 	public abstract Schema newSchema(Source[] schemas) throws SAXException;
 
@@ -873,9 +899,11 @@ public abstract class SchemaFactory {
 	 * @return Always return non-null valid {@link Schema} object.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this operation is not supported by the callee.
+	 *                                       If this operation is not supported
+	 *                                       by the callee.
 	 * @throws SAXException
-	 *             If this operation is supported but failed for some reason.
+	 *                                       If this operation is supported but
+	 *                                       failed for some reason.
 	 */
 	public abstract Schema newSchema() throws SAXException;
 }

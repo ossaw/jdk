@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,14 +71,16 @@ class Lexer {
 	 * Create a Lexer object.
 	 *
 	 * @param compiler
-	 *            The owning compiler for this lexer.
+	 *                       The owning compiler for this lexer.
 	 * @param resolver
-	 *            The prefix resolver for mapping qualified name prefixes to
-	 *            namespace URIs.
+	 *                       The prefix resolver for mapping qualified name
+	 *                       prefixes to
+	 *                       namespace URIs.
 	 * @param xpathProcessor
-	 *            The parser that is processing strings to opcodes.
+	 *                       The parser that is processing strings to opcodes.
 	 */
-	Lexer(Compiler compiler, PrefixResolver resolver, XPathParser xpathProcessor) {
+	Lexer(Compiler compiler, PrefixResolver resolver,
+			XPathParser xpathProcessor) {
 
 		m_compiler = compiler;
 		m_namespaceContext = resolver;
@@ -106,9 +105,9 @@ class Lexer {
 	 * top-level elements.
 	 * 
 	 * @param pat
-	 *            XSLT Expression.
+	 *                      XSLT Expression.
 	 * @param targetStrings
-	 *            Vector to hold Strings, may be null.
+	 *                      Vector to hold Strings, may be null.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -138,181 +137,198 @@ class Lexer {
 			char c = pat.charAt(i);
 
 			switch (c) {
-			case '\"': {
-				if (startSubstring != -1) {
-					isNum = false;
-					isStartOfPat = mapPatternElemPos(nesting, isStartOfPat, isAttrName);
-					isAttrName = false;
+				case '\"': {
+					if (startSubstring != -1) {
+						isNum = false;
+						isStartOfPat = mapPatternElemPos(nesting, isStartOfPat,
+								isAttrName);
+						isAttrName = false;
 
-					if (-1 != posOfNSSep) {
-						posOfNSSep = mapNSTokens(pat, startSubstring, posOfNSSep, i);
+						if (-1 != posOfNSSep) {
+							posOfNSSep = mapNSTokens(pat, startSubstring,
+									posOfNSSep, i);
+						} else {
+							addToTokenQueue(pat.substring(startSubstring, i));
+						}
+					}
+
+					startSubstring = i;
+
+					for (i++; (i < nChars) && ((c = pat.charAt(
+							i)) != '\"'); i++)
+						;
+
+					if (c == '\"' && i < nChars) {
+						addToTokenQueue(pat.substring(startSubstring, i + 1));
+
+						startSubstring = -1;
 					} else {
-						addToTokenQueue(pat.substring(startSubstring, i));
+						m_processor.error(
+								XPATHErrorResources.ER_EXPECTED_DOUBLE_QUOTE,
+								null); // "misquoted
+																										// literal...
+																										// expected
+																										// double
+																										// quote!");
 					}
 				}
+					break;
+				case '\'':
+					if (startSubstring != -1) {
+						isNum = false;
+						isStartOfPat = mapPatternElemPos(nesting, isStartOfPat,
+								isAttrName);
+						isAttrName = false;
 
-				startSubstring = i;
+						if (-1 != posOfNSSep) {
+							posOfNSSep = mapNSTokens(pat, startSubstring,
+									posOfNSSep, i);
+						} else {
+							addToTokenQueue(pat.substring(startSubstring, i));
+						}
+					}
 
-				for (i++; (i < nChars) && ((c = pat.charAt(i)) != '\"'); i++)
-					;
+					startSubstring = i;
 
-				if (c == '\"' && i < nChars) {
-					addToTokenQueue(pat.substring(startSubstring, i + 1));
+					for (i++; (i < nChars) && ((c = pat.charAt(
+							i)) != '\''); i++)
+						;
 
-					startSubstring = -1;
-				} else {
-					m_processor.error(XPATHErrorResources.ER_EXPECTED_DOUBLE_QUOTE, null); // "misquoted
-																							// literal...
-																							// expected
-																							// double
-																							// quote!");
-				}
-			}
-				break;
-			case '\'':
-				if (startSubstring != -1) {
-					isNum = false;
-					isStartOfPat = mapPatternElemPos(nesting, isStartOfPat, isAttrName);
-					isAttrName = false;
+					if (c == '\'' && i < nChars) {
+						addToTokenQueue(pat.substring(startSubstring, i + 1));
 
-					if (-1 != posOfNSSep) {
-						posOfNSSep = mapNSTokens(pat, startSubstring, posOfNSSep, i);
+						startSubstring = -1;
 					} else {
-						addToTokenQueue(pat.substring(startSubstring, i));
+						m_processor.error(
+								XPATHErrorResources.ER_EXPECTED_SINGLE_QUOTE,
+								null); // "misquoted
+																										// literal...
+																										// expected
+																										// single
+																										// quote!");
 					}
-				}
+					break;
+				case 0x0A:
+				case 0x0D:
+				case ' ':
+				case '\t':
+					if (startSubstring != -1) {
+						isNum = false;
+						isStartOfPat = mapPatternElemPos(nesting, isStartOfPat,
+								isAttrName);
+						isAttrName = false;
 
-				startSubstring = i;
-
-				for (i++; (i < nChars) && ((c = pat.charAt(i)) != '\''); i++)
-					;
-
-				if (c == '\'' && i < nChars) {
-					addToTokenQueue(pat.substring(startSubstring, i + 1));
-
-					startSubstring = -1;
-				} else {
-					m_processor.error(XPATHErrorResources.ER_EXPECTED_SINGLE_QUOTE, null); // "misquoted
-																							// literal...
-																							// expected
-																							// single
-																							// quote!");
-				}
-				break;
-			case 0x0A:
-			case 0x0D:
-			case ' ':
-			case '\t':
-				if (startSubstring != -1) {
-					isNum = false;
-					isStartOfPat = mapPatternElemPos(nesting, isStartOfPat, isAttrName);
-					isAttrName = false;
-
-					if (-1 != posOfNSSep) {
-						posOfNSSep = mapNSTokens(pat, startSubstring, posOfNSSep, i);
-					} else {
-						addToTokenQueue(pat.substring(startSubstring, i));
-					}
-
-					startSubstring = -1;
-				}
-				break;
-			case '@':
-				isAttrName = true;
-
-				// fall-through on purpose
-			case '-':
-				if ('-' == c) {
-					if (!(isNum || (startSubstring == -1))) {
-						break;
-					}
-
-					isNum = false;
-				}
-
-				// fall-through on purpose
-			case '(':
-			case '[':
-			case ')':
-			case ']':
-			case '|':
-			case '/':
-			case '*':
-			case '+':
-			case '=':
-			case ',':
-			case '\\': // Unused at the moment
-			case '^': // Unused at the moment
-			case '!': // Unused at the moment
-			case '$':
-			case '<':
-			case '>':
-				if (startSubstring != -1) {
-					isNum = false;
-					isStartOfPat = mapPatternElemPos(nesting, isStartOfPat, isAttrName);
-					isAttrName = false;
-
-					if (-1 != posOfNSSep) {
-						posOfNSSep = mapNSTokens(pat, startSubstring, posOfNSSep, i);
-					} else {
-						addToTokenQueue(pat.substring(startSubstring, i));
-					}
-
-					startSubstring = -1;
-				} else if (('/' == c) && isStartOfPat) {
-					isStartOfPat = mapPatternElemPos(nesting, isStartOfPat, isAttrName);
-				} else if ('*' == c) {
-					isStartOfPat = mapPatternElemPos(nesting, isStartOfPat, isAttrName);
-					isAttrName = false;
-				}
-
-				if (0 == nesting) {
-					if ('|' == c) {
-						if (null != targetStrings) {
-							recordTokenString(targetStrings);
+						if (-1 != posOfNSSep) {
+							posOfNSSep = mapNSTokens(pat, startSubstring,
+									posOfNSSep, i);
+						} else {
+							addToTokenQueue(pat.substring(startSubstring, i));
 						}
 
-						isStartOfPat = true;
+						startSubstring = -1;
 					}
-				}
+					break;
+				case '@':
+					isAttrName = true;
 
-				if ((')' == c) || (']' == c)) {
-					nesting--;
-				} else if (('(' == c) || ('[' == c)) {
-					nesting++;
-				}
-
-				addToTokenQueue(pat.substring(i, i + 1));
-				break;
-			case ':':
-				if (i > 0) {
-					if (posOfNSSep == (i - 1)) {
-						if (startSubstring != -1) {
-							if (startSubstring < (i - 1))
-								addToTokenQueue(pat.substring(startSubstring, i - 1));
+					// fall-through on purpose
+				case '-':
+					if ('-' == c) {
+						if (!(isNum || (startSubstring == -1))) {
+							break;
 						}
 
 						isNum = false;
-						isAttrName = false;
-						startSubstring = -1;
-						posOfNSSep = -1;
-
-						addToTokenQueue(pat.substring(i - 1, i + 1));
-
-						break;
-					} else {
-						posOfNSSep = i;
 					}
-				}
 
-				// fall through on purpose
-			default:
-				if (-1 == startSubstring) {
-					startSubstring = i;
-					isNum = Character.isDigit(c);
-				} else if (isNum) {
-					isNum = Character.isDigit(c);
-				}
+					// fall-through on purpose
+				case '(':
+				case '[':
+				case ')':
+				case ']':
+				case '|':
+				case '/':
+				case '*':
+				case '+':
+				case '=':
+				case ',':
+				case '\\': // Unused at the moment
+				case '^': // Unused at the moment
+				case '!': // Unused at the moment
+				case '$':
+				case '<':
+				case '>':
+					if (startSubstring != -1) {
+						isNum = false;
+						isStartOfPat = mapPatternElemPos(nesting, isStartOfPat,
+								isAttrName);
+						isAttrName = false;
+
+						if (-1 != posOfNSSep) {
+							posOfNSSep = mapNSTokens(pat, startSubstring,
+									posOfNSSep, i);
+						} else {
+							addToTokenQueue(pat.substring(startSubstring, i));
+						}
+
+						startSubstring = -1;
+					} else if (('/' == c) && isStartOfPat) {
+						isStartOfPat = mapPatternElemPos(nesting, isStartOfPat,
+								isAttrName);
+					} else if ('*' == c) {
+						isStartOfPat = mapPatternElemPos(nesting, isStartOfPat,
+								isAttrName);
+						isAttrName = false;
+					}
+
+					if (0 == nesting) {
+						if ('|' == c) {
+							if (null != targetStrings) {
+								recordTokenString(targetStrings);
+							}
+
+							isStartOfPat = true;
+						}
+					}
+
+					if ((')' == c) || (']' == c)) {
+						nesting--;
+					} else if (('(' == c) || ('[' == c)) {
+						nesting++;
+					}
+
+					addToTokenQueue(pat.substring(i, i + 1));
+					break;
+				case ':':
+					if (i > 0) {
+						if (posOfNSSep == (i - 1)) {
+							if (startSubstring != -1) {
+								if (startSubstring < (i - 1))
+									addToTokenQueue(pat.substring(
+											startSubstring, i - 1));
+							}
+
+							isNum = false;
+							isAttrName = false;
+							startSubstring = -1;
+							posOfNSSep = -1;
+
+							addToTokenQueue(pat.substring(i - 1, i + 1));
+
+							break;
+						} else {
+							posOfNSSep = i;
+						}
+					}
+
+					// fall through on purpose
+				default:
+					if (-1 == startSubstring) {
+						startSubstring = i;
+						isNum = Character.isDigit(c);
+					} else if (isNum) {
+						isNum = Character.isDigit(c);
+					}
 			}
 		}
 
@@ -322,7 +338,8 @@ class Lexer {
 
 			if ((-1 != posOfNSSep) || ((m_namespaceContext != null)
 					&& (m_namespaceContext.handlesNullPrefixes()))) {
-				posOfNSSep = mapNSTokens(pat, startSubstring, posOfNSSep, nChars);
+				posOfNSSep = mapNSTokens(pat, startSubstring, posOfNSSep,
+						nChars);
 			} else {
 				addToTokenQueue(pat.substring(startSubstring, nChars));
 			}
@@ -344,15 +361,17 @@ class Lexer {
 	 * m_tokenQueue.
 	 *
 	 * @param nesting
-	 *            The nesting count for the pattern element.
+	 *                   The nesting count for the pattern element.
 	 * @param isStart
-	 *            true if this is the start of a pattern.
+	 *                   true if this is the start of a pattern.
 	 * @param isAttrName
-	 *            true if we have determined that this is an attribute name.
+	 *                   true if we have determined that this is an attribute
+	 *                   name.
 	 *
 	 * @return true if this is the start of a pattern.
 	 */
-	private boolean mapPatternElemPos(int nesting, boolean isStart, boolean isAttrName) {
+	private boolean mapPatternElemPos(int nesting, boolean isStart,
+			boolean isAttrName) {
 
 		if (0 == nesting) {
 			if (m_patternMapSize >= m_patternMap.length) {
@@ -364,8 +383,8 @@ class Lexer {
 			if (!isStart) {
 				m_patternMap[m_patternMapSize - 1] -= TARGETEXTRA;
 			}
-			m_patternMap[m_patternMapSize] = (m_compiler.getTokenQueueSize() - (isAttrName ? 1 : 0))
-					+ TARGETEXTRA;
+			m_patternMap[m_patternMapSize] = (m_compiler.getTokenQueueSize()
+					- (isAttrName ? 1 : 0)) + TARGETEXTRA;
 
 			m_patternMapSize++;
 
@@ -379,7 +398,7 @@ class Lexer {
 	 * Given a map pos, return the corresponding token queue pos.
 	 *
 	 * @param i
-	 *            The index in the m_patternMap.
+	 *          The index in the m_patternMap.
 	 *
 	 * @return the token queue position.
 	 */
@@ -394,17 +413,18 @@ class Lexer {
 	 * Reset token queue mark and m_token to a given position.
 	 * 
 	 * @param mark
-	 *            The new position.
+	 *             The new position.
 	 */
 	private final void resetTokenMark(int mark) {
 
 		int qsz = m_compiler.getTokenQueueSize();
 
-		m_processor.m_queueMark = (mark > 0) ? ((mark <= qsz) ? mark - 1 : mark) : 0;
+		m_processor.m_queueMark = (mark > 0) ? ((mark <= qsz) ? mark - 1 : mark)
+				: 0;
 
 		if (m_processor.m_queueMark < qsz) {
-			m_processor.m_token = (String) m_compiler.getTokenQueue()
-					.elementAt(m_processor.m_queueMark++);
+			m_processor.m_token = (String) m_compiler.getTokenQueue().elementAt(
+					m_processor.m_queueMark++);
 			m_processor.m_tokenChar = m_processor.m_token.charAt(0);
 		} else {
 			m_processor.m_token = null;
@@ -441,7 +461,7 @@ class Lexer {
 	 * Record the current token in the passed vector.
 	 *
 	 * @param targetStrings
-	 *            Vector of string.
+	 *                      Vector of string.
 	 */
 	private void recordTokenString(Vector targetStrings) {
 
@@ -453,26 +473,26 @@ class Lexer {
 			int tok = getKeywordToken(m_processor.m_token);
 
 			switch (tok) {
-			case OpCodes.NODETYPE_COMMENT:
-				targetStrings.addElement(PsuedoNames.PSEUDONAME_COMMENT);
-				break;
-			case OpCodes.NODETYPE_TEXT:
-				targetStrings.addElement(PsuedoNames.PSEUDONAME_TEXT);
-				break;
-			case OpCodes.NODETYPE_NODE:
-				targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
-				break;
-			case OpCodes.NODETYPE_ROOT:
-				targetStrings.addElement(PsuedoNames.PSEUDONAME_ROOT);
-				break;
-			case OpCodes.NODETYPE_ANYELEMENT:
-				targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
-				break;
-			case OpCodes.NODETYPE_PI:
-				targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
-				break;
-			default:
-				targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
+				case OpCodes.NODETYPE_COMMENT:
+					targetStrings.addElement(PsuedoNames.PSEUDONAME_COMMENT);
+					break;
+				case OpCodes.NODETYPE_TEXT:
+					targetStrings.addElement(PsuedoNames.PSEUDONAME_TEXT);
+					break;
+				case OpCodes.NODETYPE_NODE:
+					targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
+					break;
+				case OpCodes.NODETYPE_ROOT:
+					targetStrings.addElement(PsuedoNames.PSEUDONAME_ROOT);
+					break;
+				case OpCodes.NODETYPE_ANYELEMENT:
+					targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
+					break;
+				case OpCodes.NODETYPE_PI:
+					targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
+					break;
+				default:
+					targetStrings.addElement(PsuedoNames.PSEUDONAME_ANY);
 			}
 		} else {
 			if (m_processor.tokenIs('@')) {
@@ -485,7 +505,8 @@ class Lexer {
 				tokPos += 2;
 			}
 
-			targetStrings.addElement(m_compiler.getTokenQueue().elementAt(tokPos));
+			targetStrings.addElement(m_compiler.getTokenQueue().elementAt(
+					tokPos));
 		}
 	}
 
@@ -494,7 +515,7 @@ class Lexer {
 	 *
 	 *
 	 * @param s
-	 *            The token.
+	 *          The token.
 	 */
 	private final void addToTokenQueue(String s) {
 		m_compiler.getTokenQueue().addElement(s);
@@ -505,20 +526,20 @@ class Lexer {
 	 * like to map.
 	 *
 	 * @param pat
-	 *            The XPath name string.
+	 *                       The XPath name string.
 	 * @param startSubstring
-	 *            The start of the name string.
+	 *                       The start of the name string.
 	 * @param posOfNSSep
-	 *            The position of the namespace seperator (':').
+	 *                       The position of the namespace seperator (':').
 	 * @param posOfScan
-	 *            The end of the name index.
+	 *                       The end of the name index.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 *
 	 * @return -1 always.
 	 */
-	private int mapNSTokens(String pat, int startSubstring, int posOfNSSep, int posOfScan)
-			throws javax.xml.transform.TransformerException {
+	private int mapNSTokens(String pat, int startSubstring, int posOfNSSep,
+			int posOfScan) throws javax.xml.transform.TransformerException {
 
 		String prefix = "";
 
@@ -527,10 +548,12 @@ class Lexer {
 		}
 		String uName;
 
-		if ((null != m_namespaceContext) && !prefix.equals("*") && !prefix.equals("xmlns")) {
+		if ((null != m_namespaceContext) && !prefix.equals("*") && !prefix
+				.equals("xmlns")) {
 			try {
 				if (prefix.length() > 0)
-					uName = ((PrefixResolver) m_namespaceContext).getNamespaceForPrefix(prefix);
+					uName = ((PrefixResolver) m_namespaceContext)
+							.getNamespaceForPrefix(prefix);
 				else {
 
 					// Assume last was wildcard. This is not legal according
@@ -546,7 +569,8 @@ class Lexer {
 
 						return -1;
 					} else {
-						uName = ((PrefixResolver) m_namespaceContext).getNamespaceForPrefix(prefix);
+						uName = ((PrefixResolver) m_namespaceContext)
+								.getNamespaceForPrefix(prefix);
 					}
 				}
 			} catch (ClassCastException cce) {
@@ -569,7 +593,7 @@ class Lexer {
 			// error() is called or errorForDOM3().
 			m_processor.errorForDOM3(XPATHErrorResources.ER_PREFIX_MUST_RESOLVE,
 					new String[] { prefix }); // "Prefix must resolve to a
-												// namespace: {0}";
+																													// namespace: {0}";
 
 			/**
 			 * old code commented out 17-Sep-2004 // error(

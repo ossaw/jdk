@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.registry;
@@ -48,17 +28,18 @@ public interface RegistryHandler {
 	 *             uses the <code>RegistryHandler</code> to obtain the
 	 *             registry's stub.
 	 * @param host
-	 *            name of remote registry host
+	 *             name of remote registry host
 	 * @param port
-	 *            remote registry port
+	 *             remote registry port
 	 * @return remote registry stub
 	 * @throws RemoteException
-	 *             if a remote error occurs
+	 *                              if a remote error occurs
 	 * @throws UnknownHostException
-	 *             if unable to resolve given hostname
+	 *                              if unable to resolve given hostname
 	 */
 	@Deprecated
-	Registry registryStub(String host, int port) throws RemoteException, UnknownHostException;
+	Registry registryStub(String host, int port) throws RemoteException,
+			UnknownHostException;
 
 	/**
 	 * Constructs and exports a Registry on the specified port. The port must be
@@ -68,10 +49,10 @@ public interface RegistryHandler {
 	 *             uses the <code>RegistryHandler</code> to obtain the
 	 *             registry's implementation.
 	 * @param port
-	 *            port to export registry on
+	 *             port to export registry on
 	 * @return registry stub
 	 * @throws RemoteException
-	 *             if a remote error occurs
+	 *                         if a remote error occurs
 	 */
 	@Deprecated
 	Registry registryImpl(int port) throws RemoteException;

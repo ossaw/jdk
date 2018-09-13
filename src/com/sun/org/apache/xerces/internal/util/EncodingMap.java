@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -663,7 +661,8 @@ public class EncodingMap {
 		aIANA2JavaMap.put("CCSID01149", "Cp1149");
 		aIANA2JavaMap.put("EUC-JP", "EUCJIS");
 		aIANA2JavaMap.put("CSEUCPKDFMTJAPANESE", "EUCJIS");
-		aIANA2JavaMap.put("EXTENDED_UNIX_CODE_PACKED_FORMAT_FOR_JAPANESE", "EUCJIS");
+		aIANA2JavaMap.put("EXTENDED_UNIX_CODE_PACKED_FORMAT_FOR_JAPANESE",
+				"EUCJIS");
 		aIANA2JavaMap.put("EUC-KR", "KSC5601");
 		aIANA2JavaMap.put("CSEUCKR", "KSC5601");
 		aIANA2JavaMap.put("KS_C_5601-1987", "KS_C_5601-1987");
@@ -954,8 +953,7 @@ public class EncodingMap {
 	//
 
 	/** Default constructor. */
-	public EncodingMap() {
-	}
+	public EncodingMap() {}
 
 	//
 	// Public static methods
@@ -965,7 +963,7 @@ public class EncodingMap {
 	 * Returns the Java encoding name for the specified IANA encoding name.
 	 *
 	 * @param ianaEncoding
-	 *            The IANA encoding name.
+	 *                     The IANA encoding name.
 	 */
 	public static String getIANA2JavaMapping(String ianaEncoding) {
 		return fIANA2JavaMap.get(ianaEncoding);
@@ -975,7 +973,7 @@ public class EncodingMap {
 	 * Returns the IANA encoding name for the specified Java encoding name.
 	 *
 	 * @param javaEncoding
-	 *            The Java encoding name.
+	 *                     The Java encoding name.
 	 */
 	public static String getJava2IANAMapping(String javaEncoding) {
 		return fJava2IANAMap.get(javaEncoding);

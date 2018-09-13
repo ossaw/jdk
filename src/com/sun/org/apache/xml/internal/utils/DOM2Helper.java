@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,8 +43,7 @@ public class DOM2Helper extends DOMHelper {
 	/**
 	 * Construct an instance.
 	 */
-	public DOM2Helper() {
-	}
+	public DOM2Helper() {}
 
 	/**
 	 * Check node to see if it was created by a DOM implementation that this
@@ -56,12 +52,14 @@ public class DOM2Helper extends DOMHelper {
 	 * com.sun.org.apache.xerces.internal.dom.NodeImpl.
 	 *
 	 * @param node
-	 *            The node to be tested.
+	 *             The node to be tested.
 	 *
 	 * @throws TransformerException
-	 *             if the node is not one which this DOM2Helper can support. If
-	 *             we return without throwing the exception, the node is
-	 *             compatable.
+	 *                              if the node is not one which this DOM2Helper
+	 *                              can support. If
+	 *                              we return without throwing the exception,
+	 *                              the node is
+	 *                              compatable.
 	 * @xsl.usage internal
 	 */
 	public void checkNode(Node node) throws TransformerException {
@@ -137,10 +135,10 @@ public class DOM2Helper extends DOMHelper {
 	 * </p>
 	 *
 	 * @param source
-	 *            The input source for the top-level of the XML document.
+	 *               The input source for the top-level of the XML document.
 	 *
 	 * @throws TransformerException
-	 *             if any checked exception is thrown.
+	 *                              if any checked exception is thrown.
 	 * @xsl.usage internal
 	 */
 	public void parse(InputSource source) throws TransformerException {
@@ -150,7 +148,8 @@ public class DOM2Helper extends DOMHelper {
 			// I guess I should use JAXP factory here... when it's legal.
 			// com.sun.org.apache.xerces.internal.parsers.DOMParser parser
 			// = new com.sun.org.apache.xerces.internal.parsers.DOMParser();
-			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilderFactory builderFactory = DocumentBuilderFactory
+					.newInstance();
 
 			builderFactory.setNamespaceAware(true);
 			builderFactory.setValidating(true);
@@ -167,12 +166,12 @@ public class DOM2Helper extends DOMHelper {
 			 * true); } else { parser.setFeature(
 			 * "http://apache.org/xml/features/dom/defer-node-expansion",
 			 * false); }
-			 * 
 			 * parser.setFeature(
 			 * "http://apache.org/xml/features/allow-java-encodings", true);
 			 */
 
-			parser.setErrorHandler(new com.sun.org.apache.xml.internal.utils.DefaultErrorHandler());
+			parser.setErrorHandler(
+					new com.sun.org.apache.xml.internal.utils.DefaultErrorHandler());
 
 			// if(null != m_entityResolver)
 			// {
@@ -223,9 +222,9 @@ public class DOM2Helper extends DOMHelper {
 	 * TODO: Make sure this does the right thing with attribute nodes!!!
 	 *
 	 * @param node1
-	 *            DOM Node to perform position comparison on.
+	 *              DOM Node to perform position comparison on.
 	 * @param node2
-	 *            DOM Node to perform position comparison on .
+	 *              DOM Node to perform position comparison on .
 	 *
 	 * @return false if node2 comes before node1, otherwise return true. You can
 	 *         think of this as
@@ -256,7 +255,7 @@ public class DOM2Helper extends DOMHelper {
 	 * document to find an Attr's parent.
 	 *
 	 * @param node
-	 *            Node to be examined
+	 *             Node to be examined
 	 *
 	 * @return the DOM parent of the input node, if there is one, or the
 	 *         ownerElement if the input node is an Attr, or null if the node is
@@ -276,7 +275,7 @@ public class DOM2Helper extends DOMHelper {
 	 * node name.
 	 *
 	 * @param n
-	 *            Node to be examined
+	 *          Node to be examined
 	 *
 	 * @return String containing the local name, or null if the node was not
 	 *         assigned a Namespace.
@@ -298,7 +297,7 @@ public class DOM2Helper extends DOMHelper {
 	 * TODO: Reconcile with getLocalNameOfNode.
 	 *
 	 * @param n
-	 *            Node to be examined
+	 *          Node to be examined
 	 *
 	 * @return String containing the Namespace URI bound to this DOM node at the
 	 *         time the Node was created.

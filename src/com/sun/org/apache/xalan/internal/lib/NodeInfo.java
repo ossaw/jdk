@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +40,7 @@ public class NodeInfo {
 	 * <code>systemId</code> returns the system id of the current context node.
 	 *
 	 * @param context
-	 *            an <code>ExpressionContext</code> value
+	 *                an <code>ExpressionContext</code> value
 	 * @return a <code>String</code> value
 	 */
 	public static String systemId(ExpressionContext context) {
@@ -64,7 +61,7 @@ public class NodeInfo {
 	 * node in the set is returned.
 	 *
 	 * @param nodeList
-	 *            a <code>NodeList</code> value
+	 *                 a <code>NodeList</code> value
 	 * @return a <code>String</code> value
 	 */
 	public static String systemId(NodeList nodeList) {
@@ -73,7 +70,8 @@ public class NodeInfo {
 
 		Node node = nodeList.item(0);
 		int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-		SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
+		SourceLocator locator = ((DTMNodeProxy) node).getDTM()
+				.getSourceLocatorFor(nodeHandler);
 
 		if (locator != null)
 			return locator.getSystemId();
@@ -88,7 +86,7 @@ public class NodeInfo {
 	 * Xalan does not currently record this value, and will return null.
 	 *
 	 * @param context
-	 *            an <code>ExpressionContext</code> value
+	 *                an <code>ExpressionContext</code> value
 	 * @return a <code>String</code> value
 	 */
 	public static String publicId(ExpressionContext context) {
@@ -111,7 +109,7 @@ public class NodeInfo {
 	 * Xalan does not currently record this value, and will return null.
 	 *
 	 * @param nodeList
-	 *            a <code>NodeList</code> value
+	 *                 a <code>NodeList</code> value
 	 * @return a <code>String</code> value
 	 */
 	public static String publicId(NodeList nodeList) {
@@ -120,7 +118,8 @@ public class NodeInfo {
 
 		Node node = nodeList.item(0);
 		int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-		SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
+		SourceLocator locator = ((DTMNodeProxy) node).getDTM()
+				.getSourceLocatorFor(nodeHandler);
 
 		if (locator != null)
 			return locator.getPublicId();
@@ -140,7 +139,7 @@ public class NodeInfo {
 	 * mode.
 	 *
 	 * @param context
-	 *            an <code>ExpressionContext</code> value
+	 *                an <code>ExpressionContext</code> value
 	 * @return an <code>int</code> value. This may be -1 to indicate that the
 	 *         line number is not known.
 	 */
@@ -169,7 +168,7 @@ public class NodeInfo {
 	 * mode.
 	 *
 	 * @param nodeList
-	 *            a <code>NodeList</code> value
+	 *                 a <code>NodeList</code> value
 	 * @return an <code>int</code> value. This may be -1 to indicate that the
 	 *         line number is not known.
 	 */
@@ -179,7 +178,8 @@ public class NodeInfo {
 
 		Node node = nodeList.item(0);
 		int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-		SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
+		SourceLocator locator = ((DTMNodeProxy) node).getDTM()
+				.getSourceLocatorFor(nodeHandler);
 
 		if (locator != null)
 			return locator.getLineNumber();
@@ -199,7 +199,7 @@ public class NodeInfo {
 	 * mode.
 	 *
 	 * @param context
-	 *            an <code>ExpressionContext</code> value
+	 *                an <code>ExpressionContext</code> value
 	 * @return an <code>int</code> value. This may be -1 to indicate that the
 	 *         column number is not known.
 	 */
@@ -228,7 +228,7 @@ public class NodeInfo {
 	 * mode.
 	 *
 	 * @param nodeList
-	 *            a <code>NodeList</code> value
+	 *                 a <code>NodeList</code> value
 	 * @return an <code>int</code> value. This may be -1 to indicate that the
 	 *         column number is not known.
 	 */
@@ -238,7 +238,8 @@ public class NodeInfo {
 
 		Node node = nodeList.item(0);
 		int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-		SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
+		SourceLocator locator = ((DTMNodeProxy) node).getDTM()
+				.getSourceLocatorFor(nodeHandler);
 
 		if (locator != null)
 			return locator.getColumnNumber();

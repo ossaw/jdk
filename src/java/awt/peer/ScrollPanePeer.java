@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -60,9 +40,9 @@ public interface ScrollPanePeer extends ContainerPeer {
 	 * Sets the scroll position of the child.
 	 *
 	 * @param x
-	 *            the X coordinate of the scroll position
+	 *          the X coordinate of the scroll position
 	 * @param y
-	 *            the Y coordinate of the scroll position
+	 *          the Y coordinate of the scroll position
 	 *
 	 * @see ScrollPane#setScrollPosition(int, int)
 	 */
@@ -72,9 +52,9 @@ public interface ScrollPanePeer extends ContainerPeer {
 	 * Called when the child component changes its size.
 	 *
 	 * @param w
-	 *            the new width of the child component
+	 *          the new width of the child component
 	 * @param h
-	 *            the new height of the child component
+	 *          the new height of the child component
 	 *
 	 * @see ScrollPane#layout()
 	 */

@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -106,15 +81,20 @@ public interface CSSRule {
 	 * current state of the rule and not its initial value.
 	 * 
 	 * @exception DOMException
-	 *                SYNTAX_ERR: Raised if the specified CSS string value has a
-	 *                syntax error and is unparsable. <br>
-	 *                INVALID_MODIFICATION_ERR: Raised if the specified CSS
-	 *                string value represents a different type of rule than the
-	 *                current one. <br>
-	 *                HIERARCHY_REQUEST_ERR: Raised if the rule cannot be
-	 *                inserted at this point in the style sheet. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if the rule is
-	 *                readonly.
+	 *                         SYNTAX_ERR: Raised if the specified CSS string
+	 *                         value has a
+	 *                         syntax error and is unparsable. <br>
+	 *                         INVALID_MODIFICATION_ERR: Raised if the specified
+	 *                         CSS
+	 *                         string value represents a different type of rule
+	 *                         than the
+	 *                         current one. <br>
+	 *                         HIERARCHY_REQUEST_ERR: Raised if the rule cannot
+	 *                         be
+	 *                         inserted at this point in the style sheet. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if the rule
+	 *                         is
+	 *                         readonly.
 	 */
 	public void setCssText(String cssText) throws DOMException;
 

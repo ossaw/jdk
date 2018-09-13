@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -90,18 +70,20 @@ public abstract class SoundbankResource {
 	 * sampled audio data, and instruments is a subclass responsibility.)
 	 * 
 	 * @param soundBank
-	 *            the sound bank containing this <code>SoundbankResource</code>
+	 *                  the sound bank containing this
+	 *                  <code>SoundbankResource</code>
 	 * @param name
-	 *            the name of the sample
+	 *                  the name of the sample
 	 * @param dataClass
-	 *            the class used to represent the sample's data
+	 *                  the class used to represent the sample's data
 	 *
 	 * @see #getSoundbank
 	 * @see #getName
 	 * @see #getDataClass
 	 * @see #getData
 	 */
-	protected SoundbankResource(Soundbank soundBank, String name, Class<?> dataClass) {
+	protected SoundbankResource(Soundbank soundBank, String name,
+			Class<?> dataClass) {
 
 		this.soundBank = soundBank;
 		this.name = name;

@@ -19,7 +19,8 @@ abstract public class EndpointInfoListHelper {
 		a.read_value(out.create_input_stream(), type());
 	}
 
-	public static com.sun.corba.se.spi.activation.EndPointInfo[] extract(org.omg.CORBA.Any a) {
+	public static com.sun.corba.se.spi.activation.EndPointInfo[] extract(
+			org.omg.CORBA.Any a) {
 		return read(a.create_input_stream());
 	}
 
@@ -27,11 +28,13 @@ abstract public class EndpointInfoListHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = com.sun.corba.se.spi.activation.EndPointInfoHelper.type();
-			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
-			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-					com.sun.corba.se.spi.activation.EndpointInfoListHelper.id(), "EndpointInfoList",
+			__typeCode = com.sun.corba.se.spi.activation.EndPointInfoHelper
+					.type();
+			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
 					__typeCode);
+			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
+					com.sun.corba.se.spi.activation.EndpointInfoListHelper.id(),
+					"EndpointInfoList", __typeCode);
 		}
 		return __typeCode;
 	}
@@ -46,7 +49,8 @@ abstract public class EndpointInfoListHelper {
 		int _len0 = istream.read_long();
 		value = new com.sun.corba.se.spi.activation.EndPointInfo[_len0];
 		for (int _o1 = 0; _o1 < value.length; ++_o1)
-			value[_o1] = com.sun.corba.se.spi.activation.EndPointInfoHelper.read(istream);
+			value[_o1] = com.sun.corba.se.spi.activation.EndPointInfoHelper
+					.read(istream);
 		return value;
 	}
 
@@ -54,7 +58,8 @@ abstract public class EndpointInfoListHelper {
 			com.sun.corba.se.spi.activation.EndPointInfo[] value) {
 		ostream.write_long(value.length);
 		for (int _i0 = 0; _i0 < value.length; ++_i0)
-			com.sun.corba.se.spi.activation.EndPointInfoHelper.write(ostream, value[_i0]);
+			com.sun.corba.se.spi.activation.EndPointInfoHelper.write(ostream,
+					value[_i0]);
 	}
 
 }

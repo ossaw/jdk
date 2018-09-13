@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -67,7 +47,8 @@ public abstract class GenericIdentifiable implements Identifiable {
 
 		GenericIdentifiable encaps = (GenericIdentifiable) obj;
 
-		return (getId() == encaps.getId()) && Arrays.equals(getData(), encaps.getData());
+		return (getId() == encaps.getId()) && Arrays.equals(getData(), encaps
+				.getData());
 	}
 
 	public int hashCode() {

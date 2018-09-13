@@ -32,14 +32,15 @@ abstract public class InvalidNameHelper {
 			synchronized (org.omg.CORBA.TypeCode.class) {
 				if (__typeCode == null) {
 					if (__active) {
-						return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
+						return org.omg.CORBA.ORB.init().create_recursive_tc(
+								_id);
 					}
 					__active = true;
 					org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[0];
 					org.omg.CORBA.TypeCode _tcOf_members0 = null;
 					__typeCode = org.omg.CORBA.ORB.init().create_exception_tc(
-							org.omg.PortableInterceptor.ORBInitInfoPackage.InvalidNameHelper.id(),
-							"InvalidName", _members0);
+							org.omg.PortableInterceptor.ORBInitInfoPackage.InvalidNameHelper
+									.id(), "InvalidName", _members0);
 					__active = false;
 				}
 			}

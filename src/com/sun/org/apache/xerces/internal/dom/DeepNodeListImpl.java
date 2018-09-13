@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -169,7 +166,8 @@ public class DeepNodeListImpl implements NodeList {
 			}
 
 			// Look right to sibling (but not from root!)
-			else if (current != rootNode && null != (next = current.getNextSibling())) {
+			else if (current != rootNode && null != (next = current
+					.getNextSibling())) {
 				current = next;
 			}
 
@@ -177,8 +175,8 @@ public class DeepNodeListImpl implements NodeList {
 			else {
 				next = null;
 				for (; current != rootNode; // Stop when we return to starting
-											// point
-				current = current.getParentNode()) {
+						// point
+						current = current.getParentNode()) {
 
 					next = current.getNextSibling();
 					if (next != null)
@@ -189,11 +187,11 @@ public class DeepNodeListImpl implements NodeList {
 
 			// Have we found an Element with the right tagName?
 			// ("*" matches anything.)
-			if (current != rootNode && current != null
-					&& current.getNodeType() == Node.ELEMENT_NODE) {
+			if (current != rootNode && current != null && current
+					.getNodeType() == Node.ELEMENT_NODE) {
 				if (!enableNS) {
-					if (tagName.equals("*")
-							|| ((ElementImpl) current).getTagName().equals(tagName)) {
+					if (tagName.equals("*") || ((ElementImpl) current)
+							.getTagName().equals(tagName)) {
 						return current;
 					}
 				} else {
@@ -204,19 +202,22 @@ public class DeepNodeListImpl implements NodeList {
 						} else {
 							ElementImpl el = (ElementImpl) current;
 							if ((nsName == null && el.getNamespaceURI() == null)
-									|| (nsName != null && nsName.equals(el.getNamespaceURI()))) {
+									|| (nsName != null && nsName.equals(el
+											.getNamespaceURI()))) {
 								return current;
 							}
 						}
 					} else {
 						ElementImpl el = (ElementImpl) current;
-						if (el.getLocalName() != null && el.getLocalName().equals(tagName)) {
+						if (el.getLocalName() != null && el.getLocalName()
+								.equals(tagName)) {
 							if (nsName != null && nsName.equals("*")) {
 								return current;
 							} else {
-								if ((nsName == null && el.getNamespaceURI() == null)
-										|| (nsName != null
-												&& nsName.equals(el.getNamespaceURI()))) {
+								if ((nsName == null && el
+										.getNamespaceURI() == null)
+										|| (nsName != null && nsName.equals(el
+												.getNamespaceURI()))) {
 									return current;
 								}
 							}

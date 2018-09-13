@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -88,17 +68,21 @@ public abstract class AccessibleContext {
 	private volatile AppContext targetAppContext;
 
 	static {
-		AWTAccessor.setAccessibleContextAccessor(new AWTAccessor.AccessibleContextAccessor() {
-			@Override
-			public void setAppContext(AccessibleContext accessibleContext, AppContext appContext) {
-				accessibleContext.targetAppContext = appContext;
-			}
+		AWTAccessor.setAccessibleContextAccessor(
+				new AWTAccessor.AccessibleContextAccessor() {
+					@Override
+					public void setAppContext(
+							AccessibleContext accessibleContext,
+							AppContext appContext) {
+						accessibleContext.targetAppContext = appContext;
+					}
 
-			@Override
-			public AppContext getAppContext(AccessibleContext accessibleContext) {
-				return accessibleContext.targetAppContext;
-			}
-		});
+					@Override
+					public AppContext getAppContext(
+							AccessibleContext accessibleContext) {
+						return accessibleContext.targetAppContext;
+					}
+				});
 	}
 
 	/**
@@ -425,7 +409,7 @@ public abstract class AccessibleContext {
 	 * property.
 	 *
 	 * @param s
-	 *            the new localized name of the object.
+	 *          the new localized name of the object.
 	 *
 	 * @see #getAccessibleName
 	 * @see #addPropertyChangeListener
@@ -461,7 +445,7 @@ public abstract class AccessibleContext {
 	 * ACCESSIBLE_DESCRIPTION_PROPERTY property.
 	 *
 	 * @param s
-	 *            the new localized description of the object
+	 *          the new localized description of the object
 	 *
 	 * @see #setAccessibleName
 	 * @see #addPropertyChangeListener
@@ -472,7 +456,8 @@ public abstract class AccessibleContext {
 	public void setAccessibleDescription(String s) {
 		String oldDescription = accessibleDescription;
 		accessibleDescription = s;
-		firePropertyChange(ACCESSIBLE_DESCRIPTION_PROPERTY, oldDescription, accessibleDescription);
+		firePropertyChange(ACCESSIBLE_DESCRIPTION_PROPERTY, oldDescription,
+				accessibleDescription);
 	}
 
 	/**
@@ -527,7 +512,7 @@ public abstract class AccessibleContext {
 	 * only be called by the parent of the accessible child.
 	 *
 	 * @param a
-	 *            - Accessible to be set as the parent
+	 *          - Accessible to be set as the parent
 	 */
 	public void setAccessibleParent(Accessible a) {
 		accessibleParent = a;
@@ -559,7 +544,7 @@ public abstract class AccessibleContext {
 	 * on.
 	 *
 	 * @param i
-	 *            zero-based index of child
+	 *          zero-based index of child
 	 * @return the Accessible child of the object
 	 * @see #getAccessibleChildrenCount
 	 */
@@ -573,9 +558,12 @@ public abstract class AccessibleContext {
 	 *         locale, the locale of its parent is returned.
 	 *
 	 * @exception IllegalComponentStateException
-	 *                If the Component does not have its own locale and has not
-	 *                yet been added to a containment hierarchy such that the
-	 *                locale can be determined from the containing parent.
+	 *                                           If the Component does not have
+	 *                                           its own locale and has not
+	 *                                           yet been added to a containment
+	 *                                           hierarchy such that the
+	 *                                           locale can be determined from
+	 *                                           the containing parent.
 	 */
 	public abstract Locale getLocale() throws IllegalComponentStateException;
 
@@ -593,7 +581,7 @@ public abstract class AccessibleContext {
 	 * @see #ACCESSIBLE_VISIBLE_DATA_PROPERTY
 	 *
 	 * @param listener
-	 *            The PropertyChangeListener to be added
+	 *                 The PropertyChangeListener to be added
 	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		if (accessibleChangeSupport == null) {
@@ -607,7 +595,7 @@ public abstract class AccessibleContext {
 	 * PropertyChangeListener that was registered for all properties.
 	 *
 	 * @param listener
-	 *            The PropertyChangeListener to be removed
+	 *                 The PropertyChangeListener to be removed
 	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		if (accessibleChangeSupport != null) {
@@ -726,11 +714,12 @@ public abstract class AccessibleContext {
 	 * an application program.
 	 * 
 	 * @param propertyName
-	 *            The programmatic name of the property that was changed.
+	 *                     The programmatic name of the property that was
+	 *                     changed.
 	 * @param oldValue
-	 *            The old value of the property.
+	 *                     The old value of the property.
 	 * @param newValue
-	 *            The new value of the property.
+	 *                     The new value of the property.
 	 * @see java.beans.PropertyChangeSupport
 	 * @see #addPropertyChangeListener
 	 * @see #removePropertyChangeListener
@@ -742,13 +731,15 @@ public abstract class AccessibleContext {
 	 * @see #ACCESSIBLE_TEXT_PROPERTY
 	 * @see #ACCESSIBLE_VISIBLE_DATA_PROPERTY
 	 */
-	public void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+	public void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
 		if (accessibleChangeSupport != null) {
 			if (newValue instanceof PropertyChangeEvent) {
 				PropertyChangeEvent pce = (PropertyChangeEvent) newValue;
 				accessibleChangeSupport.firePropertyChange(pce);
 			} else {
-				accessibleChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
+				accessibleChangeSupport.firePropertyChange(propertyName,
+						oldValue, newValue);
 			}
 		}
 	}

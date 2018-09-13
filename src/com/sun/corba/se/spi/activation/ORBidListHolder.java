@@ -8,11 +8,11 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ORBidListHolder implements org.omg.CORBA.portable.Streamable {
+public final class ORBidListHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public String value[] = null;
 
-	public ORBidListHolder() {
-	}
+	public ORBidListHolder() {}
 
 	public ORBidListHolder(String[] initialValue) {
 		value = initialValue;

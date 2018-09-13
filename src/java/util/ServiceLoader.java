@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -161,7 +141,8 @@ import java.util.NoSuchElementException;
  * <blockquote>
  * 
  * <pre>
- * private static ServiceLoader&lt;CodecSet&gt; codecSetLoader = ServiceLoader.load(CodecSet.class);
+ * private static ServiceLoader&lt;CodecSet&gt; codecSetLoader = ServiceLoader.load(
+ * 		CodecSet.class);
  * </pre>
  * 
  * </blockquote>
@@ -213,7 +194,7 @@ import java.util.NoSuchElementException;
  * with the HTML error page.
  *
  * @param <S>
- *            The type of the service to be loaded by this loader
+ *        The type of the service to be loaded by this loader
  *
  * @author Mark Reinhold
  * @since 1.6
@@ -257,18 +238,22 @@ public final class ServiceLoader<S> implements Iterable<S> {
 	}
 
 	private ServiceLoader(Class<S> svc, ClassLoader cl) {
-		service = Objects.requireNonNull(svc, "Service interface cannot be null");
+		service = Objects.requireNonNull(svc,
+				"Service interface cannot be null");
 		loader = (cl == null) ? ClassLoader.getSystemClassLoader() : cl;
-		acc = (System.getSecurityManager() != null) ? AccessController.getContext() : null;
+		acc = (System.getSecurityManager() != null) ? AccessController
+				.getContext() : null;
 		reload();
 	}
 
 	private static void fail(Class<?> service, String msg, Throwable cause)
 			throws ServiceConfigurationError {
-		throw new ServiceConfigurationError(service.getName() + ": " + msg, cause);
+		throw new ServiceConfigurationError(service.getName() + ": " + msg,
+				cause);
 	}
 
-	private static void fail(Class<?> service, String msg) throws ServiceConfigurationError {
+	private static void fail(Class<?> service, String msg)
+			throws ServiceConfigurationError {
 		throw new ServiceConfigurationError(service.getName() + ": " + msg);
 	}
 
@@ -280,8 +265,8 @@ public final class ServiceLoader<S> implements Iterable<S> {
 	// Parse a single line from the given configuration file, adding the name
 	// on the line to the names list.
 	//
-	private int parseLine(Class<?> service, URL u, BufferedReader r, int lc, List<String> names)
-			throws IOException, ServiceConfigurationError {
+	private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
+			List<String> names) throws IOException, ServiceConfigurationError {
 		String ln = r.readLine();
 		if (ln == null) {
 			return -1;
@@ -297,7 +282,8 @@ public final class ServiceLoader<S> implements Iterable<S> {
 			int cp = ln.codePointAt(0);
 			if (!Character.isJavaIdentifierStart(cp))
 				fail(service, u, lc, "Illegal provider-class name: " + ln);
-			for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
+			for (int i = Character.charCount(cp); i < n; i += Character
+					.charCount(cp)) {
 				cp = ln.codePointAt(i);
 				if (!Character.isJavaIdentifierPart(cp) && (cp != '.'))
 					fail(service, u, lc, "Illegal provider-class name: " + ln);
@@ -325,7 +311,8 @@ public final class ServiceLoader<S> implements Iterable<S> {
 	// If an I/O error occurs while reading from the given URL, or
 	// if a configuration-file format error is detected
 	//
-	private Iterator<String> parse(Class<?> service, URL u) throws ServiceConfigurationError {
+	private Iterator<String> parse(Class<?> service, URL u)
+			throws ServiceConfigurationError {
 		InputStream in = null;
 		BufferedReader r = null;
 		ArrayList<String> names = new ArrayList<>();
@@ -409,7 +396,8 @@ public final class ServiceLoader<S> implements Iterable<S> {
 				providers.put(cn, p);
 				return p;
 			} catch (Throwable x) {
-				fail(service, "Provider " + cn + " could not be instantiated", x);
+				fail(service, "Provider " + cn + " could not be instantiated",
+						x);
 			}
 			throw new Error(); // This cannot happen
 		}
@@ -498,7 +486,8 @@ public final class ServiceLoader<S> implements Iterable<S> {
 	public Iterator<S> iterator() {
 		return new Iterator<S>() {
 
-			Iterator<Map.Entry<String, S>> knownProviders = providers.entrySet().iterator();
+			Iterator<Map.Entry<String, S>> knownProviders = providers.entrySet()
+					.iterator();
 
 			public boolean hasNext() {
 				if (knownProviders.hasNext())
@@ -522,21 +511,23 @@ public final class ServiceLoader<S> implements Iterable<S> {
 	/**
 	 * Creates a new service loader for the given service type and class loader.
 	 *
-	 * @param <S>
-	 *            the class of the service type
+	 * @param         <S>
+	 *                the class of the service type
 	 *
 	 * @param service
-	 *            The interface or abstract class representing the service
+	 *                The interface or abstract class representing the service
 	 *
 	 * @param loader
-	 *            The class loader to be used to load provider-configuration
-	 *            files and provider classes, or <tt>null</tt> if the system
-	 *            class loader (or, failing that, the bootstrap class loader) is
-	 *            to be used
+	 *                The class loader to be used to load provider-configuration
+	 *                files and provider classes, or <tt>null</tt> if the system
+	 *                class loader (or, failing that, the bootstrap class
+	 *                loader) is
+	 *                to be used
 	 *
 	 * @return A new service loader
 	 */
-	public static <S> ServiceLoader<S> load(Class<S> service, ClassLoader loader) {
+	public static <S> ServiceLoader<S> load(Class<S> service,
+			ClassLoader loader) {
 		return new ServiceLoader<>(service, loader);
 	}
 
@@ -567,11 +558,11 @@ public final class ServiceLoader<S> implements Iterable<S> {
 	 * 
 	 * </blockquote>
 	 *
-	 * @param <S>
-	 *            the class of the service type
+	 * @param         <S>
+	 *                the class of the service type
 	 *
 	 * @param service
-	 *            The interface or abstract class representing the service
+	 *                The interface or abstract class representing the service
 	 *
 	 * @return A new service loader
 	 */
@@ -607,11 +598,11 @@ public final class ServiceLoader<S> implements Iterable<S> {
 	 * have been installed into the current Java virtual machine; providers on
 	 * the application's class path will be ignored.
 	 *
-	 * @param <S>
-	 *            the class of the service type
+	 * @param         <S>
+	 *                the class of the service type
 	 *
 	 * @param service
-	 *            The interface or abstract class representing the service
+	 *                The interface or abstract class representing the service
 	 *
 	 * @return A new service loader
 	 */

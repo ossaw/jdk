@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -58,9 +38,9 @@ public class SimpleJavaFileObject implements JavaFileObject {
 	 * URI.
 	 *
 	 * @param uri
-	 *            the URI for this file object
+	 *             the URI for this file object
 	 * @param kind
-	 *            the kind of this file object
+	 *             the kind of this file object
 	 */
 	protected SimpleJavaFileObject(URI uri, Kind kind) {
 		// null checks
@@ -104,14 +84,14 @@ public class SimpleJavaFileObject implements JavaFileObject {
 	 * obeyed.
 	 *
 	 * @param ignoreEncodingErrors
-	 *            {@inheritDoc}
+	 *                             {@inheritDoc}
 	 * @return a Reader wrapping the result of getCharContent
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public Reader openReader(boolean ignoreEncodingErrors) throws IOException {
 		CharSequence charContent = getCharContent(ignoreEncodingErrors);
@@ -130,7 +110,8 @@ public class SimpleJavaFileObject implements JavaFileObject {
 	 * {@linkplain UnsupportedOperationException}. Subclasses can change this
 	 * behavior as long as the contract of {@link FileObject} is obeyed.
 	 */
-	public CharSequence getCharContent(boolean ignoreEncodingErrors) throws IOException {
+	public CharSequence getCharContent(boolean ignoreEncodingErrors)
+			throws IOException {
 		throw new UnsupportedOperationException();
 	}
 
@@ -140,11 +121,11 @@ public class SimpleJavaFileObject implements JavaFileObject {
 	 *
 	 * @return a Writer wrapping the result of openOutputStream
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public Writer openWriter() throws IOException {
 		return new OutputStreamWriter(openOutputStream());

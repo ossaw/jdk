@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -80,8 +60,8 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterStateReasons extends HashMap<PrinterStateReason, Severity>
-		implements PrintServiceAttribute {
+public final class PrinterStateReasons extends
+		HashMap<PrinterStateReason, Severity> implements PrintServiceAttribute {
 
 	private static final long serialVersionUID = -3731791085163619457L;
 
@@ -98,10 +78,11 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 	 * map has the given initial capacity and the default load factor.
 	 *
 	 * @param initialCapacity
-	 *            Initial capacity.
+	 *                        Initial capacity.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero.
+	 *                                  if the initial capacity is less than
+	 *                                  zero.
 	 */
 	public PrinterStateReasons(int initialCapacity) {
 		super(initialCapacity);
@@ -112,12 +93,13 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 	 * hash map has the given initial capacity and load factor.
 	 *
 	 * @param initialCapacity
-	 *            Initial capacity.
+	 *                        Initial capacity.
 	 * @param loadFactor
-	 *            Load factor.
+	 *                        Load factor.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero.
+	 *                                  if the initial capacity is less than
+	 *                                  zero.
 	 */
 	public PrinterStateReasons(int initialCapacity, float loadFactor) {
 		super(initialCapacity, loadFactor);
@@ -134,13 +116,19 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 	 *            Map to copy.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>map</CODE> is null
-	 *                or if any key or value in <CODE>map</CODE> is null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>map</CODE> is null
+	 *                                 or if any key or value in
+	 *                                 <CODE>map</CODE> is null.
 	 * @throws ClassCastException
-	 *             (unchecked exception) Thrown if any key in <CODE>map</CODE>
-	 *             is not an instance of class {@link PrinterStateReason
-	 *             PrinterStateReason} or if any value in <CODE>map</CODE> is
-	 *             not an instance of class {@link Severity Severity}.
+	 *                            (unchecked exception) Thrown if any key in
+	 *                            <CODE>map</CODE>
+	 *                            is not an instance of class
+	 *                            {@link PrinterStateReason
+	 *                            PrinterStateReason} or if any value in
+	 *                            <CODE>map</CODE> is
+	 *                            not an instance of class {@link Severity
+	 *                            Severity}.
 	 */
 	public PrinterStateReasons(Map<PrinterStateReason, Severity> map) {
 		this();
@@ -155,24 +143,28 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 	 * printer state reason, the old value is replaced.
 	 *
 	 * @param reason
-	 *            Printer state reason. This must be an instance of class
-	 *            {@link PrinterStateReason PrinterStateReason}.
+	 *                 Printer state reason. This must be an instance of class
+	 *                 {@link PrinterStateReason PrinterStateReason}.
 	 * @param severity
-	 *            Severity of the printer state reason. This must be an instance
-	 *            of class {@link Severity Severity}.
+	 *                 Severity of the printer state reason. This must be an
+	 *                 instance
+	 *                 of class {@link Severity Severity}.
 	 *
 	 * @return Previous severity associated with the given printer state reason,
 	 *         or <tt>null</tt> if the given printer state reason was not
 	 *         present.
 	 *
 	 * @throws NullPointerException
-	 *             (unchecked exception) Thrown if <CODE>reason</CODE> is null
-	 *             or <CODE>severity</CODE> is null.
+	 *                              (unchecked exception) Thrown if
+	 *                              <CODE>reason</CODE> is null
+	 *                              or <CODE>severity</CODE> is null.
 	 * @throws ClassCastException
-	 *             (unchecked exception) Thrown if <CODE>reason</CODE> is not an
-	 *             instance of class {@link PrinterStateReason
-	 *             PrinterStateReason} or if <CODE>severity</CODE> is not an
-	 *             instance of class {@link Severity Severity}.
+	 *                              (unchecked exception) Thrown if
+	 *                              <CODE>reason</CODE> is not an
+	 *                              instance of class {@link PrinterStateReason
+	 *                              PrinterStateReason} or if
+	 *                              <CODE>severity</CODE> is not an
+	 *                              instance of class {@link Severity Severity}.
 	 * @since 1.5
 	 */
 	public Severity put(PrinterStateReason reason, Severity severity) {
@@ -224,15 +216,16 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 	 * removal. The set view's iterator does not support element removal.
 	 *
 	 * @param severity
-	 *            Severity level.
+	 *                 Severity level.
 	 *
 	 * @return Set view of the individual {@link PrinterStateReason
 	 *         PrinterStateReason} attributes at the given {@link Severity
 	 *         Severity} level.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>severity</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>severity</CODE> is
+	 *                                 null.
 	 */
 	public Set<PrinterStateReason> printerStateReasonSet(Severity severity) {
 		if (severity == null) {
@@ -241,7 +234,8 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 		return new PrinterStateReasonSet(severity, entrySet());
 	}
 
-	private class PrinterStateReasonSet extends AbstractSet<PrinterStateReason> {
+	private class PrinterStateReasonSet extends
+			AbstractSet<PrinterStateReason> {
 		private Severity mySeverity;
 		private Set myEntrySet;
 
@@ -261,7 +255,8 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 		}
 
 		public Iterator iterator() {
-			return new PrinterStateReasonSetIterator(mySeverity, myEntrySet.iterator());
+			return new PrinterStateReasonSetIterator(mySeverity, myEntrySet
+					.iterator());
 		}
 	}
 
@@ -270,7 +265,8 @@ public final class PrinterStateReasons extends HashMap<PrinterStateReason, Sever
 		private Iterator myIterator;
 		private Map.Entry myEntry;
 
-		public PrinterStateReasonSetIterator(Severity severity, Iterator iterator) {
+		public PrinterStateReasonSetIterator(Severity severity,
+				Iterator iterator) {
 			mySeverity = severity;
 			myIterator = iterator;
 			goToNext();

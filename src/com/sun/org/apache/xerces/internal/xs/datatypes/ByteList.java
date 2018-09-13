@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +43,8 @@ public interface ByteList extends List {
 	 * list.
 	 * 
 	 * @param item
-	 *            <code>byte</code> whose presence in this list is to be tested.
+	 *             <code>byte</code> whose presence in this list is to be
+	 *             tested.
 	 * @return True if this list contains the <code>byte</code>
 	 *         <code>item</code>.
 	 */
@@ -57,13 +55,15 @@ public interface ByteList extends List {
 	 * at 0.
 	 * 
 	 * @param index
-	 *            index into the collection.
+	 *              index into the collection.
 	 * @return The <code>byte</code> at the <code>index</code>th position in the
 	 *         <code>ByteList</code>.
 	 * @exception XSException
-	 *                INDEX_SIZE_ERR: if <code>index</code> is greater than or
-	 *                equal to the number of objects in the list or less than
-	 *                zero.
+	 *                        INDEX_SIZE_ERR: if <code>index</code> is greater
+	 *                        than or
+	 *                        equal to the number of objects in the list or less
+	 *                        than
+	 *                        zero.
 	 */
 	public byte item(int index) throws XSException;
 

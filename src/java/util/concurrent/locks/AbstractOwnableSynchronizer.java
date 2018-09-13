@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -46,7 +21,8 @@ package java.util.concurrent.locks;
  * @since 1.6
  * @author Doug Lea
  */
-public abstract class AbstractOwnableSynchronizer implements java.io.Serializable {
+public abstract class AbstractOwnableSynchronizer implements
+		java.io.Serializable {
 
 	/** Use serial ID even though all fields transient. */
 	private static final long serialVersionUID = 3737899427754241961L;
@@ -54,8 +30,7 @@ public abstract class AbstractOwnableSynchronizer implements java.io.Serializabl
 	/**
 	 * Empty constructor for use by subclasses.
 	 */
-	protected AbstractOwnableSynchronizer() {
-	}
+	protected AbstractOwnableSynchronizer() {}
 
 	/**
 	 * The current owner of exclusive mode synchronization.
@@ -68,7 +43,7 @@ public abstract class AbstractOwnableSynchronizer implements java.io.Serializabl
 	 * otherwise impose any synchronization or {@code volatile} field accesses.
 	 * 
 	 * @param thread
-	 *            the owner thread
+	 *               the owner thread
 	 */
 	protected final void setExclusiveOwnerThread(Thread thread) {
 		exclusiveOwnerThread = thread;

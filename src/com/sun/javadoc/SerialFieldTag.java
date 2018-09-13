@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.javadoc;
@@ -83,8 +63,9 @@ public interface SerialFieldTag extends Tag, Comparable<Object> {
 	 * @return a negative integer, zero, or a positive integer as this Object is
 	 *         less than, equal to, or greater than the given Object.
 	 * @exception ClassCastException
-	 *                the specified Object's type prevents it from being
-	 *                compared to this Object.
+	 *                               the specified Object's type prevents it
+	 *                               from being
+	 *                               compared to this Object.
 	 * @since 1.2
 	 */
 	public int compareTo(Object obj);

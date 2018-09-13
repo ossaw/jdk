@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orb;
@@ -64,7 +44,8 @@ public abstract class DataCollectorBase implements DataCollector {
 	private Properties originalProps;
 	private Properties resultProps;
 
-	public DataCollectorBase(Properties props, String localHostName, String configurationHostName) {
+	public DataCollectorBase(Properties props, String localHostName,
+			String configurationHostName) {
 		// XXX This is fully initialized here. So do we ever want to
 		// generalize this (or perhaps this is the wrong place for this?)
 		URLPropertyNames = new HashSet();
@@ -92,7 +73,8 @@ public abstract class DataCollectorBase implements DataCollector {
 
 	public boolean initialHostIsLocal() {
 		checkSetParserCalled();
-		return localHostName.equals(resultProps.getProperty(ORBConstants.INITIAL_HOST_PROPERTY));
+		return localHostName.equals(resultProps.getProperty(
+				ORBConstants.INITIAL_HOST_PROPERTY));
 	}
 
 	public void setParser(PropertyParser parser) {
@@ -132,15 +114,19 @@ public abstract class DataCollectorBase implements DataCollector {
 	//////////////////////////////////////////////////////////
 
 	protected void checkPropertyDefaults() {
-		String host = resultProps.getProperty(ORBConstants.INITIAL_HOST_PROPERTY);
+		String host = resultProps.getProperty(
+				ORBConstants.INITIAL_HOST_PROPERTY);
 
 		if ((host == null) || (host.equals("")))
-			setProperty(ORBConstants.INITIAL_HOST_PROPERTY, configurationHostName);
+			setProperty(ORBConstants.INITIAL_HOST_PROPERTY,
+					configurationHostName);
 
-		String serverHost = resultProps.getProperty(ORBConstants.SERVER_HOST_PROPERTY);
+		String serverHost = resultProps.getProperty(
+				ORBConstants.SERVER_HOST_PROPERTY);
 
-		if (serverHost == null || serverHost.equals("") || serverHost.equals("0.0.0.0")
-				|| serverHost.equals("::") || serverHost.toLowerCase().equals("::ffff:0.0.0.0")) {
+		if (serverHost == null || serverHost.equals("") || serverHost.equals(
+				"0.0.0.0") || serverHost.equals("::") || serverHost
+						.toLowerCase().equals("::ffff:0.0.0.0")) {
 			setProperty(ORBConstants.SERVER_HOST_PROPERTY, localHostName);
 			setProperty(ORBConstants.LISTEN_ON_ALL_INTERFACES,
 					ORBConstants.LISTEN_ON_ALL_INTERFACES);
@@ -226,7 +212,8 @@ public abstract class DataCollectorBase implements DataCollector {
 
 		findPropertiesByName(propertyNames.iterator(), callback);
 
-		findPropertiesByPrefix(propertyPrefixes, makeIterator(props.propertyNames()), callback);
+		findPropertiesByPrefix(propertyPrefixes, makeIterator(props
+				.propertyNames()), callback);
 	}
 
 	protected void findPropertiesFromFile() {
@@ -318,7 +305,8 @@ public abstract class DataCollectorBase implements DataCollector {
 	// For each prefix in names, get the corresponding property
 	// value from the callback, and store the name/value pair in
 	// the result.
-	private void findPropertiesByName(Iterator names, PropertyCallback getProperty) {
+	private void findPropertiesByName(Iterator names,
+			PropertyCallback getProperty) {
 		while (names.hasNext()) {
 			String name = (String) (names.next());
 			String value = getProperty.get(name);
@@ -328,7 +316,8 @@ public abstract class DataCollectorBase implements DataCollector {
 	}
 
 	private static String getSystemProperty(final String name) {
-		return (String) AccessController.doPrivileged(new GetPropertyAction(name));
+		return (String) AccessController.doPrivileged(new GetPropertyAction(
+				name));
 	}
 
 	// Map command-line arguments to ORB properties.
@@ -363,8 +352,8 @@ public abstract class DataCollectorBase implements DataCollector {
 	private static Iterator getSystemPropertyNames() {
 		// This will not throw a SecurityException because this
 		// class was loaded from rt.jar using the bootstrap classloader.
-		Enumeration enumeration = (Enumeration) AccessController
-				.doPrivileged(new PrivilegedAction() {
+		Enumeration enumeration = (Enumeration) AccessController.doPrivileged(
+				new PrivilegedAction() {
 					public java.lang.Object run() {
 						return System.getProperties().propertyNames();
 					}
@@ -397,7 +386,8 @@ public abstract class DataCollectorBase implements DataCollector {
 		Properties defaults = new Properties();
 
 		String javaHome = getSystemProperty("java.home");
-		String fileName = javaHome + File.separator + "lib" + File.separator + "orb.properties";
+		String fileName = javaHome + File.separator + "lib" + File.separator
+				+ "orb.properties";
 
 		getPropertiesFromFile(defaults, fileName);
 
@@ -411,10 +401,10 @@ public abstract class DataCollectorBase implements DataCollector {
 	}
 
 	private boolean hasCORBAPrefix(String prefix) {
-		return prefix.startsWith(ORBConstants.ORG_OMG_PREFIX)
-				|| prefix.startsWith(ORBConstants.SUN_PREFIX)
-				|| prefix.startsWith(ORBConstants.SUN_LC_PREFIX)
-				|| prefix.startsWith(ORBConstants.SUN_LC_VERSION_PREFIX);
+		return prefix.startsWith(ORBConstants.ORG_OMG_PREFIX) || prefix
+				.startsWith(ORBConstants.SUN_PREFIX) || prefix.startsWith(
+						ORBConstants.SUN_LC_PREFIX) || prefix.startsWith(
+								ORBConstants.SUN_LC_VERSION_PREFIX);
 	}
 
 	// Return only those element of prefixes for which hasCORBAPrefix

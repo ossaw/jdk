@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -65,23 +45,27 @@ public interface NetworkChannel extends Channel {
 	 * assigned automatically.
 	 *
 	 * @param local
-	 *            The address to bind the socket, or {@code null} to bind the
-	 *            socket to an automatically assigned socket address
+	 *              The address to bind the socket, or {@code null} to bind the
+	 *              socket to an automatically assigned socket address
 	 *
 	 * @return This channel
 	 *
 	 * @throws AlreadyBoundException
-	 *             If the socket is already bound
+	 *                                         If the socket is already bound
 	 * @throws UnsupportedAddressTypeException
-	 *             If the type of the given address is not supported
+	 *                                         If the type of the given address
+	 *                                         is not supported
 	 * @throws ClosedChannelException
-	 *             If the channel is closed
+	 *                                         If the channel is closed
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                         If some other I/O error occurs
 	 * @throws SecurityException
-	 *             If a security manager is installed and it denies an
-	 *             unspecified permission. An implementation of this interface
-	 *             should specify any required permissions.
+	 *                                         If a security manager is
+	 *                                         installed and it denies an
+	 *                                         unspecified permission. An
+	 *                                         implementation of this interface
+	 *                                         should specify any required
+	 *                                         permissions.
 	 *
 	 * @see #getLocalAddress
 	 */
@@ -99,55 +83,60 @@ public interface NetworkChannel extends Channel {
 	 *         if the channel's socket is not bound
 	 *
 	 * @throws ClosedChannelException
-	 *             If the channel is closed
+	 *                                If the channel is closed
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                If an I/O error occurs
 	 */
 	SocketAddress getLocalAddress() throws IOException;
 
 	/**
 	 * Sets the value of a socket option.
 	 *
-	 * @param <T>
-	 *            The type of the socket option value
+	 * @param       <T>
+	 *              The type of the socket option value
 	 * @param name
-	 *            The socket option
+	 *              The socket option
 	 * @param value
-	 *            The value of the socket option. A value of {@code null} may be
-	 *            a valid value for some socket options.
+	 *              The value of the socket option. A value of {@code null} may
+	 *              be
+	 *              a valid value for some socket options.
 	 *
 	 * @return This channel
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the socket option is not supported by this channel
+	 *                                       If the socket option is not
+	 *                                       supported by this channel
 	 * @throws IllegalArgumentException
-	 *             If the value is not a valid value for this socket option
+	 *                                       If the value is not a valid value
+	 *                                       for this socket option
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                       If this channel is closed
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 *
 	 * @see java.net.StandardSocketOptions
 	 */
-	<T> NetworkChannel setOption(SocketOption<T> name, T value) throws IOException;
+	<T> NetworkChannel setOption(SocketOption<T> name, T value)
+			throws IOException;
 
 	/**
 	 * Returns the value of a socket option.
 	 *
-	 * @param <T>
-	 *            The type of the socket option value
+	 * @param      <T>
+	 *             The type of the socket option value
 	 * @param name
-	 *            The socket option
+	 *             The socket option
 	 *
 	 * @return The value of the socket option. A value of {@code null} may be a
 	 *         valid value for some socket options.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If the socket option is not supported by this channel
+	 *                                       If the socket option is not
+	 *                                       supported by this channel
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                       If this channel is closed
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 *
 	 * @see java.net.StandardSocketOptions
 	 */

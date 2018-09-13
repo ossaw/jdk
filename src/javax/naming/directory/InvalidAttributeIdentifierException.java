@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -46,8 +26,9 @@ public class InvalidAttributeIdentifierException extends NamingException {
 	 * the explanation supplied. All other fields set to null.
 	 * 
 	 * @param explanation
-	 *            Possibly null string containing additional detail about this
-	 *            exception.
+	 *                    Possibly null string containing additional detail
+	 *                    about this
+	 *                    exception.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public InvalidAttributeIdentifierException(String explanation) {

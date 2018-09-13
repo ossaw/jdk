@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,7 +49,8 @@ final class AttributeValueTemplate extends AttributeValue {
 	final static int IN_EXPR_DQUOTES = 3;
 	final static String DELIMITER = "\uFFFE"; // A Unicode nonchar
 
-	public AttributeValueTemplate(String value, Parser parser, SyntaxTreeNode parent) {
+	public AttributeValueTemplate(String value, Parser parser,
+			SyntaxTreeNode parent) {
 		setParent(parent);
 		setParser(parser);
 
@@ -92,77 +91,80 @@ final class AttributeValueTemplate extends AttributeValue {
 
 			if (t.length() == 1) {
 				switch (t.charAt(0)) {
-				case '{':
-					switch (state) {
-					case OUT_EXPR:
-						lookahead = tokenizer.nextToken();
-						if (lookahead.equals("{")) {
-							buffer.append(lookahead); // replace {{ by {
-							lookahead = null;
-						} else {
-							buffer.append(DELIMITER);
-							state = IN_EXPR;
+					case '{':
+						switch (state) {
+							case OUT_EXPR:
+								lookahead = tokenizer.nextToken();
+								if (lookahead.equals("{")) {
+									buffer.append(lookahead); // replace {{ by {
+									lookahead = null;
+								} else {
+									buffer.append(DELIMITER);
+									state = IN_EXPR;
+								}
+								break;
+							case IN_EXPR:
+							case IN_EXPR_SQUOTES:
+							case IN_EXPR_DQUOTES:
+								reportError(getParent(), parser,
+										ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
+								break;
 						}
 						break;
-					case IN_EXPR:
-					case IN_EXPR_SQUOTES:
-					case IN_EXPR_DQUOTES:
-						reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
-						break;
-					}
-					break;
-				case '}':
-					switch (state) {
-					case OUT_EXPR:
-						lookahead = tokenizer.nextToken();
-						if (lookahead.equals("}")) {
-							buffer.append(lookahead); // replace }} by }
-							lookahead = null;
-						} else {
-							reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
+					case '}':
+						switch (state) {
+							case OUT_EXPR:
+								lookahead = tokenizer.nextToken();
+								if (lookahead.equals("}")) {
+									buffer.append(lookahead); // replace }} by }
+									lookahead = null;
+								} else {
+									reportError(getParent(), parser,
+											ErrorMsg.ATTR_VAL_TEMPLATE_ERR,
+											text);
+								}
+								break;
+							case IN_EXPR:
+								buffer.append(DELIMITER);
+								state = OUT_EXPR;
+								break;
+							case IN_EXPR_SQUOTES:
+							case IN_EXPR_DQUOTES:
+								buffer.append(t);
+								break;
 						}
 						break;
-					case IN_EXPR:
-						buffer.append(DELIMITER);
-						state = OUT_EXPR;
-						break;
-					case IN_EXPR_SQUOTES:
-					case IN_EXPR_DQUOTES:
+					case '\'':
+						switch (state) {
+							case IN_EXPR:
+								state = IN_EXPR_SQUOTES;
+								break;
+							case IN_EXPR_SQUOTES:
+								state = IN_EXPR;
+								break;
+							case OUT_EXPR:
+							case IN_EXPR_DQUOTES:
+								break;
+						}
 						buffer.append(t);
 						break;
-					}
-					break;
-				case '\'':
-					switch (state) {
-					case IN_EXPR:
-						state = IN_EXPR_SQUOTES;
+					case '\"':
+						switch (state) {
+							case IN_EXPR:
+								state = IN_EXPR_DQUOTES;
+								break;
+							case IN_EXPR_DQUOTES:
+								state = IN_EXPR;
+								break;
+							case OUT_EXPR:
+							case IN_EXPR_SQUOTES:
+								break;
+						}
+						buffer.append(t);
 						break;
-					case IN_EXPR_SQUOTES:
-						state = IN_EXPR;
+					default:
+						buffer.append(t);
 						break;
-					case OUT_EXPR:
-					case IN_EXPR_DQUOTES:
-						break;
-					}
-					buffer.append(t);
-					break;
-				case '\"':
-					switch (state) {
-					case IN_EXPR:
-						state = IN_EXPR_DQUOTES;
-						break;
-					case IN_EXPR_DQUOTES:
-						state = IN_EXPR;
-						break;
-					case OUT_EXPR:
-					case IN_EXPR_SQUOTES:
-						break;
-					}
-					buffer.append(t);
-					break;
-				default:
-					buffer.append(t);
-					break;
 				}
 			} else {
 				buffer.append(t);
@@ -171,7 +173,8 @@ final class AttributeValueTemplate extends AttributeValue {
 
 		// Must be in OUT_EXPR at the end of parsing
 		if (state != OUT_EXPR) {
-			reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR, text);
+			reportError(getParent(), parser, ErrorMsg.ATTR_VAL_TEMPLATE_ERR,
+					text);
 		}
 
 		/*
@@ -222,12 +225,14 @@ final class AttributeValueTemplate extends AttributeValue {
 		} else {
 			final ConstantPoolGen cpg = classGen.getConstantPool();
 			final InstructionList il = methodGen.getInstructionList();
-			final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS, "<init>", "()V");
-			final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(STRING_BUFFER_CLASS,
-					"append", "(" + STRING_SIG + ")" + STRING_BUFFER_SIG));
+			final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS,
+					"<init>", "()V");
+			final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(
+					STRING_BUFFER_CLASS, "append", "(" + STRING_SIG + ")"
+							+ STRING_BUFFER_SIG));
 
-			final int toString = cpg.addMethodref(STRING_BUFFER_CLASS, "toString",
-					"()" + STRING_SIG);
+			final int toString = cpg.addMethodref(STRING_BUFFER_CLASS,
+					"toString", "()" + STRING_SIG);
 			il.append(new NEW(cpg.addClass(STRING_BUFFER_CLASS)));
 			il.append(DUP);
 			il.append(new INVOKESPECIAL(initBuffer));

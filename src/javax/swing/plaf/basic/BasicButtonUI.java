@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -67,7 +47,8 @@ public class BasicButtonUI extends ButtonUI {
 	// ********************************
 	public static ComponentUI createUI(JComponent c) {
 		AppContext appContext = AppContext.getAppContext();
-		BasicButtonUI buttonUI = (BasicButtonUI) appContext.get(BASIC_BUTTON_UI_KEY);
+		BasicButtonUI buttonUI = (BasicButtonUI) appContext.get(
+				BASIC_BUTTON_UI_KEY);
 		if (buttonUI == null) {
 			buttonUI = new BasicButtonUI();
 			appContext.put(BASIC_BUTTON_UI_KEY, buttonUI);
@@ -106,7 +87,8 @@ public class BasicButtonUI extends ButtonUI {
 			b.setMargin(UIManager.getInsets(pp + "margin"));
 		}
 
-		LookAndFeel.installColorsAndFont(b, pp + "background", pp + "foreground", pp + "font");
+		LookAndFeel.installColorsAndFont(b, pp + "background", pp
+				+ "foreground", pp + "font");
 		LookAndFeel.installBorder(b, pp + "border");
 
 		Object rollover = UIManager.get(pp + "rollover");
@@ -197,7 +179,8 @@ public class BasicButtonUI extends ButtonUI {
 		AbstractButton b = (AbstractButton) c;
 		ButtonModel model = b.getModel();
 
-		String text = layout(b, SwingUtilities2.getFontMetrics(b, g), b.getWidth(), b.getHeight());
+		String text = layout(b, SwingUtilities2.getFontMetrics(b, g), b
+				.getWidth(), b.getHeight());
 
 		clearTextShiftOffset();
 
@@ -281,8 +264,8 @@ public class BasicButtonUI extends ButtonUI {
 		}
 
 		if (model.isPressed() && model.isArmed()) {
-			icon.paintIcon(c, g, iconRect.x + getTextShiftOffset(),
-					iconRect.y + getTextShiftOffset());
+			icon.paintIcon(c, g, iconRect.x + getTextShiftOffset(), iconRect.y
+					+ getTextShiftOffset());
 		} else {
 			icon.paintIcon(c, g, iconRect.x, iconRect.y);
 		}
@@ -293,7 +276,8 @@ public class BasicButtonUI extends ButtonUI {
 	 * As of Java 2 platform v 1.4 this method should not be used or overriden.
 	 * Use the paintText method which takes the AbstractButton argument.
 	 */
-	protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
+	protected void paintText(Graphics g, JComponent c, Rectangle textRect,
+			String text) {
 		AbstractButton b = (AbstractButton) c;
 		ButtonModel model = b.getModel();
 		FontMetrics fm = SwingUtilities2.getFontMetrics(c, g);
@@ -304,16 +288,16 @@ public class BasicButtonUI extends ButtonUI {
 			/*** paint the text normally */
 			g.setColor(b.getForeground());
 			SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
-					textRect.x + getTextShiftOffset(),
-					textRect.y + fm.getAscent() + getTextShiftOffset());
+					textRect.x + getTextShiftOffset(), textRect.y + fm
+							.getAscent() + getTextShiftOffset());
 		} else {
 			/*** paint the text disabled ***/
 			g.setColor(b.getBackground().brighter());
-			SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex, textRect.x,
-					textRect.y + fm.getAscent());
+			SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
+					textRect.x, textRect.y + fm.getAscent());
 			g.setColor(b.getBackground().darker());
-			SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex, textRect.x - 1,
-					textRect.y + fm.getAscent() - 1);
+			SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
+					textRect.x - 1, textRect.y + fm.getAscent() - 1);
 		}
 	}
 
@@ -322,27 +306,26 @@ public class BasicButtonUI extends ButtonUI {
 	 * <p>
 	 * 
 	 * @param g
-	 *            Graphics context
+	 *                 Graphics context
 	 * @param b
-	 *            Current button to render
+	 *                 Current button to render
 	 * @param textRect
-	 *            Bounding rectangle to render the text.
+	 *                 Bounding rectangle to render the text.
 	 * @param text
-	 *            String to render
+	 *                 String to render
 	 * @since 1.4
 	 */
-	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
+	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect,
+			String text) {
 		paintText(g, (JComponent) b, textRect, text);
 	}
 
 	// Method signature defined here overriden in subclasses.
 	// Perhaps this class should be abstract?
-	protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
-			Rectangle iconRect) {
-	}
+	protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
+			Rectangle textRect, Rectangle iconRect) {}
 
-	protected void paintButtonPressed(Graphics g, AbstractButton b) {
-	}
+	protected void paintButtonPressed(Graphics g, AbstractButton b) {}
 
 	protected void clearTextShiftOffset() {
 		this.shiftOffset = 0;
@@ -363,7 +346,8 @@ public class BasicButtonUI extends ButtonUI {
 		Dimension d = getPreferredSize(c);
 		View v = (View) c.getClientProperty(BasicHTML.propertyKey);
 		if (v != null) {
-			d.width -= v.getPreferredSpan(View.X_AXIS) - v.getMinimumSpan(View.X_AXIS);
+			d.width -= v.getPreferredSpan(View.X_AXIS) - v.getMinimumSpan(
+					View.X_AXIS);
 		}
 		return d;
 	}
@@ -377,7 +361,8 @@ public class BasicButtonUI extends ButtonUI {
 		Dimension d = getPreferredSize(c);
 		View v = (View) c.getClientProperty(BasicHTML.propertyKey);
 		if (v != null) {
-			d.width += v.getMaximumSpan(View.X_AXIS) - v.getPreferredSpan(View.X_AXIS);
+			d.width += v.getMaximumSpan(View.X_AXIS) - v.getPreferredSpan(
+					View.X_AXIS);
 		}
 		return d;
 	}
@@ -386,9 +371,9 @@ public class BasicButtonUI extends ButtonUI {
 	 * Returns the baseline.
 	 *
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @see javax.swing.JComponent#getBaseline(int, int)
 	 * @since 1.6
 	 */
@@ -401,8 +386,8 @@ public class BasicButtonUI extends ButtonUI {
 		}
 		FontMetrics fm = b.getFontMetrics(b.getFont());
 		layout(b, fm, width, height);
-		return BasicHTML.getBaseline(b, textRect.y, fm.getAscent(), textRect.width,
-				textRect.height);
+		return BasicHTML.getBaseline(b, textRect.y, fm.getAscent(),
+				textRect.width, textRect.height);
 	}
 
 	/**
@@ -410,27 +395,29 @@ public class BasicButtonUI extends ButtonUI {
 	 * the size changes.
 	 *
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @see javax.swing.JComponent#getBaseline(int, int)
 	 * @since 1.6
 	 */
-	public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
+	public Component.BaselineResizeBehavior getBaselineResizeBehavior(
+			JComponent c) {
 		super.getBaselineResizeBehavior(c);
 		if (c.getClientProperty(BasicHTML.propertyKey) != null) {
 			return Component.BaselineResizeBehavior.OTHER;
 		}
 		switch (((AbstractButton) c).getVerticalAlignment()) {
-		case AbstractButton.TOP:
-			return Component.BaselineResizeBehavior.CONSTANT_ASCENT;
-		case AbstractButton.BOTTOM:
-			return Component.BaselineResizeBehavior.CONSTANT_DESCENT;
-		case AbstractButton.CENTER:
-			return Component.BaselineResizeBehavior.CENTER_OFFSET;
+			case AbstractButton.TOP:
+				return Component.BaselineResizeBehavior.CONSTANT_ASCENT;
+			case AbstractButton.BOTTOM:
+				return Component.BaselineResizeBehavior.CONSTANT_DESCENT;
+			case AbstractButton.CENTER:
+				return Component.BaselineResizeBehavior.CENTER_OFFSET;
 		}
 		return Component.BaselineResizeBehavior.OTHER;
 	}
 
-	private String layout(AbstractButton b, FontMetrics fm, int width, int height) {
+	private String layout(AbstractButton b, FontMetrics fm, int width,
+			int height) {
 		Insets i = b.getInsets();
 		viewRect.x = i.left;
 		viewRect.y = i.top;
@@ -441,10 +428,11 @@ public class BasicButtonUI extends ButtonUI {
 		iconRect.x = iconRect.y = iconRect.width = iconRect.height = 0;
 
 		// layout the text and icon
-		return SwingUtilities.layoutCompoundLabel(b, fm, b.getText(), b.getIcon(),
-				b.getVerticalAlignment(), b.getHorizontalAlignment(), b.getVerticalTextPosition(),
-				b.getHorizontalTextPosition(), viewRect, iconRect, textRect,
-				b.getText() == null ? 0 : b.getIconTextGap());
+		return SwingUtilities.layoutCompoundLabel(b, fm, b.getText(), b
+				.getIcon(), b.getVerticalAlignment(), b
+						.getHorizontalAlignment(), b.getVerticalTextPosition(),
+				b.getHorizontalTextPosition(), viewRect, iconRect, textRect, b
+						.getText() == null ? 0 : b.getIconTextGap());
 	}
 
 	/**

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -58,7 +38,7 @@ public interface AccessibleStreamable {
 	 * Returns an InputStream for a DataFlavor
 	 *
 	 * @param flavor
-	 *            the DataFlavor
+	 *               the DataFlavor
 	 * @return an ImputStream if an ImputStream for this DataFlavor exists.
 	 *         Otherwise, null is returned.
 	 */

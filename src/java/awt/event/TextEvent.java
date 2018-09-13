@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -80,14 +60,15 @@ public class TextEvent extends AWTEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The (<code>TextComponent</code>) object that originated the
-	 *            event
+	 *               The (<code>TextComponent</code>) object that originated the
+	 *               event
 	 * @param id
-	 *            An integer that identifies the event type. For information on
-	 *            allowable values, see the class description for
-	 *            {@link TextEvent}
+	 *               An integer that identifies the event type. For information
+	 *               on
+	 *               allowable values, see the class description for
+	 *               {@link TextEvent}
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getSource()
 	 * @see #getID()
 	 */
@@ -104,11 +85,11 @@ public class TextEvent extends AWTEvent {
 	public String paramString() {
 		String typeStr;
 		switch (id) {
-		case TEXT_VALUE_CHANGED:
-			typeStr = "TEXT_VALUE_CHANGED";
-			break;
-		default:
-			typeStr = "unknown type";
+			case TEXT_VALUE_CHANGED:
+				typeStr = "TEXT_VALUE_CHANGED";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
 		return typeStr;
 	}

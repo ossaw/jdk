@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.peer;
@@ -44,7 +24,7 @@ public interface FramePeer extends WindowPeer {
 	 * Sets the title on the frame.
 	 *
 	 * @param title
-	 *            the title to set
+	 *              the title to set
 	 *
 	 * @see Frame#setTitle(String)
 	 */
@@ -54,7 +34,7 @@ public interface FramePeer extends WindowPeer {
 	 * Sets the menu bar for the frame.
 	 *
 	 * @param mb
-	 *            the menu bar to set
+	 *           the menu bar to set
 	 *
 	 * @see Frame#setMenuBar(MenuBar)
 	 */
@@ -64,8 +44,9 @@ public interface FramePeer extends WindowPeer {
 	 * Sets if the frame should be resizable or not.
 	 *
 	 * @param resizeable
-	 *            {@code true} when the frame should be resizable, {@code false}
-	 *            if not
+	 *                   {@code true} when the frame should be resizable,
+	 *                   {@code false}
+	 *                   if not
 	 *
 	 * @see Frame#setResizable(boolean)
 	 */
@@ -75,7 +56,7 @@ public interface FramePeer extends WindowPeer {
 	 * Changes the state of the frame.
 	 *
 	 * @param state
-	 *            the new state
+	 *              the new state
 	 *
 	 * @see Frame#setExtendedState(int)
 	 */
@@ -94,7 +75,7 @@ public interface FramePeer extends WindowPeer {
 	 * Sets the bounds of the frame when it becomes maximized.
 	 *
 	 * @param bounds
-	 *            the maximized bounds of the frame
+	 *               the maximized bounds of the frame
 	 *
 	 * @see Frame#setMaximizedBounds(Rectangle)
 	 */
@@ -106,13 +87,13 @@ public interface FramePeer extends WindowPeer {
 	 * compatibility.
 	 *
 	 * @param x
-	 *            the X location
+	 *               the X location
 	 * @param y
-	 *            the Y location
+	 *               the Y location
 	 * @param width
-	 *            the width of the frame
+	 *               the width of the frame
 	 * @param height
-	 *            the height of the frame
+	 *               the height of the frame
 	 *
 	 * @see EmbeddedFrame#setBoundsPrivate(int, int, int, int)
 	 */
@@ -137,7 +118,7 @@ public interface FramePeer extends WindowPeer {
 	 * Requests the peer to emulate window activation.
 	 *
 	 * @param activate
-	 *            activate or deactivate the window
+	 *                 activate or deactivate the window
 	 */
 	void emulateActivation(boolean activate);
 }

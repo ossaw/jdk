@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -38,7 +18,6 @@ package javax.sound.sampled;
  * annot be opened because it is unavailable. This situation arises most
  * commonly when a line is requested when it is already in use by another
  * application.
- *
  * @author Kara Kytle
  */
 
@@ -58,7 +37,7 @@ public class LineUnavailableException extends Exception {
 	 * detail message.
 	 *
 	 * @param message
-	 *            a string containing the error detail message
+	 *                a string containing the error detail message
 	 */
 	public LineUnavailableException(String message) {
 

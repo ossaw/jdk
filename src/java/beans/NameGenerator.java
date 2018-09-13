@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -87,7 +67,7 @@ class NameGenerator {
 	 * method then the same identifier is returned.
 	 *
 	 * @param instance
-	 *            object used to generate string
+	 *                 object used to generate string
 	 * @return a unique string representing the object
 	 */
 	public String instanceName(Object instance) {

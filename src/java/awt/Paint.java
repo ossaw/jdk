@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -66,29 +46,40 @@ public interface Paint extends Transparency {
 	 * {@code ColorModel} argument, but are not required to do so.
 	 *
 	 * @param cm
-	 *            the preferred {@link ColorModel} which represents the most
-	 *            convenient format for the caller to receive the pixel data, or
-	 *            {@code null} if there is no preference.
+	 *                     the preferred {@link ColorModel} which represents the
+	 *                     most
+	 *                     convenient format for the caller to receive the pixel
+	 *                     data, or
+	 *                     {@code null} if there is no preference.
 	 * @param deviceBounds
-	 *            the device space bounding box of the graphics primitive being
-	 *            rendered. Implementations of the {@code Paint} interface are
-	 *            allowed to throw {@code NullPointerException} for a
-	 *            {@code null} {@code deviceBounds}.
+	 *                     the device space bounding box of the graphics
+	 *                     primitive being
+	 *                     rendered. Implementations of the {@code Paint}
+	 *                     interface are
+	 *                     allowed to throw {@code NullPointerException} for a
+	 *                     {@code null} {@code deviceBounds}.
 	 * @param userBounds
-	 *            the user space bounding box of the graphics primitive being
-	 *            rendered. Implementations of the {@code Paint} interface are
-	 *            allowed to throw {@code NullPointerException} for a
-	 *            {@code null} {@code userBounds}.
+	 *                     the user space bounding box of the graphics primitive
+	 *                     being
+	 *                     rendered. Implementations of the {@code Paint}
+	 *                     interface are
+	 *                     allowed to throw {@code NullPointerException} for a
+	 *                     {@code null} {@code userBounds}.
 	 * @param xform
-	 *            the {@link AffineTransform} from user space into device space.
-	 *            Implementations of the {@code Paint} interface are allowed to
-	 *            throw {@code NullPointerException} for a {@code null}
-	 *            {@code xform}.
+	 *                     the {@link AffineTransform} from user space into
+	 *                     device space.
+	 *                     Implementations of the {@code Paint} interface are
+	 *                     allowed to
+	 *                     throw {@code NullPointerException} for a {@code null}
+	 *                     {@code xform}.
 	 * @param hints
-	 *            the set of hints that the context object can use to choose
-	 *            between rendering alternatives. Implementations of the
-	 *            {@code Paint} interface are allowed to throw
-	 *            {@code NullPointerException} for a {@code null} {@code hints}.
+	 *                     the set of hints that the context object can use to
+	 *                     choose
+	 *                     between rendering alternatives. Implementations of
+	 *                     the
+	 *                     {@code Paint} interface are allowed to throw
+	 *                     {@code NullPointerException} for a {@code null}
+	 *                     {@code hints}.
 	 * @return the {@code PaintContext} for generating color patterns.
 	 * @see PaintContext
 	 * @see ColorModel
@@ -97,7 +88,8 @@ public interface Paint extends Transparency {
 	 * @see AffineTransform
 	 * @see RenderingHints
 	 */
-	public PaintContext createContext(ColorModel cm, Rectangle deviceBounds, Rectangle2D userBounds,
-			AffineTransform xform, RenderingHints hints);
+	public PaintContext createContext(ColorModel cm, Rectangle deviceBounds,
+			Rectangle2D userBounds, AffineTransform xform,
+			RenderingHints hints);
 
 }

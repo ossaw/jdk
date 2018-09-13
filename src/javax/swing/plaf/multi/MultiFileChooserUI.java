@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.multi;
 
@@ -80,7 +60,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public FileFilter getAcceptAllFileFilter(JFileChooser a) {
-		FileFilter returnValue = ((FileChooserUI) (uis.elementAt(0))).getAcceptAllFileFilter(a);
+		FileFilter returnValue = ((FileChooserUI) (uis.elementAt(0)))
+				.getAcceptAllFileFilter(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((FileChooserUI) (uis.elementAt(i))).getAcceptAllFileFilter(a);
 		}
@@ -95,7 +76,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public FileView getFileView(JFileChooser a) {
-		FileView returnValue = ((FileChooserUI) (uis.elementAt(0))).getFileView(a);
+		FileView returnValue = ((FileChooserUI) (uis.elementAt(0))).getFileView(
+				a);
 		for (int i = 1; i < uis.size(); i++) {
 			((FileChooserUI) (uis.elementAt(i))).getFileView(a);
 		}
@@ -110,7 +92,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public String getApproveButtonText(JFileChooser a) {
-		String returnValue = ((FileChooserUI) (uis.elementAt(0))).getApproveButtonText(a);
+		String returnValue = ((FileChooserUI) (uis.elementAt(0)))
+				.getApproveButtonText(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((FileChooserUI) (uis.elementAt(i))).getApproveButtonText(a);
 		}
@@ -125,7 +108,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public String getDialogTitle(JFileChooser a) {
-		String returnValue = ((FileChooserUI) (uis.elementAt(0))).getDialogTitle(a);
+		String returnValue = ((FileChooserUI) (uis.elementAt(0)))
+				.getDialogTitle(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((FileChooserUI) (uis.elementAt(i))).getDialogTitle(a);
 		}
@@ -164,7 +148,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public boolean contains(JComponent a, int b, int c) {
-		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b, c);
+		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b,
+				c);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).contains(a, b, c);
 		}
@@ -187,7 +172,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 */
 	public static ComponentUI createUI(JComponent a) {
 		ComponentUI mui = new MultiFileChooserUI();
-		return MultiLookAndFeel.createUIs(mui, ((MultiFileChooserUI) mui).uis, a);
+		return MultiLookAndFeel.createUIs(mui, ((MultiFileChooserUI) mui).uis,
+				a);
 	}
 
 	/**
@@ -227,7 +213,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getPreferredSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getPreferredSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getPreferredSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getPreferredSize(a);
 		}
@@ -242,7 +229,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMinimumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMinimumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMinimumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMinimumSize(a);
 		}
@@ -257,7 +245,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMaximumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMaximumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMaximumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMaximumSize(a);
 		}
@@ -272,7 +261,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public int getAccessibleChildrenCount(JComponent a) {
-		int returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChildrenCount(a);
+		int returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChildrenCount(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChildrenCount(a);
 		}
@@ -287,7 +277,8 @@ public class MultiFileChooserUI extends FileChooserUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Accessible getAccessibleChild(JComponent a, int b) {
-		Accessible returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChild(a, b);
+		Accessible returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChild(a, b);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChild(a, b);
 		}

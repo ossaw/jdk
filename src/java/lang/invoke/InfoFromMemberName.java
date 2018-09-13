@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -32,9 +12,10 @@ import java.lang.invoke.MethodHandles.Lookup;
 import static java.lang.invoke.MethodHandleStatics.*;
 
 /*
- * Auxiliary to MethodHandleInfo, wants to nest in MethodHandleInfo but must be non-public.
+ * Auxiliary to MethodHandleInfo, wants to nest in MethodHandleInfo but must be
+ * non-public.
  */
-/*non-public*/
+/* non-public */
 final class InfoFromMemberName implements MethodHandleInfo {
 	private final MemberName member;
 	private final int referenceKind;
@@ -73,8 +54,8 @@ final class InfoFromMemberName implements MethodHandleInfo {
 
 	@Override
 	public String toString() {
-		return MethodHandleInfo.toString(getReferenceKind(), getDeclaringClass(), getName(),
-				getMethodType());
+		return MethodHandleInfo.toString(getReferenceKind(),
+				getDeclaringClass(), getName(), getMethodType());
 	}
 
 	@Override
@@ -87,21 +68,24 @@ final class InfoFromMemberName implements MethodHandleInfo {
 			// and a signature-polymorphic instance (synthetic and not varargs).
 			// For more information see comments on {@link
 			// MethodHandleNatives#linkMethod}.
-			throw new IllegalArgumentException("cannot reflect signature polymorphic method");
+			throw new IllegalArgumentException(
+					"cannot reflect signature polymorphic method");
 		}
-		Member mem = AccessController.doPrivileged(new PrivilegedAction<Member>() {
-			public Member run() {
-				try {
-					return reflectUnchecked();
-				} catch (ReflectiveOperationException ex) {
-					throw new IllegalArgumentException(ex);
-				}
-			}
-		});
+		Member mem = AccessController.doPrivileged(
+				new PrivilegedAction<Member>() {
+					public Member run() {
+						try {
+							return reflectUnchecked();
+						} catch (ReflectiveOperationException ex) {
+							throw new IllegalArgumentException(ex);
+						}
+					}
+				});
 		try {
 			Class<?> defc = getDeclaringClass();
 			byte refKind = (byte) getReferenceKind();
-			lookup.checkAccess(refKind, defc, convertToMemberName(refKind, mem));
+			lookup.checkAccess(refKind, defc, convertToMemberName(refKind,
+					mem));
 		} catch (IllegalAccessException ex) {
 			throw new IllegalArgumentException(ex);
 		}
@@ -114,14 +98,17 @@ final class InfoFromMemberName implements MethodHandleInfo {
 		boolean isPublic = Modifier.isPublic(getModifiers());
 		if (MethodHandleNatives.refKindIsMethod(refKind)) {
 			if (isPublic)
-				return defc.getMethod(getName(), getMethodType().parameterArray());
+				return defc.getMethod(getName(), getMethodType()
+						.parameterArray());
 			else
-				return defc.getDeclaredMethod(getName(), getMethodType().parameterArray());
+				return defc.getDeclaredMethod(getName(), getMethodType()
+						.parameterArray());
 		} else if (MethodHandleNatives.refKindIsConstructor(refKind)) {
 			if (isPublic)
 				return defc.getConstructor(getMethodType().parameterArray());
 			else
-				return defc.getDeclaredConstructor(getMethodType().parameterArray());
+				return defc.getDeclaredConstructor(getMethodType()
+						.parameterArray());
 		} else if (MethodHandleNatives.refKindIsField(refKind)) {
 			if (isPublic)
 				return defc.getField(getName());
@@ -140,7 +127,8 @@ final class InfoFromMemberName implements MethodHandleInfo {
 		} else if (mem instanceof Constructor) {
 			return new MemberName((Constructor) mem);
 		} else if (mem instanceof Field) {
-			boolean isSetter = (refKind == REF_putField || refKind == REF_putStatic);
+			boolean isSetter = (refKind == REF_putField
+					|| refKind == REF_putStatic);
 			return new MemberName((Field) mem, isSetter);
 		}
 		throw new InternalError(mem.getClass().getName());

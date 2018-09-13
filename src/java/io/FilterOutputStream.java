@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -70,9 +50,9 @@ public class FilterOutputStream extends OutputStream {
 	 * Implements the abstract <tt>write</tt> method of <tt>OutputStream</tt>.
 	 *
 	 * @param b
-	 *            the <code>byte</code>.
+	 *          the <code>byte</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public void write(int b) throws IOException {
 		out.write(b);
@@ -89,9 +69,9 @@ public class FilterOutputStream extends OutputStream {
 	 * method of its underlying stream with the single argument <code>b</code>.
 	 *
 	 * @param b
-	 *            the data to be written.
+	 *          the data to be written.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterOutputStream#write(byte[], int, int)
 	 */
 	public void write(byte b[]) throws IOException {
@@ -118,7 +98,7 @@ public class FilterOutputStream extends OutputStream {
 	 * @param len
 	 *            the number of bytes to write.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterOutputStream#write(int)
 	 */
 	public void write(byte b[], int off, int len) throws IOException {
@@ -138,7 +118,7 @@ public class FilterOutputStream extends OutputStream {
 	 * the <code>flush</code> method of its underlying output stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterOutputStream#out
 	 */
 	public void flush() throws IOException {
@@ -154,7 +134,7 @@ public class FilterOutputStream extends OutputStream {
 	 * method of its underlying output stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterOutputStream#flush()
 	 * @see java.io.FilterOutputStream#out
 	 */

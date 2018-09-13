@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.ref;
@@ -81,7 +61,7 @@ public class SoftReference<T> extends Reference<T> {
 	 * reference is not registered with any queue.
 	 *
 	 * @param referent
-	 *            object the new soft reference will refer to
+	 *                 object the new soft reference will refer to
 	 */
 	public SoftReference(T referent) {
 		super(referent);
@@ -93,10 +73,11 @@ public class SoftReference<T> extends Reference<T> {
 	 * registered with the given queue.
 	 *
 	 * @param referent
-	 *            object the new soft reference will refer to
+	 *                 object the new soft reference will refer to
 	 * @param q
-	 *            the queue with which the reference is to be registered, or
-	 *            <tt>null</tt> if registration is not required
+	 *                 the queue with which the reference is to be registered,
+	 *                 or
+	 *                 <tt>null</tt> if registration is not required
 	 *
 	 */
 	public SoftReference(T referent, ReferenceQueue<? super T> q) {

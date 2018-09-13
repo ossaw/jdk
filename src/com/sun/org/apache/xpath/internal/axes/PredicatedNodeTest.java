@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,14 +30,15 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
 import com.sun.org.apache.xpath.internal.objects.XObject;
 import com.sun.org.apache.xpath.internal.patterns.NodeTest;
 
-public abstract class PredicatedNodeTest extends NodeTest implements SubContextList {
+public abstract class PredicatedNodeTest extends NodeTest implements
+		SubContextList {
 	static final long serialVersionUID = -6193530757296377351L;
 
 	/**
 	 * Construct an AxesWalker using a LocPathIterator.
 	 *
 	 * @param locPathIterator
-	 *            non-null reference to the parent iterator.
+	 *                        non-null reference to the parent iterator.
 	 */
 	PredicatedNodeTest(LocPathIterator locPathIterator) {
 		m_lpi = locPathIterator;
@@ -50,20 +48,20 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Construct an AxesWalker. The location path iterator will have to be set
 	 * before use.
 	 */
-	PredicatedNodeTest() {
-	}
+	PredicatedNodeTest() {}
 
 	/**
 	 * Read the object from a serialization stream.
 	 *
 	 * @param stream
-	 *            Input stream to read from
+	 *               Input stream to read from
 	 *
 	 * @throws java.io.IOException
 	 * @throws javax.xml.transform.TransformerException
 	 */
 	private void readObject(java.io.ObjectInputStream stream)
-			throws java.io.IOException, javax.xml.transform.TransformerException {
+			throws java.io.IOException,
+			javax.xml.transform.TransformerException {
 		try {
 			stream.defaultReadObject();
 			m_predicateIndex = -1;
@@ -90,7 +88,8 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 				&& (this.m_proximityPositions == clone.m_proximityPositions)) {
 			clone.m_proximityPositions = new int[this.m_proximityPositions.length];
 
-			System.arraycopy(this.m_proximityPositions, 0, clone.m_proximityPositions, 0,
+			System.arraycopy(this.m_proximityPositions, 0,
+					clone.m_proximityPositions, 0,
 					this.m_proximityPositions.length);
 		}
 
@@ -123,8 +122,9 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * having to have a predicate count value.
 	 *
 	 * @param count
-	 *            The number of predicates, which must be equal or less than the
-	 *            existing count.
+	 *              The number of predicates, which must be equal or less than
+	 *              the
+	 *              existing count.
 	 */
 	public void setPredicateCount(int count) {
 		if (count > 0) {
@@ -142,10 +142,11 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Init predicate info.
 	 *
 	 * @param compiler
-	 *            The Compiler object that has information about this walker in
-	 *            the op map.
+	 *                 The Compiler object that has information about this
+	 *                 walker in
+	 *                 the op map.
 	 * @param opPos
-	 *            The op code position of this location step.
+	 *                 The op code position of this location step.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -169,7 +170,7 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 *
 	 *
 	 * @param index
-	 *            Index of the predicate.
+	 *              Index of the predicate.
 	 *
 	 * @return A predicate expression.
 	 */
@@ -193,7 +194,7 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Get the current sub-context position.
 	 *
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *              The XPath runtime context.
 	 *
 	 * @return The node position of this walker in the sub-context node list.
 	 */
@@ -206,7 +207,7 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 *
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *              XPath runtime context.
 	 *
 	 * @return the index of the last node that can be itterated to.
 	 */
@@ -216,8 +217,9 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Get the current sub-context position.
 	 *
 	 * @param predicateIndex
-	 *            The index of the predicate where the proximity should be taken
-	 *            from.
+	 *                       The index of the predicate where the proximity
+	 *                       should be taken
+	 *                       from.
 	 *
 	 * @return The node position of this walker in the sub-context node list.
 	 */
@@ -239,7 +241,8 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 					initProximityPosition(i);
 				} catch (Exception e) {
 					// TODO: Fix this...
-					throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(e);
+					throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+							e);
 				}
 			}
 		}
@@ -249,11 +252,12 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Init the proximity position to zero for a forward axes.
 	 *
 	 * @param i
-	 *            The index into the m_proximityPositions array.
+	 *          The index into the m_proximityPositions array.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public void initProximityPosition(int i) throws javax.xml.transform.TransformerException {
+	public void initProximityPosition(int i)
+			throws javax.xml.transform.TransformerException {
 		m_proximityPositions[i] = 0;
 	}
 
@@ -261,8 +265,8 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Count forward one proximity position.
 	 *
 	 * @param i
-	 *            The index into the m_proximityPositions array, where the
-	 *            increment will occur.
+	 *          The index into the m_proximityPositions array, where the
+	 *          increment will occur.
 	 */
 	protected void countProximityPosition(int i) {
 		// Note that in the case of a UnionChildIterator, this may be a
@@ -294,9 +298,9 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Process the predicates.
 	 *
 	 * @param context
-	 *            The current context node.
+	 *                The current context node.
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *                The XPath runtime context.
 	 *
 	 * @return the result of executing the predicate expressions.
 	 *
@@ -328,8 +332,10 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 				if (XObject.CLASS_NUMBER == pred.getType()) {
 					if (DEBUG_PREDICATECOUNTING) {
 						System.out.flush();
-						System.out.println("\n===== start predicate count ========");
-						System.out.println("m_predicateIndex: " + m_predicateIndex);
+						System.out.println(
+								"\n===== start predicate count ========");
+						System.out.println("m_predicateIndex: "
+								+ m_predicateIndex);
 						// System.out.println("getProximityPosition(m_predicateIndex):
 						// "
 						// + getProximityPosition(m_predicateIndex));
@@ -340,15 +346,21 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 					int predIndex = (int) pred.num();
 					if (proxPos != predIndex) {
 						if (DEBUG_PREDICATECOUNTING) {
-							System.out.println("\nnode context: " + nodeToString(context));
-							System.out.println("index predicate is false: " + proxPos);
-							System.out.println("\n===== end predicate count ========");
+							System.out.println("\nnode context: "
+									+ nodeToString(context));
+							System.out.println("index predicate is false: "
+									+ proxPos);
+							System.out.println(
+									"\n===== end predicate count ========");
 						}
 						return false;
 					} else if (DEBUG_PREDICATECOUNTING) {
-						System.out.println("\nnode context: " + nodeToString(context));
-						System.out.println("index predicate is true: " + proxPos);
-						System.out.println("\n===== end predicate count ========");
+						System.out.println("\nnode context: " + nodeToString(
+								context));
+						System.out.println("index predicate is true: "
+								+ proxPos);
+						System.out.println(
+								"\n===== end predicate count ========");
 					}
 
 					// If there is a proximity index that will not change during
@@ -365,7 +377,8 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 					// remaining parameters are stable, or else last() fails.
 					// Fixed so
 					// only sets m_foundLast if on the last predicate
-					if (m_predicates[i].isStableNumber() && i == nPredicates - 1) {
+					if (m_predicates[i].isStableNumber() && i == nPredicates
+							- 1) {
 						m_foundLast = true;
 					}
 				} else if (!pred.bool())
@@ -388,13 +401,13 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		super.fixupVariables(vars, globalsSize);
@@ -410,7 +423,7 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * Diagnostics.
 	 *
 	 * @param n
-	 *            Node to give diagnostic information about, or null.
+	 *          Node to give diagnostic information about, or null.
 	 *
 	 * @return Informative string about the argument.
 	 */
@@ -432,7 +445,7 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * called directly from user code.
 	 * 
 	 * @param n
-	 *            The node to check to see if it passes the filter or not.
+	 *          The node to check to see if it passes the filter or not.
 	 * @return a constant to determine whether the node is accepted, rejected,
 	 *         or skipped, as defined above .
 	 */
@@ -481,7 +494,7 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * initialization, this function is called during cloning operations.
 	 *
 	 * @param li
-	 *            non-null reference to the owning location path iterator.
+	 *           non-null reference to the owning location path iterator.
 	 */
 	public void setLocPathIterator(LocPathIterator li) {
 		m_lpi = li;
@@ -510,7 +523,7 @@ public abstract class PredicatedNodeTest extends NodeTest implements SubContextL
 	 * called.
 	 *
 	 * @param visitor
-	 *            The visitor whose appropriate method will be called.
+	 *                The visitor whose appropriate method will be called.
 	 */
 	public void callPredicateVisitors(XPathVisitor visitor) {
 		if (null != m_predicates) {

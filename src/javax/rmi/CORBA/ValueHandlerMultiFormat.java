@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.rmi.CORBA;
@@ -60,6 +40,6 @@ public interface ValueHandlerMultiFormat extends ValueHandler {
 	 * stream passed to the ValueHandler.readValue method must implement the
 	 * ValueInputStream interface.
 	 */
-	void writeValue(org.omg.CORBA.portable.OutputStream out, java.io.Serializable value,
-			byte streamFormatVersion);
+	void writeValue(org.omg.CORBA.portable.OutputStream out,
+			java.io.Serializable value, byte streamFormatVersion);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -40,8 +20,8 @@ import javax.management.MBeanParameterInfo;
  *
  * @since 1.5
  */
-public class OpenMBeanOperationInfoSupport extends MBeanOperationInfo
-		implements OpenMBeanOperationInfo {
+public class OpenMBeanOperationInfoSupport extends MBeanOperationInfo implements
+		OpenMBeanOperationInfo {
 
 	/* Serial version */
 	static final long serialVersionUID = 4996859732565369366L;
@@ -74,35 +54,41 @@ public class OpenMBeanOperationInfoSupport extends MBeanOperationInfo
 	 * </p>
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                       cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                       cannot be a null or empty string.
 	 *
 	 * @param signature
-	 *            can be null or empty if there are no parameters to describe.
+	 *                       can be null or empty if there are no parameters to
+	 *                       describe.
 	 *
 	 * @param returnOpenType
-	 *            cannot be null: use {@code
-	 * SimpleType.VOID} for operations that return nothing.
+	 *                       cannot be null: use {@code
+	 * SimpleType.VOID}   for operations that return nothing.
 	 *
 	 * @param impact
-	 *            must be one of {@code ACTION}, {@code
-	 * ACTION_INFO}, {@code INFO}, or {@code UNKNOWN}.
+	 *                       must be one of {@code ACTION}, {@code
+	 * ACTION_INFO}       , {@code INFO}, or {@code UNKNOWN}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code
-	 * returnOpenType} is null, or {@code impact} is not one of {@code
-	 * ACTION}, {@code ACTION_INFO}, {@code INFO}, or {@code UNKNOWN}.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or {@code
+	 * returnOpenType}               is null, or {@code impact} is not one of
+	 *                                  {@code
+	 * ACTION}                       , {@code ACTION_INFO}, {@code INFO}, or
+	 *                                  {@code UNKNOWN}.
 	 *
 	 * @throws ArrayStoreException
-	 *             If {@code signature} is not an array of instances of a
-	 *             subclass of {@code MBeanParameterInfo}.
+	 *                                  If {@code signature} is not an array of
+	 *                                  instances of a
+	 *                                  subclass of {@code MBeanParameterInfo}.
 	 */
 	public OpenMBeanOperationInfoSupport(String name, String description,
-			OpenMBeanParameterInfo[] signature, OpenType<?> returnOpenType, int impact) {
-		this(name, description, signature, returnOpenType, impact, (Descriptor) null);
+			OpenMBeanParameterInfo[] signature, OpenType<?> returnOpenType,
+			int impact) {
+		this(name, description, signature, returnOpenType, impact,
+				(Descriptor) null);
 	}
 
 	/**
@@ -121,66 +107,77 @@ public class OpenMBeanOperationInfoSupport extends MBeanOperationInfo
 	 * </p>
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                       cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                       cannot be a null or empty string.
 	 *
 	 * @param signature
-	 *            can be null or empty if there are no parameters to describe.
+	 *                       can be null or empty if there are no parameters to
+	 *                       describe.
 	 *
 	 * @param returnOpenType
-	 *            cannot be null: use {@code
-	 * SimpleType.VOID} for operations that return nothing.
+	 *                       cannot be null: use {@code
+	 * SimpleType.VOID}   for operations that return nothing.
 	 *
 	 * @param impact
-	 *            must be one of {@code ACTION}, {@code
-	 * ACTION_INFO}, {@code INFO}, or {@code UNKNOWN}.
+	 *                       must be one of {@code ACTION}, {@code
+	 * ACTION_INFO}       , {@code INFO}, or {@code UNKNOWN}.
 	 *
 	 * @param descriptor
-	 *            The descriptor for the operation. This may be null, which is
-	 *            equivalent to an empty descriptor.
+	 *                       The descriptor for the operation. This may be null,
+	 *                       which is
+	 *                       equivalent to an empty descriptor.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code
-	 * returnOpenType} is null, or {@code impact} is not one of {@code
-	 * ACTION}, {@code ACTION_INFO}, {@code INFO}, or {@code UNKNOWN}.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or {@code
+	 * returnOpenType}               is null, or {@code impact} is not one of
+	 *                                  {@code
+	 * ACTION}                       , {@code ACTION_INFO}, {@code INFO}, or
+	 *                                  {@code UNKNOWN}.
 	 *
 	 * @throws ArrayStoreException
-	 *             If {@code signature} is not an array of instances of a
-	 *             subclass of {@code MBeanParameterInfo}.
+	 *                                  If {@code signature} is not an array of
+	 *                                  instances of a
+	 *                                  subclass of {@code MBeanParameterInfo}.
 	 *
 	 * @since 1.6
 	 */
 	public OpenMBeanOperationInfoSupport(String name, String description,
-			OpenMBeanParameterInfo[] signature, OpenType<?> returnOpenType, int impact,
-			Descriptor descriptor) {
+			OpenMBeanParameterInfo[] signature, OpenType<?> returnOpenType,
+			int impact, Descriptor descriptor) {
 		super(name, description, arrayCopyCast(signature),
 				// must prevent NPE here - we will throw IAE later on if
 				// returnOpenType is null
-				(returnOpenType == null) ? null : returnOpenType.getClassName(), impact,
-				ImmutableDescriptor.union(descriptor,
+				(returnOpenType == null) ? null : returnOpenType.getClassName(),
+				impact, ImmutableDescriptor.union(descriptor,
 						// must prevent NPE here - we will throw IAE later on if
 						// returnOpenType is null
-						(returnOpenType == null) ? null : returnOpenType.getDescriptor()));
+						(returnOpenType == null) ? null
+								: returnOpenType.getDescriptor()));
 
 		// check parameters that should not be null or empty
 		// (unfortunately it is not done in superclass :-( ! )
 		//
 		if (name == null || name.trim().equals("")) {
-			throw new IllegalArgumentException("Argument name cannot " + "be null or empty");
+			throw new IllegalArgumentException("Argument name cannot "
+					+ "be null or empty");
 		}
 		if (description == null || description.trim().equals("")) {
-			throw new IllegalArgumentException("Argument description cannot " + "be null or empty");
+			throw new IllegalArgumentException("Argument description cannot "
+					+ "be null or empty");
 		}
 		if (returnOpenType == null) {
-			throw new IllegalArgumentException("Argument returnOpenType " + "cannot be null");
+			throw new IllegalArgumentException("Argument returnOpenType "
+					+ "cannot be null");
 		}
 
-		if (impact != ACTION && impact != ACTION_INFO && impact != INFO && impact != UNKNOWN) {
+		if (impact != ACTION && impact != ACTION_INFO && impact != INFO
+				&& impact != UNKNOWN) {
 			throw new IllegalArgumentException("Argument impact can only be "
-					+ "one of ACTION, ACTION_INFO, " + "INFO, or UNKNOWN: " + impact);
+					+ "one of ACTION, ACTION_INFO, " + "INFO, or UNKNOWN: "
+					+ impact);
 		}
 
 		this.returnOpenType = returnOpenType;
@@ -189,7 +186,8 @@ public class OpenMBeanOperationInfoSupport extends MBeanOperationInfo
 	// Converts an array of OpenMBeanParameterInfo objects extending
 	// MBeanParameterInfo into an array of MBeanParameterInfo.
 	//
-	private static MBeanParameterInfo[] arrayCopyCast(OpenMBeanParameterInfo[] src) {
+	private static MBeanParameterInfo[] arrayCopyCast(
+			OpenMBeanParameterInfo[] src) {
 		if (src == null)
 			return null;
 
@@ -202,7 +200,8 @@ public class OpenMBeanOperationInfoSupport extends MBeanOperationInfo
 	// Converts an array of MBeanParameterInfo objects implementing
 	// OpenMBeanParameterInfo into an array of OpenMBeanParameterInfo.
 	//
-	private static OpenMBeanParameterInfo[] arrayCopyCast(MBeanParameterInfo[] src) {
+	private static OpenMBeanParameterInfo[] arrayCopyCast(
+			MBeanParameterInfo[] src) {
 		if (src == null)
 			return null;
 
@@ -392,12 +391,17 @@ public class OpenMBeanOperationInfoSupport extends MBeanOperationInfo
 		// (ie 1st call to toString())
 		//
 		if (myToString == null) {
-			myToString = new StringBuilder().append(this.getClass().getName()).append("(name=")
-					.append(this.getName()).append(",signature=")
-					.append(Arrays.asList(this.getSignature()).toString()).append(",return=")
-					.append(this.getReturnOpenType().toString()).append(",impact=")
-					.append(this.getImpact()).append(",descriptor=").append(this.getDescriptor())
-					.append(")").toString();
+			myToString = new StringBuilder().append(this.getClass().getName())
+					.append("(name=").append(this.getName()).append(
+							",signature=").append(Arrays.asList(this
+									.getSignature()).toString()).append(
+											",return=").append(this
+													.getReturnOpenType()
+													.toString()).append(
+															",impact=").append(
+																	this.getImpact())
+					.append(",descriptor=").append(this.getDescriptor()).append(
+							")").toString();
 		}
 
 		// return always the same string representation for this

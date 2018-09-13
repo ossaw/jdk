@@ -116,9 +116,10 @@ public class XMLSecurityException extends Exception {
 	public XMLSecurityException(Exception originalException) {
 
 		super("Missing message ID to locate message string in resource bundle \""
-				+ Constants.exceptionMessagesResourceBundleBase + "\". Original Exception was a "
-				+ originalException.getClass().getName() + " and message "
-				+ originalException.getMessage(), originalException);
+				+ Constants.exceptionMessagesResourceBundleBase
+				+ "\". Original Exception was a " + originalException.getClass()
+						.getName() + " and message " + originalException
+								.getMessage(), originalException);
 	}
 
 	/**
@@ -128,7 +129,8 @@ public class XMLSecurityException extends Exception {
 	 * @param originalException
 	 */
 	public XMLSecurityException(String msgID, Exception originalException) {
-		super(I18n.getExceptionMessage(msgID, originalException), originalException);
+		super(I18n.getExceptionMessage(msgID, originalException),
+				originalException);
 
 		this.msgID = msgID;
 	}
@@ -140,8 +142,10 @@ public class XMLSecurityException extends Exception {
 	 * @param exArgs
 	 * @param originalException
 	 */
-	public XMLSecurityException(String msgID, Object exArgs[], Exception originalException) {
-		super(MessageFormat.format(I18n.getExceptionMessage(msgID), exArgs), originalException);
+	public XMLSecurityException(String msgID, Object exArgs[],
+			Exception originalException) {
+		super(MessageFormat.format(I18n.getExceptionMessage(msgID), exArgs),
+				originalException);
 
 		this.msgID = msgID;
 	}
@@ -170,7 +174,8 @@ public class XMLSecurityException extends Exception {
 		}
 
 		if (super.getCause() != null) {
-			message = message + "\nOriginal Exception was " + super.getCause().toString();
+			message = message + "\nOriginal Exception was " + super.getCause()
+					.toString();
 		}
 
 		return message;

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +65,7 @@ public class Variable extends Expression implements PathComponent {
 	 * must know what you are doing to use this.
 	 *
 	 * @param index
-	 *            a global or local index.
+	 *              a global or local index.
 	 */
 	public void setIndex(int index) {
 		m_index = index;
@@ -87,7 +84,7 @@ public class Variable extends Expression implements PathComponent {
 	 * Set whether or not this is a global reference. For advanced use only.
 	 *
 	 * @param isGlobal
-	 *            true if this should be a global variable reference.
+	 *                 true if this should be a global variable reference.
 	 */
 	public void setIsGlobal(boolean isGlobal) {
 		m_isGlobal = isGlobal;
@@ -109,13 +106,13 @@ public class Variable extends Expression implements PathComponent {
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		m_fixUpWasCalled = true;
@@ -138,11 +135,13 @@ public class Variable extends Expression implements PathComponent {
 		}
 
 		java.lang.String msg = XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_COULD_NOT_FIND_VAR, new Object[] { m_qname.toString() });
+				XPATHErrorResources.ER_COULD_NOT_FIND_VAR, new Object[] {
+						m_qname.toString() });
 
 		TransformerException te = new TransformerException(msg, this);
 
-		throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
+		throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+				te);
 
 	}
 
@@ -150,7 +149,7 @@ public class Variable extends Expression implements PathComponent {
 	 * Set the qualified name of the variable.
 	 *
 	 * @param qname
-	 *            Must be a non-null reference to a qualified name.
+	 *              Must be a non-null reference to a qualified name.
 	 */
 	public void setQName(QName qname) {
 		m_qname = qname;
@@ -171,15 +170,16 @@ public class Variable extends Expression implements PathComponent {
 	 *
 	 *
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *              The XPath runtime context.
 	 *
 	 * @return The result of the expression in the form of a
 	 *         <code>XObject</code>.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             if a runtime exception occurs.
+	 *         if a runtime exception occurs.
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		return execute(xctxt, false);
 	}
 
@@ -191,7 +191,7 @@ public class Variable extends Expression implements PathComponent {
 	 *
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return The evaluated variable, or an empty nodeset if not found.
 	 *
@@ -207,9 +207,11 @@ public class Variable extends Expression implements PathComponent {
 		// XObject result = xctxt.getVariable(m_qname);
 		if (m_fixUpWasCalled) {
 			if (m_isGlobal)
-				result = xctxt.getVarStack().getGlobalVariable(xctxt, m_index, destructiveOK);
+				result = xctxt.getVarStack().getGlobalVariable(xctxt, m_index,
+						destructiveOK);
 			else
-				result = xctxt.getVarStack().getLocalVariable(xctxt, m_index, destructiveOK);
+				result = xctxt.getVarStack().getLocalVariable(xctxt, m_index,
+						destructiveOK);
 		} else {
 			result = xctxt.getVarStack().getVariableOrParam(xctxt, m_qname);
 		}
@@ -218,13 +220,13 @@ public class Variable extends Expression implements PathComponent {
 			// This should now never happen...
 			warn(xctxt, XPATHErrorResources.WG_ILLEGAL_VARIABLE_REFERENCE,
 					new Object[] { m_qname.getLocalPart() }); // "VariableReference
-																// given for
-																// variable out
-																// "+
-			// (new RuntimeException()).printStackTrace();
-			// error(xctxt, XPATHErrorResources.ER_COULDNOT_GET_VAR_NAMED,
-			// new Object[]{ m_qname.getLocalPart() }); //"Could not get
-			// variable named "+varName);
+																																// given for
+																																// variable out
+																																// "+
+																																// (new RuntimeException()).printStackTrace();
+																																// error(xctxt, XPATHErrorResources.ER_COULDNOT_GET_VAR_NAMED,
+																																// new Object[]{ m_qname.getLocalPart() }); //"Could not get
+																																// variable named "+varName);
 
 			result = new XNodeSet(xctxt.getDTMManager());
 		}
@@ -267,38 +269,30 @@ public class Variable extends Expression implements PathComponent {
 	/*
 	 * public com.sun.org.apache.xalan.internal.templates.ElemVariable
 	 * getElemVariable() {
-	 * 
 	 * // Get the current ElemTemplateElement, and then walk backwards in //
 	 * document order, searching // for an xsl:param element or xsl:variable
 	 * element that matches our // qname. If we reach the top level, use the
 	 * StylesheetRoot's composed // list of top level variables and parameters.
-	 * 
 	 * com.sun.org.apache.xalan.internal.templates.ElemVariable vvar = null;
 	 * com.sun.org.apache.xpath.internal.ExpressionNode owner =
 	 * getExpressionOwner();
-	 * 
 	 * if (null != owner && owner instanceof
 	 * com.sun.org.apache.xalan.internal.templates.ElemTemplateElement) {
-	 * 
 	 * com.sun.org.apache.xalan.internal.templates.ElemTemplateElement prev =
 	 * (com.sun.org.apache.xalan.internal.templates.ElemTemplateElement) owner;
-	 * 
 	 * if (!(prev instanceof
 	 * com.sun.org.apache.xalan.internal.templates.Stylesheet)) { while ( prev
 	 * != null && !(prev.getParentNode() instanceof
 	 * com.sun.org.apache.xalan.internal.templates.Stylesheet) ) {
 	 * com.sun.org.apache.xalan.internal.templates.ElemTemplateElement savedprev
 	 * = prev;
-	 * 
 	 * while (null != (prev = prev.getPreviousSiblingElem())) { if(prev
 	 * instanceof com.sun.org.apache.xalan.internal.templates.ElemVariable) {
 	 * vvar = (com.sun.org.apache.xalan.internal.templates.ElemVariable) prev;
-	 * 
 	 * if (vvar.getName().equals(m_qname)) { return vvar; } vvar = null; } }
 	 * prev = savedprev.getParentElem(); } } if (prev != null) vvar =
 	 * prev.getStylesheetRoot().getVariableOrParamComposed(m_qname); } return
 	 * vvar;
-	 * 
 	 * }
 	 */
 	/**

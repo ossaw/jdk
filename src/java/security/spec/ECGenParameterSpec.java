@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.security.spec;
 
@@ -46,9 +26,10 @@ public class ECGenParameterSpec implements AlgorithmParameterSpec {
 	 * whose implementation will be used.
 	 * 
 	 * @param stdName
-	 *            the standard name of the to-be-generated EC domain parameters.
+	 *                the standard name of the to-be-generated EC domain
+	 *                parameters.
 	 * @exception NullPointerException
-	 *                if {@code stdName} is null.
+	 *                                 if {@code stdName} is null.
 	 */
 	public ECGenParameterSpec(String stdName) {
 		if (stdName == null) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -63,9 +43,9 @@ class NumericValueExp extends QueryEval implements ValueExp {
 	//
 	// Serializable fields in old serial form
 	private static final ObjectStreamField[] oldSerialPersistentFields = {
-			new ObjectStreamField("longVal", Long.TYPE),
-			new ObjectStreamField("doubleVal", Double.TYPE),
-			new ObjectStreamField("valIsLong", Boolean.TYPE) };
+			new ObjectStreamField("longVal", Long.TYPE), new ObjectStreamField(
+					"doubleVal", Double.TYPE), new ObjectStreamField(
+							"valIsLong", Boolean.TYPE) };
 	//
 	// Serializable fields in new serial form
 	private static final ObjectStreamField[] newSerialPersistentFields = {
@@ -76,11 +56,11 @@ class NumericValueExp extends QueryEval implements ValueExp {
 
 	/**
 	 * @serialField val
-	 *                  Number The numeric value
+	 *              Number The numeric value
 	 *
-	 *                  <p>
-	 *                  The <b>serialVersionUID</b> of this class is
-	 *                  <code>-4679739485102359104L</code>.
+	 *              <p>
+	 *              The <b>serialVersionUID</b> of this class is
+	 *              <code>-4679739485102359104L</code>.
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private Number val = 0.0;
@@ -108,8 +88,7 @@ class NumericValueExp extends QueryEval implements ValueExp {
 	/**
 	 * Basic constructor.
 	 */
-	public NumericValueExp() {
-	}
+	public NumericValueExp() {}
 
 	/**
 	 * Creates a new NumericValue representing the numeric literal @{code val}.
@@ -166,7 +145,7 @@ class NumericValueExp extends QueryEval implements ValueExp {
 	 * Applies the ValueExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the ValueExp will be applied.
+	 *             The name of the MBean on which the ValueExp will be applied.
 	 *
 	 * @return The <CODE>ValueExp</CODE>.
 	 *
@@ -175,16 +154,17 @@ class NumericValueExp extends QueryEval implements ValueExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public ValueExp apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public ValueExp apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		return this;
 	}
 
 	/**
 	 * Deserializes a {@link NumericValueExp} from an {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		if (compat) {
 			// Read an object serialized in the old serial form
 			//

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -60,8 +40,7 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	 */
 	public static final DatatypeConverterInterface theInstance = new DatatypeConverterImpl();
 
-	protected DatatypeConverterImpl() {
-	}
+	protected DatatypeConverterImpl() {}
 
 	public String parseString(String lexicalXSDString) {
 		return lexicalXSDString;
@@ -72,7 +51,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	}
 
 	public static BigInteger _parseInteger(CharSequence s) {
-		return new BigInteger(removeOptionalPlus(WhiteSpaceProcessor.trim(s)).toString());
+		return new BigInteger(removeOptionalPlus(WhiteSpaceProcessor.trim(s))
+				.toString());
 	}
 
 	public String printInteger(BigInteger val) {
@@ -126,7 +106,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	}
 
 	public static long _parseLong(CharSequence s) {
-		return Long.valueOf(removeOptionalPlus(WhiteSpaceProcessor.trim(s)).toString());
+		return Long.valueOf(removeOptionalPlus(WhiteSpaceProcessor.trim(s))
+				.toString());
 	}
 
 	public short parseShort(String lexicalXSDShort) {
@@ -181,16 +162,13 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 		/*
 		 * Incompatibilities of XML Schema's float "xfloat" and Java's float
 		 * "jfloat"
-		 * 
 		 * jfloat.valueOf ignores leading and trailing whitespaces, whereas this
 		 * is not allowed in xfloat. jfloat.valueOf allows "float type suffix"
 		 * (f, F) to be appended after float literal (e.g., 1.52e-2f), whereare
 		 * this is not the case of xfloat.
-		 * 
 		 * gray zone --------- jfloat allows ".523". And there is no clear
 		 * statement that mentions this case in xfloat. Although probably this
 		 * is allowed.
-		 *
 		 */
 
 		if (s.equals("NaN")) {
@@ -283,42 +261,44 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 		int strIndex = 0;
 
 		switch (ch) {
-		case '1':
-			value = true;
-			break;
-		case '0':
-			value = false;
-			break;
-		case 't':
-			String strTrue = "rue";
-			do {
-				ch = literal.charAt(i++);
-			} while ((strTrue.charAt(strIndex++) == ch) && i < len && strIndex < 3);
-
-			if (strIndex == 3) {
+			case '1':
 				value = true;
-			} else {
-				return false;
-			}
-			// throw new IllegalArgumentException("String \"" + literal + "\" is
-			// not valid boolean value.");
-
-			break;
-		case 'f':
-			String strFalse = "alse";
-			do {
-				ch = literal.charAt(i++);
-			} while ((strFalse.charAt(strIndex++) == ch) && i < len && strIndex < 4);
-
-			if (strIndex == 4) {
+				break;
+			case '0':
 				value = false;
-			} else {
-				return false;
-			}
-			// throw new IllegalArgumentException("String \"" + literal + "\" is
-			// not valid boolean value.");
+				break;
+			case 't':
+				String strTrue = "rue";
+				do {
+					ch = literal.charAt(i++);
+				} while ((strTrue.charAt(strIndex++) == ch) && i < len
+						&& strIndex < 3);
 
-			break;
+				if (strIndex == 3) {
+					value = true;
+				} else {
+					return false;
+				}
+				// throw new IllegalArgumentException("String \"" + literal + "\" is
+				// not valid boolean value.");
+
+				break;
+			case 'f':
+				String strFalse = "alse";
+				do {
+					ch = literal.charAt(i++);
+				} while ((strFalse.charAt(strIndex++) == ch) && i < len
+						&& strIndex < 4);
+
+				if (strIndex == 4) {
+					value = false;
+				} else {
+					return false;
+				}
+				// throw new IllegalArgumentException("String \"" + literal + "\" is
+				// not valid boolean value.");
+
+				break;
 		}
 
 		if (i < len) {
@@ -372,12 +352,14 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 
 		// trim whitespace
 		int start = 0;
-		while (start < length && WhiteSpaceProcessor.isWhiteSpace(text.charAt(start))) {
+		while (start < length && WhiteSpaceProcessor.isWhiteSpace(text.charAt(
+				start))) {
 			start++;
 		}
 
 		int end = length;
-		while (end > start && WhiteSpaceProcessor.isWhiteSpace(text.charAt(end - 1))) {
+		while (end > start && WhiteSpaceProcessor.isWhiteSpace(text.charAt(end
+				- 1))) {
 			end--;
 		}
 
@@ -410,10 +392,10 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 			// return null.
 			if (uri == null || uri.length() == 0) // crap. the NamespaceContext
 													// interface is broken.
-			// error: unbound prefix
+													// error: unbound prefix
 			{
-				throw new IllegalArgumentException(
-						"prefix " + prefix + " is not bound to a namespace");
+				throw new IllegalArgumentException("prefix " + prefix
+						+ " is not bound to a namespace");
 			}
 		}
 
@@ -426,7 +408,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 
 	public static GregorianCalendar _parseDateTime(CharSequence s) {
 		String val = WhiteSpaceProcessor.trim(s).toString();
-		return datatypeFactory.newXMLGregorianCalendar(val).toGregorianCalendar();
+		return datatypeFactory.newXMLGregorianCalendar(val)
+				.toGregorianCalendar();
 	}
 
 	public String printDateTime(Calendar val) {
@@ -446,7 +429,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 
 		// "111" is not a valid hex encoding.
 		if (len % 2 != 0) {
-			throw new IllegalArgumentException("hexBinary needs to be even-length: " + s);
+			throw new IllegalArgumentException(
+					"hexBinary needs to be even-length: " + s);
 		}
 
 		byte[] out = new byte[len / 2];
@@ -502,7 +486,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	}
 
 	public Calendar parseTime(String lexicalXSDTime) {
-		return datatypeFactory.newXMLGregorianCalendar(lexicalXSDTime).toGregorianCalendar();
+		return datatypeFactory.newXMLGregorianCalendar(lexicalXSDTime)
+				.toGregorianCalendar();
 	}
 
 	public String printTime(Calendar val) {
@@ -510,7 +495,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	}
 
 	public Calendar parseDate(String lexicalXSDDate) {
-		return datatypeFactory.newXMLGregorianCalendar(lexicalXSDDate).toGregorianCalendar();
+		return datatypeFactory.newXMLGregorianCalendar(lexicalXSDDate)
+				.toGregorianCalendar();
 	}
 
 	public String printDate(Calendar val) {
@@ -518,8 +504,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	}
 
 	public static String _printDate(Calendar val) {
-		return CalendarFormatter.doFormat((new StringBuilder("%Y-%M-%D").append("%z")).toString(),
-				val);
+		return CalendarFormatter.doFormat((new StringBuilder("%Y-%M-%D").append(
+				"%z")).toString(), val);
 	}
 
 	public String parseAnySimpleType(String lexicalXSDAnySimpleType) {
@@ -697,13 +683,15 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 
 	/**
 	 * @param text
-	 *            base64Binary data is likely to be long, and decoding requires
-	 *            each character to be accessed twice (once for counting length,
-	 *            another for decoding.)
+	 *             base64Binary data is likely to be long, and decoding requires
+	 *             each character to be accessed twice (once for counting
+	 *             length,
+	 *             another for decoding.)
 	 *
-	 *            A benchmark showed that taking {@link String} is faster,
-	 *            presumably because JIT can inline a lot of string access (with
-	 *            data of 1K chars, it was twice as fast)
+	 *             A benchmark showed that taking {@link String} is faster,
+	 *             presumably because JIT can inline a lot of string access
+	 *             (with
+	 *             data of 1K chars, it was twice as fast)
 	 */
 	public static byte[] _parseBase64Binary(String text) {
 		final int buflen = guessLength(text);
@@ -729,7 +717,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 				// quadruplet is now filled.
 				out[o++] = (byte) ((quadruplet[0] << 2) | (quadruplet[1] >> 4));
 				if (quadruplet[2] != PADDING) {
-					out[o++] = (byte) ((quadruplet[1] << 4) | (quadruplet[2] >> 2));
+					out[o++] = (byte) ((quadruplet[1] << 4)
+							| (quadruplet[2] >> 2));
 				}
 				if (quadruplet[3] != PADDING) {
 					out[o++] = (byte) ((quadruplet[2] << 6) | (quadruplet[3]));
@@ -796,14 +785,17 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	 * @return the value of {@code ptr+((len+2)/3)*4}, which is the new offset
 	 *         in the output buffer where the further bytes should be placed.
 	 */
-	public static int _printBase64Binary(byte[] input, int offset, int len, char[] buf, int ptr) {
+	public static int _printBase64Binary(byte[] input, int offset, int len,
+			char[] buf, int ptr) {
 		// encode elements until only 1 or 2 elements are left to encode
 		int remaining = len;
 		int i;
 		for (i = offset; remaining >= 3; remaining -= 3, i += 3) {
 			buf[ptr++] = encode(input[i] >> 2);
-			buf[ptr++] = encode(((input[i] & 0x3) << 4) | ((input[i + 1] >> 4) & 0xF));
-			buf[ptr++] = encode(((input[i + 1] & 0xF) << 2) | ((input[i + 2] >> 6) & 0x3));
+			buf[ptr++] = encode(((input[i] & 0x3) << 4) | ((input[i + 1] >> 4)
+					& 0xF));
+			buf[ptr++] = encode(((input[i + 1] & 0xF) << 2) | ((input[i
+					+ 2] >> 6) & 0x3));
 			buf[ptr++] = encode(input[i + 2] & 0x3F);
 		}
 		// encode when exactly 1 element (left) to encode
@@ -816,7 +808,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 		// encode when exactly 2 elements (left) to encode
 		if (remaining == 2) {
 			buf[ptr++] = encode(input[i] >> 2);
-			buf[ptr++] = encode(((input[i] & 0x3) << 4) | ((input[i + 1] >> 4) & 0xF));
+			buf[ptr++] = encode(((input[i] & 0x3) << 4) | ((input[i + 1] >> 4)
+					& 0xF));
 			buf[ptr++] = encode((input[i + 1] & 0xF) << 2);
 			buf[ptr++] = '=';
 		}
@@ -832,14 +825,17 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 	 * @return the value of {@code ptr+((len+2)/3)*4}, which is the new offset
 	 *         in the output buffer where the further bytes should be placed.
 	 */
-	public static int _printBase64Binary(byte[] input, int offset, int len, byte[] out, int ptr) {
+	public static int _printBase64Binary(byte[] input, int offset, int len,
+			byte[] out, int ptr) {
 		byte[] buf = out;
 		int remaining = len;
 		int i;
 		for (i = offset; remaining >= 3; remaining -= 3, i += 3) {
 			buf[ptr++] = encodeByte(input[i] >> 2);
-			buf[ptr++] = encodeByte(((input[i] & 0x3) << 4) | ((input[i + 1] >> 4) & 0xF));
-			buf[ptr++] = encodeByte(((input[i + 1] & 0xF) << 2) | ((input[i + 2] >> 6) & 0x3));
+			buf[ptr++] = encodeByte(((input[i] & 0x3) << 4) | ((input[i
+					+ 1] >> 4) & 0xF));
+			buf[ptr++] = encodeByte(((input[i + 1] & 0xF) << 2) | ((input[i
+					+ 2] >> 6) & 0x3));
 			buf[ptr++] = encodeByte(input[i + 2] & 0x3F);
 		}
 		// encode when exactly 1 element (left) to encode
@@ -852,7 +848,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 		// encode when exactly 2 elements (left) to encode
 		if (remaining == 2) {
 			buf[ptr++] = encodeByte(input[i] >> 2);
-			buf[ptr++] = encodeByte(((input[i] & 0x3) << 4) | ((input[i + 1] >> 4) & 0xF));
+			buf[ptr++] = encodeByte(((input[i] & 0x3) << 4) | ((input[i
+					+ 1] >> 4) & 0xF));
 			buf[ptr++] = encodeByte((input[i + 1] & 0xF) << 2);
 			buf[ptr++] = '=';
 		}
@@ -901,7 +898,8 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 
 	private static final class CalendarFormatter {
 
-		public static String doFormat(String format, Calendar cal) throws IllegalArgumentException {
+		public static String doFormat(String format, Calendar cal)
+				throws IllegalArgumentException {
 			int fidx = 0;
 			int flen = format.length();
 			StringBuilder buf = new StringBuilder();
@@ -917,37 +915,37 @@ final class DatatypeConverterImpl implements DatatypeConverterInterface {
 				// seen meta character. we don't do error check against the
 				// format
 				switch (format.charAt(fidx++)) {
-				case 'Y': // year
-					formatYear(cal, buf);
-					break;
+					case 'Y': // year
+						formatYear(cal, buf);
+						break;
 
-				case 'M': // month
-					formatMonth(cal, buf);
-					break;
+					case 'M': // month
+						formatMonth(cal, buf);
+						break;
 
-				case 'D': // days
-					formatDays(cal, buf);
-					break;
+					case 'D': // days
+						formatDays(cal, buf);
+						break;
 
-				case 'h': // hours
-					formatHours(cal, buf);
-					break;
+					case 'h': // hours
+						formatHours(cal, buf);
+						break;
 
-				case 'm': // minutes
-					formatMinutes(cal, buf);
-					break;
+					case 'm': // minutes
+						formatMinutes(cal, buf);
+						break;
 
-				case 's': // parse seconds.
-					formatSeconds(cal, buf);
-					break;
+					case 's': // parse seconds.
+						formatSeconds(cal, buf);
+						break;
 
-				case 'z': // time zone
-					formatTimeZone(cal, buf);
-					break;
+					case 'z': // time zone
+						formatTimeZone(cal, buf);
+						break;
 
-				default:
-					// illegal meta character. impossible.
-					throw new InternalError();
+					default:
+						// illegal meta character. impossible.
+						throw new InternalError();
 				}
 			}
 

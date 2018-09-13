@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.table;
@@ -49,7 +29,7 @@ public interface TableColumnModel {
 	 * listeners.
 	 *
 	 * @param aColumn
-	 *            the <code>TableColumn</code> to be added
+	 *                the <code>TableColumn</code> to be added
 	 * @see #removeColumn
 	 */
 	public void addColumn(TableColumn aColumn);
@@ -61,7 +41,7 @@ public interface TableColumnModel {
 	 * a <code>columnRemoved</code> event to its listeners.
 	 *
 	 * @param column
-	 *            the <code>TableColumn</code> to be removed
+	 *               the <code>TableColumn</code> to be removed
 	 * @see #addColumn
 	 */
 	public void removeColumn(TableColumn column);
@@ -76,12 +56,13 @@ public interface TableColumnModel {
 	 * to its listeners.
 	 *
 	 * @param columnIndex
-	 *            the index of column to be moved
+	 *                    the index of column to be moved
 	 * @param newIndex
-	 *            index of the column's new location
+	 *                    index of the column's new location
 	 * @exception IllegalArgumentException
-	 *                if <code>columnIndex</code> or <code>newIndex</code> are
-	 *                not in the valid range
+	 *                                     if <code>columnIndex</code> or
+	 *                                     <code>newIndex</code> are
+	 *                                     not in the valid range
 	 */
 	public void moveColumn(int columnIndex, int newIndex);
 
@@ -91,7 +72,7 @@ public interface TableColumnModel {
 	 * <code>columnMarginChanged</code> event to its listeners.
 	 *
 	 * @param newMargin
-	 *            the width, in pixels, of the new column margins
+	 *                  the width, in pixels, of the new column margins
 	 * @see #getColumnMargin
 	 */
 	public void setColumnMargin(int newMargin);
@@ -120,12 +101,14 @@ public interface TableColumnModel {
 	 * .
 	 *
 	 * @param columnIdentifier
-	 *            the identifier object
+	 *                         the identifier object
 	 * @return the index of the first table column whose identifier is equal to
 	 *         <code>identifier</code>
 	 * @exception IllegalArgumentException
-	 *                if <code>identifier</code> is <code>null</code>, or no
-	 *                <code>TableColumn</code> has this <code>identifier</code>
+	 *                                     if <code>identifier</code> is
+	 *                                     <code>null</code>, or no
+	 *                                     <code>TableColumn</code> has this
+	 *                                     <code>identifier</code>
 	 * @see #getColumn
 	 */
 	public int getColumnIndex(Object columnIdentifier);
@@ -135,7 +118,7 @@ public interface TableColumnModel {
 	 * <code>columnIndex</code>.
 	 *
 	 * @param columnIndex
-	 *            the index of the desired column
+	 *                    the index of the desired column
 	 * @return the <code>TableColumn</code> object for the column at
 	 *         <code>columnIndex</code>
 	 */
@@ -187,7 +170,7 @@ public interface TableColumnModel {
 	 * Sets whether the columns in this model may be selected.
 	 * 
 	 * @param flag
-	 *            true if columns may be selected; otherwise false
+	 *             true if columns may be selected; otherwise false
 	 * @see #getColumnSelectionAllowed
 	 */
 	public void setColumnSelectionAllowed(boolean flag);
@@ -219,7 +202,7 @@ public interface TableColumnModel {
 	 * Sets the selection model.
 	 *
 	 * @param newModel
-	 *            a <code>ListSelectionModel</code> object
+	 *                 a <code>ListSelectionModel</code> object
 	 * @see #getSelectionModel
 	 */
 	public void setSelectionModel(ListSelectionModel newModel);
@@ -240,7 +223,7 @@ public interface TableColumnModel {
 	 * Adds a listener for table column model events.
 	 *
 	 * @param x
-	 *            a <code>TableColumnModelListener</code> object
+	 *          a <code>TableColumnModelListener</code> object
 	 */
 	public void addColumnModelListener(TableColumnModelListener x);
 
@@ -248,7 +231,7 @@ public interface TableColumnModel {
 	 * Removes a listener for table column model events.
 	 *
 	 * @param x
-	 *            a <code>TableColumnModelListener</code> object
+	 *          a <code>TableColumnModelListener</code> object
 	 */
 	public void removeColumnModelListener(TableColumnModelListener x);
 }

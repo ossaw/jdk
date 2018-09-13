@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -37,7 +17,7 @@ class BRView extends InlineView {
 	 * Creates a new view that represents a &lt;BR&gt; element.
 	 *
 	 * @param elem
-	 *            the element to create a view for
+	 *             the element to create a view for
 	 */
 	public BRView(Element elem) {
 		super(elem);

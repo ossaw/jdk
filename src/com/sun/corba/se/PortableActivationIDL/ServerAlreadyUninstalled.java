@@ -8,7 +8,8 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public final class ServerAlreadyUninstalled extends org.omg.CORBA.UserException {
+public final class ServerAlreadyUninstalled extends
+		org.omg.CORBA.UserException {
 	public String serverId = null;
 
 	public ServerAlreadyUninstalled() {

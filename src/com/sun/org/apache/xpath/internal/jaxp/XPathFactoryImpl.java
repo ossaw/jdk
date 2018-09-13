@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -95,8 +92,10 @@ public class XPathFactoryImpl extends XPathFactory {
 		if (System.getSecurityManager() != null) {
 			_isSecureMode = true;
 			_isNotSecureProcessing = false;
-			_featureManager.setValue(FeatureManager.Feature.ORACLE_ENABLE_EXTENSION_FUNCTION,
-					FeaturePropertyBase.State.FSP, XalanConstants.FEATURE_FALSE);
+			_featureManager.setValue(
+					FeatureManager.Feature.ORACLE_ENABLE_EXTENSION_FUNCTION,
+					FeaturePropertyBase.State.FSP,
+					XalanConstants.FEATURE_FALSE);
 		}
 		this._useServicesMechanism = useServicesMechanism;
 	}
@@ -107,29 +106,33 @@ public class XPathFactoryImpl extends XPathFactory {
 	 * </p>
 	 *
 	 * @param objectModel
-	 *            Specifies the object model which the returned
-	 *            <code>XPathFactory</code> will understand.
+	 *                    Specifies the object model which the returned
+	 *                    <code>XPathFactory</code> will understand.
 	 *
 	 * @return <code>true</code> if <code>XPathFactory</code> supports
 	 *         <code>objectModel</code>, else <code>false</code>.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>objectModel</code> is <code>null</code>.
+	 *                                  If <code>objectModel</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             If <code>objectModel.length() == 0</code>.
+	 *                                  If
+	 *                                  <code>objectModel.length() == 0</code>.
 	 */
 	public boolean isObjectModelSupported(String objectModel) {
 
 		if (objectModel == null) {
-			String fmsg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_OBJECT_MODEL_NULL,
-					new Object[] { this.getClass().getName() });
+			String fmsg = XSLMessages.createXPATHMessage(
+					XPATHErrorResources.ER_OBJECT_MODEL_NULL, new Object[] {
+							this.getClass().getName() });
 
 			throw new NullPointerException(fmsg);
 		}
 
 		if (objectModel.length() == 0) {
-			String fmsg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_OBJECT_MODEL_EMPTY,
-					new Object[] { this.getClass().getName() });
+			String fmsg = XSLMessages.createXPATHMessage(
+					XPATHErrorResources.ER_OBJECT_MODEL_EMPTY, new Object[] {
+							this.getClass().getName() });
 			throw new IllegalArgumentException(fmsg);
 		}
 
@@ -151,8 +154,9 @@ public class XPathFactoryImpl extends XPathFactory {
 	 * @return New <code>XPath</code>
 	 */
 	public javax.xml.xpath.XPath newXPath() {
-		return new com.sun.org.apache.xpath.internal.jaxp.XPathImpl(xPathVariableResolver,
-				xPathFunctionResolver, !_isNotSecureProcessing, _useServicesMechanism,
+		return new com.sun.org.apache.xpath.internal.jaxp.XPathImpl(
+				xPathVariableResolver, xPathFunctionResolver,
+				!_isNotSecureProcessing, _useServicesMechanism,
 				_featureManager);
 	}
 
@@ -177,22 +181,28 @@ public class XPathFactoryImpl extends XPathFactory {
 	 * </p>
 	 *
 	 * @param name
-	 *            Feature name.
+	 *              Feature name.
 	 * @param value
-	 *            Is feature state <code>true</code> or <code>false</code>.
+	 *              Is feature state <code>true</code> or <code>false</code>.
 	 *
 	 * @throws XPathFactoryConfigurationException
-	 *             if this <code>XPathFactory</code> or the <code>XPath</code>s
-	 *             it creates cannot support this feature.
+	 *                                            if this
+	 *                                            <code>XPathFactory</code> or
+	 *                                            the <code>XPath</code>s
+	 *                                            it creates cannot support this
+	 *                                            feature.
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                            if <code>name</code> is
+	 *                                            <code>null</code>.
 	 */
-	public void setFeature(String name, boolean value) throws XPathFactoryConfigurationException {
+	public void setFeature(String name, boolean value)
+			throws XPathFactoryConfigurationException {
 
 		// feature name cannot be null
 		if (name == null) {
-			String fmsg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_FEATURE_NAME_NULL,
-					new Object[] { CLASS_NAME, new Boolean(value) });
+			String fmsg = XSLMessages.createXPATHMessage(
+					XPATHErrorResources.ER_FEATURE_NAME_NULL, new Object[] {
+							CLASS_NAME, new Boolean(value) });
 			throw new NullPointerException(fmsg);
 		}
 
@@ -207,8 +217,10 @@ public class XPathFactoryImpl extends XPathFactory {
 
 			_isNotSecureProcessing = !value;
 			if (value && _featureManager != null) {
-				_featureManager.setValue(FeatureManager.Feature.ORACLE_ENABLE_EXTENSION_FUNCTION,
-						FeaturePropertyBase.State.FSP, XalanConstants.FEATURE_FALSE);
+				_featureManager.setValue(
+						FeatureManager.Feature.ORACLE_ENABLE_EXTENSION_FUNCTION,
+						FeaturePropertyBase.State.FSP,
+						XalanConstants.FEATURE_FALSE);
 			}
 
 			// all done processing feature
@@ -222,14 +234,15 @@ public class XPathFactoryImpl extends XPathFactory {
 			return;
 		}
 
-		if (_featureManager != null
-				&& _featureManager.setValue(name, FeaturePropertyBase.State.APIPROPERTY, value)) {
+		if (_featureManager != null && _featureManager.setValue(name,
+				FeaturePropertyBase.State.APIPROPERTY, value)) {
 			return;
 		}
 
 		// unknown feature
-		String fmsg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_FEATURE_UNKNOWN,
-				new Object[] { name, CLASS_NAME, new Boolean(value) });
+		String fmsg = XSLMessages.createXPATHMessage(
+				XPATHErrorResources.ER_FEATURE_UNKNOWN, new Object[] { name,
+						CLASS_NAME, new Boolean(value) });
 		throw new XPathFactoryConfigurationException(fmsg);
 	}
 
@@ -248,22 +261,28 @@ public class XPathFactoryImpl extends XPathFactory {
 	 * </p>
 	 *
 	 * @param name
-	 *            Feature name.
+	 *             Feature name.
 	 *
 	 * @return State of the named feature.
 	 *
 	 * @throws XPathFactoryConfigurationException
-	 *             if this <code>XPathFactory</code> or the <code>XPath</code>s
-	 *             it creates cannot support this feature.
+	 *                                            if this
+	 *                                            <code>XPathFactory</code> or
+	 *                                            the <code>XPath</code>s
+	 *                                            it creates cannot support this
+	 *                                            feature.
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                            if <code>name</code> is
+	 *                                            <code>null</code>.
 	 */
-	public boolean getFeature(String name) throws XPathFactoryConfigurationException {
+	public boolean getFeature(String name)
+			throws XPathFactoryConfigurationException {
 
 		// feature name cannot be null
 		if (name == null) {
 			String fmsg = XSLMessages.createXPATHMessage(
-					XPATHErrorResources.ER_GETTING_NULL_FEATURE, new Object[] { CLASS_NAME });
+					XPATHErrorResources.ER_GETTING_NULL_FEATURE, new Object[] {
+							CLASS_NAME });
 			throw new NullPointerException(fmsg);
 		}
 
@@ -276,15 +295,16 @@ public class XPathFactoryImpl extends XPathFactory {
 		}
 
 		/** Check to see if the property is managed by the security manager **/
-		String propertyValue = (_featureManager != null) ? _featureManager.getValueAsString(name)
-				: null;
+		String propertyValue = (_featureManager != null) ? _featureManager
+				.getValueAsString(name) : null;
 		if (propertyValue != null) {
 			return _featureManager.isFeatureEnabled(name);
 		}
 
 		// unknown feature
-		String fmsg = XSLMessages.createXPATHMessage(XPATHErrorResources.ER_GETTING_UNKNOWN_FEATURE,
-				new Object[] { name, CLASS_NAME });
+		String fmsg = XSLMessages.createXPATHMessage(
+				XPATHErrorResources.ER_GETTING_UNKNOWN_FEATURE, new Object[] {
+						name, CLASS_NAME });
 
 		throw new XPathFactoryConfigurationException(fmsg);
 	}
@@ -305,10 +325,11 @@ public class XPathFactoryImpl extends XPathFactory {
 	 * </p>
 	 *
 	 * @param resolver
-	 *            XPath function resolver.
+	 *                 XPath function resolver.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>resolver</code> is <code>null</code>.
+	 *                              If <code>resolver</code> is
+	 *                              <code>null</code>.
 	 */
 	public void setXPathFunctionResolver(XPathFunctionResolver resolver) {
 
@@ -339,10 +360,11 @@ public class XPathFactoryImpl extends XPathFactory {
 	 * </p>
 	 *
 	 * @param resolver
-	 *            Variable resolver.
+	 *                 Variable resolver.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>resolver</code> is <code>null</code>.
+	 *                              If <code>resolver</code> is
+	 *                              <code>null</code>.
 	 */
 	public void setXPathVariableResolver(XPathVariableResolver resolver) {
 

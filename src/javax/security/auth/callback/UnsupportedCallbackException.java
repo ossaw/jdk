@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.callback;
@@ -45,7 +25,7 @@ public class UnsupportedCallbackException extends Exception {
 	 * <p>
 	 *
 	 * @param callback
-	 *            the unrecognized {@code Callback}.
+	 *                 the unrecognized {@code Callback}.
 	 */
 	public UnsupportedCallbackException(Callback callback) {
 		super();
@@ -60,11 +40,11 @@ public class UnsupportedCallbackException extends Exception {
 	 * <p>
 	 *
 	 * @param callback
-	 *            the unrecognized {@code Callback}.
-	 *            <p>
+	 *                 the unrecognized {@code Callback}.
+	 *                 <p>
 	 *
 	 * @param msg
-	 *            the detail message.
+	 *                 the detail message.
 	 */
 	public UnsupportedCallbackException(Callback callback, String msg) {
 		super(msg);

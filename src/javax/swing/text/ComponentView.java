@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -67,7 +47,7 @@ public class ComponentView extends View {
 	 * Creates a new ComponentView object.
 	 *
 	 * @param elem
-	 *            the element to decorate
+	 *             the element to decorate
 	 */
 	public ComponentView(Element elem) {
 		super(elem);
@@ -100,14 +80,15 @@ public class ComponentView extends View {
 	 * view). This is implemented to do nothing.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 * @param a
-	 *            the shape
+	 *          the shape
 	 * @see View#paint
 	 */
 	public void paint(Graphics g, Shape a) {
 		if (c != null) {
-			Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
+			Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a
+					: a.getBounds();
 			c.setBounds(alloc.x, alloc.y, alloc.width, alloc.height);
 		}
 	}
@@ -118,13 +99,13 @@ public class ComponentView extends View {
 	 * along the axis of interest.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the span the view would like to be rendered into &gt;=0.
 	 *         Typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee. The parent may choose
 	 *         to resize or break the view.
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis
+	 *                                     for an invalid axis
 	 */
 	public float getPreferredSpan(int axis) {
 		if ((axis != X_AXIS) && (axis != Y_AXIS)) {
@@ -147,13 +128,13 @@ public class ComponentView extends View {
 	 * along the axis of interest.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the span the view would like to be rendered into &gt;=0.
 	 *         Typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee. The parent may choose
 	 *         to resize or break the view.
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis
+	 *                                     for an invalid axis
 	 */
 	public float getMinimumSpan(int axis) {
 		if ((axis != X_AXIS) && (axis != Y_AXIS)) {
@@ -176,13 +157,13 @@ public class ComponentView extends View {
 	 * along the axis of interest.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the span the view would like to be rendered into &gt;=0.
 	 *         Typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee. The parent may choose
 	 *         to resize or break the view.
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis
+	 *                                     for an invalid axis
 	 */
 	public float getMaximumSpan(int axis) {
 		if ((axis != X_AXIS) && (axis != Y_AXIS)) {
@@ -204,7 +185,7 @@ public class ComponentView extends View {
 	 * implemented to give the alignment of the embedded component.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the desired alignment. This should be a value between 0.0 and 1.0
 	 *         where 0 indicates alignment at the origin and 1.0 indicates
 	 *         alignment to the full span away from the origin. An alignment of
@@ -213,10 +194,10 @@ public class ComponentView extends View {
 	public float getAlignment(int axis) {
 		if (c != null) {
 			switch (axis) {
-			case View.X_AXIS:
-				return c.getAlignmentX();
-			case View.Y_AXIS:
-				return c.getAlignmentY();
+				case View.X_AXIS:
+					return c.getAlignmentX();
+				case View.Y_AXIS:
+					return c.getAlignmentY();
 			}
 		}
 		return super.getAlignment(axis);
@@ -239,7 +220,7 @@ public class ComponentView extends View {
 	 * (notification of change from an asynchronous update).
 	 *
 	 * @param p
-	 *            the parent
+	 *          the parent
 	 */
 	public void setParent(View p) {
 		super.setParent(p);
@@ -319,11 +300,13 @@ public class ComponentView extends View {
 	 *            the allocated region to render into
 	 * @return the bounding box of the given position is returned
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see View#modelToView
 	 */
-	public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+	public Shape modelToView(int pos, Shape a, Position.Bias b)
+			throws BadLocationException {
 		int p0 = getStartOffset();
 		int p1 = getEndOffset();
 		if ((pos >= p0) && (pos <= p1)) {
@@ -334,7 +317,8 @@ public class ComponentView extends View {
 			r.width = 0;
 			return r;
 		}
-		throw new BadLocationException(pos + " not in range " + p0 + "," + p1, pos);
+		throw new BadLocationException(pos + " not in range " + p0 + "," + p1,
+				pos);
 	}
 
 	/**
@@ -342,11 +326,11 @@ public class ComponentView extends View {
 	 * coordinate space of the model.
 	 *
 	 * @param x
-	 *            the X coordinate &gt;=0
+	 *          the X coordinate &gt;=0
 	 * @param y
-	 *            the Y coordinate &gt;=0
+	 *          the Y coordinate &gt;=0
 	 * @param a
-	 *            the allocated region to render into
+	 *          the allocated region to render into
 	 * @return the location within the model that best represents the given
 	 *         point in the view
 	 * @see View#viewToModel
@@ -434,8 +418,8 @@ public class ComponentView extends View {
 		 * <code>b</code>.
 		 * 
 		 * @param b
-		 *            If <code>true</code>, shows this component; otherwise,
-		 *            hides this component.
+		 *          If <code>true</code>, shows this component; otherwise,
+		 *          hides this component.
 		 * @see #isVisible
 		 * @since JDK1.1
 		 */

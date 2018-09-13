@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.jpeg;
@@ -81,16 +61,19 @@ class AdobeMarkerSegment extends MarkerSegment {
 		return node;
 	}
 
-	void updateFromNativeNode(Node node, boolean fromScratch) throws IIOInvalidTreeException {
+	void updateFromNativeNode(Node node, boolean fromScratch)
+			throws IIOInvalidTreeException {
 		// Only the transform is required
 		NamedNodeMap attrs = node.getAttributes();
 		transform = getAttributeValue(node, attrs, "transform", 0, 2, true);
 		int count = attrs.getLength();
 		if (count > 4) {
-			throw new IIOInvalidTreeException("Adobe APP14 node cannot have > 4 attributes", node);
+			throw new IIOInvalidTreeException(
+					"Adobe APP14 node cannot have > 4 attributes", node);
 		}
 		if (count > 1) {
-			int value = getAttributeValue(node, attrs, "version", 100, 255, false);
+			int value = getAttributeValue(node, attrs, "version", 100, 255,
+					false);
 			version = (value != -1) ? value : version;
 			value = getAttributeValue(node, attrs, "flags0", 0, 65535, false);
 			flags0 = (value != -1) ? value : flags0;
@@ -113,7 +96,8 @@ class AdobeMarkerSegment extends MarkerSegment {
 		ios.write(transform);
 	}
 
-	static void writeAdobeSegment(ImageOutputStream ios, int transform) throws IOException {
+	static void writeAdobeSegment(ImageOutputStream ios, int transform)
+			throws IOException {
 		(new AdobeMarkerSegment(transform)).write(ios);
 	}
 

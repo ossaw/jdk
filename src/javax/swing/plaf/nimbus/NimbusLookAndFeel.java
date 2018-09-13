@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -66,15 +46,18 @@ import sun.security.action.GetPropertyAction;
 public class NimbusLookAndFeel extends SynthLookAndFeel {
 
 	/** Set of standard region names for UIDefaults Keys */
-	private static final String[] COMPONENT_KEYS = new String[] { "ArrowButton", "Button",
-			"CheckBox", "CheckBoxMenuItem", "ColorChooser", "ComboBox", "DesktopPane",
-			"DesktopIcon", "EditorPane", "FileChooser", "FormattedTextField", "InternalFrame",
-			"InternalFrameTitlePane", "Label", "List", "Menu", "MenuBar", "MenuItem", "OptionPane",
-			"Panel", "PasswordField", "PopupMenu", "PopupMenuSeparator", "ProgressBar",
-			"RadioButton", "RadioButtonMenuItem", "RootPane", "ScrollBar", "ScrollBarTrack",
-			"ScrollBarThumb", "ScrollPane", "Separator", "Slider", "SliderTrack", "SliderThumb",
-			"Spinner", "SplitPane", "TabbedPane", "Table", "TableHeader", "TextArea", "TextField",
-			"TextPane", "ToggleButton", "ToolBar", "ToolTip", "Tree", "Viewport" };
+	private static final String[] COMPONENT_KEYS = new String[] { "ArrowButton",
+			"Button", "CheckBox", "CheckBoxMenuItem", "ColorChooser",
+			"ComboBox", "DesktopPane", "DesktopIcon", "EditorPane",
+			"FileChooser", "FormattedTextField", "InternalFrame",
+			"InternalFrameTitlePane", "Label", "List", "Menu", "MenuBar",
+			"MenuItem", "OptionPane", "Panel", "PasswordField", "PopupMenu",
+			"PopupMenuSeparator", "ProgressBar", "RadioButton",
+			"RadioButtonMenuItem", "RootPane", "ScrollBar", "ScrollBarTrack",
+			"ScrollBarThumb", "ScrollPane", "Separator", "Slider",
+			"SliderTrack", "SliderThumb", "Spinner", "SplitPane", "TabbedPane",
+			"Table", "TableHeader", "TextArea", "TextField", "TextPane",
+			"ToggleButton", "ToolBar", "ToolTip", "Tree", "Viewport" };
 
 	/**
 	 * A reference to the auto-generated file NimbusDefaults. This file contains
@@ -144,23 +127,26 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 			}
 
 			// Add Titled Border
-			uiDefaults.put("TitledBorder.titlePosition", TitledBorder.ABOVE_TOP);
-			uiDefaults.put("TitledBorder.border", new BorderUIResource(new LoweredBorder()));
-			uiDefaults.put("TitledBorder.titleColor",
-					getDerivedColor("text", 0.0f, 0.0f, 0.23f, 0, true));
-			uiDefaults.put("TitledBorder.font",
-					new NimbusDefaults.DerivedFont("defaultFont", 1f, true, null));
+			uiDefaults.put("TitledBorder.titlePosition",
+					TitledBorder.ABOVE_TOP);
+			uiDefaults.put("TitledBorder.border", new BorderUIResource(
+					new LoweredBorder()));
+			uiDefaults.put("TitledBorder.titleColor", getDerivedColor("text",
+					0.0f, 0.0f, 0.23f, 0, true));
+			uiDefaults.put("TitledBorder.font", new NimbusDefaults.DerivedFont(
+					"defaultFont", 1f, true, null));
 
 			// Choose Dialog button positions
 			uiDefaults.put("OptionPane.isYesLast", !isWindows);
 
 			// Store Table ScrollPane Corner Component
-			uiDefaults.put("Table.scrollPaneCornerComponent", new UIDefaults.ActiveValue() {
-				@Override
-				public Object createValue(UIDefaults table) {
-					return new TableScrollPaneCorner();
-				}
-			});
+			uiDefaults.put("Table.scrollPaneCornerComponent",
+					new UIDefaults.ActiveValue() {
+						@Override
+						public Object createValue(UIDefaults table) {
+							return new TableScrollPaneCorner();
+						}
+					});
 
 			// Setup the settings for ToolBarSeparator which is custom
 			// installed for Nimbus
@@ -171,35 +157,43 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 			for (String componentKey : COMPONENT_KEYS) {
 				String key = componentKey + ".foreground";
 				if (!uiDefaults.containsKey(key)) {
-					uiDefaults.put(key, new NimbusProperty(componentKey, "textForeground"));
+					uiDefaults.put(key, new NimbusProperty(componentKey,
+							"textForeground"));
 				}
 				key = componentKey + ".background";
 				if (!uiDefaults.containsKey(key)) {
-					uiDefaults.put(key, new NimbusProperty(componentKey, "background"));
+					uiDefaults.put(key, new NimbusProperty(componentKey,
+							"background"));
 				}
 				key = componentKey + ".font";
 				if (!uiDefaults.containsKey(key)) {
-					uiDefaults.put(key, new NimbusProperty(componentKey, "font"));
+					uiDefaults.put(key, new NimbusProperty(componentKey,
+							"font"));
 				}
 				key = componentKey + ".disabledText";
 				if (!uiDefaults.containsKey(key)) {
-					uiDefaults.put(key,
-							new NimbusProperty(componentKey, "Disabled", "textForeground"));
+					uiDefaults.put(key, new NimbusProperty(componentKey,
+							"Disabled", "textForeground"));
 				}
 				key = componentKey + ".disabled";
 				if (!uiDefaults.containsKey(key)) {
-					uiDefaults.put(key, new NimbusProperty(componentKey, "Disabled", "background"));
+					uiDefaults.put(key, new NimbusProperty(componentKey,
+							"Disabled", "background"));
 				}
 			}
 
 			// FileView icon keys are used by some applications, we don't have
 			// a computer icon at the moment so using home icon for now
-			uiDefaults.put("FileView.computerIcon", new LinkProperty("FileChooser.homeFolderIcon"));
-			uiDefaults.put("FileView.directoryIcon", new LinkProperty("FileChooser.directoryIcon"));
-			uiDefaults.put("FileView.fileIcon", new LinkProperty("FileChooser.fileIcon"));
-			uiDefaults.put("FileView.floppyDriveIcon",
-					new LinkProperty("FileChooser.floppyDriveIcon"));
-			uiDefaults.put("FileView.hardDriveIcon", new LinkProperty("FileChooser.hardDriveIcon"));
+			uiDefaults.put("FileView.computerIcon", new LinkProperty(
+					"FileChooser.homeFolderIcon"));
+			uiDefaults.put("FileView.directoryIcon", new LinkProperty(
+					"FileChooser.directoryIcon"));
+			uiDefaults.put("FileView.fileIcon", new LinkProperty(
+					"FileChooser.fileIcon"));
+			uiDefaults.put("FileView.floppyDriveIcon", new LinkProperty(
+					"FileChooser.floppyDriveIcon"));
+			uiDefaults.put("FileView.hardDriveIcon", new LinkProperty(
+					"FileChooser.hardDriveIcon"));
 		}
 		return uiDefaults;
 	}
@@ -210,9 +204,9 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	 * determined, then a default style is returned.
 	 *
 	 * @param c
-	 *            a non-null reference to a JComponent
+	 *          a non-null reference to a JComponent
 	 * @param r
-	 *            a non-null reference to the region of the component c
+	 *          a non-null reference to the region of the component c
 	 * @return a non-null reference to a NimbusStyle.
 	 */
 	public static NimbusStyle getStyle(JComponent c, Region r) {
@@ -280,7 +274,8 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 		String eName = ev.getPropertyName();
 
 		// These properties affect style cached inside NimbusDefaults (6860433)
-		if ("name" == eName || "ancestor" == eName || "Nimbus.Overrides" == eName
+		if ("name" == eName || "ancestor" == eName
+				|| "Nimbus.Overrides" == eName
 				|| "Nimbus.Overrides.InheritDefaults" == eName
 				|| "JComponent.sizeVariant" == eName) {
 
@@ -349,12 +344,14 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	 * </pre>
 	 *
 	 * @param region
-	 *            The Synth Region that is being registered. Such as Button, or
-	 *            ScrollBarThumb, or NimbusFooUI.FOO_REGION.
+	 *               The Synth Region that is being registered. Such as Button,
+	 *               or
+	 *               ScrollBarThumb, or NimbusFooUI.FOO_REGION.
 	 * @param prefix
-	 *            The UIDefault prefix. For example, could be ComboBox, or if a
-	 *            named components, "MyComboBox", or even something like
-	 *            ToolBar."MyComboBox"."ComboBox.arrowButton"
+	 *               The UIDefault prefix. For example, could be ComboBox, or if
+	 *               a
+	 *               named components, "MyComboBox", or even something like
+	 *               ToolBar."MyComboBox"."ComboBox.arrowButton"
 	 */
 	public void register(Region region, String prefix) {
 		defaults.register(region, prefix);
@@ -371,8 +368,8 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	public Icon getDisabledIcon(JComponent component, Icon icon) {
 		if (icon instanceof SynthIcon) {
 			SynthIcon si = (SynthIcon) icon;
-			BufferedImage img = EffectUtils.createCompatibleTranslucentImage(si.getIconWidth(),
-					si.getIconHeight());
+			BufferedImage img = EffectUtils.createCompatibleTranslucentImage(si
+					.getIconWidth(), si.getIconHeight());
 			Graphics2D gfx = img.createGraphics();
 			si.paintIcon(component, gfx, 0, 0);
 			gfx.dispose();
@@ -387,24 +384,25 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	 * value will change when its parent UIDefault color changes.
 	 *
 	 * @param uiDefaultParentName
-	 *            The parent UIDefault key
+	 *                            The parent UIDefault key
 	 * @param hOffset
-	 *            The hue offset
+	 *                            The hue offset
 	 * @param sOffset
-	 *            The saturation offset
+	 *                            The saturation offset
 	 * @param bOffset
-	 *            The brightness offset
+	 *                            The brightness offset
 	 * @param aOffset
-	 *            The alpha offset
+	 *                            The alpha offset
 	 * @param uiResource
-	 *            True if the derived color should be a UIResource, false if it
-	 *            should not be
+	 *                            True if the derived color should be a
+	 *                            UIResource, false if it
+	 *                            should not be
 	 * @return The stored derived color
 	 */
-	public Color getDerivedColor(String uiDefaultParentName, float hOffset, float sOffset,
-			float bOffset, int aOffset, boolean uiResource) {
-		return defaults.getDerivedColor(uiDefaultParentName, hOffset, sOffset, bOffset, aOffset,
-				uiResource);
+	public Color getDerivedColor(String uiDefaultParentName, float hOffset,
+			float sOffset, float bOffset, int aOffset, boolean uiResource) {
+		return defaults.getDerivedColor(uiDefaultParentName, hOffset, sOffset,
+				bOffset, aOffset, uiResource);
 	}
 
 	/**
@@ -412,18 +410,19 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	 * other colors.
 	 *
 	 * @param color1
-	 *            The first color
+	 *                   The first color
 	 * @param color2
-	 *            The second color
+	 *                   The second color
 	 * @param midPoint
-	 *            The offset between color 1 and color 2, a value of 0.0 is
-	 *            color 1 and 1.0 is color 2;
+	 *                   The offset between color 1 and color 2, a value of 0.0
+	 *                   is
+	 *                   color 1 and 1.0 is color 2;
 	 * @param uiResource
-	 *            True if the derived color should be a UIResource
+	 *                   True if the derived color should be a UIResource
 	 * @return The derived color
 	 */
-	protected final Color getDerivedColor(Color color1, Color color2, float midPoint,
-			boolean uiResource) {
+	protected final Color getDerivedColor(Color color1, Color color2,
+			float midPoint, boolean uiResource) {
 		int argb = deriveARGB(color1, color2, midPoint);
 		if (uiResource) {
 			return new ColorUIResource(argb);
@@ -437,15 +436,16 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	 * other colors.
 	 *
 	 * @param color1
-	 *            The first color
+	 *                 The first color
 	 * @param color2
-	 *            The second color
+	 *                 The second color
 	 * @param midPoint
-	 *            The offset between color 1 and color 2, a value of 0.0 is
-	 *            color 1 and 1.0 is color 2;
+	 *                 The offset between color 1 and color 2, a value of 0.0 is
+	 *                 color 1 and 1.0 is color 2;
 	 * @return The derived color, which will be a UIResource
 	 */
-	protected final Color getDerivedColor(Color color1, Color color2, float midPoint) {
+	protected final Color getDerivedColor(Color color1, Color color2,
+			float midPoint) {
 		return getDerivedColor(color1, color2, midPoint, true);
 	}
 
@@ -492,20 +492,25 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	 * colors.
 	 *
 	 * @param color1
-	 *            The first color
+	 *                 The first color
 	 * @param color2
-	 *            The second color
+	 *                 The second color
 	 * @param midPoint
-	 *            The offset between color 1 and color 2, a value of 0.0 is
-	 *            color 1 and 1.0 is color 2;
+	 *                 The offset between color 1 and color 2, a value of 0.0 is
+	 *                 color 1 and 1.0 is color 2;
 	 * @return the ARGB value for a new color based on this derivation
 	 */
 	static int deriveARGB(Color color1, Color color2, float midPoint) {
-		int r = color1.getRed() + Math.round((color2.getRed() - color1.getRed()) * midPoint);
-		int g = color1.getGreen() + Math.round((color2.getGreen() - color1.getGreen()) * midPoint);
-		int b = color1.getBlue() + Math.round((color2.getBlue() - color1.getBlue()) * midPoint);
-		int a = color1.getAlpha() + Math.round((color2.getAlpha() - color1.getAlpha()) * midPoint);
-		return ((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
+		int r = color1.getRed() + Math.round((color2.getRed() - color1.getRed())
+				* midPoint);
+		int g = color1.getGreen() + Math.round((color2.getGreen() - color1
+				.getGreen()) * midPoint);
+		int b = color1.getBlue() + Math.round((color2.getBlue() - color1
+				.getBlue()) * midPoint);
+		int a = color1.getAlpha() + Math.round((color2.getAlpha() - color1
+				.getAlpha()) * midPoint);
+		return ((a & 0xFF) << 24) | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b
+				& 0xFF);
 	}
 
 	/**
@@ -550,7 +555,7 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 		 * The object is created each time it is accessed.
 		 *
 		 * @param table
-		 *            a <code>UIDefaults</code> table
+		 *              a <code>UIDefaults</code> table
 		 * @return the created <code>Object</code>
 		 */
 		@Override
@@ -598,13 +603,15 @@ public class NimbusLookAndFeel extends SynthLookAndFeel {
 	Map<String, Object> getDefaultsForPrefix(String prefix) {
 		if (compiledDefaults == null) {
 			compiledDefaults = new HashMap<String, Map<String, Object>>();
-			for (Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()) {
+			for (Map.Entry<Object, Object> entry : UIManager.getDefaults()
+					.entrySet()) {
 				if (entry.getKey() instanceof String) {
 					addDefault((String) entry.getKey(), entry.getValue());
 				}
 			}
 			if (!defaultListenerAdded) {
-				UIManager.getDefaults().addPropertyChangeListener(defaultsListener);
+				UIManager.getDefaults().addPropertyChangeListener(
+						defaultsListener);
 				defaultListenerAdded = true;
 			}
 		}

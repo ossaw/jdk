@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.prefs;
@@ -39,7 +19,7 @@ public class BackingStoreException extends Exception {
 	 * Constructs a BackingStoreException with the specified detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public BackingStoreException(String s) {
 		super(s);
@@ -49,7 +29,7 @@ public class BackingStoreException extends Exception {
 	 * Constructs a BackingStoreException with the specified cause.
 	 *
 	 * @param cause
-	 *            the cause
+	 *              the cause
 	 */
 	public BackingStoreException(Throwable cause) {
 		super(cause);

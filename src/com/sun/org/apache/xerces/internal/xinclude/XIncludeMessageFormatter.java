@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,18 +46,20 @@ public class XIncludeMessageFormatter implements MessageFormatter {
 	 * information.
 	 *
 	 * @param locale
-	 *            The locale of the message.
+	 *                  The locale of the message.
 	 * @param key
-	 *            The message key.
+	 *                  The message key.
 	 * @param arguments
-	 *            The message replacement text arguments. The order of the
-	 *            arguments must match that of the placeholders in the actual
-	 *            message.
+	 *                  The message replacement text arguments. The order of the
+	 *                  arguments must match that of the placeholders in the
+	 *                  actual
+	 *                  message.
 	 *
 	 * @return Returns the formatted message.
 	 *
 	 * @throws MissingResourceException
-	 *             Thrown if the message with the specified key cannot be found.
+	 *                                  Thrown if the message with the specified
+	 *                                  key cannot be found.
 	 */
 	public String formatMessage(Locale locale, String key, Object[] arguments)
 			throws MissingResourceException {
@@ -68,7 +67,8 @@ public class XIncludeMessageFormatter implements MessageFormatter {
 		if (fResourceBundle == null || locale != fLocale) {
 			if (locale != null) {
 				fResourceBundle = SecuritySupport.getResourceBundle(
-						"com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages", locale);
+						"com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages",
+						locale);
 				// memorize the most-recent locale
 				fLocale = locale;
 			}
@@ -90,7 +90,8 @@ public class XIncludeMessageFormatter implements MessageFormatter {
 		if (msg == null) {
 			msg = fResourceBundle.getString("BadMessageKey");
 			throw new MissingResourceException(msg,
-					"com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages", key);
+					"com.sun.org.apache.xerces.internal.impl.msg.XIncludeMessages",
+					key);
 		}
 
 		return msg;

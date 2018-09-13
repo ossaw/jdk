@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -51,20 +31,21 @@ public interface XMLReporter {
 	 * 
 	 * 
 	 * @param message
-	 *            the error message
+	 *                           the error message
 	 * 
 	 * @param errorType
-	 *            an implementation defined error type
+	 *                           an implementation defined error type
 	 * 
 	 * @param relatedInformation
-	 *            information related to the error, if available
+	 *                           information related to the error, if available
 	 * 
 	 * @param location
-	 *            the location of the error, if available
+	 *                           the location of the error, if available
 	 * 
 	 * @throws XMLStreamException
 	 * 
 	 */
-	public void report(String message, String errorType, Object relatedInformation,
-			Location location) throws XMLStreamException;
+	public void report(String message, String errorType,
+			Object relatedInformation, Location location)
+			throws XMLStreamException;
 }

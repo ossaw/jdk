@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -111,44 +91,54 @@ public abstract class FloatControl extends Control {
 	 * Constructs a new float control object with the given parameters
 	 *
 	 * @param type
-	 *            the kind of control represented by this float control object
+	 *                     the kind of control represented by this float control
+	 *                     object
 	 * @param minimum
-	 *            the smallest value permitted for the control
+	 *                     the smallest value permitted for the control
 	 * @param maximum
-	 *            the largest value permitted for the control
+	 *                     the largest value permitted for the control
 	 * @param precision
-	 *            the resolution or granularity of the control. This is the size
-	 *            of the increment between discrete valid values.
+	 *                     the resolution or granularity of the control. This is
+	 *                     the size
+	 *                     of the increment between discrete valid values.
 	 * @param updatePeriod
-	 *            the smallest time interval, in microseconds, over which the
-	 *            control can change from one discrete value to the next during
-	 *            a {@link #shift(float,float,int) shift}
+	 *                     the smallest time interval, in microseconds, over
+	 *                     which the
+	 *                     control can change from one discrete value to the
+	 *                     next during
+	 *                     a {@link #shift(float,float,int) shift}
 	 * @param initialValue
-	 *            the value that the control starts with when constructed
+	 *                     the value that the control starts with when
+	 *                     constructed
 	 * @param units
-	 *            the label for the units in which the control's values are
-	 *            expressed, such as "dB" or "frames per second"
+	 *                     the label for the units in which the control's values
+	 *                     are
+	 *                     expressed, such as "dB" or "frames per second"
 	 * @param minLabel
-	 *            the label for the minimum value, such as "Left" or "Off"
+	 *                     the label for the minimum value, such as "Left" or
+	 *                     "Off"
 	 * @param midLabel
-	 *            the label for the midpoint value, such as "Center" or
-	 *            "Default"
+	 *                     the label for the midpoint value, such as "Center" or
+	 *                     "Default"
 	 * @param maxLabel
-	 *            the label for the maximum value, such as "Right" or "Full"
+	 *                     the label for the maximum value, such as "Right" or
+	 *                     "Full"
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code minimum} is greater than {@code maximum} or
-	 *             {@code initialValue} does not fall within the allowable range
+	 *                                  if {@code minimum} is greater than
+	 *                                  {@code maximum} or
+	 *                                  {@code initialValue} does not fall
+	 *                                  within the allowable range
 	 */
-	protected FloatControl(Type type, float minimum, float maximum, float precision,
-			int updatePeriod, float initialValue, String units, String minLabel, String midLabel,
-			String maxLabel) {
+	protected FloatControl(Type type, float minimum, float maximum,
+			float precision, int updatePeriod, float initialValue, String units,
+			String minLabel, String midLabel, String maxLabel) {
 
 		super(type);
 
 		if (minimum > maximum) {
-			throw new IllegalArgumentException(
-					"Minimum value " + minimum + " exceeds maximum value " + maximum + ".");
+			throw new IllegalArgumentException("Minimum value " + minimum
+					+ " exceeds maximum value " + maximum + ".");
 		}
 		if (initialValue < minimum) {
 			throw new IllegalArgumentException("Initial value " + initialValue
@@ -178,31 +168,41 @@ public abstract class FloatControl extends Control {
 	 * zero-length strings.
 	 *
 	 * @param type
-	 *            the kind of control represented by this float control object
+	 *                     the kind of control represented by this float control
+	 *                     object
 	 * @param minimum
-	 *            the smallest value permitted for the control
+	 *                     the smallest value permitted for the control
 	 * @param maximum
-	 *            the largest value permitted for the control
+	 *                     the largest value permitted for the control
 	 * @param precision
-	 *            the resolution or granularity of the control. This is the size
-	 *            of the increment between discrete valid values.
+	 *                     the resolution or granularity of the control. This is
+	 *                     the size
+	 *                     of the increment between discrete valid values.
 	 * @param updatePeriod
-	 *            the smallest time interval, in microseconds, over which the
-	 *            control can change from one discrete value to the next during
-	 *            a {@link #shift(float,float,int) shift}
+	 *                     the smallest time interval, in microseconds, over
+	 *                     which the
+	 *                     control can change from one discrete value to the
+	 *                     next during
+	 *                     a {@link #shift(float,float,int) shift}
 	 * @param initialValue
-	 *            the value that the control starts with when constructed
+	 *                     the value that the control starts with when
+	 *                     constructed
 	 * @param units
-	 *            the label for the units in which the control's values are
-	 *            expressed, such as "dB" or "frames per second"
+	 *                     the label for the units in which the control's values
+	 *                     are
+	 *                     expressed, such as "dB" or "frames per second"
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code minimum} is greater than {@code maximum} or
-	 *             {@code initialValue} does not fall within the allowable range
+	 *                                  if {@code minimum} is greater than
+	 *                                  {@code maximum} or
+	 *                                  {@code initialValue} does not fall
+	 *                                  within the allowable range
 	 */
-	protected FloatControl(Type type, float minimum, float maximum, float precision,
-			int updatePeriod, float initialValue, String units) {
-		this(type, minimum, maximum, precision, updatePeriod, initialValue, units, "", "", "");
+	protected FloatControl(Type type, float minimum, float maximum,
+			float precision, int updatePeriod, float initialValue,
+			String units) {
+		this(type, minimum, maximum, precision, updatePeriod, initialValue,
+				units, "", "", "");
 	}
 
 	// METHODS
@@ -215,10 +215,11 @@ public abstract class FloatControl extends Control {
 	 * be open before they can be affected by setting a value.
 	 * 
 	 * @param newValue
-	 *            desired new value
+	 *                 desired new value
 	 * @throws IllegalArgumentException
-	 *             if the value indicated does not fall within the allowable
-	 *             range
+	 *                                  if the value indicated does not fall
+	 *                                  within the allowable
+	 *                                  range
 	 */
 	public void setValue(float newValue) {
 
@@ -339,15 +340,16 @@ public abstract class FloatControl extends Control {
 	 * final value immediately.
 	 *
 	 * @param from
-	 *            initial value at the beginning of the shift
+	 *                     initial value at the beginning of the shift
 	 * @param to
-	 *            final value after the shift
+	 *                     final value after the shift
 	 * @param microseconds
-	 *            maximum duration of the shift in microseconds
+	 *                     maximum duration of the shift in microseconds
 	 *
 	 * @throws IllegalArgumentException
-	 *             if either {@code from} or {@code to} value does not fall
-	 *             within the allowable range
+	 *                                  if either {@code from} or {@code to}
+	 *                                  value does not fall
+	 *                                  within the allowable range
 	 *
 	 * @see #getUpdatePeriod
 	 */
@@ -372,8 +374,8 @@ public abstract class FloatControl extends Control {
 	 * @return a string description
 	 */
 	public String toString() {
-		return new String(getType() + " with current value: " + getValue() + " " + units
-				+ " (range: " + minimum + " - " + maximum + ")");
+		return new String(getType() + " with current value: " + getValue() + " "
+				+ units + " (range: " + minimum + " - " + maximum + ")");
 	}
 
 	// INNER CLASSES
@@ -528,7 +530,7 @@ public abstract class FloatControl extends Control {
 		 * Constructs a new float control type.
 		 * 
 		 * @param name
-		 *            the name of the new float control type
+		 *             the name of the new float control type
 		 */
 		protected Type(String name) {
 			super(name);

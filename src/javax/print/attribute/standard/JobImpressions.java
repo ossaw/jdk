@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -74,8 +54,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobImpressions extends IntegerSyntax
-		implements PrintRequestAttribute, PrintJobAttribute {
+public final class JobImpressions extends IntegerSyntax implements
+		PrintRequestAttribute, PrintJobAttribute {
 
 	private static final long serialVersionUID = 8225537206784322464L;
 
@@ -83,11 +63,12 @@ public final class JobImpressions extends IntegerSyntax
 	 * Construct a new job impressions attribute with the given integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if <CODE>value</CODE> is less
-	 *                than 0.
+	 *                                     (Unchecked exception) Thrown if
+	 *                                     <CODE>value</CODE> is less
+	 *                                     than 0.
 	 */
 	public JobImpressions(int value) {
 		super(value, 0, Integer.MAX_VALUE);
@@ -105,7 +86,7 @@ public final class JobImpressions extends IntegerSyntax
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this job impressions
 	 *         attribute, false otherwise.

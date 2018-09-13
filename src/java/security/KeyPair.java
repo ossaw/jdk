@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -54,10 +34,10 @@ public final class KeyPair implements java.io.Serializable {
 	 * {@code Key} objects are immutable.
 	 *
 	 * @param publicKey
-	 *            the public key.
+	 *                   the public key.
 	 *
 	 * @param privateKey
-	 *            the private key.
+	 *                   the private key.
 	 */
 	public KeyPair(PublicKey publicKey, PrivateKey privateKey) {
 		this.publicKey = publicKey;

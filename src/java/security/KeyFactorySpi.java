@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -75,13 +55,14 @@ public abstract class KeyFactorySpi {
 	 * material).
 	 *
 	 * @param keySpec
-	 *            the specification (key material) of the public key.
+	 *                the specification (key material) of the public key.
 	 *
 	 * @return the public key.
 	 *
 	 * @exception InvalidKeySpecException
-	 *                if the given key specification is inappropriate for this
-	 *                key factory to produce a public key.
+	 *                                    if the given key specification is
+	 *                                    inappropriate for this
+	 *                                    key factory to produce a public key.
 	 */
 	protected abstract PublicKey engineGeneratePublic(KeySpec keySpec)
 			throws InvalidKeySpecException;
@@ -91,13 +72,14 @@ public abstract class KeyFactorySpi {
 	 * material).
 	 *
 	 * @param keySpec
-	 *            the specification (key material) of the private key.
+	 *                the specification (key material) of the private key.
 	 *
 	 * @return the private key.
 	 *
 	 * @exception InvalidKeySpecException
-	 *                if the given key specification is inappropriate for this
-	 *                key factory to produce a private key.
+	 *                                    if the given key specification is
+	 *                                    inappropriate for this
+	 *                                    key factory to produce a private key.
 	 */
 	protected abstract PrivateKey engineGeneratePrivate(KeySpec keySpec)
 			throws InvalidKeySpecException;
@@ -109,26 +91,30 @@ public abstract class KeyFactorySpi {
 	 * {@code DSAPublicKeySpec.class}, to indicate that the key material should
 	 * be returned in an instance of the {@code DSAPublicKeySpec} class.
 	 *
-	 * @param <T>
-	 *            the type of the key specification to be returned
+	 * @param         <T>
+	 *                the type of the key specification to be returned
 	 *
 	 * @param key
-	 *            the key.
+	 *                the key.
 	 *
 	 * @param keySpec
-	 *            the specification class in which the key material should be
-	 *            returned.
+	 *                the specification class in which the key material should
+	 *                be
+	 *                returned.
 	 *
 	 * @return the underlying key specification (key material) in an instance of
 	 *         the requested specification class.
 	 * 
 	 * @exception InvalidKeySpecException
-	 *                if the requested key specification is inappropriate for
-	 *                the given key, or the given key cannot be dealt with
-	 *                (e.g., the given key has an unrecognized format).
+	 *                                    if the requested key specification is
+	 *                                    inappropriate for
+	 *                                    the given key, or the given key cannot
+	 *                                    be dealt with
+	 *                                    (e.g., the given key has an
+	 *                                    unrecognized format).
 	 */
-	protected abstract <T extends KeySpec> T engineGetKeySpec(Key key, Class<T> keySpec)
-			throws InvalidKeySpecException;
+	protected abstract <T extends KeySpec> T engineGetKeySpec(Key key,
+			Class<T> keySpec) throws InvalidKeySpecException;
 
 	/**
 	 * Translates a key object, whose provider may be unknown or potentially
@@ -140,8 +126,10 @@ public abstract class KeyFactorySpi {
 	 * @return the translated key.
 	 *
 	 * @exception InvalidKeyException
-	 *                if the given key cannot be processed by this key factory.
+	 *                                if the given key cannot be processed by
+	 *                                this key factory.
 	 */
-	protected abstract Key engineTranslateKey(Key key) throws InvalidKeyException;
+	protected abstract Key engineTranslateKey(Key key)
+			throws InvalidKeyException;
 
 }

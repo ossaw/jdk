@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -56,7 +36,7 @@ public final class TRANSACTION_ROLLEDBACK extends SystemException {
 	 * of COMPLETED_NO.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *          the String containing a detail message
 	 */
 	public TRANSACTION_ROLLEDBACK(String s) {
 		this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -67,9 +47,9 @@ public final class TRANSACTION_ROLLEDBACK extends SystemException {
 	 * specified minor code and completion status.
 	 * 
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status
+	 *                  the completion status
 	 */
 	public TRANSACTION_ROLLEDBACK(int minor, CompletionStatus completed) {
 		this("", minor, completed);
@@ -80,13 +60,14 @@ public final class TRANSACTION_ROLLEDBACK extends SystemException {
 	 * specified description message, minor code, and completion status.
 	 * 
 	 * @param s
-	 *            the String containing a description message
+	 *                  the String containing a description message
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status
+	 *                  the completion status
 	 */
-	public TRANSACTION_ROLLEDBACK(String s, int minor, CompletionStatus completed) {
+	public TRANSACTION_ROLLEDBACK(String s, int minor,
+			CompletionStatus completed) {
 		super(s, minor, completed);
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -96,8 +76,7 @@ public class PSSParameterSpec implements AlgorithmParameterSpec {
 	 * Constructs a new {@code PSSParameterSpec} as defined in the PKCS #1
 	 * standard using the default values.
 	 */
-	private PSSParameterSpec() {
-	}
+	private PSSParameterSpec() {}
 
 	/**
 	 * Creates a new {@code PSSParameterSpec} as defined in the PKCS #1 standard
@@ -105,35 +84,42 @@ public class PSSParameterSpec implements AlgorithmParameterSpec {
 	 * for mask generation function, salt length, and trailer field values.
 	 *
 	 * @param mdName
-	 *            the algorithm name of the hash function.
+	 *                     the algorithm name of the hash function.
 	 * @param mgfName
-	 *            the algorithm name of the mask generation function.
+	 *                     the algorithm name of the mask generation function.
 	 * @param mgfSpec
-	 *            the parameters for the mask generation function. If null is
-	 *            specified, null will be returned by getMGFParameters().
+	 *                     the parameters for the mask generation function. If
+	 *                     null is
+	 *                     specified, null will be returned by
+	 *                     getMGFParameters().
 	 * @param saltLen
-	 *            the length of salt.
+	 *                     the length of salt.
 	 * @param trailerField
-	 *            the value of the trailer field.
+	 *                     the value of the trailer field.
 	 * @exception NullPointerException
-	 *                if {@code mdName}, or {@code mgfName} is null.
+	 *                                     if {@code mdName}, or {@code mgfName}
+	 *                                     is null.
 	 * @exception IllegalArgumentException
-	 *                if {@code saltLen} or {@code trailerField} is less than 0.
+	 *                                     if {@code saltLen} or
+	 *                                     {@code trailerField} is less than 0.
 	 * @since 1.5
 	 */
-	public PSSParameterSpec(String mdName, String mgfName, AlgorithmParameterSpec mgfSpec,
-			int saltLen, int trailerField) {
+	public PSSParameterSpec(String mdName, String mgfName,
+			AlgorithmParameterSpec mgfSpec, int saltLen, int trailerField) {
 		if (mdName == null) {
 			throw new NullPointerException("digest algorithm is null");
 		}
 		if (mgfName == null) {
-			throw new NullPointerException("mask generation function " + "algorithm is null");
+			throw new NullPointerException("mask generation function "
+					+ "algorithm is null");
 		}
 		if (saltLen < 0) {
-			throw new IllegalArgumentException("negative saltLen value: " + saltLen);
+			throw new IllegalArgumentException("negative saltLen value: "
+					+ saltLen);
 		}
 		if (trailerField < 0) {
-			throw new IllegalArgumentException("negative trailerField: " + trailerField);
+			throw new IllegalArgumentException("negative trailerField: "
+					+ trailerField);
 		}
 		this.mdName = mdName;
 		this.mgfName = mgfName;
@@ -147,13 +133,15 @@ public class PSSParameterSpec implements AlgorithmParameterSpec {
 	 * and other default values as defined in PKCS#1.
 	 *
 	 * @param saltLen
-	 *            the length of salt in bits to be used in PKCS#1 PSS encoding.
+	 *                the length of salt in bits to be used in PKCS#1 PSS
+	 *                encoding.
 	 * @exception IllegalArgumentException
-	 *                if {@code saltLen} is less than 0.
+	 *                                     if {@code saltLen} is less than 0.
 	 */
 	public PSSParameterSpec(int saltLen) {
 		if (saltLen < 0) {
-			throw new IllegalArgumentException("negative saltLen value: " + saltLen);
+			throw new IllegalArgumentException("negative saltLen value: "
+					+ saltLen);
 		}
 		this.saltLen = saltLen;
 	}

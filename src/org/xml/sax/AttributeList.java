@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX Attribute List Interface.
@@ -134,7 +114,7 @@ public interface AttributeList {
 	 * </p>
 	 *
 	 * @param i
-	 *            The index of the attribute in the list (starting at 0).
+	 *          The index of the attribute in the list (starting at 0).
 	 * @return The name of the indexed attribute, or null if the index is out of
 	 *         range.
 	 * @see #getLength
@@ -163,7 +143,7 @@ public interface AttributeList {
 	 * </p>
 	 *
 	 * @param i
-	 *            The index of the attribute in the list (starting at 0).
+	 *          The index of the attribute in the list (starting at 0).
 	 * @return The attribute type as a string, or null if the index is out of
 	 *         range.
 	 * @see #getLength
@@ -181,7 +161,7 @@ public interface AttributeList {
 	 * </p>
 	 *
 	 * @param i
-	 *            The index of the attribute in the list (starting at 0).
+	 *          The index of the attribute in the list (starting at 0).
 	 * @return The attribute value as a string, or null if the index is out of
 	 *         range.
 	 * @see #getLength
@@ -206,7 +186,7 @@ public interface AttributeList {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of the attribute.
+	 *             The name of the attribute.
 	 * @return The attribute type as a string, or null if no such attribute
 	 *         exists.
 	 * @see #getType(int)
@@ -226,7 +206,7 @@ public interface AttributeList {
 	 * </p>
 	 *
 	 * @param name
-	 *            the name of the attribute to return
+	 *             the name of the attribute to return
 	 * @return The attribute value as a string, or null if no such attribute
 	 *         exists.
 	 * @see #getValue(int)

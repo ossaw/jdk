@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -53,11 +33,12 @@ public abstract class OutputStream implements Closeable, Flushable {
 	 * for this method.
 	 *
 	 * @param b
-	 *            the <code>byte</code>.
+	 *          the <code>byte</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs. In particular, an
-	 *                <code>IOException</code> may be thrown if the output
-	 *                stream has been closed.
+	 *                        if an I/O error occurs. In particular, an
+	 *                        <code>IOException</code> may be thrown if the
+	 *                        output
+	 *                        stream has been closed.
 	 */
 	public abstract void write(int b) throws IOException;
 
@@ -68,9 +49,9 @@ public abstract class OutputStream implements Closeable, Flushable {
 	 * <code>write(b, 0, b.length)</code>.
 	 *
 	 * @param b
-	 *            the data.
+	 *          the data.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.OutputStream#write(byte[], int, int)
 	 */
 	public void write(byte b[]) throws IOException {
@@ -104,15 +85,16 @@ public abstract class OutputStream implements Closeable, Flushable {
 	 * @param len
 	 *            the number of bytes to write.
 	 * @exception IOException
-	 *                if an I/O error occurs. In particular, an
-	 *                <code>IOException</code> is thrown if the output stream is
-	 *                closed.
+	 *                        if an I/O error occurs. In particular, an
+	 *                        <code>IOException</code> is thrown if the output
+	 *                        stream is
+	 *                        closed.
 	 */
 	public void write(byte b[], int off, int len) throws IOException {
 		if (b == null) {
 			throw new NullPointerException();
-		} else if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) > b.length)
-				|| ((off + len) < 0)) {
+		} else if ((off < 0) || (off > b.length) || (len < 0) || ((off
+				+ len) > b.length) || ((off + len) < 0)) {
 			throw new IndexOutOfBoundsException();
 		} else if (len == 0) {
 			return;
@@ -138,10 +120,9 @@ public abstract class OutputStream implements Closeable, Flushable {
 	 * The <code>flush</code> method of <code>OutputStream</code> does nothing.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
-	public void flush() throws IOException {
-	}
+	public void flush() throws IOException {}
 
 	/**
 	 * Closes this output stream and releases any system resources associated
@@ -152,9 +133,8 @@ public abstract class OutputStream implements Closeable, Flushable {
 	 * The <code>close</code> method of <code>OutputStream</code> does nothing.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
-	public void close() throws IOException {
-	}
+	public void close() throws IOException {}
 
 }

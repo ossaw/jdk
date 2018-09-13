@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.protocol;
@@ -89,7 +68,8 @@ import com.sun.corba.se.impl.protocol.RequestCanceledException;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 import com.sun.corba.se.impl.logging.POASystemException;
 
-public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispatcher {
+public class CorbaServerRequestDispatcherImpl implements
+		CorbaServerRequestDispatcher {
 	protected ORB orb; // my ORB instance
 	private ORBUtilSystemException wrapper;
 	private POASystemException poaWrapper;
@@ -124,8 +104,9 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 	 * @return Result is null if object is (possibly) implemented here,
 	 *         otherwise an IOR indicating objref to forward the request to.
 	 * @exception OBJECT_NOT_EXIST
-	 *                is thrown if we know the object does not exist here, and
-	 *                we are not forwarding.
+	 *                             is thrown if we know the object does not
+	 *                             exist here, and
+	 *                             we are not forwarding.
 	 */
 	public IOR locate(ObjectKey okey) {
 		try {
@@ -165,7 +146,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 			// Now that we have the service contexts processed and the
 			// correct ORBVersion set, we must finish initializing the
 			// stream.
-			((MarshalInputStream) request.getInputObject()).performORBVersionSpecificInit();
+			((MarshalInputStream) request.getInputObject())
+					.performORBVersionSpecificInit();
 
 			ObjectKey okey = request.getObjectKey();
 
@@ -174,10 +156,12 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				checkServerId(okey);
 			} catch (ForwardException fex) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".dispatch: " + opAndId(request) + ": bad server id");
+					dprint(".dispatch: " + opAndId(request)
+							+ ": bad server id");
 				}
 
-				request.getProtocolHandler().createLocationForward(request, fex.getIOR(), null);
+				request.getProtocolHandler().createLocationForward(request, fex
+						.getIOR(), null);
 				return;
 			}
 
@@ -189,21 +173,24 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				ObjectKeyTemplate oktemp = okey.getTemplate();
 				objectAdapter = findObjectAdapter(oktemp);
 
-				java.lang.Object servant = getServantWithPI(request, objectAdapter, objectId,
-						oktemp, operation);
+				java.lang.Object servant = getServantWithPI(request,
+						objectAdapter, objectId, oktemp, operation);
 
 				dispatchToServant(servant, request, objectId, objectAdapter);
 			} catch (ForwardException ex) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".dispatch: " + opAndId(request) + ": ForwardException caught");
+					dprint(".dispatch: " + opAndId(request)
+							+ ": ForwardException caught");
 				}
 
 				// Thrown by Portable Interceptors from InterceptorInvoker,
 				// through Response constructor.
-				request.getProtocolHandler().createLocationForward(request, ex.getIOR(), null);
+				request.getProtocolHandler().createLocationForward(request, ex
+						.getIOR(), null);
 			} catch (OADestroyed ex) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".dispatch: " + opAndId(request) + ": OADestroyed exception caught");
+					dprint(".dispatch: " + opAndId(request)
+							+ ": OADestroyed exception caught");
 				}
 
 				// DO NOT CALL THIS HERE:
@@ -218,7 +205,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				dispatch(request);
 			} catch (RequestCanceledException ex) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".dispatch: " + opAndId(request) + ": RequestCanceledException caught");
+					dprint(".dispatch: " + opAndId(request)
+							+ ": RequestCanceledException caught");
 				}
 
 				// IDLJ generated non-tie based skeletons do not catch the
@@ -228,7 +216,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				throw ex;
 			} catch (UnknownException ex) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".dispatch: " + opAndId(request) + ": UnknownException caught " + ex);
+					dprint(".dispatch: " + opAndId(request)
+							+ ": UnknownException caught " + ex);
 				}
 
 				// RMIC generated tie skeletons convert all Throwable exception
@@ -242,20 +231,23 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				}
 
 				ServiceContexts contexts = new ServiceContexts(orb);
-				UEInfoServiceContext usc = new UEInfoServiceContext(ex.originalEx);
+				UEInfoServiceContext usc = new UEInfoServiceContext(
+						ex.originalEx);
 
 				contexts.put(usc);
 
-				SystemException sysex = wrapper
-						.unknownExceptionInDispatch(CompletionStatus.COMPLETED_MAYBE, ex);
-				request.getProtocolHandler().createSystemExceptionResponse(request, sysex,
-						contexts);
+				SystemException sysex = wrapper.unknownExceptionInDispatch(
+						CompletionStatus.COMPLETED_MAYBE, ex);
+				request.getProtocolHandler().createSystemExceptionResponse(
+						request, sysex, contexts);
 			} catch (Throwable ex) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".dispatch: " + opAndId(request) + ": other exception " + ex);
+					dprint(".dispatch: " + opAndId(request)
+							+ ": other exception " + ex);
 				}
-				request.getProtocolHandler().handleThrowableDuringServerDispatch(request, ex,
-						CompletionStatus.COMPLETED_MAYBE);
+				request.getProtocolHandler()
+						.handleThrowableDuringServerDispatch(request, ex,
+								CompletionStatus.COMPLETED_MAYBE);
 			}
 			return;
 		} finally {
@@ -292,8 +284,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 	}
 
 	// Note that objectAdapter.enter() must be called before getServant.
-	private java.lang.Object getServant(ObjectAdapter objectAdapter, byte[] objectId,
-			String operation) throws OADestroyed {
+	private java.lang.Object getServant(ObjectAdapter objectAdapter,
+			byte[] objectId, String operation) throws OADestroyed {
 		try {
 			if (orb.subcontractDebugFlag) {
 				dprint(".getServant->");
@@ -312,8 +304,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 	}
 
 	protected java.lang.Object getServantWithPI(CorbaMessageMediator request,
-			ObjectAdapter objectAdapter, byte[] objectId, ObjectKeyTemplate oktemp,
-			String operation) throws OADestroyed {
+			ObjectAdapter objectAdapter, byte[] objectId,
+			ObjectKeyTemplate oktemp, String operation) throws OADestroyed {
 		try {
 			if (orb.subcontractDebugFlag) {
 				dprint(".getServantWithPI->");
@@ -322,7 +314,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 			// Prepare Portable Interceptors for a new server request
 			// and invoke receive_request_service_contexts. The starting
 			// point may throw a SystemException or ForwardException.
-			orb.getPIHandler().initializeServerPIInfo(request, objectAdapter, objectId, oktemp);
+			orb.getPIHandler().initializeServerPIInfo(request, objectAdapter,
+					objectId, oktemp);
 			orb.getPIHandler().invokeServerPIStartingPoint();
 
 			objectAdapter.enter();
@@ -335,7 +328,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 			if (request != null)
 				request.setExecuteReturnServantInResponseConstructor(true);
 
-			java.lang.Object servant = getServant(objectAdapter, objectId, operation);
+			java.lang.Object servant = getServant(objectAdapter, objectId,
+					operation);
 
 			// Note: we do not know the MDI on a null servant.
 			// We only end up in that situation if _non_existent called,
@@ -350,7 +344,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 
 			orb.getPIHandler().setServerPIInfo(servant, mdi);
 
-			if (((servant != null) && !(servant instanceof org.omg.CORBA.DynamicImplementation)
+			if (((servant != null)
+					&& !(servant instanceof org.omg.CORBA.DynamicImplementation)
 					&& !(servant instanceof org.omg.PortableServer.DynamicImplementation))
 					|| (SpecialMethod.getSpecialMethod(operation) != null)) {
 				orb.getPIHandler().invokeServerPIIntermediatePoint();
@@ -437,11 +432,14 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				dprint(".handleNullServant->: " + operation);
 			}
 
-			SpecialMethod specialMethod = SpecialMethod.getSpecialMethod(operation);
+			SpecialMethod specialMethod = SpecialMethod.getSpecialMethod(
+					operation);
 
-			if ((specialMethod == null) || !specialMethod.isNonExistentMethod()) {
+			if ((specialMethod == null) || !specialMethod
+					.isNonExistentMethod()) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".handleNullServant: " + operation + ": throwing OBJECT_NOT_EXIST");
+					dprint(".handleNullServant: " + operation
+							+ ": throwing OBJECT_NOT_EXIST");
 				}
 
 				throw nserv.getException();
@@ -472,10 +470,10 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 			boolean hasCodeSetContext = processCodeSetContext(request, ctxts);
 
 			if (orb.subcontractDebugFlag) {
-				dprint(".consumeServiceContexts: " + opAndId(request) + ": GIOP version: "
-						+ giopVersion);
-				dprint(".consumeServiceContexts: " + opAndId(request) + ": as code set context? "
-						+ hasCodeSetContext);
+				dprint(".consumeServiceContexts: " + opAndId(request)
+						+ ": GIOP version: " + giopVersion);
+				dprint(".consumeServiceContexts: " + opAndId(request)
+						+ ": as code set context? " + hasCodeSetContext);
 			}
 
 			sc = ctxts.get(SendingContextServiceContext.SERVICE_CONTEXT_ID);
@@ -485,7 +483,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				IOR ior = scsc.getIOR();
 
 				try {
-					((CorbaConnection) request.getConnection()).setCodeBaseIOR(ior);
+					((CorbaConnection) request.getConnection()).setCodeBaseIOR(
+							ior);
 				} catch (ThreadDeath td) {
 					throw td;
 				} catch (Throwable t) {
@@ -555,7 +554,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 	}
 
 	protected CorbaMessageMediator dispatchToServant(java.lang.Object servant,
-			CorbaMessageMediator req, byte[] objectId, ObjectAdapter objectAdapter) {
+			CorbaMessageMediator req, byte[] objectId,
+			ObjectAdapter objectAdapter) {
 		try {
 			if (orb.subcontractDebugFlag) {
 				dprint(".dispatchToServant->: " + opAndId(req));
@@ -568,7 +568,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 			SpecialMethod method = SpecialMethod.getSpecialMethod(operation);
 			if (method != null) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".dispatchToServant: " + opAndId(req) + ": Handling special method");
+					dprint(".dispatchToServant: " + opAndId(req)
+							+ ": Handling special method");
 				}
 
 				response = method.invoke(servant, req, objectId, objectAdapter);
@@ -612,9 +613,11 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 
 				InvokeHandler invhandle = (InvokeHandler) servant;
 
-				OutputStream stream = (OutputStream) invhandle._invoke(operation,
-						(org.omg.CORBA.portable.InputStream) req.getInputObject(), req);
-				response = (CorbaMessageMediator) ((OutputObject) stream).getMessageMediator();
+				OutputStream stream = (OutputStream) invhandle._invoke(
+						operation, (org.omg.CORBA.portable.InputStream) req
+								.getInputObject(), req);
+				response = (CorbaMessageMediator) ((OutputObject) stream)
+						.getMessageMediator();
 			}
 
 			return response;
@@ -639,7 +642,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 
 			if (excany == null) { // normal return
 				if (orb.subcontractDebugFlag) {
-					dprint(".handleDynamicResult: " + opAndId(req) + ": handling normal result");
+					dprint(".handleDynamicResult: " + opAndId(req)
+							+ ": handling normal result");
 				}
 
 				// Marshal out/inout/return parameters into the ReplyMessage
@@ -648,7 +652,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				sreq.marshalReplyParams(os);
 			} else {
 				if (orb.subcontractDebugFlag) {
-					dprint(".handleDynamicResult: " + opAndId(req) + ": handling error");
+					dprint(".handleDynamicResult: " + opAndId(req)
+							+ ": handling error");
 				}
 
 				response = sendingReply(req, excany);
@@ -681,7 +686,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 	 * Must always be called, just after the servant's method returns. Creates
 	 * the ReplyMessage header and puts in the transaction context if necessary.
 	 */
-	protected CorbaMessageMediator sendingReply(CorbaMessageMediator req, Any excany) {
+	protected CorbaMessageMediator sendingReply(CorbaMessageMediator req,
+			Any excany) {
 		try {
 			if (orb.subcontractDebugFlag) {
 				dprint(".sendingReply/Any->: " + opAndId(req));
@@ -701,20 +707,24 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 
 			if (ORBUtility.isSystemException(repId)) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".sendingReply/Any: " + opAndId(req) + ": handling system exception");
+					dprint(".sendingReply/Any: " + opAndId(req)
+							+ ": handling system exception");
 				}
 
 				// Get the exception object from the Any
 				InputStream in = excany.create_input_stream();
 				SystemException ex = ORBUtility.readSystemException(in);
 				// Marshal the exception back
-				resp = req.getProtocolHandler().createSystemExceptionResponse(req, ex, scs);
+				resp = req.getProtocolHandler().createSystemExceptionResponse(
+						req, ex, scs);
 			} else {
 				if (orb.subcontractDebugFlag) {
-					dprint(".sendingReply/Any: " + opAndId(req) + ": handling user exception");
+					dprint(".sendingReply/Any: " + opAndId(req)
+							+ ": handling user exception");
 				}
 
-				resp = req.getProtocolHandler().createUserExceptionResponse(req, scs);
+				resp = req.getProtocolHandler().createUserExceptionResponse(req,
+						scs);
 				OutputStream os = (OutputStream) resp.getOutputObject();
 				excany.write_value(os);
 			}
@@ -738,7 +748,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				dprint(".processCodeSetContext->: " + opAndId(request));
 			}
 
-			ServiceContext sc = contexts.get(CodeSetServiceContext.SERVICE_CONTEXT_ID);
+			ServiceContext sc = contexts.get(
+					CodeSetServiceContext.SERVICE_CONTEXT_ID);
 			if (sc != null) {
 				// Somehow a code set service context showed up in the local
 				// case.
@@ -756,7 +767,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				}
 
 				CodeSetServiceContext cssc = (CodeSetServiceContext) sc;
-				CodeSetComponentInfo.CodeSetContext csctx = cssc.getCodeSetContext();
+				CodeSetComponentInfo.CodeSetContext csctx = cssc
+						.getCodeSetContext();
 
 				// Note on threading:
 				//
@@ -773,7 +785,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 				// a
 				// request with a code set context with the negotiated code
 				// sets.
-				if (((CorbaConnection) request.getConnection()).getCodeSetContext() == null) {
+				if (((CorbaConnection) request.getConnection())
+						.getCodeSetContext() == null) {
 
 					// Use these code sets on this connection
 					if (orb.subcontractDebugFlag) {
@@ -781,7 +794,8 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 								+ ": Setting code sets to: " + csctx);
 					}
 
-					((CorbaConnection) request.getConnection()).setCodeSetContext(csctx);
+					((CorbaConnection) request.getConnection())
+							.setCodeSetContext(csctx);
 
 					// We had to read the method name using ISO 8859-1
 					// (which is the default in the CDRInputStream for
@@ -795,8 +809,10 @@ public class CorbaServerRequestDispatcherImpl implements CorbaServerRequestDispa
 					// char code set rather than assuming it's ISO8859-1.
 					// (However, the operation name is almost certainly
 					// ISO8859-1 or ASCII.)
-					if (csctx.getCharCodeSet() != OSFCodeSetRegistry.ISO_8859_1.getNumber()) {
-						((MarshalInputStream) request.getInputObject()).resetCodeSetConverters();
+					if (csctx.getCharCodeSet() != OSFCodeSetRegistry.ISO_8859_1
+							.getNumber()) {
+						((MarshalInputStream) request.getInputObject())
+								.resetCodeSetConverters();
 					}
 				}
 			}

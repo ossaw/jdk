@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -64,10 +44,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * <code>ImageOutputStream.writeBits</code>).
 	 *
 	 * @param byteOrder
-	 *            one of <code>ByteOrder.BIG_ENDIAN</code> or
-	 *            <code>java.nio.ByteOrder.LITTLE_ENDIAN</code>, indicating
-	 *            whether network byte order or its reverse will be used for
-	 *            future reads.
+	 *                  one of <code>ByteOrder.BIG_ENDIAN</code> or
+	 *                  <code>java.nio.ByteOrder.LITTLE_ENDIAN</code>,
+	 *                  indicating
+	 *                  whether network byte order or its reverse will be used
+	 *                  for
+	 *                  future reads.
 	 *
 	 * @see java.nio.ByteOrder
 	 * @see #getByteOrder
@@ -98,7 +80,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * @return a byte value from the stream, as an int, or -1 to indicate EOF.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	int read() throws IOException;
 
@@ -112,16 +94,16 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * The bit offset within the stream is reset to zero before the read occurs.
 	 *
 	 * @param b
-	 *            an array of bytes to be written to.
+	 *          an array of bytes to be written to.
 	 *
 	 * @return the number of bytes actually read, or <code>-1</code> to indicate
 	 *         EOF.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
+	 *                                 if <code>b</code> is <code>null</code>.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                 if an I/O error occurs.
 	 */
 	int read(byte[] b) throws IOException;
 
@@ -145,13 +127,16 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *         EOF.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
+	 *                                      if <code>b</code> is
+	 *                                      <code>null</code>.
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>b.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>b.length</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	int read(byte[] b, int off, int len) throws IOException;
 
@@ -170,12 +155,13 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>byte</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>len</code> is negative.
+	 *                                      if <code>len</code> is negative.
 	 * @exception NullPointerException
-	 *                if <code>buf</code> is <code>null</code>.
+	 *                                      if <code>buf</code> is
+	 *                                      <code>null</code>.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readBytes(IIOByteBuffer buf, int len) throws IOException;
 
@@ -188,10 +174,10 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a boolean value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the end of the stream is reached.
+	 * @exception             java.io.EOFException
+	 *                        if the end of the stream is reached.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	boolean readBoolean() throws IOException;
 
@@ -207,10 +193,10 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a signed byte value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the end of the stream is reached.
+	 * @exception             java.io.EOFException
+	 *                        if the end of the stream is reached.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	byte readByte() throws IOException;
 
@@ -231,10 +217,10 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return an unsigned byte value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the end of the stream is reached.
+	 * @exception             java.io.EOFException
+	 *                        if the end of the stream is reached.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	int readUnsignedByte() throws IOException;
 
@@ -248,11 +234,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a signed short value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #getByteOrder
 	 */
@@ -270,11 +257,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return an unsigned short value from the stream, as an int.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #getByteOrder
 	 */
@@ -289,11 +277,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return an unsigned char value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #readUnsignedShort
 	 */
@@ -310,11 +299,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a signed int value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #getByteOrder
 	 */
@@ -331,11 +321,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return an unsigned int value from the stream, as a long.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #getByteOrder
 	 */
@@ -351,11 +342,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a signed long value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #getByteOrder
 	 */
@@ -371,11 +363,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a float value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #getByteOrder
 	 */
@@ -391,11 +384,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a double value from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #getByteOrder
 	 */
@@ -430,7 +424,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * @return a String containing a line of text from the stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	String readLine() throws IOException;
 
@@ -519,14 +513,16 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *
 	 * @return a String read from the stream.
 	 *
-	 * @exception java.io.EOFException
-	 *                if this stream reaches the end before reading all the
-	 *                bytes.
-	 * @exception java.io.UTFDataFormatException
-	 *                if the bytes do not represent a valid modified UTF-8
-	 *                encoding of a string.
+	 * @exception             java.io.EOFException
+	 *                        if this stream reaches the end before reading all
+	 *                        the
+	 *                        bytes.
+	 * @exception             java.io.UTFDataFormatException
+	 *                        if the bytes do not represent a valid modified
+	 *                        UTF-8
+	 *                        encoding of a string.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	String readUTF() throws IOException;
 
@@ -546,16 +542,20 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>byte</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>b.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>b.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                      if <code>b</code> is
+	 *                                      <code>null</code>.
+	 * @exception                           java.io.EOFException
+	 *                                      if the stream reaches the end before
+	 *                                      reading all the
+	 *                                      bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readFully(byte[] b, int off, int len) throws IOException;
 
@@ -568,15 +568,16 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * The bit offset within the stream is reset to zero before the read occurs.
 	 *
 	 * @param b
-	 *            an array of <code>byte</code>s.
+	 *          an array of <code>byte</code>s.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                 if <code>b</code> is <code>null</code>.
+	 * @exception                      java.io.EOFException
+	 *                                 if the stream reaches the end before
+	 *                                 reading all the
+	 *                                 bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                 if an I/O error occurs.
 	 */
 	void readFully(byte[] b) throws IOException;
 
@@ -597,16 +598,20 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>short</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>s.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>s.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>s</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                      if <code>s</code> is
+	 *                                      <code>null</code>.
+	 * @exception                           java.io.EOFException
+	 *                                      if the stream reaches the end before
+	 *                                      reading all the
+	 *                                      bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readFully(short[] s, int off, int len) throws IOException;
 
@@ -627,16 +632,20 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>char</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>c.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>c.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>c</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                      if <code>c</code> is
+	 *                                      <code>null</code>.
+	 * @exception                           java.io.EOFException
+	 *                                      if the stream reaches the end before
+	 *                                      reading all the
+	 *                                      bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readFully(char[] c, int off, int len) throws IOException;
 
@@ -657,16 +666,20 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>int</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>i.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>i.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>i</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                      if <code>i</code> is
+	 *                                      <code>null</code>.
+	 * @exception                           java.io.EOFException
+	 *                                      if the stream reaches the end before
+	 *                                      reading all the
+	 *                                      bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readFully(int[] i, int off, int len) throws IOException;
 
@@ -687,16 +700,20 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>long</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>l.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>l.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>l</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                      if <code>l</code> is
+	 *                                      <code>null</code>.
+	 * @exception                           java.io.EOFException
+	 *                                      if the stream reaches the end before
+	 *                                      reading all the
+	 *                                      bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readFully(long[] l, int off, int len) throws IOException;
 
@@ -717,16 +734,20 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>float</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>f.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>f.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>f</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                      if <code>f</code> is
+	 *                                      <code>null</code>.
+	 * @exception                           java.io.EOFException
+	 *                                      if the stream reaches the end before
+	 *                                      reading all the
+	 *                                      bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readFully(float[] f, int off, int len) throws IOException;
 
@@ -747,16 +768,20 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            the maximum number of <code>double</code>s to read.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>d.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>d.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>d</code> is <code>null</code>.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the
-	 *                bytes.
+	 *                                      if <code>d</code> is
+	 *                                      <code>null</code>.
+	 * @exception                           java.io.EOFException
+	 *                                      if the stream reaches the end before
+	 *                                      reading all the
+	 *                                      bytes.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void readFully(double[] d, int off, int len) throws IOException;
 
@@ -767,7 +792,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * @return a long containing the position of the stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	long getStreamPosition() throws IOException;
 
@@ -787,7 +812,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *         inclusive.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see #setBitOffset
 	 */
@@ -800,14 +825,16 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * value of 7 indicates the least significant bit, of the byte being read.
 	 *
 	 * @param bitOffset
-	 *            the desired offset, as an <code>int</code> between 0 and 7,
-	 *            inclusive.
+	 *                  the desired offset, as an <code>int</code> between 0 and
+	 *                  7,
+	 *                  inclusive.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>bitOffset</code> is not between 0 and 7,
-	 *                inclusive.
+	 *                                     if <code>bitOffset</code> is not
+	 *                                     between 0 and 7,
+	 *                                     inclusive.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                     if an I/O error occurs.
 	 *
 	 * @see #getBitOffset
 	 */
@@ -821,10 +848,11 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * @return an <code>int</code> containing the value <code>0</code> or
 	 *         <code>1</code>.
 	 *
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the bits.
+	 * @exception             java.io.EOFException
+	 *                        if the stream reaches the end before reading all
+	 *                        the bits.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	int readBit() throws IOException;
 
@@ -863,18 +891,21 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * read, an <code>java.io.EOFException</code> is thrown.
 	 *
 	 * @param numBits
-	 *            the number of bits to read, as an <code>int</code> between 0
-	 *            and 64, inclusive.
+	 *                the number of bits to read, as an <code>int</code> between
+	 *                0
+	 *                and 64, inclusive.
 	 * @return the bitstring, as a <code>long</code> with the last bit read
 	 *         stored in the least significant bit.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>numBits</code> is not between 0 and 64,
-	 *                inclusive.
-	 * @exception java.io.EOFException
-	 *                if the stream reaches the end before reading all the bits.
+	 *                                     if <code>numBits</code> is not
+	 *                                     between 0 and 64,
+	 *                                     inclusive.
+	 * @exception                          java.io.EOFException
+	 *                                     if the stream reaches the end before
+	 *                                     reading all the bits.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                     if an I/O error occurs.
 	 */
 	long readBits(int numBits) throws IOException;
 
@@ -886,7 +917,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *         known, or else <code>-1</code>.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	long length() throws IOException;
 
@@ -898,13 +929,13 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * The bit offset is set to zero prior to advancing the position.
 	 *
 	 * @param n
-	 *            an <code>int</code> containing the number of bytes to be
-	 *            skipped.
+	 *          an <code>int</code> containing the number of bytes to be
+	 *          skipped.
 	 *
 	 * @return an <code>int</code> representing the number of bytes skipped.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	int skipBytes(int n) throws IOException;
 
@@ -914,13 +945,13 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * larger skip distance.
 	 *
 	 * @param n
-	 *            a <code>long</code> containing the number of bytes to be
-	 *            skipped.
+	 *          a <code>long</code> containing the number of bytes to be
+	 *          skipped.
 	 *
 	 * @return a <code>long</code> representing the number of bytes skipped.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	long skipBytes(long n) throws IOException;
 
@@ -943,9 +974,10 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            position.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>pos</code> is smaller than the flushed position.
+	 *                                      if <code>pos</code> is smaller than
+	 *                                      the flushed position.
 	 * @exception IOException
-	 *                if any other I/O error occurs.
+	 *                                      if any other I/O error occurs.
 	 */
 	void seek(long pos) throws IOException;
 
@@ -989,7 +1021,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * position lies in the discarded portion of the stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void reset() throws IOException;
 
@@ -1008,10 +1040,12 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 *            that may be flushed.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>pos</code> lies in the flushed portion of the
-	 *                stream or past the current stream position.
+	 *                                      if <code>pos</code> lies in the
+	 *                                      flushed portion of the
+	 *                                      stream or past the current stream
+	 *                                      position.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	void flushBefore(long pos) throws IOException;
 
@@ -1020,7 +1054,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * position. Equivalent to <code>flushBefore(getStreamPosition())</code>.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void flush() throws IOException;
 
@@ -1083,7 +1117,7 @@ public interface ImageInputStream extends DataInput, Closeable {
 	 * descriptors.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	void close() throws IOException;
 }

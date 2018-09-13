@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // LexicalHandler.java - optional handler for lexical parse events.
@@ -97,16 +77,19 @@ public interface LexicalHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The document type name.
+	 *                 The document type name.
 	 * @param publicId
-	 *            The declared public identifier for the external DTD subset, or
-	 *            null if none was declared.
+	 *                 The declared public identifier for the external DTD
+	 *                 subset, or
+	 *                 null if none was declared.
 	 * @param systemId
-	 *            The declared system identifier for the external DTD subset, or
-	 *            null if none was declared. (Note that this is not resolved
-	 *            against the document base URI.)
+	 *                 The declared system identifier for the external DTD
+	 *                 subset, or
+	 *                 null if none was declared. (Note that this is not
+	 *                 resolved
+	 *                 against the document base URI.)
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #endDTD
 	 * @see #startEntity
 	 */
@@ -122,7 +105,7 @@ public interface LexicalHandler {
 	 * </p>
 	 *
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #startDTD
 	 */
 	public abstract void endDTD() throws SAXException;
@@ -182,11 +165,11 @@ public interface LexicalHandler {
 	 * All start/endEntity events must be properly nested.
 	 *
 	 * @param name
-	 *            The name of the entity. If it is a parameter entity, the name
-	 *            will begin with '%', and if it is the external DTD subset, it
-	 *            will be "[dtd]".
+	 *             The name of the entity. If it is a parameter entity, the name
+	 *             will begin with '%', and if it is the external DTD subset, it
+	 *             will be "[dtd]".
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #endEntity
 	 * @see org.xml.sax.ext.DeclHandler#internalEntityDecl
 	 * @see org.xml.sax.ext.DeclHandler#externalEntityDecl
@@ -197,9 +180,9 @@ public interface LexicalHandler {
 	 * Report the end of an entity.
 	 *
 	 * @param name
-	 *            The name of the entity that is ending.
+	 *             The name of the entity that is ending.
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #startEntity
 	 */
 	public abstract void endEntity(String name) throws SAXException;
@@ -214,7 +197,7 @@ public interface LexicalHandler {
 	 * </p>
 	 *
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #endCDATA
 	 */
 	public abstract void startCDATA() throws SAXException;
@@ -223,7 +206,7 @@ public interface LexicalHandler {
 	 * Report the end of a CDATA section.
 	 *
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #startCDATA
 	 */
 	public abstract void endCDATA() throws SAXException;
@@ -239,15 +222,16 @@ public interface LexicalHandler {
 	 * </p>
 	 *
 	 * @param ch
-	 *            An array holding the characters in the comment.
+	 *               An array holding the characters in the comment.
 	 * @param start
-	 *            The starting position in the array.
+	 *               The starting position in the array.
 	 * @param length
-	 *            The number of characters to use from the array.
+	 *               The number of characters to use from the array.
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 */
-	public abstract void comment(char ch[], int start, int length) throws SAXException;
+	public abstract void comment(char ch[], int start, int length)
+			throws SAXException;
 
 }
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,8 +34,9 @@ public interface PrefixResolver {
 	 * itself.
 	 *
 	 * @param prefix
-	 *            The prefix to look up, which may be an empty string ("") for
-	 *            the default Namespace.
+	 *               The prefix to look up, which may be an empty string ("")
+	 *               for
+	 *               the default Namespace.
 	 *
 	 * @return The associated Namespace URI, or null if the prefix is undeclared
 	 *         in this context.
@@ -50,10 +48,11 @@ public interface PrefixResolver {
 	 * node.
 	 *
 	 * @param prefix
-	 *            The prefix to look up, which may be an empty string ("") for
-	 *            the default Namespace.
+	 *                The prefix to look up, which may be an empty string ("")
+	 *                for
+	 *                the default Namespace.
 	 * @param context
-	 *            The node context from which to look up the URI.
+	 *                The node context from which to look up the URI.
 	 *
 	 * @return The associated Namespace URI as a string, or null if the prefix
 	 *         is undeclared in this context.

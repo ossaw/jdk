@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -39,7 +19,7 @@ public abstract class ObjectStreamException extends IOException {
 	 * Create an ObjectStreamException with the specified argument.
 	 *
 	 * @param classname
-	 *            the detailed message for the exception
+	 *                  the detailed message for the exception
 	 */
 	protected ObjectStreamException(String classname) {
 		super(classname);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio;
@@ -104,14 +84,15 @@ public interface IIOParamController {
 	 * canceled the operation).
 	 *
 	 * @param param
-	 *            the <code>IIOParam</code> object to be modified.
+	 *              the <code>IIOParam</code> object to be modified.
 	 *
 	 * @return <code>true</code> if the <code>IIOParam</code> has been modified,
 	 *         <code>false</code> otherwise.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>param</code> is <code>null</code> or is not an
-	 *                instance of the correct class.
+	 *                                     if <code>param</code> is
+	 *                                     <code>null</code> or is not an
+	 *                                     instance of the correct class.
 	 */
 	boolean activate(IIOParam param);
 }

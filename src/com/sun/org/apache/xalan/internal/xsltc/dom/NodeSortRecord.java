@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -100,8 +97,8 @@ public abstract class NodeSortRecord {
 	 * This method allows the caller to set the values that could not be passed
 	 * to the default constructor.
 	 */
-	public final void initialize(int node, int last, DOM dom, SortSettings settings)
-			throws TransletException {
+	public final void initialize(int node, int last, DOM dom,
+			SortSettings settings) throws TransletException {
 		_dom = dom;
 		_node = node;
 		_last = last;
@@ -113,15 +110,16 @@ public abstract class NodeSortRecord {
 		String colFactClassname = null;
 		try {
 			// -- W. Eliot Kimber (eliot@isogen.com)
-			colFactClassname = SecuritySupport
-					.getSystemProperty("com.sun.org.apache.xalan.internal.xsltc.COLLATOR_FACTORY");
+			colFactClassname = SecuritySupport.getSystemProperty(
+					"com.sun.org.apache.xalan.internal.xsltc.COLLATOR_FACTORY");
 		} catch (SecurityException e) {
 			// If we can't read the propery, just use default collator
 		}
 
 		if (colFactClassname != null) {
 			try {
-				Object candObj = ObjectFactory.findProviderClass(colFactClassname, true);
+				Object candObj = ObjectFactory.findProviderClass(
+						colFactClassname, true);
 				_collatorFactory = (CollatorFactory) candObj;
 			} catch (ClassNotFoundException e) {
 				throw new TransletException(e);
@@ -165,9 +163,10 @@ public abstract class NodeSortRecord {
 			String[] caseOrder = _settings.getCaseOrders();
 
 			// Get value from DOM if accessed for the first time
-			final String str = extractValueFromDOM(_dom, _node, level, translet, _last);
-			final Comparable key = StringComparable.getComparator(str, locales[level],
-					_collators[level], caseOrder[level]);
+			final String str = extractValueFromDOM(_dom, _node, level, translet,
+					_last);
+			final Comparable key = StringComparable.getComparator(str,
+					locales[level], _collators[level], caseOrder[level]);
 			_values[_scanned++] = key;
 			return (key);
 		}
@@ -180,7 +179,8 @@ public abstract class NodeSortRecord {
 			AbstractTranslet translet = _settings.getTranslet();
 
 			// Get value from DOM if accessed for the first time
-			final String str = extractValueFromDOM(_dom, _node, level, translet, _last);
+			final String str = extractValueFromDOM(_dom, _node, level, translet,
+					_last);
 			Double num;
 			try {
 				num = new Double(str);

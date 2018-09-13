@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -99,7 +79,7 @@ public interface Adjustable {
 	 * Sets the unit value increment for the adjustable object.
 	 * 
 	 * @param u
-	 *            the unit increment
+	 *          the unit increment
 	 */
 	void setUnitIncrement(int u);
 
@@ -114,7 +94,7 @@ public interface Adjustable {
 	 * Sets the block value increment for the adjustable object.
 	 * 
 	 * @param b
-	 *            the block increment
+	 *          the block increment
 	 */
 	void setBlockIncrement(int b);
 
@@ -129,7 +109,7 @@ public interface Adjustable {
 	 * Sets the length of the proportional indicator of the adjustable object.
 	 * 
 	 * @param v
-	 *            the length of the indicator
+	 *          the length of the indicator
 	 */
 	void setVisibleAmount(int v);
 
@@ -149,8 +129,8 @@ public interface Adjustable {
 	 * Calling this method does not fire an <code>AdjustmentEvent</code>.
 	 *
 	 * @param v
-	 *            the current value, between <code>minimum</code> and
-	 *            <code>maximum</code> - <code>visibleAmount</code>
+	 *          the current value, between <code>minimum</code> and
+	 *          <code>maximum</code> - <code>visibleAmount</code>
 	 */
 	void setValue(int v);
 
@@ -166,7 +146,7 @@ public interface Adjustable {
 	 * adjustable object changes.
 	 * 
 	 * @param l
-	 *            the listener to receive events
+	 *          the listener to receive events
 	 * @see AdjustmentEvent
 	 */
 	void addAdjustmentListener(AdjustmentListener l);
@@ -175,7 +155,7 @@ public interface Adjustable {
 	 * Removes an adjustment listener.
 	 * 
 	 * @param l
-	 *            the listener being removed
+	 *          the listener being removed
 	 * @see AdjustmentEvent
 	 */
 	void removeAdjustmentListener(AdjustmentListener l);

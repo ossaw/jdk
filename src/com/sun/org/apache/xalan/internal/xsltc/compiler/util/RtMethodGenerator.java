@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,10 +39,11 @@ public final class RtMethodGenerator extends MethodGenerator {
 	private final Instruction _astoreHandler;
 	private final Instruction _aloadHandler;
 
-	public RtMethodGenerator(int access_flags, Type return_type, Type[] arg_types,
-			String[] arg_names, String method_name, String class_name, InstructionList il,
-			ConstantPoolGen cp) {
-		super(access_flags, return_type, arg_types, arg_names, method_name, class_name, il, cp);
+	public RtMethodGenerator(int access_flags, Type return_type,
+			Type[] arg_types, String[] arg_names, String method_name,
+			String class_name, InstructionList il, ConstantPoolGen cp) {
+		super(access_flags, return_type, arg_types, arg_names, method_name,
+				class_name, il, cp);
 
 		_astoreHandler = new ASTORE(HANDLER_INDEX);
 		_aloadHandler = new ALOAD(HANDLER_INDEX);

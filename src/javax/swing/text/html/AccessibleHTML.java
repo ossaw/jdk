@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html;
@@ -38,8 +18,7 @@ import java.text.BreakIterator;
 /*
  * The AccessibleHTML class provide information about the contents
  * of a HTML document to assistive technologies.
- *
- * @author  Lynn Monsanto
+ * @author Lynn Monsanto
  */
 class AccessibleHTML implements Accessible {
 
@@ -212,7 +191,8 @@ class AccessibleHTML implements Accessible {
 	 */
 	public AccessibleContext getAccessibleContext() {
 		if (rootHTMLAccessibleContext == null) {
-			rootHTMLAccessibleContext = new RootHTMLAccessibleContext(rootElementInfo);
+			rootHTMLAccessibleContext = new RootHTMLAccessibleContext(
+					rootElementInfo);
 		}
 		return rootHTMLAccessibleContext;
 	}
@@ -319,7 +299,8 @@ class AccessibleHTML implements Accessible {
 			if (comp.isEnabled()) {
 				states.add(AccessibleState.ENABLED);
 			}
-			if (comp instanceof JTextComponent && ((JTextComponent) comp).isEditable()) {
+			if (comp instanceof JTextComponent && ((JTextComponent) comp)
+					.isEditable()) {
 
 				states.add(AccessibleState.EDITABLE);
 				states.add(AccessibleState.FOCUSABLE);
@@ -363,7 +344,7 @@ class AccessibleHTML implements Accessible {
 		 * and so on.
 		 *
 		 * @param i
-		 *            zero-based index of child
+		 *          zero-based index of child
 		 * @return the Accessible child of the object
 		 * @see #getAccessibleChildrenCount
 		 */
@@ -384,10 +365,14 @@ class AccessibleHTML implements Accessible {
 		 *         locale, the locale of its parent is returned.
 		 *
 		 * @exception IllegalComponentStateException
-		 *                If the Component does not have its own locale and has
-		 *                not yet been added to a containment hierarchy such
-		 *                that the locale can be determined from the containing
-		 *                parent.
+		 *                                           If the Component does not
+		 *                                           have its own locale and has
+		 *                                           not yet been added to a
+		 *                                           containment hierarchy such
+		 *                                           that the locale can be
+		 *                                           determined from the
+		 *                                           containing
+		 *                                           parent.
 		 */
 		public Locale getLocale() throws IllegalComponentStateException {
 			return editor.getLocale();
@@ -414,7 +399,7 @@ class AccessibleHTML implements Accessible {
 		 * Sets the background color of this object.
 		 *
 		 * @param c
-		 *            the new Color for the background
+		 *          the new Color for the background
 		 * @see #setBackground
 		 */
 		public void setBackground(Color c) {
@@ -436,7 +421,7 @@ class AccessibleHTML implements Accessible {
 		 * Sets the foreground color of this object.
 		 *
 		 * @param c
-		 *            the new Color for the foreground
+		 *          the new Color for the foreground
 		 * @see #getForeground
 		 */
 		public void setForeground(Color c) {
@@ -457,7 +442,7 @@ class AccessibleHTML implements Accessible {
 		 * Sets the Cursor of this object.
 		 *
 		 * @param cursor
-		 *            the new Cursor for the object
+		 *               the new Cursor for the object
 		 * @see #getCursor
 		 */
 		public void setCursor(Cursor cursor) {
@@ -478,7 +463,7 @@ class AccessibleHTML implements Accessible {
 		 * Sets the Font of this object.
 		 *
 		 * @param f
-		 *            the new Font for the object
+		 *          the new Font for the object
 		 * @see #getFont
 		 */
 		public void setFont(Font f) {
@@ -489,7 +474,7 @@ class AccessibleHTML implements Accessible {
 		 * Gets the FontMetrics of this object.
 		 *
 		 * @param f
-		 *            the Font
+		 *          the Font
 		 * @return the FontMetrics, if supported, the object; otherwise, null
 		 * @see #getFont
 		 */
@@ -516,7 +501,7 @@ class AccessibleHTML implements Accessible {
 		 * Sets the enabled state of the object.
 		 *
 		 * @param b
-		 *            if true, enables this object; otherwise, disables it
+		 *          if true, enables this object; otherwise, disables it
 		 * @see #isEnabled
 		 */
 		public void setEnabled(boolean b) {
@@ -547,7 +532,7 @@ class AccessibleHTML implements Accessible {
 		 * Sets the visible state of the object.
 		 *
 		 * @param b
-		 *            if true, shows this object; otherwise, hides it
+		 *          if true, shows this object; otherwise, hides it
 		 * @see #isVisible
 		 */
 		public void setVisible(boolean b) {
@@ -572,7 +557,7 @@ class AccessibleHTML implements Accessible {
 		 * the coordinate system of the object.
 		 *
 		 * @param p
-		 *            the Point relative to the coordinate system of the object
+		 *          the Point relative to the coordinate system of the object
 		 * @return true if object contains Point; otherwise false
 		 * @see #getBounds
 		 */
@@ -597,7 +582,8 @@ class AccessibleHTML implements Accessible {
 			Point editorLocation = getTextComponent().getLocationOnScreen();
 			Rectangle r = getBounds();
 			if (r != null) {
-				return new Point(editorLocation.x + r.x, editorLocation.y + r.y);
+				return new Point(editorLocation.x + r.x, editorLocation.y
+						+ r.y);
 			} else {
 				return null;
 			}
@@ -627,11 +613,10 @@ class AccessibleHTML implements Accessible {
 		 * Sets the location of the object relative to the parent.
 		 * 
 		 * @param p
-		 *            the new position for the top-left corner
+		 *          the new position for the top-left corner
 		 * @see #getLocation
 		 */
-		public void setLocation(Point p) {
-		}
+		public void setLocation(Point p) {}
 
 		/**
 		 * Gets the bounds of this object in the form of a Rectangle object. The
@@ -652,11 +637,10 @@ class AccessibleHTML implements Accessible {
 		 * its parent.
 		 *
 		 * @param r
-		 *            rectangle indicating this component's bounds
+		 *          rectangle indicating this component's bounds
 		 * @see #getBounds
 		 */
-		public void setBounds(Rectangle r) {
-		}
+		public void setBounds(Rectangle r) {}
 
 		/**
 		 * Returns the size of this object in the form of a Dimension object.
@@ -681,7 +665,7 @@ class AccessibleHTML implements Accessible {
 		 * Resizes this object so that it has width and height.
 		 *
 		 * @param d
-		 *            The dimension specifying the new size of the object.
+		 *          The dimension specifying the new size of the object.
 		 * @see #getSize
 		 */
 		public void setSize(Dimension d) {
@@ -694,8 +678,8 @@ class AccessibleHTML implements Accessible {
 		 * coordinate Point.
 		 *
 		 * @param p
-		 *            The point relative to the coordinate system of this
-		 *            object.
+		 *          The point relative to the coordinate system of this
+		 *          object.
 		 * @return the Accessible, if it exists, at the specified location;
 		 *         otherwise null
 		 */
@@ -712,14 +696,16 @@ class AccessibleHTML implements Accessible {
 			if (elementInfo.getBounds() == null) {
 				return null;
 			}
-			if (elementInfo.getChildCount() == 0 && elementInfo.getBounds().contains(p)) {
+			if (elementInfo.getChildCount() == 0 && elementInfo.getBounds()
+					.contains(p)) {
 				return elementInfo;
 
 			} else {
 				if (elementInfo instanceof TableElementInfo) {
 					// Handle table caption as a special case since it's the
 					// only table child that is not a table row.
-					ElementInfo captionInfo = ((TableElementInfo) elementInfo).getCaptionInfo();
+					ElementInfo captionInfo = ((TableElementInfo) elementInfo)
+							.getCaptionInfo();
 					if (captionInfo != null) {
 						Rectangle bounds = captionInfo.getBounds();
 						if (bounds != null && bounds.contains(p)) {
@@ -781,15 +767,17 @@ class AccessibleHTML implements Accessible {
 					if (elementInfo.validateIfNecessary()) {
 						// set the caret position to the start of this component
 						Element elem = elementInfo.getElement();
-						((JTextComponent) comp).setCaretPosition(elem.getStartOffset());
+						((JTextComponent) comp).setCaretPosition(elem
+								.getStartOffset());
 
 						// fire a AccessibleState.FOCUSED property change event
 						AccessibleContext ac = editor.getAccessibleContext();
 						PropertyChangeEvent pce = new PropertyChangeEvent(this,
-								AccessibleContext.ACCESSIBLE_STATE_PROPERTY, null,
-								AccessibleState.FOCUSED);
-						ac.firePropertyChange(AccessibleContext.ACCESSIBLE_STATE_PROPERTY, null,
-								pce);
+								AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+								null, AccessibleState.FOCUSED);
+						ac.firePropertyChange(
+								AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+								null, pce);
 					}
 				} catch (IllegalArgumentException e) {
 					// don't fire property change event
@@ -802,7 +790,7 @@ class AccessibleHTML implements Accessible {
 		 * component.
 		 *
 		 * @param l
-		 *            the focus listener
+		 *          the focus listener
 		 * @see #removeFocusListener
 		 */
 		public void addFocusListener(FocusListener l) {
@@ -814,7 +802,7 @@ class AccessibleHTML implements Accessible {
 		 * events from this component.
 		 *
 		 * @param l
-		 *            the focus listener
+		 *          the focus listener
 		 * @see #addFocusListener
 		 */
 		public void removeFocusListener(FocusListener l) {
@@ -845,7 +833,8 @@ class AccessibleHTML implements Accessible {
 		/*
 		 * AccessibleContext for text elements
 		 */
-		public class TextAccessibleContext extends HTMLAccessibleContext implements AccessibleText {
+		public class TextAccessibleContext extends HTMLAccessibleContext
+				implements AccessibleText {
 
 			public TextAccessibleContext(ElementInfo elementInfo) {
 				super(elementInfo);
@@ -925,7 +914,7 @@ class AccessibleHTML implements Accessible {
 			 * method returns -1.
 			 *
 			 * @param p
-			 *            the Point in local coordinates
+			 *          the Point in local coordinates
 			 * @return the zero-based index of the character under Point p; if
 			 *         Point is invalid returns -1.
 			 */
@@ -944,7 +933,7 @@ class AccessibleHTML implements Accessible {
 			 * the index is invalid an empty rectangle is returned.
 			 *
 			 * @param i
-			 *            the index into the String
+			 *          the index into the String
 			 * @return the screen coordinates of the character's the bounding
 			 *         box, if index is invalid returns an empty rectangle.
 			 */
@@ -1030,38 +1019,42 @@ class AccessibleHTML implements Accessible {
 						return null;
 					}
 					switch (part) {
-					case AccessibleText.CHARACTER:
-						if (index + direction < model.getLength() && index + direction >= 0) {
-							return model.getText(index + direction, 1);
-						}
-						break;
-
-					case AccessibleText.WORD:
-					case AccessibleText.SENTENCE:
-						IndexedSegment seg = getSegmentAt(part, index);
-						if (seg != null) {
-							if (direction != 0) {
-								int next;
-
-								if (direction < 0) {
-									next = seg.modelOffset - 1;
-								} else {
-									next = seg.modelOffset + direction * seg.count;
-								}
-								if (next >= 0 && next <= model.getLength()) {
-									seg = getSegmentAt(part, next);
-								} else {
-									seg = null;
-								}
+						case AccessibleText.CHARACTER:
+							if (index + direction < model.getLength() && index
+									+ direction >= 0) {
+								return model.getText(index + direction, 1);
 							}
+							break;
+
+						case AccessibleText.WORD:
+						case AccessibleText.SENTENCE:
+							IndexedSegment seg = getSegmentAt(part, index);
 							if (seg != null) {
-								return new String(seg.array, seg.offset, seg.count);
-							}
-						}
-						break;
+								if (direction != 0) {
+									int next;
 
-					default:
-						break;
+									if (direction < 0) {
+										next = seg.modelOffset - 1;
+									} else {
+										next = seg.modelOffset + direction
+												* seg.count;
+									}
+									if (next >= 0 && next <= model
+											.getLength()) {
+										seg = getSegmentAt(part, next);
+									} else {
+										seg = null;
+									}
+								}
+								if (seg != null) {
+									return new String(seg.array, seg.offset,
+											seg.count);
+								}
+							}
+							break;
+
+						default:
+							break;
 					}
 				} catch (BadLocationException e) {
 				} finally {
@@ -1084,7 +1077,8 @@ class AccessibleHTML implements Accessible {
 					return sdoc.getParagraphElement(index);
 				} else {
 					Element para;
-					for (para = model.getDefaultRootElement(); !para.isLeaf();) {
+					for (para = model.getDefaultRootElement(); !para
+							.isLeaf();) {
 						int pos = para.getElementIndex(index);
 						para = para.getElement(pos);
 					}
@@ -1099,13 +1093,15 @@ class AccessibleHTML implements Accessible {
 			 * Returns a <code>Segment</code> containing the paragraph text at
 			 * <code>index</code>, or null if <code>index</code> isn't valid.
 			 */
-			private IndexedSegment getParagraphElementText(int index) throws BadLocationException {
+			private IndexedSegment getParagraphElementText(int index)
+					throws BadLocationException {
 				Element para = getParagraphElement(index);
 
 				if (para != null) {
 					IndexedSegment segment = new IndexedSegment();
 					try {
-						int length = para.getEndOffset() - para.getStartOffset();
+						int length = para.getEndOffset() - para
+								.getStartOffset();
 						model.getText(para.getStartOffset(), length, segment);
 					} catch (BadLocationException e) {
 						return null;
@@ -1124,7 +1120,8 @@ class AccessibleHTML implements Accessible {
 			 * modelOffset will point to the location of the word/sentence in
 			 * the model.
 			 */
-			private IndexedSegment getSegmentAt(int part, int index) throws BadLocationException {
+			private IndexedSegment getSegmentAt(int part, int index)
+					throws BadLocationException {
 
 				IndexedSegment seg = getParagraphElementText(index);
 				if (seg == null) {
@@ -1132,18 +1129,20 @@ class AccessibleHTML implements Accessible {
 				}
 				BreakIterator iterator;
 				switch (part) {
-				case AccessibleText.WORD:
-					iterator = BreakIterator.getWordInstance(getLocale());
-					break;
-				case AccessibleText.SENTENCE:
-					iterator = BreakIterator.getSentenceInstance(getLocale());
-					break;
-				default:
-					return null;
+					case AccessibleText.WORD:
+						iterator = BreakIterator.getWordInstance(getLocale());
+						break;
+					case AccessibleText.SENTENCE:
+						iterator = BreakIterator.getSentenceInstance(
+								getLocale());
+						break;
+					default:
+						return null;
 				}
 				seg.first();
 				iterator.setText(seg);
-				int end = iterator.following(index - seg.modelOffset + seg.offset);
+				int end = iterator.following(index - seg.modelOffset
+						+ seg.offset);
 				if (end == BreakIterator.DONE) {
 					return null;
 				}
@@ -1151,7 +1150,8 @@ class AccessibleHTML implements Accessible {
 					return null;
 				}
 				int begin = iterator.previous();
-				if (begin == BreakIterator.DONE || begin >= seg.offset + seg.count) {
+				if (begin == BreakIterator.DONE || begin >= seg.offset
+						+ seg.count) {
 					return null;
 				}
 				seg.modelOffset = seg.modelOffset + begin - seg.offset;
@@ -1164,7 +1164,7 @@ class AccessibleHTML implements Accessible {
 			 * Return the AttributeSet for a given character at a given index
 			 *
 			 * @param i
-			 *            the zero-based index into the text
+			 *          the zero-based index into the text
 			 * @return the AttributeSet of the character
 			 */
 			public AttributeSet getCharacterAttribute(int i) {
@@ -1213,7 +1213,8 @@ class AccessibleHTML implements Accessible {
 			 * Returns the text substring starting at the specified offset with
 			 * the specified length.
 			 */
-			private String getText(int offset, int length) throws BadLocationException {
+			private String getText(int offset, int length)
+					throws BadLocationException {
 
 				if (model != null && model instanceof StyledDocument) {
 					StyledDocument doc = (StyledDocument) model;
@@ -1371,10 +1372,9 @@ class AccessibleHTML implements Accessible {
 			 * the icon.
 			 *
 			 * @param description
-			 *            the description of the icon
+			 *                    the description of the icon
 			 */
-			public void setAccessibleIconDescription(String description) {
-			}
+			public void setAccessibleIconDescription(String description) {}
 
 			/**
 			 * Gets the width of the icon
@@ -1447,10 +1447,12 @@ class AccessibleHTML implements Accessible {
 				Element child = e.getElement(counter);
 				AttributeSet attrs = child.getAttributes();
 
-				if (attrs.getAttribute(StyleConstants.NameAttribute) == HTML.Tag.TR) {
+				if (attrs.getAttribute(
+						StyleConstants.NameAttribute) == HTML.Tag.TR) {
 					addChild(new TableRowElementInfo(child, this, counter));
 
-				} else if (attrs.getAttribute(StyleConstants.NameAttribute) == HTML.Tag.CAPTION) {
+				} else if (attrs.getAttribute(
+						StyleConstants.NameAttribute) == HTML.Tag.CAPTION) {
 					// Handle captions as a special case since all other
 					// children are table rows.
 					caption = createElementInfo(child, this);
@@ -1470,7 +1472,8 @@ class AccessibleHTML implements Accessible {
 				TableRowElementInfo row = getRow(counter);
 				int prev = 0;
 				for (int y = 0; y < delta; y++) {
-					prev = Math.max(prev, getRow(counter - y - 1).getColumnCount(y + 2));
+					prev = Math.max(prev, getRow(counter - y - 1)
+							.getColumnCount(y + 2));
 				}
 				delta = Math.max(row.getRowCount(), delta);
 				delta--;
@@ -1500,7 +1503,8 @@ class AccessibleHTML implements Accessible {
 		 * Returns the TableCellElementInfo by row and column.
 		 */
 		public TableCellElementInfo getCell(int r, int c) {
-			if (validateIfNecessary() && r < grid.length && c < grid[0].length) {
+			if (validateIfNecessary() && r < grid.length
+					&& c < grid[0].length) {
 				return grid[r][c];
 			}
 			return null;
@@ -1676,13 +1680,14 @@ class AccessibleHTML implements Accessible {
 			 * child is at index 1, and so on.
 			 *
 			 * @param i
-			 *            zero-based index of child
+			 *          zero-based index of child
 			 * @return the Accessible child of the object
 			 * @see #getAccessibleChildrenCount
 			 */
 			public Accessible getAccessibleChild(int i) {
 				int rowCount = ((TableElementInfo) elementInfo).getRowCount();
-				int columnCount = ((TableElementInfo) elementInfo).getColumnCount();
+				int columnCount = ((TableElementInfo) elementInfo)
+						.getColumnCount();
 				int r = i / rowCount;
 				int c = i % columnCount;
 				if (r < 0 || r >= rowCount || c < 0 || c >= columnCount) {
@@ -1714,10 +1719,9 @@ class AccessibleHTML implements Accessible {
 			 * Sets the caption for the table.
 			 *
 			 * @param a
-			 *            the caption for the table
+			 *          the caption for the table
 			 */
-			public void setAccessibleCaption(Accessible a) {
-			}
+			public void setAccessibleCaption(Accessible a) {}
 
 			/**
 			 * Returns the summary description of the table.
@@ -1732,10 +1736,9 @@ class AccessibleHTML implements Accessible {
 			 * Sets the summary description of the table
 			 *
 			 * @param a
-			 *            the summary description of the table
+			 *          the summary description of the table
 			 */
-			public void setAccessibleSummary(Accessible a) {
-			}
+			public void setAccessibleSummary(Accessible a) {}
 
 			/**
 			 * Returns the number of rows in the table.
@@ -1760,9 +1763,9 @@ class AccessibleHTML implements Accessible {
 			 * table.
 			 *
 			 * @param r
-			 *            zero-based row of the table
+			 *          zero-based row of the table
 			 * @param c
-			 *            zero-based column of the table
+			 *          zero-based column of the table
 			 * @return the Accessible at the specified row and column
 			 */
 			public Accessible getAccessibleAt(int r, int c) {
@@ -1809,10 +1812,9 @@ class AccessibleHTML implements Accessible {
 			 * Sets the row headers.
 			 *
 			 * @param table
-			 *            an AccessibleTable representing the row headers
+			 *              an AccessibleTable representing the row headers
 			 */
-			public void setAccessibleRowHeader(AccessibleTable table) {
-			}
+			public void setAccessibleRowHeader(AccessibleTable table) {}
 
 			/**
 			 * Returns the column headers as an AccessibleTable.
@@ -1827,16 +1829,15 @@ class AccessibleHTML implements Accessible {
 			 * Sets the column headers.
 			 *
 			 * @param table
-			 *            an AccessibleTable representing the column headers
+			 *              an AccessibleTable representing the column headers
 			 */
-			public void setAccessibleColumnHeader(AccessibleTable table) {
-			}
+			public void setAccessibleColumnHeader(AccessibleTable table) {}
 
 			/**
 			 * Returns the description of the specified row in the table.
 			 *
 			 * @param r
-			 *            zero-based row of the table
+			 *          zero-based row of the table
 			 * @return the description of the row
 			 */
 			public Accessible getAccessibleRowDescription(int r) {
@@ -1847,19 +1848,18 @@ class AccessibleHTML implements Accessible {
 			 * Sets the description text of the specified row of the table.
 			 *
 			 * @param r
-			 *            zero-based row of the table
+			 *          zero-based row of the table
 			 * @param a
-			 *            the description of the row
+			 *          the description of the row
 			 */
-			public void setAccessibleRowDescription(int r, Accessible a) {
-			}
+			public void setAccessibleRowDescription(int r, Accessible a) {}
 
 			/**
 			 * Returns the description text of the specified column in the
 			 * table.
 			 *
 			 * @param c
-			 *            zero-based column of the table
+			 *          zero-based column of the table
 			 * @return the text description of the column
 			 */
 			public Accessible getAccessibleColumnDescription(int c) {
@@ -1870,21 +1870,20 @@ class AccessibleHTML implements Accessible {
 			 * Sets the description text of the specified column in the table.
 			 *
 			 * @param c
-			 *            zero-based column of the table
+			 *          zero-based column of the table
 			 * @param a
-			 *            the text description of the column
+			 *          the text description of the column
 			 */
-			public void setAccessibleColumnDescription(int c, Accessible a) {
-			}
+			public void setAccessibleColumnDescription(int c, Accessible a) {}
 
 			/**
 			 * Returns a boolean value indicating whether the accessible at a
 			 * specified row and column is selected.
 			 *
 			 * @param r
-			 *            zero-based row of the table
+			 *          zero-based row of the table
 			 * @param c
-			 *            zero-based column of the table
+			 *          zero-based column of the table
 			 * @return the boolean value true if the accessible at the row and
 			 *         column is selected. Otherwise, the boolean value false
 			 */
@@ -1911,7 +1910,7 @@ class AccessibleHTML implements Accessible {
 			 * selected.
 			 *
 			 * @param r
-			 *            zero-based row of the table
+			 *          zero-based row of the table
 			 * @return the boolean value true if the specified row is selected.
 			 *         Otherwise, false.
 			 */
@@ -1934,7 +1933,8 @@ class AccessibleHTML implements Accessible {
 					}
 					int end = endCell.getElement().getEndOffset();
 
-					return start >= editor.getSelectionStart() && end <= editor.getSelectionEnd();
+					return start >= editor.getSelectionStart() && end <= editor
+							.getSelectionEnd();
 				}
 				return false;
 			}
@@ -1944,7 +1944,7 @@ class AccessibleHTML implements Accessible {
 			 * is selected.
 			 *
 			 * @param c
-			 *            zero-based column of the table
+			 *          zero-based column of the table
 			 * @return the boolean value true if the specified column is
 			 *         selected. Otherwise, false.
 			 */
@@ -1966,7 +1966,8 @@ class AccessibleHTML implements Accessible {
 						return false;
 					}
 					int end = endCell.getElement().getEndOffset();
-					return start >= editor.getSelectionStart() && end <= editor.getSelectionEnd();
+					return start >= editor.getSelectionStart() && end <= editor
+							.getSelectionEnd();
 				}
 				return false;
 			}
@@ -2027,13 +2028,14 @@ class AccessibleHTML implements Accessible {
 			 * Returns the row number of an index in the table.
 			 *
 			 * @param index
-			 *            the zero-based index in the table
+			 *              the zero-based index in the table
 			 * @return the zero-based row of the table if one exists; otherwise
 			 *         -1.
 			 */
 			public int getAccessibleRow(int index) {
 				if (validateIfNecessary()) {
-					int numCells = getAccessibleColumnCount() * getAccessibleRowCount();
+					int numCells = getAccessibleColumnCount()
+							* getAccessibleRowCount();
 					if (index >= numCells) {
 						return -1;
 					} else {
@@ -2047,13 +2049,14 @@ class AccessibleHTML implements Accessible {
 			 * Returns the column number of an index in the table.
 			 *
 			 * @param index
-			 *            the zero-based index in the table
+			 *              the zero-based index in the table
 			 * @return the zero-based column of the table if one exists;
 			 *         otherwise -1.
 			 */
 			public int getAccessibleColumn(int index) {
 				if (validateIfNecessary()) {
-					int numCells = getAccessibleColumnCount() * getAccessibleRowCount();
+					int numCells = getAccessibleColumnCount()
+							* getAccessibleRowCount();
 					if (index >= numCells) {
 						return -1;
 					} else {
@@ -2067,15 +2070,16 @@ class AccessibleHTML implements Accessible {
 			 * Returns the index at a row and column in the table.
 			 *
 			 * @param r
-			 *            zero-based row of the table
+			 *          zero-based row of the table
 			 * @param c
-			 *            zero-based column of the table
+			 *          zero-based column of the table
 			 * @return the zero-based index in the table if one exists;
 			 *         otherwise -1.
 			 */
 			public int getAccessibleIndex(int r, int c) {
 				if (validateIfNecessary()) {
-					if (r >= getAccessibleRowCount() || c >= getAccessibleColumnCount()) {
+					if (r >= getAccessibleRowCount()
+							|| c >= getAccessibleColumnCount()) {
 						return -1;
 					} else {
 						return r * getAccessibleColumnCount() + c;
@@ -2088,7 +2092,7 @@ class AccessibleHTML implements Accessible {
 			 * Returns the row header at a row in a table.
 			 * 
 			 * @param r
-			 *            zero-based row of the table
+			 *          zero-based row of the table
 			 *
 			 * @return a String representing the row header if one exists;
 			 *         otherwise null.
@@ -2100,8 +2104,8 @@ class AccessibleHTML implements Accessible {
 						View v = cellInfo.getView();
 						if (v != null && model != null) {
 							try {
-								return model.getText(v.getStartOffset(),
-										v.getEndOffset() - v.getStartOffset());
+								return model.getText(v.getStartOffset(), v
+										.getEndOffset() - v.getStartOffset());
 							} catch (BadLocationException e) {
 								return null;
 							}
@@ -2115,7 +2119,7 @@ class AccessibleHTML implements Accessible {
 			 * Returns the column header at a column in a table.
 			 * 
 			 * @param c
-			 *            zero-based column of the table
+			 *          zero-based column of the table
 			 *
 			 * @return a String representing the column header if one exists;
 			 *         otherwise null.
@@ -2127,8 +2131,8 @@ class AccessibleHTML implements Accessible {
 						View v = cellInfo.getView();
 						if (v != null && model != null) {
 							try {
-								return model.getText(v.getStartOffset(),
-										v.getEndOffset() - v.getStartOffset());
+								return model.getText(v.getStartOffset(), v
+										.getEndOffset() - v.getStartOffset());
 							} catch (BadLocationException e) {
 								return null;
 							}
@@ -2138,7 +2142,8 @@ class AccessibleHTML implements Accessible {
 				return null;
 			}
 
-			public void addRowHeader(TableCellElementInfo cellInfo, int rowNumber) {
+			public void addRowHeader(TableCellElementInfo cellInfo,
+					int rowNumber) {
 				if (rowHeadersTable == null) {
 					rowHeadersTable = new AccessibleHeadersTable();
 				}
@@ -2155,9 +2160,11 @@ class AccessibleHTML implements Accessible {
 				private int rowCount = 0;
 				private int columnCount = 0;
 
-				public void addHeader(TableCellElementInfo cellInfo, int rowNumber) {
+				public void addHeader(TableCellElementInfo cellInfo,
+						int rowNumber) {
 					Integer rowInteger = Integer.valueOf(rowNumber);
-					ArrayList<TableCellElementInfo> list = headers.get(rowInteger);
+					ArrayList<TableCellElementInfo> list = headers.get(
+							rowInteger);
 					if (list == null) {
 						list = new ArrayList<TableCellElementInfo>();
 						headers.put(rowInteger, list);
@@ -2178,10 +2185,9 @@ class AccessibleHTML implements Accessible {
 				 * Sets the caption for the table.
 				 *
 				 * @param a
-				 *            the caption for the table
+				 *          the caption for the table
 				 */
-				public void setAccessibleCaption(Accessible a) {
-				}
+				public void setAccessibleCaption(Accessible a) {}
 
 				/**
 				 * Returns the summary description of the table.
@@ -2196,10 +2202,9 @@ class AccessibleHTML implements Accessible {
 				 * Sets the summary description of the table
 				 *
 				 * @param a
-				 *            the summary description of the table
+				 *          the summary description of the table
 				 */
-				public void setAccessibleSummary(Accessible a) {
-				}
+				public void setAccessibleSummary(Accessible a) {}
 
 				/**
 				 * Returns the number of rows in the table.
@@ -2220,7 +2225,8 @@ class AccessibleHTML implements Accessible {
 				}
 
 				private TableCellElementInfo getElementInfoAt(int r, int c) {
-					ArrayList<TableCellElementInfo> list = headers.get(Integer.valueOf(r));
+					ArrayList<TableCellElementInfo> list = headers.get(Integer
+							.valueOf(r));
 					if (list != null) {
 						return list.get(c);
 					} else {
@@ -2233,9 +2239,9 @@ class AccessibleHTML implements Accessible {
 				 * table.
 				 *
 				 * @param r
-				 *            zero-based row of the table
+				 *          zero-based row of the table
 				 * @param c
-				 *            zero-based column of the table
+				 *          zero-based column of the table
 				 * @return the Accessible at the specified row and column
 				 */
 				public Accessible getAccessibleAt(int r, int c) {
@@ -2292,10 +2298,9 @@ class AccessibleHTML implements Accessible {
 				 * Sets the row headers.
 				 *
 				 * @param table
-				 *            an AccessibleTable representing the row headers
+				 *              an AccessibleTable representing the row headers
 				 */
-				public void setAccessibleRowHeader(AccessibleTable table) {
-				}
+				public void setAccessibleRowHeader(AccessibleTable table) {}
 
 				/**
 				 * Returns the column headers as an AccessibleTable.
@@ -2310,16 +2315,16 @@ class AccessibleHTML implements Accessible {
 				 * Sets the column headers.
 				 *
 				 * @param table
-				 *            an AccessibleTable representing the column headers
+				 *              an AccessibleTable representing the column
+				 *              headers
 				 */
-				public void setAccessibleColumnHeader(AccessibleTable table) {
-				}
+				public void setAccessibleColumnHeader(AccessibleTable table) {}
 
 				/**
 				 * Returns the description of the specified row in the table.
 				 *
 				 * @param r
-				 *            zero-based row of the table
+				 *          zero-based row of the table
 				 * @return the description of the row
 				 */
 				public Accessible getAccessibleRowDescription(int r) {
@@ -2330,19 +2335,18 @@ class AccessibleHTML implements Accessible {
 				 * Sets the description text of the specified row of the table.
 				 *
 				 * @param r
-				 *            zero-based row of the table
+				 *          zero-based row of the table
 				 * @param a
-				 *            the description of the row
+				 *          the description of the row
 				 */
-				public void setAccessibleRowDescription(int r, Accessible a) {
-				}
+				public void setAccessibleRowDescription(int r, Accessible a) {}
 
 				/**
 				 * Returns the description text of the specified column in the
 				 * table.
 				 *
 				 * @param c
-				 *            zero-based column of the table
+				 *          zero-based column of the table
 				 * @return the text description of the column
 				 */
 				public Accessible getAccessibleColumnDescription(int c) {
@@ -2354,21 +2358,21 @@ class AccessibleHTML implements Accessible {
 				 * table.
 				 *
 				 * @param c
-				 *            zero-based column of the table
+				 *          zero-based column of the table
 				 * @param a
-				 *            the text description of the column
+				 *          the text description of the column
 				 */
-				public void setAccessibleColumnDescription(int c, Accessible a) {
-				}
+				public void setAccessibleColumnDescription(int c,
+						Accessible a) {}
 
 				/**
 				 * Returns a boolean value indicating whether the accessible at
 				 * a specified row and column is selected.
 				 *
 				 * @param r
-				 *            zero-based row of the table
+				 *          zero-based row of the table
 				 * @param c
-				 *            zero-based column of the table
+				 *          zero-based column of the table
 				 * @return the boolean value true if the accessible at the row
 				 *         and column is selected. Otherwise, the boolean value
 				 *         false
@@ -2382,7 +2386,7 @@ class AccessibleHTML implements Accessible {
 				 * is selected.
 				 *
 				 * @param r
-				 *            zero-based row of the table
+				 *          zero-based row of the table
 				 * @return the boolean value true if the specified row is
 				 *         selected. Otherwise, false.
 				 */
@@ -2395,7 +2399,7 @@ class AccessibleHTML implements Accessible {
 				 * column is selected.
 				 *
 				 * @param c
-				 *            zero-based column of the table
+				 *          zero-based column of the table
 				 * @return the boolean value true if the specified column is
 				 *         selected. Otherwise, false.
 				 */
@@ -2433,7 +2437,8 @@ class AccessibleHTML implements Accessible {
 			private TableElementInfo parent;
 			private int rowNumber;
 
-			TableRowElementInfo(Element e, TableElementInfo parent, int rowNumber) {
+			TableRowElementInfo(Element e, TableElementInfo parent,
+					int rowNumber) {
 				super(e, parent);
 				this.parent = parent;
 				this.rowNumber = rowNumber;
@@ -2443,17 +2448,21 @@ class AccessibleHTML implements Accessible {
 				for (int x = 0; x < e.getElementCount(); x++) {
 					AttributeSet attrs = e.getElement(x).getAttributes();
 
-					if (attrs.getAttribute(StyleConstants.NameAttribute) == HTML.Tag.TH) {
+					if (attrs.getAttribute(
+							StyleConstants.NameAttribute) == HTML.Tag.TH) {
 						TableCellElementInfo headerElementInfo = new TableCellElementInfo(
 								e.getElement(x), this, true);
 						addChild(headerElementInfo);
 
-						AccessibleTable at = parent.getAccessibleContext().getAccessibleTable();
+						AccessibleTable at = parent.getAccessibleContext()
+								.getAccessibleTable();
 						TableAccessibleContext tableElement = (TableAccessibleContext) at;
 						tableElement.addRowHeader(headerElementInfo, rowNumber);
 
-					} else if (attrs.getAttribute(StyleConstants.NameAttribute) == HTML.Tag.TD) {
-						addChild(new TableCellElementInfo(e.getElement(x), this, false));
+					} else if (attrs.getAttribute(
+							StyleConstants.NameAttribute) == HTML.Tag.TD) {
+						addChild(new TableCellElementInfo(e.getElement(x), this,
+								false));
 					}
 				}
 			}
@@ -2466,7 +2475,8 @@ class AccessibleHTML implements Accessible {
 				if (validateIfNecessary()) {
 					for (int counter = 0; counter < getChildCount(); counter++) {
 
-						TableCellElementInfo cell = (TableCellElementInfo) getChild(counter);
+						TableCellElementInfo cell = (TableCellElementInfo) getChild(
+								counter);
 
 						if (cell.validateIfNecessary()) {
 							rowCount = Math.max(rowCount, cell.getRowCount());
@@ -2484,7 +2494,8 @@ class AccessibleHTML implements Accessible {
 				int colCount = 0;
 				if (validateIfNecessary()) {
 					for (int counter = 0; counter < getChildCount(); counter++) {
-						TableCellElementInfo cell = (TableCellElementInfo) getChild(counter);
+						TableCellElementInfo cell = (TableCellElementInfo) getChild(
+								counter);
 
 						if (cell.validateIfNecessary()) {
 							colCount += cell.getColumnCount();
@@ -2521,12 +2532,14 @@ class AccessibleHTML implements Accessible {
 						}
 					}
 					for (int col = 0, counter = 0; counter < getChildCount(); counter++) {
-						TableCellElementInfo cell = (TableCellElementInfo) getChild(counter);
+						TableCellElementInfo cell = (TableCellElementInfo) getChild(
+								counter);
 
 						while (grid[row][col] != null) {
 							col++;
 						}
-						for (int rowCount = cell.getRowCount() - 1; rowCount >= 0; rowCount--) {
+						for (int rowCount = cell.getRowCount()
+								- 1; rowCount >= 0; rowCount--) {
 							for (int colCount = cell.getColumnCount()
 									- 1; colCount >= 0; colCount--) {
 								grid[row + rowCount][col + colCount] = cell;
@@ -2545,7 +2558,8 @@ class AccessibleHTML implements Accessible {
 				if (validateIfNecessary()) {
 					int cols = 0;
 					for (int counter = 0; counter < getChildCount(); counter++) {
-						TableCellElementInfo cell = (TableCellElementInfo) getChild(counter);
+						TableCellElementInfo cell = (TableCellElementInfo) getChild(
+								counter);
 
 						if (cell.getRowCount() >= rowspan) {
 							cols += cell.getColumnCount();
@@ -2570,7 +2584,8 @@ class AccessibleHTML implements Accessible {
 				this.isHeaderCell = false;
 			}
 
-			TableCellElementInfo(Element e, ElementInfo parent, boolean isHeaderCell) {
+			TableCellElementInfo(Element e, ElementInfo parent,
+					boolean isHeaderCell) {
 				super(e, parent);
 				this.isHeaderCell = isHeaderCell;
 			}
@@ -2609,7 +2624,8 @@ class AccessibleHTML implements Accessible {
 			 */
 			public int getRowCount() {
 				if (validateIfNecessary()) {
-					return Math.max(1, getIntAttr(getAttributes(), HTML.Attribute.ROWSPAN, 1));
+					return Math.max(1, getIntAttr(getAttributes(),
+							HTML.Attribute.ROWSPAN, 1));
 				}
 				return 0;
 			}
@@ -2619,7 +2635,8 @@ class AccessibleHTML implements Accessible {
 			 */
 			public int getColumnCount() {
 				if (validateIfNecessary()) {
-					return Math.max(1, getIntAttr(getAttributes(), HTML.Attribute.COLSPAN, 1));
+					return Math.max(1, getIntAttr(getAttributes(),
+							HTML.Attribute.COLSPAN, 1));
 				}
 				return 0;
 			}
@@ -2826,10 +2843,9 @@ class AccessibleHTML implements Accessible {
 
 				if (bounds != null && rootView != null) {
 					try {
-						return rootView
-								.modelToView(e.getStartOffset(), Position.Bias.Forward,
-										e.getEndOffset(), Position.Bias.Backward, bounds)
-								.getBounds();
+						return rootView.modelToView(e.getStartOffset(),
+								Position.Bias.Forward, e.getEndOffset(),
+								Position.Bias.Backward, bounds).getBounds();
 					} catch (BadLocationException ble) {
 					}
 				}
@@ -2954,8 +2970,8 @@ class AccessibleHTML implements Accessible {
 			for (int counter = 0; counter < getChildCount(); counter++) {
 				ElementInfo info = getChild(counter);
 
-				if (index < info.getElement().getEndOffset()
-						|| index == info.getElement().getStartOffset()) {
+				if (index < info.getElement().getEndOffset() || index == info
+						.getElement().getStartOffset()) {
 					return counter;
 				}
 			}
@@ -2981,13 +2997,15 @@ class AccessibleHTML implements Accessible {
 					return;
 				}
 				element = element.getParentElement();
-			} while (parent != null && element != null && element != parent.getElement());
+			} while (parent != null && element != null && element != parent
+					.getElement());
 
 			if (getChildCount() > 0) {
 				Element elem = getElement();
 				int pos = e.getOffset();
 				int index0 = getClosestInfoIndex(pos);
-				if (index0 == -1 && e.getType() == DocumentEvent.EventType.REMOVE
+				if (index0 == -1 && e
+						.getType() == DocumentEvent.EventType.REMOVE
 						&& pos >= elem.getEndOffset()) {
 					// Event beyond our offsets. We may have represented this,
 					// that is the remove may have removed one of our child
@@ -2996,7 +3014,8 @@ class AccessibleHTML implements Accessible {
 					index0 = getChildCount() - 1;
 				}
 				ElementInfo info = (index0 >= 0) ? getChild(index0) : null;
-				if (info != null && (info.getElement().getStartOffset() == pos) && (pos > 0)) {
+				if (info != null && (info.getElement().getStartOffset() == pos)
+						&& (pos > 0)) {
 					// If at a boundary, forward the event to the previous
 					// ElementInfo too.
 					index0 = Math.max(index0 - 1, 0);
@@ -3010,8 +3029,9 @@ class AccessibleHTML implements Accessible {
 				} else {
 					index1 = index0;
 					// A remove may result in empty elements.
-					while ((index1 + 1) < getChildCount() && getChild(index1 + 1).getElement()
-							.getEndOffset() == getChild(index1 + 1).getElement().getStartOffset()) {
+					while ((index1 + 1) < getChildCount() && getChild(index1
+							+ 1).getElement().getEndOffset() == getChild(index1
+									+ 1).getElement().getStartOffset()) {
 						index1++;
 					}
 				}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: ExcC14NParameterSpec.java,v 1.7 2005/05/13 18:45:42 mullan Exp $
@@ -80,13 +60,17 @@ public final class ExcC14NParameterSpec implements C14NMethodParameterSpec {
 	 * prefixes. The list is copied to protect against subsequent modification.
 	 *
 	 * @param prefixList
-	 *            the inclusive namespace prefix list. Each entry in the list is
-	 *            a <code>String</code> that represents a namespace prefix.
+	 *                   the inclusive namespace prefix list. Each entry in the
+	 *                   list is
+	 *                   a <code>String</code> that represents a namespace
+	 *                   prefix.
 	 * @throws NullPointerException
-	 *             if <code>prefixList</code> is <code>null</code>
+	 *                              if <code>prefixList</code> is
+	 *                              <code>null</code>
 	 * @throws ClassCastException
-	 *             if any of the entries in the list are not of type
-	 *             <code>String</code>
+	 *                              if any of the entries in the list are not of
+	 *                              type
+	 *                              <code>String</code>
 	 */
 	@SuppressWarnings("rawtypes")
 	public ExcC14NParameterSpec(List prefixList) {

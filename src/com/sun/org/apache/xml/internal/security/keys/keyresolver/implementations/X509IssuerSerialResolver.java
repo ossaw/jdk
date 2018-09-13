@@ -44,10 +44,12 @@ public class X509IssuerSerialResolver extends KeyResolverSpi {
 			.getLogger(X509IssuerSerialResolver.class.getName());
 
 	/** @inheritDoc */
-	public PublicKey engineLookupAndResolvePublicKey(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public PublicKey engineLookupAndResolvePublicKey(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 
-		X509Certificate cert = this.engineLookupResolveX509Certificate(element, baseURI, storage);
+		X509Certificate cert = this.engineLookupResolveX509Certificate(element,
+				baseURI, storage);
 
 		if (cert != null) {
 			return cert.getPublicKey();
@@ -57,10 +59,12 @@ public class X509IssuerSerialResolver extends KeyResolverSpi {
 	}
 
 	/** @inheritDoc */
-	public X509Certificate engineLookupResolveX509Certificate(Element element, String baseURI,
-			StorageResolver storage) throws KeyResolverException {
+	public X509Certificate engineLookupResolveX509Certificate(Element element,
+			String baseURI, StorageResolver storage)
+			throws KeyResolverException {
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE, "Can I resolve " + element.getTagName() + "?");
+			log.log(java.util.logging.Level.FINE, "Can I resolve " + element
+					.getTagName() + "?");
 		}
 
 		X509Data x509data = null;
@@ -98,14 +102,16 @@ public class X509IssuerSerialResolver extends KeyResolverSpi {
 			Iterator<Certificate> storageIterator = storage.getIterator();
 			while (storageIterator.hasNext()) {
 				X509Certificate cert = (X509Certificate) storageIterator.next();
-				XMLX509IssuerSerial certSerial = new XMLX509IssuerSerial(element.getOwnerDocument(),
-						cert);
+				XMLX509IssuerSerial certSerial = new XMLX509IssuerSerial(element
+						.getOwnerDocument(), cert);
 
 				if (log.isLoggable(java.util.logging.Level.FINE)) {
 					log.log(java.util.logging.Level.FINE,
-							"Found Certificate Issuer: " + certSerial.getIssuerName());
+							"Found Certificate Issuer: " + certSerial
+									.getIssuerName());
 					log.log(java.util.logging.Level.FINE,
-							"Found Certificate Serial: " + certSerial.getSerialNumber().toString());
+							"Found Certificate Serial: " + certSerial
+									.getSerialNumber().toString());
 				}
 
 				for (int i = 0; i < noOfISS; i++) {
@@ -113,9 +119,11 @@ public class X509IssuerSerialResolver extends KeyResolverSpi {
 
 					if (log.isLoggable(java.util.logging.Level.FINE)) {
 						log.log(java.util.logging.Level.FINE,
-								"Found Element Issuer:     " + xmliss.getIssuerName());
+								"Found Element Issuer:     " + xmliss
+										.getIssuerName());
 						log.log(java.util.logging.Level.FINE,
-								"Found Element Serial:     " + xmliss.getSerialNumber().toString());
+								"Found Element Serial:     " + xmliss
+										.getSerialNumber().toString());
 					}
 
 					if (certSerial.equals(xmliss)) {
@@ -133,7 +141,8 @@ public class X509IssuerSerialResolver extends KeyResolverSpi {
 			return null;
 		} catch (XMLSecurityException ex) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "XMLSecurityException", ex);
+				log.log(java.util.logging.Level.FINE, "XMLSecurityException",
+						ex);
 			}
 
 			throw new KeyResolverException("generic.EmptyMessage", ex);
@@ -141,8 +150,8 @@ public class X509IssuerSerialResolver extends KeyResolverSpi {
 	}
 
 	/** @inheritDoc */
-	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String baseURI,
-			StorageResolver storage) {
+	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
+			Element element, String baseURI, StorageResolver storage) {
 		return null;
 	}
 }

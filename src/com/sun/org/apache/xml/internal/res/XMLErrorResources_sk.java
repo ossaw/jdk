@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: XMLErrorResources_sk.java,v 1.1.6.2 2005/09/15 07:45:45 suresh_emailid Exp $
+ * $Id: XMLErrorResources_sk.java,v 1.1.6.2 2005/09/15 07:45:45 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.res;
 
@@ -36,39 +34,30 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -198,7 +187,8 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 
 			{ ER_COROUTINE_NOT_AVAIL, "Korutina nie je dostupn\u00e1, id={0}" },
 
-			{ ER_COROUTINE_CO_EXIT, "CoroutineManager obdr\u017eal po\u017eiadavku co_exit()" },
+			{ ER_COROUTINE_CO_EXIT,
+					"CoroutineManager obdr\u017eal po\u017eiadavku co_exit()" },
 
 			{ ER_COJOINROUTINESET_FAILED, "zlyhal co_joinCoroutineSet()" },
 
@@ -216,17 +206,22 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 			{ ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"Chyba: iter\u00e1tor pre os {0} nie je implementovan\u00fd " },
 
-			{ ER_ITERATOR_CLONE_NOT_SUPPORTED, "Klon iter\u00e1tora nie je podporovan\u00fd" },
+			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
+					"Klon iter\u00e1tora nie je podporovan\u00fd" },
 
-			{ ER_UNKNOWN_AXIS_TYPE, "Nezn\u00e1my typ pret\u00ednania os\u00ed: {0}" },
+			{ ER_UNKNOWN_AXIS_TYPE,
+					"Nezn\u00e1my typ pret\u00ednania os\u00ed: {0}" },
 
-			{ ER_AXIS_NOT_SUPPORTED, "Pret\u00ednanie os\u00ed nie je podporovan\u00e9: {0}" },
+			{ ER_AXIS_NOT_SUPPORTED,
+					"Pret\u00ednanie os\u00ed nie je podporovan\u00e9: {0}" },
 
-			{ ER_NO_DTMIDS_AVAIL, "\u017diadne \u010fal\u0161ie DTM ID nie s\u00fa dostupn\u00e9" },
+			{ ER_NO_DTMIDS_AVAIL,
+					"\u017diadne \u010fal\u0161ie DTM ID nie s\u00fa dostupn\u00e9" },
 
 			{ ER_NOT_SUPPORTED, "Nie je podporovan\u00e9: {0}" },
 
-			{ ER_NODE_NON_NULL, "Pre getDTMHandleFromNode mus\u00ed by\u0165 uzol nenulov\u00fd" },
+			{ ER_NODE_NON_NULL,
+					"Pre getDTMHandleFromNode mus\u00ed by\u0165 uzol nenulov\u00fd" },
 
 			{ ER_COULD_NOT_RESOLVE_NODE,
 					"Nebolo mo\u017en\u00e9 ur\u010di\u0165 uzol na spracovanie" },
@@ -234,7 +229,8 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 			{ ER_STARTPARSE_WHILE_PARSING,
 					"startParse nem\u00f4\u017ee by\u0165 volan\u00fd po\u010das vykon\u00e1vania anal\u00fdzy" },
 
-			{ ER_STARTPARSE_NEEDS_SAXPARSER, "startParse potrebuje nenulov\u00fd SAXParser" },
+			{ ER_STARTPARSE_NEEDS_SAXPARSER,
+					"startParse potrebuje nenulov\u00fd SAXParser" },
 
 			{ ER_COULD_NOT_INIT_PARSER,
 					"nebolo mo\u017en\u00e9 inicializova\u0165 syntaktick\u00fd analyz\u00e1tor pomocou" },
@@ -247,9 +243,11 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 
 			{ ER_SCHEME_REQUIRED, "Je po\u017eadovan\u00e1 sch\u00e9ma!" },
 
-			{ ER_NO_SCHEME_IN_URI, "V URI sa nena\u0161la \u017eiadna sch\u00e9ma: {0}" },
+			{ ER_NO_SCHEME_IN_URI,
+					"V URI sa nena\u0161la \u017eiadna sch\u00e9ma: {0}" },
 
-			{ ER_NO_SCHEME_INURI, "V URI nebola n\u00e1jden\u00e1 \u017eiadna sch\u00e9ma" },
+			{ ER_NO_SCHEME_INURI,
+					"V URI nebola n\u00e1jden\u00e1 \u017eiadna sch\u00e9ma" },
 
 			{ ER_PATH_INVALID_CHAR, "Cesta obsahuje neplatn\u00fd znak: {0}" },
 
@@ -280,7 +278,8 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 			{ ER_CANNOT_CHANGE_WHILE_PARSING,
 					"Nie je mo\u017en\u00e9 zmeni\u0165 {0} {1} po\u010das vykon\u00e1vania anal\u00fdzy" },
 
-			{ ER_SELF_CAUSATION_NOT_PERMITTED, "Samozapr\u00ed\u010dinenie nie je povolen\u00e9" },
+			{ ER_SELF_CAUSATION_NOT_PERMITTED,
+					"Samozapr\u00ed\u010dinenie nie je povolen\u00e9" },
 
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"Ak nebol zadan\u00fd hostite\u013e, mo\u017eno nebolo zadan\u00e9 userinfo" },
@@ -297,7 +296,8 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 			{ ER_CANNOT_INIT_URI_EMPTY_PARMS,
 					"Nie je mo\u017en\u00e9 inicializova\u0165 URI s pr\u00e1zdnymi parametrami" },
 
-			{ ER_METHOD_NOT_SUPPORTED, "Met\u00f3da e\u0161te nie je podporovan\u00e1 " },
+			{ ER_METHOD_NOT_SUPPORTED,
+					"Met\u00f3da e\u0161te nie je podporovan\u00e1 " },
 
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"IncrementalSAXSource_Filter nie je moment\u00e1lne re\u0161tartovate\u013en\u00fd" },
@@ -348,11 +348,15 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 			// The prefix is the portion before the optional colon; the message
 			// indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_PREFIX_INVALID, "Predpona v QNAME by mala by\u0165 platn\u00fdm NCName" },
+			{ ER_ARG_PREFIX_INVALID,
+					"Predpona v QNAME by mala by\u0165 platn\u00fdm NCName" },
 
-			{ "BAD_CODE", "Parameter na createMessage bol mimo ohrani\u010denia" },
-			{ "FORMAT_FAILED", "V\u00fdnimka po\u010das volania messageFormat" },
-			{ "line", "Riadok #" }, { "column", "St\u013apec #" },
+			{ "BAD_CODE",
+					"Parameter na createMessage bol mimo ohrani\u010denia" }, {
+							"FORMAT_FAILED",
+							"V\u00fdnimka po\u010das volania messageFormat" }, {
+									"line", "Riadok #" }, { "column",
+											"St\u013apec #" },
 
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"Trieda serializ\u00e1tora ''{0}'' neimplementuje org.xml.sax.ContentHandler." },
@@ -363,7 +367,8 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 			{ ER_RESOURCE_COULD_NOT_LOAD,
 					"Prostriedok [ {0} ] sa nedal na\u010d\u00edta\u0165: {1} \n {2} \t {3}" },
 
-			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "Ve\u013ekos\u0165 vyrovn\u00e1vacej pam\u00e4te <=0" },
+			{ ER_BUFFER_SIZE_LESSTHAN_ZERO,
+					"Ve\u013ekos\u0165 vyrovn\u00e1vacej pam\u00e4te <=0" },
 
 			{ ER_INVALID_UTF16_SURROGATE,
 					"Bolo zisten\u00e9 neplatn\u00e9 nahradenie UTF-16: {0} ?" },

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -132,7 +112,7 @@ public class ImageView extends View {
 	 * Creates a new view that represents an IMG element.
 	 *
 	 * @param elem
-	 *            the element to create a view for
+	 *             the element to create a view for
 	 */
 	public ImageView(Element elem) {
 		super(elem);
@@ -147,14 +127,16 @@ public class ImageView extends View {
 	 * <code>HTML.Attribute.ALT</code>.
 	 */
 	public String getAltText() {
-		return (String) getElement().getAttributes().getAttribute(HTML.Attribute.ALT);
+		return (String) getElement().getAttributes().getAttribute(
+				HTML.Attribute.ALT);
 	}
 
 	/**
 	 * Return a URL for the image source, or null if it could not be determined.
 	 */
 	public URL getImageURL() {
-		String src = (String) getElement().getAttributes().getAttribute(HTML.Attribute.SRC);
+		String src = (String) getElement().getAttributes().getAttribute(
+				HTML.Attribute.SRC);
 		if (src == null) {
 			return null;
 		}
@@ -260,12 +242,17 @@ public class ImageView extends View {
 		this.attr = sheet.getViewAttributes(this);
 
 		// Gutters
-		borderSize = (short) getIntAttr(HTML.Attribute.BORDER, isLink() ? DEFAULT_BORDER : 0);
+		borderSize = (short) getIntAttr(HTML.Attribute.BORDER, isLink()
+				? DEFAULT_BORDER
+				: 0);
 
-		leftInset = rightInset = (short) (getIntAttr(HTML.Attribute.HSPACE, 0) + borderSize);
-		topInset = bottomInset = (short) (getIntAttr(HTML.Attribute.VSPACE, 0) + borderSize);
+		leftInset = rightInset = (short) (getIntAttr(HTML.Attribute.HSPACE, 0)
+				+ borderSize);
+		topInset = bottomInset = (short) (getIntAttr(HTML.Attribute.VSPACE, 0)
+				+ borderSize);
 
-		borderColor = ((StyledDocument) getDocument()).getForeground(getAttributes());
+		borderColor = ((StyledDocument) getDocument()).getForeground(
+				getAttributes());
 
 		AttributeSet attr = getElement().getAttributes();
 
@@ -329,23 +316,25 @@ public class ImageView extends View {
 	 * Paints the View.
 	 *
 	 * @param g
-	 *            the rendering surface to use
+	 *          the rendering surface to use
 	 * @param a
-	 *            the allocated region to render into
+	 *          the allocated region to render into
 	 * @see View#paint
 	 */
 	public void paint(Graphics g, Shape a) {
 		sync();
 
-		Rectangle rect = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
+		Rectangle rect = (a instanceof Rectangle) ? (Rectangle) a
+				: a.getBounds();
 		Rectangle clip = g.getClipBounds();
 
 		fBounds.setBounds(rect);
 		paintHighlights(g, a);
 		paintBorder(g, rect);
 		if (clip != null) {
-			g.clipRect(rect.x + leftInset, rect.y + topInset, rect.width - leftInset - rightInset,
-					rect.height - topInset - bottomInset);
+			g.clipRect(rect.x + leftInset, rect.y + topInset, rect.width
+					- leftInset - rightInset, rect.height - topInset
+							- bottomInset);
 		}
 
 		Container host = getContainer();
@@ -355,12 +344,13 @@ public class ImageView extends View {
 				// No pixels yet, use the default
 				Icon icon = getLoadingImageIcon();
 				if (icon != null) {
-					icon.paintIcon(host, g, rect.x + leftInset, rect.y + topInset);
+					icon.paintIcon(host, g, rect.x + leftInset, rect.y
+							+ topInset);
 				}
 			} else {
 				// Draw the image
-				g.drawImage(img, rect.x + leftInset, rect.y + topInset, width, height,
-						imageObserver);
+				g.drawImage(img, rect.x + leftInset, rect.y + topInset, width,
+						height, imageObserver);
 			}
 		} else {
 			Icon icon = getNoImageIcon();
@@ -369,10 +359,12 @@ public class ImageView extends View {
 			}
 			View view = getAltView();
 			// Paint the view representing the alt text, if its non-null
-			if (view != null && ((state & WIDTH_FLAG) == 0 || width > DEFAULT_WIDTH)) {
+			if (view != null && ((state & WIDTH_FLAG) == 0
+					|| width > DEFAULT_WIDTH)) {
 				// Assume layout along the y direction
-				Rectangle altRect = new Rectangle(rect.x + leftInset + DEFAULT_WIDTH,
-						rect.y + topInset, rect.width - leftInset - rightInset - DEFAULT_WIDTH,
+				Rectangle altRect = new Rectangle(rect.x + leftInset
+						+ DEFAULT_WIDTH, rect.y + topInset, rect.width
+								- leftInset - rightInset - DEFAULT_WIDTH,
 						rect.height - topInset - bottomInset);
 
 				view.paint(g, altRect);
@@ -389,8 +381,8 @@ public class ImageView extends View {
 			JTextComponent tc = (JTextComponent) container;
 			Highlighter h = tc.getHighlighter();
 			if (h instanceof LayeredHighlighter) {
-				((LayeredHighlighter) h).paintLayeredHighlights(g, getStartOffset(), getEndOffset(),
-						shape, tc, this);
+				((LayeredHighlighter) h).paintLayeredHighlights(g,
+						getStartOffset(), getEndOffset(), shape, tc, this);
 			}
 		}
 	}
@@ -404,9 +396,10 @@ public class ImageView extends View {
 			g.setColor(color);
 			int n = (image == null) ? 1 : borderSize;
 			for (int counter = 0; counter < n; counter++) {
-				g.drawRect(rect.x + xOffset + counter, rect.y + yOffset + counter,
-						rect.width - counter - counter - xOffset - xOffset - 1,
-						rect.height - counter - counter - yOffset - yOffset - 1);
+				g.drawRect(rect.x + xOffset + counter, rect.y + yOffset
+						+ counter, rect.width - counter - counter - xOffset
+								- xOffset - 1, rect.height - counter - counter
+										- yOffset - yOffset - 1);
 			}
 		}
 	}
@@ -415,7 +408,7 @@ public class ImageView extends View {
 	 * Determines the preferred span for this view along an axis.
 	 *
 	 * @param axis
-	 *            may be either X_AXIS or Y_AXIS
+	 *             may be either X_AXIS or Y_AXIS
 	 * @return the span the view would like to be rendered into; typically the
 	 *         view is told to render into the span that is returned, although
 	 *         there is no guarantee; the parent may choose to resize or break
@@ -438,12 +431,12 @@ public class ImageView extends View {
 
 		if (image != null) {
 			switch (axis) {
-			case View.X_AXIS:
-				return width + leftInset + rightInset;
-			case View.Y_AXIS:
-				return height + topInset + bottomInset;
-			default:
-				throw new IllegalArgumentException("Invalid axis: " + axis);
+				case View.X_AXIS:
+					return width + leftInset + rightInset;
+				case View.Y_AXIS:
+					return height + topInset + bottomInset;
+				default:
+					throw new IllegalArgumentException("Invalid axis: " + axis);
 			}
 		} else {
 			View view = getAltView();
@@ -453,12 +446,12 @@ public class ImageView extends View {
 				retValue = view.getPreferredSpan(axis);
 			}
 			switch (axis) {
-			case View.X_AXIS:
-				return retValue + (float) (width + leftInset + rightInset);
-			case View.Y_AXIS:
-				return retValue + (float) (height + topInset + bottomInset);
-			default:
-				throw new IllegalArgumentException("Invalid axis: " + axis);
+				case View.X_AXIS:
+					return retValue + (float) (width + leftInset + rightInset);
+				case View.Y_AXIS:
+					return retValue + (float) (height + topInset + bottomInset);
+				default:
+					throw new IllegalArgumentException("Invalid axis: " + axis);
 			}
 		}
 	}
@@ -469,7 +462,7 @@ public class ImageView extends View {
 	 * axis, and the default along the x axis.
 	 *
 	 * @param axis
-	 *            may be either X_AXIS or Y_AXIS
+	 *             may be either X_AXIS or Y_AXIS
 	 * @return the desired alignment; this should be a value between 0.0 and 1.0
 	 *         where 0 indicates alignment at the origin and 1.0 indicates
 	 *         alignment to the full span away from the origin; an alignment of
@@ -477,10 +470,10 @@ public class ImageView extends View {
 	 */
 	public float getAlignment(int axis) {
 		switch (axis) {
-		case View.Y_AXIS:
-			return vAlign;
-		default:
-			return super.getAlignment(axis);
+			case View.Y_AXIS:
+				return vAlign;
+			default:
+				return super.getAlignment(axis);
 		}
 	}
 
@@ -494,11 +487,13 @@ public class ImageView extends View {
 	 *            the allocated region to render into
 	 * @return the bounding box of the given position
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see View#modelToView
 	 */
-	public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+	public Shape modelToView(int pos, Shape a, Position.Bias b)
+			throws BadLocationException {
 		int p0 = getStartOffset();
 		int p1 = getEndOffset();
 		if ((pos >= p0) && (pos <= p1)) {
@@ -517,11 +512,11 @@ public class ImageView extends View {
 	 * coordinate space of the model.
 	 *
 	 * @param x
-	 *            the X coordinate
+	 *          the X coordinate
 	 * @param y
-	 *            the Y coordinate
+	 *          the Y coordinate
 	 * @param a
-	 *            the allocated region to render into
+	 *          the allocated region to render into
 	 * @return the location within the model that best represents the given
 	 *         point of view
 	 * @see View#viewToModel
@@ -541,9 +536,9 @@ public class ImageView extends View {
 	 * any layout duties.
 	 *
 	 * @param width
-	 *            the width &gt;= 0
+	 *               the width &gt;= 0
 	 * @param height
-	 *            the height &gt;= 0
+	 *               the height &gt;= 0
 	 */
 	public void setSize(float width, float height) {
 		sync();
@@ -552,8 +547,9 @@ public class ImageView extends View {
 			View view = getAltView();
 
 			if (view != null) {
-				view.setSize(Math.max(0f, width - (float) (DEFAULT_WIDTH + leftInset + rightInset)),
-						Math.max(0f, height - (float) (topInset + bottomInset)));
+				view.setSize(Math.max(0f, width - (float) (DEFAULT_WIDTH
+						+ leftInset + rightInset)), Math.max(0f, height
+								- (float) (topInset + bottomInset)));
 			}
 		}
 	}
@@ -569,8 +565,8 @@ public class ImageView extends View {
 	 * Returns true if the passed in image has a non-zero width and height.
 	 */
 	private boolean hasPixels(Image image) {
-		return image != null && (image.getHeight(imageObserver) > 0)
-				&& (image.getWidth(imageObserver) > 0);
+		return image != null && (image.getHeight(imageObserver) > 0) && (image
+				.getWidth(imageObserver) > 0);
 	}
 
 	/**
@@ -594,7 +590,8 @@ public class ImageView extends View {
 	 */
 	private void repaint(long delay) {
 		if (container != null && fBounds != null) {
-			container.repaint(delay, fBounds.x, fBounds.y, fBounds.width, fBounds.height);
+			container.repaint(delay, fBounds.x, fBounds.y, fBounds.width,
+					fBounds.height);
 		}
 	}
 
@@ -646,8 +643,9 @@ public class ImageView extends View {
 	private void refreshImage() {
 		synchronized (this) {
 			// clear out width/height/realoadimage flag and set loading flag
-			state = (state | LOADING_FLAG | RELOAD_IMAGE_FLAG | WIDTH_FLAG | HEIGHT_FLAG)
-					^ (WIDTH_FLAG | HEIGHT_FLAG | RELOAD_IMAGE_FLAG);
+			state = (state | LOADING_FLAG | RELOAD_IMAGE_FLAG | WIDTH_FLAG
+					| HEIGHT_FLAG) ^ (WIDTH_FLAG | HEIGHT_FLAG
+							| RELOAD_IMAGE_FLAG);
 			image = null;
 			width = height = 0;
 		}
@@ -674,7 +672,8 @@ public class ImageView extends View {
 		URL src = getImageURL();
 		Image newImage = null;
 		if (src != null) {
-			Dictionary cache = (Dictionary) getDocument().getProperty(IMAGE_CACHE_PROPERTY);
+			Dictionary cache = (Dictionary) getDocument().getProperty(
+					IMAGE_CACHE_PROPERTY);
 			if (cache != null) {
 				newImage = (Image) cache.get(src);
 			} else {
@@ -731,10 +730,11 @@ public class ImageView extends View {
 
 			// Make sure the image starts loading:
 			if ((newState & (WIDTH_FLAG | HEIGHT_FLAG)) != 0) {
-				Toolkit.getDefaultToolkit().prepareImage(newImage, newWidth, newHeight,
-						imageObserver);
+				Toolkit.getDefaultToolkit().prepareImage(newImage, newWidth,
+						newHeight, imageObserver);
 			} else {
-				Toolkit.getDefaultToolkit().prepareImage(newImage, -1, -1, imageObserver);
+				Toolkit.getDefaultToolkit().prepareImage(newImage, -1, -1,
+						imageObserver);
 			}
 
 			boolean createText = false;
@@ -746,7 +746,8 @@ public class ImageView extends View {
 					if ((newState & WIDTH_FLAG) == WIDTH_FLAG || width == 0) {
 						width = newWidth;
 					}
-					if ((newState & HEIGHT_FLAG) == HEIGHT_FLAG || height == 0) {
+					if ((newState & HEIGHT_FLAG) == HEIGHT_FLAG
+							|| height == 0) {
 						height = newHeight;
 					}
 				} else {
@@ -834,9 +835,10 @@ public class ImageView extends View {
 		// preference changed, or repaint, we just reset the fWidth/fHeight as
 		// necessary and return. This is ok as we know when loading finishes
 		// it will pick up the new height/width, if necessary.
-		public boolean imageUpdate(Image img, int flags, int x, int y, int newWidth,
-				int newHeight) {
-			if (img != image && img != disabledImage || image == null || getParent() == null) {
+		public boolean imageUpdate(Image img, int flags, int x, int y,
+				int newWidth, int newHeight) {
+			if (img != image && img != disabledImage || image == null
+					|| getParent() == null) {
 
 				return false;
 			}
@@ -872,12 +874,12 @@ public class ImageView extends View {
 			if (image == img) {
 				// Resize image if necessary:
 				short changed = 0;
-				if ((flags & ImageObserver.HEIGHT) != 0
-						&& !getElement().getAttributes().isDefined(HTML.Attribute.HEIGHT)) {
+				if ((flags & ImageObserver.HEIGHT) != 0 && !getElement()
+						.getAttributes().isDefined(HTML.Attribute.HEIGHT)) {
 					changed |= 1;
 				}
-				if ((flags & ImageObserver.WIDTH) != 0
-						&& !getElement().getAttributes().isDefined(HTML.Attribute.WIDTH)) {
+				if ((flags & ImageObserver.WIDTH) != 0 && !getElement()
+						.getAttributes().isDefined(HTML.Attribute.WIDTH)) {
 					changed |= 2;
 				}
 

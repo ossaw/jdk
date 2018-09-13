@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002, 2003,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,8 +32,7 @@ public class SimpleLocator implements XMLLocator {
 	int line, column;
 	int charOffset;
 
-	public SimpleLocator() {
-	}
+	public SimpleLocator() {}
 
 	public SimpleLocator(String lsid, String esid, int line, int column) {
 		this(lsid, esid, line, column, -1);
@@ -46,7 +42,8 @@ public class SimpleLocator implements XMLLocator {
 		setValues(lsid, esid, line, column, -1);
 	}
 
-	public SimpleLocator(String lsid, String esid, int line, int column, int offset) {
+	public SimpleLocator(String lsid, String esid, int line, int column,
+			int offset) {
 		this.line = line;
 		this.column = column;
 		this.lsid = lsid;
@@ -54,7 +51,8 @@ public class SimpleLocator implements XMLLocator {
 		charOffset = offset;
 	}
 
-	public void setValues(String lsid, String esid, int line, int column, int offset) {
+	public void setValues(String lsid, String esid, int line, int column,
+			int offset) {
 		this.line = line;
 		this.column = column;
 		this.lsid = lsid;
@@ -111,8 +109,7 @@ public class SimpleLocator implements XMLLocator {
 	/**
 	 * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier#setBaseSystemId(String)
 	 */
-	public void setBaseSystemId(String systemId) {
-	}
+	public void setBaseSystemId(String systemId) {}
 
 	/**
 	 * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier#setExpandedSystemId(String)
@@ -131,8 +128,7 @@ public class SimpleLocator implements XMLLocator {
 	/**
 	 * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier#setPublicId(String)
 	 */
-	public void setPublicId(String publicId) {
-	}
+	public void setPublicId(String publicId) {}
 
 	/**
 	 * Returns the encoding of the current entity. Since these locators are used

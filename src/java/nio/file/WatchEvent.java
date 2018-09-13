@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -40,7 +20,7 @@ package java.nio.file;
  * Watch events are immutable and safe for use by multiple concurrent threads.
  *
  * @param <T>
- *            The type of the context object associated with the event
+ *        The type of the context object associated with the event
  *
  * @since 1.7
  */

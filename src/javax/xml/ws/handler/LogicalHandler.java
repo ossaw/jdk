@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.handler;
@@ -31,5 +11,5 @@ package javax.xml.ws.handler;
  *
  * @since JAX-WS 2.0
  **/
-public interface LogicalHandler<C extends LogicalMessageContext> extends Handler<C> {
-}
+public interface LogicalHandler<C extends LogicalMessageContext> extends
+		Handler<C> {}

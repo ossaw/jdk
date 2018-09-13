@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -119,16 +116,19 @@ public class SAX2RTFDTM extends SAX2DTM {
 	 */
 	int m_emptyDataQNCount;
 
-	public SAX2RTFDTM(DTMManager mgr, Source source, int dtmIdentity, DTMWSFilter whiteSpaceFilter,
-			XMLStringFactory xstringfactory, boolean doIndexing) {
-		super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory, doIndexing);
+	public SAX2RTFDTM(DTMManager mgr, Source source, int dtmIdentity,
+			DTMWSFilter whiteSpaceFilter, XMLStringFactory xstringfactory,
+			boolean doIndexing) {
+		super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory,
+				doIndexing);
 
 		// NEVER track source locators for RTFs; they aren't meaningful. I
 		// think.
 		// (If we did track them, we'd need to tail-prune these too.)
 		// com.sun.org.apache.xalan.internal.processor.TransformerFactoryImpl.m_source_location;
 		m_useSourceLocationProperty = false;
-		m_sourceSystemId = (m_useSourceLocationProperty) ? new StringVector() : null;
+		m_sourceSystemId = (m_useSourceLocationProperty) ? new StringVector()
+				: null;
 		m_sourceLine = (m_useSourceLocationProperty) ? new IntVector() : null;
 		m_sourceColumn = (m_useSourceLocationProperty) ? new IntVector() : null;
 
@@ -136,7 +136,8 @@ public class SAX2RTFDTM extends SAX2DTM {
 		// for RTF tail-pruning. More entries can be popped than pushed, so
 		// we need this to mark the primordial state of the DTM.
 		m_emptyNodeCount = m_size;
-		m_emptyNSDeclSetCount = (m_namespaceDeclSets == null) ? 0 : m_namespaceDeclSets.size();
+		m_emptyNSDeclSetCount = (m_namespaceDeclSets == null) ? 0
+				: m_namespaceDeclSets.size();
 		m_emptyNSDeclSetElemsCount = (m_namespaceDeclSetElements == null) ? 0
 				: m_namespaceDeclSetElements.size();
 		m_emptyDataCount = m_data.size();
@@ -169,11 +170,12 @@ public class SAX2RTFDTM extends SAX2DTM {
 	 * careful if that code changes!)
 	 *
 	 * @param nodeHandle
-	 *            the id of the node.
+	 *                   the id of the node.
 	 * @return int Node handle of owning document
 	 */
 	public int getDocumentRoot(int nodeHandle) {
-		for (int id = makeNodeIdentity(nodeHandle); id != NULL; id = _parent(id)) {
+		for (int id = makeNodeIdentity(nodeHandle); id != NULL; id = _parent(
+				id)) {
 			if (_type(id) == DTM.DOCUMENT_NODE) {
 				return makeNodeHandle(id);
 			}
@@ -188,7 +190,7 @@ public class SAX2RTFDTM extends SAX2DTM {
 	 * in shared DTMs this may not be zero.
 	 *
 	 * @param nodeIdentifier
-	 *            the id of the starting node.
+	 *                       the id of the starting node.
 	 * @return int Node identifier of the root of this DTM tree
 	 */
 	protected int _documentRoot(int nodeIdentifier) {
@@ -212,7 +214,8 @@ public class SAX2RTFDTM extends SAX2DTM {
 	 * carry the additional code.
 	 *
 	 * @throws SAXException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *                      Any SAX exception, possibly wrapping another
+	 *                      exception.
 	 * @see org.xml.sax.ContentHandler#startDocument
 	 */
 	public void startDocument() throws SAXException {
@@ -234,7 +237,8 @@ public class SAX2RTFDTM extends SAX2DTM {
 	 * SAX2DTM so we don't have to expose so many fields (even as Protected).
 	 *
 	 * @throws SAXException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *                      Any SAX exception, possibly wrapping another
+	 *                      exception.
 	 * @see org.xml.sax.ContentHandler#endDocument
 	 */
 	public void endDocument() throws SAXException {
@@ -275,9 +279,10 @@ public class SAX2RTFDTM extends SAX2DTM {
 		// %REVIEW% Can the namespace stack sizes ever differ? If not, save
 		// space!
 		mark_size.push(m_size);
-		mark_nsdeclset_size.push((m_namespaceDeclSets == null) ? 0 : m_namespaceDeclSets.size());
-		mark_nsdeclelem_size
-				.push((m_namespaceDeclSetElements == null) ? 0 : m_namespaceDeclSetElements.size());
+		mark_nsdeclset_size.push((m_namespaceDeclSets == null) ? 0
+				: m_namespaceDeclSets.size());
+		mark_nsdeclelem_size.push((m_namespaceDeclSetElements == null) ? 0
+				: m_namespaceDeclSetElements.size());
 
 		// Values from SAX2DTM
 		mark_data_size.push(m_data.size());

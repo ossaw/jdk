@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans.beancontext;
@@ -47,8 +27,8 @@ public interface BeanContextMembershipListener extends EventListener {
 	 * <code>BeanContext</code> that this listener is registered with.
 	 * 
 	 * @param bcme
-	 *            The <code>BeanContextMembershipEvent</code> describing the
-	 *            change that occurred.
+	 *             The <code>BeanContextMembershipEvent</code> describing the
+	 *             change that occurred.
 	 */
 	void childrenAdded(BeanContextMembershipEvent bcme);
 
@@ -57,8 +37,8 @@ public interface BeanContextMembershipListener extends EventListener {
 	 * <code>BeanContext</code> that this listener is registered with.
 	 * 
 	 * @param bcme
-	 *            The <code>BeanContextMembershipEvent</code> describing the
-	 *            change that occurred.
+	 *             The <code>BeanContextMembershipEvent</code> describing the
+	 *             change that occurred.
 	 */
 	void childrenRemoved(BeanContextMembershipEvent bcme);
 }

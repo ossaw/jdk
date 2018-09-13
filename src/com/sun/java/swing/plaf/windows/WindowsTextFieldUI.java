@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -63,7 +43,7 @@ public class WindowsTextFieldUI extends BasicTextFieldUI {
 	 * Creates a UI for a JTextField.
 	 *
 	 * @param c
-	 *            the text field
+	 *          the text field
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -76,7 +56,7 @@ public class WindowsTextFieldUI extends BasicTextFieldUI {
 	 * background color of the component.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 */
 	protected void paintBackground(Graphics g) {
 		super.paintBackground(g);

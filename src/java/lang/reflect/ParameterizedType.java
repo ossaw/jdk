@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -58,11 +38,16 @@ public interface ParameterizedType extends Type {
 	 * @return an array of {@code Type} objects representing the actual type
 	 *         arguments to this type
 	 * @throws TypeNotPresentException
-	 *             if any of the actual type arguments refers to a non-existent
-	 *             type declaration
+	 *                                             if any of the actual type
+	 *                                             arguments refers to a
+	 *                                             non-existent
+	 *                                             type declaration
 	 * @throws MalformedParameterizedTypeException
-	 *             if any of the actual type parameters refer to a parameterized
-	 *             type that cannot be instantiated for any reason
+	 *                                             if any of the actual type
+	 *                                             parameters refer to a
+	 *                                             parameterized
+	 *                                             type that cannot be
+	 *                                             instantiated for any reason
 	 * @since 1.5
 	 */
 	Type[] getActualTypeArguments();
@@ -89,10 +74,14 @@ public interface ParameterizedType extends Type {
 	 *         member of. If this type is a top-level type, {@code null} is
 	 *         returned
 	 * @throws TypeNotPresentException
-	 *             if the owner type refers to a non-existent type declaration
+	 *                                             if the owner type refers to a
+	 *                                             non-existent type declaration
 	 * @throws MalformedParameterizedTypeException
-	 *             if the owner type refers to a parameterized type that cannot
-	 *             be instantiated for any reason
+	 *                                             if the owner type refers to a
+	 *                                             parameterized type that
+	 *                                             cannot
+	 *                                             be instantiated for any
+	 *                                             reason
 	 * @since 1.5
 	 */
 	Type getOwnerType();

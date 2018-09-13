@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -67,7 +47,7 @@ public class InvocationTargetException extends ReflectiveOperationException {
 	 * Constructs a InvocationTargetException with a target exception.
 	 *
 	 * @param target
-	 *            the target exception
+	 *               the target exception
 	 */
 	public InvocationTargetException(Throwable target) {
 		super((Throwable) null); // Disallow initCause
@@ -79,9 +59,9 @@ public class InvocationTargetException extends ReflectiveOperationException {
 	 * detail message.
 	 *
 	 * @param target
-	 *            the target exception
+	 *               the target exception
 	 * @param s
-	 *            the detail message
+	 *               the detail message
 	 */
 	public InvocationTargetException(Throwable target, String s) {
 		super(s, null); // Disallow initCause

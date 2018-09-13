@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: Reference.java,v 1.9 2005/05/10 16:03:46 mullan Exp $
@@ -137,14 +117,17 @@ public interface Reference extends URIReference, XMLStructure {
 	 * @return <code>true</code> if this reference was validated successfully;
 	 *         <code>false</code> otherwise
 	 * @param validateContext
-	 *            the validating context
+	 *                        the validating context
 	 * @throws NullPointerException
-	 *             if <code>validateContext</code> is <code>null</code>
+	 *                               if <code>validateContext</code> is
+	 *                               <code>null</code>
 	 * @throws XMLSignatureException
-	 *             if an unexpected exception occurs while validating the
-	 *             reference
+	 *                               if an unexpected exception occurs while
+	 *                               validating the
+	 *                               reference
 	 */
-	boolean validate(XMLValidateContext validateContext) throws XMLSignatureException;
+	boolean validate(XMLValidateContext validateContext)
+			throws XMLSignatureException;
 
 	/**
 	 * Returns the dereferenced data, if <a href=

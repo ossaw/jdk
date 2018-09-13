@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.defaults;
@@ -33,8 +13,7 @@ package com.sun.jmx.defaults;
 public class ServiceName {
 
 	// private constructor defined to "hide" the default public constructor
-	private ServiceName() {
-	}
+	private ServiceName() {}
 
 	/**
 	 * The object name of the MBeanServer delegate object <BR>

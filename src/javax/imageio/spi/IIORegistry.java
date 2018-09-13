@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.spi;
@@ -198,7 +178,8 @@ public final class IIORegistry extends ServiceRegistry {
 		Iterator categories = getCategories();
 		while (categories.hasNext()) {
 			Class<IIOServiceProvider> c = (Class) categories.next();
-			Iterator<IIOServiceProvider> riter = ServiceLoader.load(c, loader).iterator();
+			Iterator<IIOServiceProvider> riter = ServiceLoader.load(c, loader)
+					.iterator();
 			while (riter.hasNext()) {
 				try {
 					// Note that the next() call is required to be inside
@@ -233,7 +214,8 @@ public final class IIORegistry extends ServiceRegistry {
 				Iterator categories = getCategories();
 				while (categories.hasNext()) {
 					Class<IIOServiceProvider> c = (Class) categories.next();
-					for (IIOServiceProvider p : ServiceLoader.loadInstalled(c)) {
+					for (IIOServiceProvider p : ServiceLoader.loadInstalled(
+							c)) {
 						registerServiceProvider(p);
 					}
 				}

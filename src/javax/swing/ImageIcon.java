@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -96,27 +76,29 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	protected final static MediaTracker tracker;
 
 	static {
-		component = AccessController.doPrivileged(new PrivilegedAction<Component>() {
-			public Component run() {
-				try {
-					final Component component = createNoPermsComponent();
+		component = AccessController.doPrivileged(
+				new PrivilegedAction<Component>() {
+					public Component run() {
+						try {
+							final Component component = createNoPermsComponent();
 
-					// 6482575 - clear the appContext field so as not to leak it
-					Field appContextField =
+							// 6482575 - clear the appContext field so as not to leak it
+							Field appContextField =
 
-							Component.class.getDeclaredField("appContext");
-					appContextField.setAccessible(true);
-					appContextField.set(component, null);
+									Component.class.getDeclaredField(
+											"appContext");
+							appContextField.setAccessible(true);
+							appContextField.set(component, null);
 
-					return component;
-				} catch (Throwable e) {
-					// We don't care about component.
-					// So don't prevent class initialisation.
-					e.printStackTrace();
-					return null;
-				}
-			}
-		});
+							return component;
+						} catch (Throwable e) {
+							// We don't care about component.
+							// So don't prevent class initialisation.
+							e.printStackTrace();
+							return null;
+						}
+					}
+				});
 		tracker = new MediaTracker(component);
 	}
 
@@ -125,10 +107,10 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 		// Note, will have appContext set.
 		return AccessController.doPrivileged(new PrivilegedAction<Component>() {
 			public Component run() {
-				return new Component() {
-				};
+				return new Component() {};
 			}
-		}, new AccessControlContext(new ProtectionDomain[] { new ProtectionDomain(null, null) }));
+		}, new AccessControlContext(new ProtectionDomain[] {
+				new ProtectionDomain(null, null) }));
 	}
 
 	/**
@@ -146,9 +128,9 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * by using MediaTracker to monitor the loading state of the image.
 	 * 
 	 * @param filename
-	 *            the name of the file containing the image
+	 *                    the name of the file containing the image
 	 * @param description
-	 *            a brief textual description of the image
+	 *                    a brief textual description of the image
 	 * @see #ImageIcon(String)
 	 */
 	public ImageIcon(String filename, String description) {
@@ -176,7 +158,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * The description is initialized to the <code>filename</code> string.
 	 *
 	 * @param filename
-	 *            a String specifying a filename or path
+	 *                 a String specifying a filename or path
 	 * @see #getDescription
 	 */
 	@ConstructorProperties({ "description" })
@@ -189,9 +171,9 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * by using MediaTracker to monitor the loaded state of the image.
 	 * 
 	 * @param location
-	 *            the URL for the image
+	 *                    the URL for the image
 	 * @param description
-	 *            a brief textual description of the image
+	 *                    a brief textual description of the image
 	 * @see #ImageIcon(String)
 	 */
 	public ImageIcon(URL location, String description) {
@@ -211,7 +193,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * URL.
 	 * 
 	 * @param location
-	 *            the URL for the image
+	 *                 the URL for the image
 	 * @see #getDescription
 	 */
 	public ImageIcon(URL location) {
@@ -222,9 +204,9 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * Creates an ImageIcon from the image.
 	 * 
 	 * @param image
-	 *            the image
+	 *                    the image
 	 * @param description
-	 *            a brief textual description of the image
+	 *                    a brief textual description of the image
 	 */
 	public ImageIcon(Image image, String description) {
 		this(image);
@@ -237,7 +219,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * this icon.
 	 * 
 	 * @param image
-	 *            the image
+	 *              the image
 	 * @see #getDescription
 	 * @see java.awt.Image#getProperty
 	 */
@@ -258,10 +240,11 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * stored in a class.
 	 *
 	 * @param imageData
-	 *            an array of pixels in an image format supported by the AWT
-	 *            Toolkit, such as GIF, JPEG, or (as of 1.3) PNG
+	 *                    an array of pixels in an image format supported by the
+	 *                    AWT
+	 *                    Toolkit, such as GIF, JPEG, or (as of 1.3) PNG
 	 * @param description
-	 *            a brief textual description of the image
+	 *                    a brief textual description of the image
 	 * @see java.awt.Toolkit#createImage
 	 */
 	public ImageIcon(byte[] imageData, String description) {
@@ -282,8 +265,9 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * is a string, then the string is used as the description of this icon.
 	 *
 	 * @param imageData
-	 *            an array of pixels in an image format supported by the AWT
-	 *            Toolkit, such as GIF, JPEG, or (as of 1.3) PNG
+	 *                  an array of pixels in an image format supported by the
+	 *                  AWT
+	 *                  Toolkit, such as GIF, JPEG, or (as of 1.3) PNG
 	 * @see java.awt.Toolkit#createImage
 	 * @see #getDescription
 	 * @see java.awt.Image#getProperty
@@ -303,14 +287,13 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	/**
 	 * Creates an uninitialized image icon.
 	 */
-	public ImageIcon() {
-	}
+	public ImageIcon() {}
 
 	/**
 	 * Loads the image, returning only when the image is loaded.
 	 * 
 	 * @param image
-	 *            the image
+	 *              the image
 	 */
 	protected void loadImage(Image image) {
 		MediaTracker mTracker = getTracker();
@@ -352,8 +335,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 		synchronized (ac) {
 			trackerObj = ac.get(TRACKER_KEY);
 			if (trackerObj == null) {
-				Component comp = new Component() {
-				};
+				Component comp = new Component() {};
 				trackerObj = new MediaTracker(comp);
 				ac.put(TRACKER_KEY, trackerObj);
 			}
@@ -387,7 +369,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * Sets the image displayed by this icon.
 	 * 
 	 * @param image
-	 *            the image
+	 *              the image
 	 */
 	public void setImage(Image image) {
 		this.image = image;
@@ -412,7 +394,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * user to give an indication of the purpose of the image.
 	 * 
 	 * @param description
-	 *            a brief textual description of the image
+	 *                    a brief textual description of the image
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -425,14 +407,14 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * uses the <code>c</code> component as the observer.
 	 *
 	 * @param c
-	 *            the component to be used as the observer if this icon has no
-	 *            image observer
+	 *          the component to be used as the observer if this icon has no
+	 *          image observer
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 * @param x
-	 *            the X coordinate of the icon's top-left corner
+	 *          the X coordinate of the icon's top-left corner
 	 * @param y
-	 *            the Y coordinate of the icon's top-left corner
+	 *          the Y coordinate of the icon's top-left corner
 	 */
 	public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
 		if (imageObserver == null) {
@@ -472,7 +454,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * </pre>
 	 *
 	 * @param observer
-	 *            the image observer
+	 *                 the image observer
 	 */
 	public void setImageObserver(ImageObserver observer) {
 		imageObserver = observer;
@@ -500,7 +482,8 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 		return super.toString();
 	}
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 
 		int w = s.readInt();
@@ -510,7 +493,8 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 		if (pixels != null) {
 			Toolkit tk = Toolkit.getDefaultToolkit();
 			ColorModel cm = ColorModel.getRGBdefault();
-			image = tk.createImage(new MemoryImageSource(w, h, cm, pixels, 0, w));
+			image = tk.createImage(new MemoryImageSource(w, h, cm, pixels, 0,
+					w));
 			loadImage(image);
 		}
 	}
@@ -524,7 +508,8 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 
 		if (image != null) {
 			try {
-				PixelGrabber pg = new PixelGrabber(image, 0, 0, w, h, pixels, 0, w);
+				PixelGrabber pg = new PixelGrabber(image, 0, 0, w, h, pixels, 0,
+						w);
 				pg.grabPixels();
 				if ((pg.getStatus() & ImageObserver.ABORT) != 0) {
 					throw new IOException("failed to load image contents");
@@ -577,8 +562,8 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 	 * 
 	 * @since 1.3
 	 */
-	protected class AccessibleImageIcon extends AccessibleContext
-			implements AccessibleIcon, Serializable {
+	protected class AccessibleImageIcon extends AccessibleContext implements
+			AccessibleIcon, Serializable {
 
 		/*
 		 * AccessibleContest implementation -----------------
@@ -644,7 +629,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 		 * Returns the nth Accessible child of the object.
 		 *
 		 * @param i
-		 *            zero-based index of child
+		 *          zero-based index of child
 		 * @return the nth Accessible child of the object
 		 */
 		public Accessible getAccessibleChild(int i) {
@@ -681,7 +666,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 		 * blind user to give an indication of the purpose of the icon.
 		 *
 		 * @param description
-		 *            the description of the icon
+		 *                    the description of the icon
 		 */
 		public void setAccessibleIconDescription(String description) {
 			ImageIcon.this.setDescription(description);
@@ -705,7 +690,8 @@ public class ImageIcon implements Icon, Serializable, Accessible {
 			return ImageIcon.this.width;
 		}
 
-		private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+		private void readObject(ObjectInputStream s)
+				throws ClassNotFoundException, IOException {
 			s.defaultReadObject();
 		}
 

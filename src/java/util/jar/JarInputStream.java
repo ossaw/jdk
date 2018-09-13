@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.jar;
@@ -56,9 +36,9 @@ public class JarInputStream extends ZipInputStream {
 	 * signatures if the JarInputStream is signed.
 	 * 
 	 * @param in
-	 *            the actual input stream
+	 *           the actual input stream
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public JarInputStream(InputStream in) throws IOException {
 		this(in, true);
@@ -70,11 +50,12 @@ public class JarInputStream extends ZipInputStream {
 	 * verify the signatures if the JarInputStream is signed.
 	 *
 	 * @param in
-	 *            the actual input stream
+	 *               the actual input stream
 	 * @param verify
-	 *            whether or not to verify the JarInputStream if it is signed.
+	 *               whether or not to verify the JarInputStream if it is
+	 *               signed.
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public JarInputStream(InputStream in, boolean verify) throws IOException {
 		super(in);
@@ -133,11 +114,12 @@ public class JarInputStream extends ZipInputStream {
 	 * result in an exception.
 	 * 
 	 * @exception ZipException
-	 *                if a ZIP file error has occurred
+	 *                              if a ZIP file error has occurred
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                              if an I/O error has occurred
 	 * @exception SecurityException
-	 *                if any of the jar file entries are incorrectly signed.
+	 *                              if any of the jar file entries are
+	 *                              incorrectly signed.
 	 */
 	public ZipEntry getNextEntry() throws IOException {
 		JarEntry e;
@@ -175,11 +157,12 @@ public class JarInputStream extends ZipInputStream {
 	 * 
 	 * @return the next JAR file entry, or null if there are no more entries
 	 * @exception ZipException
-	 *                if a ZIP file error has occurred
+	 *                              if a ZIP file error has occurred
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                              if an I/O error has occurred
 	 * @exception SecurityException
-	 *                if any of the jar file entries are incorrectly signed.
+	 *                              if any of the jar file entries are
+	 *                              incorrectly signed.
 	 */
 	public JarEntry getNextJarEntry() throws IOException {
 		return (JarEntry) getNextEntry();
@@ -202,17 +185,21 @@ public class JarInputStream extends ZipInputStream {
 	 * @return the actual number of bytes read, or -1 if the end of the entry is
 	 *         reached
 	 * @exception NullPointerException
-	 *                If <code>b</code> is <code>null</code>.
+	 *                                      If <code>b</code> is
+	 *                                      <code>null</code>.
 	 * @exception IndexOutOfBoundsException
-	 *                If <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>len</code> is greater than
-	 *                <code>b.length - off</code>
+	 *                                      If <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>len</code> is
+	 *                                      greater than
+	 *                                      <code>b.length - off</code>
 	 * @exception ZipException
-	 *                if a ZIP file error has occurred
+	 *                                      if a ZIP file error has occurred
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                                      if an I/O error has occurred
 	 * @exception SecurityException
-	 *                if any of the jar file entries are incorrectly signed.
+	 *                                      if any of the jar file entries are
+	 *                                      incorrectly signed.
 	 */
 	public int read(byte[] b, int off, int len) throws IOException {
 		int n;
@@ -233,7 +220,7 @@ public class JarInputStream extends ZipInputStream {
 	 * JAR file entry name will be copied to the new <CODE>JarEntry</CODE>.
 	 *
 	 * @param name
-	 *            the name of the JAR/ZIP file entry
+	 *             the name of the JAR/ZIP file entry
 	 * @return the <code>JarEntry</code> object just created
 	 */
 	protected ZipEntry createZipEntry(String name) {

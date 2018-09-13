@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright IBM Corp. 1998-2003, All Rights Reserved
- *
  */
 
 package java.awt.font;
@@ -72,7 +51,8 @@ final class TextLine {
 		public final float leading;
 		public final float advance;
 
-		public TextLineMetrics(float ascent, float descent, float leading, float advance) {
+		public TextLineMetrics(float ascent, float descent, float leading,
+				float advance) {
 			this.ascent = ascent;
 			this.descent = descent;
 			this.leading = leading;
@@ -98,11 +78,13 @@ final class TextLine {
 
 	private TextLineMetrics fMetrics = null; // built on demand in getMetrics
 
-	public TextLine(FontRenderContext frc, TextLineComponent[] components, float[] baselineOffsets,
-			char[] chars, int charsStart, int charsLimit, int[] charLogicalOrder, byte[] charLevels,
+	public TextLine(FontRenderContext frc, TextLineComponent[] components,
+			float[] baselineOffsets, char[] chars, int charsStart,
+			int charsLimit, int[] charLogicalOrder, byte[] charLevels,
 			boolean isDirectionLTR) {
 
-		int[] componentVisualOrder = computeComponentOrder(components, charLogicalOrder);
+		int[] componentVisualOrder = computeComponentOrder(components,
+				charLogicalOrder);
 
 		this.frc = frc;
 		fComponents = components;
@@ -128,7 +110,8 @@ final class TextLine {
 
 		if (checkCharCount != this.characterCount()) {
 			throw new IllegalArgumentException("Invalid TextLine!  "
-					+ "char count is different from " + "sum of char counts of components.");
+					+ "char count is different from "
+					+ "sum of char counts of components.");
 		}
 	}
 
@@ -176,8 +159,8 @@ final class TextLine {
 				float graphicHeight = cm.ascent + cm.descent;
 				float graphicHeightWithLeading = graphicHeight + cm.leading;
 				maxGraphicHeight = Math.max(maxGraphicHeight, graphicHeight);
-				maxGraphicHeightWithLeading = Math.max(maxGraphicHeightWithLeading,
-						graphicHeightWithLeading);
+				maxGraphicHeightWithLeading = Math.max(
+						maxGraphicHeightWithLeading, graphicHeightWithLeading);
 			}
 		}
 
@@ -198,8 +181,9 @@ final class TextLine {
 		if (fitTopAndBottomGraphics) {
 			// we have top or bottom baselines, so expand the baselines array
 			// full offsets are needed by CoreMetrics.effectiveBaselineOffset
-			fBaselineOffsets = new float[] { fBaselineOffsets[0], fBaselineOffsets[1],
-					fBaselineOffsets[2], descent, -ascent };
+			fBaselineOffsets = new float[] { fBaselineOffsets[0],
+					fBaselineOffsets[1], fBaselineOffsets[2], descent,
+					-ascent };
 		}
 
 		float x = 0;
@@ -213,11 +197,13 @@ final class TextLine {
 			tlc = fComponents[getComponentLogicalIndex(i)];
 			CoreMetrics cm = tlc.getCoreMetrics();
 
-			if ((pcm != null) && (pcm.italicAngle != 0 || cm.italicAngle != 0) && // adjust
-																					// because
-																					// of
-																					// italics
-					(pcm.italicAngle != cm.italicAngle || pcm.baselineIndex != cm.baselineIndex
+			if ((pcm != null) && (pcm.italicAngle != 0 || cm.italicAngle != 0)
+					&& // adjust
+																							// because
+																							// of
+																							// italics
+					(pcm.italicAngle != cm.italicAngle
+							|| pcm.baselineIndex != cm.baselineIndex
 							|| pcm.ssOffset != cm.ssOffset)) {
 
 				// 1) compute the area of overlap - min effective ascent and min
@@ -308,7 +294,8 @@ final class TextLine {
 			for (int i = 0, n = 0; i < fComponents.length; ++i, n += 2) {
 				tlc = fComponents[getComponentLogicalIndex(i)];
 				AffineTransform at = tlc.getBaselineTransform();
-				if (at != null && ((at.getType() & AffineTransform.TYPE_TRANSLATION) != 0)) {
+				if (at != null && ((at.getType()
+						& AffineTransform.TYPE_TRANSLATION) != 0)) {
 					double dx = at.getTranslateX();
 					double dy = at.getTranslateY();
 					builder.moveTo(tx += dx, ty += dy);
@@ -360,8 +347,10 @@ final class TextLine {
 
 		if (isSimple) { // all glyphvectors with no decorations, no layout path
 			for (int i = 0, n = 0; i < fComponents.length; i++, n += 2) {
-				TextLineComponent tlc = fComponents[getComponentLogicalIndex(i)];
-				Rectangle pb = tlc.getPixelBounds(frc, locs[n] + rx, locs[n + 1] + ry);
+				TextLineComponent tlc = fComponents[getComponentLogicalIndex(
+						i)];
+				Rectangle pb = tlc.getPixelBounds(frc, locs[n] + rx, locs[n + 1]
+						+ ry);
 				if (!pb.isEmpty()) {
 					if (result == null) {
 						result = pb;
@@ -467,22 +456,25 @@ final class TextLine {
 
 	private abstract static class Function {
 
-		abstract float computeFunction(TextLine line, int componentIndex, int indexInArray);
+		abstract float computeFunction(TextLine line, int componentIndex,
+				int indexInArray);
 	}
 
 	private static Function fgPosAdvF = new Function() {
-		float computeFunction(TextLine line, int componentIndex, int indexInArray) {
+		float computeFunction(TextLine line, int componentIndex,
+				int indexInArray) {
 
 			TextLineComponent tlc = line.fComponents[componentIndex];
 			int vi = line.getComponentVisualIndex(componentIndex);
-			return line.locs[vi * 2] + tlc.getCharX(indexInArray)
-					+ tlc.getCharAdvance(indexInArray);
+			return line.locs[vi * 2] + tlc.getCharX(indexInArray) + tlc
+					.getCharAdvance(indexInArray);
 		}
 	};
 
 	private static Function fgAdvanceF = new Function() {
 
-		float computeFunction(TextLine line, int componentIndex, int indexInArray) {
+		float computeFunction(TextLine line, int componentIndex,
+				int indexInArray) {
 
 			TextLineComponent tlc = line.fComponents[componentIndex];
 			return tlc.getCharAdvance(indexInArray);
@@ -491,7 +483,8 @@ final class TextLine {
 
 	private static Function fgXPositionF = new Function() {
 
-		float computeFunction(TextLine line, int componentIndex, int indexInArray) {
+		float computeFunction(TextLine line, int componentIndex,
+				int indexInArray) {
 
 			int vi = line.getComponentVisualIndex(componentIndex);
 			TextLineComponent tlc = line.fComponents[componentIndex];
@@ -501,7 +494,8 @@ final class TextLine {
 
 	private static Function fgYPositionF = new Function() {
 
-		float computeFunction(TextLine line, int componentIndex, int indexInArray) {
+		float computeFunction(TextLine line, int componentIndex,
+				int indexInArray) {
 
 			TextLineComponent tlc = line.fComponents[componentIndex];
 			float charPos = tlc.getCharY(indexInArray);
@@ -542,7 +536,8 @@ final class TextLine {
 
 	public int logicalToVisual(int logicalIndex) {
 
-		return (fCharLogicalOrder == null) ? logicalIndex : fCharLogicalOrder[logicalIndex];
+		return (fCharLogicalOrder == null) ? logicalIndex
+				: fCharLogicalOrder[logicalIndex];
 	}
 
 	public byte getCharLevel(int logicalIndex) {
@@ -658,7 +653,8 @@ final class TextLine {
 	}
 
 	public float getCharLinePosition(int logicalIndex, boolean leading) {
-		Function f = isCharLTR(logicalIndex) == leading ? fgXPositionF : fgPosAdvF;
+		Function f = isCharLTR(logicalIndex) == leading ? fgXPositionF
+				: fgPosAdvF;
 		return applyFunctionAtIndex(logicalIndex, f);
 	}
 
@@ -726,8 +722,9 @@ final class TextLine {
 				Rectangle2D chBounds = tlc.getCharVisualBounds(indexInTlc);
 
 				int vi = getComponentVisualIndex(i);
-				chBounds.setRect(chBounds.getX() + locs[vi * 2], chBounds.getY() + locs[vi * 2 + 1],
-						chBounds.getWidth(), chBounds.getHeight());
+				chBounds.setRect(chBounds.getX() + locs[vi * 2], chBounds.getY()
+						+ locs[vi * 2 + 1], chBounds.getWidth(), chBounds
+								.getHeight());
 				return chBounds;
 			} else {
 				tlcStart = tlcLimit;
@@ -745,21 +742,24 @@ final class TextLine {
 	public void draw(Graphics2D g2, float x, float y) {
 		if (lp == null) {
 			for (int i = 0, n = 0; i < fComponents.length; i++, n += 2) {
-				TextLineComponent tlc = fComponents[getComponentLogicalIndex(i)];
+				TextLineComponent tlc = fComponents[getComponentLogicalIndex(
+						i)];
 				tlc.draw(g2, locs[n] + x, locs[n + 1] + y);
 			}
 		} else {
 			AffineTransform oldTx = g2.getTransform();
 			Point2D.Float pt = new Point2D.Float();
 			for (int i = 0, n = 0; i < fComponents.length; i++, n += 2) {
-				TextLineComponent tlc = fComponents[getComponentLogicalIndex(i)];
+				TextLineComponent tlc = fComponents[getComponentLogicalIndex(
+						i)];
 				lp.pathToPoint(locs[n], locs[n + 1], false, pt);
 				pt.x += x;
 				pt.y += y;
 				AffineTransform at = tlc.getBaselineTransform();
 
 				if (at != null) {
-					g2.translate(pt.x - at.getTranslateX(), pt.y - at.getTranslateY());
+					g2.translate(pt.x - at.getTranslateX(), pt.y - at
+							.getTranslateY());
 					g2.transform(at);
 					tlc.draw(g2, 0, 0);
 					g2.setTransform(oldTx);
@@ -784,18 +784,21 @@ final class TextLine {
 
 			Point2D.Float pt = new Point2D.Float(locs[n], locs[n + 1]);
 			if (lp == null) {
-				r.setRect(r.getMinX() + pt.x, r.getMinY() + pt.y, r.getWidth(), r.getHeight());
+				r.setRect(r.getMinX() + pt.x, r.getMinY() + pt.y, r.getWidth(),
+						r.getHeight());
 			} else {
 				lp.pathToPoint(pt, false, pt);
 
 				AffineTransform at = tlc.getBaselineTransform();
 				if (at != null) {
 					AffineTransform tx = AffineTransform.getTranslateInstance(
-							pt.x - at.getTranslateX(), pt.y - at.getTranslateY());
+							pt.x - at.getTranslateX(), pt.y - at
+									.getTranslateY());
 					tx.concatenate(at);
 					r = tx.createTransformedShape(r).getBounds2D();
 				} else {
-					r.setRect(r.getMinX() + pt.x, r.getMinY() + pt.y, r.getWidth(), r.getHeight());
+					r.setRect(r.getMinX() + pt.x, r.getMinY() + pt.y, r
+							.getWidth(), r.getHeight());
 				}
 			}
 
@@ -807,8 +810,8 @@ final class TextLine {
 		}
 
 		if (result == null) {
-			result = new Rectangle2D.Float(Float.MAX_VALUE, Float.MAX_VALUE, Float.MIN_VALUE,
-					Float.MIN_VALUE);
+			result = new Rectangle2D.Float(Float.MAX_VALUE, Float.MAX_VALUE,
+					Float.MIN_VALUE, Float.MIN_VALUE);
 		}
 
 		return result;
@@ -872,8 +875,9 @@ final class TextLine {
 	 * the text. attributes==null is equivalent to using an empty Map for
 	 * attributes
 	 */
-	public static TextLine fastCreateTextLine(FontRenderContext frc, char[] chars, Font font,
-			CoreMetrics lm, Map<? extends Attribute, ?> attributes) {
+	public static TextLine fastCreateTextLine(FontRenderContext frc,
+			char[] chars, Font font, CoreMetrics lm,
+			Map<? extends Attribute, ?> attributes) {
 
 		boolean isDirectionLTR = true;
 		byte[] levels = null;
@@ -908,7 +912,8 @@ final class TextLine {
 		}
 
 		if (requiresBidi) {
-			int bidiflags = values == null ? Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT
+			int bidiflags = values == null
+					? Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT
 					: values.getRunDirection();
 
 			bidi = new Bidi(chars, 0, embs, 0, chars.length, bidiflags);
@@ -924,12 +929,13 @@ final class TextLine {
 
 		int layoutFlags = 0; // no extra info yet, bidi determines run and line
 								// direction
-		TextLabelFactory factory = new TextLabelFactory(frc, chars, bidi, layoutFlags);
+		TextLabelFactory factory = new TextLabelFactory(frc, chars, bidi,
+				layoutFlags);
 
 		TextLineComponent[] components = new TextLineComponent[1];
 
-		components = createComponentsOnRun(0, chars.length, chars, charsLtoV, levels, factory, font,
-				lm, frc, decorator, components, 0);
+		components = createComponentsOnRun(0, chars.length, chars, charsLtoV,
+				levels, factory, font, lm, frc, decorator, components, 0);
 
 		int numComponents = components.length;
 		while (components[numComponents - 1] == null) {
@@ -942,13 +948,14 @@ final class TextLine {
 			components = temp;
 		}
 
-		return new TextLine(frc, components, lm.baselineOffsets, chars, 0, chars.length, charsLtoV,
-				levels, isDirectionLTR);
+		return new TextLine(frc, components, lm.baselineOffsets, chars, 0,
+				chars.length, charsLtoV, levels, isDirectionLTR);
 	}
 
 	private static TextLineComponent[] expandArray(TextLineComponent[] orig) {
 
-		TextLineComponent[] newComponents = new TextLineComponent[orig.length + 8];
+		TextLineComponent[] newComponents = new TextLineComponent[orig.length
+				+ 8];
 		System.arraycopy(orig, 0, newComponents, 0, orig.length);
 
 		return newComponents;
@@ -958,9 +965,10 @@ final class TextLine {
 	 * Returns an array in logical order of the TextLineComponents on the text
 	 * in the given range, with the given attributes.
 	 */
-	public static TextLineComponent[] createComponentsOnRun(int runStart, int runLimit,
-			char[] chars, int[] charsLtoV, byte[] levels, TextLabelFactory factory, Font font,
-			CoreMetrics cm, FontRenderContext frc, Decoration decorator,
+	public static TextLineComponent[] createComponentsOnRun(int runStart,
+			int runLimit, char[] chars, int[] charsLtoV, byte[] levels,
+			TextLabelFactory factory, Font font, CoreMetrics cm,
+			FontRenderContext frc, Decoration decorator,
 			TextLineComponent[] components, int numComponents) {
 
 		int pos = runStart;
@@ -973,15 +981,16 @@ final class TextLine {
 				int lmCount;
 
 				if (cm == null) {
-					LineMetrics lineMetrics = font.getLineMetrics(chars, startPos, chunkLimit, frc);
+					LineMetrics lineMetrics = font.getLineMetrics(chars,
+							startPos, chunkLimit, frc);
 					cm = CoreMetrics.get(lineMetrics);
 					lmCount = lineMetrics.getNumChars();
 				} else {
 					lmCount = (chunkLimit - startPos);
 				}
 
-				TextLineComponent nextComponent = factory.createExtended(font, cm, decorator,
-						startPos, startPos + lmCount);
+				TextLineComponent nextComponent = factory.createExtended(font,
+						cm, decorator, startPos, startPos + lmCount);
 
 				++numComponents;
 				if (numComponents >= components.length) {
@@ -1003,8 +1012,9 @@ final class TextLine {
 	 * representing the text. The components are both logically and visually
 	 * contiguous.
 	 */
-	public static TextLineComponent[] getComponents(StyledParagraph styledParagraph, char[] chars,
-			int textStart, int textLimit, int[] charsLtoV, byte[] levels,
+	public static TextLineComponent[] getComponents(
+			StyledParagraph styledParagraph, char[] chars, int textStart,
+			int textLimit, int[] charsLtoV, byte[] levels,
 			TextLabelFactory factory) {
 
 		FontRenderContext frc = factory.getFontRenderContext();
@@ -1014,7 +1024,8 @@ final class TextLine {
 
 		int pos = textStart;
 		do {
-			int runLimit = Math.min(styledParagraph.getRunLimit(pos), textLimit);
+			int runLimit = Math.min(styledParagraph.getRunLimit(pos),
+					textLimit);
 
 			Decoration decorator = styledParagraph.getDecorationAt(pos);
 
@@ -1031,10 +1042,12 @@ final class TextLine {
 				AffineTransform baseRot = null;
 				GraphicAttribute graphicAttribute = (GraphicAttribute) graphicOrFont;
 				do {
-					int chunkLimit = firstVisualChunk(charsLtoV, levels, pos, runLimit);
+					int chunkLimit = firstVisualChunk(charsLtoV, levels, pos,
+							runLimit);
 
-					GraphicComponent nextGraphic = new GraphicComponent(graphicAttribute, decorator,
-							charsLtoV, levels, pos, chunkLimit, baseRot);
+					GraphicComponent nextGraphic = new GraphicComponent(
+							graphicAttribute, decorator, charsLtoV, levels, pos,
+							chunkLimit, baseRot);
 					pos = chunkLimit;
 
 					++numComponents;
@@ -1048,8 +1061,9 @@ final class TextLine {
 			} else {
 				Font font = (Font) graphicOrFont;
 
-				tempComponents = createComponentsOnRun(pos, runLimit, chars, charsLtoV, levels,
-						factory, font, null, frc, decorator, tempComponents, numComponents);
+				tempComponents = createComponentsOnRun(pos, runLimit, chars,
+						charsLtoV, levels, factory, font, null, frc, decorator,
+						tempComponents, numComponents);
 				pos = runLimit;
 				numComponents = tempComponents.length;
 				while (tempComponents[numComponents - 1] == null) {
@@ -1074,8 +1088,9 @@ final class TextLine {
 	 * Create a TextLine from the Font and character data over the range. The
 	 * range is relative to both the StyledParagraph and the character array.
 	 */
-	public static TextLine createLineFromText(char[] chars, StyledParagraph styledParagraph,
-			TextLabelFactory factory, boolean isDirectionLTR, float[] baselineOffsets) {
+	public static TextLine createLineFromText(char[] chars,
+			StyledParagraph styledParagraph, TextLabelFactory factory,
+			boolean isDirectionLTR, float[] baselineOffsets) {
 
 		factory.setLineContext(0, chars.length);
 
@@ -1089,18 +1104,20 @@ final class TextLine {
 			charsLtoV = BidiUtils.createInverseMap(charsVtoL);
 		}
 
-		TextLineComponent[] components = getComponents(styledParagraph, chars, 0, chars.length,
-				charsLtoV, levels, factory);
+		TextLineComponent[] components = getComponents(styledParagraph, chars,
+				0, chars.length, charsLtoV, levels, factory);
 
-		return new TextLine(factory.getFontRenderContext(), components, baselineOffsets, chars, 0,
-				chars.length, charsLtoV, levels, isDirectionLTR);
+		return new TextLine(factory.getFontRenderContext(), components,
+				baselineOffsets, chars, 0, chars.length, charsLtoV, levels,
+				isDirectionLTR);
 	}
 
 	/**
 	 * Compute the components order from the given components array and
 	 * logical-to-visual character mapping. May return null if canonical.
 	 */
-	private static int[] computeComponentOrder(TextLineComponent[] components, int[] charsLtoV) {
+	private static int[] computeComponentOrder(TextLineComponent[] components,
+			int[] charsLtoV) {
 
 		/*
 		 * Create a visual ordering for the glyph sets. The important thing here
@@ -1109,7 +1126,6 @@ final class TextLine {
 		 * visually should have the lowest value. The last should have the
 		 * highest value. The values are then normalized to map 1-1 with
 		 * positions in glyphs.
-		 *
 		 */
 		int[] componentOrder = null;
 		if (charsLtoV != null && components.length > 1) {
@@ -1130,7 +1146,8 @@ final class TextLine {
 	 * Create a TextLine from the text. chars is just the text in the iterator.
 	 */
 	public static TextLine standardCreateTextLine(FontRenderContext frc,
-			AttributedCharacterIterator text, char[] chars, float[] baselineOffsets) {
+			AttributedCharacterIterator text, char[] chars,
+			float[] baselineOffsets) {
 
 		StyledParagraph styledParagraph = new StyledParagraph(text, chars);
 		Bidi bidi = new Bidi(text);
@@ -1139,13 +1156,15 @@ final class TextLine {
 		}
 		int layoutFlags = 0; // no extra info yet, bidi determines run and line
 								// direction
-		TextLabelFactory factory = new TextLabelFactory(frc, chars, bidi, layoutFlags);
+		TextLabelFactory factory = new TextLabelFactory(frc, chars, bidi,
+				layoutFlags);
 
 		boolean isDirectionLTR = true;
 		if (bidi != null) {
 			isDirectionLTR = bidi.baseIsLeftToRight();
 		}
-		return createLineFromText(chars, styledParagraph, factory, isDirectionLTR, baselineOffsets);
+		return createLineFromText(chars, styledParagraph, factory,
+				isDirectionLTR, baselineOffsets);
 	}
 
 	/*
@@ -1181,7 +1200,8 @@ final class TextLine {
 		return false;
 	}
 
-	static float[] getNormalizedOffsets(float[] baselineOffsets, byte baseline) {
+	static float[] getNormalizedOffsets(float[] baselineOffsets,
+			byte baseline) {
 
 		if (baselineOffsets[baseline] != 0) {
 			float base = baselineOffsets[baseline];
@@ -1206,7 +1226,8 @@ final class TextLine {
 		int ch = CodePointIterator.create(aci).next();
 		if (ch != CodePointIterator.DONE) {
 			FontResolver resolver = FontResolver.getInstance();
-			return resolver.getFont(resolver.getFontIndex(ch), aci.getAttributes());
+			return resolver.getFont(resolver.getFontIndex(ch), aci
+					.getAttributes());
 		}
 		return null;
 	}
@@ -1214,7 +1235,8 @@ final class TextLine {
 	/*
 	 * The new version requires that chunks be at the same level.
 	 */
-	private static int firstVisualChunk(int order[], byte direction[], int start, int limit) {
+	private static int firstVisualChunk(int order[], byte direction[],
+			int start, int limit) {
 		if (order != null && direction != null) {
 			byte dir = direction[start];
 			while (++start < limit && direction[start] == dir) {
@@ -1228,8 +1250,8 @@ final class TextLine {
 	 * create a new line with characters between charStart and charLimit
 	 * justified using the provided width and ratio.
 	 */
-	public TextLine getJustifiedLine(float justificationWidth, float justifyRatio, int justStart,
-			int justLimit) {
+	public TextLine getJustifiedLine(float justificationWidth,
+			float justifyRatio, int justStart, int justLimit) {
 
 		TextLineComponent[] newComponents = new TextLineComponent[fComponents.length];
 		System.arraycopy(fComponents, 0, newComponents, 0, fComponents.length);
@@ -1245,7 +1267,8 @@ final class TextLine {
 			// base direction
 			// of the layout, otherwise justification makes no sense.
 
-			float justifyAdvance = getAdvanceBetween(newComponents, justStart, justLimit);
+			float justifyAdvance = getAdvanceBetween(newComponents, justStart,
+					justLimit);
 
 			// get the actual justification delta
 			justifyDelta = (justificationWidth - justifyAdvance) * justifyRatio;
@@ -1272,7 +1295,8 @@ final class TextLine {
 				if (compLimit > justStart) {
 					int rangeMin = Math.max(0, justStart - compStart);
 					int rangeMax = Math.min(compLength, justLimit - compStart);
-					comp.getJustificationInfos(infos, infoPositions[i], rangeMin, rangeMax);
+					comp.getJustificationInfos(infos, infoPositions[i],
+							rangeMin, rangeMax);
 
 					if (compLimit >= justLimit) {
 						break;
@@ -1294,7 +1318,8 @@ final class TextLine {
 			}
 
 			// invoke justifier on the records
-			TextJustifier justifier = new TextJustifier(infos, infoStart, infoLimit);
+			TextJustifier justifier = new TextJustifier(infos, infoStart,
+					infoLimit);
 
 			float[] deltas = justifier.justify(justifyDelta);
 
@@ -1311,8 +1336,8 @@ final class TextLine {
 				if (compLimit > justStart) {
 					int rangeMin = Math.max(0, justStart - compStart);
 					int rangeMax = Math.min(compLength, justLimit - compStart);
-					newComponents[i] = comp.applyJustificationDeltas(deltas, infoPositions[i] * 2,
-							flags);
+					newComponents[i] = comp.applyJustificationDeltas(deltas,
+							infoPositions[i] * 2, flags);
 
 					wantRejustify |= flags[0];
 
@@ -1325,13 +1350,15 @@ final class TextLine {
 			rejustify = wantRejustify && !rejustify; // only make two passes
 		} while (rejustify);
 
-		return new TextLine(frc, newComponents, fBaselineOffsets, fChars, fCharsStart, fCharsLimit,
-				fCharLogicalOrder, fCharLevels, fIsDirectionLTR);
+		return new TextLine(frc, newComponents, fBaselineOffsets, fChars,
+				fCharsStart, fCharsLimit, fCharLogicalOrder, fCharLevels,
+				fIsDirectionLTR);
 	}
 
 	// return the sum of the advances of text between the logical start and
 	// limit
-	public static float getAdvanceBetween(TextLineComponent[] components, int start, int limit) {
+	public static float getAdvanceBetween(TextLineComponent[] components,
+			int start, int limit) {
 		float advance = 0;
 
 		int tlcStart = 0;

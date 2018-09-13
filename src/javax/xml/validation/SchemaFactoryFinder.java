@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.validation;
@@ -105,10 +85,10 @@ class SchemaFactoryFinder {
 	 * </p>
 	 *
 	 * @param loader
-	 *            to be used to load resource, {@link SchemaFactory}, and
-	 *            {@link SchemaFactoryLoader} implementations during the
-	 *            resolution process. If this parameter is null, the default
-	 *            system class loader will be used.
+	 *               to be used to load resource, {@link SchemaFactory}, and
+	 *               {@link SchemaFactoryLoader} implementations during the
+	 *               resolution process. If this parameter is null, the default
+	 *               system class loader will be used.
 	 */
 	public SchemaFactoryFinder(ClassLoader loader) {
 		this.classLoader = loader;
@@ -120,7 +100,8 @@ class SchemaFactoryFinder {
 	private void debugDisplayClassLoader() {
 		try {
 			if (classLoader == ss.getContextClassLoader()) {
-				debugPrintln("using thread context class loader (" + classLoader + ") for search");
+				debugPrintln("using thread context class loader (" + classLoader
+						+ ") for search");
 				return;
 			}
 		} catch (Throwable unused) {
@@ -128,7 +109,8 @@ class SchemaFactoryFinder {
 		}
 
 		if (classLoader == ClassLoader.getSystemClassLoader()) {
-			debugPrintln("using system class loader (" + classLoader + ") for search");
+			debugPrintln("using system class loader (" + classLoader
+					+ ") for search");
 			return;
 		}
 
@@ -142,16 +124,20 @@ class SchemaFactoryFinder {
 	 * </p>
 	 *
 	 * @param schemaLanguage
-	 *            See {@link SchemaFactory Schema Language} table in
-	 *            <code>SchemaFactory</code> for the list of available schema
-	 *            languages.
+	 *                       See {@link SchemaFactory Schema Language} table in
+	 *                       <code>SchemaFactory</code> for the list of
+	 *                       available schema
+	 *                       languages.
 	 *
 	 * @return <code>null</code> if the callee fails to create one.
 	 *
 	 * @throws NullPointerException
-	 *             If the <code>schemaLanguage</code> parameter is null.
+	 *                                         If the
+	 *                                         <code>schemaLanguage</code>
+	 *                                         parameter is null.
 	 * @throws SchemaFactoryConfigurationError
-	 *             If a configuration error is encountered.
+	 *                                         If a configuration error is
+	 *                                         encountered.
 	 */
 	public SchemaFactory newFactory(String schemaLanguage) {
 		if (schemaLanguage == null) {
@@ -159,8 +145,8 @@ class SchemaFactoryFinder {
 		}
 		SchemaFactory f = _newFactory(schemaLanguage);
 		if (f != null) {
-			debugPrintln(
-					"factory '" + f.getClass().getName() + "' was found for " + schemaLanguage);
+			debugPrintln("factory '" + f.getClass().getName()
+					+ "' was found for " + schemaLanguage);
 		} else {
 			debugPrintln("unable to find a factory for " + schemaLanguage);
 		}
@@ -174,7 +160,8 @@ class SchemaFactoryFinder {
 	 * </p>
 	 *
 	 * @param schemaLanguage
-	 *            Schema language to lookup <code>SchemaFactory</code> for.
+	 *                       Schema language to lookup
+	 *                       <code>SchemaFactory</code> for.
 	 *
 	 * @return <code>SchemaFactory</code> for the given
 	 *         <code>schemaLanguage</code>.
@@ -197,13 +184,15 @@ class SchemaFactoryFinder {
 				debugPrintln("The property is undefined.");
 		} catch (Throwable t) {
 			if (debug) {
-				debugPrintln("failed to look up system property '" + propertyName + "'");
+				debugPrintln("failed to look up system property '"
+						+ propertyName + "'");
 				t.printStackTrace();
 			}
 		}
 
 		String javah = ss.getSystemProperty("java.home");
-		String configFile = javah + File.separator + "lib" + File.separator + "jaxp.properties";
+		String configFile = javah + File.separator + "lib" + File.separator
+				+ "jaxp.properties";
 
 		// try to read from $java.home/lib/jaxp.properties
 		try {
@@ -219,8 +208,10 @@ class SchemaFactoryFinder {
 					}
 				}
 			}
-			final String factoryClassName = cacheProps.getProperty(propertyName);
-			debugPrintln("found " + factoryClassName + " in $java.home/jaxp.properties");
+			final String factoryClassName = cacheProps.getProperty(
+					propertyName);
+			debugPrintln("found " + factoryClassName
+					+ " in $java.home/jaxp.properties");
 
 			if (factoryClassName != null) {
 				sf = createInstance(factoryClassName, true);
@@ -248,9 +239,11 @@ class SchemaFactoryFinder {
 
 		// platform default
 		if (schemaLanguage.equals("http://www.w3.org/2001/XMLSchema")) {
-			debugPrintln("attempting to use the platform default XML Schema validator");
+			debugPrintln(
+					"attempting to use the platform default XML Schema validator");
 			return createInstance(
-					"com.sun.org.apache.xerces.internal.jaxp.validation.XMLSchemaFactory", true);
+					"com.sun.org.apache.xerces.internal.jaxp.validation.XMLSchemaFactory",
+					true);
 		}
 
 		debugPrintln("all things were tried, but none was found. bailing out.");
@@ -263,7 +256,7 @@ class SchemaFactoryFinder {
 	 * </p>
 	 *
 	 * @param className
-	 *            Name of class to create.
+	 *                  Name of class to create.
 	 * @return Created class or <code>null</code>.
 	 */
 	private Class<?> createClass(String className) {
@@ -298,7 +291,7 @@ class SchemaFactoryFinder {
 	 * </p>
 	 *
 	 * @param className
-	 *            fully qualified class name to be instantiated.
+	 *                  fully qualified class name to be instantiated.
 	 *
 	 * @return null if it fails. Error messages will be printed by this method.
 	 */
@@ -306,7 +299,8 @@ class SchemaFactoryFinder {
 		return createInstance(className, false);
 	}
 
-	SchemaFactory createInstance(String className, boolean useServicesMechanism) {
+	SchemaFactory createInstance(String className,
+			boolean useServicesMechanism) {
 		SchemaFactory schemaFactory = null;
 
 		debugPrintln("createInstance(" + className + ")");
@@ -322,8 +316,8 @@ class SchemaFactoryFinder {
 		// instantiate Class as a SchemaFactory
 		try {
 			if (!SchemaFactory.class.isAssignableFrom(clazz)) {
-				throw new ClassCastException(
-						clazz.getName() + " cannot be cast to " + SchemaFactory.class);
+				throw new ClassCastException(clazz.getName()
+						+ " cannot be cast to " + SchemaFactory.class);
 			}
 			if (!useServicesMechanism) {
 				schemaFactory = newInstanceNoServiceLoader(clazz);
@@ -358,18 +352,20 @@ class SchemaFactoryFinder {
 	 * Try to construct using newXMLSchemaFactoryNoServiceLoader method if
 	 * available.
 	 */
-	private static SchemaFactory newInstanceNoServiceLoader(Class<?> providerClass) {
+	private static SchemaFactory newInstanceNoServiceLoader(
+			Class<?> providerClass) {
 		// Retain maximum compatibility if no security manager.
 		if (System.getSecurityManager() == null) {
 			return null;
 		}
 		try {
-			final Method creationMethod = providerClass
-					.getDeclaredMethod("newXMLSchemaFactoryNoServiceLoader");
+			final Method creationMethod = providerClass.getDeclaredMethod(
+					"newXMLSchemaFactoryNoServiceLoader");
 			final int modifiers = creationMethod.getModifiers();
 
 			// Do not call the method if it's not public static.
-			if (!Modifier.isStatic(modifiers) || !Modifier.isPublic(modifiers)) {
+			if (!Modifier.isStatic(modifiers) || !Modifier.isPublic(
+					modifiers)) {
 				return null;
 			}
 
@@ -377,12 +373,14 @@ class SchemaFactoryFinder {
 			// declared to return an instance of SchemaFactory.
 			final Class<?> returnType = creationMethod.getReturnType();
 			if (SERVICE_CLASS.isAssignableFrom(returnType)) {
-				return SERVICE_CLASS.cast(creationMethod.invoke(null, (Object[]) null));
+				return SERVICE_CLASS.cast(creationMethod.invoke(null,
+						(Object[]) null));
 			} else {
 				// Should not happen since
 				// XMLSchemaFactory.newXMLSchemaFactoryNoServiceLoader is
 				// declared to return XMLSchemaFactory.
-				throw new ClassCastException(returnType + " cannot be cast to " + SERVICE_CLASS);
+				throw new ClassCastException(returnType + " cannot be cast to "
+						+ SERVICE_CLASS);
 			}
 		} catch (ClassCastException e) {
 			throw new SchemaFactoryConfigurationError(e.getMessage(), e);
@@ -408,33 +406,37 @@ class SchemaFactoryFinder {
 	 * given schema language using the ServiceLoader.
 	 *
 	 * @param schemaLanguage
-	 *            The schema language for which we seek a factory.
+	 *                       The schema language for which we seek a factory.
 	 * @return A SchemaFactory supporting the specified schema language, or null
 	 *         if none is found.
 	 * @throws SchemaFactoryConfigurationError
-	 *             if a configuration error is found.
+	 *                                         if a configuration error is
+	 *                                         found.
 	 */
 	private SchemaFactory findServiceProvider(final String schemaLanguage) {
 		assert schemaLanguage != null;
 		// store current context.
 		final AccessControlContext acc = AccessController.getContext();
 		try {
-			return AccessController.doPrivileged(new PrivilegedAction<SchemaFactory>() {
-				public SchemaFactory run() {
-					final ServiceLoader<SchemaFactory> loader = ServiceLoader.load(SERVICE_CLASS);
-					for (SchemaFactory factory : loader) {
-						// restore initial context to call
-						// factory.isSchemaLanguageSupported
-						if (isSchemaLanguageSupportedBy(factory, schemaLanguage, acc)) {
-							return factory;
+			return AccessController.doPrivileged(
+					new PrivilegedAction<SchemaFactory>() {
+						public SchemaFactory run() {
+							final ServiceLoader<SchemaFactory> loader = ServiceLoader
+									.load(SERVICE_CLASS);
+							for (SchemaFactory factory : loader) {
+								// restore initial context to call
+								// factory.isSchemaLanguageSupported
+								if (isSchemaLanguageSupportedBy(factory,
+										schemaLanguage, acc)) {
+									return factory;
+								}
+							}
+							return null; // no factory found.
 						}
-					}
-					return null; // no factory found.
-				}
-			});
+					});
 		} catch (ServiceConfigurationError error) {
-			throw new SchemaFactoryConfigurationError(
-					"Provider for " + SERVICE_CLASS + " cannot be created", error);
+			throw new SchemaFactoryConfigurationError("Provider for "
+					+ SERVICE_CLASS + " cannot be created", error);
 		}
 	}
 
@@ -450,9 +452,9 @@ class SchemaFactoryFinder {
 	 * </p>
 	 *
 	 * @param classname
-	 *            the fully qualified name of the class to search for
+	 *                  the fully qualified name of the class to search for
 	 * @param loader
-	 *            the classloader to search
+	 *                  the classloader to search
 	 *
 	 * @return the source location of the resource, or null if it wasn't found
 	 */

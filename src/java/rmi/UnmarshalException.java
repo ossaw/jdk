@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi;
@@ -56,7 +36,7 @@ public class UnmarshalException extends RemoteException {
 	 * message.
 	 *
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 * @since JDK1.1
 	 */
 	public UnmarshalException(String s) {
@@ -68,9 +48,9 @@ public class UnmarshalException extends RemoteException {
 	 * message and nested exception.
 	 *
 	 * @param s
-	 *            the detail message
+	 *           the detail message
 	 * @param ex
-	 *            the nested exception
+	 *           the nested exception
 	 * @since JDK1.1
 	 */
 	public UnmarshalException(String s, Exception ex) {

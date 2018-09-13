@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -57,18 +37,19 @@ import javax.xml.datatype.DatatypeConstants;
 
 class DurationDayTimeImpl extends DurationImpl {
 
-	public DurationDayTimeImpl(boolean isPositive, BigInteger days, BigInteger hours,
-			BigInteger minutes, BigDecimal seconds) {
+	public DurationDayTimeImpl(boolean isPositive, BigInteger days,
+			BigInteger hours, BigInteger minutes, BigDecimal seconds) {
 
 		super(isPositive, null, null, days, hours, minutes, seconds);
 		convertToCanonicalDayTime();
 	}
 
-	public DurationDayTimeImpl(boolean isPositive, int days, int hours, int minutes, int seconds) {
+	public DurationDayTimeImpl(boolean isPositive, int days, int hours,
+			int minutes, int seconds) {
 
 		this(isPositive, wrap(days), wrap(hours), wrap(minutes),
-				(seconds != DatatypeConstants.FIELD_UNDEFINED
-						? new BigDecimal(String.valueOf(seconds)) : null));
+				(seconds != DatatypeConstants.FIELD_UNDEFINED ? new BigDecimal(
+						String.valueOf(seconds)) : null));
 	}
 
 	/**
@@ -101,16 +82,23 @@ class DurationDayTimeImpl extends DurationImpl {
 	 * </p>
 	 *
 	 * @param lexicalRepresentation
-	 *            Lexical representation of a duration.
+	 *                              Lexical representation of a duration.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>lexicalRepresentation</code> is not a valid
-	 *             representation of a <code>Duration</code> expressed only in
-	 *             terms of days and time.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code> expressed
+	 *                                       only in
+	 *                                       terms of days and time.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 * @throws NullPointerException
-	 *             If <code>lexicalRepresentation</code> is <code>null</code>.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is <code>null</code>.
 	 */
 	protected DurationDayTimeImpl(String lexicalRepresentation) {
 		super(lexicalRepresentation);
@@ -118,7 +106,8 @@ class DurationDayTimeImpl extends DurationImpl {
 		if (getYears() > 0 || getMonths() > 0) {
 			throw new IllegalArgumentException(
 					"Trying to create an xdt:dayTimeDuration with an invalid"
-							+ " lexical representation of \"" + lexicalRepresentation
+							+ " lexical representation of \""
+							+ lexicalRepresentation
 							+ "\", data model requires a format PnDTnHnMnS.");
 		}
 
@@ -169,7 +158,8 @@ class DurationDayTimeImpl extends DurationImpl {
 	 * </p>
 	 *
 	 * @param durationInMilliseconds
-	 *            Milliseconds of <code>Duration</code> to create.
+	 *                               Milliseconds of <code>Duration</code> to
+	 *                               create.
 	 *
 	 * @return New <code>Duration</code> created with the specified
 	 *         <code>durationInMilliseconds</code>.
@@ -193,14 +183,16 @@ class DurationDayTimeImpl extends DurationImpl {
 	 */
 	public float getValue() {
 		float sec = (seconds == null) ? 0 : seconds.floatValue();
-		return (((((getDays() * 24) + getHours()) * 60) + getMinutes()) * 60) + sec;
+		return (((((getDays() * 24) + getHours()) * 60) + getMinutes()) * 60)
+				+ sec;
 	}
 
 	private void convertToCanonicalDayTime() {
 
 		while (getSeconds() >= 60) {
 			seconds = seconds.subtract(BigDecimal.valueOf(60));
-			minutes = BigInteger.valueOf((long) getMinutes()).add(BigInteger.ONE);
+			minutes = BigInteger.valueOf((long) getMinutes()).add(
+					BigInteger.ONE);
 		}
 
 		while (getMinutes() >= 60) {

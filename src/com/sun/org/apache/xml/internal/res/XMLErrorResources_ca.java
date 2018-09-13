@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: XMLErrorResources_ca.java,v 1.1.6.2 2005/09/15 07:45:37 suresh_emailid Exp $
+ * $Id: XMLErrorResources_ca.java,v 1.1.6.2 2005/09/15 07:45:37 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.res;
 
@@ -36,39 +34,30 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -182,11 +171,13 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			 */
 			{ "ER0000", "{0}" },
 
-			{ ER_FUNCTION_NOT_SUPPORTED, "Aquesta funci\u00f3 no t\u00e9 suport. " },
+			{ ER_FUNCTION_NOT_SUPPORTED,
+					"Aquesta funci\u00f3 no t\u00e9 suport. " },
 
 			{ ER_CANNOT_OVERWRITE_CAUSE, "No es pot sobreescriure una causa " },
 
-			{ ER_NO_DEFAULT_IMPL, "No s'ha trobat cap implementaci\u00f3 per defecte " },
+			{ ER_NO_DEFAULT_IMPL,
+					"No s'ha trobat cap implementaci\u00f3 per defecte " },
 
 			{ ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
 					"En l''actualitat ChunkedIntArray({0}) no t\u00e9 suport " },
@@ -194,11 +185,14 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			{ ER_OFFSET_BIGGER_THAN_SLOT,
 					"El despla\u00e7ament \u00e9s m\u00e9s gran que la ranura " },
 
-			{ ER_COROUTINE_NOT_AVAIL, "Coroutine no est\u00e0 disponible, id={0} " },
+			{ ER_COROUTINE_NOT_AVAIL,
+					"Coroutine no est\u00e0 disponible, id={0} " },
 
-			{ ER_COROUTINE_CO_EXIT, "CoroutineManager ha rebut una petici\u00f3 co_exit() " },
+			{ ER_COROUTINE_CO_EXIT,
+					"CoroutineManager ha rebut una petici\u00f3 co_exit() " },
 
-			{ ER_COJOINROUTINESET_FAILED, "S'ha produ\u00eft un error a co_joinCoroutineSet() " },
+			{ ER_COJOINROUTINESET_FAILED,
+					"S'ha produ\u00eft un error a co_joinCoroutineSet() " },
 
 			{ ER_COROUTINE_PARAM, "Error de par\u00e0metre coroutine ({0}) " },
 
@@ -214,19 +208,24 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			{ ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"Error: l''iterador de l''eix {0} no s''ha implementat " },
 
-			{ ER_ITERATOR_CLONE_NOT_SUPPORTED, "El clonatge de l'iterador no t\u00e9 suport " },
+			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
+					"El clonatge de l'iterador no t\u00e9 suport " },
 
-			{ ER_UNKNOWN_AXIS_TYPE, "Tipus de commutaci\u00f3 de l''eix desconeguda: {0} " },
+			{ ER_UNKNOWN_AXIS_TYPE,
+					"Tipus de commutaci\u00f3 de l''eix desconeguda: {0} " },
 
-			{ ER_AXIS_NOT_SUPPORTED, "La commutaci\u00f3 de l''eix no t\u00e9 suport: {0} " },
+			{ ER_AXIS_NOT_SUPPORTED,
+					"La commutaci\u00f3 de l''eix no t\u00e9 suport: {0} " },
 
 			{ ER_NO_DTMIDS_AVAIL, "No hi ha m\u00e9s ID de DTM disponibles " },
 
 			{ ER_NOT_SUPPORTED, "No t\u00e9 suport: {0} " },
 
-			{ ER_NODE_NON_NULL, "El node no ha de ser nul per a getDTMHandleFromNode " },
+			{ ER_NODE_NON_NULL,
+					"El node no ha de ser nul per a getDTMHandleFromNode " },
 
-			{ ER_COULD_NOT_RESOLVE_NODE, "No s'ha pogut resoldre el node en un manejador " },
+			{ ER_COULD_NOT_RESOLVE_NODE,
+					"No s'ha pogut resoldre el node en un manejador " },
 
 			{ ER_STARTPARSE_WHILE_PARSING,
 					"startParse no es pot cridar mentre s'est\u00e0 duent a terme l'an\u00e0lisi " },
@@ -234,7 +233,8 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			{ ER_STARTPARSE_NEEDS_SAXPARSER,
 					"startParse necessita un SAXParser que no sigui nul " },
 
-			{ ER_COULD_NOT_INIT_PARSER, "No s'ha pogut inicialitzar l'analitzador amb " },
+			{ ER_COULD_NOT_INIT_PARSER,
+					"No s'ha pogut inicialitzar l'analitzador amb " },
 
 			{ ER_EXCEPTION_CREATING_POOL,
 					"S'ha produ\u00eft una excepci\u00f3 en crear una nova inst\u00e0ncia de l'agrupaci\u00f3 " },
@@ -244,7 +244,8 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 
 			{ ER_SCHEME_REQUIRED, "Es necessita l'esquema " },
 
-			{ ER_NO_SCHEME_IN_URI, "No s''ha trobat cap esquema a l''URI: {0} " },
+			{ ER_NO_SCHEME_IN_URI,
+					"No s''ha trobat cap esquema a l''URI: {0} " },
 
 			{ ER_NO_SCHEME_INURI, "No s'ha trobat cap esquema a l'URI " },
 
@@ -270,14 +271,16 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			{ ER_FRAG_WHEN_PATH_NULL,
 					"El fragment no es pot establir si la via d'acc\u00e9s \u00e9s nul\u00b7la " },
 
-			{ ER_FRAG_INVALID_CHAR, "El fragment cont\u00e9 un car\u00e0cter no v\u00e0lid " },
+			{ ER_FRAG_INVALID_CHAR,
+					"El fragment cont\u00e9 un car\u00e0cter no v\u00e0lid " },
 
 			{ ER_PARSER_IN_USE, "L'analitzador ja s'est\u00e0 utilitzant " },
 
 			{ ER_CANNOT_CHANGE_WHILE_PARSING,
 					"No es pot modificar {0} {1} mentre es du a terme l''an\u00e0lisi " },
 
-			{ ER_SELF_CAUSATION_NOT_PERMITTED, "La causalitat pr\u00f2pia no est\u00e0 permesa. " },
+			{ ER_SELF_CAUSATION_NOT_PERMITTED,
+					"La causalitat pr\u00f2pia no est\u00e0 permesa. " },
 
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"No es pot especificar informaci\u00f3 de l'usuari si no s'especifica el sistema principal " },
@@ -294,7 +297,8 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			{ ER_CANNOT_INIT_URI_EMPTY_PARMS,
 					"No es pot inicialitzar l'URI amb par\u00e0metres buits " },
 
-			{ ER_METHOD_NOT_SUPPORTED, "Aquest m\u00e8tode encara no t\u00e9 suport " },
+			{ ER_METHOD_NOT_SUPPORTED,
+					"Aquest m\u00e8tode encara no t\u00e9 suport " },
 
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"Ara mateix no es pot reiniciar IncrementalSAXSource_Filter " },
@@ -312,7 +316,8 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 
 			{ ER_LOCATION_UNKNOWN, "Ubicaci\u00f3 de l'error desconeguda" },
 
-			{ ER_PREFIX_MUST_RESOLVE, "El prefix s''ha de resoldre en un espai de noms: {0} " },
+			{ ER_PREFIX_MUST_RESOLVE,
+					"El prefix s''ha de resoldre en un espai de noms: {0} " },
 
 			{ ER_CREATEDOCUMENT_NOT_SUPPORTED,
 					"createDocument() no t\u00e9 suport a XPathContext " },
@@ -326,7 +331,8 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			{ ER_CANT_OUTPUT_TEXT_BEFORE_DOC,
 					"Av\u00eds: no es pot produir text abans de l'element de document. Es passa per alt. " },
 
-			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT, "No hi pot haver m\u00e9s d'una arrel en un DOM. " },
+			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
+					"No hi pot haver m\u00e9s d'una arrel en un DOM. " },
 
 			{ ER_ARG_LOCALNAME_NULL, "L'argument 'localName' \u00e9s nul. " },
 
@@ -335,23 +341,29 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			// The localname is the portion after the optional colon; the
 			// message indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_LOCALNAME_INVALID, "El nom local de QNAME ha de ser un NCName v\u00e0lid. " },
+			{ ER_ARG_LOCALNAME_INVALID,
+					"El nom local de QNAME ha de ser un NCName v\u00e0lid. " },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
 			// The prefix is the portion before the optional colon; the message
 			// indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_PREFIX_INVALID, "El prefix de QNAME ha de ser un NCName v\u00e0lid. " },
+			{ ER_ARG_PREFIX_INVALID,
+					"El prefix de QNAME ha de ser un NCName v\u00e0lid. " },
 
-			{ "BAD_CODE", "El par\u00e0metre de createMessage estava fora dels l\u00edmits. " },
-			{ "FORMAT_FAILED", "S'ha generat una excepci\u00f3 durant la crida messageFormat. " },
-			{ "line", "L\u00ednia n\u00fam. " }, { "column", "Columna n\u00fam. " },
+			{ "BAD_CODE",
+					"El par\u00e0metre de createMessage estava fora dels l\u00edmits. " },
+			{ "FORMAT_FAILED",
+					"S'ha generat una excepci\u00f3 durant la crida messageFormat. " },
+			{ "line", "L\u00ednia n\u00fam. " }, { "column",
+					"Columna n\u00fam. " },
 
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"La classe de serialitzador ''{0}'' no implementa org.xml.sax.ContentHandler." },
 
-			{ ER_RESOURCE_COULD_NOT_FIND, "No s''ha trobat el recurs [ {0} ].\n {1}" },
+			{ ER_RESOURCE_COULD_NOT_FIND,
+					"No s''ha trobat el recurs [ {0} ].\n {1}" },
 
 			{ ER_RESOURCE_COULD_NOT_LOAD,
 					"El recurs [ {0} ] no s''ha pogut carregar: {1} \n {2} \t {3}" },
@@ -371,14 +383,16 @@ public class XMLErrorResources_ca extends ListResourceBundle {
 			 * namespace prefix that was undefined. The value of the
 			 * substitution text is the name of the prefix.
 			 */
-			{ ER_NAMESPACE_PREFIX, "L''espai de noms del prefix ''{0}'' no s''ha declarat." },
+			{ ER_NAMESPACE_PREFIX,
+					"L''espai de noms del prefix ''{0}'' no s''ha declarat." },
 			/*
 			 * Note to translators: This message is reported if the stylesheet
 			 * being processed attempted to construct an XML document with an
 			 * attribute in a place other than on an element. The substitution
 			 * text specifies the name of the attribute.
 			 */
-			{ ER_STRAY_ATTRIBUTE, "L''atribut ''{0}'' es troba fora de l''element." },
+			{ ER_STRAY_ATTRIBUTE,
+					"L''atribut ''{0}'' es troba fora de l''element." },
 
 			/*
 			 * Note to translators: As with the preceding message, a namespace

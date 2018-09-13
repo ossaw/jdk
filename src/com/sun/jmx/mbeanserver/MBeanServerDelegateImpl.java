@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.mbeanserver;
 
@@ -49,42 +29,51 @@ import static com.sun.jmx.defaults.JmxProperties.MBEANSERVER_LOGGER;
  *
  * @since 1.5
  */
-final class MBeanServerDelegateImpl extends MBeanServerDelegate
-		implements DynamicMBean, MBeanRegistration {
+final class MBeanServerDelegateImpl extends MBeanServerDelegate implements
+		DynamicMBean, MBeanRegistration {
 
-	final private static String[] attributeNames = new String[] { "MBeanServerId",
-			"SpecificationName", "SpecificationVersion", "SpecificationVendor",
-			"ImplementationName", "ImplementationVersion", "ImplementationVendor" };
+	final private static String[] attributeNames = new String[] {
+			"MBeanServerId", "SpecificationName", "SpecificationVersion",
+			"SpecificationVendor", "ImplementationName",
+			"ImplementationVersion", "ImplementationVendor" };
 
 	private static final MBeanAttributeInfo[] attributeInfos = new MBeanAttributeInfo[] {
 			new MBeanAttributeInfo("MBeanServerId", "java.lang.String",
-					"The MBean server agent identification", true, false, false),
-			new MBeanAttributeInfo("SpecificationName", "java.lang.String",
-					"The full name of the JMX specification " + "implemented by this product.",
-					true, false, false),
-			new MBeanAttributeInfo("SpecificationVersion", "java.lang.String",
-					"The version of the JMX specification " + "implemented by this product.", true,
-					false, false),
-			new MBeanAttributeInfo("SpecificationVendor", "java.lang.String",
-					"The vendor of the JMX specification " + "implemented by this product.", true,
-					false, false),
+					"The MBean server agent identification", true, false,
+					false), new MBeanAttributeInfo("SpecificationName",
+							"java.lang.String",
+							"The full name of the JMX specification "
+									+ "implemented by this product.", true,
+							false, false), new MBeanAttributeInfo(
+									"SpecificationVersion", "java.lang.String",
+									"The version of the JMX specification "
+											+ "implemented by this product.",
+									true, false, false), new MBeanAttributeInfo(
+											"SpecificationVendor",
+											"java.lang.String",
+											"The vendor of the JMX specification "
+													+ "implemented by this product.",
+											true, false, false),
 			new MBeanAttributeInfo("ImplementationName", "java.lang.String",
-					"The JMX implementation name " + "(the name of this product)", true, false,
-					false),
+					"The JMX implementation name "
+							+ "(the name of this product)", true, false, false),
 			new MBeanAttributeInfo("ImplementationVersion", "java.lang.String",
-					"The JMX implementation version " + "(the version of this product).", true,
-					false, false),
-			new MBeanAttributeInfo("ImplementationVendor", "java.lang.String",
-					"the JMX implementation vendor " + "(the vendor of this product).", true, false,
-					false) };
+					"The JMX implementation version "
+							+ "(the version of this product).", true, false,
+					false), new MBeanAttributeInfo("ImplementationVendor",
+							"java.lang.String", "the JMX implementation vendor "
+									+ "(the vendor of this product).", true,
+							false, false) };
 
 	private final MBeanInfo delegateInfo;
 
 	public MBeanServerDelegateImpl() {
 		super();
 		delegateInfo = new MBeanInfo("javax.management.MBeanServerDelegate",
-				"Represents  the MBean server from the management " + "point of view.",
-				MBeanServerDelegateImpl.attributeInfos, null, null, getNotificationInfo());
+				"Represents  the MBean server from the management "
+						+ "point of view.",
+				MBeanServerDelegateImpl.attributeInfos, null, null,
+				getNotificationInfo());
 	}
 
 	final public ObjectName preRegister(MBeanServer server, ObjectName name)
@@ -95,31 +84,33 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 			return name;
 	}
 
-	final public void postRegister(Boolean registrationDone) {
-	}
+	final public void postRegister(Boolean registrationDone) {}
 
 	final public void preDeregister() throws java.lang.Exception {
-		throw new IllegalArgumentException("The MBeanServerDelegate MBean cannot be unregistered");
+		throw new IllegalArgumentException(
+				"The MBeanServerDelegate MBean cannot be unregistered");
 	}
 
-	final public void postDeregister() {
-	}
+	final public void postDeregister() {}
 
 	/**
 	 * Obtains the value of a specific attribute of the MBeanServerDelegate.
 	 *
 	 * @param attribute
-	 *            The name of the attribute to be retrieved
+	 *                  The name of the attribute to be retrieved
 	 *
 	 * @return The value of the attribute retrieved.
 	 *
 	 * @exception AttributeNotFoundException
 	 * @exception MBeanException
-	 *                Wraps a <CODE>java.lang.Exception</CODE> thrown by the
-	 *                MBean's getter.
+	 *                                       Wraps a
+	 *                                       <CODE>java.lang.Exception</CODE>
+	 *                                       thrown by the
+	 *                                       MBean's getter.
 	 */
 	public Object getAttribute(String attribute)
-			throws AttributeNotFoundException, MBeanException, ReflectionException {
+			throws AttributeNotFoundException, MBeanException,
+			ReflectionException {
 		try {
 			// attribute must not be null
 			//
@@ -164,13 +155,15 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 	 * read-only.
 	 *
 	 * @param attribute
-	 *            The identification of the attribute to be set and the value it
-	 *            is to be set to.
+	 *                  The identification of the attribute to be set and the
+	 *                  value it
+	 *                  is to be set to.
 	 *
 	 * @exception AttributeNotFoundException
 	 */
-	public void setAttribute(Attribute attribute) throws AttributeNotFoundException,
-			InvalidAttributeValueException, MBeanException, ReflectionException {
+	public void setAttribute(Attribute attribute)
+			throws AttributeNotFoundException, InvalidAttributeValueException,
+			MBeanException, ReflectionException {
 
 		// Now we will always fail:
 		// Either because the attribute is null or because it is not
@@ -201,7 +194,7 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 	 * MBeanServerDelegate.
 	 *
 	 * @param attributes
-	 *            A list of the attributes to be retrieved.
+	 *                   A list of the attributes to be retrieved.
 	 *
 	 * @return The list of attributes retrieved.
 	 *
@@ -209,7 +202,8 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 	public AttributeList getAttributes(String[] attributes) {
 		// If attributes is null, the get all attributes.
 		//
-		final String[] attn = (attributes == null ? attributeNames : attributes);
+		final String[] attn = (attributes == null ? attributeNames
+				: attributes);
 
 		// Prepare the result list.
 		//
@@ -220,14 +214,17 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 		//
 		for (int i = 0; i < len; i++) {
 			try {
-				final Attribute a = new Attribute(attn[i], getAttribute(attn[i]));
+				final Attribute a = new Attribute(attn[i], getAttribute(
+						attn[i]));
 				list.add(a);
 			} catch (Exception x) {
 				// Skip the attribute that couldn't be obtained.
 				//
 				if (MBEANSERVER_LOGGER.isLoggable(Level.FINEST)) {
-					MBEANSERVER_LOGGER.logp(Level.FINEST, MBeanServerDelegateImpl.class.getName(),
-							"getAttributes", "Attribute " + attn[i] + " not found");
+					MBEANSERVER_LOGGER.logp(Level.FINEST,
+							MBeanServerDelegateImpl.class.getName(),
+							"getAttributes", "Attribute " + attn[i]
+									+ " not found");
 				}
 			}
 		}
@@ -242,8 +239,9 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 	 * MBeanServerDelegateMBean attributes are read-only.
 	 *
 	 * @param attributes
-	 *            A list of attributes: The identification of the attributes to
-	 *            be set and the values they are to be set to.
+	 *                   A list of attributes: The identification of the
+	 *                   attributes to
+	 *                   be set and the values they are to be set to.
 	 *
 	 * @return The list of attributes that were set, with their new values. In
 	 *         fact, this method always return an empty list since all
@@ -257,22 +255,25 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 	 * Always fails since the MBeanServerDelegate MBean has no operation.
 	 *
 	 * @param actionName
-	 *            The name of the action to be invoked.
+	 *                   The name of the action to be invoked.
 	 * @param params
-	 *            An array containing the parameters to be set when the action
-	 *            is invoked.
+	 *                   An array containing the parameters to be set when the
+	 *                   action
+	 *                   is invoked.
 	 * @param signature
-	 *            An array containing the signature of the action.
+	 *                   An array containing the signature of the action.
 	 *
 	 * @return The object returned by the action, which represents the result of
 	 *         invoking the action on the MBean specified.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a <CODE>java.lang.Exception</CODE> thrown by the
-	 *                MBean's invoked method.
+	 *                                Wraps a <CODE>java.lang.Exception</CODE>
+	 *                                thrown by the
+	 *                                MBean's invoked method.
 	 * @exception ReflectionException
-	 *                Wraps a <CODE>java.lang.Exception</CODE> thrown while
-	 *                trying to invoke the method.
+	 *                                Wraps a <CODE>java.lang.Exception</CODE>
+	 *                                thrown while
+	 *                                trying to invoke the method.
 	 */
 	public Object invoke(String actionName, Object params[], String signature[])
 			throws MBeanException, ReflectionException {
@@ -286,7 +287,8 @@ final class MBeanServerDelegateImpl extends MBeanServerDelegate
 		}
 
 		throw new ReflectionException(new NoSuchMethodException(actionName),
-				"The operation with name " + actionName + " could not be found");
+				"The operation with name " + actionName
+						+ " could not be found");
 	}
 
 	/**

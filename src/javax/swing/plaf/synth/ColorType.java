@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.synth;
 
@@ -72,12 +52,14 @@ public class ColorType {
 	/**
 	 * ColorType for the foreground of a region.
 	 */
-	public static final ColorType TEXT_FOREGROUND = new ColorType("TextForeground");
+	public static final ColorType TEXT_FOREGROUND = new ColorType(
+			"TextForeground");
 
 	/**
 	 * ColorType for the background of a region.
 	 */
-	public static final ColorType TEXT_BACKGROUND = new ColorType("TextBackground");
+	public static final ColorType TEXT_BACKGROUND = new ColorType(
+			"TextBackground");
 
 	/**
 	 * ColorType for the focus.
@@ -95,18 +77,20 @@ public class ColorType {
 	private int index;
 
 	static {
-		MAX_COUNT = Math.max(FOREGROUND.getID(), Math.max(BACKGROUND.getID(), FOCUS.getID())) + 1;
+		MAX_COUNT = Math.max(FOREGROUND.getID(), Math.max(BACKGROUND.getID(),
+				FOCUS.getID())) + 1;
 	}
 
 	/**
 	 * Creates a new ColorType with the specified description.
 	 *
 	 * @param description
-	 *            String description of the ColorType.
+	 *                    String description of the ColorType.
 	 */
 	protected ColorType(String description) {
 		if (description == null) {
-			throw new NullPointerException("ColorType must have a valid description");
+			throw new NullPointerException(
+					"ColorType must have a valid description");
 		}
 		this.description = description;
 		synchronized (ColorType.class) {

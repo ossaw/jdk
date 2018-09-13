@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -53,7 +33,7 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * {@code 0}.
 	 *
 	 * @param length
-	 *            the array length
+	 *               the array length
 	 * @return an array with specified length
 	 */
 	protected abstract L[] newArray(int length);
@@ -62,9 +42,9 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * Creates a proxy listener for the specified property.
 	 *
 	 * @param name
-	 *            the name of the property to listen on
+	 *                 the name of the property to listen on
 	 * @param listener
-	 *            the listener to process events
+	 *                 the listener to process events
 	 * @return a proxy listener
 	 */
 	protected abstract L newProxy(String name, L listener);
@@ -74,9 +54,9 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * listener is called as many times as it was added.
 	 *
 	 * @param name
-	 *            the name of the property to listen on
+	 *                 the name of the property to listen on
 	 * @param listener
-	 *            the listener to process events
+	 *                 the listener to process events
 	 */
 	public final synchronized void add(String name, L listener) {
 		if (this.map == null) {
@@ -99,9 +79,9 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * listener will be notified one less time after being removed.
 	 *
 	 * @param name
-	 *            the name of the property to listen on
+	 *                 the name of the property to listen on
 	 * @param listener
-	 *            the listener to process events
+	 *                 the listener to process events
 	 */
 	public final synchronized void remove(String name, L listener) {
 		if (this.map != null) {
@@ -132,7 +112,7 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * Returns the list of listeners for the specified property.
 	 *
 	 * @param name
-	 *            the name of the property
+	 *             the name of the property
 	 * @return the corresponding list of listeners
 	 */
 	public final synchronized L[] get(String name) {
@@ -143,9 +123,9 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * Sets new list of listeners for the specified property.
 	 *
 	 * @param name
-	 *            the name of the property
+	 *                  the name of the property
 	 * @param listeners
-	 *            new list of listeners
+	 *                  new list of listeners
 	 */
 	public final void set(String name, L[] listeners) {
 		if (listeners != null) {
@@ -193,7 +173,7 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * Returns listeners that have been associated with the named property.
 	 *
 	 * @param name
-	 *            the name of the property
+	 *             the name of the property
 	 * @return an array of listeners for the named property
 	 */
 	public final L[] getListeners(String name) {
@@ -210,7 +190,7 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 * Indicates whether the map contains at least one listener to be notified.
 	 *
 	 * @param name
-	 *            the name of the property
+	 *             the name of the property
 	 * @return {@code true} if at least one listener exists or {@code false}
 	 *         otherwise
 	 */
@@ -219,7 +199,8 @@ abstract class ChangeListenerMap<L extends EventListener> {
 			return false;
 		}
 		L[] array = this.map.get(null);
-		return (array != null) || ((name != null) && (null != this.map.get(name)));
+		return (array != null) || ((name != null) && (null != this.map.get(
+				name)));
 	}
 
 	/**
@@ -230,7 +211,7 @@ abstract class ChangeListenerMap<L extends EventListener> {
 	 */
 	public final Set<Entry<String, L[]>> getEntries() {
 		return (this.map != null) ? this.map.entrySet()
-				: Collections.<Entry<String, L[]>> emptySet();
+				: Collections.<Entry<String, L[]>>emptySet();
 	}
 
 	/**

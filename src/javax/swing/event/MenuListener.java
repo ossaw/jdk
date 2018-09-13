@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.event;
 
@@ -36,7 +16,7 @@ public interface MenuListener extends EventListener {
 	 * Invoked when a menu is selected.
 	 *
 	 * @param e
-	 *            a MenuEvent object
+	 *          a MenuEvent object
 	 */
 	void menuSelected(MenuEvent e);
 
@@ -44,7 +24,7 @@ public interface MenuListener extends EventListener {
 	 * Invoked when the menu is deselected.
 	 *
 	 * @param e
-	 *            a MenuEvent object
+	 *          a MenuEvent object
 	 */
 	void menuDeselected(MenuEvent e);
 
@@ -52,7 +32,7 @@ public interface MenuListener extends EventListener {
 	 * Invoked when the menu is canceled.
 	 *
 	 * @param e
-	 *            a MenuEvent object
+	 *          a MenuEvent object
 	 */
 	void menuCanceled(MenuEvent e);
 }

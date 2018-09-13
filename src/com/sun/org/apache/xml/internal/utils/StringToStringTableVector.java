@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: StringToStringTableVector.java,v 1.2.4.1 2005/09/15 08:15:56 suresh_emailid Exp $
+ * $Id: StringToStringTableVector.java,v 1.2.4.1 2005/09/15 08:15:56
+ * suresh_emailid Exp $
  */
 package com.sun.org.apache.xml.internal.utils;
 
@@ -57,7 +55,7 @@ public class StringToStringTableVector {
 	 * Construct a StringToStringTableVector, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of blocks to allocate
+	 *                  Size of blocks to allocate
 	 */
 	public StringToStringTableVector(int blocksize) {
 
@@ -88,7 +86,7 @@ public class StringToStringTableVector {
 	 * Append a StringToStringTable object onto the vector.
 	 *
 	 * @param value
-	 *            StringToStringTable object to add
+	 *              StringToStringTable object to add
 	 */
 	public final void addElement(StringToStringTable value) {
 
@@ -163,7 +161,7 @@ public class StringToStringTableVector {
 	 * Get the nth element.
 	 *
 	 * @param i
-	 *            Index of element to find
+	 *          Index of element to find
 	 *
 	 * @return The StringToStringTable object at the given index
 	 */
@@ -175,7 +173,7 @@ public class StringToStringTableVector {
 	 * Tell if the table contains the given StringToStringTable.
 	 *
 	 * @param s
-	 *            The StringToStringTable to find
+	 *          The StringToStringTable to find
 	 *
 	 * @return True if the StringToStringTable is found
 	 */

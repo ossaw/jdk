@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -110,8 +90,10 @@ import sun.security.util.Debug;
 
 public abstract class MessageDigest extends MessageDigestSpi {
 
-	private static final Debug pdebug = Debug.getInstance("provider", "Provider");
-	private static final boolean skipDebug = Debug.isOn("engine=") && !Debug.isOn("messagedigest");
+	private static final Debug pdebug = Debug.getInstance("provider",
+			"Provider");
+	private static final boolean skipDebug = Debug.isOn("engine=") && !Debug
+			.isOn("messagedigest");
 
 	private String algorithm;
 
@@ -127,12 +109,13 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * Creates a message digest with the specified algorithm name.
 	 *
 	 * @param algorithm
-	 *            the standard name of the digest algorithm. See the
-	 *            MessageDigest section in the <a href=
-	 *            "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
-	 *            > Java Cryptography Architecture Standard Algorithm Name
-	 *            Documentation</a> for information about standard algorithm
-	 *            names.
+	 *                  the standard name of the digest algorithm. See the
+	 *                  MessageDigest section in the <a href=
+	 *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
+	 *                  > Java Cryptography Architecture Standard Algorithm Name
+	 *                  Documentation</a> for information about standard
+	 *                  algorithm
+	 *                  names.
 	 */
 	protected MessageDigest(String algorithm) {
 		this.algorithm = algorithm;
@@ -153,25 +136,30 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * {@link Security#getProviders() Security.getProviders()} method.
 	 *
 	 * @param algorithm
-	 *            the name of the algorithm requested. See the MessageDigest
-	 *            section in the <a href=
-	 *            "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
-	 *            > Java Cryptography Architecture Standard Algorithm Name
-	 *            Documentation</a> for information about standard algorithm
-	 *            names.
+	 *                  the name of the algorithm requested. See the
+	 *                  MessageDigest
+	 *                  section in the <a href=
+	 *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
+	 *                  > Java Cryptography Architecture Standard Algorithm Name
+	 *                  Documentation</a> for information about standard
+	 *                  algorithm
+	 *                  names.
 	 *
 	 * @return a Message Digest object that implements the specified algorithm.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                if no Provider supports a MessageDigestSpi implementation
-	 *                for the specified algorithm.
+	 *                                     if no Provider supports a
+	 *                                     MessageDigestSpi implementation
+	 *                                     for the specified algorithm.
 	 *
 	 * @see Provider
 	 */
-	public static MessageDigest getInstance(String algorithm) throws NoSuchAlgorithmException {
+	public static MessageDigest getInstance(String algorithm)
+			throws NoSuchAlgorithmException {
 		try {
 			MessageDigest md;
-			Object[] objs = Security.getImpl(algorithm, "MessageDigest", (String) null);
+			Object[] objs = Security.getImpl(algorithm, "MessageDigest",
+					(String) null);
 			if (objs[0] instanceof MessageDigest) {
 				md = (MessageDigest) objs[0];
 			} else {
@@ -180,8 +168,8 @@ public abstract class MessageDigest extends MessageDigestSpi {
 			md.provider = (Provider) objs[1];
 
 			if (!skipDebug && pdebug != null) {
-				pdebug.println(
-						"MessageDigest." + algorithm + " algorithm from: " + md.provider.getName());
+				pdebug.println("MessageDigest." + algorithm
+						+ " algorithm from: " + md.provider.getName());
 			}
 
 			return md;
@@ -205,28 +193,34 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * {@link Security#getProviders() Security.getProviders()} method.
 	 *
 	 * @param algorithm
-	 *            the name of the algorithm requested. See the MessageDigest
-	 *            section in the <a href=
-	 *            "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
-	 *            > Java Cryptography Architecture Standard Algorithm Name
-	 *            Documentation</a> for information about standard algorithm
-	 *            names.
+	 *                  the name of the algorithm requested. See the
+	 *                  MessageDigest
+	 *                  section in the <a href=
+	 *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
+	 *                  > Java Cryptography Architecture Standard Algorithm Name
+	 *                  Documentation</a> for information about standard
+	 *                  algorithm
+	 *                  names.
 	 *
 	 * @param provider
-	 *            the name of the provider.
+	 *                  the name of the provider.
 	 *
 	 * @return a MessageDigest object that implements the specified algorithm.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                if a MessageDigestSpi implementation for the specified
-	 *                algorithm is not available from the specified provider.
+	 *                                     if a MessageDigestSpi implementation
+	 *                                     for the specified
+	 *                                     algorithm is not available from the
+	 *                                     specified provider.
 	 *
 	 * @exception NoSuchProviderException
-	 *                if the specified provider is not registered in the
-	 *                security provider list.
+	 *                                     if the specified provider is not
+	 *                                     registered in the
+	 *                                     security provider list.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the provider name is null or empty.
+	 *                                     if the provider name is null or
+	 *                                     empty.
 	 *
 	 * @see Provider
 	 */
@@ -240,7 +234,8 @@ public abstract class MessageDigest extends MessageDigestSpi {
 			md.provider = (Provider) objs[1];
 			return md;
 		} else {
-			MessageDigest delegate = new Delegate((MessageDigestSpi) objs[0], algorithm);
+			MessageDigest delegate = new Delegate((MessageDigestSpi) objs[0],
+					algorithm);
 			delegate.provider = (Provider) objs[1];
 			return delegate;
 		}
@@ -257,25 +252,29 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * provider list.
 	 *
 	 * @param algorithm
-	 *            the name of the algorithm requested. See the MessageDigest
-	 *            section in the <a href=
-	 *            "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
-	 *            > Java Cryptography Architecture Standard Algorithm Name
-	 *            Documentation</a> for information about standard algorithm
-	 *            names.
+	 *                  the name of the algorithm requested. See the
+	 *                  MessageDigest
+	 *                  section in the <a href=
+	 *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
+	 *                  > Java Cryptography Architecture Standard Algorithm Name
+	 *                  Documentation</a> for information about standard
+	 *                  algorithm
+	 *                  names.
 	 *
 	 * @param provider
-	 *            the provider.
+	 *                  the provider.
 	 *
 	 * @return a MessageDigest object that implements the specified algorithm.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                if a MessageDigestSpi implementation for the specified
-	 *                algorithm is not available from the specified Provider
-	 *                object.
+	 *                                     if a MessageDigestSpi implementation
+	 *                                     for the specified
+	 *                                     algorithm is not available from the
+	 *                                     specified Provider
+	 *                                     object.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the specified provider is null.
+	 *                                     if the specified provider is null.
 	 *
 	 * @see Provider
 	 *
@@ -291,7 +290,8 @@ public abstract class MessageDigest extends MessageDigestSpi {
 			md.provider = (Provider) objs[1];
 			return md;
 		} else {
-			MessageDigest delegate = new Delegate((MessageDigestSpi) objs[0], algorithm);
+			MessageDigest delegate = new Delegate((MessageDigestSpi) objs[0],
+					algorithm);
 			delegate.provider = (Provider) objs[1];
 			return delegate;
 		}
@@ -310,7 +310,7 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * Updates the digest using the specified byte.
 	 *
 	 * @param input
-	 *            the byte with which to update the digest.
+	 *              the byte with which to update the digest.
 	 */
 	public void update(byte input) {
 		engineUpdate(input);
@@ -322,13 +322,13 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * specified offset.
 	 *
 	 * @param input
-	 *            the array of bytes.
+	 *               the array of bytes.
 	 *
 	 * @param offset
-	 *            the offset to start from in the array of bytes.
+	 *               the offset to start from in the array of bytes.
 	 *
 	 * @param len
-	 *            the number of bytes to use, starting at {@code offset}.
+	 *               the number of bytes to use, starting at {@code offset}.
 	 */
 	public void update(byte[] input, int offset, int len) {
 		if (input == null) {
@@ -345,7 +345,7 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * Updates the digest using the specified array of bytes.
 	 *
 	 * @param input
-	 *            the array of bytes.
+	 *              the array of bytes.
 	 */
 	public void update(byte[] input) {
 		engineUpdate(input, 0, input.length);
@@ -359,7 +359,7 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * equal to its limit; its limit will not have changed.
 	 *
 	 * @param input
-	 *            the ByteBuffer
+	 *              the ByteBuffer
 	 * @since 1.5
 	 */
 	public final void update(ByteBuffer input) {
@@ -388,18 +388,18 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * padding. The digest is reset after this call is made.
 	 *
 	 * @param buf
-	 *            output buffer for the computed digest
+	 *               output buffer for the computed digest
 	 *
 	 * @param offset
-	 *            offset into the output buffer to begin storing the digest
+	 *               offset into the output buffer to begin storing the digest
 	 *
 	 * @param len
-	 *            number of bytes within buf allotted for the digest
+	 *               number of bytes within buf allotted for the digest
 	 *
 	 * @return the number of bytes placed into {@code buf}
 	 *
 	 * @exception DigestException
-	 *                if an error occurs.
+	 *                            if an error occurs.
 	 */
 	public int digest(byte[] buf, int offset, int len) throws DigestException {
 		if (buf == null) {
@@ -421,7 +421,7 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * the {@code update} method, then calls {@link #digest() digest()}.
 	 *
 	 * @param input
-	 *            the input to be updated before the digest is completed.
+	 *              the input to be updated before the digest is completed.
 	 *
 	 * @return the array of bytes for the resulting hash value.
 	 */
@@ -436,14 +436,15 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	public String toString() {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintStream p = new PrintStream(baos);
-		p.print(algorithm + " Message Digest from " + provider.getName() + ", ");
+		p.print(algorithm + " Message Digest from " + provider.getName()
+				+ ", ");
 		switch (state) {
-		case INITIAL:
-			p.print("<initialized>");
-			break;
-		case IN_PROGRESS:
-			p.print("<in progress>");
-			break;
+			case INITIAL:
+				p.print("<initialized>");
+				break;
+			case IN_PROGRESS:
+				p.print("<in progress>");
+				break;
 		}
 		p.println();
 		return (baos.toString());
@@ -453,10 +454,10 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * Compares two digests for equality. Does a simple byte compare.
 	 *
 	 * @param digesta
-	 *            one of the digests to compare.
+	 *                one of the digests to compare.
 	 *
 	 * @param digestb
-	 *            the other digest to compare.
+	 *                the other digest to compare.
 	 *
 	 * @return true if the digests are equal, false otherwise.
 	 */
@@ -491,7 +492,8 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * implementation details. The name should be a standard Java Security name
 	 * (such as "SHA", "MD5", and so on). See the MessageDigest section in the
 	 * <a href=
-	 * "{@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
+	 * "
+	 * {@docRoot}/../technotes/guides/security/StandardNames.html#MessageDigest"
 	 * > Java Cryptography Architecture Standard Algorithm Name
 	 * Documentation</a> for information about standard algorithm names.
 	 *
@@ -531,8 +533,9 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * @return a clone if the implementation is cloneable.
 	 *
 	 * @exception CloneNotSupportedException
-	 *                if this is called on an implementation that does not
-	 *                support {@code Cloneable}.
+	 *                                       if this is called on an
+	 *                                       implementation that does not
+	 *                                       support {@code Cloneable}.
 	 */
 	public Object clone() throws CloneNotSupportedException {
 		if (this instanceof Cloneable) {
@@ -549,7 +552,6 @@ public abstract class MessageDigest extends MessageDigestSpi {
 	 * the provider implementation is an instance of MessageDigestSpi, the
 	 * getInstance() methods above return an instance of this class, with the
 	 * SPI object encapsulated.
-	 *
 	 * Note: All SPI methods from the original MessageDigest class have been
 	 * moved up the hierarchy into a new class (MessageDigestSpi), which has
 	 * been interposed in the hierarchy between the API (MessageDigest) and its
@@ -573,16 +575,19 @@ public abstract class MessageDigest extends MessageDigestSpi {
 		 * @return a clone if the delegate is cloneable.
 		 *
 		 * @exception CloneNotSupportedException
-		 *                if this is called on a delegate that does not support
-		 *                {@code Cloneable}.
+		 *                                       if this is called on a delegate
+		 *                                       that does not support
+		 *                                       {@code Cloneable}.
 		 */
 		public Object clone() throws CloneNotSupportedException {
 			if (digestSpi instanceof Cloneable) {
-				MessageDigestSpi digestSpiClone = (MessageDigestSpi) digestSpi.clone();
+				MessageDigestSpi digestSpiClone = (MessageDigestSpi) digestSpi
+						.clone();
 				// Because 'algorithm', 'provider', and 'state' are private
 				// members of our supertype, we must perform a cast to
 				// access them.
-				MessageDigest that = new Delegate(digestSpiClone, ((MessageDigest) this).algorithm);
+				MessageDigest that = new Delegate(digestSpiClone,
+						((MessageDigest) this).algorithm);
 				that.provider = ((MessageDigest) this).provider;
 				that.state = ((MessageDigest) this).state;
 				return that;
@@ -611,7 +616,8 @@ public abstract class MessageDigest extends MessageDigestSpi {
 			return digestSpi.engineDigest();
 		}
 
-		protected int engineDigest(byte[] buf, int offset, int len) throws DigestException {
+		protected int engineDigest(byte[] buf, int offset, int len)
+				throws DigestException {
 			return digestSpi.engineDigest(buf, offset, len);
 		}
 

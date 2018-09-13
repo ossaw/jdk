@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -54,7 +34,8 @@ abstract public class RepositoryIdHelper {
 		if (__typeCode == null) {
 			__typeCode = org.omg.CORBA.ORB.init().create_string_tc(0);
 			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-					org.omg.CORBA.RepositoryIdHelper.id(), "RepositoryId", __typeCode);
+					org.omg.CORBA.RepositoryIdHelper.id(), "RepositoryId",
+					__typeCode);
 		}
 		return __typeCode;
 	}
@@ -69,7 +50,8 @@ abstract public class RepositoryIdHelper {
 		return value;
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, String value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			String value) {
 		ostream.write_string(value);
 	}
 

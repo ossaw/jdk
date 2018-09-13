@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.kerberos;
@@ -94,7 +74,8 @@ import java.io.IOException;
  * @since 1.4
  */
 
-public final class ServicePermission extends Permission implements java.io.Serializable {
+public final class ServicePermission extends Permission implements
+		java.io.Serializable {
 
 	private static final long serialVersionUID = -1227585031618624935L;
 
@@ -135,11 +116,12 @@ public final class ServicePermission extends Permission implements java.io.Seria
 	 * {@code servicePrincipal} and {@code action}.
 	 *
 	 * @param servicePrincipal
-	 *            the name of the service principal. An asterisk may appear by
-	 *            itself, to signify any service principal.
-	 *            <p>
+	 *                         the name of the service principal. An asterisk
+	 *                         may appear by
+	 *                         itself, to signify any service principal.
+	 *                         <p>
 	 * @param action
-	 *            the action string
+	 *                         the action string
 	 */
 	public ServicePermission(String servicePrincipal, String action) {
 		// Note: servicePrincipal can be "@REALM" which means any principal in
@@ -170,7 +152,7 @@ public final class ServicePermission extends Permission implements java.io.Seria
 	 * If none of the above are true, {@code implies} returns false.
 	 * 
 	 * @param p
-	 *            the permission to check against.
+	 *          the permission to check against.
 	 *
 	 * @return true if the specified permission is implied by this object, false
 	 *         if not.
@@ -181,12 +163,14 @@ public final class ServicePermission extends Permission implements java.io.Seria
 
 		ServicePermission that = (ServicePermission) p;
 
-		return ((this.mask & that.mask) == that.mask) && impliesIgnoreMask(that);
+		return ((this.mask & that.mask) == that.mask) && impliesIgnoreMask(
+				that);
 	}
 
 	boolean impliesIgnoreMask(ServicePermission p) {
-		return ((this.getName().equals("*")) || this.getName().equals(p.getName())
-				|| (p.getName().startsWith("@") && this.getName().endsWith(p.getName())));
+		return ((this.getName().equals("*")) || this.getName().equals(p
+				.getName()) || (p.getName().startsWith("@") && this.getName()
+						.endsWith(p.getName())));
 	}
 
 	/**
@@ -207,7 +191,8 @@ public final class ServicePermission extends Permission implements java.io.Seria
 			return false;
 
 		ServicePermission that = (ServicePermission) obj;
-		return ((this.mask & that.mask) == that.mask) && this.getName().equals(that.getName());
+		return ((this.mask & that.mask) == that.mask) && this.getName().equals(
+				that.getName());
 
 	}
 
@@ -227,7 +212,7 @@ public final class ServicePermission extends Permission implements java.io.Seria
 	 * initiate, accept.
 	 *
 	 * @param mask
-	 *            a specific integer action mask to translate into a string
+	 *             a specific integer action mask to translate into a string
 	 * @return the canonical string representation of the actions
 	 */
 	private static String getActions(int mask) {
@@ -295,7 +280,7 @@ public final class ServicePermission extends Permission implements java.io.Seria
 	 * implies it.
 	 *
 	 * @param action
-	 *            the action string.
+	 *               the action string.
 	 * @return the action mask
 	 */
 	private static int getMask(String action) {
@@ -322,31 +307,35 @@ public final class ServicePermission extends Permission implements java.io.Seria
 			char c;
 
 			// skip whitespace
-			while ((i != -1)
-					&& ((c = a[i]) == ' ' || c == '\r' || c == '\n' || c == '\f' || c == '\t'))
+			while ((i != -1) && ((c = a[i]) == ' ' || c == '\r' || c == '\n'
+					|| c == '\f' || c == '\t'))
 				i--;
 
 			// check for the known strings
 			int matchlen;
 
-			if (i >= 7 && (a[i - 7] == 'i' || a[i - 7] == 'I')
-					&& (a[i - 6] == 'n' || a[i - 6] == 'N') && (a[i - 5] == 'i' || a[i - 5] == 'I')
-					&& (a[i - 4] == 't' || a[i - 4] == 'T') && (a[i - 3] == 'i' || a[i - 3] == 'I')
-					&& (a[i - 2] == 'a' || a[i - 2] == 'A') && (a[i - 1] == 't' || a[i - 1] == 'T')
-					&& (a[i] == 'e' || a[i] == 'E')) {
+			if (i >= 7 && (a[i - 7] == 'i' || a[i - 7] == 'I') && (a[i
+					- 6] == 'n' || a[i - 6] == 'N') && (a[i - 5] == 'i' || a[i
+							- 5] == 'I') && (a[i - 4] == 't' || a[i - 4] == 'T')
+					&& (a[i - 3] == 'i' || a[i - 3] == 'I') && (a[i - 2] == 'a'
+							|| a[i - 2] == 'A') && (a[i - 1] == 't' || a[i
+									- 1] == 'T') && (a[i] == 'e'
+											|| a[i] == 'E')) {
 				matchlen = 8;
 				mask |= INITIATE;
 
-			} else if (i >= 5 && (a[i - 5] == 'a' || a[i - 5] == 'A')
-					&& (a[i - 4] == 'c' || a[i - 4] == 'C') && (a[i - 3] == 'c' || a[i - 3] == 'C')
-					&& (a[i - 2] == 'e' || a[i - 2] == 'E') && (a[i - 1] == 'p' || a[i - 1] == 'P')
-					&& (a[i] == 't' || a[i] == 'T')) {
+			} else if (i >= 5 && (a[i - 5] == 'a' || a[i - 5] == 'A') && (a[i
+					- 4] == 'c' || a[i - 4] == 'C') && (a[i - 3] == 'c' || a[i
+							- 3] == 'C') && (a[i - 2] == 'e' || a[i - 2] == 'E')
+					&& (a[i - 1] == 'p' || a[i - 1] == 'P') && (a[i] == 't'
+							|| a[i] == 'T')) {
 				matchlen = 6;
 				mask |= ACCEPT;
 
 			} else {
 				// parse error
-				throw new IllegalArgumentException("invalid permission: " + action);
+				throw new IllegalArgumentException("invalid permission: "
+						+ action);
 			}
 
 			// make sure we didn't just match the tail of a word
@@ -354,17 +343,18 @@ public final class ServicePermission extends Permission implements java.io.Seria
 			boolean seencomma = false;
 			while (i >= matchlen && !seencomma) {
 				switch (a[i - matchlen]) {
-				case ',':
-					seencomma = true;
-					break;
-				case ' ':
-				case '\r':
-				case '\n':
-				case '\f':
-				case '\t':
-					break;
-				default:
-					throw new IllegalArgumentException("invalid permission: " + action);
+					case ',':
+						seencomma = true;
+						break;
+					case ' ':
+					case '\r':
+					case '\n':
+					case '\f':
+					case '\t':
+						break;
+					default:
+						throw new IllegalArgumentException(
+								"invalid permission: " + action);
 				}
 				i--;
 			}
@@ -393,8 +383,8 @@ public final class ServicePermission extends Permission implements java.io.Seria
 	 * readObject is called to restore the state of the ServicePermission from a
 	 * stream.
 	 */
-	private void readObject(java.io.ObjectInputStream s)
-			throws IOException, ClassNotFoundException {
+	private void readObject(java.io.ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		// Read in the action, then initialize the rest
 		s.defaultReadObject();
 		init(getName(), getMask(actions));
@@ -409,19 +399,15 @@ public final class ServicePermission extends Permission implements java.io.Seria
 	 * System.out.println("-----\n"); System.out.println("this = "+this_);
 	 * System.out.println("-----\n"); System.out.println("that = "+that_);
 	 * System.out.println("-----\n");
-	 * 
 	 * KrbServicePermissionCollection nps = new
 	 * KrbServicePermissionCollection(); nps.add(this_); nps.add(new
 	 * ServicePermission("nfs/example.com@EXAMPLE.COM", "accept")); nps.add(new
 	 * ServicePermission("host/example.com@EXAMPLE.COM", "initiate"));
 	 * System.out.println("nps.implies(that) = " + nps.implies(that_));
 	 * System.out.println("-----\n");
-	 * 
 	 * Enumeration e = nps.elements();
-	 * 
 	 * while (e.hasMoreElements()) { ServicePermission x = (ServicePermission)
 	 * e.nextElement(); System.out.println("nps.e = " + x); }
-	 * 
 	 * }
 	 */
 
@@ -442,7 +428,7 @@ final class KrbServicePermissionCollection extends PermissionCollection
 	 * expressed in "permission".
 	 *
 	 * @param permission
-	 *            the Permission object to compare
+	 *                   the Permission object to compare
 	 *
 	 * @return true if "permission" is a proper subset of a permission in the
 	 *         collection, false if not.
@@ -495,18 +481,21 @@ final class KrbServicePermissionCollection extends PermissionCollection
 	 * name.
 	 *
 	 * @param permission
-	 *            the Permission object to add.
+	 *                   the Permission object to add.
 	 *
 	 * @exception IllegalArgumentException
-	 *                - if the permission is not a ServicePermission
+	 *                                     - if the permission is not a
+	 *                                     ServicePermission
 	 *
 	 * @exception SecurityException
-	 *                - if this PermissionCollection object has been marked
-	 *                readonly
+	 *                                     - if this PermissionCollection object
+	 *                                     has been marked
+	 *                                     readonly
 	 */
 	public void add(Permission permission) {
 		if (!(permission instanceof ServicePermission))
-			throw new IllegalArgumentException("invalid permission: " + permission);
+			throw new IllegalArgumentException("invalid permission: "
+					+ permission);
 		if (isReadOnly())
 			throw new SecurityException(
 					"attempt to add a Permission to a readonly PermissionCollection");
@@ -538,7 +527,7 @@ final class KrbServicePermissionCollection extends PermissionCollection
 
 	/**
 	 * @serialField permissions
-	 *                  java.util.Vector A list of ServicePermission objects.
+	 *              java.util.Vector A list of ServicePermission objects.
 	 */
 	private static final ObjectStreamField[] serialPersistentFields = {
 			new ObjectStreamField("permissions", Vector.class), };
@@ -571,14 +560,16 @@ final class KrbServicePermissionCollection extends PermissionCollection
 	 * field.
 	 */
 	@SuppressWarnings("unchecked")
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// Don't call defaultReadObject()
 
 		// Read in serialized fields
 		ObjectInputStream.GetField gfields = in.readFields();
 
 		// Get the one we want
-		Vector<Permission> permissions = (Vector<Permission>) gfields.get("permissions", null);
+		Vector<Permission> permissions = (Vector<Permission>) gfields.get(
+				"permissions", null);
 		perms = new ArrayList<Permission>(permissions.size());
 		perms.addAll(permissions);
 	}

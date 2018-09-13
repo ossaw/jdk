@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -58,66 +38,75 @@ import javax.print.attribute.Attribute;
  *
  * @author Alan Kaminsky
  */
-public class ReferenceUriSchemesSupported extends EnumSyntax implements Attribute {
+public class ReferenceUriSchemesSupported extends EnumSyntax implements
+		Attribute {
 
 	private static final long serialVersionUID = -8989076942813442805L;
 
 	/**
 	 * File Transfer Protocol (FTP).
 	 */
-	public static final ReferenceUriSchemesSupported FTP = new ReferenceUriSchemesSupported(0);
+	public static final ReferenceUriSchemesSupported FTP = new ReferenceUriSchemesSupported(
+			0);
 
 	/**
 	 * HyperText Transfer Protocol (HTTP).
 	 */
-	public static final ReferenceUriSchemesSupported HTTP = new ReferenceUriSchemesSupported(1);
+	public static final ReferenceUriSchemesSupported HTTP = new ReferenceUriSchemesSupported(
+			1);
 
 	/**
 	 * Secure HyperText Transfer Protocol (HTTPS).
 	 */
-	public static final ReferenceUriSchemesSupported HTTPS = new ReferenceUriSchemesSupported(2);
+	public static final ReferenceUriSchemesSupported HTTPS = new ReferenceUriSchemesSupported(
+			2);
 
 	/**
 	 * Gopher Protocol.
 	 */
-	public static final ReferenceUriSchemesSupported GOPHER = new ReferenceUriSchemesSupported(3);
+	public static final ReferenceUriSchemesSupported GOPHER = new ReferenceUriSchemesSupported(
+			3);
 
 	/**
 	 * USENET news.
 	 */
-	public static final ReferenceUriSchemesSupported NEWS = new ReferenceUriSchemesSupported(4);
+	public static final ReferenceUriSchemesSupported NEWS = new ReferenceUriSchemesSupported(
+			4);
 
 	/**
 	 * USENET news using Network News Transfer Protocol (NNTP).
 	 */
-	public static final ReferenceUriSchemesSupported NNTP = new ReferenceUriSchemesSupported(5);
+	public static final ReferenceUriSchemesSupported NNTP = new ReferenceUriSchemesSupported(
+			5);
 
 	/**
 	 * Wide Area Information Server (WAIS) protocol.
 	 */
-	public static final ReferenceUriSchemesSupported WAIS = new ReferenceUriSchemesSupported(6);
+	public static final ReferenceUriSchemesSupported WAIS = new ReferenceUriSchemesSupported(
+			6);
 
 	/**
 	 * Host-specific file names.
 	 */
-	public static final ReferenceUriSchemesSupported FILE = new ReferenceUriSchemesSupported(7);
+	public static final ReferenceUriSchemesSupported FILE = new ReferenceUriSchemesSupported(
+			7);
 
 	/**
 	 * Construct a new reference URI scheme enumeration value with the given
 	 * integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected ReferenceUriSchemesSupported(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "ftp", "http", "https", "gopher", "news",
-			"nntp", "wais", "file", };
+	private static final String[] myStringTable = { "ftp", "http", "https",
+			"gopher", "news", "nntp", "wais", "file", };
 
-	private static final ReferenceUriSchemesSupported[] myEnumValueTable = { FTP, HTTP, HTTPS,
-			GOPHER, NEWS, NNTP, WAIS, FILE, };
+	private static final ReferenceUriSchemesSupported[] myEnumValueTable = {
+			FTP, HTTP, HTTPS, GOPHER, NEWS, NNTP, WAIS, FILE, };
 
 	/**
 	 * Returns the string table for class ReferenceUriSchemesSupported.

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -65,8 +62,8 @@ final public class Transform {
 	private boolean _uri, _debug;
 	private int _iterations;
 
-	public Transform(String className, String fileName, boolean uri, boolean debug,
-			int iterations) {
+	public Transform(String className, String fileName, boolean uri,
+			boolean debug, int iterations) {
 		_fileName = fileName;
 		_className = className;
 		_uri = uri;
@@ -99,8 +96,10 @@ final public class Transform {
 
 	private void doTransform() {
 		try {
-			final Class clazz = ObjectFactory.findProviderClass(_className, true);
-			final AbstractTranslet translet = (AbstractTranslet) clazz.newInstance();
+			final Class clazz = ObjectFactory.findProviderClass(_className,
+					true);
+			final AbstractTranslet translet = (AbstractTranslet) clazz
+					.newInstance();
 			translet.postInitialization();
 
 			// Create a SAX parser and get the XMLReader object it uses
@@ -114,7 +113,8 @@ final public class Transform {
 			final XMLReader reader = parser.getXMLReader();
 
 			// Set the DOM's DOM builder as the XMLReader's SAX2 content handler
-			XSLTCDTMManager dtmManager = XSLTCDTMManager.createNewDTMManagerInstance();
+			XSLTCDTMManager dtmManager = XSLTCDTMManager
+					.createNewDTMManagerInstance();
 
 			DTMWSFilter wsfilter;
 			if (translet != null && translet instanceof StripFilter) {
@@ -124,8 +124,8 @@ final public class Transform {
 			}
 
 			final DOMEnhancedForDTM dom = (DOMEnhancedForDTM) dtmManager.getDTM(
-					new SAXSource(reader, new InputSource(_fileName)), false, wsfilter, true, false,
-					translet.hasIdCall());
+					new SAXSource(reader, new InputSource(_fileName)), false,
+					wsfilter, true, false, translet.hasIdCall());
 
 			dom.setDocumentURI(_fileName);
 			translet.prepassDocument(dom);
@@ -138,7 +138,8 @@ final public class Transform {
 			}
 
 			// Transform the document
-			TransletOutputHandlerFactory tohFactory = TransletOutputHandlerFactory.newInstance();
+			TransletOutputHandlerFactory tohFactory = TransletOutputHandlerFactory
+					.newInstance();
 			tohFactory.setOutputType(TransletOutputHandlerFactory.STREAM);
 			tohFactory.setEncoding(translet._encoding);
 			tohFactory.setOutputMethod(translet._method);
@@ -148,45 +149,53 @@ final public class Transform {
 			} else if (_iterations > 0) {
 				long mm = System.currentTimeMillis();
 				for (int i = 0; i < _iterations; i++) {
-					translet.transform(dom, tohFactory.getSerializationHandler());
+					translet.transform(dom, tohFactory
+							.getSerializationHandler());
 				}
 				mm = System.currentTimeMillis() - mm;
 
 				System.err.println("\n<!--");
-				System.err.println(
-						"  transform  = " + (((double) mm) / ((double) _iterations)) + " ms");
-				System.err.println("  throughput = "
-						+ (1000.0 / (((double) mm) / ((double) _iterations))) + " tps");
+				System.err.println("  transform  = " + (((double) mm)
+						/ ((double) _iterations)) + " ms");
+				System.err.println("  throughput = " + (1000.0 / (((double) mm)
+						/ ((double) _iterations))) + " tps");
 				System.err.println("-->");
 			}
 		} catch (TransletException e) {
 			if (_debug)
 				e.printStackTrace();
-			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + e.getMessage());
+			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + e
+					.getMessage());
 		} catch (RuntimeException e) {
 			if (_debug)
 				e.printStackTrace();
-			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + e.getMessage());
+			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + e
+					.getMessage());
 		} catch (FileNotFoundException e) {
 			if (_debug)
 				e.printStackTrace();
 			ErrorMsg err = new ErrorMsg(ErrorMsg.FILE_NOT_FOUND_ERR, _fileName);
-			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err.toString());
+			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err
+					.toString());
 		} catch (MalformedURLException e) {
 			if (_debug)
 				e.printStackTrace();
 			ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_URI_ERR, _fileName);
-			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err.toString());
+			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err
+					.toString());
 		} catch (ClassNotFoundException e) {
 			if (_debug)
 				e.printStackTrace();
-			ErrorMsg err = new ErrorMsg(ErrorMsg.CLASS_NOT_FOUND_ERR, _className);
-			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err.toString());
+			ErrorMsg err = new ErrorMsg(ErrorMsg.CLASS_NOT_FOUND_ERR,
+					_className);
+			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err
+					.toString());
 		} catch (UnknownHostException e) {
 			if (_debug)
 				e.printStackTrace();
 			ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_URI_ERR, _fileName);
-			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err.toString());
+			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + err
+					.toString());
 		} catch (SAXException e) {
 			Exception ex = e.getException();
 			if (_debug) {
@@ -202,7 +211,8 @@ final public class Transform {
 		} catch (Exception e) {
 			if (_debug)
 				e.printStackTrace();
-			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + e.getMessage());
+			System.err.println(new ErrorMsg(ErrorMsg.RUNTIME_ERROR_KEY) + e
+					.getMessage());
 		}
 	}
 
@@ -244,7 +254,8 @@ final public class Transform {
 					printUsage();
 
 				// Get document file and class name
-				Transform handler = new Transform(args[i + 1], args[i], uri, debug, iterations);
+				Transform handler = new Transform(args[i + 1], args[i], uri,
+						debug, iterations);
 				handler.setJarFileInputSrc(isJarFileSpecified, jarFile);
 
 				// Parse stylesheet parameters

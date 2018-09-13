@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -89,22 +69,27 @@ public interface ReadableByteChannel extends Channel {
 	 *         channel has reached end-of-stream
 	 *
 	 * @throws NonReadableChannelException
-	 *             If this channel was not opened for reading
+	 *                                     If this channel was not opened for
+	 *                                     reading
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                     If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the read
-	 *             operation is in progress
+	 *                                     If another thread closes this channel
+	 *                                     while the read
+	 *                                     operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             read operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                     If another thread interrupts the
+	 *                                     current thread while the
+	 *                                     read operation is in progress,
+	 *                                     thereby closing the channel
+	 *                                     and setting the current thread's
+	 *                                     interrupt status
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                     If some other I/O error occurs
 	 */
 	public int read(ByteBuffer dst) throws IOException;
 

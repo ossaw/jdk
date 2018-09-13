@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -50,10 +30,10 @@ public interface Guard {
 	 * a SecurityException.
 	 *
 	 * @param object
-	 *            the object being protected by the guard.
+	 *               the object being protected by the guard.
 	 *
 	 * @exception SecurityException
-	 *                if access is denied.
+	 *                              if access is denied.
 	 *
 	 */
 	void checkGuard(Object object) throws SecurityException;

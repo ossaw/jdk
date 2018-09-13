@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -53,14 +33,17 @@ public interface Provider<T> {
 	 * Invokes an operation occording to the contents of the request message.
 	 *
 	 * @param request
-	 *            The request message or message payload.
+	 *                The request message or message payload.
 	 * @return The response message or message payload. May be <code>null</code>
 	 *         if there is no response.
 	 * @throws WebServiceException
-	 *             If there is an error processing request. The cause of the
-	 *             <code>WebServiceException</code> may be set to a subclass of
-	 *             <code>ProtocolException</code> to control the protocol level
-	 *             representation of the exception.
+	 *                             If there is an error processing request. The
+	 *                             cause of the
+	 *                             <code>WebServiceException</code> may be set
+	 *                             to a subclass of
+	 *                             <code>ProtocolException</code> to control the
+	 *                             protocol level
+	 *                             representation of the exception.
 	 * @see javax.xml.ws.handler.MessageContext
 	 * @see javax.xml.ws.ProtocolException
 	 **/

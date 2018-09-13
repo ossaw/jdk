@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.type;
@@ -63,12 +43,12 @@ import javax.lang.model.element.*;
  * 8 and higher platform versions.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -80,9 +60,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits a type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visit(TypeMirror t, P p);
@@ -91,7 +71,7 @@ public interface TypeVisitor<R, P> {
 	 * A convenience method equivalent to {@code v.visit(t, null)}.
 	 * 
 	 * @param t
-	 *            the element to visit
+	 *          the element to visit
 	 * @return a visitor-specified result
 	 */
 	R visit(TypeMirror t);
@@ -100,9 +80,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits a primitive type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitPrimitive(PrimitiveType t, P p);
@@ -111,9 +91,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits the null type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitNull(NullType t, P p);
@@ -122,9 +102,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits an array type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitArray(ArrayType t, P p);
@@ -133,9 +113,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits a declared type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitDeclared(DeclaredType t, P p);
@@ -144,9 +124,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits an error type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitError(ErrorType t, P p);
@@ -155,9 +135,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits a type variable.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitTypeVariable(TypeVariable t, P p);
@@ -166,9 +146,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits a wildcard type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitWildcard(WildcardType t, P p);
@@ -177,9 +157,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits an executable type.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitExecutable(ExecutableType t, P p);
@@ -188,9 +168,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits a {@link NoType} instance.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitNoType(NoType t, P p);
@@ -200,12 +180,13 @@ public interface TypeVisitor<R, P> {
 	 * and new kinds of types are added to the {@code TypeMirror} hierarchy.
 	 * 
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 * @throws UnknownTypeException
-	 *             a visitor implementation may optionally throw this exception
+	 *                              a visitor implementation may optionally
+	 *                              throw this exception
 	 */
 	R visitUnknown(TypeMirror t, P p);
 
@@ -213,9 +194,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits a union type.
 	 *
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 * @since 1.7
 	 */
@@ -225,9 +206,9 @@ public interface TypeVisitor<R, P> {
 	 * Visits an intersection type.
 	 *
 	 * @param t
-	 *            the type to visit
+	 *          the type to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 * @since 1.8
 	 */

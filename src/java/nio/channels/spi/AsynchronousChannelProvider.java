@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels.spi;
@@ -57,20 +37,21 @@ public abstract class AsynchronousChannelProvider {
 	private static Void checkPermission() {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null)
-			sm.checkPermission(new RuntimePermission("asynchronousChannelProvider"));
+			sm.checkPermission(new RuntimePermission(
+					"asynchronousChannelProvider"));
 		return null;
 	}
 
-	private AsynchronousChannelProvider(Void ignore) {
-	}
+	private AsynchronousChannelProvider(Void ignore) {}
 
 	/**
 	 * Initializes a new instance of this class.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}
-	 *             <tt>("asynchronousChannelProvider")</tt>
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}
+	 *                           <tt>("asynchronousChannelProvider")</tt>
 	 */
 	protected AsynchronousChannelProvider() {
 		this(checkPermission());
@@ -81,8 +62,8 @@ public abstract class AsynchronousChannelProvider {
 		static final AsynchronousChannelProvider provider = load();
 
 		private static AsynchronousChannelProvider load() {
-			return AccessController
-					.doPrivileged(new PrivilegedAction<AsynchronousChannelProvider>() {
+			return AccessController.doPrivileged(
+					new PrivilegedAction<AsynchronousChannelProvider>() {
 						public AsynchronousChannelProvider run() {
 							AsynchronousChannelProvider p;
 							p = loadProviderFromProperty();
@@ -91,17 +72,20 @@ public abstract class AsynchronousChannelProvider {
 							p = loadProviderAsService();
 							if (p != null)
 								return p;
-							return sun.nio.ch.DefaultAsynchronousChannelProvider.create();
+							return sun.nio.ch.DefaultAsynchronousChannelProvider
+									.create();
 						}
 					});
 		}
 
 		private static AsynchronousChannelProvider loadProviderFromProperty() {
-			String cn = System.getProperty("java.nio.channels.spi.AsynchronousChannelProvider");
+			String cn = System.getProperty(
+					"java.nio.channels.spi.AsynchronousChannelProvider");
 			if (cn == null)
 				return null;
 			try {
-				Class<?> c = Class.forName(cn, true, ClassLoader.getSystemClassLoader());
+				Class<?> c = Class.forName(cn, true, ClassLoader
+						.getSystemClassLoader());
 				return (AsynchronousChannelProvider) c.newInstance();
 			} catch (ClassNotFoundException x) {
 				throw new ServiceConfigurationError(null, x);
@@ -115,8 +99,9 @@ public abstract class AsynchronousChannelProvider {
 		}
 
 		private static AsynchronousChannelProvider loadProviderAsService() {
-			ServiceLoader<AsynchronousChannelProvider> sl = ServiceLoader
-					.load(AsynchronousChannelProvider.class, ClassLoader.getSystemClassLoader());
+			ServiceLoader<AsynchronousChannelProvider> sl = ServiceLoader.load(
+					AsynchronousChannelProvider.class, ClassLoader
+							.getSystemClassLoader());
 			Iterator<AsynchronousChannelProvider> i = sl.iterator();
 			for (;;) {
 				try {
@@ -190,57 +175,59 @@ public abstract class AsynchronousChannelProvider {
 	 * Constructs a new asynchronous channel group with a fixed thread pool.
 	 *
 	 * @param nThreads
-	 *            The number of threads in the pool
+	 *                      The number of threads in the pool
 	 * @param threadFactory
-	 *            The factory to use when creating new threads
+	 *                      The factory to use when creating new threads
 	 *
 	 * @return A new asynchronous channel group
 	 *
 	 * @throws IllegalArgumentException
-	 *             If {@code nThreads <= 0}
+	 *                                  If {@code nThreads <= 0}
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                  If an I/O error occurs
 	 *
 	 * @see AsynchronousChannelGroup#withFixedThreadPool
 	 */
-	public abstract AsynchronousChannelGroup openAsynchronousChannelGroup(int nThreads,
-			ThreadFactory threadFactory) throws IOException;
+	public abstract AsynchronousChannelGroup openAsynchronousChannelGroup(
+			int nThreads, ThreadFactory threadFactory) throws IOException;
 
 	/**
 	 * Constructs a new asynchronous channel group with the given thread pool.
 	 *
 	 * @param executor
-	 *            The thread pool
+	 *                    The thread pool
 	 * @param initialSize
-	 *            A value {@code >=0} or a negative value for implementation
-	 *            specific default
+	 *                    A value {@code >=0} or a negative value for
+	 *                    implementation
+	 *                    specific default
 	 *
 	 * @return A new asynchronous channel group
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 *
 	 * @see AsynchronousChannelGroup#withCachedThreadPool
 	 */
-	public abstract AsynchronousChannelGroup openAsynchronousChannelGroup(ExecutorService executor,
-			int initialSize) throws IOException;
+	public abstract AsynchronousChannelGroup openAsynchronousChannelGroup(
+			ExecutorService executor, int initialSize) throws IOException;
 
 	/**
 	 * Opens an asynchronous server-socket channel.
 	 *
 	 * @param group
-	 *            The group to which the channel is bound, or {@code null} to
-	 *            bind to the default group
+	 *              The group to which the channel is bound, or {@code null} to
+	 *              bind to the default group
 	 *
 	 * @return The new channel
 	 *
 	 * @throws IllegalChannelGroupException
-	 *             If the provider that created the group differs from this
-	 *             provider
+	 *                                       If the provider that created the
+	 *                                       group differs from this
+	 *                                       provider
 	 * @throws ShutdownChannelGroupException
-	 *             The group is shutdown
+	 *                                       The group is shutdown
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 */
 	public abstract AsynchronousServerSocketChannel openAsynchronousServerSocketChannel(
 			AsynchronousChannelGroup group) throws IOException;
@@ -249,18 +236,19 @@ public abstract class AsynchronousChannelProvider {
 	 * Opens an asynchronous socket channel.
 	 *
 	 * @param group
-	 *            The group to which the channel is bound, or {@code null} to
-	 *            bind to the default group
+	 *              The group to which the channel is bound, or {@code null} to
+	 *              bind to the default group
 	 *
 	 * @return The new channel
 	 *
 	 * @throws IllegalChannelGroupException
-	 *             If the provider that created the group differs from this
-	 *             provider
+	 *                                       If the provider that created the
+	 *                                       group differs from this
+	 *                                       provider
 	 * @throws ShutdownChannelGroupException
-	 *             The group is shutdown
+	 *                                       The group is shutdown
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 */
 	public abstract AsynchronousSocketChannel openAsynchronousSocketChannel(
 			AsynchronousChannelGroup group) throws IOException;

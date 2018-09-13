@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.PortableServer;
 
@@ -63,8 +43,8 @@ abstract public class Servant {
 	 * delegate.
 	 * 
 	 * @param delegate
-	 *            ORB vendor-specific implementation of the
-	 *            <code>PortableServer::Servant</code>.
+	 *                 ORB vendor-specific implementation of the
+	 *                 <code>PortableServer::Servant</code>.
 	 */
 	final public void _set_delegate(Delegate delegate) {
 		_delegate = delegate;
@@ -148,8 +128,9 @@ abstract public class Servant {
 	 * <code>repository_id</code> for the generic CORBA Object.
 	 * 
 	 * @param repository_id
-	 *            the <code>repository_id</code> to be checked in the repository
-	 *            list or against the id of generic CORBA objects.
+	 *                      the <code>repository_id</code> to be checked in the
+	 *                      repository
+	 *                      list or against the id of generic CORBA objects.
 	 * @return <code>is_a</code> boolean indicating whether the specified
 	 *         <code>repository_id</code> is in the repository list or is same
 	 *         as a generic CORBA object.
@@ -231,8 +212,8 @@ abstract public class Servant {
 			// Call "InterfaceDef get_interface(..)" method using reflection.
 			try {
 				Class[] argc = { org.omg.PortableServer.Servant.class };
-				java.lang.reflect.Method meth = delegate.getClass().getMethod("get_interface",
-						argc);
+				java.lang.reflect.Method meth = delegate.getClass().getMethod(
+						"get_interface", argc);
 				Object[] argx = { this };
 				return (org.omg.CORBA.Object) meth.invoke(delegate, argx);
 			} catch (java.lang.reflect.InvocationTargetException exs) {
@@ -258,10 +239,11 @@ abstract public class Servant {
 	 * Used by the ORB to obtain complete type information from the servant.
 	 * 
 	 * @param poa
-	 *            POA with which the servant is associated.
+	 *                 POA with which the servant is associated.
 	 * @param objectId
-	 *            is the id corresponding to the object associated with this
-	 *            servant.
+	 *                 is the id corresponding to the object associated with
+	 *                 this
+	 *                 servant.
 	 * @return list of type information for the object.
 	 */
 	abstract public String[] _all_interfaces(POA poa, byte[] objectId);

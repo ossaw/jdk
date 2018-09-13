@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.xpath;
@@ -59,10 +39,11 @@ public class XPathExpressionException extends XPathException {
 	 * </p>
 	 *
 	 * @param message
-	 *            The detail message.
+	 *                The detail message.
 	 *
 	 * @throws NullPointerException
-	 *             When <code>message</code> is <code>null</code>.
+	 *                              When <code>message</code> is
+	 *                              <code>null</code>.
 	 */
 	public XPathExpressionException(String message) {
 		super(message);
@@ -80,10 +61,10 @@ public class XPathExpressionException extends XPathException {
 	 * </p>
 	 *
 	 * @param cause
-	 *            The cause.
+	 *              The cause.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>cause</code> is <code>null</code>.
+	 *                              if <code>cause</code> is <code>null</code>.
 	 */
 	public XPathExpressionException(Throwable cause) {
 		super(cause);

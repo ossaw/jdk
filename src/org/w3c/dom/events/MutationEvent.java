@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -116,29 +91,34 @@ public interface MutationEvent extends Event {
 	 * invocation takes precedence.
 	 * 
 	 * @param typeArg
-	 *            Specifies the event type.
+	 *                       Specifies the event type.
 	 * @param canBubbleArg
-	 *            Specifies whether or not the event can bubble.
+	 *                       Specifies whether or not the event can bubble.
 	 * @param cancelableArg
-	 *            Specifies whether or not the event's default action can be
-	 *            prevented.
+	 *                       Specifies whether or not the event's default action
+	 *                       can be
+	 *                       prevented.
 	 * @param relatedNodeArg
-	 *            Specifies the <code>Event</code>'s related Node.
+	 *                       Specifies the <code>Event</code>'s related Node.
 	 * @param prevValueArg
-	 *            Specifies the <code>Event</code>'s <code>prevValue</code>
-	 *            attribute. This value may be null.
+	 *                       Specifies the <code>Event</code>'s
+	 *                       <code>prevValue</code>
+	 *                       attribute. This value may be null.
 	 * @param newValueArg
-	 *            Specifies the <code>Event</code>'s <code>newValue</code>
-	 *            attribute. This value may be null.
+	 *                       Specifies the <code>Event</code>'s
+	 *                       <code>newValue</code>
+	 *                       attribute. This value may be null.
 	 * @param attrNameArg
-	 *            Specifies the <code>Event</code>'s <code>attrName</code>
-	 *            attribute. This value may be null.
+	 *                       Specifies the <code>Event</code>'s
+	 *                       <code>attrName</code>
+	 *                       attribute. This value may be null.
 	 * @param attrChangeArg
-	 *            Specifies the <code>Event</code>'s <code>attrChange</code>
-	 *            attribute
+	 *                       Specifies the <code>Event</code>'s
+	 *                       <code>attrChange</code>
+	 *                       attribute
 	 */
-	public void initMutationEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg,
-			Node relatedNodeArg, String prevValueArg, String newValueArg, String attrNameArg,
-			short attrChangeArg);
+	public void initMutationEvent(String typeArg, boolean canBubbleArg,
+			boolean cancelableArg, Node relatedNodeArg, String prevValueArg,
+			String newValueArg, String attrNameArg, short attrChangeArg);
 
 }

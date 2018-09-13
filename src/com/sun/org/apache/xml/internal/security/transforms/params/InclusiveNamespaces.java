@@ -40,7 +40,8 @@ import org.w3c.dom.Element;
  *
  * @author Christian Geuer-Pollmann
  */
-public class InclusiveNamespaces extends ElementProxy implements TransformParam {
+public class InclusiveNamespaces extends ElementProxy implements
+		TransformParam {
 
 	/** Field _TAG_EC_INCLUSIVENAMESPACES */
 	public static final String _TAG_EC_INCLUSIVENAMESPACES = "InclusiveNamespaces";
@@ -86,8 +87,8 @@ public class InclusiveNamespaces extends ElementProxy implements TransformParam 
 			}
 		}
 
-		this.constructionElement.setAttributeNS(null, InclusiveNamespaces._ATT_EC_PREFIXLIST,
-				sb.toString().trim());
+		this.constructionElement.setAttributeNS(null,
+				InclusiveNamespaces._ATT_EC_PREFIXLIST, sb.toString().trim());
 	}
 
 	/**
@@ -97,7 +98,8 @@ public class InclusiveNamespaces extends ElementProxy implements TransformParam 
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public InclusiveNamespaces(Element element, String BaseURI) throws XMLSecurityException {
+	public InclusiveNamespaces(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 
@@ -130,7 +132,8 @@ public class InclusiveNamespaces extends ElementProxy implements TransformParam 
 	public static SortedSet<String> prefixStr2Set(String inclusiveNamespaces) {
 		SortedSet<String> prefixes = new TreeSet<String>();
 
-		if ((inclusiveNamespaces == null) || (inclusiveNamespaces.length() == 0)) {
+		if ((inclusiveNamespaces == null) || (inclusiveNamespaces
+				.length() == 0)) {
 			return prefixes;
 		}
 

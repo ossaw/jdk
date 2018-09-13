@@ -1,33 +1,11 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *******************************************************************************
- * Copyright (C) 2009-2010, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ ******************************************************************************* Copyright (C) 2009-2010, International Business Machines Corporation and *
+ * others. All Rights Reserved. *
  */
 
 package java.util;
@@ -58,7 +36,7 @@ public class IllformedLocaleException extends RuntimeException {
 	 * message and -1 as the error index.
 	 *
 	 * @param message
-	 *            the message
+	 *                the message
 	 */
 	public IllformedLocaleException(String message) {
 		super(message);
@@ -72,12 +50,13 @@ public class IllformedLocaleException extends RuntimeException {
 	 * error index is not applicable or unknown.
 	 *
 	 * @param message
-	 *            the message
+	 *                   the message
 	 * @param errorIndex
-	 *            the index
+	 *                   the index
 	 */
 	public IllformedLocaleException(String message, int errorIndex) {
-		super(message + ((errorIndex < 0) ? "" : " [at index " + errorIndex + "]"));
+		super(message + ((errorIndex < 0) ? ""
+				: " [at index " + errorIndex + "]"));
 		_errIdx = errorIndex;
 	}
 

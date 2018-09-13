@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -97,7 +94,8 @@ abstract class Expression extends SyntaxTreeNode {
 	 * Translate this node into JVM bytecodes.
 	 */
 	public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
-		ErrorMsg msg = new ErrorMsg(ErrorMsg.NOT_IMPLEMENTED_ERR, getClass(), this);
+		ErrorMsg msg = new ErrorMsg(ErrorMsg.NOT_IMPLEMENTED_ERR, getClass(),
+				this);
 		getParser().reportError(FATAL, msg);
 	}
 
@@ -105,7 +103,8 @@ abstract class Expression extends SyntaxTreeNode {
 	 * Translate this node into a fresh instruction list. The original
 	 * instruction list is saved and restored.
 	 */
-	public final InstructionList compile(ClassGenerator classGen, MethodGenerator methodGen) {
+	public final InstructionList compile(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final InstructionList result, save = methodGen.getInstructionList();
 		methodGen.setInstructionList(result = new InstructionList());
 		translate(classGen, methodGen);
@@ -116,7 +115,8 @@ abstract class Expression extends SyntaxTreeNode {
 	/**
 	 * Redefined by expressions of type boolean that use flow lists.
 	 */
-	public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateDesynthesized(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		translate(classGen, methodGen);
 		if (_type instanceof BooleanType) {
 			desynthesize(classGen, methodGen);
@@ -127,7 +127,8 @@ abstract class Expression extends SyntaxTreeNode {
 	 * If this expression is of type node-set and it is not a variable
 	 * reference, then call setStartNode() passing the context node.
 	 */
-	public void startIterator(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void startIterator(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		// Ignore if type is not node-set
 		if (_type instanceof NodeSetType == false) {
 			return;
@@ -159,7 +160,8 @@ abstract class Expression extends SyntaxTreeNode {
 		truec.setTarget(il.append(NOP));
 	}
 
-	public void desynthesize(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void desynthesize(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final InstructionList il = methodGen.getInstructionList();
 		_falseList.add(il.append(new IFEQ(null)));
 	}
@@ -187,7 +189,8 @@ abstract class Expression extends SyntaxTreeNode {
 	 * entry in the vector of primops that has the right arity is considered to
 	 * be the default one.
 	 */
-	public MethodType lookupPrimop(SymbolTable stable, String op, MethodType ctype) {
+	public MethodType lookupPrimop(SymbolTable stable, String op,
+			MethodType ctype) {
 		MethodType result = null;
 		final Vector primop = stable.lookupPrimop(op);
 		if (primop != null) {

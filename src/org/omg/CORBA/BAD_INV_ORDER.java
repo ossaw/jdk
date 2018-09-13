@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -55,7 +35,7 @@ public final class BAD_INV_ORDER extends SystemException {
 	 * COMPLETED_NO.
 	 *
 	 * @param s
-	 *            the String containing a detail message
+	 *          the String containing a detail message
 	 */
 	public BAD_INV_ORDER(String s) {
 		this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -66,10 +46,11 @@ public final class BAD_INV_ORDER extends SystemException {
 	 * specified minor code and completion status.
 	 * 
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            an instance of <code>CompletionStatus</code> indicating the
-	 *            completion status
+	 *                  an instance of <code>CompletionStatus</code> indicating
+	 *                  the
+	 *                  completion status
 	 */
 	public BAD_INV_ORDER(int minor, CompletionStatus completed) {
 		this("", minor, completed);
@@ -81,11 +62,11 @@ public final class BAD_INV_ORDER extends SystemException {
 	 * String that describes this particular exception.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *                  the String containing a detail message
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status
+	 *                  the completion status
 	 */
 	public BAD_INV_ORDER(String s, int minor, CompletionStatus completed) {
 		super(s, minor, completed);

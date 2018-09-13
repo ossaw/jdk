@@ -36,5 +36,4 @@ package com.sun.org.apache.xml.internal.security.encryption;
  *
  * @author Axl Mattheus
  */
-public interface EncryptedData extends EncryptedType {
-}
+public interface EncryptedData extends EncryptedType {}

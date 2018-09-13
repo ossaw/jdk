@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -95,8 +75,10 @@ import sun.security.util.Debug;
 
 public class SecureRandom extends java.util.Random {
 
-	private static final Debug pdebug = Debug.getInstance("provider", "Provider");
-	private static final boolean skipDebug = Debug.isOn("engine=") && !Debug.isOn("securerandom");
+	private static final Debug pdebug = Debug.getInstance("provider",
+			"Provider");
+	private static final boolean skipDebug = Debug.isOn("engine=") && !Debug
+			.isOn("securerandom");
 
 	/**
 	 * The provider.
@@ -116,9 +98,7 @@ public class SecureRandom extends java.util.Random {
 
 	/*
 	 * The algorithm name of null if unknown.
-	 *
 	 * @serial
-	 * 
 	 * @since 1.5
 	 */
 	private String algorithm;
@@ -189,7 +169,7 @@ public class SecureRandom extends java.util.Random {
 	 * Documentation</a> for information about standard RNG algorithm names.
 	 *
 	 * @param seed
-	 *            the seed.
+	 *             the seed.
 	 */
 	public SecureRandom(byte seed[]) {
 		super(0);
@@ -233,23 +213,24 @@ public class SecureRandom extends java.util.Random {
 	 * Creates a SecureRandom object.
 	 *
 	 * @param secureRandomSpi
-	 *            the SecureRandom implementation.
+	 *                        the SecureRandom implementation.
 	 * @param provider
-	 *            the provider.
+	 *                        the provider.
 	 */
 	protected SecureRandom(SecureRandomSpi secureRandomSpi, Provider provider) {
 		this(secureRandomSpi, provider, null);
 	}
 
-	private SecureRandom(SecureRandomSpi secureRandomSpi, Provider provider, String algorithm) {
+	private SecureRandom(SecureRandomSpi secureRandomSpi, Provider provider,
+			String algorithm) {
 		super(0);
 		this.secureRandomSpi = secureRandomSpi;
 		this.provider = provider;
 		this.algorithm = algorithm;
 
 		if (!skipDebug && pdebug != null) {
-			pdebug.println(
-					"SecureRandom." + algorithm + " algorithm from: " + this.provider.getName());
+			pdebug.println("SecureRandom." + algorithm + " algorithm from: "
+					+ this.provider.getName());
 		}
 	}
 
@@ -275,27 +256,32 @@ public class SecureRandom extends java.util.Random {
 	 * {@code setSeed} was previously called.
 	 *
 	 * @param algorithm
-	 *            the name of the RNG algorithm. See the SecureRandom section in
-	 *            the <a href=
-	 *            "{@docRoot}/../technotes/guides/security/StandardNames.html#SecureRandom"
-	 *            > Java Cryptography Architecture Standard Algorithm Name
-	 *            Documentation</a> for information about standard RNG algorithm
-	 *            names.
+	 *                  the name of the RNG algorithm. See the SecureRandom
+	 *                  section in
+	 *                  the <a href=
+	 *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#SecureRandom"
+	 *                  > Java Cryptography Architecture Standard Algorithm Name
+	 *                  Documentation</a> for information about standard RNG
+	 *                  algorithm
+	 *                  names.
 	 *
 	 * @return the new SecureRandom object.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                if no Provider supports a SecureRandomSpi implementation
-	 *                for the specified algorithm.
+	 *                                     if no Provider supports a
+	 *                                     SecureRandomSpi implementation
+	 *                                     for the specified algorithm.
 	 *
 	 * @see Provider
 	 *
 	 * @since 1.2
 	 */
-	public static SecureRandom getInstance(String algorithm) throws NoSuchAlgorithmException {
-		Instance instance = GetInstance.getInstance("SecureRandom", SecureRandomSpi.class,
-				algorithm);
-		return new SecureRandom((SecureRandomSpi) instance.impl, instance.provider, algorithm);
+	public static SecureRandom getInstance(String algorithm)
+			throws NoSuchAlgorithmException {
+		Instance instance = GetInstance.getInstance("SecureRandom",
+				SecureRandomSpi.class, algorithm);
+		return new SecureRandom((SecureRandomSpi) instance.impl,
+				instance.provider, algorithm);
 	}
 
 	/**
@@ -319,28 +305,34 @@ public class SecureRandom extends java.util.Random {
 	 * {@code setSeed} was previously called.
 	 *
 	 * @param algorithm
-	 *            the name of the RNG algorithm. See the SecureRandom section in
-	 *            the <a href=
-	 *            "{@docRoot}/../technotes/guides/security/StandardNames.html#SecureRandom"
-	 *            > Java Cryptography Architecture Standard Algorithm Name
-	 *            Documentation</a> for information about standard RNG algorithm
-	 *            names.
+	 *                  the name of the RNG algorithm. See the SecureRandom
+	 *                  section in
+	 *                  the <a href=
+	 *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#SecureRandom"
+	 *                  > Java Cryptography Architecture Standard Algorithm Name
+	 *                  Documentation</a> for information about standard RNG
+	 *                  algorithm
+	 *                  names.
 	 *
 	 * @param provider
-	 *            the name of the provider.
+	 *                  the name of the provider.
 	 *
 	 * @return the new SecureRandom object.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                if a SecureRandomSpi implementation for the specified
-	 *                algorithm is not available from the specified provider.
+	 *                                     if a SecureRandomSpi implementation
+	 *                                     for the specified
+	 *                                     algorithm is not available from the
+	 *                                     specified provider.
 	 *
 	 * @exception NoSuchProviderException
-	 *                if the specified provider is not registered in the
-	 *                security provider list.
+	 *                                     if the specified provider is not
+	 *                                     registered in the
+	 *                                     security provider list.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the provider name is null or empty.
+	 *                                     if the provider name is null or
+	 *                                     empty.
 	 *
 	 * @see Provider
 	 *
@@ -348,9 +340,10 @@ public class SecureRandom extends java.util.Random {
 	 */
 	public static SecureRandom getInstance(String algorithm, String provider)
 			throws NoSuchAlgorithmException, NoSuchProviderException {
-		Instance instance = GetInstance.getInstance("SecureRandom", SecureRandomSpi.class,
-				algorithm, provider);
-		return new SecureRandom((SecureRandomSpi) instance.impl, instance.provider, algorithm);
+		Instance instance = GetInstance.getInstance("SecureRandom",
+				SecureRandomSpi.class, algorithm, provider);
+		return new SecureRandom((SecureRandomSpi) instance.impl,
+				instance.provider, algorithm);
 	}
 
 	/**
@@ -371,25 +364,29 @@ public class SecureRandom extends java.util.Random {
 	 * {@code setSeed} was previously called.
 	 *
 	 * @param algorithm
-	 *            the name of the RNG algorithm. See the SecureRandom section in
-	 *            the <a href=
-	 *            "{@docRoot}/../technotes/guides/security/StandardNames.html#SecureRandom"
-	 *            > Java Cryptography Architecture Standard Algorithm Name
-	 *            Documentation</a> for information about standard RNG algorithm
-	 *            names.
+	 *                  the name of the RNG algorithm. See the SecureRandom
+	 *                  section in
+	 *                  the <a href=
+	 *                  "{@docRoot}/../technotes/guides/security/StandardNames.html#SecureRandom"
+	 *                  > Java Cryptography Architecture Standard Algorithm Name
+	 *                  Documentation</a> for information about standard RNG
+	 *                  algorithm
+	 *                  names.
 	 *
 	 * @param provider
-	 *            the provider.
+	 *                  the provider.
 	 *
 	 * @return the new SecureRandom object.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                if a SecureRandomSpi implementation for the specified
-	 *                algorithm is not available from the specified Provider
-	 *                object.
+	 *                                     if a SecureRandomSpi implementation
+	 *                                     for the specified
+	 *                                     algorithm is not available from the
+	 *                                     specified Provider
+	 *                                     object.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the specified provider is null.
+	 *                                     if the specified provider is null.
 	 *
 	 * @see Provider
 	 *
@@ -397,9 +394,10 @@ public class SecureRandom extends java.util.Random {
 	 */
 	public static SecureRandom getInstance(String algorithm, Provider provider)
 			throws NoSuchAlgorithmException {
-		Instance instance = GetInstance.getInstance("SecureRandom", SecureRandomSpi.class,
-				algorithm, provider);
-		return new SecureRandom((SecureRandomSpi) instance.impl, instance.provider, algorithm);
+		Instance instance = GetInstance.getInstance("SecureRandom",
+				SecureRandomSpi.class, algorithm, provider);
+		return new SecureRandom((SecureRandomSpi) instance.impl,
+				instance.provider, algorithm);
 	}
 
 	/**
@@ -436,7 +434,7 @@ public class SecureRandom extends java.util.Random {
 	 * reduce randomness.
 	 *
 	 * @param seed
-	 *            the seed.
+	 *             the seed.
 	 *
 	 * @see #getSeed
 	 */
@@ -454,7 +452,7 @@ public class SecureRandom extends java.util.Random {
 	 * This method is defined for compatibility with {@code java.util.Random}.
 	 *
 	 * @param seed
-	 *            the seed.
+	 *             the seed.
 	 *
 	 * @see #getSeed
 	 */
@@ -480,7 +478,7 @@ public class SecureRandom extends java.util.Random {
 	 * self-seeding will not occur if {@code setSeed} was previously called.
 	 *
 	 * @param bytes
-	 *            the array to be filled in with random bytes.
+	 *              the array to be filled in with random bytes.
 	 */
 	@Override
 	public void nextBytes(byte[] bytes) {
@@ -495,8 +493,8 @@ public class SecureRandom extends java.util.Random {
 	 * (for example, {@code nextInt}, {@code nextLong}, and {@code nextFloat}).
 	 *
 	 * @param numBits
-	 *            number of pseudo-random bits to be generated, where
-	 *            {@code 0 <= numBits <= 32}.
+	 *                number of pseudo-random bits to be generated, where
+	 *                {@code 0 <= numBits <= 32}.
 	 *
 	 * @return an {@code int} containing the user-specified number of
 	 *         pseudo-random bits (right justified, with leading zeros).
@@ -527,7 +525,7 @@ public class SecureRandom extends java.util.Random {
 	 * method to obtain seed bytes from that object.
 	 *
 	 * @param numBytes
-	 *            the number of seed bytes to generate.
+	 *                 the number of seed bytes to generate.
 	 *
 	 * @return the seed bytes.
 	 *
@@ -546,7 +544,7 @@ public class SecureRandom extends java.util.Random {
 	 * be used to seed other random number generators.
 	 *
 	 * @param numBytes
-	 *            the number of seed bytes to generate.
+	 *                 the number of seed bytes to generate.
 	 *
 	 * @return the seed bytes.
 	 */
@@ -594,12 +592,11 @@ public class SecureRandom extends java.util.Random {
 		/*
 		 * Entries are alg:prov separated by , Allow for prepended/appended
 		 * whitespace between entries.
-		 *
 		 * Capture groups: 1 - alg 2 - :prov (optional) 3 - prov (optional) 4 -
 		 * ,nextEntry (optional) 5 - nextEntry (optional)
 		 */
-		private static Pattern pattern = Pattern
-				.compile("\\s*([\\S&&[^:,]]*)(\\:([\\S&&[^,]]*))?\\s*(\\,(.*))?");
+		private static Pattern pattern = Pattern.compile(
+				"\\s*([\\S&&[^:,]]*)(\\:([\\S&&[^,]]*))?\\s*(\\,(.*))?");
 	}
 
 	/**
@@ -621,20 +618,23 @@ public class SecureRandom extends java.util.Random {
 	 *         {@code securerandom.strongAlgorithms} Security property
 	 *
 	 * @throws NoSuchAlgorithmException
-	 *             if no algorithm is available
+	 *                                  if no algorithm is available
 	 *
 	 * @see Security#getProperty(String)
 	 *
 	 * @since 1.8
 	 */
-	public static SecureRandom getInstanceStrong() throws NoSuchAlgorithmException {
+	public static SecureRandom getInstanceStrong()
+			throws NoSuchAlgorithmException {
 
-		String property = AccessController.doPrivileged(new PrivilegedAction<String>() {
-			@Override
-			public String run() {
-				return Security.getProperty("securerandom.strongAlgorithms");
-			}
-		});
+		String property = AccessController.doPrivileged(
+				new PrivilegedAction<String>() {
+					@Override
+					public String run() {
+						return Security.getProperty(
+								"securerandom.strongAlgorithms");
+					}
+				});
 
 		if ((property == null) || (property.length() == 0)) {
 			throw new NoSuchAlgorithmException(
@@ -644,7 +644,8 @@ public class SecureRandom extends java.util.Random {
 		String remainder = property;
 		while (remainder != null) {
 			Matcher m;
-			if ((m = StrongPatternHolder.pattern.matcher(remainder)).matches()) {
+			if ((m = StrongPatternHolder.pattern.matcher(remainder))
+					.matches()) {
 
 				String alg = m.group(1);
 				String prov = m.group(3);
@@ -663,7 +664,8 @@ public class SecureRandom extends java.util.Random {
 			}
 		}
 
-		throw new NoSuchAlgorithmException("No strong SecureRandom impls available: " + property);
+		throw new NoSuchAlgorithmException(
+				"No strong SecureRandom impls available: " + property);
 	}
 
 	// Declare serialVersionUID to be compatible with JDK1.1

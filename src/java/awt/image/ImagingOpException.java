@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -37,8 +17,8 @@ public class ImagingOpException extends java.lang.RuntimeException {
 	 * message.
 	 * 
 	 * @param s
-	 *            the message to generate when a <code>ImagingOpException</code>
-	 *            is thrown
+	 *          the message to generate when a <code>ImagingOpException</code>
+	 *          is thrown
 	 */
 	public ImagingOpException(String s) {
 		super(s);

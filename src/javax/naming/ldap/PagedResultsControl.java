@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -132,17 +112,22 @@ final public class PagedResultsControl extends BasicControl {
 	 * of results.
 	 *
 	 * @param pageSize
-	 *            The number of entries to return in a page.
+	 *                    The number of entries to return in a page.
 	 * @param criticality
-	 *            If true then the server must honor the control and return
-	 *            search results as indicated by pageSize or refuse to perform
-	 *            the search. If false, then the server need not honor the
-	 *            control.
+	 *                    If true then the server must honor the control and
+	 *                    return
+	 *                    search results as indicated by pageSize or refuse to
+	 *                    perform
+	 *                    the search. If false, then the server need not honor
+	 *                    the
+	 *                    control.
 	 * @exception IOException
-	 *                If an error was encountered while encoding the supplied
-	 *                arguments into a control.
+	 *                        If an error was encountered while encoding the
+	 *                        supplied
+	 *                        arguments into a control.
 	 */
-	public PagedResultsControl(int pageSize, boolean criticality) throws IOException {
+	public PagedResultsControl(int pageSize, boolean criticality)
+			throws IOException {
 
 		super(OID, criticality, null);
 		value = setEncodedValue(pageSize, EMPTY_COOKIE);
@@ -157,17 +142,21 @@ final public class PagedResultsControl extends BasicControl {
 	 * zero and setting the cookie to the last cookie received from the server.
 	 *
 	 * @param pageSize
-	 *            The number of entries to return in a page.
+	 *                    The number of entries to return in a page.
 	 * @param cookie
-	 *            A possibly null server-generated cookie.
+	 *                    A possibly null server-generated cookie.
 	 * @param criticality
-	 *            If true then the server must honor the control and return
-	 *            search results as indicated by pageSize or refuse to perform
-	 *            the search. If false, then the server need not honor the
-	 *            control.
+	 *                    If true then the server must honor the control and
+	 *                    return
+	 *                    search results as indicated by pageSize or refuse to
+	 *                    perform
+	 *                    the search. If false, then the server need not honor
+	 *                    the
+	 *                    control.
 	 * @exception IOException
-	 *                If an error was encountered while encoding the supplied
-	 *                arguments into a control.
+	 *                        If an error was encountered while encoding the
+	 *                        supplied
+	 *                        arguments into a control.
 	 */
 	public PagedResultsControl(int pageSize, byte[] cookie, boolean criticality)
 			throws IOException {
@@ -183,17 +172,14 @@ final public class PagedResultsControl extends BasicControl {
 	 * Encodes the paged-results control's value using ASN.1 BER. The result
 	 * includes the BER tag and length for the control's value but does not
 	 * include the control's object identifier and criticality setting.
-	 *
 	 * @param pageSize The number of entries to return in a page.
-	 * 
 	 * @param cookie A non-null server-generated cookie.
-	 * 
 	 * @return A possibly null byte array representing the ASN.1 BER encoded
 	 * value of the LDAP paged-results control.
-	 * 
 	 * @exception IOException If a BER encoding error occurs.
 	 */
-	private byte[] setEncodedValue(int pageSize, byte[] cookie) throws IOException {
+	private byte[] setEncodedValue(int pageSize, byte[] cookie)
+			throws IOException {
 
 		// build the ASN.1 encoding
 		BerEncoder ber = new BerEncoder(10 + cookie.length);

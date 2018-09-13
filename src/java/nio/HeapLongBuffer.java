@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -43,9 +23,7 @@ class HeapLongBuffer extends LongBuffer {
 	// For speed these fields are actually declared in X-Buffer;
 	// these declarations are here as documentation
 	/*
-	 * 
 	 * protected final long[] hb; protected final int offset;
-	 * 
 	 */
 
 	HeapLongBuffer(int cap, int lim) { // package-private
@@ -66,7 +44,8 @@ class HeapLongBuffer extends LongBuffer {
 
 	}
 
-	protected HeapLongBuffer(long[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapLongBuffer(long[] buf, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(mark, pos, lim, cap, buf, off);
 		/*
@@ -81,14 +60,14 @@ class HeapLongBuffer extends LongBuffer {
 	}
 
 	public LongBuffer duplicate() {
-		return new HeapLongBuffer(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapLongBuffer(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public LongBuffer asReadOnlyBuffer() {
 
-		return new HeapLongBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapLongBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 
 	}
 
@@ -155,7 +134,8 @@ class HeapLongBuffer extends LongBuffer {
 			int n = sb.remaining();
 			if (n > remaining())
 				throw new BufferOverflowException();
-			System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()), n);
+			System.arraycopy(sb.hb, sb.ix(sb.position()), hb, ix(position()),
+					n);
 			sb.position(sb.position() + n);
 			position(position() + n);
 		} else if (src.isDirect()) {

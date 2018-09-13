@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.element;
@@ -63,12 +43,12 @@ import javax.lang.model.util.*;
  * 8 and higher platform versions.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -82,9 +62,9 @@ public interface ElementVisitor<R, P> {
 	 * Visits an element.
 	 * 
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visit(Element e, P p);
@@ -93,7 +73,7 @@ public interface ElementVisitor<R, P> {
 	 * A convenience method equivalent to {@code v.visit(e, null)}.
 	 * 
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @return a visitor-specified result
 	 */
 	R visit(Element e);
@@ -102,9 +82,9 @@ public interface ElementVisitor<R, P> {
 	 * Visits a package element.
 	 * 
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitPackage(PackageElement e, P p);
@@ -113,9 +93,9 @@ public interface ElementVisitor<R, P> {
 	 * Visits a type element.
 	 * 
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitType(TypeElement e, P p);
@@ -124,9 +104,9 @@ public interface ElementVisitor<R, P> {
 	 * Visits a variable element.
 	 * 
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitVariable(VariableElement e, P p);
@@ -135,9 +115,9 @@ public interface ElementVisitor<R, P> {
 	 * Visits an executable element.
 	 * 
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitExecutable(ExecutableElement e, P p);
@@ -146,9 +126,9 @@ public interface ElementVisitor<R, P> {
 	 * Visits a type parameter element.
 	 * 
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	R visitTypeParameter(TypeParameterElement e, P p);
@@ -158,12 +138,13 @@ public interface ElementVisitor<R, P> {
 	 * and new kinds of elements are added to the {@code Element} hierarchy.
 	 *
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 * @throws UnknownElementException
-	 *             a visitor implementation may optionally throw this exception
+	 *                                 a visitor implementation may optionally
+	 *                                 throw this exception
 	 */
 	R visitUnknown(Element e, P p);
 }

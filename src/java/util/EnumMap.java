@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -79,8 +59,8 @@ import sun.misc.SharedSecrets;
  * @see EnumSet
  * @since 1.5
  */
-public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
-		implements java.io.Serializable, Cloneable {
+public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V> implements
+		java.io.Serializable, Cloneable {
 	/**
 	 * The <tt>Class</tt> object for the enum type of all the keys of this map.
 	 *
@@ -133,9 +113,9 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * Creates an empty enum map with the specified key type.
 	 *
 	 * @param keyType
-	 *            the class object of the key type for this enum map
+	 *                the class object of the key type for this enum map
 	 * @throws NullPointerException
-	 *             if <tt>keyType</tt> is null
+	 *                              if <tt>keyType</tt> is null
 	 */
 	public EnumMap(Class<K> keyType) {
 		this.keyType = keyType;
@@ -148,9 +128,9 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * initially containing the same mappings (if any).
 	 *
 	 * @param m
-	 *            the enum map from which to initialize this enum map
+	 *          the enum map from which to initialize this enum map
 	 * @throws NullPointerException
-	 *             if <tt>m</tt> is null
+	 *                              if <tt>m</tt> is null
 	 */
 	public EnumMap(EnumMap<K, ? extends V> m) {
 		keyType = m.keyType;
@@ -166,12 +146,13 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * at least one mapping (in order to determine the new enum map's key type).
 	 *
 	 * @param m
-	 *            the map from which to initialize this enum map
+	 *          the map from which to initialize this enum map
 	 * @throws IllegalArgumentException
-	 *             if <tt>m</tt> is not an <tt>EnumMap</tt> instance and
-	 *             contains no mappings
+	 *                                  if <tt>m</tt> is not an <tt>EnumMap</tt>
+	 *                                  instance and
+	 *                                  contains no mappings
 	 * @throws NullPointerException
-	 *             if <tt>m</tt> is null
+	 *                                  if <tt>m</tt> is null
 	 */
 	public EnumMap(Map<K, ? extends V> m) {
 		if (m instanceof EnumMap) {
@@ -206,7 +187,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * value.
 	 *
 	 * @param value
-	 *            the value whose presence in this map is to be tested
+	 *              the value whose presence in this map is to be tested
 	 * @return <tt>true</tt> if this map maps one or more keys to this value
 	 */
 	public boolean containsValue(Object value) {
@@ -233,7 +214,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	}
 
 	private boolean containsMapping(Object key, Object value) {
-		return isValidKey(key) && maskNull(value).equals(vals[((Enum<?>) key).ordinal()]);
+		return isValidKey(key) && maskNull(value).equals(vals[((Enum<?>) key)
+				.ordinal()]);
 	}
 
 	/**
@@ -253,7 +235,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * containsKey} operation may be used to distinguish these two cases.
 	 */
 	public V get(Object key) {
-		return (isValidKey(key) ? unmaskNull(vals[((Enum<?>) key).ordinal()]) : null);
+		return (isValidKey(key) ? unmaskNull(vals[((Enum<?>) key).ordinal()])
+				: null);
 	}
 
 	// Modification Operations
@@ -264,16 +247,16 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * replaced.
 	 *
 	 * @param key
-	 *            the key with which the specified value is to be associated
+	 *              the key with which the specified value is to be associated
 	 * @param value
-	 *            the value to be associated with the specified key
+	 *              the value to be associated with the specified key
 	 *
 	 * @return the previous value associated with specified key, or
 	 *         <tt>null</tt> if there was no mapping for key. (A <tt>null</tt>
 	 *         return can also indicate that the map previously associated
 	 *         <tt>null</tt> with the specified key.)
 	 * @throws NullPointerException
-	 *             if the specified key is null
+	 *                              if the specified key is null
 	 */
 	public V put(K key, V value) {
 		typeCheck(key);
@@ -339,10 +322,11 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * currently in the specified map.
 	 *
 	 * @param m
-	 *            the mappings to be stored in this map
+	 *          the mappings to be stored in this map
 	 * @throws NullPointerException
-	 *             the specified map is null, or if one or more keys in the
-	 *             specified map are null
+	 *                              the specified map is null, or if one or more
+	 *                              keys in the
+	 *                              specified map are null
 	 */
 	public void putAll(Map<? extends K, ? extends V> m) {
 		if (m instanceof EnumMap) {
@@ -525,8 +509,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 		public <T> T[] toArray(T[] a) {
 			int size = size();
 			if (a.length < size)
-				a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(),
-						size);
+				a = (T[]) java.lang.reflect.Array.newInstance(a.getClass()
+						.getComponentType(), size);
 			if (a.length > size)
 				a[size] = null;
 			return (T[]) fillEntryArray(a);
@@ -536,7 +520,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 			int j = 0;
 			for (int i = 0; i < vals.length; i++)
 				if (vals[i] != null)
-					a[j++] = new AbstractMap.SimpleEntry<>(keyUniverse[i], unmaskNull(vals[i]));
+					a[j++] = new AbstractMap.SimpleEntry<>(keyUniverse[i],
+							unmaskNull(vals[i]));
 			return a;
 		}
 	}
@@ -599,7 +584,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 		}
 
 		public void remove() {
-			lastReturnedIndex = ((null == lastReturnedEntry) ? -1 : lastReturnedEntry.index);
+			lastReturnedIndex = ((null == lastReturnedEntry) ? -1
+					: lastReturnedEntry.index);
 			super.remove();
 			lastReturnedEntry.index = lastReturnedIndex;
 			lastReturnedEntry = null;
@@ -639,8 +625,9 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 				Map.Entry<?, ?> e = (Map.Entry<?, ?>) o;
 				V ourValue = unmaskNull(vals[index]);
 				Object hisValue = e.getValue();
-				return (e.getKey() == keyUniverse[index] && (ourValue == hisValue
-						|| (ourValue != null && ourValue.equals(hisValue))));
+				return (e.getKey() == keyUniverse[index]
+						&& (ourValue == hisValue || (ourValue != null
+								&& ourValue.equals(hisValue))));
 			}
 
 			public int hashCode() {
@@ -673,7 +660,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * {@link Map#equals(Object)} contract.
 	 *
 	 * @param o
-	 *            the object to be compared for equality with this map
+	 *          the object to be compared for equality with this map
 	 * @return <tt>true</tt> if the specified object is equal to this map
 	 */
 	public boolean equals(Object o) {
@@ -713,7 +700,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 		for (int i = 0; i < keyUniverse.length; i++) {
 			Object ourValue = vals[i];
 			Object hisValue = em.vals[i];
-			if (hisValue != ourValue && (hisValue == null || !hisValue.equals(ourValue)))
+			if (hisValue != ourValue && (hisValue == null || !hisValue.equals(
+					ourValue)))
 				return false;
 		}
 		return true;
@@ -772,7 +760,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 * and shared by all callers.
 	 */
 	private static <K extends Enum<K>> K[] getKeyUniverse(Class<K> keyType) {
-		return SharedSecrets.getJavaLangAccess().getEnumConstantsShared(keyType);
+		return SharedSecrets.getJavaLangAccess().getEnumConstantsShared(
+				keyType);
 	}
 
 	private static final long serialVersionUID = 458661240069192865L;
@@ -786,7 +775,8 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
 	 *             value (Object) for each key-value mapping represented by the
 	 *             enum map.
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 		// Write out the key type and any hidden stuff
 		s.defaultWriteObject();
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: RetrievalMethod.java,v 1.8 2005/05/10 16:35:35 mullan Exp $
@@ -61,8 +41,8 @@ import java.util.List;
  * 
  * <pre>
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
- * RetrievalMethod rm = factory.newRetrievalMethod("#KeyValue-1", KeyValue.DSA_TYPE,
- * 		Collections.singletonList(Transform.BASE64));
+ * RetrievalMethod rm = factory.newRetrievalMethod("#KeyValue-1",
+ * 		KeyValue.DSA_TYPE, Collections.singletonList(Transform.BASE64));
  * </pre>
  *
  * @author Sean Mullan
@@ -97,20 +77,24 @@ public interface RetrievalMethod extends URIReference, XMLStructure {
 	 * <code>Transform</code>s.
 	 *
 	 * @param context
-	 *            an <code>XMLCryptoContext</code> that may contain additional
-	 *            useful information for dereferencing the URI. The context's
-	 *            <code>baseURI</code> and <code>dereferencer</code> parameters
-	 *            (if specified) are used to resolve and dereference this
-	 *            <code>RetrievalMethod</code>
+	 *                an <code>XMLCryptoContext</code> that may contain
+	 *                additional
+	 *                useful information for dereferencing the URI. The
+	 *                context's
+	 *                <code>baseURI</code> and <code>dereferencer</code>
+	 *                parameters
+	 *                (if specified) are used to resolve and dereference this
+	 *                <code>RetrievalMethod</code>
 	 * @return a <code>Data</code> object representing the raw contents of the
 	 *         <code>KeyInfo</code> information referenced by this
 	 *         <code>RetrievalMethod</code>. It is the caller's responsibility
 	 *         to convert the returned data to an appropriate
 	 *         <code>KeyInfo</code> object.
 	 * @throws NullPointerException
-	 *             if <code>context</code> is <code>null</code>
+	 *                               if <code>context</code> is
+	 *                               <code>null</code>
 	 * @throws URIReferenceException
-	 *             if there is an error while dereferencing
+	 *                               if there is an error while dereferencing
 	 */
 	Data dereference(XMLCryptoContext context) throws URIReferenceException;
 }

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,14 +34,17 @@ public final class SchemaSymbols {
 	// symbol table that comes with the parser
 
 	// xsi attributes: in validator
-	public static final String URI_XSI = "http://www.w3.org/2001/XMLSchema-instance".intern();
+	public static final String URI_XSI = "http://www.w3.org/2001/XMLSchema-instance"
+			.intern();
 	public static final String XSI_SCHEMALOCATION = "schemaLocation".intern();
-	public static final String XSI_NONAMESPACESCHEMALOCATION = "noNamespaceSchemaLocation".intern();
+	public static final String XSI_NONAMESPACESCHEMALOCATION = "noNamespaceSchemaLocation"
+			.intern();
 	public static final String XSI_TYPE = "type".intern();
 	public static final String XSI_NIL = "nil".intern();
 
 	// schema namespace
-	public static final String URI_SCHEMAFORSCHEMA = "http://www.w3.org/2001/XMLSchema".intern();
+	public static final String URI_SCHEMAFORSCHEMA = "http://www.w3.org/2001/XMLSchema"
+			.intern();
 
 	// all possible schema element names
 	public static final String ELT_ALL = "all".intern();
@@ -93,12 +93,14 @@ public final class SchemaSymbols {
 	// all possible schema attribute names (and xml:lang defined on <schema> and
 	// <documentation>)
 	public static final String ATT_ABSTRACT = "abstract".intern();
-	public static final String ATT_ATTRIBUTEFORMDEFAULT = "attributeFormDefault".intern();
+	public static final String ATT_ATTRIBUTEFORMDEFAULT = "attributeFormDefault"
+			.intern();
 	public static final String ATT_BASE = "base".intern();
 	public static final String ATT_BLOCK = "block".intern();
 	public static final String ATT_BLOCKDEFAULT = "blockDefault".intern();
 	public static final String ATT_DEFAULT = "default".intern();
-	public static final String ATT_ELEMENTFORMDEFAULT = "elementFormDefault".intern();
+	public static final String ATT_ELEMENTFORMDEFAULT = "elementFormDefault"
+			.intern();
 	public static final String ATT_FINAL = "final".intern();
 	public static final String ATT_FINALDEFAULT = "finalDefault".intern();
 	public static final String ATT_FIXED = "fixed".intern();
@@ -117,7 +119,8 @@ public final class SchemaSymbols {
 	public static final String ATT_REFER = "refer".intern();
 	public static final String ATT_SCHEMALOCATION = "schemaLocation".intern();
 	public static final String ATT_SOURCE = "source".intern();
-	public static final String ATT_SUBSTITUTIONGROUP = "substitutionGroup".intern();
+	public static final String ATT_SUBSTITUTIONGROUP = "substitutionGroup"
+			.intern();
 	public static final String ATT_SYSTEM = "system".intern();
 	public static final String ATT_PUBLIC = "public".intern();
 	public static final String ATT_TARGETNAMESPACE = "targetNamespace".intern();

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,7 +37,8 @@ import org.w3c.dom.Element;
  */
 class XSDAbstractIDConstraintTraverser extends XSDAbstractTraverser {
 
-	public XSDAbstractIDConstraintTraverser(XSDHandler handler, XSAttributeChecker gAttrCheck) {
+	public XSDAbstractIDConstraintTraverser(XSDHandler handler,
+			XSAttributeChecker gAttrCheck) {
 		super(handler, gAttrCheck);
 	}
 
@@ -52,8 +50,8 @@ class XSDAbstractIDConstraintTraverser extends XSDAbstractTraverser {
 		// check for <annotation> and get selector
 		Element sElem = DOMUtil.getFirstChildElement(icElem);
 		if (sElem == null) {
-			reportSchemaError("s4s-elt-must-match.2",
-					new Object[] { "identity constraint", "(annotation?, selector, field+)" },
+			reportSchemaError("s4s-elt-must-match.2", new Object[] {
+					"identity constraint", "(annotation?, selector, field+)" },
 					icElem);
 			return false;
 		}
@@ -61,66 +59,75 @@ class XSDAbstractIDConstraintTraverser extends XSDAbstractTraverser {
 		// General Attribute Checking on sElem
 		// first child could be an annotation
 		if (DOMUtil.getLocalName(sElem).equals(SchemaSymbols.ELT_ANNOTATION)) {
-			ic.addAnnotation(traverseAnnotationDecl(sElem, icElemAttrs, false, schemaDoc));
+			ic.addAnnotation(traverseAnnotationDecl(sElem, icElemAttrs, false,
+					schemaDoc));
 			sElem = DOMUtil.getNextSiblingElement(sElem);
 			// if no more children report an error
 			if (sElem == null) {
-				reportSchemaError("s4s-elt-must-match.2",
-						new Object[] { "identity constraint", "(annotation?, selector, field+)" },
-						icElem);
+				reportSchemaError("s4s-elt-must-match.2", new Object[] {
+						"identity constraint",
+						"(annotation?, selector, field+)" }, icElem);
 				return false;
 			}
 		} else {
 			String text = DOMUtil.getSyntheticAnnotation(icElem);
 			if (text != null) {
-				ic.addAnnotation(
-						traverseSyntheticAnnotation(icElem, text, icElemAttrs, false, schemaDoc));
+				ic.addAnnotation(traverseSyntheticAnnotation(icElem, text,
+						icElemAttrs, false, schemaDoc));
 			}
 		}
 
 		// must be <selector>
 		if (!DOMUtil.getLocalName(sElem).equals(SchemaSymbols.ELT_SELECTOR)) {
-			reportSchemaError("s4s-elt-must-match.1", new Object[] { "identity constraint",
-					"(annotation?, selector, field+)", SchemaSymbols.ELT_SELECTOR }, sElem);
+			reportSchemaError("s4s-elt-must-match.1", new Object[] {
+					"identity constraint", "(annotation?, selector, field+)",
+					SchemaSymbols.ELT_SELECTOR }, sElem);
 			return false;
 		}
-		Object[] attrValues = fAttrChecker.checkAttributes(sElem, false, schemaDoc);
+		Object[] attrValues = fAttrChecker.checkAttributes(sElem, false,
+				schemaDoc);
 
 		// make sure <selector>'s content is fine:
 		Element selChild = DOMUtil.getFirstChildElement(sElem);
 
 		if (selChild != null) {
 			// traverse annotation if any
-			if (DOMUtil.getLocalName(selChild).equals(SchemaSymbols.ELT_ANNOTATION)) {
-				ic.addAnnotation(traverseAnnotationDecl(selChild, attrValues, false, schemaDoc));
+			if (DOMUtil.getLocalName(selChild).equals(
+					SchemaSymbols.ELT_ANNOTATION)) {
+				ic.addAnnotation(traverseAnnotationDecl(selChild, attrValues,
+						false, schemaDoc));
 				selChild = DOMUtil.getNextSiblingElement(selChild);
 			} else {
-				reportSchemaError("s4s-elt-must-match.1", new Object[] { SchemaSymbols.ELT_SELECTOR,
-						"(annotation?)", DOMUtil.getLocalName(selChild) }, selChild);
+				reportSchemaError("s4s-elt-must-match.1", new Object[] {
+						SchemaSymbols.ELT_SELECTOR, "(annotation?)", DOMUtil
+								.getLocalName(selChild) }, selChild);
 			}
 			if (selChild != null) {
-				reportSchemaError("s4s-elt-must-match.1", new Object[] { SchemaSymbols.ELT_SELECTOR,
-						"(annotation?)", DOMUtil.getLocalName(selChild) }, selChild);
+				reportSchemaError("s4s-elt-must-match.1", new Object[] {
+						SchemaSymbols.ELT_SELECTOR, "(annotation?)", DOMUtil
+								.getLocalName(selChild) }, selChild);
 			}
 		} else {
 			String text = DOMUtil.getSyntheticAnnotation(sElem);
 			if (text != null) {
-				ic.addAnnotation(
-						traverseSyntheticAnnotation(icElem, text, attrValues, false, schemaDoc));
+				ic.addAnnotation(traverseSyntheticAnnotation(icElem, text,
+						attrValues, false, schemaDoc));
 			}
 		}
 
 		String sText = ((String) attrValues[XSAttributeChecker.ATTIDX_XPATH]);
 		if (sText == null) {
-			reportSchemaError("s4s-att-must-appear",
-					new Object[] { SchemaSymbols.ELT_SELECTOR, SchemaSymbols.ATT_XPATH }, sElem);
+			reportSchemaError("s4s-att-must-appear", new Object[] {
+					SchemaSymbols.ELT_SELECTOR, SchemaSymbols.ATT_XPATH },
+					sElem);
 			return false;
 		}
 		sText = XMLChar.trim(sText);
 
 		Selector.XPath sXpath = null;
 		try {
-			sXpath = new Selector.XPath(sText, fSymbolTable, schemaDoc.fNamespaceSupport);
+			sXpath = new Selector.XPath(sText, fSymbolTable,
+					schemaDoc.fNamespaceSupport);
 			Selector selector = new Selector(sXpath, ic);
 			ic.setSelector(selector);
 		} catch (XPathException e) {
@@ -136,17 +143,17 @@ class XSDAbstractIDConstraintTraverser extends XSDAbstractTraverser {
 		// get fields
 		Element fElem = DOMUtil.getNextSiblingElement(sElem);
 		if (fElem == null) {
-			reportSchemaError("s4s-elt-must-match.2",
-					new Object[] { "identity constraint", "(annotation?, selector, field+)" },
+			reportSchemaError("s4s-elt-must-match.2", new Object[] {
+					"identity constraint", "(annotation?, selector, field+)" },
 					sElem);
 			return false;
 		}
 		while (fElem != null) {
 			if (!DOMUtil.getLocalName(fElem).equals(SchemaSymbols.ELT_FIELD)) {
-				reportSchemaError(
-						"s4s-elt-must-match.1", new Object[] { "identity constraint",
-								"(annotation?, selector, field+)", SchemaSymbols.ELT_FIELD },
-						fElem);
+				reportSchemaError("s4s-elt-must-match.1", new Object[] {
+						"identity constraint",
+						"(annotation?, selector, field+)",
+						SchemaSymbols.ELT_FIELD }, fElem);
 				fElem = DOMUtil.getNextSiblingElement(fElem);
 				continue;
 			}
@@ -158,26 +165,29 @@ class XSDAbstractIDConstraintTraverser extends XSDAbstractTraverser {
 			Element fieldChild = DOMUtil.getFirstChildElement(fElem);
 			if (fieldChild != null) {
 				// traverse annotation
-				if (DOMUtil.getLocalName(fieldChild).equals(SchemaSymbols.ELT_ANNOTATION)) {
-					ic.addAnnotation(
-							traverseAnnotationDecl(fieldChild, attrValues, false, schemaDoc));
+				if (DOMUtil.getLocalName(fieldChild).equals(
+						SchemaSymbols.ELT_ANNOTATION)) {
+					ic.addAnnotation(traverseAnnotationDecl(fieldChild,
+							attrValues, false, schemaDoc));
 					fieldChild = DOMUtil.getNextSiblingElement(fieldChild);
 				}
 			}
 			if (fieldChild != null) {
-				reportSchemaError("s4s-elt-must-match.1", new Object[] { SchemaSymbols.ELT_FIELD,
-						"(annotation?)", DOMUtil.getLocalName(fieldChild) }, fieldChild);
+				reportSchemaError("s4s-elt-must-match.1", new Object[] {
+						SchemaSymbols.ELT_FIELD, "(annotation?)", DOMUtil
+								.getLocalName(fieldChild) }, fieldChild);
 			} else {
 				String text = DOMUtil.getSyntheticAnnotation(fElem);
 				if (text != null) {
-					ic.addAnnotation(traverseSyntheticAnnotation(icElem, text, attrValues, false,
-							schemaDoc));
+					ic.addAnnotation(traverseSyntheticAnnotation(icElem, text,
+							attrValues, false, schemaDoc));
 				}
 			}
 			String fText = ((String) attrValues[XSAttributeChecker.ATTIDX_XPATH]);
 			if (fText == null) {
-				reportSchemaError("s4s-att-must-appear",
-						new Object[] { SchemaSymbols.ELT_FIELD, SchemaSymbols.ATT_XPATH }, fElem);
+				reportSchemaError("s4s-att-must-appear", new Object[] {
+						SchemaSymbols.ELT_FIELD, SchemaSymbols.ATT_XPATH },
+						fElem);
 				fAttrChecker.returnAttrArray(attrValues, schemaDoc);
 				return false;
 			}

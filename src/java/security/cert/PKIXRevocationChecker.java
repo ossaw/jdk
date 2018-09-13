@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.security.cert;
 
@@ -104,15 +84,14 @@ import java.util.Set;
 public abstract class PKIXRevocationChecker extends PKIXCertPathChecker {
 	private URI ocspResponder;
 	private X509Certificate ocspResponderCert;
-	private List<Extension> ocspExtensions = Collections.<Extension> emptyList();
+	private List<Extension> ocspExtensions = Collections.<Extension>emptyList();
 	private Map<X509Certificate, byte[]> ocspResponses = Collections.emptyMap();
 	private Set<Option> options = Collections.emptySet();
 
 	/**
 	 * Default constructor.
 	 */
-	protected PKIXRevocationChecker() {
-	}
+	protected PKIXRevocationChecker() {}
 
 	/**
 	 * Sets the URI that identifies the location of the OCSP responder. This
@@ -147,7 +126,7 @@ public abstract class PKIXRevocationChecker extends PKIXCertPathChecker {
 	 * {@code ocsp.responderCertSerialNumber} security properties.
 	 *
 	 * @param cert
-	 *            the responder's certificate
+	 *             the responder's certificate
 	 */
 	public void setOcspResponderCert(X509Certificate cert) {
 		this.ocspResponderCert = cert;
@@ -172,12 +151,13 @@ public abstract class PKIXRevocationChecker extends PKIXCertPathChecker {
 	 * Sets the optional OCSP request extensions.
 	 *
 	 * @param extensions
-	 *            a list of extensions. The list is copied to protect against
-	 *            subsequent modification.
+	 *                   a list of extensions. The list is copied to protect
+	 *                   against
+	 *                   subsequent modification.
 	 */
 	public void setOcspExtensions(List<Extension> extensions) {
-		this.ocspExtensions = (extensions == null) ? Collections.<Extension> emptyList()
-				: new ArrayList<Extension>(extensions);
+		this.ocspExtensions = (extensions == null) ? Collections
+				.<Extension>emptyList() : new ArrayList<Extension>(extensions);
 	}
 
 	/**
@@ -195,15 +175,17 @@ public abstract class PKIXRevocationChecker extends PKIXCertPathChecker {
 	 * revocation status of the specified certificates when OCSP is used.
 	 *
 	 * @param responses
-	 *            a map of OCSP responses. Each key is an
-	 *            {@code X509Certificate} that maps to the corresponding
-	 *            DER-encoded OCSP response for that certificate. A deep copy of
-	 *            the map is performed to protect against subsequent
-	 *            modification.
+	 *                  a map of OCSP responses. Each key is an
+	 *                  {@code X509Certificate} that maps to the corresponding
+	 *                  DER-encoded OCSP response for that certificate. A deep
+	 *                  copy of
+	 *                  the map is performed to protect against subsequent
+	 *                  modification.
 	 */
 	public void setOcspResponses(Map<X509Certificate, byte[]> responses) {
 		if (responses == null) {
-			this.ocspResponses = Collections.<X509Certificate, byte[]> emptyMap();
+			this.ocspResponses = Collections
+					.<X509Certificate, byte[]>emptyMap();
 		} else {
 			Map<X509Certificate, byte[]> copy = new HashMap<>(responses.size());
 			for (Map.Entry<X509Certificate, byte[]> e : responses.entrySet()) {
@@ -235,11 +217,11 @@ public abstract class PKIXRevocationChecker extends PKIXCertPathChecker {
 	 * Sets the revocation options.
 	 *
 	 * @param options
-	 *            a set of revocation options. The set is copied to protect
-	 *            against subsequent modification.
+	 *                a set of revocation options. The set is copied to protect
+	 *                against subsequent modification.
 	 */
 	public void setOptions(Set<Option> options) {
-		this.options = (options == null) ? Collections.<Option> emptySet()
+		this.options = (options == null) ? Collections.<Option>emptySet()
 				: new HashSet<Option>(options);
 	}
 
@@ -275,7 +257,8 @@ public abstract class PKIXRevocationChecker extends PKIXCertPathChecker {
 		copy.ocspExtensions = new ArrayList<>(ocspExtensions);
 		copy.ocspResponses = new HashMap<>(ocspResponses);
 		// deep-copy the encoded responses, since they are mutable
-		for (Map.Entry<X509Certificate, byte[]> entry : copy.ocspResponses.entrySet()) {
+		for (Map.Entry<X509Certificate, byte[]> entry : copy.ocspResponses
+				.entrySet()) {
 			byte[] encoded = entry.getValue();
 			entry.setValue(encoded.clone());
 		}

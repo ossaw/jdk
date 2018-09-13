@@ -1,41 +1,14 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2004 World Wide Web Consortium,
- *
  * (Massachusetts Institute of Technology, European Research Consortium for
  * Informatics and Mathematics, Keio University). All Rights Reserved. This
  * work is distributed under the W3C(r) Software License [1] in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
  */
 
@@ -119,9 +92,10 @@ public interface LSParserFilter {
 	 * reading in and filtering a document.
 	 * 
 	 * @param elementArg
-	 *            The newly encountered element. At the time this method is
-	 *            called, the element is incomplete - it will have its
-	 *            attributes, but no children.
+	 *                   The newly encountered element. At the time this method
+	 *                   is
+	 *                   called, the element is incomplete - it will have its
+	 *                   attributes, but no children.
 	 * @return
 	 *         <ul>
 	 *         <li><code>FILTER_ACCEPT</code> if the <code>Element</code> should
@@ -158,10 +132,11 @@ public interface LSParserFilter {
 	 * of its descendants.
 	 * 
 	 * @param nodeArg
-	 *            The newly constructed element. At the time this method is
-	 *            called, the element is complete - it has all of its children
-	 *            (and their children, recursively) and attributes, and is
-	 *            attached as a child to its parent.
+	 *                The newly constructed element. At the time this method is
+	 *                called, the element is complete - it has all of its
+	 *                children
+	 *                (and their children, recursively) and attributes, and is
+	 *                attached as a child to its parent.
 	 * @return
 	 *         <ul>
 	 *         <li><code>FILTER_ACCEPT</code> if this <code>Node</code> should

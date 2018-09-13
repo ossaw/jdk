@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xalan.internal;
@@ -68,7 +48,8 @@ public final class XalanConstants {
 	 * JDK maxOccur limit; Note that the existing system property
 	 * "maxOccurLimit" with no prefix is still observed
 	 */
-	public static final String JDK_MAX_OCCUR_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX + "maxOccurLimit";
+	public static final String JDK_MAX_OCCUR_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX
+			+ "maxOccurLimit";
 
 	/**
 	 * JDK total entity size limit
@@ -97,7 +78,8 @@ public final class XalanConstants {
 	/**
 	 * JDK maximum XML name limit
 	 */
-	public static final String JDK_XML_NAME_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX + "maxXMLNameLimit";
+	public static final String JDK_XML_NAME_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX
+			+ "maxXMLNameLimit";
 
 	/**
 	 * JDK maxElementDepth limit
@@ -241,21 +223,18 @@ public final class XalanConstants {
 	/*
 	 * Check the version of the current JDK against that specified in the
 	 * parameter
-	 *
 	 * There is a proposal to change the java version string to:
 	 * MAJOR.MINOR.FU.CPU.PSU-BUILDNUMBER_BUGIDNUMBER_OPTIONAL This method would
 	 * work with both the current format and that proposed
-	 *
 	 * @param compareTo a JDK version to be compared to
-	 * 
 	 * @return true if the current version is the same or above that represented
 	 * by the parameter
 	 */
 	public static boolean isJavaVersionAtLeast(int compareTo) {
 		String javaVersion = SecuritySupport.getSystemProperty("java.version");
 		String versions[] = javaVersion.split("\\.", 3);
-		if (Integer.parseInt(versions[0]) >= compareTo
-				|| Integer.parseInt(versions[1]) >= compareTo) {
+		if (Integer.parseInt(versions[0]) >= compareTo || Integer.parseInt(
+				versions[1]) >= compareTo) {
 			return true;
 		}
 		return false;

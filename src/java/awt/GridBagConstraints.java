@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -580,27 +560,27 @@ public class GridBagConstraints implements Cloneable, java.io.Serializable {
 	 * generation tools.
 	 *
 	 * @param gridx
-	 *            The initial gridx value.
+	 *                   The initial gridx value.
 	 * @param gridy
-	 *            The initial gridy value.
+	 *                   The initial gridy value.
 	 * @param gridwidth
-	 *            The initial gridwidth value.
+	 *                   The initial gridwidth value.
 	 * @param gridheight
-	 *            The initial gridheight value.
+	 *                   The initial gridheight value.
 	 * @param weightx
-	 *            The initial weightx value.
+	 *                   The initial weightx value.
 	 * @param weighty
-	 *            The initial weighty value.
+	 *                   The initial weighty value.
 	 * @param anchor
-	 *            The initial anchor value.
+	 *                   The initial anchor value.
 	 * @param fill
-	 *            The initial fill value.
+	 *                   The initial fill value.
 	 * @param insets
-	 *            The initial insets value.
+	 *                   The initial insets value.
 	 * @param ipadx
-	 *            The initial ipadx value.
+	 *                   The initial ipadx value.
 	 * @param ipady
-	 *            The initial ipady value.
+	 *                   The initial ipady value.
 	 *
 	 * @see java.awt.GridBagConstraints#gridx
 	 * @see java.awt.GridBagConstraints#gridy
@@ -616,8 +596,9 @@ public class GridBagConstraints implements Cloneable, java.io.Serializable {
 	 *
 	 * @since 1.2
 	 */
-	public GridBagConstraints(int gridx, int gridy, int gridwidth, int gridheight, double weightx,
-			double weighty, int anchor, int fill, Insets insets, int ipadx, int ipady) {
+	public GridBagConstraints(int gridx, int gridy, int gridwidth,
+			int gridheight, double weightx, double weighty, int anchor,
+			int fill, Insets insets, int ipadx, int ipady) {
 		this.gridx = gridx;
 		this.gridy = gridy;
 		this.gridwidth = gridwidth;

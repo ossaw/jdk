@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -36,7 +16,8 @@ class ByteBufferAsFloatBufferRL // package-private
 
 	}
 
-	ByteBufferAsFloatBufferRL(ByteBuffer bb, int mark, int pos, int lim, int cap, int off) {
+	ByteBufferAsFloatBufferRL(ByteBuffer bb, int mark, int pos, int lim,
+			int cap, int off) {
 
 		super(bb, mark, pos, lim, cap, off);
 
@@ -53,8 +34,8 @@ class ByteBufferAsFloatBufferRL // package-private
 	}
 
 	public FloatBuffer duplicate() {
-		return new ByteBufferAsFloatBufferRL(bb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new ByteBufferAsFloatBufferRL(bb, this.markValue(), this
+				.position(), this.limit(), this.capacity(), offset);
 	}
 
 	public FloatBuffer asReadOnlyBuffer() {

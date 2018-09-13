@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi;
@@ -54,9 +34,9 @@ public class ServerRuntimeException extends RemoteException {
 	 * detail message and nested exception.
 	 *
 	 * @param s
-	 *            the detail message
+	 *           the detail message
 	 * @param ex
-	 *            the nested exception
+	 *           the nested exception
 	 * @deprecated no replacement
 	 * @since JDK1.1
 	 */

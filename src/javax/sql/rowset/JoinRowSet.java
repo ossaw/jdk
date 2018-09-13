@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset;
@@ -240,14 +220,16 @@ public interface JoinRowSet extends WebRowSet {
 	 * that has implemented the <code>Joinable</code> interface.
 	 *
 	 * @param rowset
-	 *            the <code>RowSet</code> object that is to be added to this
-	 *            <code>JoinRowSet</code> object; it must implement the
-	 *            <code>Joinable</code> interface and have a match column set
+	 *               the <code>RowSet</code> object that is to be added to this
+	 *               <code>JoinRowSet</code> object; it must implement the
+	 *               <code>Joinable</code> interface and have a match column set
 	 * @throws SQLException
-	 *             if (1) an empty rowset is added to the to this
-	 *             <code>JoinRowSet</code> object, (2) a match column has not
-	 *             been set for <i>rowset</i>, or (3) <i>rowset</i> violates the
-	 *             active <code>JOIN</code>
+	 *                      if (1) an empty rowset is added to the to this
+	 *                      <code>JoinRowSet</code> object, (2) a match column
+	 *                      has not
+	 *                      been set for <i>rowset</i>, or (3) <i>rowset</i>
+	 *                      violates the
+	 *                      active <code>JOIN</code>
 	 * @see Joinable#setMatchColumn
 	 */
 	public void addRowSet(Joinable rowset) throws SQLException;
@@ -263,15 +245,18 @@ public interface JoinRowSet extends WebRowSet {
 	 * match column set.
 	 *
 	 * @param rowset
-	 *            the <code>RowSet</code> object that is to be added to this
-	 *            <code>JoinRowSet</code> object; it may implement the
-	 *            <code>Joinable</code> interface
+	 *                  the <code>RowSet</code> object that is to be added to
+	 *                  this
+	 *                  <code>JoinRowSet</code> object; it may implement the
+	 *                  <code>Joinable</code> interface
 	 * @param columnIdx
-	 *            an <code>int</code> that identifies the column to become the
-	 *            match column
+	 *                  an <code>int</code> that identifies the column to become
+	 *                  the
+	 *                  match column
 	 * @throws SQLException
-	 *             if (1) <i>rowset</i> is an empty rowset or (2) <i>rowset</i>
-	 *             violates the active <code>JOIN</code>
+	 *                      if (1) <i>rowset</i> is an empty rowset or (2)
+	 *                      <i>rowset</i>
+	 *                      violates the active <code>JOIN</code>
 	 * @see Joinable#unsetMatchColumn
 	 */
 	public void addRowSet(RowSet rowset, int columnIdx) throws SQLException;
@@ -286,16 +271,20 @@ public interface JoinRowSet extends WebRowSet {
 	 * not already have a match column.
 	 *
 	 * @param rowset
-	 *            the <code>RowSet</code> object that is to be added to this
-	 *            <code>JoinRowSet</code> object; it may implement the
-	 *            <code>Joinable</code> interface
+	 *                   the <code>RowSet</code> object that is to be added to
+	 *                   this
+	 *                   <code>JoinRowSet</code> object; it may implement the
+	 *                   <code>Joinable</code> interface
 	 * @param columnName
-	 *            the <code>String</code> object giving the name of the column
-	 *            to be set as the match column
+	 *                   the <code>String</code> object giving the name of the
+	 *                   column
+	 *                   to be set as the match column
 	 * @throws SQLException
-	 *             if (1) <i>rowset</i> is an empty rowset or (2) the match
-	 *             column for <i>rowset</i> does not satisfy the conditions of
-	 *             the <code>JOIN</code>
+	 *                      if (1) <i>rowset</i> is an empty rowset or (2) the
+	 *                      match
+	 *                      column for <i>rowset</i> does not satisfy the
+	 *                      conditions of
+	 *                      the <code>JOIN</code>
 	 */
 	public void addRowSet(RowSet rowset, String columnName) throws SQLException;
 
@@ -317,19 +306,24 @@ public interface JoinRowSet extends WebRowSet {
 	 * not already have a match column.
 	 *
 	 * @param rowset
-	 *            an array of one or more <code>RowSet</code> objects to be
-	 *            added to the <code>JOIN</code>; it may implement the
-	 *            <code>Joinable</code> interface
+	 *                  an array of one or more <code>RowSet</code> objects to
+	 *                  be
+	 *                  added to the <code>JOIN</code>; it may implement the
+	 *                  <code>Joinable</code> interface
 	 * @param columnIdx
-	 *            an array of <code>int</code> values indicating the index(es)
-	 *            of the columns to be set as the match columns for the
-	 *            <code>RowSet</code> objects in <i>rowset</i>
+	 *                  an array of <code>int</code> values indicating the
+	 *                  index(es)
+	 *                  of the columns to be set as the match columns for the
+	 *                  <code>RowSet</code> objects in <i>rowset</i>
 	 * @throws SQLException
-	 *             if (1) an empty rowset is added to this
-	 *             <code>JoinRowSet</code> object, (2) a match column is not set
-	 *             for a <code>RowSet</code> object in <i>rowset</i>, or (3) a
-	 *             <code>RowSet</code> object being added violates the active
-	 *             <code>JOIN</code>
+	 *                      if (1) an empty rowset is added to this
+	 *                      <code>JoinRowSet</code> object, (2) a match column
+	 *                      is not set
+	 *                      for a <code>RowSet</code> object in <i>rowset</i>,
+	 *                      or (3) a
+	 *                      <code>RowSet</code> object being added violates the
+	 *                      active
+	 *                      <code>JOIN</code>
 	 */
 	public void addRowSet(RowSet[] rowset, int[] columnIdx) throws SQLException;
 
@@ -351,21 +345,27 @@ public interface JoinRowSet extends WebRowSet {
 	 * does not already have a match column.
 	 *
 	 * @param rowset
-	 *            an array of one or more <code>RowSet</code> objects to be
-	 *            added to the <code>JOIN</code>; it may implement the
-	 *            <code>Joinable</code> interface
+	 *                   an array of one or more <code>RowSet</code> objects to
+	 *                   be
+	 *                   added to the <code>JOIN</code>; it may implement the
+	 *                   <code>Joinable</code> interface
 	 * @param columnName
-	 *            an array of <code>String</code> values indicating the names of
-	 *            the columns to be set as the match columns for the
-	 *            <code>RowSet</code> objects in <i>rowset</i>
+	 *                   an array of <code>String</code> values indicating the
+	 *                   names of
+	 *                   the columns to be set as the match columns for the
+	 *                   <code>RowSet</code> objects in <i>rowset</i>
 	 * @throws SQLException
-	 *             if (1) an empty rowset is added to this
-	 *             <code>JoinRowSet</code> object, (2) a match column is not set
-	 *             for a <code>RowSet</code> object in <i>rowset</i>, or (3) a
-	 *             <code>RowSet</code> object being added violates the active
-	 *             <code>JOIN</code>
+	 *                      if (1) an empty rowset is added to this
+	 *                      <code>JoinRowSet</code> object, (2) a match column
+	 *                      is not set
+	 *                      for a <code>RowSet</code> object in <i>rowset</i>,
+	 *                      or (3) a
+	 *                      <code>RowSet</code> object being added violates the
+	 *                      active
+	 *                      <code>JOIN</code>
 	 */
-	public void addRowSet(RowSet[] rowset, String[] columnName) throws SQLException;
+	public void addRowSet(RowSet[] rowset, String[] columnName)
+			throws SQLException;
 
 	/**
 	 * Returns a <code>Collection</code> object containing the
@@ -378,8 +378,9 @@ public interface JoinRowSet extends WebRowSet {
 	 *         <code>RowSet</code> objects added to this <code>JoinRowSet</code>
 	 *         object
 	 * @throws SQLException
-	 *             if an error occurs generating the <code>Collection</code>
-	 *             object to be returned
+	 *                      if an error occurs generating the
+	 *                      <code>Collection</code>
+	 *                      object to be returned
 	 */
 	public Collection<?> getRowSets() throws java.sql.SQLException;
 
@@ -391,8 +392,8 @@ public interface JoinRowSet extends WebRowSet {
 	 *         <code>RowSet</code> objects in this <code>JoinRowSet</code>
 	 *         object
 	 * @throws SQLException
-	 *             if an error occurs retrieving the names of the
-	 *             <code>RowSet</code> objects
+	 *                      if an error occurs retrieving the names of the
+	 *                      <code>RowSet</code> objects
 	 * @see CachedRowSet#setTableName
 	 */
 	public String[] getRowSetNames() throws java.sql.SQLException;
@@ -419,7 +420,8 @@ public interface JoinRowSet extends WebRowSet {
 	 *
 	 * @return a CachedRowSet containing the contents of the JoinRowSet
 	 * @throws SQLException
-	 *             if an error occurs assembling the CachedRowSet object
+	 *                      if an error occurs assembling the CachedRowSet
+	 *                      object
 	 * @see javax.sql.RowSet
 	 * @see javax.sql.rowset.CachedRowSet
 	 * @see javax.sql.rowset.spi.SyncProvider
@@ -468,11 +470,13 @@ public interface JoinRowSet extends WebRowSet {
 	 * <code>JOIN</code> type.
 	 *
 	 * @param joinType
-	 *            the standard JoinRowSet.XXX static field definition of a SQL
-	 *            <code>JOIN</code> to re-configure a JoinRowSet instance on the
-	 *            fly.
+	 *                 the standard JoinRowSet.XXX static field definition of a
+	 *                 SQL
+	 *                 <code>JOIN</code> to re-configure a JoinRowSet instance
+	 *                 on the
+	 *                 fly.
 	 * @throws SQLException
-	 *             if an unsupported <code>JOIN</code> type is set
+	 *                      if an unsupported <code>JOIN</code> type is set
 	 * @see #getJoinType
 	 */
 	public void setJoinType(int joinType) throws SQLException;
@@ -487,8 +491,9 @@ public interface JoinRowSet extends WebRowSet {
 	 * @return whereClause a textual or SQL description of the logical WHERE
 	 *         clause used in the JoinRowSet instance
 	 * @throws SQLException
-	 *             if an error occurs in generating a representation of the
-	 *             WHERE clause.
+	 *                      if an error occurs in generating a representation of
+	 *                      the
+	 *                      WHERE clause.
 	 */
 	public String getWhereClause() throws SQLException;
 
@@ -504,8 +509,9 @@ public interface JoinRowSet extends WebRowSet {
 	 *         returned as the default <code>JOIN</code> type is no type has
 	 *         been explicitly set.
 	 * @throws SQLException
-	 *             if an error occurs determining the SQL <code>JOIN</code> type
-	 *             supported by the JoinRowSet instance.
+	 *                      if an error occurs determining the SQL
+	 *                      <code>JOIN</code> type
+	 *                      supported by the JoinRowSet instance.
 	 * @see #setJoinType
 	 */
 	public int getJoinType() throws SQLException;

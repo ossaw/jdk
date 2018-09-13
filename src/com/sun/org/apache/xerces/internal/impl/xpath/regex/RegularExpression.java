@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -374,7 +371,8 @@ import com.sun.org.apache.xerces.internal.util.IntStack;
  * <dd>Grouping with capturing. It make a group and applications can know where
  * in target text a group matched with methods of a <code>Match</code> instance
  * after
- * <code><a href="#matches(java.lang.String, com.sun.org.apache.xerces.internal.utils.regex.Match)">matches(String,Match)</a></code>
+ * <code><a href=
+ * "#matches(java.lang.String, com.sun.org.apache.xerces.internal.utils.regex.Match)">matches(String,Match)</a></code>
  * . The 0th group means whole of this regular expression. The <VAR>N</VAR>th
  * gorup is the inside of the <VAR>N</VAR>th left parenthesis.
  *
@@ -382,7 +380,8 @@ import com.sun.org.apache.xerces.internal.util.IntStack;
  * For instance, a regular expression is
  * "<FONT color=blue><KBD> *([^&lt;:]*) +&lt;([^&gt;]*)&gt; *</KBD></FONT>" and
  * target text is
- * "<FONT color=red><KBD>From: TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>"
+ * "<FONT color=red><KBD>From: TAMURA Kent
+ * &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>"
  * :
  * <ul>
  * <li><code>Match.getCapturedText(0)</code>:
@@ -573,151 +572,159 @@ public class RegularExpression implements java.io.Serializable {
 	private Op compile(Token tok, Op next, boolean reverse) {
 		Op ret;
 		switch (tok.type) {
-		case Token.DOT:
-			ret = Op.createDot();
-			ret.next = next;
-			break;
+			case Token.DOT:
+				ret = Op.createDot();
+				ret.next = next;
+				break;
 
-		case Token.CHAR:
-			ret = Op.createChar(tok.getChar());
-			ret.next = next;
-			break;
+			case Token.CHAR:
+				ret = Op.createChar(tok.getChar());
+				ret.next = next;
+				break;
 
-		case Token.ANCHOR:
-			ret = Op.createAnchor(tok.getChar());
-			ret.next = next;
-			break;
+			case Token.ANCHOR:
+				ret = Op.createAnchor(tok.getChar());
+				ret.next = next;
+				break;
 
-		case Token.RANGE:
-		case Token.NRANGE:
-			ret = Op.createRange(tok);
-			ret.next = next;
-			break;
+			case Token.RANGE:
+			case Token.NRANGE:
+				ret = Op.createRange(tok);
+				ret.next = next;
+				break;
 
-		case Token.CONCAT:
-			ret = next;
-			if (!reverse) {
-				for (int i = tok.size() - 1; i >= 0; i--) {
-					ret = compile(tok.getChild(i), ret, false);
-				}
-			} else {
-				for (int i = 0; i < tok.size(); i++) {
-					ret = compile(tok.getChild(i), ret, true);
-				}
-			}
-			break;
-
-		case Token.UNION:
-			Op.UnionOp uni = Op.createUnion(tok.size());
-			for (int i = 0; i < tok.size(); i++) {
-				uni.addElement(compile(tok.getChild(i), next, reverse));
-			}
-			ret = uni; // ret.next is null.
-			break;
-
-		case Token.CLOSURE:
-		case Token.NONGREEDYCLOSURE:
-			Token child = tok.getChild(0);
-			int min = tok.getMin();
-			int max = tok.getMax();
-			if (min >= 0 && min == max) { // {n}
+			case Token.CONCAT:
 				ret = next;
-				for (int i = 0; i < min; i++) {
-					ret = compile(child, ret, reverse);
+				if (!reverse) {
+					for (int i = tok.size() - 1; i >= 0; i--) {
+						ret = compile(tok.getChild(i), ret, false);
+					}
+				} else {
+					for (int i = 0; i < tok.size(); i++) {
+						ret = compile(tok.getChild(i), ret, true);
+					}
 				}
 				break;
-			}
-			if (min > 0 && max > 0)
-				max -= min;
-			if (max > 0) {
-				// X{2,6} -> XX(X(X(XX?)?)?)?
+
+			case Token.UNION:
+				Op.UnionOp uni = Op.createUnion(tok.size());
+				for (int i = 0; i < tok.size(); i++) {
+					uni.addElement(compile(tok.getChild(i), next, reverse));
+				}
+				ret = uni; // ret.next is null.
+				break;
+
+			case Token.CLOSURE:
+			case Token.NONGREEDYCLOSURE:
+				Token child = tok.getChild(0);
+				int min = tok.getMin();
+				int max = tok.getMax();
+				if (min >= 0 && min == max) { // {n}
+					ret = next;
+					for (int i = 0; i < min; i++) {
+						ret = compile(child, ret, reverse);
+					}
+					break;
+				}
+				if (min > 0 && max > 0)
+					max -= min;
+				if (max > 0) {
+					// X{2,6} -> XX(X(X(XX?)?)?)?
+					ret = next;
+					for (int i = 0; i < max; i++) {
+						Op.ChildOp q = Op.createQuestion(
+								tok.type == Token.NONGREEDYCLOSURE);
+						q.next = next;
+						q.setChild(compile(child, ret, reverse));
+						ret = q;
+					}
+				} else {
+					Op.ChildOp op;
+					if (tok.type == Token.NONGREEDYCLOSURE) {
+						op = Op.createNonGreedyClosure();
+					} else { // Token.CLOSURE
+						op = Op.createClosure(this.numberOfClosures++);
+					}
+					op.next = next;
+					op.setChild(compile(child, op, reverse));
+					ret = op;
+				}
+				if (min > 0) {
+					for (int i = 0; i < min; i++) {
+						ret = compile(child, ret, reverse);
+					}
+				}
+				break;
+
+			case Token.EMPTY:
 				ret = next;
-				for (int i = 0; i < max; i++) {
-					Op.ChildOp q = Op.createQuestion(tok.type == Token.NONGREEDYCLOSURE);
-					q.next = next;
-					q.setChild(compile(child, ret, reverse));
-					ret = q;
+				break;
+
+			case Token.STRING:
+				ret = Op.createString(tok.getString());
+				ret.next = next;
+				break;
+
+			case Token.BACKREFERENCE:
+				ret = Op.createBackReference(tok.getReferenceNumber());
+				ret.next = next;
+				break;
+
+			case Token.PAREN:
+				if (tok.getParenNumber() == 0) {
+					ret = compile(tok.getChild(0), next, reverse);
+				} else if (reverse) {
+					next = Op.createCapture(tok.getParenNumber(), next);
+					next = compile(tok.getChild(0), next, reverse);
+					ret = Op.createCapture(-tok.getParenNumber(), next);
+				} else {
+					next = Op.createCapture(-tok.getParenNumber(), next);
+					next = compile(tok.getChild(0), next, reverse);
+					ret = Op.createCapture(tok.getParenNumber(), next);
 				}
-			} else {
-				Op.ChildOp op;
-				if (tok.type == Token.NONGREEDYCLOSURE) {
-					op = Op.createNonGreedyClosure();
-				} else { // Token.CLOSURE
-					op = Op.createClosure(this.numberOfClosures++);
-				}
-				op.next = next;
-				op.setChild(compile(child, op, reverse));
-				ret = op;
-			}
-			if (min > 0) {
-				for (int i = 0; i < min; i++) {
-					ret = compile(child, ret, reverse);
-				}
-			}
-			break;
+				break;
 
-		case Token.EMPTY:
-			ret = next;
-			break;
+			case Token.LOOKAHEAD:
+				ret = Op.createLook(Op.LOOKAHEAD, next, compile(tok.getChild(0),
+						null, false));
+				break;
+			case Token.NEGATIVELOOKAHEAD:
+				ret = Op.createLook(Op.NEGATIVELOOKAHEAD, next, compile(tok
+						.getChild(0), null, false));
+				break;
+			case Token.LOOKBEHIND:
+				ret = Op.createLook(Op.LOOKBEHIND, next, compile(tok.getChild(
+						0), null, true));
+				break;
+			case Token.NEGATIVELOOKBEHIND:
+				ret = Op.createLook(Op.NEGATIVELOOKBEHIND, next, compile(tok
+						.getChild(0), null, true));
+				break;
 
-		case Token.STRING:
-			ret = Op.createString(tok.getString());
-			ret.next = next;
-			break;
+			case Token.INDEPENDENT:
+				ret = Op.createIndependent(next, compile(tok.getChild(0), null,
+						reverse));
+				break;
 
-		case Token.BACKREFERENCE:
-			ret = Op.createBackReference(tok.getReferenceNumber());
-			ret.next = next;
-			break;
+			case Token.MODIFIERGROUP:
+				ret = Op.createModifier(next, compile(tok.getChild(0), null,
+						reverse), ((Token.ModifierToken) tok).getOptions(),
+						((Token.ModifierToken) tok).getOptionsMask());
+				break;
 
-		case Token.PAREN:
-			if (tok.getParenNumber() == 0) {
-				ret = compile(tok.getChild(0), next, reverse);
-			} else if (reverse) {
-				next = Op.createCapture(tok.getParenNumber(), next);
-				next = compile(tok.getChild(0), next, reverse);
-				ret = Op.createCapture(-tok.getParenNumber(), next);
-			} else {
-				next = Op.createCapture(-tok.getParenNumber(), next);
-				next = compile(tok.getChild(0), next, reverse);
-				ret = Op.createCapture(tok.getParenNumber(), next);
-			}
-			break;
+			case Token.CONDITION:
+				Token.ConditionToken ctok = (Token.ConditionToken) tok;
+				int ref = ctok.refNumber;
+				Op condition = ctok.condition == null ? null
+						: compile(ctok.condition, null, reverse);
+				Op yes = compile(ctok.yes, next, reverse);
+				Op no = ctok.no == null ? null
+						: compile(ctok.no, next, reverse);
+				ret = Op.createCondition(next, ref, condition, yes, no);
+				break;
 
-		case Token.LOOKAHEAD:
-			ret = Op.createLook(Op.LOOKAHEAD, next, compile(tok.getChild(0), null, false));
-			break;
-		case Token.NEGATIVELOOKAHEAD:
-			ret = Op.createLook(Op.NEGATIVELOOKAHEAD, next, compile(tok.getChild(0), null, false));
-			break;
-		case Token.LOOKBEHIND:
-			ret = Op.createLook(Op.LOOKBEHIND, next, compile(tok.getChild(0), null, true));
-			break;
-		case Token.NEGATIVELOOKBEHIND:
-			ret = Op.createLook(Op.NEGATIVELOOKBEHIND, next, compile(tok.getChild(0), null, true));
-			break;
-
-		case Token.INDEPENDENT:
-			ret = Op.createIndependent(next, compile(tok.getChild(0), null, reverse));
-			break;
-
-		case Token.MODIFIERGROUP:
-			ret = Op.createModifier(next, compile(tok.getChild(0), null, reverse),
-					((Token.ModifierToken) tok).getOptions(),
-					((Token.ModifierToken) tok).getOptionsMask());
-			break;
-
-		case Token.CONDITION:
-			Token.ConditionToken ctok = (Token.ConditionToken) tok;
-			int ref = ctok.refNumber;
-			Op condition = ctok.condition == null ? null : compile(ctok.condition, null, reverse);
-			Op yes = compile(ctok.yes, next, reverse);
-			Op no = ctok.no == null ? null : compile(ctok.no, next, reverse);
-			ret = Op.createCondition(next, ref, condition, yes, no);
-			break;
-
-		default:
-			throw new RuntimeException("Unknown token type: " + tok.type);
+			default:
+				throw new RuntimeException("Unknown token type: " + tok.type);
 		} // switch (tok.type)
 		return ret;
 	}
@@ -739,9 +746,9 @@ public class RegularExpression implements java.io.Serializable {
 	 * pattern in specified range or not.
 	 *
 	 * @param start
-	 *            Start offset of the range.
+	 *              Start offset of the range.
 	 * @param end
-	 *            End offset +1 of the range.
+	 *              End offset +1 of the range.
 	 * @return true if the target is matched to this regular expression.
 	 */
 	public boolean matches(char[] target, int start, int end) {
@@ -753,7 +760,7 @@ public class RegularExpression implements java.io.Serializable {
 	 * pattern or not.
 	 *
 	 * @param match
-	 *            A Match instance for storing matching result.
+	 *              A Match instance for storing matching result.
 	 * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
 	 *         match.
 	 */
@@ -766,11 +773,11 @@ public class RegularExpression implements java.io.Serializable {
 	 * pattern in specified range or not.
 	 *
 	 * @param start
-	 *            Start offset of the range.
+	 *              Start offset of the range.
 	 * @param end
-	 *            End offset +1 of the range.
+	 *              End offset +1 of the range.
 	 * @param match
-	 *            A Match instance for storing matching result.
+	 *              A Match instance for storing matching result.
 	 * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
 	 *         match.
 	 */
@@ -799,7 +806,8 @@ public class RegularExpression implements java.io.Serializable {
 		con.match = match;
 
 		if (RegularExpression.isSet(this.options, XMLSCHEMA_MODE)) {
-			int matchEnd = this.match(con, this.operations, con.start, 1, this.options);
+			int matchEnd = this.match(con, this.operations, con.start, 1,
+					this.options);
 			// System.err.println("DEBUG: matchEnd="+matchEnd);
 			if (matchEnd == con.limit) {
 				if (con.match != null) {
@@ -855,7 +863,8 @@ public class RegularExpression implements java.io.Serializable {
 				&& this.operations.getChild().type == Op.DOT) {
 			if (isSet(this.options, SINGLE_LINE)) {
 				matchStart = con.start;
-				matchEnd = this.match(con, this.operations, con.start, 1, this.options);
+				matchEnd = this.match(con, this.operations, con.start, 1,
+						this.options);
 			} else {
 				boolean previousIsEOL = true;
 				for (matchStart = con.start; matchStart <= limit; matchStart++) {
@@ -864,7 +873,8 @@ public class RegularExpression implements java.io.Serializable {
 						previousIsEOL = true;
 					} else {
 						if (previousIsEOL) {
-							if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1,
+							if (0 <= (matchEnd = this.match(con,
+									this.operations, matchStart, 1,
 									this.options)))
 								break;
 						}
@@ -884,13 +894,14 @@ public class RegularExpression implements java.io.Serializable {
 			for (matchStart = con.start; matchStart <= limit; matchStart++) {
 				int ch = target[matchStart];
 				if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit) {
-					ch = REUtil.composeFromSurrogates(ch, target[matchStart + 1]);
+					ch = REUtil.composeFromSurrogates(ch, target[matchStart
+							+ 1]);
 				}
 				if (!range.match(ch)) {
 					continue;
 				}
-				if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1,
-						this.options))) {
+				if (0 <= (matchEnd = this.match(con, this.operations,
+						matchStart, 1, this.options))) {
 					break;
 				}
 			}
@@ -901,7 +912,8 @@ public class RegularExpression implements java.io.Serializable {
 		 */
 		else {
 			for (matchStart = con.start; matchStart <= limit; matchStart++) {
-				if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1, this.options)))
+				if (0 <= (matchEnd = this.match(con, this.operations,
+						matchStart, 1, this.options)))
 					break;
 			}
 		}
@@ -934,9 +946,9 @@ public class RegularExpression implements java.io.Serializable {
 	 * pattern in specified range or not.
 	 *
 	 * @param start
-	 *            Start offset of the range.
+	 *              Start offset of the range.
 	 * @param end
-	 *            End offset +1 of the range.
+	 *              End offset +1 of the range.
 	 * @return true if the target is matched to this regular expression.
 	 */
 	public boolean matches(String target, int start, int end) {
@@ -948,7 +960,7 @@ public class RegularExpression implements java.io.Serializable {
 	 * pattern or not.
 	 *
 	 * @param match
-	 *            A Match instance for storing matching result.
+	 *              A Match instance for storing matching result.
 	 * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
 	 *         match.
 	 */
@@ -961,11 +973,11 @@ public class RegularExpression implements java.io.Serializable {
 	 * pattern in specified range or not.
 	 *
 	 * @param start
-	 *            Start offset of the range.
+	 *              Start offset of the range.
 	 * @param end
-	 *            End offset +1 of the range.
+	 *              End offset +1 of the range.
 	 * @param match
-	 *            A Match instance for storing matching result.
+	 *              A Match instance for storing matching result.
 	 * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
 	 *         match.
 	 */
@@ -997,7 +1009,8 @@ public class RegularExpression implements java.io.Serializable {
 			if (DEBUG) {
 				System.err.println("target string=" + target);
 			}
-			int matchEnd = this.match(con, this.operations, con.start, 1, this.options);
+			int matchEnd = this.match(con, this.operations, con.start, 1,
+					this.options);
 			if (DEBUG) {
 				System.err.println("matchEnd=" + matchEnd);
 				System.err.println("con.limit=" + con.limit);
@@ -1056,7 +1069,8 @@ public class RegularExpression implements java.io.Serializable {
 				&& this.operations.getChild().type == Op.DOT) {
 			if (isSet(this.options, SINGLE_LINE)) {
 				matchStart = con.start;
-				matchEnd = this.match(con, this.operations, con.start, 1, this.options);
+				matchEnd = this.match(con, this.operations, con.start, 1,
+						this.options);
 			} else {
 				boolean previousIsEOL = true;
 				for (matchStart = con.start; matchStart <= limit; matchStart++) {
@@ -1065,7 +1079,8 @@ public class RegularExpression implements java.io.Serializable {
 						previousIsEOL = true;
 					} else {
 						if (previousIsEOL) {
-							if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1,
+							if (0 <= (matchEnd = this.match(con,
+									this.operations, matchStart, 1,
 									this.options)))
 								break;
 						}
@@ -1085,13 +1100,14 @@ public class RegularExpression implements java.io.Serializable {
 			for (matchStart = con.start; matchStart <= limit; matchStart++) {
 				int ch = target.charAt(matchStart);
 				if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit) {
-					ch = REUtil.composeFromSurrogates(ch, target.charAt(matchStart + 1));
+					ch = REUtil.composeFromSurrogates(ch, target.charAt(
+							matchStart + 1));
 				}
 				if (!range.match(ch)) {
 					continue;
 				}
-				if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1,
-						this.options))) {
+				if (0 <= (matchEnd = this.match(con, this.operations,
+						matchStart, 1, this.options))) {
 					break;
 				}
 			}
@@ -1102,7 +1118,8 @@ public class RegularExpression implements java.io.Serializable {
 		 */
 		else {
 			for (matchStart = con.start; matchStart <= limit; matchStart++) {
-				if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1, this.options)))
+				if (0 <= (matchEnd = this.match(con, this.operations,
+						matchStart, 1, this.options)))
 					break;
 			}
 		}
@@ -1135,7 +1152,8 @@ public class RegularExpression implements java.io.Serializable {
 		for (;;) {
 			if (op == null || offset > con.limit || offset < con.start) {
 				if (op == null) {
-					retValue = isSet(opts, XMLSCHEMA_MODE) && offset != con.limit ? -1 : offset;
+					retValue = isSet(opts, XMLSCHEMA_MODE)
+							&& offset != con.limit ? -1 : offset;
 				} else {
 					retValue = -1;
 				}
@@ -1144,243 +1162,252 @@ public class RegularExpression implements java.io.Serializable {
 				retValue = -1;
 				// dx value is either 1 or -1
 				switch (op.type) {
-				case Op.CHAR: {
-					final int o1 = (dx > 0) ? offset : offset - 1;
-					if (o1 >= con.limit || o1 < 0
-							|| !matchChar(op.getData(), target.charAt(o1), isSetIgnoreCase)) {
-						returned = true;
-						break;
-					}
-					offset += dx;
-					op = op.next;
-				}
-					break;
-
-				case Op.DOT: {
-					int o1 = (dx > 0) ? offset : offset - 1;
-					if (o1 >= con.limit || o1 < 0) {
-						returned = true;
-						break;
-					}
-					if (isSet(opts, SINGLE_LINE)) {
-						if (REUtil.isHighSurrogate(target.charAt(o1)) && o1 + dx >= 0
-								&& o1 + dx < con.limit) {
-							o1 += dx;
-						}
-					} else {
-						int ch = target.charAt(o1);
-						if (REUtil.isHighSurrogate(ch) && o1 + dx >= 0 && o1 + dx < con.limit) {
-							o1 += dx;
-							ch = REUtil.composeFromSurrogates(ch, target.charAt(o1));
-						}
-						if (isEOLChar(ch)) {
+					case Op.CHAR: {
+						final int o1 = (dx > 0) ? offset : offset - 1;
+						if (o1 >= con.limit || o1 < 0 || !matchChar(op
+								.getData(), target.charAt(o1),
+								isSetIgnoreCase)) {
 							returned = true;
 							break;
 						}
+						offset += dx;
+						op = op.next;
 					}
-					offset = (dx > 0) ? o1 + 1 : o1;
-					op = op.next;
-				}
-					break;
+						break;
 
-				case Op.RANGE:
-				case Op.NRANGE: {
-					int o1 = (dx > 0) ? offset : offset - 1;
-					if (o1 >= con.limit || o1 < 0) {
-						returned = true;
-						break;
-					}
-					int ch = target.charAt(offset);
-					if (REUtil.isHighSurrogate(ch) && o1 + dx < con.limit && o1 + dx >= 0) {
-						o1 += dx;
-						ch = REUtil.composeFromSurrogates(ch, target.charAt(o1));
-					}
-					final RangeToken tok = op.getToken();
-					if (!tok.match(ch)) {
-						returned = true;
-						break;
-					}
-					offset = (dx > 0) ? o1 + 1 : o1;
-					op = op.next;
-				}
-					break;
-
-				case Op.ANCHOR: {
-					if (!matchAnchor(target, op, con, offset, opts)) {
-						returned = true;
-						break;
-					}
-					op = op.next;
-				}
-					break;
-
-				case Op.BACKREFERENCE: {
-					int refno = op.getData();
-					if (refno <= 0 || refno >= this.nofparen) {
-						throw new RuntimeException(
-								"Internal Error: Reference number must be more than zero: "
-										+ refno);
-					}
-					if (con.match.getBeginning(refno) < 0 || con.match.getEnd(refno) < 0) {
-						returned = true;
-						break;
-					}
-					int o2 = con.match.getBeginning(refno);
-					int literallen = con.match.getEnd(refno) - o2;
-					if (dx > 0) {
-						if (!target.regionMatches(isSetIgnoreCase, offset, con.limit, o2,
-								literallen)) {
+					case Op.DOT: {
+						int o1 = (dx > 0) ? offset : offset - 1;
+						if (o1 >= con.limit || o1 < 0) {
 							returned = true;
 							break;
 						}
-						offset += literallen;
-					} else {
-						if (!target.regionMatches(isSetIgnoreCase, offset - literallen, con.limit,
-								o2, literallen)) {
-							returned = true;
-							break;
-						}
-						offset -= literallen;
-					}
-					op = op.next;
-				}
-					break;
-
-				case Op.STRING: {
-					String literal = op.getString();
-					int literallen = literal.length();
-					if (dx > 0) {
-						if (!target.regionMatches(isSetIgnoreCase, offset, con.limit, literal,
-								literallen)) {
-							returned = true;
-							break;
-						}
-						offset += literallen;
-					} else {
-						if (!target.regionMatches(isSetIgnoreCase, offset - literallen, con.limit,
-								literal, literallen)) {
-							returned = true;
-							break;
-						}
-						offset -= literallen;
-					}
-					op = op.next;
-				}
-					break;
-
-				case Op.CLOSURE: {
-					// Saves current position to avoid zero-width repeats.
-					final int id = op.getData();
-					if (con.closureContexts[id].contains(offset)) {
-						returned = true;
-						break;
-					}
-
-					con.closureContexts[id].addOffset(offset);
-				}
-				// fall through
-
-				case Op.QUESTION: {
-					opStack.push(op);
-					dataStack.push(offset);
-					op = op.getChild();
-				}
-					break;
-
-				case Op.NONGREEDYCLOSURE:
-				case Op.NONGREEDYQUESTION: {
-					opStack.push(op);
-					dataStack.push(offset);
-					op = op.next;
-				}
-					break;
-
-				case Op.UNION:
-					if (op.size() == 0) {
-						returned = true;
-					} else {
-						opStack.push(op);
-						dataStack.push(0);
-						dataStack.push(offset);
-						op = op.elementAt(0);
-					}
-					break;
-
-				case Op.CAPTURE: {
-					final int refno = op.getData();
-					if (con.match != null) {
-						if (refno > 0) {
-							dataStack.push(con.match.getBeginning(refno));
-							con.match.setBeginning(refno, offset);
+						if (isSet(opts, SINGLE_LINE)) {
+							if (REUtil.isHighSurrogate(target.charAt(o1)) && o1
+									+ dx >= 0 && o1 + dx < con.limit) {
+								o1 += dx;
+							}
 						} else {
-							final int index = -refno;
-							dataStack.push(con.match.getEnd(index));
-							con.match.setEnd(index, offset);
+							int ch = target.charAt(o1);
+							if (REUtil.isHighSurrogate(ch) && o1 + dx >= 0 && o1
+									+ dx < con.limit) {
+								o1 += dx;
+								ch = REUtil.composeFromSurrogates(ch, target
+										.charAt(o1));
+							}
+							if (isEOLChar(ch)) {
+								returned = true;
+								break;
+							}
 						}
-						opStack.push(op);
-						dataStack.push(offset);
+						offset = (dx > 0) ? o1 + 1 : o1;
+						op = op.next;
 					}
-					op = op.next;
-				}
-					break;
+						break;
 
-				case Op.LOOKAHEAD:
-				case Op.NEGATIVELOOKAHEAD:
-				case Op.LOOKBEHIND:
-				case Op.NEGATIVELOOKBEHIND: {
-					opStack.push(op);
-					dataStack.push(dx);
-					dataStack.push(offset);
-					dx = (op.type == Op.LOOKAHEAD || op.type == Op.NEGATIVELOOKAHEAD) ? 1 : -1;
-					op = op.getChild();
-				}
-					break;
+					case Op.RANGE:
+					case Op.NRANGE: {
+						int o1 = (dx > 0) ? offset : offset - 1;
+						if (o1 >= con.limit || o1 < 0) {
+							returned = true;
+							break;
+						}
+						int ch = target.charAt(offset);
+						if (REUtil.isHighSurrogate(ch) && o1 + dx < con.limit
+								&& o1 + dx >= 0) {
+							o1 += dx;
+							ch = REUtil.composeFromSurrogates(ch, target.charAt(
+									o1));
+						}
+						final RangeToken tok = op.getToken();
+						if (!tok.match(ch)) {
+							returned = true;
+							break;
+						}
+						offset = (dx > 0) ? o1 + 1 : o1;
+						op = op.next;
+					}
+						break;
 
-				case Op.INDEPENDENT: {
-					opStack.push(op);
-					dataStack.push(offset);
-					op = op.getChild();
-				}
-					break;
+					case Op.ANCHOR: {
+						if (!matchAnchor(target, op, con, offset, opts)) {
+							returned = true;
+							break;
+						}
+						op = op.next;
+					}
+						break;
 
-				case Op.MODIFIER: {
-					int localopts = opts;
-					localopts |= op.getData();
-					localopts &= ~op.getData2();
-					opStack.push(op);
-					dataStack.push(opts);
-					dataStack.push(offset);
-					opts = localopts;
-					op = op.getChild();
-				}
-					break;
-
-				case Op.CONDITION: {
-					Op.ConditionOp cop = (Op.ConditionOp) op;
-					if (cop.refNumber > 0) {
-						if (cop.refNumber >= this.nofparen) {
+					case Op.BACKREFERENCE: {
+						int refno = op.getData();
+						if (refno <= 0 || refno >= this.nofparen) {
 							throw new RuntimeException(
 									"Internal Error: Reference number must be more than zero: "
-											+ cop.refNumber);
+											+ refno);
 						}
-						if (con.match.getBeginning(cop.refNumber) >= 0
-								&& con.match.getEnd(cop.refNumber) >= 0) {
-							op = cop.yes;
-						} else if (cop.no != null) {
-							op = cop.no;
+						if (con.match.getBeginning(refno) < 0 || con.match
+								.getEnd(refno) < 0) {
+							returned = true;
+							break;
+						}
+						int o2 = con.match.getBeginning(refno);
+						int literallen = con.match.getEnd(refno) - o2;
+						if (dx > 0) {
+							if (!target.regionMatches(isSetIgnoreCase, offset,
+									con.limit, o2, literallen)) {
+								returned = true;
+								break;
+							}
+							offset += literallen;
 						} else {
-							op = cop.next;
+							if (!target.regionMatches(isSetIgnoreCase, offset
+									- literallen, con.limit, o2, literallen)) {
+								returned = true;
+								break;
+							}
+							offset -= literallen;
 						}
-					} else {
+						op = op.next;
+					}
+						break;
+
+					case Op.STRING: {
+						String literal = op.getString();
+						int literallen = literal.length();
+						if (dx > 0) {
+							if (!target.regionMatches(isSetIgnoreCase, offset,
+									con.limit, literal, literallen)) {
+								returned = true;
+								break;
+							}
+							offset += literallen;
+						} else {
+							if (!target.regionMatches(isSetIgnoreCase, offset
+									- literallen, con.limit, literal,
+									literallen)) {
+								returned = true;
+								break;
+							}
+							offset -= literallen;
+						}
+						op = op.next;
+					}
+						break;
+
+					case Op.CLOSURE: {
+						// Saves current position to avoid zero-width repeats.
+						final int id = op.getData();
+						if (con.closureContexts[id].contains(offset)) {
+							returned = true;
+							break;
+						}
+
+						con.closureContexts[id].addOffset(offset);
+					}
+					// fall through
+
+					case Op.QUESTION: {
 						opStack.push(op);
 						dataStack.push(offset);
-						op = cop.condition;
+						op = op.getChild();
 					}
-				}
-					break;
+						break;
 
-				default:
-					throw new RuntimeException("Unknown operation type: " + op.type);
+					case Op.NONGREEDYCLOSURE:
+					case Op.NONGREEDYQUESTION: {
+						opStack.push(op);
+						dataStack.push(offset);
+						op = op.next;
+					}
+						break;
+
+					case Op.UNION:
+						if (op.size() == 0) {
+							returned = true;
+						} else {
+							opStack.push(op);
+							dataStack.push(0);
+							dataStack.push(offset);
+							op = op.elementAt(0);
+						}
+						break;
+
+					case Op.CAPTURE: {
+						final int refno = op.getData();
+						if (con.match != null) {
+							if (refno > 0) {
+								dataStack.push(con.match.getBeginning(refno));
+								con.match.setBeginning(refno, offset);
+							} else {
+								final int index = -refno;
+								dataStack.push(con.match.getEnd(index));
+								con.match.setEnd(index, offset);
+							}
+							opStack.push(op);
+							dataStack.push(offset);
+						}
+						op = op.next;
+					}
+						break;
+
+					case Op.LOOKAHEAD:
+					case Op.NEGATIVELOOKAHEAD:
+					case Op.LOOKBEHIND:
+					case Op.NEGATIVELOOKBEHIND: {
+						opStack.push(op);
+						dataStack.push(dx);
+						dataStack.push(offset);
+						dx = (op.type == Op.LOOKAHEAD
+								|| op.type == Op.NEGATIVELOOKAHEAD) ? 1 : -1;
+						op = op.getChild();
+					}
+						break;
+
+					case Op.INDEPENDENT: {
+						opStack.push(op);
+						dataStack.push(offset);
+						op = op.getChild();
+					}
+						break;
+
+					case Op.MODIFIER: {
+						int localopts = opts;
+						localopts |= op.getData();
+						localopts &= ~op.getData2();
+						opStack.push(op);
+						dataStack.push(opts);
+						dataStack.push(offset);
+						opts = localopts;
+						op = op.getChild();
+					}
+						break;
+
+					case Op.CONDITION: {
+						Op.ConditionOp cop = (Op.ConditionOp) op;
+						if (cop.refNumber > 0) {
+							if (cop.refNumber >= this.nofparen) {
+								throw new RuntimeException(
+										"Internal Error: Reference number must be more than zero: "
+												+ cop.refNumber);
+							}
+							if (con.match.getBeginning(cop.refNumber) >= 0
+									&& con.match.getEnd(cop.refNumber) >= 0) {
+								op = cop.yes;
+							} else if (cop.no != null) {
+								op = cop.no;
+							} else {
+								op = cop.next;
+							}
+						} else {
+							opStack.push(op);
+							dataStack.push(offset);
+							op = cop.condition;
+						}
+					}
+						break;
+
+					default:
+						throw new RuntimeException("Unknown operation type: "
+								+ op.type);
 				}
 			}
 
@@ -1395,103 +1422,104 @@ public class RegularExpression implements java.io.Serializable {
 				offset = dataStack.pop();
 
 				switch (op.type) {
-				case Op.CLOSURE:
-				case Op.QUESTION:
-					if (retValue < 0) {
-						op = op.next;
-						returned = false;
-					}
-					break;
-
-				case Op.NONGREEDYCLOSURE:
-				case Op.NONGREEDYQUESTION:
-					if (retValue < 0) {
-						op = op.getChild();
-						returned = false;
-					}
-					break;
-
-				case Op.UNION: {
-					int unionIndex = dataStack.pop();
-					if (DEBUG) {
-						System.err.println("UNION: " + unionIndex + ", ret=" + retValue);
-					}
-
-					if (retValue < 0) {
-						if (++unionIndex < op.size()) {
-							opStack.push(op);
-							dataStack.push(unionIndex);
-							dataStack.push(offset);
-							op = op.elementAt(unionIndex);
+					case Op.CLOSURE:
+					case Op.QUESTION:
+						if (retValue < 0) {
+							op = op.next;
 							returned = false;
-						} else {
-							retValue = -1;
+						}
+						break;
+
+					case Op.NONGREEDYCLOSURE:
+					case Op.NONGREEDYQUESTION:
+						if (retValue < 0) {
+							op = op.getChild();
+							returned = false;
+						}
+						break;
+
+					case Op.UNION: {
+						int unionIndex = dataStack.pop();
+						if (DEBUG) {
+							System.err.println("UNION: " + unionIndex + ", ret="
+									+ retValue);
+						}
+
+						if (retValue < 0) {
+							if (++unionIndex < op.size()) {
+								opStack.push(op);
+								dataStack.push(unionIndex);
+								dataStack.push(offset);
+								op = op.elementAt(unionIndex);
+								returned = false;
+							} else {
+								retValue = -1;
+							}
 						}
 					}
-				}
-					break;
+						break;
 
-				case Op.CAPTURE:
-					final int refno = op.getData();
-					final int saved = dataStack.pop();
-					if (retValue < 0) {
-						if (refno > 0) {
-							con.match.setBeginning(refno, saved);
+					case Op.CAPTURE:
+						final int refno = op.getData();
+						final int saved = dataStack.pop();
+						if (retValue < 0) {
+							if (refno > 0) {
+								con.match.setBeginning(refno, saved);
+							} else {
+								con.match.setEnd(-refno, saved);
+							}
+						}
+						break;
+
+					case Op.LOOKAHEAD:
+					case Op.LOOKBEHIND: {
+						dx = dataStack.pop();
+						if (0 <= retValue) {
+							op = op.next;
+							returned = false;
+						}
+						retValue = -1;
+					}
+						break;
+
+					case Op.NEGATIVELOOKAHEAD:
+					case Op.NEGATIVELOOKBEHIND: {
+						dx = dataStack.pop();
+						if (0 > retValue) {
+							op = op.next;
+							returned = false;
+						}
+						retValue = -1;
+					}
+						break;
+
+					case Op.MODIFIER:
+						opts = dataStack.pop();
+						// fall through
+
+					case Op.INDEPENDENT:
+						if (retValue >= 0) {
+							offset = retValue;
+							op = op.next;
+							returned = false;
+						}
+						break;
+
+					case Op.CONDITION: {
+						final Op.ConditionOp cop = (Op.ConditionOp) op;
+						if (0 <= retValue) {
+							op = cop.yes;
+						} else if (cop.no != null) {
+							op = cop.no;
 						} else {
-							con.match.setEnd(-refno, saved);
+							op = cop.next;
 						}
 					}
-					break;
-
-				case Op.LOOKAHEAD:
-				case Op.LOOKBEHIND: {
-					dx = dataStack.pop();
-					if (0 <= retValue) {
-						op = op.next;
 						returned = false;
-					}
-					retValue = -1;
-				}
-					break;
+						break;
 
-				case Op.NEGATIVELOOKAHEAD:
-				case Op.NEGATIVELOOKBEHIND: {
-					dx = dataStack.pop();
-					if (0 > retValue) {
-						op = op.next;
-						returned = false;
-					}
-					retValue = -1;
-				}
-					break;
-
-				case Op.MODIFIER:
-					opts = dataStack.pop();
-					// fall through
-
-				case Op.INDEPENDENT:
-					if (retValue >= 0) {
-						offset = retValue;
-						op = op.next;
-						returned = false;
-					}
-					break;
-
-				case Op.CONDITION: {
-					final Op.ConditionOp cop = (Op.ConditionOp) op;
-					if (0 <= retValue) {
-						op = cop.yes;
-					} else if (cop.no != null) {
-						op = cop.no;
-					} else {
-						op = cop.next;
-					}
-				}
-					returned = false;
-					break;
-
-				default:
-					break;
+					default:
+						break;
 				}
 			}
 		}
@@ -1501,112 +1529,125 @@ public class RegularExpression implements java.io.Serializable {
 		return (ignoreCase) ? matchIgnoreCase(ch, other) : ch == other;
 	}
 
-	boolean matchAnchor(ExpressionTarget target, Op op, Context con, int offset, int opts) {
+	boolean matchAnchor(ExpressionTarget target, Op op, Context con, int offset,
+			int opts) {
 		boolean go = false;
 		switch (op.getData()) {
-		case '^':
-			if (isSet(opts, MULTIPLE_LINES)) {
-				if (!(offset == con.start || offset > con.start && offset < con.limit
-						&& isEOLChar(target.charAt(offset - 1))))
+			case '^':
+				if (isSet(opts, MULTIPLE_LINES)) {
+					if (!(offset == con.start || offset > con.start
+							&& offset < con.limit && isEOLChar(target.charAt(
+									offset - 1))))
+						return false;
+				} else {
+					if (offset != con.start)
+						return false;
+				}
+				break;
+
+			case '@': // Internal use only.
+				// The @ always matches line beginnings.
+				if (!(offset == con.start || offset > con.start && isEOLChar(
+						target.charAt(offset - 1))))
 					return false;
-			} else {
+				break;
+
+			case '$':
+				if (isSet(opts, MULTIPLE_LINES)) {
+					if (!(offset == con.limit || offset < con.limit
+							&& isEOLChar(target.charAt(offset))))
+						return false;
+				} else {
+					if (!(offset == con.limit || offset + 1 == con.limit
+							&& isEOLChar(target.charAt(offset)) || offset
+									+ 2 == con.limit && target.charAt(
+											offset) == CARRIAGE_RETURN && target
+													.charAt(offset
+															+ 1) == LINE_FEED))
+						return false;
+				}
+				break;
+
+			case 'A':
 				if (offset != con.start)
 					return false;
-			}
-			break;
+				break;
 
-		case '@': // Internal use only.
-			// The @ always matches line beginnings.
-			if (!(offset == con.start
-					|| offset > con.start && isEOLChar(target.charAt(offset - 1))))
-				return false;
-			break;
-
-		case '$':
-			if (isSet(opts, MULTIPLE_LINES)) {
-				if (!(offset == con.limit
-						|| offset < con.limit && isEOLChar(target.charAt(offset))))
+			case 'Z':
+				if (!(offset == con.limit || offset + 1 == con.limit
+						&& isEOLChar(target.charAt(offset)) || offset
+								+ 2 == con.limit && target.charAt(
+										offset) == CARRIAGE_RETURN && target
+												.charAt(offset
+														+ 1) == LINE_FEED))
 					return false;
-			} else {
-				if (!(offset == con.limit
-						|| offset + 1 == con.limit && isEOLChar(target.charAt(offset))
-						|| offset + 2 == con.limit && target.charAt(offset) == CARRIAGE_RETURN
-								&& target.charAt(offset + 1) == LINE_FEED))
+				break;
+
+			case 'z':
+				if (offset != con.limit)
+					return false;
+				break;
+
+			case 'b':
+				if (con.length == 0)
+					return false; {
+				int after = getWordType(target, con.start, con.limit, offset,
+						opts);
+				if (after == WT_IGNORE)
+					return false;
+				int before = getPreviousWordType(target, con.start, con.limit,
+						offset, opts);
+				if (after == before)
 					return false;
 			}
-			break;
+				break;
 
-		case 'A':
-			if (offset != con.start)
-				return false;
-			break;
+			case 'B':
+				if (con.length == 0)
+					go = true;
+				else {
+					int after = getWordType(target, con.start, con.limit,
+							offset, opts);
+					go = after == WT_IGNORE || after == getPreviousWordType(
+							target, con.start, con.limit, offset, opts);
+				}
+				if (!go)
+					return false;
+				break;
 
-		case 'Z':
-			if (!(offset == con.limit || offset + 1 == con.limit && isEOLChar(target.charAt(offset))
-					|| offset + 2 == con.limit && target.charAt(offset) == CARRIAGE_RETURN
-							&& target.charAt(offset + 1) == LINE_FEED))
-				return false;
-			break;
+			case '<':
+				if (con.length == 0 || offset == con.limit)
+					return false;
+				if (getWordType(target, con.start, con.limit, offset,
+						opts) != WT_LETTER || getPreviousWordType(target,
+								con.start, con.limit, offset, opts) != WT_OTHER)
+					return false;
+				break;
 
-		case 'z':
-			if (offset != con.limit)
-				return false;
-			break;
-
-		case 'b':
-			if (con.length == 0)
-				return false; {
-			int after = getWordType(target, con.start, con.limit, offset, opts);
-			if (after == WT_IGNORE)
-				return false;
-			int before = getPreviousWordType(target, con.start, con.limit, offset, opts);
-			if (after == before)
-				return false;
-		}
-			break;
-
-		case 'B':
-			if (con.length == 0)
-				go = true;
-			else {
-				int after = getWordType(target, con.start, con.limit, offset, opts);
-				go = after == WT_IGNORE
-						|| after == getPreviousWordType(target, con.start, con.limit, offset, opts);
-			}
-			if (!go)
-				return false;
-			break;
-
-		case '<':
-			if (con.length == 0 || offset == con.limit)
-				return false;
-			if (getWordType(target, con.start, con.limit, offset, opts) != WT_LETTER
-					|| getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_OTHER)
-				return false;
-			break;
-
-		case '>':
-			if (con.length == 0 || offset == con.start)
-				return false;
-			if (getWordType(target, con.start, con.limit, offset, opts) != WT_OTHER
-					|| getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_LETTER)
-				return false;
-			break;
+			case '>':
+				if (con.length == 0 || offset == con.start)
+					return false;
+				if (getWordType(target, con.start, con.limit, offset,
+						opts) != WT_OTHER || getPreviousWordType(target,
+								con.start, con.limit, offset,
+								opts) != WT_LETTER)
+					return false;
+				break;
 		} // switch anchor type
 
 		return true;
 	}
 
-	private static final int getPreviousWordType(ExpressionTarget target, int begin, int end,
-			int offset, int opts) {
+	private static final int getPreviousWordType(ExpressionTarget target,
+			int begin, int end, int offset, int opts) {
 		int ret = getWordType(target, begin, end, --offset, opts);
 		while (ret == WT_IGNORE)
 			ret = getWordType(target, begin, end, --offset, opts);
 		return ret;
 	}
 
-	private static final int getWordType(ExpressionTarget target, int begin, int end, int offset,
-			int opts) {
+	private static final int getWordType(ExpressionTarget target, int begin,
+			int end, int offset, int opts) {
 		if (offset < begin || offset >= end)
 			return WT_OTHER;
 		return getWordType0(target.charAt(offset), opts);
@@ -1627,7 +1668,7 @@ public class RegularExpression implements java.io.Serializable {
 	 * pattern or not.
 	 *
 	 * @param match
-	 *            A Match instance for storing matching result.
+	 *              A Match instance for storing matching result.
 	 * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
 	 *         match.
 	 */
@@ -1658,7 +1699,8 @@ public class RegularExpression implements java.io.Serializable {
 		con.match = match;
 
 		if (RegularExpression.isSet(this.options, XMLSCHEMA_MODE)) {
-			int matchEnd = this.match(con, this.operations, con.start, 1, this.options);
+			int matchEnd = this.match(con, this.operations, con.start, 1,
+					this.options);
 			// System.err.println("DEBUG: matchEnd="+matchEnd);
 			if (matchEnd == con.limit) {
 				if (con.match != null) {
@@ -1714,7 +1756,8 @@ public class RegularExpression implements java.io.Serializable {
 				&& this.operations.getChild().type == Op.DOT) {
 			if (isSet(this.options, SINGLE_LINE)) {
 				matchStart = con.start;
-				matchEnd = this.match(con, this.operations, con.start, 1, this.options);
+				matchEnd = this.match(con, this.operations, con.start, 1,
+						this.options);
 			} else {
 				boolean previousIsEOL = true;
 				for (matchStart = con.start; matchStart <= limit; matchStart++) {
@@ -1723,7 +1766,8 @@ public class RegularExpression implements java.io.Serializable {
 						previousIsEOL = true;
 					} else {
 						if (previousIsEOL) {
-							if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1,
+							if (0 <= (matchEnd = this.match(con,
+									this.operations, matchStart, 1,
 									this.options)))
 								break;
 						}
@@ -1743,13 +1787,14 @@ public class RegularExpression implements java.io.Serializable {
 			for (matchStart = con.start; matchStart <= limit; matchStart++) {
 				int ch = target.setIndex(matchStart);
 				if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit) {
-					ch = REUtil.composeFromSurrogates(ch, target.setIndex(matchStart + 1));
+					ch = REUtil.composeFromSurrogates(ch, target.setIndex(
+							matchStart + 1));
 				}
 				if (!range.match(ch)) {
 					continue;
 				}
-				if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1,
-						this.options))) {
+				if (0 <= (matchEnd = this.match(con, this.operations,
+						matchStart, 1, this.options))) {
 					break;
 				}
 			}
@@ -1760,7 +1805,8 @@ public class RegularExpression implements java.io.Serializable {
 		 */
 		else {
 			for (matchStart = con.start; matchStart <= limit; matchStart++) {
-				if (0 <= (matchEnd = this.match(con, this.operations, matchStart, 1, this.options)))
+				if (0 <= (matchEnd = this.match(con, this.operations,
+						matchStart, 1, this.options)))
 					break;
 			}
 		}
@@ -1820,11 +1866,11 @@ public class RegularExpression implements java.io.Serializable {
 	static abstract class ExpressionTarget {
 		abstract char charAt(int index);
 
-		abstract boolean regionMatches(boolean ignoreCase, int offset, int limit, String part,
-				int partlen);
+		abstract boolean regionMatches(boolean ignoreCase, int offset,
+				int limit, String part, int partlen);
 
-		abstract boolean regionMatches(boolean ignoreCase, int offset, int limit, int offset2,
-				int partlen);
+		abstract boolean regionMatches(boolean ignoreCase, int offset,
+				int limit, int offset2, int partlen);
 	}
 
 	static final class StringTarget extends ExpressionTarget {
@@ -1843,21 +1889,22 @@ public class RegularExpression implements java.io.Serializable {
 			return target.charAt(index);
 		}
 
-		final boolean regionMatches(boolean ignoreCase, int offset, int limit, String part,
-				int partlen) {
+		final boolean regionMatches(boolean ignoreCase, int offset, int limit,
+				String part, int partlen) {
 			if (limit - offset < partlen) {
 				return false;
 			}
-			return (ignoreCase) ? target.regionMatches(true, offset, part, 0, partlen)
-					: target.regionMatches(offset, part, 0, partlen);
+			return (ignoreCase) ? target.regionMatches(true, offset, part, 0,
+					partlen) : target.regionMatches(offset, part, 0, partlen);
 		}
 
-		final boolean regionMatches(boolean ignoreCase, int offset, int limit, int offset2,
-				int partlen) {
+		final boolean regionMatches(boolean ignoreCase, int offset, int limit,
+				int offset2, int partlen) {
 			if (limit - offset < partlen) {
 				return false;
 			}
-			return (ignoreCase) ? target.regionMatches(true, offset, target, offset2, partlen)
+			return (ignoreCase) ? target.regionMatches(true, offset, target,
+					offset2, partlen)
 					: target.regionMatches(offset, target, offset2, partlen);
 		}
 	}
@@ -1878,16 +1925,17 @@ public class RegularExpression implements java.io.Serializable {
 			return target[index];
 		}
 
-		final boolean regionMatches(boolean ignoreCase, int offset, int limit, String part,
-				int partlen) {
+		final boolean regionMatches(boolean ignoreCase, int offset, int limit,
+				String part, int partlen) {
 			if (offset < 0 || limit - offset < partlen) {
 				return false;
 			}
-			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit, part, partlen)
-					: regionMatches(offset, limit, part, partlen);
+			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit, part,
+					partlen) : regionMatches(offset, limit, part, partlen);
 		}
 
-		private final boolean regionMatches(int offset, int limit, String part, int partlen) {
+		private final boolean regionMatches(int offset, int limit, String part,
+				int partlen) {
 			int i = 0;
 			while (partlen-- > 0) {
 				if (target[offset++] != part.charAt(i++)) {
@@ -1897,8 +1945,8 @@ public class RegularExpression implements java.io.Serializable {
 			return true;
 		}
 
-		private final boolean regionMatchesIgnoreCase(int offset, int limit, String part,
-				int partlen) {
+		private final boolean regionMatchesIgnoreCase(int offset, int limit,
+				String part, int partlen) {
 			int i = 0;
 			while (partlen-- > 0) {
 				final char ch1 = target[offset++];
@@ -1911,23 +1959,26 @@ public class RegularExpression implements java.io.Serializable {
 				if (uch1 == uch2) {
 					continue;
 				}
-				if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) {
+				if (Character.toLowerCase(uch1) != Character.toLowerCase(
+						uch2)) {
 					return false;
 				}
 			}
 			return true;
 		}
 
-		final boolean regionMatches(boolean ignoreCase, int offset, int limit, int offset2,
-				int partlen) {
+		final boolean regionMatches(boolean ignoreCase, int offset, int limit,
+				int offset2, int partlen) {
 			if (offset < 0 || limit - offset < partlen) {
 				return false;
 			}
-			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit, offset2, partlen)
+			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit,
+					offset2, partlen)
 					: regionMatches(offset, limit, offset2, partlen);
 		}
 
-		private final boolean regionMatches(int offset, int limit, int offset2, int partlen) {
+		private final boolean regionMatches(int offset, int limit, int offset2,
+				int partlen) {
 			int i = offset2;
 			while (partlen-- > 0) {
 				if (target[offset++] != target[i++])
@@ -1936,8 +1987,8 @@ public class RegularExpression implements java.io.Serializable {
 			return true;
 		}
 
-		private final boolean regionMatchesIgnoreCase(int offset, int limit, int offset2,
-				int partlen) {
+		private final boolean regionMatchesIgnoreCase(int offset, int limit,
+				int offset2, int partlen) {
 			int i = offset2;
 			while (partlen-- > 0) {
 				final char ch1 = target[offset++];
@@ -1950,7 +2001,8 @@ public class RegularExpression implements java.io.Serializable {
 				if (uch1 == uch2) {
 					continue;
 				}
-				if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) {
+				if (Character.toLowerCase(uch1) != Character.toLowerCase(
+						uch2)) {
 					return false;
 				}
 			}
@@ -1973,16 +2025,17 @@ public class RegularExpression implements java.io.Serializable {
 			return target.setIndex(index);
 		}
 
-		final boolean regionMatches(boolean ignoreCase, int offset, int limit, String part,
-				int partlen) {
+		final boolean regionMatches(boolean ignoreCase, int offset, int limit,
+				String part, int partlen) {
 			if (offset < 0 || limit - offset < partlen) {
 				return false;
 			}
-			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit, part, partlen)
-					: regionMatches(offset, limit, part, partlen);
+			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit, part,
+					partlen) : regionMatches(offset, limit, part, partlen);
 		}
 
-		private final boolean regionMatches(int offset, int limit, String part, int partlen) {
+		private final boolean regionMatches(int offset, int limit, String part,
+				int partlen) {
 			int i = 0;
 			while (partlen-- > 0) {
 				if (target.setIndex(offset++) != part.charAt(i++)) {
@@ -1992,8 +2045,8 @@ public class RegularExpression implements java.io.Serializable {
 			return true;
 		}
 
-		private final boolean regionMatchesIgnoreCase(int offset, int limit, String part,
-				int partlen) {
+		private final boolean regionMatchesIgnoreCase(int offset, int limit,
+				String part, int partlen) {
 			int i = 0;
 			while (partlen-- > 0) {
 				final char ch1 = target.setIndex(offset++);
@@ -2006,23 +2059,26 @@ public class RegularExpression implements java.io.Serializable {
 				if (uch1 == uch2) {
 					continue;
 				}
-				if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) {
+				if (Character.toLowerCase(uch1) != Character.toLowerCase(
+						uch2)) {
 					return false;
 				}
 			}
 			return true;
 		}
 
-		final boolean regionMatches(boolean ignoreCase, int offset, int limit, int offset2,
-				int partlen) {
+		final boolean regionMatches(boolean ignoreCase, int offset, int limit,
+				int offset2, int partlen) {
 			if (offset < 0 || limit - offset < partlen) {
 				return false;
 			}
-			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit, offset2, partlen)
+			return (ignoreCase) ? regionMatchesIgnoreCase(offset, limit,
+					offset2, partlen)
 					: regionMatches(offset, limit, offset2, partlen);
 		}
 
-		private final boolean regionMatches(int offset, int limit, int offset2, int partlen) {
+		private final boolean regionMatches(int offset, int limit, int offset2,
+				int partlen) {
 			int i = offset2;
 			while (partlen-- > 0) {
 				if (target.setIndex(offset++) != target.setIndex(i++)) {
@@ -2032,8 +2088,8 @@ public class RegularExpression implements java.io.Serializable {
 			return true;
 		}
 
-		private final boolean regionMatchesIgnoreCase(int offset, int limit, int offset2,
-				int partlen) {
+		private final boolean regionMatchesIgnoreCase(int offset, int limit,
+				int offset2, int partlen) {
 			int i = offset2;
 			while (partlen-- > 0) {
 				final char ch1 = target.setIndex(offset++);
@@ -2046,7 +2102,8 @@ public class RegularExpression implements java.io.Serializable {
 				if (uch1 == uch2) {
 					continue;
 				}
-				if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) {
+				if (Character.toLowerCase(uch1) != Character.toLowerCase(
+						uch2)) {
 					return false;
 				}
 			}
@@ -2104,14 +2161,14 @@ public class RegularExpression implements java.io.Serializable {
 
 		ExpressionTarget target;
 
-		Context() {
-		}
+		Context() {}
 
 		private void resetCommon(int nofclosures) {
 			this.length = this.limit - this.start;
 			setInUse(true);
 			this.match = null;
-			if (this.closureContexts == null || this.closureContexts.length != nofclosures) {
+			if (this.closureContexts == null
+					|| this.closureContexts.length != nofclosures) {
 				this.closureContexts = new ClosureContext[nofclosures];
 			}
 			for (int i = 0; i < nofclosures; i++) {
@@ -2123,7 +2180,8 @@ public class RegularExpression implements java.io.Serializable {
 			}
 		}
 
-		void reset(CharacterIterator target, int start, int limit, int nofclosures) {
+		void reset(CharacterIterator target, int start, int limit,
+				int nofclosures) {
 			if (characterIteratorTarget == null) {
 				characterIteratorTarget = new CharacterIteratorTarget(target);
 			} else {
@@ -2179,7 +2237,8 @@ public class RegularExpression implements java.io.Serializable {
 		 * anchor.next = this.operations; this.operations = anchor; }
 		 */
 		if (Op.COUNT)
-			System.err.println("DEBUG: The number of operations: " + Op.nofinstances);
+			System.err.println("DEBUG: The number of operations: "
+					+ Op.nofinstances);
 
 		this.minlength = this.tokentree.getMinLength();
 
@@ -2187,17 +2246,20 @@ public class RegularExpression implements java.io.Serializable {
 		if (!isSet(this.options, PROHIBIT_HEAD_CHARACTER_OPTIMIZATION)
 				&& !isSet(this.options, XMLSCHEMA_MODE)) {
 			RangeToken firstChar = Token.createRange();
-			int fresult = this.tokentree.analyzeFirstCharacter(firstChar, this.options);
+			int fresult = this.tokentree.analyzeFirstCharacter(firstChar,
+					this.options);
 			if (fresult == Token.FC_TERMINAL) {
 				firstChar.compactRanges();
 				this.firstChar = firstChar;
 				if (DEBUG)
-					System.err.println("DEBUG: Use the first character optimization: " + firstChar);
+					System.err.println(
+							"DEBUG: Use the first character optimization: "
+									+ firstChar);
 			}
 		}
 
-		if (this.operations != null
-				&& (this.operations.type == Op.STRING || this.operations.type == Op.CHAR)
+		if (this.operations != null && (this.operations.type == Op.STRING
+				|| this.operations.type == Op.CHAR)
 				&& this.operations.next == null) {
 			if (DEBUG)
 				System.err.print(" *** Only fixed string! *** ");
@@ -2205,20 +2267,22 @@ public class RegularExpression implements java.io.Serializable {
 			if (this.operations.type == Op.STRING)
 				this.fixedString = this.operations.getString();
 			else if (this.operations.getData() >= 0x10000) { // Op.CHAR
-				this.fixedString = REUtil.decomposeToSurrogates(this.operations.getData());
+				this.fixedString = REUtil.decomposeToSurrogates(this.operations
+						.getData());
 			} else {
 				char[] ac = new char[1];
 				ac[0] = (char) this.operations.getData();
 				this.fixedString = new String(ac);
 			}
 			this.fixedStringOptions = this.options;
-			this.fixedStringTable = new BMPattern(this.fixedString, 256,
-					isSet(this.fixedStringOptions, IGNORE_CASE));
+			this.fixedStringTable = new BMPattern(this.fixedString, 256, isSet(
+					this.fixedStringOptions, IGNORE_CASE));
 		} else if (!isSet(this.options, PROHIBIT_FIXED_STRING_OPTIMIZATION)
 				&& !isSet(this.options, XMLSCHEMA_MODE)) {
 			Token.FixedStringContainer container = new Token.FixedStringContainer();
 			this.tokentree.findFixedString(container, this.options);
-			this.fixedString = container.token == null ? null : container.token.getString();
+			this.fixedString = container.token == null ? null
+					: container.token.getString();
 			this.fixedStringOptions = container.options;
 			if (this.fixedString != null && this.fixedString.length() < 2)
 				this.fixedString = null;
@@ -2227,9 +2291,10 @@ public class RegularExpression implements java.io.Serializable {
 				this.fixedStringTable = new BMPattern(this.fixedString, 256,
 						isSet(this.fixedStringOptions, IGNORE_CASE));
 				if (DEBUG) {
-					System.err.println(
-							"DEBUG: The longest fixed string: " + this.fixedString.length() + "/" // +this.fixedString
-									+ "/" + REUtil.createOptionString(this.fixedStringOptions));
+					System.err.println("DEBUG: The longest fixed string: "
+							+ this.fixedString.length() + "/" // +this.fixedString
+							+ "/" + REUtil.createOptionString(
+									this.fixedStringOptions));
 					System.err.print("String: ");
 					REUtil.dumpString(this.fixedString);
 				}
@@ -2319,9 +2384,9 @@ public class RegularExpression implements java.io.Serializable {
 	 * Creates a new RegularExpression instance.
 	 *
 	 * @param regex
-	 *            A regular expression
+	 *              A regular expression
 	 * @exception org.apache.xerces.utils.regex.ParseException
-	 *                <VAR>regex</VAR> is not conforming to the syntax.
+	 *            <VAR>regex</VAR> is not conforming to the syntax.
 	 */
 	public RegularExpression(String regex) throws ParseException {
 		this(regex, null);
@@ -2331,13 +2396,14 @@ public class RegularExpression implements java.io.Serializable {
 	 * Creates a new RegularExpression instance with options.
 	 *
 	 * @param regex
-	 *            A regular expression
+	 *                A regular expression
 	 * @param options
-	 *            A String consisted of "i" "m" "s" "u" "w" "," "X"
+	 *                A String consisted of "i" "m" "s" "u" "w" "," "X"
 	 * @exception org.apache.xerces.utils.regex.ParseException
-	 *                <VAR>regex</VAR> is not conforming to the syntax.
+	 *            <VAR>regex</VAR> is not conforming to the syntax.
 	 */
-	public RegularExpression(String regex, String options) throws ParseException {
+	public RegularExpression(String regex, String options)
+			throws ParseException {
 		this.setPattern(regex, options);
 	}
 
@@ -2345,17 +2411,19 @@ public class RegularExpression implements java.io.Serializable {
 	 * Creates a new RegularExpression instance with options.
 	 *
 	 * @param regex
-	 *            A regular expression
+	 *                A regular expression
 	 * @param options
-	 *            A String consisted of "i" "m" "s" "u" "w" "," "X"
+	 *                A String consisted of "i" "m" "s" "u" "w" "," "X"
 	 * @exception org.apache.xerces.utils.regex.ParseException
-	 *                <VAR>regex</VAR> is not conforming to the syntax.
+	 *            <VAR>regex</VAR> is not conforming to the syntax.
 	 */
-	public RegularExpression(String regex, String options, Locale locale) throws ParseException {
+	public RegularExpression(String regex, String options, Locale locale)
+			throws ParseException {
 		this.setPattern(regex, options, locale);
 	}
 
-	RegularExpression(String regex, Token tok, int parens, boolean hasBackReferences, int options) {
+	RegularExpression(String regex, Token tok, int parens,
+			boolean hasBackReferences, int options) {
 		this.regex = regex;
 		this.tokentree = tok;
 		this.nofparen = parens;
@@ -2370,15 +2438,18 @@ public class RegularExpression implements java.io.Serializable {
 		this.setPattern(newPattern, Locale.getDefault());
 	}
 
-	public void setPattern(String newPattern, Locale locale) throws ParseException {
+	public void setPattern(String newPattern, Locale locale)
+			throws ParseException {
 		this.setPattern(newPattern, this.options, locale);
 	}
 
-	private void setPattern(String newPattern, int options, Locale locale) throws ParseException {
+	private void setPattern(String newPattern, int options, Locale locale)
+			throws ParseException {
 		this.regex = newPattern;
 		this.options = options;
-		RegexParser rp = RegularExpression.isSet(this.options, RegularExpression.XMLSCHEMA_MODE)
-				? new ParserForXMLSchema(locale) : new RegexParser(locale);
+		RegexParser rp = RegularExpression.isSet(this.options,
+				RegularExpression.XMLSCHEMA_MODE) ? new ParserForXMLSchema(
+						locale) : new RegexParser(locale);
 		this.tokentree = rp.parse(this.regex, this.options);
 		this.nofparen = rp.parennumber;
 		this.hasBackReferences = rp.hasBackReferences;
@@ -2390,11 +2461,13 @@ public class RegularExpression implements java.io.Serializable {
 	/**
 	 *
 	 */
-	public void setPattern(String newPattern, String options) throws ParseException {
+	public void setPattern(String newPattern, String options)
+			throws ParseException {
 		this.setPattern(newPattern, options, Locale.getDefault());
 	}
 
-	public void setPattern(String newPattern, String options, Locale locale) throws ParseException {
+	public void setPattern(String newPattern, String options, Locale locale)
+			throws ParseException {
 		this.setPattern(newPattern, REUtil.parseOptions(options), locale);
 	}
 
@@ -2464,42 +2537,43 @@ public class RegularExpression implements java.io.Serializable {
 	private static final int getWordType0(char ch, int opts) {
 		if (!isSet(opts, UNICODE_WORD_BOUNDARY)) {
 			if (isSet(opts, USE_UNICODE_CATEGORY)) {
-				return (Token.getRange("IsWord", true).match(ch)) ? WT_LETTER : WT_OTHER;
+				return (Token.getRange("IsWord", true).match(ch)) ? WT_LETTER
+						: WT_OTHER;
 			}
 			return isWordChar(ch) ? WT_LETTER : WT_OTHER;
 		}
 
 		switch (Character.getType(ch)) {
-		case Character.UPPERCASE_LETTER: // L
-		case Character.LOWERCASE_LETTER: // L
-		case Character.TITLECASE_LETTER: // L
-		case Character.MODIFIER_LETTER: // L
-		case Character.OTHER_LETTER: // L
-		case Character.LETTER_NUMBER: // N
-		case Character.DECIMAL_DIGIT_NUMBER: // N
-		case Character.OTHER_NUMBER: // N
-		case Character.COMBINING_SPACING_MARK: // Mc
-			return WT_LETTER;
+			case Character.UPPERCASE_LETTER: // L
+			case Character.LOWERCASE_LETTER: // L
+			case Character.TITLECASE_LETTER: // L
+			case Character.MODIFIER_LETTER: // L
+			case Character.OTHER_LETTER: // L
+			case Character.LETTER_NUMBER: // N
+			case Character.DECIMAL_DIGIT_NUMBER: // N
+			case Character.OTHER_NUMBER: // N
+			case Character.COMBINING_SPACING_MARK: // Mc
+				return WT_LETTER;
 
-		case Character.FORMAT: // Cf
-		case Character.NON_SPACING_MARK: // Mn
-		case Character.ENCLOSING_MARK: // Mc
-			return WT_IGNORE;
-
-		case Character.CONTROL: // Cc
-			switch (ch) {
-			case '\t':
-			case '\n':
-			case '\u000B':
-			case '\f':
-			case '\r':
-				return WT_OTHER;
-			default:
+			case Character.FORMAT: // Cf
+			case Character.NON_SPACING_MARK: // Mn
+			case Character.ENCLOSING_MARK: // Mc
 				return WT_IGNORE;
-			}
 
-		default:
-			return WT_OTHER;
+			case Character.CONTROL: // Cc
+				switch (ch) {
+					case '\t':
+					case '\n':
+					case '\u000B':
+					case '\f':
+					case '\r':
+						return WT_OTHER;
+					default:
+						return WT_IGNORE;
+				}
+
+			default:
+				return WT_OTHER;
 		}
 	}
 

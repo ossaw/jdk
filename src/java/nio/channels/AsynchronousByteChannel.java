@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -92,25 +72,30 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
 	 * initiates a read operation before a previous read operation has completed
 	 * then a {@link ReadPendingException} will be thrown.
 	 *
-	 * @param <A>
-	 *            The type of the attachment
+	 * @param            <A>
+	 *                   The type of the attachment
 	 * @param dst
-	 *            The buffer into which bytes are to be transferred
+	 *                   The buffer into which bytes are to be transferred
 	 * @param attachment
-	 *            The object to attach to the I/O operation; can be {@code null}
+	 *                   The object to attach to the I/O operation; can be
+	 *                   {@code null}
 	 * @param handler
-	 *            The completion handler
+	 *                   The completion handler
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the buffer is read-only
+	 *                                       If the buffer is read-only
 	 * @throws ReadPendingException
-	 *             If the channel does not allow more than one read to be
-	 *             outstanding and a previous read has not completed
+	 *                                       If the channel does not allow more
+	 *                                       than one read to be
+	 *                                       outstanding and a previous read has
+	 *                                       not completed
 	 * @throws ShutdownChannelGroupException
-	 *             If the channel is associated with a
-	 *             {@link AsynchronousChannelGroup group} that has terminated
+	 *                                       If the channel is associated with a
+	 *                                       {@link AsynchronousChannelGroup
+	 *                                       group} that has terminated
 	 */
-	<A> void read(ByteBuffer dst, A attachment, CompletionHandler<Integer, ? super A> handler);
+	<A> void read(ByteBuffer dst, A attachment,
+			CompletionHandler<Integer, ? super A> handler);
 
 	/**
 	 * Reads a sequence of bytes from this channel into the given buffer.
@@ -132,10 +117,12 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
 	 * @return A Future representing the result of the operation
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the buffer is read-only
+	 *                                  If the buffer is read-only
 	 * @throws ReadPendingException
-	 *             If the channel does not allow more than one read to be
-	 *             outstanding and a previous read has not completed
+	 *                                  If the channel does not allow more than
+	 *                                  one read to be
+	 *                                  outstanding and a previous read has not
+	 *                                  completed
 	 */
 	Future<Integer> read(ByteBuffer dst);
 
@@ -177,23 +164,28 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
 	 * initiates a write operation before a previous write operation has
 	 * completed then a {@link WritePendingException} will be thrown.
 	 *
-	 * @param <A>
-	 *            The type of the attachment
+	 * @param            <A>
+	 *                   The type of the attachment
 	 * @param src
-	 *            The buffer from which bytes are to be retrieved
+	 *                   The buffer from which bytes are to be retrieved
 	 * @param attachment
-	 *            The object to attach to the I/O operation; can be {@code null}
+	 *                   The object to attach to the I/O operation; can be
+	 *                   {@code null}
 	 * @param handler
-	 *            The completion handler object
+	 *                   The completion handler object
 	 *
 	 * @throws WritePendingException
-	 *             If the channel does not allow more than one write to be
-	 *             outstanding and a previous write has not completed
+	 *                                       If the channel does not allow more
+	 *                                       than one write to be
+	 *                                       outstanding and a previous write
+	 *                                       has not completed
 	 * @throws ShutdownChannelGroupException
-	 *             If the channel is associated with a
-	 *             {@link AsynchronousChannelGroup group} that has terminated
+	 *                                       If the channel is associated with a
+	 *                                       {@link AsynchronousChannelGroup
+	 *                                       group} that has terminated
 	 */
-	<A> void write(ByteBuffer src, A attachment, CompletionHandler<Integer, ? super A> handler);
+	<A> void write(ByteBuffer src, A attachment,
+			CompletionHandler<Integer, ? super A> handler);
 
 	/**
 	 * Writes a sequence of bytes to this channel from the given buffer.
@@ -214,8 +206,10 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
 	 * @return A Future representing the result of the operation
 	 *
 	 * @throws WritePendingException
-	 *             If the channel does not allow more than one write to be
-	 *             outstanding and a previous write has not completed
+	 *                               If the channel does not allow more than one
+	 *                               write to be
+	 *                               outstanding and a previous write has not
+	 *                               completed
 	 */
 	Future<Integer> write(ByteBuffer src);
 }

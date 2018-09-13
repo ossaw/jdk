@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2007-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -112,8 +81,8 @@ import java.util.Objects;
  *
  * @since 1.8
  */
-public final class OffsetTime
-		implements Temporal, TemporalAdjuster, Comparable<OffsetTime>, Serializable {
+public final class OffsetTime implements Temporal, TemporalAdjuster,
+		Comparable<OffsetTime>, Serializable {
 
 	/**
 	 * The minimum supported {@code OffsetTime}, '00:00:00+18:00'. This is the
@@ -177,7 +146,7 @@ public final class OffsetTime
 	 * testing because the clock is hard-coded.
 	 *
 	 * @param zone
-	 *            the zone ID to use, not null
+	 *             the zone ID to use, not null
 	 * @return the current time using the system clock, not null
 	 */
 	public static OffsetTime now(ZoneId zone) {
@@ -195,7 +164,7 @@ public final class OffsetTime
 	 * injection}.
 	 *
 	 * @param clock
-	 *            the clock to use, not null
+	 *              the clock to use, not null
 	 * @return the current time, not null
 	 */
 	public static OffsetTime now(Clock clock) {
@@ -210,9 +179,9 @@ public final class OffsetTime
 	 * offset.
 	 *
 	 * @param time
-	 *            the local time, not null
+	 *               the local time, not null
 	 * @param offset
-	 *            the zone offset, not null
+	 *               the zone offset, not null
 	 * @return the offset time, not null
 	 */
 	public static OffsetTime of(LocalTime time, ZoneOffset offset) {
@@ -232,22 +201,24 @@ public final class OffsetTime
 	 * footprint of the API.
 	 *
 	 * @param hour
-	 *            the hour-of-day to represent, from 0 to 23
+	 *                     the hour-of-day to represent, from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to represent, from 0 to 59
+	 *                     the minute-of-hour to represent, from 0 to 59
 	 * @param second
-	 *            the second-of-minute to represent, from 0 to 59
+	 *                     the second-of-minute to represent, from 0 to 59
 	 * @param nanoOfSecond
-	 *            the nano-of-second to represent, from 0 to 999,999,999
+	 *                     the nano-of-second to represent, from 0 to
+	 *                     999,999,999
 	 * @param offset
-	 *            the zone offset, not null
+	 *                     the zone offset, not null
 	 * @return the offset time, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
-	public static OffsetTime of(int hour, int minute, int second, int nanoOfSecond,
-			ZoneOffset offset) {
-		return new OffsetTime(LocalTime.of(hour, minute, second, nanoOfSecond), offset);
+	public static OffsetTime of(int hour, int minute, int second,
+			int nanoOfSecond, ZoneOffset offset) {
+		return new OffsetTime(LocalTime.of(hour, minute, second, nanoOfSecond),
+				offset);
 	}
 
 	// -----------------------------------------------------------------------
@@ -264,9 +235,9 @@ public final class OffsetTime
 	 * the valid range of dates.
 	 *
 	 * @param instant
-	 *            the instant to create the time from, not null
+	 *                the instant to create the time from, not null
 	 * @param zone
-	 *            the time-zone, which may be an offset, not null
+	 *                the time-zone, which may be an offset, not null
 	 * @return the offset time, not null
 	 */
 	public static OffsetTime ofInstant(Instant instant, ZoneId zone) {
@@ -278,7 +249,8 @@ public final class OffsetTime
 																				// caught
 																				// later
 		int secsOfDay = (int) Math.floorMod(localSecond, SECONDS_PER_DAY);
-		LocalTime time = LocalTime.ofNanoOfDay(secsOfDay * NANOS_PER_SECOND + instant.getNano());
+		LocalTime time = LocalTime.ofNanoOfDay(secsOfDay * NANOS_PER_SECOND
+				+ instant.getNano());
 		return new OffsetTime(time, offset);
 	}
 
@@ -301,10 +273,10 @@ public final class OffsetTime
 	 * reference, {@code OffsetTime::from}.
 	 *
 	 * @param temporal
-	 *            the temporal object to convert, not null
+	 *                 the temporal object to convert, not null
 	 * @return the offset time, not null
 	 * @throws DateTimeException
-	 *             if unable to convert to an {@code OffsetTime}
+	 *                           if unable to convert to an {@code OffsetTime}
 	 */
 	public static OffsetTime from(TemporalAccessor temporal) {
 		if (temporal instanceof OffsetTime) {
@@ -315,8 +287,10 @@ public final class OffsetTime
 			ZoneOffset offset = ZoneOffset.from(temporal);
 			return new OffsetTime(time, offset);
 		} catch (DateTimeException ex) {
-			throw new DateTimeException("Unable to obtain OffsetTime from TemporalAccessor: "
-					+ temporal + " of type " + temporal.getClass().getName(), ex);
+			throw new DateTimeException(
+					"Unable to obtain OffsetTime from TemporalAccessor: "
+							+ temporal + " of type " + temporal.getClass()
+									.getName(), ex);
 		}
 	}
 
@@ -329,10 +303,10 @@ public final class OffsetTime
 	 * {@link java.time.format.DateTimeFormatter#ISO_OFFSET_TIME}.
 	 *
 	 * @param text
-	 *            the text to parse such as "10:15:30+01:00", not null
+	 *             the text to parse such as "10:15:30+01:00", not null
 	 * @return the parsed local time, not null
 	 * @throws DateTimeParseException
-	 *             if the text cannot be parsed
+	 *                                if the text cannot be parsed
 	 */
 	public static OffsetTime parse(CharSequence text) {
 		return parse(text, DateTimeFormatter.ISO_OFFSET_TIME);
@@ -345,14 +319,15 @@ public final class OffsetTime
 	 * The text is parsed using the formatter, returning a time.
 	 *
 	 * @param text
-	 *            the text to parse, not null
+	 *                  the text to parse, not null
 	 * @param formatter
-	 *            the formatter to use, not null
+	 *                  the formatter to use, not null
 	 * @return the parsed offset time, not null
 	 * @throws DateTimeParseException
-	 *             if the text cannot be parsed
+	 *                                if the text cannot be parsed
 	 */
-	public static OffsetTime parse(CharSequence text, DateTimeFormatter formatter) {
+	public static OffsetTime parse(CharSequence text,
+			DateTimeFormatter formatter) {
 		Objects.requireNonNull(formatter, "formatter");
 		return formatter.parse(text, OffsetTime::from);
 	}
@@ -362,9 +337,9 @@ public final class OffsetTime
 	 * Constructor.
 	 *
 	 * @param time
-	 *            the local time, not null
+	 *               the local time, not null
 	 * @param offset
-	 *            the zone offset, not null
+	 *               the zone offset, not null
 	 */
 	private OffsetTime(LocalTime time, ZoneOffset offset) {
 		this.time = Objects.requireNonNull(time, "time");
@@ -376,9 +351,9 @@ public final class OffsetTime
 	 * possible.
 	 *
 	 * @param time
-	 *            the time to create with, not null
+	 *               the time to create with, not null
 	 * @param offset
-	 *            the zone offset to create with, not null
+	 *               the zone offset to create with, not null
 	 */
 	private OffsetTime with(LocalTime time, ZoneOffset offset) {
 		if (this.time == time && this.offset.equals(offset)) {
@@ -425,7 +400,7 @@ public final class OffsetTime
 	 * determined by the field.
 	 *
 	 * @param field
-	 *            the field to check, null returns false
+	 *              the field to check, null returns false
 	 * @return true if the field is supported on this time, false if not
 	 */
 	@Override
@@ -463,7 +438,7 @@ public final class OffsetTime
 	 * determined by the unit.
 	 *
 	 * @param unit
-	 *            the unit to check, null returns false
+	 *             the unit to check, null returns false
 	 * @return true if the unit can be added/subtracted, false if not
 	 */
 	@Override // override for Javadoc
@@ -495,12 +470,13 @@ public final class OffsetTime
 	 * determined by the field.
 	 *
 	 * @param field
-	 *            the field to query the range for, not null
+	 *              the field to query the range for, not null
 	 * @return the range of valid values for the field, not null
 	 * @throws DateTimeException
-	 *             if the range for the field cannot be obtained
+	 *                                          if the range for the field
+	 *                                          cannot be obtained
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 */
 	@Override
 	public ValueRange range(TemporalField field) {
@@ -534,16 +510,19 @@ public final class OffsetTime
 	 * and what the value represents, is determined by the field.
 	 *
 	 * @param field
-	 *            the field to get, not null
+	 *              the field to get, not null
 	 * @return the value for the field
 	 * @throws DateTimeException
-	 *             if a value for the field cannot be obtained or the value is
-	 *             outside the range of valid values for the field
+	 *                                          if a value for the field cannot
+	 *                                          be obtained or the value is
+	 *                                          outside the range of valid
+	 *                                          values for the field
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported or the range of values exceeds
-	 *             an {@code int}
+	 *                                          if the field is not supported or
+	 *                                          the range of values exceeds
+	 *                                          an {@code int}
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override // override for Javadoc
 	public int get(TemporalField field) {
@@ -568,14 +547,15 @@ public final class OffsetTime
 	 * and what the value represents, is determined by the field.
 	 *
 	 * @param field
-	 *            the field to get, not null
+	 *              the field to get, not null
 	 * @return the value for the field
 	 * @throws DateTimeException
-	 *             if a value for the field cannot be obtained
+	 *                                          if a value for the field cannot
+	 *                                          be obtained
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public long getLong(TemporalField field) {
@@ -616,12 +596,13 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param offset
-	 *            the zone offset to change to, not null
+	 *               the zone offset to change to, not null
 	 * @return an {@code OffsetTime} based on this time with the requested
 	 *         offset, not null
 	 */
 	public OffsetTime withOffsetSameLocal(ZoneOffset offset) {
-		return offset != null && offset.equals(this.offset) ? this : new OffsetTime(time, offset);
+		return offset != null && offset.equals(this.offset) ? this
+				: new OffsetTime(time, offset);
 	}
 
 	/**
@@ -642,7 +623,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param offset
-	 *            the zone offset to change to, not null
+	 *               the zone offset to change to, not null
 	 * @return an {@code OffsetTime} based on this time with the requested
 	 *         offset, not null
 	 */
@@ -650,7 +631,8 @@ public final class OffsetTime
 		if (offset.equals(this.offset)) {
 			return this;
 		}
-		int difference = offset.getTotalSeconds() - this.offset.getTotalSeconds();
+		int difference = offset.getTotalSeconds() - this.offset
+				.getTotalSeconds();
 		LocalTime adjusted = time.plusSeconds(difference);
 		return new OffsetTime(adjusted, offset);
 	}
@@ -734,13 +716,13 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param adjuster
-	 *            the adjuster to use, not null
+	 *                 the adjuster to use, not null
 	 * @return an {@code OffsetTime} based on {@code this} with the adjustment
 	 *         made, not null
 	 * @throws DateTimeException
-	 *             if the adjustment cannot be made
+	 *                             if the adjustment cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public OffsetTime with(TemporalAdjuster adjuster) {
@@ -787,24 +769,25 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param field
-	 *            the field to set in the result, not null
+	 *                 the field to set in the result, not null
 	 * @param newValue
-	 *            the new value of the field in the result
+	 *                 the new value of the field in the result
 	 * @return an {@code OffsetTime} based on {@code this} with the specified
 	 *         field set, not null
 	 * @throws DateTimeException
-	 *             if the field cannot be set
+	 *                                          if the field cannot be set
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public OffsetTime with(TemporalField field, long newValue) {
 		if (field instanceof ChronoField) {
 			if (field == OFFSET_SECONDS) {
 				ChronoField f = (ChronoField) field;
-				return with(time, ZoneOffset.ofTotalSeconds(f.checkValidIntValue(newValue)));
+				return with(time, ZoneOffset.ofTotalSeconds(f
+						.checkValidIntValue(newValue)));
 			}
 			return with(time.with(field, newValue), offset);
 		}
@@ -821,11 +804,11 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param hour
-	 *            the hour-of-day to set in the result, from 0 to 23
+	 *             the hour-of-day to set in the result, from 0 to 23
 	 * @return an {@code OffsetTime} based on this time with the requested hour,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the hour value is invalid
+	 *                           if the hour value is invalid
 	 */
 	public OffsetTime withHour(int hour) {
 		return with(time.withHour(hour), offset);
@@ -841,11 +824,11 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param minute
-	 *            the minute-of-hour to set in the result, from 0 to 59
+	 *               the minute-of-hour to set in the result, from 0 to 59
 	 * @return an {@code OffsetTime} based on this time with the requested
 	 *         minute, not null
 	 * @throws DateTimeException
-	 *             if the minute value is invalid
+	 *                           if the minute value is invalid
 	 */
 	public OffsetTime withMinute(int minute) {
 		return with(time.withMinute(minute), offset);
@@ -861,11 +844,11 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param second
-	 *            the second-of-minute to set in the result, from 0 to 59
+	 *               the second-of-minute to set in the result, from 0 to 59
 	 * @return an {@code OffsetTime} based on this time with the requested
 	 *         second, not null
 	 * @throws DateTimeException
-	 *             if the second value is invalid
+	 *                           if the second value is invalid
 	 */
 	public OffsetTime withSecond(int second) {
 		return with(time.withSecond(second), offset);
@@ -881,11 +864,12 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param nanoOfSecond
-	 *            the nano-of-second to set in the result, from 0 to 999,999,999
+	 *                     the nano-of-second to set in the result, from 0 to
+	 *                     999,999,999
 	 * @return an {@code OffsetTime} based on this time with the requested
 	 *         nanosecond, not null
 	 * @throws DateTimeException
-	 *             if the nanos value is invalid
+	 *                           if the nanos value is invalid
 	 */
 	public OffsetTime withNano(int nanoOfSecond) {
 		return with(time.withNano(nanoOfSecond), offset);
@@ -911,13 +895,13 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param unit
-	 *            the unit to truncate to, not null
+	 *             the unit to truncate to, not null
 	 * @return an {@code OffsetTime} based on this time with the time truncated,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if unable to truncate
+	 *                                          if unable to truncate
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 */
 	public OffsetTime truncatedTo(TemporalUnit unit) {
 		return with(time.truncatedTo(unit), offset);
@@ -941,13 +925,13 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToAdd
-	 *            the amount to add, not null
+	 *                    the amount to add, not null
 	 * @return an {@code OffsetTime} based on this time with the addition made,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the addition cannot be made
+	 *                             if the addition cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public OffsetTime plus(TemporalAmount amountToAdd) {
@@ -974,17 +958,18 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToAdd
-	 *            the amount of the unit to add to the result, may be negative
+	 *                    the amount of the unit to add to the result, may be
+	 *                    negative
 	 * @param unit
-	 *            the unit of the amount to add, not null
+	 *                    the unit of the amount to add, not null
 	 * @return an {@code OffsetTime} based on this time with the specified
 	 *         amount added, not null
 	 * @throws DateTimeException
-	 *             if the addition cannot be made
+	 *                                          if the addition cannot be made
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public OffsetTime plus(long amountToAdd, TemporalUnit unit) {
@@ -1005,7 +990,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param hours
-	 *            the hours to add, may be negative
+	 *              the hours to add, may be negative
 	 * @return an {@code OffsetTime} based on this time with the hours added,
 	 *         not null
 	 */
@@ -1023,7 +1008,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param minutes
-	 *            the minutes to add, may be negative
+	 *                the minutes to add, may be negative
 	 * @return an {@code OffsetTime} based on this time with the minutes added,
 	 *         not null
 	 */
@@ -1041,7 +1026,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param seconds
-	 *            the seconds to add, may be negative
+	 *                the seconds to add, may be negative
 	 * @return an {@code OffsetTime} based on this time with the seconds added,
 	 *         not null
 	 */
@@ -1059,7 +1044,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param nanos
-	 *            the nanos to add, may be negative
+	 *              the nanos to add, may be negative
 	 * @return an {@code OffsetTime} based on this time with the nanoseconds
 	 *         added, not null
 	 */
@@ -1085,13 +1070,13 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToSubtract
-	 *            the amount to subtract, not null
+	 *                         the amount to subtract, not null
 	 * @return an {@code OffsetTime} based on this time with the subtraction
 	 *         made, not null
 	 * @throws DateTimeException
-	 *             if the subtraction cannot be made
+	 *                             if the subtraction cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public OffsetTime minus(TemporalAmount amountToSubtract) {
@@ -1113,23 +1098,25 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToSubtract
-	 *            the amount of the unit to subtract from the result, may be
-	 *            negative
+	 *                         the amount of the unit to subtract from the
+	 *                         result, may be
+	 *                         negative
 	 * @param unit
-	 *            the unit of the amount to subtract, not null
+	 *                         the unit of the amount to subtract, not null
 	 * @return an {@code OffsetTime} based on this time with the specified
 	 *         amount subtracted, not null
 	 * @throws DateTimeException
-	 *             if the subtraction cannot be made
+	 *                                          if the subtraction cannot be
+	 *                                          made
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public OffsetTime minus(long amountToSubtract, TemporalUnit unit) {
-		return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
-				: plus(-amountToSubtract, unit));
+		return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
+				.plus(1, unit) : plus(-amountToSubtract, unit));
 	}
 
 	// -----------------------------------------------------------------------
@@ -1143,7 +1130,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param hours
-	 *            the hours to subtract, may be negative
+	 *              the hours to subtract, may be negative
 	 * @return an {@code OffsetTime} based on this time with the hours
 	 *         subtracted, not null
 	 */
@@ -1161,7 +1148,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param minutes
-	 *            the minutes to subtract, may be negative
+	 *                the minutes to subtract, may be negative
 	 * @return an {@code OffsetTime} based on this time with the minutes
 	 *         subtracted, not null
 	 */
@@ -1179,7 +1166,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param seconds
-	 *            the seconds to subtract, may be negative
+	 *                the seconds to subtract, may be negative
 	 * @return an {@code OffsetTime} based on this time with the seconds
 	 *         subtracted, not null
 	 */
@@ -1197,7 +1184,7 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param nanos
-	 *            the nanos to subtract, may be negative
+	 *              the nanos to subtract, may be negative
 	 * @return an {@code OffsetTime} based on this time with the nanoseconds
 	 *         subtracted, not null
 	 */
@@ -1218,23 +1205,25 @@ public final class OffsetTime
 	 * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
 	 * query passing {@code this} as the argument.
 	 *
-	 * @param <R>
-	 *            the type of the result
+	 * @param       <R>
+	 *              the type of the result
 	 * @param query
-	 *            the query to invoke, not null
+	 *              the query to invoke, not null
 	 * @return the query result, null may be returned (defined by the query)
 	 * @throws DateTimeException
-	 *             if unable to query (defined by the query)
+	 *                             if unable to query (defined by the query)
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs (defined by the query)
+	 *                             if numeric overflow occurs (defined by the
+	 *                             query)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public <R> R query(TemporalQuery<R> query) {
-		if (query == TemporalQueries.offset() || query == TemporalQueries.zone()) {
+		if (query == TemporalQueries.offset() || query == TemporalQueries
+				.zone()) {
 			return (R) offset;
-		} else if (query == TemporalQueries.zoneId() | query == TemporalQueries.chronology()
-				|| query == TemporalQueries.localDate()) {
+		} else if (query == TemporalQueries.zoneId() | query == TemporalQueries
+				.chronology() || query == TemporalQueries.localDate()) {
 			return null;
 		} else if (query == TemporalQueries.localTime()) {
 			return (R) time;
@@ -1270,17 +1259,17 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param temporal
-	 *            the target object to be adjusted, not null
+	 *                 the target object to be adjusted, not null
 	 * @return the adjusted object, not null
 	 * @throws DateTimeException
-	 *             if unable to make the adjustment
+	 *                             if unable to make the adjustment
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public Temporal adjustInto(Temporal temporal) {
-		return temporal.with(NANO_OF_DAY, time.toNanoOfDay()).with(OFFSET_SECONDS,
-				offset.getTotalSeconds());
+		return temporal.with(NANO_OF_DAY, time.toNanoOfDay()).with(
+				OFFSET_SECONDS, offset.getTotalSeconds());
 	}
 
 	/**
@@ -1328,18 +1317,20 @@ public final class OffsetTime
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param endExclusive
-	 *            the end time, exclusive, which is converted to an
-	 *            {@code OffsetTime}, not null
+	 *                     the end time, exclusive, which is converted to an
+	 *                     {@code OffsetTime}, not null
 	 * @param unit
-	 *            the unit to measure the amount in, not null
+	 *                     the unit to measure the amount in, not null
 	 * @return the amount of time between this time and the end time
 	 * @throws DateTimeException
-	 *             if the amount cannot be calculated, or the end temporal
-	 *             cannot be converted to an {@code OffsetTime}
+	 *                                          if the amount cannot be
+	 *                                          calculated, or the end temporal
+	 *                                          cannot be converted to an
+	 *                                          {@code OffsetTime}
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public long until(Temporal endExclusive, TemporalUnit unit) {
@@ -1347,22 +1338,23 @@ public final class OffsetTime
 		if (unit instanceof ChronoUnit) {
 			long nanosUntil = end.toEpochNano() - toEpochNano(); // no overflow
 			switch ((ChronoUnit) unit) {
-			case NANOS:
-				return nanosUntil;
-			case MICROS:
-				return nanosUntil / 1000;
-			case MILLIS:
-				return nanosUntil / 1000_000;
-			case SECONDS:
-				return nanosUntil / NANOS_PER_SECOND;
-			case MINUTES:
-				return nanosUntil / NANOS_PER_MINUTE;
-			case HOURS:
-				return nanosUntil / NANOS_PER_HOUR;
-			case HALF_DAYS:
-				return nanosUntil / (12 * NANOS_PER_HOUR);
+				case NANOS:
+					return nanosUntil;
+				case MICROS:
+					return nanosUntil / 1000;
+				case MILLIS:
+					return nanosUntil / 1000_000;
+				case SECONDS:
+					return nanosUntil / NANOS_PER_SECOND;
+				case MINUTES:
+					return nanosUntil / NANOS_PER_MINUTE;
+				case HOURS:
+					return nanosUntil / NANOS_PER_HOUR;
+				case HALF_DAYS:
+					return nanosUntil / (12 * NANOS_PER_HOUR);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
+			throw new UnsupportedTemporalTypeException("Unsupported unit: "
+					+ unit);
 		}
 		return unit.between(this, end);
 	}
@@ -1373,10 +1365,10 @@ public final class OffsetTime
 	 * This time will be passed to the formatter to produce a string.
 	 *
 	 * @param formatter
-	 *            the formatter to use, not null
+	 *                  the formatter to use, not null
 	 * @return the formatted time string, not null
 	 * @throws DateTimeException
-	 *             if an error occurs during printing
+	 *                           if an error occurs during printing
 	 */
 	public String format(DateTimeFormatter formatter) {
 		Objects.requireNonNull(formatter, "formatter");
@@ -1391,7 +1383,7 @@ public final class OffsetTime
 	 * specified date. All possible combinations of date and time are valid.
 	 *
 	 * @param date
-	 *            the date to combine with, not null
+	 *             the date to combine with, not null
 	 * @return the offset date-time formed from this time and the specified
 	 *         date, not null
 	 */
@@ -1437,10 +1429,10 @@ public final class OffsetTime
 	 * instances, use {@link ChronoField#NANO_OF_DAY} as a comparator.
 	 *
 	 * @param other
-	 *            the other time to compare to, not null
+	 *              the other time to compare to, not null
 	 * @return the comparator value, negative if less, positive if greater
 	 * @throws NullPointerException
-	 *             if {@code other} is null
+	 *                              if {@code other} is null
 	 */
 	@Override
 	public int compareTo(OffsetTime other) {
@@ -1464,7 +1456,7 @@ public final class OffsetTime
 	 * both times to an instant using the same date and comparing the instants.
 	 *
 	 * @param other
-	 *            the other time to compare to, not null
+	 *              the other time to compare to, not null
 	 * @return true if this is after the instant of the specified time
 	 */
 	public boolean isAfter(OffsetTime other) {
@@ -1480,7 +1472,7 @@ public final class OffsetTime
 	 * both times to an instant using the same date and comparing the instants.
 	 *
 	 * @param other
-	 *            the other time to compare to, not null
+	 *              the other time to compare to, not null
 	 * @return true if this is before the instant of the specified time
 	 */
 	public boolean isBefore(OffsetTime other) {
@@ -1497,7 +1489,7 @@ public final class OffsetTime
 	 * comparing the instants.
 	 *
 	 * @param other
-	 *            the other time to compare to, not null
+	 *              the other time to compare to, not null
 	 * @return true if this is equal to the instant of the specified time
 	 */
 	public boolean isEqual(OffsetTime other) {
@@ -1574,11 +1566,11 @@ public final class OffsetTime
 	 * 
 	 *             <pre>
 	 *             out.writeByte(9); // identifies an OffsetTime
-	 *             // the <a href="../../serialized-form.html#java.time.LocalTime">time</a>
-	 * // excluding the one byte header
-	 * // the <a
-	 * // href="../../serialized-form.html#java.time.ZoneOffset">offset</a>
-	 * // excluding the one byte header
+	 * // the <a href="../../serialized-form.html#java.time.LocalTime">time</a>
+	 *             // excluding the one byte header
+	 *             // the <a
+	 *             // href="../../serialized-form.html#java.time.ZoneOffset">offset</a>
+	 *             // excluding the one byte header
 	 *             </pre>
 	 *
 	 * @return the instance of {@code Ser}, not null
@@ -1591,12 +1583,13 @@ public final class OffsetTime
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	void writeExternal(ObjectOutput out) throws IOException {
@@ -1604,7 +1597,8 @@ public final class OffsetTime
 		offset.writeExternal(out);
 	}
 
-	static OffsetTime readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+	static OffsetTime readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
 		LocalTime time = LocalTime.readExternal(in);
 		ZoneOffset offset = ZoneOffset.readExternal(in);
 		return OffsetTime.of(time, offset);

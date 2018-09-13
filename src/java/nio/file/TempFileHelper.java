@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -42,15 +22,14 @@ import sun.security.action.GetPropertyAction;
  */
 
 class TempFileHelper {
-	private TempFileHelper() {
-	}
+	private TempFileHelper() {}
 
 	// temporary directory location
-	private static final Path tmpdir = Paths
-			.get(doPrivileged(new GetPropertyAction("java.io.tmpdir")));
+	private static final Path tmpdir = Paths.get(doPrivileged(
+			new GetPropertyAction("java.io.tmpdir")));
 
-	private static final boolean isPosix = FileSystems.getDefault().supportedFileAttributeViews()
-			.contains("posix");
+	private static final boolean isPosix = FileSystems.getDefault()
+			.supportedFileAttributeViews().contains("posix");
 
 	// file name generation, same as java.io.File for now
 	private static final SecureRandom random = new SecureRandom();
@@ -58,7 +37,8 @@ class TempFileHelper {
 	private static Path generatePath(String prefix, String suffix, Path dir) {
 		long n = random.nextLong();
 		n = (n == Long.MIN_VALUE) ? 0 : Math.abs(n);
-		Path name = dir.getFileSystem().getPath(prefix + Long.toString(n) + suffix);
+		Path name = dir.getFileSystem().getPath(prefix + Long.toString(n)
+				+ suffix);
 		// the generated name should be a simple file name
 		if (name.getParent() != null)
 			throw new IllegalArgumentException("Invalid prefix or suffix");
@@ -70,15 +50,17 @@ class TempFileHelper {
 		static final FileAttribute<Set<PosixFilePermission>> filePermissions = PosixFilePermissions
 				.asFileAttribute(EnumSet.of(OWNER_READ, OWNER_WRITE));
 		static final FileAttribute<Set<PosixFilePermission>> dirPermissions = PosixFilePermissions
-				.asFileAttribute(EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE));
+				.asFileAttribute(EnumSet.of(OWNER_READ, OWNER_WRITE,
+						OWNER_EXECUTE));
 	}
 
 	/**
 	 * Creates a file or directory in in the given given directory (or in the
 	 * temporary directory if dir is {@code null}).
 	 */
-	private static Path create(Path dir, String prefix, String suffix, boolean createDirectory,
-			FileAttribute<?>[] attrs) throws IOException {
+	private static Path create(Path dir, String prefix, String suffix,
+			boolean createDirectory, FileAttribute<?>[] attrs)
+			throws IOException {
 		if (prefix == null)
 			prefix = "";
 		if (suffix == null)
@@ -104,10 +86,12 @@ class TempFileHelper {
 					}
 				}
 				if (!hasPermissions) {
-					FileAttribute<?>[] copy = new FileAttribute<?>[attrs.length + 1];
+					FileAttribute<?>[] copy = new FileAttribute<?>[attrs.length
+							+ 1];
 					System.arraycopy(attrs, 0, copy, 0, attrs.length);
 					attrs = copy;
-					attrs[attrs.length - 1] = (createDirectory) ? PosixPermissions.dirPermissions
+					attrs[attrs.length - 1] = (createDirectory)
+							? PosixPermissions.dirPermissions
 							: PosixPermissions.filePermissions;
 				}
 			}
@@ -122,7 +106,8 @@ class TempFileHelper {
 			} catch (InvalidPathException e) {
 				// don't reveal temporary directory location
 				if (sm != null)
-					throw new IllegalArgumentException("Invalid prefix or suffix");
+					throw new IllegalArgumentException(
+							"Invalid prefix or suffix");
 				throw e;
 			}
 			try {
@@ -134,7 +119,8 @@ class TempFileHelper {
 			} catch (SecurityException e) {
 				// don't reveal temporary directory location
 				if (dir == tmpdir && sm != null)
-					throw new SecurityException("Unable to create temporary file or directory");
+					throw new SecurityException(
+							"Unable to create temporary file or directory");
 				throw e;
 			} catch (FileAlreadyExistsException e) {
 				// ignore
@@ -146,8 +132,8 @@ class TempFileHelper {
 	 * Creates a temporary file in the given directory, or in in the temporary
 	 * directory if dir is {@code null}.
 	 */
-	static Path createTempFile(Path dir, String prefix, String suffix, FileAttribute<?>[] attrs)
-			throws IOException {
+	static Path createTempFile(Path dir, String prefix, String suffix,
+			FileAttribute<?>[] attrs) throws IOException {
 		return create(dir, prefix, suffix, false, attrs);
 	}
 
@@ -155,8 +141,8 @@ class TempFileHelper {
 	 * Creates a temporary directory in the given directory, or in in the
 	 * temporary directory if dir is {@code null}.
 	 */
-	static Path createTempDirectory(Path dir, String prefix, FileAttribute<?>[] attrs)
-			throws IOException {
+	static Path createTempDirectory(Path dir, String prefix,
+			FileAttribute<?>[] attrs) throws IOException {
 		return create(dir, prefix, null, true, attrs);
 	}
 }

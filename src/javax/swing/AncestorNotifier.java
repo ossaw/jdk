@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -41,7 +21,8 @@ import java.io.Serializable;
  */
 
 @SuppressWarnings("serial")
-class AncestorNotifier implements ComponentListener, PropertyChangeListener, Serializable {
+class AncestorNotifier implements ComponentListener, PropertyChangeListener,
+		Serializable {
 	transient Component firstInvisibleAncestor;
 	EventListenerList listenerList = new EventListenerList();
 	JComponent root;
@@ -70,8 +51,8 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 	 * 
 	 * @see EventListenerList
 	 */
-	protected void fireAncestorAdded(JComponent source, int id, Container ancestor,
-			Container ancestorParent) {
+	protected void fireAncestorAdded(JComponent source, int id,
+			Container ancestor, Container ancestorParent) {
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
 		// Process the listeners last to first, notifying
@@ -79,9 +60,10 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == AncestorListener.class) {
 				// Lazily create the event:
-				AncestorEvent ancestorEvent = new AncestorEvent(source, id, ancestor,
-						ancestorParent);
-				((AncestorListener) listeners[i + 1]).ancestorAdded(ancestorEvent);
+				AncestorEvent ancestorEvent = new AncestorEvent(source, id,
+						ancestor, ancestorParent);
+				((AncestorListener) listeners[i + 1]).ancestorAdded(
+						ancestorEvent);
 			}
 		}
 	}
@@ -93,8 +75,8 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 	 * 
 	 * @see EventListenerList
 	 */
-	protected void fireAncestorRemoved(JComponent source, int id, Container ancestor,
-			Container ancestorParent) {
+	protected void fireAncestorRemoved(JComponent source, int id,
+			Container ancestor, Container ancestorParent) {
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
 		// Process the listeners last to first, notifying
@@ -102,9 +84,10 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == AncestorListener.class) {
 				// Lazily create the event:
-				AncestorEvent ancestorEvent = new AncestorEvent(source, id, ancestor,
-						ancestorParent);
-				((AncestorListener) listeners[i + 1]).ancestorRemoved(ancestorEvent);
+				AncestorEvent ancestorEvent = new AncestorEvent(source, id,
+						ancestor, ancestorParent);
+				((AncestorListener) listeners[i + 1]).ancestorRemoved(
+						ancestorEvent);
 			}
 		}
 	}
@@ -116,8 +99,8 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 	 * 
 	 * @see EventListenerList
 	 */
-	protected void fireAncestorMoved(JComponent source, int id, Container ancestor,
-			Container ancestorParent) {
+	protected void fireAncestorMoved(JComponent source, int id,
+			Container ancestor, Container ancestorParent) {
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
 		// Process the listeners last to first, notifying
@@ -125,9 +108,10 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == AncestorListener.class) {
 				// Lazily create the event:
-				AncestorEvent ancestorEvent = new AncestorEvent(source, id, ancestor,
-						ancestorParent);
-				((AncestorListener) listeners[i + 1]).ancestorMoved(ancestorEvent);
+				AncestorEvent ancestorEvent = new AncestorEvent(source, id,
+						ancestor, ancestorParent);
+				((AncestorListener) listeners[i + 1]).ancestorMoved(
+						ancestorEvent);
 			}
 		}
 	}
@@ -150,11 +134,13 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 					jAncestor.addPropertyChangeListener(this);
 				}
 			}
-			if (!a.isVisible() || a.getParent() == null || a instanceof Window) {
+			if (!a.isVisible() || a.getParent() == null
+					|| a instanceof Window) {
 				firstInvisibleAncestor = a;
 			}
 		}
-		if (firstInvisibleAncestor instanceof Window && firstInvisibleAncestor.isVisible()) {
+		if (firstInvisibleAncestor instanceof Window && firstInvisibleAncestor
+				.isVisible()) {
 			firstInvisibleAncestor = null;
 		}
 	}
@@ -173,14 +159,13 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 		}
 	}
 
-	public void componentResized(ComponentEvent e) {
-	}
+	public void componentResized(ComponentEvent e) {}
 
 	public void componentMoved(ComponentEvent e) {
 		Component source = e.getComponent();
 
-		fireAncestorMoved(root, AncestorEvent.ANCESTOR_MOVED, (Container) source,
-				source.getParent());
+		fireAncestorMoved(root, AncestorEvent.ANCESTOR_MOVED,
+				(Container) source, source.getParent());
 	}
 
 	public void componentShown(ComponentEvent e) {
@@ -189,8 +174,8 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 		if (ancestor == firstInvisibleAncestor) {
 			addListeners(ancestor, false);
 			if (firstInvisibleAncestor == null) {
-				fireAncestorAdded(root, AncestorEvent.ANCESTOR_ADDED, (Container) ancestor,
-						ancestor.getParent());
+				fireAncestorAdded(root, AncestorEvent.ANCESTOR_ADDED,
+						(Container) ancestor, ancestor.getParent());
 			}
 		}
 	}
@@ -204,8 +189,8 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 		}
 		firstInvisibleAncestor = ancestor;
 		if (needsNotify) {
-			fireAncestorRemoved(root, AncestorEvent.ANCESTOR_REMOVED, (Container) ancestor,
-					ancestor.getParent());
+			fireAncestorRemoved(root, AncestorEvent.ANCESTOR_REMOVED,
+					(Container) ancestor, ancestor.getParent());
 		}
 	}
 
@@ -219,8 +204,8 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 				if (component == firstInvisibleAncestor) {
 					addListeners(component, false);
 					if (firstInvisibleAncestor == null) {
-						fireAncestorAdded(root, AncestorEvent.ANCESTOR_ADDED, component,
-								component.getParent());
+						fireAncestorAdded(root, AncestorEvent.ANCESTOR_ADDED,
+								component, component.getParent());
 					}
 				}
 			} else {
@@ -230,7 +215,8 @@ class AncestorNotifier implements ComponentListener, PropertyChangeListener, Ser
 				removeListeners(oldParent);
 				firstInvisibleAncestor = component;
 				if (needsNotify) {
-					fireAncestorRemoved(root, AncestorEvent.ANCESTOR_REMOVED, component, oldParent);
+					fireAncestorRemoved(root, AncestorEvent.ANCESTOR_REMOVED,
+							component, oldParent);
 				}
 			}
 		}

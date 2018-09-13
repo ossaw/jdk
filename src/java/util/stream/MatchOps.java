@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -41,8 +21,7 @@ import java.util.function.Supplier;
  */
 final class MatchOps {
 
-	private MatchOps() {
-	}
+	private MatchOps() {}
 
 	/**
 	 * Enum describing quantified match options -- all match, any match, none
@@ -61,7 +40,8 @@ final class MatchOps {
 		private final boolean stopOnPredicateMatches;
 		private final boolean shortCircuitResult;
 
-		private MatchKind(boolean stopOnPredicateMatches, boolean shortCircuitResult) {
+		private MatchKind(boolean stopOnPredicateMatches,
+				boolean shortCircuitResult) {
 			this.stopOnPredicateMatches = stopOnPredicateMatches;
 			this.shortCircuitResult = shortCircuitResult;
 		}
@@ -70,17 +50,17 @@ final class MatchOps {
 	/**
 	 * Constructs a quantified predicate matcher for a Stream.
 	 *
-	 * @param <T>
-	 *            the type of stream elements
+	 * @param           <T>
+	 *                  the type of stream elements
 	 * @param predicate
-	 *            the {@code Predicate} to apply to stream elements
+	 *                  the {@code Predicate} to apply to stream elements
 	 * @param matchKind
-	 *            the kind of quantified match (all, any, none)
+	 *                  the kind of quantified match (all, any, none)
 	 * @return a {@code TerminalOp} implementing the desired quantified match
 	 *         criteria
 	 */
-	public static <T> TerminalOp<T, Boolean> makeRef(Predicate<? super T> predicate,
-			MatchKind matchKind) {
+	public static <T> TerminalOp<T, Boolean> makeRef(
+			Predicate<? super T> predicate, MatchKind matchKind) {
 		Objects.requireNonNull(predicate);
 		Objects.requireNonNull(matchKind);
 		class MatchSink extends BooleanTerminalSink<T> {
@@ -90,7 +70,8 @@ final class MatchOps {
 
 			@Override
 			public void accept(T t) {
-				if (!stop && predicate.test(t) == matchKind.stopOnPredicateMatches) {
+				if (!stop && predicate.test(
+						t) == matchKind.stopOnPredicateMatches) {
 					stop = true;
 					value = matchKind.shortCircuitResult;
 				}
@@ -104,9 +85,9 @@ final class MatchOps {
 	 * Constructs a quantified predicate matcher for an {@code IntStream}.
 	 *
 	 * @param predicate
-	 *            the {@code Predicate} to apply to stream elements
+	 *                  the {@code Predicate} to apply to stream elements
 	 * @param matchKind
-	 *            the kind of quantified match (all, any, none)
+	 *                  the kind of quantified match (all, any, none)
 	 * @return a {@code TerminalOp} implementing the desired quantified match
 	 *         criteria
 	 */
@@ -114,14 +95,16 @@ final class MatchOps {
 			MatchKind matchKind) {
 		Objects.requireNonNull(predicate);
 		Objects.requireNonNull(matchKind);
-		class MatchSink extends BooleanTerminalSink<Integer> implements Sink.OfInt {
+		class MatchSink extends BooleanTerminalSink<Integer> implements
+				Sink.OfInt {
 			MatchSink() {
 				super(matchKind);
 			}
 
 			@Override
 			public void accept(int t) {
-				if (!stop && predicate.test(t) == matchKind.stopOnPredicateMatches) {
+				if (!stop && predicate.test(
+						t) == matchKind.stopOnPredicateMatches) {
 					stop = true;
 					value = matchKind.shortCircuitResult;
 				}
@@ -135,16 +118,18 @@ final class MatchOps {
 	 * Constructs a quantified predicate matcher for a {@code LongStream}.
 	 *
 	 * @param predicate
-	 *            the {@code Predicate} to apply to stream elements
+	 *                  the {@code Predicate} to apply to stream elements
 	 * @param matchKind
-	 *            the kind of quantified match (all, any, none)
+	 *                  the kind of quantified match (all, any, none)
 	 * @return a {@code TerminalOp} implementing the desired quantified match
 	 *         criteria
 	 */
-	public static TerminalOp<Long, Boolean> makeLong(LongPredicate predicate, MatchKind matchKind) {
+	public static TerminalOp<Long, Boolean> makeLong(LongPredicate predicate,
+			MatchKind matchKind) {
 		Objects.requireNonNull(predicate);
 		Objects.requireNonNull(matchKind);
-		class MatchSink extends BooleanTerminalSink<Long> implements Sink.OfLong {
+		class MatchSink extends BooleanTerminalSink<Long> implements
+				Sink.OfLong {
 
 			MatchSink() {
 				super(matchKind);
@@ -152,7 +137,8 @@ final class MatchOps {
 
 			@Override
 			public void accept(long t) {
-				if (!stop && predicate.test(t) == matchKind.stopOnPredicateMatches) {
+				if (!stop && predicate.test(
+						t) == matchKind.stopOnPredicateMatches) {
 					stop = true;
 					value = matchKind.shortCircuitResult;
 				}
@@ -166,17 +152,18 @@ final class MatchOps {
 	 * Constructs a quantified predicate matcher for a {@code DoubleStream}.
 	 *
 	 * @param predicate
-	 *            the {@code Predicate} to apply to stream elements
+	 *                  the {@code Predicate} to apply to stream elements
 	 * @param matchKind
-	 *            the kind of quantified match (all, any, none)
+	 *                  the kind of quantified match (all, any, none)
 	 * @return a {@code TerminalOp} implementing the desired quantified match
 	 *         criteria
 	 */
-	public static TerminalOp<Double, Boolean> makeDouble(DoublePredicate predicate,
-			MatchKind matchKind) {
+	public static TerminalOp<Double, Boolean> makeDouble(
+			DoublePredicate predicate, MatchKind matchKind) {
 		Objects.requireNonNull(predicate);
 		Objects.requireNonNull(matchKind);
-		class MatchSink extends BooleanTerminalSink<Double> implements Sink.OfDouble {
+		class MatchSink extends BooleanTerminalSink<Double> implements
+				Sink.OfDouble {
 
 			MatchSink() {
 				super(matchKind);
@@ -184,14 +171,16 @@ final class MatchOps {
 
 			@Override
 			public void accept(double t) {
-				if (!stop && predicate.test(t) == matchKind.stopOnPredicateMatches) {
+				if (!stop && predicate.test(
+						t) == matchKind.stopOnPredicateMatches) {
 					stop = true;
 					value = matchKind.shortCircuitResult;
 				}
 			}
 		}
 
-		return new MatchOp<>(StreamShape.DOUBLE_VALUE, matchKind, MatchSink::new);
+		return new MatchOp<>(StreamShape.DOUBLE_VALUE, matchKind,
+				MatchSink::new);
 	}
 
 	/**
@@ -200,7 +189,7 @@ final class MatchOps {
 	 * elements match the predicate.
 	 *
 	 * @param <T>
-	 *            the output type of the stream pipeline
+	 *        the output type of the stream pipeline
 	 */
 	private static final class MatchOp<T> implements TerminalOp<T, Boolean> {
 		private final StreamShape inputShape;
@@ -211,12 +200,13 @@ final class MatchOps {
 		 * Constructs a {@code MatchOp}.
 		 *
 		 * @param shape
-		 *            the output shape of the stream pipeline
+		 *                     the output shape of the stream pipeline
 		 * @param matchKind
-		 *            the kind of quantified match (all, any, none)
+		 *                     the kind of quantified match (all, any, none)
 		 * @param sinkSupplier
-		 *            {@code Supplier} for a {@code Sink} of the appropriate
-		 *            shape which implements the matching operation
+		 *                     {@code Supplier} for a {@code Sink} of the
+		 *                     appropriate
+		 *                     shape which implements the matching operation
 		 */
 		MatchOp(StreamShape shape, MatchKind matchKind,
 				Supplier<BooleanTerminalSink<T>> sinkSupplier) {
@@ -238,11 +228,13 @@ final class MatchOps {
 		@Override
 		public <S> Boolean evaluateSequential(PipelineHelper<T> helper,
 				Spliterator<S> spliterator) {
-			return helper.wrapAndCopyInto(sinkSupplier.get(), spliterator).getAndClearState();
+			return helper.wrapAndCopyInto(sinkSupplier.get(), spliterator)
+					.getAndClearState();
 		}
 
 		@Override
-		public <S> Boolean evaluateParallel(PipelineHelper<T> helper, Spliterator<S> spliterator) {
+		public <S> Boolean evaluateParallel(PipelineHelper<T> helper,
+				Spliterator<S> spliterator) {
 			// Approach for parallel implementation:
 			// - Decompose as per usual
 			// - run match on leaf chunks, call result "b"
@@ -258,7 +250,7 @@ final class MatchOps {
 	 * results. Subclasses implement the shape-specific functionality.
 	 *
 	 * @param <T>
-	 *            The output type of the stream pipeline
+	 *        The output type of the stream pipeline
 	 */
 	private static abstract class BooleanTerminalSink<T> implements Sink<T> {
 		boolean stop;
@@ -283,19 +275,20 @@ final class MatchOps {
 	 * quantified match
 	 *
 	 * @param <P_IN>
-	 *            the type of source elements for the pipeline
+	 *        the type of source elements for the pipeline
 	 * @param <P_OUT>
-	 *            the type of output elements for the pipeline
+	 *        the type of output elements for the pipeline
 	 */
 	@SuppressWarnings("serial")
-	private static final class MatchTask<P_IN, P_OUT>
-			extends AbstractShortCircuitTask<P_IN, P_OUT, Boolean, MatchTask<P_IN, P_OUT>> {
+	private static final class MatchTask<P_IN, P_OUT> extends
+			AbstractShortCircuitTask<P_IN, P_OUT, Boolean, MatchTask<P_IN, P_OUT>> {
 		private final MatchOp<P_OUT> op;
 
 		/**
 		 * Constructor for root node
 		 */
-		MatchTask(MatchOp<P_OUT> op, PipelineHelper<P_OUT> helper, Spliterator<P_IN> spliterator) {
+		MatchTask(MatchOp<P_OUT> op, PipelineHelper<P_OUT> helper,
+				Spliterator<P_IN> spliterator) {
 			super(helper, spliterator);
 			this.op = op;
 		}
@@ -303,20 +296,22 @@ final class MatchOps {
 		/**
 		 * Constructor for non-root node
 		 */
-		MatchTask(MatchTask<P_IN, P_OUT> parent, Spliterator<P_IN> spliterator) {
+		MatchTask(MatchTask<P_IN, P_OUT> parent,
+				Spliterator<P_IN> spliterator) {
 			super(parent, spliterator);
 			this.op = parent.op;
 		}
 
 		@Override
-		protected MatchTask<P_IN, P_OUT> makeChild(Spliterator<P_IN> spliterator) {
+		protected MatchTask<P_IN, P_OUT> makeChild(
+				Spliterator<P_IN> spliterator) {
 			return new MatchTask<>(this, spliterator);
 		}
 
 		@Override
 		protected Boolean doLeaf() {
-			boolean b = helper.wrapAndCopyInto(op.sinkSupplier.get(), spliterator)
-					.getAndClearState();
+			boolean b = helper.wrapAndCopyInto(op.sinkSupplier.get(),
+					spliterator).getAndClearState();
 			if (b == op.matchKind.shortCircuitResult)
 				shortCircuit(b);
 			return null;

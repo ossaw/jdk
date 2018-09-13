@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -59,7 +39,8 @@ import javax.swing.table.TableColumnModel;
  * @author Philip Milne
  * @since 1.7
  */
-public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChangeListener {
+public class SynthTableUI extends BasicTableUI implements SynthUI,
+		PropertyChangeListener {
 	//
 	// Instance Variables
 	//
@@ -90,7 +71,7 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 	 * Creates a new UI object for the given component.
 	 *
 	 * @param c
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -115,13 +96,15 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 		imageIconRenderer = installRendererIfPossible(ImageIcon.class, null);
 		booleanRenderer = installRendererIfPossible(Boolean.class,
 				new SynthBooleanTableCellRenderer());
-		objectRenderer = installRendererIfPossible(Object.class, new SynthTableCellRenderer());
+		objectRenderer = installRendererIfPossible(Object.class,
+				new SynthTableCellRenderer());
 		updateStyle(table);
 	}
 
 	private TableCellRenderer installRendererIfPossible(Class objectClass,
 			TableCellRenderer renderer) {
-		TableCellRenderer currentRenderer = table.getDefaultRenderer(objectClass);
+		TableCellRenderer currentRenderer = table.getDefaultRenderer(
+				objectClass);
 		if (currentRenderer instanceof UIResource) {
 			table.setDefaultRenderer(objectClass, renderer);
 		}
@@ -137,12 +120,14 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 
 			Color sbg = table.getSelectionBackground();
 			if (sbg == null || sbg instanceof UIResource) {
-				table.setSelectionBackground(style.getColor(context, ColorType.TEXT_BACKGROUND));
+				table.setSelectionBackground(style.getColor(context,
+						ColorType.TEXT_BACKGROUND));
 			}
 
 			Color sfg = table.getSelectionForeground();
 			if (sfg == null || sfg instanceof UIResource) {
-				table.setSelectionForeground(style.getColor(context, ColorType.TEXT_FOREGROUND));
+				table.setSelectionForeground(style.getColor(context,
+						ColorType.TEXT_FOREGROUND));
 			}
 
 			context.setComponentState(ENABLED);
@@ -153,17 +138,21 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 				if (gridColor == null) {
 					gridColor = style.getColor(context, ColorType.FOREGROUND);
 				}
-				table.setGridColor(gridColor == null ? new ColorUIResource(Color.GRAY) : gridColor);
+				table.setGridColor(gridColor == null ? new ColorUIResource(
+						Color.GRAY) : gridColor);
 			}
 
-			useTableColors = style.getBoolean(context, "Table.rendererUseTableColors", true);
-			useUIBorder = style.getBoolean(context, "Table.rendererUseUIBorder", true);
+			useTableColors = style.getBoolean(context,
+					"Table.rendererUseTableColors", true);
+			useUIBorder = style.getBoolean(context, "Table.rendererUseUIBorder",
+					true);
 
 			Object rowHeight = style.get(context, "Table.rowHeight");
 			if (rowHeight != null) {
 				LookAndFeel.installProperty(table, "rowHeight", rowHeight);
 			}
-			boolean showGrid = style.getBoolean(context, "Table.showGrid", true);
+			boolean showGrid = style.getBoolean(context, "Table.showGrid",
+					true);
 			if (!showGrid) {
 				table.setShowGrid(false);
 			}
@@ -172,7 +161,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 			if (d != null) {
 				d = (Dimension) style.get(context, "Table.intercellSpacing");
 			}
-			alternateColor = (Color) style.get(context, "Table.alternateRowColor");
+			alternateColor = (Color) style.get(context,
+					"Table.alternateRowColor");
 			if (d != null) {
 				table.setIntercellSpacing(d);
 			}
@@ -256,9 +246,9 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -266,7 +256,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintTableBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
+		context.getPainter().paintTableBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -275,7 +266,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintTableBorder(context, g, x, y, w, h);
 	}
 
@@ -286,9 +278,9 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -303,9 +295,9 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 	 * Paints the specified component.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
 	protected void paint(SynthContext context, Graphics g) {
@@ -329,7 +321,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 
 		Point upperLeft = clip.getLocation();
 
-		Point lowerRight = new Point(clip.x + clip.width - 1, clip.y + clip.height - 1);
+		Point lowerRight = new Point(clip.x + clip.width - 1, clip.y
+				+ clip.height - 1);
 
 		int rMin = table.rowAtPoint(upperLeft);
 		int rMax = table.rowAtPoint(lowerRight);
@@ -378,7 +371,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 		}
 
 		Color color = (Color) style.get(context, "Table.dropLineColor");
-		Color shortColor = (Color) style.get(context, "Table.dropLineShortColor");
+		Color shortColor = (Color) style.get(context,
+				"Table.dropLineShortColor");
 		if (color == null && shortColor == null) {
 			return;
 		}
@@ -488,7 +482,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 			rect.y = 0;
 
 			if (table.getRowCount() != 0) {
-				Rectangle lastRect = table.getCellRect(table.getRowCount() - 1, 0, true);
+				Rectangle lastRect = table.getCellRect(table.getRowCount() - 1,
+						0, true);
 				rect.height = lastRect.y + lastRect.height;
 			} else {
 				rect.height = table.getHeight();
@@ -504,22 +499,23 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 	 * <code>getShowVerticalLines()</code> returns true and paints horizontal
 	 * lines if <code>getShowHorizontalLines()</code> returns true.
 	 */
-	private void paintGrid(SynthContext context, Graphics g, int rMin, int rMax, int cMin,
-			int cMax) {
+	private void paintGrid(SynthContext context, Graphics g, int rMin, int rMax,
+			int cMin, int cMax) {
 		g.setColor(table.getGridColor());
 
 		Rectangle minCell = table.getCellRect(rMin, cMin, true);
 		Rectangle maxCell = table.getCellRect(rMax, cMax, true);
 		Rectangle damagedArea = minCell.union(maxCell);
-		SynthGraphicsUtils synthG = context.getStyle().getGraphicsUtils(context);
+		SynthGraphicsUtils synthG = context.getStyle().getGraphicsUtils(
+				context);
 
 		if (table.getShowHorizontalLines()) {
 			int tableWidth = damagedArea.x + damagedArea.width;
 			int y = damagedArea.y;
 			for (int row = rMin; row <= rMax; row++) {
 				y += table.getRowHeight(row);
-				synthG.drawLine(context, "Table.grid", g, damagedArea.x, y - 1, tableWidth - 1,
-						y - 1);
+				synthG.drawLine(context, "Table.grid", g, damagedArea.x, y - 1,
+						tableWidth - 1, y - 1);
 			}
 		}
 		if (table.getShowVerticalLines()) {
@@ -531,14 +527,16 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 				for (int column = cMin; column <= cMax; column++) {
 					int w = cm.getColumn(column).getWidth();
 					x += w;
-					synthG.drawLine(context, "Table.grid", g, x - 1, 0, x - 1, tableHeight - 1);
+					synthG.drawLine(context, "Table.grid", g, x - 1, 0, x - 1,
+							tableHeight - 1);
 				}
 			} else {
 				x = damagedArea.x;
 				for (int column = cMax; column >= cMin; column--) {
 					int w = cm.getColumn(column).getWidth();
 					x += w;
-					synthG.drawLine(context, "Table.grid", g, x - 1, 0, x - 1, tableHeight - 1);
+					synthG.drawLine(context, "Table.grid", g, x - 1, 0, x - 1,
+							tableHeight - 1);
 				}
 			}
 		}
@@ -554,10 +552,11 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 		return -1;
 	}
 
-	private void paintCells(SynthContext context, Graphics g, int rMin, int rMax, int cMin,
-			int cMax) {
+	private void paintCells(SynthContext context, Graphics g, int rMin,
+			int rMax, int cMin, int cMax) {
 		JTableHeader header = table.getTableHeader();
-		TableColumn draggedColumn = (header == null) ? null : header.getDraggedColumn();
+		TableColumn draggedColumn = (header == null) ? null
+				: header.getDraggedColumn();
 
 		TableColumnModel cm = table.getColumnModel();
 		int columnMargin = cm.getColumnMargin();
@@ -601,15 +600,16 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 
 		// Paint the dragged column if we are dragging.
 		if (draggedColumn != null) {
-			paintDraggedArea(context, g, rMin, rMax, draggedColumn, header.getDraggedDistance());
+			paintDraggedArea(context, g, rMin, rMax, draggedColumn, header
+					.getDraggedDistance());
 		}
 
 		// Remove any renderers that may be left in the rendererPane.
 		rendererPane.removeAll();
 	}
 
-	private void paintDraggedArea(SynthContext context, Graphics g, int rMin, int rMax,
-			TableColumn draggedColumn, int distance) {
+	private void paintDraggedArea(SynthContext context, Graphics g, int rMin,
+			int rMax, TableColumn draggedColumn, int distance) {
 		int draggedColumnIndex = viewIndexForColumn(draggedColumn);
 
 		Rectangle minCell = table.getCellRect(rMin, draggedColumnIndex, true);
@@ -619,18 +619,19 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 
 		// Paint a gray well in place of the moving column.
 		g.setColor(table.getParent().getBackground());
-		g.fillRect(vacatedColumnRect.x, vacatedColumnRect.y, vacatedColumnRect.width,
-				vacatedColumnRect.height);
+		g.fillRect(vacatedColumnRect.x, vacatedColumnRect.y,
+				vacatedColumnRect.width, vacatedColumnRect.height);
 
 		// Move to the where the cell has been dragged.
 		vacatedColumnRect.x += distance;
 
 		// Fill the background.
 		g.setColor(context.getStyle().getColor(context, ColorType.BACKGROUND));
-		g.fillRect(vacatedColumnRect.x, vacatedColumnRect.y, vacatedColumnRect.width,
-				vacatedColumnRect.height);
+		g.fillRect(vacatedColumnRect.x, vacatedColumnRect.y,
+				vacatedColumnRect.width, vacatedColumnRect.height);
 
-		SynthGraphicsUtils synthG = context.getStyle().getGraphicsUtils(context);
+		SynthGraphicsUtils synthG = context.getStyle().getGraphicsUtils(
+				context);
 
 		// Paint the vertical grid lines if necessary.
 		if (table.getShowVerticalLines()) {
@@ -654,7 +655,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 			// Paint the (lower) horizontal grid line if necessary.
 			if (table.getShowHorizontalLines()) {
 				g.setColor(table.getGridColor());
-				Rectangle rcr = table.getCellRect(row, draggedColumnIndex, true);
+				Rectangle rcr = table.getCellRect(row, draggedColumnIndex,
+						true);
 				rcr.x += distance;
 				int x1 = rcr.x;
 				int y1 = rcr.y;
@@ -665,10 +667,10 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 		}
 	}
 
-	private void paintCell(SynthContext context, Graphics g, Rectangle cellRect, int row,
-			int column) {
-		if (table.isEditing() && table.getEditingRow() == row
-				&& table.getEditingColumn() == column) {
+	private void paintCell(SynthContext context, Graphics g, Rectangle cellRect,
+			int row, int column) {
+		if (table.isEditing() && table.getEditingRow() == row && table
+				.getEditingColumn() == column) {
 			Component component = table.getEditorComponent();
 			component.setBounds(cellRect);
 			component.validate();
@@ -683,8 +685,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 					component.setBackground(alternateColor);
 				}
 			}
-			rendererPane.paintComponent(g, component, table, cellRect.x, cellRect.y, cellRect.width,
-					cellRect.height, true);
+			rendererPane.paintComponent(g, component, table, cellRect.x,
+					cellRect.y, cellRect.width, cellRect.height, true);
 		}
 	}
 
@@ -698,7 +700,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 		}
 	}
 
-	private class SynthBooleanTableCellRenderer extends JCheckBox implements TableCellRenderer {
+	private class SynthBooleanTableCellRenderer extends JCheckBox implements
+			TableCellRenderer {
 		private boolean isRowSelected;
 
 		public SynthBooleanTableCellRenderer() {
@@ -706,8 +709,9 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 			setName("Table.cellRenderer");
 		}
 
-		public Component getTableCellRendererComponent(JTable table, Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
+		public Component getTableCellRendererComponent(JTable table,
+				Object value, boolean isSelected, boolean hasFocus, int row,
+				int column) {
 			isRowSelected = isSelected;
 
 			if (isSelected) {
@@ -761,16 +765,18 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 			}
 		}
 
-		public Component getTableCellRendererComponent(JTable table, Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
+		public Component getTableCellRendererComponent(JTable table,
+				Object value, boolean isSelected, boolean hasFocus, int row,
+				int column) {
 			if (!useTableColors && (isSelected || hasFocus)) {
-				SynthLookAndFeel.setSelectedUI(
-						(SynthLabelUI) SynthLookAndFeel.getUIOfType(getUI(), SynthLabelUI.class),
-						isSelected, hasFocus, table.isEnabled(), false);
+				SynthLookAndFeel.setSelectedUI((SynthLabelUI) SynthLookAndFeel
+						.getUIOfType(getUI(), SynthLabelUI.class), isSelected,
+						hasFocus, table.isEnabled(), false);
 			} else {
 				SynthLookAndFeel.resetSelectedUI();
 			}
-			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			super.getTableCellRendererComponent(table, value, isSelected,
+					hasFocus, row, column);
 
 			setIcon(null);
 			if (table != null) {
@@ -782,16 +788,19 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 		private void configureValue(Object value, Class columnClass) {
 			if (columnClass == Object.class || columnClass == null) {
 				setHorizontalAlignment(JLabel.LEADING);
-			} else if (columnClass == Float.class || columnClass == Double.class) {
+			} else if (columnClass == Float.class
+					|| columnClass == Double.class) {
 				if (numberFormat == null) {
 					numberFormat = NumberFormat.getInstance();
 				}
 				setHorizontalAlignment(JLabel.TRAILING);
-				setText((value == null) ? "" : ((NumberFormat) numberFormat).format(value));
+				setText((value == null) ? ""
+						: ((NumberFormat) numberFormat).format(value));
 			} else if (columnClass == Number.class) {
 				setHorizontalAlignment(JLabel.TRAILING);
 				// Super will have set value.
-			} else if (columnClass == Icon.class || columnClass == ImageIcon.class) {
+			} else if (columnClass == Icon.class
+					|| columnClass == ImageIcon.class) {
 				setHorizontalAlignment(JLabel.CENTER);
 				setIcon((value instanceof Icon) ? (Icon) value : null);
 				setText("");
@@ -800,7 +809,8 @@ public class SynthTableUI extends BasicTableUI implements SynthUI, PropertyChang
 					dateFormat = DateFormat.getDateInstance();
 				}
 				setHorizontalAlignment(JLabel.LEADING);
-				setText((value == null) ? "" : ((Format) dateFormat).format(value));
+				setText((value == null) ? ""
+						: ((Format) dateFormat).format(value));
 			} else {
 				configureValue(value, columnClass.getSuperclass());
 			}

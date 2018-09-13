@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.element;
@@ -55,9 +35,9 @@ public class UnknownElementException extends UnknownEntityException {
 	 * parameter.
 	 *
 	 * @param e
-	 *            the unknown element, may be {@code null}
+	 *          the unknown element, may be {@code null}
 	 * @param p
-	 *            an additional parameter, may be {@code null}
+	 *          an additional parameter, may be {@code null}
 	 */
 	public UnknownElementException(Element e, Object p) {
 		super("Unknown element: " + e);

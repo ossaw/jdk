@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -60,13 +40,14 @@ public class CharArrayWriter extends Writer {
 	 * Creates a new CharArrayWriter with the specified initial size.
 	 *
 	 * @param initialSize
-	 *            an int specifying the initial buffer size.
+	 *                    an int specifying the initial buffer size.
 	 * @exception IllegalArgumentException
-	 *                if initialSize is negative
+	 *                                     if initialSize is negative
 	 */
 	public CharArrayWriter(int initialSize) {
 		if (initialSize < 0) {
-			throw new IllegalArgumentException("Negative initial size: " + initialSize);
+			throw new IllegalArgumentException("Negative initial size: "
+					+ initialSize);
 		}
 		buf = new char[initialSize];
 	}
@@ -96,8 +77,8 @@ public class CharArrayWriter extends Writer {
 	 *            the number of chars that are written
 	 */
 	public void write(char c[], int off, int len) {
-		if ((off < 0) || (off > c.length) || (len < 0) || ((off + len) > c.length)
-				|| ((off + len) < 0)) {
+		if ((off < 0) || (off > c.length) || (len < 0) || ((off
+				+ len) > c.length) || ((off + len) < 0)) {
 			throw new IndexOutOfBoundsException();
 		} else if (len == 0) {
 			return;
@@ -139,7 +120,7 @@ public class CharArrayWriter extends Writer {
 	 * @param out
 	 *            the output stream to write to
 	 * @throws IOException
-	 *             If an I/O error occurs.
+	 *                     If an I/O error occurs.
 	 */
 	public void writeTo(Writer out) throws IOException {
 		synchronized (lock) {
@@ -193,29 +174,33 @@ public class CharArrayWriter extends Writer {
 	 * </pre>
 	 *
 	 * @param csq
-	 *            The character sequence from which a subsequence will be
-	 *            appended. If <tt>csq</tt> is <tt>null</tt>, then characters
-	 *            will be appended as if <tt>csq</tt> contained the four
-	 *            characters <tt>"null"</tt>.
+	 *              The character sequence from which a subsequence will be
+	 *              appended. If <tt>csq</tt> is <tt>null</tt>, then characters
+	 *              will be appended as if <tt>csq</tt> contained the four
+	 *              characters <tt>"null"</tt>.
 	 *
 	 * @param start
-	 *            The index of the first character in the subsequence
+	 *              The index of the first character in the subsequence
 	 *
 	 * @param end
-	 *            The index of the character following the last character in the
-	 *            subsequence
+	 *              The index of the character following the last character in
+	 *              the
+	 *              subsequence
 	 *
 	 * @return This writer
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <tt>start</tt> or <tt>end</tt> are negative,
-	 *             <tt>start</tt> is greater than <tt>end</tt>, or <tt>end</tt>
-	 *             is greater than <tt>csq.length()</tt>
+	 *                                   If <tt>start</tt> or <tt>end</tt> are
+	 *                                   negative,
+	 *                                   <tt>start</tt> is greater than
+	 *                                   <tt>end</tt>, or <tt>end</tt>
+	 *                                   is greater than <tt>csq.length()</tt>
 	 *
 	 * @since 1.5
 	 */
 	public CharArrayWriter append(CharSequence csq, int start, int end) {
-		String s = (csq == null ? "null" : csq).subSequence(start, end).toString();
+		String s = (csq == null ? "null" : csq).subSequence(start, end)
+				.toString();
 		write(s, 0, s.length());
 		return this;
 	}
@@ -232,7 +217,7 @@ public class CharArrayWriter extends Writer {
 	 * </pre>
 	 *
 	 * @param c
-	 *            The 16-bit character to append
+	 *          The 16-bit character to append
 	 *
 	 * @return This writer
 	 *
@@ -285,15 +270,13 @@ public class CharArrayWriter extends Writer {
 	/**
 	 * Flush the stream.
 	 */
-	public void flush() {
-	}
+	public void flush() {}
 
 	/**
 	 * Close the stream. This method does not release the buffer, since its
 	 * contents might still be required. Note: Invoking this method in this
 	 * class will have no effect.
 	 */
-	public void close() {
-	}
+	public void close() {}
 
 }

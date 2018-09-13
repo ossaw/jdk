@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -50,11 +30,11 @@ public class Time extends java.util.Date {
 	 * The result is undefined if a given argument is out of bounds.
 	 *
 	 * @param hour
-	 *            0 to 23
+	 *               0 to 23
 	 * @param minute
-	 *            0 to 59
+	 *               0 to 59
 	 * @param second
-	 *            0 to 59
+	 *               0 to 59
 	 *
 	 * @deprecated Use the constructor that takes a milliseconds value in place
 	 *             of this constructor
@@ -68,8 +48,8 @@ public class Time extends java.util.Date {
 	 * Constructs a <code>Time</code> object using a milliseconds time value.
 	 *
 	 * @param time
-	 *            milliseconds since January 1, 1970, 00:00:00 GMT; a negative
-	 *            number is milliseconds before January 1, 1970, 00:00:00 GMT
+	 *             milliseconds since January 1, 1970, 00:00:00 GMT; a negative
+	 *             number is milliseconds before January 1, 1970, 00:00:00 GMT
 	 */
 	public Time(long time) {
 		super(time);
@@ -79,8 +59,8 @@ public class Time extends java.util.Date {
 	 * Sets a <code>Time</code> object using a milliseconds time value.
 	 *
 	 * @param time
-	 *            milliseconds since January 1, 1970, 00:00:00 GMT; a negative
-	 *            number is milliseconds before January 1, 1970, 00:00:00 GMT
+	 *             milliseconds since January 1, 1970, 00:00:00 GMT; a negative
+	 *             number is milliseconds before January 1, 1970, 00:00:00 GMT
 	 */
 	public void setTime(long time) {
 		super.setTime(time);
@@ -91,7 +71,7 @@ public class Time extends java.util.Date {
 	 * value.
 	 *
 	 * @param s
-	 *            time in format "hh:mm:ss"
+	 *          time in format "hh:mm:ss"
 	 * @return a corresponding <code>Time</code> object
 	 */
 	public static Time valueOf(String s) {
@@ -106,7 +86,8 @@ public class Time extends java.util.Date {
 
 		firstColon = s.indexOf(':');
 		secondColon = s.indexOf(':', firstColon + 1);
-		if ((firstColon > 0) & (secondColon > 0) & (secondColon < s.length() - 1)) {
+		if ((firstColon > 0) & (secondColon > 0) & (secondColon < s.length()
+				- 1)) {
 			hour = Integer.parseInt(s.substring(0, firstColon));
 			minute = Integer.parseInt(s.substring(firstColon + 1, secondColon));
 			second = Integer.parseInt(s.substring(secondColon + 1));
@@ -157,7 +138,7 @@ public class Time extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #setYear
 	 */
 	@Deprecated
@@ -171,7 +152,7 @@ public class Time extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #setMonth
 	 */
 	@Deprecated
@@ -185,7 +166,7 @@ public class Time extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 */
 	@Deprecated
 	public int getDay() {
@@ -198,7 +179,7 @@ public class Time extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #setDate
 	 */
 	@Deprecated
@@ -212,7 +193,7 @@ public class Time extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #getYear
 	 */
 	@Deprecated
@@ -226,7 +207,7 @@ public class Time extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #getMonth
 	 */
 	@Deprecated
@@ -240,7 +221,7 @@ public class Time extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #getDate
 	 */
 	@Deprecated
@@ -259,10 +240,10 @@ public class Time extends java.util.Date {
 	 * {@code LocalTime}.
 	 *
 	 * @param time
-	 *            a {@code LocalTime} to convert
+	 *             a {@code LocalTime} to convert
 	 * @return a {@code Time} object
 	 * @exception NullPointerException
-	 *                if {@code time} is null
+	 *                                 if {@code time} is null
 	 * @since 1.8
 	 */
 	@SuppressWarnings("deprecation")
@@ -289,7 +270,7 @@ public class Time extends java.util.Date {
 	 * be used because SQL {@code Time} values do not have a date component.
 	 *
 	 * @exception java.lang.UnsupportedOperationException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 */
 	@Override
 	public Instant toInstant() {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio;
@@ -40,8 +20,7 @@ import sun.misc.VM;
 
 class Bits { // package-private
 
-	private Bits() {
-	}
+	private Bits() {}
 
 	// -- Swapping --
 
@@ -208,11 +187,13 @@ class Bits { // package-private
 	// -- get/put int --
 
 	static private int makeInt(byte b3, byte b2, byte b1, byte b0) {
-		return (((b3) << 24) | ((b2 & 0xff) << 16) | ((b1 & 0xff) << 8) | ((b0 & 0xff)));
+		return (((b3) << 24) | ((b2 & 0xff) << 16) | ((b1 & 0xff) << 8) | ((b0
+				& 0xff)));
 	}
 
 	static int getIntL(ByteBuffer bb, int bi) {
-		return makeInt(bb._get(bi + 3), bb._get(bi + 2), bb._get(bi + 1), bb._get(bi));
+		return makeInt(bb._get(bi + 3), bb._get(bi + 2), bb._get(bi + 1), bb
+				._get(bi));
 	}
 
 	static int getIntL(long a) {
@@ -220,7 +201,8 @@ class Bits { // package-private
 	}
 
 	static int getIntB(ByteBuffer bb, int bi) {
-		return makeInt(bb._get(bi), bb._get(bi + 1), bb._get(bi + 2), bb._get(bi + 3));
+		return makeInt(bb._get(bi), bb._get(bi + 1), bb._get(bi + 2), bb._get(bi
+				+ 3));
 	}
 
 	static int getIntB(long a) {
@@ -295,31 +277,34 @@ class Bits { // package-private
 
 	// -- get/put long --
 
-	static private long makeLong(byte b7, byte b6, byte b5, byte b4, byte b3, byte b2, byte b1,
-			byte b0) {
-		return ((((long) b7) << 56) | (((long) b6 & 0xff) << 48) | (((long) b5 & 0xff) << 40)
-				| (((long) b4 & 0xff) << 32) | (((long) b3 & 0xff) << 24)
-				| (((long) b2 & 0xff) << 16) | (((long) b1 & 0xff) << 8) | (((long) b0 & 0xff)));
+	static private long makeLong(byte b7, byte b6, byte b5, byte b4, byte b3,
+			byte b2, byte b1, byte b0) {
+		return ((((long) b7) << 56) | (((long) b6 & 0xff) << 48) | (((long) b5
+				& 0xff) << 40) | (((long) b4 & 0xff) << 32) | (((long) b3
+						& 0xff) << 24) | (((long) b2 & 0xff) << 16)
+				| (((long) b1 & 0xff) << 8) | (((long) b0 & 0xff)));
 	}
 
 	static long getLongL(ByteBuffer bb, int bi) {
-		return makeLong(bb._get(bi + 7), bb._get(bi + 6), bb._get(bi + 5), bb._get(bi + 4),
-				bb._get(bi + 3), bb._get(bi + 2), bb._get(bi + 1), bb._get(bi));
+		return makeLong(bb._get(bi + 7), bb._get(bi + 6), bb._get(bi + 5), bb
+				._get(bi + 4), bb._get(bi + 3), bb._get(bi + 2), bb._get(bi
+						+ 1), bb._get(bi));
 	}
 
 	static long getLongL(long a) {
-		return makeLong(_get(a + 7), _get(a + 6), _get(a + 5), _get(a + 4), _get(a + 3),
-				_get(a + 2), _get(a + 1), _get(a));
+		return makeLong(_get(a + 7), _get(a + 6), _get(a + 5), _get(a + 4),
+				_get(a + 3), _get(a + 2), _get(a + 1), _get(a));
 	}
 
 	static long getLongB(ByteBuffer bb, int bi) {
-		return makeLong(bb._get(bi), bb._get(bi + 1), bb._get(bi + 2), bb._get(bi + 3),
-				bb._get(bi + 4), bb._get(bi + 5), bb._get(bi + 6), bb._get(bi + 7));
+		return makeLong(bb._get(bi), bb._get(bi + 1), bb._get(bi + 2), bb._get(
+				bi + 3), bb._get(bi + 4), bb._get(bi + 5), bb._get(bi + 6), bb
+						._get(bi + 7));
 	}
 
 	static long getLongB(long a) {
-		return makeLong(_get(a), _get(a + 1), _get(a + 2), _get(a + 3), _get(a + 4), _get(a + 5),
-				_get(a + 6), _get(a + 7));
+		return makeLong(_get(a), _get(a + 1), _get(a + 2), _get(a + 3), _get(a
+				+ 4), _get(a + 5), _get(a + 6), _get(a + 7));
 	}
 
 	static long getLong(ByteBuffer bb, int bi, boolean bigEndian) {
@@ -564,15 +549,15 @@ class Bits { // package-private
 			unsafe.putLong(a, 0x0102030405060708L);
 			byte b = unsafe.getByte(a);
 			switch (b) {
-			case 0x01:
-				byteOrder = ByteOrder.BIG_ENDIAN;
-				break;
-			case 0x08:
-				byteOrder = ByteOrder.LITTLE_ENDIAN;
-				break;
-			default:
-				assert false;
-				byteOrder = null;
+				case 0x01:
+					byteOrder = ByteOrder.BIG_ENDIAN;
+					break;
+				case 0x08:
+					byteOrder = ByteOrder.LITTLE_ENDIAN;
+					break;
+				default:
+					assert false;
+					byteOrder = null;
 			}
 		} finally {
 			unsafe.freeMemory(a);
@@ -597,10 +582,11 @@ class Bits { // package-private
 	static boolean unaligned() {
 		if (unalignedKnown)
 			return unaligned;
-		String arch = AccessController
-				.doPrivileged(new sun.security.action.GetPropertyAction("os.arch"));
-		unaligned = arch.equals("i386") || arch.equals("x86") || arch.equals("amd64")
-				|| arch.equals("x86_64") || arch.equals("ppc64") || arch.equals("ppc64le");
+		String arch = AccessController.doPrivileged(
+				new sun.security.action.GetPropertyAction("os.arch"));
+		unaligned = arch.equals("i386") || arch.equals("x86") || arch.equals(
+				"amd64") || arch.equals("x86_64") || arch.equals("ppc64")
+				|| arch.equals("ppc64le");
 		unalignedKnown = true;
 		return unaligned;
 	}
@@ -740,7 +726,8 @@ class Bits { // package-private
 			}
 
 			@Override
-			public ByteBuffer newDirectByteBuffer(long addr, int cap, Object ob) {
+			public ByteBuffer newDirectByteBuffer(long addr, int cap,
+					Object ob) {
 				return new DirectByteBuffer(addr, cap, ob);
 			}
 
@@ -772,21 +759,23 @@ class Bits { // package-private
 	 * Copy from given source array to destination address.
 	 *
 	 * @param src
-	 *            source array
+	 *                      source array
 	 * @param srcBaseOffset
-	 *            offset of first element of storage in source array
+	 *                      offset of first element of storage in source array
 	 * @param srcPos
-	 *            offset within source array of the first element to read
+	 *                      offset within source array of the first element to
+	 *                      read
 	 * @param dstAddr
-	 *            destination address
+	 *                      destination address
 	 * @param length
-	 *            number of bytes to copy
+	 *                      number of bytes to copy
 	 */
-	static void copyFromArray(Object src, long srcBaseOffset, long srcPos, long dstAddr,
-			long length) {
+	static void copyFromArray(Object src, long srcBaseOffset, long srcPos,
+			long dstAddr, long length) {
 		long offset = srcBaseOffset + srcPos;
 		while (length > 0) {
-			long size = (length > UNSAFE_COPY_THRESHOLD) ? UNSAFE_COPY_THRESHOLD : length;
+			long size = (length > UNSAFE_COPY_THRESHOLD) ? UNSAFE_COPY_THRESHOLD
+					: length;
 			unsafe.copyMemory(src, offset, null, dstAddr, size);
 			length -= size;
 			offset += size;
@@ -798,21 +787,24 @@ class Bits { // package-private
 	 * Copy from source address into given destination array.
 	 *
 	 * @param srcAddr
-	 *            source address
+	 *                      source address
 	 * @param dst
-	 *            destination array
+	 *                      destination array
 	 * @param dstBaseOffset
-	 *            offset of first element of storage in destination array
+	 *                      offset of first element of storage in destination
+	 *                      array
 	 * @param dstPos
-	 *            offset within destination array of the first element to write
+	 *                      offset within destination array of the first element
+	 *                      to write
 	 * @param length
-	 *            number of bytes to copy
+	 *                      number of bytes to copy
 	 */
-	static void copyToArray(long srcAddr, Object dst, long dstBaseOffset, long dstPos,
-			long length) {
+	static void copyToArray(long srcAddr, Object dst, long dstBaseOffset,
+			long dstPos, long length) {
 		long offset = dstBaseOffset + dstPos;
 		while (length > 0) {
-			long size = (length > UNSAFE_COPY_THRESHOLD) ? UNSAFE_COPY_THRESHOLD : length;
+			long size = (length > UNSAFE_COPY_THRESHOLD) ? UNSAFE_COPY_THRESHOLD
+					: length;
 			unsafe.copyMemory(null, srcAddr, dst, offset, size);
 			length -= size;
 			srcAddr += size;
@@ -820,24 +812,32 @@ class Bits { // package-private
 		}
 	}
 
-	static void copyFromCharArray(Object src, long srcPos, long dstAddr, long length) {
+	static void copyFromCharArray(Object src, long srcPos, long dstAddr,
+			long length) {
 		copyFromShortArray(src, srcPos, dstAddr, length);
 	}
 
-	static void copyToCharArray(long srcAddr, Object dst, long dstPos, long length) {
+	static void copyToCharArray(long srcAddr, Object dst, long dstPos,
+			long length) {
 		copyToShortArray(srcAddr, dst, dstPos, length);
 	}
 
-	static native void copyFromShortArray(Object src, long srcPos, long dstAddr, long length);
+	static native void copyFromShortArray(Object src, long srcPos, long dstAddr,
+			long length);
 
-	static native void copyToShortArray(long srcAddr, Object dst, long dstPos, long length);
+	static native void copyToShortArray(long srcAddr, Object dst, long dstPos,
+			long length);
 
-	static native void copyFromIntArray(Object src, long srcPos, long dstAddr, long length);
+	static native void copyFromIntArray(Object src, long srcPos, long dstAddr,
+			long length);
 
-	static native void copyToIntArray(long srcAddr, Object dst, long dstPos, long length);
+	static native void copyToIntArray(long srcAddr, Object dst, long dstPos,
+			long length);
 
-	static native void copyFromLongArray(Object src, long srcPos, long dstAddr, long length);
+	static native void copyFromLongArray(Object src, long srcPos, long dstAddr,
+			long length);
 
-	static native void copyToLongArray(long srcAddr, Object dst, long dstPos, long length);
+	static native void copyToLongArray(long srcAddr, Object dst, long dstPos,
+			long length);
 
 }

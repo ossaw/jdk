@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -167,9 +147,9 @@ public class Timer implements Serializable {
 	 * action listener on the timer.
 	 *
 	 * @param delay
-	 *            milliseconds for the initial and between-event delay
+	 *                 milliseconds for the initial and between-event delay
 	 * @param listener
-	 *            an initial listener; can be <code>null</code>
+	 *                 an initial listener; can be <code>null</code>
 	 *
 	 * @see #addActionListener
 	 * @see #setInitialDelay
@@ -190,14 +170,16 @@ public class Timer implements Serializable {
 	/*
 	 * The timer's AccessControlContext.
 	 */
-	private transient volatile AccessControlContext acc = AccessController.getContext();
+	private transient volatile AccessControlContext acc = AccessController
+			.getContext();
 
 	/**
 	 * Returns the acc this timer was constructed with.
 	 */
 	final AccessControlContext getAccessControlContext() {
 		if (acc == null) {
-			throw new SecurityException("Timer is missing AccessControlContext");
+			throw new SecurityException(
+					"Timer is missing AccessControlContext");
 		}
 		return acc;
 	}
@@ -214,8 +196,8 @@ public class Timer implements Serializable {
 				System.out.println("Timer ringing: " + Timer.this);
 			}
 			if (notify.get()) {
-				fireActionPerformed(new ActionEvent(Timer.this, 0, getActionCommand(),
-						System.currentTimeMillis(), 0));
+				fireActionPerformed(new ActionEvent(Timer.this, 0,
+						getActionCommand(), System.currentTimeMillis(), 0));
 				if (coalesce) {
 					cancelEvent();
 				}
@@ -231,7 +213,7 @@ public class Timer implements Serializable {
 	 * Adds an action listener to the <code>Timer</code>.
 	 *
 	 * @param listener
-	 *            the listener to add
+	 *                 the listener to add
 	 *
 	 * @see #Timer
 	 */
@@ -243,7 +225,7 @@ public class Timer implements Serializable {
 	 * Removes the specified action listener from the <code>Timer</code>.
 	 *
 	 * @param listener
-	 *            the listener to remove
+	 *                 the listener to remove
 	 */
 	public void removeActionListener(ActionListener listener) {
 		listenerList.remove(ActionListener.class, listener);
@@ -269,7 +251,7 @@ public class Timer implements Serializable {
 	 * this event type.
 	 *
 	 * @param e
-	 *            the action event to fire
+	 *          the action event to fire
 	 * @see EventListenerList
 	 */
 	protected void fireActionPerformed(ActionEvent e) {
@@ -297,22 +279,25 @@ public class Timer implements Serializable {
 	 * listeners with the following code:
 	 *
 	 * <pre>
-	 * ActionListener[] als = (ActionListener[]) (t.getListeners(ActionListener.class));
+	 * ActionListener[] als = (ActionListener[]) (t.getListeners(
+	 * 		ActionListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this timer, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getActionListeners
 	 * @see #addActionListener
@@ -336,7 +321,7 @@ public class Timer implements Serializable {
 	 * <code>System.out</code> whenever the timer goes off.
 	 *
 	 * @param flag
-	 *            <code>true</code> to enable logging
+	 *             <code>true</code> to enable logging
 	 * @see #getLogTimers
 	 */
 	public static void setLogTimers(boolean flag) {
@@ -360,7 +345,7 @@ public class Timer implements Serializable {
 	 * method.
 	 *
 	 * @param delay
-	 *            the delay in milliseconds
+	 *              the delay in milliseconds
 	 * @see #setInitialDelay
 	 */
 	public void setDelay(int delay) {
@@ -389,12 +374,13 @@ public class Timer implements Serializable {
 	 * between-event delay.
 	 *
 	 * @param initialDelay
-	 *            the initial delay, in milliseconds
+	 *                     the initial delay, in milliseconds
 	 * @see #setDelay
 	 */
 	public void setInitialDelay(int initialDelay) {
 		if (initialDelay < 0) {
-			throw new IllegalArgumentException("Invalid initial delay: " + initialDelay);
+			throw new IllegalArgumentException("Invalid initial delay: "
+					+ initialDelay);
 		} else {
 			this.initialDelay = initialDelay;
 		}
@@ -415,8 +401,8 @@ public class Timer implements Serializable {
 	 * <code>Timer</code> to send only one action event to its listeners.
 	 *
 	 * @param flag
-	 *            specify <code>false</code> to make the timer stop after
-	 *            sending its first action event
+	 *             specify <code>false</code> to make the timer stop after
+	 *             sending its first action event
 	 */
 	public void setRepeats(boolean flag) {
 		repeats = flag;
@@ -443,7 +429,7 @@ public class Timer implements Serializable {
 	 * event. <code>Timer</code>s coalesce events by default.
 	 *
 	 * @param flag
-	 *            specify <code>false</code> to turn off coalescing
+	 *             specify <code>false</code> to turn off coalescing
 	 */
 	public void setCoalesce(boolean flag) {
 		boolean old = coalesce;
@@ -472,7 +458,7 @@ public class Timer implements Serializable {
 	 * acceptable value.
 	 *
 	 * @param command
-	 *            the action command
+	 *                the action command
 	 * @since 1.6
 	 */
 	public void setActionCommand(String command) {
@@ -564,7 +550,8 @@ public class Timer implements Serializable {
 		return lock;
 	}
 
-	private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream in) throws ClassNotFoundException,
+			IOException {
 		this.acc = AccessController.getContext();
 		in.defaultReadObject();
 	}

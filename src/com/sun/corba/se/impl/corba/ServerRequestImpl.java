@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.corba;
@@ -75,7 +54,8 @@ public class ServerRequestImpl extends ServerRequest {
 						// presumably also be available on
 						// the server invocation
 		_orb = orb;
-		_wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.OA_INVOCATION);
+		_wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.OA_INVOCATION);
 	}
 
 	public String operation() {
@@ -103,8 +83,8 @@ public class ServerRequestImpl extends ServerRequest {
 			}
 
 			try {
-				if ((arg.flags() == org.omg.CORBA.ARG_IN.value)
-						|| (arg.flags() == org.omg.CORBA.ARG_INOUT.value)) {
+				if ((arg.flags() == org.omg.CORBA.ARG_IN.value) || (arg
+						.flags() == org.omg.CORBA.ARG_INOUT.value)) {
 					// unmarshal the value into the Any
 					arg.value().read_value(_ins, arg.value().type());
 				}
@@ -201,14 +181,16 @@ public class ServerRequestImpl extends ServerRequest {
 				// Assume that the return type is void. If this is not so,
 				// the client will throw a MARSHAL exception while
 				// unmarshaling the return value.
-				TypeCode result_tc = _orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_void);
+				TypeCode result_tc = _orb.get_primitive_tc(
+						org.omg.CORBA.TCKind.tk_void);
 				_resultAny = _orb.create_any();
 				_resultAny.type(result_tc);
 				_resultSet = true;
 
 				return null;
 			} catch (Exception ex) {
-				throw _wrapper.dsiResultException(CompletionStatus.COMPLETED_MAYBE, ex);
+				throw _wrapper.dsiResultException(
+						CompletionStatus.COMPLETED_MAYBE, ex);
 			}
 		} else if (_exceptionSet)
 			return _exception;
@@ -234,8 +216,8 @@ public class ServerRequestImpl extends ServerRequest {
 			} catch (Bounds e) {
 			}
 
-			if ((arg.flags() == org.omg.CORBA.ARG_OUT.value)
-					|| (arg.flags() == org.omg.CORBA.ARG_INOUT.value)) {
+			if ((arg.flags() == org.omg.CORBA.ARG_OUT.value) || (arg
+					.flags() == org.omg.CORBA.ARG_INOUT.value)) {
 				arg.value().write_value(os);
 			}
 		}

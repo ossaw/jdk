@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -47,7 +27,8 @@ public class MotifSplitPaneDivider extends BasicSplitPaneDivider {
 	/**
 	 * Default cursor, supers is package private, so we have to have one too.
 	 */
-	private static final Cursor defaultCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	private static final Cursor defaultCursor = Cursor.getPredefinedCursor(
+			Cursor.DEFAULT_CURSOR);
 
 	public static final int minimumThumbSize = 6;
 	public static final int defaultDividerSize = 18;
@@ -83,7 +64,8 @@ public class MotifSplitPaneDivider extends BasicSplitPaneDivider {
 	public void setDividerSize(int newSize) {
 		Insets insets = getInsets();
 		int borderSize = 0;
-		if (getBasicSplitPaneUI().getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+		if (getBasicSplitPaneUI()
+				.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
 			if (insets != null) {
 				borderSize = insets.left + insets.right;
 			}
@@ -111,7 +93,8 @@ public class MotifSplitPaneDivider extends BasicSplitPaneDivider {
 		g.setColor(getBackground());
 		g.fillRect(0, 0, size.width, size.height);
 
-		if (getBasicSplitPaneUI().getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+		if (getBasicSplitPaneUI()
+				.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
 			int center = size.width / 2;
 			int x = center - hThumbWidth / 2;
 			int y = hThumbOffset;
@@ -132,8 +115,10 @@ public class MotifSplitPaneDivider extends BasicSplitPaneDivider {
 			g.drawLine(x, y + 1, x, y + hThumbHeight - 1); // left
 
 			g.setColor(shadowColor);
-			g.drawLine(x + 1, y + hThumbHeight - 1, x + hThumbWidth - 1, y + hThumbHeight - 1); // bottom
-			g.drawLine(x + hThumbWidth - 1, y + 1, x + hThumbWidth - 1, y + hThumbHeight - 2); // right
+			g.drawLine(x + 1, y + hThumbHeight - 1, x + hThumbWidth - 1, y
+					+ hThumbHeight - 1); // bottom
+			g.drawLine(x + hThumbWidth - 1, y + 1, x + hThumbWidth - 1, y
+					+ hThumbHeight - 2); // right
 
 		} else {
 			int center = size.height / 2;
@@ -156,8 +141,10 @@ public class MotifSplitPaneDivider extends BasicSplitPaneDivider {
 			g.drawLine(x, y + 1, x, y + vThumbHeight); // left
 
 			g.setColor(shadowColor);
-			g.drawLine(x + 1, y + vThumbHeight, x + vThumbWidth, y + vThumbHeight); // bottom
-			g.drawLine(x + vThumbWidth, y + 1, x + vThumbWidth, y + vThumbHeight - 1); // right
+			g.drawLine(x + 1, y + vThumbHeight, x + vThumbWidth, y
+					+ vThumbHeight); // bottom
+			g.drawLine(x + vThumbWidth, y + 1, x + vThumbWidth, y + vThumbHeight
+					- 1); // right
 		}
 		super.paint(g);
 
@@ -216,7 +203,8 @@ public class MotifSplitPaneDivider extends BasicSplitPaneDivider {
 		int thumbWidth;
 		int thumbHeight;
 
-		if (getBasicSplitPaneUI().getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+		if (getBasicSplitPaneUI()
+				.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
 			int center = size.width / 2;
 			thumbX = center - hThumbWidth / 2;
 			thumbY = hThumbOffset;
@@ -253,8 +241,9 @@ public class MotifSplitPaneDivider extends BasicSplitPaneDivider {
 	private class MotifMouseHandler extends MouseHandler {
 		public void mousePressed(MouseEvent e) {
 			// Constrain the mouse pressed to the thumb.
-			if (e.getSource() == MotifSplitPaneDivider.this && getDragger() == null
-					&& getSplitPane().isEnabled() && isInThumb(e.getX(), e.getY())) {
+			if (e.getSource() == MotifSplitPaneDivider.this
+					&& getDragger() == null && getSplitPane().isEnabled()
+					&& isInThumb(e.getX(), e.getY())) {
 				super.mousePressed(e);
 			}
 		}

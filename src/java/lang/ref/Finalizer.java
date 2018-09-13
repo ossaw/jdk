@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.ref;
@@ -31,11 +11,12 @@ import sun.misc.JavaLangAccess;
 import sun.misc.SharedSecrets;
 import sun.misc.VM;
 
-final class Finalizer
-		extends FinalReference<Object> { /*
-											 * Package-private; must be in same
-											 * package as the Reference class
-											 */
+final class Finalizer extends FinalReference<Object> { /*
+														 * Package-private; must
+														 * be in same
+														 * package as the
+														 * Reference class
+														 */
 
 	private static ReferenceQueue<Object> queue = new ReferenceQueue<>();
 	private static Finalizer unfinalized = null;
@@ -112,11 +93,9 @@ final class Finalizer
 	/*
 	 * Create a privileged secondary finalizer thread in the system thread group
 	 * for the given Runnable, and wait for it to complete.
-	 * 
 	 * This method is used by both runFinalization and runFinalizersOnExit. The
 	 * former method invokes all pending finalizers, while the latter invokes
 	 * all uninvoked finalizers if on-exit finalization has been enabled.
-	 * 
 	 * These two methods could have been implemented by offloading their work to
 	 * the regular finalizer thread and waiting for that thread to finish. The
 	 * advantage of creating a fresh thread, however, is that it insulates
@@ -126,7 +105,8 @@ final class Finalizer
 		AccessController.doPrivileged(new PrivilegedAction<Void>() {
 			public Void run() {
 				ThreadGroup tg = Thread.currentThread().getThreadGroup();
-				for (ThreadGroup tgn = tg; tgn != null; tg = tgn, tgn = tg.getParent())
+				for (ThreadGroup tgn = tg; tgn != null; tg = tgn, tgn = tg
+						.getParent())
 					;
 				Thread sft = new Thread(tg, proc, "Secondary finalizer");
 				sft.start();

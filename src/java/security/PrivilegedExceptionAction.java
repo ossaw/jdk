@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -50,9 +30,10 @@ public interface PrivilegedExceptionAction<T> {
 	 *         {@code PrivilegedExceptionAction} should document what (if
 	 *         anything) this value represents.
 	 * @throws Exception
-	 *             an exceptional condition has occurred. Each class that
-	 *             implements {@code PrivilegedExceptionAction} should document
-	 *             the exceptions that its run method can throw.
+	 *                   an exceptional condition has occurred. Each class that
+	 *                   implements {@code PrivilegedExceptionAction} should
+	 *                   document
+	 *                   the exceptions that its run method can throw.
 	 * @see AccessController#doPrivileged(PrivilegedExceptionAction)
 	 * @see AccessController#doPrivileged(PrivilegedExceptionAction,AccessControlContext)
 	 */

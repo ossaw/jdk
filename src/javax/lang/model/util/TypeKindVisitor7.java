@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -73,12 +53,12 @@ import javax.lang.model.SourceVersion;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @see TypeKindVisitor6
  * @see TypeKindVisitor8
@@ -99,7 +79,7 @@ public class TypeKindVisitor7<R, P> extends TypeKindVisitor6<R, P> {
 	 * default value.
 	 *
 	 * @param defaultValue
-	 *            the value to assign to {@link #DEFAULT_VALUE}
+	 *                     the value to assign to {@link #DEFAULT_VALUE}
 	 */
 	protected TypeKindVisitor7(R defaultValue) {
 		super(defaultValue);
@@ -110,9 +90,9 @@ public class TypeKindVisitor7<R, P> extends TypeKindVisitor6<R, P> {
 	 * {@code defaultAction}.
 	 *
 	 * @param t
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code defaultAction}
 	 */
 	@Override

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -58,7 +38,7 @@ public class LineNumberInputStream extends FilterInputStream {
 	 * specified input stream.
 	 *
 	 * @param in
-	 *            the underlying input stream.
+	 *           the underlying input stream.
 	 */
 	public LineNumberInputStream(InputStream in) {
 		super(in);
@@ -81,7 +61,7 @@ public class LineNumberInputStream extends FilterInputStream {
 	 * @return the next byte of data, or {@code -1} if the end of this stream is
 	 *         reached.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterInputStream#in
 	 * @see java.io.LineNumberInputStream#getLineNumber()
 	 */
@@ -96,14 +76,14 @@ public class LineNumberInputStream extends FilterInputStream {
 		}
 
 		switch (c) {
-		case '\r':
-			pushBack = in.read();
-			if (pushBack == '\n') {
-				pushBack = -1;
-			}
-		case '\n':
-			lineNumber++;
-			return '\n';
+			case '\r':
+				pushBack = in.read();
+				if (pushBack == '\n') {
+					pushBack = -1;
+				}
+			case '\n':
+				lineNumber++;
+				return '\n';
 		}
 		return c;
 	}
@@ -125,14 +105,14 @@ public class LineNumberInputStream extends FilterInputStream {
 	 *         there is no more data because the end of this stream has been
 	 *         reached.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.LineNumberInputStream#read()
 	 */
 	public int read(byte b[], int off, int len) throws IOException {
 		if (b == null) {
 			throw new NullPointerException();
-		} else if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) > b.length)
-				|| ((off + len) < 0)) {
+		} else if ((off < 0) || (off > b.length) || (len < 0) || ((off
+				+ len) > b.length) || ((off + len) < 0)) {
 			throw new IndexOutOfBoundsException();
 		} else if (len == 0) {
 			return 0;
@@ -172,10 +152,10 @@ public class LineNumberInputStream extends FilterInputStream {
 	 * read or the end of the stream has been reached.
 	 *
 	 * @param n
-	 *            the number of bytes to be skipped.
+	 *          the number of bytes to be skipped.
 	 * @return the actual number of bytes skipped.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterInputStream#in
 	 */
 	public long skip(long n) throws IOException {
@@ -204,7 +184,7 @@ public class LineNumberInputStream extends FilterInputStream {
 	 * Sets the line number to the specified argument.
 	 *
 	 * @param lineNumber
-	 *            the new line number.
+	 *                   the new line number.
 	 * @see #getLineNumber
 	 */
 	public void setLineNumber(int lineNumber) {
@@ -235,11 +215,12 @@ public class LineNumberInputStream extends FilterInputStream {
 	 * @return the number of bytes that can be read from this input stream
 	 *         without blocking.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterInputStream#in
 	 */
 	public int available() throws IOException {
-		return (pushBack == -1) ? super.available() / 2 : super.available() / 2 + 1;
+		return (pushBack == -1) ? super.available() / 2
+				: super.available() / 2 + 1;
 	}
 
 	/**
@@ -252,8 +233,9 @@ public class LineNumberInputStream extends FilterInputStream {
 	 * {@code mark} method of the underlying input stream.
 	 *
 	 * @param readlimit
-	 *            the maximum limit of bytes that can be read before the mark
-	 *            position becomes invalid.
+	 *                  the maximum limit of bytes that can be read before the
+	 *                  mark
+	 *                  position becomes invalid.
 	 * @see java.io.FilterInputStream#in
 	 * @see java.io.LineNumberInputStream#reset()
 	 */
@@ -281,7 +263,7 @@ public class LineNumberInputStream extends FilterInputStream {
 	 * stream and try another parser.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FilterInputStream#in
 	 * @see java.io.LineNumberInputStream#mark(int)
 	 */

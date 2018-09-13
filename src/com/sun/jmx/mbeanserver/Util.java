@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -56,7 +36,7 @@ public class Util {
 	}
 
 	static <K, V> Map<K, V> newSynchronizedMap() {
-		return Collections.synchronizedMap(Util.<K, V> newMap());
+		return Collections.synchronizedMap(Util.<K, V>newMap());
 	}
 
 	static <K, V> IdentityHashMap<K, V> newIdentityHashMap() {
@@ -113,9 +93,9 @@ public class Util {
 	 * Computes a descriptor hashcode from its names and values.
 	 * 
 	 * @param names
-	 *            the sorted array of descriptor names.
+	 *               the sorted array of descriptor names.
 	 * @param values
-	 *            the array of descriptor values.
+	 *               the array of descriptor values.
 	 * @return a hash code value, as described in {@link #hashCode(Descriptor)}
 	 */
 	public static int hashCode(String[] names, Object[] values) {
@@ -148,17 +128,18 @@ public class Util {
 	 * against {@code "a?d"}.
 	 * 
 	 * @param str
-	 *            the string containing the sequence to match.
+	 *               the string containing the sequence to match.
 	 * @param pat
-	 *            a string containing a pattern to match the sub string against.
+	 *               a string containing a pattern to match the sub string
+	 *               against.
 	 * @param stri
-	 *            the index in the string at which matching should begin.
+	 *               the index in the string at which matching should begin.
 	 * @param strend
-	 *            the index in the string at which the matching should end.
+	 *               the index in the string at which the matching should end.
 	 * @param pati
-	 *            the index in the pattern at which matching should begin.
+	 *               the index in the pattern at which matching should begin.
 	 * @param patend
-	 *            the index in the pattern at which the matching should end.
+	 *               the index in the pattern at which the matching should end.
 	 * 
 	 * @return true if and only if the string matches the pattern.
 	 */
@@ -169,7 +150,6 @@ public class Util {
 	 * pat, we look to see if there is a remembered star. If not, we fail. If
 	 * so, we retreat pat to just past that star and str to the position after
 	 * the last one we tried, and we let the match advance again.
-	 * 
 	 * Even though there is only one remembered star position, the algorithm
 	 * works when there are several stars in the pattern. When we encounter the
 	 * second star, we forget the first one. This is OK, because if we get to
@@ -178,8 +158,8 @@ public class Util {
 	 * remainder of the string, which will match if that remainder looks like
 	 * YC, so the whole string looks like AXBYC.
 	 */
-	private static boolean wildmatch(final String str, final String pat, int stri, final int strend,
-			int pati, final int patend) {
+	private static boolean wildmatch(final String str, final String pat,
+			int stri, final int strend, int pati, final int patend) {
 
 		// System.out.println("matching "+pat.substring(pati,patend)+
 		// " against "+str.substring(stri, strend));
@@ -197,24 +177,24 @@ public class Util {
 			if (pati < patend) {
 				final char patc = pat.charAt(pati);
 				switch (patc) {
-				case '?':
-					if (stri == strend)
-						break;
-					stri++;
-					pati++;
-					continue;
-				case '*':
-					pati++;
-					starpati = pati;
-					starstri = stri;
-					continue;
-				default:
-					if (stri < strend && str.charAt(stri) == patc) {
+					case '?':
+						if (stri == strend)
+							break;
 						stri++;
 						pati++;
 						continue;
-					}
-					break;
+					case '*':
+						pati++;
+						starpati = pati;
+						starstri = stri;
+						continue;
+					default:
+						if (stri < strend && str.charAt(stri) == patc) {
+							stri++;
+							pati++;
+							continue;
+						}
+						break;
 				}
 			} else if (stri == strend)
 				return true;

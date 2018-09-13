@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -156,7 +153,8 @@ public class XSDFACM implements XSCMValidator {
 		public String toString() {
 			return "minOccurs=" + minOccurs + ";maxOccurs="
 					+ ((maxOccurs != SchemaSymbols.OCCURRENCE_UNBOUNDED)
-							? Integer.toString(maxOccurs) : "unbounded");
+							? Integer.toString(maxOccurs)
+							: "unbounded");
 		}
 	}
 
@@ -200,12 +198,12 @@ public class XSDFACM implements XSCMValidator {
 	 * Constructs a DFA content model.
 	 *
 	 * @param syntaxTree
-	 *            The syntax tree of the content model.
+	 *                   The syntax tree of the content model.
 	 * @param leafCount
-	 *            The number of leaves.
+	 *                   The number of leaves.
 	 *
 	 * @exception RuntimeException
-	 *                Thrown if DFA can't be built.
+	 *                             Thrown if DFA can't be built.
 	 */
 
 	public XSDFACM(CMNode syntaxTree, int leafCount) {
@@ -251,7 +249,7 @@ public class XSDFACM implements XSCMValidator {
 	 * check whether the given state is one of the final states
 	 *
 	 * @param state
-	 *            the state to check
+	 *              the state to check
 	 *
 	 * @return whether it's a final state
 	 */
@@ -263,11 +261,11 @@ public class XSDFACM implements XSCMValidator {
 	 * one transition only
 	 *
 	 * @param curElem
-	 *            The current element's QName
+	 *                        The current element's QName
 	 * @param state
-	 *            stack to store the previous state
+	 *                        stack to store the previous state
 	 * @param subGroupHandler
-	 *            the substitution group handler
+	 *                        the substitution group handler
 	 *
 	 * @return null if transition is invalid; otherwise the Object corresponding
 	 *         to the XSElementDecl or XSWildcardDecl identified. Also, the
@@ -275,13 +273,14 @@ public class XSDFACM implements XSCMValidator {
 	 *         that the validator can store it away.
 	 *
 	 * @exception RuntimeException
-	 *                thrown on error
+	 *                             thrown on error
 	 */
 	public Object oneTransition(QName curElem, int[] state,
 			SubstitutionGroupHandler subGroupHandler) {
 		int curState = state[0];
 
-		if (curState == XSCMValidator.FIRST_ERROR || curState == XSCMValidator.SUBSEQUENT_ERROR) {
+		if (curState == XSCMValidator.FIRST_ERROR
+				|| curState == XSCMValidator.SUBSEQUENT_ERROR) {
 			// there was an error last time; so just go find correct Object in
 			// fElemmMap.
 			// ... after resetting state[0].
@@ -311,7 +310,8 @@ public class XSDFACM implements XSCMValidator {
 					break;
 				}
 			} else if (type == XSParticleDecl.PARTICLE_WILDCARD) {
-				if (((XSWildcardDecl) fElemMap[elemIndex]).allowNamespace(curElem.uri)) {
+				if (((XSWildcardDecl) fElemMap[elemIndex]).allowNamespace(
+						curElem.uri)) {
 					matchingDecl = fElemMap[elemIndex];
 					// Increment counter if constant space algorithm applies
 					if (fElemMapCounter[elemIndex] >= 0) {
@@ -369,7 +369,8 @@ public class XSDFACM implements XSCMValidator {
 						// another element declaration or wildcard deeper in the
 						// element map which
 						// matches.
-						return findMatchingDecl(curElem, state, subGroupHandler, elemIndex);
+						return findMatchingDecl(curElem, state, subGroupHandler,
+								elemIndex);
 					}
 				} else if (state[2] < o.minOccurs) {
 					// not enough loops on the current state.
@@ -400,7 +401,8 @@ public class XSDFACM implements XSCMValidator {
 		return matchingDecl;
 	} // oneTransition(QName, int[], SubstitutionGroupHandler): Object
 
-	Object findMatchingDecl(QName curElem, SubstitutionGroupHandler subGroupHandler) {
+	Object findMatchingDecl(QName curElem,
+			SubstitutionGroupHandler subGroupHandler) {
 		Object matchingDecl = null;
 
 		for (int elemIndex = 0; elemIndex < fElemMapSize; elemIndex++) {
@@ -412,7 +414,8 @@ public class XSDFACM implements XSCMValidator {
 					return matchingDecl;
 				}
 			} else if (type == XSParticleDecl.PARTICLE_WILDCARD) {
-				if (((XSWildcardDecl) fElemMap[elemIndex]).allowNamespace(curElem.uri))
+				if (((XSWildcardDecl) fElemMap[elemIndex]).allowNamespace(
+						curElem.uri))
 					return fElemMap[elemIndex];
 			}
 		}
@@ -420,8 +423,8 @@ public class XSDFACM implements XSCMValidator {
 		return null;
 	} // findMatchingDecl(QName, SubstitutionGroupHandler): Object
 
-	Object findMatchingDecl(QName curElem, int[] state, SubstitutionGroupHandler subGroupHandler,
-			int elemIndex) {
+	Object findMatchingDecl(QName curElem, int[] state,
+			SubstitutionGroupHandler subGroupHandler, int elemIndex) {
 
 		int curState = state[0];
 		int nextState = 0;
@@ -439,7 +442,8 @@ public class XSDFACM implements XSCMValidator {
 					break;
 				}
 			} else if (type == XSParticleDecl.PARTICLE_WILDCARD) {
-				if (((XSWildcardDecl) fElemMap[elemIndex]).allowNamespace(curElem.uri)) {
+				if (((XSWildcardDecl) fElemMap[elemIndex]).allowNamespace(
+						curElem.uri)) {
 					matchingDecl = fElemMap[elemIndex];
 					break;
 				}
@@ -507,10 +511,10 @@ public class XSDFACM implements XSCMValidator {
 	 * Builds the internal DFA transition table from the given syntax tree.
 	 *
 	 * @param syntaxTree
-	 *            The syntax tree.
+	 *                   The syntax tree.
 	 *
 	 * @exception RuntimeException
-	 *                Thrown if DFA cannot be built.
+	 *                             Thrown if DFA cannot be built.
 	 */
 	private void buildDFA(CMNode syntaxTree) {
 		//
@@ -544,13 +548,10 @@ public class XSDFACM implements XSCMValidator {
 
 		/*
 		 * MODIFIED (Jan, 2001)
-		 *
 		 * Use following rules. nullable(x+) := nullable(x), first(x+) :=
 		 * first(x), last(x+) := last(x) nullable(x?) := true, first(x?) :=
 		 * first(x), last(x?) := last(x)
-		 *
 		 * The same computation of follow as x* is applied to x+
-		 *
 		 * The modification drastically reduces computation time of
 		 * "(a, (b, a+, (c, (b, a+)+, a+, (d,  (c, (b, a+)+, a+)+, (b, a+)+, a+)+)+)+)+"
 		 */
@@ -563,8 +564,10 @@ public class XSDFACM implements XSCMValidator {
 		// building loop.
 		//
 		int EOCPos = fLeafCount;
-		XSCMLeaf nodeEOC = new XSCMLeaf(XSParticleDecl.PARTICLE_ELEMENT, null, -1, fLeafCount++);
-		fHeadNode = new XSCMBinOp(XSModelGroupImpl.MODELGROUP_SEQUENCE, syntaxTree, nodeEOC);
+		XSCMLeaf nodeEOC = new XSCMLeaf(XSParticleDecl.PARTICLE_ELEMENT, null,
+				-1, fLeafCount++);
+		fHeadNode = new XSCMBinOp(XSModelGroupImpl.MODELGROUP_SEQUENCE,
+				syntaxTree, nodeEOC);
 
 		//
 		// Ok, so now we have to iterate the new tree and do a little more
@@ -635,8 +638,8 @@ public class XSDFACM implements XSCMValidator {
 					if (elemOccurenceMap == null) {
 						elemOccurenceMap = new Occurence[fLeafCount];
 					}
-					elemOccurenceMap[fElemMapSize] = new Occurence((XSCMRepeatingLeaf) leaf,
-							fElemMapSize);
+					elemOccurenceMap[fElemMapSize] = new Occurence(
+							(XSCMRepeatingLeaf) leaf, fElemMapSize);
 				}
 
 				fElemMapType[fElemMapSize] = fLeafListType[outIndex];
@@ -662,7 +665,8 @@ public class XSDFACM implements XSCMValidator {
 		// remove it from the map.
 		if (DEBUG) {
 			if (fElemMapId[fElemMapSize - 1] != -1)
-				System.err.println("interal error in DFA: last element is not EOC.");
+				System.err.println(
+						"interal error in DFA: last element is not EOC.");
 		}
 		fElemMapSize--;
 
@@ -806,7 +810,8 @@ public class XSDFACM implements XSCMValidator {
 
 					/* Optimization(Jan, 2001) */
 					Integer stateObj = (Integer) stateTable.get(newSet);
-					int stateIndex = (stateObj == null ? curState : stateObj.intValue());
+					int stateIndex = (stateObj == null ? curState
+							: stateObj.intValue());
 					/* Optimization(Jan, 2001) */
 
 					// If we did not find it, then add it
@@ -855,9 +860,12 @@ public class XSDFACM implements XSCMValidator {
 						int[][] newTransTable = new int[newSize][];
 
 						// Copy over all of the existing content
-						System.arraycopy(statesToDo, 0, newToDo, 0, curArraySize);
-						System.arraycopy(fFinalStateFlags, 0, newFinalFlags, 0, curArraySize);
-						System.arraycopy(fTransTable, 0, newTransTable, 0, curArraySize);
+						System.arraycopy(statesToDo, 0, newToDo, 0,
+								curArraySize);
+						System.arraycopy(fFinalStateFlags, 0, newFinalFlags, 0,
+								curArraySize);
+						System.arraycopy(fTransTable, 0, newTransTable, 0,
+								curArraySize);
 
 						// Store the new array size
 						curArraySize = newSize;
@@ -903,10 +911,10 @@ public class XSDFACM implements XSCMValidator {
 	 * Calculates the follow list of the current node.
 	 *
 	 * @param nodeCur
-	 *            The curent node.
+	 *                The curent node.
 	 *
 	 * @exception RuntimeException
-	 *                Thrown if follow list cannot be calculated.
+	 *                             Thrown if follow list cannot be calculated.
 	 */
 	private void calcFollowList(CMNode nodeCur) {
 		// Recurse as required
@@ -925,7 +933,8 @@ public class XSDFACM implements XSCMValidator {
 			// get them ahead of time.
 			//
 			final CMStateSet last = ((XSCMBinOp) nodeCur).getLeft().lastPos();
-			final CMStateSet first = ((XSCMBinOp) nodeCur).getRight().firstPos();
+			final CMStateSet first = ((XSCMBinOp) nodeCur).getRight()
+					.firstPos();
 
 			//
 			// Now, for every position which is in our left child's last set
@@ -970,12 +979,12 @@ public class XSDFACM implements XSCMValidator {
 	 * Dumps the tree of the current node to standard output.
 	 *
 	 * @param nodeCur
-	 *            The current node.
+	 *                The current node.
 	 * @param level
-	 *            The maximum levels to output.
+	 *                The maximum levels to output.
 	 *
 	 * @exception RuntimeException
-	 *                Thrown on error.
+	 *                             Thrown on error.
 	 */
 	private void dumpTree(CMNode nodeCur, int level) {
 		for (int index = 0; index < level; index++)
@@ -985,65 +994,66 @@ public class XSDFACM implements XSCMValidator {
 
 		switch (type) {
 
-		case XSModelGroupImpl.MODELGROUP_CHOICE:
-		case XSModelGroupImpl.MODELGROUP_SEQUENCE: {
-			if (type == XSModelGroupImpl.MODELGROUP_CHOICE)
-				System.out.print("Choice Node ");
-			else
-				System.out.print("Seq Node ");
+			case XSModelGroupImpl.MODELGROUP_CHOICE:
+			case XSModelGroupImpl.MODELGROUP_SEQUENCE: {
+				if (type == XSModelGroupImpl.MODELGROUP_CHOICE)
+					System.out.print("Choice Node ");
+				else
+					System.out.print("Seq Node ");
 
-			if (nodeCur.isNullable())
-				System.out.print("Nullable ");
+				if (nodeCur.isNullable())
+					System.out.print("Nullable ");
 
-			System.out.print("firstPos=");
-			System.out.print(nodeCur.firstPos().toString());
-			System.out.print(" lastPos=");
-			System.out.println(nodeCur.lastPos().toString());
+				System.out.print("firstPos=");
+				System.out.print(nodeCur.firstPos().toString());
+				System.out.print(" lastPos=");
+				System.out.println(nodeCur.lastPos().toString());
 
-			dumpTree(((XSCMBinOp) nodeCur).getLeft(), level + 1);
-			dumpTree(((XSCMBinOp) nodeCur).getRight(), level + 1);
-			break;
-		}
-		case XSParticleDecl.PARTICLE_ZERO_OR_MORE:
-		case XSParticleDecl.PARTICLE_ONE_OR_MORE:
-		case XSParticleDecl.PARTICLE_ZERO_OR_ONE: {
-			System.out.print("Rep Node ");
+				dumpTree(((XSCMBinOp) nodeCur).getLeft(), level + 1);
+				dumpTree(((XSCMBinOp) nodeCur).getRight(), level + 1);
+				break;
+			}
+			case XSParticleDecl.PARTICLE_ZERO_OR_MORE:
+			case XSParticleDecl.PARTICLE_ONE_OR_MORE:
+			case XSParticleDecl.PARTICLE_ZERO_OR_ONE: {
+				System.out.print("Rep Node ");
 
-			if (nodeCur.isNullable())
-				System.out.print("Nullable ");
+				if (nodeCur.isNullable())
+					System.out.print("Nullable ");
 
-			System.out.print("firstPos=");
-			System.out.print(nodeCur.firstPos().toString());
-			System.out.print(" lastPos=");
-			System.out.println(nodeCur.lastPos().toString());
+				System.out.print("firstPos=");
+				System.out.print(nodeCur.firstPos().toString());
+				System.out.print(" lastPos=");
+				System.out.println(nodeCur.lastPos().toString());
 
-			dumpTree(((XSCMUniOp) nodeCur).getChild(), level + 1);
-			break;
-		}
-		case XSParticleDecl.PARTICLE_ELEMENT: {
-			System.out.print("Leaf: (pos=" + ((XSCMLeaf) nodeCur).getPosition() + "), "
-					+ "(elemIndex=" + ((XSCMLeaf) nodeCur).getLeaf() + ") ");
+				dumpTree(((XSCMUniOp) nodeCur).getChild(), level + 1);
+				break;
+			}
+			case XSParticleDecl.PARTICLE_ELEMENT: {
+				System.out.print("Leaf: (pos=" + ((XSCMLeaf) nodeCur)
+						.getPosition() + "), " + "(elemIndex="
+						+ ((XSCMLeaf) nodeCur).getLeaf() + ") ");
 
-			if (nodeCur.isNullable())
-				System.out.print(" Nullable ");
+				if (nodeCur.isNullable())
+					System.out.print(" Nullable ");
 
-			System.out.print("firstPos=");
-			System.out.print(nodeCur.firstPos().toString());
-			System.out.print(" lastPos=");
-			System.out.println(nodeCur.lastPos().toString());
-			break;
-		}
-		case XSParticleDecl.PARTICLE_WILDCARD:
-			System.out.print("Any Node: ");
+				System.out.print("firstPos=");
+				System.out.print(nodeCur.firstPos().toString());
+				System.out.print(" lastPos=");
+				System.out.println(nodeCur.lastPos().toString());
+				break;
+			}
+			case XSParticleDecl.PARTICLE_WILDCARD:
+				System.out.print("Any Node: ");
 
-			System.out.print("firstPos=");
-			System.out.print(nodeCur.firstPos().toString());
-			System.out.print(" lastPos=");
-			System.out.println(nodeCur.lastPos().toString());
-			break;
-		default: {
-			throw new RuntimeException("ImplementationMessages.VAL_NIICM");
-		}
+				System.out.print("firstPos=");
+				System.out.print(nodeCur.firstPos().toString());
+				System.out.print(" lastPos=");
+				System.out.println(nodeCur.lastPos().toString());
+				break;
+			default: {
+				throw new RuntimeException("ImplementationMessages.VAL_NIICM");
+			}
 		}
 
 	}
@@ -1097,10 +1107,11 @@ public class XSDFACM implements XSCMValidator {
 	 * check whether this content violates UPA constraint.
 	 *
 	 * @param subGroupHandler
-	 *            the substitution group handler
+	 *                        the substitution group handler
 	 * @return true if this content model contains other or list wildcard
 	 */
-	public boolean checkUniqueParticleAttribution(SubstitutionGroupHandler subGroupHandler)
+	public boolean checkUniqueParticleAttribution(
+			SubstitutionGroupHandler subGroupHandler)
 			throws XMLSchemaException {
 		// Unique Particle Attribution
 		// store the conflict results between any two elements in fElemMap
@@ -1114,8 +1125,8 @@ public class XSDFACM implements XSCMValidator {
 				for (int k = j + 1; k < fElemMapSize; k++) {
 					if (fTransTable[i][j] != -1 && fTransTable[i][k] != -1) {
 						if (conflictTable[j][k] == 0) {
-							if (XSConstraints.overlapUPA(fElemMap[j], fElemMap[k],
-									subGroupHandler)) {
+							if (XSConstraints.overlapUPA(fElemMap[j],
+									fElemMap[k], subGroupHandler)) {
 								if (fCountingStates != null) {
 									Occurence o = fCountingStates[i];
 									// If "i" is a counting state and exactly
@@ -1123,7 +1134,8 @@ public class XSDFACM implements XSCMValidator {
 									// loops back to "i" then the two particles
 									// do not overlap if
 									// minOccurs == maxOccurs.
-									if (o != null && fTransTable[i][j] == i ^ fTransTable[i][k] == i
+									if (o != null && fTransTable[i][j] == i
+											^ fTransTable[i][k] == i
 											&& o.minOccurs == o.maxOccurs) {
 										conflictTable[j][k] = (byte) -1;
 										continue;
@@ -1147,8 +1159,8 @@ public class XSDFACM implements XSCMValidator {
 					// Object[]{fElemMap[i].toString(),
 					// fElemMap[j].toString()});
 					// REVISIT: do we want to report all errors? or just one?
-					throw new XMLSchemaException("cos-nonambig",
-							new Object[] { fElemMap[i].toString(), fElemMap[j].toString() });
+					throw new XMLSchemaException("cos-nonambig", new Object[] {
+							fElemMap[i].toString(), fElemMap[j].toString() });
 				}
 			}
 		}
@@ -1174,7 +1186,7 @@ public class XSDFACM implements XSCMValidator {
 	 * been seen.
 	 *
 	 * @param state
-	 *            the current state
+	 *              the current state
 	 * @return a Vector whose entries are instances of either XSWildcardDecl or
 	 *         XSElementDecl.
 	 */
@@ -1182,7 +1194,8 @@ public class XSDFACM implements XSCMValidator {
 		int curState = state[0];
 		if (curState < 0)
 			curState = state[1];
-		Occurence o = (fCountingStates != null) ? fCountingStates[curState] : null;
+		Occurence o = (fCountingStates != null) ? fCountingStates[curState]
+				: null;
 		int count = state[2];
 
 		Vector ret = new Vector();

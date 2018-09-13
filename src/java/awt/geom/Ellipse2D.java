@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -87,23 +67,22 @@ public abstract class Ellipse2D extends RectangularShape {
 		 * 
 		 * @since 1.2
 		 */
-		public Float() {
-		}
+		public Float() {}
 
 		/**
 		 * Constructs and initializes an <code>Ellipse2D</code> from the
 		 * specified coordinates.
 		 *
 		 * @param x
-		 *            the X coordinate of the upper-left corner of the framing
-		 *            rectangle
+		 *          the X coordinate of the upper-left corner of the framing
+		 *          rectangle
 		 * @param y
-		 *            the Y coordinate of the upper-left corner of the framing
-		 *            rectangle
+		 *          the Y coordinate of the upper-left corner of the framing
+		 *          rectangle
 		 * @param w
-		 *            the width of the framing rectangle
+		 *          the width of the framing rectangle
 		 * @param h
-		 *            the height of the framing rectangle
+		 *          the height of the framing rectangle
 		 * @since 1.2
 		 */
 		public Float(float x, float y, float w, float h) {
@@ -160,15 +139,15 @@ public abstract class Ellipse2D extends RectangularShape {
 		 * <code>Shape</code> to the specified rectangular values.
 		 *
 		 * @param x
-		 *            the X coordinate of the upper-left corner of the specified
-		 *            rectangular shape
+		 *          the X coordinate of the upper-left corner of the specified
+		 *          rectangular shape
 		 * @param y
-		 *            the Y coordinate of the upper-left corner of the specified
-		 *            rectangular shape
+		 *          the Y coordinate of the upper-left corner of the specified
+		 *          rectangular shape
 		 * @param w
-		 *            the width of the specified rectangular shape
+		 *          the width of the specified rectangular shape
 		 * @param h
-		 *            the height of the specified rectangular shape
+		 *          the height of the specified rectangular shape
 		 * @since 1.2
 		 */
 		public void setFrame(float x, float y, float w, float h) {
@@ -252,23 +231,22 @@ public abstract class Ellipse2D extends RectangularShape {
 		 * 
 		 * @since 1.2
 		 */
-		public Double() {
-		}
+		public Double() {}
 
 		/**
 		 * Constructs and initializes an <code>Ellipse2D</code> from the
 		 * specified coordinates.
 		 *
 		 * @param x
-		 *            the X coordinate of the upper-left corner of the framing
-		 *            rectangle
+		 *          the X coordinate of the upper-left corner of the framing
+		 *          rectangle
 		 * @param y
-		 *            the Y coordinate of the upper-left corner of the framing
-		 *            rectangle
+		 *          the Y coordinate of the upper-left corner of the framing
+		 *          rectangle
 		 * @param w
-		 *            the width of the framing rectangle
+		 *          the width of the framing rectangle
 		 * @param h
-		 *            the height of the framing rectangle
+		 *          the height of the framing rectangle
 		 * @since 1.2
 		 */
 		public Double(double x, double y, double w, double h) {
@@ -357,8 +335,7 @@ public abstract class Ellipse2D extends RectangularShape {
 	 * @see java.awt.geom.Ellipse2D.Double
 	 * @since 1.2
 	 */
-	protected Ellipse2D() {
-	}
+	protected Ellipse2D() {}
 
 	/**
 	 * {@inheritDoc}
@@ -447,9 +424,9 @@ public abstract class Ellipse2D extends RectangularShape {
 	 * not affect any iterations of that geometry that are already in process.
 	 * 
 	 * @param at
-	 *            an optional <code>AffineTransform</code> to be applied to the
-	 *            coordinates as they are returned in the iteration, or
-	 *            <code>null</code> if untransformed coordinates are desired
+	 *           an optional <code>AffineTransform</code> to be applied to the
+	 *           coordinates as they are returned in the iteration, or
+	 *           <code>null</code> if untransformed coordinates are desired
 	 * @return the <code>PathIterator</code> object that returns the geometry of
 	 *         the outline of this <code>Ellipse2D</code>, one segment at a
 	 *         time.
@@ -495,7 +472,8 @@ public abstract class Ellipse2D extends RectangularShape {
 		if (obj instanceof Ellipse2D) {
 			Ellipse2D e2d = (Ellipse2D) obj;
 			return ((getX() == e2d.getX()) && (getY() == e2d.getY())
-					&& (getWidth() == e2d.getWidth()) && (getHeight() == e2d.getHeight()));
+					&& (getWidth() == e2d.getWidth()) && (getHeight() == e2d
+							.getHeight()));
 		}
 		return false;
 	}

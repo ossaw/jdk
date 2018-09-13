@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -43,7 +23,7 @@ public class PasswordView extends FieldView {
 	 * Constructs a new view wrapped on an element.
 	 *
 	 * @param elem
-	 *            the element
+	 *             the element
 	 */
 	public PasswordView(Element elem) {
 		super(elem);
@@ -55,18 +35,18 @@ public class PasswordView extends FieldView {
 	 * getEchoChar().
 	 *
 	 * @param g
-	 *            the graphics context
+	 *           the graphics context
 	 * @param x
-	 *            the starting X coordinate &gt;= 0
+	 *           the starting X coordinate &gt;= 0
 	 * @param y
-	 *            the starting Y coordinate &gt;= 0
+	 *           the starting Y coordinate &gt;= 0
 	 * @param p0
-	 *            the starting offset in the model &gt;= 0
+	 *           the starting offset in the model &gt;= 0
 	 * @param p1
-	 *            the ending offset in the model &gt;= p0
+	 *           the ending offset in the model &gt;= p0
 	 * @return the X location of the end of the range &gt;= 0
 	 * @exception BadLocationException
-	 *                if p0 or p1 are out of range
+	 *                                 if p0 or p1 are out of range
 	 */
 	protected int drawUnselectedText(Graphics g, int x, int y, int p0, int p1)
 			throws BadLocationException {
@@ -98,18 +78,18 @@ public class PasswordView extends FieldView {
 	 * background. Uses the result of getEchoChar() to display the characters.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *           the graphics context
 	 * @param x
-	 *            the starting X coordinate &gt;= 0
+	 *           the starting X coordinate &gt;= 0
 	 * @param y
-	 *            the starting Y coordinate &gt;= 0
+	 *           the starting Y coordinate &gt;= 0
 	 * @param p0
-	 *            the starting offset in the model &gt;= 0
+	 *           the starting offset in the model &gt;= 0
 	 * @param p1
-	 *            the ending offset in the model &gt;= p0
+	 *           the ending offset in the model &gt;= p0
 	 * @return the X location of the end of the range &gt;= 0
 	 * @exception BadLocationException
-	 *                if p0 or p1 are out of range
+	 *                                 if p0 or p1 are out of range
 	 */
 	protected int drawSelectedText(Graphics g, int x, int y, int p0, int p1)
 			throws BadLocationException {
@@ -135,18 +115,19 @@ public class PasswordView extends FieldView {
 	 * appropriate foreground color for selected or unselected text.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 * @param x
-	 *            the starting X coordinate &gt;= 0
+	 *          the starting X coordinate &gt;= 0
 	 * @param y
-	 *            the starting Y coordinate &gt;= 0
+	 *          the starting Y coordinate &gt;= 0
 	 * @param c
-	 *            the echo character
+	 *          the echo character
 	 * @return the updated X position &gt;= 0
 	 */
 	protected int drawEchoCharacter(Graphics g, int x, int y, char c) {
 		ONE[0] = c;
-		SwingUtilities2.drawChars(Utilities.getJComponent(this), g, ONE, 0, 1, x, y);
+		SwingUtilities2.drawChars(Utilities.getJComponent(this), g, ONE, 0, 1,
+				x, y);
 		return x + g.getFontMetrics().charWidth(c);
 	}
 
@@ -160,11 +141,13 @@ public class PasswordView extends FieldView {
 	 *            the allocated region to render into
 	 * @return the bounding box of the given position
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see View#modelToView
 	 */
-	public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+	public Shape modelToView(int pos, Shape a, Position.Bias b)
+			throws BadLocationException {
 		Container c = getContainer();
 		if (c instanceof JPasswordField) {
 			JPasswordField f = (JPasswordField) c;
@@ -188,11 +171,11 @@ public class PasswordView extends FieldView {
 	 * coordinate space of the model.
 	 *
 	 * @param fx
-	 *            the X coordinate &gt;= 0.0f
+	 *           the X coordinate &gt;= 0.0f
 	 * @param fy
-	 *            the Y coordinate &gt;= 0.0f
+	 *           the Y coordinate &gt;= 0.0f
 	 * @param a
-	 *            the allocated region to render into
+	 *           the allocated region to render into
 	 * @return the location within the model that best represents the given
 	 *         point in the view
 	 * @see View#viewToModel
@@ -209,8 +192,10 @@ public class PasswordView extends FieldView {
 			char echoChar = f.getEchoChar();
 			int charWidth = f.getFontMetrics(f.getFont()).charWidth(echoChar);
 			a = adjustAllocation(a);
-			Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
-			n = (charWidth > 0 ? ((int) fx - alloc.x) / charWidth : Integer.MAX_VALUE);
+			Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a
+					: a.getBounds();
+			n = (charWidth > 0 ? ((int) fx - alloc.x) / charWidth
+					: Integer.MAX_VALUE);
 			if (n < 0) {
 				n = 0;
 			} else if (n > (getStartOffset() + getDocument().getLength())) {
@@ -224,7 +209,7 @@ public class PasswordView extends FieldView {
 	 * Determines the preferred span for this view along an axis.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the span the view would like to be rendered into &gt;= 0.
 	 *         Typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee. The parent may choose
@@ -232,17 +217,18 @@ public class PasswordView extends FieldView {
 	 */
 	public float getPreferredSpan(int axis) {
 		switch (axis) {
-		case View.X_AXIS:
-			Container c = getContainer();
-			if (c instanceof JPasswordField) {
-				JPasswordField f = (JPasswordField) c;
-				if (f.echoCharIsSet()) {
-					char echoChar = f.getEchoChar();
-					FontMetrics m = f.getFontMetrics(f.getFont());
-					Document doc = getDocument();
-					return m.charWidth(echoChar) * getDocument().getLength();
+			case View.X_AXIS:
+				Container c = getContainer();
+				if (c instanceof JPasswordField) {
+					JPasswordField f = (JPasswordField) c;
+					if (f.echoCharIsSet()) {
+						char echoChar = f.getEchoChar();
+						FontMetrics m = f.getFontMetrics(f.getFont());
+						Document doc = getDocument();
+						return m.charWidth(echoChar) * getDocument()
+								.getLength();
+					}
 				}
-			}
 		}
 		return super.getPreferredSpan(axis);
 	}

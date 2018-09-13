@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -52,7 +32,7 @@ public final class REBIND extends SystemException {
 	 * Constructs an <code>REBIND</code> exception with the specified message.
 	 *
 	 * @param detailMessage
-	 *            string containing a detailed message.
+	 *                      string containing a detailed message.
 	 */
 	public REBIND(String detailMessage) {
 		this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
@@ -63,9 +43,9 @@ public final class REBIND extends SystemException {
 	 * and completion status.
 	 *
 	 * @param minorCode
-	 *            minor code.
+	 *                         minor code.
 	 * @param completionStatus
-	 *            completion status.
+	 *                         completion status.
 	 */
 	public REBIND(int minorCode, CompletionStatus completionStatus) {
 		this("", minorCode, completionStatus);
@@ -76,13 +56,14 @@ public final class REBIND extends SystemException {
 	 * minor code, and completion status.
 	 *
 	 * @param detailMessage
-	 *            string containing a detailed message.
+	 *                         string containing a detailed message.
 	 * @param minorCode
-	 *            minor code.
+	 *                         minor code.
 	 * @param completionStatus
-	 *            completion status.
+	 *                         completion status.
 	 */
-	public REBIND(String detailMessage, int minorCode, CompletionStatus completionStatus) {
+	public REBIND(String detailMessage, int minorCode,
+			CompletionStatus completionStatus) {
 		super(detailMessage, minorCode, completionStatus);
 	}
 }

@@ -70,7 +70,8 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 	public SignatureDSA() throws XMLSignatureException {
 		String algorithmID = JCEMapper.translateURItoJCEID(engineGetURI());
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE, "Created SignatureDSA using " + algorithmID);
+			log.log(java.util.logging.Level.FINE, "Created SignatureDSA using "
+					+ algorithmID);
 		}
 
 		String provider = JCEMapper.getProviderId();
@@ -78,21 +79,25 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 			if (provider == null) {
 				this.signatureAlgorithm = Signature.getInstance(algorithmID);
 			} else {
-				this.signatureAlgorithm = Signature.getInstance(algorithmID, provider);
+				this.signatureAlgorithm = Signature.getInstance(algorithmID,
+						provider);
 			}
 		} catch (java.security.NoSuchAlgorithmException ex) {
 			Object[] exArgs = { algorithmID, ex.getLocalizedMessage() };
-			throw new XMLSignatureException("algorithms.NoSuchAlgorithm", exArgs);
+			throw new XMLSignatureException("algorithms.NoSuchAlgorithm",
+					exArgs);
 		} catch (java.security.NoSuchProviderException ex) {
 			Object[] exArgs = { algorithmID, ex.getLocalizedMessage() };
-			throw new XMLSignatureException("algorithms.NoSuchAlgorithm", exArgs);
+			throw new XMLSignatureException("algorithms.NoSuchAlgorithm",
+					exArgs);
 		}
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	protected void engineSetParameter(AlgorithmParameterSpec params) throws XMLSignatureException {
+	protected void engineSetParameter(AlgorithmParameterSpec params)
+			throws XMLSignatureException {
 		try {
 			this.signatureAlgorithm.setParameter(params);
 		} catch (InvalidAlgorithmParameterException ex) {
@@ -103,14 +108,16 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 	/**
 	 * @inheritDoc
 	 */
-	protected boolean engineVerify(byte[] signature) throws XMLSignatureException {
+	protected boolean engineVerify(byte[] signature)
+			throws XMLSignatureException {
 		try {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE,
-						"Called DSA.verify() on " + Base64.encode(signature));
+				log.log(java.util.logging.Level.FINE, "Called DSA.verify() on "
+						+ Base64.encode(signature));
 			}
 
-			byte[] jcebytes = JavaUtils.convertDsaXMLDSIGtoASN1(signature, size / 8);
+			byte[] jcebytes = JavaUtils.convertDsaXMLDSIGtoASN1(signature, size
+					/ 8);
 
 			return this.signatureAlgorithm.verify(jcebytes);
 		} catch (SignatureException ex) {
@@ -123,13 +130,15 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 	/**
 	 * @inheritDoc
 	 */
-	protected void engineInitVerify(Key publicKey) throws XMLSignatureException {
+	protected void engineInitVerify(Key publicKey)
+			throws XMLSignatureException {
 		if (!(publicKey instanceof PublicKey)) {
 			String supplied = publicKey.getClass().getName();
 			String needed = PublicKey.class.getName();
 			Object exArgs[] = { supplied, needed };
 
-			throw new XMLSignatureException("algorithms.WrongKeyForThisOperation", exArgs);
+			throw new XMLSignatureException(
+					"algorithms.WrongKeyForThisOperation", exArgs);
 		}
 
 		try {
@@ -139,7 +148,8 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 			// see: http://bugs.sun.com/view_bug.do?bug_id=4953555
 			Signature sig = this.signatureAlgorithm;
 			try {
-				this.signatureAlgorithm = Signature.getInstance(signatureAlgorithm.getAlgorithm());
+				this.signatureAlgorithm = Signature.getInstance(
+						signatureAlgorithm.getAlgorithm());
 			} catch (Exception e) {
 				// this shouldn't occur, but if it does, restore previous
 				// Signature
@@ -179,11 +189,13 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 			String needed = PrivateKey.class.getName();
 			Object exArgs[] = { supplied, needed };
 
-			throw new XMLSignatureException("algorithms.WrongKeyForThisOperation", exArgs);
+			throw new XMLSignatureException(
+					"algorithms.WrongKeyForThisOperation", exArgs);
 		}
 
 		try {
-			this.signatureAlgorithm.initSign((PrivateKey) privateKey, secureRandom);
+			this.signatureAlgorithm.initSign((PrivateKey) privateKey,
+					secureRandom);
 		} catch (InvalidKeyException ex) {
 			throw new XMLSignatureException("empty", ex);
 		}
@@ -199,7 +211,8 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 			String needed = PrivateKey.class.getName();
 			Object exArgs[] = { supplied, needed };
 
-			throw new XMLSignatureException("algorithms.WrongKeyForThisOperation", exArgs);
+			throw new XMLSignatureException(
+					"algorithms.WrongKeyForThisOperation", exArgs);
 		}
 
 		try {
@@ -235,7 +248,8 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 	/**
 	 * @inheritDoc
 	 */
-	protected void engineUpdate(byte buf[], int offset, int len) throws XMLSignatureException {
+	protected void engineUpdate(byte buf[], int offset, int len)
+			throws XMLSignatureException {
 		try {
 			this.signatureAlgorithm.update(buf, offset, len);
 		} catch (SignatureException ex) {
@@ -267,8 +281,10 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 	 * @param HMACOutputLength
 	 * @throws XMLSignatureException
 	 */
-	protected void engineSetHMACOutputLength(int HMACOutputLength) throws XMLSignatureException {
-		throw new XMLSignatureException("algorithms.HMACOutputLengthOnlyForHMAC");
+	protected void engineSetHMACOutputLength(int HMACOutputLength)
+			throws XMLSignatureException {
+		throw new XMLSignatureException(
+				"algorithms.HMACOutputLengthOnlyForHMAC");
 	}
 
 	/**
@@ -278,9 +294,11 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
 	 * @param algorithmParameterSpec
 	 * @throws XMLSignatureException
 	 */
-	protected void engineInitSign(Key signingKey, AlgorithmParameterSpec algorithmParameterSpec)
+	protected void engineInitSign(Key signingKey,
+			AlgorithmParameterSpec algorithmParameterSpec)
 			throws XMLSignatureException {
-		throw new XMLSignatureException("algorithms.CannotUseAlgorithmParameterSpecOnDSA");
+		throw new XMLSignatureException(
+				"algorithms.CannotUseAlgorithmParameterSpecOnDSA");
 	}
 
 	public static class SHA256 extends SignatureDSA {

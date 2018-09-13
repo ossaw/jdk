@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.ior;
@@ -61,8 +41,7 @@ import com.sun.corba.se.spi.orb.ORB;
  * </ul>
  */
 public class IORFactories {
-	private IORFactories() {
-	}
+	private IORFactories() {}
 
 	/**
 	 * Create an ObjectId for the given byte sequence.
@@ -74,7 +53,8 @@ public class IORFactories {
 	/**
 	 * Create an ObjectKey for the given ObjectKeyTemplate and ObjectId.
 	 */
-	public static ObjectKey makeObjectKey(ObjectKeyTemplate oktemp, ObjectId oid) {
+	public static ObjectKey makeObjectKey(ObjectKeyTemplate oktemp,
+			ObjectId oid) {
 		return new ObjectKeyImpl(oktemp, oid);
 	}
 
@@ -132,7 +112,8 @@ public class IORFactories {
 		throw new BAD_PARAM();
 	}
 
-	public static IORTemplateList getIORTemplateList(ObjectReferenceFactory orf) {
+	public static IORTemplateList getIORTemplateList(
+			ObjectReferenceFactory orf) {
 		if (orf instanceof ObjectReferenceProducerBase) {
 			ObjectReferenceProducerBase base = (ObjectReferenceProducerBase) orf;
 			return base.getIORTemplateList();
@@ -176,7 +157,8 @@ public class IORFactories {
 			}
 		};
 
-		orb.register_value_factory(ObjectReferenceTemplateImpl.repositoryId, vf);
+		orb.register_value_factory(ObjectReferenceTemplateImpl.repositoryId,
+				vf);
 
 		// Create and register the factory for the Object Reference Factory
 		// implementation.

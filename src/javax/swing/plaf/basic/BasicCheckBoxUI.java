@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -57,7 +37,8 @@ public class BasicCheckBoxUI extends BasicRadioButtonUI {
 	// ********************************
 	public static ComponentUI createUI(JComponent b) {
 		AppContext appContext = AppContext.getAppContext();
-		BasicCheckBoxUI checkboxUI = (BasicCheckBoxUI) appContext.get(BASIC_CHECK_BOX_UI_KEY);
+		BasicCheckBoxUI checkboxUI = (BasicCheckBoxUI) appContext.get(
+				BASIC_CHECK_BOX_UI_KEY);
 		if (checkboxUI == null) {
 			checkboxUI = new BasicCheckBoxUI();
 			appContext.put(BASIC_CHECK_BOX_UI_KEY, checkboxUI);

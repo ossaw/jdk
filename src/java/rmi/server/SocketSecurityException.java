@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -43,7 +23,7 @@ public class SocketSecurityException extends ExportException {
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 * @since JDK1.1
 	 */
 	public SocketSecurityException(String s) {
@@ -55,9 +35,9 @@ public class SocketSecurityException extends ExportException {
 	 * detail message and nested exception.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *           the detail message.
 	 * @param ex
-	 *            the nested exception
+	 *           the nested exception
 	 * @since JDK1.1
 	 */
 	public SocketSecurityException(String s, Exception ex) {

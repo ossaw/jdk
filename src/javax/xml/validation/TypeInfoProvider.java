@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.validation;
@@ -53,8 +33,7 @@ public abstract class TypeInfoProvider {
 	 * <p>
 	 * The constructor does nothing.
 	 */
-	protected TypeInfoProvider() {
-	}
+	protected TypeInfoProvider() {}
 
 	/**
 	 * <p>
@@ -77,8 +56,8 @@ public abstract class TypeInfoProvider {
 	 * </p>
 	 *
 	 * @throws IllegalStateException
-	 *             If this method is called from other
-	 *             {@link org.xml.sax.ContentHandler} methods.
+	 *                               If this method is called from other
+	 *                               {@link org.xml.sax.ContentHandler} methods.
 	 * @return An immutable {@link TypeInfo} object that represents the type of
 	 *         the current element. Note that the caller can keep references to
 	 *         the obtained {@link TypeInfo} longer than the callback scope.
@@ -101,15 +80,16 @@ public abstract class TypeInfoProvider {
 	 * </p>
 	 *
 	 * @param index
-	 *            The index of the attribute. The same index for the
-	 *            {@link org.xml.sax.Attributes} object passed to the
-	 *            <code>startElement</code> callback.
+	 *              The index of the attribute. The same index for the
+	 *              {@link org.xml.sax.Attributes} object passed to the
+	 *              <code>startElement</code> callback.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If the index is invalid.
+	 *                                   If the index is invalid.
 	 * @throws IllegalStateException
-	 *             If this method is called from other
-	 *             {@link org.xml.sax.ContentHandler} methods.
+	 *                                   If this method is called from other
+	 *                                   {@link org.xml.sax.ContentHandler}
+	 *                                   methods.
 	 *
 	 * @return An immutable {@link TypeInfo} object that represents the type of
 	 *         the specified attribute. Note that the caller can keep references
@@ -139,15 +119,16 @@ public abstract class TypeInfoProvider {
 	 * {@link ValidatorHandler}.
 	 *
 	 * @param index
-	 *            The index of the attribute. The same index for the
-	 *            {@link org.xml.sax.Attributes} object passed to the
-	 *            <code>startElement</code> callback.
+	 *              The index of the attribute. The same index for the
+	 *              {@link org.xml.sax.Attributes} object passed to the
+	 *              <code>startElement</code> callback.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If the index is invalid.
+	 *                                   If the index is invalid.
 	 * @throws IllegalStateException
-	 *             If this method is called from other
-	 *             {@link org.xml.sax.ContentHandler} methods.
+	 *                                   If this method is called from other
+	 *                                   {@link org.xml.sax.ContentHandler}
+	 *                                   methods.
 	 *
 	 * @return true if the type of the specified attribute is ID.
 	 */
@@ -172,15 +153,16 @@ public abstract class TypeInfoProvider {
 	 * validator.
 	 *
 	 * @param index
-	 *            The index of the attribute. The same index for the
-	 *            {@link org.xml.sax.Attributes} object passed to the
-	 *            <code>startElement</code> callback.
+	 *              The index of the attribute. The same index for the
+	 *              {@link org.xml.sax.Attributes} object passed to the
+	 *              <code>startElement</code> callback.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If the index is invalid.
+	 *                                   If the index is invalid.
 	 * @throws IllegalStateException
-	 *             If this method is called from other
-	 *             {@link org.xml.sax.ContentHandler} methods.
+	 *                                   If this method is called from other
+	 *                                   {@link org.xml.sax.ContentHandler}
+	 *                                   methods.
 	 *
 	 * @return <code>true</code> if the attribute was present before the
 	 *         validator processes input. <code>false</code> if the attribute

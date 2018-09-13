@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,9 +48,9 @@ public class DatatypeException extends Exception {
 	 * error message substitution arguments.
 	 *
 	 * @param key
-	 *            error code
+	 *             error code
 	 * @param args
-	 *            error arguments
+	 *             error arguments
 	 */
 	public DatatypeException(String key, Object[] args) {
 		super(key);
@@ -87,17 +84,19 @@ public class DatatypeException extends Exception {
 	 */
 	public String getMessage() {
 		ResourceBundle resourceBundle = null;
-		resourceBundle = SecuritySupport
-				.getResourceBundle("com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages");
+		resourceBundle = SecuritySupport.getResourceBundle(
+				"com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages");
 		if (resourceBundle == null)
 			throw new MissingResourceException("Property file not found!",
-					"com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages", key);
+					"com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages",
+					key);
 
 		String msg = resourceBundle.getString(key);
 		if (msg == null) {
 			msg = resourceBundle.getString("BadMessageKey");
 			throw new MissingResourceException(msg,
-					"com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages", key);
+					"com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages",
+					key);
 		}
 
 		if (args != null) {

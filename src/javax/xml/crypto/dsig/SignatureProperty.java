@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: SignatureProperty.java,v 1.4 2005/05/10 16:03:46 mullan Exp $
@@ -56,8 +36,8 @@ import java.util.List;
  *
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
- * SignatureProperty property = factory.newSignatureProperty(Collections.singletonList(content),
- * 		"#Signature-1", "TimeStamp");
+ * SignatureProperty property = factory.newSignatureProperty(Collections
+ * 		.singletonList(content), "#Signature-1", "TimeStamp");
  * </pre>
  *
  * @author Sean Mullan

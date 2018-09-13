@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -51,7 +31,7 @@ public class SynthTextPaneUI extends SynthEditorPaneUI {
 	 * Creates a UI for the JTextPane.
 	 *
 	 * @param c
-	 *            the JTextPane object
+	 *          the JTextPane object
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -84,7 +64,7 @@ public class SynthTextPaneUI extends SynthEditorPaneUI {
 	 * </ol>
 	 *
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 * @see javax.swing.plaf.basic.BasicTextUI#installUI
 	 * @see ComponentUI#installUI
 	 */
@@ -126,8 +106,8 @@ public class SynthTextPaneUI extends SynthEditorPaneUI {
 	 * Update the color in the default style of the document.
 	 *
 	 * @param color
-	 *            the new color to use or null to remove the color attribute
-	 *            from the document's style
+	 *              the new color to use or null to remove the color attribute
+	 *              from the document's style
 	 */
 	private void updateForeground(Color color) {
 		StyledDocument doc = (StyledDocument) getComponent().getDocument();
@@ -148,8 +128,8 @@ public class SynthTextPaneUI extends SynthEditorPaneUI {
 	 * Update the font in the default style of the document.
 	 *
 	 * @param font
-	 *            the new font to use or null to remove the font attribute from
-	 *            the document's style
+	 *             the new font to use or null to remove the font attribute from
+	 *             the document's style
 	 */
 	private void updateFont(Font font) {
 		StyledDocument doc = (StyledDocument) getComponent().getDocument();
@@ -174,14 +154,16 @@ public class SynthTextPaneUI extends SynthEditorPaneUI {
 
 	@Override
 	void paintBackground(SynthContext context, Graphics g, JComponent c) {
-		context.getPainter().paintTextPaneBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
+		context.getPainter().paintTextPaneBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintTextPaneBorder(context, g, x, y, w, h);
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -91,7 +71,7 @@ public final class OptionalLong {
 	 * Construct an instance with the value present.
 	 *
 	 * @param value
-	 *            the long value to be present
+	 *              the long value to be present
 	 */
 	private OptionalLong(long value) {
 		this.isPresent = true;
@@ -102,7 +82,7 @@ public final class OptionalLong {
 	 * Return an {@code OptionalLong} with the specified value present.
 	 *
 	 * @param value
-	 *            the value to be present
+	 *              the value to be present
 	 * @return an {@code OptionalLong} with the value present
 	 */
 	public static OptionalLong of(long value) {
@@ -115,7 +95,7 @@ public final class OptionalLong {
 	 *
 	 * @return the value held by this {@code OptionalLong}
 	 * @throws NoSuchElementException
-	 *             if there is no value present
+	 *                                if there is no value present
 	 *
 	 * @see OptionalLong#isPresent()
 	 */
@@ -140,9 +120,10 @@ public final class OptionalLong {
 	 * otherwise do nothing.
 	 *
 	 * @param consumer
-	 *            block to be executed if a value is present
+	 *                 block to be executed if a value is present
 	 * @throws NullPointerException
-	 *             if value is present and {@code consumer} is null
+	 *                              if value is present and {@code consumer} is
+	 *                              null
 	 */
 	public void ifPresent(LongConsumer consumer) {
 		if (isPresent)
@@ -153,7 +134,7 @@ public final class OptionalLong {
 	 * Return the value if present, otherwise return {@code other}.
 	 *
 	 * @param other
-	 *            the value to be returned if there is no value present
+	 *              the value to be returned if there is no value present
 	 * @return the value, if present, otherwise {@code other}
 	 */
 	public long orElse(long other) {
@@ -165,12 +146,14 @@ public final class OptionalLong {
 	 * the result of that invocation.
 	 *
 	 * @param other
-	 *            a {@code LongSupplier} whose result is returned if no value is
-	 *            present
+	 *              a {@code LongSupplier} whose result is returned if no value
+	 *              is
+	 *              present
 	 * @return the value if present otherwise the result of
 	 *         {@code other.getAsLong()}
 	 * @throws NullPointerException
-	 *             if value is not present and {@code other} is null
+	 *                              if value is not present and {@code other} is
+	 *                              null
 	 */
 	public long orElseGet(LongSupplier other) {
 		return isPresent ? value : other.getAsLong();
@@ -184,17 +167,20 @@ public final class OptionalLong {
 	 *          argument list can be used as the supplier. For example,
 	 *          {@code IllegalStateException::new}
 	 *
-	 * @param <X>
-	 *            Type of the exception to be thrown
+	 * @param                   <X>
+	 *                          Type of the exception to be thrown
 	 * @param exceptionSupplier
-	 *            The supplier which will return the exception to be thrown
+	 *                          The supplier which will return the exception to
+	 *                          be thrown
 	 * @return the present value
 	 * @throws X
-	 *             if there is no value present
+	 *                              if there is no value present
 	 * @throws NullPointerException
-	 *             if no value is present and {@code exceptionSupplier} is null
+	 *                              if no value is present and
+	 *                              {@code exceptionSupplier} is null
 	 */
-	public <X extends Throwable> long orElseThrow(Supplier<X> exceptionSupplier) throws X {
+	public <X extends Throwable> long orElseThrow(Supplier<X> exceptionSupplier)
+			throws X {
 		if (isPresent) {
 			return value;
 		} else {
@@ -227,7 +213,8 @@ public final class OptionalLong {
 		}
 
 		OptionalLong other = (OptionalLong) obj;
-		return (isPresent && other.isPresent) ? value == other.value : isPresent == other.isPresent;
+		return (isPresent && other.isPresent) ? value == other.value
+				: isPresent == other.isPresent;
 	}
 
 	/**
@@ -256,6 +243,7 @@ public final class OptionalLong {
 	 */
 	@Override
 	public String toString() {
-		return isPresent ? String.format("OptionalLong[%s]", value) : "OptionalLong.empty";
+		return isPresent ? String.format("OptionalLong[%s]", value)
+				: "OptionalLong.empty";
 	}
 }

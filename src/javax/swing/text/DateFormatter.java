@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -59,7 +39,7 @@ public class DateFormatter extends InternationalFormatter {
 	 * instance.
 	 *
 	 * @param format
-	 *            Format used to dictate legal values
+	 *               Format used to dictate legal values
 	 */
 	public DateFormatter(DateFormat format) {
 		super(format);
@@ -75,7 +55,7 @@ public class DateFormatter extends InternationalFormatter {
 	 * <code>Dateformat.getDateInstance()</code> method.
 	 *
 	 * @param format
-	 *            DateFormat instance used for converting from/to Strings
+	 *               DateFormat instance used for converting from/to Strings
 	 */
 	public void setFormat(DateFormat format) {
 		super.setFormat(format);
@@ -112,8 +92,10 @@ public class DateFormatter extends InternationalFormatter {
 		while (attrs.hasNext()) {
 			Object key = attrs.next();
 
-			if ((key instanceof DateFormat.Field) && (key == DateFormat.Field.HOUR1
-					|| ((DateFormat.Field) key).getCalendarField() != -1)) {
+			if ((key instanceof DateFormat.Field)
+					&& (key == DateFormat.Field.HOUR1
+							|| ((DateFormat.Field) key)
+									.getCalendarField() != -1)) {
 				return key;
 			}
 		}

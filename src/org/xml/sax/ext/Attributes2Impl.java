@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // Attributes2Impl.java - extended AttributesImpl
@@ -84,7 +64,7 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	 * </p>
 	 *
 	 * @param atts
-	 *            The existing Attributes object.
+	 *             The existing Attributes object.
 	 */
 	public Attributes2Impl(Attributes atts) {
 		super(atts);
@@ -100,7 +80,8 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	// javadoc mostly from interface
 	public boolean isDeclared(int index) {
 		if (index < 0 || index >= getLength())
-			throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
+			throw new ArrayIndexOutOfBoundsException("No attribute at index: "
+					+ index);
 		return declared[index];
 	}
 
@@ -112,8 +93,8 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 		int index = getIndex(uri, localName);
 
 		if (index < 0)
-			throw new IllegalArgumentException(
-					"No such attribute: local=" + localName + ", namespace=" + uri);
+			throw new IllegalArgumentException("No such attribute: local="
+					+ localName + ", namespace=" + uri);
 		return declared[index];
 	}
 
@@ -133,14 +114,15 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	 * Returns the current value of an attribute's "specified" flag.
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return current flag value
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not identify an attribute.
+	 *            When the supplied index does not identify an attribute.
 	 */
 	public boolean isSpecified(int index) {
 		if (index < 0 || index >= getLength())
-			throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
+			throw new ArrayIndexOutOfBoundsException("No attribute at index: "
+					+ index);
 		return specified[index];
 	}
 
@@ -148,20 +130,21 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	 * Returns the current value of an attribute's "specified" flag.
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string if the name has no
-	 *            Namespace URI.
+	 *                  The Namespace URI, or the empty string if the name has
+	 *                  no
+	 *                  Namespace URI.
 	 * @param localName
-	 *            The attribute's local name.
+	 *                  The attribute's local name.
 	 * @return current flag value
 	 * @exception java.lang.IllegalArgumentException
-	 *                When the supplied names do not identify an attribute.
+	 *            When the supplied names do not identify an attribute.
 	 */
 	public boolean isSpecified(String uri, String localName) {
 		int index = getIndex(uri, localName);
 
 		if (index < 0)
-			throw new IllegalArgumentException(
-					"No such attribute: local=" + localName + ", namespace=" + uri);
+			throw new IllegalArgumentException("No such attribute: local="
+					+ localName + ", namespace=" + uri);
 		return specified[index];
 	}
 
@@ -169,10 +152,10 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	 * Returns the current value of an attribute's "specified" flag.
 	 *
 	 * @param qName
-	 *            The XML qualified (prefixed) name.
+	 *              The XML qualified (prefixed) name.
 	 * @return current flag value
 	 * @exception java.lang.IllegalArgumentException
-	 *                When the supplied name does not identify an attribute.
+	 *            When the supplied name does not identify an attribute.
 	 */
 	public boolean isSpecified(String qName) {
 		int index = getIndex(qName);
@@ -226,8 +209,8 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	 *
 	 * @see AttributesImpl#addAttribute
 	 */
-	public void addAttribute(String uri, String localName, String qName, String type,
-			String value) {
+	public void addAttribute(String uri, String localName, String qName,
+			String type, String value) {
 		super.addAttribute(uri, localName, qName, type, value);
 
 		int length = getLength();
@@ -256,8 +239,10 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 
 		super.removeAttribute(index);
 		if (index != origMax) {
-			System.arraycopy(declared, index + 1, declared, index, origMax - index);
-			System.arraycopy(specified, index + 1, specified, index, origMax - index);
+			System.arraycopy(declared, index + 1, declared, index, origMax
+					- index);
+			System.arraycopy(specified, index + 1, specified, index, origMax
+					- index);
 		}
 	}
 
@@ -267,16 +252,17 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	 * whose type is changed to or from CDATA.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *              The index of the attribute (zero-based).
 	 * @param value
-	 *            The desired flag value.
+	 *              The desired flag value.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not identify an attribute.
+	 *            When the supplied index does not identify an attribute.
 	 * @see #setType
 	 */
 	public void setDeclared(int index, boolean value) {
 		if (index < 0 || index >= getLength())
-			throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
+			throw new ArrayIndexOutOfBoundsException("No attribute at index: "
+					+ index);
 		declared[index] = value;
 	}
 
@@ -286,15 +272,16 @@ public class Attributes2Impl extends AttributesImpl implements Attributes2 {
 	 * with the copy constructor.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *              The index of the attribute (zero-based).
 	 * @param value
-	 *            The desired flag value.
+	 *              The desired flag value.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not identify an attribute.
+	 *            When the supplied index does not identify an attribute.
 	 */
 	public void setSpecified(int index, boolean value) {
 		if (index < 0 || index >= getLength())
-			throw new ArrayIndexOutOfBoundsException("No attribute at index: " + index);
+			throw new ArrayIndexOutOfBoundsException("No attribute at index: "
+					+ index);
 		specified[index] = value;
 	}
 }

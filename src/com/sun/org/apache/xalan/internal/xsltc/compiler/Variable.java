@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +65,8 @@ final class Variable extends VariableBase {
 				// It is an error if the two have the same import precedence
 				if (us == them) {
 					final String name = _name.toString();
-					reportError(this, parser, ErrorMsg.VARIABLE_REDEF_ERR, name);
+					reportError(this, parser, ErrorMsg.VARIABLE_REDEF_ERR,
+							name);
 				}
 				// Ignore this if previous definition has higher precedence
 				else if (them > us) {
@@ -124,7 +122,8 @@ final class Variable extends VariableBase {
 		if (isLocal() && !_refs.isEmpty()) {
 			// Create a variable slot if none is allocated
 			if (_local == null) {
-				_local = methodGen.addLocalVariable2(getEscapedName(), _type.toJCType(), null);
+				_local = methodGen.addLocalVariable2(getEscapedName(), _type
+						.toJCType(), null);
 			}
 			// Push the default value on the JVM's stack
 			if ((_type instanceof IntType) || (_type instanceof NodeType)
@@ -166,7 +165,8 @@ final class Variable extends VariableBase {
 			if (createLocal) {
 				mapRegister(methodGen);
 			}
-			InstructionHandle storeInst = il.append(_type.STORE(_local.getIndex()));
+			InstructionHandle storeInst = il.append(_type.STORE(_local
+					.getIndex()));
 
 			// If the local is just being created, mark the store as the start
 			// of its live range. Note that it might have been created by
@@ -180,15 +180,16 @@ final class Variable extends VariableBase {
 
 			// Global variables are store in class fields
 			if (classGen.containsField(name) == null) {
-				classGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(name), cpg.addUtf8(signature),
-						null, cpg.getConstantPool()));
+				classGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(name), cpg
+						.addUtf8(signature), null, cpg.getConstantPool()));
 
 				// Push a reference to "this" for putfield
 				il.append(classGen.loadTranslet());
 				// Compile variable value computation
 				translateValue(classGen, methodGen);
 				// Store the variable in the allocated field
-				il.append(new PUTFIELD(cpg.addFieldref(classGen.getClassName(), name, signature)));
+				il.append(new PUTFIELD(cpg.addFieldref(classGen.getClassName(),
+						name, signature)));
 			}
 		}
 	}

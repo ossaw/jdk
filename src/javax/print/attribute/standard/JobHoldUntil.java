@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -83,8 +63,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobHoldUntil extends DateTimeSyntax
-		implements PrintRequestAttribute, PrintJobAttribute {
+public final class JobHoldUntil extends DateTimeSyntax implements
+		PrintRequestAttribute, PrintJobAttribute {
 
 	private static final long serialVersionUID = -1664471048860415024L;
 
@@ -93,11 +73,12 @@ public final class JobHoldUntil extends DateTimeSyntax
 	 * {@link java.util.Date Date} value.
 	 *
 	 * @param dateTime
-	 *            {@link java.util.Date Date} value.
+	 *                 {@link java.util.Date Date} value.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>dateTime</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>dateTime</CODE> is
+	 *                                 null.
 	 */
 	public JobHoldUntil(Date dateTime) {
 		super(dateTime);
@@ -115,7 +96,7 @@ public final class JobHoldUntil extends DateTimeSyntax
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this job hold until
 	 *         attribute, false otherwise.

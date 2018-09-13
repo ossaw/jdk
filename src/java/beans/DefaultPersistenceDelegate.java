@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -83,7 +63,8 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 	 * </pre>
 	 *
 	 * @param constructorPropertyNames
-	 *            The property names for the arguments of this constructor.
+	 *                                 The property names for the arguments of
+	 *                                 this constructor.
 	 *
 	 * @see #instantiate
 	 */
@@ -94,7 +75,8 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 
 	private static boolean definesEquals(Class<?> type) {
 		try {
-			return type == type.getMethod("equals", Object.class).getDeclaringClass();
+			return type == type.getMethod("equals", Object.class)
+					.getDeclaringClass();
 		} catch (NoSuchMethodException e) {
 			return false;
 		}
@@ -119,9 +101,9 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 	 * instances are equal.
 	 *
 	 * @param oldInstance
-	 *            The instance to be copied.
+	 *                    The instance to be copied.
 	 * @param newInstance
-	 *            The instance that is to be modified.
+	 *                    The instance that is to be modified.
 	 * @return True if an equivalent copy of <code>newInstance</code> may be
 	 *         created by applying a series of mutations to
 	 *         <code>oldInstance</code>.
@@ -132,7 +114,8 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 		// Assume the instance is either mutable or a singleton
 		// if it has a nullary constructor.
 		return (constructor.length == 0) || !definesEquals(oldInstance)
-				? super.mutatesTo(oldInstance, newInstance) : oldInstance.equals(newInstance);
+				? super.mutatesTo(oldInstance, newInstance)
+				: oldInstance.equals(newInstance);
 	}
 
 	/**
@@ -142,14 +125,15 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 	 * <code>DefaultPersistenceDelegate</code>'s constructor.
 	 *
 	 * @param oldInstance
-	 *            The instance to be instantiated.
+	 *                    The instance to be instantiated.
 	 * @param out
-	 *            The code output stream.
+	 *                    The code output stream.
 	 * @return An expression whose value is <code>oldInstance</code>.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null} and this value is used in the
-	 *             method
+	 *                              if {@code out} is {@code null} and this
+	 *                              value is used in the
+	 *                              method
 	 *
 	 * @see #DefaultPersistenceDelegate(String[])
 	 */
@@ -160,12 +144,14 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 		for (int i = 0; i < nArgs; i++) {
 			try {
 				Method method = findMethod(type, this.constructor[i]);
-				constructorArgs[i] = MethodUtil.invoke(method, oldInstance, new Object[0]);
+				constructorArgs[i] = MethodUtil.invoke(method, oldInstance,
+						new Object[0]);
 			} catch (Exception e) {
 				out.getExceptionListener().exceptionThrown(e);
 			}
 		}
-		return new Expression(oldInstance, oldInstance.getClass(), "new", constructorArgs);
+		return new Expression(oldInstance, oldInstance.getClass(), "new",
+				constructorArgs);
 	}
 
 	private Method findMethod(Class<?> type, String property) {
@@ -174,23 +160,28 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 		}
 		PropertyDescriptor pd = getPropertyDescriptor(type, property);
 		if (pd == null) {
-			throw new IllegalStateException("Could not find property by the name " + property);
+			throw new IllegalStateException(
+					"Could not find property by the name " + property);
 		}
 		Method method = pd.getReadMethod();
 		if (method == null) {
-			throw new IllegalStateException("Could not find getter for the property " + property);
+			throw new IllegalStateException(
+					"Could not find getter for the property " + property);
 		}
 		return method;
 	}
 
-	private void doProperty(Class<?> type, PropertyDescriptor pd, Object oldInstance,
-			Object newInstance, Encoder out) throws Exception {
+	private void doProperty(Class<?> type, PropertyDescriptor pd,
+			Object oldInstance, Object newInstance, Encoder out)
+			throws Exception {
 		Method getter = pd.getReadMethod();
 		Method setter = pd.getWriteMethod();
 
 		if (getter != null && setter != null) {
-			Expression oldGetExp = new Expression(oldInstance, getter.getName(), new Object[] {});
-			Expression newGetExp = new Expression(newInstance, getter.getName(), new Object[] {});
+			Expression oldGetExp = new Expression(oldInstance, getter.getName(),
+					new Object[] {});
+			Expression newGetExp = new Expression(newInstance, getter.getName(),
+					new Object[] {});
 			Object oldValue = oldGetExp.getValue();
 			Object newValue = newGetExp.getValue();
 			out.writeExpression(oldGetExp);
@@ -204,41 +195,47 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 							Field f = type.getField((String) a[i]);
 							if (f.get(null).equals(oldValue)) {
 								out.remove(oldValue);
-								out.writeExpression(
-										new Expression(oldValue, f, "get", new Object[] { null }));
+								out.writeExpression(new Expression(oldValue, f,
+										"get", new Object[] { null }));
 							}
 						} catch (Exception ex) {
 						}
 					}
 				}
-				invokeStatement(oldInstance, setter.getName(), new Object[] { oldValue }, out);
+				invokeStatement(oldInstance, setter.getName(), new Object[] {
+						oldValue }, out);
 			}
 		}
 	}
 
-	static void invokeStatement(Object instance, String methodName, Object[] args, Encoder out) {
+	static void invokeStatement(Object instance, String methodName,
+			Object[] args, Encoder out) {
 		out.writeStatement(new Statement(instance, methodName, args));
 	}
 
 	// Write out the properties of this instance.
-	private void initBean(Class<?> type, Object oldInstance, Object newInstance, Encoder out) {
+	private void initBean(Class<?> type, Object oldInstance, Object newInstance,
+			Encoder out) {
 		for (Field field : type.getFields()) {
 			if (!ReflectUtil.isPackageAccessible(field.getDeclaringClass())) {
 				continue;
 			}
 			int mod = field.getModifiers();
-			if (Modifier.isFinal(mod) || Modifier.isStatic(mod) || Modifier.isTransient(mod)) {
+			if (Modifier.isFinal(mod) || Modifier.isStatic(mod) || Modifier
+					.isTransient(mod)) {
 				continue;
 			}
 			try {
-				Expression oldGetExp = new Expression(field, "get", new Object[] { oldInstance });
-				Expression newGetExp = new Expression(field, "get", new Object[] { newInstance });
+				Expression oldGetExp = new Expression(field, "get",
+						new Object[] { oldInstance });
+				Expression newGetExp = new Expression(field, "get",
+						new Object[] { newInstance });
 				Object oldValue = oldGetExp.getValue();
 				Object newValue = newGetExp.getValue();
 				out.writeExpression(oldGetExp);
 				if (!Objects.equals(newValue, out.get(oldValue))) {
-					out.writeStatement(
-							new Statement(field, "set", new Object[] { oldInstance, oldValue }));
+					out.writeStatement(new Statement(field, "set",
+							new Object[] { oldInstance, oldValue }));
 				}
 			} catch (Exception exception) {
 				out.getExceptionListener().exceptionThrown(exception);
@@ -272,13 +269,11 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 		 * example the JTable:setModel() method automatically adds a
 		 * TableModelListener (the JTable itself in this case) to the supplied
 		 * table model.
-		 * 
 		 * We do not need to explicitly add these listeners to the model in an
 		 * archive as they will be added automatically by, in the above case,
 		 * the JTable's "setModel" method. In some cases, we must specifically
 		 * avoid trying to do this since the listener may be an inner class that
 		 * cannot be instantiated using public API.
-		 * 
 		 * No general mechanism currently exists for differentiating between
 		 * these kind of listeners and those which were added explicitly by the
 		 * user. A mechanism must be created to provide a general means to
@@ -316,11 +311,14 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 			EventListener[] newL = new EventListener[0];
 			try {
 				Method m = d.getGetListenerMethod();
-				oldL = (EventListener[]) MethodUtil.invoke(m, oldInstance, new Object[] {});
-				newL = (EventListener[]) MethodUtil.invoke(m, newInstance, new Object[] {});
+				oldL = (EventListener[]) MethodUtil.invoke(m, oldInstance,
+						new Object[] {});
+				newL = (EventListener[]) MethodUtil.invoke(m, newInstance,
+						new Object[] {});
 			} catch (Exception e2) {
 				try {
-					Method m = type.getMethod("getListeners", new Class<?>[] { Class.class });
+					Method m = type.getMethod("getListeners", new Class<?>[] {
+							Class.class });
 					oldL = (EventListener[]) MethodUtil.invoke(m, oldInstance,
 							new Object[] { listenerType });
 					newL = (EventListener[]) MethodUtil.invoke(m, newInstance,
@@ -337,13 +335,15 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 			for (int i = newL.length; i < oldL.length; i++) {
 				// System.out.println("Adding listener: " +
 				// addListenerMethodName + oldL[i]);
-				invokeStatement(oldInstance, addListenerMethodName, new Object[] { oldL[i] }, out);
+				invokeStatement(oldInstance, addListenerMethodName,
+						new Object[] { oldL[i] }, out);
 			}
 
-			String removeListenerMethodName = d.getRemoveListenerMethod().getName();
+			String removeListenerMethodName = d.getRemoveListenerMethod()
+					.getName();
 			for (int i = oldL.length; i < newL.length; i++) {
-				invokeStatement(oldInstance, removeListenerMethodName, new Object[] { newL[i] },
-						out);
+				invokeStatement(oldInstance, removeListenerMethodName,
+						new Object[] { newL[i] }, out);
 			}
 		}
 	}
@@ -382,22 +382,24 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 	 * value depends on the value of a subsequent property.
 	 *
 	 * @param type
-	 *            the type of the instances
+	 *                    the type of the instances
 	 * @param oldInstance
-	 *            The instance to be copied.
+	 *                    The instance to be copied.
 	 * @param newInstance
-	 *            The instance that is to be modified.
+	 *                    The instance that is to be modified.
 	 * @param out
-	 *            The stream to which any initialization statements should be
-	 *            written.
+	 *                    The stream to which any initialization statements
+	 *                    should be
+	 *                    written.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null}
+	 *                              if {@code out} is {@code null}
 	 *
 	 * @see java.beans.Introspector#getBeanInfo
 	 * @see java.beans.PropertyDescriptor
 	 */
-	protected void initialize(Class<?> type, Object oldInstance, Object newInstance, Encoder out) {
+	protected void initialize(Class<?> type, Object oldInstance,
+			Object newInstance, Encoder out) {
 		// System.out.println("DefulatPD:initialize" + type);
 		super.initialize(type, oldInstance, newInstance, out);
 		if (oldInstance.getClass() == type) { // !type.isInterface()) {
@@ -405,9 +407,11 @@ public class DefaultPersistenceDelegate extends PersistenceDelegate {
 		}
 	}
 
-	private static PropertyDescriptor getPropertyDescriptor(Class<?> type, String property) {
+	private static PropertyDescriptor getPropertyDescriptor(Class<?> type,
+			String property) {
 		try {
-			for (PropertyDescriptor pd : Introspector.getBeanInfo(type).getPropertyDescriptors()) {
+			for (PropertyDescriptor pd : Introspector.getBeanInfo(type)
+					.getPropertyDescriptors()) {
 				if (property.equals(pd.getName()))
 					return pd;
 			}

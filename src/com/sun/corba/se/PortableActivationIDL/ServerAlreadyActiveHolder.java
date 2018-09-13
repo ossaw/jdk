@@ -8,11 +8,11 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public final class ServerAlreadyActiveHolder implements org.omg.CORBA.portable.Streamable {
+public final class ServerAlreadyActiveHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.PortableActivationIDL.ServerAlreadyActive value = null;
 
-	public ServerAlreadyActiveHolder() {
-	}
+	public ServerAlreadyActiveHolder() {}
 
 	public ServerAlreadyActiveHolder(
 			com.sun.corba.se.PortableActivationIDL.ServerAlreadyActive initialValue) {
@@ -20,15 +20,18 @@ public final class ServerAlreadyActiveHolder implements org.omg.CORBA.portable.S
 	}
 
 	public void _read(org.omg.CORBA.portable.InputStream i) {
-		value = com.sun.corba.se.PortableActivationIDL.ServerAlreadyActiveHelper.read(i);
+		value = com.sun.corba.se.PortableActivationIDL.ServerAlreadyActiveHelper
+				.read(i);
 	}
 
 	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		com.sun.corba.se.PortableActivationIDL.ServerAlreadyActiveHelper.write(o, value);
+		com.sun.corba.se.PortableActivationIDL.ServerAlreadyActiveHelper.write(
+				o, value);
 	}
 
 	public org.omg.CORBA.TypeCode _type() {
-		return com.sun.corba.se.PortableActivationIDL.ServerAlreadyActiveHelper.type();
+		return com.sun.corba.se.PortableActivationIDL.ServerAlreadyActiveHelper
+				.type();
 	}
 
 }

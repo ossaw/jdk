@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -231,8 +211,7 @@ public class InetAddress implements java.io.Serializable {
 		 */
 		String originalHostName;
 
-		InetAddressHolder() {
-		}
+		InetAddressHolder() {}
 
 		InetAddressHolder(String hostName, int address, int family) {
 			this.originalHostName = hostName;
@@ -299,14 +278,16 @@ public class InetAddress implements java.io.Serializable {
 	 * Load net library into runtime, and perform initializations.
 	 */
 	static {
-		preferIPv6Address = java.security.AccessController
-				.doPrivileged(new GetBooleanAction("java.net.preferIPv6Addresses")).booleanValue();
-		AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
-			public Void run() {
-				System.loadLibrary("net");
-				return null;
-			}
-		});
+		preferIPv6Address = java.security.AccessController.doPrivileged(
+				new GetBooleanAction("java.net.preferIPv6Addresses"))
+				.booleanValue();
+		AccessController.doPrivileged(
+				new java.security.PrivilegedAction<Void>() {
+					public Void run() {
+						System.loadLibrary("net");
+						return null;
+					}
+				});
 		init();
 	}
 
@@ -326,7 +307,8 @@ public class InetAddress implements java.io.Serializable {
 	 * @return the alternate object to the de-serialized object.
 	 *
 	 * @throws ObjectStreamException
-	 *             if a new object replacing this object could not be created
+	 *                               if a new object replacing this object could
+	 *                               not be created
 	 */
 	private Object readResolve() throws ObjectStreamException {
 		// will replace the deserialized 'this' object
@@ -463,12 +445,12 @@ public class InetAddress implements java.io.Serializable {
 	 * IllegalArgumentException being thrown.
 	 *
 	 * @param timeout
-	 *            the time, in milliseconds, before the call aborts
+	 *                the time, in milliseconds, before the call aborts
 	 * @return a {@code boolean} indicating if the address is reachable.
 	 * @throws IOException
-	 *             if a network error occurs
+	 *                                  if a network error occurs
 	 * @throws IllegalArgumentException
-	 *             if {@code timeout} is negative.
+	 *                                  if {@code timeout} is negative.
 	 * @since 1.5
 	 */
 	public boolean isReachable(int timeout) throws IOException {
@@ -495,20 +477,23 @@ public class InetAddress implements java.io.Serializable {
 	 * IllegalArgumentException being thrown.
 	 *
 	 * @param netif
-	 *            the NetworkInterface through which the test will be done, or
-	 *            null for any interface
+	 *                the NetworkInterface through which the test will be done,
+	 *                or
+	 *                null for any interface
 	 * @param ttl
-	 *            the maximum numbers of hops to try or 0 for the default
+	 *                the maximum numbers of hops to try or 0 for the default
 	 * @param timeout
-	 *            the time, in milliseconds, before the call aborts
+	 *                the time, in milliseconds, before the call aborts
 	 * @throws IllegalArgumentException
-	 *             if either {@code timeout} or {@code ttl} are negative.
+	 *                                  if either {@code timeout} or {@code ttl}
+	 *                                  are negative.
 	 * @return a {@code boolean}indicating if the address is reachable.
 	 * @throws IOException
-	 *             if a network error occurs
+	 *                     if a network error occurs
 	 * @since 1.5
 	 */
-	public boolean isReachable(NetworkInterface netif, int ttl, int timeout) throws IOException {
+	public boolean isReachable(NetworkInterface netif, int ttl, int timeout)
+			throws IOException {
 		if (ttl < 0)
 			throw new IllegalArgumentException("ttl can't be negative");
 		if (timeout < 0)
@@ -562,7 +547,7 @@ public class InetAddress implements java.io.Serializable {
 	 *         IP address.
 	 *
 	 * @param check
-	 *            make security check if true
+	 *              make security check if true
 	 *
 	 * @see SecurityManager#checkConnect
 	 */
@@ -615,11 +600,12 @@ public class InetAddress implements java.io.Serializable {
 	 *         IP address.
 	 *
 	 * @param check
-	 *            make security check if true
+	 *              make security check if true
 	 *
 	 * @see SecurityManager#checkConnect
 	 */
-	private static String getHostFromNameService(InetAddress addr, boolean check) {
+	private static String getHostFromNameService(InetAddress addr,
+			boolean check) {
 		String host = null;
 		for (NameService nameService : nameServices) {
 			try {
@@ -853,7 +839,8 @@ public class InetAddress implements java.io.Serializable {
 
 			// check if entry has expired
 			if (entry != null && policy != InetAddressCachePolicy.FOREVER) {
-				if (entry.expiration >= 0 && entry.expiration < System.currentTimeMillis()) {
+				if (entry.expiration >= 0 && entry.expiration < System
+						.currentTimeMillis()) {
 					cache.remove(host);
 					entry = null;
 				}
@@ -883,7 +870,8 @@ public class InetAddress implements java.io.Serializable {
 	/*
 	 * Cache the given hostname and addresses.
 	 */
-	private static void cacheAddresses(String hostname, InetAddress[] addresses, boolean success) {
+	private static void cacheAddresses(String hostname, InetAddress[] addresses,
+			boolean success) {
 		hostname = hostname.toLowerCase();
 		synchronized (addressCache) {
 			cacheInitIfNeeded();
@@ -929,32 +917,38 @@ public class InetAddress implements java.io.Serializable {
 		if (provider.equals("default")) {
 			// initialize the default name service
 			nameService = new NameService() {
-				public InetAddress[] lookupAllHostAddr(String host) throws UnknownHostException {
+				public InetAddress[] lookupAllHostAddr(String host)
+						throws UnknownHostException {
 					return impl.lookupAllHostAddr(host);
 				}
 
-				public String getHostByAddr(byte[] addr) throws UnknownHostException {
+				public String getHostByAddr(byte[] addr)
+						throws UnknownHostException {
 					return impl.getHostByAddr(addr);
 				}
 			};
 		} else {
 			final String providerName = provider;
 			try {
-				nameService = java.security.AccessController
-						.doPrivileged(new java.security.PrivilegedExceptionAction<NameService>() {
+				nameService = java.security.AccessController.doPrivileged(
+						new java.security.PrivilegedExceptionAction<NameService>() {
 							public NameService run() {
 								Iterator<NameServiceDescriptor> itr = ServiceLoader
-										.load(NameServiceDescriptor.class).iterator();
+										.load(NameServiceDescriptor.class)
+										.iterator();
 								while (itr.hasNext()) {
 									NameServiceDescriptor nsd = itr.next();
-									if (providerName.equalsIgnoreCase(
-											nsd.getType() + "," + nsd.getProviderName())) {
+									if (providerName.equalsIgnoreCase(nsd
+											.getType() + "," + nsd
+													.getProviderName())) {
 										try {
 											return nsd.createNameService();
 										} catch (Exception e) {
 											e.printStackTrace();
-											System.err.println("Cannot create name service:"
-													+ providerName + ": " + e);
+											System.err.println(
+													"Cannot create name service:"
+															+ providerName
+															+ ": " + e);
 										}
 									}
 								}
@@ -979,14 +973,16 @@ public class InetAddress implements java.io.Serializable {
 		String propPrefix = "sun.net.spi.nameservice.provider.";
 		int n = 1;
 		nameServices = new ArrayList<NameService>();
-		provider = AccessController.doPrivileged(new GetPropertyAction(propPrefix + n));
+		provider = AccessController.doPrivileged(new GetPropertyAction(
+				propPrefix + n));
 		while (provider != null) {
 			NameService ns = createNSProvider(provider);
 			if (ns != null)
 				nameServices.add(ns);
 
 			n++;
-			provider = AccessController.doPrivileged(new GetPropertyAction(propPrefix + n));
+			provider = AccessController.doPrivileged(new GetPropertyAction(
+					propPrefix + n));
 		}
 
 		// if not designate any name services provider,
@@ -1016,15 +1012,16 @@ public class InetAddress implements java.io.Serializable {
 	 * 16 bytes long
 	 *
 	 * @param host
-	 *            the specified host
+	 *             the specified host
 	 * @param addr
-	 *            the raw IP address in network byte order
+	 *             the raw IP address in network byte order
 	 * @return an InetAddress object created from the raw IP address.
 	 * @exception UnknownHostException
-	 *                if IP address is of illegal length
+	 *                                 if IP address is of illegal length
 	 * @since 1.4
 	 */
-	public static InetAddress getByAddress(String host, byte[] addr) throws UnknownHostException {
+	public static InetAddress getByAddress(String host, byte[] addr)
+			throws UnknownHostException {
 		if (host != null && host.length() > 0 && host.charAt(0) == '[') {
 			if (host.charAt(host.length() - 1) == ']') {
 				host = host.substring(1, host.length() - 1);
@@ -1034,7 +1031,8 @@ public class InetAddress implements java.io.Serializable {
 			if (addr.length == Inet4Address.INADDRSZ) {
 				return new Inet4Address(host, addr);
 			} else if (addr.length == Inet6Address.INADDRSZ) {
-				byte[] newAddr = IPAddressUtil.convertFromIPv4MappedAddress(addr);
+				byte[] newAddr = IPAddressUtil.convertFromIPv4MappedAddress(
+						addr);
 				if (newAddr != null) {
 					return new Inet4Address(host, newAddr);
 				} else {
@@ -1071,16 +1069,20 @@ public class InetAddress implements java.io.Serializable {
 	 * </p>
 	 *
 	 * @param host
-	 *            the specified host, or {@code null}.
+	 *             the specified host, or {@code null}.
 	 * @return an IP address for the given host name.
 	 * @exception UnknownHostException
-	 *                if no IP address for the {@code host} could be found, or
-	 *                if a scope_id was specified for a global IPv6 address.
+	 *                                 if no IP address for the {@code host}
+	 *                                 could be found, or
+	 *                                 if a scope_id was specified for a global
+	 *                                 IPv6 address.
 	 * @exception SecurityException
-	 *                if a security manager exists and its checkConnect method
-	 *                doesn't allow the operation
+	 *                                 if a security manager exists and its
+	 *                                 checkConnect method
+	 *                                 doesn't allow the operation
 	 */
-	public static InetAddress getByName(String host) throws UnknownHostException {
+	public static InetAddress getByName(String host)
+			throws UnknownHostException {
 		return InetAddress.getAllByName(host)[0];
 	}
 
@@ -1122,19 +1124,23 @@ public class InetAddress implements java.io.Serializable {
 	 * its arguments to see if the operation is allowed.
 	 *
 	 * @param host
-	 *            the name of the host, or {@code null}.
+	 *             the name of the host, or {@code null}.
 	 * @return an array of all the IP addresses for a given host name.
 	 *
 	 * @exception UnknownHostException
-	 *                if no IP address for the {@code host} could be found, or
-	 *                if a scope_id was specified for a global IPv6 address.
+	 *                                 if no IP address for the {@code host}
+	 *                                 could be found, or
+	 *                                 if a scope_id was specified for a global
+	 *                                 IPv6 address.
 	 * @exception SecurityException
-	 *                if a security manager exists and its {@code checkConnect}
-	 *                method doesn't allow the operation.
+	 *                                 if a security manager exists and its
+	 *                                 {@code checkConnect}
+	 *                                 method doesn't allow the operation.
 	 *
 	 * @see SecurityManager#checkConnect
 	 */
-	public static InetAddress[] getAllByName(String host) throws UnknownHostException {
+	public static InetAddress[] getAllByName(String host)
+			throws UnknownHostException {
 		return getAllByName(host, null);
 	}
 
@@ -1160,7 +1166,8 @@ public class InetAddress implements java.io.Serializable {
 		}
 
 		// if host is an IP address, we won't do further lookup
-		if (Character.digit(host.charAt(0), 16) != -1 || (host.charAt(0) == ':')) {
+		if (Character.digit(host.charAt(0), 16) != -1 || (host.charAt(
+				0) == ':')) {
 			byte[] addr = null;
 			int numericZone = -1;
 			String ifname = null;
@@ -1173,7 +1180,8 @@ public class InetAddress implements java.io.Serializable {
 				if ((pos = host.indexOf("%")) != -1) {
 					numericZone = checkNumericZone(host);
 					if (numericZone == -1) { /*
-												 * remainder of string must be an
+												 * remainder of string must be
+												 * an
 												 * ifname
 												 */
 						ifname = host.substring(pos + 1);
@@ -1181,7 +1189,8 @@ public class InetAddress implements java.io.Serializable {
 				}
 				if ((addr = IPAddressUtil.textToNumericFormatV6(host)) == null
 						&& host.contains(":")) {
-					throw new UnknownHostException(host + ": invalid IPv6 address");
+					throw new UnknownHostException(host
+							+ ": invalid IPv6 address");
 				}
 			} else if (ipv6Expected) {
 				// Means an IPv4 litteral between brackets!
@@ -1252,19 +1261,21 @@ public class InetAddress implements java.io.Serializable {
 		return zone;
 	}
 
-	private static InetAddress[] getAllByName0(String host) throws UnknownHostException {
+	private static InetAddress[] getAllByName0(String host)
+			throws UnknownHostException {
 		return getAllByName0(host, true);
 	}
 
 	/**
 	 * package private so SocketPermission can call it
 	 */
-	static InetAddress[] getAllByName0(String host, boolean check) throws UnknownHostException {
+	static InetAddress[] getAllByName0(String host, boolean check)
+			throws UnknownHostException {
 		return getAllByName0(host, null, check);
 	}
 
-	private static InetAddress[] getAllByName0(String host, InetAddress reqAddr, boolean check)
-			throws UnknownHostException {
+	private static InetAddress[] getAllByName0(String host, InetAddress reqAddr,
+			boolean check) throws UnknownHostException {
 
 		/* If it gets here it is presumed to be a hostname */
 		/* Cache.get can return: null, unknownAddress, or InetAddress[] */
@@ -1293,8 +1304,8 @@ public class InetAddress implements java.io.Serializable {
 		return addresses.clone();
 	}
 
-	private static InetAddress[] getAddressesFromNameService(String host, InetAddress reqAddr)
-			throws UnknownHostException {
+	private static InetAddress[] getAddressesFromNameService(String host,
+			InetAddress reqAddr) throws UnknownHostException {
 		InetAddress[] addresses = null;
 		boolean success = false;
 		UnknownHostException ex = null;
@@ -1335,7 +1346,8 @@ public class InetAddress implements java.io.Serializable {
 						break;
 					} catch (UnknownHostException uhe) {
 						if (host.equalsIgnoreCase("localhost")) {
-							InetAddress[] local = new InetAddress[] { impl.loopbackAddress() };
+							InetAddress[] local = new InetAddress[] { impl
+									.loopbackAddress() };
 							addresses = local;
 							success = true;
 							break;
@@ -1348,7 +1360,8 @@ public class InetAddress implements java.io.Serializable {
 				}
 
 				// More to do?
-				if (reqAddr != null && addresses.length > 1 && !addresses[0].equals(reqAddr)) {
+				if (reqAddr != null && addresses.length > 1 && !addresses[0]
+						.equals(reqAddr)) {
 					// Find it?
 					int i = 1;
 					for (; i < addresses.length; i++) {
@@ -1440,13 +1453,14 @@ public class InetAddress implements java.io.Serializable {
 	 * 16 bytes long
 	 *
 	 * @param addr
-	 *            the raw IP address in network byte order
+	 *             the raw IP address in network byte order
 	 * @return an InetAddress object created from the raw IP address.
 	 * @exception UnknownHostException
-	 *                if IP address is of illegal length
+	 *                                 if IP address is of illegal length
 	 * @since 1.4
 	 */
-	public static InetAddress getByAddress(byte[] addr) throws UnknownHostException {
+	public static InetAddress getByAddress(byte[] addr)
+			throws UnknownHostException {
 		return getByAddress(null, addr);
 	}
 
@@ -1473,8 +1487,9 @@ public class InetAddress implements java.io.Serializable {
 	 * @return the address of the local host.
 	 *
 	 * @exception UnknownHostException
-	 *                if the local host name could not be resolved into an
-	 *                address.
+	 *                                 if the local host name could not be
+	 *                                 resolved into an
+	 *                                 address.
 	 *
 	 * @see SecurityManager#checkConnect
 	 * @see java.net.InetAddress#getByName(java.lang.String)
@@ -1508,7 +1523,8 @@ public class InetAddress implements java.io.Serializable {
 				if (ret == null) {
 					InetAddress[] localAddrs;
 					try {
-						localAddrs = InetAddress.getAddressesFromNameService(local, null);
+						localAddrs = InetAddress.getAddressesFromNameService(
+								local, null);
 					} catch (UnknownHostException uhe) {
 						// Rethrow with a more informative error message.
 						UnknownHostException uhe2 = new UnknownHostException(
@@ -1553,18 +1569,22 @@ public class InetAddress implements java.io.Serializable {
 		 * implementations of the java. classes. The default is an empty String
 		 * "".
 		 */
-		String prefix = AccessController.doPrivileged(new GetPropertyAction("impl.prefix", ""));
+		String prefix = AccessController.doPrivileged(new GetPropertyAction(
+				"impl.prefix", ""));
 		try {
 			impl = Class.forName("java.net." + prefix + implName).newInstance();
 		} catch (ClassNotFoundException e) {
 			System.err.println("Class not found: java.net." + prefix + implName
-					+ ":\ncheck impl.prefix property " + "in your properties file.");
+					+ ":\ncheck impl.prefix property "
+					+ "in your properties file.");
 		} catch (InstantiationException e) {
-			System.err.println("Could not instantiate: java.net." + prefix + implName
-					+ ":\ncheck impl.prefix property " + "in your properties file.");
+			System.err.println("Could not instantiate: java.net." + prefix
+					+ implName + ":\ncheck impl.prefix property "
+					+ "in your properties file.");
 		} catch (IllegalAccessException e) {
-			System.err.println("Cannot access class: java.net." + prefix + implName
-					+ ":\ncheck impl.prefix property " + "in your properties file.");
+			System.err.println("Cannot access class: java.net." + prefix
+					+ implName + ":\ncheck impl.prefix property "
+					+ "in your properties file.");
 		}
 
 		if (impl == null) {
@@ -1578,7 +1598,8 @@ public class InetAddress implements java.io.Serializable {
 		return (InetAddressImpl) impl;
 	}
 
-	private void readObjectNoData(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObjectNoData(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		if (getClass().getClassLoader() != null) {
 			throw new SecurityException("invalid address type");
 		}
@@ -1590,14 +1611,16 @@ public class InetAddress implements java.io.Serializable {
 	static {
 		try {
 			sun.misc.Unsafe unsafe = sun.misc.Unsafe.getUnsafe();
-			FIELDS_OFFSET = unsafe.objectFieldOffset(InetAddress.class.getDeclaredField("holder"));
+			FIELDS_OFFSET = unsafe.objectFieldOffset(InetAddress.class
+					.getDeclaredField("holder"));
 			UNSAFE = unsafe;
 		} catch (ReflectiveOperationException e) {
 			throw new Error(e);
 		}
 	}
 
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		if (getClass().getClassLoader() != null) {
 			throw new SecurityException("invalid address type");
 		}
@@ -1613,16 +1636,16 @@ public class InetAddress implements java.io.Serializable {
 
 	/**
 	 * @serialField hostName
-	 *                  String
+	 *              String
 	 * @serialField address
-	 *                  int
+	 *              int
 	 * @serialField family
-	 *                  int
+	 *              int
 	 */
 	private static final ObjectStreamField[] serialPersistentFields = {
 			new ObjectStreamField("hostName", String.class),
-			new ObjectStreamField("address", int.class),
-			new ObjectStreamField("family", int.class), };
+			new ObjectStreamField("address", int.class), new ObjectStreamField(
+					"family", int.class), };
 
 	private void writeObject(ObjectOutputStream s) throws IOException {
 		if (getClass().getClassLoader() != null) {
@@ -1642,7 +1665,8 @@ public class InetAddress implements java.io.Serializable {
 class InetAddressImplFactory {
 
 	static InetAddressImpl create() {
-		return InetAddress.loadImpl(isIPv6Supported() ? "Inet6AddressImpl" : "Inet4AddressImpl");
+		return InetAddress.loadImpl(isIPv6Supported() ? "Inet6AddressImpl"
+				: "Inet4AddressImpl");
 	}
 
 	static native boolean isIPv6Supported();

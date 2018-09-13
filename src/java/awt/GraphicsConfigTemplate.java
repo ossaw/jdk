@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -51,8 +31,7 @@ public abstract class GraphicsConfigTemplate implements Serializable {
 	/**
 	 * This class is an abstract class so only subclasses can be instantiated.
 	 */
-	public GraphicsConfigTemplate() {
-	}
+	public GraphicsConfigTemplate() {}
 
 	/**
 	 * Value used for "Enum" (Integer) type. States that this feature is
@@ -83,13 +62,14 @@ public abstract class GraphicsConfigTemplate implements Serializable {
 	 * defined in the <code>GraphicsConfigTemplate</code>.
 	 * 
 	 * @param gc
-	 *            the array of <code>GraphicsConfiguration</code> objects to
-	 *            choose from.
+	 *           the array of <code>GraphicsConfiguration</code> objects to
+	 *           choose from.
 	 * @return a <code>GraphicsConfiguration</code> object that is the best
 	 *         configuration possible.
 	 * @see GraphicsConfiguration
 	 */
-	public abstract GraphicsConfiguration getBestConfiguration(GraphicsConfiguration[] gc);
+	public abstract GraphicsConfiguration getBestConfiguration(
+			GraphicsConfiguration[] gc);
 
 	/**
 	 * Returns a <code>boolean</code> indicating whether or not the specified
@@ -97,7 +77,7 @@ public abstract class GraphicsConfigTemplate implements Serializable {
 	 * surface that supports the indicated features.
 	 * 
 	 * @param gc
-	 *            the <code>GraphicsConfiguration</code> object to test
+	 *           the <code>GraphicsConfiguration</code> object to test
 	 * @return <code>true</code> if this <code>GraphicsConfiguration</code>
 	 *         object can be used to create surfaces that support the indicated
 	 *         features; <code>false</code> if the

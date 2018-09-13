@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -69,8 +49,7 @@ public abstract class GraphicsEnvironment {
 	 * This is an abstract class and cannot be instantiated directly. Instances
 	 * must be obtained from a suitable factory or query method.
 	 */
-	protected GraphicsEnvironment() {
-	}
+	protected GraphicsEnvironment() {}
 
 	/**
 	 * Returns the local <code>GraphicsEnvironment</code>.
@@ -93,8 +72,8 @@ public abstract class GraphicsEnvironment {
 	 */
 	private static GraphicsEnvironment createGE() {
 		GraphicsEnvironment ge;
-		String nm = AccessController
-				.doPrivileged(new GetPropertyAction("java.awt.graphicsenv", null));
+		String nm = AccessController.doPrivileged(new GetPropertyAction(
+				"java.awt.graphicsenv", null));
 		try {
 			// long t0 = System.currentTimeMillis();
 			Class<GraphicsEnvironment> geCls;
@@ -106,7 +85,8 @@ public abstract class GraphicsEnvironment {
 				// If the bootclassloader fails, we try again with the
 				// application classloader.
 				ClassLoader cl = ClassLoader.getSystemClassLoader();
-				geCls = (Class<GraphicsEnvironment>) Class.forName(nm, true, cl);
+				geCls = (Class<GraphicsEnvironment>) Class.forName(nm, true,
+						cl);
 			}
 			ge = geCls.newInstance();
 			// long t1 = System.currentTimeMillis();
@@ -117,7 +97,8 @@ public abstract class GraphicsEnvironment {
 		} catch (ClassNotFoundException e) {
 			throw new Error("Could not find class: " + nm);
 		} catch (InstantiationException e) {
-			throw new Error("Could not instantiate Graphics Environment: " + nm);
+			throw new Error("Could not instantiate Graphics Environment: "
+					+ nm);
 		} catch (IllegalAccessException e) {
 			throw new Error("Could not access Graphics Environment: " + nm);
 		}
@@ -168,16 +149,19 @@ public abstract class GraphicsEnvironment {
 						headless = defaultHeadless = Boolean.FALSE;
 					} else {
 						String osName = System.getProperty("os.name");
-						if (osName.contains("OS X")
-								&& "sun.awt.HToolkit".equals(System.getProperty("awt.toolkit"))) {
+						if (osName.contains("OS X") && "sun.awt.HToolkit"
+								.equals(System.getProperty("awt.toolkit"))) {
 							headless = defaultHeadless = Boolean.TRUE;
 						} else {
 							final String display = System.getenv("DISPLAY");
 							headless = defaultHeadless = ("Linux".equals(osName)
-									|| "SunOS".equals(osName) || "FreeBSD".equals(osName)
-									|| "NetBSD".equals(osName) || "OpenBSD".equals(osName)
-									|| "AIX".equals(osName))
-									&& (display == null || display.trim().isEmpty());
+									|| "SunOS".equals(osName) || "FreeBSD"
+											.equals(osName) || "NetBSD".equals(
+													osName) || "OpenBSD".equals(
+															osName) || "AIX"
+																	.equals(osName))
+									&& (display == null || display.trim()
+											.isEmpty());
 						}
 					}
 				} else {
@@ -225,10 +209,11 @@ public abstract class GraphicsEnvironment {
 	 * @return an array containing all the <code>GraphicsDevice</code> objects
 	 *         that represent screen devices
 	 * @exception HeadlessException
-	 *                if isHeadless() returns true
+	 *                              if isHeadless() returns true
 	 * @see #isHeadless()
 	 */
-	public abstract GraphicsDevice[] getScreenDevices() throws HeadlessException;
+	public abstract GraphicsDevice[] getScreenDevices()
+			throws HeadlessException;
 
 	/**
 	 * Returns the default screen <code>GraphicsDevice</code>.
@@ -236,10 +221,11 @@ public abstract class GraphicsEnvironment {
 	 * @return the <code>GraphicsDevice</code> that represents the default
 	 *         screen device
 	 * @exception HeadlessException
-	 *                if isHeadless() returns true
+	 *                              if isHeadless() returns true
 	 * @see #isHeadless()
 	 */
-	public abstract GraphicsDevice getDefaultScreenDevice() throws HeadlessException;
+	public abstract GraphicsDevice getDefaultScreenDevice()
+			throws HeadlessException;
 
 	/**
 	 * Returns a <code>Graphics2D</code> object for rendering into the specified
@@ -250,7 +236,7 @@ public abstract class GraphicsEnvironment {
 	 * @return a <code>Graphics2D</code> to be used for rendering into the
 	 *         specified <code>BufferedImage</code>
 	 * @throws NullPointerException
-	 *             if <code>img</code> is null
+	 *                              if <code>img</code> is null
 	 */
 	public abstract Graphics2D createGraphics(BufferedImage img);
 
@@ -313,10 +299,10 @@ public abstract class GraphicsEnvironment {
 	 * multiple fonts in the same font family.
 	 *
 	 * @param l
-	 *            a {@link Locale} object that represents a particular
-	 *            geographical, political, or cultural region. Specifying
-	 *            <code>null</code> is equivalent to specifying
-	 *            <code>Locale.getDefault()</code>.
+	 *          a {@link Locale} object that represents a particular
+	 *          geographical, political, or cultural region. Specifying
+	 *          <code>null</code> is equivalent to specifying
+	 *          <code>Locale.getDefault()</code>.
 	 * @return an array of <code>String</code> containing font family names
 	 *         localized for the specified <code>Locale</code>, or a suitable
 	 *         alternative name if no name exists for the specified locale.
@@ -355,7 +341,7 @@ public abstract class GraphicsEnvironment {
 	 * @return true if the <code>font</code> is successfully registered in this
 	 *         <code>GraphicsEnvironment</code>.
 	 * @throws NullPointerException
-	 *             if <code>font</code> is null
+	 *                              if <code>font</code> is null
 	 * @since 1.6
 	 */
 	public boolean registerFont(Font font) {
@@ -422,14 +408,15 @@ public abstract class GraphicsEnvironment {
 	 * @return the point where Windows should be centered
 	 *
 	 * @exception HeadlessException
-	 *                if isHeadless() returns true
+	 *                              if isHeadless() returns true
 	 * @see #getMaximumWindowBounds
 	 * @since 1.4
 	 */
 	public Point getCenterPoint() throws HeadlessException {
 		// Default implementation: return the center of the usable bounds of the
 		// default screen device.
-		Rectangle usableBounds = SunGraphicsEnvironment.getUsableBounds(getDefaultScreenDevice());
+		Rectangle usableBounds = SunGraphicsEnvironment.getUsableBounds(
+				getDefaultScreenDevice());
 		return new Point((usableBounds.width / 2) + usableBounds.x,
 				(usableBounds.height / 2) + usableBounds.y);
 	}
@@ -448,7 +435,7 @@ public abstract class GraphicsEnvironment {
 	 * @return the maximum bounds for centered Windows
 	 *
 	 * @exception HeadlessException
-	 *                if isHeadless() returns true
+	 *                              if isHeadless() returns true
 	 * @see #getCenterPoint
 	 * @see GraphicsConfiguration#getBounds
 	 * @see Toolkit#getScreenInsets

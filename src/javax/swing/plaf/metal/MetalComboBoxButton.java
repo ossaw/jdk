@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -87,7 +67,8 @@ public class MetalComboBoxButton extends JButton {
 		setModel(model);
 	}
 
-	public MetalComboBoxButton(JComboBox cb, Icon i, CellRendererPane pane, JList list) {
+	public MetalComboBoxButton(JComboBox cb, Icon i, CellRendererPane pane,
+			JList list) {
 		this();
 		comboBox = cb;
 		comboIcon = i;
@@ -96,8 +77,8 @@ public class MetalComboBoxButton extends JButton {
 		setEnabled(comboBox.isEnabled());
 	}
 
-	public MetalComboBoxButton(JComboBox cb, Icon i, boolean onlyIcon, CellRendererPane pane,
-			JList list) {
+	public MetalComboBoxButton(JComboBox cb, Icon i, boolean onlyIcon,
+			CellRendererPane pane, JList list) {
 		this(cb, i, pane, list);
 		iconOnly = onlyIcon;
 	}
@@ -163,7 +144,8 @@ public class MetalComboBoxButton extends JButton {
 			comboIcon.paintIcon(this, g, iconLeft, iconTop);
 
 			// Paint the focus
-			if (comboBox.hasFocus() && (!MetalLookAndFeel.usingOcean() || comboBox.isEditable())) {
+			if (comboBox.hasFocus() && (!MetalLookAndFeel.usingOcean()
+					|| comboBox.isEditable())) {
 				g.setColor(MetalLookAndFeel.getFocusColor());
 				g.drawRect(left - 1, top - 1, width + 3, height + 1);
 			}
@@ -179,8 +161,8 @@ public class MetalComboBoxButton extends JButton {
 			ListCellRenderer renderer = comboBox.getRenderer();
 			Component c;
 			boolean renderPressed = getModel().isPressed();
-			c = renderer.getListCellRendererComponent(listBox, comboBox.getSelectedItem(), -1,
-					renderPressed, false);
+			c = renderer.getListCellRendererComponent(listBox, comboBox
+					.getSelectedItem(), -1, renderPressed, false);
 			c.setFont(rendererPane.getFont());
 
 			if (model.isArmed() && model.isPressed()) {
@@ -190,9 +172,11 @@ public class MetalComboBoxButton extends JButton {
 				c.setForeground(comboBox.getForeground());
 			} else if (!comboBox.isEnabled()) {
 				if (isOpaque()) {
-					c.setBackground(UIManager.getColor("ComboBox.disabledBackground"));
+					c.setBackground(UIManager.getColor(
+							"ComboBox.disabledBackground"));
 				}
-				c.setForeground(UIManager.getColor("ComboBox.disabledForeground"));
+				c.setForeground(UIManager.getColor(
+						"ComboBox.disabledForeground"));
 			} else {
 				c.setForeground(comboBox.getForeground());
 				c.setBackground(comboBox.getBackground());
@@ -207,10 +191,11 @@ public class MetalComboBoxButton extends JButton {
 			}
 
 			if (leftToRight) {
-				rendererPane.paintComponent(g, c, this, left, top, cWidth, height, shouldValidate);
+				rendererPane.paintComponent(g, c, this, left, top, cWidth,
+						height, shouldValidate);
 			} else {
-				rendererPane.paintComponent(g, c, this, left + iconWidth, top, cWidth, height,
-						shouldValidate);
+				rendererPane.paintComponent(g, c, this, left + iconWidth, top,
+						cWidth, height, shouldValidate);
 			}
 		}
 	}
@@ -219,7 +204,8 @@ public class MetalComboBoxButton extends JButton {
 		Dimension ret = new Dimension();
 		Insets insets = getInsets();
 		ret.width = insets.left + getComboIcon().getIconWidth() + insets.right;
-		ret.height = insets.bottom + getComboIcon().getIconHeight() + insets.top;
+		ret.height = insets.bottom + getComboIcon().getIconHeight()
+				+ insets.top;
 		return ret;
 	}
 }

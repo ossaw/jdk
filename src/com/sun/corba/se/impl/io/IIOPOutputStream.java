@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.io;
@@ -71,14 +50,17 @@ import com.sun.corba.se.impl.logging.UtilSystemException;
  * @since JDK1.1.6
  */
 
-public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook {
-	private UtilSystemException wrapper = UtilSystemException.get(CORBALogDomains.RPC_ENCODING);
+public class IIOPOutputStream extends
+		com.sun.corba.se.impl.io.OutputStreamHook {
+	private UtilSystemException wrapper = UtilSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
 
-	private static Bridge bridge = (Bridge) AccessController.doPrivileged(new PrivilegedAction() {
-		public Object run() {
-			return Bridge.get();
-		}
-	});
+	private static Bridge bridge = (Bridge) AccessController.doPrivileged(
+			new PrivilegedAction() {
+				public Object run() {
+					return Bridge.get();
+				}
+			});
 
 	private org.omg.CORBA_2_3.portable.OutputStream orbStream;
 
@@ -209,7 +191,8 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 
 			ObjectStreamField[] fields = currentClassDesc.getFieldsNoCopy();
 			if (fields.length > 0) {
-				outputClassFields(currentObject, currentClassDesc.forClass(), fields);
+				outputClassFields(currentObject, currentClassDesc.forClass(),
+						fields);
 			}
 		} catch (IOException ioe) {
 			bridge.throwException(ioe);
@@ -457,7 +440,8 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 	 * orbutil.IIOPInputStream_1_3 in order to interoperate with our legacy
 	 * ORBs.
 	 */
-	protected void internalWriteUTF(org.omg.CORBA.portable.OutputStream stream, String data) {
+	protected void internalWriteUTF(org.omg.CORBA.portable.OutputStream stream,
+			String data) {
 		stream.write_wstring(data);
 	}
 
@@ -489,7 +473,8 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 
 		if (obj instanceof ObjectStreamClass) {
 			// XXX I18N, Logging needed.
-			throw new IOException("Serialization of ObjectStreamClass not supported");
+			throw new IOException(
+					"Serialization of ObjectStreamClass not supported");
 		}
 
 		return false;
@@ -499,7 +484,8 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 	 * Check for special cases of substitutable serializing objects. These
 	 * classes are replaceable.
 	 */
-	private boolean checkSubstitutableSpecialClasses(Object obj) throws IOException {
+	private boolean checkSubstitutableSpecialClasses(Object obj)
+			throws IOException {
 		if (obj instanceof String) {
 			orbStream.write_value((java.io.Serializable) obj);
 			return true;
@@ -550,7 +536,8 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 			 * Remember the stack pointer where this set of classes is being
 			 * pushed.
 			 */
-			if (currentClassDesc.forClass().getName().equals("java.lang.String")) {
+			if (currentClassDesc.forClass().getName().equals(
+					"java.lang.String")) {
 				this.writeUTF((String) obj);
 				return;
 			}
@@ -586,7 +573,8 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 					}
 
 				} while (classDescStack.size() > stackMark
-						&& (currentClassDesc = (ObjectStreamClass) classDescStack.pop()) != null);
+						&& (currentClassDesc = (ObjectStreamClass) classDescStack
+								.pop()) != null);
 			} finally {
 				classDescStack.setSize(stackMark);
 			}
@@ -598,7 +586,8 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 	 * inconsistently with each other since the reader returns a boolean...fix
 	 * later
 	 */
-	private void invokeObjectWriter(ObjectStreamClass osc, Object obj) throws IOException {
+	private void invokeObjectWriter(ObjectStreamClass osc, Object obj)
+			throws IOException {
 		Class c = osc.forClass();
 
 		try {
@@ -631,66 +620,67 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 
 	void writeField(ObjectStreamField field, Object value) throws IOException {
 		switch (field.getTypeCode()) {
-		case 'B':
-			if (value == null)
-				orbStream.write_octet((byte) 0);
-			else
-				orbStream.write_octet(((Byte) value).byteValue());
-			break;
-		case 'C':
-			if (value == null)
-				orbStream.write_wchar((char) 0);
-			else
-				orbStream.write_wchar(((Character) value).charValue());
-			break;
-		case 'F':
-			if (value == null)
-				orbStream.write_float((float) 0);
-			else
-				orbStream.write_float(((Float) value).floatValue());
-			break;
-		case 'D':
-			if (value == null)
-				orbStream.write_double((double) 0);
-			else
-				orbStream.write_double(((Double) value).doubleValue());
-			break;
-		case 'I':
-			if (value == null)
-				orbStream.write_long((int) 0);
-			else
-				orbStream.write_long(((Integer) value).intValue());
-			break;
-		case 'J':
-			if (value == null)
-				orbStream.write_longlong((long) 0);
-			else
-				orbStream.write_longlong(((Long) value).longValue());
-			break;
-		case 'S':
-			if (value == null)
-				orbStream.write_short((short) 0);
-			else
-				orbStream.write_short(((Short) value).shortValue());
-			break;
-		case 'Z':
-			if (value == null)
-				orbStream.write_boolean(false);
-			else
-				orbStream.write_boolean(((Boolean) value).booleanValue());
-			break;
-		case '[':
-		case 'L':
-			// What to do if it's null?
-			writeObjectField(field, value);
-			break;
-		default:
-			// XXX I18N, Logging needed.
-			throw new InvalidClassException(currentClassDesc.getName());
+			case 'B':
+				if (value == null)
+					orbStream.write_octet((byte) 0);
+				else
+					orbStream.write_octet(((Byte) value).byteValue());
+				break;
+			case 'C':
+				if (value == null)
+					orbStream.write_wchar((char) 0);
+				else
+					orbStream.write_wchar(((Character) value).charValue());
+				break;
+			case 'F':
+				if (value == null)
+					orbStream.write_float((float) 0);
+				else
+					orbStream.write_float(((Float) value).floatValue());
+				break;
+			case 'D':
+				if (value == null)
+					orbStream.write_double((double) 0);
+				else
+					orbStream.write_double(((Double) value).doubleValue());
+				break;
+			case 'I':
+				if (value == null)
+					orbStream.write_long((int) 0);
+				else
+					orbStream.write_long(((Integer) value).intValue());
+				break;
+			case 'J':
+				if (value == null)
+					orbStream.write_longlong((long) 0);
+				else
+					orbStream.write_longlong(((Long) value).longValue());
+				break;
+			case 'S':
+				if (value == null)
+					orbStream.write_short((short) 0);
+				else
+					orbStream.write_short(((Short) value).shortValue());
+				break;
+			case 'Z':
+				if (value == null)
+					orbStream.write_boolean(false);
+				else
+					orbStream.write_boolean(((Boolean) value).booleanValue());
+				break;
+			case '[':
+			case 'L':
+				// What to do if it's null?
+				writeObjectField(field, value);
+				break;
+			default:
+				// XXX I18N, Logging needed.
+				throw new InvalidClassException(currentClassDesc.getName());
 		}
 	}
 
-	private void writeObjectField(ObjectStreamField field, Object objectValue) throws IOException {
+	private void writeObjectField(ObjectStreamField field, Object objectValue)
+			throws IOException {
 
 		if (ObjectStreamClassCorbaExt.isAny(field.getTypeString())) {
 			javax.rmi.CORBA.Util.writeAny(orbStream, objectValue);
@@ -715,27 +705,30 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 				} else if (RepositoryId.isAbstractBase(type)) {
 					// IDL Abstract Object reference...
 					callType = ValueHandlerImpl.kAbstractType;
-				} else if (ObjectStreamClassCorbaExt.isAbstractInterface(type)) {
+				} else if (ObjectStreamClassCorbaExt.isAbstractInterface(
+						type)) {
 					callType = ValueHandlerImpl.kAbstractType;
 				}
 			}
 
 			switch (callType) {
-			case ValueHandlerImpl.kRemoteType:
-				Util.writeRemoteObject(orbStream, objectValue);
-				break;
-			case ValueHandlerImpl.kAbstractType:
-				Util.writeAbstractObject(orbStream, objectValue);
-				break;
-			case ValueHandlerImpl.kValueType:
-				try {
-					orbStream.write_value((java.io.Serializable) objectValue, type);
-				} catch (ClassCastException cce) {
-					if (objectValue instanceof java.io.Serializable)
-						throw cce;
-					else
-						Utility.throwNotSerializableForCorba(objectValue.getClass().getName());
-				}
+				case ValueHandlerImpl.kRemoteType:
+					Util.writeRemoteObject(orbStream, objectValue);
+					break;
+				case ValueHandlerImpl.kAbstractType:
+					Util.writeAbstractObject(orbStream, objectValue);
+					break;
+				case ValueHandlerImpl.kValueType:
+					try {
+						orbStream.write_value(
+								(java.io.Serializable) objectValue, type);
+					} catch (ClassCastException cce) {
+						if (objectValue instanceof java.io.Serializable)
+							throw cce;
+						else
+							Utility.throwNotSerializableForCorba(objectValue
+									.getClass().getName());
+					}
 			}
 		}
 	}
@@ -744,8 +737,9 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 	 * Write the fields of the specified class by invoking the appropriate
 	 * write* method on this class.
 	 */
-	private void outputClassFields(Object o, Class cl, ObjectStreamField[] fields)
-			throws IOException, InvalidClassException {
+	private void outputClassFields(Object o, Class cl,
+			ObjectStreamField[] fields) throws IOException,
+			InvalidClassException {
 
 		for (int i = 0; i < fields.length; i++) {
 			if (fields[i].getField() == null)
@@ -755,46 +749,47 @@ public class IIOPOutputStream extends com.sun.corba.se.impl.io.OutputStreamHook 
 
 			try {
 				switch (fields[i].getTypeCode()) {
-				case 'B':
-					byte byteValue = fields[i].getField().getByte(o);
-					orbStream.write_octet(byteValue);
-					break;
-				case 'C':
-					char charValue = fields[i].getField().getChar(o);
-					orbStream.write_wchar(charValue);
-					break;
-				case 'F':
-					float floatValue = fields[i].getField().getFloat(o);
-					orbStream.write_float(floatValue);
-					break;
-				case 'D':
-					double doubleValue = fields[i].getField().getDouble(o);
-					orbStream.write_double(doubleValue);
-					break;
-				case 'I':
-					int intValue = fields[i].getField().getInt(o);
-					orbStream.write_long(intValue);
-					break;
-				case 'J':
-					long longValue = fields[i].getField().getLong(o);
-					orbStream.write_longlong(longValue);
-					break;
-				case 'S':
-					short shortValue = fields[i].getField().getShort(o);
-					orbStream.write_short(shortValue);
-					break;
-				case 'Z':
-					boolean booleanValue = fields[i].getField().getBoolean(o);
-					orbStream.write_boolean(booleanValue);
-					break;
-				case '[':
-				case 'L':
-					Object objectValue = fields[i].getField().get(o);
-					writeObjectField(fields[i], objectValue);
-					break;
-				default:
-					// XXX I18N, Logging needed.
-					throw new InvalidClassException(cl.getName());
+					case 'B':
+						byte byteValue = fields[i].getField().getByte(o);
+						orbStream.write_octet(byteValue);
+						break;
+					case 'C':
+						char charValue = fields[i].getField().getChar(o);
+						orbStream.write_wchar(charValue);
+						break;
+					case 'F':
+						float floatValue = fields[i].getField().getFloat(o);
+						orbStream.write_float(floatValue);
+						break;
+					case 'D':
+						double doubleValue = fields[i].getField().getDouble(o);
+						orbStream.write_double(doubleValue);
+						break;
+					case 'I':
+						int intValue = fields[i].getField().getInt(o);
+						orbStream.write_long(intValue);
+						break;
+					case 'J':
+						long longValue = fields[i].getField().getLong(o);
+						orbStream.write_longlong(longValue);
+						break;
+					case 'S':
+						short shortValue = fields[i].getField().getShort(o);
+						orbStream.write_short(shortValue);
+						break;
+					case 'Z':
+						boolean booleanValue = fields[i].getField().getBoolean(
+								o);
+						orbStream.write_boolean(booleanValue);
+						break;
+					case '[':
+					case 'L':
+						Object objectValue = fields[i].getField().get(o);
+						writeObjectField(fields[i], objectValue);
+						break;
+					default:
+						// XXX I18N, Logging needed.
+						throw new InvalidClassException(cl.getName());
 				}
 			} catch (IllegalAccessException exc) {
 				throw wrapper.illegalFieldAccess(exc, fields[i].getName());

@@ -1,27 +1,8 @@
-// This file was generated AUTOMATICALLY from a template file Fri Jul 21 22:00:53 PDT 2017
+// This file was generated AUTOMATICALLY from a template file Fri Jul 21
+// 22:00:53 PDT 2017
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -55,19 +36,20 @@ class CharacterData01 extends CharacterData {
 	 * numeric value 3 a Java supradecimal digit: adding the digit offset to the
 	 * character code, then masking with 0x1F, then adding 10 will produce the
 	 * desired numeric value 5 bits digit offset 5 bits character type
-	 * 
 	 * The encoding of character properties is subject to change at any time.
 	 */
 
 	int getProperties(int ch) {
 		char offset = (char) ch;
-		int props = A[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1) | (offset & 0x1)];
+		int props = A[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1)
+				| (offset & 0x1)];
 		return props;
 	}
 
 	int getPropertiesEx(int ch) {
 		char offset = (char) ch;
-		int props = B[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1) | (offset & 0x1)];
+		int props = B[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1)
+				| (offset & 0x1)];
 		return props;
 	}
 
@@ -195,349 +177,349 @@ class CharacterData01 extends CharacterData {
 		int retval = -1;
 
 		switch (val & 0xC00) {
-		default: // cannot occur
-		case (0x00000000): // not numeric
-			retval = -1;
-			break;
-		case (0x00000400): // simple numeric
-			retval = ch + ((val & 0x3E0) >> 5) & 0x1F;
-			break;
-		case (0x00000800): // "strange" numeric
-			switch (ch) {
-			case 0x10113:
-				retval = 40;
-				break; // AEGEAN NUMBER FORTY
-			case 0x10114:
-				retval = 50;
-				break; // AEGEAN NUMBER FIFTY
-			case 0x10115:
-				retval = 60;
-				break; // AEGEAN NUMBER SIXTY
-			case 0x10116:
-				retval = 70;
-				break; // AEGEAN NUMBER SEVENTY
-			case 0x10117:
-				retval = 80;
-				break; // AEGEAN NUMBER EIGHTY
-			case 0x10118:
-				retval = 90;
-				break; // AEGEAN NUMBER NINETY
-			case 0x10119:
-				retval = 100;
-				break; // AEGEAN NUMBER ONE HUNDRED
-			case 0x1011A:
-				retval = 200;
-				break; // AEGEAN NUMBER TWO HUNDRED
-			case 0x1011B:
-				retval = 300;
-				break; // AEGEAN NUMBER THREE HUNDRED
-			case 0x1011C:
-				retval = 400;
-				break; // AEGEAN NUMBER FOUR HUNDRED
-			case 0x1011D:
-				retval = 500;
-				break; // AEGEAN NUMBER FIVE HUNDRED
-			case 0x1011E:
-				retval = 600;
-				break; // AEGEAN NUMBER SIX HUNDRED
-			case 0x1011F:
-				retval = 700;
-				break; // AEGEAN NUMBER SEVEN HUNDRED
-			case 0x10120:
-				retval = 800;
-				break; // AEGEAN NUMBER EIGHT HUNDRED
-			case 0x10121:
-				retval = 900;
-				break; // AEGEAN NUMBER NINE HUNDRED
-			case 0x10122:
-				retval = 1000;
-				break; // AEGEAN NUMBER ONE THOUSAND
-			case 0x10123:
-				retval = 2000;
-				break; // AEGEAN NUMBER TWO THOUSAND
-			case 0x10124:
-				retval = 3000;
-				break; // AEGEAN NUMBER THREE THOUSAND
-			case 0x10125:
-				retval = 4000;
-				break; // AEGEAN NUMBER FOUR THOUSAND
-			case 0x10126:
-				retval = 5000;
-				break; // AEGEAN NUMBER FIVE THOUSAND
-			case 0x10127:
-				retval = 6000;
-				break; // AEGEAN NUMBER SIX THOUSAND
-			case 0x10128:
-				retval = 7000;
-				break; // AEGEAN NUMBER SEVEN THOUSAND
-			case 0x10129:
-				retval = 8000;
-				break; // AEGEAN NUMBER EIGHT THOUSAND
-			case 0x1012A:
-				retval = 9000;
-				break; // AEGEAN NUMBER NINE THOUSAND
-			case 0x1012B:
-				retval = 10000;
-				break; // AEGEAN NUMBER TEN THOUSAND
-			case 0x1012C:
-				retval = 20000;
-				break; // AEGEAN NUMBER TWENTY THOUSAND
-			case 0x1012D:
-				retval = 30000;
-				break; // AEGEAN NUMBER THIRTY THOUSAND
-			case 0x1012E:
-				retval = 40000;
-				break; // AEGEAN NUMBER FORTY THOUSAND
-			case 0x1012F:
-				retval = 50000;
-				break; // AEGEAN NUMBER FIFTY THOUSAND
-			case 0x10130:
-				retval = 60000;
-				break; // AEGEAN NUMBER SIXTY THOUSAND
-			case 0x10131:
-				retval = 70000;
-				break; // AEGEAN NUMBER SEVENTY THOUSAND
-			case 0x10132:
-				retval = 80000;
-				break; // AEGEAN NUMBER EIGHTY THOUSAND
-			case 0x10133:
-				retval = 90000;
-				break; // AEGEAN NUMBER NINETY THOUSAND
-			case 0x10323:
-				retval = 50;
-				break; // OLD ITALIC NUMERAL FIFTY
-
-			case 0x010144:
-				retval = 50;
-				break; // ACROPHONIC ATTIC FIFTY
-			case 0x010145:
-				retval = 500;
-				break; // ACROPHONIC ATTIC FIVE HUNDRED
-			case 0x010146:
-				retval = 5000;
-				break; // ACROPHONIC ATTIC FIVE THOUSAND
-			case 0x010147:
-				retval = 50000;
-				break; // ACROPHONIC ATTIC FIFTY THOUSAND
-			case 0x01014A:
-				retval = 50;
-				break; // ACROPHONIC ATTIC FIFTY TALENTS
-			case 0x01014B:
-				retval = 100;
-				break; // ACROPHONIC ATTIC ONE HUNDRED TALENTS
-			case 0x01014C:
-				retval = 500;
-				break; // ACROPHONIC ATTIC FIVE HUNDRED TALENTS
-			case 0x01014D:
-				retval = 1000;
-				break; // ACROPHONIC ATTIC ONE THOUSAND TALENTS
-			case 0x01014E:
-				retval = 5000;
-				break; // ACROPHONIC ATTIC FIVE THOUSAND TALENTS
-			case 0x010151:
-				retval = 50;
-				break; // ACROPHONIC ATTIC FIFTY STATERS
-			case 0x010152:
-				retval = 100;
-				break; // ACROPHONIC ATTIC ONE HUNDRED STATERS
-			case 0x010153:
-				retval = 500;
-				break; // ACROPHONIC ATTIC FIVE HUNDRED STATERS
-			case 0x010154:
-				retval = 1000;
-				break; // ACROPHONIC ATTIC ONE THOUSAND STATERS
-			case 0x010155:
-				retval = 10000;
-				break; // ACROPHONIC ATTIC TEN THOUSAND STATERS
-			case 0x010156:
-				retval = 50000;
-				break; // ACROPHONIC ATTIC FIFTY THOUSAND STATERS
-			case 0x010166:
-				retval = 50;
-				break; // ACROPHONIC TROEZENIAN FIFTY
-			case 0x010167:
-				retval = 50;
-				break; // ACROPHONIC TROEZENIAN FIFTY ALTERNATE FORM
-			case 0x010168:
-				retval = 50;
-				break; // ACROPHONIC HERMIONIAN FIFTY
-			case 0x010169:
-				retval = 50;
-				break; // ACROPHONIC THESPIAN FIFTY
-			case 0x01016A:
-				retval = 100;
-				break; // ACROPHONIC THESPIAN ONE HUNDRED
-			case 0x01016B:
-				retval = 300;
-				break; // ACROPHONIC THESPIAN THREE HUNDRED
-			case 0x01016C:
-				retval = 500;
-				break; // ACROPHONIC EPIDAUREAN FIVE HUNDRED
-			case 0x01016D:
-				retval = 500;
-				break; // ACROPHONIC TROEZENIAN FIVE HUNDRED
-			case 0x01016E:
-				retval = 500;
-				break; // ACROPHONIC THESPIAN FIVE HUNDRED
-			case 0x01016F:
-				retval = 500;
-				break; // ACROPHONIC CARYSTIAN FIVE HUNDRED
-			case 0x010170:
-				retval = 500;
-				break; // ACROPHONIC NAXIAN FIVE HUNDRED
-			case 0x010171:
-				retval = 1000;
-				break; // ACROPHONIC THESPIAN ONE THOUSAND
-			case 0x010172:
-				retval = 5000;
-				break; // ACROPHONIC THESPIAN FIVE THOUSAND
-			case 0x010174:
-				retval = 50;
-				break; // ACROPHONIC STRATIAN FIFTY MNAS
-			case 0x010341:
-				retval = 90;
-				break; // GOTHIC LETTER NINETY
-			case 0x01034A:
-				retval = 900;
-				break; // GOTHIC LETTER NINE HUNDRED
-			case 0x0103D5:
-				retval = 100;
-				break; // OLD PERSIAN NUMBER HUNDRED
-			case 0x01085D:
-				retval = 100;
-				break; // IMPERIAL ARAMAIC NUMBER ONE HUNDRED
-			case 0x01085E:
-				retval = 1000;
-				break; // IMPERIAL ARAMAIC NUMBER ONE THOUSAND
-			case 0x01085F:
-				retval = 10000;
-				break; // IMPERIAL ARAMAIC NUMBER TEN THOUSAND
-			case 0x010919:
-				retval = 100;
-				break; // PHOENICIAN NUMBER ONE HUNDRED
-			case 0x010A46:
-				retval = 100;
-				break; // KHAROSHTHI NUMBER ONE HUNDRED
-			case 0x010A47:
-				retval = 1000;
-				break; // KHAROSHTHI NUMBER ONE THOUSAND
-			case 0x010A7E:
-				retval = 50;
-				break; // OLD SOUTH ARABIAN NUMBER FIFTY
-			case 0x010B5E:
-				retval = 100;
-				break; // INSCRIPTIONAL PARTHIAN NUMBER ONE HUNDRED
-			case 0x010B5F:
-				retval = 1000;
-				break; // INSCRIPTIONAL PARTHIAN NUMBER ONE THOUSAND
-			case 0x010B7E:
-				retval = 100;
-				break; // INSCRIPTIONAL PAHLAVI NUMBER ONE HUNDRED
-			case 0x010B7F:
-				retval = 1000;
-				break; // INSCRIPTIONAL PAHLAVI NUMBER ONE THOUSAND
-			case 0x010E6C:
-				retval = 40;
-				break; // RUMI NUMBER FORTY
-			case 0x010E6D:
-				retval = 50;
-				break; // RUMI NUMBER FIFTY
-			case 0x010E6E:
-				retval = 60;
-				break; // RUMI NUMBER SIXTY
-			case 0x010E6F:
-				retval = 70;
-				break; // RUMI NUMBER SEVENTY
-			case 0x010E70:
-				retval = 80;
-				break; // RUMI NUMBER EIGHTY
-			case 0x010E71:
-				retval = 90;
-				break; // RUMI NUMBER NINETY
-			case 0x010E72:
-				retval = 100;
-				break; // RUMI NUMBER ONE HUNDRED
-			case 0x010E73:
-				retval = 200;
-				break; // RUMI NUMBER TWO HUNDRED
-			case 0x010E74:
-				retval = 300;
-				break; // RUMI NUMBER THREE HUNDRED
-			case 0x010E75:
-				retval = 400;
-				break; // RUMI NUMBER FOUR HUNDRED
-			case 0x010E76:
-				retval = 500;
-				break; // RUMI NUMBER FIVE HUNDRED
-			case 0x010E77:
-				retval = 600;
-				break; // RUMI NUMBER SIX HUNDRED
-			case 0x010E78:
-				retval = 700;
-				break; // RUMI NUMBER SEVEN HUNDRED
-			case 0x010E79:
-				retval = 800;
-				break; // RUMI NUMBER EIGHT HUNDRED
-			case 0x010E7A:
-				retval = 900;
-				break; // RUMI NUMBER NINE HUNDRED
-			case 0x01105E:
-				retval = 40;
-				break; // BRAHMI NUMBER FORTY
-			case 0x01105F:
-				retval = 50;
-				break; // BRAHMI NUMBER FIFTY
-			case 0x011060:
-				retval = 60;
-				break; // BRAHMI NUMBER SIXTY
-			case 0x011061:
-				retval = 70;
-				break; // BRAHMI NUMBER SEVENTY
-			case 0x011062:
-				retval = 80;
-				break; // BRAHMI NUMBER EIGHTY
-			case 0x011063:
-				retval = 90;
-				break; // BRAHMI NUMBER NINETY
-			case 0x011064:
-				retval = 100;
-				break; // BRAHMI NUMBER ONE HUNDRED
-			case 0x011065:
-				retval = 1000;
-				break; // BRAHMI NUMBER ONE THOUSAND
-			case 0x012432:
-				retval = 216000;
-				break; // CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS DISH
-			case 0x012433:
-				retval = 432000;
-				break; // CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS MIN
-			case 0x01D36C:
-				retval = 40;
-				break; // COUNTING ROD TENS DIGIT FOUR
-			case 0x01D36D:
-				retval = 50;
-				break; // COUNTING ROD TENS DIGIT FIVE
-			case 0x01D36E:
-				retval = 60;
-				break; // COUNTING ROD TENS DIGIT SIX
-			case 0x01D36F:
-				retval = 70;
-				break; // COUNTING ROD TENS DIGIT SEVEN
-			case 0x01D370:
-				retval = 80;
-				break; // COUNTING ROD TENS DIGIT EIGHT
-			case 0x01D371:
-				retval = 90;
-				break; // COUNTING ROD TENS DIGIT NINE
-			default:
-				retval = -2;
+			default: // cannot occur
+			case (0x00000000): // not numeric
+				retval = -1;
 				break;
-			}
+			case (0x00000400): // simple numeric
+				retval = ch + ((val & 0x3E0) >> 5) & 0x1F;
+				break;
+			case (0x00000800): // "strange" numeric
+				switch (ch) {
+					case 0x10113:
+						retval = 40;
+						break; // AEGEAN NUMBER FORTY
+					case 0x10114:
+						retval = 50;
+						break; // AEGEAN NUMBER FIFTY
+					case 0x10115:
+						retval = 60;
+						break; // AEGEAN NUMBER SIXTY
+					case 0x10116:
+						retval = 70;
+						break; // AEGEAN NUMBER SEVENTY
+					case 0x10117:
+						retval = 80;
+						break; // AEGEAN NUMBER EIGHTY
+					case 0x10118:
+						retval = 90;
+						break; // AEGEAN NUMBER NINETY
+					case 0x10119:
+						retval = 100;
+						break; // AEGEAN NUMBER ONE HUNDRED
+					case 0x1011A:
+						retval = 200;
+						break; // AEGEAN NUMBER TWO HUNDRED
+					case 0x1011B:
+						retval = 300;
+						break; // AEGEAN NUMBER THREE HUNDRED
+					case 0x1011C:
+						retval = 400;
+						break; // AEGEAN NUMBER FOUR HUNDRED
+					case 0x1011D:
+						retval = 500;
+						break; // AEGEAN NUMBER FIVE HUNDRED
+					case 0x1011E:
+						retval = 600;
+						break; // AEGEAN NUMBER SIX HUNDRED
+					case 0x1011F:
+						retval = 700;
+						break; // AEGEAN NUMBER SEVEN HUNDRED
+					case 0x10120:
+						retval = 800;
+						break; // AEGEAN NUMBER EIGHT HUNDRED
+					case 0x10121:
+						retval = 900;
+						break; // AEGEAN NUMBER NINE HUNDRED
+					case 0x10122:
+						retval = 1000;
+						break; // AEGEAN NUMBER ONE THOUSAND
+					case 0x10123:
+						retval = 2000;
+						break; // AEGEAN NUMBER TWO THOUSAND
+					case 0x10124:
+						retval = 3000;
+						break; // AEGEAN NUMBER THREE THOUSAND
+					case 0x10125:
+						retval = 4000;
+						break; // AEGEAN NUMBER FOUR THOUSAND
+					case 0x10126:
+						retval = 5000;
+						break; // AEGEAN NUMBER FIVE THOUSAND
+					case 0x10127:
+						retval = 6000;
+						break; // AEGEAN NUMBER SIX THOUSAND
+					case 0x10128:
+						retval = 7000;
+						break; // AEGEAN NUMBER SEVEN THOUSAND
+					case 0x10129:
+						retval = 8000;
+						break; // AEGEAN NUMBER EIGHT THOUSAND
+					case 0x1012A:
+						retval = 9000;
+						break; // AEGEAN NUMBER NINE THOUSAND
+					case 0x1012B:
+						retval = 10000;
+						break; // AEGEAN NUMBER TEN THOUSAND
+					case 0x1012C:
+						retval = 20000;
+						break; // AEGEAN NUMBER TWENTY THOUSAND
+					case 0x1012D:
+						retval = 30000;
+						break; // AEGEAN NUMBER THIRTY THOUSAND
+					case 0x1012E:
+						retval = 40000;
+						break; // AEGEAN NUMBER FORTY THOUSAND
+					case 0x1012F:
+						retval = 50000;
+						break; // AEGEAN NUMBER FIFTY THOUSAND
+					case 0x10130:
+						retval = 60000;
+						break; // AEGEAN NUMBER SIXTY THOUSAND
+					case 0x10131:
+						retval = 70000;
+						break; // AEGEAN NUMBER SEVENTY THOUSAND
+					case 0x10132:
+						retval = 80000;
+						break; // AEGEAN NUMBER EIGHTY THOUSAND
+					case 0x10133:
+						retval = 90000;
+						break; // AEGEAN NUMBER NINETY THOUSAND
+					case 0x10323:
+						retval = 50;
+						break; // OLD ITALIC NUMERAL FIFTY
 
-			break;
-		case (0x00000C00): // Java supradecimal
-			retval = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
-			break;
+					case 0x010144:
+						retval = 50;
+						break; // ACROPHONIC ATTIC FIFTY
+					case 0x010145:
+						retval = 500;
+						break; // ACROPHONIC ATTIC FIVE HUNDRED
+					case 0x010146:
+						retval = 5000;
+						break; // ACROPHONIC ATTIC FIVE THOUSAND
+					case 0x010147:
+						retval = 50000;
+						break; // ACROPHONIC ATTIC FIFTY THOUSAND
+					case 0x01014A:
+						retval = 50;
+						break; // ACROPHONIC ATTIC FIFTY TALENTS
+					case 0x01014B:
+						retval = 100;
+						break; // ACROPHONIC ATTIC ONE HUNDRED TALENTS
+					case 0x01014C:
+						retval = 500;
+						break; // ACROPHONIC ATTIC FIVE HUNDRED TALENTS
+					case 0x01014D:
+						retval = 1000;
+						break; // ACROPHONIC ATTIC ONE THOUSAND TALENTS
+					case 0x01014E:
+						retval = 5000;
+						break; // ACROPHONIC ATTIC FIVE THOUSAND TALENTS
+					case 0x010151:
+						retval = 50;
+						break; // ACROPHONIC ATTIC FIFTY STATERS
+					case 0x010152:
+						retval = 100;
+						break; // ACROPHONIC ATTIC ONE HUNDRED STATERS
+					case 0x010153:
+						retval = 500;
+						break; // ACROPHONIC ATTIC FIVE HUNDRED STATERS
+					case 0x010154:
+						retval = 1000;
+						break; // ACROPHONIC ATTIC ONE THOUSAND STATERS
+					case 0x010155:
+						retval = 10000;
+						break; // ACROPHONIC ATTIC TEN THOUSAND STATERS
+					case 0x010156:
+						retval = 50000;
+						break; // ACROPHONIC ATTIC FIFTY THOUSAND STATERS
+					case 0x010166:
+						retval = 50;
+						break; // ACROPHONIC TROEZENIAN FIFTY
+					case 0x010167:
+						retval = 50;
+						break; // ACROPHONIC TROEZENIAN FIFTY ALTERNATE FORM
+					case 0x010168:
+						retval = 50;
+						break; // ACROPHONIC HERMIONIAN FIFTY
+					case 0x010169:
+						retval = 50;
+						break; // ACROPHONIC THESPIAN FIFTY
+					case 0x01016A:
+						retval = 100;
+						break; // ACROPHONIC THESPIAN ONE HUNDRED
+					case 0x01016B:
+						retval = 300;
+						break; // ACROPHONIC THESPIAN THREE HUNDRED
+					case 0x01016C:
+						retval = 500;
+						break; // ACROPHONIC EPIDAUREAN FIVE HUNDRED
+					case 0x01016D:
+						retval = 500;
+						break; // ACROPHONIC TROEZENIAN FIVE HUNDRED
+					case 0x01016E:
+						retval = 500;
+						break; // ACROPHONIC THESPIAN FIVE HUNDRED
+					case 0x01016F:
+						retval = 500;
+						break; // ACROPHONIC CARYSTIAN FIVE HUNDRED
+					case 0x010170:
+						retval = 500;
+						break; // ACROPHONIC NAXIAN FIVE HUNDRED
+					case 0x010171:
+						retval = 1000;
+						break; // ACROPHONIC THESPIAN ONE THOUSAND
+					case 0x010172:
+						retval = 5000;
+						break; // ACROPHONIC THESPIAN FIVE THOUSAND
+					case 0x010174:
+						retval = 50;
+						break; // ACROPHONIC STRATIAN FIFTY MNAS
+					case 0x010341:
+						retval = 90;
+						break; // GOTHIC LETTER NINETY
+					case 0x01034A:
+						retval = 900;
+						break; // GOTHIC LETTER NINE HUNDRED
+					case 0x0103D5:
+						retval = 100;
+						break; // OLD PERSIAN NUMBER HUNDRED
+					case 0x01085D:
+						retval = 100;
+						break; // IMPERIAL ARAMAIC NUMBER ONE HUNDRED
+					case 0x01085E:
+						retval = 1000;
+						break; // IMPERIAL ARAMAIC NUMBER ONE THOUSAND
+					case 0x01085F:
+						retval = 10000;
+						break; // IMPERIAL ARAMAIC NUMBER TEN THOUSAND
+					case 0x010919:
+						retval = 100;
+						break; // PHOENICIAN NUMBER ONE HUNDRED
+					case 0x010A46:
+						retval = 100;
+						break; // KHAROSHTHI NUMBER ONE HUNDRED
+					case 0x010A47:
+						retval = 1000;
+						break; // KHAROSHTHI NUMBER ONE THOUSAND
+					case 0x010A7E:
+						retval = 50;
+						break; // OLD SOUTH ARABIAN NUMBER FIFTY
+					case 0x010B5E:
+						retval = 100;
+						break; // INSCRIPTIONAL PARTHIAN NUMBER ONE HUNDRED
+					case 0x010B5F:
+						retval = 1000;
+						break; // INSCRIPTIONAL PARTHIAN NUMBER ONE THOUSAND
+					case 0x010B7E:
+						retval = 100;
+						break; // INSCRIPTIONAL PAHLAVI NUMBER ONE HUNDRED
+					case 0x010B7F:
+						retval = 1000;
+						break; // INSCRIPTIONAL PAHLAVI NUMBER ONE THOUSAND
+					case 0x010E6C:
+						retval = 40;
+						break; // RUMI NUMBER FORTY
+					case 0x010E6D:
+						retval = 50;
+						break; // RUMI NUMBER FIFTY
+					case 0x010E6E:
+						retval = 60;
+						break; // RUMI NUMBER SIXTY
+					case 0x010E6F:
+						retval = 70;
+						break; // RUMI NUMBER SEVENTY
+					case 0x010E70:
+						retval = 80;
+						break; // RUMI NUMBER EIGHTY
+					case 0x010E71:
+						retval = 90;
+						break; // RUMI NUMBER NINETY
+					case 0x010E72:
+						retval = 100;
+						break; // RUMI NUMBER ONE HUNDRED
+					case 0x010E73:
+						retval = 200;
+						break; // RUMI NUMBER TWO HUNDRED
+					case 0x010E74:
+						retval = 300;
+						break; // RUMI NUMBER THREE HUNDRED
+					case 0x010E75:
+						retval = 400;
+						break; // RUMI NUMBER FOUR HUNDRED
+					case 0x010E76:
+						retval = 500;
+						break; // RUMI NUMBER FIVE HUNDRED
+					case 0x010E77:
+						retval = 600;
+						break; // RUMI NUMBER SIX HUNDRED
+					case 0x010E78:
+						retval = 700;
+						break; // RUMI NUMBER SEVEN HUNDRED
+					case 0x010E79:
+						retval = 800;
+						break; // RUMI NUMBER EIGHT HUNDRED
+					case 0x010E7A:
+						retval = 900;
+						break; // RUMI NUMBER NINE HUNDRED
+					case 0x01105E:
+						retval = 40;
+						break; // BRAHMI NUMBER FORTY
+					case 0x01105F:
+						retval = 50;
+						break; // BRAHMI NUMBER FIFTY
+					case 0x011060:
+						retval = 60;
+						break; // BRAHMI NUMBER SIXTY
+					case 0x011061:
+						retval = 70;
+						break; // BRAHMI NUMBER SEVENTY
+					case 0x011062:
+						retval = 80;
+						break; // BRAHMI NUMBER EIGHTY
+					case 0x011063:
+						retval = 90;
+						break; // BRAHMI NUMBER NINETY
+					case 0x011064:
+						retval = 100;
+						break; // BRAHMI NUMBER ONE HUNDRED
+					case 0x011065:
+						retval = 1000;
+						break; // BRAHMI NUMBER ONE THOUSAND
+					case 0x012432:
+						retval = 216000;
+						break; // CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS DISH
+					case 0x012433:
+						retval = 432000;
+						break; // CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS MIN
+					case 0x01D36C:
+						retval = 40;
+						break; // COUNTING ROD TENS DIGIT FOUR
+					case 0x01D36D:
+						retval = 50;
+						break; // COUNTING ROD TENS DIGIT FIVE
+					case 0x01D36E:
+						retval = 60;
+						break; // COUNTING ROD TENS DIGIT SIX
+					case 0x01D36F:
+						retval = 70;
+						break; // COUNTING ROD TENS DIGIT SEVEN
+					case 0x01D370:
+						retval = 80;
+						break; // COUNTING ROD TENS DIGIT EIGHT
+					case 0x01D371:
+						retval = 90;
+						break; // COUNTING ROD TENS DIGIT NINE
+					default:
+						retval = -2;
+						break;
+				}
+
+				break;
+			case (0x00000C00): // Java supradecimal
+				retval = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
+				break;
 		}
 		return retval;
 	}
@@ -563,8 +545,7 @@ class CharacterData01 extends CharacterData {
 
 	static final CharacterData instance = new CharacterData01();
 
-	private CharacterData01() {
-	};
+	private CharacterData01() {};
 
 	// The following tables and code generated using:
 	// java GenerateCharacter -plane 1 -template
@@ -687,7 +668,8 @@ class CharacterData01 extends CharacterData {
 			+ "\111\111\111\161\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003"
 			+ "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003"
 			+ "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003"
-			+ "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003").toCharArray();
+			+ "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003")
+					.toCharArray();
 
 	// The Y table has 2176 entries for a total of 4352 bytes.
 
@@ -874,7 +856,8 @@ class CharacterData01 extends CharacterData {
 			+ "\000\004\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
 			+ "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
 			+ "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
-			+ "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000").toCharArray();
+			+ "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000")
+					.toCharArray();
 
 	// In all, the character property tables require 9728 bytes.
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.daemon;
@@ -54,8 +34,8 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 	/**
 	 * V3 enabled Adaptor. Each Oid is added using updateRequest method.
 	 */
-	protected SnmpSubRequestHandler(SnmpEngine engine, SnmpIncomingRequest incRequest,
-			SnmpMibAgent agent, SnmpPdu req) {
+	protected SnmpSubRequestHandler(SnmpEngine engine,
+			SnmpIncomingRequest incRequest, SnmpMibAgent agent, SnmpPdu req) {
 		this(agent, req);
 		init(engine, incRequest);
 	}
@@ -63,8 +43,9 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 	/**
 	 * V3 enabled Adaptor.
 	 */
-	protected SnmpSubRequestHandler(SnmpEngine engine, SnmpIncomingRequest incRequest,
-			SnmpMibAgent agent, SnmpPdu req, boolean nouse) {
+	protected SnmpSubRequestHandler(SnmpEngine engine,
+			SnmpIncomingRequest incRequest, SnmpMibAgent agent, SnmpPdu req,
+			boolean nouse) {
 		this(agent, req, nouse);
 		init(engine, incRequest);
 	}
@@ -74,9 +55,9 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 	 */
 	protected SnmpSubRequestHandler(SnmpMibAgent agent, SnmpPdu req) {
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class.getName(),
-					"constructor",
-					"creating instance for request " + String.valueOf(req.requestId));
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class
+					.getName(), "constructor", "creating instance for request "
+							+ String.valueOf(req.requestId));
 		}
 
 		version = req.version;
@@ -98,7 +79,8 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 	 * varbind list contained in the original request.
 	 */
 	@SuppressWarnings("unchecked") // cast to NonSyncVector<SnmpVarBind>
-	protected SnmpSubRequestHandler(SnmpMibAgent agent, SnmpPdu req, boolean nouse) {
+	protected SnmpSubRequestHandler(SnmpMibAgent agent, SnmpPdu req,
+			boolean nouse) {
 		this(agent, req);
 
 		// The translation table is easy in this case ...
@@ -111,8 +93,8 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 		}
 	}
 
-	SnmpMibRequest createMibRequest(Vector<SnmpVarBind> vblist, int protocolVersion,
-			Object userData) {
+	SnmpMibRequest createMibRequest(Vector<SnmpVarBind> vblist,
+			int protocolVersion, Object userData) {
 
 		// This is an optimization:
 		// The SnmpMibRequest created in the check() phase is
@@ -125,12 +107,14 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 		// Full power.
 		SnmpMibRequest result = null;
 		if (incRequest != null) {
-			result = SnmpMibAgent.newMibRequest(engine, reqPdu, vblist, protocolVersion, userData,
-					incRequest.getPrincipal(), incRequest.getSecurityLevel(),
-					incRequest.getSecurityModel(), incRequest.getContextName(),
+			result = SnmpMibAgent.newMibRequest(engine, reqPdu, vblist,
+					protocolVersion, userData, incRequest.getPrincipal(),
+					incRequest.getSecurityLevel(), incRequest
+							.getSecurityModel(), incRequest.getContextName(),
 					incRequest.getAccessContext());
 		} else {
-			result = SnmpMibAgent.newMibRequest(reqPdu, vblist, protocolVersion, userData);
+			result = SnmpMibAgent.newMibRequest(reqPdu, vblist, protocolVersion,
+					userData);
 		}
 		// If we're doing the check() phase, we store the SnmpMibRequest
 		// so that we can reuse it in the set() phase.
@@ -148,59 +132,69 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 	public void run() {
 
 		try {
-			final ThreadContext oldContext = ThreadContext.push("SnmpUserData", data);
+			final ThreadContext oldContext = ThreadContext.push("SnmpUserData",
+					data);
 			try {
 				switch (type) {
-				case pduGetRequestPdu:
-					// Invoke a get operation
-					//
-					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class.getName(),
-								"run", "[" + Thread.currentThread() + "]:get operation on "
-										+ agent.getMibName());
-					}
+					case pduGetRequestPdu:
+						// Invoke a get operation
+						//
+						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINER,
+									SnmpSubRequestHandler.class.getName(),
+									"run", "[" + Thread.currentThread()
+											+ "]:get operation on " + agent
+													.getMibName());
+						}
 
-					agent.get(createMibRequest(varBind, version, data));
-					break;
+						agent.get(createMibRequest(varBind, version, data));
+						break;
 
-				case pduGetNextRequestPdu:
-					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class.getName(),
-								"run", "[" + Thread.currentThread() + "]:getNext operation on "
-										+ agent.getMibName());
-					}
-					// #ifdef DEBUG
-					agent.getNext(createMibRequest(varBind, version, data));
-					break;
+					case pduGetNextRequestPdu:
+						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINER,
+									SnmpSubRequestHandler.class.getName(),
+									"run", "[" + Thread.currentThread()
+											+ "]:getNext operation on " + agent
+													.getMibName());
+						}
+						// #ifdef DEBUG
+						agent.getNext(createMibRequest(varBind, version, data));
+						break;
 
-				case pduSetRequestPdu:
-					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class.getName(),
-								"run", "[" + Thread.currentThread() + "]:set operation on "
-										+ agent.getMibName());
-					}
-					agent.set(createMibRequest(varBind, version, data));
-					break;
+					case pduSetRequestPdu:
+						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINER,
+									SnmpSubRequestHandler.class.getName(),
+									"run", "[" + Thread.currentThread()
+											+ "]:set operation on " + agent
+													.getMibName());
+						}
+						agent.set(createMibRequest(varBind, version, data));
+						break;
 
-				case pduWalkRequest:
-					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class.getName(),
-								"run", "[" + Thread.currentThread() + "]:check operation on "
-										+ agent.getMibName());
-					}
-					agent.check(createMibRequest(varBind, version, data));
-					break;
+					case pduWalkRequest:
+						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINER,
+									SnmpSubRequestHandler.class.getName(),
+									"run", "[" + Thread.currentThread()
+											+ "]:check operation on " + agent
+													.getMibName());
+						}
+						agent.check(createMibRequest(varBind, version, data));
+						break;
 
-				default:
-					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-						SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
-								SnmpSubRequestHandler.class.getName(), "run",
-								"[" + Thread.currentThread() + "]:unknown operation (" + type
-										+ ") on " + agent.getMibName());
-					}
-					errorStatus = snmpRspGenErr;
-					errorIndex = 1;
-					break;
+					default:
+						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
+									SnmpSubRequestHandler.class.getName(),
+									"run", "[" + Thread.currentThread()
+											+ "]:unknown operation (" + type
+											+ ") on " + agent.getMibName());
+						}
+						errorStatus = snmpRspGenErr;
+						errorIndex = 1;
+						break;
 
 				}// end of switch
 
@@ -211,23 +205,26 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 			errorStatus = x.getStatus();
 			errorIndex = x.getErrorIndex();
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSubRequestHandler.class.getName(), "run",
-						"[" + Thread.currentThread()
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
+						SnmpSubRequestHandler.class.getName(), "run", "["
+								+ Thread.currentThread()
 								+ "]:an Snmp error occurred during the operation",
 						x);
 			}
 		} catch (Exception x) {
 			errorStatus = SnmpDefinitions.snmpRspGenErr;
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSubRequestHandler.class.getName(), "run",
-						"[" + Thread.currentThread()
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
+						SnmpSubRequestHandler.class.getName(), "run", "["
+								+ Thread.currentThread()
 								+ "]:a generic error occurred during the operation",
 						x);
 			}
 		}
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class.getName(), "run",
-					"[" + Thread.currentThread() + "]:operation completed");
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSubRequestHandler.class
+					.getName(), "run", "[" + Thread.currentThread()
+							+ "]:operation completed");
 		}
 	}
 
@@ -436,7 +433,8 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 		return SnmpDefinitions.snmpRspGenErr;
 	}
 
-	static final int mapErrorStatus(int errorStatus, int protocolVersion, int reqPduType) {
+	static final int mapErrorStatus(int errorStatus, int protocolVersion,
+			int reqPduType) {
 		if (errorStatus == SnmpDefinitions.snmpRspNoError)
 			return SnmpDefinitions.snmpRspNoError;
 
@@ -507,11 +505,14 @@ class SnmpSubRequestHandler implements SnmpDefinitions, Runnable {
 			// ArrayIndexOutOfBoundException
 			final int pos = translation[i];
 			if (pos < len) {
-				result[pos] = (SnmpVarBind) ((NonSyncVector) varBind).elementAtNonSync(i);
+				result[pos] = (SnmpVarBind) ((NonSyncVector) varBind)
+						.elementAtNonSync(i);
 			} else {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSubRequestHandler.class.getName(),
-							"updateResult", "Position `" + pos + "' is out of bound...");
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
+							SnmpSubRequestHandler.class.getName(),
+							"updateResult", "Position `" + pos
+									+ "' is out of bound...");
 				}
 			}
 		}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orb;
@@ -35,8 +15,8 @@ public abstract class ParserDataBase implements ParserData {
 	private Object defaultValue;
 	private Object testValue;
 
-	protected ParserDataBase(String propertyName, Operation operation, String fieldName,
-			Object defaultValue, Object testValue) {
+	protected ParserDataBase(String propertyName, Operation operation,
+			String fieldName, Object defaultValue, Object testValue) {
 		this.propertyName = propertyName;
 		this.operation = operation;
 		this.fieldName = fieldName;

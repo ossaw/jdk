@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -72,7 +52,7 @@ public class ActivationException extends Exception {
 	 * message.
 	 *
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 */
 	public ActivationException(String s) {
 		super(s);
@@ -85,9 +65,9 @@ public class ActivationException extends Exception {
 	 * specified <code>Throwable</code>.
 	 *
 	 * @param s
-	 *            the detail message
+	 *              the detail message
 	 * @param cause
-	 *            the cause
+	 *              the cause
 	 */
 	public ActivationException(String s, Throwable cause) {
 		super(s);
@@ -105,7 +85,8 @@ public class ActivationException extends Exception {
 		if (detail == null)
 			return super.getMessage();
 		else
-			return super.getMessage() + "; nested exception is: \n\t" + detail.toString();
+			return super.getMessage() + "; nested exception is: \n\t" + detail
+					.toString();
 	}
 
 	/**

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -51,5 +31,4 @@ import java.security.Principal;
  * @since 1.7
  */
 
-public interface UserPrincipal extends Principal {
-}
+public interface UserPrincipal extends Principal {}

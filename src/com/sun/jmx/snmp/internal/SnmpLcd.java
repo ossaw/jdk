@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -85,7 +65,7 @@ public abstract class SnmpLcd {
 	 * Persists the number of reboots.
 	 * 
 	 * @param i
-	 *            Reboot number.
+	 *          Reboot number.
 	 */
 	public abstract void storeEngineBoots(int i);
 
@@ -93,7 +73,7 @@ public abstract class SnmpLcd {
 	 * Persists the engine Id.
 	 * 
 	 * @param id
-	 *            The engine Id.
+	 *           The engine Id.
 	 */
 	public abstract void storeEngineId(SnmpEngineId id);
 

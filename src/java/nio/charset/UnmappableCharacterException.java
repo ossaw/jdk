@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.charset;
@@ -42,7 +22,7 @@ public class UnmappableCharacterException extends CharacterCodingException {
 	 * Constructs an {@code UnmappableCharacterException} with the given length.
 	 * 
 	 * @param inputLength
-	 *            the length of the input
+	 *                    the length of the input
 	 */
 	public UnmappableCharacterException(int inputLength) {
 		this.inputLength = inputLength;

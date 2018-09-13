@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html.parser;
 
@@ -44,7 +24,8 @@ import java.security.PrivilegedAction;
  * @author Sunita Mani
  */
 
-public class ParserDelegator extends HTMLEditorKit.Parser implements Serializable {
+public class ParserDelegator extends HTMLEditorKit.Parser implements
+		Serializable {
 
 	private static final Object DTD_KEY = new Object();
 
@@ -65,7 +46,8 @@ public class ParserDelegator extends HTMLEditorKit.Parser implements Serializabl
 				_dtd = DTD.getDTD(nm);
 			} catch (IOException e) {
 				// (PENDING) UGLY!
-				System.out.println("Throw an exception: could not get default dtd: " + nm);
+				System.out.println(
+						"Throw an exception: could not get default dtd: " + nm);
 			}
 			dtd = createDTD(_dtd, nm);
 
@@ -96,8 +78,8 @@ public class ParserDelegator extends HTMLEditorKit.Parser implements Serializabl
 		setDefaultDTD();
 	}
 
-	public void parse(Reader r, HTMLEditorKit.ParserCallback cb, boolean ignoreCharSet)
-			throws IOException {
+	public void parse(Reader r, HTMLEditorKit.ParserCallback cb,
+			boolean ignoreCharSet) throws IOException {
 		new DocumentParser(getDefaultDTD()).parse(r, cb, ignoreCharSet);
 	}
 
@@ -108,19 +90,21 @@ public class ParserDelegator extends HTMLEditorKit.Parser implements Serializabl
 	 * an applet.
 	 *
 	 * @param name
-	 *            the name of the resource, relative to the ParserDelegator
-	 *            class.
+	 *             the name of the resource, relative to the ParserDelegator
+	 *             class.
 	 * @returns a stream representing the resource
 	 */
 	static InputStream getResourceAsStream(final String name) {
-		return AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
-			public InputStream run() {
-				return ParserDelegator.class.getResourceAsStream(name);
-			}
-		});
+		return AccessController.doPrivileged(
+				new PrivilegedAction<InputStream>() {
+					public InputStream run() {
+						return ParserDelegator.class.getResourceAsStream(name);
+					}
+				});
 	}
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 		setDefaultDTD();
 	}

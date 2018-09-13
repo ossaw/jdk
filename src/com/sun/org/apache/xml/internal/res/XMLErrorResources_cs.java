@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: XMLErrorResources_cs.java,v 1.1.6.2 2005/09/15 07:45:38 suresh_emailid Exp $
+ * $Id: XMLErrorResources_cs.java,v 1.1.6.2 2005/09/15 07:45:38 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.res;
 
@@ -36,39 +34,30 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -184,23 +173,29 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 
 			{ ER_FUNCTION_NOT_SUPPORTED, "Nepodporovan\u00e1 funkce!" },
 
-			{ ER_CANNOT_OVERWRITE_CAUSE, "P\u0159\u00ed\u010dinu nelze p\u0159epsat" },
+			{ ER_CANNOT_OVERWRITE_CAUSE,
+					"P\u0159\u00ed\u010dinu nelze p\u0159epsat" },
 
-			{ ER_NO_DEFAULT_IMPL, "Nebyla nalezena v\u00fdchoz\u00ed implementace. " },
+			{ ER_NO_DEFAULT_IMPL,
+					"Nebyla nalezena v\u00fdchoz\u00ed implementace. " },
 
 			{ ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
 					"Funkce ChunkedIntArray({0}) nen\u00ed aktu\u00e1ln\u011b podporov\u00e1na." },
 
-			{ ER_OFFSET_BIGGER_THAN_SLOT, "Offset je v\u011bt\u0161\u00ed ne\u017e slot." },
+			{ ER_OFFSET_BIGGER_THAN_SLOT,
+					"Offset je v\u011bt\u0161\u00ed ne\u017e slot." },
 
-			{ ER_COROUTINE_NOT_AVAIL, "Spole\u010dn\u00e1 rutina nen\u00ed k dispozici, id={0}" },
+			{ ER_COROUTINE_NOT_AVAIL,
+					"Spole\u010dn\u00e1 rutina nen\u00ed k dispozici, id={0}" },
 
 			{ ER_COROUTINE_CO_EXIT,
 					"Funkce CoroutineManager obdr\u017eela po\u017eadavek co_exit()" },
 
-			{ ER_COJOINROUTINESET_FAILED, "Selhala funkce co_joinCoroutineSet()" },
+			{ ER_COJOINROUTINESET_FAILED,
+					"Selhala funkce co_joinCoroutineSet()" },
 
-			{ ER_COROUTINE_PARAM, "Chyba parametru spole\u010dn\u00e9 rutiny ({0})" },
+			{ ER_COROUTINE_PARAM,
+					"Chyba parametru spole\u010dn\u00e9 rutiny ({0})" },
 
 			{ ER_PARSER_DOTERMINATE_ANSWERS,
 					"\nNeo\u010dek\u00e1van\u00e9: odpov\u011bdi funkce analyz\u00e1toru doTerminate {0}" },
@@ -214,11 +209,14 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"Chyba: zadan\u00fd iter\u00e1tor osy {0} nen\u00ed implementov\u00e1n " },
 
-			{ ER_ITERATOR_CLONE_NOT_SUPPORTED, "Nepodporovan\u00fd klon iter\u00e1toru." },
+			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
+					"Nepodporovan\u00fd klon iter\u00e1toru." },
 
-			{ ER_UNKNOWN_AXIS_TYPE, "Nezn\u00e1m\u00fd typ osy pr\u016fchodu: {0}" },
+			{ ER_UNKNOWN_AXIS_TYPE,
+					"Nezn\u00e1m\u00fd typ osy pr\u016fchodu: {0}" },
 
-			{ ER_AXIS_NOT_SUPPORTED, "Nepodporovan\u00e1 osa pr\u016fchodu: {0}" },
+			{ ER_AXIS_NOT_SUPPORTED,
+					"Nepodporovan\u00e1 osa pr\u016fchodu: {0}" },
 
 			{ ER_NO_DTMIDS_AVAIL,
 					"\u017d\u00e1dn\u00e1 dal\u0161\u00ed ID DTM nejsou k dispozici" },
@@ -228,7 +226,8 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_NODE_NON_NULL,
 					"Uzel pou\u017eit\u00fd ve funkci getDTMHandleFromNode mus\u00ed m\u00edt hodnotu not-null" },
 
-			{ ER_COULD_NOT_RESOLVE_NODE, "Uzel nelze p\u0159elo\u017eit do manipul\u00e1toru" },
+			{ ER_COULD_NOT_RESOLVE_NODE,
+					"Uzel nelze p\u0159elo\u017eit do manipul\u00e1toru" },
 
 			{ ER_STARTPARSE_WHILE_PARSING,
 					"B\u011bhem anal\u00fdzy nelze volat funkci startParse." },
@@ -236,7 +235,8 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_STARTPARSE_NEEDS_SAXPARSER,
 					"Funkce startParse vy\u017eaduje SAXParser s hodnotou not-null." },
 
-			{ ER_COULD_NOT_INIT_PARSER, "nelze inicializovat analyz\u00e1tor s: " },
+			{ ER_COULD_NOT_INIT_PARSER,
+					"nelze inicializovat analyz\u00e1tor s: " },
 
 			{ ER_EXCEPTION_CREATING_POOL,
 					"v\u00fdjimka p\u0159i vytv\u00e1\u0159en\u00ed nov\u00e9 instance spole\u010dn\u00e9 oblasti" },
@@ -246,9 +246,11 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 
 			{ ER_SCHEME_REQUIRED, "Je vy\u017eadov\u00e1no sch\u00e9ma!" },
 
-			{ ER_NO_SCHEME_IN_URI, "V URI nebylo nalezeno \u017e\u00e1dn\u00e9 sch\u00e9ma: {0}" },
+			{ ER_NO_SCHEME_IN_URI,
+					"V URI nebylo nalezeno \u017e\u00e1dn\u00e9 sch\u00e9ma: {0}" },
 
-			{ ER_NO_SCHEME_INURI, "V URI nebylo nalezeno \u017e\u00e1dn\u00e9 sch\u00e9ma" },
+			{ ER_NO_SCHEME_INURI,
+					"V URI nebylo nalezeno \u017e\u00e1dn\u00e9 sch\u00e9ma" },
 
 			{ ER_PATH_INVALID_CHAR, "Cesta obsahuje neplatn\u00fd znak: {0}" },
 
@@ -260,19 +262,24 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_HOST_ADDRESS_NOT_WELLFORMED,
 					"Adresa hostitele m\u00e1 nespr\u00e1vn\u00fd form\u00e1t." },
 
-			{ ER_PORT_WHEN_HOST_NULL, "M\u00e1-li hostitel hodnotu null, nelze nastavit port." },
+			{ ER_PORT_WHEN_HOST_NULL,
+					"M\u00e1-li hostitel hodnotu null, nelze nastavit port." },
 
 			{ ER_INVALID_PORT, "Neplatn\u00e9 \u010d\u00edslo portu." },
 
-			{ ER_FRAG_FOR_GENERIC_URI, "Fragment lze nastavit jen u generick\u00e9ho URI." },
+			{ ER_FRAG_FOR_GENERIC_URI,
+					"Fragment lze nastavit jen u generick\u00e9ho URI." },
 
-			{ ER_FRAG_WHEN_PATH_NULL, "M\u00e1-li cesta hodnotu null, nelze nastavit fragment." },
+			{ ER_FRAG_WHEN_PATH_NULL,
+					"M\u00e1-li cesta hodnotu null, nelze nastavit fragment." },
 
 			{ ER_FRAG_INVALID_CHAR, "Fragment obsahuje neplatn\u00fd znak." },
 
-			{ ER_PARSER_IN_USE, "Analyz\u00e1tor se ji\u017e pou\u017e\u00edv\u00e1." },
+			{ ER_PARSER_IN_USE,
+					"Analyz\u00e1tor se ji\u017e pou\u017e\u00edv\u00e1." },
 
-			{ ER_CANNOT_CHANGE_WHILE_PARSING, "B\u011bhem anal\u00fdzy nelze m\u011bnit {0} {1}." },
+			{ ER_CANNOT_CHANGE_WHILE_PARSING,
+					"B\u011bhem anal\u00fdzy nelze m\u011bnit {0} {1}." },
 
 			{ ER_SELF_CAUSATION_NOT_PERMITTED,
 					"Zp\u016fsoben\u00ed sama sebe (self-causation) nen\u00ed povoleno" },
@@ -280,7 +287,8 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"Nen\u00ed-li ur\u010den hostitel, nelze zadat \u00fadaje o u\u017eivateli." },
 
-			{ ER_NO_PORT_IF_NO_HOST, "Nen\u00ed-li ur\u010den hostitel, nelze zadat port." },
+			{ ER_NO_PORT_IF_NO_HOST,
+					"Nen\u00ed-li ur\u010den hostitel, nelze zadat port." },
 
 			{ ER_NO_QUERY_STRING_IN_PATH,
 					"V \u0159et\u011bzci cesty a dotazu nelze zadat \u0159et\u011bzec dotazu." },
@@ -291,7 +299,8 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_CANNOT_INIT_URI_EMPTY_PARMS,
 					"URI nelze inicializovat s pr\u00e1zdn\u00fdmi parametry." },
 
-			{ ER_METHOD_NOT_SUPPORTED, "Prozat\u00edm nepodporovan\u00e1 metoda. " },
+			{ ER_METHOD_NOT_SUPPORTED,
+					"Prozat\u00edm nepodporovan\u00e1 metoda. " },
 
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"Filtr IncrementalSAXSource_Filter nelze aktu\u00e1ln\u011b znovu spustit." },
@@ -299,14 +308,17 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE,
 					"P\u0159ed po\u017eadavkem startParse nen\u00ed XMLReader." },
 
-			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED, "Nepodporovan\u00e1 osa pr\u016fchodu: {0}" },
+			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED,
+					"Nepodporovan\u00e1 osa pr\u016fchodu: {0}" },
 
 			{ ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
 					"Prvek ListingErrorHandler byl vytvo\u0159en s funkc\u00ed PrintWriter s hodnotou null!" },
 
-			{ ER_SYSTEMID_UNKNOWN, "Nezn\u00e1m\u00fd identifik\u00e1tor SystemId" },
+			{ ER_SYSTEMID_UNKNOWN,
+					"Nezn\u00e1m\u00fd identifik\u00e1tor SystemId" },
 
-			{ ER_LOCATION_UNKNOWN, "Chyba se vyskytla na nezn\u00e1m\u00e9m m\u00edst\u011b" },
+			{ ER_LOCATION_UNKNOWN,
+					"Chyba se vyskytla na nezn\u00e1m\u00e9m m\u00edst\u011b" },
 
 			{ ER_PREFIX_MUST_RESOLVE,
 					"P\u0159edponu mus\u00ed b\u00fdt mo\u017eno p\u0159elo\u017eit do oboru n\u00e1zv\u016f: {0}" },
@@ -326,7 +338,8 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
 					"DOM nem\u016f\u017ee m\u00edt n\u011bkolik ko\u0159en\u016f!" },
 
-			{ ER_ARG_LOCALNAME_NULL, "Argument 'localName' m\u00e1 hodnotu null" },
+			{ ER_ARG_LOCALNAME_NULL,
+					"Argument 'localName' m\u00e1 hodnotu null" },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
@@ -344,19 +357,22 @@ public class XMLErrorResources_cs extends ListResourceBundle {
 			{ ER_ARG_PREFIX_INVALID,
 					"P\u0159edpona ve funkci QNAME by m\u011bla b\u00fdt platn\u00fdm prvkem NCName" },
 
-			{ "BAD_CODE", "Parametr funkce createMessage je mimo limit" },
-			{ "FORMAT_FAILED",
+			{ "BAD_CODE", "Parametr funkce createMessage je mimo limit" }, {
+					"FORMAT_FAILED",
 					"P\u0159i vol\u00e1n\u00ed funkce messageFormat do\u0161lo k v\u00fdjimce" },
 			{ "line", "\u0158\u00e1dek #" }, { "column", "Sloupec #" },
 
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"T\u0159\u00edda serializace ''{0}'' neimplementuje org.xml.sax.ContentHandler." },
 
-			{ ER_RESOURCE_COULD_NOT_FIND, "Nelze naj\u00edt zdroj [ {0} ].\n {1}" },
+			{ ER_RESOURCE_COULD_NOT_FIND,
+					"Nelze naj\u00edt zdroj [ {0} ].\n {1}" },
 
-			{ ER_RESOURCE_COULD_NOT_LOAD, "Nelze zav\u00e9st zdroj [ {0} ]: {1} \n {2} \t {3}" },
+			{ ER_RESOURCE_COULD_NOT_LOAD,
+					"Nelze zav\u00e9st zdroj [ {0} ]: {1} \n {2} \t {3}" },
 
-			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "Velikost vyrovn\u00e1vac\u00ed pam\u011bti <=0" },
+			{ ER_BUFFER_SIZE_LESSTHAN_ZERO,
+					"Velikost vyrovn\u00e1vac\u00ed pam\u011bti <=0" },
 
 			{ ER_INVALID_UTF16_SURROGATE,
 					"Byla zji\u0161t\u011bna neplatn\u00e1 n\u00e1hrada UTF-16: {0} ?" },

@@ -1,31 +1,11 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
 
-//RI import
+// RI import
 import javax.management.OperationsException;
 
 /**
@@ -49,7 +29,7 @@ public class ServiceNotFoundException extends OperationsException {
 	 * Constructor that allows a specific error message to be specified.
 	 *
 	 * @param message
-	 *            the detail message.
+	 *                the detail message.
 	 */
 	public ServiceNotFoundException(String message) {
 		super(message);

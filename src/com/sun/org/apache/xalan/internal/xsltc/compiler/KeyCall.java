@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2006 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -80,24 +77,24 @@ final class KeyCall extends FunctionCall {
 	 * (the key name is always "##id" for id() calls).
 	 *
 	 * @param fname
-	 *            The function name (should be 'key' or 'id')
+	 *                  The function name (should be 'key' or 'id')
 	 * @param arguments
-	 *            A vector containing the arguments the the function
+	 *                  A vector containing the arguments the the function
 	 */
 	public KeyCall(QName fname, Vector arguments) {
 		super(fname, arguments);
 		switch (argumentCount()) {
-		case 1:
-			_name = null;
-			_value = argument(0);
-			break;
-		case 2:
-			_name = argument(0);
-			_value = argument(1);
-			break;
-		default:
-			_name = _value = null;
-			break;
+			case 1:
+				_name = null;
+				_value = argument(0);
+				break;
+			case 2:
+				_name = argument(0);
+				_value = argument(1);
+				break;
+			default:
+				_name = _value = null;
+				break;
 		}
 	}
 
@@ -134,9 +131,9 @@ final class KeyCall extends FunctionCall {
 	 * the lookup-value must be a string or a node-set.
 	 * 
 	 * @param stable
-	 *            The parser's symbol table
+	 *               The parser's symbol table
 	 * @throws TypeCheckError
-	 *             When the parameters have illegal type
+	 *                        When the parameters have illegal type
 	 */
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
 		final Type returnType = super.typeCheck(stable);
@@ -148,7 +145,8 @@ final class KeyCall extends FunctionCall {
 
 			if (_name instanceof LiteralExpr) {
 				final LiteralExpr literal = (LiteralExpr) _name;
-				_resolvedQName = getParser().getQNameIgnoreDefaultNs(literal.getValue());
+				_resolvedQName = getParser().getQNameIgnoreDefaultNs(literal
+						.getValue());
 			} else if (nameType instanceof StringType == false) {
 				_name = new CastExpr(_name, Type.String);
 			}
@@ -185,9 +183,9 @@ final class KeyCall extends FunctionCall {
 	 * nodes in the node set for the key or id function call.
 	 * 
 	 * @param classGen
-	 *            The Java class generator
+	 *                  The Java class generator
 	 * @param methodGen
-	 *            The method generator
+	 *                  The method generator
 	 */
 	public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
@@ -198,11 +196,13 @@ final class KeyCall extends FunctionCall {
 				"(Ljava/lang/String;)" + KEY_INDEX_SIG);
 
 		// KeyIndex.setDom(Dom, node) => void
-		final int keyDom = cpg.addMethodref(KEY_INDEX_CLASS, "setDom", "(" + DOM_INTF_SIG + "I)V");
+		final int keyDom = cpg.addMethodref(KEY_INDEX_CLASS, "setDom", "("
+				+ DOM_INTF_SIG + "I)V");
 
 		// Initialises a KeyIndex to return nodes with specific values
-		final int getKeyIterator = cpg.addMethodref(KEY_INDEX_CLASS, "getKeyIndexIterator",
-				"(" + _valueType.toSignature() + "Z)" + KEY_INDEX_ITERATOR_SIG);
+		final int getKeyIterator = cpg.addMethodref(KEY_INDEX_CLASS,
+				"getKeyIndexIterator", "(" + _valueType.toSignature() + "Z)"
+						+ KEY_INDEX_ITERATOR_SIG);
 
 		// Initialise the index specified in the first parameter of key()
 		il.append(classGen.loadTranslet());

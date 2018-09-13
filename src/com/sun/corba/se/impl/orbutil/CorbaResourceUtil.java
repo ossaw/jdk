@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orbutil;
@@ -61,7 +41,8 @@ public class CorbaResourceUtil {
 		return getText(key, arg0, arg1, null);
 	}
 
-	public static String getText(String key, String arg0, String arg1, String arg2) {
+	public static String getText(String key, String arg0, String arg1,
+			String arg2) {
 		String format = getString(key);
 		if (format == null) {
 			format = "no text found: key = \"" + key + "\", "
@@ -81,10 +62,12 @@ public class CorbaResourceUtil {
 
 	private static void initResources() {
 		try {
-			resources = ResourceBundle.getBundle("com.sun.corba.se.impl.orbutil.resources.sunorb");
+			resources = ResourceBundle.getBundle(
+					"com.sun.corba.se.impl.orbutil.resources.sunorb");
 			resourcesInitialized = true;
 		} catch (MissingResourceException e) {
-			throw new Error("fatal: missing resource bundle: " + e.getClassName());
+			throw new Error("fatal: missing resource bundle: " + e
+					.getClassName());
 		}
 	}
 

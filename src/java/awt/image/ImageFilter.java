@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -66,7 +46,7 @@ public class ImageFilter implements ImageConsumer, Cloneable {
 	 * since that operation could interfere with the filtering operation.
 	 * 
 	 * @param ic
-	 *            the specified <code>ImageConsumer</code>
+	 *           the specified <code>ImageConsumer</code>
 	 * @return an <code>ImageFilter</code> used to perform the filtering for the
 	 *         specified <code>ImageConsumer</code>.
 	 */
@@ -101,9 +81,9 @@ public class ImageFilter implements ImageConsumer, Cloneable {
 	 * since that operation could interfere with the filtering operation.
 	 *
 	 * @param props
-	 *            the properties from the source object
+	 *              the properties from the source object
 	 * @exception NullPointerException
-	 *                if <code>props</code> is null
+	 *                                 if <code>props</code> is null
 	 */
 	public void setProperties(Hashtable<?, ?> props) {
 		Hashtable<Object, Object> p = (Hashtable<Object, Object>) props.clone();
@@ -157,8 +137,8 @@ public class ImageFilter implements ImageConsumer, Cloneable {
 	 * 
 	 * @see ImageConsumer#setPixels
 	 */
-	public void setPixels(int x, int y, int w, int h, ColorModel model, byte pixels[], int off,
-			int scansize) {
+	public void setPixels(int x, int y, int w, int h, ColorModel model,
+			byte pixels[], int off, int scansize) {
 		consumer.setPixels(x, y, w, h, model, pixels, off, scansize);
 	}
 
@@ -173,8 +153,8 @@ public class ImageFilter implements ImageConsumer, Cloneable {
 	 * 
 	 * @see ImageConsumer#setPixels
 	 */
-	public void setPixels(int x, int y, int w, int h, ColorModel model, int pixels[], int off,
-			int scansize) {
+	public void setPixels(int x, int y, int w, int h, ColorModel model,
+			int pixels[], int off, int scansize) {
 		consumer.setPixels(x, y, w, h, model, pixels, off, scansize);
 	}
 
@@ -225,11 +205,11 @@ public class ImageFilter implements ImageConsumer, Cloneable {
 	 *
 	 * @see ImageProducer#requestTopDownLeftRightResend
 	 * @param ip
-	 *            the ImageProducer that is feeding this instance of the filter
-	 *            - also the ImageProducer that the request should be forwarded
-	 *            to if necessary
+	 *           the ImageProducer that is feeding this instance of the filter
+	 *           - also the ImageProducer that the request should be forwarded
+	 *           to if necessary
 	 * @exception NullPointerException
-	 *                if <code>ip</code> is null
+	 *                                 if <code>ip</code> is null
 	 */
 	public void resendTopDownLeftRight(ImageProducer ip) {
 		ip.requestTopDownLeftRightResend(this);

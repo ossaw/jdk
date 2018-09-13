@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.event;
 
@@ -64,18 +44,21 @@ public class AncestorEvent extends AWTEvent {
 	 * ancestor-component's display-status.
 	 *
 	 * @param source
-	 *            the JComponent that originated the event (typically
-	 *            <code>this</code>)
+	 *                       the JComponent that originated the event (typically
+	 *                       <code>this</code>)
 	 * @param id
-	 *            an int specifying {@link #ANCESTOR_ADDED},
-	 *            {@link #ANCESTOR_REMOVED} or {@link #ANCESTOR_MOVED}
+	 *                       an int specifying {@link #ANCESTOR_ADDED},
+	 *                       {@link #ANCESTOR_REMOVED} or
+	 *                       {@link #ANCESTOR_MOVED}
 	 * @param ancestor
-	 *            a Container object specifying the ancestor-component whose
-	 *            display-status changed
+	 *                       a Container object specifying the
+	 *                       ancestor-component whose
+	 *                       display-status changed
 	 * @param ancestorParent
-	 *            a Container object specifying the ancestor's parent
+	 *                       a Container object specifying the ancestor's parent
 	 */
-	public AncestorEvent(JComponent source, int id, Container ancestor, Container ancestorParent) {
+	public AncestorEvent(JComponent source, int id, Container ancestor,
+			Container ancestorParent) {
 		super(source, id);
 		this.ancestor = ancestor;
 		this.ancestorParent = ancestorParent;

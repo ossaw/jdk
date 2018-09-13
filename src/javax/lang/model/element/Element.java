@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.element;
@@ -235,14 +215,14 @@ public interface Element extends javax.lang.model.AnnotatedConstruct {
 	/**
 	 * Applies a visitor to this element.
 	 *
-	 * @param <R>
-	 *            the return type of the visitor's methods
-	 * @param <P>
-	 *            the type of the additional parameter to the visitor's methods
+	 * @param   <R>
+	 *          the return type of the visitor's methods
+	 * @param   <P>
+	 *          the type of the additional parameter to the visitor's methods
 	 * @param v
-	 *            the visitor operating on this element
+	 *          the visitor operating on this element
 	 * @param p
-	 *            additional parameter to the visitor
+	 *          additional parameter to the visitor
 	 * @return a visitor-specified result
 	 */
 	<R, P> R accept(ElementVisitor<R, P> v, P p);

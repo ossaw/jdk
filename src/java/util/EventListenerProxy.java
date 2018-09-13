@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -52,7 +32,8 @@ package java.util;
  *
  * @since 1.4
  */
-public abstract class EventListenerProxy<T extends EventListener> implements EventListener {
+public abstract class EventListenerProxy<T extends EventListener> implements
+		EventListener {
 
 	private final T listener;
 
@@ -60,7 +41,7 @@ public abstract class EventListenerProxy<T extends EventListener> implements Eve
 	 * Creates a proxy for the specified listener.
 	 *
 	 * @param listener
-	 *            the listener object
+	 *                 the listener object
 	 */
 	public EventListenerProxy(T listener) {
 		this.listener = listener;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -148,7 +128,8 @@ public class TextField extends TextComponent {
 	 * Constructs a new text field.
 	 * 
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public TextField() throws HeadlessException {
@@ -159,11 +140,12 @@ public class TextField extends TextComponent {
 	 * Constructs a new text field initialized with the specified text.
 	 * 
 	 * @param text
-	 *            the text to be displayed. If <code>text</code> is
-	 *            <code>null</code>, the empty string <code>""</code> will be
-	 *            displayed.
+	 *             the text to be displayed. If <code>text</code> is
+	 *             <code>null</code>, the empty string <code>""</code> will be
+	 *             displayed.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public TextField(String text) throws HeadlessException {
@@ -176,10 +158,13 @@ public class TextField extends TextComponent {
 	 * platform-dependent.
 	 * 
 	 * @param columns
-	 *            the number of columns. If <code>columns</code> is less than
-	 *            <code>0</code>, <code>columns</code> is set to <code>0</code>.
+	 *                the number of columns. If <code>columns</code> is less
+	 *                than
+	 *                <code>0</code>, <code>columns</code> is set to
+	 *                <code>0</code>.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public TextField(int columns) throws HeadlessException {
@@ -193,14 +178,18 @@ public class TextField extends TextComponent {
 	 * platform-dependent.
 	 * 
 	 * @param text
-	 *            the text to be displayed. If <code>text</code> is
-	 *            <code>null</code>, the empty string <code>""</code> will be
-	 *            displayed.
+	 *                the text to be displayed. If <code>text</code> is
+	 *                <code>null</code>, the empty string <code>""</code> will
+	 *                be
+	 *                displayed.
 	 * @param columns
-	 *            the number of columns. If <code>columns</code> is less than
-	 *            <code>0</code>, <code>columns</code> is set to <code>0</code>.
+	 *                the number of columns. If <code>columns</code> is less
+	 *                than
+	 *                <code>0</code>, <code>columns</code> is set to
+	 *                <code>0</code>.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public TextField(String text, int columns) throws HeadlessException {
@@ -267,7 +256,7 @@ public class TextField extends TextComponent {
 	 * the TextField implementation.
 	 * 
 	 * @param c
-	 *            the echo character for this text field.
+	 *          the echo character for this text field.
 	 * @see java.awt.TextField#echoCharIsSet
 	 * @see java.awt.TextField#getEchoChar
 	 * @since JDK1.1
@@ -296,7 +285,7 @@ public class TextField extends TextComponent {
 	 * specified text.
 	 * 
 	 * @param t
-	 *            the new text.
+	 *          the new text.
 	 * @see java.awt.TextComponent#getText
 	 */
 	public void setText(String t) {
@@ -339,11 +328,12 @@ public class TextField extends TextComponent {
 	 * average character width that is platform-dependent.
 	 * 
 	 * @param columns
-	 *            the number of columns.
+	 *                the number of columns.
 	 * @see java.awt.TextField#getColumns
 	 * @exception IllegalArgumentException
-	 *                if the value supplied for <code>columns</code> is less
-	 *                than <code>0</code>.
+	 *                                     if the value supplied for
+	 *                                     <code>columns</code> is less
+	 *                                     than <code>0</code>.
 	 * @since JDK1.1
 	 */
 	public void setColumns(int columns) {
@@ -368,7 +358,7 @@ public class TextField extends TextComponent {
 	 * columns.
 	 * 
 	 * @param columns
-	 *            the number of columns in this text field.
+	 *                the number of columns in this text field.
 	 * @return the preferred dimensions for displaying this text field.
 	 * @since JDK1.1
 	 */
@@ -384,7 +374,8 @@ public class TextField extends TextComponent {
 	public Dimension preferredSize(int columns) {
 		synchronized (getTreeLock()) {
 			TextFieldPeer peer = (TextFieldPeer) this.peer;
-			return (peer != null) ? peer.getPreferredSize(columns) : super.preferredSize();
+			return (peer != null) ? peer.getPreferredSize(columns)
+					: super.preferredSize();
 		}
 	}
 
@@ -405,7 +396,8 @@ public class TextField extends TextComponent {
 	@Deprecated
 	public Dimension preferredSize() {
 		synchronized (getTreeLock()) {
-			return (columns > 0) ? preferredSize(columns) : super.preferredSize();
+			return (columns > 0) ? preferredSize(columns)
+					: super.preferredSize();
 		}
 	}
 
@@ -414,7 +406,7 @@ public class TextField extends TextComponent {
 	 * columns.
 	 * 
 	 * @param columns
-	 *            the number of columns in this text field.
+	 *                the number of columns in this text field.
 	 * @since JDK1.1
 	 */
 	public Dimension getMinimumSize(int columns) {
@@ -429,7 +421,8 @@ public class TextField extends TextComponent {
 	public Dimension minimumSize(int columns) {
 		synchronized (getTreeLock()) {
 			TextFieldPeer peer = (TextFieldPeer) this.peer;
-			return (peer != null) ? peer.getMinimumSize(columns) : super.minimumSize();
+			return (peer != null) ? peer.getMinimumSize(columns)
+					: super.minimumSize();
 		}
 	}
 
@@ -463,7 +456,7 @@ public class TextField extends TextComponent {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the action listener.
+	 *          the action listener.
 	 * @see #removeActionListener
 	 * @see #getActionListeners
 	 * @see java.awt.event.ActionListener
@@ -486,7 +479,7 @@ public class TextField extends TextComponent {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the action listener.
+	 *          the action listener.
 	 * @see #addActionListener
 	 * @see #getActionListeners
 	 * @see java.awt.event.ActionListener
@@ -528,22 +521,25 @@ public class TextField extends TextComponent {
 	 * listeners with the following code:
 	 *
 	 * <pre>
-	 * ActionListener[] als = (ActionListener[]) (t.getListeners(ActionListener.class));
+	 * ActionListener[] als = (ActionListener[]) (t.getListeners(
+	 * 		ActionListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this textfield, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getActionListeners
 	 * @since 1.3
@@ -561,7 +557,8 @@ public class TextField extends TextComponent {
 	// REMIND: remove when filtering is done at lower level
 	boolean eventEnabled(AWTEvent e) {
 		if (e.id == ActionEvent.ACTION_PERFORMED) {
-			if ((eventMask & AWTEvent.ACTION_EVENT_MASK) != 0 || actionListener != null) {
+			if ((eventMask & AWTEvent.ACTION_EVENT_MASK) != 0
+					|| actionListener != null) {
 				return true;
 			}
 			return false;
@@ -579,7 +576,7 @@ public class TextField extends TextComponent {
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see java.awt.event.ActionEvent
 	 * @see java.awt.TextField#processActionEvent
 	 * @since JDK1.1
@@ -608,7 +605,7 @@ public class TextField extends TextComponent {
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the action event
+	 *          the action event
 	 * @see java.awt.event.ActionListener
 	 * @see java.awt.TextField#addActionListener
 	 * @see java.awt.Component#enableEvents
@@ -674,14 +671,16 @@ public class TextField extends TextComponent {
 	 * will be ignored.
 	 *
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless()</code> returns
-	 *                <code>true</code>
+	 *                              if
+	 *                              <code>GraphicsEnvironment.isHeadless()</code>
+	 *                              returns
+	 *                              <code>true</code>
 	 * @see #removeActionListener(ActionListener)
 	 * @see #addActionListener(ActionListener)
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
-	private void readObject(ObjectInputStream s)
-			throws ClassNotFoundException, IOException, HeadlessException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException, HeadlessException {
 		// HeadlessException will be thrown by TextComponent's readObject
 		s.defaultReadObject();
 

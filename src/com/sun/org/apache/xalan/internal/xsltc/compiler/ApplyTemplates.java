@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,14 +72,16 @@ final class ApplyTemplates extends Instruction {
 
 		if (mode.length() > 0) {
 			if (!XML11Char.isXML11ValidQName(mode)) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, mode, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, mode,
+						this);
 				parser.reportError(Constants.ERROR, err);
 			}
 			_modeName = parser.getQNameIgnoreDefaultNs(mode);
 		}
 
 		// instantiate Mode if needed, cache (apply temp) function name
-		_functionName = parser.getTopLevelStylesheet().getMode(_modeName).functionName();
+		_functionName = parser.getTopLevelStylesheet().getMode(_modeName)
+				.functionName();
 		parseChildren(parser);// with-params
 	}
 
@@ -92,7 +92,8 @@ final class ApplyTemplates extends Instruction {
 				_select = new CastExpr(_select, Type.NodeSet);
 				_type = Type.NodeSet;
 			}
-			if (_type instanceof NodeSetType || _type instanceof ResultTreeType) {
+			if (_type instanceof NodeSetType
+					|| _type instanceof ResultTreeType) {
 				typeCheckContents(stable); // with-params
 				return Type.Void;
 			}
@@ -125,8 +126,8 @@ final class ApplyTemplates extends Instruction {
 		// Push a new parameter frame
 		if (stylesheet.hasLocalParams() || hasContents()) {
 			il.append(classGen.loadTranslet());
-			final int pushFrame = cpg.addMethodref(TRANSLET_CLASS, PUSH_PARAM_FRAME,
-					PUSH_PARAM_FRAME_SIG);
+			final int pushFrame = cpg.addMethodref(TRANSLET_CLASS,
+					PUSH_PARAM_FRAME, PUSH_PARAM_FRAME_SIG);
 			il.append(new INVOKEVIRTUAL(pushFrame));
 			// translate with-params
 			translateContents(classGen, methodGen);
@@ -138,7 +139,8 @@ final class ApplyTemplates extends Instruction {
 		if ((_type != null) && (_type instanceof ResultTreeType)) {
 			// <xsl:sort> cannot be applied to a result tree - issue warning
 			if (sortObjects.size() > 0) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.RESULT_TREE_SORT_ERR, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.RESULT_TREE_SORT_ERR,
+						this);
 				getParser().reportError(WARNING, err);
 			}
 			// Put the result tree (a DOM adapter) on the stack
@@ -150,9 +152,10 @@ final class ApplyTemplates extends Instruction {
 
 			// compute node iterator for applyTemplates
 			if (sortObjects.size() > 0) {
-				Sort.translateSortIterator(classGen, methodGen, _select, sortObjects);
-				int setStartNode = cpg.addInterfaceMethodref(NODE_ITERATOR, SET_START_NODE,
-						"(I)" + NODE_ITERATOR_SIG);
+				Sort.translateSortIterator(classGen, methodGen, _select,
+						sortObjects);
+				int setStartNode = cpg.addInterfaceMethodref(NODE_ITERATOR,
+						SET_START_NODE, "(I)" + NODE_ITERATOR_SIG);
 				il.append(methodGen.loadCurrentNode());
 				il.append(new INVOKEINTERFACE(setStartNode, 2));
 				setStartNodeCalled = true;
@@ -172,7 +175,8 @@ final class ApplyTemplates extends Instruction {
 		final String className = classGen.getStylesheet().getClassName();
 		il.append(methodGen.loadHandler());
 		final String applyTemplatesSig = classGen.getApplyTemplatesSig();
-		final int applyTemplates = cpg.addMethodref(className, _functionName, applyTemplatesSig);
+		final int applyTemplates = cpg.addMethodref(className, _functionName,
+				applyTemplatesSig);
 		il.append(new INVOKEVIRTUAL(applyTemplates));
 
 		// unmap parameters to release temporary result trees
@@ -185,8 +189,8 @@ final class ApplyTemplates extends Instruction {
 		// Pop parameter frame
 		if (stylesheet.hasLocalParams() || hasContents()) {
 			il.append(classGen.loadTranslet());
-			final int popFrame = cpg.addMethodref(TRANSLET_CLASS, POP_PARAM_FRAME,
-					POP_PARAM_FRAME_SIG);
+			final int popFrame = cpg.addMethodref(TRANSLET_CLASS,
+					POP_PARAM_FRAME, POP_PARAM_FRAME_SIG);
 			il.append(new INVOKEVIRTUAL(popFrame));
 		}
 	}

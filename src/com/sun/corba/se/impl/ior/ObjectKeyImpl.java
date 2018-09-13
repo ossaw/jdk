@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -78,7 +58,8 @@ public class ObjectKeyImpl implements ObjectKey {
 	}
 
 	public byte[] getBytes(org.omg.CORBA.ORB orb) {
-		EncapsOutputStream os = sun.corba.OutputStreamFactory.newEncapsOutputStream((ORB) orb);
+		EncapsOutputStream os = sun.corba.OutputStreamFactory
+				.newEncapsOutputStream((ORB) orb);
 		write(os);
 		return os.toByteArray();
 	}

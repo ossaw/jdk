@@ -1,32 +1,12 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // Attributes.java - attribute list with Namespace support
 // http://www.saxproject.org
 // Written by David Megginson
-// NO WARRANTY!  This class is in the public domain.
+// NO WARRANTY! This class is in the public domain.
 // $Id: Attributes.java,v 1.2 2004/11/03 22:44:51 jsuttor Exp $
 
 package org.xml.sax;
@@ -119,7 +99,7 @@ public interface Attributes {
 	 * Look up an attribute's Namespace URI by index.
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return The Namespace URI, or the empty string if none is available, or
 	 *         null if the index is out of range.
 	 * @see #getLength
@@ -130,7 +110,7 @@ public interface Attributes {
 	 * Look up an attribute's local name by index.
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return The local name, or the empty string if Namespace processing is
 	 *         not being performed, or null if the index is out of range.
 	 * @see #getLength
@@ -141,7 +121,7 @@ public interface Attributes {
 	 * Look up an attribute's XML qualified (prefixed) name by index.
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return The XML qualified name, or the empty string if none is available,
 	 *         or null if the index is out of range.
 	 * @see #getLength
@@ -170,7 +150,7 @@ public interface Attributes {
 	 * </p>
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return The attribute's type as a string, or null if the index is out of
 	 *         range.
 	 * @see #getLength
@@ -187,7 +167,7 @@ public interface Attributes {
 	 * </p>
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return The attribute's value as a string, or null if the index is out of
 	 *         range.
 	 * @see #getLength
@@ -202,10 +182,11 @@ public interface Attributes {
 	 * Look up the index of an attribute by Namespace name.
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string if the name has no
-	 *            Namespace URI.
+	 *                  The Namespace URI, or the empty string if the name has
+	 *                  no
+	 *                  Namespace URI.
 	 * @param localName
-	 *            The attribute's local name.
+	 *                  The attribute's local name.
 	 * @return The index of the attribute, or -1 if it does not appear in the
 	 *         list.
 	 */
@@ -215,7 +196,7 @@ public interface Attributes {
 	 * Look up the index of an attribute by XML qualified (prefixed) name.
 	 *
 	 * @param qName
-	 *            The qualified (prefixed) name.
+	 *              The qualified (prefixed) name.
 	 * @return The index of the attribute, or -1 if it does not appear in the
 	 *         list.
 	 */
@@ -230,10 +211,11 @@ public interface Attributes {
 	 * </p>
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty String if the name has no
-	 *            Namespace URI.
+	 *                  The Namespace URI, or the empty String if the name has
+	 *                  no
+	 *                  Namespace URI.
 	 * @param localName
-	 *            The local name of the attribute.
+	 *                  The local name of the attribute.
 	 * @return The attribute type as a string, or null if the attribute is not
 	 *         in the list or if Namespace processing is not being performed.
 	 */
@@ -248,7 +230,7 @@ public interface Attributes {
 	 * </p>
 	 *
 	 * @param qName
-	 *            The XML qualified name.
+	 *              The XML qualified name.
 	 * @return The attribute type as a string, or null if the attribute is not
 	 *         in the list or if qualified names are not available.
 	 */
@@ -263,10 +245,11 @@ public interface Attributes {
 	 * </p>
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty String if the name has no
-	 *            Namespace URI.
+	 *                  The Namespace URI, or the empty String if the name has
+	 *                  no
+	 *                  Namespace URI.
 	 * @param localName
-	 *            The local name of the attribute.
+	 *                  The local name of the attribute.
 	 * @return The attribute value as a string, or null if the attribute is not
 	 *         in the list.
 	 */
@@ -281,7 +264,7 @@ public interface Attributes {
 	 * </p>
 	 *
 	 * @param qName
-	 *            The XML qualified name.
+	 *              The XML qualified name.
 	 * @return The attribute value as a string, or null if the attribute is not
 	 *         in the list or if qualified names are not available.
 	 */

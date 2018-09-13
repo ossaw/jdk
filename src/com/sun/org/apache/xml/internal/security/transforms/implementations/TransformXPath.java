@@ -73,8 +73,9 @@ public class TransformXPath extends TransformSpi {
 	 *
 	 * @throws TransformationException
 	 */
-	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
-			Transform transformObject) throws TransformationException {
+	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
+			OutputStream os, Transform transformObject)
+			throws TransformationException {
 		try {
 			/**
 			 * If the actual input is an octet stream, then the application MUST
@@ -89,8 +90,8 @@ public class TransformXPath extends TransformSpi {
 			 * nodes (including comments) in the node-set representing the octet
 			 * stream.
 			 */
-			Element xpathElement = XMLUtils.selectDsNode(
-					transformObject.getElement().getFirstChild(), Constants._TAG_XPATH, 0);
+			Element xpathElement = XMLUtils.selectDsNode(transformObject
+					.getElement().getFirstChild(), Constants._TAG_XPATH, 0);
 
 			if (xpathElement == null) {
 				Object exArgs[] = { "ds:XPath", "Transform" };
@@ -107,8 +108,8 @@ public class TransformXPath extends TransformSpi {
 
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 			XPathAPI xpathAPIInstance = xpathFactory.newXPathAPI();
-			input.addNodeFilter(
-					new XPathNodeFilter(xpathElement, xpathnode, str, xpathAPIInstance));
+			input.addNodeFilter(new XPathNodeFilter(xpathElement, xpathnode,
+					str, xpathAPIInstance));
 			input.setNodeSet(true);
 			return input;
 		} catch (DOMException ex) {
@@ -121,7 +122,8 @@ public class TransformXPath extends TransformSpi {
 	 * @return true if needs to be circumvent for bug.
 	 */
 	private boolean needsCircumvent(String str) {
-		return (str.indexOf("namespace") != -1) || (str.indexOf("name()") != -1);
+		return (str.indexOf("namespace") != -1) || (str.indexOf(
+				"name()") != -1);
 	}
 
 	static class XPathNodeFilter implements NodeFilter {
@@ -131,7 +133,8 @@ public class TransformXPath extends TransformSpi {
 		Element xpathElement;
 		String str;
 
-		XPathNodeFilter(Element xpathElement, Node xpathnode, String str, XPathAPI xPathAPI) {
+		XPathNodeFilter(Element xpathElement, Node xpathnode, String str,
+				XPathAPI xPathAPI) {
 			this.xpathnode = xpathnode;
 			this.str = str;
 			this.xpathElement = xpathElement;
@@ -143,17 +146,21 @@ public class TransformXPath extends TransformSpi {
 		 */
 		public int isNodeInclude(Node currentNode) {
 			try {
-				boolean include = xPathAPI.evaluate(currentNode, xpathnode, str, xpathElement);
+				boolean include = xPathAPI.evaluate(currentNode, xpathnode, str,
+						xpathElement);
 				if (include) {
 					return 1;
 				}
 				return 0;
 			} catch (TransformerException e) {
 				Object[] eArgs = { currentNode };
-				throw new XMLSecurityRuntimeException("signature.Transform.node", eArgs, e);
+				throw new XMLSecurityRuntimeException(
+						"signature.Transform.node", eArgs, e);
 			} catch (Exception e) {
-				Object[] eArgs = { currentNode, Short.valueOf(currentNode.getNodeType()) };
-				throw new XMLSecurityRuntimeException("signature.Transform.nodeAndType", eArgs, e);
+				Object[] eArgs = { currentNode, Short.valueOf(currentNode
+						.getNodeType()) };
+				throw new XMLSecurityRuntimeException(
+						"signature.Transform.nodeAndType", eArgs, e);
 			}
 		}
 

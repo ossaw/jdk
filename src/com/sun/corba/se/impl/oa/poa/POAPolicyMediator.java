@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -70,12 +50,13 @@ public interface POAPolicyMediator {
 	 * Get the servant to use for an invocation with the given id and operation.
 	 * 
 	 * @param id
-	 *            the object ID for which we are requesting a servant
+	 *                  the object ID for which we are requesting a servant
 	 * @param operation
-	 *            the name of the operation to be performed on the servant
+	 *                  the name of the operation to be performed on the servant
 	 * @return the resulting Servant.
 	 */
-	java.lang.Object getInvocationServant(byte[] id, String operation) throws ForwardRequest;
+	java.lang.Object getInvocationServant(byte[] id, String operation)
+			throws ForwardRequest;
 
 	/**
 	 * Release a servant that was obtained from getInvocationServant.
@@ -117,8 +98,8 @@ public interface POAPolicyMediator {
 	 */
 	void setDefaultServant(Servant servant) throws WrongPolicy;
 
-	void activateObject(byte[] id, Servant servant)
-			throws ObjectAlreadyActive, ServantAlreadyActive, WrongPolicy;
+	void activateObject(byte[] id, Servant servant) throws ObjectAlreadyActive,
+			ServantAlreadyActive, WrongPolicy;
 
 	/**
 	 * Deactivate the object that is associated with the given id. Returns the

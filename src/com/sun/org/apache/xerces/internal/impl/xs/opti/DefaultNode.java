@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,8 +34,7 @@ import org.w3c.dom.DOMException;
 public class DefaultNode implements Node {
 
 	// default constructor
-	public DefaultNode() {
-	}
+	public DefaultNode() {}
 
 	//
 	// org.w3c.dom.Node methods
@@ -97,8 +93,7 @@ public class DefaultNode implements Node {
 		return null;
 	}
 
-	public void normalize() {
-	}
+	public void normalize() {}
 
 	public boolean isSupported(String feature, String version) {
 		return false;
@@ -127,60 +122,74 @@ public class DefaultNode implements Node {
 
 	// setter methods
 	public void setNodeValue(String nodeValue) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Node insertBefore(Node newChild, Node refChild) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Node removeChild(Node oldChild) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Node appendChild(Node newChild) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public void setPrefix(String prefix) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public short compareDocumentPosition(Node other) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public String getTextContent() throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public void setTextContent(String textContent) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public boolean isSameNode(Node other) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 
 	}
 
 	public String lookupPrefix(String namespaceURI) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public boolean isDefaultNamespace(String namespaceURI) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public String lookupNamespaceURI(String prefix) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public boolean isEqualNode(Node arg) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 
 	}
 
@@ -188,8 +197,10 @@ public class DefaultNode implements Node {
 		return null;
 	}
 
-	public Object setUserData(String key, Object data, UserDataHandler handler) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public Object setUserData(String key, Object data,
+			UserDataHandler handler) {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Object getUserData(String key) {

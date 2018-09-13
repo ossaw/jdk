@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -128,7 +108,8 @@ import sun.util.calendar.ZoneInfo;
  * @since JDK1.0
  */
 public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
-	private static final BaseCalendar gcal = CalendarSystem.getGregorianCalendar();
+	private static final BaseCalendar gcal = CalendarSystem
+			.getGregorianCalendar();
 	private static BaseCalendar jcal;
 
 	private transient long fastTime;
@@ -166,7 +147,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * "the epoch", namely January 1, 1970, 00:00:00 GMT.
 	 *
 	 * @param date
-	 *            the milliseconds since January 1, 1970, 00:00:00 GMT.
+	 *             the milliseconds since January 1, 1970, 00:00:00 GMT.
 	 * @see java.lang.System#currentTimeMillis()
 	 */
 	public Date(long date) {
@@ -180,11 +161,11 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * arguments.
 	 *
 	 * @param year
-	 *            the year minus 1900.
+	 *              the year minus 1900.
 	 * @param month
-	 *            the month between 0-11.
+	 *              the month between 0-11.
 	 * @param date
-	 *            the day of the month between 1-31.
+	 *              the day of the month between 1-31.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(year + 1900, month, date)</code> or
@@ -202,15 +183,15 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * <code>hrs</code>, and <code>min</code> arguments, in the local time zone.
 	 *
 	 * @param year
-	 *            the year minus 1900.
+	 *              the year minus 1900.
 	 * @param month
-	 *            the month between 0-11.
+	 *              the month between 0-11.
 	 * @param date
-	 *            the day of the month between 1-31.
+	 *              the day of the month between 1-31.
 	 * @param hrs
-	 *            the hours between 0-23.
+	 *              the hours between 0-23.
 	 * @param min
-	 *            the minutes between 0-59.
+	 *              the minutes between 0-59.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(year + 1900, month, date,
@@ -230,17 +211,17 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * the local time zone.
 	 *
 	 * @param year
-	 *            the year minus 1900.
+	 *              the year minus 1900.
 	 * @param month
-	 *            the month between 0-11.
+	 *              the month between 0-11.
 	 * @param date
-	 *            the day of the month between 1-31.
+	 *              the day of the month between 1-31.
 	 * @param hrs
-	 *            the hours between 0-23.
+	 *              the hours between 0-23.
 	 * @param min
-	 *            the minutes between 0-59.
+	 *              the minutes between 0-59.
 	 * @param sec
-	 *            the seconds between 0-59.
+	 *              the seconds between 0-59.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(year + 1900, month, date,
@@ -260,8 +241,10 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 			month = CalendarUtils.mod(month, 12);
 		}
 		BaseCalendar cal = getCalendarSystem(y);
-		cdate = (BaseCalendar.Date) cal.newCalendarDate(TimeZone.getDefaultRef());
-		cdate.setNormalizedDate(y, month + 1, date).setTimeOfDay(hrs, min, sec, 0);
+		cdate = (BaseCalendar.Date) cal.newCalendarDate(TimeZone
+				.getDefaultRef());
+		cdate.setNormalizedDate(y, month + 1, date).setTimeOfDay(hrs, min, sec,
+				0);
 		getTimeImpl();
 		cdate = null;
 	}
@@ -272,7 +255,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * which is interpreted as if by the {@link Date#parse} method.
 	 *
 	 * @param s
-	 *            a string representation of the date.
+	 *          a string representation of the date.
 	 * @see java.text.DateFormat
 	 * @see java.util.Date#parse(java.lang.String)
 	 * @deprecated As of JDK version 1.1, replaced by
@@ -309,17 +292,17 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * 1970).
 	 *
 	 * @param year
-	 *            the year minus 1900.
+	 *              the year minus 1900.
 	 * @param month
-	 *            the month between 0-11.
+	 *              the month between 0-11.
 	 * @param date
-	 *            the day of the month between 1-31.
+	 *              the day of the month between 1-31.
 	 * @param hrs
-	 *            the hours between 0-23.
+	 *              the hours between 0-23.
 	 * @param min
-	 *            the minutes between 0-59.
+	 *              the minutes between 0-59.
 	 * @param sec
-	 *            the seconds between 0-59.
+	 *              the seconds between 0-59.
 	 * @return the number of milliseconds since January 1, 1970, 00:00:00 GMT
 	 *         for the date and time specified by the arguments.
 	 * @see java.util.Calendar
@@ -330,7 +313,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 *             followed by <code>Calendar.getTime().getTime()</code>.
 	 */
 	@Deprecated
-	public static long UTC(int year, int month, int date, int hrs, int min, int sec) {
+	public static long UTC(int year, int month, int date, int hrs, int min,
+			int sec) {
 		int y = year + 1900;
 		// month is 0-based. So we have to normalize month to support
 		// Long.MAX_VALUE.
@@ -464,7 +448,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * interpreted in the local time zone.
 	 *
 	 * @param s
-	 *            a string to be parsed as a date.
+	 *          a string to be parsed as a date.
 	 * @return the number of milliseconds since January 1, 1970, 00:00:00 GMT
 	 *         represented by the string argument.
 	 * @see java.text.DateFormat
@@ -514,7 +498,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 						n = n * 10 + c - '0';
 						i++;
 					}
-					if (prevc == '+' || prevc == '-' && year != Integer.MIN_VALUE) {
+					if (prevc == '+' || prevc == '-'
+							&& year != Integer.MIN_VALUE) {
 						// timezone offset
 						if (n < 24)
 							n = n * 60; // EG. "GMT-3"
@@ -610,7 +595,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 			if (year < 100) {
 				synchronized (Date.class) {
 					if (defaultCenturyStart == 0) {
-						defaultCenturyStart = gcal.getCalendarDate().getYear() - 80;
+						defaultCenturyStart = gcal.getCalendarDate().getYear()
+								- 80;
 					}
 				}
 				year += (defaultCenturyStart / 100) * 100;
@@ -631,9 +617,10 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 				ldate.setTimeOfDay(hour, min, sec, 0);
 				return cal.getTime(ldate);
 			}
-			BaseCalendar.Date udate = (BaseCalendar.Date) cal.newCalendarDate(null); // no
-																						// time
-																						// zone
+			BaseCalendar.Date udate = (BaseCalendar.Date) cal.newCalendarDate(
+					null); // no
+																								// time
+																								// zone
 			udate.setDate(year, mon + 1, mday);
 			udate.setTimeOfDay(hour, min, sec, 0);
 			return cal.getTime(udate) + tzoffset * (60 * 1000);
@@ -642,12 +629,13 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 		throw new IllegalArgumentException();
 	}
 
-	private final static String wtb[] = { "am", "pm", "monday", "tuesday", "wednesday", "thursday",
-			"friday", "saturday", "sunday", "january", "february", "march", "april", "may", "june",
-			"july", "august", "september", "october", "november", "december", "gmt", "ut", "utc",
+	private final static String wtb[] = { "am", "pm", "monday", "tuesday",
+			"wednesday", "thursday", "friday", "saturday", "sunday", "january",
+			"february", "march", "april", "may", "june", "july", "august",
+			"september", "october", "november", "december", "gmt", "ut", "utc",
 			"est", "edt", "cst", "cdt", "mst", "mdt", "pst", "pdt" };
-	private final static int ttb[] = { 14, 1, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
-			12, 13, 10000 + 0, 10000 + 0, 10000 + 0, // GMT/UT/UTC
+	private final static int ttb[] = { 14, 1, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4, 5,
+			6, 7, 8, 9, 10, 11, 12, 13, 10000 + 0, 10000 + 0, 10000 + 0, // GMT/UT/UTC
 			10000 + 5 * 60, 10000 + 4 * 60, // EST/EDT
 			10000 + 6 * 60, 10000 + 5 * 60, // CST/CDT
 			10000 + 7 * 60, 10000 + 6 * 60, // MST/MDT
@@ -679,7 +667,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * were on March 1.)
 	 *
 	 * @param year
-	 *            the year value.
+	 *             the year value.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(Calendar.YEAR, year + 1900)</code>.
@@ -714,7 +702,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * treated as if it were on July 1, because June has only 30 days.
 	 *
 	 * @param month
-	 *            the month value between 0-11.
+	 *              the month value between 0-11.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(Calendar.MONTH, int month)</code>.
@@ -764,7 +752,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * has only 30 days.
 	 *
 	 * @param date
-	 *            the day of the month value between 1-31.
+	 *             the day of the month value between 1-31.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(Calendar.DAY_OF_MONTH, int date)</code>.
@@ -816,7 +804,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * and second the same as before, as interpreted in the local time zone.
 	 *
 	 * @param hours
-	 *            the hour value.
+	 *              the hour value.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(Calendar.HOUR_OF_DAY, int hours)</code>.
@@ -849,7 +837,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * zone.
 	 *
 	 * @param minutes
-	 *            the value of the minutes.
+	 *                the value of the minutes.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(Calendar.MINUTE, int minutes)</code>.
@@ -883,7 +871,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * zone.
 	 *
 	 * @param seconds
-	 *            the seconds value.
+	 *                the seconds value.
 	 * @see java.util.Calendar
 	 * @deprecated As of JDK version 1.1, replaced by
 	 *             <code>Calendar.set(Calendar.SECOND, int seconds)</code>.
@@ -916,7 +904,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * <code>time</code> milliseconds after January 1, 1970 00:00:00 GMT.
 	 *
 	 * @param time
-	 *            the number of milliseconds.
+	 *             the number of milliseconds.
 	 */
 	public void setTime(long time) {
 		fastTime = time;
@@ -927,12 +915,12 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * Tests if this date is before the specified date.
 	 *
 	 * @param when
-	 *            a date.
+	 *             a date.
 	 * @return <code>true</code> if and only if the instant of time represented
 	 *         by this <tt>Date</tt> object is strictly earlier than the instant
 	 *         represented by <tt>when</tt>; <code>false</code> otherwise.
 	 * @exception NullPointerException
-	 *                if <code>when</code> is null.
+	 *                                 if <code>when</code> is null.
 	 */
 	public boolean before(Date when) {
 		return getMillisOf(this) < getMillisOf(when);
@@ -942,12 +930,12 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * Tests if this date is after the specified date.
 	 *
 	 * @param when
-	 *            a date.
+	 *             a date.
 	 * @return <code>true</code> if and only if the instant represented by this
 	 *         <tt>Date</tt> object is strictly later than the instant
 	 *         represented by <tt>when</tt>; <code>false</code> otherwise.
 	 * @exception NullPointerException
-	 *                if <code>when</code> is null.
+	 *                                 if <code>when</code> is null.
 	 */
 	public boolean after(Date when) {
 		return getMillisOf(this) > getMillisOf(when);
@@ -989,19 +977,20 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * Compares two Dates for ordering.
 	 *
 	 * @param anotherDate
-	 *            the <code>Date</code> to be compared.
+	 *                    the <code>Date</code> to be compared.
 	 * @return the value <code>0</code> if the argument Date is equal to this
 	 *         Date; a value less than <code>0</code> if this Date is before the
 	 *         Date argument; and a value greater than <code>0</code> if this
 	 *         Date is after the Date argument.
 	 * @since 1.2
 	 * @exception NullPointerException
-	 *                if <code>anotherDate</code> is null.
+	 *                                 if <code>anotherDate</code> is null.
 	 */
 	public int compareTo(Date anotherDate) {
 		long thisTime = getMillisOf(this);
 		long anotherTime = getMillisOf(anotherDate);
-		return (thisTime < anotherTime ? -1 : (thisTime == anotherTime ? 0 : 1));
+		return (thisTime < anotherTime ? -1
+				: (thisTime == anotherTime ? 0 : 1));
 	}
 
 	/**
@@ -1075,7 +1064,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 		CalendarUtils.sprintf0d(sb, date.getSeconds(), 2).append(' '); // ss
 		TimeZone zi = date.getZone();
 		if (zi != null) {
-			sb.append(zi.getDisplayName(date.isDaylightTime(), TimeZone.SHORT, Locale.US)); // zzz
+			sb.append(zi.getDisplayName(date.isDaylightTime(), TimeZone.SHORT,
+					Locale.US)); // zzz
 		} else {
 			sb.append("GMT");
 		}
@@ -1088,7 +1078,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * "Mon") and stored the abbreviation in the given
 	 * <code>StringBuilder</code>.
 	 */
-	private static final StringBuilder convertToAbbr(StringBuilder sb, String name) {
+	private static final StringBuilder convertToAbbr(StringBuilder sb,
+			String name) {
 		sb.append(Character.toUpperCase(name.charAt(0)));
 		sb.append(name.charAt(1)).append(name.charAt(2));
 		return sb;
@@ -1156,8 +1147,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 		// d MMM yyyy HH:mm:ss 'GMT'
 		long t = getTime();
 		BaseCalendar cal = getCalendarSystem(t);
-		BaseCalendar.Date date = (BaseCalendar.Date) cal.getCalendarDate(getTime(),
-				(TimeZone) null);
+		BaseCalendar.Date date = (BaseCalendar.Date) cal.getCalendarDate(
+				getTime(), (TimeZone) null);
 		StringBuilder sb = new StringBuilder(32);
 		CalendarUtils.sprintf0d(sb, date.getDayOfMonth(), 1).append(' '); // d
 		convertToAbbr(sb, wtb[date.getMonth() - 1 + 2 + 7]).append(' '); // MMM
@@ -1195,8 +1186,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * This method produces the same result as if it computed: <blockquote>
 	 * 
 	 * <pre>
-	 * (this.getTime() - UTC(this.getYear(), this.getMonth(), this.getDate(), this.getHours(),
-	 * 		this.getMinutes(), this.getSeconds())) / (60 * 1000)
+	 * (this.getTime() - UTC(this.getYear(), this.getMonth(), this.getDate(), this
+	 * 		.getHours(), this.getMinutes(), this.getSeconds())) / (60 * 1000)
 	 * </pre>
 	 * 
 	 * </blockquote>
@@ -1229,7 +1220,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	private final BaseCalendar.Date getCalendarDate() {
 		if (cdate == null) {
 			BaseCalendar cal = getCalendarSystem(fastTime);
-			cdate = (BaseCalendar.Date) cal.getCalendarDate(fastTime, TimeZone.getDefaultRef());
+			cdate = (BaseCalendar.Date) cal.getCalendarDate(fastTime, TimeZone
+					.getDefaultRef());
 		}
 		return cdate;
 	}
@@ -1237,7 +1229,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	private final BaseCalendar.Date normalize() {
 		if (cdate == null) {
 			BaseCalendar cal = getCalendarSystem(fastTime);
-			cdate = (BaseCalendar.Date) cal.getCalendarDate(fastTime, TimeZone.getDefaultRef());
+			cdate = (BaseCalendar.Date) cal.getCalendarDate(fastTime, TimeZone
+					.getDefaultRef());
 			return cdate;
 		}
 
@@ -1315,7 +1308,7 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * date. Use Gregorian from October 15, 1582.
 	 *
 	 * @param year
-	 *            normalized calendar year (not -1900)
+	 *             normalized calendar year (not -1900)
 	 * @return the CalendarSystem to use for the specified date
 	 */
 	private static final BaseCalendar getCalendarSystem(int year) {
@@ -1336,7 +1329,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 		return getJulianCalendar();
 	}
 
-	private static final BaseCalendar getCalendarSystem(BaseCalendar.Date cdate) {
+	private static final BaseCalendar getCalendarSystem(
+			BaseCalendar.Date cdate) {
 		if (jcal == null) {
 			return gcal;
 		}
@@ -1367,7 +1361,8 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	/**
 	 * Reconstitute this object from a stream (i.e., deserialize it).
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		fastTime = s.readLong();
 	}
 
@@ -1384,13 +1379,14 @@ public class Date implements java.io.Serializable, Cloneable, Comparable<Date> {
 	 * will throw an exception.
 	 *
 	 * @param instant
-	 *            the instant to convert
+	 *                the instant to convert
 	 * @return a {@code Date} representing the same point on the time-line as
 	 *         the provided instant
 	 * @exception NullPointerException
-	 *                if {@code instant} is null.
+	 *                                     if {@code instant} is null.
 	 * @exception IllegalArgumentException
-	 *                if the instant is too large to represent as a {@code Date}
+	 *                                     if the instant is too large to
+	 *                                     represent as a {@code Date}
 	 * @since 1.8
 	 */
 	public static Date from(Instant instant) {

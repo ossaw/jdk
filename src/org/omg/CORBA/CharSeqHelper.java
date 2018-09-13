@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -63,10 +43,12 @@ public abstract class CharSeqHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_char);
-			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
-			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CORBA.CharSeqHelper.id(),
-					"CharSeq", __typeCode);
+			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
+					org.omg.CORBA.TCKind.tk_char);
+			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
+					__typeCode);
+			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
+					org.omg.CORBA.CharSeqHelper.id(), "CharSeq", __typeCode);
 		}
 		return __typeCode;
 	}
@@ -83,7 +65,8 @@ public abstract class CharSeqHelper {
 		return value;
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, char[] value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			char[] value) {
 		ostream.write_long(value.length);
 		ostream.write_char_array(value, 0, value.length);
 	}

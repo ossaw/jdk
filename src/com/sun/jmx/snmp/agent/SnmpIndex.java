@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -63,7 +43,7 @@ public class SnmpIndex implements Serializable {
 	 * value.
 	 *
 	 * @param oidList
-	 *            The list of Object Identifiers.
+	 *                The list of Object Identifiers.
 	 */
 	public SnmpIndex(SnmpOid[] oidList) {
 		size = oidList.length;
@@ -108,7 +88,7 @@ public class SnmpIndex implements Serializable {
 	 * Compares two indexes for equality.
 	 *
 	 * @param index
-	 *            The index to compare <CODE>this</CODE> with.
+	 *              The index to compare <CODE>this</CODE> with.
 	 *
 	 * @return <CODE>true</CODE> if the two indexes are equal,
 	 *         <CODE>false</CODE> otherwise.
@@ -137,7 +117,7 @@ public class SnmpIndex implements Serializable {
 	 * Compares two indexes.
 	 *
 	 * @param index
-	 *            The index to compare <CODE>this</CODE> with.
+	 *              The index to compare <CODE>this</CODE> with.
 	 *
 	 * @return The value 0 if the two OID vectors have the same elements,
 	 *         another value otherwise.

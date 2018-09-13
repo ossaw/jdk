@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -101,16 +81,17 @@ public class ContainerEvent extends ComponentEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> object (container) that originated
-	 *            the event
+	 *               The <code>Component</code> object (container) that
+	 *               originated
+	 *               the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link ContainerEvent}
+	 *               An integer indicating the type of event. For information on
+	 *               allowable values, see the class description for
+	 *               {@link ContainerEvent}
 	 * @param child
-	 *            the component that was added or removed
+	 *               the component that was added or removed
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getContainer()
 	 * @see #getID()
 	 * @see #getChild()
@@ -148,14 +129,14 @@ public class ContainerEvent extends ComponentEvent {
 	public String paramString() {
 		String typeStr;
 		switch (id) {
-		case COMPONENT_ADDED:
-			typeStr = "COMPONENT_ADDED";
-			break;
-		case COMPONENT_REMOVED:
-			typeStr = "COMPONENT_REMOVED";
-			break;
-		default:
-			typeStr = "unknown type";
+			case COMPONENT_ADDED:
+				typeStr = "COMPONENT_ADDED";
+				break;
+			case COMPONENT_REMOVED:
+				typeStr = "COMPONENT_REMOVED";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
 		return typeStr + ",child=" + child.getName();
 	}

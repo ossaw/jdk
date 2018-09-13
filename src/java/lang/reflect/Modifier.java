@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -49,8 +29,8 @@ public class Modifier {
 	 * Bootstrapping protocol between java.lang and java.lang.reflect packages
 	 */
 	static {
-		sun.reflect.ReflectionFactory factory = AccessController
-				.doPrivileged(new ReflectionFactory.GetReflectionFactoryAction());
+		sun.reflect.ReflectionFactory factory = AccessController.doPrivileged(
+				new ReflectionFactory.GetReflectionFactoryAction());
 		factory.setLangReflectAccess(new java.lang.reflect.ReflectAccess());
 	}
 
@@ -376,42 +356,44 @@ public class Modifier {
 	 * 
 	 * @jls 8.1.1 Class Modifiers
 	 */
-	private static final int CLASS_MODIFIERS = Modifier.PUBLIC | Modifier.PROTECTED
-			| Modifier.PRIVATE | Modifier.ABSTRACT | Modifier.STATIC | Modifier.FINAL
-			| Modifier.STRICT;
+	private static final int CLASS_MODIFIERS = Modifier.PUBLIC
+			| Modifier.PROTECTED | Modifier.PRIVATE | Modifier.ABSTRACT
+			| Modifier.STATIC | Modifier.FINAL | Modifier.STRICT;
 
 	/**
 	 * The Java source modifiers that can be applied to an interface.
 	 * 
 	 * @jls 9.1.1 Interface Modifiers
 	 */
-	private static final int INTERFACE_MODIFIERS = Modifier.PUBLIC | Modifier.PROTECTED
-			| Modifier.PRIVATE | Modifier.ABSTRACT | Modifier.STATIC | Modifier.STRICT;
+	private static final int INTERFACE_MODIFIERS = Modifier.PUBLIC
+			| Modifier.PROTECTED | Modifier.PRIVATE | Modifier.ABSTRACT
+			| Modifier.STATIC | Modifier.STRICT;
 
 	/**
 	 * The Java source modifiers that can be applied to a constructor.
 	 * 
 	 * @jls 8.8.3 Constructor Modifiers
 	 */
-	private static final int CONSTRUCTOR_MODIFIERS = Modifier.PUBLIC | Modifier.PROTECTED
-			| Modifier.PRIVATE;
+	private static final int CONSTRUCTOR_MODIFIERS = Modifier.PUBLIC
+			| Modifier.PROTECTED | Modifier.PRIVATE;
 
 	/**
 	 * The Java source modifiers that can be applied to a method. @jls8.4.3
 	 * Method Modifiers
 	 */
-	private static final int METHOD_MODIFIERS = Modifier.PUBLIC | Modifier.PROTECTED
-			| Modifier.PRIVATE | Modifier.ABSTRACT | Modifier.STATIC | Modifier.FINAL
-			| Modifier.SYNCHRONIZED | Modifier.NATIVE | Modifier.STRICT;
+	private static final int METHOD_MODIFIERS = Modifier.PUBLIC
+			| Modifier.PROTECTED | Modifier.PRIVATE | Modifier.ABSTRACT
+			| Modifier.STATIC | Modifier.FINAL | Modifier.SYNCHRONIZED
+			| Modifier.NATIVE | Modifier.STRICT;
 
 	/**
 	 * The Java source modifiers that can be applied to a field.
 	 * 
 	 * @jls 8.3.1 Field Modifiers
 	 */
-	private static final int FIELD_MODIFIERS = Modifier.PUBLIC | Modifier.PROTECTED
-			| Modifier.PRIVATE | Modifier.STATIC | Modifier.FINAL | Modifier.TRANSIENT
-			| Modifier.VOLATILE;
+	private static final int FIELD_MODIFIERS = Modifier.PUBLIC
+			| Modifier.PROTECTED | Modifier.PRIVATE | Modifier.STATIC
+			| Modifier.FINAL | Modifier.TRANSIENT | Modifier.VOLATILE;
 
 	/**
 	 * The Java source modifiers that can be applied to a method or constructor
@@ -424,7 +406,8 @@ public class Modifier {
 	/**
 	 *
 	 */
-	static final int ACCESS_MODIFIERS = Modifier.PUBLIC | Modifier.PROTECTED | Modifier.PRIVATE;
+	static final int ACCESS_MODIFIERS = Modifier.PUBLIC | Modifier.PROTECTED
+			| Modifier.PRIVATE;
 
 	/**
 	 * Return an {@code int} value OR-ing together the source language modifiers

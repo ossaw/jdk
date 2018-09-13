@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -60,15 +35,17 @@ public interface DOMImplementationCSS extends DOMImplementation {
 	 * Creates a new <code>CSSStyleSheet</code>.
 	 * 
 	 * @param title
-	 *            The advisory title. See also the section.
+	 *              The advisory title. See also the section.
 	 * @param media
-	 *            The comma-separated list of media associated with the new
-	 *            style sheet. See also the section.
+	 *              The comma-separated list of media associated with the new
+	 *              style sheet. See also the section.
 	 * @return A new CSS style sheet.
 	 * @exception DOMException
-	 *                SYNTAX_ERR: Raised if the specified media string value has
-	 *                a syntax error and is unparsable.
+	 *                         SYNTAX_ERR: Raised if the specified media string
+	 *                         value has
+	 *                         a syntax error and is unparsable.
 	 */
-	public CSSStyleSheet createCSSStyleSheet(String title, String media) throws DOMException;
+	public CSSStyleSheet createCSSStyleSheet(String title, String media)
+			throws DOMException;
 
 }

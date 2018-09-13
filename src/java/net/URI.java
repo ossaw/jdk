@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -144,7 +124,8 @@ import java.lang.NullPointerException; // for javadoc
  *
  * <blockquote>
  * <table summary=
- * "Describes the components of a URI:scheme,scheme-specific-part,authority,user-info,host,port,path,query,fragment"
+ * "Describes the components of a
+ * URI:scheme,scheme-specific-part,authority,user-info,host,port,path,query,fragment"
  * >
  * <tr>
  * <th><i>Component</i></th>
@@ -290,7 +271,8 @@ import java.lang.NullPointerException; // for javadoc
  *
  * <blockquote>
  * <table cellspacing=2 summary=
- * "Describes categories alpha,digit,alphanum,unreserved,punct,reserved,escaped,and other"
+ * "Describes categories
+ * alpha,digit,alphanum,unreserved,punct,reserved,escaped,and other"
  * >
  * <tr>
  * <th valign=top><i>alpha</i></th>
@@ -616,8 +598,7 @@ public final class URI implements Comparable<URI>, Serializable {
 
 	// -- Constructors and factories --
 
-	private URI() {
-	} // Used internally
+	private URI() {} // Used internally
 
 	/**
 	 * Constructs a URI by parsing the given string.
@@ -703,11 +684,12 @@ public final class URI implements Comparable<URI>, Serializable {
 	 *            The string to be parsed into a URI
 	 *
 	 * @throws NullPointerException
-	 *             If {@code str} is {@code null}
+	 *                              If {@code str} is {@code null}
 	 *
 	 * @throws URISyntaxException
-	 *             If the given string violates RFC&nbsp;2396, as augmented by
-	 *             the above deviations
+	 *                              If the given string violates RFC&nbsp;2396,
+	 *                              as augmented by
+	 *                              the above deviations
 	 */
 	public URI(String str) throws URISyntaxException {
 		new Parser(str).parse(false);
@@ -811,30 +793,36 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * </p>
 	 *
 	 * @param scheme
-	 *            Scheme name
+	 *                 Scheme name
 	 * @param userInfo
-	 *            User name and authorization information
+	 *                 User name and authorization information
 	 * @param host
-	 *            Host name
+	 *                 Host name
 	 * @param port
-	 *            Port number
+	 *                 Port number
 	 * @param path
-	 *            Path
+	 *                 Path
 	 * @param query
-	 *            Query
+	 *                 Query
 	 * @param fragment
-	 *            Fragment
+	 *                 Fragment
 	 *
 	 * @throws URISyntaxException
-	 *             If both a scheme and a path are given but the path is
-	 *             relative, if the URI string constructed from the given
-	 *             components violates RFC&nbsp;2396, or if the authority
-	 *             component of the string is present but cannot be parsed as a
-	 *             server-based authority
+	 *                            If both a scheme and a path are given but the
+	 *                            path is
+	 *                            relative, if the URI string constructed from
+	 *                            the given
+	 *                            components violates RFC&nbsp;2396, or if the
+	 *                            authority
+	 *                            component of the string is present but cannot
+	 *                            be parsed as a
+	 *                            server-based authority
 	 */
-	public URI(String scheme, String userInfo, String host, int port, String path, String query,
-			String fragment) throws URISyntaxException {
-		String s = toString(scheme, null, null, userInfo, host, port, path, query, fragment);
+	public URI(String scheme, String userInfo, String host, int port,
+			String path, String query, String fragment)
+			throws URISyntaxException {
+		String s = toString(scheme, null, null, userInfo, host, port, path,
+				query, fragment);
 		checkPath(s, scheme, path);
 		new Parser(s).parse(true);
 	}
@@ -917,26 +905,31 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * </p>
 	 *
 	 * @param scheme
-	 *            Scheme name
+	 *                  Scheme name
 	 * @param authority
-	 *            Authority
+	 *                  Authority
 	 * @param path
-	 *            Path
+	 *                  Path
 	 * @param query
-	 *            Query
+	 *                  Query
 	 * @param fragment
-	 *            Fragment
+	 *                  Fragment
 	 *
 	 * @throws URISyntaxException
-	 *             If both a scheme and a path are given but the path is
-	 *             relative, if the URI string constructed from the given
-	 *             components violates RFC&nbsp;2396, or if the authority
-	 *             component of the string is present but cannot be parsed as a
-	 *             server-based authority
+	 *                            If both a scheme and a path are given but the
+	 *                            path is
+	 *                            relative, if the URI string constructed from
+	 *                            the given
+	 *                            components violates RFC&nbsp;2396, or if the
+	 *                            authority
+	 *                            component of the string is present but cannot
+	 *                            be parsed as a
+	 *                            server-based authority
 	 */
-	public URI(String scheme, String authority, String path, String query, String fragment)
-			throws URISyntaxException {
-		String s = toString(scheme, null, authority, null, null, -1, path, query, fragment);
+	public URI(String scheme, String authority, String path, String query,
+			String fragment) throws URISyntaxException {
+		String s = toString(scheme, null, authority, null, null, -1, path,
+				query, fragment);
 		checkPath(s, scheme, path);
 		new Parser(s).parse(false);
 	}
@@ -956,19 +949,21 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * {@code (scheme, null, host, -1, path, null, fragment);} </blockquote>
 	 *
 	 * @param scheme
-	 *            Scheme name
+	 *                 Scheme name
 	 * @param host
-	 *            Host name
+	 *                 Host name
 	 * @param path
-	 *            Path
+	 *                 Path
 	 * @param fragment
-	 *            Fragment
+	 *                 Fragment
 	 *
 	 * @throws URISyntaxException
-	 *             If the URI string constructed from the given components
-	 *             violates RFC&nbsp;2396
+	 *                            If the URI string constructed from the given
+	 *                            components
+	 *                            violates RFC&nbsp;2396
 	 */
-	public URI(String scheme, String host, String path, String fragment) throws URISyntaxException {
+	public URI(String scheme, String host, String path, String fragment)
+			throws URISyntaxException {
 		this(scheme, null, host, -1, path, null, fragment);
 	}
 
@@ -1023,18 +1018,21 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * </p>
 	 *
 	 * @param scheme
-	 *            Scheme name
+	 *                 Scheme name
 	 * @param ssp
-	 *            Scheme-specific part
+	 *                 Scheme-specific part
 	 * @param fragment
-	 *            Fragment
+	 *                 Fragment
 	 *
 	 * @throws URISyntaxException
-	 *             If the URI string constructed from the given components
-	 *             violates RFC&nbsp;2396
+	 *                            If the URI string constructed from the given
+	 *                            components
+	 *                            violates RFC&nbsp;2396
 	 */
-	public URI(String scheme, String ssp, String fragment) throws URISyntaxException {
-		new Parser(toString(scheme, ssp, null, null, null, -1, null, null, fragment)).parse(false);
+	public URI(String scheme, String ssp, String fragment)
+			throws URISyntaxException {
+		new Parser(toString(scheme, ssp, null, null, null, -1, null, null,
+				fragment)).parse(false);
 	}
 
 	/**
@@ -1061,10 +1059,11 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * @return The new URI
 	 *
 	 * @throws NullPointerException
-	 *             If {@code str} is {@code null}
+	 *                                  If {@code str} is {@code null}
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the given string violates RFC&nbsp;2396
+	 *                                  If the given string violates
+	 *                                  RFC&nbsp;2396
 	 */
 	public static URI create(String str) {
 		try {
@@ -1122,9 +1121,11 @@ public final class URI implements Comparable<URI>, Serializable {
 	 *         authority
 	 *
 	 * @throws URISyntaxException
-	 *             If the authority component of this URI is defined but cannot
-	 *             be parsed as a server-based authority according to
-	 *             RFC&nbsp;2396
+	 *                            If the authority component of this URI is
+	 *                            defined but cannot
+	 *                            be parsed as a server-based authority
+	 *                            according to
+	 *                            RFC&nbsp;2396
 	 */
 	public URI parseServerAuthority() throws URISyntaxException {
 		// We could be clever and cache the error message and index from the
@@ -1270,7 +1271,7 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * @return The resulting URI
 	 *
 	 * @throws NullPointerException
-	 *             If {@code uri} is {@code null}
+	 *                              If {@code uri} is {@code null}
 	 */
 	public URI resolve(URI uri) {
 		return resolve(this, uri);
@@ -1291,10 +1292,11 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * @return The resulting URI
 	 *
 	 * @throws NullPointerException
-	 *             If {@code str} is {@code null}
+	 *                                  If {@code str} is {@code null}
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the given string violates RFC&nbsp;2396
+	 *                                  If the given string violates
+	 *                                  RFC&nbsp;2396
 	 */
 	public URI resolve(String str) {
 		return resolve(URI.create(str));
@@ -1335,7 +1337,7 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * @return The resulting URI
 	 *
 	 * @throws NullPointerException
-	 *             If {@code uri} is {@code null}
+	 *                              If {@code uri} is {@code null}
 	 */
 	public URI relativize(URI uri) {
 		return relativize(this, uri);
@@ -1353,11 +1355,13 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * @return A URL constructed from this URI
 	 *
 	 * @throws IllegalArgumentException
-	 *             If this URL is not absolute
+	 *                                  If this URL is not absolute
 	 *
 	 * @throws MalformedURLException
-	 *             If a protocol handler for the URL could not be found, or if
-	 *             some other error occurred while constructing the URL
+	 *                                  If a protocol handler for the URL could
+	 *                                  not be found, or if
+	 *                                  some other error occurred while
+	 *                                  constructing the URL
 	 */
 	public URL toURL() throws MalformedURLException {
 		if (!isAbsolute())
@@ -1725,7 +1729,7 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * </p>
 	 *
 	 * @param ob
-	 *            The object to which this object is to be compared
+	 *           The object to which this object is to be compared
 	 *
 	 * @return {@code true} if, and only if, the given object is a URI that is
 	 *         identical to this URI
@@ -1897,13 +1901,13 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * </p>
 	 *
 	 * @param that
-	 *            The object to which this URI is to be compared
+	 *             The object to which this URI is to be compared
 	 *
 	 * @return A negative integer, zero, or a positive integer as this URI is
 	 *         less than, equal to, or greater than the given URI
 	 *
 	 * @throws ClassCastException
-	 *             If the given object is not a URI
+	 *                            If the given object is not a URI
 	 */
 	public int compareTo(URI that) {
 		int c;
@@ -1914,7 +1918,8 @@ public final class URI implements Comparable<URI>, Serializable {
 		if (this.isOpaque()) {
 			if (that.isOpaque()) {
 				// Both opaque
-				if ((c = compare(this.schemeSpecificPart, that.schemeSpecificPart)) != 0)
+				if ((c = compare(this.schemeSpecificPart,
+						that.schemeSpecificPart)) != 0)
 					return c;
 				return compare(this.fragment, that.fragment);
 			}
@@ -2003,7 +2008,7 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * </p>
 	 *
 	 * @param os
-	 *            The object-output stream to which this object is to be written
+	 *           The object-output stream to which this object is to be written
 	 */
 	private void writeObject(ObjectOutputStream os) throws IOException {
 		defineString();
@@ -2019,9 +2024,10 @@ public final class URI implements Comparable<URI>, Serializable {
 	 * parsed in the usual way.
 	 *
 	 * @param is
-	 *            The object-input stream from which this object is being read
+	 *           The object-input stream from which this object is being read
 	 */
-	private void readObject(ObjectInputStream is) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream is) throws ClassNotFoundException,
+			IOException {
 		port = -1; // Argh
 		is.defaultReadObject();
 		try {
@@ -2111,7 +2117,8 @@ public final class URI implements Comparable<URI>, Serializable {
 	private static int hash(int hash, String s) {
 		if (s == null)
 			return hash;
-		return s.indexOf('%') < 0 ? hash * 127 + s.hashCode() : normalizedHash(hash, s);
+		return s.indexOf('%') < 0 ? hash * 127 + s.hashCode()
+				: normalizedHash(hash, s);
 	}
 
 	private static int normalizedHash(int hash, String s) {
@@ -2181,23 +2188,26 @@ public final class URI implements Comparable<URI>, Serializable {
 
 	// If a scheme is given then the path, if given, must be absolute
 	//
-	private static void checkPath(String s, String scheme, String path) throws URISyntaxException {
+	private static void checkPath(String s, String scheme, String path)
+			throws URISyntaxException {
 		if (scheme != null) {
-			if ((path != null) && ((path.length() > 0) && (path.charAt(0) != '/')))
-				throw new URISyntaxException(s, "Relative path in absolute URI");
+			if ((path != null) && ((path.length() > 0) && (path.charAt(
+					0) != '/')))
+				throw new URISyntaxException(s,
+						"Relative path in absolute URI");
 		}
 	}
 
-	private void appendAuthority(StringBuffer sb, String authority, String userInfo, String host,
-			int port) {
+	private void appendAuthority(StringBuffer sb, String authority,
+			String userInfo, String host, int port) {
 		if (host != null) {
 			sb.append("//");
 			if (userInfo != null) {
 				sb.append(quote(userInfo, L_USERINFO, H_USERINFO));
 				sb.append('@');
 			}
-			boolean needBrackets = ((host.indexOf(':') >= 0) && !host.startsWith("[")
-					&& !host.endsWith("]"));
+			boolean needBrackets = ((host.indexOf(':') >= 0) && !host
+					.startsWith("[") && !host.endsWith("]"));
 			if (needBrackets)
 				sb.append('[');
 			sb.append(host);
@@ -2225,15 +2235,18 @@ public final class URI implements Comparable<URI>, Serializable {
 					}
 				}
 				sb.append(dontquote);
-				sb.append(quote(doquote, L_REG_NAME | L_SERVER, H_REG_NAME | H_SERVER));
+				sb.append(quote(doquote, L_REG_NAME | L_SERVER, H_REG_NAME
+						| H_SERVER));
 			} else {
-				sb.append(quote(authority, L_REG_NAME | L_SERVER, H_REG_NAME | H_SERVER));
+				sb.append(quote(authority, L_REG_NAME | L_SERVER, H_REG_NAME
+						| H_SERVER));
 			}
 		}
 	}
 
-	private void appendSchemeSpecificPart(StringBuffer sb, String opaquePart, String authority,
-			String userInfo, String host, int port, String path, String query) {
+	private void appendSchemeSpecificPart(StringBuffer sb, String opaquePart,
+			String authority, String userInfo, String host, int port,
+			String path, String query) {
 		if (opaquePart != null) {
 			/*
 			 * check if SSP begins with an IPv6 address because we must not
@@ -2274,14 +2287,16 @@ public final class URI implements Comparable<URI>, Serializable {
 		}
 	}
 
-	private String toString(String scheme, String opaquePart, String authority, String userInfo,
-			String host, int port, String path, String query, String fragment) {
+	private String toString(String scheme, String opaquePart, String authority,
+			String userInfo, String host, int port, String path, String query,
+			String fragment) {
 		StringBuffer sb = new StringBuffer();
 		if (scheme != null) {
 			sb.append(scheme);
 			sb.append(':');
 		}
-		appendSchemeSpecificPart(sb, opaquePart, authority, userInfo, host, port, path, query);
+		appendSchemeSpecificPart(sb, opaquePart, authority, userInfo, host,
+				port, path, query);
 		appendFragment(sb, fragment);
 		return sb.toString();
 	}
@@ -2290,8 +2305,8 @@ public final class URI implements Comparable<URI>, Serializable {
 		if (schemeSpecificPart != null)
 			return;
 		StringBuffer sb = new StringBuffer();
-		appendSchemeSpecificPart(sb, null, getAuthority(), getUserInfo(), host, port, getPath(),
-				getQuery());
+		appendSchemeSpecificPart(sb, null, getAuthority(), getUserInfo(), host,
+				port, getPath(), getQuery());
 		if (sb.length() == 0)
 			return;
 		schemeSpecificPart = sb.toString();
@@ -2315,8 +2330,8 @@ public final class URI implements Comparable<URI>, Serializable {
 					sb.append(userInfo);
 					sb.append('@');
 				}
-				boolean needBrackets = ((host.indexOf(':') >= 0) && !host.startsWith("[")
-						&& !host.endsWith("]"));
+				boolean needBrackets = ((host.indexOf(':') >= 0) && !host
+						.startsWith("[") && !host.endsWith("]"));
 				if (needBrackets)
 					sb.append('[');
 				sb.append(host);
@@ -2347,7 +2362,8 @@ public final class URI implements Comparable<URI>, Serializable {
 	// -- Normalization, resolution, and relativization --
 
 	// RFC2396 5.2 (6)
-	private static String resolvePath(String base, String child, boolean absolute) {
+	private static String resolvePath(String base, String child,
+			boolean absolute) {
 		int i = base.lastIndexOf('/');
 		int cn = child.length();
 		String path = "";
@@ -2383,9 +2399,11 @@ public final class URI implements Comparable<URI>, Serializable {
 			return child;
 
 		// 5.2 (2): Reference to current document (lone fragment)
-		if ((child.scheme == null) && (child.authority == null) && child.path.equals("")
-				&& (child.fragment != null) && (child.query == null)) {
-			if ((base.fragment != null) && child.fragment.equals(base.fragment)) {
+		if ((child.scheme == null) && (child.authority == null) && child.path
+				.equals("") && (child.fragment != null)
+				&& (child.query == null)) {
+			if ((base.fragment != null) && child.fragment.equals(
+					base.fragment)) {
 				return base;
 			}
 			URI ru = new URI();
@@ -2470,8 +2488,8 @@ public final class URI implements Comparable<URI>, Serializable {
 		// if child is null.
 		if (child.isOpaque() || base.isOpaque())
 			return child;
-		if (!equalIgnoringCase(base.scheme, child.scheme)
-				|| !equal(base.authority, child.authority))
+		if (!equalIgnoringCase(base.scheme, child.scheme) || !equal(
+				base.authority, child.authority))
 			return child;
 
 		String bp = normalize(base.path);
@@ -2531,9 +2549,9 @@ public final class URI implements Comparable<URI>, Serializable {
 		while (p <= end) {
 
 			// Looking at "." or ".." ?
-			if ((path.charAt(p) == '.')
-					&& ((p == end) || ((path.charAt(p + 1) == '/') || ((path.charAt(p + 1) == '.')
-							&& ((p + 1 == end) || (path.charAt(p + 2) == '/')))))) {
+			if ((path.charAt(p) == '.') && ((p == end) || ((path.charAt(p
+					+ 1) == '/') || ((path.charAt(p + 1) == '.') && ((p
+							+ 1 == end) || (path.charAt(p + 2) == '/')))))) {
 				normal = false;
 			}
 			ns++;
@@ -2677,7 +2695,8 @@ public final class URI implements Comparable<URI>, Serializable {
 					} else if (path[p + 1] == '\0') {
 						dots = 1;
 						break;
-					} else if ((path[p + 1] == '.') && ((p + 1 == end) || (path[p + 2] == '\0'))) {
+					} else if ((path[p + 1] == '.') && ((p + 1 == end)
+							|| (path[p + 2] == '\0'))) {
 						dots = 2;
 						break;
 					}
@@ -2701,7 +2720,8 @@ public final class URI implements Comparable<URI>, Serializable {
 				}
 				if (j >= 0) {
 					int q = segs[j];
-					if (!((path[q] == '.') && (path[q + 1] == '.') && (path[q + 2] == '\0'))) {
+					if (!((path[q] == '.') && (path[q + 1] == '.') && (path[q
+							+ 2] == '\0'))) {
 						segs[i] = -1;
 						segs[j] = -1;
 					}
@@ -2910,8 +2930,10 @@ public final class URI implements Comparable<URI>, Serializable {
 
 	// pchar = unreserved | escaped |
 	// ":" | "@" | "&" | "=" | "+" | "$" | ","
-	private static final long L_PCHAR = L_UNRESERVED | L_ESCAPED | lowMask(":@&=+$,");
-	private static final long H_PCHAR = H_UNRESERVED | H_ESCAPED | highMask(":@&=+$,");
+	private static final long L_PCHAR = L_UNRESERVED | L_ESCAPED | lowMask(
+			":@&=+$,");
+	private static final long H_PCHAR = H_UNRESERVED | H_ESCAPED | highMask(
+			":@&=+$,");
 
 	// All valid path characters
 	private static final long L_PATH = L_PCHAR | lowMask(";/");
@@ -2927,17 +2949,23 @@ public final class URI implements Comparable<URI>, Serializable {
 
 	// userinfo = *( unreserved | escaped |
 	// ";" | ":" | "&" | "=" | "+" | "$" | "," )
-	private static final long L_USERINFO = L_UNRESERVED | L_ESCAPED | lowMask(";:&=+$,");
-	private static final long H_USERINFO = H_UNRESERVED | H_ESCAPED | highMask(";:&=+$,");
+	private static final long L_USERINFO = L_UNRESERVED | L_ESCAPED | lowMask(
+			";:&=+$,");
+	private static final long H_USERINFO = H_UNRESERVED | H_ESCAPED | highMask(
+			";:&=+$,");
 
 	// reg_name = 1*( unreserved | escaped | "$" | "," |
 	// ";" | ":" | "@" | "&" | "=" | "+" )
-	private static final long L_REG_NAME = L_UNRESERVED | L_ESCAPED | lowMask("$,;:@&=+");
-	private static final long H_REG_NAME = H_UNRESERVED | H_ESCAPED | highMask("$,;:@&=+");
+	private static final long L_REG_NAME = L_UNRESERVED | L_ESCAPED | lowMask(
+			"$,;:@&=+");
+	private static final long H_REG_NAME = H_UNRESERVED | H_ESCAPED | highMask(
+			"$,;:@&=+");
 
 	// All valid characters for server-based authorities
-	private static final long L_SERVER = L_USERINFO | L_ALPHANUM | L_DASH | lowMask(".:@[]");
-	private static final long H_SERVER = H_USERINFO | H_ALPHANUM | H_DASH | highMask(".:@[]");
+	private static final long L_SERVER = L_USERINFO | L_ALPHANUM | L_DASH
+			| lowMask(".:@[]");
+	private static final long H_SERVER = H_USERINFO | H_ALPHANUM | H_DASH
+			| highMask(".:@[]");
 
 	// Special case of server authority that represents an IPv6 address
 	// In this case, a % does not signify an escape sequence
@@ -2952,13 +2980,15 @@ public final class URI implements Comparable<URI>, Serializable {
 
 	// uric_no_slash = unreserved | escaped | ";" | "?" | ":" | "@" |
 	// "&" | "=" | "+" | "$" | ","
-	private static final long L_URIC_NO_SLASH = L_UNRESERVED | L_ESCAPED | lowMask(";?:@&=+$,");
-	private static final long H_URIC_NO_SLASH = H_UNRESERVED | H_ESCAPED | highMask(";?:@&=+$,");
+	private static final long L_URIC_NO_SLASH = L_UNRESERVED | L_ESCAPED
+			| lowMask(";?:@&=+$,");
+	private static final long H_URIC_NO_SLASH = H_UNRESERVED | H_ESCAPED
+			| highMask(";?:@&=+$,");
 
 	// -- Escaping and encoding --
 
-	private final static char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
-			'B', 'C', 'D', 'E', 'F' };
+	private final static char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6',
+			'7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
 	private static void appendEscape(StringBuffer sb, byte b) {
 		sb.append('%');
@@ -2969,7 +2999,8 @@ public final class URI implements Comparable<URI>, Serializable {
 	private static void appendEncoded(StringBuffer sb, char c) {
 		ByteBuffer bb = null;
 		try {
-			bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap("" + c));
+			bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap(""
+					+ c));
 		} catch (CharacterCodingException x) {
 			assert false;
 		}
@@ -3002,7 +3033,8 @@ public final class URI implements Comparable<URI>, Serializable {
 					if (sb != null)
 						sb.append(c);
 				}
-			} else if (allowNonASCII && (Character.isSpaceChar(c) || Character.isISOControl(c))) {
+			} else if (allowNonASCII && (Character.isSpaceChar(c) || Character
+					.isISOControl(c))) {
 				if (sb == null) {
 					sb = new StringBuffer();
 					sb.append(s.substring(0, i));
@@ -3035,7 +3067,8 @@ public final class URI implements Comparable<URI>, Serializable {
 		String ns = Normalizer.normalize(s, Normalizer.Form.NFC);
 		ByteBuffer bb = null;
 		try {
-			bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap(ns));
+			bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap(
+					ns));
 		} catch (CharacterCodingException x) {
 			assert false;
 		}
@@ -3158,11 +3191,13 @@ public final class URI implements Comparable<URI>, Serializable {
 			throw new URISyntaxException(input, reason, p);
 		}
 
-		private void failExpecting(String expected, int p) throws URISyntaxException {
+		private void failExpecting(String expected, int p)
+				throws URISyntaxException {
 			fail("Expected " + expected, p);
 		}
 
-		private void failExpecting(String expected, String prior, int p) throws URISyntaxException {
+		private void failExpecting(String expected, String prior, int p)
+				throws URISyntaxException {
 			fail("Expected " + expected + " following " + prior, p);
 		}
 
@@ -3266,17 +3301,19 @@ public final class URI implements Comparable<URI>, Serializable {
 		// This method assumes that if escapes are allowed then visible
 		// non-US-ASCII chars are also allowed.
 		//
-		private int scanEscape(int start, int n, char first) throws URISyntaxException {
+		private int scanEscape(int start, int n, char first)
+				throws URISyntaxException {
 			int p = start;
 			char c = first;
 			if (c == '%') {
 				// Process escape pair
-				if ((p + 3 <= n) && match(charAt(p + 1), L_HEX, H_HEX)
-						&& match(charAt(p + 2), L_HEX, H_HEX)) {
+				if ((p + 3 <= n) && match(charAt(p + 1), L_HEX, H_HEX) && match(
+						charAt(p + 2), L_HEX, H_HEX)) {
 					return p + 3;
 				}
 				fail("Malformed escape pair", p);
-			} else if ((c > 128) && !Character.isSpaceChar(c) && !Character.isISOControl(c)) {
+			} else if ((c > 128) && !Character.isSpaceChar(c) && !Character
+					.isISOControl(c)) {
 				// Allow unescaped but visible non-US-ASCII chars
 				return p + 1;
 			}
@@ -3285,7 +3322,8 @@ public final class URI implements Comparable<URI>, Serializable {
 
 		// Scan chars that match the given mask pair
 		//
-		private int scan(int start, int n, long lowMask, long highMask) throws URISyntaxException {
+		private int scan(int start, int n, long lowMask, long highMask)
+				throws URISyntaxException {
 			int p = start;
 			while (p < n) {
 				char c = charAt(p);
@@ -3307,8 +3345,8 @@ public final class URI implements Comparable<URI>, Serializable {
 
 		// Check that each of the chars in [start, end) matches the given mask
 		//
-		private void checkChars(int start, int end, long lowMask, long highMask, String what)
-				throws URISyntaxException {
+		private void checkChars(int start, int end, long lowMask, long highMask,
+				String what) throws URISyntaxException {
 			int p = scan(start, end, lowMask, highMask);
 			if (p < end)
 				fail("Illegal character in " + what, p);
@@ -3375,7 +3413,8 @@ public final class URI implements Comparable<URI>, Serializable {
 		// The primary consequence of this deviation is that "#f" parses as a
 		// relative URI with an empty path.
 		//
-		private int parseHierarchical(int start, int n) throws URISyntaxException {
+		private int parseHierarchical(int start, int n)
+				throws URISyntaxException {
 			int p = start;
 			if (at(p, n, '/') && at(p + 1, n, '/')) {
 				p += 2;
@@ -3420,7 +3459,8 @@ public final class URI implements Comparable<URI>, Serializable {
 
 			if (scan(p, n, "", "]") > p) {
 				// contains a literal IPv6 address, therefore % is allowed
-				serverChars = (scan(p, n, L_SERVER_PERCENT, H_SERVER_PERCENT) == n);
+				serverChars = (scan(p, n, L_SERVER_PERCENT,
+						H_SERVER_PERCENT) == n);
 			} else {
 				serverChars = (scan(p, n, L_SERVER, H_SERVER) == n);
 			}
@@ -3502,7 +3542,8 @@ public final class URI implements Comparable<URI>, Serializable {
 						if (r + 1 == q) {
 							fail("scope id expected");
 						}
-						checkChars(r + 1, q, L_ALPHANUM, H_ALPHANUM, "scope id");
+						checkChars(r + 1, q, L_ALPHANUM, H_ALPHANUM,
+								"scope id");
 					} else {
 						parseIPv6Reference(p, q);
 					}
@@ -3565,7 +3606,8 @@ public final class URI implements Comparable<URI>, Serializable {
 		// address. It won't parse as a hostname anyway, so making that
 		// assumption here allows more meaningful exceptions to be thrown.
 		//
-		private int scanIPv4Address(int start, int n, boolean strict) throws URISyntaxException {
+		private int scanIPv4Address(int start, int n, boolean strict)
+				throws URISyntaxException {
 			int p = start;
 			int q;
 			int m = scan(p, n, L_DIGIT | L_DOT, H_DIGIT | H_DOT);
@@ -3606,7 +3648,8 @@ public final class URI implements Comparable<URI>, Serializable {
 		// Take an IPv4 address: Throw an exception if the given interval
 		// contains anything except an IPv4 address
 		//
-		private int takeIPv4Address(int start, int n, String expected) throws URISyntaxException {
+		private int takeIPv4Address(int start, int n, String expected)
+				throws URISyntaxException {
 			int p = scanIPv4Address(start, n, true);
 			if (p <= start)
 				failExpecting(expected, start);
@@ -3733,7 +3776,8 @@ public final class URI implements Comparable<URI>, Serializable {
 
 		private int ipv6byteCount = 0;
 
-		private int parseIPv6Reference(int start, int n) throws URISyntaxException {
+		private int parseIPv6Reference(int start, int n)
+				throws URISyntaxException {
 			int p = start;
 			int q;
 			boolean compressedZeros = false;

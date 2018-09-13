@@ -52,11 +52,13 @@ public class TransformXPointer extends TransformSpi {
 	 * @return {@link XMLSignatureInput} as the result of transformation
 	 * @throws TransformationException
 	 */
-	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
-			Transform transformObject) throws TransformationException {
+	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
+			OutputStream os, Transform transformObject)
+			throws TransformationException {
 
 		Object exArgs[] = { implementedTransformURI };
 
-		throw new TransformationException("signature.Transform.NotYetImplemented", exArgs);
+		throw new TransformationException(
+				"signature.Transform.NotYetImplemented", exArgs);
 	}
 }

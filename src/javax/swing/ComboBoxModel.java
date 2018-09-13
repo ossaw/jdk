@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -35,7 +15,7 @@ package javax.swing;
  * storage and retrieval of a selected item in the model.
  *
  * @param <E>
- *            the type of the elements of this model
+ *        the type of the elements of this model
  *
  * @author Arnaud Weber
  */
@@ -47,8 +27,8 @@ public interface ComboBoxModel<E> extends ListModel<E> {
 	 * changed.
 	 *
 	 * @param anItem
-	 *            the list object to select or <code>null</code> to clear the
-	 *            selection
+	 *               the list object to select or <code>null</code> to clear the
+	 *               selection
 	 */
 	void setSelectedItem(Object anItem);
 

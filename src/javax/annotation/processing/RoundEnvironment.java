@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.annotation.processing;
@@ -82,11 +62,12 @@ public interface RoundEnvironment {
 	 * because a {@code package-info} file for that package was created.
 	 *
 	 * @param a
-	 *            annotation type being requested
+	 *          annotation type being requested
 	 * @return the elements annotated with the given annotation type, or an
 	 *         empty set if there are none
 	 * @throws IllegalArgumentException
-	 *             if the argument does not represent an annotation type
+	 *                                  if the argument does not represent an
+	 *                                  annotation type
 	 */
 	Set<? extends Element> getElementsAnnotatedWith(TypeElement a);
 
@@ -101,11 +82,13 @@ public interface RoundEnvironment {
 	 * because a {@code package-info} file for that package was created.
 	 *
 	 * @param a
-	 *            annotation type being requested
+	 *          annotation type being requested
 	 * @return the elements annotated with the given annotation type, or an
 	 *         empty set if there are none
 	 * @throws IllegalArgumentException
-	 *             if the argument does not represent an annotation type
+	 *                                  if the argument does not represent an
+	 *                                  annotation type
 	 */
-	Set<? extends Element> getElementsAnnotatedWith(Class<? extends Annotation> a);
+	Set<? extends Element> getElementsAnnotatedWith(
+			Class<? extends Annotation> a);
 }

@@ -42,7 +42,7 @@ public class SingleCertificateResolver extends StorageResolverSpi {
 
 	/**
 	 * @param x509cert
-	 *            the single {@link X509Certificate}
+	 *                 the single {@link X509Certificate}
 	 */
 	public SingleCertificateResolver(X509Certificate x509cert) {
 		this.certificate = x509cert;
@@ -91,7 +91,8 @@ public class SingleCertificateResolver extends StorageResolverSpi {
 		 * Method remove
 		 */
 		public void remove() {
-			throw new UnsupportedOperationException("Can't remove keys from KeyStore");
+			throw new UnsupportedOperationException(
+					"Can't remove keys from KeyStore");
 		}
 	}
 }

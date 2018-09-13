@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.spi;
@@ -58,8 +38,8 @@ public class OutputStreamImageOutputStreamSpi extends ImageOutputStreamSpi {
 		return false;
 	}
 
-	public ImageOutputStream createOutputStreamInstance(Object output, boolean useCache,
-			File cacheDir) throws IOException {
+	public ImageOutputStream createOutputStreamInstance(Object output,
+			boolean useCache, File cacheDir) throws IOException {
 		if (output instanceof OutputStream) {
 			OutputStream os = (OutputStream) output;
 			if (useCache) {

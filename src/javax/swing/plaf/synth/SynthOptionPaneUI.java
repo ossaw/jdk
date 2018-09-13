@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -40,15 +20,15 @@ import sun.swing.DefaultLookup;
  * @author Amy Fowler
  * @since 1.7
  */
-public class SynthOptionPaneUI extends BasicOptionPaneUI
-		implements PropertyChangeListener, SynthUI {
+public class SynthOptionPaneUI extends BasicOptionPaneUI implements
+		PropertyChangeListener, SynthUI {
 	private SynthStyle style;
 
 	/**
 	 * Creates a new UI object for the given component.
 	 *
 	 * @param x
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent x) {
@@ -78,7 +58,8 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 
 		style = SynthLookAndFeel.updateStyle(context, this);
 		if (style != oldStyle) {
-			minimumSize = (Dimension) style.get(context, "OptionPane.minimumSize");
+			minimumSize = (Dimension) style.get(context,
+					"OptionPane.minimumSize");
 			if (minimumSize == null) {
 				minimumSize = new Dimension(262, 90);
 			}
@@ -122,12 +103,13 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 		if (separator != null) {
 			optionPane.add(separator);
 			SynthContext context = getContext(optionPane, ENABLED);
-			optionPane.add(Box.createVerticalStrut(
-					context.getStyle().getInt(context, "OptionPane.separatorPadding", 6)));
+			optionPane.add(Box.createVerticalStrut(context.getStyle().getInt(
+					context, "OptionPane.separatorPadding", 6)));
 			context.dispose();
 		}
 		optionPane.add(createButtonArea());
-		optionPane.applyComponentOrientation(optionPane.getComponentOrientation());
+		optionPane.applyComponentOrientation(optionPane
+				.getComponentOrientation());
 	}
 
 	/**
@@ -156,9 +138,9 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -166,8 +148,8 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintOptionPaneBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight());
+		context.getPainter().paintOptionPaneBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -179,9 +161,9 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -196,19 +178,19 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 	 * Paints the specified component. This implementation does nothing.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
-	protected void paint(SynthContext context, Graphics g) {
-	}
+	protected void paint(SynthContext context, Graphics g) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintOptionPaneBorder(context, g, x, y, w, h);
 	}
 
@@ -227,7 +209,8 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 	 */
 	@Override
 	protected boolean getSizeButtonsToSameWidth() {
-		return DefaultLookup.getBoolean(optionPane, this, "OptionPane.sameSizeButtons", true);
+		return DefaultLookup.getBoolean(optionPane, this,
+				"OptionPane.sameSizeButtons", true);
 	}
 
 	/**
@@ -262,13 +245,14 @@ public class SynthOptionPaneUI extends BasicOptionPaneUI
 		cons.gridheight = 1;
 
 		SynthContext context = getContext(optionPane, ENABLED);
-		cons.anchor = context.getStyle().getInt(context, "OptionPane.messageAnchor",
-				GridBagConstraints.CENTER);
+		cons.anchor = context.getStyle().getInt(context,
+				"OptionPane.messageAnchor", GridBagConstraints.CENTER);
 		context.dispose();
 
 		cons.insets = new Insets(0, 0, 3, 0);
 
-		addMessageComponents(body, cons, getMessage(), getMaxCharactersPerLineCount(), false);
+		addMessageComponents(body, cons, getMessage(),
+				getMaxCharactersPerLineCount(), false);
 		top.add(realBody, BorderLayout.CENTER);
 
 		addIcon(top);

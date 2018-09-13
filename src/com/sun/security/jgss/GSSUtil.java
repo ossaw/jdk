@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.jgss;
@@ -54,19 +34,26 @@ public class GSSUtil {
 	 *         GSSName and GSSCredential.
 	 *
 	 * @param principals
-	 *            a GSSName containing one or more mechanism specific
-	 *            representations of the same entity. These mechanism specific
-	 *            representations will be populated in the returned Subject's
-	 *            principal set.
+	 *                    a GSSName containing one or more mechanism specific
+	 *                    representations of the same entity. These mechanism
+	 *                    specific
+	 *                    representations will be populated in the returned
+	 *                    Subject's
+	 *                    principal set.
 	 *
 	 * @param credentials
-	 *            a GSSCredential containing one or more mechanism specific
-	 *            credentials for the same entity. These mechanism specific
-	 *            credentials will be populated in the returned Subject's
-	 *            private credential set. Passing in a value of null will imply
-	 *            that the private credential set should be left empty.
+	 *                    a GSSCredential containing one or more mechanism
+	 *                    specific
+	 *                    credentials for the same entity. These mechanism
+	 *                    specific
+	 *                    credentials will be populated in the returned
+	 *                    Subject's
+	 *                    private credential set. Passing in a value of null
+	 *                    will imply
+	 *                    that the private credential set should be left empty.
 	 */
-	public static Subject createSubject(GSSName principals, GSSCredential credentials) {
+	public static Subject createSubject(GSSName principals,
+			GSSCredential credentials) {
 
 		return sun.security.jgss.GSSUtil.getSubject(principals, credentials);
 	}

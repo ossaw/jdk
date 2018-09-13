@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.event;
@@ -47,8 +27,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
 	 * @param pje
 	 *            the event being notified
 	 */
-	public void printDataTransferCompleted(PrintJobEvent pje) {
-	}
+	public void printDataTransferCompleted(PrintJobEvent pje) {}
 
 	/**
 	 * Called to notify the client that the job completed successfully.
@@ -56,8 +35,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
 	 * @param pje
 	 *            the event being notified
 	 */
-	public void printJobCompleted(PrintJobEvent pje) {
-	}
+	public void printJobCompleted(PrintJobEvent pje) {}
 
 	/**
 	 * Called to notify the client that the job failed to complete successfully
@@ -66,8 +44,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
 	 * @param pje
 	 *            the event being notified
 	 */
-	public void printJobFailed(PrintJobEvent pje) {
-	}
+	public void printJobFailed(PrintJobEvent pje) {}
 
 	/**
 	 * Called to notify the client that the job was canceled by user or program.
@@ -75,8 +52,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
 	 * @param pje
 	 *            the event being notified
 	 */
-	public void printJobCanceled(PrintJobEvent pje) {
-	}
+	public void printJobCanceled(PrintJobEvent pje) {}
 
 	/**
 	 * Called to notify the client that no more events will be delivered. One
@@ -88,8 +64,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
 	 * @param pje
 	 *            the event being notified
 	 */
-	public void printJobNoMoreEvents(PrintJobEvent pje) {
-	}
+	public void printJobNoMoreEvents(PrintJobEvent pje) {}
 
 	/**
 	 * Called to notify the client that some possibly user rectifiable problem
@@ -98,7 +73,6 @@ public abstract class PrintJobAdapter implements PrintJobListener {
 	 * @param pje
 	 *            the event being notified
 	 */
-	public void printJobRequiresAttention(PrintJobEvent pje) {
-	}
+	public void printJobRequiresAttention(PrintJobEvent pje) {}
 
 }

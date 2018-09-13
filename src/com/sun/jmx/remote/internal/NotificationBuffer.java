@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.internal;
@@ -49,26 +29,33 @@ public interface NotificationBuffer {
 	 * </p>
 	 *
 	 * @param filter
-	 *            an object that will add notifications to a
-	 *            {@code List<TargetedNotification>} if they match the current
-	 *            listeners with their filters.
+	 *                            an object that will add notifications to a
+	 *                            {@code List<TargetedNotification>} if they
+	 *                            match the current
+	 *                            listeners with their filters.
 	 * @param startSequenceNumber
-	 *            the first sequence number to consider.
+	 *                            the first sequence number to consider.
 	 * @param timeout
-	 *            the maximum time to wait. May be 0 to indicate not to wait if
-	 *            there are no notifications.
+	 *                            the maximum time to wait. May be 0 to indicate
+	 *                            not to wait if
+	 *                            there are no notifications.
 	 * @param maxNotifications
-	 *            the maximum number of notifications to return. May be 0 to
-	 *            indicate a wait for eligible notifications that will return a
-	 *            usable <code>nextSequenceNumber</code>. The
-	 *            {@link TargetedNotification} array in the returned
-	 *            {@link NotificationResult} may contain more than this number
-	 *            of elements but will not contain more than this number of
-	 *            different notifications.
+	 *                            the maximum number of notifications to return.
+	 *                            May be 0 to
+	 *                            indicate a wait for eligible notifications
+	 *                            that will return a
+	 *                            usable <code>nextSequenceNumber</code>. The
+	 *                            {@link TargetedNotification} array in the
+	 *                            returned
+	 *                            {@link NotificationResult} may contain more
+	 *                            than this number
+	 *                            of elements but will not contain more than
+	 *                            this number of
+	 *                            different notifications.
 	 */
-	public NotificationResult fetchNotifications(NotificationBufferFilter filter,
-			long startSequenceNumber, long timeout, int maxNotifications)
-			throws InterruptedException;
+	public NotificationResult fetchNotifications(
+			NotificationBufferFilter filter, long startSequenceNumber,
+			long timeout, int maxNotifications) throws InterruptedException;
 
 	/**
 	 * <p>

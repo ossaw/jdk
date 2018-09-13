@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -76,10 +56,9 @@ public abstract class DropTargetAdapter implements DropTargetListener {
 	 * registered with this listener.
 	 *
 	 * @param dtde
-	 *            the <code>DropTargetDragEvent</code>
+	 *             the <code>DropTargetDragEvent</code>
 	 */
-	public void dragEnter(DropTargetDragEvent dtde) {
-	}
+	public void dragEnter(DropTargetDragEvent dtde) {}
 
 	/**
 	 * Called when a drag operation is ongoing, while the mouse pointer is still
@@ -87,19 +66,17 @@ public abstract class DropTargetAdapter implements DropTargetListener {
 	 * registered with this listener.
 	 *
 	 * @param dtde
-	 *            the <code>DropTargetDragEvent</code>
+	 *             the <code>DropTargetDragEvent</code>
 	 */
-	public void dragOver(DropTargetDragEvent dtde) {
-	}
+	public void dragOver(DropTargetDragEvent dtde) {}
 
 	/**
 	 * Called if the user has modified the current drop gesture.
 	 *
 	 * @param dtde
-	 *            the <code>DropTargetDragEvent</code>
+	 *             the <code>DropTargetDragEvent</code>
 	 */
-	public void dropActionChanged(DropTargetDragEvent dtde) {
-	}
+	public void dropActionChanged(DropTargetDragEvent dtde) {}
 
 	/**
 	 * Called while a drag operation is ongoing, when the mouse pointer has
@@ -109,6 +86,5 @@ public abstract class DropTargetAdapter implements DropTargetListener {
 	 * @param dte
 	 *            the <code>DropTargetEvent</code>
 	 */
-	public void dragExit(DropTargetEvent dte) {
-	}
+	public void dragExit(DropTargetEvent dte) {}
 }

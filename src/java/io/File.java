@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -194,7 +174,8 @@ public class File implements Serializable, Comparable<File> {
 	 */
 	final boolean isInvalid() {
 		if (status == null) {
-			status = (this.path.indexOf('\u0000') < 0) ? PathStatus.CHECKED : PathStatus.INVALID;
+			status = (this.path.indexOf('\u0000') < 0) ? PathStatus.CHECKED
+					: PathStatus.INVALID;
 		}
 		return status == PathStatus.INVALID;
 	}
@@ -278,9 +259,10 @@ public class File implements Serializable, Comparable<File> {
 	 * string, then the result is the empty abstract pathname.
 	 *
 	 * @param pathname
-	 *            A pathname string
+	 *                 A pathname string
 	 * @throws NullPointerException
-	 *             If the <code>pathname</code> argument is <code>null</code>
+	 *                              If the <code>pathname</code> argument is
+	 *                              <code>null</code>
 	 */
 	public File(String pathname) {
 		if (pathname == null) {
@@ -322,11 +304,11 @@ public class File implements Serializable, Comparable<File> {
 	 * pathname is resolved against the parent.
 	 *
 	 * @param parent
-	 *            The parent pathname string
+	 *               The parent pathname string
 	 * @param child
-	 *            The child pathname string
+	 *               The child pathname string
 	 * @throws NullPointerException
-	 *             If <code>child</code> is <code>null</code>
+	 *                              If <code>child</code> is <code>null</code>
 	 */
 	public File(String parent, String child) {
 		if (child == null) {
@@ -334,9 +316,11 @@ public class File implements Serializable, Comparable<File> {
 		}
 		if (parent != null) {
 			if (parent.equals("")) {
-				this.path = fs.resolve(fs.getDefaultParent(), fs.normalize(child));
+				this.path = fs.resolve(fs.getDefaultParent(), fs.normalize(
+						child));
 			} else {
-				this.path = fs.resolve(fs.normalize(parent), fs.normalize(child));
+				this.path = fs.resolve(fs.normalize(parent), fs.normalize(
+						child));
 			}
 		} else {
 			this.path = fs.normalize(child);
@@ -367,11 +351,11 @@ public class File implements Serializable, Comparable<File> {
 	 * pathname is resolved against the parent.
 	 *
 	 * @param parent
-	 *            The parent abstract pathname
+	 *               The parent abstract pathname
 	 * @param child
-	 *            The child pathname string
+	 *               The child pathname string
 	 * @throws NullPointerException
-	 *             If <code>child</code> is <code>null</code>
+	 *                              If <code>child</code> is <code>null</code>
 	 */
 	public File(File parent, String child) {
 		if (child == null) {
@@ -379,7 +363,8 @@ public class File implements Serializable, Comparable<File> {
 		}
 		if (parent != null) {
 			if (parent.path.equals("")) {
-				this.path = fs.resolve(fs.getDefaultParent(), fs.normalize(child));
+				this.path = fs.resolve(fs.getDefaultParent(), fs.normalize(
+						child));
 			} else {
 				this.path = fs.resolve(parent.path, fs.normalize(child));
 			}
@@ -418,10 +403,11 @@ public class File implements Serializable, Comparable<File> {
 	 *            authority, query, and fragment components
 	 *
 	 * @throws NullPointerException
-	 *             If <tt>uri</tt> is <tt>null</tt>
+	 *                                  If <tt>uri</tt> is <tt>null</tt>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on the parameter do not hold
+	 *                                  If the preconditions on the parameter do
+	 *                                  not hold
 	 *
 	 * @see #toURI()
 	 * @see java.net.URI
@@ -438,7 +424,8 @@ public class File implements Serializable, Comparable<File> {
 		if ((scheme == null) || !scheme.equalsIgnoreCase("file"))
 			throw new IllegalArgumentException("URI scheme is not \"file\"");
 		if (uri.getAuthority() != null)
-			throw new IllegalArgumentException("URI has an authority component");
+			throw new IllegalArgumentException(
+					"URI has an authority component");
 		if (uri.getFragment() != null)
 			throw new IllegalArgumentException("URI has a fragment component");
 		if (uri.getQuery() != null)
@@ -567,7 +554,8 @@ public class File implements Serializable, Comparable<File> {
 	 *         as this abstract pathname
 	 *
 	 * @throws SecurityException
-	 *             If a required system property value cannot be accessed.
+	 *                           If a required system property value cannot be
+	 *                           accessed.
 	 *
 	 * @see java.io.File#isAbsolute()
 	 */
@@ -583,7 +571,8 @@ public class File implements Serializable, Comparable<File> {
 	 *         directory as this abstract pathname
 	 *
 	 * @throws SecurityException
-	 *             If a required system property value cannot be accessed.
+	 *                           If a required system property value cannot be
+	 *                           accessed.
 	 *
 	 * @since 1.2
 	 */
@@ -619,15 +608,18 @@ public class File implements Serializable, Comparable<File> {
 	 *         as this abstract pathname
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs, which is possible because the
-	 *             construction of the canonical pathname may require filesystem
-	 *             queries
+	 *                           If an I/O error occurs, which is possible
+	 *                           because the
+	 *                           construction of the canonical pathname may
+	 *                           require filesystem
+	 *                           queries
 	 *
 	 * @throws SecurityException
-	 *             If a required system property value cannot be accessed, or if
-	 *             a security manager exists and its <code>{@link
+	 *                           If a required system property value cannot be
+	 *                           accessed, or if
+	 *                           a security manager exists and its <code>{@link
 	 *          java.lang.SecurityManager#checkRead}</code> method denies read
-	 *             access to the file
+	 *                           access to the file
 	 *
 	 * @since JDK1.1
 	 * @see Path#toRealPath
@@ -647,15 +639,18 @@ public class File implements Serializable, Comparable<File> {
 	 *         as this abstract pathname
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs, which is possible because the
-	 *             construction of the canonical pathname may require filesystem
-	 *             queries
+	 *                           If an I/O error occurs, which is possible
+	 *                           because the
+	 *                           construction of the canonical pathname may
+	 *                           require filesystem
+	 *                           queries
 	 *
 	 * @throws SecurityException
-	 *             If a required system property value cannot be accessed, or if
-	 *             a security manager exists and its <code>{@link
+	 *                           If a required system property value cannot be
+	 *                           accessed, or if
+	 *                           a security manager exists and its <code>{@link
 	 *          java.lang.SecurityManager#checkRead}</code> method denies read
-	 *             access to the file
+	 *                           access to the file
 	 *
 	 * @since 1.2
 	 * @see Path#toRealPath
@@ -685,7 +680,7 @@ public class File implements Serializable, Comparable<File> {
 	 * @return A URL object representing the equivalent file URL
 	 *
 	 * @throws MalformedURLException
-	 *             If the path cannot be parsed as a URL
+	 *                               If the path cannot be parsed as a URL
 	 *
 	 * @see #toURI()
 	 * @see java.net.URI
@@ -747,7 +742,8 @@ public class File implements Serializable, Comparable<File> {
 	 *         <tt>"file"</tt>, a path representing this abstract pathname, and
 	 *         undefined authority, query, and fragment components
 	 * @throws SecurityException
-	 *             If a required system property value cannot be accessed.
+	 *                           If a required system property value cannot be
+	 *                           accessed.
 	 *
 	 * @see #File(java.net.URI)
 	 * @see java.net.URI
@@ -780,9 +776,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         application; <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method denies read access to the file
+	 *                           method denies read access to the file
 	 */
 	public boolean canRead() {
 		SecurityManager security = System.getSecurityManager();
@@ -808,9 +805,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         <code>false</code> otherwise.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the file
+	 *                           method denies write access to the file
 	 */
 	public boolean canWrite() {
 		SecurityManager security = System.getSecurityManager();
@@ -831,9 +829,11 @@ public class File implements Serializable, Comparable<File> {
 	 *         this abstract pathname exists; <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method denies read access to the file or directory
+	 *                           method denies read access to the file or
+	 *                           directory
 	 */
 	public boolean exists() {
 		SecurityManager security = System.getSecurityManager();
@@ -861,9 +861,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method denies read access to the file
+	 *                           method denies read access to the file
 	 */
 	public boolean isDirectory() {
 		SecurityManager security = System.getSecurityManager();
@@ -894,9 +895,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method denies read access to the file
+	 *                           method denies read access to the file
 	 */
 	public boolean isFile() {
 		SecurityManager security = System.getSecurityManager();
@@ -922,9 +924,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         underlying platform
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method denies read access to the file
+	 *                           method denies read access to the file
 	 *
 	 * @since 1.2
 	 */
@@ -957,9 +960,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         or if an I/O error occurs
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method denies read access to the file
+	 *                           method denies read access to the file
 	 */
 	public long lastModified() {
 		SecurityManager security = System.getSecurityManager();
@@ -989,9 +993,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         denoting system-dependent entities such as devices or pipes.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method denies read access to the file
+	 *                           method denies read access to the file
 	 */
 	public long length() {
 		SecurityManager security = System.getSecurityManager();
@@ -1023,12 +1028,13 @@ public class File implements Serializable, Comparable<File> {
 	 *         already exists
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurred
+	 *                           If an I/O error occurred
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the file
+	 *                           method denies write access to the file
 	 *
 	 * @since 1.2
 	 */
@@ -1057,9 +1063,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         successfully deleted; <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkDelete}</code> method denies
-	 *             delete access to the file
+	 *                           delete access to the file
 	 */
 	public boolean delete() {
 		SecurityManager security = System.getSecurityManager();
@@ -1092,9 +1099,10 @@ public class File implements Serializable, Comparable<File> {
 	 * instead.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkDelete}</code> method denies
-	 *             delete access to the file
+	 *                           delete access to the file
 	 *
 	 * @see #delete
 	 *
@@ -1142,9 +1150,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         occurs.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkRead(String)} method denies read
-	 *             access to the directory
+	 *                           If a security manager exists and its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method denies read
+	 *                           access to the directory
 	 */
 	public String[] list() {
 		SecurityManager security = System.getSecurityManager();
@@ -1170,7 +1179,7 @@ public class File implements Serializable, Comparable<File> {
 	 * a file or directory in the directory that it denotes.
 	 *
 	 * @param filter
-	 *            A filename filter
+	 *               A filename filter
 	 *
 	 * @return An array of strings naming the files and directories in the
 	 *         directory denoted by this abstract pathname that were accepted by
@@ -1180,9 +1189,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         directory, or if an I/O error occurs.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkRead(String)} method denies read
-	 *             access to the directory
+	 *                           If a security manager exists and its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method denies read
+	 *                           access to the directory
 	 *
 	 * @see java.nio.file.Files#newDirectoryStream(Path,String)
 	 */
@@ -1235,9 +1245,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         error occurs.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkRead(String)} method denies read
-	 *             access to the directory
+	 *                           If a security manager exists and its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method denies read
+	 *                           access to the directory
 	 *
 	 * @since 1.2
 	 */
@@ -1267,7 +1278,7 @@ public class File implements Serializable, Comparable<File> {
 	 * directory that it denotes.
 	 *
 	 * @param filter
-	 *            A filename filter
+	 *               A filename filter
 	 *
 	 * @return An array of abstract pathnames denoting the files and directories
 	 *         in the directory denoted by this abstract pathname. The array
@@ -1276,9 +1287,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         error occurs.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkRead(String)} method denies read
-	 *             access to the directory
+	 *                           If a security manager exists and its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method denies read
+	 *                           access to the directory
 	 *
 	 * @since 1.2
 	 * @see java.nio.file.Files#newDirectoryStream(Path,String)
@@ -1306,7 +1318,7 @@ public class File implements Serializable, Comparable<File> {
 	 * filter is invoked on the pathname.
 	 *
 	 * @param filter
-	 *            A file filter
+	 *               A file filter
 	 *
 	 * @return An array of abstract pathnames denoting the files and directories
 	 *         in the directory denoted by this abstract pathname. The array
@@ -1315,9 +1327,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         error occurs.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkRead(String)} method denies read
-	 *             access to the directory
+	 *                           If a security manager exists and its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method denies read
+	 *                           access to the directory
 	 *
 	 * @since 1.2
 	 * @see java.nio.file.Files#newDirectoryStream(Path,java.nio.file.DirectoryStream.Filter)
@@ -1342,9 +1355,11 @@ public class File implements Serializable, Comparable<File> {
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method does not permit the named directory to be created
+	 *                           method does not permit the named directory to
+	 *                           be created
 	 */
 	public boolean mkdir() {
 		SecurityManager security = System.getSecurityManager();
@@ -1368,14 +1383,18 @@ public class File implements Serializable, Comparable<File> {
 	 *         otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
-	 *             method does not permit verification of the existence of the
-	 *             named directory and all necessary parent directories; or if
-	 *             the <code>{@link
+	 *                           method does not permit verification of the
+	 *                           existence of the
+	 *                           named directory and all necessary parent
+	 *                           directories; or if
+	 *                           the <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method does not permit the named directory and all necessary
-	 *             parent directories to be created
+	 *                           method does not permit the named directory and
+	 *                           all necessary
+	 *                           parent directories to be created
 	 */
 	public boolean mkdirs() {
 		if (exists()) {
@@ -1392,7 +1411,8 @@ public class File implements Serializable, Comparable<File> {
 		}
 
 		File parent = canonFile.getParentFile();
-		return (parent != null && (parent.mkdirs() || parent.exists()) && canonFile.mkdir());
+		return (parent != null && (parent.mkdirs() || parent.exists())
+				&& canonFile.mkdir());
 	}
 
 	/**
@@ -1412,18 +1432,21 @@ public class File implements Serializable, Comparable<File> {
 	 * a platform independent manner.
 	 *
 	 * @param dest
-	 *            The new abstract pathname for the named file
+	 *             The new abstract pathname for the named file
 	 *
 	 * @return <code>true</code> if and only if the renaming succeeded;
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                              If a security manager exists and its
+	 *                              <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to either the old or new pathnames
+	 *                              method denies write access to either the old
+	 *                              or new pathnames
 	 *
 	 * @throws NullPointerException
-	 *             If parameter <code>dest</code> is <code>null</code>
+	 *                              If parameter <code>dest</code> is
+	 *                              <code>null</code>
 	 */
 	public boolean renameTo(File dest) {
 		SecurityManager security = System.getSecurityManager();
@@ -1453,19 +1476,22 @@ public class File implements Serializable, Comparable<File> {
 	 * truncated) <code>time</code> argument that was passed to this method.
 	 *
 	 * @param time
-	 *            The new last-modified time, measured in milliseconds since the
-	 *            epoch (00:00:00 GMT, January 1, 1970)
+	 *             The new last-modified time, measured in milliseconds since
+	 *             the
+	 *             epoch (00:00:00 GMT, January 1, 1970)
 	 *
 	 * @return <code>true</code> if and only if the operation succeeded;
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the argument is negative
+	 *                                  If the argument is negative
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                                  If a security manager exists and its
+	 *                                  <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the named file
+	 *                                  method denies write access to the named
+	 *                                  file
 	 *
 	 * @since 1.2
 	 */
@@ -1495,9 +1521,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the named file
+	 *                           method denies write access to the named file
 	 *
 	 * @since 1.2
 	 */
@@ -1524,25 +1551,32 @@ public class File implements Serializable, Comparable<File> {
 	 * manipulation of file permissions is required.
 	 *
 	 * @param writable
-	 *            If <code>true</code>, sets the access permission to allow
-	 *            write operations; if <code>false</code> to disallow write
-	 *            operations
+	 *                  If <code>true</code>, sets the access permission to
+	 *                  allow
+	 *                  write operations; if <code>false</code> to disallow
+	 *                  write
+	 *                  operations
 	 *
 	 * @param ownerOnly
-	 *            If <code>true</code>, the write permission applies only to the
-	 *            owner's write permission; otherwise, it applies to everybody.
-	 *            If the underlying file system can not distinguish the owner's
-	 *            write permission from that of others, then the permission will
-	 *            apply to everybody, regardless of this value.
+	 *                  If <code>true</code>, the write permission applies only
+	 *                  to the
+	 *                  owner's write permission; otherwise, it applies to
+	 *                  everybody.
+	 *                  If the underlying file system can not distinguish the
+	 *                  owner's
+	 *                  write permission from that of others, then the
+	 *                  permission will
+	 *                  apply to everybody, regardless of this value.
 	 *
 	 * @return <code>true</code> if and only if the operation succeeded. The
 	 *         operation will fail if the user does not have permission to
 	 *         change the access permissions of this abstract pathname.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the named file
+	 *                           method denies write access to the named file
 	 *
 	 * @since 1.6
 	 */
@@ -1554,7 +1588,8 @@ public class File implements Serializable, Comparable<File> {
 		if (isInvalid()) {
 			return false;
 		}
-		return fs.setPermission(this, FileSystem.ACCESS_WRITE, writable, ownerOnly);
+		return fs.setPermission(this, FileSystem.ACCESS_WRITE, writable,
+				ownerOnly);
 	}
 
 	/**
@@ -1572,18 +1607,19 @@ public class File implements Serializable, Comparable<File> {
 	 * </pre>
 	 *
 	 * @param writable
-	 *            If <code>true</code>, sets the access permission to allow
-	 *            write operations; if <code>false</code> to disallow write
-	 *            operations
+	 *                 If <code>true</code>, sets the access permission to allow
+	 *                 write operations; if <code>false</code> to disallow write
+	 *                 operations
 	 *
 	 * @return <code>true</code> if and only if the operation succeeded. The
 	 *         operation will fail if the user does not have permission to
 	 *         change the access permissions of this abstract pathname.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the file
+	 *                           method denies write access to the file
 	 *
 	 * @since 1.6
 	 */
@@ -1603,15 +1639,21 @@ public class File implements Serializable, Comparable<File> {
 	 * manipulation of file permissions is required.
 	 *
 	 * @param readable
-	 *            If <code>true</code>, sets the access permission to allow read
-	 *            operations; if <code>false</code> to disallow read operations
+	 *                  If <code>true</code>, sets the access permission to
+	 *                  allow read
+	 *                  operations; if <code>false</code> to disallow read
+	 *                  operations
 	 *
 	 * @param ownerOnly
-	 *            If <code>true</code>, the read permission applies only to the
-	 *            owner's read permission; otherwise, it applies to everybody.
-	 *            If the underlying file system can not distinguish the owner's
-	 *            read permission from that of others, then the permission will
-	 *            apply to everybody, regardless of this value.
+	 *                  If <code>true</code>, the read permission applies only
+	 *                  to the
+	 *                  owner's read permission; otherwise, it applies to
+	 *                  everybody.
+	 *                  If the underlying file system can not distinguish the
+	 *                  owner's
+	 *                  read permission from that of others, then the permission
+	 *                  will
+	 *                  apply to everybody, regardless of this value.
 	 *
 	 * @return <code>true</code> if and only if the operation succeeded. The
 	 *         operation will fail if the user does not have permission to
@@ -1621,9 +1663,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         operation will fail.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the file
+	 *                           method denies write access to the file
 	 *
 	 * @since 1.6
 	 */
@@ -1635,7 +1678,8 @@ public class File implements Serializable, Comparable<File> {
 		if (isInvalid()) {
 			return false;
 		}
-		return fs.setPermission(this, FileSystem.ACCESS_READ, readable, ownerOnly);
+		return fs.setPermission(this, FileSystem.ACCESS_READ, readable,
+				ownerOnly);
 	}
 
 	/**
@@ -1653,8 +1697,10 @@ public class File implements Serializable, Comparable<File> {
 	 * </pre>
 	 *
 	 * @param readable
-	 *            If <code>true</code>, sets the access permission to allow read
-	 *            operations; if <code>false</code> to disallow read operations
+	 *                 If <code>true</code>, sets the access permission to allow
+	 *                 read
+	 *                 operations; if <code>false</code> to disallow read
+	 *                 operations
 	 *
 	 * @return <code>true</code> if and only if the operation succeeded. The
 	 *         operation will fail if the user does not have permission to
@@ -1664,9 +1710,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         operation will fail.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the file
+	 *                           method denies write access to the file
 	 *
 	 * @since 1.6
 	 */
@@ -1686,16 +1733,23 @@ public class File implements Serializable, Comparable<File> {
 	 * manipulation of file permissions is required.
 	 *
 	 * @param executable
-	 *            If <code>true</code>, sets the access permission to allow
-	 *            execute operations; if <code>false</code> to disallow execute
-	 *            operations
+	 *                   If <code>true</code>, sets the access permission to
+	 *                   allow
+	 *                   execute operations; if <code>false</code> to disallow
+	 *                   execute
+	 *                   operations
 	 *
 	 * @param ownerOnly
-	 *            If <code>true</code>, the execute permission applies only to
-	 *            the owner's execute permission; otherwise, it applies to
-	 *            everybody. If the underlying file system can not distinguish
-	 *            the owner's execute permission from that of others, then the
-	 *            permission will apply to everybody, regardless of this value.
+	 *                   If <code>true</code>, the execute permission applies
+	 *                   only to
+	 *                   the owner's execute permission; otherwise, it applies
+	 *                   to
+	 *                   everybody. If the underlying file system can not
+	 *                   distinguish
+	 *                   the owner's execute permission from that of others,
+	 *                   then the
+	 *                   permission will apply to everybody, regardless of this
+	 *                   value.
 	 *
 	 * @return <code>true</code> if and only if the operation succeeded. The
 	 *         operation will fail if the user does not have permission to
@@ -1705,9 +1759,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         operation will fail.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the file
+	 *                           method denies write access to the file
 	 *
 	 * @since 1.6
 	 */
@@ -1719,7 +1774,8 @@ public class File implements Serializable, Comparable<File> {
 		if (isInvalid()) {
 			return false;
 		}
-		return fs.setPermission(this, FileSystem.ACCESS_EXECUTE, executable, ownerOnly);
+		return fs.setPermission(this, FileSystem.ACCESS_EXECUTE, executable,
+				ownerOnly);
 	}
 
 	/**
@@ -1737,9 +1793,11 @@ public class File implements Serializable, Comparable<File> {
 	 * </pre>
 	 *
 	 * @param executable
-	 *            If <code>true</code>, sets the access permission to allow
-	 *            execute operations; if <code>false</code> to disallow execute
-	 *            operations
+	 *                   If <code>true</code>, sets the access permission to
+	 *                   allow
+	 *                   execute operations; if <code>false</code> to disallow
+	 *                   execute
+	 *                   operations
 	 *
 	 * @return <code>true</code> if and only if the operation succeeded. The
 	 *         operation will fail if the user does not have permission to
@@ -1749,9 +1807,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         operation will fail.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method denies write access to the file
+	 *                           method denies write access to the file
 	 *
 	 * @since 1.6
 	 */
@@ -1770,9 +1829,10 @@ public class File implements Serializable, Comparable<File> {
 	 *         <em>and</em> the application is allowed to execute the file
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                           If a security manager exists and its
+	 *                           <code>{@link
 	 *          java.lang.SecurityManager#checkExec(java.lang.String)}</code>
-	 *             method denies execute access to the file
+	 *                           method denies execute access to the file
 	 *
 	 * @since 1.6
 	 */
@@ -1849,18 +1909,23 @@ public class File implements Serializable, Comparable<File> {
 	 *         abstract pathname does not name a partition
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
-	 *             or its {@link SecurityManager#checkRead(String)} method
-	 *             denies read access to the file named by this abstract
-	 *             pathname
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
+	 *                           or its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method
+	 *                           denies read access to the file named by this
+	 *                           abstract
+	 *                           pathname
 	 *
 	 * @since 1.6
 	 */
 	public long getTotalSpace() {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			sm.checkPermission(new RuntimePermission("getFileSystemAttributes"));
+			sm.checkPermission(new RuntimePermission(
+					"getFileSystemAttributes"));
 			sm.checkRead(path);
 		}
 		if (isInvalid()) {
@@ -1888,18 +1953,23 @@ public class File implements Serializable, Comparable<File> {
 	 *         by {@link #getTotalSpace}.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
-	 *             or its {@link SecurityManager#checkRead(String)} method
-	 *             denies read access to the file named by this abstract
-	 *             pathname
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
+	 *                           or its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method
+	 *                           denies read access to the file named by this
+	 *                           abstract
+	 *                           pathname
 	 *
 	 * @since 1.6
 	 */
 	public long getFreeSpace() {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			sm.checkPermission(new RuntimePermission("getFileSystemAttributes"));
+			sm.checkPermission(new RuntimePermission(
+					"getFileSystemAttributes"));
 			sm.checkRead(path);
 		}
 		if (isInvalid()) {
@@ -1931,18 +2001,23 @@ public class File implements Serializable, Comparable<File> {
 	 *         to a call to {@link #getFreeSpace}.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
-	 *             or its {@link SecurityManager#checkRead(String)} method
-	 *             denies read access to the file named by this abstract
-	 *             pathname
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
+	 *                           or its
+	 *                           {@link SecurityManager#checkRead(String)}
+	 *                           method
+	 *                           denies read access to the file named by this
+	 *                           abstract
+	 *                           pathname
 	 *
 	 * @since 1.6
 	 */
 	public long getUsableSpace() {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			sm.checkPermission(new RuntimePermission("getFileSystemAttributes"));
+			sm.checkPermission(new RuntimePermission(
+					"getFileSystemAttributes"));
 			sm.checkRead(path);
 		}
 		if (isInvalid()) {
@@ -1954,12 +2029,11 @@ public class File implements Serializable, Comparable<File> {
 	/* -- Temporary files -- */
 
 	private static class TempDirectory {
-		private TempDirectory() {
-		}
+		private TempDirectory() {}
 
 		// temporary directory location
-		private static final File tmpdir = new File(
-				AccessController.doPrivileged(new GetPropertyAction("java.io.tmpdir")));
+		private static final File tmpdir = new File(AccessController
+				.doPrivileged(new GetPropertyAction("java.io.tmpdir")));
 
 		static File location() {
 			return tmpdir;
@@ -1968,7 +2042,8 @@ public class File implements Serializable, Comparable<File> {
 		// file name generation
 		private static final SecureRandom random = new SecureRandom();
 
-		static File generateFile(String prefix, String suffix, File dir) throws IOException {
+		static File generateFile(String prefix, String suffix, File dir)
+				throws IOException {
 			long n = random.nextLong();
 			if (n == Long.MIN_VALUE) {
 				n = 0; // corner case
@@ -1985,7 +2060,8 @@ public class File implements Serializable, Comparable<File> {
 				if (System.getSecurityManager() != null)
 					throw new IOException("Unable to create temporary file");
 				else
-					throw new IOException("Unable to create temporary file, " + f);
+					throw new IOException("Unable to create temporary file, "
+							+ f);
 			}
 			return f;
 		}
@@ -2039,43 +2115,50 @@ public class File implements Serializable, Comparable<File> {
 	 * this method.
 	 *
 	 * @param prefix
-	 *            The prefix string to be used in generating the file's name;
-	 *            must be at least three characters long
+	 *                  The prefix string to be used in generating the file's
+	 *                  name;
+	 *                  must be at least three characters long
 	 *
 	 * @param suffix
-	 *            The suffix string to be used in generating the file's name;
-	 *            may be <code>null</code>, in which case the suffix
-	 *            <code>".tmp"</code> will be used
+	 *                  The suffix string to be used in generating the file's
+	 *                  name;
+	 *                  may be <code>null</code>, in which case the suffix
+	 *                  <code>".tmp"</code> will be used
 	 *
 	 * @param directory
-	 *            The directory in which the file is to be created, or
-	 *            <code>null</code> if the default temporary-file directory is
-	 *            to be used
+	 *                  The directory in which the file is to be created, or
+	 *                  <code>null</code> if the default temporary-file
+	 *                  directory is
+	 *                  to be used
 	 *
 	 * @return An abstract pathname denoting a newly-created empty file
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the <code>prefix</code> argument contains fewer than three
-	 *             characters
+	 *                                  If the <code>prefix</code> argument
+	 *                                  contains fewer than three
+	 *                                  characters
 	 *
 	 * @throws IOException
-	 *             If a file could not be created
+	 *                                  If a file could not be created
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                                  If a security manager exists and its
+	 *                                  <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method does not allow a file to be created
+	 *                                  method does not allow a file to be
+	 *                                  created
 	 *
 	 * @since 1.2
 	 */
-	public static File createTempFile(String prefix, String suffix, File directory)
-			throws IOException {
+	public static File createTempFile(String prefix, String suffix,
+			File directory) throws IOException {
 		if (prefix.length() < 3)
 			throw new IllegalArgumentException("Prefix string too short");
 		if (suffix == null)
 			suffix = ".tmp";
 
-		File tmpdir = (directory != null) ? directory : TempDirectory.location();
+		File tmpdir = (directory != null) ? directory
+				: TempDirectory.location();
 		SecurityManager sm = System.getSecurityManager();
 		File f;
 		do {
@@ -2087,7 +2170,8 @@ public class File implements Serializable, Comparable<File> {
 				} catch (SecurityException se) {
 					// don't reveal temporary directory location
 					if (directory == null)
-						throw new SecurityException("Unable to create temporary file");
+						throw new SecurityException(
+								"Unable to create temporary file");
 					throw se;
 				}
 			}
@@ -2115,32 +2199,36 @@ public class File implements Serializable, Comparable<File> {
 	 * method and so may be more suited to security-sensitive applications.
 	 *
 	 * @param prefix
-	 *            The prefix string to be used in generating the file's name;
-	 *            must be at least three characters long
+	 *               The prefix string to be used in generating the file's name;
+	 *               must be at least three characters long
 	 *
 	 * @param suffix
-	 *            The suffix string to be used in generating the file's name;
-	 *            may be <code>null</code>, in which case the suffix
-	 *            <code>".tmp"</code> will be used
+	 *               The suffix string to be used in generating the file's name;
+	 *               may be <code>null</code>, in which case the suffix
+	 *               <code>".tmp"</code> will be used
 	 *
 	 * @return An abstract pathname denoting a newly-created empty file
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the <code>prefix</code> argument contains fewer than three
-	 *             characters
+	 *                                  If the <code>prefix</code> argument
+	 *                                  contains fewer than three
+	 *                                  characters
 	 *
 	 * @throws IOException
-	 *             If a file could not be created
+	 *                                  If a file could not be created
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its <code>{@link
+	 *                                  If a security manager exists and its
+	 *                                  <code>{@link
 	 *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
-	 *             method does not allow a file to be created
+	 *                                  method does not allow a file to be
+	 *                                  created
 	 *
 	 * @since 1.2
 	 * @see java.nio.file.Files#createTempDirectory(String,FileAttribute[])
 	 */
-	public static File createTempFile(String prefix, String suffix) throws IOException {
+	public static File createTempFile(String prefix, String suffix)
+			throws IOException {
 		return createTempFile(prefix, suffix, null);
 	}
 
@@ -2153,7 +2241,8 @@ public class File implements Serializable, Comparable<File> {
 	 * Windows systems it is not.
 	 *
 	 * @param pathname
-	 *            The abstract pathname to be compared to this abstract pathname
+	 *                 The abstract pathname to be compared to this abstract
+	 *                 pathname
 	 *
 	 * @return Zero if the argument is equal to this abstract pathname, a value
 	 *         less than zero if this abstract pathname is lexicographically
@@ -2223,7 +2312,8 @@ public class File implements Serializable, Comparable<File> {
 	 * 
 	 * @serialData Default fields followed by separator character.
 	 */
-	private synchronized void writeObject(java.io.ObjectOutputStream s) throws IOException {
+	private synchronized void writeObject(java.io.ObjectOutputStream s)
+			throws IOException {
 		s.defaultWriteObject();
 		s.writeChar(separatorChar); // Add the separator character
 	}
@@ -2242,7 +2332,8 @@ public class File implements Serializable, Comparable<File> {
 			pathField = pathField.replace(sep, separatorChar);
 		String path = fs.normalize(pathField);
 		UNSAFE.putObject(this, PATH_OFFSET, path);
-		UNSAFE.putIntVolatile(this, PREFIX_LENGTH_OFFSET, fs.prefixLength(path));
+		UNSAFE.putIntVolatile(this, PREFIX_LENGTH_OFFSET, fs.prefixLength(
+				path));
 	}
 
 	private static final long PATH_OFFSET;
@@ -2251,9 +2342,10 @@ public class File implements Serializable, Comparable<File> {
 	static {
 		try {
 			sun.misc.Unsafe unsafe = sun.misc.Unsafe.getUnsafe();
-			PATH_OFFSET = unsafe.objectFieldOffset(File.class.getDeclaredField("path"));
-			PREFIX_LENGTH_OFFSET = unsafe
-					.objectFieldOffset(File.class.getDeclaredField("prefixLength"));
+			PATH_OFFSET = unsafe.objectFieldOffset(File.class.getDeclaredField(
+					"path"));
+			PREFIX_LENGTH_OFFSET = unsafe.objectFieldOffset(File.class
+					.getDeclaredField("prefixLength"));
 			UNSAFE = unsafe;
 		} catch (ReflectiveOperationException e) {
 			throw new Error(e);
@@ -2292,9 +2384,9 @@ public class File implements Serializable, Comparable<File> {
 	 * @return a {@code Path} constructed from this abstract path
 	 *
 	 * @throws java.nio.file.InvalidPathException
-	 *             if a {@code Path} object cannot be constructed from the
-	 *             abstract path (see {@link java.nio.file.FileSystem#getPath
-	 *             FileSystem.getPath})
+	 *         if a {@code Path} object cannot be constructed from the
+	 *         abstract path (see {@link java.nio.file.FileSystem#getPath
+	 *         FileSystem.getPath})
 	 *
 	 * @since 1.7
 	 * @see Path#toFile

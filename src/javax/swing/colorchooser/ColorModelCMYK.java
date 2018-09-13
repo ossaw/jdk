@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -50,11 +30,11 @@ final class ColorModelCMYK extends ColorModel {
 	 * Converts CMYK components of a color to a set of RGB components.
 	 *
 	 * @param cmyk
-	 *            a float array with length equal to the number of CMYK
-	 *            components
+	 *             a float array with length equal to the number of CMYK
+	 *             components
 	 * @param rgb
-	 *            a float array with length of at least 3 that contains RGB
-	 *            components of a color
+	 *             a float array with length of at least 3 that contains RGB
+	 *             components of a color
 	 * @return a float array that contains RGB components
 	 */
 	private static float[] CMYKtoRGB(float[] cmyk, float[] rgb) {
@@ -71,11 +51,11 @@ final class ColorModelCMYK extends ColorModel {
 	 * Converts RGB components of a color to a set of CMYK components.
 	 *
 	 * @param rgb
-	 *            a float array with length of at least 3 that contains RGB
-	 *            components of a color
+	 *             a float array with length of at least 3 that contains RGB
+	 *             components of a color
 	 * @param cmyk
-	 *            a float array with length equal to the number of CMYK
-	 *            components
+	 *             a float array with length equal to the number of CMYK
+	 *             components
 	 * @return a float array that contains CMYK components
 	 */
 	private static float[] RGBtoCMYK(float[] rgb, float[] cmyk) {

@@ -1,41 +1,19 @@
 /*
  * Copyright (c) 2001, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
-  File: ConditionVariable.java
-
-  Originally written by Doug Lea and released into the public domain.
-  This may be used for any purposes whatsoever without acknowledgment.
-  Thanks for the assistance and support of Sun Microsystems Labs,
-  and everyone contributing, testing, and using this code.
-
-  History:
-  Date       Who                What
-  11Jun1998  dl               Create public version
-  08dec2001  kmc              Added support for Reentrant Mutexes
-*/
+ * File: ConditionVariable.java
+ * Originally written by Doug Lea and released into the public domain.
+ * This may be used for any purposes whatsoever without acknowledgment.
+ * Thanks for the assistance and support of Sun Microsystems Labs,
+ * and everyone contributing, testing, and using this code.
+ * History:
+ * Date Who What
+ * 11Jun1998 dl Create public version
+ * 08dec2001 kmc Added support for Reentrant Mutexes
+ */
 
 package com.sun.corba.se.impl.orbutil.concurrent;
 
@@ -186,16 +164,19 @@ public class CondVar {
 	 * Create a new CondVar that relies on the given mutual exclusion lock.
 	 * 
 	 * @param mutex
-	 *            A mutual exclusion lock which must either be non-reentrant, or
-	 *            else be ReentrantMutex. Standard usage is to supply an
-	 *            instance of <code>Mutex</code>, but, for example, a Semaphore
-	 *            initialized to 1 also works. On the other hand, many other
-	 *            Sync implementations would not work here, so some care is
-	 *            required to supply a sensible synchronization object. In
-	 *            normal use, the mutex should be one that is used for
-	 *            <em>all</em> synchronization of the object using the CondVar.
-	 *            Generally, to prevent nested monitor lockouts, this object
-	 *            should not use any native Java synchronized blocks.
+	 *              A mutual exclusion lock which must either be non-reentrant,
+	 *              or
+	 *              else be ReentrantMutex. Standard usage is to supply an
+	 *              instance of <code>Mutex</code>, but, for example, a
+	 *              Semaphore
+	 *              initialized to 1 also works. On the other hand, many other
+	 *              Sync implementations would not work here, so some care is
+	 *              required to supply a sensible synchronization object. In
+	 *              normal use, the mutex should be one that is used for
+	 *              <em>all</em> synchronization of the object using the
+	 *              CondVar.
+	 *              Generally, to prevent nested monitor lockouts, this object
+	 *              should not use any native Java synchronized blocks.
 	 **/
 
 	public CondVar(Sync mutex, boolean debug) {
@@ -216,11 +197,16 @@ public class CondVar {
 	 * mutex. The mutex is always held upon return, even if interrupted.
 	 * 
 	 * @exception InterruptedException
-	 *                if the thread was interrupted before or during the wait.
-	 *                However, if the thread is interrupted after the wait but
-	 *                during mutex re-acquisition, the interruption is ignored,
-	 *                while still ensuring that the currentThread's interruption
-	 *                state stays true, so can be probed by callers.
+	 *                                 if the thread was interrupted before or
+	 *                                 during the wait.
+	 *                                 However, if the thread is interrupted
+	 *                                 after the wait but
+	 *                                 during mutex re-acquisition, the
+	 *                                 interruption is ignored,
+	 *                                 while still ensuring that the
+	 *                                 currentThread's interruption
+	 *                                 state stays true, so can be probed by
+	 *                                 callers.
 	 **/
 	public void await() throws InterruptedException {
 		int count = 0;
@@ -267,15 +253,17 @@ public class CondVar {
 	 * even if interrupted.
 	 * 
 	 * @param msecs
-	 *            The time to wait. A value less than or equal to zero causes a
-	 *            momentarily release and re-acquire of the mutex, and always
-	 *            returns false.
+	 *              The time to wait. A value less than or equal to zero causes
+	 *              a
+	 *              momentarily release and re-acquire of the mutex, and always
+	 *              returns false.
 	 * @return false if at least msecs have elapsed upon resumption; else true.
 	 *         A false return does NOT necessarily imply that the thread was not
 	 *         notified. For example, it might have been notified after the time
 	 *         elapsed but just before resuming.
 	 * @exception InterruptedException
-	 *                if the thread was interrupted before or during the wait.
+	 *                                 if the thread was interrupted before or
+	 *                                 during the wait.
 	 **/
 
 	public boolean timedwait(long msecs) throws InterruptedException {

@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -79,12 +77,14 @@ public class TreeWalker {
 	 * Constructor.
 	 * 
 	 * @param contentHandler
-	 *            The implementation of the
+	 *                       The implementation of the
 	 * @param systemId
-	 *            System identifier for the document. contentHandler operation
-	 *            (toXMLString, digest, ...)
+	 *                       System identifier for the document. contentHandler
+	 *                       operation
+	 *                       (toXMLString, digest, ...)
 	 */
-	public TreeWalker(ContentHandler contentHandler, DOMHelper dh, String systemId) {
+	public TreeWalker(ContentHandler contentHandler, DOMHelper dh,
+			String systemId) {
 		this.m_contentHandler = contentHandler;
 		m_contentHandler.setDocumentLocator(m_locator);
 		if (systemId != null) {
@@ -97,8 +97,9 @@ public class TreeWalker {
 	 * Constructor.
 	 * 
 	 * @param contentHandler
-	 *            The implemention of the contentHandler operation (toXMLString,
-	 *            digest, ...)
+	 *                       The implemention of the contentHandler operation
+	 *                       (toXMLString,
+	 *                       digest, ...)
 	 */
 	public TreeWalker(ContentHandler contentHandler, DOMHelper dh) {
 		this.m_contentHandler = contentHandler;
@@ -110,8 +111,8 @@ public class TreeWalker {
 	 * Constructor.
 	 * 
 	 * @param contentHandler
-	 *            The implementation of the contentHandler operation
-	 *            (toXMLString, digest, ...)
+	 *                       The implementation of the contentHandler operation
+	 *                       (toXMLString, digest, ...)
 	 */
 	public TreeWalker(ContentHandler contentHandler) {
 		this.m_contentHandler = contentHandler;
@@ -241,13 +242,15 @@ public class TreeWalker {
 	/**
 	 * Optimized dispatch of characters.
 	 */
-	private final void dispatachChars(Node node) throws org.xml.sax.SAXException {
+	private final void dispatachChars(Node node)
+			throws org.xml.sax.SAXException {
 		if (m_contentHandler instanceof com.sun.org.apache.xml.internal.dtm.ref.dom2dtm.DOM2DTM.CharacterNodeHandler) {
 			((com.sun.org.apache.xml.internal.dtm.ref.dom2dtm.DOM2DTM.CharacterNodeHandler) m_contentHandler)
 					.characters(node);
 		} else {
 			String data = ((Text) node).getData();
-			this.m_contentHandler.characters(data.toCharArray(), 0, data.length());
+			this.m_contentHandler.characters(data.toCharArray(), 0, data
+					.length());
 		}
 	}
 
@@ -256,7 +259,7 @@ public class TreeWalker {
 	 *
 	 *
 	 * @param node
-	 *            Node to process
+	 *             Node to process
 	 *
 	 * @throws org.xml.sax.SAXException
 	 */
@@ -278,117 +281,125 @@ public class TreeWalker {
 		}
 
 		switch (node.getNodeType()) {
-		case Node.COMMENT_NODE: {
-			String data = ((Comment) node).getData();
+			case Node.COMMENT_NODE: {
+				String data = ((Comment) node).getData();
 
-			if (m_contentHandler instanceof LexicalHandler) {
-				LexicalHandler lh = ((LexicalHandler) this.m_contentHandler);
+				if (m_contentHandler instanceof LexicalHandler) {
+					LexicalHandler lh = ((LexicalHandler) this.m_contentHandler);
 
-				lh.comment(data.toCharArray(), 0, data.length());
+					lh.comment(data.toCharArray(), 0, data.length());
+				}
 			}
-		}
-			break;
-		case Node.DOCUMENT_FRAGMENT_NODE:
+				break;
+			case Node.DOCUMENT_FRAGMENT_NODE:
 
-			// ??;
-			break;
-		case Node.DOCUMENT_NODE:
+				// ??;
+				break;
+			case Node.DOCUMENT_NODE:
 
-			break;
-		case Node.ELEMENT_NODE:
-			NamedNodeMap atts = ((Element) node).getAttributes();
-			int nAttrs = atts.getLength();
-			// System.out.println("TreeWalker#startNode: "+node.getNodeName());
+				break;
+			case Node.ELEMENT_NODE:
+				NamedNodeMap atts = ((Element) node).getAttributes();
+				int nAttrs = atts.getLength();
+				// System.out.println("TreeWalker#startNode: "+node.getNodeName());
 
-			for (int i = 0; i < nAttrs; i++) {
-				Node attr = atts.item(i);
-				String attrName = attr.getNodeName();
+				for (int i = 0; i < nAttrs; i++) {
+					Node attr = atts.item(i);
+					String attrName = attr.getNodeName();
 
-				// System.out.println("TreeWalker#startNode: attr["+i+"] =
-				// "+attrName+", "+attr.getNodeValue());
-				if (attrName.equals("xmlns") || attrName.startsWith("xmlns:")) {
 					// System.out.println("TreeWalker#startNode: attr["+i+"] =
 					// "+attrName+", "+attr.getNodeValue());
-					int index;
-					// Use "" instead of null, as Xerces likes "" for the
-					// name of the default namespace. Fix attributed
-					// to "Steven Murray" <smurray@ebt.com>.
-					String prefix = (index = attrName.indexOf(":")) < 0 ? ""
-							: attrName.substring(index + 1);
+					if (attrName.equals("xmlns") || attrName.startsWith(
+							"xmlns:")) {
+						// System.out.println("TreeWalker#startNode: attr["+i+"] =
+						// "+attrName+", "+attr.getNodeValue());
+						int index;
+						// Use "" instead of null, as Xerces likes "" for the
+						// name of the default namespace. Fix attributed
+						// to "Steven Murray" <smurray@ebt.com>.
+						String prefix = (index = attrName.indexOf(":")) < 0 ? ""
+								: attrName.substring(index + 1);
 
-					this.m_contentHandler.startPrefixMapping(prefix, attr.getNodeValue());
+						this.m_contentHandler.startPrefixMapping(prefix, attr
+								.getNodeValue());
+					}
+
 				}
 
+				// System.out.println("m_dh.getNamespaceOfNode(node):
+				// "+m_dh.getNamespaceOfNode(node));
+				// System.out.println("m_dh.getLocalNameOfNode(node):
+				// "+m_dh.getLocalNameOfNode(node));
+				String ns = m_dh.getNamespaceOfNode(node);
+				if (null == ns)
+					ns = "";
+				this.m_contentHandler.startElement(ns, m_dh.getLocalNameOfNode(
+						node), node.getNodeName(), new AttList(atts, m_dh));
+				break;
+			case Node.PROCESSING_INSTRUCTION_NODE: {
+				ProcessingInstruction pi = (ProcessingInstruction) node;
+				String name = pi.getNodeName();
+
+				// String data = pi.getData();
+				if (name.equals("xslt-next-is-raw")) {
+					nextIsRaw = true;
+				} else {
+					this.m_contentHandler.processingInstruction(pi
+							.getNodeName(), pi.getData());
+				}
 			}
+				break;
+			case Node.CDATA_SECTION_NODE: {
+				boolean isLexH = (m_contentHandler instanceof LexicalHandler);
+				LexicalHandler lh = isLexH
+						? ((LexicalHandler) this.m_contentHandler)
+						: null;
 
-			// System.out.println("m_dh.getNamespaceOfNode(node):
-			// "+m_dh.getNamespaceOfNode(node));
-			// System.out.println("m_dh.getLocalNameOfNode(node):
-			// "+m_dh.getLocalNameOfNode(node));
-			String ns = m_dh.getNamespaceOfNode(node);
-			if (null == ns)
-				ns = "";
-			this.m_contentHandler.startElement(ns, m_dh.getLocalNameOfNode(node),
-					node.getNodeName(), new AttList(atts, m_dh));
-			break;
-		case Node.PROCESSING_INSTRUCTION_NODE: {
-			ProcessingInstruction pi = (ProcessingInstruction) node;
-			String name = pi.getNodeName();
-
-			// String data = pi.getData();
-			if (name.equals("xslt-next-is-raw")) {
-				nextIsRaw = true;
-			} else {
-				this.m_contentHandler.processingInstruction(pi.getNodeName(), pi.getData());
-			}
-		}
-			break;
-		case Node.CDATA_SECTION_NODE: {
-			boolean isLexH = (m_contentHandler instanceof LexicalHandler);
-			LexicalHandler lh = isLexH ? ((LexicalHandler) this.m_contentHandler) : null;
-
-			if (isLexH) {
-				lh.startCDATA();
-			}
-
-			dispatachChars(node);
-
-			{
 				if (isLexH) {
-					lh.endCDATA();
+					lh.startCDATA();
+				}
+
+				dispatachChars(node);
+
+				{
+					if (isLexH) {
+						lh.endCDATA();
+					}
 				}
 			}
-		}
-			break;
-		case Node.TEXT_NODE: {
-			// String data = ((Text) node).getData();
+				break;
+			case Node.TEXT_NODE: {
+				// String data = ((Text) node).getData();
 
-			if (nextIsRaw) {
-				nextIsRaw = false;
+				if (nextIsRaw) {
+					nextIsRaw = false;
 
-				m_contentHandler.processingInstruction(
-						javax.xml.transform.Result.PI_DISABLE_OUTPUT_ESCAPING, "");
-				dispatachChars(node);
-				m_contentHandler.processingInstruction(
-						javax.xml.transform.Result.PI_ENABLE_OUTPUT_ESCAPING, "");
-			} else {
-				dispatachChars(node);
+					m_contentHandler.processingInstruction(
+							javax.xml.transform.Result.PI_DISABLE_OUTPUT_ESCAPING,
+							"");
+					dispatachChars(node);
+					m_contentHandler.processingInstruction(
+							javax.xml.transform.Result.PI_ENABLE_OUTPUT_ESCAPING,
+							"");
+				} else {
+					dispatachChars(node);
+				}
 			}
-		}
-			break;
-		case Node.ENTITY_REFERENCE_NODE: {
-			EntityReference eref = (EntityReference) node;
+				break;
+			case Node.ENTITY_REFERENCE_NODE: {
+				EntityReference eref = (EntityReference) node;
 
-			if (m_contentHandler instanceof LexicalHandler) {
-				((LexicalHandler) this.m_contentHandler).startEntity(eref.getNodeName());
-			} else {
+				if (m_contentHandler instanceof LexicalHandler) {
+					((LexicalHandler) this.m_contentHandler).startEntity(eref
+							.getNodeName());
+				} else {
 
-				// warning("Can not output entity to a pure SAX
-				// ContentHandler");
+					// warning("Can not output entity to a pure SAX
+					// ContentHandler");
+				}
 			}
-		}
-			break;
-		default:
+				break;
+			default:
 		}
 	}
 
@@ -397,54 +408,56 @@ public class TreeWalker {
 	 *
 	 *
 	 * @param node
-	 *            Node we just finished processing
+	 *             Node we just finished processing
 	 *
 	 * @throws org.xml.sax.SAXException
 	 */
 	protected void endNode(Node node) throws org.xml.sax.SAXException {
 
 		switch (node.getNodeType()) {
-		case Node.DOCUMENT_NODE:
-			break;
+			case Node.DOCUMENT_NODE:
+				break;
 
-		case Node.ELEMENT_NODE:
-			String ns = m_dh.getNamespaceOfNode(node);
-			if (null == ns)
-				ns = "";
-			this.m_contentHandler.endElement(ns, m_dh.getLocalNameOfNode(node), node.getNodeName());
+			case Node.ELEMENT_NODE:
+				String ns = m_dh.getNamespaceOfNode(node);
+				if (null == ns)
+					ns = "";
+				this.m_contentHandler.endElement(ns, m_dh.getLocalNameOfNode(
+						node), node.getNodeName());
 
-			NamedNodeMap atts = ((Element) node).getAttributes();
-			int nAttrs = atts.getLength();
+				NamedNodeMap atts = ((Element) node).getAttributes();
+				int nAttrs = atts.getLength();
 
-			for (int i = 0; i < nAttrs; i++) {
-				Node attr = atts.item(i);
-				String attrName = attr.getNodeName();
+				for (int i = 0; i < nAttrs; i++) {
+					Node attr = atts.item(i);
+					String attrName = attr.getNodeName();
 
-				if (attrName.equals("xmlns") || attrName.startsWith("xmlns:")) {
-					int index;
-					// Use "" instead of null, as Xerces likes "" for the
-					// name of the default namespace. Fix attributed
-					// to "Steven Murray" <smurray@ebt.com>.
-					String prefix = (index = attrName.indexOf(":")) < 0 ? ""
-							: attrName.substring(index + 1);
+					if (attrName.equals("xmlns") || attrName.startsWith(
+							"xmlns:")) {
+						int index;
+						// Use "" instead of null, as Xerces likes "" for the
+						// name of the default namespace. Fix attributed
+						// to "Steven Murray" <smurray@ebt.com>.
+						String prefix = (index = attrName.indexOf(":")) < 0 ? ""
+								: attrName.substring(index + 1);
 
-					this.m_contentHandler.endPrefixMapping(prefix);
+						this.m_contentHandler.endPrefixMapping(prefix);
+					}
+				}
+				break;
+			case Node.CDATA_SECTION_NODE:
+				break;
+			case Node.ENTITY_REFERENCE_NODE: {
+				EntityReference eref = (EntityReference) node;
+
+				if (m_contentHandler instanceof LexicalHandler) {
+					LexicalHandler lh = ((LexicalHandler) this.m_contentHandler);
+
+					lh.endEntity(eref.getNodeName());
 				}
 			}
-			break;
-		case Node.CDATA_SECTION_NODE:
-			break;
-		case Node.ENTITY_REFERENCE_NODE: {
-			EntityReference eref = (EntityReference) node;
-
-			if (m_contentHandler instanceof LexicalHandler) {
-				LexicalHandler lh = ((LexicalHandler) this.m_contentHandler);
-
-				lh.endEntity(eref.getNodeName());
-			}
-		}
-			break;
-		default:
+				break;
+			default:
 		}
 	}
 } // TreeWalker

@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -31,7 +30,8 @@ import com.sun.jmx.snmp.SnmpStatusException;
  *      </p>
  */
 
-public class SnmpParameters extends SnmpParams implements Cloneable, Serializable {
+public class SnmpParameters extends SnmpParams implements Cloneable,
+		Serializable {
 	private static final long serialVersionUID = -1822462497931733790L;
 
 	/**
@@ -66,11 +66,11 @@ public class SnmpParameters extends SnmpParams implements Cloneable, Serializabl
 	 * the specification of the read/write/inform community strings.
 	 *
 	 * @param rdc
-	 *            community string to use for <CODE>get</CODE> operations.
+	 *               community string to use for <CODE>get</CODE> operations.
 	 * @param wrc
-	 *            community string to use for <CODE>set</CODE> operations.
+	 *               community string to use for <CODE>set</CODE> operations.
 	 * @param inform
-	 *            community string to use for <CODE>inform</CODE> requests.
+	 *               community string to use for <CODE>inform</CODE> requests.
 	 */
 	public SnmpParameters(String rdc, String wrc, String inform) {
 		_readCommunity = rdc;
@@ -92,7 +92,7 @@ public class SnmpParameters extends SnmpParams implements Cloneable, Serializabl
 	 * operations.
 	 * 
 	 * @param read
-	 *            The community string.
+	 *             The community string.
 	 */
 	public synchronized void setRdCommunity(String read) {
 		if (read == null)
@@ -114,7 +114,7 @@ public class SnmpParameters extends SnmpParams implements Cloneable, Serializabl
 	 * Sets the community to be used when issuing <CODE>set</CODE> operations.
 	 * 
 	 * @param write
-	 *            The community string.
+	 *              The community string.
 	 */
 	public void setWrCommunity(String write) {
 		_writeCommunity = write;
@@ -134,7 +134,7 @@ public class SnmpParameters extends SnmpParams implements Cloneable, Serializabl
 	 * requests.
 	 * 
 	 * @param inform
-	 *            The community string.
+	 *               The community string.
 	 */
 	public void setInformCommunity(String inform) {
 		if (inform == null)

@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -75,10 +50,11 @@ public interface DocumentCSS extends DocumentStyle {
 	 * specified element and a specified pseudo-element.
 	 * 
 	 * @param elt
-	 *            The element whose style is to be modified. This parameter
-	 *            cannot be null.
+	 *                  The element whose style is to be modified. This
+	 *                  parameter
+	 *                  cannot be null.
 	 * @param pseudoElt
-	 *            The pseudo-element or <code>null</code> if none.
+	 *                  The pseudo-element or <code>null</code> if none.
 	 * @return The override style declaration.
 	 */
 	public CSSStyleDeclaration getOverrideStyle(Element elt, String pseudoElt);

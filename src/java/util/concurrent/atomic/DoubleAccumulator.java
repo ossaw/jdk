@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -88,11 +63,13 @@ public class DoubleAccumulator extends Striped64 implements Serializable {
 	 * element.
 	 * 
 	 * @param accumulatorFunction
-	 *            a side-effect-free function of two arguments
+	 *                            a side-effect-free function of two arguments
 	 * @param identity
-	 *            identity (initial value) for the accumulator function
+	 *                            identity (initial value) for the accumulator
+	 *                            function
 	 */
-	public DoubleAccumulator(DoubleBinaryOperator accumulatorFunction, double identity) {
+	public DoubleAccumulator(DoubleBinaryOperator accumulatorFunction,
+			double identity) {
 		this.function = accumulatorFunction;
 		base = this.identity = Double.doubleToRawLongBits(identity);
 	}
@@ -101,20 +78,21 @@ public class DoubleAccumulator extends Striped64 implements Serializable {
 	 * Updates with the given value.
 	 *
 	 * @param x
-	 *            the value
+	 *          the value
 	 */
 	public void accumulate(double x) {
 		Cell[] as;
 		long b, v, r;
 		int m;
 		Cell a;
-		if ((as = cells) != null || (r = Double.doubleToRawLongBits(
-				function.applyAsDouble(Double.longBitsToDouble(b = base), x))) != b
+		if ((as = cells) != null || (r = Double.doubleToRawLongBits(function
+				.applyAsDouble(Double.longBitsToDouble(b = base), x))) != b
 				&& !casBase(b, r)) {
 			boolean uncontended = true;
-			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe() & m]) == null
-					|| !(uncontended = (r = Double.doubleToRawLongBits(
-							function.applyAsDouble(Double.longBitsToDouble(v = a.value), x))) == v
+			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe()
+					& m]) == null || !(uncontended = (r = Double
+							.doubleToRawLongBits(function.applyAsDouble(Double
+									.longBitsToDouble(v = a.value), x))) == v
 							|| a.cas(v, r)))
 				doubleAccumulate(x, function, uncontended);
 		}
@@ -135,7 +113,8 @@ public class DoubleAccumulator extends Striped64 implements Serializable {
 		if (as != null) {
 			for (int i = 0; i < as.length; ++i) {
 				if ((a = as[i]) != null)
-					result = function.applyAsDouble(result, Double.longBitsToDouble(a.value));
+					result = function.applyAsDouble(result, Double
+							.longBitsToDouble(a.value));
 			}
 		}
 		return result;
@@ -291,11 +270,12 @@ public class DoubleAccumulator extends Striped64 implements Serializable {
 
 	/**
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws java.io.InvalidObjectException
-	 *             always
+	 *         always
 	 */
-	private void readObject(java.io.ObjectInputStream s) throws java.io.InvalidObjectException {
+	private void readObject(java.io.ObjectInputStream s)
+			throws java.io.InvalidObjectException {
 		throw new java.io.InvalidObjectException("Proxy required");
 	}
 

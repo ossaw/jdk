@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -72,7 +52,8 @@ public abstract class SnmpMibEntry extends SnmpMibNode implements Serializable {
 	 * Get the next OID arc corresponding to a readable scalar variable.
 	 *
 	 */
-	public long getNextVarId(long id, Object userData) throws SnmpStatusException {
+	public long getNextVarId(long id, Object userData)
+			throws SnmpStatusException {
 		long nextvar = super.getNextVarId(id, userData);
 		while (!isReadable(nextvar))
 			nextvar = super.getNextVarId(nextvar, userData);
@@ -83,16 +64,17 @@ public abstract class SnmpMibEntry extends SnmpMibNode implements Serializable {
 	 * Checks whether the given OID arc identifies a variable (columnar object).
 	 *
 	 * @param userData
-	 *            A contextual object containing user-data. This object is
-	 *            allocated through the <code>
+	 *                 A contextual object containing user-data. This object is
+	 *                 allocated through the <code>
 	 *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for each
-	 *            incoming SNMP request.
+	 *                 incoming SNMP request.
 	 *
 	 * @exception If
-	 *                the given `arc' does not identify any variable in this
-	 *                group, throws an SnmpStatusException.
+	 *               the given `arc' does not identify any variable in this
+	 *               group, throws an SnmpStatusException.
 	 */
-	public void validateVarId(long arc, Object userData) throws SnmpStatusException {
+	public void validateVarId(long arc, Object userData)
+			throws SnmpStatusException {
 		if (isVariable(arc) == false) {
 			throw new SnmpStatusException(SnmpDefinitions.snmpRspNoSuchName);
 		}
@@ -121,15 +103,17 @@ public abstract class SnmpMibEntry extends SnmpMibNode implements Serializable {
 	 * <p>
 	 *
 	 * @param req
-	 *            The sub-request that must be handled by this node.
+	 *              The sub-request that must be handled by this node.
 	 *
 	 * @param depth
-	 *            The depth reached in the OID tree.
+	 *              The depth reached in the OID tree.
 	 *
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing the MIB node.
+	 *                                An error occurred while accessing the MIB
+	 *                                node.
 	 */
-	abstract public void get(SnmpMibSubRequest req, int depth) throws SnmpStatusException;
+	abstract public void get(SnmpMibSubRequest req, int depth)
+			throws SnmpStatusException;
 
 	/**
 	 * Generic handling of the <CODE>set</CODE> operation.
@@ -154,15 +138,17 @@ public abstract class SnmpMibEntry extends SnmpMibNode implements Serializable {
 	 * <p>
 	 *
 	 * @param req
-	 *            The sub-request that must be handled by this node.
+	 *              The sub-request that must be handled by this node.
 	 *
 	 * @param depth
-	 *            The depth reached in the OID tree.
+	 *              The depth reached in the OID tree.
 	 *
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing the MIB node.
+	 *                                An error occurred while accessing the MIB
+	 *                                node.
 	 */
-	abstract public void set(SnmpMibSubRequest req, int depth) throws SnmpStatusException;
+	abstract public void set(SnmpMibSubRequest req, int depth)
+			throws SnmpStatusException;
 
 	/**
 	 * Generic handling of the <CODE>check</CODE> operation.
@@ -189,14 +175,16 @@ public abstract class SnmpMibEntry extends SnmpMibNode implements Serializable {
 	 * <p>
 	 *
 	 * @param req
-	 *            The sub-request that must be handled by this node.
+	 *              The sub-request that must be handled by this node.
 	 *
 	 * @param depth
-	 *            The depth reached in the OID tree.
+	 *              The depth reached in the OID tree.
 	 *
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing the MIB node.
+	 *                                An error occurred while accessing the MIB
+	 *                                node.
 	 */
-	abstract public void check(SnmpMibSubRequest req, int depth) throws SnmpStatusException;
+	abstract public void check(SnmpMibSubRequest req, int depth)
+			throws SnmpStatusException;
 
 }

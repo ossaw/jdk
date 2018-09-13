@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.net;
 
@@ -32,11 +12,9 @@ import sun.net.ResourceManager;
  * This class defines the plain SocketImpl that is used for all
  * Windows version lower than Vista. It adds support for IPv6 on
  * these platforms where available.
- *
  * For backward compatibility Windows platforms that do not have IPv6
  * support also use this implementation, and fd1 gets set to null
  * during socket creation.
- *
  * @author Chris Hegarty
  */
 
@@ -47,7 +25,6 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
 	 * this point fd always refers to the ipv4 socket and fd1 to the ipv6
 	 * socket. After the socket becomes connected, fd always refers to the
 	 * connected socket (either v4 or v6) and fd1 is closed.
-	 *
 	 * For ServerSockets, fd always refers to the v4 listener and fd1 the v6
 	 * listener.
 	 */
@@ -103,11 +80,12 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
 	 * Binds the socket to the specified address of the specified local port.
 	 * 
 	 * @param address
-	 *            the address
+	 *                the address
 	 * @param port
-	 *            the port
+	 *                the port
 	 */
-	protected synchronized void bind(InetAddress address, int lport) throws IOException {
+	protected synchronized void bind(InetAddress address, int lport)
+			throws IOException {
 		super.bind(address, lport);
 		if (address.isAnyLocalAddress()) {
 			anyLocalBoundAddr = address;
@@ -139,7 +117,8 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
 	}
 
 	@Override
-	void socketSetOption(int opt, boolean on, Object value) throws SocketException {
+	void socketSetOption(int opt, boolean on, Object value)
+			throws SocketException {
 		// SO_REUSEADDR emulated when using exclusive bind
 		if (opt == SO_REUSEADDR && exclusiveBind)
 			isReuseAddress = on;
@@ -215,9 +194,11 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
 
 	native void socketCreate(boolean isServer) throws IOException;
 
-	native void socketConnect(InetAddress address, int port, int timeout) throws IOException;
+	native void socketConnect(InetAddress address, int port, int timeout)
+			throws IOException;
 
-	native void socketBind(InetAddress address, int port, boolean exclBind) throws IOException;
+	native void socketBind(InetAddress address, int port, boolean exclBind)
+			throws IOException;
 
 	native void socketListen(int count) throws IOException;
 
@@ -229,9 +210,11 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
 
 	native void socketShutdown(int howto) throws IOException;
 
-	native void socketNativeSetOption(int cmd, boolean on, Object value) throws SocketException;
+	native void socketNativeSetOption(int cmd, boolean on, Object value)
+			throws SocketException;
 
-	native int socketGetOption(int opt, Object iaContainerObj) throws SocketException;
+	native int socketGetOption(int opt, Object iaContainerObj)
+			throws SocketException;
 
 	native void socketSendUrgentData(int data) throws IOException;
 }

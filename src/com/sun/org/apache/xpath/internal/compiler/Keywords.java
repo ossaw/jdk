@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -331,16 +329,20 @@ public class Keywords {
 		Map<String, Integer> nodetypes = new HashMap<>();
 
 		axisnames.put(FROM_ANCESTORS_STRING, OpCodes.FROM_ANCESTORS);
-		axisnames.put(FROM_ANCESTORS_OR_SELF_STRING, OpCodes.FROM_ANCESTORS_OR_SELF);
+		axisnames.put(FROM_ANCESTORS_OR_SELF_STRING,
+				OpCodes.FROM_ANCESTORS_OR_SELF);
 		axisnames.put(FROM_ATTRIBUTES_STRING, OpCodes.FROM_ATTRIBUTES);
 		axisnames.put(FROM_CHILDREN_STRING, OpCodes.FROM_CHILDREN);
 		axisnames.put(FROM_DESCENDANTS_STRING, OpCodes.FROM_DESCENDANTS);
-		axisnames.put(FROM_DESCENDANTS_OR_SELF_STRING, OpCodes.FROM_DESCENDANTS_OR_SELF);
+		axisnames.put(FROM_DESCENDANTS_OR_SELF_STRING,
+				OpCodes.FROM_DESCENDANTS_OR_SELF);
 		axisnames.put(FROM_FOLLOWING_STRING, OpCodes.FROM_FOLLOWING);
-		axisnames.put(FROM_FOLLOWING_SIBLINGS_STRING, OpCodes.FROM_FOLLOWING_SIBLINGS);
+		axisnames.put(FROM_FOLLOWING_SIBLINGS_STRING,
+				OpCodes.FROM_FOLLOWING_SIBLINGS);
 		axisnames.put(FROM_PARENT_STRING, OpCodes.FROM_PARENT);
 		axisnames.put(FROM_PRECEDING_STRING, OpCodes.FROM_PRECEDING);
-		axisnames.put(FROM_PRECEDING_SIBLINGS_STRING, OpCodes.FROM_PRECEDING_SIBLINGS);
+		axisnames.put(FROM_PRECEDING_SIBLINGS_STRING,
+				OpCodes.FROM_PRECEDING_SIBLINGS);
 		axisnames.put(FROM_SELF_STRING, OpCodes.FROM_SELF);
 		axisnames.put(FROM_NAMESPACE_STRING, OpCodes.FROM_NAMESPACE);
 		m_axisnames = Collections.unmodifiableMap(axisnames);

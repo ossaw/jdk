@@ -1,41 +1,14 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2004 World Wide Web Consortium,
- *
  * (Massachusetts Institute of Technology, European Research Consortium for
  * Informatics and Mathematics, Keio University). All Rights Reserved. This
  * work is distributed under the W3C(r) Software License [1] in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
  */
 
@@ -58,9 +31,9 @@ public interface DOMImplementation {
 	 * DOM Features</a>.
 	 * 
 	 * @param feature
-	 *            The name of the feature to test.
+	 *                The name of the feature to test.
 	 * @param version
-	 *            This is the version number of the feature to test.
+	 *                This is the version number of the feature to test.
 	 * @return <code>true</code> if the feature is implemented in the specified
 	 *         version, <code>false</code> otherwise.
 	 */
@@ -72,30 +45,37 @@ public interface DOMImplementation {
 	 * attribute additions do not occur..
 	 * 
 	 * @param qualifiedName
-	 *            The qualified name of the document type to be created.
+	 *                      The qualified name of the document type to be
+	 *                      created.
 	 * @param publicId
-	 *            The external subset public identifier.
+	 *                      The external subset public identifier.
 	 * @param systemId
-	 *            The external subset system identifier.
+	 *                      The external subset system identifier.
 	 * @return A new <code>DocumentType</code> node with
 	 *         <code>Node.ownerDocument</code> set to <code>null</code>.
 	 * @exception DOMException
-	 *                INVALID_CHARACTER_ERR: Raised if the specified qualified
-	 *                name is not an XML name according to [
-	 *                <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML
-	 *                1.0</a>]. <br>
-	 *                NAMESPACE_ERR: Raised if the <code>qualifiedName</code> is
-	 *                malformed. <br>
-	 *                NOT_SUPPORTED_ERR: May be raised if the implementation
-	 *                does not support the feature "XML" and the language
-	 *                exposed through the Document does not support XML
-	 *                Namespaces (such as [
-	 *                <a href='http://www.w3.org/TR/1999/REC-html401-19991224/'>
-	 *                HTML 4.01</a>]).
+	 *                         INVALID_CHARACTER_ERR: Raised if the specified
+	 *                         qualified
+	 *                         name is not an XML name according to [
+	 *                         <a href=
+	 *                         'http://www.w3.org/TR/2004/REC-xml-20040204'>XML
+	 *                         1.0</a>]. <br>
+	 *                         NAMESPACE_ERR: Raised if the
+	 *                         <code>qualifiedName</code> is
+	 *                         malformed. <br>
+	 *                         NOT_SUPPORTED_ERR: May be raised if the
+	 *                         implementation
+	 *                         does not support the feature "XML" and the
+	 *                         language
+	 *                         exposed through the Document does not support XML
+	 *                         Namespaces (such as [
+	 *                         <a href=
+	 *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+	 *                         HTML 4.01</a>]).
 	 * @since DOM Level 2
 	 */
-	public DocumentType createDocumentType(String qualifiedName, String publicId, String systemId)
-			throws DOMException;
+	public DocumentType createDocumentType(String qualifiedName,
+			String publicId, String systemId) throws DOMException;
 
 	/**
 	 * Creates a DOM Document object of the specified type with its document
@@ -114,53 +94,73 @@ public interface DOMImplementation {
 	 * <code>Document</code> objects.
 	 * 
 	 * @param namespaceURI
-	 *            The namespace URI of the document element to create or
-	 *            <code>null</code>.
+	 *                      The namespace URI of the document element to create
+	 *                      or
+	 *                      <code>null</code>.
 	 * @param qualifiedName
-	 *            The qualified name of the document element to be created or
-	 *            <code>null</code>.
+	 *                      The qualified name of the document element to be
+	 *                      created or
+	 *                      <code>null</code>.
 	 * @param doctype
-	 *            The type of document to be created or <code>null</code>. When
-	 *            <code>doctype</code> is not <code>null</code>, its
-	 *            <code>Node.ownerDocument</code> attribute is set to the
-	 *            document being created.
+	 *                      The type of document to be created or
+	 *                      <code>null</code>. When
+	 *                      <code>doctype</code> is not <code>null</code>, its
+	 *                      <code>Node.ownerDocument</code> attribute is set to
+	 *                      the
+	 *                      document being created.
 	 * @return A new <code>Document</code> object with its document element. If
 	 *         the <code>NamespaceURI</code>, <code>qualifiedName</code>, and
 	 *         <code>doctype</code> are <code>null</code>, the returned
 	 *         <code>Document</code> is empty with no document element.
 	 * @exception DOMException
-	 *                INVALID_CHARACTER_ERR: Raised if the specified qualified
-	 *                name is not an XML name according to [
-	 *                <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML
-	 *                1.0</a>]. <br>
-	 *                NAMESPACE_ERR: Raised if the <code>qualifiedName</code> is
-	 *                malformed, if the <code>qualifiedName</code> has a prefix
-	 *                and the <code>namespaceURI</code> is <code>null</code>, or
-	 *                if the <code>qualifiedName</code> is <code>null</code> and
-	 *                the <code>namespaceURI</code> is different from
-	 *                <code>null</code>, or if the <code>qualifiedName</code>
-	 *                has a prefix that is "xml" and the
-	 *                <code>namespaceURI</code> is different from "
-	 *                <a href='http://www.w3.org/XML/1998/namespace'> http://www
-	 *                .w3.org/XML/1998/namespace</a>" [<a href=
-	 *                'http://www.w3.org/TR/1999/REC-xml-names-19990114/'>XML
-	 *                Namespaces</a>] , or if the DOM implementation does not
-	 *                support the <code>"XML"</code> feature but a non-null
-	 *                namespace URI was provided, since namespaces were defined
-	 *                by XML. <br>
-	 *                WRONG_DOCUMENT_ERR: Raised if <code>doctype</code> has
-	 *                already been used with a different document or was created
-	 *                from a different implementation. <br>
-	 *                NOT_SUPPORTED_ERR: May be raised if the implementation
-	 *                does not support the feature "XML" and the language
-	 *                exposed through the Document does not support XML
-	 *                Namespaces (such as [
-	 *                <a href='http://www.w3.org/TR/1999/REC-html401-19991224/'>
-	 *                HTML 4.01</a>]).
+	 *                         INVALID_CHARACTER_ERR: Raised if the specified
+	 *                         qualified
+	 *                         name is not an XML name according to [
+	 *                         <a href=
+	 *                         'http://www.w3.org/TR/2004/REC-xml-20040204'>XML
+	 *                         1.0</a>]. <br>
+	 *                         NAMESPACE_ERR: Raised if the
+	 *                         <code>qualifiedName</code> is
+	 *                         malformed, if the <code>qualifiedName</code> has
+	 *                         a prefix
+	 *                         and the <code>namespaceURI</code> is
+	 *                         <code>null</code>, or
+	 *                         if the <code>qualifiedName</code> is
+	 *                         <code>null</code> and
+	 *                         the <code>namespaceURI</code> is different from
+	 *                         <code>null</code>, or if the
+	 *                         <code>qualifiedName</code>
+	 *                         has a prefix that is "xml" and the
+	 *                         <code>namespaceURI</code> is different from "
+	 *                         <a href='http://www.w3.org/XML/1998/namespace'>
+	 *                         http://www
+	 *                         .w3.org/XML/1998/namespace</a>" [<a href=
+	 *                         'http://www.w3.org/TR/1999/REC-xml-names-19990114/'>XML
+	 *                         Namespaces</a>] , or if the DOM implementation
+	 *                         does not
+	 *                         support the <code>"XML"</code> feature but a
+	 *                         non-null
+	 *                         namespace URI was provided, since namespaces were
+	 *                         defined
+	 *                         by XML. <br>
+	 *                         WRONG_DOCUMENT_ERR: Raised if
+	 *                         <code>doctype</code> has
+	 *                         already been used with a different document or
+	 *                         was created
+	 *                         from a different implementation. <br>
+	 *                         NOT_SUPPORTED_ERR: May be raised if the
+	 *                         implementation
+	 *                         does not support the feature "XML" and the
+	 *                         language
+	 *                         exposed through the Document does not support XML
+	 *                         Namespaces (such as [
+	 *                         <a href=
+	 *                         'http://www.w3.org/TR/1999/REC-html401-19991224/'>
+	 *                         HTML 4.01</a>]).
 	 * @since DOM Level 2
 	 */
-	public Document createDocument(String namespaceURI, String qualifiedName, DocumentType doctype)
-			throws DOMException;
+	public Document createDocument(String namespaceURI, String qualifiedName,
+			DocumentType doctype) throws DOMException;
 
 	/**
 	 * This method returns a specialized object which implements the specialized
@@ -173,11 +173,13 @@ public interface DOMImplementation {
 	 * <code>DOMImplementation</code> interface.
 	 * 
 	 * @param feature
-	 *            The name of the feature requested. Note that any plus sign "+"
-	 *            prepended to the name of the feature will be ignored since it
-	 *            is not significant in the context of this method.
+	 *                The name of the feature requested. Note that any plus sign
+	 *                "+"
+	 *                prepended to the name of the feature will be ignored since
+	 *                it
+	 *                is not significant in the context of this method.
 	 * @param version
-	 *            This is the version number of the feature to test.
+	 *                This is the version number of the feature to test.
 	 * @return Returns an object which implements the specialized APIs of the
 	 *         specified feature and version, if any, or <code>null</code> if
 	 *         there is no object which implements interfaces associated with

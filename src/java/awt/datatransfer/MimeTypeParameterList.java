@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.datatransfer;
@@ -133,11 +113,13 @@ class MimeTypeParameterList implements Cloneable {
 						// find the end of the token char run
 						lastIndex = currentIndex;
 						currentChar = rawdata.charAt(currentIndex);
-						while ((currentIndex < length) && isTokenChar(currentChar)) {
+						while ((currentIndex < length) && isTokenChar(
+								currentChar)) {
 							++currentIndex;
 							currentChar = rawdata.charAt(currentIndex);
 						}
-						name = rawdata.substring(lastIndex, currentIndex).toLowerCase();
+						name = rawdata.substring(lastIndex, currentIndex)
+								.toLowerCase();
 
 						// now parse the '=' that separates the name from the
 						// value
@@ -145,12 +127,14 @@ class MimeTypeParameterList implements Cloneable {
 						// skip whitespace
 						currentIndex = skipWhiteSpace(rawdata, currentIndex);
 
-						if ((currentIndex < length) && (rawdata.charAt(currentIndex) == '=')) {
+						if ((currentIndex < length) && (rawdata.charAt(
+								currentIndex) == '=')) {
 							// eat it and parse the parameter value
 							++currentIndex;
 
 							// skip whitespace
-							currentIndex = skipWhiteSpace(rawdata, currentIndex);
+							currentIndex = skipWhiteSpace(rawdata,
+									currentIndex);
 
 							if (currentIndex < length) {
 								// now find out whether or not we have a quoted
@@ -165,8 +149,10 @@ class MimeTypeParameterList implements Cloneable {
 									if (currentIndex < length) {
 										// find the next unescqped quote
 										foundit = false;
-										while ((currentIndex < length) && !foundit) {
-											currentChar = rawdata.charAt(currentIndex);
+										while ((currentIndex < length)
+												&& !foundit) {
+											currentChar = rawdata.charAt(
+													currentIndex);
 											if (currentChar == '\\') {
 												// found an escape sequence so
 												// pass this and the next
@@ -180,8 +166,8 @@ class MimeTypeParameterList implements Cloneable {
 											}
 										}
 										if (currentChar == '"') {
-											value = unquote(
-													rawdata.substring(lastIndex, currentIndex));
+											value = unquote(rawdata.substring(
+													lastIndex, currentIndex));
 											// eat the quote
 											++currentIndex;
 										} else {
@@ -197,8 +183,10 @@ class MimeTypeParameterList implements Cloneable {
 									// with a non-token char
 									lastIndex = currentIndex;
 									foundit = false;
-									while ((currentIndex < length) && !foundit) {
-										currentChar = rawdata.charAt(currentIndex);
+									while ((currentIndex < length)
+											&& !foundit) {
+										currentChar = rawdata.charAt(
+												currentIndex);
 
 										if (isTokenChar(currentChar)) {
 											++currentIndex;
@@ -206,7 +194,8 @@ class MimeTypeParameterList implements Cloneable {
 											foundit = true;
 										}
 									}
-									value = rawdata.substring(lastIndex, currentIndex);
+									value = rawdata.substring(lastIndex,
+											currentIndex);
 								} else {
 									// it ain't a value
 									throw new MimeTypeParseException(
@@ -218,14 +207,16 @@ class MimeTypeParameterList implements Cloneable {
 								parameters.put(name, value);
 							} else {
 								throw new MimeTypeParseException(
-										"Couldn't find a value for parameter named " + name);
+										"Couldn't find a value for parameter named "
+												+ name);
 							}
 						} else {
 							throw new MimeTypeParseException(
 									"Couldn't find the '=' that separates a parameter name from its value.");
 						}
 					} else {
-						throw new MimeTypeParseException("Couldn't find parameter name");
+						throw new MimeTypeParseException(
+								"Couldn't find parameter name");
 					}
 
 					// setup the next iteration

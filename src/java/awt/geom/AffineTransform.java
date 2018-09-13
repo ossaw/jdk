@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -194,7 +174,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * @see #TYPE_GENERAL_SCALE
 	 * @since 1.2
 	 */
-	public static final int TYPE_MASK_SCALE = (TYPE_UNIFORM_SCALE | TYPE_GENERAL_SCALE);
+	public static final int TYPE_MASK_SCALE = (TYPE_UNIFORM_SCALE
+			| TYPE_GENERAL_SCALE);
 
 	/**
 	 * This flag bit indicates that the transform defined by this object
@@ -274,7 +255,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * @see #TYPE_GENERAL_ROTATION
 	 * @since 1.2
 	 */
-	public static final int TYPE_MASK_ROTATION = (TYPE_QUADRANT_ROTATION | TYPE_GENERAL_ROTATION);
+	public static final int TYPE_MASK_ROTATION = (TYPE_QUADRANT_ROTATION
+			| TYPE_GENERAL_ROTATION);
 
 	/**
 	 * This constant indicates that the transform defined by this object
@@ -442,8 +424,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 */
 	private transient int type;
 
-	private AffineTransform(double m00, double m10, double m01, double m11, double m02, double m12,
-			int state) {
+	private AffineTransform(double m00, double m10, double m01, double m11,
+			double m02, double m12, int state) {
 		this.m00 = m00;
 		this.m10 = m10;
 		this.m01 = m01;
@@ -472,7 +454,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * specified <code>AffineTransform</code> object.
 	 * 
 	 * @param Tx
-	 *            the <code>AffineTransform</code> object to copy
+	 *           the <code>AffineTransform</code> object to copy
 	 * @since 1.2
 	 */
 	public AffineTransform(AffineTransform Tx) {
@@ -505,8 +487,10 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 *            the Y coordinate translation element of the 3x3 matrix
 	 * @since 1.2
 	 */
-	@ConstructorProperties({ "scaleX", "shearY", "shearX", "scaleY", "translateX", "translateY" })
-	public AffineTransform(float m00, float m10, float m01, float m11, float m02, float m12) {
+	@ConstructorProperties({ "scaleX", "shearY", "shearX", "scaleY",
+			"translateX", "translateY" })
+	public AffineTransform(float m00, float m10, float m01, float m11,
+			float m02, float m12) {
 		this.m00 = m00;
 		this.m10 = m10;
 		this.m01 = m01;
@@ -524,11 +508,16 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * {&nbsp;m00&nbsp;m10&nbsp;m01&nbsp;m11&nbsp;[m02&nbsp;m12]}.
 	 * 
 	 * @param flatmatrix
-	 *            the float array containing the values to be set in the new
-	 *            <code>AffineTransform</code> object. The length of the array
-	 *            is assumed to be at least 4. If the length of the array is
-	 *            less than 6, only the first 4 values are taken. If the length
-	 *            of the array is greater than 6, the first 6 values are taken.
+	 *                   the float array containing the values to be set in the
+	 *                   new
+	 *                   <code>AffineTransform</code> object. The length of the
+	 *                   array
+	 *                   is assumed to be at least 4. If the length of the array
+	 *                   is
+	 *                   less than 6, only the first 4 values are taken. If the
+	 *                   length
+	 *                   of the array is greater than 6, the first 6 values are
+	 *                   taken.
 	 * @since 1.2
 	 */
 	public AffineTransform(float[] flatmatrix) {
@@ -562,7 +551,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 *            the Y coordinate translation element of the 3x3 matrix
 	 * @since 1.2
 	 */
-	public AffineTransform(double m00, double m10, double m01, double m11, double m02, double m12) {
+	public AffineTransform(double m00, double m10, double m01, double m11,
+			double m02, double m12) {
 		this.m00 = m00;
 		this.m10 = m10;
 		this.m01 = m01;
@@ -580,11 +570,16 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * {&nbsp;m00&nbsp;m10&nbsp;m01&nbsp;m11&nbsp;[m02&nbsp;m12]}.
 	 * 
 	 * @param flatmatrix
-	 *            the double array containing the values to be set in the new
-	 *            <code>AffineTransform</code> object. The length of the array
-	 *            is assumed to be at least 4. If the length of the array is
-	 *            less than 6, only the first 4 values are taken. If the length
-	 *            of the array is greater than 6, the first 6 values are taken.
+	 *                   the double array containing the values to be set in the
+	 *                   new
+	 *                   <code>AffineTransform</code> object. The length of the
+	 *                   array
+	 *                   is assumed to be at least 4. If the length of the array
+	 *                   is
+	 *                   less than 6, only the first 4 values are taken. If the
+	 *                   length
+	 *                   of the array is greater than 6, the first 6 values are
+	 *                   taken.
 	 * @since 1.2
 	 */
 	public AffineTransform(double[] flatmatrix) {
@@ -610,11 +605,11 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param tx
-	 *            the distance by which coordinates are translated in the X axis
-	 *            direction
+	 *           the distance by which coordinates are translated in the X axis
+	 *           direction
 	 * @param ty
-	 *            the distance by which coordinates are translated in the Y axis
-	 *            direction
+	 *           the distance by which coordinates are translated in the Y axis
+	 *           direction
 	 * @return an <code>AffineTransform</code> object that represents a
 	 *         translation transformation, created with the specified vector.
 	 * @since 1.2
@@ -640,7 +635,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <a href="#quadrantapproximation">Handling 90-Degree Rotations</a> above.
 	 * 
 	 * @param theta
-	 *            the angle of rotation measured in radians
+	 *              the angle of rotation measured in radians
 	 * @return an <code>AffineTransform</code> object that is a rotation
 	 *         transformation, created with the specified angle of rotation.
 	 * @since 1.2
@@ -680,16 +675,17 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <a href="#quadrantapproximation">Handling 90-Degree Rotations</a> above.
 	 *
 	 * @param theta
-	 *            the angle of rotation measured in radians
+	 *                the angle of rotation measured in radians
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                the Y coordinate of the rotation anchor point
 	 * @return an <code>AffineTransform</code> object that rotates coordinates
 	 *         around the specified point by the specified angle of rotation.
 	 * @since 1.2
 	 */
-	public static AffineTransform getRotateInstance(double theta, double anchorx, double anchory) {
+	public static AffineTransform getRotateInstance(double theta,
+			double anchorx, double anchory) {
 		AffineTransform Tx = new AffineTransform();
 		Tx.setToRotation(theta, anchorx, anchory);
 		return Tx;
@@ -709,9 +705,9 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param vecx
-	 *            the X coordinate of the rotation vector
+	 *             the X coordinate of the rotation vector
 	 * @param vecy
-	 *            the Y coordinate of the rotation vector
+	 *             the Y coordinate of the rotation vector
 	 * @return an <code>AffineTransform</code> object that rotates coordinates
 	 *         according to the specified rotation vector.
 	 * @since 1.6
@@ -737,20 +733,20 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param vecx
-	 *            the X coordinate of the rotation vector
+	 *                the X coordinate of the rotation vector
 	 * @param vecy
-	 *            the Y coordinate of the rotation vector
+	 *                the Y coordinate of the rotation vector
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                the Y coordinate of the rotation anchor point
 	 * @return an <code>AffineTransform</code> object that rotates coordinates
 	 *         around the specified point according to the specified rotation
 	 *         vector.
 	 * @since 1.6
 	 */
-	public static AffineTransform getRotateInstance(double vecx, double vecy, double anchorx,
-			double anchory) {
+	public static AffineTransform getRotateInstance(double vecx, double vecy,
+			double anchorx, double anchory) {
 		AffineTransform Tx = new AffineTransform();
 		Tx.setToRotation(vecx, vecy, anchorx, anchory);
 		return Tx;
@@ -768,7 +764,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * X axis toward the positive Y axis.
 	 * 
 	 * @param numquadrants
-	 *            the number of 90 degree arcs to rotate by
+	 *                     the number of 90 degree arcs to rotate by
 	 * @return an <code>AffineTransform</code> object that rotates coordinates
 	 *         by the specified number of quadrants.
 	 * @since 1.6
@@ -785,25 +781,26 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * to calling:
 	 * 
 	 * <pre>
-	 * AffineTransform.getRotateInstance(numquadrants * Math.PI / 2.0, anchorx, anchory);
+	 * AffineTransform.getRotateInstance(numquadrants * Math.PI / 2.0, anchorx,
+	 * 		anchory);
 	 * </pre>
 	 * 
 	 * Rotating by a positive number of quadrants rotates points on the positive
 	 * X axis toward the positive Y axis.
 	 *
 	 * @param numquadrants
-	 *            the number of 90 degree arcs to rotate by
+	 *                     the number of 90 degree arcs to rotate by
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                     the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                     the Y coordinate of the rotation anchor point
 	 * @return an <code>AffineTransform</code> object that rotates coordinates
 	 *         by the specified number of quadrants around the specified anchor
 	 *         point.
 	 * @since 1.6
 	 */
-	public static AffineTransform getQuadrantRotateInstance(int numquadrants, double anchorx,
-			double anchory) {
+	public static AffineTransform getQuadrantRotateInstance(int numquadrants,
+			double anchorx, double anchory) {
 		AffineTransform Tx = new AffineTransform();
 		Tx.setToQuadrantRotation(numquadrants, anchorx, anchory);
 		return Tx;
@@ -820,11 +817,11 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param sx
-	 *            the factor by which coordinates are scaled along the X axis
-	 *            direction
+	 *           the factor by which coordinates are scaled along the X axis
+	 *           direction
 	 * @param sy
-	 *            the factor by which coordinates are scaled along the Y axis
-	 *            direction
+	 *           the factor by which coordinates are scaled along the Y axis
+	 *           direction
 	 * @return an <code>AffineTransform</code> object that scales coordinates by
 	 *         the specified factors.
 	 * @since 1.2
@@ -903,109 +900,115 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		double M0, M1, M2, M3;
 		updateState();
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			ret = TYPE_TRANSLATION;
-			/* NOBREAK */
-		case (APPLY_SHEAR | APPLY_SCALE):
-			if ((M0 = m00) * (M2 = m01) + (M3 = m10) * (M1 = m11) != 0) {
-				// Transformed unit vectors are not perpendicular...
-				this.type = TYPE_GENERAL_TRANSFORM;
-				return;
-			}
-			sgn0 = (M0 >= 0.0);
-			sgn1 = (M1 >= 0.0);
-			if (sgn0 == sgn1) {
-				// sgn(M0) == sgn(M1) therefore sgn(M2) == -sgn(M3)
-				// This is the "unflipped" (right-handed) state
-				if (M0 != M1 || M2 != -M3) {
-					ret |= (TYPE_GENERAL_ROTATION | TYPE_GENERAL_SCALE);
-				} else if (M0 * M1 - M2 * M3 != 1.0) {
-					ret |= (TYPE_GENERAL_ROTATION | TYPE_UNIFORM_SCALE);
-				} else {
-					ret |= TYPE_GENERAL_ROTATION;
+			default:
+				stateError();
+				/* NOTREACHED */
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				ret = TYPE_TRANSLATION;
+				/* NOBREAK */
+			case (APPLY_SHEAR | APPLY_SCALE):
+				if ((M0 = m00) * (M2 = m01) + (M3 = m10) * (M1 = m11) != 0) {
+					// Transformed unit vectors are not perpendicular...
+					this.type = TYPE_GENERAL_TRANSFORM;
+					return;
 				}
-			} else {
-				// sgn(M0) == -sgn(M1) therefore sgn(M2) == sgn(M3)
-				// This is the "flipped" (left-handed) state
-				if (M0 != -M1 || M2 != M3) {
-					ret |= (TYPE_GENERAL_ROTATION | TYPE_FLIP | TYPE_GENERAL_SCALE);
-				} else if (M0 * M1 - M2 * M3 != 1.0) {
-					ret |= (TYPE_GENERAL_ROTATION | TYPE_FLIP | TYPE_UNIFORM_SCALE);
-				} else {
-					ret |= (TYPE_GENERAL_ROTATION | TYPE_FLIP);
-				}
-			}
-			break;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			ret = TYPE_TRANSLATION;
-			/* NOBREAK */
-		case (APPLY_SHEAR):
-			sgn0 = ((M0 = m01) >= 0.0);
-			sgn1 = ((M1 = m10) >= 0.0);
-			if (sgn0 != sgn1) {
-				// Different signs - simple 90 degree rotation
-				if (M0 != -M1) {
-					ret |= (TYPE_QUADRANT_ROTATION | TYPE_GENERAL_SCALE);
-				} else if (M0 != 1.0 && M0 != -1.0) {
-					ret |= (TYPE_QUADRANT_ROTATION | TYPE_UNIFORM_SCALE);
-				} else {
-					ret |= TYPE_QUADRANT_ROTATION;
-				}
-			} else {
-				// Same signs - 90 degree rotation plus an axis flip too
-				if (M0 == M1) {
-					ret |= (TYPE_QUADRANT_ROTATION | TYPE_FLIP | TYPE_UNIFORM_SCALE);
-				} else {
-					ret |= (TYPE_QUADRANT_ROTATION | TYPE_FLIP | TYPE_GENERAL_SCALE);
-				}
-			}
-			break;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			ret = TYPE_TRANSLATION;
-			/* NOBREAK */
-		case (APPLY_SCALE):
-			sgn0 = ((M0 = m00) >= 0.0);
-			sgn1 = ((M1 = m11) >= 0.0);
-			if (sgn0 == sgn1) {
-				if (sgn0) {
-					// Both scaling factors non-negative - simple scale
-					// Note: APPLY_SCALE implies M0, M1 are not both 1
-					if (M0 == M1) {
-						ret |= TYPE_UNIFORM_SCALE;
+				sgn0 = (M0 >= 0.0);
+				sgn1 = (M1 >= 0.0);
+				if (sgn0 == sgn1) {
+					// sgn(M0) == sgn(M1) therefore sgn(M2) == -sgn(M3)
+					// This is the "unflipped" (right-handed) state
+					if (M0 != M1 || M2 != -M3) {
+						ret |= (TYPE_GENERAL_ROTATION | TYPE_GENERAL_SCALE);
+					} else if (M0 * M1 - M2 * M3 != 1.0) {
+						ret |= (TYPE_GENERAL_ROTATION | TYPE_UNIFORM_SCALE);
 					} else {
-						ret |= TYPE_GENERAL_SCALE;
+						ret |= TYPE_GENERAL_ROTATION;
 					}
 				} else {
-					// Both scaling factors negative - 180 degree rotation
-					if (M0 != M1) {
+					// sgn(M0) == -sgn(M1) therefore sgn(M2) == sgn(M3)
+					// This is the "flipped" (left-handed) state
+					if (M0 != -M1 || M2 != M3) {
+						ret |= (TYPE_GENERAL_ROTATION | TYPE_FLIP
+								| TYPE_GENERAL_SCALE);
+					} else if (M0 * M1 - M2 * M3 != 1.0) {
+						ret |= (TYPE_GENERAL_ROTATION | TYPE_FLIP
+								| TYPE_UNIFORM_SCALE);
+					} else {
+						ret |= (TYPE_GENERAL_ROTATION | TYPE_FLIP);
+					}
+				}
+				break;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				ret = TYPE_TRANSLATION;
+				/* NOBREAK */
+			case (APPLY_SHEAR):
+				sgn0 = ((M0 = m01) >= 0.0);
+				sgn1 = ((M1 = m10) >= 0.0);
+				if (sgn0 != sgn1) {
+					// Different signs - simple 90 degree rotation
+					if (M0 != -M1) {
 						ret |= (TYPE_QUADRANT_ROTATION | TYPE_GENERAL_SCALE);
-					} else if (M0 != -1.0) {
+					} else if (M0 != 1.0 && M0 != -1.0) {
 						ret |= (TYPE_QUADRANT_ROTATION | TYPE_UNIFORM_SCALE);
 					} else {
 						ret |= TYPE_QUADRANT_ROTATION;
 					}
-				}
-			} else {
-				// Scaling factor signs different - flip about some axis
-				if (M0 == -M1) {
-					if (M0 == 1.0 || M0 == -1.0) {
-						ret |= TYPE_FLIP;
+				} else {
+					// Same signs - 90 degree rotation plus an axis flip too
+					if (M0 == M1) {
+						ret |= (TYPE_QUADRANT_ROTATION | TYPE_FLIP
+								| TYPE_UNIFORM_SCALE);
 					} else {
-						ret |= (TYPE_FLIP | TYPE_UNIFORM_SCALE);
+						ret |= (TYPE_QUADRANT_ROTATION | TYPE_FLIP
+								| TYPE_GENERAL_SCALE);
+					}
+				}
+				break;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				ret = TYPE_TRANSLATION;
+				/* NOBREAK */
+			case (APPLY_SCALE):
+				sgn0 = ((M0 = m00) >= 0.0);
+				sgn1 = ((M1 = m11) >= 0.0);
+				if (sgn0 == sgn1) {
+					if (sgn0) {
+						// Both scaling factors non-negative - simple scale
+						// Note: APPLY_SCALE implies M0, M1 are not both 1
+						if (M0 == M1) {
+							ret |= TYPE_UNIFORM_SCALE;
+						} else {
+							ret |= TYPE_GENERAL_SCALE;
+						}
+					} else {
+						// Both scaling factors negative - 180 degree rotation
+						if (M0 != M1) {
+							ret |= (TYPE_QUADRANT_ROTATION
+									| TYPE_GENERAL_SCALE);
+						} else if (M0 != -1.0) {
+							ret |= (TYPE_QUADRANT_ROTATION
+									| TYPE_UNIFORM_SCALE);
+						} else {
+							ret |= TYPE_QUADRANT_ROTATION;
+						}
 					}
 				} else {
-					ret |= (TYPE_FLIP | TYPE_GENERAL_SCALE);
+					// Scaling factor signs different - flip about some axis
+					if (M0 == -M1) {
+						if (M0 == 1.0 || M0 == -1.0) {
+							ret |= TYPE_FLIP;
+						} else {
+							ret |= (TYPE_FLIP | TYPE_UNIFORM_SCALE);
+						}
+					} else {
+						ret |= (TYPE_FLIP | TYPE_GENERAL_SCALE);
+					}
 				}
-			}
-			break;
-		case (APPLY_TRANSLATE):
-			ret = TYPE_TRANSLATION;
-			break;
-		case (APPLY_IDENTITY):
-			break;
+				break;
+			case (APPLY_TRANSLATE):
+				ret = TYPE_TRANSLATION;
+				break;
+			case (APPLY_IDENTITY):
+				break;
 		}
 		this.type = ret;
 	}
@@ -1050,21 +1053,21 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	@SuppressWarnings("fallthrough")
 	public double getDeterminant() {
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SHEAR | APPLY_SCALE):
-			return m00 * m11 - m01 * m10;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-		case (APPLY_SHEAR):
-			return -(m01 * m10);
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SCALE):
-			return m00 * m11;
-		case (APPLY_TRANSLATE):
-		case (APPLY_IDENTITY):
-			return 1.0;
+			default:
+				stateError();
+				/* NOTREACHED */
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SHEAR | APPLY_SCALE):
+				return m00 * m11 - m01 * m10;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+			case (APPLY_SHEAR):
+				return -(m01 * m10);
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SCALE):
+				return m00 * m11;
+			case (APPLY_TRANSLATE):
+			case (APPLY_IDENTITY):
+				return 1.0;
 		}
 	}
 
@@ -1149,7 +1152,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * {&nbsp;m00&nbsp;m10&nbsp;m01&nbsp;m11&nbsp;}
 	 * 
 	 * @param flatmatrix
-	 *            the double array used to store the returned values.
+	 *                   the double array used to store the returned values.
 	 * @see #getScaleX
 	 * @see #getScaleY
 	 * @see #getShearX
@@ -1259,101 +1262,103 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param tx
-	 *            the distance by which coordinates are translated in the X axis
-	 *            direction
+	 *           the distance by which coordinates are translated in the X axis
+	 *           direction
 	 * @param ty
-	 *            the distance by which coordinates are translated in the Y axis
-	 *            direction
+	 *           the distance by which coordinates are translated in the Y axis
+	 *           direction
 	 * @since 1.2
 	 */
 	public void translate(double tx, double ty) {
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			m02 = tx * m00 + ty * m01 + m02;
-			m12 = tx * m10 + ty * m11 + m12;
-			if (m02 == 0.0 && m12 == 0.0) {
-				state = APPLY_SHEAR | APPLY_SCALE;
-				if (type != TYPE_UNKNOWN) {
-					type -= TYPE_TRANSLATION;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				m02 = tx * m00 + ty * m01 + m02;
+				m12 = tx * m10 + ty * m11 + m12;
+				if (m02 == 0.0 && m12 == 0.0) {
+					state = APPLY_SHEAR | APPLY_SCALE;
+					if (type != TYPE_UNKNOWN) {
+						type -= TYPE_TRANSLATION;
+					}
 				}
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			m02 = tx * m00 + ty * m01;
-			m12 = tx * m10 + ty * m11;
-			if (m02 != 0.0 || m12 != 0.0) {
-				state = APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE;
-				type |= TYPE_TRANSLATION;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			m02 = ty * m01 + m02;
-			m12 = tx * m10 + m12;
-			if (m02 == 0.0 && m12 == 0.0) {
-				state = APPLY_SHEAR;
-				if (type != TYPE_UNKNOWN) {
-					type -= TYPE_TRANSLATION;
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				m02 = tx * m00 + ty * m01;
+				m12 = tx * m10 + ty * m11;
+				if (m02 != 0.0 || m12 != 0.0) {
+					state = APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE;
+					type |= TYPE_TRANSLATION;
 				}
-			}
-			return;
-		case (APPLY_SHEAR):
-			m02 = ty * m01;
-			m12 = tx * m10;
-			if (m02 != 0.0 || m12 != 0.0) {
-				state = APPLY_SHEAR | APPLY_TRANSLATE;
-				type |= TYPE_TRANSLATION;
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			m02 = tx * m00 + m02;
-			m12 = ty * m11 + m12;
-			if (m02 == 0.0 && m12 == 0.0) {
-				state = APPLY_SCALE;
-				if (type != TYPE_UNKNOWN) {
-					type -= TYPE_TRANSLATION;
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				m02 = ty * m01 + m02;
+				m12 = tx * m10 + m12;
+				if (m02 == 0.0 && m12 == 0.0) {
+					state = APPLY_SHEAR;
+					if (type != TYPE_UNKNOWN) {
+						type -= TYPE_TRANSLATION;
+					}
 				}
-			}
-			return;
-		case (APPLY_SCALE):
-			m02 = tx * m00;
-			m12 = ty * m11;
-			if (m02 != 0.0 || m12 != 0.0) {
-				state = APPLY_SCALE | APPLY_TRANSLATE;
-				type |= TYPE_TRANSLATION;
-			}
-			return;
-		case (APPLY_TRANSLATE):
-			m02 = tx + m02;
-			m12 = ty + m12;
-			if (m02 == 0.0 && m12 == 0.0) {
-				state = APPLY_IDENTITY;
-				type = TYPE_IDENTITY;
-			}
-			return;
-		case (APPLY_IDENTITY):
-			m02 = tx;
-			m12 = ty;
-			if (tx != 0.0 || ty != 0.0) {
-				state = APPLY_TRANSLATE;
-				type = TYPE_TRANSLATION;
-			}
-			return;
+				return;
+			case (APPLY_SHEAR):
+				m02 = ty * m01;
+				m12 = tx * m10;
+				if (m02 != 0.0 || m12 != 0.0) {
+					state = APPLY_SHEAR | APPLY_TRANSLATE;
+					type |= TYPE_TRANSLATION;
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				m02 = tx * m00 + m02;
+				m12 = ty * m11 + m12;
+				if (m02 == 0.0 && m12 == 0.0) {
+					state = APPLY_SCALE;
+					if (type != TYPE_UNKNOWN) {
+						type -= TYPE_TRANSLATION;
+					}
+				}
+				return;
+			case (APPLY_SCALE):
+				m02 = tx * m00;
+				m12 = ty * m11;
+				if (m02 != 0.0 || m12 != 0.0) {
+					state = APPLY_SCALE | APPLY_TRANSLATE;
+					type |= TYPE_TRANSLATION;
+				}
+				return;
+			case (APPLY_TRANSLATE):
+				m02 = tx + m02;
+				m12 = ty + m12;
+				if (m02 == 0.0 && m12 == 0.0) {
+					state = APPLY_IDENTITY;
+					type = TYPE_IDENTITY;
+				}
+				return;
+			case (APPLY_IDENTITY):
+				m02 = tx;
+				m12 = ty;
+				if (tx != 0.0 || ty != 0.0) {
+					state = APPLY_TRANSLATE;
+					type = TYPE_TRANSLATION;
+				}
+				return;
 		}
 	}
 
 	// Utility methods to optimize rotate methods.
 	// These tables translate the flags during predictable quadrant
 	// rotations where the shear and scale values are swapped and negated.
-	private static final int rot90conversion[] = { /* IDENTITY => */ APPLY_SHEAR,
-			/* TRANSLATE (TR) => */ APPLY_SHEAR | APPLY_TRANSLATE,
-			/* SCALE (SC) => */ APPLY_SHEAR, /* SC | TR => */ APPLY_SHEAR | APPLY_TRANSLATE,
-			/* SHEAR (SH) => */ APPLY_SCALE, /* SH | TR => */ APPLY_SCALE | APPLY_TRANSLATE,
-			/* SH | SC => */ APPLY_SHEAR | APPLY_SCALE,
-			/* SH | SC | TR => */ APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE, };
+	private static final int rot90conversion[] = {
+			/* IDENTITY => */ APPLY_SHEAR, /* TRANSLATE (TR) => */ APPLY_SHEAR
+					| APPLY_TRANSLATE, /* SCALE (SC) => */ APPLY_SHEAR,
+			/* SC | TR => */ APPLY_SHEAR | APPLY_TRANSLATE,
+			/* SHEAR (SH) => */ APPLY_SCALE, /* SH | TR => */ APPLY_SCALE
+					| APPLY_TRANSLATE, /* SH | SC => */ APPLY_SHEAR
+							| APPLY_SCALE, /* SH | SC | TR => */ APPLY_SHEAR
+									| APPLY_SCALE | APPLY_TRANSLATE, };
 
 	private final void rotate90() {
 		double M0 = m00;
@@ -1363,7 +1368,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		m10 = m11;
 		m11 = -M0;
 		int state = rot90conversion[this.state];
-		if ((state & (APPLY_SHEAR | APPLY_SCALE)) == APPLY_SCALE && m00 == 1.0 && m11 == 1.0) {
+		if ((state & (APPLY_SHEAR | APPLY_SCALE)) == APPLY_SCALE && m00 == 1.0
+				&& m11 == 1.0) {
 			state -= APPLY_SCALE;
 		}
 		this.state = state;
@@ -1399,7 +1405,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		m10 = -m11;
 		m11 = M0;
 		int state = rot90conversion[this.state];
-		if ((state & (APPLY_SHEAR | APPLY_SCALE)) == APPLY_SCALE && m00 == 1.0 && m11 == 1.0) {
+		if ((state & (APPLY_SHEAR | APPLY_SCALE)) == APPLY_SCALE && m00 == 1.0
+				&& m11 == 1.0) {
 			state -= APPLY_SCALE;
 		}
 		this.state = state;
@@ -1422,7 +1429,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <a href="#quadrantapproximation">Handling 90-Degree Rotations</a> above.
 	 * 
 	 * @param theta
-	 *            the angle of rotation measured in radians
+	 *              the angle of rotation measured in radians
 	 * @since 1.2
 	 */
 	public void rotate(double theta) {
@@ -1471,11 +1478,11 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <a href="#quadrantapproximation">Handling 90-Degree Rotations</a> above.
 	 *
 	 * @param theta
-	 *            the angle of rotation measured in radians
+	 *                the angle of rotation measured in radians
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                the Y coordinate of the rotation anchor point
 	 * @since 1.2
 	 */
 	public void rotate(double theta, double anchorx, double anchory) {
@@ -1499,9 +1506,9 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param vecx
-	 *            the X coordinate of the rotation vector
+	 *             the X coordinate of the rotation vector
 	 * @param vecy
-	 *            the Y coordinate of the rotation vector
+	 *             the Y coordinate of the rotation vector
 	 * @since 1.6
 	 */
 	public void rotate(double vecx, double vecy) {
@@ -1549,16 +1556,17 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param vecx
-	 *            the X coordinate of the rotation vector
+	 *                the X coordinate of the rotation vector
 	 * @param vecy
-	 *            the Y coordinate of the rotation vector
+	 *                the Y coordinate of the rotation vector
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                the Y coordinate of the rotation anchor point
 	 * @since 1.6
 	 */
-	public void rotate(double vecx, double vecy, double anchorx, double anchory) {
+	public void rotate(double vecx, double vecy, double anchorx,
+			double anchory) {
 		// REMIND: Simple for now - optimize later
 		translate(anchorx, anchory);
 		rotate(vecx, vecy);
@@ -1577,22 +1585,22 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * X axis toward the positive Y axis.
 	 * 
 	 * @param numquadrants
-	 *            the number of 90 degree arcs to rotate by
+	 *                     the number of 90 degree arcs to rotate by
 	 * @since 1.6
 	 */
 	public void quadrantRotate(int numquadrants) {
 		switch (numquadrants & 3) {
-		case 0:
-			break;
-		case 1:
-			rotate90();
-			break;
-		case 2:
-			rotate180();
-			break;
-		case 3:
-			rotate270();
-			break;
+			case 0:
+				break;
+			case 1:
+				rotate90();
+				break;
+			case 2:
+				rotate180();
+				break;
+			case 3:
+				rotate270();
+				break;
 		}
 	}
 
@@ -1609,32 +1617,33 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * X axis toward the positive Y axis.
 	 *
 	 * @param numquadrants
-	 *            the number of 90 degree arcs to rotate by
+	 *                     the number of 90 degree arcs to rotate by
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                     the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                     the Y coordinate of the rotation anchor point
 	 * @since 1.6
 	 */
-	public void quadrantRotate(int numquadrants, double anchorx, double anchory) {
+	public void quadrantRotate(int numquadrants, double anchorx,
+			double anchory) {
 		switch (numquadrants & 3) {
-		case 0:
-			return;
-		case 1:
-			m02 += anchorx * (m00 - m01) + anchory * (m01 + m00);
-			m12 += anchorx * (m10 - m11) + anchory * (m11 + m10);
-			rotate90();
-			break;
-		case 2:
-			m02 += anchorx * (m00 + m00) + anchory * (m01 + m01);
-			m12 += anchorx * (m10 + m10) + anchory * (m11 + m11);
-			rotate180();
-			break;
-		case 3:
-			m02 += anchorx * (m00 + m01) + anchory * (m01 - m00);
-			m12 += anchorx * (m10 + m11) + anchory * (m11 - m10);
-			rotate270();
-			break;
+			case 0:
+				return;
+			case 1:
+				m02 += anchorx * (m00 - m01) + anchory * (m01 + m00);
+				m12 += anchorx * (m10 - m11) + anchory * (m11 + m10);
+				rotate90();
+				break;
+			case 2:
+				m02 += anchorx * (m00 + m00) + anchory * (m01 + m01);
+				m12 += anchorx * (m10 + m10) + anchory * (m11 + m11);
+				rotate180();
+				break;
+			case 3:
+				m02 += anchorx * (m00 + m01) + anchory * (m01 - m00);
+				m12 += anchorx * (m10 + m11) + anchory * (m11 - m10);
+				rotate270();
+				break;
 		}
 		if (m02 == 0.0 && m12 == 0.0) {
 			state &= ~APPLY_TRANSLATE;
@@ -1655,60 +1664,62 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param sx
-	 *            the factor by which coordinates are scaled along the X axis
-	 *            direction
+	 *           the factor by which coordinates are scaled along the X axis
+	 *           direction
 	 * @param sy
-	 *            the factor by which coordinates are scaled along the Y axis
-	 *            direction
+	 *           the factor by which coordinates are scaled along the Y axis
+	 *           direction
 	 * @since 1.2
 	 */
 	@SuppressWarnings("fallthrough")
 	public void scale(double sx, double sy) {
 		int state = this.state;
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SHEAR | APPLY_SCALE):
-			m00 *= sx;
-			m11 *= sy;
-			/* NOBREAK */
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-		case (APPLY_SHEAR):
-			m01 *= sy;
-			m10 *= sx;
-			if (m01 == 0 && m10 == 0) {
-				state &= APPLY_TRANSLATE;
+			default:
+				stateError();
+				/* NOTREACHED */
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SHEAR | APPLY_SCALE):
+				m00 *= sx;
+				m11 *= sy;
+				/* NOBREAK */
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+			case (APPLY_SHEAR):
+				m01 *= sy;
+				m10 *= sx;
+				if (m01 == 0 && m10 == 0) {
+					state &= APPLY_TRANSLATE;
+					if (m00 == 1.0 && m11 == 1.0) {
+						this.type = (state == APPLY_IDENTITY ? TYPE_IDENTITY
+								: TYPE_TRANSLATION);
+					} else {
+						state |= APPLY_SCALE;
+						this.type = TYPE_UNKNOWN;
+					}
+					this.state = state;
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SCALE):
+				m00 *= sx;
+				m11 *= sy;
 				if (m00 == 1.0 && m11 == 1.0) {
-					this.type = (state == APPLY_IDENTITY ? TYPE_IDENTITY : TYPE_TRANSLATION);
+					this.state = (state &= APPLY_TRANSLATE);
+					this.type = (state == APPLY_IDENTITY ? TYPE_IDENTITY
+							: TYPE_TRANSLATION);
 				} else {
-					state |= APPLY_SCALE;
 					this.type = TYPE_UNKNOWN;
 				}
-				this.state = state;
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SCALE):
-			m00 *= sx;
-			m11 *= sy;
-			if (m00 == 1.0 && m11 == 1.0) {
-				this.state = (state &= APPLY_TRANSLATE);
-				this.type = (state == APPLY_IDENTITY ? TYPE_IDENTITY : TYPE_TRANSLATION);
-			} else {
-				this.type = TYPE_UNKNOWN;
-			}
-			return;
-		case (APPLY_TRANSLATE):
-		case (APPLY_IDENTITY):
-			m00 = sx;
-			m11 = sy;
-			if (sx != 1.0 || sy != 1.0) {
-				this.state = state | APPLY_SCALE;
-				this.type = TYPE_UNKNOWN;
-			}
-			return;
+				return;
+			case (APPLY_TRANSLATE):
+			case (APPLY_IDENTITY):
+				m00 = sx;
+				m11 = sy;
+				if (sx != 1.0 || sy != 1.0) {
+					this.state = state | APPLY_SCALE;
+					this.type = TYPE_UNKNOWN;
+				}
+				return;
 		}
 	}
 
@@ -1736,51 +1747,51 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	public void shear(double shx, double shy) {
 		int state = this.state;
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SHEAR | APPLY_SCALE):
-			double M0, M1;
-			M0 = m00;
-			M1 = m01;
-			m00 = M0 + M1 * shy;
-			m01 = M0 * shx + M1;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SHEAR | APPLY_SCALE):
+				double M0, M1;
+				M0 = m00;
+				M1 = m01;
+				m00 = M0 + M1 * shy;
+				m01 = M0 * shx + M1;
 
-			M0 = m10;
-			M1 = m11;
-			m10 = M0 + M1 * shy;
-			m11 = M0 * shx + M1;
-			updateState();
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-		case (APPLY_SHEAR):
-			m00 = m01 * shy;
-			m11 = m10 * shx;
-			if (m00 != 0.0 || m11 != 0.0) {
-				this.state = state | APPLY_SCALE;
-			}
-			this.type = TYPE_UNKNOWN;
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SCALE):
-			m01 = m00 * shx;
-			m10 = m11 * shy;
-			if (m01 != 0.0 || m10 != 0.0) {
-				this.state = state | APPLY_SHEAR;
-			}
-			this.type = TYPE_UNKNOWN;
-			return;
-		case (APPLY_TRANSLATE):
-		case (APPLY_IDENTITY):
-			m01 = shx;
-			m10 = shy;
-			if (m01 != 0.0 || m10 != 0.0) {
-				this.state = state | APPLY_SCALE | APPLY_SHEAR;
+				M0 = m10;
+				M1 = m11;
+				m10 = M0 + M1 * shy;
+				m11 = M0 * shx + M1;
+				updateState();
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+			case (APPLY_SHEAR):
+				m00 = m01 * shy;
+				m11 = m10 * shx;
+				if (m00 != 0.0 || m11 != 0.0) {
+					this.state = state | APPLY_SCALE;
+				}
 				this.type = TYPE_UNKNOWN;
-			}
-			return;
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SCALE):
+				m01 = m00 * shx;
+				m10 = m11 * shy;
+				if (m01 != 0.0 || m10 != 0.0) {
+					this.state = state | APPLY_SHEAR;
+				}
+				this.type = TYPE_UNKNOWN;
+				return;
+			case (APPLY_TRANSLATE):
+			case (APPLY_IDENTITY):
+				m01 = shx;
+				m10 = shy;
+				if (m01 != 0.0 || m10 != 0.0) {
+					this.state = state | APPLY_SCALE | APPLY_SHEAR;
+					this.type = TYPE_UNKNOWN;
+				}
+				return;
 		}
 	}
 
@@ -1807,11 +1818,11 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param tx
-	 *            the distance by which coordinates are translated in the X axis
-	 *            direction
+	 *           the distance by which coordinates are translated in the X axis
+	 *           direction
 	 * @param ty
-	 *            the distance by which coordinates are translated in the Y axis
-	 *            direction
+	 *           the distance by which coordinates are translated in the Y axis
+	 *           direction
 	 * @since 1.2
 	 */
 	public void setToTranslation(double tx, double ty) {
@@ -1845,7 +1856,7 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <a href="#quadrantapproximation">Handling 90-Degree Rotations</a> above.
 	 * 
 	 * @param theta
-	 *            the angle of rotation measured in radians
+	 *              the angle of rotation measured in radians
 	 * @since 1.2
 	 */
 	public void setToRotation(double theta) {
@@ -1906,11 +1917,11 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <a href="#quadrantapproximation">Handling 90-Degree Rotations</a> above.
 	 *
 	 * @param theta
-	 *            the angle of rotation measured in radians
+	 *                the angle of rotation measured in radians
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                the Y coordinate of the rotation anchor point
 	 * @since 1.2
 	 */
 	public void setToRotation(double theta, double anchorx, double anchory) {
@@ -1939,9 +1950,9 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param vecx
-	 *            the X coordinate of the rotation vector
+	 *             the X coordinate of the rotation vector
 	 * @param vecy
-	 *            the Y coordinate of the rotation vector
+	 *             the Y coordinate of the rotation vector
 	 * @since 1.6
 	 */
 	public void setToRotation(double vecx, double vecy) {
@@ -1992,16 +2003,17 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param vecx
-	 *            the X coordinate of the rotation vector
+	 *                the X coordinate of the rotation vector
 	 * @param vecy
-	 *            the Y coordinate of the rotation vector
+	 *                the Y coordinate of the rotation vector
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                the Y coordinate of the rotation anchor point
 	 * @since 1.6
 	 */
-	public void setToRotation(double vecx, double vecy, double anchorx, double anchory) {
+	public void setToRotation(double vecx, double vecy, double anchorx,
+			double anchory) {
 		setToRotation(vecx, vecy);
 		double sin = m10;
 		double oneMinusCos = 1.0 - m00;
@@ -2026,51 +2038,51 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * X axis toward the positive Y axis.
 	 * 
 	 * @param numquadrants
-	 *            the number of 90 degree arcs to rotate by
+	 *                     the number of 90 degree arcs to rotate by
 	 * @since 1.6
 	 */
 	public void setToQuadrantRotation(int numquadrants) {
 		switch (numquadrants & 3) {
-		case 0:
-			m00 = 1.0;
-			m10 = 0.0;
-			m01 = 0.0;
-			m11 = 1.0;
-			m02 = 0.0;
-			m12 = 0.0;
-			state = APPLY_IDENTITY;
-			type = TYPE_IDENTITY;
-			break;
-		case 1:
-			m00 = 0.0;
-			m10 = 1.0;
-			m01 = -1.0;
-			m11 = 0.0;
-			m02 = 0.0;
-			m12 = 0.0;
-			state = APPLY_SHEAR;
-			type = TYPE_QUADRANT_ROTATION;
-			break;
-		case 2:
-			m00 = -1.0;
-			m10 = 0.0;
-			m01 = 0.0;
-			m11 = -1.0;
-			m02 = 0.0;
-			m12 = 0.0;
-			state = APPLY_SCALE;
-			type = TYPE_QUADRANT_ROTATION;
-			break;
-		case 3:
-			m00 = 0.0;
-			m10 = -1.0;
-			m01 = 1.0;
-			m11 = 0.0;
-			m02 = 0.0;
-			m12 = 0.0;
-			state = APPLY_SHEAR;
-			type = TYPE_QUADRANT_ROTATION;
-			break;
+			case 0:
+				m00 = 1.0;
+				m10 = 0.0;
+				m01 = 0.0;
+				m11 = 1.0;
+				m02 = 0.0;
+				m12 = 0.0;
+				state = APPLY_IDENTITY;
+				type = TYPE_IDENTITY;
+				break;
+			case 1:
+				m00 = 0.0;
+				m10 = 1.0;
+				m01 = -1.0;
+				m11 = 0.0;
+				m02 = 0.0;
+				m12 = 0.0;
+				state = APPLY_SHEAR;
+				type = TYPE_QUADRANT_ROTATION;
+				break;
+			case 2:
+				m00 = -1.0;
+				m10 = 0.0;
+				m01 = 0.0;
+				m11 = -1.0;
+				m02 = 0.0;
+				m12 = 0.0;
+				state = APPLY_SCALE;
+				type = TYPE_QUADRANT_ROTATION;
+				break;
+			case 3:
+				m00 = 0.0;
+				m10 = -1.0;
+				m01 = 1.0;
+				m11 = 0.0;
+				m02 = 0.0;
+				m12 = 0.0;
+				state = APPLY_SHEAR;
+				type = TYPE_QUADRANT_ROTATION;
+				break;
 		}
 	}
 
@@ -2087,70 +2099,71 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * X axis toward the positive Y axis.
 	 *
 	 * @param numquadrants
-	 *            the number of 90 degree arcs to rotate by
+	 *                     the number of 90 degree arcs to rotate by
 	 * @param anchorx
-	 *            the X coordinate of the rotation anchor point
+	 *                     the X coordinate of the rotation anchor point
 	 * @param anchory
-	 *            the Y coordinate of the rotation anchor point
+	 *                     the Y coordinate of the rotation anchor point
 	 * @since 1.6
 	 */
-	public void setToQuadrantRotation(int numquadrants, double anchorx, double anchory) {
+	public void setToQuadrantRotation(int numquadrants, double anchorx,
+			double anchory) {
 		switch (numquadrants & 3) {
-		case 0:
-			m00 = 1.0;
-			m10 = 0.0;
-			m01 = 0.0;
-			m11 = 1.0;
-			m02 = 0.0;
-			m12 = 0.0;
-			state = APPLY_IDENTITY;
-			type = TYPE_IDENTITY;
-			break;
-		case 1:
-			m00 = 0.0;
-			m10 = 1.0;
-			m01 = -1.0;
-			m11 = 0.0;
-			m02 = anchorx + anchory;
-			m12 = anchory - anchorx;
-			if (m02 == 0.0 && m12 == 0.0) {
-				state = APPLY_SHEAR;
-				type = TYPE_QUADRANT_ROTATION;
-			} else {
-				state = APPLY_SHEAR | APPLY_TRANSLATE;
-				type = TYPE_QUADRANT_ROTATION | TYPE_TRANSLATION;
-			}
-			break;
-		case 2:
-			m00 = -1.0;
-			m10 = 0.0;
-			m01 = 0.0;
-			m11 = -1.0;
-			m02 = anchorx + anchorx;
-			m12 = anchory + anchory;
-			if (m02 == 0.0 && m12 == 0.0) {
-				state = APPLY_SCALE;
-				type = TYPE_QUADRANT_ROTATION;
-			} else {
-				state = APPLY_SCALE | APPLY_TRANSLATE;
-				type = TYPE_QUADRANT_ROTATION | TYPE_TRANSLATION;
-			}
-			break;
-		case 3:
-			m00 = 0.0;
-			m10 = -1.0;
-			m01 = 1.0;
-			m11 = 0.0;
-			m02 = anchorx - anchory;
-			m12 = anchory + anchorx;
-			if (m02 == 0.0 && m12 == 0.0) {
-				state = APPLY_SHEAR;
-				type = TYPE_QUADRANT_ROTATION;
-			} else {
-				state = APPLY_SHEAR | APPLY_TRANSLATE;
-				type = TYPE_QUADRANT_ROTATION | TYPE_TRANSLATION;
-			}
-			break;
+			case 0:
+				m00 = 1.0;
+				m10 = 0.0;
+				m01 = 0.0;
+				m11 = 1.0;
+				m02 = 0.0;
+				m12 = 0.0;
+				state = APPLY_IDENTITY;
+				type = TYPE_IDENTITY;
+				break;
+			case 1:
+				m00 = 0.0;
+				m10 = 1.0;
+				m01 = -1.0;
+				m11 = 0.0;
+				m02 = anchorx + anchory;
+				m12 = anchory - anchorx;
+				if (m02 == 0.0 && m12 == 0.0) {
+					state = APPLY_SHEAR;
+					type = TYPE_QUADRANT_ROTATION;
+				} else {
+					state = APPLY_SHEAR | APPLY_TRANSLATE;
+					type = TYPE_QUADRANT_ROTATION | TYPE_TRANSLATION;
+				}
+				break;
+			case 2:
+				m00 = -1.0;
+				m10 = 0.0;
+				m01 = 0.0;
+				m11 = -1.0;
+				m02 = anchorx + anchorx;
+				m12 = anchory + anchory;
+				if (m02 == 0.0 && m12 == 0.0) {
+					state = APPLY_SCALE;
+					type = TYPE_QUADRANT_ROTATION;
+				} else {
+					state = APPLY_SCALE | APPLY_TRANSLATE;
+					type = TYPE_QUADRANT_ROTATION | TYPE_TRANSLATION;
+				}
+				break;
+			case 3:
+				m00 = 0.0;
+				m10 = -1.0;
+				m01 = 1.0;
+				m11 = 0.0;
+				m02 = anchorx - anchory;
+				m12 = anchory + anchorx;
+				if (m02 == 0.0 && m12 == 0.0) {
+					state = APPLY_SHEAR;
+					type = TYPE_QUADRANT_ROTATION;
+				} else {
+					state = APPLY_SHEAR | APPLY_TRANSLATE;
+					type = TYPE_QUADRANT_ROTATION | TYPE_TRANSLATION;
+				}
+				break;
 		}
 	}
 
@@ -2165,11 +2178,11 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param sx
-	 *            the factor by which coordinates are scaled along the X axis
-	 *            direction
+	 *           the factor by which coordinates are scaled along the X axis
+	 *           direction
 	 * @param sy
-	 *            the factor by which coordinates are scaled along the Y axis
-	 *            direction
+	 *           the factor by which coordinates are scaled along the Y axis
+	 *           direction
 	 * @since 1.2
 	 */
 	public void setToScale(double sx, double sy) {
@@ -2229,8 +2242,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <code>AffineTransform</code> object.
 	 * 
 	 * @param Tx
-	 *            the <code>AffineTransform</code> object from which to copy the
-	 *            transform
+	 *           the <code>AffineTransform</code> object from which to copy the
+	 *           transform
 	 * @since 1.2
 	 */
 	public void setTransform(AffineTransform Tx) {
@@ -2262,8 +2275,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 *            the Y coordinate translation element of the 3x3 matrix
 	 * @since 1.2
 	 */
-	public void setTransform(double m00, double m10, double m01, double m11, double m02,
-			double m12) {
+	public void setTransform(double m00, double m10, double m01, double m11,
+			double m02, double m12) {
 		this.m00 = m00;
 		this.m10 = m10;
 		this.m01 = m01;
@@ -2290,8 +2303,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param Tx
-	 *            the <code>AffineTransform</code> object to be concatenated
-	 *            with this <code>AffineTransform</code> object.
+	 *           the <code>AffineTransform</code> object to be concatenated
+	 *           with this <code>AffineTransform</code> object.
 	 * @see #preConcatenate
 	 * @since 1.2
 	 */
@@ -2304,115 +2317,115 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		int txstate = Tx.state;
 		switch ((txstate << HI_SHIFT) | mystate) {
 
-		/* ---------- Tx == IDENTITY cases ---------- */
-		case (HI_IDENTITY | APPLY_IDENTITY):
-		case (HI_IDENTITY | APPLY_TRANSLATE):
-		case (HI_IDENTITY | APPLY_SCALE):
-		case (HI_IDENTITY | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_IDENTITY | APPLY_SHEAR):
-		case (HI_IDENTITY | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE):
-		case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			return;
+			/* ---------- Tx == IDENTITY cases ---------- */
+			case (HI_IDENTITY | APPLY_IDENTITY):
+			case (HI_IDENTITY | APPLY_TRANSLATE):
+			case (HI_IDENTITY | APPLY_SCALE):
+			case (HI_IDENTITY | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_IDENTITY | APPLY_SHEAR):
+			case (HI_IDENTITY | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE):
+			case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				return;
 
-		/* ---------- this == IDENTITY cases ---------- */
-		case (HI_SHEAR | HI_SCALE | HI_TRANSLATE | APPLY_IDENTITY):
-			m01 = Tx.m01;
-			m10 = Tx.m10;
-			/* NOBREAK */
-		case (HI_SCALE | HI_TRANSLATE | APPLY_IDENTITY):
-			m00 = Tx.m00;
-			m11 = Tx.m11;
-			/* NOBREAK */
-		case (HI_TRANSLATE | APPLY_IDENTITY):
-			m02 = Tx.m02;
-			m12 = Tx.m12;
-			state = txstate;
-			type = Tx.type;
-			return;
-		case (HI_SHEAR | HI_SCALE | APPLY_IDENTITY):
-			m01 = Tx.m01;
-			m10 = Tx.m10;
-			/* NOBREAK */
-		case (HI_SCALE | APPLY_IDENTITY):
-			m00 = Tx.m00;
-			m11 = Tx.m11;
-			state = txstate;
-			type = Tx.type;
-			return;
-		case (HI_SHEAR | HI_TRANSLATE | APPLY_IDENTITY):
-			m02 = Tx.m02;
-			m12 = Tx.m12;
-			/* NOBREAK */
-		case (HI_SHEAR | APPLY_IDENTITY):
-			m01 = Tx.m01;
-			m10 = Tx.m10;
-			m00 = m11 = 0.0;
-			state = txstate;
-			type = Tx.type;
-			return;
+			/* ---------- this == IDENTITY cases ---------- */
+			case (HI_SHEAR | HI_SCALE | HI_TRANSLATE | APPLY_IDENTITY):
+				m01 = Tx.m01;
+				m10 = Tx.m10;
+				/* NOBREAK */
+			case (HI_SCALE | HI_TRANSLATE | APPLY_IDENTITY):
+				m00 = Tx.m00;
+				m11 = Tx.m11;
+				/* NOBREAK */
+			case (HI_TRANSLATE | APPLY_IDENTITY):
+				m02 = Tx.m02;
+				m12 = Tx.m12;
+				state = txstate;
+				type = Tx.type;
+				return;
+			case (HI_SHEAR | HI_SCALE | APPLY_IDENTITY):
+				m01 = Tx.m01;
+				m10 = Tx.m10;
+				/* NOBREAK */
+			case (HI_SCALE | APPLY_IDENTITY):
+				m00 = Tx.m00;
+				m11 = Tx.m11;
+				state = txstate;
+				type = Tx.type;
+				return;
+			case (HI_SHEAR | HI_TRANSLATE | APPLY_IDENTITY):
+				m02 = Tx.m02;
+				m12 = Tx.m12;
+				/* NOBREAK */
+			case (HI_SHEAR | APPLY_IDENTITY):
+				m01 = Tx.m01;
+				m10 = Tx.m10;
+				m00 = m11 = 0.0;
+				state = txstate;
+				type = Tx.type;
+				return;
 
-		/* ---------- Tx == TRANSLATE cases ---------- */
-		case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE):
-		case (HI_TRANSLATE | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_TRANSLATE | APPLY_SHEAR):
-		case (HI_TRANSLATE | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_TRANSLATE | APPLY_SCALE):
-		case (HI_TRANSLATE | APPLY_TRANSLATE):
-			translate(Tx.m02, Tx.m12);
-			return;
+			/* ---------- Tx == TRANSLATE cases ---------- */
+			case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE):
+			case (HI_TRANSLATE | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_TRANSLATE | APPLY_SHEAR):
+			case (HI_TRANSLATE | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_TRANSLATE | APPLY_SCALE):
+			case (HI_TRANSLATE | APPLY_TRANSLATE):
+				translate(Tx.m02, Tx.m12);
+				return;
 
-		/* ---------- Tx == SCALE cases ---------- */
-		case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE):
-		case (HI_SCALE | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_SCALE | APPLY_SHEAR):
-		case (HI_SCALE | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SCALE | APPLY_SCALE):
-		case (HI_SCALE | APPLY_TRANSLATE):
-			scale(Tx.m00, Tx.m11);
-			return;
+			/* ---------- Tx == SCALE cases ---------- */
+			case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE):
+			case (HI_SCALE | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_SCALE | APPLY_SHEAR):
+			case (HI_SCALE | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SCALE | APPLY_SCALE):
+			case (HI_SCALE | APPLY_TRANSLATE):
+				scale(Tx.m00, Tx.m11);
+				return;
 
-		/* ---------- Tx == SHEAR cases ---------- */
-		case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE):
-			T01 = Tx.m01;
-			T10 = Tx.m10;
-			M0 = m00;
-			m00 = m01 * T10;
-			m01 = M0 * T01;
-			M0 = m10;
-			m10 = m11 * T10;
-			m11 = M0 * T01;
-			type = TYPE_UNKNOWN;
-			return;
-		case (HI_SHEAR | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_SHEAR | APPLY_SHEAR):
-			m00 = m01 * Tx.m10;
-			m01 = 0.0;
-			m11 = m10 * Tx.m01;
-			m10 = 0.0;
-			state = mystate ^ (APPLY_SHEAR | APPLY_SCALE);
-			type = TYPE_UNKNOWN;
-			return;
-		case (HI_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SHEAR | APPLY_SCALE):
-			m01 = m00 * Tx.m01;
-			m00 = 0.0;
-			m10 = m11 * Tx.m10;
-			m11 = 0.0;
-			state = mystate ^ (APPLY_SHEAR | APPLY_SCALE);
-			type = TYPE_UNKNOWN;
-			return;
-		case (HI_SHEAR | APPLY_TRANSLATE):
-			m00 = 0.0;
-			m01 = Tx.m01;
-			m10 = Tx.m10;
-			m11 = 0.0;
-			state = APPLY_TRANSLATE | APPLY_SHEAR;
-			type = TYPE_UNKNOWN;
-			return;
+			/* ---------- Tx == SHEAR cases ---------- */
+			case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE):
+				T01 = Tx.m01;
+				T10 = Tx.m10;
+				M0 = m00;
+				m00 = m01 * T10;
+				m01 = M0 * T01;
+				M0 = m10;
+				m10 = m11 * T10;
+				m11 = M0 * T01;
+				type = TYPE_UNKNOWN;
+				return;
+			case (HI_SHEAR | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_SHEAR | APPLY_SHEAR):
+				m00 = m01 * Tx.m10;
+				m01 = 0.0;
+				m11 = m10 * Tx.m01;
+				m10 = 0.0;
+				state = mystate ^ (APPLY_SHEAR | APPLY_SCALE);
+				type = TYPE_UNKNOWN;
+				return;
+			case (HI_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SHEAR | APPLY_SCALE):
+				m01 = m00 * Tx.m01;
+				m00 = 0.0;
+				m10 = m11 * Tx.m10;
+				m11 = 0.0;
+				state = mystate ^ (APPLY_SHEAR | APPLY_SCALE);
+				type = TYPE_UNKNOWN;
+				return;
+			case (HI_SHEAR | APPLY_TRANSLATE):
+				m00 = 0.0;
+				m01 = Tx.m01;
+				m10 = Tx.m10;
+				m11 = 0.0;
+				state = APPLY_TRANSLATE | APPLY_SHEAR;
+				type = TYPE_UNKNOWN;
+				return;
 		}
 		// If Tx has more than one attribute, it is not worth optimizing
 		// all of those cases...
@@ -2423,64 +2436,64 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		T11 = Tx.m11;
 		T12 = Tx.m12;
 		switch (mystate) {
-		default:
-			stateError();
-			/* NOTREACHED */
-		case (APPLY_SHEAR | APPLY_SCALE):
-			state = mystate | txstate;
-			/* NOBREAK */
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M0 = m00;
-			M1 = m01;
-			m00 = T00 * M0 + T10 * M1;
-			m01 = T01 * M0 + T11 * M1;
-			m02 += T02 * M0 + T12 * M1;
+			default:
+				stateError();
+				/* NOTREACHED */
+			case (APPLY_SHEAR | APPLY_SCALE):
+				state = mystate | txstate;
+				/* NOBREAK */
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M0 = m00;
+				M1 = m01;
+				m00 = T00 * M0 + T10 * M1;
+				m01 = T01 * M0 + T11 * M1;
+				m02 += T02 * M0 + T12 * M1;
 
-			M0 = m10;
-			M1 = m11;
-			m10 = T00 * M0 + T10 * M1;
-			m11 = T01 * M0 + T11 * M1;
-			m12 += T02 * M0 + T12 * M1;
-			type = TYPE_UNKNOWN;
-			return;
+				M0 = m10;
+				M1 = m11;
+				m10 = T00 * M0 + T10 * M1;
+				m11 = T01 * M0 + T11 * M1;
+				m12 += T02 * M0 + T12 * M1;
+				type = TYPE_UNKNOWN;
+				return;
 
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-		case (APPLY_SHEAR):
-			M0 = m01;
-			m00 = T10 * M0;
-			m01 = T11 * M0;
-			m02 += T12 * M0;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+			case (APPLY_SHEAR):
+				M0 = m01;
+				m00 = T10 * M0;
+				m01 = T11 * M0;
+				m02 += T12 * M0;
 
-			M0 = m10;
-			m10 = T00 * M0;
-			m11 = T01 * M0;
-			m12 += T02 * M0;
-			break;
+				M0 = m10;
+				m10 = T00 * M0;
+				m11 = T01 * M0;
+				m12 += T02 * M0;
+				break;
 
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SCALE):
-			M0 = m00;
-			m00 = T00 * M0;
-			m01 = T01 * M0;
-			m02 += T02 * M0;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SCALE):
+				M0 = m00;
+				m00 = T00 * M0;
+				m01 = T01 * M0;
+				m02 += T02 * M0;
 
-			M0 = m11;
-			m10 = T10 * M0;
-			m11 = T11 * M0;
-			m12 += T12 * M0;
-			break;
+				M0 = m11;
+				m10 = T10 * M0;
+				m11 = T11 * M0;
+				m12 += T12 * M0;
+				break;
 
-		case (APPLY_TRANSLATE):
-			m00 = T00;
-			m01 = T01;
-			m02 += T02;
+			case (APPLY_TRANSLATE):
+				m00 = T00;
+				m01 = T01;
+				m02 += T02;
 
-			m10 = T10;
-			m11 = T11;
-			m12 += T12;
-			state = txstate | APPLY_TRANSLATE;
-			type = TYPE_UNKNOWN;
-			return;
+				m10 = T10;
+				m11 = T11;
+				m12 += T12;
+				state = txstate | APPLY_TRANSLATE;
+				type = TYPE_UNKNOWN;
+				return;
 		}
 		updateState();
 	}
@@ -2502,8 +2515,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * </pre>
 	 * 
 	 * @param Tx
-	 *            the <code>AffineTransform</code> object to be concatenated
-	 *            with this <code>AffineTransform</code> object.
+	 *           the <code>AffineTransform</code> object to be concatenated
+	 *           with this <code>AffineTransform</code> object.
 	 * @see #concatenate
 	 * @since 1.2
 	 */
@@ -2515,97 +2528,97 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		int mystate = state;
 		int txstate = Tx.state;
 		switch ((txstate << HI_SHIFT) | mystate) {
-		case (HI_IDENTITY | APPLY_IDENTITY):
-		case (HI_IDENTITY | APPLY_TRANSLATE):
-		case (HI_IDENTITY | APPLY_SCALE):
-		case (HI_IDENTITY | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_IDENTITY | APPLY_SHEAR):
-		case (HI_IDENTITY | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE):
-		case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			// Tx is IDENTITY...
-			return;
+			case (HI_IDENTITY | APPLY_IDENTITY):
+			case (HI_IDENTITY | APPLY_TRANSLATE):
+			case (HI_IDENTITY | APPLY_SCALE):
+			case (HI_IDENTITY | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_IDENTITY | APPLY_SHEAR):
+			case (HI_IDENTITY | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE):
+			case (HI_IDENTITY | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				// Tx is IDENTITY...
+				return;
 
-		case (HI_TRANSLATE | APPLY_IDENTITY):
-		case (HI_TRANSLATE | APPLY_SCALE):
-		case (HI_TRANSLATE | APPLY_SHEAR):
-		case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE):
-			// Tx is TRANSLATE, this has no TRANSLATE
-			m02 = Tx.m02;
-			m12 = Tx.m12;
-			state = mystate | APPLY_TRANSLATE;
-			type |= TYPE_TRANSLATION;
-			return;
+			case (HI_TRANSLATE | APPLY_IDENTITY):
+			case (HI_TRANSLATE | APPLY_SCALE):
+			case (HI_TRANSLATE | APPLY_SHEAR):
+			case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE):
+				// Tx is TRANSLATE, this has no TRANSLATE
+				m02 = Tx.m02;
+				m12 = Tx.m12;
+				state = mystate | APPLY_TRANSLATE;
+				type |= TYPE_TRANSLATION;
+				return;
 
-		case (HI_TRANSLATE | APPLY_TRANSLATE):
-		case (HI_TRANSLATE | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_TRANSLATE | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			// Tx is TRANSLATE, this has one too
-			m02 = m02 + Tx.m02;
-			m12 = m12 + Tx.m12;
-			return;
+			case (HI_TRANSLATE | APPLY_TRANSLATE):
+			case (HI_TRANSLATE | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_TRANSLATE | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_TRANSLATE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				// Tx is TRANSLATE, this has one too
+				m02 = m02 + Tx.m02;
+				m12 = m12 + Tx.m12;
+				return;
 
-		case (HI_SCALE | APPLY_TRANSLATE):
-		case (HI_SCALE | APPLY_IDENTITY):
-			// Only these two existing states need a new state
-			state = mystate | APPLY_SCALE;
-			/* NOBREAK */
-		case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE):
-		case (HI_SCALE | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_SCALE | APPLY_SHEAR):
-		case (HI_SCALE | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SCALE | APPLY_SCALE):
-			// Tx is SCALE, this is anything
-			T00 = Tx.m00;
-			T11 = Tx.m11;
-			if ((mystate & APPLY_SHEAR) != 0) {
-				m01 = m01 * T00;
-				m10 = m10 * T11;
-				if ((mystate & APPLY_SCALE) != 0) {
+			case (HI_SCALE | APPLY_TRANSLATE):
+			case (HI_SCALE | APPLY_IDENTITY):
+				// Only these two existing states need a new state
+				state = mystate | APPLY_SCALE;
+				/* NOBREAK */
+			case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SCALE | APPLY_SHEAR | APPLY_SCALE):
+			case (HI_SCALE | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_SCALE | APPLY_SHEAR):
+			case (HI_SCALE | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SCALE | APPLY_SCALE):
+				// Tx is SCALE, this is anything
+				T00 = Tx.m00;
+				T11 = Tx.m11;
+				if ((mystate & APPLY_SHEAR) != 0) {
+					m01 = m01 * T00;
+					m10 = m10 * T11;
+					if ((mystate & APPLY_SCALE) != 0) {
+						m00 = m00 * T00;
+						m11 = m11 * T11;
+					}
+				} else {
 					m00 = m00 * T00;
 					m11 = m11 * T11;
 				}
-			} else {
-				m00 = m00 * T00;
-				m11 = m11 * T11;
-			}
-			if ((mystate & APPLY_TRANSLATE) != 0) {
-				m02 = m02 * T00;
-				m12 = m12 * T11;
-			}
-			type = TYPE_UNKNOWN;
-			return;
-		case (HI_SHEAR | APPLY_SHEAR | APPLY_TRANSLATE):
-		case (HI_SHEAR | APPLY_SHEAR):
-			mystate = mystate | APPLY_SCALE;
-			/* NOBREAK */
-		case (HI_SHEAR | APPLY_TRANSLATE):
-		case (HI_SHEAR | APPLY_IDENTITY):
-		case (HI_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SHEAR | APPLY_SCALE):
-			state = mystate ^ APPLY_SHEAR;
-			/* NOBREAK */
-		case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE):
-			// Tx is SHEAR, this is anything
-			T01 = Tx.m01;
-			T10 = Tx.m10;
+				if ((mystate & APPLY_TRANSLATE) != 0) {
+					m02 = m02 * T00;
+					m12 = m12 * T11;
+				}
+				type = TYPE_UNKNOWN;
+				return;
+			case (HI_SHEAR | APPLY_SHEAR | APPLY_TRANSLATE):
+			case (HI_SHEAR | APPLY_SHEAR):
+				mystate = mystate | APPLY_SCALE;
+				/* NOBREAK */
+			case (HI_SHEAR | APPLY_TRANSLATE):
+			case (HI_SHEAR | APPLY_IDENTITY):
+			case (HI_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SHEAR | APPLY_SCALE):
+				state = mystate ^ APPLY_SHEAR;
+				/* NOBREAK */
+			case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (HI_SHEAR | APPLY_SHEAR | APPLY_SCALE):
+				// Tx is SHEAR, this is anything
+				T01 = Tx.m01;
+				T10 = Tx.m10;
 
-			M0 = m00;
-			m00 = m10 * T01;
-			m10 = M0 * T10;
+				M0 = m00;
+				m00 = m10 * T01;
+				m10 = M0 * T10;
 
-			M0 = m01;
-			m01 = m11 * T01;
-			m11 = M0 * T10;
+				M0 = m01;
+				m01 = m11 * T01;
+				m11 = M0 * T10;
 
-			M0 = m02;
-			m02 = m12 * T01;
-			m12 = M0 * T10;
-			type = TYPE_UNKNOWN;
-			return;
+				M0 = m02;
+				m02 = m12 * T01;
+				m12 = M0 * T10;
+				type = TYPE_UNKNOWN;
+				return;
 		}
 		// If Tx has more than one attribute, it is not worth optimizing
 		// all of those cases...
@@ -2616,91 +2629,91 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		T11 = Tx.m11;
 		T12 = Tx.m12;
 		switch (mystate) {
-		default:
-			stateError();
-			/* NOTREACHED */
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M0 = m02;
-			M1 = m12;
-			T02 += M0 * T00 + M1 * T01;
-			T12 += M0 * T10 + M1 * T11;
+			default:
+				stateError();
+				/* NOTREACHED */
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M0 = m02;
+				M1 = m12;
+				T02 += M0 * T00 + M1 * T01;
+				T12 += M0 * T10 + M1 * T11;
 
-			/* NOBREAK */
-		case (APPLY_SHEAR | APPLY_SCALE):
-			m02 = T02;
-			m12 = T12;
+				/* NOBREAK */
+			case (APPLY_SHEAR | APPLY_SCALE):
+				m02 = T02;
+				m12 = T12;
 
-			M0 = m00;
-			M1 = m10;
-			m00 = M0 * T00 + M1 * T01;
-			m10 = M0 * T10 + M1 * T11;
+				M0 = m00;
+				M1 = m10;
+				m00 = M0 * T00 + M1 * T01;
+				m10 = M0 * T10 + M1 * T11;
 
-			M0 = m01;
-			M1 = m11;
-			m01 = M0 * T00 + M1 * T01;
-			m11 = M0 * T10 + M1 * T11;
-			break;
+				M0 = m01;
+				M1 = m11;
+				m01 = M0 * T00 + M1 * T01;
+				m11 = M0 * T10 + M1 * T11;
+				break;
 
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			M0 = m02;
-			M1 = m12;
-			T02 += M0 * T00 + M1 * T01;
-			T12 += M0 * T10 + M1 * T11;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				M0 = m02;
+				M1 = m12;
+				T02 += M0 * T00 + M1 * T01;
+				T12 += M0 * T10 + M1 * T11;
 
-			/* NOBREAK */
-		case (APPLY_SHEAR):
-			m02 = T02;
-			m12 = T12;
+				/* NOBREAK */
+			case (APPLY_SHEAR):
+				m02 = T02;
+				m12 = T12;
 
-			M0 = m10;
-			m00 = M0 * T01;
-			m10 = M0 * T11;
+				M0 = m10;
+				m00 = M0 * T01;
+				m10 = M0 * T11;
 
-			M0 = m01;
-			m01 = M0 * T00;
-			m11 = M0 * T10;
-			break;
+				M0 = m01;
+				m01 = M0 * T00;
+				m11 = M0 * T10;
+				break;
 
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			M0 = m02;
-			M1 = m12;
-			T02 += M0 * T00 + M1 * T01;
-			T12 += M0 * T10 + M1 * T11;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				M0 = m02;
+				M1 = m12;
+				T02 += M0 * T00 + M1 * T01;
+				T12 += M0 * T10 + M1 * T11;
 
-			/* NOBREAK */
-		case (APPLY_SCALE):
-			m02 = T02;
-			m12 = T12;
+				/* NOBREAK */
+			case (APPLY_SCALE):
+				m02 = T02;
+				m12 = T12;
 
-			M0 = m00;
-			m00 = M0 * T00;
-			m10 = M0 * T10;
+				M0 = m00;
+				m00 = M0 * T00;
+				m10 = M0 * T10;
 
-			M0 = m11;
-			m01 = M0 * T01;
-			m11 = M0 * T11;
-			break;
+				M0 = m11;
+				m01 = M0 * T01;
+				m11 = M0 * T11;
+				break;
 
-		case (APPLY_TRANSLATE):
-			M0 = m02;
-			M1 = m12;
-			T02 += M0 * T00 + M1 * T01;
-			T12 += M0 * T10 + M1 * T11;
+			case (APPLY_TRANSLATE):
+				M0 = m02;
+				M1 = m12;
+				T02 += M0 * T00 + M1 * T01;
+				T12 += M0 * T10 + M1 * T11;
 
-			/* NOBREAK */
-		case (APPLY_IDENTITY):
-			m02 = T02;
-			m12 = T12;
+				/* NOBREAK */
+			case (APPLY_IDENTITY):
+				m02 = T02;
+				m12 = T12;
 
-			m00 = T00;
-			m10 = T10;
+				m00 = T00;
+				m10 = T10;
 
-			m01 = T01;
-			m11 = T11;
+				m01 = T01;
+				m11 = T11;
 
-			state = mystate | txstate;
-			type = TYPE_UNKNOWN;
-			return;
+				state = mystate | txstate;
+				type = TYPE_UNKNOWN;
+				return;
 		}
 		updateState();
 	}
@@ -2722,57 +2735,69 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 *         inverse transformation.
 	 * @see #getDeterminant
 	 * @exception NoninvertibleTransformException
-	 *                if the matrix cannot be inverted.
+	 *                                            if the matrix cannot be
+	 *                                            inverted.
 	 * @since 1.2
 	 */
-	public AffineTransform createInverse() throws NoninvertibleTransformException {
+	public AffineTransform createInverse()
+			throws NoninvertibleTransformException {
 		double det;
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return null;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			det = m00 * m11 - m01 * m10;
-			if (Math.abs(det) <= Double.MIN_VALUE) {
-				throw new NoninvertibleTransformException("Determinant is " + det);
-			}
-			return new AffineTransform(m11 / det, -m10 / det, -m01 / det, m00 / det,
-					(m01 * m12 - m11 * m02) / det, (m10 * m02 - m00 * m12) / det,
-					(APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE));
-		case (APPLY_SHEAR | APPLY_SCALE):
-			det = m00 * m11 - m01 * m10;
-			if (Math.abs(det) <= Double.MIN_VALUE) {
-				throw new NoninvertibleTransformException("Determinant is " + det);
-			}
-			return new AffineTransform(m11 / det, -m10 / det, -m01 / det, m00 / det, 0.0, 0.0,
-					(APPLY_SHEAR | APPLY_SCALE));
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			if (m01 == 0.0 || m10 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			return new AffineTransform(0.0, 1.0 / m01, 1.0 / m10, 0.0, -m12 / m10, -m02 / m01,
-					(APPLY_SHEAR | APPLY_TRANSLATE));
-		case (APPLY_SHEAR):
-			if (m01 == 0.0 || m10 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			return new AffineTransform(0.0, 1.0 / m01, 1.0 / m10, 0.0, 0.0, 0.0, (APPLY_SHEAR));
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			if (m00 == 0.0 || m11 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			return new AffineTransform(1.0 / m00, 0.0, 0.0, 1.0 / m11, -m02 / m00, -m12 / m11,
-					(APPLY_SCALE | APPLY_TRANSLATE));
-		case (APPLY_SCALE):
-			if (m00 == 0.0 || m11 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			return new AffineTransform(1.0 / m00, 0.0, 0.0, 1.0 / m11, 0.0, 0.0, (APPLY_SCALE));
-		case (APPLY_TRANSLATE):
-			return new AffineTransform(1.0, 0.0, 0.0, 1.0, -m02, -m12, (APPLY_TRANSLATE));
-		case (APPLY_IDENTITY):
-			return new AffineTransform();
+			default:
+				stateError();
+				/* NOTREACHED */
+				return null;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				det = m00 * m11 - m01 * m10;
+				if (Math.abs(det) <= Double.MIN_VALUE) {
+					throw new NoninvertibleTransformException("Determinant is "
+							+ det);
+				}
+				return new AffineTransform(m11 / det, -m10 / det, -m01 / det,
+						m00 / det, (m01 * m12 - m11 * m02) / det, (m10 * m02
+								- m00 * m12) / det, (APPLY_SHEAR | APPLY_SCALE
+										| APPLY_TRANSLATE));
+			case (APPLY_SHEAR | APPLY_SCALE):
+				det = m00 * m11 - m01 * m10;
+				if (Math.abs(det) <= Double.MIN_VALUE) {
+					throw new NoninvertibleTransformException("Determinant is "
+							+ det);
+				}
+				return new AffineTransform(m11 / det, -m10 / det, -m01 / det,
+						m00 / det, 0.0, 0.0, (APPLY_SHEAR | APPLY_SCALE));
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				if (m01 == 0.0 || m10 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				return new AffineTransform(0.0, 1.0 / m01, 1.0 / m10, 0.0, -m12
+						/ m10, -m02 / m01, (APPLY_SHEAR | APPLY_TRANSLATE));
+			case (APPLY_SHEAR):
+				if (m01 == 0.0 || m10 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				return new AffineTransform(0.0, 1.0 / m01, 1.0 / m10, 0.0, 0.0,
+						0.0, (APPLY_SHEAR));
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				if (m00 == 0.0 || m11 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				return new AffineTransform(1.0 / m00, 0.0, 0.0, 1.0 / m11, -m02
+						/ m00, -m12 / m11, (APPLY_SCALE | APPLY_TRANSLATE));
+			case (APPLY_SCALE):
+				if (m00 == 0.0 || m11 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				return new AffineTransform(1.0 / m00, 0.0, 0.0, 1.0 / m11, 0.0,
+						0.0, (APPLY_SCALE));
+			case (APPLY_TRANSLATE):
+				return new AffineTransform(1.0, 0.0, 0.0, 1.0, -m02, -m12,
+						(APPLY_TRANSLATE));
+			case (APPLY_IDENTITY):
+				return new AffineTransform();
 		}
 
 		/* NOTREACHED */
@@ -2792,7 +2817,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * 
 	 * @see #getDeterminant
 	 * @exception NoninvertibleTransformException
-	 *                if the matrix cannot be inverted.
+	 *                                            if the matrix cannot be
+	 *                                            inverted.
 	 * @since 1.6
 	 */
 	public void invert() throws NoninvertibleTransformException {
@@ -2800,116 +2826,122 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		double M10, M11, M12;
 		double det;
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M11 = m11;
-			M12 = m12;
-			det = M00 * M11 - M01 * M10;
-			if (Math.abs(det) <= Double.MIN_VALUE) {
-				throw new NoninvertibleTransformException("Determinant is " + det);
-			}
-			m00 = M11 / det;
-			m10 = -M10 / det;
-			m01 = -M01 / det;
-			m11 = M00 / det;
-			m02 = (M01 * M12 - M11 * M02) / det;
-			m12 = (M10 * M02 - M00 * M12) / det;
-			break;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			M00 = m00;
-			M01 = m01;
-			M10 = m10;
-			M11 = m11;
-			det = M00 * M11 - M01 * M10;
-			if (Math.abs(det) <= Double.MIN_VALUE) {
-				throw new NoninvertibleTransformException("Determinant is " + det);
-			}
-			m00 = M11 / det;
-			m10 = -M10 / det;
-			m01 = -M01 / det;
-			m11 = M00 / det;
-			// m02 = 0.0;
-			// m12 = 0.0;
-			break;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M12 = m12;
-			if (M01 == 0.0 || M10 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			// m00 = 0.0;
-			m10 = 1.0 / M01;
-			m01 = 1.0 / M10;
-			// m11 = 0.0;
-			m02 = -M12 / M10;
-			m12 = -M02 / M01;
-			break;
-		case (APPLY_SHEAR):
-			M01 = m01;
-			M10 = m10;
-			if (M01 == 0.0 || M10 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			// m00 = 0.0;
-			m10 = 1.0 / M01;
-			m01 = 1.0 / M10;
-			// m11 = 0.0;
-			// m02 = 0.0;
-			// m12 = 0.0;
-			break;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M02 = m02;
-			M11 = m11;
-			M12 = m12;
-			if (M00 == 0.0 || M11 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			m00 = 1.0 / M00;
-			// m10 = 0.0;
-			// m01 = 0.0;
-			m11 = 1.0 / M11;
-			m02 = -M02 / M00;
-			m12 = -M12 / M11;
-			break;
-		case (APPLY_SCALE):
-			M00 = m00;
-			M11 = m11;
-			if (M00 == 0.0 || M11 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			m00 = 1.0 / M00;
-			// m10 = 0.0;
-			// m01 = 0.0;
-			m11 = 1.0 / M11;
-			// m02 = 0.0;
-			// m12 = 0.0;
-			break;
-		case (APPLY_TRANSLATE):
-			// m00 = 1.0;
-			// m10 = 0.0;
-			// m01 = 0.0;
-			// m11 = 1.0;
-			m02 = -m02;
-			m12 = -m12;
-			break;
-		case (APPLY_IDENTITY):
-			// m00 = 1.0;
-			// m10 = 0.0;
-			// m01 = 0.0;
-			// m11 = 1.0;
-			// m02 = 0.0;
-			// m12 = 0.0;
-			break;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M11 = m11;
+				M12 = m12;
+				det = M00 * M11 - M01 * M10;
+				if (Math.abs(det) <= Double.MIN_VALUE) {
+					throw new NoninvertibleTransformException("Determinant is "
+							+ det);
+				}
+				m00 = M11 / det;
+				m10 = -M10 / det;
+				m01 = -M01 / det;
+				m11 = M00 / det;
+				m02 = (M01 * M12 - M11 * M02) / det;
+				m12 = (M10 * M02 - M00 * M12) / det;
+				break;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				M00 = m00;
+				M01 = m01;
+				M10 = m10;
+				M11 = m11;
+				det = M00 * M11 - M01 * M10;
+				if (Math.abs(det) <= Double.MIN_VALUE) {
+					throw new NoninvertibleTransformException("Determinant is "
+							+ det);
+				}
+				m00 = M11 / det;
+				m10 = -M10 / det;
+				m01 = -M01 / det;
+				m11 = M00 / det;
+				// m02 = 0.0;
+				// m12 = 0.0;
+				break;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M12 = m12;
+				if (M01 == 0.0 || M10 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				// m00 = 0.0;
+				m10 = 1.0 / M01;
+				m01 = 1.0 / M10;
+				// m11 = 0.0;
+				m02 = -M12 / M10;
+				m12 = -M02 / M01;
+				break;
+			case (APPLY_SHEAR):
+				M01 = m01;
+				M10 = m10;
+				if (M01 == 0.0 || M10 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				// m00 = 0.0;
+				m10 = 1.0 / M01;
+				m01 = 1.0 / M10;
+				// m11 = 0.0;
+				// m02 = 0.0;
+				// m12 = 0.0;
+				break;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M02 = m02;
+				M11 = m11;
+				M12 = m12;
+				if (M00 == 0.0 || M11 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				m00 = 1.0 / M00;
+				// m10 = 0.0;
+				// m01 = 0.0;
+				m11 = 1.0 / M11;
+				m02 = -M02 / M00;
+				m12 = -M12 / M11;
+				break;
+			case (APPLY_SCALE):
+				M00 = m00;
+				M11 = m11;
+				if (M00 == 0.0 || M11 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				m00 = 1.0 / M00;
+				// m10 = 0.0;
+				// m01 = 0.0;
+				m11 = 1.0 / M11;
+				// m02 = 0.0;
+				// m12 = 0.0;
+				break;
+			case (APPLY_TRANSLATE):
+				// m00 = 1.0;
+				// m10 = 0.0;
+				// m01 = 0.0;
+				// m11 = 1.0;
+				m02 = -m02;
+				m12 = -m12;
+				break;
+			case (APPLY_IDENTITY):
+				// m00 = 1.0;
+				// m10 = 0.0;
+				// m01 = 0.0;
+				// m11 = 1.0;
+				// m02 = 0.0;
+				// m12 = 0.0;
+				break;
 		}
 	}
 
@@ -2924,10 +2956,10 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * point.
 	 * 
 	 * @param ptSrc
-	 *            the specified <code>Point2D</code> to be transformed
+	 *              the specified <code>Point2D</code> to be transformed
 	 * @param ptDst
-	 *            the specified <code>Point2D</code> that stores the result of
-	 *            transforming <code>ptSrc</code>
+	 *              the specified <code>Point2D</code> that stores the result of
+	 *              transforming <code>ptSrc</code>
 	 * @return the <code>ptDst</code> after transforming <code>ptSrc</code> and
 	 *         storing the result in <code>ptDst</code>.
 	 * @since 1.2
@@ -2944,34 +2976,35 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		double x = ptSrc.getX();
 		double y = ptSrc.getY();
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return null;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			ptDst.setLocation(x * m00 + y * m01 + m02, x * m10 + y * m11 + m12);
-			return ptDst;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			ptDst.setLocation(x * m00 + y * m01, x * m10 + y * m11);
-			return ptDst;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			ptDst.setLocation(y * m01 + m02, x * m10 + m12);
-			return ptDst;
-		case (APPLY_SHEAR):
-			ptDst.setLocation(y * m01, x * m10);
-			return ptDst;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			ptDst.setLocation(x * m00 + m02, y * m11 + m12);
-			return ptDst;
-		case (APPLY_SCALE):
-			ptDst.setLocation(x * m00, y * m11);
-			return ptDst;
-		case (APPLY_TRANSLATE):
-			ptDst.setLocation(x + m02, y + m12);
-			return ptDst;
-		case (APPLY_IDENTITY):
-			ptDst.setLocation(x, y);
-			return ptDst;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return null;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				ptDst.setLocation(x * m00 + y * m01 + m02, x * m10 + y * m11
+						+ m12);
+				return ptDst;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				ptDst.setLocation(x * m00 + y * m01, x * m10 + y * m11);
+				return ptDst;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				ptDst.setLocation(y * m01 + m02, x * m10 + m12);
+				return ptDst;
+			case (APPLY_SHEAR):
+				ptDst.setLocation(y * m01, x * m10);
+				return ptDst;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				ptDst.setLocation(x * m00 + m02, y * m11 + m12);
+				return ptDst;
+			case (APPLY_SCALE):
+				ptDst.setLocation(x * m00, y * m11);
+				return ptDst;
+			case (APPLY_TRANSLATE):
+				ptDst.setLocation(x + m02, y + m12);
+				return ptDst;
+			case (APPLY_IDENTITY):
+				ptDst.setLocation(x, y);
+				return ptDst;
 		}
 
 		/* NOTREACHED */
@@ -2996,20 +3029,23 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * that point are overwritten before they can be converted.
 	 * 
 	 * @param ptSrc
-	 *            the array containing the source point objects
+	 *               the array containing the source point objects
 	 * @param ptDst
-	 *            the array into which the transform point objects are returned
+	 *               the array into which the transform point objects are
+	 *               returned
 	 * @param srcOff
-	 *            the offset to the first point object to be transformed in the
-	 *            source array
+	 *               the offset to the first point object to be transformed in
+	 *               the
+	 *               source array
 	 * @param dstOff
-	 *            the offset to the location of the first transformed point
-	 *            object that is stored in the destination array
+	 *               the offset to the location of the first transformed point
+	 *               object that is stored in the destination array
 	 * @param numPts
-	 *            the number of point objects to be transformed
+	 *               the number of point objects to be transformed
 	 * @since 1.2
 	 */
-	public void transform(Point2D[] ptSrc, int srcOff, Point2D[] ptDst, int dstOff, int numPts) {
+	public void transform(Point2D[] ptSrc, int srcOff, Point2D[] ptDst,
+			int dstOff, int numPts) {
 		int state = this.state;
 		while (--numPts >= 0) {
 			// Copy source coords into local variables in case src == dst
@@ -3026,34 +3062,35 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 				ptDst[dstOff - 1] = dst;
 			}
 			switch (state) {
-			default:
-				stateError();
-				/* NOTREACHED */
-				return;
-			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-				dst.setLocation(x * m00 + y * m01 + m02, x * m10 + y * m11 + m12);
-				break;
-			case (APPLY_SHEAR | APPLY_SCALE):
-				dst.setLocation(x * m00 + y * m01, x * m10 + y * m11);
-				break;
-			case (APPLY_SHEAR | APPLY_TRANSLATE):
-				dst.setLocation(y * m01 + m02, x * m10 + m12);
-				break;
-			case (APPLY_SHEAR):
-				dst.setLocation(y * m01, x * m10);
-				break;
-			case (APPLY_SCALE | APPLY_TRANSLATE):
-				dst.setLocation(x * m00 + m02, y * m11 + m12);
-				break;
-			case (APPLY_SCALE):
-				dst.setLocation(x * m00, y * m11);
-				break;
-			case (APPLY_TRANSLATE):
-				dst.setLocation(x + m02, y + m12);
-				break;
-			case (APPLY_IDENTITY):
-				dst.setLocation(x, y);
-				break;
+				default:
+					stateError();
+					/* NOTREACHED */
+					return;
+				case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+					dst.setLocation(x * m00 + y * m01 + m02, x * m10 + y * m11
+							+ m12);
+					break;
+				case (APPLY_SHEAR | APPLY_SCALE):
+					dst.setLocation(x * m00 + y * m01, x * m10 + y * m11);
+					break;
+				case (APPLY_SHEAR | APPLY_TRANSLATE):
+					dst.setLocation(y * m01 + m02, x * m10 + m12);
+					break;
+				case (APPLY_SHEAR):
+					dst.setLocation(y * m01, x * m10);
+					break;
+				case (APPLY_SCALE | APPLY_TRANSLATE):
+					dst.setLocation(x * m00 + m02, y * m11 + m12);
+					break;
+				case (APPLY_SCALE):
+					dst.setLocation(x * m00, y * m11);
+					break;
+				case (APPLY_TRANSLATE):
+					dst.setLocation(x + m02, y + m12);
+					break;
+				case (APPLY_IDENTITY):
+					dst.setLocation(x, y);
+					break;
 			}
 		}
 
@@ -3070,25 +3107,30 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * the order <code>[x0, y0, x1, y1, ..., xn, yn]</code>.
 	 * 
 	 * @param srcPts
-	 *            the array containing the source point coordinates. Each point
-	 *            is stored as a pair of x,&nbsp;y coordinates.
+	 *               the array containing the source point coordinates. Each
+	 *               point
+	 *               is stored as a pair of x,&nbsp;y coordinates.
 	 * @param dstPts
-	 *            the array into which the transformed point coordinates are
-	 *            returned. Each point is stored as a pair of x,&nbsp;y
-	 *            coordinates.
+	 *               the array into which the transformed point coordinates are
+	 *               returned. Each point is stored as a pair of x,&nbsp;y
+	 *               coordinates.
 	 * @param srcOff
-	 *            the offset to the first point to be transformed in the source
-	 *            array
+	 *               the offset to the first point to be transformed in the
+	 *               source
+	 *               array
 	 * @param dstOff
-	 *            the offset to the location of the first transformed point that
-	 *            is stored in the destination array
+	 *               the offset to the location of the first transformed point
+	 *               that
+	 *               is stored in the destination array
 	 * @param numPts
-	 *            the number of points to be transformed
+	 *               the number of points to be transformed
 	 * @since 1.2
 	 */
-	public void transform(float[] srcPts, int srcOff, float[] dstPts, int dstOff, int numPts) {
+	public void transform(float[] srcPts, int srcOff, float[] dstPts,
+			int dstOff, int numPts) {
 		double M00, M01, M02, M10, M11, M12; // For caching
-		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts * 2) {
+		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts
+				* 2) {
 			// If the arrays overlap partially with the destination higher
 			// than the source and we transform the coordinates normally
 			// we would overwrite some of the later source coordinates
@@ -3102,87 +3144,88 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 			srcOff = dstOff;
 		}
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M00 * x + M01 * y + M02);
-				dstPts[dstOff++] = (float) (M10 * x + M11 * y + M12);
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			M00 = m00;
-			M01 = m01;
-			M10 = m10;
-			M11 = m11;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M00 * x + M01 * y);
-				dstPts[dstOff++] = (float) (M10 * x + M11 * y);
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++] + M02);
-				dstPts[dstOff++] = (float) (M10 * x + M12);
-			}
-			return;
-		case (APPLY_SHEAR):
-			M01 = m01;
-			M10 = m10;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++]);
-				dstPts[dstOff++] = (float) (M10 * x);
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M02 = m02;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++] + M02);
-				dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++] + M12);
-			}
-			return;
-		case (APPLY_SCALE):
-			M00 = m00;
-			M11 = m11;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++]);
-				dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++]);
-			}
-			return;
-		case (APPLY_TRANSLATE):
-			M02 = m02;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (float) (srcPts[srcOff++] + M02);
-				dstPts[dstOff++] = (float) (srcPts[srcOff++] + M12);
-			}
-			return;
-		case (APPLY_IDENTITY):
-			if (srcPts != dstPts || srcOff != dstOff) {
-				System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts * 2);
-			}
-			return;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M00 * x + M01 * y + M02);
+					dstPts[dstOff++] = (float) (M10 * x + M11 * y + M12);
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				M00 = m00;
+				M01 = m01;
+				M10 = m10;
+				M11 = m11;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M00 * x + M01 * y);
+					dstPts[dstOff++] = (float) (M10 * x + M11 * y);
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++] + M02);
+					dstPts[dstOff++] = (float) (M10 * x + M12);
+				}
+				return;
+			case (APPLY_SHEAR):
+				M01 = m01;
+				M10 = m10;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++]);
+					dstPts[dstOff++] = (float) (M10 * x);
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M02 = m02;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++] + M02);
+					dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++] + M12);
+				}
+				return;
+			case (APPLY_SCALE):
+				M00 = m00;
+				M11 = m11;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++]);
+					dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++]);
+				}
+				return;
+			case (APPLY_TRANSLATE):
+				M02 = m02;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (float) (srcPts[srcOff++] + M02);
+					dstPts[dstOff++] = (float) (srcPts[srcOff++] + M12);
+				}
+				return;
+			case (APPLY_IDENTITY):
+				if (srcPts != dstPts || srcOff != dstOff) {
+					System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts
+							* 2);
+				}
+				return;
 		}
 
 		/* NOTREACHED */
@@ -3198,25 +3241,30 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * the order <code>[x0, y0, x1, y1, ..., xn, yn]</code>.
 	 * 
 	 * @param srcPts
-	 *            the array containing the source point coordinates. Each point
-	 *            is stored as a pair of x,&nbsp;y coordinates.
+	 *               the array containing the source point coordinates. Each
+	 *               point
+	 *               is stored as a pair of x,&nbsp;y coordinates.
 	 * @param dstPts
-	 *            the array into which the transformed point coordinates are
-	 *            returned. Each point is stored as a pair of x,&nbsp;y
-	 *            coordinates.
+	 *               the array into which the transformed point coordinates are
+	 *               returned. Each point is stored as a pair of x,&nbsp;y
+	 *               coordinates.
 	 * @param srcOff
-	 *            the offset to the first point to be transformed in the source
-	 *            array
+	 *               the offset to the first point to be transformed in the
+	 *               source
+	 *               array
 	 * @param dstOff
-	 *            the offset to the location of the first transformed point that
-	 *            is stored in the destination array
+	 *               the offset to the location of the first transformed point
+	 *               that
+	 *               is stored in the destination array
 	 * @param numPts
-	 *            the number of point objects to be transformed
+	 *               the number of point objects to be transformed
 	 * @since 1.2
 	 */
-	public void transform(double[] srcPts, int srcOff, double[] dstPts, int dstOff, int numPts) {
+	public void transform(double[] srcPts, int srcOff, double[] dstPts,
+			int dstOff, int numPts) {
 		double M00, M01, M02, M10, M11, M12; // For caching
-		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts * 2) {
+		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts
+				* 2) {
 			// If the arrays overlap partially with the destination higher
 			// than the source and we transform the coordinates normally
 			// we would overwrite some of the later source coordinates
@@ -3230,87 +3278,88 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 			srcOff = dstOff;
 		}
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = M00 * x + M01 * y + M02;
-				dstPts[dstOff++] = M10 * x + M11 * y + M12;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			M00 = m00;
-			M01 = m01;
-			M10 = m10;
-			M11 = m11;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = M00 * x + M01 * y;
-				dstPts[dstOff++] = M10 * x + M11 * y;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = M01 * srcPts[srcOff++] + M02;
-				dstPts[dstOff++] = M10 * x + M12;
-			}
-			return;
-		case (APPLY_SHEAR):
-			M01 = m01;
-			M10 = m10;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = M01 * srcPts[srcOff++];
-				dstPts[dstOff++] = M10 * x;
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M02 = m02;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = M00 * srcPts[srcOff++] + M02;
-				dstPts[dstOff++] = M11 * srcPts[srcOff++] + M12;
-			}
-			return;
-		case (APPLY_SCALE):
-			M00 = m00;
-			M11 = m11;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = M00 * srcPts[srcOff++];
-				dstPts[dstOff++] = M11 * srcPts[srcOff++];
-			}
-			return;
-		case (APPLY_TRANSLATE):
-			M02 = m02;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = srcPts[srcOff++] + M02;
-				dstPts[dstOff++] = srcPts[srcOff++] + M12;
-			}
-			return;
-		case (APPLY_IDENTITY):
-			if (srcPts != dstPts || srcOff != dstOff) {
-				System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts * 2);
-			}
-			return;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = M00 * x + M01 * y + M02;
+					dstPts[dstOff++] = M10 * x + M11 * y + M12;
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				M00 = m00;
+				M01 = m01;
+				M10 = m10;
+				M11 = m11;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = M00 * x + M01 * y;
+					dstPts[dstOff++] = M10 * x + M11 * y;
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = M01 * srcPts[srcOff++] + M02;
+					dstPts[dstOff++] = M10 * x + M12;
+				}
+				return;
+			case (APPLY_SHEAR):
+				M01 = m01;
+				M10 = m10;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = M01 * srcPts[srcOff++];
+					dstPts[dstOff++] = M10 * x;
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M02 = m02;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = M00 * srcPts[srcOff++] + M02;
+					dstPts[dstOff++] = M11 * srcPts[srcOff++] + M12;
+				}
+				return;
+			case (APPLY_SCALE):
+				M00 = m00;
+				M11 = m11;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = M00 * srcPts[srcOff++];
+					dstPts[dstOff++] = M11 * srcPts[srcOff++];
+				}
+				return;
+			case (APPLY_TRANSLATE):
+				M02 = m02;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = srcPts[srcOff++] + M02;
+					dstPts[dstOff++] = srcPts[srcOff++] + M12;
+				}
+				return;
+			case (APPLY_IDENTITY):
+				if (srcPts != dstPts || srcOff != dstOff) {
+					System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts
+							* 2);
+				}
+				return;
 		}
 
 		/* NOTREACHED */
@@ -3323,107 +3372,111 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <code>[x0, y0, x1, y1, ..., xn, yn]</code>.
 	 * 
 	 * @param srcPts
-	 *            the array containing the source point coordinates. Each point
-	 *            is stored as a pair of x,&nbsp;y coordinates.
+	 *               the array containing the source point coordinates. Each
+	 *               point
+	 *               is stored as a pair of x,&nbsp;y coordinates.
 	 * @param dstPts
-	 *            the array into which the transformed point coordinates are
-	 *            returned. Each point is stored as a pair of x,&nbsp;y
-	 *            coordinates.
+	 *               the array into which the transformed point coordinates are
+	 *               returned. Each point is stored as a pair of x,&nbsp;y
+	 *               coordinates.
 	 * @param srcOff
-	 *            the offset to the first point to be transformed in the source
-	 *            array
+	 *               the offset to the first point to be transformed in the
+	 *               source
+	 *               array
 	 * @param dstOff
-	 *            the offset to the location of the first transformed point that
-	 *            is stored in the destination array
+	 *               the offset to the location of the first transformed point
+	 *               that
+	 *               is stored in the destination array
 	 * @param numPts
-	 *            the number of points to be transformed
+	 *               the number of points to be transformed
 	 * @since 1.2
 	 */
-	public void transform(float[] srcPts, int srcOff, double[] dstPts, int dstOff, int numPts) {
+	public void transform(float[] srcPts, int srcOff, double[] dstPts,
+			int dstOff, int numPts) {
 		double M00, M01, M02, M10, M11, M12; // For caching
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = M00 * x + M01 * y + M02;
-				dstPts[dstOff++] = M10 * x + M11 * y + M12;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			M00 = m00;
-			M01 = m01;
-			M10 = m10;
-			M11 = m11;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = M00 * x + M01 * y;
-				dstPts[dstOff++] = M10 * x + M11 * y;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = M01 * srcPts[srcOff++] + M02;
-				dstPts[dstOff++] = M10 * x + M12;
-			}
-			return;
-		case (APPLY_SHEAR):
-			M01 = m01;
-			M10 = m10;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = M01 * srcPts[srcOff++];
-				dstPts[dstOff++] = M10 * x;
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M02 = m02;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = M00 * srcPts[srcOff++] + M02;
-				dstPts[dstOff++] = M11 * srcPts[srcOff++] + M12;
-			}
-			return;
-		case (APPLY_SCALE):
-			M00 = m00;
-			M11 = m11;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = M00 * srcPts[srcOff++];
-				dstPts[dstOff++] = M11 * srcPts[srcOff++];
-			}
-			return;
-		case (APPLY_TRANSLATE):
-			M02 = m02;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = srcPts[srcOff++] + M02;
-				dstPts[dstOff++] = srcPts[srcOff++] + M12;
-			}
-			return;
-		case (APPLY_IDENTITY):
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = srcPts[srcOff++];
-				dstPts[dstOff++] = srcPts[srcOff++];
-			}
-			return;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = M00 * x + M01 * y + M02;
+					dstPts[dstOff++] = M10 * x + M11 * y + M12;
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				M00 = m00;
+				M01 = m01;
+				M10 = m10;
+				M11 = m11;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = M00 * x + M01 * y;
+					dstPts[dstOff++] = M10 * x + M11 * y;
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = M01 * srcPts[srcOff++] + M02;
+					dstPts[dstOff++] = M10 * x + M12;
+				}
+				return;
+			case (APPLY_SHEAR):
+				M01 = m01;
+				M10 = m10;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = M01 * srcPts[srcOff++];
+					dstPts[dstOff++] = M10 * x;
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M02 = m02;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = M00 * srcPts[srcOff++] + M02;
+					dstPts[dstOff++] = M11 * srcPts[srcOff++] + M12;
+				}
+				return;
+			case (APPLY_SCALE):
+				M00 = m00;
+				M11 = m11;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = M00 * srcPts[srcOff++];
+					dstPts[dstOff++] = M11 * srcPts[srcOff++];
+				}
+				return;
+			case (APPLY_TRANSLATE):
+				M02 = m02;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = srcPts[srcOff++] + M02;
+					dstPts[dstOff++] = srcPts[srcOff++] + M12;
+				}
+				return;
+			case (APPLY_IDENTITY):
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = srcPts[srcOff++];
+					dstPts[dstOff++] = srcPts[srcOff++];
+				}
+				return;
 		}
 
 		/* NOTREACHED */
@@ -3436,107 +3489,111 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * <code>[x0, y0, x1, y1, ..., xn, yn]</code>.
 	 * 
 	 * @param srcPts
-	 *            the array containing the source point coordinates. Each point
-	 *            is stored as a pair of x,&nbsp;y coordinates.
+	 *               the array containing the source point coordinates. Each
+	 *               point
+	 *               is stored as a pair of x,&nbsp;y coordinates.
 	 * @param dstPts
-	 *            the array into which the transformed point coordinates are
-	 *            returned. Each point is stored as a pair of x,&nbsp;y
-	 *            coordinates.
+	 *               the array into which the transformed point coordinates are
+	 *               returned. Each point is stored as a pair of x,&nbsp;y
+	 *               coordinates.
 	 * @param srcOff
-	 *            the offset to the first point to be transformed in the source
-	 *            array
+	 *               the offset to the first point to be transformed in the
+	 *               source
+	 *               array
 	 * @param dstOff
-	 *            the offset to the location of the first transformed point that
-	 *            is stored in the destination array
+	 *               the offset to the location of the first transformed point
+	 *               that
+	 *               is stored in the destination array
 	 * @param numPts
-	 *            the number of point objects to be transformed
+	 *               the number of point objects to be transformed
 	 * @since 1.2
 	 */
-	public void transform(double[] srcPts, int srcOff, float[] dstPts, int dstOff, int numPts) {
+	public void transform(double[] srcPts, int srcOff, float[] dstPts,
+			int dstOff, int numPts) {
 		double M00, M01, M02, M10, M11, M12; // For caching
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M00 * x + M01 * y + M02);
-				dstPts[dstOff++] = (float) (M10 * x + M11 * y + M12);
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			M00 = m00;
-			M01 = m01;
-			M10 = m10;
-			M11 = m11;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M00 * x + M01 * y);
-				dstPts[dstOff++] = (float) (M10 * x + M11 * y);
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M12 = m12;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++] + M02);
-				dstPts[dstOff++] = (float) (M10 * x + M12);
-			}
-			return;
-		case (APPLY_SHEAR):
-			M01 = m01;
-			M10 = m10;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++]);
-				dstPts[dstOff++] = (float) (M10 * x);
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M02 = m02;
-			M11 = m11;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++] + M02);
-				dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++] + M12);
-			}
-			return;
-		case (APPLY_SCALE):
-			M00 = m00;
-			M11 = m11;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++]);
-				dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++]);
-			}
-			return;
-		case (APPLY_TRANSLATE):
-			M02 = m02;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (float) (srcPts[srcOff++] + M02);
-				dstPts[dstOff++] = (float) (srcPts[srcOff++] + M12);
-			}
-			return;
-		case (APPLY_IDENTITY):
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (float) (srcPts[srcOff++]);
-				dstPts[dstOff++] = (float) (srcPts[srcOff++]);
-			}
-			return;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M00 * x + M01 * y + M02);
+					dstPts[dstOff++] = (float) (M10 * x + M11 * y + M12);
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				M00 = m00;
+				M01 = m01;
+				M10 = m10;
+				M11 = m11;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M00 * x + M01 * y);
+					dstPts[dstOff++] = (float) (M10 * x + M11 * y);
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M12 = m12;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++] + M02);
+					dstPts[dstOff++] = (float) (M10 * x + M12);
+				}
+				return;
+			case (APPLY_SHEAR):
+				M01 = m01;
+				M10 = m10;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = (float) (M01 * srcPts[srcOff++]);
+					dstPts[dstOff++] = (float) (M10 * x);
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M02 = m02;
+				M11 = m11;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++] + M02);
+					dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++] + M12);
+				}
+				return;
+			case (APPLY_SCALE):
+				M00 = m00;
+				M11 = m11;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (float) (M00 * srcPts[srcOff++]);
+					dstPts[dstOff++] = (float) (M11 * srcPts[srcOff++]);
+				}
+				return;
+			case (APPLY_TRANSLATE):
+				M02 = m02;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (float) (srcPts[srcOff++] + M02);
+					dstPts[dstOff++] = (float) (srcPts[srcOff++] + M12);
+				}
+				return;
+			case (APPLY_IDENTITY):
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (float) (srcPts[srcOff++]);
+					dstPts[dstOff++] = (float) (srcPts[srcOff++]);
+				}
+				return;
 		}
 
 		/* NOTREACHED */
@@ -3552,13 +3609,14 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * point is correctly overwritten with the transformed point.
 	 * 
 	 * @param ptSrc
-	 *            the point to be inverse transformed
+	 *              the point to be inverse transformed
 	 * @param ptDst
-	 *            the resulting transformed point
+	 *              the resulting transformed point
 	 * @return <code>ptDst</code>, which contains the result of the inverse
 	 *         transform.
 	 * @exception NoninvertibleTransformException
-	 *                if the matrix cannot be inverted.
+	 *                                            if the matrix cannot be
+	 *                                            inverted.
 	 * @since 1.2
 	 */
 	@SuppressWarnings("fallthrough")
@@ -3575,46 +3633,50 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		double x = ptSrc.getX();
 		double y = ptSrc.getY();
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			x -= m02;
-			y -= m12;
-			/* NOBREAK */
-		case (APPLY_SHEAR | APPLY_SCALE):
-			double det = m00 * m11 - m01 * m10;
-			if (Math.abs(det) <= Double.MIN_VALUE) {
-				throw new NoninvertibleTransformException("Determinant is " + det);
-			}
-			ptDst.setLocation((x * m11 - y * m01) / det, (y * m00 - x * m10) / det);
-			return ptDst;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			x -= m02;
-			y -= m12;
-			/* NOBREAK */
-		case (APPLY_SHEAR):
-			if (m01 == 0.0 || m10 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			ptDst.setLocation(y / m10, x / m01);
-			return ptDst;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			x -= m02;
-			y -= m12;
-			/* NOBREAK */
-		case (APPLY_SCALE):
-			if (m00 == 0.0 || m11 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			ptDst.setLocation(x / m00, y / m11);
-			return ptDst;
-		case (APPLY_TRANSLATE):
-			ptDst.setLocation(x - m02, y - m12);
-			return ptDst;
-		case (APPLY_IDENTITY):
-			ptDst.setLocation(x, y);
-			return ptDst;
+			default:
+				stateError();
+				/* NOTREACHED */
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				x -= m02;
+				y -= m12;
+				/* NOBREAK */
+			case (APPLY_SHEAR | APPLY_SCALE):
+				double det = m00 * m11 - m01 * m10;
+				if (Math.abs(det) <= Double.MIN_VALUE) {
+					throw new NoninvertibleTransformException("Determinant is "
+							+ det);
+				}
+				ptDst.setLocation((x * m11 - y * m01) / det, (y * m00 - x * m10)
+						/ det);
+				return ptDst;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				x -= m02;
+				y -= m12;
+				/* NOBREAK */
+			case (APPLY_SHEAR):
+				if (m01 == 0.0 || m10 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				ptDst.setLocation(y / m10, x / m01);
+				return ptDst;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				x -= m02;
+				y -= m12;
+				/* NOBREAK */
+			case (APPLY_SCALE):
+				if (m00 == 0.0 || m11 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				ptDst.setLocation(x / m00, y / m11);
+				return ptDst;
+			case (APPLY_TRANSLATE):
+				ptDst.setLocation(x - m02, y - m12);
+				return ptDst;
+			case (APPLY_IDENTITY):
+				ptDst.setLocation(x, y);
+				return ptDst;
 		}
 
 		/* NOTREACHED */
@@ -3630,29 +3692,34 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * in the order <code>[x0, y0, x1, y1, ..., xn, yn]</code>.
 	 * 
 	 * @param srcPts
-	 *            the array containing the source point coordinates. Each point
-	 *            is stored as a pair of x,&nbsp;y coordinates.
+	 *               the array containing the source point coordinates. Each
+	 *               point
+	 *               is stored as a pair of x,&nbsp;y coordinates.
 	 * @param dstPts
-	 *            the array into which the transformed point coordinates are
-	 *            returned. Each point is stored as a pair of x,&nbsp;y
-	 *            coordinates.
+	 *               the array into which the transformed point coordinates are
+	 *               returned. Each point is stored as a pair of x,&nbsp;y
+	 *               coordinates.
 	 * @param srcOff
-	 *            the offset to the first point to be transformed in the source
-	 *            array
+	 *               the offset to the first point to be transformed in the
+	 *               source
+	 *               array
 	 * @param dstOff
-	 *            the offset to the location of the first transformed point that
-	 *            is stored in the destination array
+	 *               the offset to the location of the first transformed point
+	 *               that
+	 *               is stored in the destination array
 	 * @param numPts
-	 *            the number of point objects to be transformed
+	 *               the number of point objects to be transformed
 	 * @exception NoninvertibleTransformException
-	 *                if the matrix cannot be inverted.
+	 *                                            if the matrix cannot be
+	 *                                            inverted.
 	 * @since 1.2
 	 */
-	public void inverseTransform(double[] srcPts, int srcOff, double[] dstPts, int dstOff,
-			int numPts) throws NoninvertibleTransformException {
+	public void inverseTransform(double[] srcPts, int srcOff, double[] dstPts,
+			int dstOff, int numPts) throws NoninvertibleTransformException {
 		double M00, M01, M02, M10, M11, M12; // For caching
 		double det;
-		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts * 2) {
+		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts
+				* 2) {
 			// If the arrays overlap partially with the destination higher
 			// than the source and we transform the coordinates normally
 			// we would overwrite some of the later source coordinates
@@ -3666,107 +3733,114 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 			srcOff = dstOff;
 		}
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M11 = m11;
-			M12 = m12;
-			det = M00 * M11 - M01 * M10;
-			if (Math.abs(det) <= Double.MIN_VALUE) {
-				throw new NoninvertibleTransformException("Determinant is " + det);
-			}
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++] - M02;
-				double y = srcPts[srcOff++] - M12;
-				dstPts[dstOff++] = (x * M11 - y * M01) / det;
-				dstPts[dstOff++] = (y * M00 - x * M10) / det;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE):
-			M00 = m00;
-			M01 = m01;
-			M10 = m10;
-			M11 = m11;
-			det = M00 * M11 - M01 * M10;
-			if (Math.abs(det) <= Double.MIN_VALUE) {
-				throw new NoninvertibleTransformException("Determinant is " + det);
-			}
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = (x * M11 - y * M01) / det;
-				dstPts[dstOff++] = (y * M00 - x * M10) / det;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-			M01 = m01;
-			M02 = m02;
-			M10 = m10;
-			M12 = m12;
-			if (M01 == 0.0 || M10 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++] - M02;
-				dstPts[dstOff++] = (srcPts[srcOff++] - M12) / M10;
-				dstPts[dstOff++] = x / M01;
-			}
-			return;
-		case (APPLY_SHEAR):
-			M01 = m01;
-			M10 = m10;
-			if (M01 == 0.0 || M10 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = srcPts[srcOff++] / M10;
-				dstPts[dstOff++] = x / M01;
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-			M00 = m00;
-			M02 = m02;
-			M11 = m11;
-			M12 = m12;
-			if (M00 == 0.0 || M11 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = (srcPts[srcOff++] - M02) / M00;
-				dstPts[dstOff++] = (srcPts[srcOff++] - M12) / M11;
-			}
-			return;
-		case (APPLY_SCALE):
-			M00 = m00;
-			M11 = m11;
-			if (M00 == 0.0 || M11 == 0.0) {
-				throw new NoninvertibleTransformException("Determinant is 0");
-			}
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = srcPts[srcOff++] / M00;
-				dstPts[dstOff++] = srcPts[srcOff++] / M11;
-			}
-			return;
-		case (APPLY_TRANSLATE):
-			M02 = m02;
-			M12 = m12;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = srcPts[srcOff++] - M02;
-				dstPts[dstOff++] = srcPts[srcOff++] - M12;
-			}
-			return;
-		case (APPLY_IDENTITY):
-			if (srcPts != dstPts || srcOff != dstOff) {
-				System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts * 2);
-			}
-			return;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M11 = m11;
+				M12 = m12;
+				det = M00 * M11 - M01 * M10;
+				if (Math.abs(det) <= Double.MIN_VALUE) {
+					throw new NoninvertibleTransformException("Determinant is "
+							+ det);
+				}
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++] - M02;
+					double y = srcPts[srcOff++] - M12;
+					dstPts[dstOff++] = (x * M11 - y * M01) / det;
+					dstPts[dstOff++] = (y * M00 - x * M10) / det;
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE):
+				M00 = m00;
+				M01 = m01;
+				M10 = m10;
+				M11 = m11;
+				det = M00 * M11 - M01 * M10;
+				if (Math.abs(det) <= Double.MIN_VALUE) {
+					throw new NoninvertibleTransformException("Determinant is "
+							+ det);
+				}
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = (x * M11 - y * M01) / det;
+					dstPts[dstOff++] = (y * M00 - x * M10) / det;
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+				M01 = m01;
+				M02 = m02;
+				M10 = m10;
+				M12 = m12;
+				if (M01 == 0.0 || M10 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++] - M02;
+					dstPts[dstOff++] = (srcPts[srcOff++] - M12) / M10;
+					dstPts[dstOff++] = x / M01;
+				}
+				return;
+			case (APPLY_SHEAR):
+				M01 = m01;
+				M10 = m10;
+				if (M01 == 0.0 || M10 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = srcPts[srcOff++] / M10;
+					dstPts[dstOff++] = x / M01;
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+				M00 = m00;
+				M02 = m02;
+				M11 = m11;
+				M12 = m12;
+				if (M00 == 0.0 || M11 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = (srcPts[srcOff++] - M02) / M00;
+					dstPts[dstOff++] = (srcPts[srcOff++] - M12) / M11;
+				}
+				return;
+			case (APPLY_SCALE):
+				M00 = m00;
+				M11 = m11;
+				if (M00 == 0.0 || M11 == 0.0) {
+					throw new NoninvertibleTransformException(
+							"Determinant is 0");
+				}
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = srcPts[srcOff++] / M00;
+					dstPts[dstOff++] = srcPts[srcOff++] / M11;
+				}
+				return;
+			case (APPLY_TRANSLATE):
+				M02 = m02;
+				M12 = m12;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = srcPts[srcOff++] - M02;
+					dstPts[dstOff++] = srcPts[srcOff++] - M12;
+				}
+				return;
+			case (APPLY_IDENTITY):
+				if (srcPts != dstPts || srcOff != dstOff) {
+					System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts
+							* 2);
+				}
+				return;
 		}
 
 		/* NOTREACHED */
@@ -3792,9 +3866,9 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * overwritten with the transformed point.
 	 * 
 	 * @param ptSrc
-	 *            the distance vector to be delta transformed
+	 *              the distance vector to be delta transformed
 	 * @param ptDst
-	 *            the resulting transformed distance vector
+	 *              the resulting transformed distance vector
 	 * @return <code>ptDst</code>, which contains the result of the
 	 *         transformation.
 	 * @since 1.2
@@ -3811,26 +3885,26 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 		double x = ptSrc.getX();
 		double y = ptSrc.getY();
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return null;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SHEAR | APPLY_SCALE):
-			ptDst.setLocation(x * m00 + y * m01, x * m10 + y * m11);
-			return ptDst;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-		case (APPLY_SHEAR):
-			ptDst.setLocation(y * m01, x * m10);
-			return ptDst;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SCALE):
-			ptDst.setLocation(x * m00, y * m11);
-			return ptDst;
-		case (APPLY_TRANSLATE):
-		case (APPLY_IDENTITY):
-			ptDst.setLocation(x, y);
-			return ptDst;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return null;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SHEAR | APPLY_SCALE):
+				ptDst.setLocation(x * m00 + y * m01, x * m10 + y * m11);
+				return ptDst;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+			case (APPLY_SHEAR):
+				ptDst.setLocation(y * m01, x * m10);
+				return ptDst;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SCALE):
+				ptDst.setLocation(x * m00, y * m11);
+				return ptDst;
+			case (APPLY_TRANSLATE):
+			case (APPLY_IDENTITY):
+				ptDst.setLocation(x, y);
+				return ptDst;
 		}
 
 		/* NOTREACHED */
@@ -3856,26 +3930,29 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * the order <code>[x0, y0, x1, y1, ..., xn, yn]</code>.
 	 * 
 	 * @param srcPts
-	 *            the array containing the source distance vectors. Each vector
-	 *            is stored as a pair of relative x,&nbsp;y coordinates.
+	 *               the array containing the source distance vectors. Each
+	 *               vector
+	 *               is stored as a pair of relative x,&nbsp;y coordinates.
 	 * @param dstPts
-	 *            the array into which the transformed distance vectors are
-	 *            returned. Each vector is stored as a pair of relative
-	 *            x,&nbsp;y coordinates.
+	 *               the array into which the transformed distance vectors are
+	 *               returned. Each vector is stored as a pair of relative
+	 *               x,&nbsp;y coordinates.
 	 * @param srcOff
-	 *            the offset to the first vector to be transformed in the source
-	 *            array
+	 *               the offset to the first vector to be transformed in the
+	 *               source
+	 *               array
 	 * @param dstOff
-	 *            the offset to the location of the first transformed vector
-	 *            that is stored in the destination array
+	 *               the offset to the location of the first transformed vector
+	 *               that is stored in the destination array
 	 * @param numPts
-	 *            the number of vector coordinate pairs to be transformed
+	 *               the number of vector coordinate pairs to be transformed
 	 * @since 1.2
 	 */
-	public void deltaTransform(double[] srcPts, int srcOff, double[] dstPts, int dstOff,
-			int numPts) {
+	public void deltaTransform(double[] srcPts, int srcOff, double[] dstPts,
+			int dstOff, int numPts) {
 		double M00, M01, M10, M11; // For caching
-		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts * 2) {
+		if (dstPts == srcPts && dstOff > srcOff && dstOff < srcOff + numPts
+				* 2) {
 			// If the arrays overlap partially with the destination higher
 			// than the source and we transform the coordinates normally
 			// we would overwrite some of the later source coordinates
@@ -3889,48 +3966,49 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 			srcOff = dstOff;
 		}
 		switch (state) {
-		default:
-			stateError();
-			/* NOTREACHED */
-			return;
-		case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SHEAR | APPLY_SCALE):
-			M00 = m00;
-			M01 = m01;
-			M10 = m10;
-			M11 = m11;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				double y = srcPts[srcOff++];
-				dstPts[dstOff++] = x * M00 + y * M01;
-				dstPts[dstOff++] = x * M10 + y * M11;
-			}
-			return;
-		case (APPLY_SHEAR | APPLY_TRANSLATE):
-		case (APPLY_SHEAR):
-			M01 = m01;
-			M10 = m10;
-			while (--numPts >= 0) {
-				double x = srcPts[srcOff++];
-				dstPts[dstOff++] = srcPts[srcOff++] * M01;
-				dstPts[dstOff++] = x * M10;
-			}
-			return;
-		case (APPLY_SCALE | APPLY_TRANSLATE):
-		case (APPLY_SCALE):
-			M00 = m00;
-			M11 = m11;
-			while (--numPts >= 0) {
-				dstPts[dstOff++] = srcPts[srcOff++] * M00;
-				dstPts[dstOff++] = srcPts[srcOff++] * M11;
-			}
-			return;
-		case (APPLY_TRANSLATE):
-		case (APPLY_IDENTITY):
-			if (srcPts != dstPts || srcOff != dstOff) {
-				System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts * 2);
-			}
-			return;
+			default:
+				stateError();
+				/* NOTREACHED */
+				return;
+			case (APPLY_SHEAR | APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SHEAR | APPLY_SCALE):
+				M00 = m00;
+				M01 = m01;
+				M10 = m10;
+				M11 = m11;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					double y = srcPts[srcOff++];
+					dstPts[dstOff++] = x * M00 + y * M01;
+					dstPts[dstOff++] = x * M10 + y * M11;
+				}
+				return;
+			case (APPLY_SHEAR | APPLY_TRANSLATE):
+			case (APPLY_SHEAR):
+				M01 = m01;
+				M10 = m10;
+				while (--numPts >= 0) {
+					double x = srcPts[srcOff++];
+					dstPts[dstOff++] = srcPts[srcOff++] * M01;
+					dstPts[dstOff++] = x * M10;
+				}
+				return;
+			case (APPLY_SCALE | APPLY_TRANSLATE):
+			case (APPLY_SCALE):
+				M00 = m00;
+				M11 = m11;
+				while (--numPts >= 0) {
+					dstPts[dstOff++] = srcPts[srcOff++] * M00;
+					dstPts[dstOff++] = srcPts[srcOff++] * M11;
+				}
+				return;
+			case (APPLY_TRANSLATE):
+			case (APPLY_IDENTITY):
+				if (srcPts != dstPts || srcOff != dstOff) {
+					System.arraycopy(srcPts, srcOff, dstPts, dstOff, numPts
+							* 2);
+				}
+				return;
 		}
 
 		/* NOTREACHED */
@@ -3942,8 +4020,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * transform.
 	 * 
 	 * @param pSrc
-	 *            the specified <code>Shape</code> object to be transformed by
-	 *            this transform.
+	 *             the specified <code>Shape</code> object to be transformed by
+	 *             this transform.
 	 * @return a new <code>Shape</code> object that defines the geometry of the
 	 *         transformed <code>Shape</code>, or null if {@code pSrc} is null.
 	 * @since 1.2
@@ -3970,8 +4048,9 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 	 * @since 1.2
 	 */
 	public String toString() {
-		return ("AffineTransform[[" + _matround(m00) + ", " + _matround(m01) + ", " + _matround(m02)
-				+ "], [" + _matround(m10) + ", " + _matround(m11) + ", " + _matround(m12) + "]]");
+		return ("AffineTransform[[" + _matround(m00) + ", " + _matround(m01)
+				+ ", " + _matround(m02) + "], [" + _matround(m10) + ", "
+				+ _matround(m11) + ", " + _matround(m12) + "]]");
 	}
 
 	/**
@@ -4037,8 +4116,8 @@ public class AffineTransform implements Cloneable, java.io.Serializable {
 
 		AffineTransform a = (AffineTransform) obj;
 
-		return ((m00 == a.m00) && (m01 == a.m01) && (m02 == a.m02) && (m10 == a.m10)
-				&& (m11 == a.m11) && (m12 == a.m12));
+		return ((m00 == a.m00) && (m01 == a.m01) && (m02 == a.m02)
+				&& (m10 == a.m10) && (m11 == a.m11) && (m12 == a.m12));
 	}
 
 	/*

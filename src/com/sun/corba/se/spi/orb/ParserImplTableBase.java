@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.spi.orb;
 
@@ -37,7 +17,7 @@ import org.omg.CORBA.INTERNAL;
 
 // XXX This could probably be further extended by using more reflection and
 // a dynamic proxy that satisfies the interfaces that are inherited by the
-// more derived class.  Do we want to go that far?
+// more derived class. Do we want to go that far?
 public abstract class ParserImplTableBase extends ParserImplBase {
 	private final ParserData[] entries;
 

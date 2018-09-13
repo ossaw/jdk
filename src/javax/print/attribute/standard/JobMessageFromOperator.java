@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -51,7 +31,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobMessageFromOperator extends TextSyntax implements PrintJobAttribute {
+public final class JobMessageFromOperator extends TextSyntax implements
+		PrintJobAttribute {
 
 	private static final long serialVersionUID = -4620751846003142047L;
 
@@ -60,15 +41,17 @@ public final class JobMessageFromOperator extends TextSyntax implements PrintJob
 	 * message and locale.
 	 *
 	 * @param message
-	 *            Message.
+	 *                Message.
 	 * @param locale
-	 *            Natural language of the text string. null is interpreted to
-	 *            mean the default locale as returned by
-	 *            <code>Locale.getDefault()</code>
+	 *                Natural language of the text string. null is interpreted
+	 *                to
+	 *                mean the default locale as returned by
+	 *                <code>Locale.getDefault()</code>
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>message</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>message</CODE> is
+	 *                                 null.
 	 */
 	public JobMessageFromOperator(String message, Locale locale) {
 		super(message, locale);
@@ -88,13 +71,14 @@ public final class JobMessageFromOperator extends TextSyntax implements PrintJob
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this job message
 	 *         from operator attribute, false otherwise.
 	 */
 	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof JobMessageFromOperator);
+		return (super.equals(object)
+				&& object instanceof JobMessageFromOperator);
 	}
 
 	/**

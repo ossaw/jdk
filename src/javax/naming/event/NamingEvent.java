@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.event;
@@ -167,25 +147,25 @@ public class NamingEvent extends java.util.EventObject {
 	 * registered.
 	 *
 	 * @param source
-	 *            The non-null context that fired this event.
+	 *                   The non-null context that fired this event.
 	 * @param type
-	 *            The type of the event.
+	 *                   The type of the event.
 	 * @param newBd
-	 *            A possibly null binding before the change. See method
-	 *            description.
+	 *                   A possibly null binding before the change. See method
+	 *                   description.
 	 * @param oldBd
-	 *            A possibly null binding after the change. See method
-	 *            description.
+	 *                   A possibly null binding after the change. See method
+	 *                   description.
 	 * @param changeInfo
-	 *            A possibly null object containing information about the
-	 *            change.
+	 *                   A possibly null object containing information about the
+	 *                   change.
 	 * @see #OBJECT_ADDED
 	 * @see #OBJECT_REMOVED
 	 * @see #OBJECT_RENAMED
 	 * @see #OBJECT_CHANGED
 	 */
-	public NamingEvent(EventContext source, int type, Binding newBd, Binding oldBd,
-			Object changeInfo) {
+	public NamingEvent(EventContext source, int type, Binding newBd,
+			Binding oldBd, Object changeInfo) {
 		super(source);
 		this.type = type;
 		oldBinding = oldBd;
@@ -287,25 +267,25 @@ public class NamingEvent extends java.util.EventObject {
 	 * more information on threading issues.
 	 * 
 	 * @param listener
-	 *            The nonnull listener.
+	 *                 The nonnull listener.
 	 */
 	public void dispatch(NamingListener listener) {
 		switch (type) {
-		case OBJECT_ADDED:
-			((NamespaceChangeListener) listener).objectAdded(this);
-			break;
+			case OBJECT_ADDED:
+				((NamespaceChangeListener) listener).objectAdded(this);
+				break;
 
-		case OBJECT_REMOVED:
-			((NamespaceChangeListener) listener).objectRemoved(this);
-			break;
+			case OBJECT_REMOVED:
+				((NamespaceChangeListener) listener).objectRemoved(this);
+				break;
 
-		case OBJECT_RENAMED:
-			((NamespaceChangeListener) listener).objectRenamed(this);
-			break;
+			case OBJECT_RENAMED:
+				((NamespaceChangeListener) listener).objectRenamed(this);
+				break;
 
-		case OBJECT_CHANGED:
-			((ObjectChangeListener) listener).objectChanged(this);
-			break;
+			case OBJECT_CHANGED:
+				((ObjectChangeListener) listener).objectChanged(this);
+				break;
 		}
 	}
 

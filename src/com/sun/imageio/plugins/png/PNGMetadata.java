@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.png;
@@ -45,8 +25,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	protected static final String nativeMetadataFormatClassName = "com.sun.imageio.plugins.png.PNGMetadataFormat";
 
 	// Color types for IHDR chunk
-	static final String[] IHDR_colorTypeNames = { "Grayscale", null, "RGB", "Palette", "GrayAlpha",
-			null, "RGBAlpha" };
+	static final String[] IHDR_colorTypeNames = { "Grayscale", null, "RGB",
+			"Palette", "GrayAlpha", null, "RGBAlpha" };
 
 	static final int[] IHDR_numChannels = { 1, 0, 3, 3, 2, 0, 4 };
 
@@ -86,7 +66,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	};
 
 	// Color space types for Chroma->ColorSpaceType node
-	static final String[] colorSpaceTypeNames = { "GRAY", null, "RGB", "RGB", "GRAY", null, "RGB" };
+	static final String[] colorSpaceTypeNames = { "GRAY", null, "RGB", "RGB",
+			"GRAY", null, "RGB" };
 
 	// IHDR chunk
 	public boolean IHDR_present;
@@ -219,7 +200,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	public ArrayList<byte[]> unknownChunkData = new ArrayList<byte[]>();
 
 	public PNGMetadata() {
-		super(true, nativeMetadataFormatName, nativeMetadataFormatClassName, null, null);
+		super(true, nativeMetadataFormatName, nativeMetadataFormatClassName,
+				null, null);
 	}
 
 	public PNGMetadata(IIOMetadata metadata) {
@@ -277,12 +259,14 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 			// Determine whether the color tables are actually a gray ramp
 			// if the color type has not been set previously
 			boolean isGray = false;
-			if (!IHDR_present || (IHDR_colorType != PNGImageReader.PNG_COLOR_PALETTE)) {
+			if (!IHDR_present
+					|| (IHDR_colorType != PNGImageReader.PNG_COLOR_PALETTE)) {
 				isGray = true;
 				int scale = 255 / ((1 << IHDR_bitDepth) - 1);
 				for (int i = 0; i < size; i++) {
 					byte red = reds[i];
-					if ((red != (byte) (i * scale)) || (red != greens[i]) || (red != blues[i])) {
+					if ((red != (byte) (i * scale)) || (red != greens[i])
+							|| (red != blues[i])) {
 						isGray = false;
 						break;
 					}
@@ -370,7 +354,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 					// Copy only the transparent entries into tRNS_alpha
 					tRNS_alpha = new byte[numTransparent];
-					System.arraycopy(newAlpha, 0, tRNS_alpha, 0, numTransparent);
+					System.arraycopy(newAlpha, 0, tRNS_alpha, 0,
+							numTransparent);
 				}
 			}
 		} else {
@@ -424,7 +409,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	public Node getAsTree(String formatName) {
 		if (formatName.equals(nativeMetadataFormatName)) {
 			return getNativeTree();
-		} else if (formatName.equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
+		} else if (formatName.equals(
+				IIOMetadataFormatImpl.standardMetadataFormatName)) {
 			return getStandardTree();
 		} else {
 			throw new IllegalArgumentException("Not a recognized format!");
@@ -441,12 +427,14 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 			IHDR_node.setAttribute("width", Integer.toString(IHDR_width));
 			IHDR_node.setAttribute("height", Integer.toString(IHDR_height));
 			IHDR_node.setAttribute("bitDepth", Integer.toString(IHDR_bitDepth));
-			IHDR_node.setAttribute("colorType", IHDR_colorTypeNames[IHDR_colorType]);
+			IHDR_node.setAttribute("colorType",
+					IHDR_colorTypeNames[IHDR_colorType]);
 			// IHDR_compressionMethod must be 0 in PNG 1.1
 			IHDR_node.setAttribute("compressionMethod",
 					IHDR_compressionMethodNames[IHDR_compressionMethod]);
 			// IHDR_filterMethod must be 0 in PNG 1.1
-			IHDR_node.setAttribute("filterMethod", IHDR_filterMethodNames[IHDR_filterMethod]);
+			IHDR_node.setAttribute("filterMethod",
+					IHDR_filterMethodNames[IHDR_filterMethod]);
 			IHDR_node.setAttribute("interlaceMethod",
 					IHDR_interlaceMethodNames[IHDR_interlaceMethod]);
 			root.appendChild(IHDR_node);
@@ -460,8 +448,10 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				IIOMetadataNode entry = new IIOMetadataNode("PLTEEntry");
 				entry.setAttribute("index", Integer.toString(i));
 				entry.setAttribute("red", Integer.toString(PLTE_red[i] & 0xff));
-				entry.setAttribute("green", Integer.toString(PLTE_green[i] & 0xff));
-				entry.setAttribute("blue", Integer.toString(PLTE_blue[i] & 0xff));
+				entry.setAttribute("green", Integer.toString(PLTE_green[i]
+						& 0xff));
+				entry.setAttribute("blue", Integer.toString(PLTE_blue[i]
+						& 0xff));
 				PLTE_node.appendChild(entry);
 			}
 
@@ -492,8 +482,10 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 		// cHRM
 		if (cHRM_present) {
 			IIOMetadataNode cHRM_node = new IIOMetadataNode("cHRM");
-			cHRM_node.setAttribute("whitePointX", Integer.toString(cHRM_whitePointX));
-			cHRM_node.setAttribute("whitePointY", Integer.toString(cHRM_whitePointY));
+			cHRM_node.setAttribute("whitePointX", Integer.toString(
+					cHRM_whitePointX));
+			cHRM_node.setAttribute("whitePointY", Integer.toString(
+					cHRM_whitePointY));
 			cHRM_node.setAttribute("redX", Integer.toString(cHRM_redX));
 			cHRM_node.setAttribute("redY", Integer.toString(cHRM_redY));
 			cHRM_node.setAttribute("greenX", Integer.toString(cHRM_greenX));
@@ -548,12 +540,13 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 			for (int i = 0; i < iTXt_keyword.size(); i++) {
 				IIOMetadataNode iTXt_node = new IIOMetadataNode("iTXtEntry");
 				iTXt_node.setAttribute("keyword", iTXt_keyword.get(i));
-				iTXt_node.setAttribute("compressionFlag",
-						iTXt_compressionFlag.get(i) ? "TRUE" : "FALSE");
+				iTXt_node.setAttribute("compressionFlag", iTXt_compressionFlag
+						.get(i) ? "TRUE" : "FALSE");
 				iTXt_node.setAttribute("compressionMethod",
 						iTXt_compressionMethod.get(i).toString());
 				iTXt_node.setAttribute("languageTag", iTXt_languageTag.get(i));
-				iTXt_node.setAttribute("translatedKeyword", iTXt_translatedKeyword.get(i));
+				iTXt_node.setAttribute("translatedKeyword",
+						iTXt_translatedKeyword.get(i));
 				iTXt_node.setAttribute("text", iTXt_text.get(i));
 
 				iTXt_parent.appendChild(iTXt_node);
@@ -565,9 +558,12 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 		// pHYs
 		if (pHYs_present) {
 			IIOMetadataNode pHYs_node = new IIOMetadataNode("pHYs");
-			pHYs_node.setAttribute("pixelsPerUnitXAxis", Integer.toString(pHYs_pixelsPerUnitXAxis));
-			pHYs_node.setAttribute("pixelsPerUnitYAxis", Integer.toString(pHYs_pixelsPerUnitYAxis));
-			pHYs_node.setAttribute("unitSpecifier", unitSpecifierNames[pHYs_unitSpecifier]);
+			pHYs_node.setAttribute("pixelsPerUnitXAxis", Integer.toString(
+					pHYs_pixelsPerUnitXAxis));
+			pHYs_node.setAttribute("pixelsPerUnitYAxis", Integer.toString(
+					pHYs_pixelsPerUnitYAxis));
+			pHYs_node.setAttribute("unitSpecifier",
+					unitSpecifierNames[pHYs_unitSpecifier]);
 
 			root.appendChild(pHYs_node);
 		}
@@ -610,7 +606,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 			IIOMetadataNode sPLT_node = new IIOMetadataNode("sPLT");
 
 			sPLT_node.setAttribute("name", sPLT_paletteName);
-			sPLT_node.setAttribute("sampleDepth", Integer.toString(sPLT_sampleDepth));
+			sPLT_node.setAttribute("sampleDepth", Integer.toString(
+					sPLT_sampleDepth));
 
 			int numEntries = sPLT_red.length;
 			for (int i = 0; i < numEntries; i++) {
@@ -620,7 +617,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				entry.setAttribute("green", Integer.toString(sPLT_green[i]));
 				entry.setAttribute("blue", Integer.toString(sPLT_blue[i]));
 				entry.setAttribute("alpha", Integer.toString(sPLT_alpha[i]));
-				entry.setAttribute("frequency", Integer.toString(sPLT_frequency[i]));
+				entry.setAttribute("frequency", Integer.toString(
+						sPLT_frequency[i]));
 				sPLT_node.appendChild(entry);
 			}
 
@@ -630,7 +628,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 		// sRGB
 		if (sRGB_present) {
 			IIOMetadataNode sRGB_node = new IIOMetadataNode("sRGB");
-			sRGB_node.setAttribute("renderingIntent", renderingIntentNames[sRGB_renderingIntent]);
+			sRGB_node.setAttribute("renderingIntent",
+					renderingIntentNames[sRGB_renderingIntent]);
 
 			root.appendChild(sRGB_node);
 		}
@@ -670,9 +669,11 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				node = new IIOMetadataNode("tRNS_Palette");
 
 				for (int i = 0; i < tRNS_alpha.length; i++) {
-					IIOMetadataNode entry = new IIOMetadataNode("tRNS_PaletteEntry");
+					IIOMetadataNode entry = new IIOMetadataNode(
+							"tRNS_PaletteEntry");
 					entry.setAttribute("index", Integer.toString(i));
-					entry.setAttribute("alpha", Integer.toString(tRNS_alpha[i] & 0xff));
+					entry.setAttribute("alpha", Integer.toString(tRNS_alpha[i]
+							& 0xff));
 					node.appendChild(entry);
 				}
 			} else if (tRNS_colorType == PNGImageReader.PNG_COLOR_GRAY) {
@@ -697,7 +698,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				zTXt_node.setAttribute("keyword", (String) zTXt_keyword.get(i));
 
 				int cm = ((Integer) zTXt_compressionMethod.get(i)).intValue();
-				zTXt_node.setAttribute("compressionMethod", zTXt_compressionMethodNames[cm]);
+				zTXt_node.setAttribute("compressionMethod",
+						zTXt_compressionMethodNames[cm]);
 
 				zTXt_node.setAttribute("text", (String) zTXt_text.get(i));
 
@@ -709,10 +711,13 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 		// Unknown chunks
 		if (unknownChunkType.size() > 0) {
-			IIOMetadataNode unknown_parent = new IIOMetadataNode("UnknownChunks");
+			IIOMetadataNode unknown_parent = new IIOMetadataNode(
+					"UnknownChunks");
 			for (int i = 0; i < unknownChunkType.size(); i++) {
-				IIOMetadataNode unknown_node = new IIOMetadataNode("UnknownChunk");
-				unknown_node.setAttribute("type", (String) unknownChunkType.get(i));
+				IIOMetadataNode unknown_node = new IIOMetadataNode(
+						"UnknownChunk");
+				unknown_node.setAttribute("type", (String) unknownChunkType.get(
+						i));
 				unknown_node.setUserObject((byte[]) unknownChunkData.get(i));
 
 				unknown_parent.appendChild(unknown_node);
@@ -758,17 +763,21 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 		chroma_node.appendChild(node);
 
 		if (PLTE_present) {
-			boolean hasAlpha = tRNS_present && (tRNS_colorType == PNGImageReader.PNG_COLOR_PALETTE);
+			boolean hasAlpha = tRNS_present
+					&& (tRNS_colorType == PNGImageReader.PNG_COLOR_PALETTE);
 
 			node = new IIOMetadataNode("Palette");
 			for (int i = 0; i < PLTE_red.length; i++) {
 				IIOMetadataNode entry = new IIOMetadataNode("PaletteEntry");
 				entry.setAttribute("index", Integer.toString(i));
 				entry.setAttribute("red", Integer.toString(PLTE_red[i] & 0xff));
-				entry.setAttribute("green", Integer.toString(PLTE_green[i] & 0xff));
-				entry.setAttribute("blue", Integer.toString(PLTE_blue[i] & 0xff));
+				entry.setAttribute("green", Integer.toString(PLTE_green[i]
+						& 0xff));
+				entry.setAttribute("blue", Integer.toString(PLTE_blue[i]
+						& 0xff));
 				if (hasAlpha) {
-					int alpha = (i < tRNS_alpha.length) ? (tRNS_alpha[i] & 0xff) : 255;
+					int alpha = (i < tRNS_alpha.length) ? (tRNS_alpha[i] & 0xff)
+							: 255;
 					entry.setAttribute("alpha", Integer.toString(alpha));
 				}
 				node.appendChild(entry);
@@ -843,7 +852,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 		node = new IIOMetadataNode("SampleFormat");
 		node.setAttribute("value",
-				IHDR_colorType == PNGImageReader.PNG_COLOR_PALETTE ? "Index" : "UnsignedIntegral");
+				IHDR_colorType == PNGImageReader.PNG_COLOR_PALETTE ? "Index"
+						: "UnsignedIntegral");
 		data_node.appendChild(node);
 
 		String bitDepth = Integer.toString(IHDR_bitDepth);
@@ -859,8 +869,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				sbits = Integer.toString(sBIT_grayBits);
 			} else { // sBIT_colorType == PNGImageReader.PNG_COLOR_RGB ||
 						// sBIT_colorType == PNGImageReader.PNG_COLOR_RGB_ALPHA
-				sbits = Integer.toString(sBIT_redBits) + " " + Integer.toString(sBIT_greenBits)
-						+ " " + Integer.toString(sBIT_blueBits);
+				sbits = Integer.toString(sBIT_redBits) + " " + Integer.toString(
+						sBIT_greenBits) + " " + Integer.toString(sBIT_blueBits);
 			}
 
 			if (sBIT_colorType == PNGImageReader.PNG_COLOR_GRAY_ALPHA
@@ -882,8 +892,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 		IIOMetadataNode node = null; // scratch node
 
 		node = new IIOMetadataNode("PixelAspectRatio");
-		float ratio = pHYs_present ? (float) pHYs_pixelsPerUnitXAxis / pHYs_pixelsPerUnitYAxis
-				: 1.0F;
+		float ratio = pHYs_present ? (float) pHYs_pixelsPerUnitXAxis
+				/ pHYs_pixelsPerUnitYAxis : 1.0F;
 		node.setAttribute("value", Float.toString(ratio));
 		dimension_node.appendChild(node);
 
@@ -893,11 +903,13 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 		if (pHYs_present && pHYs_unitSpecifier == PHYS_UNIT_METER) {
 			node = new IIOMetadataNode("HorizontalPixelSize");
-			node.setAttribute("value", Float.toString(1000.0F / pHYs_pixelsPerUnitXAxis));
+			node.setAttribute("value", Float.toString(1000.0F
+					/ pHYs_pixelsPerUnitXAxis));
 			dimension_node.appendChild(node);
 
 			node = new IIOMetadataNode("VerticalPixelSize");
-			node.setAttribute("value", Float.toString(1000.0F / pHYs_pixelsPerUnitYAxis));
+			node.setAttribute("value", Float.toString(1000.0F
+					/ pHYs_pixelsPerUnitYAxis));
 			dimension_node.appendChild(node);
 		}
 
@@ -925,7 +937,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	public IIOMetadataNode getStandardTextNode() {
-		int numEntries = tEXt_keyword.size() + iTXt_keyword.size() + zTXt_keyword.size();
+		int numEntries = tEXt_keyword.size() + iTXt_keyword.size()
+				+ zTXt_keyword.size();
 		if (numEntries == 0) {
 			return null;
 		}
@@ -976,8 +989,9 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 		node = new IIOMetadataNode("Alpha");
 		boolean hasAlpha = (IHDR_colorType == PNGImageReader.PNG_COLOR_RGB_ALPHA)
 				|| (IHDR_colorType == PNGImageReader.PNG_COLOR_GRAY_ALPHA)
-				|| (IHDR_colorType == PNGImageReader.PNG_COLOR_PALETTE && tRNS_present
-						&& (tRNS_colorType == IHDR_colorType) && (tRNS_alpha != null));
+				|| (IHDR_colorType == PNGImageReader.PNG_COLOR_PALETTE
+						&& tRNS_present && (tRNS_colorType == IHDR_colorType)
+						&& (tRNS_alpha != null));
 		node.setAttribute("value", hasAlpha ? "nonpremultipled" : "none");
 		transparency_node.appendChild(node);
 
@@ -985,7 +999,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 			node = new IIOMetadataNode("TransparentColor");
 			if (tRNS_colorType == PNGImageReader.PNG_COLOR_RGB) {
 				node.setAttribute("value", Integer.toString(tRNS_red) + " "
-						+ Integer.toString(tRNS_green) + " " + Integer.toString(tRNS_blue));
+						+ Integer.toString(tRNS_green) + " " + Integer.toString(
+								tRNS_blue));
 			} else if (tRNS_colorType == PNGImageReader.PNG_COLOR_GRAY) {
 				node.setAttribute("value", Integer.toString(tRNS_gray));
 			}
@@ -996,12 +1011,14 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	// Shorthand for throwing an IIOInvalidTreeException
-	private void fatal(Node node, String reason) throws IIOInvalidTreeException {
+	private void fatal(Node node, String reason)
+			throws IIOInvalidTreeException {
 		throw new IIOInvalidTreeException(reason, node);
 	}
 
 	// Get an integer-valued attribute
-	private String getStringAttribute(Node node, String name, String defaultValue, boolean required)
+	private String getStringAttribute(Node node, String name,
+			String defaultValue, boolean required)
 			throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
@@ -1015,8 +1032,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	// Get an integer-valued attribute
-	private int getIntAttribute(Node node, String name, int defaultValue, boolean required)
-			throws IIOInvalidTreeException {
+	private int getIntAttribute(Node node, String name, int defaultValue,
+			boolean required) throws IIOInvalidTreeException {
 		String value = getStringAttribute(node, name, null, required);
 		if (value == null) {
 			return defaultValue;
@@ -1025,8 +1042,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	// Get a float-valued attribute
-	private float getFloatAttribute(Node node, String name, float defaultValue, boolean required)
-			throws IIOInvalidTreeException {
+	private float getFloatAttribute(Node node, String name, float defaultValue,
+			boolean required) throws IIOInvalidTreeException {
 		String value = getStringAttribute(node, name, null, required);
 		if (value == null) {
 			return defaultValue;
@@ -1035,18 +1052,21 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	// Get a required integer-valued attribute
-	private int getIntAttribute(Node node, String name) throws IIOInvalidTreeException {
+	private int getIntAttribute(Node node, String name)
+			throws IIOInvalidTreeException {
 		return getIntAttribute(node, name, -1, true);
 	}
 
 	// Get a required float-valued attribute
-	private float getFloatAttribute(Node node, String name) throws IIOInvalidTreeException {
+	private float getFloatAttribute(Node node, String name)
+			throws IIOInvalidTreeException {
 		return getFloatAttribute(node, name, -1.0F, true);
 	}
 
 	// Get a boolean-valued attribute
-	private boolean getBooleanAttribute(Node node, String name, boolean defaultValue,
-			boolean required) throws IIOInvalidTreeException {
+	private boolean getBooleanAttribute(Node node, String name,
+			boolean defaultValue, boolean required)
+			throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
 			if (!required) {
@@ -1068,13 +1088,15 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	// Get a required boolean-valued attribute
-	private boolean getBooleanAttribute(Node node, String name) throws IIOInvalidTreeException {
+	private boolean getBooleanAttribute(Node node, String name)
+			throws IIOInvalidTreeException {
 		return getBooleanAttribute(node, name, false, true);
 	}
 
 	// Get an enumerated attribute as an index into a String array
-	private int getEnumeratedAttribute(Node node, String name, String[] legalNames,
-			int defaultValue, boolean required) throws IIOInvalidTreeException {
+	private int getEnumeratedAttribute(Node node, String name,
+			String[] legalNames, int defaultValue, boolean required)
+			throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
 			if (!required) {
@@ -1095,14 +1117,14 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	// Get a required enumerated attribute as an index into a String array
-	private int getEnumeratedAttribute(Node node, String name, String[] legalNames)
-			throws IIOInvalidTreeException {
+	private int getEnumeratedAttribute(Node node, String name,
+			String[] legalNames) throws IIOInvalidTreeException {
 		return getEnumeratedAttribute(node, name, legalNames, -1, true);
 	}
 
 	// Get a String-valued attribute
-	private String getAttribute(Node node, String name, String defaultValue, boolean required)
-			throws IIOInvalidTreeException {
+	private String getAttribute(Node node, String name, String defaultValue,
+			boolean required) throws IIOInvalidTreeException {
 		Node attr = node.getAttributes().getNamedItem(name);
 		if (attr == null) {
 			if (!required) {
@@ -1115,17 +1137,20 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	}
 
 	// Get a required String-valued attribute
-	private String getAttribute(Node node, String name) throws IIOInvalidTreeException {
+	private String getAttribute(Node node, String name)
+			throws IIOInvalidTreeException {
 		return getAttribute(node, name, null, true);
 	}
 
-	public void mergeTree(String formatName, Node root) throws IIOInvalidTreeException {
+	public void mergeTree(String formatName, Node root)
+			throws IIOInvalidTreeException {
 		if (formatName.equals(nativeMetadataFormatName)) {
 			if (root == null) {
 				throw new IllegalArgumentException("root == null!");
 			}
 			mergeNativeTree(root);
-		} else if (formatName.equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
+		} else if (formatName.equals(
+				IIOMetadataFormatImpl.standardMetadataFormatName)) {
 			if (root == null) {
 				throw new IllegalArgumentException("root == null!");
 			}
@@ -1149,14 +1174,16 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				IHDR_width = getIntAttribute(node, "width");
 				IHDR_height = getIntAttribute(node, "height");
 				IHDR_bitDepth = Integer.valueOf(
-						IHDR_bitDepths[getEnumeratedAttribute(node, "bitDepth", IHDR_bitDepths)]);
-				IHDR_colorType = getEnumeratedAttribute(node, "colorType", IHDR_colorTypeNames);
-				IHDR_compressionMethod = getEnumeratedAttribute(node, "compressionMethod",
-						IHDR_compressionMethodNames);
+						IHDR_bitDepths[getEnumeratedAttribute(node, "bitDepth",
+								IHDR_bitDepths)]);
+				IHDR_colorType = getEnumeratedAttribute(node, "colorType",
+						IHDR_colorTypeNames);
+				IHDR_compressionMethod = getEnumeratedAttribute(node,
+						"compressionMethod", IHDR_compressionMethodNames);
 				IHDR_filterMethod = getEnumeratedAttribute(node, "filterMethod",
 						IHDR_filterMethodNames);
-				IHDR_interlaceMethod = getEnumeratedAttribute(node, "interlaceMethod",
-						IHDR_interlaceMethodNames);
+				IHDR_interlaceMethod = getEnumeratedAttribute(node,
+						"interlaceMethod", IHDR_interlaceMethodNames);
 				IHDR_present = true;
 			} else if (name.equals("PLTE")) {
 				byte[] red = new byte[256];
@@ -1171,7 +1198,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 				while (PLTE_entry != null) {
 					if (!PLTE_entry.getNodeName().equals("PLTEEntry")) {
-						fatal(node, "Only a PLTEEntry may be a child of a PLTE!");
+						fatal(node,
+								"Only a PLTEEntry may be a child of a PLTE!");
 					}
 
 					int index = getIntAttribute(PLTE_entry, "index");
@@ -1247,7 +1275,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 				while (hIST_entry != null) {
 					if (!hIST_entry.getNodeName().equals("hISTEntry")) {
-						fatal(node, "Only a hISTEntry may be a child of a hIST!");
+						fatal(node,
+								"Only a hISTEntry may be a child of a hIST!");
 					}
 
 					int index = getIntAttribute(hIST_entry, "index");
@@ -1269,9 +1298,10 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				hIST_present = true;
 			} else if (name.equals("iCCP")) {
 				iCCP_profileName = getAttribute(node, "profileName");
-				iCCP_compressionMethod = getEnumeratedAttribute(node, "compressionMethod",
-						iCCP_compressionMethodNames);
-				Object compressedProfile = ((IIOMetadataNode) node).getUserObject();
+				iCCP_compressionMethod = getEnumeratedAttribute(node,
+						"compressionMethod", iCCP_compressionMethodNames);
+				Object compressedProfile = ((IIOMetadataNode) node)
+						.getUserObject();
 				if (compressedProfile == null) {
 					fatal(node, "No ICCP profile present in user object!");
 				}
@@ -1279,30 +1309,38 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 					fatal(node, "User object not a byte array!");
 				}
 
-				iCCP_compressedProfile = (byte[]) ((byte[]) compressedProfile).clone();
+				iCCP_compressedProfile = (byte[]) ((byte[]) compressedProfile)
+						.clone();
 
 				iCCP_present = true;
 			} else if (name.equals("iTXt")) {
 				Node iTXt_node = node.getFirstChild();
 				while (iTXt_node != null) {
 					if (!iTXt_node.getNodeName().equals("iTXtEntry")) {
-						fatal(node, "Only an iTXtEntry may be a child of an iTXt!");
+						fatal(node,
+								"Only an iTXtEntry may be a child of an iTXt!");
 					}
 
 					String keyword = getAttribute(iTXt_node, "keyword");
 					if (isValidKeyword(keyword)) {
 						iTXt_keyword.add(keyword);
 
-						boolean compressionFlag = getBooleanAttribute(iTXt_node, "compressionFlag");
-						iTXt_compressionFlag.add(Boolean.valueOf(compressionFlag));
+						boolean compressionFlag = getBooleanAttribute(iTXt_node,
+								"compressionFlag");
+						iTXt_compressionFlag.add(Boolean.valueOf(
+								compressionFlag));
 
-						String compressionMethod = getAttribute(iTXt_node, "compressionMethod");
-						iTXt_compressionMethod.add(Integer.valueOf(compressionMethod));
+						String compressionMethod = getAttribute(iTXt_node,
+								"compressionMethod");
+						iTXt_compressionMethod.add(Integer.valueOf(
+								compressionMethod));
 
-						String languageTag = getAttribute(iTXt_node, "languageTag");
+						String languageTag = getAttribute(iTXt_node,
+								"languageTag");
 						iTXt_languageTag.add(languageTag);
 
-						String translatedKeyword = getAttribute(iTXt_node, "translatedKeyword");
+						String translatedKeyword = getAttribute(iTXt_node,
+								"translatedKeyword");
 						iTXt_translatedKeyword.add(translatedKeyword);
 
 						String text = getAttribute(iTXt_node, "text");
@@ -1314,10 +1352,12 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 					iTXt_node = iTXt_node.getNextSibling();
 				}
 			} else if (name.equals("pHYs")) {
-				pHYs_pixelsPerUnitXAxis = getIntAttribute(node, "pixelsPerUnitXAxis");
-				pHYs_pixelsPerUnitYAxis = getIntAttribute(node, "pixelsPerUnitYAxis");
-				pHYs_unitSpecifier = getEnumeratedAttribute(node, "unitSpecifier",
-						unitSpecifierNames);
+				pHYs_pixelsPerUnitXAxis = getIntAttribute(node,
+						"pixelsPerUnitXAxis");
+				pHYs_pixelsPerUnitYAxis = getIntAttribute(node,
+						"pixelsPerUnitYAxis");
+				pHYs_unitSpecifier = getEnumeratedAttribute(node,
+						"unitSpecifier", unitSpecifierNames);
 
 				pHYs_present = true;
 			} else if (name.equals("sBIT")) {
@@ -1376,7 +1416,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 				while (sPLT_entry != null) {
 					if (!sPLT_entry.getNodeName().equals("sPLTEntry")) {
-						fatal(node, "Only an sPLTEntry may be a child of an sPLT!");
+						fatal(node,
+								"Only an sPLTEntry may be a child of an sPLT!");
 					}
 
 					int index = getIntAttribute(sPLT_entry, "index");
@@ -1409,15 +1450,16 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 				sPLT_present = true;
 			} else if (name.equals("sRGB")) {
-				sRGB_renderingIntent = getEnumeratedAttribute(node, "renderingIntent",
-						renderingIntentNames);
+				sRGB_renderingIntent = getEnumeratedAttribute(node,
+						"renderingIntent", renderingIntentNames);
 
 				sRGB_present = true;
 			} else if (name.equals("tEXt")) {
 				Node tEXt_node = node.getFirstChild();
 				while (tEXt_node != null) {
 					if (!tEXt_node.getNodeName().equals("tEXtEntry")) {
-						fatal(node, "Only an tEXtEntry may be a child of an tEXt!");
+						fatal(node,
+								"Only an tEXtEntry may be a child of an tEXt!");
 					}
 
 					String keyword = getAttribute(tEXt_node, "keyword");
@@ -1453,18 +1495,21 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 						fatal(node, "tRNS_Palette node has no children!");
 					}
 					while (tRNS_paletteEntry != null) {
-						if (!tRNS_paletteEntry.getNodeName().equals("tRNS_PaletteEntry")) {
+						if (!tRNS_paletteEntry.getNodeName().equals(
+								"tRNS_PaletteEntry")) {
 							fatal(node,
 									"Only a tRNS_PaletteEntry may be a child of a tRNS_Palette!");
 						}
 						int index = getIntAttribute(tRNS_paletteEntry, "index");
 						if (index < 0 || index > 255) {
-							fatal(node, "Bad value for tRNS_PaletteEntry attribute index!");
+							fatal(node,
+									"Bad value for tRNS_PaletteEntry attribute index!");
 						}
 						if (index > maxindex) {
 							maxindex = index;
 						}
-						alpha[index] = (byte) getIntAttribute(tRNS_paletteEntry, "alpha");
+						alpha[index] = (byte) getIntAttribute(tRNS_paletteEntry,
+								"alpha");
 
 						tRNS_paletteEntry = tRNS_paletteEntry.getNextSibling();
 					}
@@ -1493,14 +1538,15 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				Node zTXt_node = node.getFirstChild();
 				while (zTXt_node != null) {
 					if (!zTXt_node.getNodeName().equals("zTXtEntry")) {
-						fatal(node, "Only an zTXtEntry may be a child of an zTXt!");
+						fatal(node,
+								"Only an zTXtEntry may be a child of an zTXt!");
 					}
 
 					String keyword = getAttribute(zTXt_node, "keyword");
 					zTXt_keyword.add(keyword);
 
-					int compressionMethod = getEnumeratedAttribute(zTXt_node, "compressionMethod",
-							zTXt_compressionMethodNames);
+					int compressionMethod = getEnumeratedAttribute(zTXt_node,
+							"compressionMethod", zTXt_compressionMethodNames);
 					zTXt_compressionMethod.add(new Integer(compressionMethod));
 
 					String text = getAttribute(zTXt_node, "text");
@@ -1512,16 +1558,19 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				Node unknown_node = node.getFirstChild();
 				while (unknown_node != null) {
 					if (!unknown_node.getNodeName().equals("UnknownChunk")) {
-						fatal(node, "Only an UnknownChunk may be a child of an UnknownChunks!");
+						fatal(node,
+								"Only an UnknownChunk may be a child of an UnknownChunks!");
 					}
 					String chunkType = getAttribute(unknown_node, "type");
-					Object chunkData = ((IIOMetadataNode) unknown_node).getUserObject();
+					Object chunkData = ((IIOMetadataNode) unknown_node)
+							.getUserObject();
 
 					if (chunkType.length() != 4) {
 						fatal(unknown_node, "Chunk type must be 4 characters!");
 					}
 					if (chunkData == null) {
-						fatal(unknown_node, "No chunk data present in user object!");
+						fatal(unknown_node,
+								"No chunk data present in user object!");
 					}
 					if (!(chunkData instanceof byte[])) {
 						fatal(unknown_node, "User object not a byte array!");
@@ -1544,7 +1593,6 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	 * Keywords shall contain only printable Latin-1 characters and spaces; To
 	 * reduce the chances for human misreading of a keyword, leading spaces,
 	 * trailing spaces, and consecutive spaces are not permitted in keywords.
-	 *
 	 * See: http://www.w3.org/TR/PNG/#11keywords
 	 */
 	private boolean isValidKeyword(String s) {
@@ -1563,7 +1611,6 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 	 * [ISO-8859-1] characters and spaces; that is, only character codes 32-126
 	 * and 161-255 decimal are allowed. For Latin-1 value fields the 0x10
 	 * (linefeed) control character is aloowed too.
-	 *
 	 * See: http://www.w3.org/TR/PNG/#11keywords
 	 */
 	private boolean isISOLatin(String s, boolean isLineFeedAllowed) {
@@ -1583,8 +1630,10 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 
 	private void mergeStandardTree(Node root) throws IIOInvalidTreeException {
 		Node node = root;
-		if (!node.getNodeName().equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
-			fatal(node, "Root must be " + IIOMetadataFormatImpl.standardMetadataFormatName);
+		if (!node.getNodeName().equals(
+				IIOMetadataFormatImpl.standardMetadataFormatName)) {
+			fatal(node, "Root must be "
+					+ IIOMetadataFormatImpl.standardMetadataFormatName);
 		}
 
 		node = node.getFirstChild();
@@ -1609,9 +1658,12 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 						while (entry != null) {
 							int index = getIntAttribute(entry, "index");
 							if (index >= 0 && index <= 255) {
-								red[index] = (byte) getIntAttribute(entry, "red");
-								green[index] = (byte) getIntAttribute(entry, "green");
-								blue[index] = (byte) getIntAttribute(entry, "blue");
+								red[index] = (byte) getIntAttribute(entry,
+										"red");
+								green[index] = (byte) getIntAttribute(entry,
+										"green");
+								blue[index] = (byte) getIntAttribute(entry,
+										"blue");
 								if (index > maxindex) {
 									maxindex = index;
 								}
@@ -1788,8 +1840,10 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 						tIME_month = getIntAttribute(child, "month");
 						tIME_day = getIntAttribute(child, "day");
 						tIME_hour = getIntAttribute(child, "hour", 0, false);
-						tIME_minute = getIntAttribute(child, "minute", 0, false);
-						tIME_second = getIntAttribute(child, "second", 0, false);
+						tIME_minute = getIntAttribute(child, "minute", 0,
+								false);
+						tIME_second = getIntAttribute(child, "second", 0,
+								false);
 						// } else if
 						// (childName.equals("SubimageInterpretation")) {
 						// } else if (childName.equals("ImageCreationTime")) {
@@ -1801,10 +1855,13 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 				while (child != null) {
 					String childName = child.getNodeName();
 					if (childName.equals("TextEntry")) {
-						String keyword = getAttribute(child, "keyword", "", false);
+						String keyword = getAttribute(child, "keyword", "",
+								false);
 						String value = getAttribute(child, "value");
-						String language = getAttribute(child, "language", "", false);
-						String compression = getAttribute(child, "compression", "none", false);
+						String language = getAttribute(child, "language", "",
+								false);
+						String compression = getAttribute(child, "compression",
+								"none", false);
 
 						if (!isValidKeyword(keyword)) {
 							// Just ignore this node, PNG requires keywords
@@ -1822,7 +1879,8 @@ public class PNGMetadata extends IIOMetadata implements Cloneable {
 						} else {
 							// Use an iTXt node
 							iTXt_keyword.add(keyword);
-							iTXt_compressionFlag.add(Boolean.valueOf(compression.equals("zip")));
+							iTXt_compressionFlag.add(Boolean.valueOf(compression
+									.equals("zip")));
 							iTXt_compressionMethod.add(Integer.valueOf(0));
 							iTXt_languageTag.add(language);
 							iTXt_translatedKeyword.add(keyword); // fake it

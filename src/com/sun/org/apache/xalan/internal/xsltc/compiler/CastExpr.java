@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -185,11 +183,12 @@ final class CastExpr extends Expression {
 			return _type;
 		}
 		// throw new TypeCheckError(this);
-		throw new TypeCheckError(
-				new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, tleft.toString(), _type.toString()));
+		throw new TypeCheckError(new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+				tleft.toString(), _type.toString()));
 	}
 
-	public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateDesynthesized(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		FlowList fl;
 		final Type ltype = _left.getType();
 
@@ -200,7 +199,8 @@ final class CastExpr extends Expression {
 			final ConstantPoolGen cpg = classGen.getConstantPool();
 			final InstructionList il = methodGen.getInstructionList();
 
-			final int idx = cpg.addInterfaceMethodref(DOM_INTF, "getExpandedTypeID", "(I)I");
+			final int idx = cpg.addInterfaceMethodref(DOM_INTF,
+					"getExpandedTypeID", "(I)I");
 			il.append(new SIPUSH((short) ((Step) _left).getNodeType()));
 			il.append(methodGen.loadDOM());
 			il.append(methodGen.loadContextNode());
@@ -212,7 +212,8 @@ final class CastExpr extends Expression {
 			if (_type != ltype) {
 				_left.startIterator(classGen, methodGen);
 				if (_type instanceof BooleanType) {
-					fl = ltype.translateToDesynthesized(classGen, methodGen, _type);
+					fl = ltype.translateToDesynthesized(classGen, methodGen,
+							_type);
 					if (fl != null) {
 						_falseList.append(fl);
 					}

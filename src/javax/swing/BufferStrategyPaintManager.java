@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -74,8 +54,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 	private static Method COMPONENT_CREATE_BUFFER_STRATEGY_METHOD;
 	private static Method COMPONENT_GET_BUFFER_STRATEGY_METHOD;
 
-	private static final PlatformLogger LOGGER = PlatformLogger
-			.getLogger("javax.swing.BufferStrategyPaintManager");
+	private static final PlatformLogger LOGGER = PlatformLogger.getLogger(
+			"javax.swing.BufferStrategyPaintManager");
 
 	/**
 	 * List of BufferInfos. We don't use a Map primarily because there are
@@ -156,24 +136,28 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 	}
 
 	private static void getMethods() {
-		java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Object>() {
-			public Object run() {
-				try {
-					COMPONENT_CREATE_BUFFER_STRATEGY_METHOD = Component.class.getDeclaredMethod(
-							"createBufferStrategy",
-							new Class[] { int.class, BufferCapabilities.class });
-					COMPONENT_CREATE_BUFFER_STRATEGY_METHOD.setAccessible(true);
-					COMPONENT_GET_BUFFER_STRATEGY_METHOD = Component.class
-							.getDeclaredMethod("getBufferStrategy");
-					COMPONENT_GET_BUFFER_STRATEGY_METHOD.setAccessible(true);
-				} catch (SecurityException e) {
-					assert false;
-				} catch (NoSuchMethodException nsme) {
-					assert false;
-				}
-				return null;
-			}
-		});
+		java.security.AccessController.doPrivileged(
+				new java.security.PrivilegedAction<Object>() {
+					public Object run() {
+						try {
+							COMPONENT_CREATE_BUFFER_STRATEGY_METHOD = Component.class
+									.getDeclaredMethod("createBufferStrategy",
+											new Class[] { int.class,
+													BufferCapabilities.class });
+							COMPONENT_CREATE_BUFFER_STRATEGY_METHOD
+									.setAccessible(true);
+							COMPONENT_GET_BUFFER_STRATEGY_METHOD = Component.class
+									.getDeclaredMethod("getBufferStrategy");
+							COMPONENT_GET_BUFFER_STRATEGY_METHOD.setAccessible(
+									true);
+						} catch (SecurityException e) {
+							assert false;
+						} catch (NoSuchMethodException nsme) {
+							assert false;
+						}
+						return null;
+					}
+				});
 	}
 
 	BufferStrategyPaintManager() {
@@ -211,7 +195,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 
 	private void dispose(java.util.List<BufferInfo> bufferInfos) {
 		if (LOGGER.isLoggable(PlatformLogger.Level.FINER)) {
-			LOGGER.finer("BufferStrategyPaintManager disposed", new RuntimeException());
+			LOGGER.finer("BufferStrategyPaintManager disposed",
+					new RuntimeException());
 		}
 		if (bufferInfos != null) {
 			for (BufferInfo bufferInfo : bufferInfos) {
@@ -237,8 +222,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 		try {
 			BufferInfo info = getBufferInfo(c);
 			BufferStrategy bufferStrategy;
-			if (info != null && info.isInSync()
-					&& (bufferStrategy = info.getBufferStrategy(false)) != null) {
+			if (info != null && info.isInSync() && (bufferStrategy = info
+					.getBufferStrategy(false)) != null) {
 				SubRegionShowable bsSubRegion = (SubRegionShowable) bufferStrategy;
 				boolean paintAllOnExpose = info.getPaintAllOnExpose();
 				info.setPaintAllOnExpose(false);
@@ -260,12 +245,14 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 		return false;
 	}
 
-	public boolean paint(JComponent paintingComponent, JComponent bufferComponent, Graphics g,
-			int x, int y, int w, int h) {
+	public boolean paint(JComponent paintingComponent,
+			JComponent bufferComponent, Graphics g, int x, int y, int w,
+			int h) {
 		Container root = fetchRoot(paintingComponent);
 
 		if (prepare(paintingComponent, root, true, x, y, w, h)) {
-			if ((g instanceof SunGraphics2D) && ((SunGraphics2D) g).getDestination() == root) {
+			if ((g instanceof SunGraphics2D) && ((SunGraphics2D) g)
+					.getDestination() == root) {
 				// BufferStrategy may have already constrained the Graphics. To
 				// account for that we revert the constrain, then apply a
 				// constrain for Swing on top of that.
@@ -274,9 +261,11 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 				if (cx != 0 || cy != 0) {
 					bsg.translate(-cx, -cy);
 				}
-				((SunGraphics2D) bsg).constrain(xOffset + cx, yOffset + cy, x + w, y + h);
+				((SunGraphics2D) bsg).constrain(xOffset + cx, yOffset + cy, x
+						+ w, y + h);
 				bsg.setClip(x, y, w, h);
-				paintingComponent.paintToOffscreen(bsg, x, y, w, h, x + w, y + h);
+				paintingComponent.paintToOffscreen(bsg, x, y, w, h, x + w, y
+						+ h);
 				accumulate(xOffset + x, yOffset + y, w, h);
 				return true;
 			} else {
@@ -294,8 +283,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 		return super.paint(paintingComponent, bufferComponent, g, x, y, w, h);
 	}
 
-	public void copyArea(JComponent c, Graphics g, int x, int y, int w, int h, int deltaX,
-			int deltaY, boolean clip) {
+	public void copyArea(JComponent c, Graphics g, int x, int y, int w, int h,
+			int deltaX, int deltaY, boolean clip) {
 		// Note: this method is only called internally and we know that
 		// g is from a heavyweight Component, so no check is necessary as
 		// it is in paint() above.
@@ -309,8 +298,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 				Rectangle cBounds = c.getVisibleRect();
 				int relX = xOffset + x;
 				int relY = yOffset + y;
-				bsg.clipRect(xOffset + cBounds.x, yOffset + cBounds.y, cBounds.width,
-						cBounds.height);
+				bsg.clipRect(xOffset + cBounds.x, yOffset + cBounds.y,
+						cBounds.width, cBounds.height);
 				bsg.copyArea(relX, relY, w, h, deltaX, deltaY);
 			} else {
 				bsg.copyArea(xOffset + x, yOffset + y, w, h, deltaX, deltaY);
@@ -354,8 +343,9 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 
 	public void endPaint() {
 		if (LOGGER.isLoggable(PlatformLogger.Level.FINEST)) {
-			LOGGER.finest("endPaint: region " + accumulatedX + " " + accumulatedY + " "
-					+ accumulatedMaxX + " " + accumulatedMaxY);
+			LOGGER.finest("endPaint: region " + accumulatedX + " "
+					+ accumulatedY + " " + accumulatedMaxX + " "
+					+ accumulatedMaxY);
 		}
 		if (painting) {
 			if (!flushAccumulatedRegion()) {
@@ -395,7 +385,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 			SubRegionShowable bsSubRegion = (SubRegionShowable) bufferStrategy;
 			boolean contentsLost = bufferStrategy.contentsLost();
 			if (!contentsLost) {
-				bsSubRegion.show(accumulatedX, accumulatedY, accumulatedMaxX, accumulatedMaxY);
+				bsSubRegion.show(accumulatedX, accumulatedY, accumulatedMaxX,
+						accumulatedMaxY);
 				contentsLost = bufferStrategy.contentsLost();
 			}
 			if (contentsLost) {
@@ -424,8 +415,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 	 * buffering changes we throw out any cache we may have.
 	 */
 	public void doubleBufferingChanged(final JRootPane rootPane) {
-		if ((!rootPane.isDoubleBuffered() || !rootPane.getUseTrueDoubleBuffering())
-				&& rootPane.getParent() != null) {
+		if ((!rootPane.isDoubleBuffered() || !rootPane
+				.getUseTrueDoubleBuffering()) && rootPane.getParent() != null) {
 			if (!SwingUtilities.isEventDispatchThread()) {
 				Runnable updater = new Runnable() {
 					public void run() {
@@ -476,8 +467,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 	 *
 	 * @return true if should use buffering per window in painting.
 	 */
-	private boolean prepare(JComponent c, Container root, boolean isPaint, int x, int y, int w,
-			int h) {
+	private boolean prepare(JComponent c, Container root, boolean isPaint,
+			int x, int y, int w, int h) {
 		if (bsg != null) {
 			bsg.dispose();
 			bsg = null;
@@ -502,7 +493,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 					if (bufferStrategy.contentsRestored()) {
 						contentsLost = true;
 						if (LOGGER.isLoggable(PlatformLogger.Level.FINER)) {
-							LOGGER.finer("prepare: contents restored in prepare");
+							LOGGER.finer(
+									"prepare: contents restored in prepare");
 						}
 					}
 				} else {
@@ -517,8 +509,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 						LOGGER.finer("prepare: contents lost on expose");
 					}
 				}
-				if (isPaint && c == rootJ && x == 0 && y == 0 && c.getWidth() == w
-						&& c.getHeight() == h) {
+				if (isPaint && c == rootJ && x == 0 && y == 0 && c
+						.getWidth() == w && c.getHeight() == h) {
 					bufferInfo.setInSync(true);
 				} else if (contentsLost) {
 					// We either recreated the BufferStrategy, or the contents
@@ -544,8 +536,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 		rootJ = c;
 		Container root = c;
 		xOffset = yOffset = 0;
-		while (root != null && (!(root instanceof Window)
-				&& !SunToolkit.isInstanceOf(root, "java.applet.Applet"))) {
+		while (root != null && (!(root instanceof Window) && !SunToolkit
+				.isInstanceOf(root, "java.applet.Applet"))) {
 			xOffset += root.getX();
 			yOffset += root.getY();
 			root = root.getParent();
@@ -571,11 +563,13 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 				}
 			}
 		}
-		if ((root instanceof RootPaneContainer) && (rootJ instanceof JRootPane)) {
+		if ((root instanceof RootPaneContainer)
+				&& (rootJ instanceof JRootPane)) {
 			// We're in a Swing heavyeight (JFrame/JWindow...), use double
 			// buffering if double buffering enabled on the JRootPane and
 			// the JRootPane wants true double buffering.
-			if (rootJ.isDoubleBuffered() && ((JRootPane) rootJ).getUseTrueDoubleBuffering()) {
+			if (rootJ.isDoubleBuffered() && ((JRootPane) rootJ)
+					.getUseTrueDoubleBuffering()) {
 				// Whether or not a component is double buffered is a
 				// bit tricky with Swing. This gives a good approximation
 				// of the various ways to turn on double buffering for
@@ -633,7 +627,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 	 * hidden/iconified the buffer is marked as needing to be completely
 	 * repainted.
 	 */
-	private class BufferInfo extends ComponentAdapter implements WindowListener {
+	private class BufferInfo extends ComponentAdapter implements
+			WindowListener {
 		// NOTE: This class does NOT hold a direct reference to the root, if it
 		// did there would be a cycle between the BufferPerWindowPaintManager
 		// and the Window so that it could never be GC'ed
@@ -700,8 +695,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 		 * or if there is a problem in creating the <code>BufferStartegy</code>.
 		 *
 		 * @param create
-		 *            If true, and the BufferStartegy is currently null, one
-		 *            will be created.
+		 *               If true, and the BufferStartegy is currently null, one
+		 *               will be created.
 		 */
 		public BufferStrategy getBufferStrategy(boolean create) {
 			BufferStrategy bs = (weakBS == null) ? null : weakBS.get();
@@ -732,7 +727,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 					componentBS = ((Window) root).getBufferStrategy();
 				} else {
 					try {
-						componentBS = (BufferStrategy) getGetBufferStrategyMethod().invoke(root);
+						componentBS = (BufferStrategy) getGetBufferStrategyMethod()
+								.invoke(root);
 					} catch (InvocationTargetException ite) {
 						assert false;
 					} catch (IllegalArgumentException iae) {
@@ -766,7 +762,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 			if (SwingUtilities3.isVsyncRequested(root)) {
 				bs = createBufferStrategy(root, true);
 				if (LOGGER.isLoggable(PlatformLogger.Level.FINER)) {
-					LOGGER.finer("createBufferStrategy: using vsynced strategy");
+					LOGGER.finer(
+							"createBufferStrategy: using vsynced strategy");
 				}
 			}
 			if (bs == null) {
@@ -786,11 +783,13 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 		// Creates and returns a buffer strategy. If
 		// there is a problem creating the buffer strategy this will
 		// eat the exception and return null.
-		private BufferStrategy createBufferStrategy(Container root, boolean isVsynced) {
+		private BufferStrategy createBufferStrategy(Container root,
+				boolean isVsynced) {
 			BufferCapabilities caps;
 			if (isVsynced) {
-				caps = new ExtendedBufferCapabilities(new ImageCapabilities(true),
-						new ImageCapabilities(true), BufferCapabilities.FlipContents.COPIED,
+				caps = new ExtendedBufferCapabilities(new ImageCapabilities(
+						true), new ImageCapabilities(true),
+						BufferCapabilities.FlipContents.COPIED,
 						ExtendedBufferCapabilities.VSyncType.VSYNC_ON);
 			} else {
 				caps = new BufferCapabilities(new ImageCapabilities(true),
@@ -800,7 +799,8 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 			if (SunToolkit.isInstanceOf(root, "java.applet.Applet")) {
 				try {
 					getCreateBufferStrategyMethod().invoke(root, 2, caps);
-					bs = (BufferStrategy) getGetBufferStrategyMethod().invoke(root);
+					bs = (BufferStrategy) getGetBufferStrategyMethod().invoke(
+							root);
 				} catch (InvocationTargetException ite) {
 					// Type is not supported
 					if (LOGGER.isLoggable(PlatformLogger.Level.FINER)) {
@@ -889,19 +889,14 @@ class BufferStrategyPaintManager extends RepaintManager.PaintManager {
 			dispose();
 		}
 
-		public void windowOpened(WindowEvent e) {
-		}
+		public void windowOpened(WindowEvent e) {}
 
-		public void windowClosing(WindowEvent e) {
-		}
+		public void windowClosing(WindowEvent e) {}
 
-		public void windowDeiconified(WindowEvent e) {
-		}
+		public void windowDeiconified(WindowEvent e) {}
 
-		public void windowActivated(WindowEvent e) {
-		}
+		public void windowActivated(WindowEvent e) {}
 
-		public void windowDeactivated(WindowEvent e) {
-		}
+		public void windowDeactivated(WindowEvent e) {}
 	}
 }

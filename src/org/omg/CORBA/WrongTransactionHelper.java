@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -37,7 +17,8 @@ package org.omg.CORBA;
 abstract public class WrongTransactionHelper {
 	private static String _id = "IDL:omg.org/CORBA/WrongTransaction:1.0";
 
-	public static void insert(org.omg.CORBA.Any a, org.omg.CORBA.WrongTransaction that) {
+	public static void insert(org.omg.CORBA.Any a,
+			org.omg.CORBA.WrongTransaction that) {
 		org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
 		a.type(type());
 		write(out, that);
@@ -56,14 +37,15 @@ abstract public class WrongTransactionHelper {
 			synchronized (org.omg.CORBA.TypeCode.class) {
 				if (__typeCode == null) {
 					if (__active) {
-						return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
+						return org.omg.CORBA.ORB.init().create_recursive_tc(
+								_id);
 					}
 					__active = true;
 					org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[0];
 					org.omg.CORBA.TypeCode _tcOf_members0 = null;
 					__typeCode = org.omg.CORBA.ORB.init().create_exception_tc(
-							org.omg.CORBA.WrongTransactionHelper.id(), "WrongTransaction",
-							_members0);
+							org.omg.CORBA.WrongTransactionHelper.id(),
+							"WrongTransaction", _members0);
 					__active = false;
 				}
 			}
@@ -75,7 +57,8 @@ abstract public class WrongTransactionHelper {
 		return _id;
 	}
 
-	public static org.omg.CORBA.WrongTransaction read(org.omg.CORBA.portable.InputStream istream) {
+	public static org.omg.CORBA.WrongTransaction read(
+			org.omg.CORBA.portable.InputStream istream) {
 		org.omg.CORBA.WrongTransaction value = new org.omg.CORBA.WrongTransaction();
 		// read and discard the repository ID
 		istream.read_string();

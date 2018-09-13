@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -41,9 +21,9 @@ public interface ChoicePeer extends ComponentPeer {
 	 * {@code index}.
 	 *
 	 * @param item
-	 *            the label to be added to the list
+	 *              the label to be added to the list
 	 * @param index
-	 *            the index where to add the item
+	 *              the index where to add the item
 	 *
 	 * @see Choice#add(String)
 	 */
@@ -53,7 +33,7 @@ public interface ChoicePeer extends ComponentPeer {
 	 * Removes the item at index {@code index} from the combo box list.
 	 *
 	 * @param index
-	 *            the index where to remove the item
+	 *              the index where to remove the item
 	 *
 	 * @see Choice#remove(int)
 	 */
@@ -70,7 +50,7 @@ public interface ChoicePeer extends ComponentPeer {
 	 * Selects the item at index {@code index}.
 	 *
 	 * @param index
-	 *            the index which should be selected
+	 *              the index which should be selected
 	 *
 	 * @see Choice#select(int)
 	 */

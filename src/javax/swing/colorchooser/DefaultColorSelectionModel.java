@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -37,7 +17,8 @@ import java.io.Serializable;
  *
  * @see java.awt.Color
  */
-public class DefaultColorSelectionModel implements ColorSelectionModel, Serializable {
+public class DefaultColorSelectionModel implements ColorSelectionModel,
+		Serializable {
 
 	/**
 	 * Only one <code>ChangeEvent</code> is needed per model instance since the
@@ -65,7 +46,7 @@ public class DefaultColorSelectionModel implements ColorSelectionModel, Serializ
 	 * unpredictable results.
 	 *
 	 * @param color
-	 *            the new <code>Color</code>
+	 *              the new <code>Color</code>
 	 */
 	public DefaultColorSelectionModel(Color color) {
 		selectedColor = color;
@@ -89,7 +70,7 @@ public class DefaultColorSelectionModel implements ColorSelectionModel, Serializ
 	 * as the current color, no event is fired.
 	 *
 	 * @param color
-	 *            the new <code>Color</code>
+	 *              the new <code>Color</code>
 	 */
 	public void setSelectedColor(Color color) {
 		if (color != null && !selectedColor.equals(color)) {
@@ -102,7 +83,7 @@ public class DefaultColorSelectionModel implements ColorSelectionModel, Serializ
 	 * Adds a <code>ChangeListener</code> to the model.
 	 *
 	 * @param l
-	 *            the <code>ChangeListener</code> to be added
+	 *          the <code>ChangeListener</code> to be added
 	 */
 	public void addChangeListener(ChangeListener l) {
 		listenerList.add(ChangeListener.class, l);
@@ -112,7 +93,7 @@ public class DefaultColorSelectionModel implements ColorSelectionModel, Serializ
 	 * Removes a <code>ChangeListener</code> from the model.
 	 * 
 	 * @param l
-	 *            the <code>ChangeListener</code> to be removed
+	 *          the <code>ChangeListener</code> to be removed
 	 */
 	public void removeChangeListener(ChangeListener l) {
 		listenerList.remove(ChangeListener.class, l);
