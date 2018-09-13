@@ -864,20 +864,10 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 	 * @return true if successful
 	 */
 	private boolean addWorker(Runnable firstTask, boolean core) {
-		// 两层死循环防止线程一次竞争不到资源，循环竞争资源
-		// 外层循环判断线程池状态变化，内层循环判断线程数量。
 		retry: for (;;) {
 			int c = ctl.get();
 			int rs = runStateOf(c);
 
-			/*
-			 * 判断两种情况：
-			 * 1.若线程是状态大于SHUTDOWN，（即STOP, TIDYING, TERMINATED）,则立即返回false，
-			 * 也就是说此三种状态，线程池立即停止工作。
-			 * 2.若线程是状态等于SHUTDOWN，firstTask != null或者workQueue.isEmpty()，则
-			 * 立即返回false，也就说此状态下，线程池不接受新任务，但是会处理已在队列中的任务。
-			 * 3.若线程池状态为RUNNING，即可以处理新任务，也可以处理队列中任务。
-			 */
 			// Check if queue empty only if necessary.
 			if (rs >= SHUTDOWN && !(rs == SHUTDOWN && firstTask == null
 					&& !workQueue.isEmpty()))
@@ -891,8 +881,6 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 				if (compareAndIncrementWorkerCount(c))
 					break retry;
 				c = ctl.get(); // Re-read ctl
-				// compareAndIncrementWorkerCount执行失败可能由于线程数变化了，再次循环执行
-				// 线程池状态一旦变化，跳到外层循环再次校验线程池状态。
 				if (runStateOf(c) != rs)
 					continue retry;
 				// else CAS failed due to workerCount change; retry inner loop
@@ -918,7 +906,6 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 							&& firstTask == null)) {
 						if (t.isAlive()) // precheck that t is startable
 							throw new IllegalThreadStateException();
-						// workers只在锁内使用，无需用volatile关键字修饰
 						workers.add(w);
 						int s = workers.size();
 						if (s > largestPoolSize)

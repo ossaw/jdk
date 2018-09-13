@@ -652,7 +652,7 @@ registerMBean}(pool, objectName);
  * <p>
  * A {@code List<}<em>E</em>{@code >} or {@code
    Set<}<em>E</em>{@code >}, such as {@code List<String>} or {@code
- Set<ObjectName>}, is mapped in the same way as an array of the same element
+Set<ObjectName>}, is mapped in the same way as an array of the same element
  * type, such as {@code String[]} or {@code
  ObjectName[]}.
  * </p>
